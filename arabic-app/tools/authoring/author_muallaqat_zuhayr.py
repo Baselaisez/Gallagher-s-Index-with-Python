@@ -13,6 +13,12 @@ History of the file: the verses were written in two passes (first a selection �
 into EXTRA), so they are filed by verse number and the chapters are cut from that sequence. DIV lists every departure
 from the edition's print with its witness; FLAGS the editorial vowels left for the scholar.
 
+Second reading (2026-11-19): vv. 7–49 were collated token by token with al-Durra's iʿrāb and al-Zawzanī's commentary
+(FA_IST, LAMMA_D, HAL_OWN, TAMYIZ_ADAD and MAN(khabar=False) come from that pass). The figures of sound — ishtiqāq
+(mulḥaq bil-jinās), jinās nāqiṣ, radd al-ʿajuz ʿalā al-ṣadr — are named by neither commentator; they are claimed by
+the Talkhīṣ's own definition, from one table (BADI_HADD) that computes each radd's seat, and every such line says
+«عَلَى حَدِّ التَّلْخِيصِ». A ṭibāq or muqābala says whose words it rests on, or that it too is by the definition.
+
 Regenerate with:
 QISSA_PKG_ROOT=<dir> python3 tools/authoring/author_muallaqat_zuhayr.py
 """
@@ -68,16 +74,16 @@ NAIB_HUWA = ("، وَنَائِبُ الْفَاعِلِ مُسْتَتِرٌ ت
 HIYA_HARB = ("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْحَرْبِ", "; the doer is the hidden «she» — the war", "; fâil, harbe dönen gizli zamir «o»")
 G_SHART = ["al-majzum-wal-shart-wal-jaza", "jawazim-al-mudari-wal-amr-fil-kafiya"]
 
-def MAN(full, sh, jw, lead=None, seat=None, tail=("", "", "")):
+def MAN(full, sh, jw, lead=None, seat=None, tail=("", "", ""), khabar=True):
     """مَنْ الشَّرْطِيَّة with its full line: the conditional noun, its seat, the condition's verb and the answer with the sign of
     each jazm. sh / jw are (ar, en, tr) triples; lead overrides the reading of the waw before it."""
     has = full[0] in "وف"
     lead = lead or ((WA_AR, "The waw conjoins; ", "«ve» + ") if has else ("", "", ""))
     seat = seat or ("فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ", "in the seat of raf' as mubtada", "mübtedâ olarak mahallen merfû")
-    return tok(full, "man", "pron", G_SHART + ["mubtada-khabar", "al-mabni-wal-mudmar"],
-        lead[0] + "مَنْ اسْمُ شَرْطٍ جَازِمٌ يَجْزِمُ فِعْلَيْنِ، مَبْنِيٌّ عَلَى السُّكُونِ " + seat[0] + " — فِعْلُ الشَّرْطِ: " + sh[0] + "؛ وَجَوَابُهُ: " + jw[0] + "؛ وَجُمْلَتَا الشَّرْطِ وَالْجَوَابِ خَبَرُ «مَنْ»" + tail[0] + ".",
-        lead[1] + "مَنْ «whoever» is the conditional noun that puts two verbs in jazm, built on sukun " + seat[1] + " — the condition's verb: " + sh[1] + "; its answer: " + jw[1] + "; the condition and its answer together are the khabar of مَنْ" + tail[1] + ".",
-        lead[2] + "men «kim …-sa»: iki fiili cezmeden şart ismi, sükûn üzere mebnî, " + seat[2] + " — şart fiili: " + sh[2] + "; cevabı: " + jw[2] + "; şart ve cevap cümleleri «men»in haberidir" + tail[2] + ".",
+    return tok(full, "man", "pron", G_SHART + (["mubtada-khabar"] if khabar else ["maful-bihi"]) + ["al-mabni-wal-mudmar"],
+        lead[0] + "مَنْ اسْمُ شَرْطٍ جَازِمٌ يَجْزِمُ فِعْلَيْنِ، مَبْنِيٌّ عَلَى السُّكُونِ " + seat[0] + " — فِعْلُ الشَّرْطِ: " + sh[0] + "؛ وَجَوَابُهُ: " + jw[0] + ("؛ وَجُمْلَتَا الشَّرْطِ وَالْجَوَابِ خَبَرُ «مَنْ»" if khabar else "") + tail[0] + ".",
+        lead[1] + "مَنْ «whoever» is the conditional noun that puts two verbs in jazm, built on sukun " + seat[1] + " — the condition's verb: " + sh[1] + "; its answer: " + jw[1] + ("; the condition and its answer together are the khabar of مَنْ" if khabar else "") + tail[1] + ".",
+        lead[2] + "men «kim …-sa»: iki fiili cezmeden şart ismi, sükûn üzere mebnî, " + seat[2] + " — şart fiili: " + sh[2] + "; cevabı: " + jw[2] + ("; şart ve cevap cümleleri «men»in haberidir" if khabar else "") + tail[2] + ".",
         segments=[seg(full[:2], "wa" if full[0] == "و" else "fa", "conj"), seg("مَنْ", "man", "pron")] if has else None)
 def D(word, sign):
     """«يَعِشْ» مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ … — one half of a MAN line"""
@@ -99,6 +105,38 @@ def JV(full, lex, role, sign, g=None, doer=HUWA, note=("", "", ""), p=None, segs
 WA3 = (WA_AR, "The waw conjoins; ", "«ve» + ")
 FA3 = (FA_AR, "The fa conjoins; ", "«fe» + ")
 def cap(s): return s[:1].upper() + s[1:]
+# ---- second reading (collation with al-Durra, vv. 7–49) ----
+def FA_IST(t):
+    """الْفَاءُ الِاسْتِئْنَافِيَّةُ: al-Durra's reading, where a kit helper writes «عَاطِفَةٌ» by default"""
+    N = lambda x: unicodedata.normalize("NFC", x)
+    i = t["irab"]
+    assert i["ar"].startswith(N(FA_AR)) and i["en"].startswith("The fa conjoins; "), i
+    i["ar"] = N("الْفَاءُ لِلِاسْتِئْنَافِ (الدُّرَّةُ)، وَ") + i["ar"][len(N(FA_AR)):]
+    i["en"] = "The fa opens a new clause (al-Durra); " + i["en"][len("The fa conjoins; "):]
+    for p in ("«bunun üzerine» + ", "«fe» + "):
+        if i["tr"].startswith(p): i["tr"] = "Fâ isti'nâf içindir (Dürre); " + i["tr"][len(p):]; break
+    else: raise AssertionError(i["tr"])
+    return t
+def LAMMA_D(t):
+    """فَلَمَّا as al-Durra reads it: the fa resumes; and لَمَّا is a particle for Sībawayh — his first — the adverb being the well-known view"""
+    t = FA_IST(t); i = t["irab"]
+    assert all(i[k].endswith(".") for k in i), i
+    i["ar"] = i["ar"][:-1] + unicodedata.normalize("NFC", " — وَهِيَ عِنْدَ سِيبَوَيْهِ حَرْفُ وُجُودٍ لِوُجُودٍ، قَدَّمَهُ الدُّرَّةُ وَقَالَ: الْمَشْهُورُ الظَّرْفِيَّةُ.")
+    i["en"] = i["en"][:-1] + " — for Sībawayh it is a particle (ḥarf wujūd li-wujūd); al-Durra gives that first, and calls the adverb reading the well-known one."
+    i["tr"] = i["tr"][:-1] + " — Sîbeveyh'e göre harftir (harfü vücûdin li-vücûd); Dürre önce bunu zikreder, zarf oluşunu ise meşhur görüş sayar."
+    return t
+def HAL_OWN(*a, **k):
+    """the kit's HAL says «the doer's condition» in English; where the owner of the hal is an object, say «its owner's»"""
+    t = HAL(*a, **k)
+    assert "the doer's condition" in t["irab"]["en"]
+    t["irab"]["en"] = t["irab"]["en"].replace("the doer's condition", "its owner's condition")
+    return t
+def TAMYIZ_ADAD(full, lex, n_ar, n_en, n_tr):
+    """حِجَّةً after عِشْرِينَ — the tamyiz of a NUMBER (the kit's TAMYIZ speaks of a comparison, which is not this case)"""
+    return T(full, lex, "noun", ["tamyiz", "al-tamyiz-wa-ahkamuh"],
+        "تَمْيِيزُ الْعَدَدِ «" + n_ar + "» مَنْصُوبٌ بِالْفَتْحَةِ.",
+        "The tamyiz (specifier) of the number «" + n_en + "», in nasb.",
+        "«" + n_tr + "» sayısının temyîzi, mansûb.")
 
 CH = {}
 
@@ -340,7 +378,7 @@ S1.append({"id": "s8", "translation": {
  "tokens": [MADI("فَقَالَ", "qala", ["hollow-verbs", "maful-bihi"], **W(FAIL_BAAD, MAQUL)),
   FAIL("عُمَرُ", "umar", "propn", ["mamnu-min-sarf"], sign="بِالضَّمَّةِ مِنْ غَيْرِ تَنْوِينٍ", **W(DIPT_UMAR)),
   *RADIYA()[:2], RADIYA()[2] | {"punctAfter": ":"},
-  MADI("ذَهَبَ", "dhahaba", ["tibaq", "muqabala"], note_ar=FAIL_BAAD[0] + " — وَفِيهِ طِبَاقٌ بَيْنَ «ذَهَبَ» وَ«بَقِيَ»، وَمُقَابَلَةٌ بَيْنَ الْجُمْلَتَيْنِ: ذَهَبَ ↔ بَقِيَ، مَا أَعْطَيْتُمُوهُ ↔ مَا أَعْطَاكُمْ", note_en=FAIL_BAAD[1] + " — a tibaq of «is gone» and «has remained», and a muqabala of the two clauses: gone ↔ remained, what you gave him ↔ what he gave you", note_tr=FAIL_BAAD[2] + " — «gitti» ile «kaldı» arasında tıbâk, iki cümle arasında mukâbele vardır: gitti ↔ kaldı, sizin verdiğiniz ↔ onun verdiği"),
+  MADI("ذَهَبَ", "dhahaba", ["tibaq", "muqabala"], note_ar=FAIL_BAAD[0] + " — وَفِيهِ طِبَاقٌ بَيْنَ «ذَهَبَ» وَ«بَقِيَ»، وَمُقَابَلَةٌ بَيْنَ الْجُمْلَتَيْنِ: ذَهَبَ ↔ بَقِيَ، مَا أَعْطَيْتُمُوهُ ↔ مَا أَعْطَاكُمْ — وَكِلَاهُمَا عَلَى حَدِّ التَّلْخِيصِ", note_en=FAIL_BAAD[1] + " — a tibaq of «is gone» and «has remained», and a muqabala of the two clauses: gone ↔ remained, what you gave him ↔ what he gave you — both by the Talkhīṣ's definition", note_tr=FAIL_BAAD[2] + " — «gitti» ile «kaldı» arasında tıbâk, iki cümle arasında mukâbele vardır: gitti ↔ kaldı, sizin verdiğiniz ↔ onun verdiği — ikisi de Telhîs'in tarifine göre"),
   T("مَا", "ma-mawsula", "pron", ["ism-mawsul", "fail"],
      "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ فَاعِلُ «ذَهَبَ» — وَهُوَ الْمَالُ.",
      "A relative noun «what», built on sukun, in the seat of raf' as the doer of «is gone» — the wealth.",
@@ -463,7 +501,7 @@ V(S2, "I stopped there after twenty years, and only with toil did I know the dwe
   MIN(),
   MAJR("بَعْدِ", "bada", **W(MUD, (" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«وَقَفْتُ»", "; the phrase hangs on «I stopped»", "; câr-mecrûr «durdum»a müteallik"))),
   MUDAF_ILAYH("عِشْرِينَ", "ishrun", extra=["asma-al-adad-fil-kafiya", "jam-mudhakkar-salim"], sign="بِالْيَاءِ لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ", note_en=" — by the ya: «twenty» is declined like the sound masculine plural", note_tr=" — yâ ile: «yirmi» cem-i müzekker sâlime mülhaktır"),
-  TAMYIZ("حِجَّةً", "hijja-year")],
+  TAMYIZ_ADAD("حِجَّةً", "hijja-year", "عِشْرِينَ", "twenty", "Yirmi")],
  [T("فَلَأْيًا", "lay", "noun", ["maful-mutlaq", "hal", "hadhf-al-maful"],
      "الْفَاءُ عَاطِفَةٌ، وَلَأْيًا مَنْصُوبٌ عَلَى الْمَصْدَرِيَّةِ نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ لِـ«عَرَفْتُ»، وَقِيلَ: حَالٌ مِنَ التَّاءِ أَيْ جَاهِدًا، وَقِيلَ: ظَرْفٌ عَلَى حَذْفِ مُضَافٍ أَيْ بَعْدَ لَأْيٍ (الدُّرَّةُ). وَقُدِّمَ عَلَى عَامِلِهِ لِلِاهْتِمَامِ: لَمْ يُثْبِتْهَا إِلَّا بَعْدَ جَهْدٍ وَمَشَقَّةٍ (الزَّوْزَنِيُّ).",
      "The fa conjoins; لَأْيًا «with toil» is in nasb as a masdar standing for the maf'ul mutlaq of «I knew»; some read it as a hal of the «I» («toiling»), others as an adverb with an annexed word dropped («after toil») (al-Durra). It is put before its verb because it is what matters: he made the place out only after effort and hardship (al-Zawzanī).",
@@ -497,7 +535,7 @@ V(S2, "— soot-black hearth-stones where a cauldron once stood, and a trench li
 # ---- v. 6 ----
 V(S2, "When I knew the dwelling I said to its ground: A good morning to you, O dwelling-ground, and peace be yours!",
   "Yurdu tanıyınca onun konak yerine şöyle dedim: Sabahın hayrolsun ey konak yeri, selâmette ol!",
- [LAMMA2("فَلَمَّا"),
+ [LAMMA_D(LAMMA2("فَلَمَّا")),
   MADI_T("عَرَفْتُ", "arafa", who="ana", **W(LAMMA_CL)),
   MAFUL("الدَّارَ", "dar"),
   MADI_T("قُلْتُ", "qala", who="ana", extra=["hollow-verbs"], note_ar=" — وَالْجُمْلَةُ جَوَابُ لَمَّا لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ، وَمَقُولُ الْقَوْلِ مَا بَعْدَهُ", note_en="; the clause is the answer of لَمَّا and has no seat; what is said follows", note_tr="; cümle lemmâ'nın cevabıdır, mahalli yoktur; söylenen söz ondan sonradır"),
@@ -532,7 +570,7 @@ S3 = []
 # ---- v. 16 ----
 V(S3, "So I swore by the House around which men have walked who built it, of Quraysh and Jurhum:",
   "Kureyş ve Cürhüm'den, onu bina eden adamların çevresinde tavaf ettiği Beyt'e yemin ettim:",
- [MADI_T("فَأَقْسَمْتُ", "aqsama", who="ana", extra=["form-iv-verbs", "khabar-insha"], note_ar=" — وَالْقَسَمُ إِنْشَاءٌ غَيْرُ طَلَبِيٍّ", note_en=" — an oath is an insha that asks for nothing", note_tr=" — yemin, talebî olmayan inşâdır"),
+ [FA_IST(MADI_T("فَأَقْسَمْتُ", "aqsama", who="ana", extra=["form-iv-verbs", "khabar-insha"], note_ar=" — وَالْقَسَمُ إِنْشَاءٌ غَيْرُ طَلَبِيٍّ", note_en=" — an oath is an insha that asks for nothing", note_tr=" — yemin, talebî olmayan inşâdır")),
   BI_NOUN("بِالْبَيْتِ", "bayt", "الْبَيْتِ", note_ar=" — وَهُوَ الْكَعْبَةُ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«أَقْسَمْتُ»", note_en=" — «the House» is the Kaʿba; the phrase hangs on «I swore»", note_tr=" — «Beyt» Kâbe'dir; câr-mecrûr «yemin ettim»e müteallik"),
   T("الَّذِي", "alladhi", "pron", ["ism-mawsul", "naat-sifa"], "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ نَعْتٌ لِـ«الْبَيْتِ».", "A relative noun «which», built on sukun, in the seat of jarr as a na't of «the House».", "İsm-i mevsûl «ki o», sükûn üzere mebnî; «Beyt»in na'tı olarak mahallen mecrûr."),
   MADI("طَافَ", "tafa", ["hollow-verbs"], note_ar=FAIL_BAAD[0] + SILA_[0], note_en=FAIL_BAAD[1] + SILA_[1], note_tr=FAIL_BAAD[2] + SILA_[2]),
@@ -570,7 +608,7 @@ V(S3, "an oath: excellent lords indeed were you two found, in every case, the si
  [ALA(), MAJR("كُلِّ", "kull", **W(MUD, (" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«وُجِدْتُمَا»", "; the phrase hangs on «you were found»", "; câr-mecrûr «bulundunuz»a müteallik"))),
   MUDAF_ILAYH("حَالٍ", "hal-state"),
   MIN(role=(" — وَمِنْ بَيَانِيَّةٌ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ نَعْتٍ لِـ«حَالٍ»", "; مِنْ here explains, and the phrase hangs on an omitted na't of «case»", " — «min» beyâniyyedir; câr-mecrûr «hal»in mahzûf na'tına müteallik")),
-  MAJR("سَحِيلٍ", "sahil-thread", extra=["istiara", "tibaq"], note_ar=" — وَفِيهِ اسْتِعَارَةٌ تَصْرِيحِيَّةٌ: السَّحِيلُ الْخَيْطُ الْمَفْتُولُ عَلَى قُوَّةٍ وَاحِدَةٍ، اسْتُعِيرَ لِلْحَالِ الضَّعِيفَةِ، وَالْمُبْرَمُ الْمَفْتُولُ عَلَى قُوَّتَيْنِ اسْتُعِيرَ لِلْحَالِ الْقَوِيَّةِ (الزَّوْزَنِيُّ)؛ وَقِيلَ: هُمَا كِنَايَةٌ عَنْ سُهُولَةِ الْأَمْرِ وَصُعُوبَتِهِ (الدُّرَّةُ). وَبَيْنَ «سَحِيلٍ» وَ«مُبْرَمِ» طِبَاقٌ", note_en=" — here is an isti'ara tasrihiyya: the سَحِيل, a thread twisted of one strand, is lent to the weak case, and the مُبْرَم, twisted of two, to the strong one (al-Zawzanī); others call the pair a kinaya for a matter's ease and its hardship (al-Durra). «Single-twisted» and «firm-plied» also make a tibaq", note_tr=" — burada istiâre-i tasrîhiyye vardır: «sahîl» tek kat bükülmüş ip, zayıf hal için; «mübrem» çift kat bükülmüş ip, kuvvetli hal için ödünç alınmıştır (Zevzenî); bir görüşe göre ikisi, işin kolaylığından ve zorluğundan kinâyedir (Dürre). «Sahîl» ile «mübrem» arasında ayrıca tıbâk vardır"),
+  MAJR("سَحِيلٍ", "sahil-thread", extra=["istiara", "tibaq"], note_ar=" — وَفِيهِ اسْتِعَارَةٌ تَصْرِيحِيَّةٌ: السَّحِيلُ الْخَيْطُ الْمَفْتُولُ عَلَى قُوَّةٍ وَاحِدَةٍ، اسْتُعِيرَ لِلْحَالِ الضَّعِيفَةِ، وَالْمُبْرَمُ الْمَفْتُولُ عَلَى قُوَّتَيْنِ اسْتُعِيرَ لِلْحَالِ الْقَوِيَّةِ (الزَّوْزَنِيُّ)؛ وَقِيلَ: هُمَا كِنَايَةٌ عَنْ سُهُولَةِ الْأَمْرِ وَصُعُوبَتِهِ (الدُّرَّةُ). وَبَيْنَ «سَحِيلٍ» وَ«مُبْرَمِ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ (وَعِبَارَةُ الزَّوْزَنِيِّ: عَلَى كُلِّ حَالٍ ضَعِيفَةٍ وَحَالٍ قَوِيَّةٍ)", note_en=" — here is an isti'ara tasrihiyya: the سَحِيل, a thread twisted of one strand, is lent to the weak case, and the مُبْرَم, twisted of two, to the strong one (al-Zawzanī); others call the pair a kinaya for a matter's ease and its hardship (al-Durra). «Single-twisted» and «firm-plied» also make a tibaq by the Talkhīṣ's definition (al-Zawzanī's words: «in every weak case and every strong one»)", note_tr=" — burada istiâre-i tasrîhiyye vardır: «sahîl» tek kat bükülmüş ip, zayıf hal için; «mübrem» çift kat bükülmüş ip, kuvvetli hal için ödünç alınmıştır (Zevzenî); bir görüşe göre ikisi, işin kolaylığından ve zorluğundan kinâyedir (Dürre). «Sahîl» ile «mübrem» arasında ayrıca, Telhîs'in tarifine göre, tıbâk vardır (Zevzenî'nin ifadesi: «zayıf halde de kuvvetli halde de»)"),
   ATF("وَمُبْرَمِ", "mubram", case="jarr", extra=["ism-maful", "tibaq", "al-qafiya"], **W(RAWI_J))])
 # ---- v. 18 ----
 V(S3, "You two retrieved ʿAbs and Dhubyān after they had worn each other out and had pounded between them the perfume of Manshim.",
@@ -609,12 +647,12 @@ V(S3, "And you two had said: If we reach peace made wide, by wealth and by fair 
      "Ref' zamiri bitiştiği için sükûn üzere mebnî mâzî; tâ fâildir, mahallen merfû; mîm ile elif tesniye alâmetidir; mekûlü'l-kavl sonraki şart cümlesidir."),
   T("إِنْ", "in-shartiyya", "part", ["in-shartiyya", "al-majzum-wal-shart-wal-jaza"], "حَرْفُ شَرْطٍ جَازِمٌ يَجْزِمُ فِعْلَيْنِ: «نُدْرِكِ» وَ«نَسْلَمِ».", "The conditional إِنْ «if», which puts two verbs in jazm: «we reach» and «we shall be safe».", "Cezmeden şart harfi «in»: iki fiili — «ulaşırsak» ve «selâmete ereriz» — cezmeder."),
   JV("نُدْرِكِ", "adraka", "shart", "kasr2", g=["form-iv-verbs", "in-shartiyya"], doer=("، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: نَحْنُ", "; the doer «we» must stay hidden", "; fâil vücûben gizli «biz»")),
-  MAFUL("السِّلْمَ", "silm", extra=["mulhaq-bil-jinas", "radd-al-ajuz"], note_ar=" — وَهُوَ الصُّلْحُ، يُذَكَّرُ وَيُؤَنَّثُ، وَتُفْتَحُ سِينُهُ وَتُكْسَرُ (وَالْكَسْرُ هُنَا مِنَ الْمُحَرِّرِ). وَبَيْنَ «السِّلْمَ» وَ«نَسْلَمِ» اشْتِقَاقٌ مُلْحَقٌ بِالْجِنَاسِ، وَهُوَ مِنْ رَدِّ الْعَجُزِ عَلَى الصَّدْرِ: أَحَدُهُمَا فِي حَشْوِ الْمِصْرَاعِ الْأَوَّلِ وَالْآخَرُ فِي آخِرِ الْبَيْتِ", note_en=" — «peace», a word both masculine and feminine, said with kasra or fatha on the sin (the kasra here is editorial). السِّلْم and نَسْلَم share a root — the derivation that is attached to jinas — and make a radd al-'ajuz 'ala al-sadr: one stands inside the first hemistich, the other closes the verse", note_tr=" — «barış»; hem müzekker hem müennes kullanılır, sîn'i fethalı da kesreli de okunur (buradaki kesre editoryaldir). «Silm» ile «neslem» arasında cinâsa mülhak iştikâk vardır; bu aynı zamanda reddü'l-acüz ale's-sadrdır: biri ilk mısraın içinde, diğeri beytin sonundadır"),
-  HAL("وَاسِعًا", "wasi-wide", extra=["ism-fail"], note_ar="، وَصَاحِبُهُ «السِّلْمَ»", note_en=" — its owner is «peace»", note_tr=" — sahibi «barış»tır")],
+  MAFUL("السِّلْمَ", "silm", extra=[], note_ar=" — وَهُوَ الصُّلْحُ، يُذَكَّرُ وَيُؤَنَّثُ، وَتُفْتَحُ سِينُهُ وَتُكْسَرُ (وَالْكَسْرُ هُنَا مِنَ الْمُحَرِّرِ)", note_en=" — «peace», a word both masculine and feminine, said with kasra or fatha on the sin (the kasra here is editorial)", note_tr=" — «barış»; hem müzekker hem müennes kullanılır, sîn'i fethalı da kesreli de okunur (buradaki kesre editoryaldir)"),
+  HAL_OWN("وَاسِعًا", "wasi-wide", extra=["ism-fail"], note_ar="، وَصَاحِبُهُ «السِّلْمَ»", note_en=" — its owner is «peace»", note_tr=" — sahibi «barış»tır")],
  [BI_NOUN("بِمَالٍ", "mal", "مَالٍ", note_ar=" — وَالْبَاءُ لِلِاسْتِعَانَةِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«نُدْرِكِ»", note_en=" — the ba of means; the phrase hangs on «we reach»", note_tr=" — bâ istiâne içindir; câr-mecrûr «ulaşırsak»a müteallik"),
   ATF("وَمَعْرُوفٍ", "maruf", case="jarr", extra=["ism-maful"]),
-  MINA(), MAJR("الْقَوْلِ", "qawl", note_ar=" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ نَعْتٍ لِـ«مَعْرُوفٍ»", note_en="; the phrase hangs on an omitted na't of «fair dealing»", note_tr="; câr-mecrûr «ma'rûf»un mahzûf na'tına müteallik"),
-  JV("نَسْلَمِ", "salima-safe", "jawab", "rawi", g=["in-shartiyya", "mulhaq-bil-jinas", "radd-al-ajuz"], doer=("، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: نَحْنُ", "; the doer «we» must stay hidden", "; fâil vücûben gizli «biz»"), note=(" — وَجُمْلَةُ الشَّرْطِ وَجَوَابِهِ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ", " — the conditional sentence is what was said, in the seat of nasb", " — şart cümlesi cevabıyla birlikte mekûlü'l-kavl, mahallen mansûb"))])
+  MINA(), MAJR("الْقَوْلِ", "qawl", note_ar=" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«مَعْرُوفٍ» (الدُّرَّةُ)، أَوْ بِمَحْذُوفٍ نَعْتٍ لَهُ", note_en="; the phrase hangs on «fair dealing» (al-Durra), or on an omitted na't of it", note_tr="; câr-mecrûr «ma'rûf»a (Dürre) yahut onun mahzûf na'tına müteallik"),
+  JV("نَسْلَمِ", "salima-safe", "jawab", "rawi", g=["in-shartiyya"], doer=("، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: نَحْنُ", "; the doer «we» must stay hidden", "; fâil vücûben gizli «biz»"), note=(" — وَجُمْلَةُ الشَّرْطِ وَجَوَابِهِ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ", " — the conditional sentence is what was said, in the seat of nasb", " — şart cümlesi cevabıyla birlikte mekûlü'l-kavl, mahallen mansûb"))])
 # ---- v. 20 ----
 V(S3, "So you came to stand, in that peace, on the best of ground — far, in it, from any wronging of kin and from any sin.",
   "Böylece o barışta en hayırlı yerde durur oldunuz; orada akrabaya isyandan da günahtan da uzaksınız.",
@@ -623,7 +661,7 @@ V(S3, "So you came to stand, in that peace, on the best of ground — far, in it
      "The fa conjoins; أَصْبَحَ «came to be» is one of كَانَ's sisters, built on sukun because a pronoun of raf' is attached; the ta is its noun, in the seat of raf', and the mim and alif mark the dual.",
      "«fe» + asbaha «oldu»: kâne'nin kardeşlerinden nâkıs mâzî; ref' zamiri bitiştiği için sükûn üzere mebnî; tâ ismidir, mahallen merfû; mîm ile elif tesniye alâmetidir.",
      segs=SG(("فَ", "fa", "conj"), ("أَصْبَحْتُمَا", "asbaha", "verb"))),
-  JARR_PRON("مِنْهَا", "min", "مِنْ", "هَا", " («ondan»)", note_ar=" — وَالضَّمِيرُ لِلسِّلْمِ وَهِيَ تُؤَنَّثُ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«أَصْبَحْتُمَا»", note_en="; «it» is the peace, here feminine; the phrase hangs on «you came to be»", note_tr="; zamir, burada müennes sayılan «barış»a döner; câr-mecrûr «oldunuz»a müteallik"),
+  JARR_PRON("مِنْهَا", "min", "مِنْ", "هَا", " («ondan»)", note_ar=" — وَالضَّمِيرُ لِلسِّلْمِ وَهِيَ تُؤَنَّثُ (الزَّوْزَنِيُّ)، وَعِنْدَ الدُّرَّةِ: لِلْحَرْبِ، وَقِيلَ: لِلسِّلْمِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«أَصْبَحْتُمَا»", note_en="; «it» is the peace, here feminine (al-Zawzanī) — for al-Durra the war, or, as others say, the peace; the phrase hangs on «you came to be»", note_tr="; zamir, burada müennes sayılan «barış»a döner (Zevzenî) — Dürre'ye göre harbe, bir görüşe göre de barışa; câr-mecrûr «oldunuz»a müteallik"),
   ALA(), MAJR("خَيْرِ", "khayr", extra=["ism-tafdil"], **W(MUD, (" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ خَبَرِ «أَصْبَحَ»", "; the jarr phrase hangs on the omitted predicate of أَصْبَحَ", "; câr-mecrûr «asbaha»nın mahzûf haberine müteallik"))),
   MUDAF_ILAYH("مَوْطِنٍ", "mawtin")],
  [T("بَعِيدَيْنِ", "baid", "noun", ["kana-wa-akhawatuha", "al-muthanna", "sifa-mushabbaha"],
@@ -637,10 +675,10 @@ V(S3, "So you came to stand, in that peace, on the best of ground — far, in it
 # ---- v. 21 ----
 V(S3, "— great, on the heights of Maʿadd; may you both be guided! And whoever finds a treasure of glory free for the taking grows great.",
   "— Maadd'in en yüce mertebesinde iki büyük olarak; hidayet üzere olun! Kim şereften, helâl bulduğu bir hazineyi ele geçirirse büyür.",
- [T("عَظِيمَيْنِ", "azim", "noun", ["kana-wa-akhawatuha", "hal", "al-muthanna", "sifa-mushabbaha", "radd-al-ajuz", "mulhaq-bil-jinas"],
-     "خَبَرٌ ثَالِثٌ لِـ«أَصْبَحَ» فِي الْبَيْتِ قَبْلَهُ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى (الدُّرَّةُ)، وَقِيلَ: حَالٌ — وَعَلَيْهِ الزَّوْزَنِيُّ: ظَفِرْتُمَا بِالصُّلْحِ فِي حَالِ عَظَمَتِكُمَا. وَبَيْنَ «عَظِيمَيْنِ» وَ«يَعْظُمِ» اشْتِقَاقٌ، وَهُوَ مِنْ رَدِّ الْعَجُزِ عَلَى الصَّدْرِ: أَحَدُهُمَا فِي صَدْرِ الْبَيْتِ وَالْآخَرُ فِي آخِرِهِ.",
-     "A third predicate of أَصْبَحَ in the verse before, in nasb by the ya, being a dual (al-Durra); others read it as a hal — so al-Zawzanī: «you won the peace while great». عَظِيمَيْنِ and يَعْظُمِ share a root, and make a radd al-'ajuz 'ala al-sadr: one opens the verse and the other closes it.",
-     "Önceki beyitteki «asbaha»nın üçüncü haberi; tesniye olduğu için yâ ile mansûb (Dürre); bir görüşe göre hâldir — Zevzenî böyle okur: «büyüklüğünüz halinde barışı elde ettiniz». «Azîmeyn» ile «ya'zum» arasında iştikâk vardır; bu aynı zamanda reddü'l-acüz ale's-sadrdır: biri beytin başında, diğeri sonundadır."),
+ [T("عَظِيمَيْنِ", "azim", "noun", ["kana-wa-akhawatuha", "hal", "al-muthanna", "sifa-mushabbaha"],
+     "خَبَرٌ ثَالِثٌ لِـ«أَصْبَحَ» فِي الْبَيْتِ قَبْلَهُ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى (الدُّرَّةُ)، وَقِيلَ: حَالٌ — وَعَلَيْهِ الزَّوْزَنِيُّ: ظَفِرْتُمَا بِالصُّلْحِ فِي حَالِ عَظَمَتِكُمَا.",
+     "A third predicate of أَصْبَحَ in the verse before, in nasb by the ya, being a dual (al-Durra); others read it as a hal — so al-Zawzanī: «you won the peace while great».",
+     "Önceki beyitteki «asbaha»nın üçüncü haberi; tesniye olduğu için yâ ile mansûb (Dürre); bir görüşe göre hâldir — Zevzenî böyle okur: «büyüklüğünüz halinde barışı elde ettiniz»."),
   FI(role=(" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«عَظِيمَيْنِ»", "; the phrase hangs on «great»", " — câr-mecrûr «büyük»e müteallik")),
   MAJR("عُلْيَا", "ulya", extra=["ism-maqsur-manqus", "ism-tafdil", "idafa-definiteness"], sign="بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ", note_ar="، مُضَافٌ — تَأْنِيثُ الْأَعْلَى: أَيِ الرُّتْبَةِ الْعُلْيَا مِنْ شَرَفِ مَعَدٍّ", note_en=" — by a kasra estimated on the alif; annexed — the feminine of «highest»: the highest rank of Maʿadd's honour", note_tr=" — elif üzerinde takdîrî kesre ile; muzâf — «a'lâ»nın müennesi: Maadd şerefinin en yüksek mertebesi"),
   MUDAF_ILAYH("مَعَدٍّ", "maadd-name", "propn", note_ar=" — مَعَدُّ بْنُ عَدْنَانَ أَبُو الْعَرَبِ الْعَدْنَانِيَّةِ", note_en=" — Maʿadd son of ʿAdnān, forefather of the northern Arabs", note_tr=" — Adnânî Arapların atası Maadd b. Adnân"),
@@ -653,7 +691,7 @@ V(S3, "— great, on the heights of Maʿadd; may you both be guided! And whoever
   JV("يَسْتَبِحْ", "istabaha", "shart", "sukun", g=["form-x-verbs", "hollow-verbs"], note=(" — أَجْوَفُ حُذِفَتْ عَيْنُهُ لِالْتِقَاءِ السَّاكِنَيْنِ (يَسْتَبِيحُ ← يَسْتَبِحْ)؛ وَالِاسْتِبَاحَةُ: وُجُودُ الشَّيْءِ مُبَاحًا، وَالِاسْتِئْصَالُ", " — a hollow verb whose middle letter drops where two quiescents meet (يَسْتَبِيحُ → يَسْتَبِحْ); اِسْتِبَاحَة is to find a thing free to take, and to take it all", " — ecvef fiil; iki sâkin karşılaştığı için aynü'l-fiili düşmüştür (yestebîhu → yestebih); «istibâha»: bir şeyi mubah bulmak ve kökünden almak")),
   MAFUL("كَنْزًا", "kanz"),
   MINA(), MAJR("الْمَجْدِ", "majd", note_ar=" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ نَعْتٍ لِـ«كَنْزًا»", note_en="; the phrase hangs on an omitted na't of «a treasure»", note_tr="; câr-mecrûr «hazine»nin mahzûf na'tına müteallik"),
-  JV("يَعْظُمِ", "azuma", "jawab", "rawi", g=["radd-al-ajuz", "mulhaq-bil-jinas"], note=(" — وَيُرْوَى «يُعْظَمِ» مِنَ الْإِعْظَامِ بِمَعْنَى التَّعْظِيمِ (الزَّوْزَنِيُّ)", " — also read يُعْظَمِ «is held great», from إِعْظَام (al-Zawzanī)", " — «yu'zam» («büyük sayılır») diye de rivayet edilir (Zevzenî)"))])
+  JV("يَعْظُمِ", "azuma", "jawab", "rawi", g=[], note=(" — وَيُرْوَى «يُعْظَمِ» مِنَ الْإِعْظَامِ بِمَعْنَى التَّعْظِيمِ (الزَّوْزَنِيُّ)", " — also read يُعْظَمِ «is held great», from إِعْظَام (al-Zawzanī)", " — «yu'zam» («büyük sayılır») diye de rivayet edilir (Zevzenî)"))])
 CH[3] = S3
 
 # =====================================================================================================================
@@ -710,7 +748,7 @@ V(S4, "Whenever you rouse it you rouse it to your blame; it grows fierce when yo
      "اسْمُ شَرْطٍ جَازِمٌ يَجْزِمُ فِعْلَيْنِ، مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ عَلَى الظَّرْفِيَّةِ الزَّمَانِيَّةِ مُتَعَلِّقٌ بِفِعْلِ الشَّرْطِ — فِعْلُ الشَّرْطِ «تَبْعَثُوهَا» الْأَوَّلُ وَجَوَابُهُ «تَبْعَثُوهَا» الثَّانِي، وَكِلَاهُمَا مَجْزُومٌ بِحَذْفِ النُّونِ.",
      "A conditional noun that puts two verbs in jazm, built on sukun in the seat of nasb as an adverb of time hanging on the condition's verb — the condition is the first «you rouse it» and the answer the second, each in jazm by the dropping of its nun.",
      "İki fiili cezmeden şart ismi; sükûn üzere mebnî, zaman zarfı olarak mahallen mansûb, şart fiiline müteallik — şart fiili birinci «uyandırırsanız», cevabı ikinci «uyandırırsınız»; ikisi de nûnun hazfiyle meczûm."),
-  T("تَبْعَثُوهَا", "baatha", "verb", G_SHART + ["afal-khamsa", "al-bariz-al-muttasil", "fail", "maful-bihi", "istiara-makniyya"],
+  T("تَبْعَثُوهَا", "baatha", "verb", G_SHART + ["afal-khamsa", "al-bariz-al-muttasil", "fail", "maful-bihi"],
      "فِعْلٌ مُضَارِعٌ مَجْزُومٌ لِأَنَّهُ فِعْلُ الشَّرْطِ وَعَلَامَةُ جَزْمِهِ " + SGN["nun"][0] + "، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَهَا ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ يَعُودُ عَلَى الْحَرْبِ.",
      "Present verb in jazm as the condition's verb, its sign " + SGN["nun"][1] + "; the waw is the doer, in the seat of raf', and the attached «it» (the war) the object, in the seat of nasb.",
      "Şart fiili olarak meczûm muzâri, alâmeti " + SGN["nun"][2] + "; vâv fâil, mahallen merfû; bitişik «onu» (harbi) mef'ûlün bih, mahallen mansûb.",
@@ -720,22 +758,22 @@ V(S4, "Whenever you rouse it you rouse it to your blame; it grows fierce when yo
      "Present verb in jazm as the answer of the condition, its sign " + SGN["nun"][1] + "; the waw is the doer and هَا the object. Condition and answer are one and the same word; what the answer adds lies in the hal after it: «blamed».",
      "Şartın cevabı olarak meczûm muzâri, alâmeti " + SGN["nun"][2] + "; vâv fâil, «hâ» mef'ûlün bih. Şart ile cevabın lafzı aynıdır; cevabın getirdiği fayda sonraki hâldedir: «kınanmış olarak».",
      segs=SG(("تَبْعَثُو", "baatha", "verb"), ("هَا", "pron-3fs", "pron"))),
-  HAL("ذَمِيمَةً", "dhamim", extra=["sifa-mushabbaha"], note_ar="، وَصَاحِبُهُ «هَا» ضَمِيرُ الْحَرْبِ — فَعِيلٌ بِمَعْنَى مَفْعُولٍ: مَذْمُومَةً، أَيْ تُذَمُّونَ عَلَى إِثَارَتِهَا", note_en=" — its owner is the «it» of the war; a فَعِيل in the sense of the passive participle: «blamed», that is, you are blamed for stirring it", note_tr=" — sahibi harbe dönen «hâ»dır; mef'ûl anlamında faîl: «kınanmış», yani onu kışkırttığınız için kınanırsınız")],
- [JV("وَتَضْرَ", "dariya", "atf-jawab", "alif", g=["naqis-verbs", "atf-nasaq", "jinas", "jinas-naqis", "mulhaq-bil-jinas", "radd-al-ajuz"], doer=HIYA_HARB, pre=WA3,
-     note=(" — وَأَصْلُهُ تَضْرَى. وَبَيْنَهُ وَبَيْنَ «ضَرَّيْتُمُوهَا» اشْتِقَاقٌ، وَبَيْنَ «تَضْرَ» وَ«تَضْرَمِ» جِنَاسٌ نَاقِصٌ بِزِيَادَةِ حَرْفٍ فِي الْآخِرِ، عَلَى حَدِّ شَاهِدِ التَّلْخِيصِ «عَوَاصٍ عَوَاصِمِ»؛ وَهُوَ مِنْ رَدِّ الْعَجُزِ عَلَى الصَّدْرِ: أَحَدُهُمَا فِي صَدْرِ الْمِصْرَاعِ الثَّانِي وَالْآخَرُ فِي آخِرِ الْبَيْتِ",
-           " — it is تَضْرَى. It shares a root with ضَرَّيْتُمُوهَا; and تَضْرَ with تَضْرَمِ makes a jinas naqis, one letter more at the end, like the Talkhīṣ's own example عَوَاصٍ عَوَاصِمِ; it is also a radd al-'ajuz 'ala al-sadr: one opens the second hemistich and the other closes the verse",
-           " — aslı «tadrâ»dır. «Darreytümûhâ» ile arasında iştikâk vardır; «tadra» ile «tadram» arasında ise sonda bir harf fazlalığıyla cinâs-ı nâkıs bulunur — Telhîs'in «avâsın avâsımü» şâhidi gibi; bu aynı zamanda reddü'l-acüz ale's-sadrdır: biri ikinci mısraın başında, diğeri beytin sonundadır"),
+  HAL_OWN("ذَمِيمَةً", "dhamim", extra=["sifa-mushabbaha"], note_ar="، وَصَاحِبُهُ «هَا» ضَمِيرُ الْحَرْبِ — فَعِيلٌ بِمَعْنَى مَفْعُولٍ: مَذْمُومَةً، أَيْ تُذَمُّونَ عَلَى إِثَارَتِهَا", note_en=" — its owner is the «it» of the war; a فَعِيل in the sense of the passive participle: «blamed», that is, you are blamed for stirring it", note_tr=" — sahibi harbe dönen «hâ»dır; mef'ûl anlamında faîl: «kınanmış», yani onu kışkırttığınız için kınanırsınız")],
+ [JV("وَتَضْرَ", "dariya", "atf-jawab", "alif", g=["naqis-verbs", "atf-nasaq"], doer=HIYA_HARB, pre=WA3,
+     note=(" — وَأَصْلُهُ تَضْرَى",
+           " — it is تَضْرَى",
+           " — aslı «tadrâ»dır"),
      segs=SG(("وَ", "wa", "conj"), ("تَضْرَ", "dariya", "verb"))),
   T("إِذَا", "idha", "part", ["idha-shartiyya", "maful-fih"],
      "ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مُتَعَلِّقٌ بِـ«تَضْرَ»، مُضَافٌ إِلَى الْجُمْلَةِ بَعْدَهُ.",
      "An adverb for time to come, built on sukun in the seat of nasb, hanging on «it grows fierce» and annexed to the clause after it.",
      "Gelecek zaman zarfı; sükûn üzere mebnî, mahallen mansûb, «kızışır»a müteallik; sonraki cümleye muzâf."),
-  T("ضَرَّيْتُمُوهَا", "darra-whet", "verb", ["form-ii-verbs", "naqis-verbs", "al-bariz-al-muttasil", "fail", "maful-bihi", "mulhaq-bil-jinas"],
+  T("ضَرَّيْتُمُوهَا", "darra-whet", "verb", ["form-ii-verbs", "naqis-verbs", "al-bariz-al-muttasil", "fail", "maful-bihi"],
      "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ الرَّفْعِ، وَتُمْ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْوَاوُ لِإِشْبَاعِ ضَمَّةِ الْمِيمِ، وَهَا ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ — وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ؛ وَالتَّضْرِيَةُ: الْحَمْلُ عَلَى الضَّرَاوَةِ.",
      "Past verb built on sukun because a pronoun of raf' is attached; تُمْ «you» is the doer; the waw only lengthens the mim's damma; the attached «it» is the object, in the seat of nasb — the clause fills the seat of jarr after إِذَا; تَضْرِيَة is to set a thing on to fierceness.",
      "Ref' zamiri bitiştiği için sükûn üzere mebnî mâzî; «tüm» fâildir; vâv mîmin dammesini işbâ' içindir; bitişik «onu» mef'ûlün bih, mahallen mansûb — cümle «izâ»ya muzâfun ileyh olarak mahallen mecrûr; «tadriye»: bir şeyi azgınlığa sevk etmek.",
      segs=SG(("ضَرَّيْتُمُو", "darra-whet", "verb"), ("هَا", "pron-3fs", "pron"))),
-  JV("فَتَضْرَمِ", "darima", "atf-jawab", "rawi", g=["atf-nasaq", "istiara-makniyya", "jinas-naqis", "radd-al-ajuz"], doer=HIYA_HARB, pre=FA3,
+  JV("فَتَضْرَمِ", "darima", "atf-jawab", "rawi", g=["atf-nasaq", "istiara-makniyya"], doer=HIYA_HARB, pre=FA3,
      note=(" — مَعْطُوفٌ عَلَى «تَضْرَ». وَفِيهِ اسْتِعَارَةٌ مَكْنِيَّةٌ: شُبِّهَتِ الْحَرْبُ بِالنَّارِ ثُمَّ حُذِفَ الْمُشَبَّهُ بِهِ وَرُمِزَ إِلَيْهِ بِلَازِمِهِ وَهُوَ الِاضْطِرَامُ (الزَّوْزَنِيُّ: إِذَا أَوْقَدْتُمْ نَارَ الْحَرْبِ … فَتَلْتَهِبُ نِيرَانُهَا)",
            " — joined to «it grows fierce». Here is an isti'ara makniyya: war is likened to fire, the fire is left unnamed, and it is pointed to by what belongs to fire — blazing (al-Zawzanī: «when you kindle the fire of war … its flames blaze»)",
            " — «kızışır»a ma'tûf. Burada istiâre-i mekniyye vardır: harp ateşe benzetilmiş, müşebbehün bih hazfedilmiş ve ona lâzımıyla — alevlenmekle — işaret edilmiştir (Zevzenî: «harp ateşini tutuşturduğunuzda … alevleri yükselir»)"),
@@ -831,45 +869,45 @@ MAN_OBJ = ("فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ مُ�
 # ---- v. 46 ----
 V(S5, "I am weary of the burdens of life; and whoever lives eighty years — mark it well! — grows weary.",
   "Hayatın külfetlerinden usandım; kim seksen yıl yaşarsa — iyi bil ki — elbette usanır.",
- [MADI_T("سَئِمْتُ", "saima", who="ana", extra=["radd-al-ajuz", "mulhaq-bil-jinas"], note_ar=" — وَبَيْنَ «سَئِمْتُ» فِي صَدْرِ الْبَيْتِ وَ«يَسْأَمِ» فِي آخِرِهِ رَدُّ الْعَجُزِ عَلَى الصَّدْرِ، وَيَجْمَعُهُمَا الِاشْتِقَاقُ", note_en=" — «I am weary» at the head of the verse and «grows weary» at its close make a radd al-'ajuz 'ala al-sadr; the two are of one root", note_tr=" — beytin başındaki «usandım» ile sonundaki «usanır» arasında reddü'l-acüz ale's-sadr vardır; ikisi aynı köktendir"),
+ [MADI_T("سَئِمْتُ", "saima", who="ana", extra=[], note_ar="", note_en="", note_tr=""),
   MAFUL("تَكَالِيفَ", "takalif", extra=["jam-taksir", "mamnu-min-sarf", "idafa-definiteness"], note_ar="، مُضَافٌ — جَمْعٌ عَلَى صِيغَةِ مُنْتَهَى الْجُمُوعِ: الْمَشَاقُّ وَالشَّدَائِدُ", note_en=", annexed — a «farthest plural»: hardships and toils", note_tr=", muzâf — muntehe'l-cumû' vezninde cemi: meşakkatler, sıkıntılar"),
   MUDAF_ILAYH("الْحَيَاةِ", "hayat"),
   MAN("وَمَنْ", D("يَعِشْ", "sukun"), D("يَسْأَمِ", "rawi"), lead=("الْوَاوُ عَاطِفَةٌ أَوْ حَالِيَّةٌ (الدُّرَّةُ)، وَ", "The waw conjoins, or opens a hal clause (al-Durra); ", "Vâv atıf yahut hâl içindir (Dürre); ")),
   JV("يَعِشْ", "asha-live", "shart", "sukun", g=["hollow-verbs"], note=(" — أَجْوَفُ حُذِفَتْ عَيْنُهُ لِالْتِقَاءِ السَّاكِنَيْنِ (يَعِيشُ ← يَعِشْ)", " — a hollow verb whose middle letter drops where two quiescents meet (يَعِيشُ → يَعِشْ)", " — ecvef fiil; iki sâkin karşılaştığı için aynü'l-fiili düşmüştür (yeîşü → yeiş)"))],
- [T("ثَمَانِينَ", "thamanun", "noun", ["maful-fih", "asma-al-adad-fil-kafiya", "jam-mudhakkar-salim"],
-     "نَائِبٌ عَنْ ظَرْفِ الزَّمَانِ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ، مُتَعَلِّقٌ بِـ«يَعِشْ» — وَقِيلَ: مَفْعُولٌ بِهِ (الدُّرَّةُ).",
-     "It stands for an adverb of time, in nasb by the ya — «eighty» is declined like the sound masculine plural — and hangs on «lives»; some read it as a direct object (al-Durra).",
-     "Zaman zarfı yerine geçer; cem-i müzekker sâlime mülhak olduğu için yâ ile mansûb, «yaşarsa»ya müteallik; bir görüşe göre mef'ûlün bihtir (Dürre)."),
-  TAMYIZ("حَوْلًا", "hawl-year"),
+ [T("ثَمَانِينَ", "thamanun", "noun", ["maful-bihi", "maful-fih", "asma-al-adad-fil-kafiya", "jam-mudhakkar-salim"],
+     "مَفْعُولٌ بِهِ، أَوْ ظَرْفُ زَمَانٍ مُتَعَلِّقٌ بِـ«يَعِشْ» لِأَنَّ تَمْيِيزَهُ ظَرْفٌ — ذَكَرَهُمَا الدُّرَّةُ عَلَى هٰذَا التَّرْتِيبِ — مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ.",
+     "A direct object — or an adverb of time hanging on «lives», since what it counts is a stretch of time; al-Durra gives the two readings in this order — in nasb by the ya, «eighty» being declined like the sound masculine plural.",
+     "Mef'ûlün bih; yahut temyîzi zarf olduğu için «yaşarsa»ya müteallik zaman zarfı — Dürre iki vechi bu sırayla zikreder — cem-i müzekker sâlime mülhak olduğu için yâ ile mansûb."),
+  TAMYIZ_ADAD("حَوْلًا", "hawl-year", "ثَمَانِينَ", "eighty", "Seksen"),
   T("لَا", "la-nafiya-lil-jins", "part", ["la-nafiya-lil-jins", "itirad", "jumla-mutarida"],
      "نَافِيَةٌ لِلْجِنْسِ تَعْمَلُ عَمَلَ إِنَّ. وَجُمْلَةُ «لَا أَبَا لَكَ» مُعْتَرِضَةٌ بَيْنَ الشَّرْطِ وَجَوَابِهِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ؛ وَهِيَ كَلِمَةٌ جَافِيَةٌ لَا يُرَادُ بِهَا الْجَفَاءُ وَإِنَّمَا يُرَادُ بِهَا التَّنْبِيهُ وَالْإِعْلَامُ (الزَّوْزَنِيُّ) — وَالِاعْتِرَاضُ مِنَ الْإِطْنَابِ.",
      "The لَا that denies the whole genus, working like إِنَّ. The clause «you have no father» is a parenthesis between the condition and its answer, with no seat of its own; a rough phrase by which no roughness is meant, only to rouse and to tell (al-Zawzanī) — and the parenthesis is one of the kinds of itnab.",
      "Cinsi nefyeden «lâ»; inne gibi amel eder. «Lâ ebâ leke» cümlesi şart ile cevabı arasında mu'tarızadır, mahalli yoktur; kaba bir sözdür ama kabalık kastedilmez, yalnızca uyarmak ve bildirmek kastedilir (Zevzenî) — i'tirâz ıtnâb çeşitlerindendir."),
   T("أَبَا", "ab", "noun", ["la-nafiya-lil-jins", "five-nouns"],
-     "اسْمُ «لَا» مَنْصُوبٌ بِالْأَلِفِ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، مُضَافٌ إِلَى الْكَافِ وَاللَّامُ مُقْحَمَةٌ بَيْنَهُمَا؛ وَقِيلَ: مَبْنِيٌّ عَلَى الْأَلِفِ عَلَى لُغَةِ الْقَصْرِ وَ«لَكَ» خَبَرٌ (الدُّرَّةُ).",
-     "The noun of لَا, in nasb by the alif — one of the five nouns — annexed to the kaf, with the lam thrust in between them; others read it as built, on the dialect that keeps the alif throughout, with لَكَ as the predicate (al-Durra).",
-     "«Lâ»nın ismi; esmâ-i hamseden olduğu için elif ile mansûb; kâfa muzâf olup lâm aralarına sokulmuştur; bir görüşe göre kasr lügatine göre elif üzere mebnîdir ve «leke» haberdir (Dürre)."),
-  LAHU2("لَكَ", "pron-2ms", " («senin için»)", note=(" — وَاللَّامُ مُقْحَمَةٌ عَلَى الْوَجْهِ الْأَوَّلِ، وَخَبَرُ «لَا» مَحْذُوفٌ تَقْدِيرُهُ: مَوْجُودٌ", "; on the first reading the lam is thrust in, and the predicate of لَا is left out: «[exists]»", "; ilk vecihte lâm mukhamedir; «lâ»nın haberi mahzûftur: «mevcut»")),
-  JV("يَسْأَمِ", "saima", "jawab", "rawi", g=["radd-al-ajuz", "mulhaq-bil-jinas"])])
+     "اسْمُ «لَا» مَبْنِيٌّ عَلَى الْأَلِفِ فِي مَحَلِّ نَصْبٍ، وَ«لَكَ» مُتَعَلِّقَانِ بِمَحْذُوفٍ خَبَرِهَا (الدُّرَّةُ)؛ وَأَجَازَ أَنْ تَكُونَ اللَّامُ مُقْحَمَةً بَيْنَ الْمُتَضَايِفَيْنِ، فَـ«أَبَا» مَنْصُوبٌ بِالْأَلِفِ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ مُضَافٌ إِلَى الْكَافِ، وَثَبَتَتِ الْأَلِفُ مُرَاعَاةً لِلْإِضَافَةِ.",
+     "The noun of لَا, built on the alif in the seat of nasb, with لَكَ hanging on its omitted predicate (al-Durra); he also allows the lam to be thrust in between the two terms of an idafa — then أَبَا is in nasb by the alif, one of the five nouns, annexed to the kaf, and it keeps its alif because of that annexation.",
+     "«Lâ»nın ismi; elif üzere mebnî, mahallen mansûb; «leke» onun mahzûf haberine mütealliktir (Dürre); lâmın muzâf ile muzâfun ileyh arasına sokulmuş (mukham) olmasını da caiz görür: o takdirde «ebâ» esmâ-i hamseden olduğu için elif ile mansûb olup kâfa muzâftır; elif izâfet gözetilerek sâbit kalmıştır."),
+  LAHU2("لَكَ", "pron-2ms", " («senin için»)", note=(" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ خَبَرِ «لَا» فِي مَحَلِّ رَفْعٍ؛ وَعَلَى الْوَجْهِ الثَّانِي اللَّامُ مُقْحَمَةٌ وَخَبَرُ «لَا» مَحْذُوفٌ تَقْدِيرُهُ: مَوْجُودٌ", "; the phrase hangs on the omitted predicate of لَا, in the seat of raf'; on the second reading the lam is thrust in, and the predicate of لَا is left out: «[exists]»", "; câr-mecrûr «lâ»nın mahzûf haberine müteallik, mahallen merfû; ikinci vecihte lâm mukhamedir ve «lâ»nın haberi mahzûftur: «mevcut»")),
+  JV("يَسْأَمِ", "saima", "jawab", "rawi", g=[])])
 # ---- v. 47 ----
 V(S5, "I know what is in today, and in yesterday before it; but to the knowledge of what is in tomorrow I am blind.",
   "Bugünde olanı ve ondan önceki dünde olanı bilirim; fakat yarında olanı bilmeye karşı körüm.",
- [T("وَأَعْلَمُ", "alima", "verb", ["mudari-marfu", "al-fail-al-mudmar-al-mustatir-wujuban", "mulhaq-bil-jinas", "anwa-al-waw"],
-     WA_ISTINAF[0] + "أَعْلَمُ فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: أَنَا. وَبَيْنَهُ وَبَيْنَ «عِلْمِ» اشْتِقَاقٌ مُلْحَقٌ بِالْجِنَاسِ.",
-     WA_ISTINAF[1] + "أَعْلَمُ is a present verb in raf'; the doer «I» must stay hidden. It shares a root with عِلْمِ — the derivation that is attached to jinas.",
-     WA_ISTINAF[2] + "«bilirim»: merfû muzâri; fâil vücûben gizli «ben». «İlm» ile arasında cinâsa mülhak iştikâk vardır.",
+ [T("وَأَعْلَمُ", "alima", "verb", ["mudari-marfu", "al-fail-al-mudmar-al-mustatir-wujuban", "anwa-al-waw"],
+     WA_ISTINAF[0] + "أَعْلَمُ فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: أَنَا.",
+     WA_ISTINAF[1] + "أَعْلَمُ is a present verb in raf'; the doer «I» must stay hidden.",
+     WA_ISTINAF[2] + "«bilirim»: merfû muzâri; fâil vücûben gizli «ben».",
      segs=SG(("وَ", "wa", "conj"), ("أَعْلَمُ", "alima", "verb"))),
   T("مَا", "ma-mawsula", "pron", ["ism-mawsul", "maful-bihi"],
      "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
      "A relative noun «what», built on sukun, in the seat of nasb as the direct object.",
      "İsm-i mevsûl «…-an şey», sükûn üzere mebnî; mef'ûlün bih olarak mahallen mansûb."),
   FI(role=(" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ صِلَةِ الْمَوْصُولِ", "; the jarr phrase hangs on the omitted ṣila of the relative", " — câr-mecrûr ism-i mevsûlün mahzûf sılasına müteallik")),
-  MAJR("الْيَوْمِ", "yawm", extra=["tibaq"], note_ar=" — وَبَيْنَ «الْيَوْمِ» وَ«الْأَمْسِ» وَ«غَدٍ» طِبَاقٌ", note_en=" — «today», «yesterday» and «tomorrow» make a tibaq", note_tr=" — «bugün», «dün» ve «yarın» arasında tıbâk vardır"),
+  MAJR("الْيَوْمِ", "yawm", extra=["tibaq"], note_ar=" — وَبَيْنَ «الْيَوْمِ» وَ«الْأَمْسِ» وَ«غَدٍ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ: الْحَاضِرُ وَالْمَاضِي وَالْمُسْتَقْبَلُ مُتَقَابِلَةٌ (وَعِبَارَةُ الزَّوْزَنِيِّ: مَا مَضَى وَمَا حَضَرَ … مَا هُوَ مُنْتَظَرٌ)", note_en=" — «today», «yesterday» and «tomorrow» make a tibaq by the Talkhīṣ's definition — present, past and future stand opposed (al-Zawzanī's words: «what is past and what is present … what is still awaited»)", note_tr=" — «bugün», «dün» ve «yarın» arasında, Telhîs'in tarifine göre, tıbâk vardır — hâl, mâzî ve istikbâl birbirinin mukabilidir (Zevzenî'nin ifadesi: «geçmiş ve hazır olan … beklenen»)"),
   ATF("وَالْأَمْسِ", "ams", case="jarr", extra=["tibaq"], note_ar=" — وَهُوَ مُعْرَبٌ لِاقْتِرَانِهِ بِأَلْ", note_en=" — declined here because it carries the article", note_tr=" — elif-lâm aldığı için burada mu'rebdir"),
   T("قَبْلَهُ", "qabla", "noun", ["maful-fih", "idafa-definiteness", "al-bariz-al-muttasil", "ijaz-itnab-musawat"],
-     "ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ مُتَعَلِّقٌ بِمَحْذُوفٍ حَالٍ مِنَ «الْأَمْسِ»، مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ يَعُودُ عَلَى الْيَوْمِ. وَهُوَ حَشْوٌ غَيْرُ مُفْسِدٍ لِلْمَعْنَى لِأَنَّ الْأَمْسَ لَا يَكُونُ إِلَّا قَبْلَ الْيَوْمِ؛ وَبِهٰذَا الْبَيْتِ مَثَّلَ صَاحِبُ التَّلْخِيصِ لَهُ فِي بَابِ الْإِيجَازِ وَالْإِطْنَابِ، وَرِوَايَتُهُ: «وَأَعْلَمُ عِلْمَ الْيَوْمِ».",
-     "An adverb of time, in nasb, hanging on an omitted hal of «yesterday»; annexed to the attached «it» (today), in the seat of jarr. It is padding that does no harm to the sense (ḥashw ghayr mufsid), since yesterday can only be before today; this is the very verse the Talkhīṣ cites for it, in the chapter of ijaz and itnab, in the reading وَأَعْلَمُ عِلْمَ الْيَوْمِ.",
-     "Zaman zarfı, mansûb; «dün»ün mahzûf hâline müteallik; bitişik zamire muzâf, zamir (bugün) mahallen mecrûr. Mânâyı bozmayan bir haşivdir, çünkü dün ancak bugünden önce olur; Telhîs sahibi îcâz ve ıtnâb bâbında buna tam da bu beyti misal getirir; onun rivayeti «ve a'lemü ilme'l-yevmi» şeklindedir.",
+     "ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ مُتَعَلِّقٌ بِمَحْذُوفٍ نَعْتٍ لِـ«الْأَمْسِ» لِأَنَّ «أَلْ» فِيهِ لَا تُفِيدُهُ تَعْرِيفًا (الدُّرَّةُ)، مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ يَعُودُ عَلَى الْيَوْمِ. وَهُوَ حَشْوٌ غَيْرُ مُفْسِدٍ لِلْمَعْنَى لِأَنَّ الْأَمْسَ لَا يَكُونُ إِلَّا قَبْلَ الْيَوْمِ؛ وَبِهٰذَا الْبَيْتِ مَثَّلَ صَاحِبُ التَّلْخِيصِ لَهُ فِي بَابِ الْإِيجَازِ وَالْإِطْنَابِ، وَرِوَايَتُهُ: «وَأَعْلَمُ عِلْمَ الْيَوْمِ».",
+     "An adverb of time, in nasb, hanging on an omitted na't of «yesterday», whose article does not make it definite (al-Durra); annexed to the attached «it» (today), in the seat of jarr. It is padding that does no harm to the sense (ḥashw ghayr mufsid), since yesterday can only be before today; this is the very verse the Talkhīṣ cites for it, in the chapter of ijaz and itnab, in the reading وَأَعْلَمُ عِلْمَ الْيَوْمِ.",
+     "Zaman zarfı, mansûb; «dün»ün mahzûf na'tına müteallik, çünkü ondaki «el» ta'rîf ifade etmez (Dürre); bitişik zamire muzâf, zamir (bugün) mahallen mecrûr. Mânâyı bozmayan bir haşivdir, çünkü dün ancak bugünden önce olur; Telhîs sahibi îcâz ve ıtnâb bâbında buna tam da bu beyti misal getirir; onun rivayeti «ve a'lemü ilme'l-yevmi» şeklindedir.",
      segs=SG(("قَبْلَ", "qabla", "noun"), ("هُ", "pron-3ms", "pron")))],
  [T("وَلٰكِنَّنِي", "lakinna", "part", ["inna-wa-akhawatuha", "al-bariz-al-muttasil", "ya-al-mutakallim", "kaanna-lakinna-layta-laalla-fil-kafiya"],
      WA_AR + "لٰكِنَّ حَرْفُ اسْتِدْرَاكٍ وَنَصْبٍ، وَالنُّونُ لِلْوِقَايَةِ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ اسْمُهَا.",
@@ -877,7 +915,7 @@ V(S5, "I know what is in today, and in yesterday before it; but to the knowledge
      "«ve» + lâkinne «fakat»: istidrâk ve nasb harfi; nûn vikâye içindir; yâ ismidir, mahallen mansûb.",
      segs=SG(("وَ", "wa", "conj"), ("لٰكِنَّ", "lakinna", "part"), ("نِ", "nun-wiqaya", "part"), ("ي", "pron-1s", "pron"))),
   PREP("عَنْ", "an", role_ar=" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«عَمِي»", role_en="; the phrase hangs on «blind»", role_tr="; câr-mecrûr «kör»e müteallik", gloss_tr="«-den»"),
-  MAJR("عِلْمِ", "ilm", extra=["masdar", "mulhaq-bil-jinas", "idafa-definiteness"], note_ar="، مُضَافٌ إِلَى مَفْعُولِهِ", note_en=", annexed to its object", note_tr=", mef'ûlüne muzâf"),
+  MAJR("عِلْمِ", "ilm", extra=["masdar", "idafa-definiteness"], note_ar="، مُضَافٌ إِلَى مَفْعُولِهِ", note_en=", annexed to its object", note_tr=", mef'ûlüne muzâf"),
   T("مَا", "ma-mawsula", "pron", ["ism-mawsul", "idafa-definiteness"],
      "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
      "A relative noun «what», built on sukun, in the seat of jarr as the second term of the idafa.",
@@ -898,17 +936,17 @@ V(S5, "I have seen the Fates strike like a night-blind she-camel's stumbling: wh
      "A maf'ul mutlaq of an omitted verb — «they strike with the striking of a night-blind camel» — in nasb, annexed to its doer; the omitted clause is the second object of «I have seen», in the seat of nasb. Here is a tashbih baligh — mu'akkad and mujmal: the thing likened is the Fates' falling on people; the thing it is likened to, the stumbling of the عَشْوَاء, the she-camel that cannot see by night; the tool is dropped, and so is the point of likeness — falling without order and without sight (al-Zawzanī).",
      "Mahzûf bir fiilin mef'ûl-i mutlakı — «gece körü devenin çarpması gibi çarparlar» — mansûb, fâiline muzâf; mahzûf cümle «gördüm»ün ikinci mef'ûlü, mahallen mansûb. Burada teşbîh-i belîğ — müekked mücmel — vardır: müşebbeh ecellerin insanlara isabeti; müşebbehün bih «aşvâ'»nın, yani gece görmeyen dişi devenin rastgele basışı; edat da vech-i şebeh de — düzensiz ve görmeden vâki olmak — hazfedilmiştir (Zevzenî)."),
   MUDAF_ILAYH("عَشْوَاءَ", "ashwa", extra=["mamnu-min-sarf", "ism-mamdud"], sign=FATHA_JARR, note_ar=" لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ لِأَلِفِ التَّأْنِيثِ الْمَمْدُودَةِ — تَأْنِيثُ الْأَعْشَى", note_en=" — by the fatha: a diptote, for its lengthened feminine alif — the feminine of أَعْشَى «night-blind»", note_tr=" — fetha ile: elif-i memdûde-i te'nîs sebebiyle gayr-i munsarif — «a'şâ»nın (gece körü) müennesi"),
-  MAN("مَنْ", D("تُصِبْ", "sukun"), D("تُمِتْهُ", "sukun"), seat=MAN_OBJ,
-      tail=(" — وَقِيلَ: «مَنْ» مُبْتَدَأٌ وَمَفْعُولُ «تُصِبْ» مَحْذُوفٌ، وَعَلَيْهِ تَفْسِيرُ الزَّوْزَنِيِّ. وَفِي الْبَيْتِ مُقَابَلَةُ اثْنَيْنِ بِاثْنَيْنِ: «تُصِبْ … تُمِتْهُ» وَ«تُخْطِئْ … يُعَمَّرْ»", " — others read مَنْ as a mubtada with the object of «they hit» left out, and so al-Zawzanī explains it. The verse holds a muqabala of two with two: «hit … kill» against «miss … is given long life»", " — bir görüşe göre «men» mübtedâdır ve «isabet ederlerse»nin mef'ûlü mahzûftur; Zevzenî'nin açıklaması buna göredir. Beyitte ikiye iki mukâbele vardır: «isabet — öldürme» ile «ıskalama — ömür verme»")),
+  MAN("مَنْ", D("تُصِبْ", "sukun"), D("تُمِتْهُ", "sukun"), seat=MAN_OBJ, khabar=False,
+      tail=(" — وَجُمْلَةُ الشَّرْطِ وَجَوَابِهِ مِنْ تَعَدُّدِ الْمَفْعُولِ الثَّانِي لِـ«رَأَيْتُ» فِي مَحَلِّ نَصْبٍ، وَقِيلَ: بَدَلٌ مِنْ «خَبْطَ» (الدُّرَّةُ). وَقِيلَ: «مَنْ» مُبْتَدَأٌ وَمَفْعُولُ «تُصِبْ» مَحْذُوفٌ، وَخَبَرُهُ جُمْلَتَا الشَّرْطِ وَالْجَوَابِ، وَعَلَيْهِ تَفْسِيرُ الزَّوْزَنِيِّ. وَفِي الْبَيْتِ مُقَابَلَةُ اثْنَيْنِ بِاثْنَيْنِ: «تُصِبْ … تُمِتْهُ» وَ«تُخْطِئْ … يُعَمَّرْ» — عَلَى حَدِّ التَّلْخِيصِ: مَعْنَيَانِ ثُمَّ مَا يُقَابِلُهُمَا عَلَى التَّرْتِيبِ (وَعِبَارَةُ الزَّوْزَنِيِّ: مَنْ أَصَابَتْهُ الْمَنَايَا أَهْلَكَتْهُ وَمَنْ أَخْطَأَتْهُ أَبْقَتْهُ)", " — the conditional sentence is a further second object of «I have seen», in the seat of nasb; some make it a badal of «the stumbling» (al-Durra). Others read مَنْ as a mubtada with the object of «they hit» left out, the condition and its answer being its khabar — and so al-Zawzanī explains it. The verse holds a muqabala of two with two: «hit … kill» against «miss … is given long life» — by the Talkhīṣ's definition: two meanings, then what answers them, in order (al-Zawzanī's words: «whom the Fates hit they destroy, and whom they miss they spare»)", " — şart cümlesi cevabıyla birlikte «gördüm»ün bir başka ikinci mef'ûlüdür, mahallen mansûb; «habt»tan bedel olduğu da söylenmiştir (Dürre). Bir görüşe göre «men» mübtedâdır, «isabet ederlerse»nin mef'ûlü mahzûftur ve haberi şart ile cevap cümleleridir; Zevzenî'nin açıklaması buna göredir. Beyitte ikiye iki mukâbele vardır: «isabet — öldürme» ile «ıskalama — ömür verme» — Telhîs'in tarifine göre: iki mânâ, sonra sırasıyla onların mukabili (Zevzenî'nin ifadesi: «ecellerin isabet ettiğini helâk eder, ıskaladığını bırakır»)")),
   JV("تُصِبْ", "asaba", "shart", "sukun", g=["form-iv-verbs", "hollow-verbs", "muqabala", "tibaq"], doer=("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْمَنَايَا", "; the doer is the hidden «she» — the Fates", "; fâil ecellere dönen gizli zamir «o»"),
-     note=(" — أَجْوَفُ حُذِفَتْ عَيْنُهُ لِالْتِقَاءِ السَّاكِنَيْنِ (تُصِيبُ ← تُصِبْ)؛ وَبَيْنَهُ وَبَيْنَ «تُخْطِئْ» طِبَاقٌ", " — a hollow verb whose middle letter drops where two quiescents meet (تُصِيبُ → تُصِبْ); with «miss» it makes a tibaq", " — ecvef fiil; iki sâkin karşılaştığı için aynü'l-fiili düşmüştür (tusîbü → tusib); «ıskalarlarsa» ile arasında tıbâk vardır"))],
+     note=(" — أَجْوَفُ حُذِفَتْ عَيْنُهُ لِالْتِقَاءِ السَّاكِنَيْنِ (تُصِيبُ ← تُصِبْ)؛ وَبَيْنَهُ وَبَيْنَ «تُخْطِئْ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ", " — a hollow verb whose middle letter drops where two quiescents meet (تُصِيبُ → تُصِبْ); with «miss» it makes a tibaq by the Talkhīṣ's definition", " — ecvef fiil; iki sâkin karşılaştığı için aynü'l-fiili düşmüştür (tusîbü → tusib); «ıskalarlarsa» ile arasında, Telhîs'in tarifine göre, tıbâk vardır"))],
  [T("تُمِتْهُ", "amata", "verb", G_SHART + ["form-iv-verbs", "hollow-verbs", "al-bariz-al-muttasil", "maful-bihi", "muqabala", "tibaq"],
-     "فِعْلٌ مُضَارِعٌ مَجْزُومٌ لِأَنَّهُ جَوَابُ الشَّرْطِ وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْمَنَايَا، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ يَعُودُ عَلَى «مَنْ» — وَبَيْنَهُ وَبَيْنَ «يُعَمَّرْ» طِبَاقٌ.",
-     "Present verb in jazm as the answer of the condition, its sign the sukun; the doer is the hidden «she» (the Fates), and the attached «him», returning to مَنْ, is the object, in the seat of nasb — with «is given long life» it makes a tibaq.",
-     "Şartın cevabı olarak meczûm muzâri, alâmeti sükûn; fâil ecellere dönen gizli zamir «o»; «men»e dönen bitişik «onu» mef'ûlün bih, mahallen mansûb — «ömrü uzatılır» ile arasında tıbâk vardır.",
+     "فِعْلٌ مُضَارِعٌ مَجْزُومٌ لِأَنَّهُ جَوَابُ الشَّرْطِ وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْمَنَايَا، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ يَعُودُ عَلَى «مَنْ» — وَبَيْنَهُ وَبَيْنَ «يُعَمَّرْ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ.",
+     "Present verb in jazm as the answer of the condition, its sign the sukun; the doer is the hidden «she» (the Fates), and the attached «him», returning to مَنْ, is the object, in the seat of nasb — with «is given long life» it makes a tibaq by the Talkhīṣ's definition.",
+     "Şartın cevabı olarak meczûm muzâri, alâmeti sükûn; fâil ecellere dönen gizli zamir «o»; «men»e dönen bitişik «onu» mef'ûlün bih, mahallen mansûb — «ömrü uzatılır» ile arasında, Telhîs'in tarifine göre, tıbâk vardır.",
      segs=SG(("تُمِتْ", "amata", "verb"), ("هُ", "pron-3ms", "pron"))),
-  MAN("وَمَنْ", D("تُخْطِئْ", "sukun"), D("يُعَمَّرْ", "sukun"), seat=MAN_OBJ,
-      tail=(" — أَوْ مُبْتَدَأٌ عَلَى حَذْفِ الْمَفْعُولِ: وَمَنْ تُخْطِئْهُ (الزَّوْزَنِيُّ)", " — or a mubtada, with the object left out: «and whom they miss [him]» (al-Zawzanī)", " — yahut mef'ûlün hazfiyle mübtedâ: «kimi ıskalarlarsa» (Zevzenî)")),
+  MAN("وَمَنْ", D("تُخْطِئْ", "sukun"), D("يُعَمَّرْ", "sukun"), seat=MAN_OBJ, khabar=False,
+      tail=(" — أَوْ مُبْتَدَأٌ عَلَى حَذْفِ الْمَفْعُولِ: وَمَنْ تُخْطِئْهُ (الزَّوْزَنِيُّ)، وَخَبَرُهُ حِينَئِذٍ جُمْلَتَا الشَّرْطِ وَالْجَوَابِ؛ وَالْجُمْلَةُ مَعْطُوفَةٌ عَلَى الَّتِي قَبْلَهَا", " — or a mubtada, with the object left out: «and whom they miss [him]» (al-Zawzanī), the condition and its answer then being its khabar; the sentence is joined to the one before", " — yahut mef'ûlün hazfiyle mübtedâ: «kimi ıskalarlarsa» (Zevzenî); o takdirde haberi şart ile cevap cümleleridir; cümle öncekine ma'tûftur")),
   JV("تُخْطِئْ", "akhtaa", "shart", "sukun", g=["form-iv-verbs", "muqabala", "tibaq", "hadhf-al-maful"], doer=("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْمَنَايَا", "; the doer is the hidden «she» — the Fates", "; fâil ecellere dönen gizli zamir «o»"),
      note=(" — وَالسُّكُونُ ظَاهِرٌ عَلَى الْهَمْزَةِ", " — the sukun shows on the hamza", " — sükûn hemze üzerinde zâhirdir")),
   JV("يُعَمَّرْ", "ammara-life", "jawab", "sukun", g=["form-ii-verbs", "naib-al-fail", "al-majhul-fil-kafiya", "muqabala", "tibaq"], passive=True, doer=NAIB_HUWA,
@@ -971,8 +1009,8 @@ V(S5, "Whoever sets kindness as a shield before his honour keeps it whole; and w
   MAN("وَمَنْ", D("يَتَّقِ", "ya"), D("يُشْتَمِ", "rawi")),
   LA_SH(),
   JV("يَتَّقِ", "ittaqa", "shart", "ya", g=["form-viii-verbs", "naqis-verbs"], note=(" — وَأَصْلُهُ يَوْتَقِي: قُلِبَتِ الْوَاوُ تَاءً وَأُدْغِمَتْ فِي تَاءِ الِافْتِعَالِ", " — it is يَوْتَقِي: the waw turns to ta and merges into the ta of Form VIII", " — aslı «yevtakî»dir: vâv tâ'ya çevrilip iftiâl tâ'sına idgam edilmiştir")),
-  MAFUL("الشَّتْمَ", "shatm", extra=["masdar", "mulhaq-bil-jinas"], note_ar=" — أَيْ شَتْمَ النَّاسِ إِيَّاهُ (الزَّوْزَنِيُّ). وَبَيْنَهُ وَبَيْنَ «يُشْتَمِ» اشْتِقَاقٌ مُلْحَقٌ بِالْجِنَاسِ", note_en=" — «people's abuse of him» (al-Zawzanī). It shares a root with «is abused» — the derivation that is attached to jinas", note_tr=" — yani insanların ona sövmesini (Zevzenî). «Sövülür» ile arasında cinâsa mülhak iştikâk vardır"),
-  JV("يُشْتَمِ", "shatama", "jawab", "rawi", g=["naib-al-fail", "al-majhul-fil-kafiya", "mulhaq-bil-jinas"], passive=True, doer=NAIB_HUWA)])
+  MAFUL("الشَّتْمَ", "shatm", extra=["masdar"], note_ar=" — أَيْ شَتْمَ النَّاسِ إِيَّاهُ (الزَّوْزَنِيُّ)", note_en=" — «people's abuse of him» (al-Zawzanī)", note_tr=" — yani insanların ona sövmesini (Zevzenî)"),
+  JV("يُشْتَمِ", "shatama", "jawab", "rawi", g=["naib-al-fail", "al-majhul-fil-kafiya"], passive=True, doer=NAIB_HUWA)])
 # ---- v. 51 ----
 V(S5, "Whoever has abundance and is miserly with it toward his own people — they do without him, and he is blamed.",
   "Kim servet sahibi olur da servetini kavminden esirgerse, ondan müstağni kalınır ve yerilir.",
@@ -1062,7 +1100,7 @@ V(S6, "Whoever bestows kindness on those unworthy of it — his praise turns to 
   ENC_NOUN("أَهْلِهِ", "ahl", "هِ", "mudaf", note_ar=" — وَالضَّمِيرُ لِلْمَعْرُوفِ: أَيْ فِي مَنْ لَا يَسْتَحِقُّهُ", note_en=" — «its» is the kindness: on one who does not deserve it", note_tr=" — zamir iyiliğe döner: yani ona lâyık olmayana")],
  [KJ("يَكُنْ", "jawab", "sukun", ("، وَاسْمُهُ «حَمْدُهُ» بَعْدَهُ", "; its noun, «his praise», follows", "; ismi sonraki «övgüsü»dür"),
      note=(" — أَجْوَفُ حُذِفَتْ عَيْنُهُ لِالْتِقَاءِ السَّاكِنَيْنِ (يَكُونُ ← يَكُنْ)", " — a hollow verb whose middle letter drops where two quiescents meet (يَكُونُ → يَكُنْ)", " — ecvef fiil; iki sâkin karşılaştığı için aynü'l-fiili düşmüştür (yekûnü → yekün)")),
-  ENC_NOUN("حَمْدُهُ", "hamd", "هُ", "ismk", extra=["masdar", "tibaq"], note_ar=" — وَهُوَ اسْمُ «يَكُنْ»، وَفِي الْهَاءِ الرَّابِطُ الْعَائِدُ عَلَى «مَنْ»: أَيِ الْحَمْدُ الَّذِي يَرْجُوهُ يَصِيرُ ذَمًّا، ذَمَّهُ الَّذِي أُحْسِنَ إِلَيْهِ وَلَمْ يَحْمَدْهُ (الزَّوْزَنِيُّ). وَبَيْنَ «حَمْدُهُ» وَ«ذَمًّا» طِبَاقٌ", note_en=" — the noun of يَكُنْ; its pronoun ties the clause back to مَنْ: the praise he looks for turns to blame — «the one he was good to blames him and does not praise him» (al-Zawzanī). «Praise» and «blame» make a tibaq", note_tr=" — «yekün»ün ismidir; zamiri cümleyi «men»e bağlar: umduğu övgü yergiye döner — «iyilik ettiği kimse onu över değil, yerer» (Zevzenî). «Övgü» ile «yergi» arasında tıbâk vardır"),
+  ENC_NOUN("حَمْدُهُ", "hamd", "هُ", "ismk", extra=["masdar", "tibaq"], note_ar=" — وَهُوَ اسْمُ «يَكُنْ»، وَفِي الْهَاءِ الرَّابِطُ الْعَائِدُ عَلَى «مَنْ»: أَيِ الْحَمْدُ الَّذِي يَرْجُوهُ يَصِيرُ ذَمًّا، ذَمَّهُ الَّذِي أُحْسِنَ إِلَيْهِ وَلَمْ يَحْمَدْهُ (الزَّوْزَنِيُّ). وَبَيْنَ «حَمْدُهُ» وَ«ذَمًّا» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ (وَعِبَارَةُ الزَّوْزَنِيِّ: ذَمَّهُ الَّذِي أَحْسَنَ إِلَيْهِ وَلَمْ يَحْمَدْهُ)", note_en=" — the noun of يَكُنْ; its pronoun ties the clause back to مَنْ: the praise he looks for turns to blame — «the one he was good to blames him and does not praise him» (al-Zawzanī). «Praise» and «blame» make a tibaq by the Talkhīṣ's definition (al-Zawzanī's words: «the one he was good to blames him, and does not praise him»)", note_tr=" — «yekün»ün ismidir; zamiri cümleyi «men»e bağlar: umduğu övgü yergiye döner — «iyilik ettiği kimse onu över değil, yerer» (Zevzenî). «Övgü» ile «yergi» arasında, Telhîs'in tarifine göre, tıbâk vardır (Zevzenî'nin ifadesi: «iyilik ettiği kimse onu yerer, övmez»)"),
   KHK("ذَمًّا", "dhamm", extra=["masdar", "tibaq"], note_ar=" — خَبَرُ «يَكُنْ»", note_en=" — the predicate of يَكُنْ", note_tr=" — «yekün»ün haberi"),
   JARR_PRON("عَلَيْهِ", "ala", "عَلَيْ", "هِ", " («onun aleyhine»)", note_ar=" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«ذَمًّا»، أَوْ بِمَحْذُوفٍ نَعْتٍ لَهُ (الدُّرَّةُ)", note_en="; the phrase hangs on «blame», or on an omitted na't of it (al-Durra)", note_tr="; câr-mecrûr «yergi»ye yahut onun mahzûf na'tına müteallik (Dürre)"),
   JV("وَيَنْدَمِ", "nadima", "atf-jawab", "rawi", g=["atf-nasaq"], pre=WA3,
@@ -1074,9 +1112,9 @@ V(S6, "Whoever defies the butt-ends of the spears will surely obey their upper s
  [MAN("وَمَنْ", D("يَعْصِ", "ya"),
       ("الْجُمْلَةُ الِاسْمِيَّةُ «فَإِنَّهُ يُطِيعُ الْعَوَالِي» الْمُقْتَرِنَةُ بِالْفَاءِ، فِي مَحَلِّ جَزْمٍ", "the nominal sentence «then he obeys the upper shafts», joined by the fa, in the seat of jazm", "fâ ile gelen «fe-innehû yutî'u'l-avâlî» isim cümlesi, mahallen meczûm")),
   JV("يَعْصِ", "asa", "shart", "ya", g=["naqis-verbs", "tibaq", "kinaya"],
-     note=(" — وَأَصْلُهُ يَعْصِي. وَبَيْنَهُ وَبَيْنَ «يُطِيعُ» طِبَاقٌ. وَ«يَعْصِ أَطْرَافَ الزِّجَاجِ» كِنَايَةٌ عَنْ إِبَاءِ الصُّلْحِ: كَانَتِ الْفِئَتَانِ إِذَا الْتَقَتَا سَدَّدَتْ كُلُّ وَاحِدَةٍ زِجَاجَ الرِّمَاحِ نَحْوَ صَاحِبَتِهَا وَسَعَى السَّاعُونَ فِي الصُّلْحِ، فَإِنْ أَبَتَا قَلَبَتَا الرِّمَاحَ وَاقْتَتَلَتَا بِالْأَسِنَّةِ؛ وَتَحْرِيرُ الْمَعْنَى: مَنْ أَبَى الصُّلْحَ ذَلَّلَتْهُ الْحَرْبُ وَلَيَّنَتْهُ (الزَّوْزَنِيُّ)",
-           " — it is يَعْصِي. With «obeys» it makes a tibaq. «He defies the butt-ends of the spears» is a kinaya for refusing peace: when two bands met, each held its spears butt-forward toward the other while the peacemakers went between; if they refused, they turned the spears and fought with the blades. The plain sense: whoever spurns peace, war humbles and softens him (al-Zawzanī)",
-           " — aslı «ya'sî»dir. «İtaat eder» ile arasında tıbâk vardır. «Mızrakların dip demirlerine isyan eder» barışı reddetmekten kinâyedir: iki topluluk karşılaştığında her biri mızraklarının dip demirini ötekine doğrultur, arabulucular barış için çalışırdı; kabul etmezlerse mızrakları çevirip temrenlerle savaşırlardı. Mânânın özü: barışı reddedeni savaş zelil eder ve yumuşatır (Zevzenî)")),
+     note=(" — وَأَصْلُهُ يَعْصِي. وَبَيْنَهُ وَبَيْنَ «يُطِيعُ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ (وَعِبَارَةُ الزَّوْزَنِيِّ: وَمَنْ عَصَى … أَطَاعَ). وَ«يَعْصِ أَطْرَافَ الزِّجَاجِ» كِنَايَةٌ عَنْ إِبَاءِ الصُّلْحِ: كَانَتِ الْفِئَتَانِ إِذَا الْتَقَتَا سَدَّدَتْ كُلُّ وَاحِدَةٍ زِجَاجَ الرِّمَاحِ نَحْوَ صَاحِبَتِهَا وَسَعَى السَّاعُونَ فِي الصُّلْحِ، فَإِنْ أَبَتَا قَلَبَتَا الرِّمَاحَ وَاقْتَتَلَتَا بِالْأَسِنَّةِ؛ وَتَحْرِيرُ الْمَعْنَى: مَنْ أَبَى الصُّلْحَ ذَلَّلَتْهُ الْحَرْبُ وَلَيَّنَتْهُ (الزَّوْزَنِيُّ)",
+           " — it is يَعْصِي. With «obeys» it makes a tibaq by the Talkhīṣ's definition (al-Zawzanī's words: «whoever defies … obeys»). «He defies the butt-ends of the spears» is a kinaya for refusing peace: when two bands met, each held its spears butt-forward toward the other while the peacemakers went between; if they refused, they turned the spears and fought with the blades. The plain sense: whoever spurns peace, war humbles and softens him (al-Zawzanī)",
+           " — aslı «ya'sî»dir. «İtaat eder» ile arasında, Telhîs'in tarifine göre, tıbâk vardır (Zevzenî'nin ifadesi: «kim isyan ederse … itaat eder»). «Mızrakların dip demirlerine isyan eder» barışı reddetmekten kinâyedir: iki topluluk karşılaştığında her biri mızraklarının dip demirini ötekine doğrultur, arabulucular barış için çalışırdı; kabul etmezlerse mızrakları çevirip temrenlerle savaşırlardı. Mânânın özü: barışı reddedeni savaş zelil eder ve yumuşatır (Zevzenî)")),
   MAFUL("أَطْرَافَ", "taraf", extra=["jam-taksir", "idafa-definiteness"], note_ar="، مُضَافٌ — جَمْعُ طَرَفٍ", note_en=", annexed — the plural of «end»", note_tr=", muzâf — «taraf»ın cem'i"),
   MUDAF_ILAYH("الزِّجَاجِ", "zujj", extra=["jam-taksir"], note_ar=" — جَمْعُ زُجٍّ: الْحَدِيدَةُ الْمُرَكَّبَةُ فِي أَسْفَلِ الرُّمْحِ", note_en=" — the plural of زُجّ, the iron shoe at the foot of a spear", note_tr=" — «zücc»ün cem'i: mızrağın dibine takılan demir"),
   T("فَإِنَّهُ", "inna", "part", ["al-fa-fi-jawab-al-shart", "inna-wa-akhawatuha", "al-bariz-al-muttasil", "al-majzum-wal-shart-wal-jaza"],
@@ -1085,9 +1123,9 @@ V(S6, "Whoever defies the butt-ends of the spears will surely obey their upper s
      "Fâ şartın cevabını bağlar — cevap isim cümlesi olduğu için gelmesi vâciptir — inne te'kîd ve nasb harfi; «men»e dönen bitişik zamir ismidir, mahallen mansûb; isim cümlesi şartın cevabı olarak mahallen meczûm.",
      segs=SG(("فَ", "fa", "conj"), ("إِنَّ", "inna", "part"), ("هُ", "pron-3ms", "pron")))],
  [T("يُطِيعُ", "ataa", "verb", ["mudari-marfu", "form-iv-verbs", "hollow-verbs", "anwa-al-khabar", "tibaq", "kinaya"],
-     "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ إِنَّ. وَبَيْنَهُ وَبَيْنَ «يَعْصِ» طِبَاقٌ، وَ«يُطِيعُ الْعَوَالِيَ» كِنَايَةٌ عَنِ الْخُضُوعِ لِلْحَرْبِ. وَيُرْوَى «مُطِيعُ الْعَوَالِي» بِالْإِضَافَةِ (الدُّرَّةُ).",
-     "Present verb in raf'; the doer is the hidden «he» — the clause is the predicate of إِنَّ, in the seat of raf'. With «defies» it makes a tibaq; and «he obeys the upper shafts» is a kinaya for being bent by war. Also read مُطِيعُ الْعَوَالِي, as an idafa (al-Durra).",
-     "Merfû muzâri; fâil gizli zamir «o» — cümle inne'nin haberi, mahallen merfû. «İsyan eder» ile arasında tıbâk vardır; «mızrak uçlarına itaat eder» savaşa boyun eğmekten kinâyedir. İzâfetle «mutî'u'l-avâlî» diye de rivayet edilir (Dürre)."),
+     "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ إِنَّ. وَبَيْنَهُ وَبَيْنَ «يَعْصِ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ، وَ«يُطِيعُ الْعَوَالِيَ» كِنَايَةٌ عَنِ الْخُضُوعِ لِلْحَرْبِ. وَيُرْوَى «مُطِيعُ الْعَوَالِي» بِالْإِضَافَةِ (الدُّرَّةُ).",
+     "Present verb in raf'; the doer is the hidden «he» — the clause is the predicate of إِنَّ, in the seat of raf'. With «defies» it makes a tibaq by the Talkhīṣ's definition; and «he obeys the upper shafts» is a kinaya for being bent by war. Also read مُطِيعُ الْعَوَالِي, as an idafa (al-Durra).",
+     "Merfû muzâri; fâil gizli zamir «o» — cümle inne'nin haberi, mahallen merfû. «İsyan eder» ile arasında, Telhîs'in tarifine göre, tıbâk vardır; «mızrak uçlarına itaat eder» savaşa boyun eğmekten kinâyedir. İzâfetle «mutî'u'l-avâlî» diye de rivayet edilir (Dürre)."),
   T("الْعَوَالِي", "aliya", "noun", ["maful-bihi", "ism-maqsur-manqus", "jam-taksir", "kinaya"],
      "مَفْعُولٌ بِهِ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ — وَكَانَ حَقُّهُ أَنْ يَقُولَ «الْعَوَالِيَ» بِفَتْحِ الْيَاءِ، وَلٰكِنَّهُ سَكَّنَهَا لِإِقَامَةِ الْوَزْنِ ضَرُورَةً، وَحَمَلَ النَّصْبَ عَلَى الرَّفْعِ وَالْجَرِّ (الزَّوْزَنِيُّ). جَمْعُ عَالِيَةٍ: أَعْلَى الرُّمْحِ مِمَّا يَلِي السِّنَانَ، ضِدُّ سَافِلَتِهِ.",
      "The direct object, in nasb by a fatha estimated on the ya — by rule he should say الْعَوَالِيَ, with fatha on the ya, but he stills it to keep the metre, a poet's licence, treating nasb like raf' and jarr (al-Zawzanī). The plural of عَالِيَة: the upper part of the spear, next to the blade, the opposite of its foot.",
@@ -1115,9 +1153,9 @@ V(S6, "Whoever does not drive men from his cistern with his weapons has it torn 
      note=(" — وَالرَّابِطُ بِـ«مَنْ» مُقَدَّرٌ: يُهَدَّمْ حَوْضُهُ", " — the tie to مَنْ is understood: «his cistern is torn down»", " — «men»e bağlayan zamir mukadderdir: «havuzu yıkılır»")),
   MAN("وَمَنْ", D("يَظْلِمِ", "kasr2"), D("يُظْلَمِ", "rawi")),
   LA_SH(),
-  JV("يَظْلِمِ", "zalama", "shart", "kasr2", g=["mulhaq-bil-jinas"], note=(" — وَبَيْنَهُ وَبَيْنَ «يُظْلَمِ» اشْتِقَاقٌ: الْأَوَّلُ مَبْنِيٌّ لِلْمَعْلُومِ وَالثَّانِي لِلْمَجْهُولِ", " — it shares a root with يُظْلَمِ: the first is active, the second passive", " — «yuzlem» ile arasında iştikâk vardır: ilki ma'lûm, ikincisi meçhuldür")),
+  JV("يَظْلِمِ", "zalama", "shart", "kasr2", g=[]),
   MAFUL("النَّاسَ", "nas"),
-  JV("يُظْلَمِ", "zalama", "jawab", "rawi", g=["naib-al-fail", "al-majhul-fil-kafiya", "mulhaq-bil-jinas"], passive=True, doer=NAIB_HUWA,
+  JV("يُظْلَمِ", "zalama", "jawab", "rawi", g=["naib-al-fail", "al-majhul-fil-kafiya"], passive=True, doer=NAIB_HUWA,
      note=(" — أَيْ: مَنْ كَفَّ عَنْ ظُلْمِ النَّاسِ ظَلَمَهُ النَّاسُ (الزَّوْزَنِيُّ)", " — «whoever holds back from wronging people, people wrong him» (al-Zawzanī)", " — yani «insanlara zulmetmekten el çekene insanlar zulmeder» (Zevzenî)"))])
 # ---- v. 57 ----
 V(S6, "Whoever goes abroad takes an enemy for his friend; and whoever does not honour himself is not honoured.",
@@ -1125,20 +1163,20 @@ V(S6, "Whoever goes abroad takes an enemy for his friend; and whoever does not h
  [MAN("وَمَنْ", D("يَغْتَرِبْ", "sukun"), D("يَحْسِبْ", "sukun")),
   JV("يَغْتَرِبْ", "ightaraba", "shart", "sukun", g=["form-viii-verbs"], note=(" — وَالِاغْتِرَابُ: الْبُعْدُ عَنِ الْأَهْلِ وَالْوَطَنِ", " — اِغْتِرَاب is to be far from one's people and home", " — «iğtirâb»: ehlinden ve vatanından uzak düşmek")),
   JV("يَحْسِبْ", "hasiba", "jawab", "sukun", g=["mafulayn", "al-mutaaddi-wa-afal-al-qulub"], note=(" — مِنْ أَفْعَالِ الْقُلُوبِ يَنْصِبُ مَفْعُولَيْنِ؛ وَسِينُهُ تُكْسَرُ وَتُفْتَحُ (وَالْكَسْرُ ضَبْطُ الْمَطْبُوعِ)", " — a verb of the heart, with two objects; its sin is read with kasra or fatha (the kasra is the edition's)", " — ef'âl-i kulûbdandır, iki mef'ûl alır; sîn'i kesreli de fethalı da okunur (kesre baskının harekesidir)")),
-  MAFUL("عَدُوًّا", "aduww", extra=["mafulayn", "tibaq"], note_ar=" — الْمَفْعُولُ الْأَوَّلُ. وَبَيْنَ «عَدُوًّا» وَ«صَدِيقَهُ» طِبَاقٌ", note_en=" — the first object. «Enemy» and «friend» make a tibaq", note_tr=" — birinci mef'ûl. «Düşman» ile «dost» arasında tıbâk vardır"),
+  MAFUL("عَدُوًّا", "aduww", extra=["mafulayn", "tibaq"], note_ar=" — الْمَفْعُولُ الْأَوَّلُ. وَبَيْنَ «عَدُوًّا» وَ«صَدِيقَهُ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ (وَعِبَارَةُ الزَّوْزَنِيِّ: حَسِبَ الْأَعْدَاءَ أَصْدِقَاءَ)", note_en=" — the first object. «Enemy» and «friend» make a tibaq by the Talkhīṣ's definition (al-Zawzanī's words: «he takes enemies for friends»)", note_tr=" — birinci mef'ûl. «Düşman» ile «dost» arasında, Telhîs'in tarifine göre, tıbâk vardır (Zevzenî'nin ifadesi: «düşmanları dost sanır»)"),
   ENC_NOUN("صَدِيقَهُ", "sadiq-friend", "هُ", "maful", extra=["mafulayn", "tibaq"], note_ar=" — وَهُوَ الْمَفْعُولُ الثَّانِي: أَيْ يَحْسِبُ الْأَعْدَاءَ أَصْدِقَاءَ لِأَنَّهُ لَمْ يُجَرِّبْهُمْ (الزَّوْزَنِيُّ)", note_en=" — the second object: he takes enemies for friends, not having tried them (al-Zawzanī)", note_tr=" — ikinci mef'ûl: onları denemediği için düşmanları dost sanar (Zevzenî)")],
  [MAN("وَمَنْ", LAM_SH("يُكَرِّمْ", "honour", "değer vermezse"),
       ("«يُكَرَّمِ» مَجْزُومٌ بِلَمْ وَعَلَامَةُ جَزْمِهِ " + SGN["rawi"][0] + "، وَ«لَمْ يُكَرَّمِ» فِي مَحَلِّ جَزْمٍ جَوَابُ الشَّرْطِ",
        "«is honoured», in jazm by لَمْ, its sign " + SGN["rawi"][1] + " — and لَمْ يُكَرَّمِ stands in the seat of jazm as the answer",
        "«değer verilmez»; lem ile meczûm, alâmeti " + SGN["rawi"][2] + " — «lem yükerrami» şartın cevabı olarak mahallen meczûm")),
   LAM_JAZM("لَمْ"),
-  T("يُكَرِّمْ", "karrama", "verb", G_SHART + ["lam-jazim", "form-ii-verbs", "mulhaq-bil-jinas"],
-     "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَمْ وَعَلَامَةُ جَزْمِهِ السُّكُونُ" + HUWA[0] + " — وَ«لَمْ» وَمَا دَخَلَتْ عَلَيْهِ فِي مَحَلِّ جَزْمٍ فِعْلُ الشَّرْطِ. وَبَيْنَهُ وَبَيْنَ «يُكَرَّمِ» اشْتِقَاقٌ: الْأَوَّلُ مَبْنِيٌّ لِلْمَعْلُومِ وَالثَّانِي لِلْمَجْهُولِ.",
-     "Present verb in jazm by لَمْ, its sign the sukun" + HUWA[1] + " — لَمْ with its verb stands in the seat of jazm as the condition's verb. It shares a root with يُكَرَّمِ: the first is active, the second passive.",
-     "Lem ile meczûm muzâri, alâmeti sükûn" + HUWA[2] + " — «lem» ve fiili şart fiili olarak mahallen meczûm. «Yükerram» ile arasında iştikâk vardır: ilki ma'lûm, ikincisi meçhuldür."),
+  T("يُكَرِّمْ", "karrama", "verb", G_SHART + ["lam-jazim", "form-ii-verbs"],
+     "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَمْ وَعَلَامَةُ جَزْمِهِ السُّكُونُ" + HUWA[0] + " — وَ«لَمْ» وَمَا دَخَلَتْ عَلَيْهِ فِي مَحَلِّ جَزْمٍ فِعْلُ الشَّرْطِ.",
+     "Present verb in jazm by لَمْ, its sign the sukun" + HUWA[1] + " — لَمْ with its verb stands in the seat of jazm as the condition's verb.",
+     "Lem ile meczûm muzâri, alâmeti sükûn" + HUWA[2] + " — «lem» ve fiili şart fiili olarak mahallen meczûm."),
   ENC_NOUN("نَفْسَهُ", "nafs", "هُ", "maful", note_ar=" — أَيْ: بِتَجَنُّبِ الدَّنَايَا (الزَّوْزَنِيُّ)", note_en=" — that is, by keeping clear of base things (al-Zawzanī)", note_tr=" — yani bayağı işlerden sakınarak (Zevzenî)"),
   LAM_JAZM("لَمْ"),
-  T("يُكَرَّمِ", "karrama", "verb", G_SHART + ["lam-jazim", "form-ii-verbs", "naib-al-fail", "al-majhul-fil-kafiya", "al-qafiya", "mulhaq-bil-jinas"],
+  T("يُكَرَّمِ", "karrama", "verb", G_SHART + ["lam-jazim", "form-ii-verbs", "naib-al-fail", "al-majhul-fil-kafiya", "al-qafiya"],
      "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَجْزُومٌ بِلَمْ وَعَلَامَةُ جَزْمِهِ " + SGN["rawi"][0] + NAIB_HUWA[0] + " — وَ«لَمْ» وَمَا دَخَلَتْ عَلَيْهِ فِي مَحَلِّ جَزْمٍ جَوَابُ الشَّرْطِ.",
      "A present verb in the passive, in jazm by لَمْ, its sign " + SGN["rawi"][1] + NAIB_HUWA[1] + " — لَمْ with its verb stands in the seat of jazm as the answer of the condition.",
      "Lem ile meczûm meçhul muzâri, alâmeti " + SGN["rawi"][2] + NAIB_HUWA[2] + " — «lem» ve fiili şartın cevabı olarak mahallen meczûm.")])
@@ -1249,14 +1287,14 @@ VV(8, "They kept al-Qanān and its rough ground on their right — and how many 
      WA_ISTINAF[2] + "«kem» haberiyyedir, «nice» anlamındadır; sükûn üzere mebnî, mübtedâ olarak mahallen merfû.",
      segs=SG(("وَ", "wa", "conj"), ("كَمْ", "kam", "pron"))),
   BI_NOUN("بِالْقَنَانِ", "qanan", "الْقَنَانِ", pos="propn", note_ar=" — وَالْبَاءُ بِمَعْنَى «فِي»، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ خَبَرِ «كَمْ»", note_en=" — the ba means «in»; the phrase hangs on the omitted khabar of كَمْ", note_tr=" — bâ «-de» anlamındadır; câr-mecrûr «kem»in mahzûf haberine müteallik"),
-  T("مِنْ", "min", "prep", ["huruf-jarr", "al-kinayat-wal-zuruf-al-mabniyya"], "حَرْفُ جَرٍّ يَجُرُّ تَمْيِيزَ «كَمْ» الْخَبَرِيَّةِ إِذَا فُصِلَ بَيْنَهُمَا؛ وَعَدَّهُ الدُّرَّةُ زَائِدًا.", "A jarr letter: it takes the tamyiz of كَمْ when the two are parted; al-Durra counts it as added.", "Araya fasıla girdiğinde haberî «kem»in temyîzini cerreden cer harfi; Dürre onu zâid sayar."),
+  T("مِنْ", "min", "prep", ["huruf-jarr", "al-kinayat-wal-zuruf-al-mabniyya"], "حَرْفُ جَرٍّ يَجُرُّ تَمْيِيزَ «كَمْ» الْخَبَرِيَّةِ إِذَا فُصِلَ بَيْنَهُمَا؛ وَعَدَّهُ الدُّرَّةُ زَائِدًا، وَجَعَلَ الْفَصْلَ بَيْنَ «كَمْ» وَمُمَيِّزِهَا لِضَرُورَةِ الشِّعْرِ.", "A jarr letter: it takes the tamyiz of كَمْ when the two are parted; al-Durra counts it as added, and calls the parting of كَمْ from its tamyiz a poet's licence.", "Araya fasıla girdiğinde haberî «kem»in temyîzini cerreden cer harfi; Dürre onu zâid sayar; «kem» ile temyîzinin arasının ayrılmasını da şiir zarûreti kabul eder."),
   T("مُحِلٍّ", "muhill", "noun", ["tamyiz", "ism-fail", "tibaq"],
-     "تَمْيِيزُ «كَمْ» مَجْرُورٌ بِـ«مِنْ» — اسْمُ فَاعِلٍ مِنْ أَحَلَّ. قَالَ الْأَصْمَعِيُّ: مِنْ مُحِلٍّ وَمُحْرِمٍ: مَنْ لَا حُرْمَةَ لَهُ وَمَنْ لَهُ حُرْمَةٌ؛ وَقَالَ غَيْرُهُ: مَنْ دَخَلَ فِي أَشْهُرِ الْحِلِّ وَمَنْ دَخَلَ فِي أَشْهُرِ الْحُرُمِ (الزَّوْزَنِيُّ). وَبَيْنَ «مُحِلٍّ» وَ«مُحْرِمِ» طِبَاقٌ.",
-     "The tamyiz of كَمْ, in jarr by مِنْ — the active participle of أَحَلَّ. Al-Aṣmaʿī: «one who has no sacred bond and one who has»; others: «one who has entered the free months and one who has entered the sacred months» (al-Zawzanī). The two words make a tibaq.",
-     "«Kem»in temyîzi, «min» ile mecrûr — «ehalle»den ism-i fâil. Asmaî: «hürmeti olmayan ve hürmeti olan»; başkaları: «hill aylarına giren ve haram aylara giren» demiştir (Zevzenî). İki kelime arasında tıbâk vardır."),
+     "تَمْيِيزُ «كَمْ» مَجْرُورٌ بِـ«مِنْ» — اسْمُ فَاعِلٍ مِنْ أَحَلَّ. قَالَ الْأَصْمَعِيُّ: مِنْ مُحِلٍّ وَمُحْرِمٍ: مَنْ لَا حُرْمَةَ لَهُ وَمَنْ لَهُ حُرْمَةٌ؛ وَقَالَ غَيْرُهُ: مَنْ دَخَلَ فِي أَشْهُرِ الْحِلِّ وَمَنْ دَخَلَ فِي أَشْهُرِ الْحُرُمِ (الزَّوْزَنِيُّ). وَبَيْنَ «مُحِلٍّ» وَ«مُحْرِمِ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ؛ وَالتَّضَادُّ فِي تَفْسِيرِ الْأَصْمَعِيِّ الْمَذْكُورِ.",
+     "The tamyiz of كَمْ, in jarr by مِنْ — the active participle of أَحَلَّ. Al-Aṣmaʿī: «one who has no sacred bond and one who has»; others: «one who has entered the free months and one who has entered the sacred months» (al-Zawzanī). The two words make a tibaq by the Talkhīṣ's definition; the opposition is in al-Aṣmaʿī's gloss just quoted.",
+     "«Kem»in temyîzi, «min» ile mecrûr — «ehalle»den ism-i fâil. Asmaî: «hürmeti olmayan ve hürmeti olan»; başkaları: «hill aylarına giren ve haram aylara giren» demiştir (Zevzenî). İki kelime arasında, Telhîs'in tarifine göre, tıbâk vardır; zıtlık Asmaî'nin az önce aktarılan açıklamasındadır."),
   ATF("وَمُحْرِمِ", "muhrim", case="jarr", extra=["ism-fail", "tibaq", "al-qafiya"], **W(RAWI_J))])
 # ---- v. 9 ----
-VV(9, "They had spread fine figured cloths and a thin veil over the litters — red at the borders, the colour of blood.",
+VV(9, "They had thrown choice, costly cloths and a thin veil over the litters — red at the borders, like blood in colour.",
   "Hevdeçlerin üzerine değerli örtüler ve ince bir perde atmışlardı — kenarları kırmızı, renkleri kana benzer.",
  [NUN_M("عَلَوْنَ", "ala-rise", g=["naqis-verbs"], note=(" — وَالْوَاوُ لَامُ الْفِعْلِ. وَالْبَاءُ بَعْدَهُ لِلتَّعْدِيَةِ: أَيْ أَعْلَيْنَ أَنْمَاطًا، أَلْقَيْنَهَا عَلَى الْهَوَادِجِ وَغَشَّيْنَهَا بِهَا؛ وَيُرْوَى «وَعَالَيْنَ أَنْمَاطًا» (الزَّوْزَنِيُّ)", " — the waw is the verb's own last radical. The ba after it makes it transitive: «they raised cloths», threw them over the litters and covered them; also read وَعَالَيْنَ أَنْمَاطًا (al-Zawzanī)", " — vâv fiilin lâmıdır. Sonraki bâ ta'diye içindir: «örtüleri yukarı kaldırdılar», yani hevdeçlerin üzerine atıp onları örttüler; «ve âleyne enmâtan» diye de rivayet edilir (Zevzenî)")),
   BI_NOUN("بِأَنْمَاطٍ", "namat", "أَنْمَاطٍ", extra=["jam-taksir"], note_ar=" — وَالْبَاءُ لِلتَّعْدِيَةِ؛ جَمْعُ نَمَطٍ: مَا يُبْسَطُ مِنْ صُنُوفِ الثِّيَابِ. وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«عَلَوْنَ»", note_en=" — the ba of transitivity; the plural of نَمَط, a cloth that is spread out. The phrase hangs on «raised»", note_tr=" — bâ ta'diye içindir; «nemat»ın cem'i: serilen kumaş türlerinden biri. Câr-mecrûr «kaldırdılar»a müteallik"),
@@ -1274,8 +1312,8 @@ VV(9, "They had spread fine figured cloths and a thin veil over the litters — 
      "Bir başka na't, mecrûr, mef'ûlüne muzâf — «şâkehe»den («benzedi») ism-i fâil. «Kenarları»nın haberi olarak merfû okunması da mümkündür; baskıda son harfi harekesizdir. Burada mürsel mücmel bir teşbîh vardır: müşebbeh renkleri bakımından o örtüler; müşebbehün bih kan; edat «müşâkihe» lafzı; vech-i şebeh — koyu kırmızılık — açıkça söylenmemiştir (Zevzenî: «renkleri kırmızılığın şiddetinde kana benzer»)."),
   MUDAF_ILAYH("الدَّمِ", "dam", extra=["al-qafiya"], **W(RAWI_AL))])
 # ---- v. 10 ----
-VV(10, "They rode sideways on their mounts in al-Sūbān, climbing its ridge, with the airs of one who lives soft and makes much of it.",
-  "Sûbân'da bineklerinin sağrılarına yan oturup onun sırtına tırmandılar; üzerlerinde refah içinde yaşayıp nazlanan kimsenin edası vardı.",
+VV(10, "They rode on the haunches of their mounts in al-Sūbān as they climbed its ridge, wearing the airs of one who lives in ease and makes a show of it.",
+  "Sûbân'da bineklerinin sağrılarına binip onun sırtına tırmandılar; üzerlerinde refah içinde yaşayıp nazlanan kimsenin edası vardı.",
  [NUN_M("وَوَرَّكْنَ", "warraka", g=["form-ii-verbs", "atf-nasaq"], pre=WA3, segs=SG(("وَ", "wa", "conj"), ("وَرَّكْنَ", "warraka", "verb")),
      note=(" — وَالتَّوْرِيكُ: رُكُوبُ أَوْرَاكِ الدَّوَابِّ", " — تَوْرِيك is riding on the haunches of the beasts", " — «tevrîk»: bineklerin sağrısına binmek")),
   FI(role=MT("وَرَّكْنَ", "they rode", "bindiler»e")),
@@ -1292,18 +1330,18 @@ VV(10, "They rode sideways on their mounts in al-Sūbān, climbing its ridge, wi
      segs=SG(("عَلَيْ", "ala", "prep"), ("هِنَّ", "pron-3fp", "pron"))),
   MUBTADA("دَلُّ", "dall-coquetry", extra=["idafa-definiteness"], note_ar="، مُضَافٌ — مُبْتَدَأٌ مُؤَخَّرٌ؛ وَالدَّلُّ وَالدَّلَالُ وَاحِدٌ", note_en=", annexed — placed after its khabar; دَلّ and دَلَال are one: a woman's winning airs", note_tr=", muzâf — haberinden sonraya bırakılmıştır; «dell» ile «delâl» aynıdır: naz, eda"),
   MUDAF_ILAYH("النَّاعِمِ", "naim-soft", extra=["ism-fail", "ijaz-al-hadhf"], **W(MAWSUF("الْإِنْسَانِ النَّاعِمِ، أَيِ الطَّيِّبِ الْعَيْشِ (الزَّوْزَنِيُّ)", "«the [person] who lives in ease» (al-Zawzanī)", "«refah içinde yaşayan [kimse]» (Zevzenî)"))),
-  T("الْمُتَنَعِّمِ", "mutanaim", "noun", ["naat-sifa", "ism-fail", "al-qafiya", "mulhaq-bil-jinas"],
-     "نَعْتٌ ثَانٍ لِلْمَوْصُوفِ الْمَحْذُوفِ مَجْرُورٌ بِالْكَسْرَةِ — اسْمُ فَاعِلٍ مِنْ تَنَعَّمَ: تَكَلَّفَ النَّعْمَةَ؛ وَبَيْنَهُ وَبَيْنَ «النَّاعِمِ» اشْتِقَاقٌ" + RAWI_AL[0] + ".",
-     "A second na't of the omitted noun, in jarr — the active participle of تَنَعَّمَ, to make a show of soft living; it shares a root with النَّاعِمِ" + RAWI_AL[1] + ".",
-     "Mahzûf mevsûfun ikinci na'tı, mecrûr — «tena''ame»den ism-i fâil: refahı tekellüfle göstermek; «en-nâim» ile arasında iştikâk vardır" + RAWI_AL[2] + ".")])
+  T("الْمُتَنَعِّمِ", "mutanaim", "noun", ["naat-sifa", "ism-fail", "al-qafiya"],
+     "نَعْتٌ ثَانٍ لِلْمَوْصُوفِ الْمَحْذُوفِ مَجْرُورٌ بِالْكَسْرَةِ — اسْمُ فَاعِلٍ مِنْ تَنَعَّمَ: تَكَلَّفَ النَّعْمَةَ" + RAWI_AL[0] + ".",
+     "A second na't of the omitted noun, in jarr — the active participle of تَنَعَّمَ, to make a show of soft living" + RAWI_AL[1] + ".",
+     "Mahzûf mevsûfun ikinci na'tı, mecrûr — «tena''ame»den ism-i fâil: refahı tekellüfle göstermek" + RAWI_AL[2] + ".")])
 # ---- v. 11 ----
 VV(11, "They set out at first light and were on the road before dawn; and they and the valley of al-Rass are as the hand is to the mouth.",
   "Sabah erkenden yola çıktılar, seher vaktinde yürüdüler; onlar ile Ress vadisi, elin ağza gidişi gibidir (şaşmadan oraya varırlar).",
  [NUN_M("بَكَرْنَ", "bakara", note=(" — وَالْجُمْلَةُ مُسْتَأْنَفَةٌ؛ بَكَرَ: سَارَ بُكْرَةً", " — a new sentence; بَكَرَ is to set out in the early morning", " — cümle müste'nefedir; «bekera»: sabah erkenden yola çıktı")),
   T("بُكُورًا", "bukur", "noun", ["maful-mutlaq", "masdar"], "مَفْعُولٌ مُطْلَقٌ مُؤَكِّدٌ لِعَامِلِهِ مَنْصُوبٌ بِالْفَتْحَةِ.", "A maf'ul mutlaq that strengthens its verb, in nasb.", "Âmilini te'kîd eden mef'ûl-i mutlak, mansûb."),
-  NUN_M("وَاسْتَحَرْنَ", "istahara", g=["form-x-verbs", "atf-nasaq", "mulhaq-bil-jinas"], pre=WA3, segs=SG(("وَ", "wa", "conj"), ("اسْتَحَرْنَ", "istahara", "verb")),
-     note=(" — اسْتَحَرَ: سَارَ سَحَرًا؛ وَبَيْنَهُ وَبَيْنَ «بِسُحْرَةٍ» اشْتِقَاقٌ مُلْحَقٌ بِالْجِنَاسِ", " — اِسْتَحَرَ is to travel in the last of the night; it shares a root with «before dawn» — the derivation that is attached to jinas", " — «istehara»: seher vakti yürüdü; «bi-suhratin» ile arasında cinâsa mülhak iştikâk vardır")),
-  BI_NOUN("بِسُحْرَةٍ", "suhra", "سُحْرَةٍ", extra=["mulhaq-bil-jinas"], note_ar=" — وَالْبَاءُ بِمَعْنَى «فِي»، وَسُحْرَةٌ اسْمٌ لِلسَّحَرِ؛ وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«اسْتَحَرْنَ»", note_en=" — the ba means «in», and سُحْرَة is a name for the hour before dawn; the phrase hangs on «were on the road»", note_tr=" — bâ «-de» anlamındadır; «suhra» seher vaktinin adıdır; câr-mecrûr «yürüdüler»e müteallik")],
+  NUN_M("وَاسْتَحَرْنَ", "istahara", g=["form-x-verbs", "atf-nasaq"], pre=WA3, segs=SG(("وَ", "wa", "conj"), ("اسْتَحَرْنَ", "istahara", "verb")),
+     note=(" — اسْتَحَرَ: سَارَ سَحَرًا", " — اِسْتَحَرَ is to travel in the last of the night", " — «istehara»: seher vakti yürüdü")),
+  BI_NOUN("بِسُحْرَةٍ", "suhra", "سُحْرَةٍ", extra=[], note_ar=" — وَالْبَاءُ بِمَعْنَى «فِي»، وَسُحْرَةٌ اسْمٌ لِلسَّحَرِ؛ وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«اسْتَحَرْنَ»", note_en=" — the ba means «in», and سُحْرَة is a name for the hour before dawn; the phrase hangs on «were on the road»", note_tr=" — bâ «-de» anlamındadır; «suhra» seher vaktinin adıdır; câr-mecrûr «yürüdüler»e müteallik")],
  [T("فَهُنَّ", "hunna", "pron", ["mubtada-khabar", "al-mabni-wal-mudmar", "atf-nasaq"],
      FA_AR + "هُنَّ ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "The fa conjoins; «they» is a detached pronoun built on fatha, in the seat of raf' as mubtada.", "«fe» + «onlar»: fetha üzere mebnî munfasıl zamir; mübtedâ olarak mahallen merfû.",
      segs=SG(("فَ", "fa", "conj"), ("هُنَّ", "hunna", "pron"))),
@@ -1377,7 +1415,7 @@ VV(13, "The tufts of dyed wool, at every place where they halted, are like night
 # ---- v. 14 ----
 VV(14, "And when they came down to the water, its gathered pools clear and blue, they laid down their staffs like one who settles and pitches his tent.",
   "Birikmiş suları masmavi, dupduru olan suya vardıklarında, çadır kurup yerleşen kimse gibi asâlarını bıraktılar (konakladılar).",
- [LAMMA2("فَلَمَّا"),
+ [LAMMA_D(LAMMA2("فَلَمَّا")),
   NUN_M("وَرَدْنَ", "warada", g=["mithal-verbs"], note=LAMMA_CL),
   MAFUL("الْمَاءَ", "ma-water"),
   T("زُرْقًا", "azraq", "noun", ["hal", "jam-taksir", "sifa-mushabbaha"],
@@ -1532,25 +1570,25 @@ VV(25, "Now carry from me a message to the allies, and to Dhubyān: You have swo
   MAFUL("رِسَالَةً", "risala", extra=["mafulayn"], note_ar=" — الْمَفْعُولُ الثَّانِي", note_en=" — the second object", note_tr=" — ikinci mef'ûl")],
  [ATF("وَذُبْيَانَ", "dhubyan", "propn", case="nasb", extra=["mamnu-min-sarf"], sign="مَنْصُوبٌ بِالْفَتْحَةِ مِنْ غَيْرِ تَنْوِينٍ", note_ar=" — عُطِفَ عَلَى «الْأَحْلَافَ»", note_en=" — joined to «the allies»; a diptote, with no tanwin", note_tr=" — «müttefikler»e atfedilmiştir; gayr-i munsarif, tenvinsiz"),
   T("هَلْ", "hal-istifham", "part", ["al-istifham", "khuruj-al-istifham"],
-     "حَرْفُ اسْتِفْهَامٍ خَرَجَ إِلَى التَّحْقِيقِ وَالتَّقْرِيرِ: هَلْ أَقْسَمْتُمْ أَيْ قَدْ أَقْسَمْتُمْ، كَقَوْلِهِ تَعَالَى ﴿هَلْ أَتَىٰ عَلَى الْإِنْسَانِ﴾ أَيْ قَدْ أَتَى (الزَّوْزَنِيُّ).",
-     "The particle of question, here turned to affirming: «have you sworn» means «you have indeed sworn» — as in the Qurʾān's ﴿هَلْ أَتَىٰ عَلَى الْإِنْسَانِ﴾ (al-Insān 1), that is, «there has indeed come» (al-Zawzanī).",
-     "İstifhâm harfi; burada tahkîk ve takrîre çıkmıştır: «yemin ettiniz mi» yani «gerçekten yemin ettiniz» — Kur'ân'daki ﴿هَلْ أَتَىٰ عَلَى الْإِنْسَانِ﴾ (İnsân 1) gibi; yani «gerçekten gelmiştir» (Zevzenî)."),
-  T("أَقْسَمْتُمُ", "aqsama", "verb", ["form-iv-verbs", "al-bariz-al-muttasil", "fail", "mulhaq-bil-jinas"],
-     "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ الرَّفْعِ، وَتُمْ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَضُمَّتِ الْمِيمُ وَأُشْبِعَتْ لِإِقَامَةِ الْوَزْنِ — وَالْجُمْلَةُ مُفَسِّرَةٌ لِـ«رِسَالَةً» لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ (الدُّرَّةُ). وَبَيْنَهُ وَبَيْنَ «مُقْسَمِ» اشْتِقَاقٌ.",
-     "Past verb built on sukun because a pronoun of raf' is attached; تُمْ «you» is the doer; the mim takes a lengthened damma to keep the metre — the clause explains «a message» and has no seat (al-Durra). It shares a root with مُقْسَمِ.",
-     "Ref' zamiri bitiştiği için sükûn üzere mebnî mâzî; «tüm» fâildir; vezin için mîm dammelenip uzatılmıştır — cümle «mesaj»ı tefsir eder, mahalli yoktur (Dürre). «Muksem» ile arasında iştikâk vardır."),
+     "حَرْفُ اسْتِفْهَامٍ خَرَجَ إِلَى التَّحْقِيقِ وَالتَّقْرِيرِ: هَلْ أَقْسَمْتُمْ أَيْ قَدْ أَقْسَمْتُمْ، كَقَوْلِهِ تَعَالَى ﴿هَلْ أَتَىٰ عَلَى الْإِنْسَانِ﴾ أَيْ قَدْ أَتَى (الزَّوْزَنِيُّ)؛ وَرَدَّهُ الدُّرَّةُ وَجَعَلَ الِاسْتِفْهَامَ عَلَى بَابِهِ.",
+     "The particle of question, here turned to affirming: «have you sworn» means «you have indeed sworn» — as in the Qurʾān's ﴿هَلْ أَتَىٰ عَلَى الْإِنْسَانِ﴾ (al-Insān 1), that is, «there has indeed come» (al-Zawzanī); al-Durra rejects this and keeps the question a real one.",
+     "İstifhâm harfi; burada tahkîk ve takrîre çıkmıştır: «yemin ettiniz mi» yani «gerçekten yemin ettiniz» — Kur'ân'daki ﴿هَلْ أَتَىٰ عَلَى الْإِنْسَانِ﴾ (İnsân 1) gibi; yani «gerçekten gelmiştir» (Zevzenî); Dürre bunu reddeder ve istifhâmı hakiki sayar."),
+  T("أَقْسَمْتُمُ", "aqsama", "verb", ["form-iv-verbs", "al-bariz-al-muttasil", "fail"],
+     "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ الرَّفْعِ، وَتُمْ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَضُمَّتِ الْمِيمُ وَأُشْبِعَتْ لِإِقَامَةِ الْوَزْنِ — وَالْجُمْلَةُ مُفَسِّرَةٌ لِـ«رِسَالَةً» لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ (الدُّرَّةُ).",
+     "Past verb built on sukun because a pronoun of raf' is attached; تُمْ «you» is the doer; the mim takes a lengthened damma to keep the metre — the clause explains «a message» and has no seat (al-Durra).",
+     "Ref' zamiri bitiştiği için sükûn üzere mebnî mâzî; «tüm» fâildir; vezin için mîm dammelenip uzatılmıştır — cümle «mesaj»ı tefsir eder, mahalli yoktur (Dürre)."),
   T("كُلَّ", "kull", "noun", ["maful-mutlaq", "idafa-definiteness"], "نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ.", "It stands for the maf'ul mutlaq, in nasb, and is annexed.", "Mef'ûl-i mutlaktan nâib, mansûb, muzâf."),
-  MUDAF_ILAYH("مُقْسَمِ", "muqsam", extra=["masdar", "al-qafiya", "mulhaq-bil-jinas"], note_ar=" — مَصْدَرٌ مِيمِيٌّ بِمَعْنَى الْإِقْسَامِ: أَيْ قَدْ حَلَفْتُمْ عَلَى إِبْرَامِ حَبْلِ الصُّلْحِ كُلَّ حَلِفٍ، فَتَحَرَّجُوا مِنَ الْحِنْثِ (الزَّوْزَنِيُّ)" + RAWI_J[0], note_en=" — a mimi masdar meaning «swearing»: you have sworn every oath to make the bond of peace fast, so shrink from breaking it (al-Zawzanī)" + RAWI_J[1], note_tr=" — «yemin etme» anlamında mîmî masdar: barış bağını pekiştirmek üzere her türlü yemini ettiniz; öyleyse yemini bozmaktan sakının (Zevzenî)" + RAWI_J[2])])
+  MUDAF_ILAYH("مُقْسَمِ", "muqsam", extra=["masdar", "al-qafiya"], note_ar=" — مَصْدَرٌ مِيمِيٌّ بِمَعْنَى الْإِقْسَامِ: أَيْ قَدْ حَلَفْتُمْ عَلَى إِبْرَامِ حَبْلِ الصُّلْحِ كُلَّ حَلِفٍ، فَتَحَرَّجُوا مِنَ الْحِنْثِ (الزَّوْزَنِيُّ)" + RAWI_J[0], note_en=" — a mimi masdar meaning «swearing»: you have sworn every oath to make the bond of peace fast, so shrink from breaking it (al-Zawzanī)" + RAWI_J[1], note_tr=" — «yemin etme» anlamında mîmî masdar: barış bağını pekiştirmek üzere her türlü yemini ettiniz; öyleyse yemini bozmaktan sakının (Zevzenî)" + RAWI_J[2])])
 # ---- v. 26 ----
 VV(26, "So do not hide from God what is in your souls, that it may stay hidden; whatever is kept from God, He knows.",
   "Öyleyse içinizdekini gizli kalsın diye Allah'tan saklamayın; Allah'tan ne gizlenirse gizlensin, O bilir.",
  [T("فَلَا", "la-nahiya", "part", ["al-nahy-wa-wujuhuh", "nawasib-wa-jawazim-al-mudari"],
      "الْفَاءُ اسْتِئْنَافِيَّةٌ، وَلَا نَاهِيَةٌ جَازِمَةٌ.", "The fa opens a new clause; لَا is the prohibiting particle, which puts the verb in jazm.", "Fâ isti'nâf içindir; «lâ» nehiy edatıdır, fiili cezmeder.",
      segs=SG(("فَ", "fa", "conj"), ("لَا", "la-nahiya", "part"))),
-  T("تَكْتُمُنَّ", "katama", "verb", ["al-nahy-wa-wujuhuh", "nawasib-wa-jawazim-al-mudari", "afal-khamsa", "nun-tawkid", "mafulayn", "mulhaq-bil-jinas"],
-     "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَا النَّاهِيَةِ وَعَلَامَةُ جَزْمِهِ " + SGN["nun"][0] + "، وَوَاوُ الْجَمَاعَةِ الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ — الْمَدْلُولُ عَلَيْهَا بِالضَّمَّةِ — ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالنُّونُ نُونُ التَّوْكِيدِ الثَّقِيلَةُ. وَبَيْنَهُ وَبَيْنَ «يُكْتَمِ» اشْتِقَاقٌ.",
-     "Present verb in jazm by the prohibiting لَا, its sign " + SGN["nun"][1] + "; the waw of the plural — dropped where two quiescents meet, the damma left as its trace — is the doer, in the seat of raf'; the nun is the heavy nun of emphasis. It shares a root with يُكْتَمِ.",
-     "Nehiy «lâ»sı ile meczûm muzâri, alâmeti " + SGN["nun"][2] + "; iki sâkin karşılaştığı için hazfedilen — damme ile delâlet edilen — cemi vâvı fâildir, mahallen merfû; nûn te'kîd-i sakîle nûnudur. «Yüktem» ile arasında iştikâk vardır."),
+  T("تَكْتُمُنَّ", "katama", "verb", ["al-nahy-wa-wujuhuh", "nawasib-wa-jawazim-al-mudari", "afal-khamsa", "nun-tawkid", "mafulayn"],
+     "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَا النَّاهِيَةِ وَعَلَامَةُ جَزْمِهِ " + SGN["nun"][0] + "، وَوَاوُ الْجَمَاعَةِ الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ — الْمَدْلُولُ عَلَيْهَا بِالضَّمَّةِ — ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالنُّونُ نُونُ التَّوْكِيدِ الثَّقِيلَةُ.",
+     "Present verb in jazm by the prohibiting لَا, its sign " + SGN["nun"][1] + "; the waw of the plural — dropped where two quiescents meet, the damma left as its trace — is the doer, in the seat of raf'; the nun is the heavy nun of emphasis.",
+     "Nehiy «lâ»sı ile meczûm muzâri, alâmeti " + SGN["nun"][2] + "; iki sâkin karşılaştığı için hazfedilen — damme ile delâlet edilen — cemi vâvı fâildir, mahallen merfû; nûn te'kîd-i sakîle nûnudur."),
   T("اللهَ", "allah", "propn", ["maful-bihi", "mafulayn"], "لَفْظُ الْجَلَالَةِ مَفْعُولٌ بِهِ أَوَّلُ مَنْصُوبٌ عَلَى التَّعْظِيمِ بِالْفَتْحَةِ — أَيْ: لَا تَكْتُمُوا مِنَ اللهِ.", "The Name of Majesty: the first object, in nasb — «do not hide from God».", "Lafza-i Celâl: birinci mef'ûl, ta'zîm üzere mansûb — yani «Allah'tan gizlemeyin»."),
   T("مَا", "ma-mawsula", "pron", ["ism-mawsul", "maful-bihi", "mafulayn"],
      "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ ثَانٍ — أَيْ مَا تُضْمِرُونَ مِنَ الْغَدْرِ وَنَقْضِ الْعَهْدِ (الزَّوْزَنِيُّ).",
@@ -1568,7 +1606,7 @@ VV(26, "So do not hide from God what is in your souls, that it may stay hidden; 
      "The waw conjoins; مَهْمَا «whatever» is a conditional noun that puts two verbs in jazm, built on sukun in the seat of nasb as the maf'ul mutlaq of the condition's verb — «whatever hiding is done» (al-Durra); if كَتَمَ is taken with two objects it is the second: «whatever thing is kept from God» (al-Zawzanī) — the condition's verb: «is kept», in jazm, its sign " + SGN["kasr2"][1] + "; its answer: «He knows», in jazm, its sign " + SGN["rawi"][1] + ".",
      "«ve» + mehmâ «her ne …-se»: iki fiili cezmeden şart ismi; sükûn üzere mebnî, şart fiilinin mef'ûl-i mutlakı olarak mahallen mansûb — «hangi gizleme yapılırsa» (Dürre); «keteme» iki mef'ûl alır sayılırsa ikinci mef'ûlüdür: «Allah'tan ne gizlenirse» (Zevzenî) — şart fiili: «gizlenirse», meczûm, alâmeti " + SGN["kasr2"][2] + "; cevabı: «bilir», meczûm, alâmeti " + SGN["rawi"][2] + ".",
      segs=SG(("وَ", "wa", "conj"), ("مَهْمَا", "mahma", "pron"))),
-  JV("يُكْتَمِ", "katama", "shart", "kasr2", g=["naib-al-fail", "al-majhul-fil-kafiya", "mulhaq-bil-jinas"], passive=True, doer=("، وَنَائِبُ الْفَاعِلِ لَفْظُ الْجَلَالَةِ بَعْدَهُ", "; its deputy doer, the Name of Majesty, follows", "; nâib-i fâili sonraki Lafza-i Celâl'dir")),
+  JV("يُكْتَمِ", "katama", "shart", "kasr2", g=["naib-al-fail", "al-majhul-fil-kafiya"], passive=True, doer=("، وَنَائِبُ الْفَاعِلِ لَفْظُ الْجَلَالَةِ بَعْدَهُ", "; its deputy doer, the Name of Majesty, follows", "; nâib-i fâili sonraki Lafza-i Celâl'dir")),
   T("اللهُ", "allah", "propn", ["naib-al-fail"], "لَفْظُ الْجَلَالَةِ نَائِبُ فَاعِلٍ مَرْفُوعٌ بِالضَّمَّةِ — أَيْ: يُكْتَمْ مِنَ اللهِ (الزَّوْزَنِيُّ).", "The Name of Majesty: the deputy doer, in raf' — «is kept from God» (al-Zawzanī).", "Lafza-i Celâl: nâib-i fâil, merfû — yani «Allah'tan gizlenirse» (Zevzenî)."),
   JV("يَعْلَمِ", "alima", "jawab", "rawi", g=["hadhf-al-maful"], doer=FH("هُوَ يَعُودُ عَلَى اللهِ، وَالْمَفْعُولُ مَحْذُوفٌ: يَعْلَمْهُ", "«He» — God; its object is left out: «He knows [it]»", "Allah'a dönen gizli zamir; mef'ûlü mahzûf: «onu bilir»"),
      note=(" — يُرِيدُ أَنَّ اللهَ عَالِمٌ بِالْخَفِيَّاتِ وَالسَّرَائِرِ (الزَّوْزَنِيُّ)", " — he means that God knows all hidden things and secrets (al-Zawzanī)", " — yani Allah gizlileri ve sırları bilir (Zevzenî)"))])
@@ -1577,7 +1615,7 @@ VV(27, "It is put off, set down in a book and stored up for the Day of Reckoning
   "(O gizlenen şey) ya ertelenir, bir kitaba yazılıp hesap günü için saklanır; ya da öne alınır ve cezası (dünyada) verilir.",
  [MJ("يُؤَخَّرْ", "akhkhara", ("قِيلَ: بَدَلٌ مِنْ «يَعْلَمِ» فِي الْبَيْتِ قَبْلَهُ، وَقِيلَ: جَوَابٌ لِلنَّهْيِ «فَلَا تَكْتُمُنَّ» وَاسْتَحْسَنَهُ الدُّرَّةُ،", "as a badal of «He knows» in the verse before, on one view — or, as al-Durra prefers, as the answer of the prohibition «do not hide»", "bir görüşe göre önceki beyitteki «bilir»den bedel, Dürre'nin tercih ettiği görüşe göre «gizlemeyin» nehyinin cevabı olarak"), "sukun",
      NF("هُوَ يَعُودُ عَلَى «مَا فِي نُفُوسِكُمْ»", "«it» — what is in your souls", "«içinizdeki»ne dönen gizli zamir"), g=["form-ii-verbs", "tibaq"], passive=True,
-     note=(" — أَيْ يُؤَخَّرْ عِقَابُهُ. وَبَيْنَهُ وَبَيْنَ «يُعَجَّلْ» طِبَاقٌ", " — that is, its punishment is put off. With «is brought forward» it makes a tibaq", " — yani cezası ertelenir. «Öne alınır» ile arasında tıbâk vardır")),
+     note=(" — أَيْ يُؤَخَّرْ عِقَابُهُ؛ وَعَلَى مَذْهَبِ سِيبَوَيْهِ يَجُوزُ أَنْ يَكُونَ مَرْفُوعًا سُكِّنَتْ رَاؤُهُ لِضَرُورَةِ الشِّعْرِ (الدُّرَّةُ). وَبَيْنَهُ وَبَيْنَ «يُعَجَّلْ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ (وَعِبَارَةُ الزَّوْزَنِيِّ: آجِلًا أَوْ عَاجِلًا)", " — that is, its punishment is put off; on Sībawayh's view it may also be in raf', its rāʾ stilled by poetic licence (al-Durra). With «is brought forward» it makes a tibaq by the Talkhīṣ's definition (al-Zawzanī's words: «late or soon»)", " — yani cezası ertelenir; Sîbeveyh'in mezhebine göre merfû olup râ'sının şiir zarûretiyle sâkin kılınmış olması da caizdir (Dürre). «Öne alınır» ile arasında, Telhîs'in tarifine göre, tıbâk vardır (Zevzenî'nin ifadesi: «er ya da geç»)")),
   MJ("فَيُوضَعْ", "wadaa", ("مَعْطُوفٌ عَلَى «يُؤَخَّرْ»", "joined to «is put off»", "«ertelenir»e ma'tûf olarak"), "sukun", NF("هُوَ", "«it»", "gizli zamir «o»"), g=["atf-nasaq", "mithal-verbs"], passive=True, pre=FA3, segs=SG(("فَ", "fa", "conj"), ("يُوضَعْ", "wadaa", "verb"))),
   FI(role=MT("يُوضَعْ", "is set down", "konur»a")),
   MAJR("كِتَابٍ", "kitab"),
@@ -1713,7 +1751,7 @@ VV(36, "Then he charged — and he startled no great number of tents — at the 
      "Past verb built on a fatha estimated on the alif, which dropped where two quiescents met; the ta marks the feminine; its doer is «the mother of Qashʿam» — the clause fills the seat of jarr after حَيْثُ. Here is an isti'ara makniyya: Death is likened to a traveller who has halted; the traveller is left unnamed and pointed to by what belongs to him — throwing down the saddle: where a saddle is thrown down is a halting-place, and he makes this Death's halting-place because she alighted there on the man Ḥuṣayn killed (al-Zawzanī).",
      "İki sâkin karşılaştığı için düşen elif üzerindeki takdîrî fetha ile mebnî mâzî; tâ te'nîs içindir; fâili «Ümmü Kaş'am»dır — cümle «haysü»ye muzâfun ileyh olarak mahallen mecrûr. Burada istiâre-i mekniyye vardır: ölüm, konaklayan bir yolcuya benzetilmiş, müşebbehün bih hazfedilmiş ve ona lâzımıyla — semeri indirmekle — işaret edilmiştir: semerin indirildiği yer konaktır; Husayn'ın öldürdüğü kimseye orada indiği için orayı ölümün konağı kılmıştır (Zevzenî)."),
   ENC_NOUN("رَحْلَهَا", "rahl", "هَا", "maful"),
-  PH(FAIL("أُمُّ", "umm", extra=["idafa-definiteness", "kinaya", "aqsam-al-kinaya"], note_ar="، مُضَافٌ — فَاعِلُ «أَلْقَتْ»؛ وَ«أُمُّ قَشْعَمٍ» كُنْيَةُ الْمَنِيَّةِ (الزَّوْزَنِيُّ)، فَهِيَ كِنَايَةٌ عَنْ مَوْصُوفٍ", note_en=", annexed — the doer of «threw down»; «the mother of Qashʿam» is a kunya of Death (al-Zawzanī), and so a kinaya for a thing described", note_tr=", muzâf — «indirdi»nin fâili; «Ümmü Kaş'am» ölümün künyesidir (Zevzenî); dolayısıyla mevsûftan kinâyedir"), "umm-qasham"),
+  PH(FAIL("أُمُّ", "umm", extra=["idafa-definiteness"], note_ar="، مُضَافٌ — فَاعِلُ «أَلْقَتْ»؛ وَ«أُمُّ قَشْعَمٍ» كُنْيَةُ الْمَنِيَّةِ (الزَّوْزَنِيُّ)", note_en=", annexed — the doer of «threw down»; «the mother of Qashʿam» is a kunya of Death (al-Zawzanī)", note_tr=", muzâf — «indirdi»nin fâili; «Ümmü Kaş'am» ölümün künyesidir (Zevzenî)"), "umm-qasham"),
   MUDAF_ILAYH("قَشْعَمِ", "qasham", "noun", ["al-qafiya"], note_ar=" — وَالْقَشْعَمُ: النَّسْرُ الْمُسِنُّ" + RAWI_J[0], note_en=" — قَشْعَم is an old vulture" + RAWI_J[1], note_tr=" — «kaş'am»: yaşlı akbaba" + RAWI_J[2])])
 # ---- v. 37 ----
 VV(37, "— beside a lion bristling with weapons, one hurled again and again into battle, heavy-maned, his claws never clipped.",
@@ -1722,7 +1760,7 @@ VV(37, "— beside a lion bristling with weapons, one hurled again and again int
      "ظَرْفُ مَكَانٍ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، مُتَعَلِّقٌ بِـ«شَدَّ» فِي الْبَيْتِ قَبْلَهُ — أَوْ بَدَلٌ مِنْ «لَدَى» الْأُولَى (الدُّرَّةُ) — مُضَافٌ.",
      "An adverb of place, in nasb by a fatha estimated on the alif, hanging on «charged» in the verse before — or a badal of the first لَدَى (al-Durra) — and annexed.",
      "Mekân zarfı; elif üzerinde takdîrî fetha ile mansûb; önceki beyitteki «hamle etti»ye müteallik — yahut ilk «ledâ»dan bedel (Dürre) — muzâf."),
-  MUDAF_ILAYH("أَسَدٍ", "asad", extra=["istiara", "arkan-al-istiara", "tarshih-wa-tajrid"], note_ar=". وَفِيهِ اسْتِعَارَةٌ تَصْرِيحِيَّةٌ أَصْلِيَّةٌ: اسْتُعِيرَ الْأَسَدُ لِلرَّجُلِ الشُّجَاعِ — وَهُوَ حُصَيْنٌ، وَالْبَيْتُ كُلُّهُ مِنْ صِفَتِهِ (الزَّوْزَنِيُّ). وَبِهٰذَا الْبَيْتِ مَثَّلَ صَاحِبُ التَّلْخِيصِ لِاجْتِمَاعِ التَّجْرِيدِ وَالتَّرْشِيحِ: «شَاكِي السِّلَاحِ مُقَذَّفٍ» يُلَائِمُ الْمُسْتَعَارَ لَهُ فَهُوَ تَجْرِيدٌ، وَ«لَهُ لِبَدٌ أَظْفَارُهُ لَمْ تُقَلَّمِ» يُلَائِمُ الْمُسْتَعَارَ مِنْهُ فَهُوَ تَرْشِيحٌ", note_en=". Here is an isti'ara tasrihiyya asliyya: «lion» is lent to the brave man — Ḥuṣayn himself; the whole verse describes him (al-Zawzanī). It is the verse the Talkhīṣ cites for tajrid and tarshih together: «bristling with weapons, hurled into battle» suits the man, the thing the word is lent to — that is tajrid; «he has a mane, his claws unclipped» suits the lion, the thing it is borrowed from — that is tarshih", note_tr=". Burada istiâre-i tasrîhiyye-i asliyye vardır: «aslan» cesur adam için — bizzat Husayn için — ödünç alınmıştır; beytin tamamı onun vasfıdır (Zevzenî). Telhîs sahibi tecrîd ile terşîhin bir arada bulunmasına bu beyti misal verir: «silahı tam, savaşa atılan» müsteârun lehe (adama) uygun olduğundan tecrîd; «yelesi var, pençeleri kesilmemiş» müsteârun minhe (aslana) uygun olduğundan terşîhtir"),
+  MUDAF_ILAYH("أَسَدٍ", "asad", extra=["istiara", "arkan-al-istiara", "tarshih-wa-tajrid"], note_ar=". وَفِيهِ اسْتِعَارَةٌ تَصْرِيحِيَّةٌ أَصْلِيَّةٌ: اسْتُعِيرَ الْأَسَدُ لِلرَّجُلِ الشُّجَاعِ — وَهُوَ حُصَيْنٌ، وَالْبَيْتُ كُلُّهُ مِنْ صِفَتِهِ (الزَّوْزَنِيُّ). وَعِنْدَ الدُّرَّةِ: الْمُرَادُ بِالْأَسَدِ الْجَيْشُ. وَبِهٰذَا الْبَيْتِ مَثَّلَ صَاحِبُ التَّلْخِيصِ لِاجْتِمَاعِ التَّجْرِيدِ وَالتَّرْشِيحِ: «شَاكِي السِّلَاحِ مُقَذَّفٍ» يُلَائِمُ الْمُسْتَعَارَ لَهُ فَهُوَ تَجْرِيدٌ، وَ«لَهُ لِبَدٌ أَظْفَارُهُ لَمْ تُقَلَّمِ» يُلَائِمُ الْمُسْتَعَارَ مِنْهُ فَهُوَ تَرْشِيحٌ", note_en=". Here is an isti'ara tasrihiyya asliyya: «lion» is lent to the brave man — Ḥuṣayn himself; the whole verse describes him (al-Zawzanī). For al-Durra the «lion» is the army. It is the verse the Talkhīṣ cites for tajrid and tarshih together: «bristling with weapons, hurled into battle» suits the man, the thing the word is lent to — that is tajrid; «he has a mane, his claws unclipped» suits the lion, the thing it is borrowed from — that is tarshih", note_tr=". Burada istiâre-i tasrîhiyye-i asliyye vardır: «aslan» cesur adam için — bizzat Husayn için — ödünç alınmıştır; beytin tamamı onun vasfıdır (Zevzenî). Dürre'ye göre «aslan»dan maksat ordudur. Telhîs sahibi tecrîd ile terşîhin bir arada bulunmasına bu beyti misal verir: «silahı tam, savaşa atılan» müsteârun lehe (adama) uygun olduğundan tecrîd; «yelesi var, pençeleri kesilmemiş» müsteârun minhe (aslana) uygun olduğundan terşîhtir"),
   T("شَاكِي", "shaki", "noun", ["naat-sifa", "ism-maqsur-manqus", "idafa-definiteness", "idafa-lafziyya", "tarshih-wa-tajrid"],
      "نَعْتٌ لِـ«أَسَدٍ» مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ لِلثِّقَلِ، مُضَافٌ إِضَافَةً لَفْظِيَّةً — شَاكِي السِّلَاحِ وَشَائِكُهُ: تَامُّ السِّلَاحِ، مِنَ الشَّوْكَةِ وَهِيَ الْعُدَّةُ وَالْقُوَّةُ؛ وَهُوَ تَجْرِيدٌ.",
      "A na't of «a lion», in jarr by a kasra estimated on the ya, annexed in wording only — شَاكِي السِّلَاحِ, also شَائِك, is «fully armed», from شَوْكَة «arms and strength»; it is the tajrid.",
@@ -1745,10 +1783,10 @@ VV(38, "— bold: whenever he is wronged he pays the wrong back at once; and if 
      "اسْمُ شَرْطٍ جَازِمٌ يَجْزِمُ فِعْلَيْنِ، مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ عَلَى الظَّرْفِيَّةِ الزَّمَانِيَّةِ مُتَعَلِّقٌ بِفِعْلِ الشَّرْطِ — فِعْلُ الشَّرْطِ «يُظْلَمْ» وَجَوَابُهُ «يُعَاقِبْ»، وَكِلَاهُمَا مَجْزُومٌ بِالسُّكُونِ؛ وَجُمْلَةُ الشَّرْطِ وَجَوَابِهِ فِي مَحَلِّ جَرٍّ نَعْتٌ لِـ«أَسَدٍ».",
      "A conditional noun that puts two verbs in jazm, built on sukun in the seat of nasb as an adverb of time hanging on the condition's verb — the condition is «he is wronged» and the answer «he pays back», each in jazm by the sukun; the conditional sentence is a na't of «a lion», in the seat of jarr.",
      "İki fiili cezmeden şart ismi; sükûn üzere mebnî, zaman zarfı olarak mahallen mansûb, şart fiiline müteallik — şart fiili «zulme uğrarsa», cevabı «karşılık verir»; ikisi de sükûn ile meczûm; şart cümlesi cevabıyla birlikte «aslan»ın na'tı, mahallen mecrûr."),
-  JV("يُظْلَمْ", "zalama", "shart", "sukun", g=["naib-al-fail", "al-majhul-fil-kafiya", "mulhaq-bil-jinas", "radd-al-ajuz"], passive=True, doer=NF("هُوَ يَعُودُ عَلَى «أَسَدٍ»", "«he» — the lion", "«aslan»a dönen gizli zamir"),
-     note=(" — وَبَيْنَهُ وَبَيْنَ «يَظْلِمِ» فِي آخِرِ الْبَيْتِ اشْتِقَاقٌ، وَهُوَ مِنْ رَدِّ الْعَجُزِ عَلَى الصَّدْرِ: أَحَدُهُمَا فِي حَشْوِ الْمِصْرَاعِ الْأَوَّلِ وَالْآخَرُ فِي آخِرِ الْبَيْتِ", " — it shares a root with يَظْلِمِ at the close of the verse, and the two make a radd al-'ajuz 'ala al-sadr: one stands inside the first hemistich, the other ends the verse", " — beytin sonundaki «yazlim» ile arasında iştikâk vardır; bu aynı zamanda reddü'l-acüz ale's-sadrdır: biri ilk mısraın içinde, diğeri beytin sonundadır")),
+  JV("يُظْلَمْ", "zalama", "shart", "sukun", g=["naib-al-fail", "al-majhul-fil-kafiya"], passive=True, doer=NF("هُوَ يَعُودُ عَلَى «أَسَدٍ»", "«he» — the lion", "«aslan»a dönen gizli zamir"),
+     note=("", "", "")),
   JV("يُعَاقِبْ", "aqaba", "jawab", "sukun", g=["form-iii-verbs", "hadhf-al-maful"], doer=FH("هُوَ، وَالْمَفْعُولُ مَحْذُوفٌ أَيِ الظَّالِمَ", "«he»; its object — the wrongdoer — is left out", "gizli zamir «o»; mef'ûlü — zâlim — mahzûf")),
-  BI_NOUN("بِظُلْمِهِ", "zulm", "ظُلْمِهِ", enc="هِ", extra=["mulhaq-bil-jinas"], note_ar=" — وَالْبَاءُ لِلْمُقَابَلَةِ: يُعَاقِبُ الظَّالِمَ بِظُلْمِهِ؛ وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«يُعَاقِبْ»", note_en=" — the ba of return: he punishes the wrongdoer for his wrong; the phrase hangs on «pays back»", note_tr=" — bâ mukabele içindir: zâlimi zulmüne karşılık cezalandırır; câr-mecrûr «karşılık verir»e müteallik")],
+  BI_NOUN("بِظُلْمِهِ", "zulm", "ظُلْمِهِ", enc="هِ", extra=[], note_ar=" — وَالْبَاءُ لِلْمُقَابَلَةِ: يُعَاقِبُ الظَّالِمَ بِظُلْمِهِ؛ وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«يُعَاقِبْ»", note_en=" — the ba of return: he punishes the wrongdoer for his wrong; the phrase hangs on «pays back»", note_tr=" — bâ mukabele içindir: zâlimi zulmüne karşılık cezalandırır; câr-mecrûr «karşılık verir»e müteallik")],
  [T("سَرِيعًا", "sari", "noun", ["maful-mutlaq", "hal", "sifa-mushabbaha"],
      "نَعْتٌ لِمَفْعُولٍ مُطْلَقٍ مَحْذُوفٍ نَابَ عَنْهُ: يُعَاقِبْ عِقَابًا سَرِيعًا، مَنْصُوبٌ بِالْفَتْحَةِ؛ أَوْ حَالٌ بِمَعْنَى مُسْرِعًا (الدُّرَّةُ).",
      "A na't of an omitted maf'ul mutlaq, standing in for it — «he pays back a swift paying» — in nasb; or a hal, «making haste» (al-Durra).",
@@ -1760,8 +1798,8 @@ VV(38, "— bold: whenever he is wronged he pays the wrong back at once; and if 
      segs=SG(("وَ", "wa", "conj"), ("إِنْ", "in-shartiyya", "part"), ("لَا", "la-nafiya", "part"))),
   JV("يُبْدَ", "badaa", "shart", "alif", g=["naib-al-fail", "al-majhul-fil-kafiya", "in-shartiyya"], passive=True, doer=NF("هُوَ", "«he»", "gizli zamir «o»"),
      note=(" — وَأَصْلُهُ يُبْدَأْ بِالْهَمْزِ: قُلِبَتِ الْهَمْزَةُ أَلِفًا ثُمَّ حُذِفَتْ لِلْجَازِمِ (الزَّوْزَنِيُّ)، وَهُوَ ضَرُورَةٌ", " — it is يُبْدَأْ, with hamza: the hamza is turned to alif, and the alif then dropped for the jazm (al-Zawzanī) — a poet's licence", " — aslı hemzeli «yübde'»dir: hemze elife çevrilmiş, sonra câzim sebebiyle elif hazfedilmiştir (Zevzenî) — zarûrettir")),
-  BI_NOUN("بِالظُّلْمِ", "zulm", "الظُّلْمِ", extra=["mulhaq-bil-jinas"], **W(MT("يُبْدَ", "is attacked first", "başlanırsa»ya"))),
-  JV("يَظْلِمِ", "zalama", "jawab", "rawi", g=["in-shartiyya", "mulhaq-bil-jinas", "radd-al-ajuz"], doer=FH("هُوَ", "«he»", "gizli zamir «o»"),
+  BI_NOUN("بِالظُّلْمِ", "zulm", "الظُّلْمِ", extra=[], **W(MT("يُبْدَ", "is attacked first", "başlanırsa»ya"))),
+  JV("يَظْلِمِ", "zalama", "jawab", "rawi", g=["in-shartiyya"], doer=FH("هُوَ", "«he»", "gizli zamir «o»"),
      note=(" — أَيْ: وَإِنْ لَمْ يَظْلِمْهُ أَحَدٌ ظَلَمَ النَّاسَ إِظْهَارًا لِغَنَائِهِ وَحُسْنِ بَلَائِهِ (الزَّوْزَنِيُّ)", " — that is, if no one wrongs him he wrongs others, to show his worth and his prowess (al-Zawzanī)", " — yani kimse ona zulmetmezse, gücünü ve yararlığını göstermek için o insanlara zulmeder (Zevzenî)"))])
 # ---- v. 39 ----
 VV(39, "They grazed out their time between waterings; then, when it was done, they brought their herds down to deep pools that split open with weapons and with blood.",
@@ -1799,7 +1837,7 @@ VV(40, "So they dealt out deaths among themselves to the full, and then drove ba
      "Mekân zarfı, mansûb; «tamamladılar»a yahut «ölümler»in mahzûf na'tına müteallik (Dürre); bitişik zamire muzâf, zamir mahallen mecrûr.",
      segs=SG(("بَيْنَ", "bayna", "noun"), ("هُمْ", "pron-3mp", "pron"))),
   THUMMA(),
-  VERB_WAW("أَصْدَرُوا", "asdara", ["form-iv-verbs", "hadhf-al-maful", "tibaq"], note_ar=" — وَالْجُمْلَةُ مَعْطُوفَةٌ عَلَى مَا قَبْلَهَا، وَالْمَفْعُولُ مَحْذُوفٌ: أَصْدَرُوا إِبِلَهُمْ. أَصْدَرَ ضِدُّ أَوْرَدَ، فَبَيْنَهُ وَبَيْنَ «أَوْرَدُوا» فِي الْبَيْتِ قَبْلَهُ طِبَاقٌ", note_en=" — the clause is joined to what goes before; its object is left out: «they drove [their camels] back». أَصْدَرَ is the opposite of أَوْرَدَ, so it makes a tibaq with «brought down» in the verse before", note_tr=" — cümle öncesine ma'tûf; mef'ûlü mahzûf: «[develerini] geri çevirdiler». «Asdera», «evrade»nin zıddıdır; önceki beyitteki «indirdiler» ile arasında tıbâk vardır")],
+  VERB_WAW("أَصْدَرُوا", "asdara", ["form-iv-verbs", "hadhf-al-maful", "tibaq"], note_ar=" — وَالْجُمْلَةُ مَعْطُوفَةٌ عَلَى مَا قَبْلَهَا، وَالْمَفْعُولُ مَحْذُوفٌ: أَصْدَرُوا إِبِلَهُمْ. أَصْدَرَ ضِدُّ أَوْرَدَ — نَصَّ عَلَيْهِ الزَّوْزَنِيُّ وَالدُّرَّةُ — فَبَيْنَهُ وَبَيْنَ «أَوْرَدُوا» فِي الْبَيْتِ قَبْلَهُ طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ", note_en=" — the clause is joined to what goes before; its object is left out: «they drove [their camels] back». أَصْدَرَ is the opposite of أَوْرَدَ — al-Zawzanī and al-Durra both say so — and so, by the Talkhīṣ's definition, it makes a tibaq with «brought down» in the verse before", note_tr=" — cümle öncesine ma'tûf; mef'ûlü mahzûf: «[develerini] geri çevirdiler». «Asdera», «evrade»nin zıddıdır (bunu Zevzenî de Dürre de söyler); önceki beyitteki «indirdiler» ile arasında, Telhîs'in tarifine göre, tıbâk vardır")],
  [PREP("إِلَى", "ila", role_ar=MT("أَصْدَرُوا", "", "")[0], role_en="; the phrase hangs on «drove back»", role_tr="; câr-mecrûr «geri çevirdiler»e müteallik", gloss_tr="«-e»"),
   MAJR("كَلَإٍ", "kala", extra=["istiara", "majaz-murakkab"], note_ar=" — وَالْكَلَأُ: الْعُشْبُ. جَعَلَ اعْتِزَامَهُمْ عَلَى الْحَرْبِ ثَانِيَةً وَالِاسْتِعْدَادَ لَهَا بِمَنْزِلَةِ كَلَإٍ وَبِيلٍ وَخِيمٍ (الزَّوْزَنِيُّ)، وَهُوَ تَمَامُ الِاسْتِعَارَةِ التَّمْثِيلِيَّةِ", note_en=" — كَلَأ is herbage, pasture. He makes their resolve to fight again, and their making ready for it, stand as a foul and unwholesome pasture (al-Zawzanī) — which completes the isti'ara of tamthil", note_tr=" — «kele'»: ot, otlak. Yeniden savaşa azmetmelerini ve ona hazırlanmalarını ağır ve zararlı bir otlak yerine koymuştur (Zevzenî) — istiâre-i temsîliyye bununla tamamlanır"),
   NAAT("مُسْتَوْبَلٍ", "mustawbal", "jarr", extra=["ism-maful"], note_ar=" — اسْمُ مَفْعُولٍ مِنِ اسْتَوْبَلَ: اسْتَوْبَلْتُ الشَّيْءَ وَجَدْتُهُ وَبِيلًا، وَالْوَبِيلُ الَّذِي لَا يُسْتَمْرَأُ (الزَّوْزَنِيُّ) — وَضُبِطَ فِي الْمَطْبُوعِ بِكَسْرِ الْبَاءِ", note_en=" — the passive participle of اِسْتَوْبَلَ: «I found the thing وَبِيل», heavy and not to be digested (al-Zawzanī) — the edition prints it with kasra on the ba", note_tr=" — «istevbele»den ism-i mef'ûl: «bir şeyi vebîl (ağır, hazmedilmez) buldum» (Zevzenî) — baskıda bâ'nın kesresiyle harekelenmiştir"),
@@ -1823,7 +1861,7 @@ VV(41, "By your life, their spears brought on them no guilt for the blood of Ibn
   MUDAF_ILAYH("نَهِيكٍ", "nahik", "propn", note_ar=" — ابْنُ نَهِيكٍ: أَحَدُ الْقَتْلَى", note_en=" — Ibn Nahīk is one of the slain", note_tr=" — İbn Nehîk öldürülenlerden biridir"),
   T("أَوْ", "aw", "part", ["atf-nasaq"], "حَرْفُ عَطْفٍ.", "A conjunction: «or».", "Atıf harfi: «veya»."),
   T("قَتِيلِ", "qatil-slain", "noun", ["atf-nasaq", "idafa-definiteness"], "مَعْطُوفٌ عَلَى «ابْنِ نَهِيكٍ» مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ — فَعِيلٌ بِمَعْنَى مَفْعُولٍ.", "Joined to «Ibn Nahīk», in jarr, and annexed — a فَعِيل in the sense of the passive participle: «the slain man».", "«İbn Nehîk»e ma'tûf, mecrûr, muzâf — mef'ûl anlamında faîl: «maktul»."),
-  MUDAF_ILAYH("الْمُثَلَّمِ", "muthallam", "propn", ["al-qafiya"], note_ar=" — مَوْضِعٌ" + RAWI_AL[0], note_en=" — a place" + RAWI_AL[1], note_tr=" — bir yer" + RAWI_AL[2])])
+  MUDAF_ILAYH("الْمُثَلَّمِ", "muthallam", "propn", ["al-qafiya"], note_ar=" — حُمِلَ هُنَا عَلَى أَنَّهُ مَوْضِعٌ، وَلَمْ يُبَيِّنْهُ الزَّوْزَنِيُّ وَلَا الدُّرَّةُ" + RAWI_AL[0], note_en=" — taken here as a place-name; neither al-Zawzanī nor al-Durra says what it is" + RAWI_AL[1], note_tr=" — burada yer adı sayılmıştır; Zevzenî de Dürre de açıklamaz" + RAWI_AL[2])])
 # ---- v. 42 ----
 VV(42, "nor had they any share in the death — in the blood of Nawfal, nor of Wahab, nor of Ibn al-Mukhazzam.",
   "ne de ölümde — ne Nevfel'in, ne Vehb'in, ne de İbnü'l-Muhazzem'in kanında — ortak oldular.",
@@ -1929,12 +1967,12 @@ VV(59, "How many a silent man you see who pleases you — and whether he is more
      "Elif üzerinde takdîrî damme ile merfû muzâri; fâil vücûben gizli «sen» — cümle «kâin»in haberi, mahallen merfû; bağlayan zamir hazfedilmiş mef'ûldür: «onu görürsün» (Dürre)."),
   T("مِنْ", "min", "prep", ["huruf-jarr", "al-kinayat-wal-zuruf-al-mabniyya"], "حَرْفُ جَرٍّ يَجُرُّ تَمْيِيزَ «كَائِنْ»؛ وَعَدَّهُ الدُّرَّةُ زَائِدًا.", "A jarr letter that takes the tamyiz of كَائِنْ; al-Durra counts it as added.", "«Kâin»in temyîzini cerreden cer harfi; Dürre onu zâid sayar."),
   T("صَامِتٍ", "samit", "noun", ["tamyiz", "ism-fail", "ijaz-al-hadhf", "tibaq"],
-     "تَمْيِيزُ «كَائِنْ» مَجْرُورٌ بِـ«مِنْ» — صِفَةٌ لِمَوْصُوفٍ مَحْذُوفٍ: رَجُلٍ صَامِتٍ. وَبَيْنَهُ وَبَيْنَ «التَّكَلُّمِ» طِبَاقٌ.",
-     "The tamyiz of كَائِنْ, in jarr by مِنْ — a quality whose noun is left out: «a silent [man]». With «speaking» it makes a tibaq.",
-     "«Kâin»in temyîzi, «min» ile mecrûr — mevsûfu hazfedilmiş sıfat: «susan [adam]». «Konuşma» ile arasında tıbâk vardır."),
+     "تَمْيِيزُ «كَائِنْ» مَجْرُورٌ بِـ«مِنْ» — صِفَةٌ لِمَوْصُوفٍ مَحْذُوفٍ: رَجُلٍ صَامِتٍ. وَبَيْنَهُ وَبَيْنَ «التَّكَلُّمِ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ (وَعِبَارَةُ الزَّوْزَنِيِّ: يُعْجِبُكَ صَمْتُهُ … عِنْدَ تَكَلُّمِهِ).",
+     "The tamyiz of كَائِنْ, in jarr by مِنْ — a quality whose noun is left out: «a silent [man]». With «speaking» it makes a tibaq by the Talkhīṣ's definition (al-Zawzanī's words: «his silence pleases you … when he speaks»).",
+     "«Kâin»in temyîzi, «min» ile mecrûr — mevsûfu hazfedilmiş sıfat: «susan [adam]». «Konuşma» ile arasında, Telhîs'in tarifine göre, tıbâk vardır (Zevzenî'nin ifadesi: «sükûtu hoşuna gider … konuştuğunda»)."),
   LAHU2("لَكَ", "pron-2ms", " («senin»)", note=(" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«مُعْجِبٍ»", "; the phrase hangs on «pleasing»", "; câr-mecrûr «hoşa giden»e müteallik")),
   NAAT("مُعْجِبٍ", "mujib-pleasing", "jarr", extra=["ism-fail"], note_ar=" — نَعْتٌ ثَانٍ لِلْمَوْصُوفِ الْمَحْذُوفِ؛ اسْمُ فَاعِلٍ مِنْ أَعْجَبَ: يُعْجِبُكَ صَمْتُهُ فَتَسْتَحْسِنُهُ (الزَّوْزَنِيُّ)", note_en=" — a second na't of the omitted noun; the active participle of أَعْجَبَ: his silence pleases you and you think well of him (al-Zawzanī)", note_tr=" — mahzûf mevsûfun ikinci na'tı; «a'cebe»den ism-i fâil: susması hoşuna gider, onu beğenirsin (Zevzenî)")],
- [ENC_NOUN("زِيَادَتُهُ", "ziyada", "هُ", "mubtada", extra=["masdar", "tibaq"], note_ar=" — مِنْ إِضَافَةِ الْمَصْدَرِ إِلَى فَاعِلِهِ: زِيَادَتُهُ عَلَى غَيْرِهِ. وَبَيْنَ «زِيَادَتُهُ» وَ«نَقْصُهُ» طِبَاقٌ", note_en=" — the masdar annexed to its doer: his surpassing others. «His being more» and «his being less» make a tibaq", note_tr=" — masdarın fâiline izâfeti: başkasından fazla oluşu. «Fazlalığı» ile «eksikliği» arasında tıbâk vardır"),
+ [ENC_NOUN("زِيَادَتُهُ", "ziyada", "هُ", "mubtada", extra=["masdar", "tibaq"], note_ar=" — مِنْ إِضَافَةِ الْمَصْدَرِ إِلَى فَاعِلِهِ: زِيَادَتُهُ عَلَى غَيْرِهِ. وَبَيْنَ «زِيَادَتُهُ» وَ«نَقْصُهُ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ (وَعِبَارَةُ الزَّوْزَنِيِّ: زِيَادَتُهُ عَلَى غَيْرِهِ وَنُقْصَانُهُ عَنْ غَيْرِهِ)", note_en=" — the masdar annexed to its doer: his surpassing others. «His being more» and «his being less» make a tibaq by the Talkhīṣ's definition (al-Zawzanī's words: «his surpassing others and his falling short of them»)", note_tr=" — masdarın fâiline izâfeti: başkasından fazla oluşu. «Fazlalığı» ile «eksikliği» arasında, Telhîs'in tarifine göre, tıbâk vardır (Zevzenî'nin ifadesi: «başkasından fazlalığı ve eksikliği»)"),
   T("أَوْ", "aw", "part", ["atf-nasaq"], "حَرْفُ عَطْفٍ.", "A conjunction: «or».", "Atıf harfi: «veya»."),
   T("نَقْصُهُ", "naqs", "noun", ["atf-nasaq", "masdar", "idafa-definiteness", "al-bariz-al-muttasil", "tibaq"],
      "مَعْطُوفٌ عَلَى «زِيَادَتُهُ» مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ — أَيْ نُقْصَانُهُ عَنْ غَيْرِهِ.",
@@ -1968,15 +2006,15 @@ VV(61, "The folly of an old man has no good sense to follow it; but a young man,
  [T("وَإِنَّ", "inna", "part", ["inna-wa-akhawatuha", "anwa-al-waw"], WA_ISTINAF[0] + "إِنَّ حَرْفُ تَوْكِيدٍ وَنَصْبٍ.", WA_ISTINAF[1] + "إِنَّ is the particle of emphasis that puts its noun in nasb.", WA_ISTINAF[2] + "inne: te'kîd ve nasb harfi.",
      segs=SG(("وَ", "wa", "conj"), ("إِنَّ", "inna", "part"))),
   T("سَفَاهَ", "safah", "noun", ["inna-wa-akhawatuha", "idafa-definiteness", "masdar", "tibaq", "muqabala"],
-     "اسْمُ إِنَّ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ. وَبَيْنَ «سَفَاهَ» وَ«حِلْمَ» طِبَاقٌ، وَبَيْنَ «الشَّيْخِ» وَ«الْفَتَى» طِبَاقٌ، وَفِي الْبَيْتِ مُقَابَلَةٌ: «سَفَاهُ الشَّيْخِ لَا حِلْمَ بَعْدَهُ» ↔ «الْفَتَى بَعْدَ السَّفَاهَةِ يَحْلُمُ».",
-     "The noun of إِنَّ, in nasb, annexed. «Folly» and «good sense» make a tibaq, and so do «the old man» and «the young man»; the verse holds a muqabala: «the old man's folly has no sense after it» against «the young man, after folly, grows wise».",
-     "İnne'nin ismi, mansûb, muzâf. «Sefihlik» ile «hilim», «ihtiyar» ile «genç» arasında tıbâk vardır; beyitte mukâbele bulunur: «ihtiyarın sefihliğinden sonra hilim yoktur» ↔ «genç, sefihlikten sonra hilim sahibi olur»."),
+     "اسْمُ إِنَّ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ. وَبَيْنَ «سَفَاهَ» وَ«حِلْمَ» طِبَاقٌ نَصَّ عَلَى تَضَادِّهِمَا الدُّرَّةُ («قَابَلَهُ بِالسَّفَاهَةِ … وَالْحَلِيمُ ضِدُّهُ السَّفِيهُ»)، وَبَيْنَ «الشَّيْخِ» وَ«الْفَتَى» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ، وَفِي الْبَيْتِ — عَلَى حَدِّهِ — مُقَابَلَةُ اثْنَيْنِ بِاثْنَيْنِ عَلَى التَّرْتِيبِ: «الشَّيْخِ … لَا حِلْمَ» ↔ «الْفَتَى … يَحْلُمِ».",
+     "The noun of إِنَّ, in nasb, annexed. «Folly» and «good sense» make a tibaq — al-Durra states the contrariety («he sets it against folly here … the opposite of the ḥalīm is the safīh»); «the old man» and «the young man» make one by the Talkhīṣ's definition; and, by its definition, the verse holds a muqabala of two with two, in order: «the old man … no good sense» against «the young man … grows wise».",
+     "İnne'nin ismi, mansûb, muzâf. «Sefihlik» ile «hilim» arasında tıbâk vardır — zıtlığı Dürre açıkça söyler («burada onu sefâhetle karşılaştırmıştır … halîmin zıddı sefihtir»); «ihtiyar» ile «genç» arasında Telhîs'in tarifine göre tıbâk vardır; beyitte, yine onun tarifine göre, sırasıyla ikiye iki mukâbele bulunur: «ihtiyar … hilim yok» ↔ «genç … hilim sahibi olur»."),
   MUDAF_ILAYH("الشَّيْخِ", "shaykh", extra=["tibaq"]),
   T("لَا", "la-nafiya-lil-jins", "part", ["la-nafiya-lil-jins"], "نَافِيَةٌ لِلْجِنْسِ تَعْمَلُ عَمَلَ إِنَّ — وَالْجُمْلَةُ الِاسْمِيَّةُ «لَا حِلْمَ بَعْدَهُ» فِي مَحَلِّ رَفْعٍ خَبَرُ إِنَّ.", "The لَا that denies the whole genus, working like إِنَّ — the nominal clause «there is no good sense after it» is the predicate of إِنَّ, in the seat of raf'.", "Cinsi nefyeden «lâ»; inne gibi amel eder — «ondan sonra hilim yoktur» isim cümlesi inne'nin haberi, mahallen merfû."),
-  T("حِلْمَ", "hilm", "noun", ["la-nafiya-lil-jins", "tibaq", "radd-al-ajuz", "mulhaq-bil-jinas"],
-     "اسْمُ «لَا» مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ نَصْبٍ. وَبَيْنَهُ وَبَيْنَ «يَحْلُمِ» اشْتِقَاقٌ، وَهُوَ مِنْ رَدِّ الْعَجُزِ عَلَى الصَّدْرِ: أَحَدُهُمَا فِي حَشْوِ الْمِصْرَاعِ الْأَوَّلِ وَالْآخَرُ فِي آخِرِ الْبَيْتِ.",
-     "The noun of لَا, built on fatha in the seat of nasb. It shares a root with يَحْلُمِ, and the two make a radd al-'ajuz 'ala al-sadr: one stands inside the first hemistich, the other ends the verse.",
-     "«Lâ»nın ismi; fetha üzere mebnî, mahallen mansûb. «Yahlüm» ile arasında iştikâk vardır; bu aynı zamanda reddü'l-acüz ale's-sadrdır: biri ilk mısraın içinde, diğeri beytin sonundadır."),
+  T("حِلْمَ", "hilm", "noun", ["la-nafiya-lil-jins", "tibaq"],
+     "اسْمُ «لَا» مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ نَصْبٍ.",
+     "The noun of لَا, built on fatha in the seat of nasb.",
+     "«Lâ»nın ismi; fetha üzere mebnî, mahallen mansûb."),
   T("بَعْدَهُ", "bada", "noun", ["maful-fih", "idafa-definiteness", "al-bariz-al-muttasil", "la-nafiya-lil-jins"],
      "ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ مُتَعَلِّقٌ بِمَحْذُوفٍ خَبَرِ «لَا»، مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ — وَهُوَ الرَّابِطُ؛ أَيْ: لَا حَالَ بَعْدَ الشَّيْبِ إِلَّا الْمَوْتُ (الزَّوْزَنِيُّ).",
      "An adverb of time, in nasb, hanging on the omitted predicate of لَا; annexed to the attached «it», in the seat of jarr — the pronoun that ties the clause; that is, after grey hair there is no state left but death (al-Zawzanī).",
@@ -1987,17 +2025,17 @@ VV(61, "The folly of an old man has no good sense to follow it; but a young man,
   T("الْفَتَى", "fata-youth", "noun", ["inna-wa-akhawatuha", "ism-maqsur-manqus", "tibaq"], "اسْمُ إِنَّ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ.", "The noun of إِنَّ, in nasb by a fatha estimated on the alif.", "İnne'nin ismi; elif üzerinde takdîrî fetha ile mansûb."),
   ZARF("بَعْدَ", "bada", kind="زَمَانٍ", kind_en="time", kind_tr="zaman", note_ar=" — مُتَعَلِّقٌ بِـ«يَحْلُمِ»", note_en=", hanging on «grows wise»", note_tr="; «hilim sahibi olur»a müteallik"),
   MUDAF_ILAYH("السَّفَاهَةِ", "sifaha", extra=["masdar"]),
-  T("يَحْلُمِ", "haluma", "verb", ["mudari-marfu", "anwa-al-khabar", "al-qafiya", "radd-al-ajuz", "mulhaq-bil-jinas", "tibaq"],
+  T("يَحْلُمِ", "haluma", "verb", ["mudari-marfu", "anwa-al-khabar", "al-qafiya", "tibaq"],
      "فِعْلٌ مُضَارِعٌ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ يَعُودُ عَلَى الْفَتَى، وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ إِنَّ" + RAF_RAWI[0] + ".",
      "Present verb; the doer is the hidden «he» — the young man — and the clause is the predicate of إِنَّ, in the seat of raf'" + RAF_RAWI[1] + ".",
      "Muzâri; fâil gence dönen gizli zamir «o»; cümle inne'nin haberi, mahallen merfû" + RAF_RAWI[2] + ".")])
 # ---- v. 62 ----
 VV(62, "We asked and you gave; we came again and you gave again — but he who asks too often will one day be refused.",
   "İstedik, verdiniz; yine geldik, yine verdiniz — ama çok isteyen bir gün mahrum bırakılır.",
- [T("سَأَلْنَا", "saala", "verb", ["al-bariz-al-muttasil", "fail", "hadhf-al-maful", "mulhaq-bil-jinas"],
-     "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنَا، وَنَا ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَمَفْعُولَاهُ مَحْذُوفَانِ: سَأَلْنَاكُمْ رِفْدَكُمْ وَمَعْرُوفَكُمْ (الزَّوْزَنِيُّ). وَبَيْنَهُ وَبَيْنَ «التَّسْآلَ» اشْتِقَاقٌ.",
-     "Past verb built on sukun because نَا is attached; that «we» is the doer, in the seat of raf'; its two objects are left out: «we asked you for your bounty» (al-Zawzanī). It shares a root with التَّسْآلَ.",
-     "«Nâ» bitiştiği için sükûn üzere mebnî mâzî; «nâ» fâildir, mahallen merfû; iki mef'ûlü mahzûf: «sizden ihsanınızı istedik» (Zevzenî). «Tes'âl» ile arasında iştikâk vardır.",
+ [T("سَأَلْنَا", "saala", "verb", ["al-bariz-al-muttasil", "fail", "hadhf-al-maful"],
+     "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنَا، وَنَا ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَمَفْعُولَاهُ مَحْذُوفَانِ: سَأَلْنَاكُمْ رِفْدَكُمْ وَمَعْرُوفَكُمْ (الزَّوْزَنِيُّ).",
+     "Past verb built on sukun because نَا is attached; that «we» is the doer, in the seat of raf'; its two objects are left out: «we asked you for your bounty» (al-Zawzanī).",
+     "«Nâ» bitiştiği için sükûn üzere mebnî mâzî; «nâ» fâildir, mahallen merfû; iki mef'ûlü mahzûf: «sizden ihsanınızı istedik» (Zevzenî).",
      segs=SG(("سَأَلْ", "saala", "verb"), ("نَا", "pron-1p", "pron"))),
   T("فَأَعْطَيْتُمْ", "aata", "verb", ["form-iv-verbs", "naqis-verbs", "al-bariz-al-muttasil", "fail", "atf-nasaq", "hadhf-al-maful"],
      FA_AR + "أَعْطَيْتُمْ فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ الرَّفْعِ، وَتُمْ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَمَفْعُولَاهُ مَحْذُوفَانِ.",
@@ -2020,7 +2058,7 @@ VV(62, "We asked and you gave; we came again and you gave again — but he who a
      WA_ISTINAF[2] + "«men» ism-i mevsûldür, sükûn üzere mebnî, mübtedâ olarak mahallen merfû (Dürre) — şart ismi değildir; çünkü «mahrum bırakılır» ne meczûmdur ne de fâ almıştır.",
      segs=SG(("وَ", "wa", "conj"), ("مَنْ", "man-mawsula", "pron"))),
   MADI("أَكْثَرَ", "akthara", ["form-iv-verbs"], note_ar="، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ يَعُودُ عَلَى «مَنْ»" + SILA_[0], note_en="; the doer is the hidden «he», returning to مَنْ" + SILA_[1], note_tr="; fâil «men»e dönen gizli zamir" + SILA_[2]),
-  MAFUL("التَّسْآلَ", "tasal", extra=["masdar", "mulhaq-bil-jinas"], note_ar=" — التَّسْآلُ: السُّؤَالُ، وَتَفْعَالٌ مِنْ أَبْنِيَةِ الْمَصَادِرِ (الزَّوْزَنِيُّ)", note_en=" — تَسْآل is «asking»; تَفْعَال is one of the masdar patterns (al-Zawzanī)", note_tr=" — «tes'âl»: istemek; «tef'âl» masdar vezinlerindendir (Zevzenî)"),
+  MAFUL("التَّسْآلَ", "tasal", extra=["masdar"], note_ar=" — التَّسْآلُ: السُّؤَالُ، وَتَفْعَالٌ مِنْ أَبْنِيَةِ الْمَصَادِرِ (الزَّوْزَنِيُّ)", note_en=" — تَسْآل is «asking»; تَفْعَال is one of the masdar patterns (al-Zawzanī)", note_tr=" — «tes'âl»: istemek; «tef'âl» masdar vezinlerindendir (Zevzenî)"),
   ZARF("يَوْمًا", "yawm", mudaf=False, kind="زَمَانٍ", kind_en="time", kind_tr="zaman", note_ar=" — مُتَعَلِّقٌ بِـ«أَكْثَرَ» (الدُّرَّةُ)، وَعَلَى تَفْسِيرِ الزَّوْزَنِيِّ بِـ«سَيُحْرَمِ»: حُرِمَ يَوْمًا لَا مَحَالَةَ", note_en=", hanging on «asks too often» (al-Durra) — or, as al-Zawzanī paraphrases, on «will be refused»: «he is refused one day, without fail»", note_tr="; «çok isteyen»e müteallik (Dürre) — Zevzenî'nin açıklamasına göre «mahrum bırakılır»a: «bir gün mutlaka mahrum kalır»"),
   T("سَيُحْرَمِ", "harama-deprive", "verb", ["mudari-marfu", "naib-al-fail", "al-majhul-fil-kafiya", "anwa-al-khabar", "al-qafiya"],
      "السِّينُ حَرْفُ اسْتِقْبَالٍ، وَيُحْرَمُ فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ، وَنَائِبُ الْفَاعِلِ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ يَعُودُ عَلَى «مَنْ»، وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ «مَنْ»" + RAF_RAWI[0] + ".",
@@ -2034,6 +2072,92 @@ for _nums, _S in ((range(1, 7), S2), (range(16, 22), S3), (range(28, 33), S4), (
     VERSES.update(zip(_nums, _S))
 assert not set(EXTRA) & set(VERSES)
 VERSES.update(EXTRA)
+
+# =====================================================================================================================
+# THE FIGURES OF SOUND — neither commentator names one (they comment on meaning and iʿrāb, not on badīʿ). Each is claimed
+# by the Talkhīṣ's own DEFINITION, and its line says so («عَلَى حَدِّ التَّلْخِيصِ»):
+#   mulḥaq bil-jinās  — «وَيُلْحَقُ بِالْجِنَاسِ شَيْئَانِ: أَحَدُهُمَا أَنْ يَجْمَعَ اللَّفْظَيْنِ الِاشْتِقَاقُ» (shelf Talkhīṣ ch. 69, s17)
+#   jinās nāqiṣ       — «وَإِنِ اخْتَلَفَا فِي أَعْدَادِ الْحُرُوفِ سُمِّيَ نَاقِصًا، وَذَلِكَ إِمَّا فِي الْأَوَّلِ أَوْ فِي الْوَسَطِ أَوْ فِي الْآخِرِ»,
+#                        with «عَوَاصٍ عَوَاصِمِ» for the last (ch. 68, s15 and s18)
+#   radd al-ʿajuz     — «وَفِي النَّظْمِ أَنْ يَكُونَ أَحَدُهُمَا فِي آخِرِ الْبَيْتِ وَالْآخَرُ فِي صَدْرِ الْمِصْرَاعِ الْأَوَّلِ أَوْ حَشْوِهِ أَوْ آخِرِهِ أَوْ صَدْرِ
+#                        الثَّانِي», the pair being «الْمُكَرَّرَيْنِ أَوِ الْمُتَجَانِسَيْنِ أَوِ الْمُلْحَقَيْنِ بِهِمَا» (ch. 70, s6 and s1)
+# The SEAT of a radd is not typed in: it is computed from the two tokens' places and the hemistich mark, and the table
+# is asserted against it both ways — no radd is claimed off its seats, and none that sits on a seat is passed over.
+# (verse, first word's token, how it is shown, second word's token, how it is shown, kind, detail, radd?)
+_ACT_PASS = ("، الْأَوَّلُ مَبْنِيٌّ لِلْمَعْلُومِ وَالثَّانِي لِلْمَجْهُولِ", ", the first active, the second passive", "; ilki ma'lûm, ikincisi meçhuldür")
+_PASS_ACT = ("، الْأَوَّلُ مَبْنِيٌّ لِلْمَجْهُولِ وَالثَّانِي لِلْمَعْلُومِ", ", the first passive, the second active", "; ilki meçhul, ikincisi ma'lûmdur")
+_NONE = ("", "", "")
+BADI_HADD = [
+ (10, "النَّاعِمِ", "النَّاعِمِ", "الْمُتَنَعِّمِ", "الْمُتَنَعِّمِ", "isht", _NONE, False),
+ (11, "وَاسْتَحَرْنَ", "اسْتَحَرْنَ", "بِسُحْرَةٍ", "سُحْرَةٍ", "isht", _NONE, False),
+ (19, "السِّلْمَ", "السِّلْمَ", "نَسْلَمِ", "نَسْلَمِ", "isht", _NONE, True),
+ (21, "عَظِيمَيْنِ", "عَظِيمَيْنِ", "يَعْظُمِ", "يَعْظُمِ", "isht", _NONE, True),
+ (25, "أَقْسَمْتُمُ", "أَقْسَمْتُمُ", "مُقْسَمِ", "مُقْسَمِ", "isht", _NONE, False),
+ (26, "تَكْتُمُنَّ", "تَكْتُمُنَّ", "يُكْتَمِ", "يُكْتَمِ", "isht", _ACT_PASS, False),
+ (29, "وَتَضْرَ", "تَضْرَ", "ضَرَّيْتُمُوهَا", "ضَرَّيْتُمُوهَا", "isht", _NONE, False),
+ (29, "وَتَضْرَ", "تَضْرَ", "فَتَضْرَمِ", "تَضْرَمِ", "naqis", _NONE, True),
+ (38, "يُظْلَمْ", "يُظْلَمْ", "يَظْلِمِ", "يَظْلِمِ", "isht", _PASS_ACT, True),
+ (38, "بِظُلْمِهِ", "ظُلْمِهِ", "يَظْلِمِ", "يَظْلِمِ", "isht", _NONE, True),
+ (38, "بِالظُّلْمِ", "الظُّلْمِ", "يَظْلِمِ", "يَظْلِمِ", "isht", _NONE, False),
+ (46, "سَئِمْتُ", "سَئِمْتُ", "يَسْأَمِ", "يَسْأَمِ", "isht", _NONE, True),
+ (47, "وَأَعْلَمُ", "أَعْلَمُ", "عِلْمِ", "عِلْمِ", "isht", _NONE, False),
+ (50, "الشَّتْمَ", "الشَّتْمَ", "يُشْتَمِ", "يُشْتَمِ", "isht", _NONE, False),
+ (56, "يَظْلِمِ", "يَظْلِمِ", "يُظْلَمِ", "يُظْلَمِ", "isht", _ACT_PASS, False),
+ (57, "يُكَرِّمْ", "يُكَرِّمْ", "يُكَرَّمِ", "يُكَرَّمِ", "isht", _ACT_PASS, False),
+ (61, "حِلْمَ", "حِلْمَ", "يَحْلُمِ", "يَحْلُمِ", "isht", _NONE, True),
+ (62, "سَأَلْنَا", "سَأَلْنَا", "التَّسْآلَ", "التَّسْآلَ", "isht", _NONE, False),
+]
+_SEAT = {"sadr1": ("صَدْرِ الْمِصْرَاعِ الْأَوَّلِ", "at the head of the first hemistich", "ilk mısraın başında"),
+         "hashw1": ("حَشْوِ الْمِصْرَاعِ الْأَوَّلِ", "inside the first hemistich", "ilk mısraın içinde"),
+         "akhir1": ("آخِرِ الْمِصْرَاعِ الْأَوَّلِ", "at the end of the first hemistich", "ilk mısraın sonunda"),
+         "sadr2": ("صَدْرِ الْمِصْرَاعِ الثَّانِي", "at the head of the second hemistich", "ikinci mısraın başında")}
+def _tok_at(n, surface):
+    toks = VERSES[n]["tokens"]; f = unicodedata.normalize("NFC", surface)
+    hit = [i for i, t in enumerate(toks) if t["surface"]["full"] == f]
+    assert len(hit) == 1, (n, surface, hit)
+    return hit[0]
+def _radd_seat(n, ia, ib):
+    """the Talkhīṣ's four seats for the partner of the verse-final word; None if the pair is off them"""
+    toks = VERSES[n]["tokens"]; hem = [i for i, t in enumerate(toks) if t.get("punctAfter") == "•"]
+    assert len(hem) == 1, n
+    h = hem[0]
+    if ib != len(toks) - 1: return None
+    return "sadr1" if ia == 0 else "hashw1" if ia < h else "akhir1" if ia == h else "sadr2" if ia == h + 1 else None
+def _add(t, ar, en, tr, tags):
+    i = t["irab"]
+    assert all(i[k].endswith(".") for k in ("ar", "en", "tr")), i
+    i["ar"] += unicodedata.normalize("NFC", ar) + "."; i["en"] += en + "."; i["tr"] += tr + "."
+    t["grammar"] = t.get("grammar", []) + [g for g in tags if g not in t.get("grammar", [])]
+_second = {}
+for _n, _a, _ad, _b, _bd, _kind, _det, _radd in BADI_HADD:
+    _ia, _ib = _tok_at(_n, _a), _tok_at(_n, _b)
+    assert _ia < _ib, (_n, _a, _b)
+    _seat = _radd_seat(_n, _ia, _ib)
+    assert (_seat is not None) == _radd, ("radd al-ʿajuz: the table and the seats disagree", _n, _a, _b, _seat)
+    if _kind == "isht":
+        _ar = " وَبَيْنَهُ وَبَيْنَ «" + _bd + "» — عَلَى حَدِّ التَّلْخِيصِ — مُلْحَقٌ بِالْجِنَاسِ: يَجْمَعُ اللَّفْظَيْنِ الِاشْتِقَاقُ" + _det[0]
+        _en = " By the Talkhīṣ's definition it is «attached to the jinas» with " + _bd + ": derivation joins the two words" + _det[1]
+        _tr = " Telhîs'in tarifine göre «" + _bd + "» ile arasında cinâsa mülhak olan iştikâk vardır: iki lafzı iştikâk birleştirir" + _det[2]
+        _tags = ["mulhaq-bil-jinas"]
+    else:
+        _ar = " وَبَيْنَهُ وَبَيْنَ «" + _bd + "» — عَلَى حَدِّ التَّلْخِيصِ — جِنَاسٌ نَاقِصٌ بِزِيَادَةِ حَرْفٍ فِي الْآخِرِ، كَشَاهِدِهِ «عَوَاصٍ عَوَاصِمِ»"
+        _en = " By the Talkhīṣ's definition it makes with " + _bd + " a jinas naqis, one letter more at the end — like its own example عَوَاصٍ عَوَاصِمِ"
+        _tr = " Telhîs'in tarifine göre «" + _bd + "» ile arasında, sonda bir harf fazlalığıyla cinâs-ı nâkıs vardır — kendi şâhidi «عَوَاصٍ عَوَاصِمِ» gibi"
+        _tags = ["jinas", "jinas-naqis"]
+    if _radd:
+        _s = _SEAT[_seat]
+        _ar += "؛ وَهُمَا — عَلَى حَدِّهِ — مِنْ رَدِّ الْعَجُزِ عَلَى الصَّدْرِ: أَحَدُهُمَا فِي " + _s[0] + " وَالْآخَرُ فِي آخِرِ الْبَيْتِ"
+        _en += "; and by its definition the two make a radd al-'ajuz 'ala al-sadr: one stands " + _s[1] + ", the other at the end of the verse"
+        _tr += "; yine onun tarifine göre ikisi reddü'l-acüz ale's-sadr oluşturur: biri " + _s[2] + ", diğeri beytin sonundadır"
+        _tags = _tags + ["radd-al-ajuz"]
+    _add(VERSES[_n]["tokens"][_ia], _ar, _en, _tr, _tags)
+    _second.setdefault((_n, _ib), []).append((_ad, _tags))
+for (_n, _ib), _L in _second.items():
+    _As = [a for a, _ in _L]; _tags = [g for _, tg in _L for g in tg]
+    _add(VERSES[_n]["tokens"][_ib],
+         " وَهُوَ — عَلَى حَدِّ التَّلْخِيصِ — الطَّرَفُ الثَّانِي لِمَا ذُكِرَ عِنْدَ " + " وَ".join("«" + a + "»" for a in _As) + " مِنَ الْبَدِيعِ اللَّفْظِيِّ",
+         " By the Talkhīṣ's definition it is the second term of the figure of sound noted at " + " and ".join(_As),
+         " Telhîs'in tarifine göre, " + " ve ".join("«" + a + "»" for a in _As) + (" kelimesinde" if len(_As) == 1 else " kelimelerinde") + " anılan lafzî bedîin ikinci ucudur", _tags)
 POEM_END = 62
 PLAN = [(1, 7), (8, 15), (16, 21), (22, 27), (28, 34), (35, 40), (41, 48), (49, 55), (56, 62)]
 CHAPS, VNUMS = [CH[1]], []
@@ -2431,7 +2555,7 @@ TAILOR.update({
 # ---- vv. 41–45 ----
 NEW_GLOSS.update({
  "nahik": P("نَهِيك", "Nahīk — in ابْنُ نَهِيكٍ, one of those slain in the war of ʿAbs and Dhubyān", "Nehîk — ابْنُ نَهِيكٍ adında; Abs–Zübyân savaşında öldürülenlerden biri"),
- "muthallam": P("الْمُثَلَّم", "al-Muthallam — a place; قَتِيلُ الْمُثَلَّمِ is the man killed there", "Müsellem — bir yer; قَتِيلُ الْمُثَلَّمِ orada öldürülen kimse"),
+ "muthallam": P("الْمُثَلَّم", "al-Muthallam — taken here as a place-name (neither commentary identifies it); قَتِيلُ الْمُثَلَّمِ is the man slain there", "Müsellem — burada yer adı sayılmıştır (iki şerh de açıklamaz); قَتِيلُ الْمُثَلَّمِ orada öldürülen kimse"),
  "sharaka": VB("شَارَكَ", "ش ر ك", "to share with, to take part in (Form III; with فِي)", "ortak olmak, katılmak (müfâale; فِي ile)", "III"),
  "nawfal": P("نَوْفَل", "Nawfal — one of those slain in the war", "Nevfel — savaşta öldürülenlerden biri"),
  "wahab-name": P("وَهَب", "Wahab — one of those slain in the war", "Vehb — savaşta öldürülenlerden biri"),
@@ -2604,15 +2728,15 @@ _div_tr = "; ".join("(%d) " % (i + 1) + d[3] for i, d in enumerate(_div))
 ATTR_AR = ("نَصٌّ مَنْقُولٌ بِلَفْظِهِ. الْفَصْلُ الْأَوَّلُ خَبَرُ زُهَيْرِ بْنِ أَبِي سُلْمَى مِنْ «الشِّعْرِ وَالشُّعَرَاءِ» لِابْنِ قُتَيْبَةَ (ت ٢٧٦ هـ)، طَبْعَةِ دَارِ الْحَدِيثِ بِالْقَاهِرَةِ ١٤٢٣ هـ كَمَا فِي الْمَكْتَبَةِ الشَّامِلَةِ (الْكِتَابُ ٢٣٧٨٥)، ج ١ ص ١٤٤، الْفِقْرَتَانِ ٢١٢ وَ٢١٣: قِطْعَةٌ مُتَّصِلَةٌ وَاحِدَةٌ لَمْ يُحْذَفْ مِنْ وَسَطِهَا شَيْءٌ، وَتُرِكَتْ أَرْقَامُ الْفِقَرِ وَحَوَاشِي الْمُحَقِّقِ. "
     + _scope[0] + " — وَهِيَ مِنَ الْبَحْرِ الطَّوِيلِ، وَرَوِيُّهَا مِيمٌ مَكْسُورَةٌ وَقَافِيَتُهَا مُطْلَقَةٌ — بِرِوَايَةِ الزَّوْزَنِيِّ (ت ٤٨٦ هـ) وَتَرْتِيبِهِ وَعَدِّهِ فِي «شَرْحِ الْمُعَلَّقَاتِ السَّبْعِ»، طَبْعَةِ دَارِ إِحْيَاءِ التُّرَاثِ الْعَرَبِيِّ ١٤٢٣ هـ / ٢٠٠٢ م (الْكِتَابُ ١١٢٥٣)، ص ١٣٣–١٥٢. " + _ch_ar + ". وَالْبَيْتُ جُمْلَةٌ وَاحِدَةٌ، وَعَلَامَةُ «•» آخِرُ صَدْرِهِ." + _rest[0] + " "
     "الضَّبْطُ طَبَقَتَانِ: مَا شَكَلَتْهُ الطَّبْعَةُ أُبْقِيَ عَلَى حَالِهِ بِإِمْلَاءِ هٰذَا الرَّفِّ، وَمَا تَرَكَتْهُ عَارِيًا — وَهُوَ حَرَكَاتُ خَبَرِ ابْنِ قُتَيْبَةَ كُلُّهَا سِوَى الشَّدَّاتِ، وَكَثِيرٌ مِنْ حُرُوفِ الْأَبْيَاتِ — ضَبَطَهُ الْمُحَرِّرُ بِمَا يُوجِبُهُ الْوَزْنُ وَالشَّرْحُ. وَخُولِفَ الْمَطْبُوعُ فِي هٰذِهِ الْمَوَاضِعِ، وَكُلُّهَا سَهْوُ طِبَاعَةٍ يَشْهَدُ عَلَيْهِ شَاهِدٌ: " + _div_ar + ". وَفِي الْبَيْتِ ٣٠ أُبْقِيَ «فَتَعْرُكُكُمْ» بِالرَّفْعِ كَمَا فِي الْمَطْبُوعِ، وَالرِّوَايَةُ الْأُخْرَى بِالْجَزْمِ. وَمِمَّا ضَبَطَهُ الْمُحَرِّرُ وَلَمْ يَقْطَعْ بِهِ وَزْنٌ وَلَا شَرْحٌ: " + "، وَ".join(f[1] for f in _flg) + ". "
-    "إِعْرَابُ كُلِّ كَلِمَةٍ بِعِبَارَةِ هٰذَا الرَّفِّ، وَقَدْ رُوجِعَ عَلَى «فَتْحِ الْكَبِيرِ الْمُتَعَالِ: إِعْرَابِ الْمُعَلَّقَاتِ الْعَشْرِ الطِّوَالِ» لِمُحَمَّد عَلِي طٰهَ الدُّرَّة (مَكْتَبَةُ السَّوَادِيِّ، جُدَّةُ، ط ٢، ١٤٠٩ هـ / ١٩٨٩ م؛ الْكِتَابُ ١٥١٠١٧، ج ٢) — وَهُوَ يَرْوِي الْقَصِيدَةَ بِتَرْتِيبٍ وَعَدٍّ آخَرَ وَيَزِيدُ أَبْيَاتًا لَيْسَتْ عِنْدَ الزَّوْزَنِيِّ — وَحَيْثُ ذَكَرَ وَجْهَيْنِ قُدِّمَ الْأَوَّلُ وَأُشِيرَ إِلَى الثَّانِي. وَالْوُجُوهُ الْبَلَاغِيَّةُ مُسَمَّاةٌ بِأَبْوَابِ «تَلْخِيصِ الْمِفْتَاحِ» لِلْقَزْوِينِيِّ، وَلَمْ يُذْكَرْ مِنْهَا إِلَّا مَا يَشْهَدُ لَهُ شَرْحُ الزَّوْزَنِيِّ أَوْ شَرْحُ الدُّرَّةِ أَوِ التَّلْخِيصُ نَفْسُهُ. وَالتَّرْجَمَةُ مَعْنَى الْبَيْتِ عَلَى شَرْحِ الزَّوْزَنِيِّ، لَا شِعْرٌ. وَتَقْسِيمُ الْفُصُولِ وَعَنَاوِينُهَا وَعَلَامَاتُ التَّرْقِيمِ مِنَ الْمُحَرِّرِ، وَالنَّصُّ بِانْتِظَارِ الْمُرَاجَعَةِ الْعِلْمِيَّةِ.")
+    "إِعْرَابُ كُلِّ كَلِمَةٍ بِعِبَارَةِ هٰذَا الرَّفِّ، وَقَدْ رُوجِعَ عَلَى «فَتْحِ الْكَبِيرِ الْمُتَعَالِ: إِعْرَابِ الْمُعَلَّقَاتِ الْعَشْرِ الطِّوَالِ» لِمُحَمَّد عَلِي طٰهَ الدُّرَّة (مَكْتَبَةُ السَّوَادِيِّ، جُدَّةُ، ط ٢، ١٤٠٩ هـ / ١٩٨٩ م؛ الْكِتَابُ ١٥١٠١٧، ج ٢) — وَهُوَ يَرْوِي الْقَصِيدَةَ بِتَرْتِيبٍ وَعَدٍّ آخَرَ وَيَزِيدُ أَبْيَاتًا لَيْسَتْ عِنْدَ الزَّوْزَنِيِّ — وَحَيْثُ ذَكَرَ وَجْهَيْنِ قُدِّمَ الْأَوَّلُ وَأُشِيرَ إِلَى الثَّانِي. وَالْوُجُوهُ الْبَلَاغِيَّةُ مُسَمَّاةٌ بِأَبْوَابِ «تَلْخِيصِ الْمِفْتَاحِ» لِلْقَزْوِينِيِّ، وَلَمْ يُذْكَرْ مِنْهَا إِلَّا مَا يَشْهَدُ لَهُ شَرْحُ الزَّوْزَنِيِّ أَوْ شَرْحُ الدُّرَّةِ أَوِ التَّلْخِيصُ نَفْسُهُ. وَمَا كَانَ مِنْهَا بِحَدِّ التَّلْخِيصِ وَحْدَهُ — وَلَمْ يُسَمِّهِ الشَّارِحَانِ — قِيلَ فِيهِ: «عَلَى حَدِّ التَّلْخِيصِ». وَالتَّرْجَمَةُ مَعْنَى الْبَيْتِ عَلَى شَرْحِ الزَّوْزَنِيِّ، لَا شِعْرٌ. وَتَقْسِيمُ الْفُصُولِ وَعَنَاوِينُهَا وَعَلَامَاتُ التَّرْقِيمِ مِنَ الْمُحَرِّرِ، وَالنَّصُّ بِانْتِظَارِ الْمُرَاجَعَةِ الْعِلْمِيَّةِ.")
 ATTR_EN = ("The RECEIVED text, word for word. Chapter 1 is the khabar of Zuhayr ibn Abī Sulmā from Ibn Qutayba (d. 276 AH), al-Shiʿr wa-l-shuʿarāʾ, in the edition al-Maktaba al-Shāmila names «Dār al-Ḥadīth, Cairo, 1423 AH» (book 23785), vol. 1 p. 144, §§ 212–213: one contiguous span with nothing cut from inside it; only the paragraph numbers and the editor's footnote marks are left out. "
     + _scope[1] + " — in the metre al-ṭawīl, rhyming on a mīm with kasra, the rhyme unbound — in the recension, order and verse-count of al-Zawzanī (d. 486 AH), Sharḥ al-Muʿallaqāt al-sabʿ, the edition Shamela names «Dār Iḥyāʾ al-Turāth al-ʿArabī, 1423 AH / 2002 CE» (book 11253), pp. 133–152: " + _ch_en + ". Each verse is one sentence, and «•» marks the end of its first hemistich." + _rest[1] + " "
     "The vowelling has two layers. What the edition vowels is kept, in this shelf's spelling; what it leaves bare — every short vowel of Ibn Qutayba's khabar (the edition prints only its shaddas) and many letters of the verses — is supplied editorially, as the metre and the commentary require. The edition's print is departed from in these places, each a slip of the press with a witness against it: " + _div_en + ". In v. 30 the edition's «فَتَعْرُكُكُمْ», in rafʿ, is kept; the other reading is in jazm. Editorial vowels that neither metre nor commentary settles: " + ", ".join(f[2] for f in _flg) + ". "
-    "Every token's iʿrāb is written in this shelf's own wording and was checked against Muḥammad ʿAlī Ṭāhā al-Durra, Fatḥ al-Kabīr al-Mutaʿāl: Iʿrāb al-Muʿallaqāt al-ʿashr al-ṭiwāl (Maktabat al-Sawādī, Jeddah, 2nd ed., 1409 AH / 1989 CE; book 151017, vol. 2), who gives the ode in another order and count and has verses al-Zawzanī does not; where he offers two readings the first is given and the second mentioned. The figures of balāgha are named in the categories of al-Qazwīnī's Talkhīṣ al-Miftāḥ, and only where al-Zawzanī's commentary, al-Durra's, or the Talkhīṣ itself supports them. The translations give each verse's plain meaning after al-Zawzanī; they are not verse. The division into chapters, their titles and the punctuation are editorial. Pending scholarly review.")
+    "Every token's iʿrāb is written in this shelf's own wording and was checked against Muḥammad ʿAlī Ṭāhā al-Durra, Fatḥ al-Kabīr al-Mutaʿāl: Iʿrāb al-Muʿallaqāt al-ʿashr al-ṭiwāl (Maktabat al-Sawādī, Jeddah, 2nd ed., 1409 AH / 1989 CE; book 151017, vol. 2), who gives the ode in another order and count and has verses al-Zawzanī does not; where he offers two readings the first is given and the second mentioned. The figures of balāgha are named in the categories of al-Qazwīnī's Talkhīṣ al-Miftāḥ, and only where al-Zawzanī's commentary, al-Durra's, or the Talkhīṣ itself supports them. A figure that rests on the Talkhīṣ's definition alone, which neither commentator names, says so in its line («by the Talkhīṣ's definition»). The translations give each verse's plain meaning after al-Zawzanī; they are not verse. The division into chapters, their titles and the punctuation are editorial. Pending scholarly review.")
 ATTR_TR = ("Metin LAFZIYLA aktarılmıştır. 1. bölüm, Züheyr b. Ebî Sülmâ'nın haberidir: İbn Kuteybe (ö. 276 h.), eş-Şi'r ve'ş-şuarâ, el-Mektebetü'ş-Şâmile'nin «Dâru'l-Hadîs, Kahire, 1423 h.» diye andığı baskı (kitap 23785), c. 1 s. 144, §§ 212–213: içinden hiçbir şey çıkarılmamış tek ve kesintisiz bir parça; yalnızca paragraf numaraları ve muhakkikin dipnot işaretleri alınmamıştır. "
     + _scope[2] + " — kaside tavîl bahrindendir, revîsi kesreli mîm, kâfiyesi mutlaktır — Zevzenî'nin (ö. 486 h.) Şerhu'l-Muallakâti's-seb'indeki rivayeti, sırası ve beyit sayımıyla; Şâmile'nin «Dâru İhyâi't-Türâsi'l-Arabî, 1423 h. / 2002 m.» diye andığı baskı (kitap 11253), s. 133–152: " + _ch_tr + ". Her beyit tek cümledir; «•» ilk mısraın sonunu gösterir." + _rest[2] + " "
     "Harekeleme iki katmandır: baskının harekelediği yerler bu rafın imlâsıyla korunmuş; harekesiz bıraktığı yerler — İbn Kuteybe haberinin bütün kısa harekeleri (baskı yalnızca şeddeleri basar) ve beyitlerdeki pek çok harf — vezin ve şerhin gerektirdiği şekilde editörce harekelenmiştir. Baskıdan şu yerlerde ayrılınmıştır; hepsi, aleyhine şâhit bulunan dizgi sehvidir: " + _div_tr + ". 30. beyitte baskıdaki merfû «فَتَعْرُكُكُمْ» korunmuştur; öbür rivayet cezimlidir. Vezin ve şerhin kesinleştirmediği editoryal harekeler: " + ", ".join(f[3] for f in _flg) + ". "
-    "Her kelimenin i'râbı bu rafın kendi ifadesiyle yazılmış ve Muhammed Ali Tâhâ ed-Dürre'nin Fethu'l-Kebîri'l-Müteâl: İ'râbü'l-Muallakâti'l-aşri't-tıvâl'i (Mektebetü's-Sevâdî, Cidde, 2. baskı, 1409 h. / 1989 m.; kitap 151017, c. 2) ile karşılaştırılmıştır; o, kasideyi başka bir sıra ve sayımla rivayet eder ve Zevzenî'de bulunmayan beyitler ekler; iki vecih verdiği yerde birincisi esas alınmış, ikincisi belirtilmiştir. Belâgat nükteleri Kazvînî'nin Telhîsu'l-Miftâh'ındaki bâblara göre adlandırılmış ve yalnızca Zevzenî'nin şerhinin, Dürre'nin şerhinin yahut bizzat Telhîs'in desteklediği yerlerde zikredilmiştir. Çeviriler beytin Zevzenî'ye göre düz mânâsını verir; şiir değildir. Bölümlere ayırma, bölüm başlıkları ve noktalama editoryaldir. Metin ilmî incelemeyi beklemektedir.")
+    "Her kelimenin i'râbı bu rafın kendi ifadesiyle yazılmış ve Muhammed Ali Tâhâ ed-Dürre'nin Fethu'l-Kebîri'l-Müteâl: İ'râbü'l-Muallakâti'l-aşri't-tıvâl'i (Mektebetü's-Sevâdî, Cidde, 2. baskı, 1409 h. / 1989 m.; kitap 151017, c. 2) ile karşılaştırılmıştır; o, kasideyi başka bir sıra ve sayımla rivayet eder ve Zevzenî'de bulunmayan beyitler ekler; iki vecih verdiği yerde birincisi esas alınmış, ikincisi belirtilmiştir. Belâgat nükteleri Kazvînî'nin Telhîsu'l-Miftâh'ındaki bâblara göre adlandırılmış ve yalnızca Zevzenî'nin şerhinin, Dürre'nin şerhinin yahut bizzat Telhîs'in desteklediği yerlerde zikredilmiştir. Yalnızca Telhîs'in tarifine dayanan ve iki şârihin de adlandırmadığı nükteler, satırında «Telhîs'in tarifine göre» kaydıyla belirtilmiştir. Çeviriler beytin Zevzenî'ye göre düz mânâsını verir; şiir değildir. Bölümlere ayırma, bölüm başlıkları ve noktalama editoryaldir. Metin ilmî incelemeyi beklemektedir.")
 MANIFEST = {
  "id": SLUG,
  "storyGroup": SLUG,
