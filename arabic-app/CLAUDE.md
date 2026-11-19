@@ -15277,3 +15277,76 @@ Smoke: five checks «v334-S — …» before «v333 — the received imports» (
 hub; cloze / foldAr / the Quiet order; the stepped search and the shelf's CSS; the dedup). No older check changed, no
 threshold loosened. Full suite (`node tools/smoke_test.js`, the reader as built): 525 checks, 525 pass.
 
+
+## v335 — ʿAntara's and Labīd's Muʿallaqāt on the shelf; the gate made green by the engines
+
+- **Two received poems, whole** (L6, `pending-scholarly-review`, by the MUALLAQA brief; the Poetry shelf now holds four):
+  - `muallaqat-antara` (12 chapters: Ibn Qutayba's khabar § 419 + all 75 verses in al-Zawzanī's recension, order and numbering;
+    al-kāmil; new keys «-ant»). Every line checked against al-Durra (151017, 2/131–264); the consonant text compared to al-Zawzanī's
+    print by script — the only differences are the sixteen corrections listed in the attribution, each with its witness. Author script
+    `tools/authoring/author_muallaqat_antara.py`.
+  - `muallaqat-labid` (14 chapters: the khabar § 469 + all 88 verses; al-kāmil; keys «lb-»). Same checks (al-Durra, al-Zawzanī,
+    `research/sources/muallaqat-labid-*.txt`). Author script `tools/authoring/author_muallaqat_labid.py`. Some lb- keys duplicate lemmas
+    ʿAntara holds under «-ant» (two keys for one word is allowed by the v331 check; no check asked for a merge). One heard paradigm:
+    `lb-aymana` (أَيْمَنَ، يُومِنُ، مُومِن), so `sarfAudit().samai` now has six names.
+  - Both scripts are assembled from parts in the scratchpad (`work-muallaqat-*/`), staged with `QISSA_PKG_ROOT`, then copied in.
+- **The gate.** With ʿAntara the suite failed 11 checks (plus the two measured floors the orchestrator had moved by hand); Labīd then
+  failed some thirty more, two thirds of them one paradigm cell (lb-baa) seen by every Sarf audit, the rest listed below. Each was traced to the token that moved it and sorted A (engine), B (measure),
+  C (the poem's own slip). No received text or vowel was changed. Every engine rule was measured on the shelf WITHOUT the two poems
+  (same build, the two ids left out) and on the typed family (2326 sentences: every Arabic literal of the suite and the typed battery):
+  the older shelf's typed output moved on three sentences — «للبيت باب كبير» (لِلْبَيْتِ no longer an amr), «مِنْ غَيْرِ مَا جُرْمٍ», whose مَا
+  is now the zāʾida (but غَيْرِ and جُرْمٍ lose their iḍāfa note: the next Murib item, the annexation read THROUGH the extra مَا), and
+  the ʿIzzī's tawkīd row typed as a sentence (wrong before and after; the lab check reads it as a row).
+  - **The v333 weight, extended (A).** A lemma the shelf meets at most twice yields to one met ≥ 20 times and ≥ 10× as often —
+    now also (1) against the MOOD of a common verb: `RootFinder.mood335` — «أُرِيدُ أَنْ أَذْهَبَ» is ذَهَبَ's manṣūb (its muḍāriʿ cell with the
+    ḍamma turned fatḥa), not ʿAntara's أَذْهَبَ; DabtEngine C5 (أَفْعَلَ read as Form IV) obeys the same weight; (2) by LEMMA
+    (`RootFinder.lemFreq335 / lemN335`) for nouns and particles: wave 187 leaves «رُبَّهُ» whole (the particle رُبَّ, 27, against ʿAntara's
+    رُبّ «syrup», 1 — only a particle wearing the same doubling counts, so قَدِّهَا still peels); `majhul326` lets the passive مُرَّ stand
+    against ʿAntara's مُرّ «bitter» (the Iẓhār's «مُرَّ بِزَيْدٍ» ×4); (3) `RootFinder.nounWins335`: an amr cell of a rare lemma that IS
+    the written word, or its host behind an attached pronoun (اسْمُ، اسْمُهُ = اُسْمُ of Labīd's سَمَا), yields to the noun اِسْم (277 —
+    without this, «وَاسْمُهُ …» in twenty-one older lines read as an imperative with its object), and `_find`'s stripped candidates meet the same
+    weight (وَاسْمُ); (4) in the loose pass a vowelled word without a
+    shadda does not reach a rare doubled root's muḍāriʿ (نُجِدْ is no form of Labīd's أَجَدَّ).
+  - **No verb after a written jarr letter (A)**: `RootFinder._find` drops a candidate reached by peeling a vowelled بِ / كَ
+    («بِبَاءِ الْمَعِيَّةِ» is not بِ + Labīd's بَاءَ), and the walk refuses it too — except where the lexicon owns the noun behind the
+    letter (بِأَحْمَدَ), which the analyzer's fused-jarr reading takes over.
+    The refusal note of a verb's letters after a jarr letter names the jarr first (`jarrFirst335`, and the wave-168 note): «فِي دَارِ
+    صَدِيقِكَ» keeps «AFTER A JARR LETTER» now that the rare amr دَارِ yields to the noun.
+  - **SifaEngine (A)**: مُفِلّ / مُفَلّ — the participles of أَفْعَلَ on a doubled root (مُحِبّ، مُحَبّ، مُكِبّ; five older entries
+    مُضِلّ، مُقِرّ، مُحِلّ، مُجِدّ، مُحِبّ were «unknown» too); the audit accepts the ism mafʿūl shape for a noun of time and place beyond
+    three letters (مُقْدَم، مُتَرَدَّم). Older shelf 832 → 837 of 873; with both poems 905 of 944 = 95.9. Left: مِيثَم «intensive» on
+    مِفْعَل (the classifier says instrument; heard).
+  - **TartibEngine (A)**: `definite()` reads «إِضَافَةِ اسْمِ الْفَاعِلِ إِلَى مَفْعُولِهِ / إِضَافَةٌ لَفْظِيَّةٌ» on the line as no definite-making
+    annexation (ʿAntara 12:s4 مُشَايِعِي لُبِّي); `ambiguousCase()` no longer takes the alif of an attached هَا / نَا for a hidden case
+    (Labīd «تُجِدُّ مُتُونَهَا أَقْلَامُهَا», «وَرَمَى دَوَابِرَهَا السَّفَا»). Violations stay 5 (the older five); counts 2341/921 → 2440/937.
+  - **WujuhEngine (A)**: لَا answered by a «وَلَا» in its clause is the negation repeated (Mughnī: the naʿt/ḥāl/khabar after لَا requires
+    it); إِذْ after an hour of the day behind its jarr letter and article (بِالضُّحَى) is the ẓarf; إِذْ + لَا/لَمْ/مَا after a DENIED clause
+    is the taʿlīl. 4388/4479 on the older shelf unchanged; with both poems 4468/4561 = 98.0.
+  - **MaEngine (A)**: مَا at the head of a joined clause before a māḍī wearing its doer and a first- or second-person object is the
+    negation (فَمَا رَأَيْنَاكَ — the ʿāʾid is a third person; not after إِلَّا, where the relative's object is deleted); «وَلَا» + a noun later
+    in its clause marks the denial (فَمَا حَضَرْتَ أَنْتَ وَلَا أَبُوكَ); مَا between a muḍāf and an indefinite in jarr is the zāʾida
+    (يَا شَاةَ مَا قَنَصٍ — and al-Talkhīṣ's «مِنْ غَيْرِ مَا جُرْمٍ», wrong before). Wrong 47 → 46 on the older shelf; with both poems 46.
+  - **HadhfEngine (A)**: the يَا fused with ابْن (يَابْنَةَ مَالِكٍ); tarkhīm — a proper name the lexicon owns with its tāʾ, written
+    without it and without tanwīn, is the munādā with or without يَا (عَنْتَرَ). `audit().byStory` tallies per text.
+  - **MansubEngine.gov (A)**: a verb that is the ṣila of a relative inside kāna's ism leaves kāna owed its khabar
+    («فَكَانَ أَوَّلُ مَا قَالَ قَصِيدَةً» — no ḥāl offered).
+  - **Measures (B)**, each token examined and listed in its check: the Hadhf floor (v316, «Faces») is held on the shelf without the
+    two poems (85.2, unchanged), the poems reported apart (ʿAntara 6/11, Labīd 4/17 — the misses are the verse's own ellipses: the
+    khabar of an unsaid «هِيَ» at a hemistich's head, a muḍāf called without يَا, doers and maṣdars of verbs the parallel clause deletes);
+    v328 measures the two poems apart with the v333 imports; v327 kāna ceiling 45 → 47 (older 40 and imports 4 unchanged; Labīd 3:s4 and
+    6:s4 are nāqiṣa lines whose «فَاعِلِ عَرِيَتْ / مَضَى» the measure misreads, 7:s5 بَاتَتْ a kāna tāmma); v329 «extra» ceiling 13 → 14 (Labīd 13:s6 «إِذْ لَا يَمِيلُ», «حَرْفُ تَعْلِيلٍ» in al-Durra; ZarfBinaEngine
+    names every إِذْ the ẓarf, and the taʿlīl إِذْ is disputed — Mughnī); v327 encObj ceiling 3 → 4 (Labīd
+    10:s4 «قَدْ بِتُّ سَامِرَهَا» — بِتُّ shares its letters with بَتَّ, so the kāna family does not list it); the Ta'alluq floor 56 → 55 (the rest 571 of 1018 with and without the
+    poems; ʿAntara 7/23, Labīd 18/27; 596/1068 = 55.8); JamEngine ceiling 275 → 297 (ʿAntara: غُرُوب، كُعُوب، قِدَاح، قُلُص and one older line
+    hidden by its homograph زَائِر «roaring»; Labīd: nineteen heard plurals — and the builder's own gap, the فُعْل of a colour/defect
+    adjective, غُبْس، غُضْف، غُلْب، عِين — and نِهْي / نَهْي sharing letters); wave 186 accepts Labīd's received «فِيهُمُ» (al-Durra «فيهمو»).
+  - **C (the poem's own slip)**: Labīd's lb-baa — تَبُوءِينَ → تَبُوئِينَ, بُوءِي → بُوئِي (the middle hamza with a kasra sits on a nabra;
+    al-Kāfiya's تَسُوئِينَ، تَنُوئِينَ), fixed in the author parts (gloss.py). ʿAntara needed no slip fixed.
+- Smoke: «v333 — the received imports…» holds the Poetry shelf at four poems: Imruʾ al-Qays 81, Zuhayr 62, ʿAntara 75, Labīd 88, each
+  verse with exactly one «•».
+- **For the hoca.** ʿAntara: «لَمَ الْقَهُمَا» kept as printed (al-Durra «لَمْ أَلْقَهُمَا»); the jīm of مُلْجَمِ, the mīm of مُفَدَّمِ, the nūn of بَيْنِ
+  (v24), الْمَنْسَمَيْنِ and الْعِظْلَمِ as printed against the lexicons' مَنْسِم / عِظْلِم; بِوَخْذِ (al-Durra وَخْد); يَقْضِمْنَ's bāb; in the khabar
+  «مَرْفِدَ النَّاسِ», «لَيُدْعَوْنَ», «وَأُوفِي», «أَوَّلُ مَا قَالَ قَصِيدَةً». Labīd: وَسْطَ (v35), وَقَرَّةٍ (v62), وَشَاحِيَ (v63), مُرْتَقِبًا (v64) — the print
+  against al-Zawzanī's gloss; whether أَيْمَنَ's يُومِنُ is heard or by rule (stored as heard); «فِيهُمُ» (v88) kept with its ḍamma. And
+  the readings the engines leave open in the poems: وَأَهْلُنَا / وَنَعَامُهَا / وَسَنَامُهَا (doer of a deleted verb, after al-Durra, or a
+  mubtadaʾ), «حَتَّى تَسَرْبَلَ» (al-Durra: a muḍāriʿ with a dropped tāʾ after حَتَّى).
