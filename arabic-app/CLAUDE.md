@@ -15277,3 +15277,88 @@ Smoke: five checks «v334-S — …» before «v333 — the received imports» (
 hub; cloze / foldAr / the Quiet order; the stepped search and the shelf's CSS; the dedup). No older check changed, no
 threshold loosened. Full suite (`node tools/smoke_test.js`, the reader as built): 525 checks, 525 pass.
 
+
+## v336-Sh — the remaining Shudhūr rules in the engines (R94, R42, R78–79, R141–142, R110/R92, R15, R96, R209, R208, R194/R189)
+
+Items 1–10 of «§3 The remaining Shudhūr triage, re-ranked» (`research/feeding-backlog-2026-11-19.md`). One new class,
+`Sh336Engine` (reader.html, just before `class MansubEngine`), with three hooks in `Murib.line`: `line()` (a whole line, after
+`taajjub334`), `office()` (a noun's office, after `office334`; an office it gives carries `sh336`, and `Murib.line` no longer
+appends a mubtadaʾ's «وَخَبَرُهُ …» to it) and `tail()` (a clause on a verb or particle, before the return). Every rule is cited
+beside its code by its number in `shudhur-al-dhahab-qawaid.jsonl`, its page and its line in `shudhur-al-dhahab-src.txt`. Corpus
+measured over the 78 packages (authored lines naming the construction vs the engine line, before → after):
+
+- **First, the two incidental bugs, re-verified and fixed.** (a) The five verbs' «مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ حَذْفُ النُّونِ»: 25 lines on
+  the base (the triage said 26) → 0. `Murib.fiveRaf336` (src:48 «تُرْفَعُ بِثُبُوتِ النُّونِ، وَتُنْصَبُ وَتُجْزَمُ بِحَذْفِهَا»): a naṣb or jazm
+  already named keeps the sign; a bare لَا opening its clause right before it is the لَا of prohibition (src:284) — «مَجْزُومٌ بِـ«لَا»
+  النَّاهِيَةِ»; otherwise «مَنْصُوبٌ أَوْ مَجْزُومٌ … وَعَامِلُهُ لَمْ يَظْهَرْ هُنَا» (تُحَاجُّونِي, the nūn of protection, is left alone). (b) `Murib.line`
+  threw on 149 corpus tokens: 17 amr cells of wave 138's shape reader carry the 14-cell index (6–11) that `CELL_PERSON_AMR`
+  lacked (`formCellLabel` now reads them through `CELL_PERSON`) — فَأَجْمِعُوا، بَاقِيَا، هَبْ، اقْرَؤُوا، أَفْعِلْ …; and 132 tokens of three
+  whole sentences (al-usul-al-munifa:32:s6, muallaqat-zuhayr:8:s8, :9:s1, :10:s1) where `ShartIsmEngine.frames` read `opens` in
+  its temporal dead zone (`exact` now declared after it). After: 0. Also: a verb is never «وَهُوَ مُضَافٌ» (فَأَجْمِعُوا أَمْرَكُمْ).
+  NB بَاقِيَا now prints an amr line — wrong, but that is I-24 (لَا like لَيْسَ), not done here.
+- **R94 ishtighāl** (p. 241–242, src:191). A clause-opening noun in WRITTEN naṣb (tanwīn, the article, a muḍāf ilayh or a pronoun —
+  a bare fatḥa may be a diptote's jarr), then (after one muḍāf ilayh) a verb whose 3rd-person singular object pronoun agrees with it,
+  or a verb + a manṣūb noun carrying that pronoun (the mulābis): «مَفْعُولٌ بِهِ لِفِعْلٍ مَحْذُوفٍ وُجُوبًا يُفَسِّرُهُ الْمَذْكُورُ «ضَرَبْتُهُ»،
+  وَالتَّقْدِيرُ: «ضَرَبْتُ زَيْدًا ضَرَبْتُهُ» (اشْتِغَالٌ)»; the verb: «وَجُمْلَةُ «…» تَفْسِيرِيَّةٌ لَا مَحَلَّ لَهَا». Refused: ẓarf / time words, an
+  indefinite derived noun (a fronted ḥāl), a maṣdar of the verb's root, كُلًّا with tanwīn, a nāsikh, a passive, an amr after a noun
+  without the article (a munādā without يَا). A verse cited after «وَمِثَالُهُ» opens its clause when nothing before it could govern it.
+  The shape-only māḍī with a moving pronoun and an object (أَلْزَمْنَاهُ) gets its line («فِعْلٌ مَاضٍ، مَبْنِيٌّ عَلَى السُّكُونِ … وَ«نَا» … فَاعِلٌ،
+  وَالْهَاءُ … مَفْعُولٌ بِهِ») instead of «فِعْلٌ، مَرْفُوعٌ». Corpus: 5 authored manṣūb ishtighāl; before 0, after 2 (both agree), 0 elsewhere.
+- **R42 مَاذَا / لِمَاذَا / ذَا** (p. 177, src:117). SHORTLIST for مَاذَا before a verb: the fronted object first where the verb has not
+  taken its object and is not lāzim (`LazimEngine.lazim`), else the mubtadaʾ first; the مَا + relative ذَا parse always named, with the
+  answer as the test. لِمَاذَا / بِمَاذَا EXACT «… فِي مَحَلِّ جَرٍّ» (the alif kept after the jarr letter fuses ذَا). ذَا after the interrogative
+  مَنْ / مَا before a verb: the relative first. Corpus (66 tokens, all «اسْمٌ، وَعَلَامَتُهُ مُقَدَّرَةٌ» before): jarr 39/39, naṣb-first 22
+  (all authored naṣb), raf-first 2 (agree), the 4 usul lines that give both readings get the shortlist; 0 contradicted.
+- **R78–R79 the Ḥijāzī مَا** (p. 222–224, src:168). مَا opening its clause + a detached pronoun / demonstrative / a noun in written
+  rafʿ (+ fronted ẓarf or majrūr) + the khabar: written naṣb → Ḥijāzī EXACT («اسْمُ «مَا» الْحِجَازِيَّةِ» / «خَبَرُ «مَا» الْحِجَازِيَّةِ»); the
+  extra بِ on a derived word → «خَبَرُ «مَا» مَجْرُورٌ لَفْظًا مَنْصُوبٌ مَحَلًّا (وَعَلَى لُغَةِ تَمِيمٍ: مَرْفُوعٌ مَحَلًّا …)» — both dialects, as R79
+  says; written rafʿ → Tamīmī, governing nothing; إِلَّا before the khabar, or إِنْ after مَا → muhmala (the control مَا زَيْدٌ إِلَّا رَسُولٌ now
+  names زَيْدٌ the mubtadaʾ, no longer «خَبَرٌ»). Corpus: before 0 engine lines; after 47, 43 agreeing (the Tamīmī-read lines included —
+  our line names both), 4 = the Tamīmī reading named second.
+- **R141–R142 إِنْ** (p. 303, src:250; Qawāʿid al-Iʿrāb on إِنْ). The lām al-fāriqa on a later word (a PREFIXED lām — not a radical lām
+  (لَازِمًا، لَفْظٌ), not the jarr lām on a pronoun (لَكَ), not inna's muzaḥlaqa, not the oath's lām on a verb with the nūn of emphasis),
+  with a noun or a nāsikh after إِنْ: «مُخَفَّفَةٌ مِنَ الثَّقِيلَةِ مُهْمَلَةٌ … وَاللَّامُ فِي «…» هِيَ الْفَارِقَةُ» EXACT (its noun in written naṣb →
+  «عَامِلَةٌ»); إِنْ + noun + لَمَّا (shadda) → the negating إِنْ with لَمَّا = إِلَّا, the «لَمَا» reading named; إِنْ + noun + إِلَّا → negating. The
+  root walk that swallows the lām («ل ف س ق») is undone when the rest is a lexicon word; كُنَّا, which the analyzer reads as a particle,
+  is taken as kāna. Corpus: 28 authored; before 0; after 14 named, 14 agree, 0 contradicted; the fāriqa named on 6 of 6 lām words.
+- **R92 / R110 the participle and the ṣifa mushabbaha** (p. 242; p. 269, src:219; src:298). An active participle (فَاعِل, or مُفْعِل …
+  with the kasra) with tanwīn, the nūn of the dual/plural or the article, then at once (or after its own doer: ضَارِبٌ غُلَامُهُ عَمْرًا) a
+  DEFINITE noun in written naṣb that is no ẓarf, no ابن, not joined: «مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «ضَارِبٌ»» (عَمْرًا was «حَالٌ»); a ṣifa
+  mushabbaha (فَعَل، فَعِل، فَعِيل، فُعَال) with tanwīn + a manṣūb noun with a pronoun: «مُشَبَّهٌ بِالْمَفْعُولِ بِهِ … (وَأَصْلُهُ فَاعِلٌ: «حَسَنٌ
+  وَجْهُهُ»)، لَا تَمْيِيزٌ لِأَنَّهُ مَعْرِفَةٌ». An ال participle after a verb or in jarr is left alone (يَتَحَقَّقَ الْمُشْرِكُونَ حَقِيقَةَ الْأَمْرِ). Left out:
+  indefinite objects (they opened tamyīz / second-object false fires) and the tamyīz shortlist of حَسَنٌ وَجْهًا (the فَعْل shape is every
+  jāmid noun). Corpus: 19 authored; before 0; after 8 named — 7 agree, 1 the v329 slip usul:23:s7:34; 0 contradicted.
+- **R15 ـوَيْهِ** (p. 123, src:85). An analyzer pass un-peels the ـهِ of a name with ≥ 3 letters before «ـَوَيْهِ» (سِيبَوَيْهِ، نِفْطَوَيْهِ; not
+  أَخَوَيْهِ، أَبَوَيْهِ); the line «اسْمٌ عَلَمٌ مَخْتُومٌ بِـ«وَيْهِ»، مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ …» with al-Jarmī's diptote named; `Murib.doer`
+  names it the doer (قَالَ سِيبَوَيْهِ). Corpus: 27 authored; before 0, after 26 agree (the 27th is أَبَوَيْهِ, a dual).
+- **R96 ikhtiṣāṣ** (p. 243, src:196). نَحْنُ / أَنَا / إِنَّا + a definite noun in written naṣb (the article or a muḍāf): «مَفْعُولٌ بِهِ لِفِعْلٍ
+  مَحْذُوفٍ وُجُوبًا تَقْدِيرُهُ «أَخُصُّ»»; the pronoun's khabar comes after it (no longer «وَخَبَرُهُ «الْعَرَبَ»»), the word after it the khabar.
+  No corpus instance (the authored «اختصاص» are the lām of ikhtiṣāṣ); the book's three examples pass, نَحْنُ الْعَرَبُ stays.
+- **R194 / R189 وَإِلَّا** (p. 350–359, src:289). وَإِلَّا before a māḍī (passive too), a فَـ, لَا / لَمْ + a verb or the end: ««إِنْ» الشَّرْطِيَّةُ
+  أُدْغِمَتْ نُونُهَا فِي «لَا» النَّافِيَةِ، وَفِعْلُ الشَّرْطِ مَحْذُوفٌ …»; إِلَّا / وَإِلَّا before a muḍāriʿ that shows its jazm: the condition
+  written, the verb «مَجْزُومٌ بِـ«إِنْ» الْمُدْغَمَةِ فِي «لَا»». Corpus: 15 authored; before 0; after 14 agree, 1 slip (below), 1 missed
+  (al-kafiya:6:s12:1 وَإِلَّا أُعْرِبَ — an أُ-initial verb may be a muḍāriʿ).
+- **R209 taʿlīq / R208 ilghāʾ** (p. 366–367, src:303). A heart verb (`DabtEngine.QULUB_VERBS` or its root) with no object pronoun,
+  directly before an interrogative (هَلْ، the hamza, أَيٌّ in rafʿ, كَيْفَ، مَتَى، أَيْنَ، كَمْ), مَا of negation/question (MaEngine's face),
+  لَعَلَّ، لَوْ، إِنَّ with the kasra, or the lām of ibtidāʾ: «وَهُوَ فِعْلٌ قَلْبِيٌّ مُعَلَّقٌ عَنِ الْعَمَلِ لَفْظًا بِـ… وَالْجُمْلَةُ بَعْدَهُ فِي مَحَلِّ نَصْبٍ
+  سَدَّتْ مَسَدَّ مَفْعُولَيْهِ» (passives and paradigm lists excluded). An inflected heart verb between or after two nouns written in rafʿ:
+  «مُلْغًى عَنِ الْعَمَلِ لِتَوَسُّطِهِ / لِتَأَخُّرِهِ (وَالْإِعْمَالُ جَائِزٌ)», the nouns mubtadaʾ and khabar. Corpus: taʿlīq 20 verbs named — the 4
+  authored ones agree, the authors are silent on 16, each read: a true taʿlīq context (لَا أَدْرِي أَيْنَ، عَلِمْنَا كَيْفَ، يَعْلَمُ إِنَّكَ
+  لَرَسُولُهُ …); ilghāʾ 12 tokens, all agreeing (verbs «ملغى», nouns mubtadaʾ/khabar).
+- **Engine-found slips for the hoca** (package:chapter:sentence:token): al-usul-al-munifa:32:s6:8 «وَإِلَّا قَاتَلْتَهُ» is إِنْ + لَا with the
+  condition dropped (R194), the line says «أداة استثناء»; talkhis-al-miftah:72:s8:1 وَرَبَّكَ فَكَبِّرْ, :72:s12:2 فَأَمَّا الْيَتِيمَ فَلَا
+  تَقْهَرْ, :72:s12:6 وَأَمَّا السَّائِلَ فَلَا تَنْهَرْ — called «اشتغال … يفسره المذكور», but the later verb is busy with no pronoun of the noun
+  (R94's definition), so the noun is its fronted object — a doubt to rule on; al-usul-al-munifa:23:s7:34 مَرْضَاتَهُ (already in v329) —
+  the object of طَالِبًا (R92), not «خبر كان … بالكسرة».
+- Engine gaps seen and left: كُنَّا read as a particle (qisas-al-nabiyyin-1:21:s25:8); بَاقِيَا as an amr (I-24); أَحْصَى as a noun;
+  talkhis-al-miftah:70:s10:1 «وَإِنْ لَمْ يَكُنْ» printed «حرف نفي» (authored shart, older than this wave); «إِنْ قَتَلْتَ لَمُسْلِمًا»
+  (Kūfan, a non-nāsikh verb) stays conditional; the light لَكِنْ (R146, backlog item 15) still «حَرْفُ عَطْفٍ» after a wāw.
+- Smoke: nine checks «v336-Sh — …» right after «v329 — a demonstrative is never muḍāf»: the incidental bugs (with a corpus walk:
+  0 rafʿ-by-ḥadhf, 0 throws), ishtighāl, مَاذَا, the Ḥijāzī مَا, إِنْ, the participle, ـوَيْهِ / ikhtiṣāṣ / وَإِلَّا, taʿlīq / ilghāʾ, and one
+  corpus check with floors (R94 ≥ 2, لِمَاذَا ≥ 39, مَاذَا naṣb ≥ 21, Ḥijāzī ≥ 36, إِنْ ≥ 14 with 0 contradicted, participle ≥ 6, ـوَيْهِ ≥ 25,
+  وَإِلَّا ≥ 13, taʿlīq ≥ 2 agreeing of ≥ 14 named, ilghāʾ ≥ 4). One older floor moved, with its measurement: «v327 — the object that
+  carries its own pronoun» allowed ≤ 3 lines calling something else an object, now ≤ 4 — the fourth is al-usul-al-munifa:23:s7:34
+  مَرْضَاتَهُ, now «مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «طَالِبًا»» where the authored line has the v329 slip «خبر كان … بالكسرة». The first full
+  run caught the v327 أَلَّا check: `illaShart` had read أَلَّا (أَنْ + لَا) as إِلَّا through the hamza-folding `flat()` — إِلَّا now needs its
+  kasra. Refit + rebuild: irab_model 2418 weights over 68931 rows, drills regenerated.
+  Scripts: scratchpad sh336/ (engine336.js spliced by splice.py; meas336.js + specs.py via m.sh; patch/*.txt via ed.py).
