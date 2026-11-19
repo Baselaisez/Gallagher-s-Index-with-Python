@@ -4687,7 +4687,11 @@ if (!CHROME) {
     // jarr phrase on a DROPPED naʿt or on the dropped khabar of kāna / laysa (مِنْ … مُتَعَلِّقٌ بِمَحْذُوفٍ خَبَرُ كَانَ) far more
     // often than the older shelf, and the engine still names the nearest word instead. The older shelf stands at 45.5%,
     // unchanged; the floor moves to 44 with the corpus and the gap is the next engine item (triage: taʿalluq bi-maḥdhūf).
-    if (r.acc < 44) throw new Error('ta\'alluq accuracy regressed to ' + r.acc + '%');
+    // (v328) taʿalluq bi-maḥdhūf decided where the letters decide it (kāna's khabar, lā's khabar, inna's wall, the ṣila, the fronted
+    // khabar; the naʿt after a nakira stays OFFERED beside the found governor, as wave 70 ruled), the ẓarf with its pronoun recognised,
+    // four misreadings stopped: the older shelf 45.5% → 55.9% (written-word targets 336 → 364, maḥdhūf 37 → 94), the five new histories
+    // 14 → 30 of 55; both shelves together 55.8%.
+    if (r.acc < 55) throw new Error('ta\'alluq accuracy regressed to ' + r.acc + '%');
     const want23 = ['بِالسِّيَاسَةِ→عَالِمًا', 'عَلَى→قَادِرًا', 'عَنْ→الذَّبِّ'];
     want23.forEach(w => { if (!r.ch23.includes(w))
       throw new Error('the worked example broke: wanted ' + w + ', got ' + r.ch23.join(' ')); });
@@ -16893,6 +16897,83 @@ if (!CHROME) {
     // (v327 stories) the third history wave adds three correct lines the letters cannot rank: bāta and kāna COMPLETE by
     // meaning (وَبَاتَ فِيهَا لَيْلَةً، مَا يَكُونُ «what would happen») and لَيْسَ مَعَهُ صَاحِبٌ with its ẓarf khabar fronted
     if (r.agree < 880 || r.dis > 41 || r.hid < 200) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis, hid: r.hid, hidAuth: r.hidAuth, list: r.list }));
+  });
+  await check('v328 — taʿalluq bi-maḥdhūf where the letters decide it (Qawāʿid al-Iʿrāb bāb 2; Shudhūr R104): a jarr phrase or ẓarf that is the khabar of a deficient kāna (وَكَانَ عِنْدَ عُمَرَ سِرَاجٌ — fronted; كَانَ ابْنُ بَطُّوطَةَ مِنْ أَهْلِ طَنْجَةَ), of لَا of the genus (لَا رَيْبَ فِيهِ), of إِنَّ (inna\'s clause is a wall: قَالُوا إِنَّا مَعَكُمْ), a ṣila (بِمَنْ مَعَهُ) or a fronted khabar (وَمَعَهُ خَادِمُهُ) hangs on an OMITTED كَائِنٌ / اسْتَقَرَّ and says which seat; after a nakira the found governor keeps its claim and the naʿt is offered beside it (wave 70), except حَدِيثٍ بَعْدَ حَدِيثٍ; the controls keep their verb; the older shelf ≥ 55.5%, the new histories ≥ 29 of 55, and no more than 42 written-word targets answered «maḥdhūf» on the older shelf', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const T = (s, k) => { const rows = SentenceAnalyzer.analyze(s); const t = TaalluqEngine.of(rows, k) || {}; return { kind: t.kind || null, seat: t.seatKey || null, word: t.word || null, alt: t.alt ? t.alt.ar : null, text: t.text ? t.text.ar : '' }; };
+      const c = { kanaQ: T('وَكَانَ عِنْدَ عُمَرَ سِرَاجٌ', 1), kanaK: T('كَانَ ابْنُ بَطُّوطَةَ مِنْ أَهْلِ طَنْجَةَ', 3), laysa: T('لَيْسَ مَعَهُ صَاحِبٌ', 1), la: T('ذٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ', 4),
+        inna: T('قَالُوا إِنَّا مَعَكُمْ', 2), sila: T('ثُمَّ سَارَ بِمَنْ مَعَهُ نَحْوَ الْعَدُوِّ', 3), waw: T('فَخَرَجَ لَيْلَةً وَمَعَهُ خَادِمُهُ أَسْلَمُ', 2), nat: T('فَأَقْبَلَ عَلَيْهِ رَجُلٌ مِنَ الْحُجَّاجِ', 3), rep: T('يَسْأَلُهُ عَنْ حَدِيثٍ بَعْدَ حَدِيثٍ', 3),
+        salam: T('قَالَ إِبْرَاهِيمُ عَلَيْهِ السَّلَامُ', 2), ahead: T('وَفِيهَا وُلِدَ', 0),
+        cJalasa: T('جَلَسَ زَيْدٌ فِي الدَّارِ', 2), cJaa: T('جَاءَ مِنَ الْمَدِينَةِ رَجُلٌ', 1), cAtf: T('دَخَلَ فِرْعَوْنُ وَجَيْشُهُ فِي الْبَحْرِ', 3), cMan: T('وَيُضِلُّ مَنْ يَشَاءُ', 1), cZaid: T('وَالْمَعْصِيَةُ لَيْسَتْ بِأَمْرِ اللهِ', 2) };
+      const flat = x => stripAr(x || '').replace(/[^ء-ي]/g, ''); const NEW = ['sibawayh-fi-al-basra','ibn-battuta-yakhruju-min-tanja','bina-baghdad','ayn-jalut','ibn-khaldun-wa-timur'];
+      let n = 0, ok = 0, nn = 0, nok = 0, litMd = 0;
+      STORIES.forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => {
+        let rows; try { rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' ')); } catch (e) { return; } if (rows.length !== sen.tokens.length) return;
+        sen.tokens.forEach((t, i) => { const m = /مُتَعَلِّقٌ\s+بِـ?«?([^»,.،]+)»?/.exec((t.irab || {}).ar || ''); if (!m) return;
+          const want = m[1].trim(), md = /مَحْذُوف/.test(want), w = flat(want).replace(/^ال/, '');
+          const literal = rows.some(x => { const a = flat(x.w); return w.length > 1 && (a.includes(w) || w.includes(a.replace(/^ال/, ''))); }); if (!md && !literal) return;
+          const got = TaalluqEngine.of(rows, i); let hit = 0;
+          if (md) hit = got && got.kind === 'mahdhuf' ? 1 : 0; else if (got && got.kind === 'found') { const a = flat(got.word); if (a.includes(w) || w.includes(a.replace(/^ال/, ''))) hit = 1; }
+          if (NEW.includes(st.id)) { nn++; nok += hit; } else { n++; ok += hit; if (!md && got && got.kind === 'mahdhuf') litMd++; } }); })));
+      return { c, n, ok, acc: Math.round(ok / n * 1000) / 10, nn, nok, litMd };
+    });
+    const c = r.c, md = (x, seat) => x.kind === 'mahdhuf' && (!seat || x.seat === seat) && /مُتَعَلِّقٌ بِمَحْذُوفٍ/.test(x.text);
+    if (!md(c.kanaQ, 'kanaMuqaddam') || !md(c.kanaK, 'kanaKhabar') || !md(c.laysa, 'kanaMuqaddam') || !/خَبَرُ «(وَ)?كَانَ» مُقَدَّمٌ/.test(c.kanaQ.text)) throw new Error('the khabar of kāna: ' + J([c.kanaQ, c.kanaK, c.laysa]));
+    if (!md(c.la, 'laKhabar') || !md(c.inna, 'innaKhabar') || !md(c.sila, 'silaOrKhabar') || !md(c.waw, 'muqaddam') || !md(c.salam, 'muqaddam')) throw new Error('the seats: ' + J([c.la, c.inna, c.sila, c.waw, c.salam]));
+    if (c.nat.kind !== 'found' || !/فَأَقْبَلَ/.test(c.nat.word || '') || !/صِفَةٌ \(نَعْتٌ\) لِـ«رَجُلٌ»/.test(c.nat.alt || '')) throw new Error('after a nakira the found verb keeps its claim and the naʿt is offered beside it: ' + J(c.nat));
+    if (!md(c.rep, 'sifa')) throw new Error('حَدِيثٍ بَعْدَ حَدِيثٍ: the repeated noun settles the naʿt: ' + J(c.rep));
+    if (c.ahead.kind !== 'found' || !/وُلِدَ/.test(c.ahead.word || '')) throw new Error('a phrase that opens its clause hangs on the verb after it: ' + J(c.ahead));
+    if (c.cJalasa.kind !== 'found' || c.cJaa.kind !== 'found' || c.cAtf.kind !== 'found' || !/دَخَلَ/.test(c.cAtf.word || '')) throw new Error('the controls keep their verb: ' + J([c.cJalasa, c.cJaa, c.cAtf]));
+    if (c.cMan.kind !== null || c.cZaid.kind !== 'exempt') throw new Error('مَنْ is no letter, the bāʾ in the khabar of لَيْسَ is zāʾida: ' + J([c.cMan, c.cZaid]));
+    if (r.acc < 55.5 || r.nok < 29 || r.litMd > 42) throw new Error('against the authored lines: ' + J({ acc: r.acc, n: r.n, nok: r.nok, nn: r.nn, litMd: r.litMd }));
+  });
+  await check('v328 — the implied أَنْ is named (Shudhūr R155–R160, R167, R168; triage I-6, MudmaraEngine): a muḍāriʿ that SHOWS its naṣb after the lām of taʿlīl is «مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ جَوَازًا بَعْدَ لَامِ التَّعْلِيلِ»; after lām al-juḥūd, حَتَّى, the fāʾ of sababiyya and the wāw of maʿiyya (behind a negation or a request) and أَوْ it is «وُجُوبًا»; حَتَّى is «حَرْفُ غَايَةٍ وَجَرٍّ»; سِرْتُ حَتَّى أَدْخُلُهَا (rafʿ) has no أَنْ; a verb joined to one already manṣūb carries the ʿaṭf; against the authored lines ≥ 129 agree, no ruling (wujūb / jawāz) differs, and no more than 31 lines name it where the authors do not (most of those authored lines call ḥattā itself, لَمْ or لَا the nāṣib)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const at = (s, k) => { const rows = SentenceAnalyzer.analyze(s); return (Murib.line(rows, k) || {}).ar || ''; };
+      const c = { lam: at('جَاءَ لِيَنْظُرَ', 1), hatta: at('انْتَظَرْتُهُ حَتَّى يَرْجِعَ', 2), hattaT: at('انْتَظَرْتُهُ حَتَّى يَرْجِعَ', 1), juhud: at('مَا كَانَ اللهُ لِيَظْلِمَهُمْ', 3), juhud2: at('لَمْ يَكُنْ لِيَغْفِرَ لَهُمْ', 2),
+        fa: at('لَا تَفْعَلْ شَرًّا فَأُعَاقِبَكَ', 3), waw: at('لَا تَأْكُلِ السَّمَكَ وَتَشْرَبَ اللَّبَنَ', 3), aw: at('لَأَقْتُلَنَّ الْكَافِرَ أَوْ يُسْلِمَ', 3), five: at('فَدَخَلُوا غَارًا فِي جَبَلٍ لِيَبِيتُوا فِيهِ', 4),
+        raf: at('سِرْتُ حَتَّى أَدْخُلُهَا', 2), atf: at('أُرِيدُ أَنْ أَقُومَ فَأَذْهَبَ', 3), nahy: at('وَلَا تَبْخَسُوا النَّاسَ', 1) };
+      const S = x => stripAr(String(x || '')).replace(/ـ/g, '').replace(/[^ء-ي ]/g, ''); const F = w => stripAr(String(w || '')).replace(/[^ء-ي]/g, '');
+      const rul = t => { const m = /بأن مضمرة\s*(?:—\s*)?(وجوبا|جوازا)?/.exec(S(t)); return m ? (m[1] || '') : null; };
+      let auth = 0, agree = 0, extra = 0, rdis = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || [];
+        if (!T.some(t => t.pos === 'verb')) continue;
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        rows.forEach((x, i) => { if (!(x.kind || '').startsWith('verb')) return; const a = S((T[i].irab || {}).ar), am = /بأن مضمرة|بان مضمرة/.test(a);
+          let ln = ''; try { ln = (Murib.line(rows, i) || {}).ar || ''; } catch (e) {} const em = /مُضْمَرَةٍ/.test(ln);
+          if (am) auth++; if (am && em) { agree++; const ra = rul(a), re = rul(ln); if (ra && ra !== re) { rdis++; list.push(st.id + ':' + ch.n + ':' + sn.id + ':' + i); } } if (em && !am) extra++; }); }
+      return { c, auth, agree, extra, rdis, list };
+    });
+    const c = r.c, has = (l, k) => new RegExp('مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ ' + k).test(l);
+    if (!has(c.lam, 'جَوَازًا بَعْدَ لَامِ التَّعْلِيلِ') || !has(c.five, 'جَوَازًا بَعْدَ لَامِ التَّعْلِيلِ')) throw new Error('after the lām of taʿlīl: ' + J([c.lam, c.five]));
+    if (!has(c.hatta, 'وُجُوبًا بَعْدَ حَتَّى') || !/^حَرْفُ غَايَةٍ وَجَرٍّ/.test(c.hattaT)) throw new Error('after ḥattā: ' + J([c.hatta, c.hattaT]));
+    if (!has(c.juhud, 'وُجُوبًا بَعْدَ لَامِ الْجُحُودِ') || !has(c.juhud2, 'وُجُوبًا بَعْدَ لَامِ الْجُحُودِ')) throw new Error('after the lām of denial: ' + J([c.juhud, c.juhud2]));
+    if (!has(c.fa, 'وُجُوبًا بَعْدَ فَاءِ السَّبَبِيَّةِ') || !has(c.waw, 'وُجُوبًا بَعْدَ وَاوِ الْمَعِيَّةِ') || !has(c.aw, 'وُجُوبًا بَعْدَ «أَوْ»')) throw new Error('after the fāʾ, the wāw, أَوْ: ' + J([c.fa, c.waw, c.aw]));
+    if (/مُضْمَرَة/.test(c.raf) || !/مَرْفُوعٌ/.test(c.raf) || /مُضْمَرَة/.test(c.atf) || /مُضْمَرَة/.test(c.nahy)) throw new Error('the controls name no hidden أَنْ: ' + J([c.raf, c.atf, c.nahy]));
+    if (r.agree < 129 || r.rdis > 0 || r.extra > 31) throw new Error('against the authored lines: ' + J({ auth: r.auth, agree: r.agree, extra: r.extra, rdis: r.rdis, list: r.list }));
+  });
+  await check('v328 — a ẓarf with an attached pronoun is a ẓarf (Shudhūr R104; triage I-11, Murib.zarfPron328): أَمَامَكَ، بَيْنِي، خَلْفَهُ are «ظَرْفُ مَكَانٍ مَنْصُوبٌ …، وَهُوَ مُضَافٌ، وَ… ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ» with what each hangs on, بَيْنِي by the fatḥa the yāʾ hides; أَمَامُكَ وَاسِعٌ (ḍamma) and مِنْ عِنْدِهِ (majrūr) are not; against the authored lines ≥ 400 of the ẓarf + pronoun tokens the authors call a ẓarf are one, and no more than 6 called something else', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const at = (s, k) => { const rows = SentenceAnalyzer.analyze(s); let ck = null; try { ck = (CaseEngine.claim(rows, k) || {}).k; } catch (e) {} return { l: (Murib.line(rows, k) || {}).ar || '', ck }; };
+      const c = { amam: at('جَلَسْتُ أَمَامَكَ', 1), bayni: at('اللهُ شَهِيدٌ بَيْنِي وَبَيْنَكَ', 2), khalf: at('وَقَفَ الْجُنْدِيُّ خَلْفَهُ', 2), ctrl: at('أَمَامُكَ وَاسِعٌ', 0), ctrlJ: at('جَاءَ مِنْ عِنْدِهِ', 2) };
+      const S = x => stripAr(String(x || '')).replace(/[^ء-ي ]/g, ''), F = w => stripAr(String(w || '')).replace(/[^ء-ي]/g, '');
+      const Z = /^(مع|عند|لدى|لدي|لدن|بين|فوق|تحت|امام|أمام|خلف|وراء|حول|قبل|بعد|دون|قدام|يمين|شمال|ازاء|إزاء|حذاء|تلقاء|وسط|تجاه)$/, P = /^(ه|ها|هم|هما|هن|ك|كم|كما|كن|ي|نا)$/;
+      let auth = 0, both = 0, extra = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || [];
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        rows.forEach((x, i) => { const seg = (x.seg || []).map(F).filter(Boolean); let p = seg.slice(); if (p.length > 1 && /^[وف]$/.test(p[0])) p = p.slice(1); let b = p[0] || ''; if (/^[وف]/.test(b) && Z.test(b.slice(1))) b = b.slice(1);
+          if (!(p.length > 1 && Z.test(b) && P.test(p[p.length - 1]))) return;
+          const az = /ظرف/.test(S((T[i].irab || {}).ar)); let ln = ''; try { ln = (Murib.line(rows, i) || {}).ar || ''; } catch (e) {} const ez = /ظَرْفُ (مَكَانٍ|زَمَانٍ)/.test(ln);
+          if (az) auth++; if (az && ez) both++; if (ez && !az) { extra++; list.push(st.id + ':' + ch.n + ':' + sn.id + ':' + i); } }); }
+      return { c, auth, both, extra, list };
+    });
+    const c = r.c, z = x => /^ظَرْفُ مَكَانٍ مَنْصُوبٌ/.test(x.l) && /وَهُوَ مُضَافٌ/.test(x.l) && /مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ/.test(x.l) && x.ck === 'nasb';
+    if (!z(c.amam) || !/مُتَعَلِّقٌ بِـ«جَلَسْتُ»/.test(c.amam.l) || !z(c.bayni) || !/الْمُقَدَّرَةُ/.test(c.bayni.l) || !z(c.khalf)) throw new Error('the ẓarf with its pronoun: ' + J([c.amam, c.bayni, c.khalf]));
+    if (/ظَرْفُ/.test(c.ctrl.l) || c.ctrl.ck === 'nasb' || /ظَرْفُ/.test(c.ctrlJ.l)) throw new Error('the controls: ' + J([c.ctrl, c.ctrlJ]));
+    if (r.both < 400 || r.extra > 6) throw new Error('against the authored lines: ' + J({ auth: r.auth, both: r.both, extra: r.extra, list: r.list }));
   });
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));

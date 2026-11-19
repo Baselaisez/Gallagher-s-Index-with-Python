@@ -14245,3 +14245,73 @@ Points left for the scholar:
 
 **Lesson:** a new history package must also join the `tarikh` regex in `LIB_SOURCES`, or it lands on no shelf. The
 shelf filter is by id, not by a manifest field.
+
+### v328 — taʿalluq bi-maḥdhūf, the implied أَنْ (I-6), and the ẓarf with its pronoun (I-11)
+- **Taʿalluq bi-maḥdhūf (Qawāʿid al-Iʿrāb bāb 2; Shudhūr R104)** — `TaalluqEngine.seat328 / of / _of`. A jarr phrase or ẓarf that is a
+  khabar, a naʿt, a ḥāl or a ṣila hangs on an OMITTED كَائِنٌ / اسْتَقَرَّ; `of()` returns kind "mahdhuf" over a word it found only where
+  the letters settle the seat, and its text names the seat («مُتَعَلِّقٌ بِمَحْذُوفٍ خَبَرُ «كَانَ» مُقَدَّمٌ …», `seatKey`): the khabar of a deficient
+  kāna-sister (no manṣūb khabar written; the ism after it → khabar muqaddam, with «or kāna is complete» beside it); the khabar of لَا of
+  the genus (its ism is built on the fatḥa — a noun that governed the phrase would be «like the muḍāf» and wear a tanwīn); the clause of
+  إِنَّ / أَنَّ / إِنَّمَا / لٰكِنَّ, now a WALL like the ṣila (nothing inside it hangs on a verb before it — قَالُوا إِنَّا مَعَكُمْ); a mawṣūl or a
+  مَا / مَنْ right before the phrase (ṣila, or khabar when it asks — named as both); a wāw-led phrase with a noun in written rafʿ after it
+  (وَمَعَهُ خَادِمُهُ — khabar muqaddam); a jarr letter right after a jarr letter (the first is a cited particle: وَمِنْ لِلِابْتِدَاءِ); the clause-
+  head mubtadaʾ with nothing else to be its khabar (إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ); عَلَيْهِ السَّلَامُ; the era of a date (لِلْهِجْرَةِ); the repeated noun
+  (حَدِيثٍ بَعْدَ حَدِيثٍ — naʿt). SHORTLISTS, by design: after an indefinite noun the walk passed over, the found governor KEEPS its claim and
+  the naʿt is offered beside it («صِفَةٌ (نَعْتٌ) لِـ«…»») — wave 70's ruling, which its smoke check holds (مَرَرْتُ بِرَجُلٍ فِي الدَّارِ: found +
+  ṣifa). A first cut made the naʿt lead, because the authored lines favour it 14 to 3; it broke wave 70 and the Shajara's
+  «ضَرَبَ زَيْدٌ عَمْرًا فِي الدَّارِ» (عَمْرًا is glossed «life», so no name test can save it), and the nearest-wins rule is not traded for points;
+  no naʿt is offered after a name (the glossary's «Zayd (…)» gloss), a time noun, a «مِنْ … إِلَى» pair or a muḍāf governor; a wāw-led noun in rafʿ before the phrase (وَبَيْبَرْسُ أَمَامَهُمْ) makes it that noun's khabar with the
+  verb beside it — the verb first where the noun may join a written doer (دَخَلَ فِرْعَوْنُ وَجَيْشُهُ فِي الْبَحْرِ). Not done, on evidence: the ḥāl
+  after a definite noun — the authored lines hang that phrase on the found word 74 times and call it a ḥāl 3 times.
+  Also in the walk: a ẓarf with an attached pronoun (مَعَهُ، أَمَامَكَ، بَيْنِي) and a manṣūb time ẓarf (يَوْمَئِذٍ، يَوْمَ الْجُمُعَةِ) hang like a
+  phrase; a phrase that OPENS its clause hangs on the verb right after it (وَفِيهَا وُلِدَ، وَلِذٰلِكَ طَلَبَهُ); a jarr letter behind a separable
+  wāw (وَفِيهَا) is read at all. Four old misreadings stop: مَنْ is never مِنْ; a word in written rafʿ is no majrūr (لَقَائِمٌ، كَاذِبَةٌ, كُنَّا);
+  رَبَّنَا is not رُبَّ; the bāʾ is zāʾida only in the khabar of لَيْسَ / مَا / a negated kāna (لَيْسَتْ بِأَمْرِ اللهِ), no longer after every negation
+  in the sentence (لَا يَقُومُ بِذَاتِهِ hangs on يَقُومُ), and مِنْ is zāʾida only before an indefinite majrūr. The old `_of` / `exempt` stay as
+  `_ofBase` / `exemptBase` underneath.
+  Corpus (taal.js, the smoke's matching): the older shelf **45.5% → 55.9%** (373 → 458 of 820; the written-word targets 336 → 364, the
+  maḥdhūf ones 37 → 94); the five new histories **14 → 30 of 55**. Four older-shelf items the matcher now counts as lost: two are no
+  disagreement — habil-wa-qabil:1:s1:2 «كَانَ لِآدَمَ ابْنَانِ» and wasiyyat-abi-hanifa-samti:1:s4:6 «كَانَ مَعَكَ آلَةٌ», whose lines say «مُتَعَلِّقٌ
+  بِخَبَرِ كَانَ (الْمُقَدَّمِ)» without the word «مَحْذُوف», so the matcher reads «كان» as the target —; two are complete kāna by meaning
+  (aqaid-ahl-al-sunna:34:s2:6 الَّتِي يَكُونُ بِهَا الْفِعْلُ, qisas-al-nabiyyin-4:30:s4:5 أَنَّى يَكُونُ لِي وَلَدٌ — the engine names that reading beside
+  its own). The nine authored naʿt lines after a nakira (ibn-battuta-yakhruju-min-tanja:2:s1:10, :3:s4:4, :4:s2:12; tariq-ibn-ziyad:1:s5:8,
+  :2:s1:13; umar-ibn-abd-al-aziz-wa-al-siraj:3:s1:7, :3:s4:13; talkhis-al-miftah:4:s2:10; bad-al-amali:11:s53:6 …) carry the naʿt as the
+  engine's second reading.
+  Also: `QawaidEngine` no longer reads a ẓarf in its own naṣb after a noun as a broken idāfa (لَا خَيْلَ عِنْدَكَ — talkhis 63:s15 was a false
+  alarm once I-11 gave عِنْدَكَ its naṣb claim), and a fronted khabar after a negation keeps wave 70's «the phrase may raise a fāʿil» (`fail`).
+- **The implied أَنْ (Shudhūr R155–R160, R167, R168; triage I-6)** — `MudmaraEngine.read / sign`, hooked at the end of `Murib.line` and in
+  `Murib.term` for حَتَّى. A muḍāriʿ that SHOWS its naṣb (a written fatḥa on its last radical, read through the paradigm cell so an object
+  pronoun or a root nūn cannot fool it; or a five-verb whose nūn is gone) with no nāṣib written before it is «مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ»:
+  «جَوَازًا بَعْدَ لَامِ التَّعْلِيلِ»; «وُجُوبًا» after لَامُ الْجُحُودِ (مَا كَانَ / لَمْ يَكُنْ … لِيَفْعَلَ), حَتَّى (now «حَرْفُ غَايَةٍ وَجَرٍّ، وَالْمَصْدَرُ
+  الْمُؤَوَّلُ … فِي مَحَلِّ جَرٍّ بِهِ» — it is not the nāṣib, R156), the fāʾ of sababiyya and the wāw of maʿiyya behind a negation or a request
+  (R160's eight, لَوْ of wishing among them), and أَوْ meaning «إِلَى / إِلَّا». Refusals: rafʿ after حَتَّى (سِرْتُ حَتَّى أَدْخُلُهَا, R155); a verb
+  joined by fāʾ / wāw / أَوْ to a verb already manṣūb, or behind a written أَنْ, carries the ʿaṭf; a letter that opens the sentence (its
+  antecedent is in the line before); a dropped nūn after لَا / لَمْ (jazm or naṣb) or behind a clause-initial lām (the lām of the imperative
+  shares it); the nūn of women (no visible sign); the nūn of emphasis. SHORTLIST: a fāʾ or wāw with no negation or request before it —
+  «وُجُوبًا إِنْ كَانَتِ الْفَاءُ لِلسَّبَبِيَّةِ … وَجَوَازًا إِنْ عُطِفَ الْفِعْلُ عَلَى اسْمٍ صَرِيحٍ» (R168).
+  Corpus (147 authored «بأن مضمرة» lines): before 0 named, after 131; where the author gives the ruling, 67 of 67 agree (wujūb / jawāz).
+  29 lines name it where the authors do not: 17 are **corpus slips** (below), the rest cited forms the analyzer reads as verbs (أَفْعَلَ،
+  وَأَكْبَرَهُمْ، أَهَبَ) or paradigm cells of the lām of the imperative.
+- **A ẓarf with its pronoun (Shudhūr R104; triage I-11)** — `Murib.zarfPron328` (an early line), `CaseEngine.claim`. أَمَامَكَ، عِنْدَهُ، بَيْنِي،
+  فَوْقَهُمْ: «ظَرْفُ مَكَانٍ (زَمَانٍ for قَبْلَ / بَعْدَ) مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ (الْمُقَدَّرَةُ … before the yāʾ)، وَهُوَ مُضَافٌ، وَ<the pronoun>
+  ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، مُتَعَلِّقٌ بِـ«…»» (لَدَى / لَدُنْ built on the sukūn in the place of naṣb); the claim is naṣb. A
+  ḍamma (أَمَامُكَ وَاسِعٌ), a kasra, or a jarr letter before it (مِنْ عِنْدِهِ، مِنْ قَبْلِكَ) leaves it a plain noun. Corpus (417 ẓarf + pronoun
+  tokens the authors call a ẓarf): before 131 lines said «ظَرْفٌ», after 406; 5 called otherwise — 3 **corpus slips** and 2 engine slips.
+- **Corpus slips for the hoca** (package:chapter:sentence:token, tokens counted from 1):
+  - ḥattā named as the nāṣib (the Kūfan view R156 rejects; the line should say «بِأَنْ مُضْمَرَةٍ وُجُوبًا بَعْدَ حَتَّى»): al-maqamat-birgivi:2:s37:29,
+    :2:s40:25; al-usul-al-munifa:3:s21:28, :19:s3:16, :21:s7:11, :25:s7:50, :25:s11:28, :25:s12:20, :32:s2:64, :34:s2:40.
+  - «مَنْصُوبٌ بِلَمْ» on the verb of lām al-juḥūd (لَمْ يَكُنْ لِيُخْطِئَكَ — لَمْ is a jāzim; the nāṣib is the hidden أَنْ after the lām): al-usul-al-
+    munifa:3:s14:27, :3:s14:32, :24:s21:54, :24:s21:112; «مَنْصُوبٌ بِمِنْ» al-maqamat-birgivi:7:s5:12.
+  - «مَنْصُوبٌ بِلَا»: al-usul-al-munifa:22:s3:21 (حَتَّى لَا يَشُكَّ — بَعْدَ حَتَّى), :19:s7:37 (لَا يُقْضَى عَلَيْهِمْ فَيَمُوتُوا — the fāʾ of sababiyya after a
+    negation, R159).
+  - بَيْنَ called «مَفْعُولٌ بِهِ» (it is a ẓarf makān, R104): al-usul-al-munifa:25:s7:53 يَقْضِي بَيْنَهُمْ, :25:s11:31 يَحْكُمُ بَيْنَهُمْ, :32:s2:54
+    فَأَصْلِحُوا بَيْنَهُمَا.
+- Smoke: «the Ta'alluq engine names what every jarr-majrur hangs on» floor 44 → 55 (both shelves now 55.8%); «v328 — taʿalluq bi-maḥdhūf
+  where the letters decide it» (older shelf ≥ 55.5%, new histories ≥ 29 of 55, older-shelf written-word targets answered «maḥdhūf» ≤ 42 —
+  now 40, was 26 —, the seat examples, the naʿt offered beside فَأَقْبَلَ, and the controls جَلَسَ زَيْدٌ فِي الدَّارِ، جَاءَ مِنَ الْمَدِينَةِ رَجُلٌ، دَخَلَ فِرْعَوْنُ وَجَيْشُهُ فِي الْبَحْرِ),
+  «v328 — the implied أَنْ is named» (agree ≥ 129, ruling differs 0, named-where-the-authors-do-not ≤ 31), «v328 — a ẓarf with an attached
+  pronoun is a ẓarf» (≥ 400, otherwise ≤ 6). Measurement scripts: scratchpad e328/m_t.js (taʿalluq, per item), m_i6.js, m_i11.js, via the
+  page server e328/server.js + p.sh; taal.js unchanged.
+- Not done (next): the ḥāl seat after a definite noun (the evidence above says the found word), a forward governor in general (the walk
+  looks forward only behind an inna wall and at a clause-opening phrase), maḥdhūf after a proper name the glossary does not gloss as one,
+  the I-11 time nouns' own Murib line (يَوْمَئِذٍ is read by the walk, its line is unchanged).
