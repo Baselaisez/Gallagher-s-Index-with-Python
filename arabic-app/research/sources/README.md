@@ -271,3 +271,47 @@ know, one per line, drawn from the author's sharḥ on those pages (`bab`, `page
 certainty, else a close paraphrase — `rule_en`, `rule_tr` in the madrasa register, the page's own examples with the
 transcriber's full vowelling, and an `engine_hint`). It is the input of the engine triage and of new grammar notes; a
 rule enters the app only through a note or an engine rule with its own smoke check.
+
+**`siyar-abi-hanifa-src.txt`** (2026-11-19) — six passages of al-Dhahabī's entry on Imam Abū Ḥanīfa al-Nuʿmān ibn Thābit
+(no. 163) in «سير أعلام النبلاء» by Shams al-Dīn Muḥammad ibn Aḥmad al-Dhahabī (d. 748 AH), in the edition al-Maktaba
+al-Shāmila names «ط الرسالة» (Muʾassasat al-Risāla), book 10906, vol. 6, printed pp. 390, 391, 394, 395, 399, 401, 403.
+Fetched 2026-11-19 from https://shamela.ws/book/10906/4640, /4641, /4644, /4645, /4649, /4651 and /4653 (the running
+page of the site, not the printed page; the entry runs /4640–/4653). One block per Shamela page, each holding only the
+contiguous span the package uses, copied exactly as the page gives it — the edition's own partial vowelling, its
+spelling and punctuation, nothing normalised or corrected; the editor's footnotes are not copied. It is the source of
+`content/samples/siyar-abi-hanifa` (see `tools/authoring/author_siyar_abi_hanifa.py`, whose manifest attribution lists
+the two vowelling layers and everything left out between the spans).
+
+**`muallaqat-zuhayr-src.txt`** (2026-11-19) — the Shamela pages behind `content/samples/muallaqat-zuhayr`, the Muʿallaqa
+of Zuhayr ibn Abī Sulmā, in three groups. (A) Ibn Qutayba (d. 276 AH), «الشعر والشعراء», the edition al-Maktaba al-Shāmila
+names «دار الحديث، القاهرة، 1423 هـ», book 23785, the entry «زهير بن أبى سلمى», vol. 1 p. 144 (§§ 212–213 are the span
+used): https://shamela.ws/book/23785/137. (B) al-Zawzanī (d. 486 AH), «شرح المعلقات السبع», the edition Shamela names
+«دار إحياء التراث العربي، 1423 هـ / 2002 م», book 11253, «معلقة زهير», printed pp. 133–136, 139–141, 143–144 and 148–151 —
+the verse text, order and count of the package (vv. 1–6, 16–21, 28–32, 46–58) with his commentary:
+https://shamela.ws/book/11253/143–146, /149–151, /153–154, /158–161. (C) Muḥammad ʿAlī Ṭāhā al-Durra, «فتح الكبير
+المتعال إعراب المعلقات العشر الطوال», the edition Shamela names «مكتبة السوادي، جدة، ط 2، 1409 هـ / 1989 م», book 151017,
+vol. 2 pp. 272–282, 296–306, 313–320 and 337–356 — the iʿrāb of the same verses (his recension counts and orders them
+differently), used as a CHECK on every token's line and as a second witness for the verse text:
+https://shamela.ws/book/151017/809–819, /833–843, /850–857, /874–893. Fetched 2026-11-19; `/book/<id>/<n>` is the
+site's running page, the block header gives the printed volume and page. One block per page, the whole page exactly as
+the site gives it — the edition's own partial vowelling, its typos and the editors' footnotes untouched; nothing
+normalised. See `tools/authoring/author_muallaqat_zuhayr.py`, whose manifest attribution lists the two vowelling layers,
+the verse numbers of every chapter and the runs left out.
+
+**`muhammad-ibn-zayd-wa-al-umawi-src.txt`** and **`muhammad-ibn-zayd-wa-al-umawi-witness.txt`** (2026-11-19) — the ḥikāya
+of Muḥammad ibn Zayd al-ʿAlawī, the Dāʿī in Ṭabaristān, and the Umayyad (with the story inside it of Muḥammad ibn Hishām
+ibn ʿAbd al-Malik, al-Manṣūr's jewel and Muḥammad ibn Zayd ibn ʿAlī), from «المستجاد من فعلات الأجواد» by al-Muḥassin ibn
+ʿAlī al-Tanūkhī (d. 384 AH). EDITION as al-Maktaba al-Shāmila names it: book 768, whose card names NO edition — «الكتاب
+مرقم آليا غير موافق للمطبوع», text «نقلا عن موقع الوراق»; the page numbers are Shamela's running pages, not the print's.
+Fetched 2026-11-19 from https://shamela.ws/book/768/42 (from «[حكاية] حدث القاضي أبو القاسم علي بن المحسن…») and
+https://shamela.ws/book/768/43 (to «…وجاؤوه بكتاب بسلامته»). The `-src` file holds only this ḥikāya, one block per Shamela
+page, exactly as the page gives it: UNVOWELLED, its slips untouched («الخاج», «فقال إليه رجل», «أمن أيهم», «بهاذ»,
+«للحسنين», «وهذا يعنيه», «وإنه مأخوذ», «محمد بم زيد», the broken «امضيا به معه بعد من المسجد قال له»). The `-witness`
+file is the SECOND WITNESS those slips are mended against, and nothing more: the same story in al-Tanūkhī's «الفرج بعد
+الشدة», which the text itself cites — ed. ʿAbbūd al-Shāljī, Dār Ṣādir, Beirut 1398/1978, vol. 2, pp. 334–337 (Shamela book
+12828, card «ترقيم الكتاب موافق للمطبوع»), https://shamela.ws/book/12828/640–643, whole pages with the site's partial
+vowelling untouched. The Qurʾānic phrase in the dialogue (al-Anʿām 124) was checked on Tafsīr al-Jalālayn,
+https://shamela.ws/book/12876/1083 («{الله أعلم حيث يجعل رسالاته} بالجمع والإفراد»). It is the source of
+`content/samples/muhammad-ibn-zayd-wa-al-umawi` (see `tools/authoring/author_muhammad_ibn_zayd_wa_al_umawi.py`, whose
+manifest attribution lists every correction `was → now`, the readings kept against the witness, and the vowels left for
+the scholar — the e-text being bare, every vowel in the package is editorial).
