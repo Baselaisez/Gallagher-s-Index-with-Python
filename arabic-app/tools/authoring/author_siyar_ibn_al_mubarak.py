@@ -1261,7 +1261,7 @@ for d in (OUT_ROOT.iterdir() if OUT_ROOT.exists() else []):
         try: _STAGED[d.name] = json.loads((d / "glossary.json").read_text(encoding="utf-8"))["entries"]
         except Exception: pass
 for k, e in NEW_GLOSS.items():
-    hit = [p for p in PKGS if k in _G[p]]
+    hit = [p for p in PKGS if k in _G[p] and _lemma_id(_G[p][k]) != _lemma_id(e)]   # (v333) a sister package may hold the key with the same word
     assert not hit, ("a key is a global claim — taken", k, hit)
     for p, g in _STAGED.items():
         if k in g: assert _lemma_id(g[k]) == _lemma_id(e), ("staged clash", k, p, g[k].get("lemma"))
@@ -1289,7 +1289,7 @@ assert not [k for k in GLOSS_HERE if k not in GLOSS], [k for k in GLOSS_HERE if 
 
 MORPH = {"verbs": {}}
 _NV = MORPH["verbs"]
-_NV["tahayyala"] = _sg.derived(_sg.B5, _sg.W5, "َ", "تَحَيَّل", "تَحَيَّل", "تَحَيَّل", "تَحَيُّل", "مُتَحَيِّل", note="تَحَيَّلَ يَتَحَيَّلُ تَحَيُّلًا: طَلَبَ الْحِيلَةَ وَاحْتَالَ — وَالْيَاءُ فِيهِ مُنْقَلِبَةٌ عَنْ وَاوٍ (مِنَ الْحَوْلِ).")
+_NV["tahayyala"] = dict(_sg.derived(_sg.B5, _sg.W5, "َ", "تَحَيَّل", "تَحَيَّل", "تَحَيَّل", "تَحَيُّل", "مُتَحَيِّل", note="تَحَيَّلَ يَتَحَيَّلُ تَحَيُّلًا: طَلَبَ الْحِيلَةَ وَاحْتَالَ — وَالْيَاءُ فِيهِ مُنْقَلِبَةٌ عَنْ وَاوٍ (مِنَ الْحَوْلِ)."), samai=True)   # heard: the yāʾ of الْحِيلَة is kept (the root is ح و ل, whose own Form V is تَحَوَّلَ)
 _NV["irtahala"] = _sg.derived(_sg.B8, _sg.W8, "َ", "اِرْتَحَل", "رْتَحِل", "اِرْتَحِل", "اِرْتِحَال", "مُرْتَحِل")
 _NV["injafala"] = _sg.derived(_sg.B7, _sg.W7, "َ", "اِنْجَفَل", "نْجَفِل", "اِنْجَفِل", "اِنْجِفَال", "مُنْجَفِل", note="اِنْجَفَلَ الْقَوْمُ: أَسْرَعُوا مُنْدَفِعِينَ بِجَمَاعَتِهِمْ.")
 _NV["taqattaa"] = _sg.derived(_sg.B5, _sg.W5, "َ", "تَقَطَّع", "تَقَطَّع", "تَقَطَّع", "تَقَطُّع", "مُتَقَطِّع")

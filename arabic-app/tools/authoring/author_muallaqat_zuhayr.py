@@ -74,13 +74,13 @@ NAIB_HUWA = ("، وَنَائِبُ الْفَاعِلِ مُسْتَتِرٌ ت
 HIYA_HARB = ("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْحَرْبِ", "; the doer is the hidden «she» — the war", "; fâil, harbe dönen gizli zamir «o»")
 G_SHART = ["al-majzum-wal-shart-wal-jaza", "jawazim-al-mudari-wal-amr-fil-kafiya"]
 
-def MAN(full, sh, jw, lead=None, seat=None, tail=("", "", ""), khabar=True):
+def MAN(full, sh, jw, lead=None, seat=None, tail=("", "", ""), khabar=True, extra=()):
     """مَنْ الشَّرْطِيَّة with its full line: the conditional noun, its seat, the condition's verb and the answer with the sign of
     each jazm. sh / jw are (ar, en, tr) triples; lead overrides the reading of the waw before it."""
     has = full[0] in "وف"
     lead = lead or ((WA_AR, "The waw conjoins; ", "«ve» + ") if has else ("", "", ""))
     seat = seat or ("فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ", "in the seat of raf' as mubtada", "mübtedâ olarak mahallen merfû")
-    return tok(full, "man", "pron", G_SHART + (["mubtada-khabar"] if khabar else ["maful-bihi"]) + ["al-mabni-wal-mudmar"],
+    return tok(full, "man", "pron", G_SHART + (["mubtada-khabar"] if khabar else ["maful-bihi"]) + ["al-mabni-wal-mudmar"] + list(extra),
         lead[0] + "مَنْ اسْمُ شَرْطٍ جَازِمٌ يَجْزِمُ فِعْلَيْنِ، مَبْنِيٌّ عَلَى السُّكُونِ " + seat[0] + " — فِعْلُ الشَّرْطِ: " + sh[0] + "؛ وَجَوَابُهُ: " + jw[0] + ("؛ وَجُمْلَتَا الشَّرْطِ وَالْجَوَابِ خَبَرُ «مَنْ»" if khabar else "") + tail[0] + ".",
         lead[1] + "مَنْ «whoever» is the conditional noun that puts two verbs in jazm, built on sukun " + seat[1] + " — the condition's verb: " + sh[1] + "; its answer: " + jw[1] + ("; the condition and its answer together are the khabar of مَنْ" if khabar else "") + tail[1] + ".",
         lead[2] + "men «kim …-sa»: iki fiili cezmeden şart ismi, sükûn üzere mebnî, " + seat[2] + " — şart fiili: " + sh[2] + "; cevabı: " + jw[2] + ("; şart ve cevap cümleleri «men»in haberidir" if khabar else "") + tail[2] + ".",
@@ -378,7 +378,7 @@ S1.append({"id": "s8", "translation": {
  "tokens": [MADI("فَقَالَ", "qala", ["hollow-verbs", "maful-bihi"], **W(FAIL_BAAD, MAQUL)),
   FAIL("عُمَرُ", "umar", "propn", ["mamnu-min-sarf"], sign="بِالضَّمَّةِ مِنْ غَيْرِ تَنْوِينٍ", **W(DIPT_UMAR)),
   *RADIYA()[:2], RADIYA()[2] | {"punctAfter": ":"},
-  MADI("ذَهَبَ", "dhahaba", ["tibaq", "muqabala"], note_ar=FAIL_BAAD[0] + " — وَفِيهِ طِبَاقٌ بَيْنَ «ذَهَبَ» وَ«بَقِيَ»، وَمُقَابَلَةٌ بَيْنَ الْجُمْلَتَيْنِ: ذَهَبَ ↔ بَقِيَ، مَا أَعْطَيْتُمُوهُ ↔ مَا أَعْطَاكُمْ — وَكِلَاهُمَا عَلَى حَدِّ التَّلْخِيصِ", note_en=FAIL_BAAD[1] + " — a tibaq of «is gone» and «has remained», and a muqabala of the two clauses: gone ↔ remained, what you gave him ↔ what he gave you — both by the Talkhīṣ's definition", note_tr=FAIL_BAAD[2] + " — «gitti» ile «kaldı» arasında tıbâk, iki cümle arasında mukâbele vardır: gitti ↔ kaldı, sizin verdiğiniz ↔ onun verdiği — ikisi de Telhîs'in tarifine göre"),
+  MADI("ذَهَبَ", "dhahaba", ["tibaq"], note_ar=FAIL_BAAD[0] + " — وَبَيْنَهُ وَبَيْنَ «بَقِيَ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ", note_en=FAIL_BAAD[1] + " — with «has remained» it makes a tibaq by the Talkhīṣ's definition", note_tr=FAIL_BAAD[2] + " — «kaldı» ile arasında Telhîs'in tarifine göre tıbâk vardır"),
   T("مَا", "ma-mawsula", "pron", ["ism-mawsul", "fail"],
      "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ فَاعِلُ «ذَهَبَ» — وَهُوَ الْمَالُ.",
      "A relative noun «what», built on sukun, in the seat of raf' as the doer of «is gone» — the wealth.",
@@ -936,20 +936,20 @@ V(S5, "I have seen the Fates strike like a night-blind she-camel's stumbling: wh
      "A maf'ul mutlaq of an omitted verb — «they strike with the striking of a night-blind camel» — in nasb, annexed to its doer; the omitted clause is the second object of «I have seen», in the seat of nasb. Here is a tashbih baligh — mu'akkad and mujmal: the thing likened is the Fates' falling on people; the thing it is likened to, the stumbling of the عَشْوَاء, the she-camel that cannot see by night; the tool is dropped, and so is the point of likeness — falling without order and without sight (al-Zawzanī).",
      "Mahzûf bir fiilin mef'ûl-i mutlakı — «gece körü devenin çarpması gibi çarparlar» — mansûb, fâiline muzâf; mahzûf cümle «gördüm»ün ikinci mef'ûlü, mahallen mansûb. Burada teşbîh-i belîğ — müekked mücmel — vardır: müşebbeh ecellerin insanlara isabeti; müşebbehün bih «aşvâ'»nın, yani gece görmeyen dişi devenin rastgele basışı; edat da vech-i şebeh de — düzensiz ve görmeden vâki olmak — hazfedilmiştir (Zevzenî)."),
   MUDAF_ILAYH("عَشْوَاءَ", "ashwa", extra=["mamnu-min-sarf", "ism-mamdud"], sign=FATHA_JARR, note_ar=" لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ لِأَلِفِ التَّأْنِيثِ الْمَمْدُودَةِ — تَأْنِيثُ الْأَعْشَى", note_en=" — by the fatha: a diptote, for its lengthened feminine alif — the feminine of أَعْشَى «night-blind»", note_tr=" — fetha ile: elif-i memdûde-i te'nîs sebebiyle gayr-i munsarif — «a'şâ»nın (gece körü) müennesi"),
-  MAN("مَنْ", D("تُصِبْ", "sukun"), D("تُمِتْهُ", "sukun"), seat=MAN_OBJ, khabar=False,
+  MAN("مَنْ", D("تُصِبْ", "sukun"), D("تُمِتْهُ", "sukun"), seat=MAN_OBJ, khabar=False, extra=["muqabala"],
       tail=(" — وَجُمْلَةُ الشَّرْطِ وَجَوَابِهِ مِنْ تَعَدُّدِ الْمَفْعُولِ الثَّانِي لِـ«رَأَيْتُ» فِي مَحَلِّ نَصْبٍ، وَقِيلَ: بَدَلٌ مِنْ «خَبْطَ» (الدُّرَّةُ). وَقِيلَ: «مَنْ» مُبْتَدَأٌ وَمَفْعُولُ «تُصِبْ» مَحْذُوفٌ، وَخَبَرُهُ جُمْلَتَا الشَّرْطِ وَالْجَوَابِ، وَعَلَيْهِ تَفْسِيرُ الزَّوْزَنِيِّ. وَفِي الْبَيْتِ مُقَابَلَةُ اثْنَيْنِ بِاثْنَيْنِ: «تُصِبْ … تُمِتْهُ» وَ«تُخْطِئْ … يُعَمَّرْ» — عَلَى حَدِّ التَّلْخِيصِ: مَعْنَيَانِ ثُمَّ مَا يُقَابِلُهُمَا عَلَى التَّرْتِيبِ (وَعِبَارَةُ الزَّوْزَنِيِّ: مَنْ أَصَابَتْهُ الْمَنَايَا أَهْلَكَتْهُ وَمَنْ أَخْطَأَتْهُ أَبْقَتْهُ)", " — the conditional sentence is a further second object of «I have seen», in the seat of nasb; some make it a badal of «the stumbling» (al-Durra). Others read مَنْ as a mubtada with the object of «they hit» left out, the condition and its answer being its khabar — and so al-Zawzanī explains it. The verse holds a muqabala of two with two: «hit … kill» against «miss … is given long life» — by the Talkhīṣ's definition: two meanings, then what answers them, in order (al-Zawzanī's words: «whom the Fates hit they destroy, and whom they miss they spare»)", " — şart cümlesi cevabıyla birlikte «gördüm»ün bir başka ikinci mef'ûlüdür, mahallen mansûb; «habt»tan bedel olduğu da söylenmiştir (Dürre). Bir görüşe göre «men» mübtedâdır, «isabet ederlerse»nin mef'ûlü mahzûftur ve haberi şart ile cevap cümleleridir; Zevzenî'nin açıklaması buna göredir. Beyitte ikiye iki mukâbele vardır: «isabet — öldürme» ile «ıskalama — ömür verme» — Telhîs'in tarifine göre: iki mânâ, sonra sırasıyla onların mukabili (Zevzenî'nin ifadesi: «ecellerin isabet ettiğini helâk eder, ıskaladığını bırakır»)")),
-  JV("تُصِبْ", "asaba", "shart", "sukun", g=["form-iv-verbs", "hollow-verbs", "muqabala", "tibaq"], doer=("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْمَنَايَا", "; the doer is the hidden «she» — the Fates", "; fâil ecellere dönen gizli zamir «o»"),
+  JV("تُصِبْ", "asaba", "shart", "sukun", g=["form-iv-verbs", "hollow-verbs", "tibaq"], doer=("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْمَنَايَا", "; the doer is the hidden «she» — the Fates", "; fâil ecellere dönen gizli zamir «o»"),
      note=(" — أَجْوَفُ حُذِفَتْ عَيْنُهُ لِالْتِقَاءِ السَّاكِنَيْنِ (تُصِيبُ ← تُصِبْ)؛ وَبَيْنَهُ وَبَيْنَ «تُخْطِئْ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ", " — a hollow verb whose middle letter drops where two quiescents meet (تُصِيبُ → تُصِبْ); with «miss» it makes a tibaq by the Talkhīṣ's definition", " — ecvef fiil; iki sâkin karşılaştığı için aynü'l-fiili düşmüştür (tusîbü → tusib); «ıskalarlarsa» ile arasında, Telhîs'in tarifine göre, tıbâk vardır"))],
- [T("تُمِتْهُ", "amata", "verb", G_SHART + ["form-iv-verbs", "hollow-verbs", "al-bariz-al-muttasil", "maful-bihi", "muqabala", "tibaq"],
+ [T("تُمِتْهُ", "amata", "verb", G_SHART + ["form-iv-verbs", "hollow-verbs", "al-bariz-al-muttasil", "maful-bihi", "tibaq"],
      "فِعْلٌ مُضَارِعٌ مَجْزُومٌ لِأَنَّهُ جَوَابُ الشَّرْطِ وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْمَنَايَا، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ يَعُودُ عَلَى «مَنْ» — وَبَيْنَهُ وَبَيْنَ «يُعَمَّرْ» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ.",
      "Present verb in jazm as the answer of the condition, its sign the sukun; the doer is the hidden «she» (the Fates), and the attached «him», returning to مَنْ, is the object, in the seat of nasb — with «is given long life» it makes a tibaq by the Talkhīṣ's definition.",
      "Şartın cevabı olarak meczûm muzâri, alâmeti sükûn; fâil ecellere dönen gizli zamir «o»; «men»e dönen bitişik «onu» mef'ûlün bih, mahallen mansûb — «ömrü uzatılır» ile arasında, Telhîs'in tarifine göre, tıbâk vardır.",
      segs=SG(("تُمِتْ", "amata", "verb"), ("هُ", "pron-3ms", "pron"))),
   MAN("وَمَنْ", D("تُخْطِئْ", "sukun"), D("يُعَمَّرْ", "sukun"), seat=MAN_OBJ, khabar=False,
       tail=(" — أَوْ مُبْتَدَأٌ عَلَى حَذْفِ الْمَفْعُولِ: وَمَنْ تُخْطِئْهُ (الزَّوْزَنِيُّ)، وَخَبَرُهُ حِينَئِذٍ جُمْلَتَا الشَّرْطِ وَالْجَوَابِ؛ وَالْجُمْلَةُ مَعْطُوفَةٌ عَلَى الَّتِي قَبْلَهَا", " — or a mubtada, with the object left out: «and whom they miss [him]» (al-Zawzanī), the condition and its answer then being its khabar; the sentence is joined to the one before", " — yahut mef'ûlün hazfiyle mübtedâ: «kimi ıskalarlarsa» (Zevzenî); o takdirde haberi şart ile cevap cümleleridir; cümle öncekine ma'tûftur")),
-  JV("تُخْطِئْ", "akhtaa", "shart", "sukun", g=["form-iv-verbs", "muqabala", "tibaq", "hadhf-al-maful"], doer=("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْمَنَايَا", "; the doer is the hidden «she» — the Fates", "; fâil ecellere dönen gizli zamir «o»"),
+  JV("تُخْطِئْ", "akhtaa", "shart", "sukun", g=["form-iv-verbs", "tibaq", "hadhf-al-maful"], doer=("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ يَعُودُ عَلَى الْمَنَايَا", "; the doer is the hidden «she» — the Fates", "; fâil ecellere dönen gizli zamir «o»"),
      note=(" — وَالسُّكُونُ ظَاهِرٌ عَلَى الْهَمْزَةِ", " — the sukun shows on the hamza", " — sükûn hemze üzerinde zâhirdir")),
-  JV("يُعَمَّرْ", "ammara-life", "jawab", "sukun", g=["form-ii-verbs", "naib-al-fail", "al-majhul-fil-kafiya", "muqabala", "tibaq"], passive=True, doer=NAIB_HUWA,
+  JV("يُعَمَّرْ", "ammara-life", "jawab", "sukun", g=["form-ii-verbs", "naib-al-fail", "al-majhul-fil-kafiya", "tibaq"], passive=True, doer=NAIB_HUWA,
      note=(" — وَالتَّعْمِيرُ: تَطْوِيلُ الْعُمُرِ", " — تَعْمِير is the lengthening of one's life", " — «ta'mîr»: ömrün uzatılması")),
   JV("فَيَهْرَمِ", "harima", "atf-jawab", "rawi", g=["atf-nasaq"], pre=FA3, segs=SG(("فَ", "fa", "conj"), ("يَهْرَمِ", "harima", "verb")))])
 # ---- v. 49 ----
@@ -1339,7 +1339,7 @@ VV(11, "They set out at first light and were on the road before dawn; and they a
   "Sabah erkenden yola çıktılar, seher vaktinde yürüdüler; onlar ile Ress vadisi, elin ağza gidişi gibidir (şaşmadan oraya varırlar).",
  [NUN_M("بَكَرْنَ", "bakara", note=(" — وَالْجُمْلَةُ مُسْتَأْنَفَةٌ؛ بَكَرَ: سَارَ بُكْرَةً", " — a new sentence; بَكَرَ is to set out in the early morning", " — cümle müste'nefedir; «bekera»: sabah erkenden yola çıktı")),
   T("بُكُورًا", "bukur", "noun", ["maful-mutlaq", "masdar"], "مَفْعُولٌ مُطْلَقٌ مُؤَكِّدٌ لِعَامِلِهِ مَنْصُوبٌ بِالْفَتْحَةِ.", "A maf'ul mutlaq that strengthens its verb, in nasb.", "Âmilini te'kîd eden mef'ûl-i mutlak, mansûb."),
-  NUN_M("وَاسْتَحَرْنَ", "istahara", g=["form-x-verbs", "atf-nasaq"], pre=WA3, segs=SG(("وَ", "wa", "conj"), ("اسْتَحَرْنَ", "istahara", "verb")),
+  NUN_M("وَاسْتَحَرْنَ", "istahara", g=["form-viii-verbs", "atf-nasaq"], pre=WA3, segs=SG(("وَ", "wa", "conj"), ("اسْتَحَرْنَ", "istahara", "verb")),
      note=(" — اسْتَحَرَ: سَارَ سَحَرًا", " — اِسْتَحَرَ is to travel in the last of the night", " — «istehara»: seher vakti yürüdü")),
   BI_NOUN("بِسُحْرَةٍ", "suhra", "سُحْرَةٍ", extra=[], note_ar=" — وَالْبَاءُ بِمَعْنَى «فِي»، وَسُحْرَةٌ اسْمٌ لِلسَّحَرِ؛ وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«اسْتَحَرْنَ»", note_en=" — the ba means «in», and سُحْرَة is a name for the hour before dawn; the phrase hangs on «were on the road»", note_tr=" — bâ «-de» anlamındadır; «suhra» seher vaktinin adıdır; câr-mecrûr «yürüdüler»e müteallik")],
  [T("فَهُنَّ", "hunna", "pron", ["mubtada-khabar", "al-mabni-wal-mudmar", "atf-nasaq"],
@@ -2005,7 +2005,7 @@ VV(61, "The folly of an old man has no good sense to follow it; but a young man,
   "İhtiyarın sefihliğinden sonra akıl başa gelmez; genç ise sefihlikten sonra hilim sahibi olur.",
  [T("وَإِنَّ", "inna", "part", ["inna-wa-akhawatuha", "anwa-al-waw"], WA_ISTINAF[0] + "إِنَّ حَرْفُ تَوْكِيدٍ وَنَصْبٍ.", WA_ISTINAF[1] + "إِنَّ is the particle of emphasis that puts its noun in nasb.", WA_ISTINAF[2] + "inne: te'kîd ve nasb harfi.",
      segs=SG(("وَ", "wa", "conj"), ("إِنَّ", "inna", "part"))),
-  T("سَفَاهَ", "safah", "noun", ["inna-wa-akhawatuha", "idafa-definiteness", "masdar", "tibaq", "muqabala"],
+  T("سَفَاهَ", "safah", "noun", ["inna-wa-akhawatuha", "idafa-definiteness", "masdar", "muqabala"],
      "اسْمُ إِنَّ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ. وَبَيْنَ «سَفَاهَ» وَ«حِلْمَ» طِبَاقٌ نَصَّ عَلَى تَضَادِّهِمَا الدُّرَّةُ («قَابَلَهُ بِالسَّفَاهَةِ … وَالْحَلِيمُ ضِدُّهُ السَّفِيهُ»)، وَبَيْنَ «الشَّيْخِ» وَ«الْفَتَى» طِبَاقٌ عَلَى حَدِّ التَّلْخِيصِ، وَفِي الْبَيْتِ — عَلَى حَدِّهِ — مُقَابَلَةُ اثْنَيْنِ بِاثْنَيْنِ عَلَى التَّرْتِيبِ: «الشَّيْخِ … لَا حِلْمَ» ↔ «الْفَتَى … يَحْلُمِ».",
      "The noun of إِنَّ, in nasb, annexed. «Folly» and «good sense» make a tibaq — al-Durra states the contrariety («he sets it against folly here … the opposite of the ḥalīm is the safīh»); «the old man» and «the young man» make one by the Talkhīṣ's definition; and, by its definition, the verse holds a muqabala of two with two, in order: «the old man … no good sense» against «the young man … grows wise».",
      "İnne'nin ismi, mansûb, muzâf. «Sefihlik» ile «hilim» arasında tıbâk vardır — zıtlığı Dürre açıkça söyler («burada onu sefâhetle karşılaştırmıştır … halîmin zıddı sefihtir»); «ihtiyar» ile «genç» arasında Telhîs'in tarifine göre tıbâk vardır; beyitte, yine onun tarifine göre, sırasıyla ikiye iki mukâbele bulunur: «ihtiyar … hilim yok» ↔ «genç … hilim sahibi olur»."),
@@ -2432,7 +2432,7 @@ NEW_GLOSS.update({
  "mutanaim": N("مُتَنَعِّم", "ن ع م", "one who lives delicately and makes a show of it (ism fa'il of تَنَعَّمَ)", "nazlı büyümüş, refahını gösteren (تَنَعَّمَ'den ism-i fâil)"),
  "bakara": VB("بَكَرَ", "ب ك ر", "to set out in the early morning (بَكَرَ يَبْكُرُ)", "sabah erkenden yola çıkmak (بَكَرَ يَبْكُرُ)"),
  "bukur": N("بُكُور", "ب ك ر", "setting out in the early morning (masdar of بَكَرَ)", "sabah erkenden çıkış (بَكَرَ'nin masdarı)"),
- "istahara": VB("اِسْتَحَرَ", "س ح ر", "to travel in the last of the night, before dawn (Form X)", "seher vakti yola çıkmak (istif'âl)", "X"),
+ "istahara": VB("اِسْتَحَرَ", "س ح ر", "to travel in the last of the night, before dawn (Form VIII: the sīn is the root's first letter)", "seher vakti yola çıkmak (iftiâl bâbı: sîn kökün ilk harfidir)", "VIII"),
  "suhra": N("سُحْرَة", "س ح ر", "the hour before dawn — a name for السَّحَر", "seher vakti — السَّحَر için bir isim"),
  "rass": P("الرَّسّ", "al-Rass — وَادِي الرَّسِّ is a particular valley on the women's road", "Ress — وَادِي الرَّسِّ, kadınların yolu üzerindeki belirli bir vadi"),
  "malha": N("مَلْهًى", "ل ه و", "amusement, or a place of amusement (a maqṣūr; pl. مَلَاهٍ)", "eğlence yahut eğlence yeri (maksûr; ç. مَلَاهٍ)", plural="مَلَاهٍ"),
@@ -2455,7 +2455,7 @@ NEW_VERBS.update({
  "tabassara": _sg.derived(_sg.B5, _sg.W5, "َ", "تَبَصَّر", "تَبَصَّر", "تَبَصَّر", "تَبَصُّر", "مُتَبَصِّر"),
  "warraka": _sg.derived(_sg.B2, _sg.W2, "ُ", "وَرَّك", "وَرِّك", "وَرِّك", "تَوْرِيك", "مُوَرِّك"),
  "bakara": _sg1("nasara", "بَكَر", "بْكُر", "اُبْكُر", "بُكُور", "بَاكِر"),
- "istahara": _sg.derived(_sg.B10, _sg.W10, "َ", "اِسْتَحَر", "سْتَحِر", "اِسْتَحِر", "اِسْتِحَار", "مُسْتَحِر"),
+ "istahara": _sg.derived(_sg.B8, _sg.W8, "َ", "اِسْتَحَر", "سْتَحِر", "اِسْتَحِر", "اِسْتِحَار", "مُسْتَحِر"),
  "hattama": _sg.derived(_sg.B2, _sg.W2, "ُ", "حَطَّم", "حَطِّم", "حَطِّم", "تَحْطِيم", "مُحَطِّم", "مُحَطَّم", "حُطِّمَ", "يُحَطَّمُ"),
  "jazaa-cross": _sg1("fataha", "جَزَع", "جْزَع", "اِجْزَع", "جَزْع", "جَازِع", "مَجْزُوع", "جُزِعَ", "يُجْزَعُ"),
 })
@@ -2492,8 +2492,8 @@ NEW_GLOSS.update({
 NEW_VERBS.update({
  "affa-efface": _sg.derived_naqis(_sg.B2 + " — نَاقِصٌ", _sg.W2, "ُ", "عَفَّ", "عَفّ", "i", "عَفّ", "تَعْفِيَة", "مُعَفٍّ", "مُعَفًّى", "عُفِّيَ", "يُعَفَّى", "نَاقِصٌ مِنَ التَّفْعِيلِ: يُعَفِّي ← لَمْ يُعَفِّ."),
  "najjama": _sg.derived(_sg.B2, _sg.W2, "ُ", "نَجَّم", "نَجِّم", "نَجِّم", "تَنْجِيم", "مُنَجِّم", "مُنَجَّم", "نُجِّمَ", "يُنَجَّمُ"),
- "haraqa": _sg.derived_hollow(_sg.B4 + " — أَجْوَفُ، وَالْهَاءُ بَدَلٌ مِنَ الْهَمْزَةِ", _sg.W4, "ُ", "هَرَاق", "هَرَق", "هَرِيق", "هَرِق", "هَرِيق", "هَرِق", "هِرَاقَة", "مُهَرِيق", "مُهَرَاق", "هُرِيقَ", "يُهَرَاقُ",
-     "هَرَاقَ الْمَاءَ وَالدَّمَ يُهَرِيقُهُ: لُغَةٌ فِي أَرَاقَ يُرِيقُ، وَالْهَاءُ بَدَلٌ مِنَ الْهَمْزَةِ فَتَثْبُتُ مَفْتُوحَةً فِي الْمُضَارِعِ (الزَّوْزَنِيُّ)."),
+ "haraqa": dict(_sg.derived_hollow(_sg.B4 + " — أَجْوَفُ، وَالْهَاءُ بَدَلٌ مِنَ الْهَمْزَةِ", _sg.W4, "ُ", "هَرَاق", "هَرَق", "هَرِيق", "هَرِق", "هَرِيق", "هَرِق", "هِرَاقَة", "مُهَرِيق", "مُهَرَاق", "هُرِيقَ", "يُهَرَاقُ",
+     "هَرَاقَ الْمَاءَ وَالدَّمَ يُهَرِيقُهُ: لُغَةٌ فِي أَرَاقَ يُرِيقُ، وَالْهَاءُ بَدَلٌ مِنَ الْهَمْزَةِ فَتَثْبُتُ مَفْتُوحَةً فِي الْمُضَارِعِ (الزَّوْزَنِيُّ)."), samai=True),
  "katama": _sg1("nasara", "كَتَم", "كْتُم", "اُكْتُم", "كِتْمَان / كَتْم", "كَاتِم", "مَكْتُوم", "كُتِمَ", "يُكْتَمُ"),
  "ajjala-hasten": _sg.derived(_sg.B2, _sg.W2, "ُ", "عَجَّل", "عَجِّل", "عَجِّل", "تَعْجِيل", "مُعَجِّل", "مُعَجَّل", "عُجِّلَ", "يُعَجَّلُ"),
 })
@@ -2615,7 +2615,8 @@ for d in OUT_ROOT.iterdir() if OUT_ROOT.exists() else []:
         try: _STAGED[d.name] = json.loads((d / "glossary.json").read_text(encoding="utf-8"))["entries"]
         except Exception: pass
 for k, e in NEW_GLOSS.items():
-    hit = [p for p in PREF if k in _G[p]]
+    _lid = lambda x: "".join(c for c in unicodedata.normalize("NFD", x or "") if not unicodedata.combining(c))
+    hit = [p for p in PREF if k in _G[p] and _lid(_G[p][k].get("lemma")) != _lid(e["lemma"])]   # (v333) a sister package may hold the key with the same word
     assert not hit, (k, hit)
     for p, g in _STAGED.items():
         if k in g: assert g[k].get("lemma") == e["lemma"], ("staged clash", k, p, g[k].get("lemma"))
