@@ -16740,6 +16740,484 @@ if (!CHROME) {
       throw new Error('the healed keys: ' + JSON.stringify(s));
     if (r.drillTa < 6 || r.drillTaWrong) throw new Error('the drill garden\'s tāʾ: ' + JSON.stringify({ n: r.drillTa, wrong: r.drillTaWrong }));
   });
+  // >>> v333 — the Atölye audit, group A (taṣrīf and iʿlāl)
+  await check('v333 — I\'lāl lab: the muḍāriʿ and the amr ride the root\'s own bāb (A01), the nāqiṣ is finished (A05, A15–A17), the instrument noun keeps its ʿayn (A18), the lafīf its ʿayn (A19), the doubled root merges (A20), يسر → اِيسِرْ (A21)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), norm = s => IlalEngine.join(IlalEngine.parse(N(s)));
+      const B = (root, shape, bab) => IlalEngine.build(root, shape, bab);
+      const bad = [];
+      const want = {
+        // A01 — ʿIzzī L168 (يَضَعُ), L185–L186 (يَصُونُ، يَخَافُ), L165 (يَوْجَلُ … اِيجَلْ), L199 (خَفْ)
+        'قول|mudari': 'يَقُولُ', 'قول|amr': 'قُلْ', 'خوف|mudari': 'يَخَافُ', 'خوف|amr': 'خَفْ', 'نوم|mudari': 'يَنَامُ', 'نوم|amr': 'نَمْ', 'صون|mudari': 'يَصُونُ', 'صون|amr': 'صُنْ',
+        'وجل|mudari': 'يَوْجَلُ', 'وجل|amr': 'اِيجَلْ', 'وضع|mudari': 'يَضَعُ', 'وضع|amr': 'ضَعْ', 'عور|mudari': 'يَعْوَرُ', 'عور|amr': 'اِعْوَرْ', 'بيع|mudari': 'يَبِيعُ', 'بيع|amr': 'بِعْ', 'وعد|mudari': 'يَعِدُ', 'وعد|amr': 'عِدْ', 'وجه|mudari': 'يَوْجُهُ', 'وجه|amr': 'اُوجُهْ',
+        // A05 — ʿIzzī L230, L235–L246
+        'دعو|mudari': 'يَدْعُو', 'رمي|mudari': 'يَرْمِي', 'خشي|mudari': 'يَخْشَى', 'سعي|mudari': 'يَسْعَى', 'نهي|mudari': 'يَنْهَى', 'وقي|mudari': 'يَقِي', 'سرو|mudari': 'يَسْرُو',
+        'دعو|amr': 'اُدْعُ', 'رمي|amr': 'اِرْمِ', 'خشي|amr': 'اِخْشَ', 'سعي|amr': 'اِسْعَ', 'وقي|amr': 'قِ', 'سرو|amr': 'اُسْرُ',
+        // A15 — ʿIzzī L337 «مَفْتُوحٌ أَبَدًا، كَالْمَأْوَى وَالْمَرْمَى»
+        'رمي|zaman': 'مَرْمًى', 'دعو|zaman': 'مَدْعًى', 'وقي|zaman': 'مَوْقًى', 'خشي|zaman': 'مَخْشًى',
+        // A16 — the weak lām after an added alif (Maqṣūd L914 «اِغْزَاءً»)
+        'رمي|alat': 'مِرْمَاءٌ', 'دعو|alat': 'مِدْعَاءٌ', 'وقي|alat': 'مِيقَاءٌ',
+        // A17 — Maqṣūd L899 «اَغْزَى», L923 «اَرْمَى»
+        'دعو|tafdil': 'أَدْعَى', 'رمي|tafdil': 'أَرْمَى', 'خشي|tafdil': 'أَخْشَى', 'سعي|tafdil': 'أَسْعَى', 'غزو|tafdil': 'أَغْزَى',
+        // A18 — Marāḥ L813 «مِقْوَالٍ وَمِخْيَاطٍ»
+        'كيل|alat': 'مِكْيَالٌ', 'قول|alat': 'مِقْوَالٌ', 'عور|alat': 'مِعْوَارٌ', 'صون|alat': 'مِصْوَانٌ', 'بيع|alat': 'مِبْيَاعٌ', 'خيط|alat': 'مِخْيَاطٌ', 'وزن|alat': 'مِيزَانٌ',
+        // A19 — Maqṣūd L1008–L1019 (رَاوٍ، مَرْوِيٌّ، يَرْوِي)
+        'طوي|fail': 'طَاوٍ', 'طوي|maful': 'مَطْوِيٌّ', 'طوي|mudari': 'يَطْوِي', 'طوي|amr': 'اِطْوِ', 'روي|fail': 'رَاوٍ', 'روي|maful': 'مَرْوِيٌّ', 'روي|mudari': 'يَرْوِي',
+        // A20 — ʿIzzī L140 «مَدَّ يَمُدُّ», L152–L153 «مُدَّ … مَادٌّ»
+        'مدد|fail': 'مَادٌّ', 'مدد|mudari': 'يَمُدُّ', 'مدد|amr': 'مُدَّ', 'مدد|zaman': 'مَمَدٌّ', 'مدد|maful': 'مَمْدُودٌ', 'فرر|mudari': 'يَفِرُّ', 'فرر|amr': 'فِرَّ', 'فرر|fail': 'فَارٌّ', 'مسس|mudari': 'يَمَسُّ', 'مسس|amr': 'مَسَّ',
+        // A21 — Maqṣūd L841 «اِيسِرْ»
+        'يسر|amr': 'اِيسِرْ', 'يسر|mudari': 'يَيْسِرُ', 'يمن|amr': 'اُومُنْ', 'يمن|mudari': 'يَيْمُنُ',
+        // and the older derivations stand
+        'قول|fail': 'قَائِلٌ', 'قول|maful': 'مَقُولٌ', 'بيع|maful': 'مَبِيعٌ', 'رمي|maful': 'مَرْمِيٌّ', 'غزو|fail': 'غَازٍ', 'كتب|mudari': 'يَكْتُبُ', 'كتب|amr': 'اُكْتُبْ', 'قول|zaman': 'مَقَالٌ',
+      };
+      for (const k of Object.keys(want)) { const [root, shape] = k.split('|'); let b = null; try { b = B(root, shape); } catch (e) { bad.push(k + ' THROW ' + e.message); continue; }
+        if (!b || b.needBab || norm(b.out) !== norm(want[k])) bad.push(k + ' → ' + (b && (b.needBab ? 'shortlist' : b.out)) + ' ≠ ' + want[k]);
+        if (b && b.conj) bad.push(k + ': the chain did not reach the conjugator\'s cell'); }
+      const o = { bad };
+      o.qawlAsl = N(B('قول', 'mudari').asl); o.khawfAsl = N(B('خوف', 'mudari').asl); o.wadaAsl = N(B('وضع', 'mudari').asl); o.wadaSteps = B('وضع', 'mudari').steps.map(s => s.id).join(',');
+      o.tafdilQawl = (B('قول', 'tafdil').blocked || {}).why; o.alatWhy = (B('كيل', 'alat').blocked || {}).why; o.tafdilRamy = !!B('رمي', 'tafdil').blocked; o.tafdilKataba = !!B('كتب', 'tafdil').blocked;
+      o.awarFail = (B('عور', 'fail').blocked || {}).why; o.yusrSteps = B('يسر', 'amr').steps.map(s => s.id).join(','); o.yumnSteps = B('يمن', 'amr').steps.map(s => s.id).join(',');
+      o.muddAlso = N(B('مدد', 'amr').also); o.ramySteps = B('رمي', 'mudari').steps.map(s => s.id).join(',');
+      // a root the shelf does not recite: a labelled shortlist, never a guess
+      const free = ['ثخن', 'زحل', 'جبذ', 'دحض', 'شمخ', 'بذخ'].find(x => !IlalEngine.babOf(x).length);
+      const sl = free ? B(free, 'mudari') : null; o.free = free; o.shortlist = sl ? { need: !!sl.needBab, n: (sl.options || []).length, out: sl.out === undefined } : null;
+      o.picked = free ? N(B(free, 'mudari', 2).out) : '';
+      o.hamz = !!(B('أخذ', 'amr').refused && B('رأي', 'mudari').refused);
+      // every stored Form I paradigm of an unhamzated root: the lab's last form is the paradigm's own first cell
+      let n = 0, ok = 0; const miss = [];
+      for (const v of RootFinder.corpusIndex()) { if (!v.m || v.m.jamid) continue; const at = sjAttested(v.m); if (!at || at.form !== 'I' || !at.bab) continue;
+        const root = String(v.root || '').replace(/\s+/g, ''); if ([...root].length !== 3 || /[ءأإؤئآ]/.test(root)) continue; if (/^[ء-ي]ُ[ء-ي]ِ/.test(N((v.m.mazi || [])[0]))) continue;
+        for (const sh of ['mudari', 'amr']) { const b = B(root, sh, at.bab), w = N(sh === 'mudari' ? v.m.mudari[0] : v.m.amr[0]); n++; if (!b.conj && (N(b.out) === w || N(b.also) === w)) ok++; else miss.push(v.lemma + ' ' + sh + ': ' + b.out + ' ≠ ' + w); } }
+      o.n = n; o.ok = ok; o.miss = miss.slice(0, 6);
+      // the panel
+      conjState.lab = 'ilal'; conjState.ilalRoot = 'خوف'; conjState.ilalShape = 'amr'; openConjugator();
+      o.lab = N((document.querySelector('#ilalOut .if-end.out b') || {}).textContent || ''); o.row = document.querySelectorAll('#ilalBabSeg [data-ib]').length; o.rowOn = N((document.querySelector('#ilalBabSeg .on') || {}).textContent || '');
+      conjState.ilalRoot = 'أخذ'; renderLabBody(); o.labHamz = !!document.querySelector('#ilalOut .ilal-block') && !document.querySelector('#ilalOut .if-end');
+      conjState.ilalRoot = 'قول'; conjState.ilalShape = 'maful'; document.getElementById('scrim').click();
+      return o;
+    });
+    const J = JSON.stringify;
+    if (r.bad.length) throw new Error('derivations: ' + r.bad.slice(0, 8).join(' ; '));
+    if (r.qawlAsl !== 'يَقْوُلُ' || r.khawfAsl !== 'يَخْوَفُ') throw new Error('the origin is the bāb\'s own: ' + r.qawlAsl + ' ' + r.khawfAsl);
+    if (r.wadaAsl !== 'يَوْضِعُ' || r.wadaSteps !== 'hadhf-waw-mithal,fath-halq') throw new Error('يَضَعُ starts from يَوْضِعُ (ʿIzzī L168): ' + r.wadaAsl + ' ' + r.wadaSteps);
+    if (r.tafdilQawl !== 'wazn' || r.alatWhy !== 'wazn' || r.tafdilRamy || r.tafdilKataba || r.awarFail !== 'lexical') throw new Error('where the rules stand down: ' + J(r));
+    if (/munasaba/.test(r.yusrSteps) || r.yumnSteps !== 'qalb-ya-damma') throw new Error('the yāʾ after a ḍamma turns to wāw, never the ḍamma to kasra: ' + r.yusrSteps + ' | ' + r.yumnSteps);
+    if (r.muddAlso !== 'اُمْدُدْ' || r.ramySteps !== 'hadhf-damma') throw new Error('مُدَّ beside اُمْدُدْ; يَرْمِي by the dropped ḍamma: ' + r.muddAlso + ' ' + r.ramySteps);
+    if (!r.shortlist || !r.shortlist.need || r.shortlist.n < 3 || !r.shortlist.out || !r.picked) throw new Error('an unrecited root gets a shortlist: ' + J(r.shortlist) + ' ' + r.free);
+    if (!r.hamz || !r.labHamz) throw new Error('a hamzated verb is refused with its reason');
+    if (r.n < 1100 || r.ok < r.n) throw new Error('lab vs the stored Form I paradigms: ' + r.ok + '/' + r.n + ' ' + J(r.miss));
+    if (r.lab !== 'خَفْ' || r.row !== 6 || !/سَمِعَ/.test(r.rowOn)) throw new Error('the panel: ' + r.lab + ' row ' + r.row + ' ' + r.rowOn);
+  });
+
+  await check('v333 — Sarf lab: the nāqiṣ and the mithāl in every recited bāb (A03, A06, A35), اِسْتِيقَاف (A13), مُتَّبِع (A14), the mithāl\'s two-step chain (A36), الْيَاءُ تَاءً (A37), اِعْشَوْشَبَ (A38, A39), يُطَمْئِنُ (A40), اِجْتَوَرَ (A46), the idghām\'s two reasons (A47), no مَحْسُون (A49), اِنْنَصَرَ one spelling (A50), مُسَمًّى (A56)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const D = (root, form, bab) => sarfDerive(nakilClass({ root: root.split('').join(' ') }), form, bab || 1);
+      const row = d => d.ok ? [d.mazi[0], d.mudari[0], d.amr[0]].map(N).join(' ') : 'NO:' + d.reason;
+      const o = {};
+      // A03 — ʿIzzī L312 «كَرَعَى يَرْعَى»
+      o.saa = row(D('سعي', 'I', 3)); o.naha = row(D('نهي', 'I', 3)); o.raa = row(D('رعي', 'I', 3)); o.saaCells = [D('سعي', 'I', 3).mazi[2], D('سعي', 'I', 3).mazi[12], D('سعي', 'I', 3).mudari[2], D('سعي', 'I', 3).mudari[9], D('سعي', 'I', 3).fail, D('سعي', 'I', 3).maful].map(N).join(' ');
+      // A06 — ʿIzzī L173, Maqṣūd L839–L849
+      const ys = D('يسر', 'I', 2); o.yasara = row(ys); o.yasaraCells = [ys.mudari[5], ys.mudari[12], ys.amr[5], ys.fail, ys.maful].map(N).join(' '); o.yabisa = row(D('يبس', 'I', 4)); o.yamuna = row(D('يمن', 'I', 5));
+      // A35 — ʿIzzī L226 (the māḍī of سَرُوَ), L167 «وَجُهَ يَوْجُهُ، وَالْأَمْرُ: اُوجُهْ»
+      const sr = D('سرو', 'I', 5); o.saruwa = row(sr); o.saruwaMazi = sr.ok ? sr.mazi.map(N).join(' ') : ''; o.wajuha = row(D('وجه', 'I', 5)); o.wasuma = row(D('وسم', 'I', 5));
+      // A13 — Maqṣūd L832 «اِيعَاداً»
+      o.x = ['وقف', 'وعب', 'وجب', 'ورد', 'وطن'].map(x => N(D(x, 'X').masdar)).join(' '); o.xVerb = N(D('وقف', 'X').mazi[0]) + ' ' + N(D('وقف', 'X').mudari[0]);
+      // A14 — ʿIzzī L175 «مُتَّعِدٌ … مُتَّعَدٌ»
+      o.t8 = ['تبع', 'تجر'].map(x => N(D(x, 'VIII').fail) + ' ' + N(D(x, 'VIII').maful)).join(' ');
+      // A36 / A47 — the chains
+      const chain = (root, bab) => { const c = nakilClass({ root: root.split('').join(' ') }), d = sarfDerive(c, 'I', bab); return (ilalSteps(c, bab, d.mazi[0], d.mudari[0]) || []).map(s => N(s.asl) + '←' + N(s.now) + (s.cont ? '+' : '')); };
+      o.wada = chain('وضع', 3).join(' | '); o.wahaba = chain('وهب', 3).join(' | '); o.waada = chain('وعد', 2).join(' | '); o.wajila = chain('وجل', 4).length; o.madda = chain('مدد', 1).join(' | ');
+      { const c = nakilClass({ root: 'م د د' }), d = sarfDerive(c, 'I', 1), st = ilalSteps(c, 1, d.mazi[0], d.mudari[0]); o.maddaAr = st.map(s => s.ar); }
+      // A37 — ʿIzzī L107
+      o.ittasara = N(D('يسر', 'VIII').mazi[0]) + ' ' + N(D('يسر', 'VIII').note); o.ittaada = N(D('وعد', 'VIII').note);
+      // A38 / A39 — ʿIzzī L33
+      o.xii = N(mazidDerive(['ع', 'ش', 'ب'], 'XII').note); const d16 = Bab35Engine.door(16); o.door16 = d16.root + ' ' + N(Bab35Engine.modelLine(d16)) + ' ' + N(d16.ex); o.b35 = Bab35Engine.audit().bad.length;
+      // A40 — ʿIzzī L140 «اطْمَأَنَّ يَطْمَئِنُّ»
+      const tm = rubai17Derive('طمأن'.split(''), 'R1'), tm4 = rubai17Derive('طمأن'.split(''), 'R4'); o.tam = [tm.mazi[0], tm.mudari[0], tm.fail, tm.amr[0]].map(N).join(' '); o.tam4 = [tm4.mazi[0], tm4.mudari[0]].map(N).join(' ');
+      // A46 — Marāḥ L774
+      o.sound8 = ['جور', 'زوج', 'عور'].map(x => N(D(x, 'VIII').mazi[0]) + ' ' + N(D(x, 'VIII').mudari[0])).join(' '); o.weak8 = N(D('خير', 'VIII').mazi[0]);
+      // A49 — ʿIzzī L44
+      const h5 = D('حسن', 'I', 5); o.h5 = [h5.ok, h5.fail === null, h5.maful === null, /لَازِمٌ/.test(N(h5.note))].join(' '); o.h1 = N(D('نصر', 'I', 1).maful);
+      // A50 — bablara-nakil-tablosu.txt L6 «اِنْنَصَرَ»
+      const n7 = D('نصر', 'VII'); o.n7 = [n7.mazi[0], n7.mudari[0], n7.amr[0], n7.fail, n7.masdar].map(N).join(' '); o.k7 = N(D('كسر', 'VII').mazi[0]);
+      // A56 — ʿIzzī L222 «كَالْمُعْطَى وَالْمُشْتَرَى وَالْمُسْتَقْصَى»
+      o.maf = [['سمي', 'II'], ['ندي', 'III'], ['عطي', 'IV'], ['لقي', 'V'], ['شري', 'VIII'], ['غني', 'X']].map(([x, f]) => N(D(x, f).maful)).join(' ');
+      const au = sarfAudit(); o.audit = au.bad.slice(0, 3); o.checked = au.checked;
+      // the panel: a root of bāb كَرُمَ shows no participle chips, and no refusal for سعي
+      conjState.lab = 'sarf'; conjState.root = 'سعي'; openConjugator(); try { conjAutoPick(); syncConjSeg(); renderConjOut(); } catch (e) {}
+      o.labSaa = (document.getElementById('conjOut') || {}).textContent || ''; o.labSaaOk = !document.querySelector('#conjOut .empty') && /يَسْعَى/.test(N(o.labSaa)); o.labSaa = '';
+      conjState.root = 'حسن'; conjState.form = 'I'; conjState.bab = 5; renderConjOut(); o.labH5 = N((document.getElementById('conjOut') || {}).textContent || ''); o.labH5 = [/اسم الفاعل/.test(o.labH5), /اسم المفعول/.test(o.labH5), /لَازِمٌ/.test(o.labH5)].join(' ');
+      conjState.root = 'قول'; conjState.form = 'I'; conjState.bab = 3; renderConjOut(); o.refusal = N((document.querySelector('#conjOut .empty') || {}).textContent || '');
+      conjState.root = 'كتب'; conjState.bab = 1; document.getElementById('scrim').click();
+      return o;
+    });
+    const J = JSON.stringify, T = (c, m) => { if (!c) throw new Error(m + ' — ' + J(r).slice(0, 700)); };
+    T(r.saa === 'سَعَى يَسْعَى اِسْعَ' && r.naha === 'نَهَى يَنْهَى اِنْهَ' && r.raa === 'رَعَى يَرْعَى اِرْعَ' && r.saaCells === 'سَعَوْا سَعَيْتُ يَسْعَوْنَ تَسْعَيْنَ سَاعٍ مَسْعِيّ', 'A03 the nāqiṣ of bāb فَتَحَ: ' + r.saa + ' / ' + r.saaCells);
+    T(r.yasara === 'يَسَرَ يَيْسِرُ اِيسِرْ' && r.yasaraCells === 'يَيْسِرْنَ أَيْسِرُ اِيسِرْنَ يَاسِر مَيْسُور' && r.yabisa === 'يَبِسَ يَيْبَسُ اِيبَسْ' && r.yamuna === 'يَمُنَ يَيْمُنُ اُومُنْ', 'A06 the mithāl yāʾī: ' + r.yasara + ' / ' + r.yasaraCells + ' / ' + r.yabisa + ' / ' + r.yamuna);
+    T(r.saruwa === 'سَرُوَ يَسْرُو اُسْرُ' && r.saruwaMazi === 'سَرُوَ سَرُوَا سَرُوا سَرُوَتْ سَرُوَتَا سَرُونَ سَرُوتَ سَرُوتُمَا سَرُوتُمْ سَرُوتِ سَرُوتُمَا سَرُوتُنَّ سَرُوتُ سَرُونَا' && r.wajuha === 'وَجُهَ يَوْجُهُ اُوجُهْ' && r.wasuma === 'وَسُمَ يَوْسُمُ اُوسُمْ', 'A35 bāb كَرُمَ: ' + r.saruwa + ' / ' + r.saruwaMazi + ' / ' + r.wajuha);
+    T(r.x === 'اِسْتِيقَاف اِسْتِيعَاب اِسْتِيجَاب اِسْتِيرَاد اِسْتِيطَان' && r.xVerb === 'اِسْتَوْقَفَ يَسْتَوْقِفُ', 'A13: ' + r.x + ' ' + r.xVerb);
+    T(r.t8 === 'مُتَّبِع مُتَّبَع مُتَّجِر مُتَّجَر', 'A14: ' + r.t8);
+    T(r.wada === 'يَوْضِعُ←يَضِعُ | يَضِعُ←يَضَعُ+' && r.wahaba === 'يَوْهِبُ←يَهِبُ | يَهِبُ←يَهَبُ+' && r.waada === 'يَوْعِدُ←يَعِدُ' && r.wajila === 0, 'A36: ' + r.wada + ' / ' + r.waada);
+    T(r.madda === 'مَدَدَ←مَدَّ | يَمْدُدُ←يَمُدُّ' && !/نُقِلَتْ/.test(r.maddaAr[0]) && /أُسْكِنَ/.test(r.maddaAr[0]) && /نُقِلَتْ حَرَكَةُ/.test(r.maddaAr[1]), 'A47: ' + r.madda + ' ' + J(r.maddaAr));
+    T(/^اِتَّسَرَ قُلِبَتِ الْيَاءُ تَاءً/.test(r.ittasara) && /^قُلِبَتِ الْوَاوُ تَاءً/.test(r.ittaada), 'A37: ' + r.ittasara);
+    T(/اِعْشَوْشَبَتِ الْأَرْضُ/.test(r.xii) && !/غْشَوْشَب/.test(r.xii) && r.door16 === 'عشب اِعْشَوْشَبَ يَعْشَوْشِبُ اِعْشِيشَابًا اِعْشَوْشَبَتِ الْأَرْضُ' && r.b35 === 0, 'A38 / A39: ' + r.xii + ' | ' + r.door16);
+    T(r.tam === 'طَمْأَنَ يُطَمْئِنُ مُطَمْئِن طَمْئِنْ' && r.tam4 === 'اِطْمَأَنَّ يَطْمَئِنُّ', 'A40: ' + r.tam + ' ' + r.tam4);
+    T(r.sound8 === 'اِجْتَوَرَ يَجْتَوِرُ اِزْدَوَجَ يَزْدَوِجُ اِعْتَوَرَ يَعْتَوِرُ' && r.weak8 === 'اِخْتَارَ', 'A46: ' + r.sound8 + ' ' + r.weak8);
+    T(r.h5 === 'true true true true' && r.h1 === 'مَنْصُور', 'A49: ' + r.h5);
+    T(r.n7 === 'اِنْنَصَرَ يَنْنَصِرُ اِنْنَصِرْ مُنْنَصِر اِنْنِصَار' && r.k7 === 'اِنْكَسَرَ', 'A50: ' + r.n7);
+    T(r.maf === 'مُسَمًّى مُنَادًى مُعْطًى مُتَلَقًّى مُشْتَرًى مُسْتَغْنًى', 'A56: ' + r.maf);
+    T(!r.audit.length && r.checked >= 1350, 'the paradigm audit: ' + J(r.audit) + ' ' + r.checked);
+    T(r.labSaaOk && r.labH5 === 'false false true' && /recite no paradigm/.test(r.refusal) && /hollow verb is recited/.test(r.refusal), 'the panel: ' + r.labSaaOk + ' | ' + r.labH5 + ' | ' + r.refusal);
+  });
+
+  await check('v333 — Root Finder and Mizan: a noun never crashes or leaves the last answer (A04), no «null» scale (A10), مَبِيع is مَفْعُول (A11, A12), مُدَّكِر is of ذ ك ر (A43), the scale follows the typed vowels and عِدَة is of و ع د (A44), اِتَّقَى is اِفْتَعَلَ (A45), two words are two answers (A48), every cell a word stands in (A51, A52), no noun guess under a verb (A53), two letters and two clitics (A58)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), o = {};
+      conjState.lab = 'jadhr'; conjState.jadhr = 'كَتَبَ'; openConjugator();
+      const J = w => { conjState.jadhr = w; let thrown = ''; try { renderJadhrOut(); } catch (e) { thrown = 'THROW ' + e.message; } return thrown || N(document.getElementById('jadhrOut').textContent.replace(/\s+/g, ' ')); };
+      const root = t => (t.match(/Root: ([ء-ي](?: [ء-ي](?:\/[ء-ي])?){2,3})/) || [])[1] || '';
+      // A04 — a corpus noun after a verb: the new word's own root, never the last one's, and nothing thrown
+      o.first = root(J('كَتَبَ'));
+      o.nouns = {}; for (const w of ['مِيزَان', 'قَاضٍ', 'دُعَاء', 'قَائِل', 'مُسْتَقِيم', 'مُصْطَفَى', 'فَتًى', 'هُدًى', 'لِلْمُعَلِّمِينَ']) { const t = J(w); o.nouns[w] = /THROW/.test(t) ? t : root(t); }
+      // A11 — the weak ism mafʿūl
+      o.maful = {}; for (const w of ['مَبِيع', 'مَقُول', 'مَرْمِيّ', 'مَدْعُوّ']) { const t = J(w); o.maful[w] = root(t) + '|' + (/مَفْعُول/.test(t) && /اسْمُ الْمَفْعُولِ/.test(t) && !/مَفْعَل —/.test(t)); }
+      // A43 / A44
+      o.muddakir = root(J('مُدَّكِر'));
+      const lab = w => { const L = RootFinder.lab(w); return (L.r ? L.r.root : '∅') + '|' + N(L.wazn || L.peel || '∅'); };
+      o.a44 = ['كُتُب', 'رَحْمَة', 'مُقَاتَلَة', 'أَقْلَام', 'عِدَة'].map(lab);
+      o.ida = J('عِدَة'); o.idaBare = RootFinder.find('عدة') === null || !/ة/.test((RootFinder.find('عدة') || {}).root || '');
+      // A48 — two words
+      o.lamYarmi = J('لَمْ يَرْمِ'); o.lamYakun = J('لَمْ يَكُنْ');
+      // A51 — one spelling, two cells; the noun beside «I»
+      o.qulna = J('قُلْنَ'); o.taqatalu = J('تَقَاتَلُوا'); o.akbar = J('أَكْبَر');
+      // A58 — two letters, a doubled māḍī, a second clitic
+      o.short = {}; for (const w of ['قُلْ', 'عِدْ', 'قِ', 'سَلْ', 'خُذْ', 'مَدَّ', 'كُنَّ', 'بِعْ', 'يَدٌ', 'وَبِالْكِتَابِ']) o.short[w] = root(J(w));
+      o.empty = J(''); o.particle = J('فِي');
+      // every word of a long mixed list: the box is rewritten, nothing throws
+      o.sweep = ['سَمَاء', 'عُلَمَاء', 'كِتَاب', 'زَيْدٌ', 'xyz', 'ء', 'اا', 'يَ', 'الَّذِينَ', 'إِيَّاكَ', 'مِنْهُمْ', 'وَ', 'لِلَّهِ', 'أَبُوكَ', 'ذُو', '١٢٣', 'كتب يكتب كتابا'].map(w => J(w)).filter(t => /THROW|undefined|null/.test(t));
+      conjState.jadhr = 'كَتَبَ'; conjState.lab = 'mizan'; conjState.mizan = 'كَتَبَ'; renderLabBody();
+      const M = w => { conjState.mizan = w; let thrown = ''; try { renderMizanOut(); } catch (e) { thrown = 'THROW ' + e.message; } return thrown || N(document.getElementById('mizanOut').textContent.replace(/\s+/g, ' ')); };
+      const wz = t => (t.match(/Wazn: ([^✓ ]+?)(?=الْجَذْر|✓| |$)/) || [])[1] || '';
+      // A10 — the scale by the origin, never the word «null»
+      o.mz = {}; o.mzNull = []; for (const w of ['مُسْتَقِيم', 'مِيزَان', 'قَاضٍ', 'قَائِل', 'عُلَمَاء', 'سَمَاء', 'دُعَاء', 'مُصْطَفَى', 'مَبِيع', 'مَقُول', 'مَرْمِيّ', 'عِدَة']) { const t = M(w); o.mz[w] = wz(t); if (/null|undefined|THROW/.test(t)) o.mzNull.push(w); }
+      o.qadSurface = /فَاعٍ/.test(M('قَاضٍ')); o.mabiBad = /مَفِعل|مَفُعل|مَفْعِلّ/.test(M('مَبِيع') + M('مَقُول') + M('مَرْمِيّ'));
+      o.mustaqimLearned = M('مُسْتَقِيم'); o.mustaqimLearned = /مُسْتَفْعَل/.test(o.mustaqimLearned);
+      // A45
+      o.ittaqa = wz(M('اِتَّقَى')) + ' ' + wz(M('يَتَّقِي')) + ' ' + /sema'i/.test(M('اِتَّقَى'));
+      // A52 / A53
+      const tq = M('تَقَاتَلُوا'); o.tq = [/الْأَمْرُ/.test(tq), /الْمَاضِي/.test(tq)].join(' ');
+      o.verbPanels = ['يَقُولُ', 'قُلْتُ', 'اِسْتَقَامَ', 'يَرْمُونَ'].map(w => { M(w); return document.querySelectorAll('#mizanOut .mz-model, #mizanOut .mz-rule').length; }).join(',');
+      o.verbWazn = ['يَقُولُ', 'قُلْتُ', 'اِسْتَقَامَ', 'يَرْمُونَ', 'قُلْنَ'].map(w => wz(M(w))).join(' ');
+      o.qulnaM = M('قُلْنَ');
+      o.shortM = ['قُلْ', 'عِدْ', 'قِ', 'مَدَّ'].map(w => wz(M(w))).join(' '); o.clit = wz(M('وَبِالْكِتَابِ'));
+      // the older contract stands: an unstored noun gets a computed scale and the tagger's offices for it
+      M('مُسْتَغْفِرٌ'); o.noun = [!!document.querySelector('#mizanOut .mz-rule'), !!document.querySelector('#mizanOut .mz-model'), wz(M('مُسْتَغْفِرٌ'))].join(' ');
+      conjState.mizan = 'كَتَبَ'; conjState.lab = 'sarf'; document.getElementById('scrim').click();
+      return o;
+    });
+    const J = JSON.stringify, T = (c, m) => { if (!c) throw new Error(m); };
+    T(r.first === 'ك ت ب', 'كَتَبَ: ' + r.first);
+    T(J(r.nouns) === J({ 'مِيزَان': 'و ز ن', 'قَاضٍ': 'ق ض ي', 'دُعَاء': 'د ع و', 'قَائِل': 'ق و ل', 'مُسْتَقِيم': 'ق و م', 'مُصْطَفَى': 'ص ف و', 'فَتًى': 'ف ت ي', 'هُدًى': 'ه د ي', 'لِلْمُعَلِّمِينَ': 'ع ل م' }), 'A04 a noun after a verb: ' + J(r.nouns));
+    T(J(r.maful) === J({ 'مَبِيع': 'ب ي ع|true', 'مَقُول': 'ق و ل|true', 'مَرْمِيّ': 'ر م ي|true', 'مَدْعُوّ': 'د ع و|true' }), 'A11 the weak ism mafʿūl: ' + J(r.maful));
+    T(r.muddakir === 'ذ ك ر', 'A43 مُدَّكِر: ' + r.muddakir);
+    T(J(r.a44) === J(['ك ت ب|فُعُل', 'ر ح م|فَعْلَة', 'ق ت ل|مُفَاعَلَة', 'ق ل م|أَفْعَال', 'و ع د|عِلَة']), 'A44 the scale follows the vowels: ' + J(r.a44));
+    T(/Root: و ع د/.test(r.ida) && /فِعْلَة/.test(r.ida) && r.idaBare, 'A44 عِدَة: ' + r.ida);
+    T(/Root: ر م ي/.test(r.lamYarmi) && /closed-class/.test(r.lamYarmi) && !/ي ر م/.test(r.lamYarmi) && /Root: ك و ن/.test(r.lamYakun), 'A48 two words: ' + r.lamYarmi.slice(0, 200));
+    T(/الْأَمْرُ/.test(r.qulna) && /الْمَاضِي/.test(r.qulna) && /they \(f\)/.test(r.qulna) && /الْأَمْرُ/.test(r.taqatalu) && /الْمَاضِي/.test(r.taqatalu) && /اسْمُ التَّفْضِيلِ/.test(r.akbar), 'A51 every cell: ' + r.qulna.slice(-120) + ' | ' + r.akbar.slice(-160));
+    T(J(r.short) === J({ 'قُلْ': 'ق و ل', 'عِدْ': 'و ع د', 'قِ': 'و ق ي', 'سَلْ': 'س أ ل', 'خُذْ': 'أ خ ذ', 'مَدَّ': 'م د د', 'كُنَّ': 'ك و ن', 'بِعْ': 'ب ي ع', 'يَدٌ': 'ي د ي', 'وَبِالْكِتَابِ': 'ك ت ب' }), 'A58: ' + J(r.short));
+    T(/Type an Arabic word/.test(r.empty) && /closed-class/.test(r.particle) && !r.sweep.length, 'the box is always rewritten: ' + r.empty + ' | ' + J(r.sweep).slice(0, 300));
+    T(J(r.mz) === J({ 'مُسْتَقِيم': 'مُسْتَفْعِل', 'مِيزَان': 'مِفْعَال', 'قَاضٍ': 'فَاعِلٌ', 'قَائِل': 'فَاعِل', 'عُلَمَاء': 'فُعَلَاء', 'سَمَاء': 'فَعَال', 'دُعَاء': 'فُعَال', 'مُصْطَفَى': 'مُفْتَعَل', 'مَبِيع': 'مَفْعُول', 'مَقُول': 'مَفْعُول', 'مَرْمِيّ': 'مَفْعُول', 'عِدَة': 'عِلَة' }) && !r.mzNull.length, 'A10 / A12 the scale: ' + J(r.mz) + ' ' + J(r.mzNull));
+    T(r.qadSurface && !r.mabiBad && !r.mustaqimLearned, 'A10 / A12: فَاعٍ beside فَاعِل, no malformed scale, no learned scale against the derived one: ' + J([r.qadSurface, r.mabiBad, r.mustaqimLearned]));
+    T(r.ittaqa === 'اِفْتَعَلَ يَفْتَعِلُ false', 'A45: ' + r.ittaqa);
+    T(r.tq === 'true true' && r.verbPanels === '0,0,0,0' && r.verbWazn === 'يَفْعُلُ فَعَلْتُ اِسْتَفْعَلَ يَفْعِلُونَ اُفْعُلْنَ' && /فَعَلْنَ/.test(r.qulnaM), 'A52 / A53: ' + J([r.tq, r.verbPanels, r.verbWazn]));
+    T(r.shortM === 'اُفْعُلْ اِفْعِلْ اِفْعِلْ فَعَلَ' && r.clit === 'فِعَالِ', 'A58 in the Mizan: ' + r.shortM + ' ' + r.clit);
+    T(r.noun === 'true true مُسْتَفْعِلٌ', 'the unstored noun: ' + r.noun);
+  });
+
+  await check('v333 — Tasgir · Nisba lab: two of the notes\' rules together (A09, A25), the lexicon\'s root where the letters are silent (A07, A08), a refusal where the book is (A08, A25, A26, A33), صَحْرَاوَات and no «رَجُلَاتٌ» (A27), مَسْجِد by the ʿIzzī\'s list (A28), no superlative from a colour (A29), no rows on three letters that are no root (A34)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), o = {};
+      const T = w => { const x = IsmEngine.tasgir2(w); return !x ? '∅' : x.refuse ? 'REFUSE' : N(x.out) + (x.alt ? '|' + N(x.alt) : ''); };
+      const S = w => { const x = IsmEngine.nisba2(w); return !x ? '∅' : x.refuse ? 'REFUSE' : N(x.out) + (x.alt ? '|' + N(x.alt) : ''); };
+      const map = (f, ws) => Object.fromEntries(ws.map(w => [w, f(w)]));
+      // A09 — the notes' own rule («Semâî müennes kelimelerin tasgiri yapılınca … ة ortaya çıkar», p. 52) with the middle alif's (p. 53)
+      o.a09 = map(T, ['دَار', 'نَار', 'يَد', 'حَرْب', 'شَمْس', 'عَيْن']);
+      // A08 — back to the origin: by the lexicon's root, or refused
+      o.a08 = map(T, ['مِيزَان', 'دِينَار', 'مَاء', 'اِبْن', 'اِسْم', 'أُخْت', 'بِنْت']);
+      // A25 — spellings
+      o.a25 = map(T, ['دُنْيَا', 'عَصًا', 'سَمَاء', 'كِسَاء', 'قَاضٍ']);
+      // A26
+      o.a26t = T('كُرْسِيّ'); o.a26n = map(S, ['قَاضِي', 'كُرْسِيّ', 'شَيْء']);
+      // A07 — سَنَوِيّ، لُغَوِيّ، شَفَهِيّ (the sources write «لُغَوِيَّه», alaka-ilm-bayan.txt L339); a word the lexicon does not know is refused
+      o.a07 = map(S, ['سَنَة', 'لُغَة', 'شَفَة']); o.a07x = S('زُكَة');
+      // A33
+      o.a33t = map(T, ['سُلْطَان', 'قُرَيْش', 'مُصْطَفَى', 'سَلْمَان', 'سَكْرَان']); o.a33n = map(S, ['مُصْطَفَى', 'طَيّ', 'حَيّ', 'نَبِيّ']);
+      o.nullOnRefusal = IsmEngine.tasgir('اِبْن') === null && IsmEngine.nisba('قَاضٍ') === null;
+      o.mughni = IsmEngine.mughniAudit();
+      // A27 — the dual and the plurals
+      const D = w => { const d = IsmEngine.dual(w); return d ? N(d.raf) : null; }, F = w => { const j = IsmEngine.jamSalim(w); return j ? (j.fem.refuse ? 'REFUSE' : N(j.fem.raf)) : null; }, M = w => { const j = IsmEngine.jamSalim(w); return j && j.masc ? N(j.masc.raf) : 'REFUSE'; };
+      o.dual = map(D, ['أَب', 'أَخ', 'صَحْرَاء', 'يَد']); o.fem = map(F, ['صَحْرَاء', 'حَمْرَاء', 'بِنْت', 'أَب', 'رَجُل', 'كِتَاب', 'مَدْرَسَة']); o.masc = map(M, ['مَسْجِد', 'مُعَلِّم']);
+      // A28 / A29
+      o.zm = ['سجد', 'طلع', 'شرق', 'كتب'].map(x => N(IsmEngine.zamanMakan(x.split(''), false).out)).join(' '); o.zmWhy = /شَاذٌّ/.test(IsmEngine.zamanMakan(['س', 'ج', 'د'], false).rule);
+      o.tf = ['حمر', 'عور', 'كبر'].map(x => { const t = IsmEngine.tafdil(x.split('')); return N(t.out) + (t.sifa ? ':sifa' : ''); }).join(' ');
+      // the panel
+      conjState.lab = 'ism'; conjState.ism = 'كِتَاب'; openConjugator();
+      const P = w => { conjState.ism = w; let thrown = ''; try { renderIsmOut(); } catch (e) { thrown = 'THROW ' + e.message; } return thrown || N(document.getElementById('ismOut').textContent.replace(/\s+/g, ' ')); };
+      const BAD = /صَحْرَاءَاتٌ|حَمْرَاءَاتٌ|بِنْتَاتٌ|أَبَاتٌ|رَجُلَاتٌ|صَحَارِيء|حَمَارِيء|أَبْنَات|أَدْلُو|أَظْبُي|كَبَارِى|أَكْتِبَة|أَبَانِ |أَقْاَضُ|مَقْاَض|أَعْصَاُ|مَعْصَا|مَسْجَد|null|undefined|THROW/;
+      o.bad = ['صَحْرَاء', 'حَمْرَاء', 'بِنْت', 'أَب', 'دَلْو', 'ظَبْي', 'كُبْرَى', 'كِتَاب', 'رَجُل', 'قَاضٍ', 'عَصًا', 'سجد', 'حمر', 'عور', 'اِبْن', 'مَاء', 'ء', 'x'].filter(w => BAD.test(P(w)));
+      const pk = P('كِتَاب'); o.kitab = [/recites it: كُتُب/.test(pk), /✗/.test(pk)].join(' ');
+      const ph = P('حمر'); o.hamra = [/Quality: أَحْمَرُ/.test(ph), /Superlative/.test(ph), /حَمْرَاءُ/.test(ph)].join(' ');
+      const pq = P('قَاضٍ'); o.qadi = [/قُوَيْضٍ/.test(pq), /أَقْضَى/.test(pq), /✗ مَنْقُوصٌ/.test(pq)].join(' ');
+      const ps = P('سجد'); o.sajada = /time\/place: مَسْجِد/.test(ps);
+      conjState.ism = 'كِتَاب'; conjState.lab = 'sarf'; document.getElementById('scrim').click();
+      return o;
+    });
+    const J = JSON.stringify, T = (c, m) => { if (!c) throw new Error(m); };
+    T(J(r.a09) === J({ 'دَار': 'دُوَيْرَة', 'نَار': 'نُوَيْرَة', 'يَد': 'يُدَيَّة', 'حَرْب': 'حُرَيْب', 'شَمْس': 'شُمَيْسَة', 'عَيْن': 'عُيَيْنَة' }), 'A09: ' + J(r.a09));
+    T(J(r.a08) === J({ 'مِيزَان': 'مُوَيْزِين', 'دِينَار': 'REFUSE', 'مَاء': 'REFUSE', 'اِبْن': 'REFUSE', 'اِسْم': 'REFUSE', 'أُخْت': 'REFUSE', 'بِنْت': 'REFUSE' }), 'A08: ' + J(r.a08));
+    T(J(r.a25) === J({ 'دُنْيَا': 'دُنَيَّا', 'عَصًا': 'عُصَيَّة', 'سَمَاء': 'REFUSE', 'كِسَاء': 'REFUSE', 'قَاضٍ': 'قُوَيْضٍ' }), 'A25: ' + J(r.a25));
+    T(r.a26t === 'REFUSE' && J(r.a26n) === J({ 'قَاضِي': 'REFUSE', 'كُرْسِيّ': 'REFUSE', 'شَيْء': 'شيئِيّ' }), 'A26: ' + r.a26t + ' ' + J(r.a26n));
+    T(J(r.a07) === J({ 'سَنَة': 'سَنَوِيّ', 'لُغَة': 'لُغَوِيّ', 'شَفَة': 'شَفَهِيّ' }) && r.a07x === 'REFUSE', 'A07: ' + J(r.a07) + ' ' + r.a07x);
+    T(J(r.a33t) === J({ 'سُلْطَان': 'سُلَيْطِين', 'قُرَيْش': 'REFUSE', 'مُصْطَفَى': 'REFUSE', 'سَلْمَان': 'سُلَيْمَان', 'سَكْرَان': 'سُكَيْرَان' }) && J(r.a33n) === J({ 'مُصْطَفَى': 'REFUSE', 'طَيّ': 'طَيَوِيّ|طَوَوِيّ', 'حَيّ': 'حَيَوِيّ', 'نَبِيّ': 'نَبَوِيّ' }), 'A33: ' + J(r.a33t) + ' ' + J(r.a33n));
+    T(r.nullOnRefusal && r.mughni.n === 53 && !r.mughni.bad.length, 'the notes\' 53 examples stand: ' + J(r.mughni.bad));
+    T(J(r.dual) === J({ 'أَب': 'أَبَوَانِ', 'أَخ': 'أَخَوَانِ', 'صَحْرَاء': 'صَحْرَاوَانِ', 'يَد': 'يَدَانِ' }) && J(r.fem) === J({ 'صَحْرَاء': 'صَحْرَاوَاتٌ', 'حَمْرَاء': 'حَمْرَاوَاتٌ', 'بِنْت': 'REFUSE', 'أَب': 'REFUSE', 'رَجُل': 'REFUSE', 'كِتَاب': 'REFUSE', 'مَدْرَسَة': 'مَدْرَسَاتٌ' }) && J(r.masc) === J({ 'مَسْجِد': 'REFUSE', 'مُعَلِّم': 'مُعَلِّمُونَ' }), 'A27: ' + J(r.dual) + J(r.fem) + J(r.masc));
+    T(r.zm === 'مَسْجِد مَطْلِع مَشْرِق مَكْتَب' && r.zmWhy, 'A28: ' + r.zm);
+    T(r.tf === 'أَحْمَرُ:sifa أَعْوَرُ:sifa أَكْبَرُ', 'A29: ' + r.tf);
+    T(!r.bad.length, 'the panel still shows a malformed form for: ' + J(r.bad));
+    T(r.kitab === 'true true' && r.hamra === 'true false true' && r.qadi === 'true true true' && r.sajada, 'the panel: ' + J([r.kitab, r.hamra, r.qadi, r.sajada]));
+  });
+
+  await check('v333 — Tasgir · Nisba lab: a doubled word is not a word that lost its lām — مكة، أمة، جنة keep their rule and only سَنَة، لُغَة، شَفَة take the wāw or the hāʾ back (A07); the waṣl nouns are refused with or without vowels (A08)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), o = {};
+      const Ni = w => { let x; try { x = IsmEngine.nisba2(w); } catch (e) { return 'THROW'; } return x && x.out ? N(x.out) : 'REFUSED'; };
+      const Ta = w => { let x; try { x = IsmEngine.tasgir2(w); } catch (e) { return 'THROW'; } return x === null ? 'NONE' : (x.out ? N(x.out) : 'REFUSED'); };
+      o.doubled = ['مَكَّة', 'أُمَّة', 'جَنَّة', 'مِلَّة', 'سُنَّة', 'مَرَّة'].map(Ni).join(' ');
+      o.bare = ['مكة', 'أمة', 'جنة', 'ملة', 'مرة', 'مدة'].map(Ni).join(' ');
+      o.dropped = ['سَنَة', 'لُغَة', 'شَفَة', 'سنة', 'لغة', 'شفة'].map(Ni).join(' ');
+      o.unknown = ['كُرَة', 'كرة'].map(Ni).join(' ');
+      o.wasl = ['اِبْن', 'اِسْم', 'ابن', 'اسم'].map(Ta).join(' ');
+      o.sound = ['جبل', 'درهم', 'شاعر', 'قلب', 'كتاب'].map(Ta).join(' ');
+      return o;
+    });
+    const T = (c, m) => { if (!c) throw new Error(m + ' — ' + JSON.stringify(r)); };
+    T(r.doubled === 'مَكِّيّ أُمِّيّ جَنِّيّ مِلِّيّ سُنِّيّ مَرِّيّ', 'the doubled word, vowelled');
+    T(!/وِيّ|REFUSED|THROW/.test(r.bare), 'the doubled word, bare: no wāw is brought back');
+    T(r.dropped === 'سَنَوِيّ لُغَوِيّ شَفَهِيّ سَنَوِيّ لُغَوِيّ شَفَهِيّ', 'the dropped lām comes back');
+    T(r.unknown === 'REFUSED REFUSED', 'a word the lexicon does not know is refused');
+    T(r.wasl === 'REFUSED REFUSED REFUSED REFUSED', 'the waṣl nouns');
+    T(r.sound === 'جُبَيْل دُرَيْهِم شُوَيْعِر قُلَيْب كُتَيِّب', 'the plain rules stand');
+  });
+
+  await check('v333 — Tawkīd nūn lab: the hollow imperative wears its long stem (A02), the stored hamza cells are spelt (A41), the doubled verb takes the nūn before ā / ū / ī (A57)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), o = {};
+      const M = lemma => (RootFinder.corpusIndex().find(x => N(x.lemma) === N(lemma)) || {}).m;
+      const row = (lemma, tense, i) => { const t = TawkidNunEngine.table(M(lemma)); const x = t.rows.find(q => q.tense === tense && q.i === i); return x ? N(x.base) + '→' + (x.heavy.ok ? N(x.heavy.out) : '✗') + '/' + (x.light.ok ? N(x.light.out) : '✗') : '∅'; };
+      // A02 — ʿIzzī L200–L203 «صُونَنَّ … بِيعَنَّ بِيعَانِّ بِيعُنَّ، بِيعِنَّ بِيعَانِّ بِعْنَانِّ … وَخَافَنَّ … صُونَنْ وَبِيعَنْ وَخَافَنْ»
+      o.hollow = [['قَالَ', 'amr', 0], ['بَاعَ', 'amr', 0], ['خَافَ', 'amr', 0], ['نَامَ', 'amr', 0], ['أَجَابَ', 'amr', 0], ['اِسْتَقَامَ', 'amr', 0], ['صَانَ', 'amr', 0]].map(a => row(...a));
+      o.bia = [0, 1, 2, 3, 4, 5].map(i => row('بَاعَ', 'amr', i).split('→')[1].split('/')[0]).join(' ');
+      o.sound = row('كَتَبَ', 'amr', 0) + ' ' + row('رَمَى', 'amr', 0) + ' ' + row('دَعَا', 'amr', 0);
+      // A57 — ʿIzzī L143 «مُدَّا مُدُّوا مُدِّي»
+      o.gem = [1, 2, 3].map(i => row('مَدَّ', 'amr', i)).concat([1, 2, 9].map(i => row('مَدَّ', 'mudari', i)));
+      o.gem2 = [row('فَرَّ', 'mudari', 2), row('أَحَبَّ', 'mudari', 2), row('اِسْتَعَدَّ', 'mudari', 9)];
+      // A41 — the stored cells of the hamza-final verbs, and the two hamzas at the head
+      const q = M('قَرَأَ'); o.qaraa = [q.mazi[1], q.mudari[1], q.mudari[9], q.amr[1], q.amr[3]].map(N).join(' ');
+      o.qaraaRows = [row('قَرَأَ', 'amr', 1), row('قَرَأَ', 'amr', 3), row('قَرَأَ', 'mudari', 1), row('قَرَأَ', 'mudari', 9)];
+      o.head = ['أَخَذَ', 'أَكَلَ', 'أَمَرَ'].map(l => N((M(l) || { mudari: [] }).mudari[12])).join(' ');
+      // every stored paradigm: none of the three spellings is left, and no waṣl alif stands bare
+      const bad = []; let cells = 0;
+      for (const v of RootFinder.corpusIndex()) for (const k of ['mazi', 'mudari', 'amr', 'mansub', 'majzum', 'majzum2']) { const a = Array.isArray(v.m[k]) ? v.m[k] : [v.m[k]]; for (const c0 of a) { if (typeof c0 !== 'string') continue; const c = N(c0); cells++;
+        if (/أَا|أِي|ؤِي|^أَأْ/.test(c) || /^ا[ء-ي]ْ/.test(c)) bad.push(v.lemma + ':' + c); } }
+      o.cells = cells; o.badCells = bad.slice(0, 8);
+      // the reverse reading finds the amr under the nūn, never the māḍī
+      o.read = ['قُولَنَّ', 'بِيعَنَّ', 'خَافَنَّ', 'مُدُّنَّ', 'مُدِّنَّ', 'مُدَّانِّ', 'اِقْرَآنِّ'].map(w => { const x = TawkidNunEngine.read(w); return x && x.ok ? N(x.base) + ':' + x.cell.tense : '✗'; }).join(' ');
+      const au = sarfAudit(); o.audit = au.bad.length;
+      // the panel
+      conjState.lab = 'tawkid'; conjState.tawkid = 'قُلْ'; openConjugator(); try { renderTawkidOut(); } catch (e) { o.thrown = e.message; }
+      o.lab = N((document.getElementById('tawkidOut') || {}).textContent || ''); o.lab = [/قُولَنَّ/.test(o.lab), /قُلَنَّ/.test(o.lab)].join(' ');
+      conjState.lab = 'sarf'; document.getElementById('scrim').click();
+      return o;
+    });
+    const J = JSON.stringify, T = (c, m) => { if (!c) throw new Error(m); };
+    T(J(r.hollow) === J(['قُلْ→قُولَنَّ/قُولَنْ', 'بِعْ→بِيعَنَّ/بِيعَنْ', 'خَفْ→خَافَنَّ/خَافَنْ', 'نَمْ→نَامَنَّ/نَامَنْ', 'أَجِبْ→أَجِيبَنَّ/أَجِيبَنْ', 'اِسْتَقِمْ→اِسْتَقِيمَنَّ/اِسْتَقِيمَنْ', 'صُنْ→صُونَنَّ/صُونَنْ']), 'A02: ' + J(r.hollow));
+    T(r.bia === 'بِيعَنَّ بِيعَانِّ بِيعُنَّ بِيعِنَّ بِيعَانِّ بِعْنَانِّ', 'A02 the ʿIzzī\'s own row: ' + r.bia);
+    T(r.sound === 'اُكْتُبْ→اُكْتُبَنَّ/اُكْتُبَنْ اِرْمِ→اِرْمِيَنَّ/اِرْمِيَنْ اُدْعُ→اُدْعُوَنَّ/اُدْعُوَنْ', 'the sound and the nāqiṣ stand: ' + r.sound);
+    T(J(r.gem) === J(['مُدَّا→مُدَّانِّ/✗', 'مُدُّوا→مُدُّنَّ/مُدُّنْ', 'مُدِّي→مُدِّنَّ/مُدِّنْ', 'يَمُدَّانِ→يَمُدَّانِّ/✗', 'يَمُدُّونَ→يَمُدُّنَّ/يَمُدُّنْ', 'تَمُدِّينَ→تَمُدِّنَّ/تَمُدِّنْ']) && J(r.gem2) === J(['يَفِرُّونَ→يَفِرُّنَّ/يَفِرُّنْ', 'يُحِبُّونَ→يُحِبُّنَّ/يُحِبُّنْ', 'تَسْتَعِدِّينَ→تَسْتَعِدِّنَّ/تَسْتَعِدِّنْ']), 'A57: ' + J(r.gem) + J(r.gem2));
+    T(r.qaraa === 'قَرَآ يَقْرَآنِ تَقْرَئِينَ اِقْرَآ اِقْرَئِي' && J(r.qaraaRows) === J(['اِقْرَآ→اِقْرَآنِّ/✗', 'اِقْرَئِي→اِقْرَئِنَّ/اِقْرَئِنْ', 'يَقْرَآنِ→يَقْرَآنِّ/✗', 'تَقْرَئِينَ→تَقْرَئِنَّ/تَقْرَئِنْ']) && r.head === 'آخُذُ آكُلُ آمُرُ', 'A41: ' + r.qaraa + ' ' + J(r.qaraaRows) + ' ' + r.head);
+    T(r.cells > 40000 && !r.badCells.length, 'A41 the stored tables: ' + r.cells + ' cells, still misspelt: ' + J(r.badCells));
+    T(r.read === 'قُلْ:amr بِعْ:amr خَفْ:amr مُدُّوا:amr مُدِّي:amr مُدَّا:amr اِقْرَآ:amr' && r.audit === 0, 'the reverse reading and the paradigm audit: ' + r.read + ' ' + r.audit);
+    T(r.lab === 'true false' && !r.thrown, 'the panel: ' + r.lab + ' ' + r.thrown);
+  });
+
+  await check('v333 — Sarf ledger: no hidden ḍamma on the five verbs (A22), أَقِمْ opens on the cutting hamza (A23), قُلْنَ is two cells and its lām is the women\'s (A54), the hollow passive is narrated (A59), the dropped and the merged letter are told (A60)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), o = {};
+      const L = w => { let x = null; try { x = SarfLedger.read(w); } catch (e) { return ['THROW ' + e.message]; } return x ? x.steps.map(s => N(s.ar)) : []; };
+      const EN = w => { const x = SarfLedger.read(w); return x ? x.steps.map(s => s.en).join(' | ') : ''; };
+      const has = (w, re) => L(w).some(s => re.test(s));
+      // A22 — ʿIzzī L232, L239, L244
+      o.tarmina = [has('تَرْمِينَ', /الضَّمَّةُ مُقَدَّرَةٌ/), has('تَرْمِينَ', /حُذِفَتِ اللَّامُ قَبْلَ يَاءِ الْمُخَاطَبَةِ/), has('تَرْمِينَ', /بِثُبُوتِ النُّونِ/), has('تَرْمِينَ', /جَمْعِ الْمُؤَنَّثِ/), /you \(f\) — or you \(pl, f\)/.test(EN('تَرْمِينَ'))].join(' ');
+      o.yarmi = [has('يَرْمِي', /الضَّمَّةُ مُقَدَّرَةٌ/), has('يَرْمِينَ', /الضَّمَّةُ مُقَدَّرَةٌ/), has('يَرْمِينَ', /مَبْنِيٌّ عَلَى السُّكُونِ/), has('يَرْمِيَانِ', /الضَّمَّةُ مُقَدَّرَةٌ/)].join(' ');
+      // A23 — ʿIzzī L98
+      o.aqim = [has('أَقِمْ', /هَمْزَةِ الْوَصْلِ/), has('أَقِمْ', /هَمْزَةُ الْقَطْعِ الْمَفْتُوحَةُ/), has('أَقِمْ', /تُؤَكْرِمُ/), has('أَكْرِمْ', /هَمْزَةِ الْوَصْلِ/), has('اُكْتُبْ', /هَمْزَةِ الْوَصْلِ/)].join(' ');
+      // A54 — ʿIzzī L188, L196–L199
+      o.qulna = [has('قُلْنَ', /الْأَمْرُ.*أَوِ: الْمَاضِي/), has('قُلْنَ', /بِالْجَزْمِ/), has('قُلْنَ', /نُونِ النِّسْوَةِ فَالْتَقَى سَاكِنَانِ فَحُذِفَتِ الْعَيْنُ/), has('يَقُلْنَ', /نُونِ النِّسْوَةِ فَالْتَقَى سَاكِنَانِ/), has('قُولُوا', /حُذِفَتِ الْعَيْنُ/), has('قُولُوا', /فَثَبَتَتِ الْعَيْنُ/), has('قُلْ', /لِبِنَاءِ الْأَمْرِ/)].join(' ');
+      // A59 — ʿIzzī L183–L184
+      o.qila = [has('قِيلَ', /أَصْلُهُ قُوِلَ/), has('قِيلَ', /بِالنَّقْلِ وَالْقَلْبِ/), has('بِيعَ', /أَصْلُهُ بُيِعَ/), has('بِيعَ', /وَالْقَلْبِ/), has('يُقَالُ', /أَصْلُهُ يُقْوَلُ/), has('يُقَالُ', /قُلِبَتْ أَلِفًا/)].join(' ');
+      // A60 — ʿIzzī L239, L140, L162
+      o.a60 = [has('يَرْمُونَ', /يَرْمِيُونَ → يَرْمُونَ/), has('يَخْشَوْنَ', /يَخْشَيُونَ → يَخْشَوْنَ/), has('يَمُدُّونَ', /أُدْغِمَ الْمِثْلَانِ وُجُوبًا/), has('عِدْ', /حُذِفَتِ الْوَاوُ مِنَ الْأَمْرِ/), has('يَعِدُ', /بَيْنَ يَاءٍ وَكَسْرَةٍ/), has('يَضَعُ', /فُتِحَتِ الْعَيْنُ لِحَرْفِ الْحَلْقِ/), has('اِيجَلْ', /قُلِبَتِ الْوَاوُ يَاءً/)].join(' ');
+      o.thrown = ['تَرْمِينَ', 'أَقِمْ', 'قُلْنَ', 'قِيلَ', 'يُقَالُ', 'يَرْمُونَ', 'يَخْشَوْنَ', 'يَمُدُّونَ', 'عِدْ', 'كَتَبَ', 'مِيزَان', 'xyz', ''].filter(w => /THROW/.test(L(w).join(' ')));
+      conjState.lab = 'sledger'; conjState.sledger = 'قِيلَ'; openConjugator(); try { renderSarfLedgerOut(); } catch (e) { o.panelThrow = e.message; }
+      o.panel = /قُوِلَ/.test(N((document.getElementById('sledgerOut') || document.querySelector('.sheet') || {}).textContent || ''));
+      conjState.lab = 'sarf'; document.getElementById('scrim').click();
+      return o;
+    });
+    const T = (c, m) => { if (!c) throw new Error(m + ' — ' + JSON.stringify(r)); };
+    T(r.tarmina === 'false true true true true', 'A22 تَرْمِينَ');
+    T(r.yarmi === 'true false true false', 'A22 the hidden ḍamma is the singular\'s alone');
+    T(r.aqim === 'false true true false true', 'A23 أَقِمْ');
+    T(r.qulna === 'true false true true false true true', 'A54 قُلْنَ');
+    T(r.qila === 'true true true false true true', 'A59 the hollow passive');
+    T(r.a60 === 'true true true true true true true', 'A60 the dropped and the merged letter');
+    T(!r.thrown.length && !r.panelThrow && r.panel, 'the panel');
+  });
+
+  await check('v333 — Derivation lab: أَحْمَر is the quality, not the elative (A30); عَطْشَان is the quality on فَعْلَان, not a maṣdar (A31); مِيعَاد and مِيلَاد are nouns of time (A32); قَتِيل and جَرِيح are فَعِيل in the sense of mafʿūl and رَسُول is left open (A55)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), o = {};
+      const D = w => { let d = null; try { d = IshtiqaqEngine.read(w); } catch (e) { return 'THROW ' + e.message; } return d ? [N(d.wazn) || 'said', d.roles.join('+'), d.root.join(''), d.mana || '-'].join(' | ') : null; };
+      // A30 — Marāḥ L419–L421: no elative from a colour or a defect; there أَفْعَل is the quality
+      o.ahmar = D('أَحْمَر'); o.aswad = D('أَسْوَد'); o.ahwal = D('أَحْوَل'); o.ahmaq = D('أَحْمَق');
+      o.akbar = D('أَكْبَر'); o.afdal = D('أَفْضَل');
+      // A31 — Marāḥ L408–L410: فَعْلَانُ is a scale of the quality; the written sukūn forbids the maṣdar عَطَش + ان
+      o.atshan = D('عَطْشَان'); o.sakran = D('سَكْرَان'); o.ghadban = D('غَضْبَان');
+      o.dualA = D('عَطْشَانِ'); o.dualB = D('كَلْبَانِ'); o.bahran = D('بَحْرَان'); o.hamdan = D('حَمْدَان');
+      // A32 — the books give مِفْعَال to the tool; the three are heard for the time
+      o.miad = D('مِيعَاد'); o.milad = D('مِيلَاد'); o.miqat = D('مِيقَات'); o.mizan = D('مِيزَان'); o.miftah = D('مِفْتَاح'); o.minshar = D('مِنْشَار');
+      // A55 — Marāḥ L431, L434–L436
+      o.qatil = D('قَتِيل'); o.jarih = D('جَرِيح'); o.rasul = D('رَسُول'); o.karim = D('كَرِيم'); o.alim = D('عَلِيم'); o.sabur = D('صَبُور');
+      o.thrown = ['أَحْمَر', 'عَطْشَان', 'مِيعَاد', 'قَتِيل', 'رَسُول', 'xyz', '', 'ا', 'ء ء ء'].filter(w => /THROW/.test(String(D(w))));
+      conjState.lab = 'isht'; openConjugator();
+      const P = w => { conjState.isht = w; try { renderIshtOut(); } catch (e) { return 'THROW ' + e.message; } return N(document.getElementById('ishtOut').textContent).replace(/\s+/g, ' '); };
+      const p1 = P('أَحْمَر'), p2 = P('عَطْشَان'), p3 = P('مِيعَاد'), p4 = P('قَتِيل'), p5 = P('رَسُول'), p6 = P('عَلِيم');
+      o.pAhmar = [/الصِّفَةُ الْمُشَبَّهَةُ/.test(p1), /اسْمُ التَّفْضِيلِ ·/.test(p1), /حَمْرَاءُ/.test(p1), /in the lexicon: red/.test(p1)].join(' ');
+      o.pAtshan = [/فَعْلَانُ/.test(p2), /الصِّفَةُ الْمُشَبَّهَةُ/.test(p2), /الْمَصْدَرُ ·/.test(p2), /thirsty/.test(p2), /عَطَش/.test(p2)].join(' ');
+      o.pMiad = [/اسْمُ الْمَكَانِ وَالزَّمَانِ/.test(p3), /اسْمُ الْآلَةِ ·/.test(p3), /HEARD as a noun of TIME/.test(p3), /appointed time/.test(p3), /tool for/.test(p3)].join(' ');
+      o.pQatil = [/فَعِيلٌ بِمَعْنَى مَفْعُولٍ/.test(p4), /مَقْتُول/.test(p4), /الصِّفَةُ الْمُشَبَّهَةُ ·/.test(p4), /one killed/.test(p4)].join(' ');
+      o.pRasul = [/صِيغَةُ الْمُبَالَغَةِ · intensive — or اسْمُ الْمَفْعُولِ/.test(p5), /مُرْسَل/.test(p5), /does not choose/.test(p5), /in the lexicon: messenger/.test(p5)].join(' ');
+      o.pAlim = [/الصِّفَةُ الْمُشَبَّهَةُ · lasting quality/.test(p6), /the scale also bears:.*اسْمُ الْمَفْعُولِ/.test(p6)].join(' ');
+      conjState.isht = ''; renderIshtOut(); o.cleared = document.getElementById('ishtOut').textContent.trim() === '';
+      conjState.lab = 'sarf'; document.getElementById('scrim').click();
+      return o;
+    });
+    const T = (c, m) => { if (!c) throw new Error(m + ' — ' + JSON.stringify(r)); };
+    T(r.ahmar === 'أَفْعَلُ | sifa | حمر | lawn' && r.aswad === 'أَفْعَلُ | sifa | سود | lawn' && r.ahwal === 'أَفْعَلُ | sifa | حول | lawn' && r.ahmaq === 'أَفْعَلُ | sifa | حمق | lawn', 'A30 a colour or a defect on أَفْعَل is the quality');
+    T(r.akbar === 'أَفْعَلُ | tafdil | كبر | -' && r.afdal === 'أَفْعَلُ | tafdil | فضل | -', 'A30 the elative stands where it is one');
+    T(r.atshan === 'فَعْلَانُ | sifa | عطش | falan' && r.sakran === 'فَعْلَانُ | sifa | سكر | falan' && /^said \| sifa \| غضب/.test(r.ghadban), 'A31 فَعْلَان is the quality');
+    T(r.dualA === null && r.dualB === null && r.bahran === null && !/sifa/.test(String(r.hamdan)), 'A31 the dual and the noun are not read as a quality');
+    T(r.miad === 'مِفْعَالٌ | makan | وعد | zaman' && r.milad === 'مِفْعَالٌ | makan | ولد | zaman' && r.miqat === 'مِفْعَالٌ | makan | وقت | zaman', 'A32 the three heard time nouns');
+    T(/^مِفْعَالٌ \| alat/.test(r.mizan) && /^مِفْعَالٌ \| alat/.test(r.miftah) && /^مِفْعَالٌ \| alat/.test(r.minshar), 'A32 the instruments stand');
+    T(r.qatil === 'فَعِيلٌ | ism-maful | قتل | maful' && r.jarih === 'فَعِيلٌ | ism-maful | جرح | maful', 'A55 فَعِيل in the sense of mafʿūl');
+    T(r.rasul === 'فَعُولٌ | mubalagha+ism-maful | رسل | either' && r.karim === 'فَعِيلٌ | sifa+mubalagha | كرم | -' && /^فَعِيلٌ \| sifa\+mubalagha\+ism-maful \| علم/.test(r.alim) && /^فَعُولٌ \| mubalagha/.test(r.sabur), 'A55 the open scales');
+    T(r.pAhmar === 'true false true true', 'A30 panel'); T(r.pAtshan === 'true true false true true', 'A31 panel');
+    T(r.pMiad === 'true false true true false', 'A32 panel'); T(r.pQatil === 'true true false true', 'A55 panel قَتِيل');
+    T(r.pRasul === 'true true true true', 'A55 panel رَسُول'); T(r.pAlim === 'true true', 'A55 panel عَلِيم');
+    T(!r.thrown.length && r.cleared, 'no input throws; an empty box clears the panel');
+  });
+
+  await check('v333 — Pronoun lab: the five nouns with the speaker\'s yāʾ are أَبِي، أَخِي، حَمِي in all three cases, before another pronoun they take their letter, and ذُو takes no pronoun (A24)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), o = {};
+      const A = (h, s) => { let x; try { x = DamirEngine.attach(h, s, 'noun'); } catch (e) { return 'THROW ' + e.message; } return x.ok ? N(x.text) : 'REFUSED'; };
+      // Iẓhār L162, L177: with the speaker's yāʾ the letters go and the case is hidden
+      o.ya = ['أَبُو', 'أَبَا', 'أَبِي', 'أَخُو', 'أَخَا', 'أَخِي', 'حَمُو', 'أَبٌ', 'أَخًا', 'أَخٍ'].map(h => A(h, 12)).join(' ');
+      // annexed to other than the yāʾ: by the letter
+      o.hu = ['أَبُو', 'أَبَا', 'أَبِي', 'أَبٌ', 'أَخًا', 'أَخٍ'].map(h => A(h, 0)).join(' ');
+      o.ka = ['أَخُو', 'أَخَا', 'أَخِي'].map(h => A(h, 6)).join(' ');
+      o.dhu = [A('ذُو', 12), A('ذُو', 0), A('ذَا', 6), A('ذِي', 13)].join(' ');
+      // what must not move: the sound plural, the dual, the plain noun
+      o.keep = [A('مُعَلِّمُو', 12), A('مُسْلِمِينَ', 12), A('كِتَابٌ', 12), A('كِتَابَانِ', 12), A('غُلَامُ', 0), A('فُو', 12)].join(' ');
+      const st = DamirEngine.attach('أَبُو', 12, 'noun'); o.steps = st.steps.map(s => s.id).join(',') + ' | ' + /مُقَدَّرٌ/.test(N(st.steps[0].ar));
+      conjState.lab = 'damir'; conjState.damirKind = 'noun'; conjState.damirSeat = 12; conjState.damirHost = 'أَخُو'; openConjugator();
+      try { renderDamirOut(); } catch (e) { o.panelThrow = e.message; }
+      o.panel = N((document.getElementById('damirAttach') || {}).textContent || '').replace(/\s+/g, ' ').slice(0, 60);
+      conjState.damirHost = 'ذُو'; try { renderDamirOut(); } catch (e) { o.panelThrow = e.message; }
+      o.panelDhu = /idf-refuse/.test((document.getElementById('damirAttach') || {}).innerHTML || '');
+      conjState.damirHost = undefined; conjState.damirKind = undefined; conjState.damirSeat = undefined; conjState.lab = 'sarf'; document.getElementById('scrim').click();
+      return o;
+    });
+    const T = (c, m) => { if (!c) throw new Error(m + ' — ' + JSON.stringify(r)); };
+    T(r.ya === 'أَبِي أَبِي أَبِي أَخِي أَخِي أَخِي حَمِي أَبِي أَخِي أَخِي', 'A24 the speaker\'s yāʾ');
+    T(r.hu === 'أَبُوهُ أَبَاهُ أَبِيهِ أَبُوهُ أَخَاهُ أَخِيهِ' && r.ka === 'أَخُوكَ أَخَاكَ أَخِيكَ', 'A24 annexed to another pronoun, by the letter');
+    T(r.dhu === 'REFUSED REFUSED REFUSED REFUSED', 'ذُو takes no pronoun');
+    T(r.keep === 'مُعَلِّمِيَّ مُسْلِمِيَّ كِتَابِي كِتَابَايَ غُلَامُهُ فِيَّ', 'the other hosts stand as they were');
+    T(r.steps === 'khamsa-ya,kasra | true' && !r.panelThrow && /^أَخِ ?ي/.test(r.panel) && r.panelDhu, 'the steps and the panel');
+  });
+
+  await check('v333 — Maqṣūd lab: the engine\'s own forms in the amber cells are well formed — أَمَدَّانِ، أَمَدُّونَ، إِغْزَائِهِ، سَأَّالٌ، رَأَّاءٌ (A42)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), o = {}, M = k => MaqsudEngine.MODELS.find(m => N(m.key) === N(k));
+      const B = k => MaqsudEngine.blocksI(M(k)).tafdil.slice(0, 3).map(N).join(' ');
+      // the cells quote the book's rows (maqsud-sarf.txt); the engine's form stands beside them
+      o.madda = B('مَدَّ'); o.farra = B('فَرَّ'); o.adda = B('عَضَّ');
+      o.saal = N(MaqsudEngine.emsileI(M('سَأَلَ')).mubalagha); o.raa = N(MaqsudEngine.emsileI(M('رَأَى')).mubalagha);
+      o.ighza = N(MaqsudEngine.babRow(M('غَزَا'), 'IV').taajjub2); o.ighza1 = N(MaqsudEngine.babRow(M('غَزَا'), 'IV').taajjub1);
+      // the cause, not the nine cells: no engine form anywhere in the lab carries two vowels on one letter or a madda under a shadda
+      MaqsudEngine._audit = null; MaqsudEngine._auditPart = null; const a = MaqsudEngine.audit();
+      const two = /[ً-ِْ]ّ?[ً-ِْ]/, bad = [];
+      for (const m of MaqsudEngine.MODELS) {
+        let e = null, b = null; try { e = MaqsudEngine.emsileI(m); b = MaqsudEngine.blocksI(m); } catch (err) { bad.push('THROW ' + m.key); continue; }
+        const all = Object.values(e || {}).concat(...Object.values(b || {}).map(x => x || []));
+        for (const row of m.babs) { let rr = null; try { rr = MaqsudEngine.babRow(m, row.form); } catch (err) { bad.push('THROW ' + m.key + ' ' + row.form); } if (rr) all.push(...Object.values(rr)); }
+        for (const f of all) if (typeof f === 'string' && (two.test(f.normalize('NFD')) || /آّ|ّآ|اءِه/.test(N(f)))) bad.push(m.key + ': ' + f);
+      }
+      o.bad = bad.slice(0, 8); o.n = a.n; o.strict = a.strict; o.loose = a.loose;
+      o.amberBroken = a.misses.filter(x => x.how === 'loose' && (two.test(String(x.got).normalize('NFD')) || /آّ|اءِه/.test(N(x.got)))).length;
+      // the same maṣdar in the Sarf tab's muhtelife (the cause sat in ziyadeExt)
+      const ext = ziyadeExt({ wazn: 'أَفْعَلَ يُفْعِلُ', masdar: 'إِعْطَاء', maful: 'مُعْطًى' }).map(x => N(x.ar));
+      o.ext = [ext.some(x => /بِإِعْطَائِهِ$/.test(x)), ext.some(x => /إِعْطَاءَهُ$/.test(x)), ext.some(x => /اءِهِ/.test(x))].join(' ');
+      return o;
+    });
+    const T = (c, m) => { if (!c) throw new Error(m + ' — ' + JSON.stringify(r)); };
+    T(r.madda === 'أَمَدُّ أَمَدَّانِ أَمَدُّونَ' && r.farra === 'أَفَرُّ أَفَرَّانِ أَفَرُّونَ' && r.adda === 'أَعَضُّ أَعَضَّانِ أَعَضُّونَ', 'A42 the doubled elative\'s dual and plural');
+    T(r.saal === 'سَأَّالٌ' && r.raa === 'رَأَّاءٌ', 'A42 the doubled hamza keeps its alif');
+    T(r.ighza === 'إِغْزَائِهِ' && r.ighza1 === 'إِغْزَاءَهُ', 'A42 the hamza before the pronoun');
+    T(!r.bad.length && r.amberBroken === 0, 'no malformed engine form in any cell');
+    T(r.n === 1922 && r.strict >= 1698 && r.loose >= 1809, 'the audit did not fall');
+    T(r.ext === 'true true false', 'the muhtelife carries the same seat');
+  });
+
+  await check('v333 — Root Finder and Mizan: the article\'s traces are not the scale\'s — no «فَّعْلُ» for الشَّمْسُ, no «لفَّعُلِ» for لِلرَّجُلِ; a word behind two clitics reaches the lexicon (A58)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC'), o = {};
+      const M = (w, rt) => N(WaznEngine.mizan(w, rt));
+      o.sun = [M('الشَّمْسُ', 'ش م س'), M('الرَّجُلُ', 'ر ج ل'), M('وَالشَّمْسِ', 'ش م س'), M('بِالنَّفْسِ', 'ن ف س'), M('اللَّيْلُ', 'ل ي ل'), M('الشُّهَدَاءِ', 'ش ه د')].join(' ');
+      o.lam = [M('لِلرَّجُلِ', 'ر ج ل'), M('وَلِلرَّجُلِ', 'ر ج ل'), M('لِلْفَرْعِ', 'ف ر ع'), M('لِلَّيْلِ', 'ل ي ل'), M('لِلَّفْظِ', 'ل ف ظ'), M('لِلْأَلْفَاظِ', 'ل ف ظ')].join(' ');
+      o.wasl = [M('الِانْفِرَادِ', 'ف ر د'), M('لِلِاسْتِعْمَالِ', 'ع م ل'), M('وَالِاجْتِهَادُ', 'ج ه د')].join(' ');
+      // a radical is never taken for a clitic
+      o.rad = [M('وَصْفٌ', 'و ص ف'), M('كِتَابٌ', 'ك ت ب'), M('لَيْلٌ', 'ل ي ل'), M('وَلَدٌ', 'و ل د'), M('كَلَامٌ', 'ك ل م'), M('لِسَانٌ', 'ل س ن'), M('وَوَعَدَ', 'و ع د'), M('كَكَلْبٍ', 'ك ل ب'), M('فَفَهِمَ', 'ف ه م')].join(' ');
+      const L = w => { let x; try { x = RootFinder.lab(w); } catch (e) { return 'THROW ' + e.message; } return x && x.r ? N(x.r.root) + ' | ' + N(x.wazn || '') : null; };
+      o.lab = [L('الشَّمْسُ'), L('لِلرَّجُلِ'), L('وَلِلرَّجُلِ'), L('وَلِلْمُؤْمِنِينَ'), L('وَكَالرَّجُلِ')].join(' ; ');
+      const F = w => { const f = RootFinder.find(w); return f ? N(f.root) + (f.lemma ? ' ' + N(f.lemma) : '') : null; };
+      o.find = [F('وَلِلْمُؤْمِنِينَ'), F('فَلِلرَّيْثِ'), F('لِلْمُؤْمِنِينَ')].join(' ; ');
+      const S = w => { const a = SentenceAnalyzer.analyze(w)[0]; return a ? [a.kind, N(a.root), N(a.wazn || ''), N(a.lemma || ''), a.sure].join(' ') : null; };
+      o.sa = [S('وَلِلرَّجُلِ'), S('لِلرَّجُلِ'), S('الشَّمْسُ')].join(' ; ');
+      o.wakala = (() => { const f = RootFinder.find('وَكَالَةُ'); return f ? N(f.root) : null; })();
+      return o;
+    });
+    const T = (c, m) => { if (!c) throw new Error(m + ' — ' + JSON.stringify(r)); };
+    T(r.sun === 'فَعْلُ فَعُلُ فَعْلِ فَعْلِ فَعْلُ فُعَلَاءِ', 'the sun letter\'s shadda is the article\'s');
+    T(r.lam === 'فَعُلِ فَعُلِ فَعْلِ فَعْلِ فَعْلِ أَفْعَالِ', 'the article\'s lām after لِـ');
+    T(r.wasl === 'اِنْفِعَالِ اِسْتِفْعَالِ اِفْتِعَالُ', 'the article before a waṣl hamza');
+    T(r.rad === 'فَعْلٌ فِعَالٌ فَعْلٌ فَعَلٌ فَعَالٌ فِعَالٌ فَعَلَ فَعْلٍ فَعِلَ', 'a radical stays a radical');
+    T(r.lab === 'ش م س | فَعْلُ ; ر ج ل | فَعُلِ ; ر ج ل | فَعُلِ ; أ م ن | مُفْعِلٌ ; ر ج ل | فَعُلِ', 'the lab\'s scale');
+    T(r.find === 'أ م ن مُؤْمِن ; ر ي ث رَيْث ; أ م ن مُؤْمِن', 'two clitics reach the lexicon');
+    T(r.sa === 'noun ر ج ل فَعُلِ رَجُل true ; noun ر ج ل فَعُلِ رَجُل true ; noun ش م س فَعْلُ شَمْس true', 'the analyzer\'s row');
+    T(r.wakala !== 'ك ي ل' && r.wakala !== 'ك و ل', 'وَكَالَةُ keeps its wāw');
+  });
+  // <<< v333 — group A
   await check('v325 — the bināʾ vowel is a cell of the paradigm (Shudhūr R2–R3, triage T1): the māḍī is named on fatḥa, on ḍamma before the wāw of the plural, on sukūn before a moving rafʿ pronoun; the muḍāriʿ with the nūn of women on sukūn; the amr on the dropped nūn or the dropped weak letter; a weak ending the cell cannot vouch for keeps the old line; and against the corpus\'s authored lines the named vowel agrees ≥ 4,900 times and disagrees no more than twice', async () => {
     const J = JSON.stringify;
     const r = await page.evaluate(() => {

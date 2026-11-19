@@ -14552,3 +14552,79 @@ renamed; and the TOKENS decide, not the glossary line — in four packages the e
   line of أَمَّا; adam-wa-iblis:1:s4:4 لٰكِنَّهُ whose line says «إِنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ».
 - Before minting a key: check `entries` in every glossary under content/samples AND content/user-uploads, and read the TOKENS
   under the key, not only the lemma — a PREF copy can give a package the right key's wrong entry.
+
+### v333 — the Atölye audit, group A (taṣrīf and iʿlāl): findings A01–A60
+
+`research/atolye-audit-2026-11-19.md` drove all 37 Atölye tools against the books and wrote 126 findings; this wave fixes group A.
+One cluster per tool, each fixed at its cause; every finding's inputs are asserted in a smoke check named «v333 — <tool>: …»
+(eleven checks, right after «v331 — one lexicon key, one word»). Book lines are cited in the code beside each rule as `(v333 · audit Axx)`.
+
+- **I'lāl lab (A01, A05, A15–A21) — cause: every muḍāriʿ was built on يَفْعِلُ and the nouns on a private table.** `IlalEngine.build(root,
+  shape, bab)` now takes the verb's bāb from the shelf (`babOf`: the Form I paradigms the lexicon recites) or from the learner's pick
+  (`#ilalBabSeg`), else answers a labelled shortlist (`needBab`, `options`); verb-mode rules (`fath-halq`, `hadhf-damma`,
+  `qalb-ya-damma`, `idgham-mithlayn`, `idgham-amr`) run only under `E._lab === "verb"`; the noun shapes are built by
+  `IshtiqaqEngine.synth` (one law, one road) and respelt by `spell()`; `buildVerb` cross-checks against `sarfDerive`. **Refuses:** a
+  hamzated root in a verb shape; the elative of a root that cannot bear it; the instrument of a weak ʿayn keeps its ʿayn by its
+  wazn (Marāḥ L813–L814) instead of being "healed". The lab's muḍāriʿ and amr agree with all 1216 stored unhamzated Form I cells.
+- **Sarf lab and the 35 doors (A03, A06, A13, A14, A35–A40, A46, A47, A49, A50, A56) — cause: `sarfDerive` refused real bābs and
+  left derived participles and seams unfinished.** `sarfDerive` is now a wrapper over `sarfDerive0`: nāqiṣ bābs 3 and 5 (سَعَى
+  يَسْعَى اِسْعَ; سَرُوَ يَسْرُو, ʿIzzī L226), mithāl in every recited bāb (يَيْسِرُ اِيسِرْ, يَوْجُهُ اُوجُهْ), hollow bāb 5; bāb 5 is lāzim (no ism
+  mafʿūl, `SJ_LAZIM5`); participles cross `sjIdgham` (مُتَّبِع); the derived nāqiṣ has its ism mafʿūl (مُسَمًّى); Form X mithāl
+  اِسْتِيقَاف; `SOUND_HOLLOW_VIII` (اِجْتَوَرَ، اِعْتَوَرَ، اِزْدَوَجَ); door 16 on عشب; `sjSeatHamza` for the quadriliterals (يُطَمْئِنُ). `ilalSteps`
+  recites the mithāl in two steps (`cont`, «ثُمَّ») and the doubled verb with both reasons. **Refuses with a reason** (`conjNoWhy`):
+  nāqiṣ bāb 6 (`naqis-bab`), bāb 5 on a yāʾ (`bab-glide`). The refusal panel never leaves the last table on screen.
+- **Root Finder and Mizan (A04, A10–A12, A43–A45, A48, A51–A53, A58) — cause: one reader guessed a scale off the letters and
+  crashed on a noun.** `RootFinder.lab(word)` is the single reader of both panels (`labFrame`, `jadhrOne`, `mizanOne`): a corpus verb
+  shows EVERY cell the word stands in (`cellsAll`; قُلْنَ is amr and māḍī, ʿIzzī L196–L199); a noun takes its scale from the derivation
+  engine (مَبِيع is مَفْعُول; مُدَّكِر is مُفْتَعِل of ذ ك ر, ʿIzzī L105) or from `WaznEngine.scale` (alignment with at most one turned or
+  missing weak radical; a weak root must land on a known scale; عِدَة is عِلَة of و ع د). `WaznEngine.stemsOf` peels the clitics and the
+  article WITH its traces — the sun letter's shadda (الشَّمْسُ was «فَّعْلُ» on 455 corpus tokens), the lām after لِـ (لِلرَّجُلِ was
+  «لفَّعُلِ»), the kasra before a waṣl hamza (الِانْفِرَاد) — most peeled first, a stem that lost a radical simply failing to seat the
+  root. `RootFinder.find` and `nounFromCorpus` see through joiner + jarr + article (وَلِلْمُؤْمِنِينَ answered «ؤ م ن»). Never «null»,
+  never a throw, two words are two answers. **Refuses:** a scale for a weak root that is not a known scale (`mizanNoScale`).
+- **Tasgir · Nisba lab (A07–A09, A25–A29, A33, A34) — cause: one rule fired where the notes need two, and where no book speaks
+  the lab guessed.** `IsmEngine.tasgir2` / `nisba2` gate the old rule engines (`tasgir1` / `nisba1`) and return `{out, rule, alt}` or
+  `{out: null, refuse}`. The lexicon's root answers where the letters are silent (سَنَوِيّ، مُوَيْزِين) — but a DOUBLED word has lost nothing
+  (`doubled2`: مكة، أمة، جنة keep their rule; the first gate wrote «أَمَوِيّ», caught by the oldest Ism check); the feminine plural of a hamza
+  feminine (صَحْرَاوَات), `MAFIL_SHADHDH` (ʿIzzī L332, the eleven), `LAWN_AYB` (no elative from a colour or a defect, Marāḥ L419–L421;
+  the six of L413 added). **Refuses, because no book in research/sources covers them:** the diminutive of دِينَار، مَاء، اِبْن، اِسْم (vowelled or bare),
+  أُخْت، بِنْت، سَمَاء، كِسَاء، كُرْسِيّ، قُرَيْش، مُصْطَفَى; the nisba of كُرْسِيّ، قَاضِي، بِنْت، أُخْت and of a word whose root the lexicon does not
+  know; a sound feminine plural of a noun with no feminine mark («رَجُلَاتٌ»). طَيّ shows طَيَوِيّ with طَوَوِيّ as a labelled
+  alternative (the book's own example is غَيّ → غَيَوِيّ).
+- **Tawkīd nūn lab (A02, A41, A57) — cause: the hollow jussive's short stem met the nūn, and stored cells carried spelling faults.**
+  `TawkidNunEngine.longStem` (قُولَنَّ، بِيعَنَّ), shadda- and madda-tolerant endings, `read` skips māḍī cells. **Stored cells (A41):**
+  `sarf_gen.seat_cells` now seats the generator's hamzas, and `tools/authoring/heal_paradigm_cells.py --apply` rewrote 495 cells in
+  52 `morphology.json` files (أَأْ → آ 99 cells / 13 verbs; أَا → آ 207 / 15; أِي، ؤِي → ئِي 62 / 8; a missing waṣl vowel 127 / 9); a
+  second run changes none; `sarfAudit()` regenerates 1354 stored paradigms, 0 bad. «يَقْرَأُونَ» on the alif was left (a recited
+  spelling). The drill bank was regenerated.
+- **Sarf ledger (A22, A23, A54, A59, A60) — cause: one narration for every person.** `SarfLedger.read` names every cell
+  (`lbl333`, `also333`); the hidden ḍamma is the singulars' alone (persons 0, 3, 6, 12, 13) and the five verbs drop their lām (ʿIzzī
+  L232, L239, L244); Form IV's amr opens on the cutting hamza (ʿIzzī L98); the hollow verb tells the women's nūn from the jazm and
+  from the amr's own sukūn (L188, L196–L199); the hollow passive is narrated (قُوِلَ → قِيلَ, L183–L184, L191); the dropped and the
+  merged letter have their step (يَرْمِيُونَ → يَرْمُونَ, يَمْدُدُ → يَمُدُّ, عِدْ، اِيجَلْ).
+- **Derivation lab (A30–A32, A55) — cause: the first role of a scale was printed as the word's verdict, and a written sukūn was
+  thrown away.** `IshtiqaqEngine.cmp` treats a written sukūn as evidence (عَطْشَان is not عَطَش + the dual's ان); a فَعْلَان pass reads the
+  quality where the vowels prove it and the root's shelf verb is an intransitive فَعِلَ (Marāḥ L408–L410); `refine()` corrects a reading
+  where a book decides — أَفْعَل of `LAWN_AYB` is the quality (L421), `FAIL_MAFUL` (قَتِيل، جَرِيح، ذَبِيحَة، لَقِيطَة, L431) — and
+  `manaNote()` says why; the card lists every OTHER role the scale bears (`ishtBears`) and the lexicon's own gloss of the word
+  (`lexOwn`, `ishtLex`). **Left open on purpose:** رَسُول (فَعُول with no bare verb on the shelf: intensive or in the sense of mafʿūl =
+  مُرْسَل, Marāḥ L434–L436 — the engine does not choose). **Stored, labelled as heard:** `MIFAL_ZAMAN` (مِيعَاد، مِيلَاد، مِيقَات) — no
+  book on the shelf lists them, the taṣrīf books give مِفْعَال to the instrument only (ʿIzzī L344, Marāḥ L487), and the card says so.
+- **Pronoun lab (A24) — cause: أَبُو was read as a sound plural's «ـُو».** `DamirEngine.attach`: with the speaker's yāʾ the five nouns
+  stand on their bare stem (أَبِي، أَخِي، حَمِي in all three cases; Iẓhār L162, L177); before any other pronoun they take their letter,
+  also from أَبٌ / أَخًا / أَخٍ (أَبُوهُ، أَخَاهُ، أَخِيهِ). **Refuses:** ذُو before a pronoun (avamil-dersi L2873).
+- **Maqṣūd lab (A42) — cause: three spelling slips in the engine's own forms inside amber cells.** `MaqsudEngine.seat` keeps a
+  doubled hamza on its seat with its alif (سَأَّالٌ، رَأَّاءٌ); `blocksI` drops the elative's ḍamma under a shadda before the dual and
+  plural endings (أَمَدَّانِ، أَمَدُّونَ); `ziyadeExt` seats a maṣdar's final hamza on a yāʾ before «ـِهِ» (إِغْزَائِهِ — the Sarf tab's
+  muhtelife had the same fault for every maṣdar in ـاء). Audit: 1690 → 1698 strict of 1922; no amber cell holds a malformed engine form.
+- **Known and left:** `DamirEngine.attach` still reads a maqṣūr written «عَصًا» as a naṣb tanwīn (عَصَهُ for عَصَاهُ) — the spelling
+  alone cannot tell it from يَدًا; the lexicon could. `WaznEngine.mizan` is greedy: الِاسْتِتْبَاع seats the infix tāʾ as the fāʾ. Neither
+  was in the audit.
+- Before touching these engines: `RootFinder.lab` is the ONLY reader the two panels may call; a scale for a weak root must pass
+  `knownScales()`; a new refusal needs its reason in en and tr (`conjNoWhy`, the `refuse` objects); never type a backslash-u escape
+  into a patch of `reader.html`.
+- **Measured:** the whole smoke suite passes (the two «sarf tab» click checks time out only under `SMOKE_ONLY`, where the sheet an
+  earlier check opens is missing). `gen_drills --check` drifted and the bank was regenerated: 10 paradigm rows (اِنْنَصَرَ unmerged, the
+  derived nāqiṣ's ism mafʿūl, اِسْتِيعَاد) and 546 sentence tokens' `engine.wazn` (455 lost the sun letter's shadda, 61 absurd scales
+  such as «فَالْمُوَاعَلَةُ» became مُفَاعَلَةُ, 29 gained a scale, 6 two-clitic words reached the lexicon); posAgreement 99.1 and
+  caseAgreement 99.1 over 6327 are unchanged, and the IrabModel was not touched.
