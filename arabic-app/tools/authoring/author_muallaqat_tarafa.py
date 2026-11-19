@@ -369,7 +369,7 @@ SHAIR = ("الشَّاعِرِ", "the poet", "şaire")
 # =====================================================================================================================
 # Chapter 1 — خَبَرُ طَرَفَةَ (Ibn Qutayba, al-Shiʿr wa-l-shuʿarāʾ 1/182, §§ 295–296 — verbatim, contiguous)
 # =====================================================================================================================
-IBN = lambda case: NO("بْنِ" if case == "jarr" else "بْنُ", "ibn-bn", mk("نَعْتٌ لِلْعَلَمِ قَبْلَهُ " + SIGN(case)[0] + "، مُضَافٌ — وَحُذِفَتْ أَلِفُهُ لِوُقُوعِهِ بَيْنَ عَلَمَيْنِ", "An adjective of the name before it, " + SIGN(case)[1] + ", annexed — its alif is dropped because it stands between two names", "Önceki özel ismin na'tı, " + SIGN(case)[2] + ", muzâf — iki özel isim arasında geldiği için elifi düşmüştür", "naat-sifa", "idafa-definiteness"))
+IBN = lambda case: NO({"jarr": "بْنِ", "nasb": "بْنَ"}.get(case, "بْنُ"), "ibn-bn", mk("نَعْتٌ لِلْعَلَمِ قَبْلَهُ " + SIGN(case)[0] + "، مُضَافٌ — وَحُذِفَتْ أَلِفُهُ لِوُقُوعِهِ بَيْنَ عَلَمَيْنِ", "An adjective of the name before it, " + SIGN(case)[1] + ", annexed — its alif is dropped because it stands between two names", "Önceki özel ismin na'tı, " + SIGN(case)[2] + ", muzâf — iki özel isim arasında geldiği için elifi düşmüştür", "naat-sifa", "idafa-definiteness"))
 V(0, "He is Ṭarafa, son of al-ʿAbd, son of Sufyān; and of them all he has the finest long ode.",
   "O, Tarafe b. el-Abd b. Süfyân'dır; şairler içinde uzun kasidesi en güzel olan odur.", [
  PT("هُوَ", "huwa", mk("ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ", "A detached pronoun built on fatha, in the seat of raf' as the mubtada", "Fetha üzere mebnî munfasıl zamir; mübteda olarak mahallen merfû", "mubtada-khabar", "al-mabni-wal-mudmar"), pos="pron"),
@@ -813,7 +813,7 @@ def KHN(nth, sign=""):
     """the nth predicate of an omitted mubtada («هِيَ»)"""
     s = SIGN("raf", sign); o = _ORD[nth]
     return mk("خَبَرٌ " + o[0] + " لِلْمُبْتَدَإِ الْمَحْذُوفِ " + s[0], o[1] + " predicate of the omitted mubtada, " + s[1], "Mahzûf mübtedanın " + low(o[2], True) + " haberi, " + s[2], "mubtada-khabar", "hadhf-wa-taqdir", *s.tags)
-HATTA_T = mk("حَرْفُ غَايَةٍ وَجَرٍّ", "A particle of limit and jarr", "Gâye ve cer harfi", "huruf-jarr")
+HATTA_T = mk("حَرْفُ غَايَةٍ وَجَرٍّ، وَالْمُضَارِعُ بَعْدَهَا مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ وُجُوبًا", "A particle of limit and jarr; the muḍāriʿ after it is manṣūb by an أَنْ necessarily hidden", "Gâye ve cer harfi; ardındaki muzâri vücûben gizli «أَنْ» ile mansûbdur", "huruf-jarr")
 V(21, "As though two lairs under a lote-tree flanked her — so wide is the space between her elbows and her breast — and bent bows lay under a backbone made strong.",
   "Sanki bir sedir ağacının dibindeki iki in onu iki yandan kuşatmış — dirsekleriyle göğsü arası o kadar geniştir — ve güçlü kılınmış bir sırtın altında bükülmüş yaylar vardır.", [
  PT("كَأَنَّ", "kaanna", KAANNA_T, JM("ist")),

@@ -15350,3 +15350,50 @@ threshold loosened. Full suite (`node tools/smoke_test.js`, the reader as built)
   against al-Zawzanī's gloss; whether أَيْمَنَ's يُومِنُ is heard or by rule (stored as heard); «فِيهُمُ» (v88) kept with its ḍamma. And
   the readings the engines leave open in the poems: وَأَهْلُنَا / وَنَعَامُهَا / وَسَنَامُهَا (doer of a deleted verb, after al-Durra, or a
   mubtadaʾ), «حَتَّى تَسَرْبَلَ» (al-Durra: a muḍāriʿ with a dropped tāʾ after حَتَّى).
+
+## v336 — Ṭarafa's Muʿallaqa on the shelf
+
+- **The poem, whole** (L6, `pending-scholarly-review`, by the MUALLAQA brief; the Poetry shelf now holds five): `muallaqat-tarafa`
+  (17 chapters: Ibn Qutayba's khabar + all 103 verses in al-Zawzanī's recension; al-ṭawīl, rawī dāl; 111 sentences, 1105 tokens;
+  new keys «-tf»). Author script `tools/authoring/author_muallaqat_tarafa.py`, assembled from the fragments in the scratchpad
+  (`work-muallaqat-tarafa/frag-02…17.py`), staged with `QISSA_PKG_ROOT`, copied in. One heard paradigm: `istaa-tf` (اِسْتَاءَ), so
+  `sarfAudit().samai` now has seven names.
+- **The gate.** With the poem the suite failed fifteen checks (one, v317's reload, is the known load flake and passes alone). Each was
+  traced to the token that moved it and sorted A / B / C, every engine rule measured on the shelf without the poem (same build, the id
+  left out). No received text or vowel was changed.
+  - **WujuhEngine (A)**: `authored()` dropped «اسْتِئْنَافِيَّةٌ» before reading the faces — the word holds the letters of «نَافِيَة», so five
+    «وَإِنْ / فَإِنْ … وَالْجُمْلَةُ اسْتِئْنَافِيَّةٌ» were taken for the negating إِنْ; «حَرْفٌ وَصْلِيٌّ» (masculine) is the concessive like «وَصْلِيَّة»; a
+    line that says the answer of a wāw-borne لَوْ is deleted «لِدَلَالَةِ مَا قَبْلَهُ» describes the concessive and accepts it beside امتناع;
+    the face: a وَلَوْ that repeats an earlier لَوْ of the sentence with its answer written (فَلَوْ شَاءَ رَبِّي كُنْتُ … وَلَوْ شَاءَ رَبِّي كُنْتُ …) is
+    the condition again; أَيّ with its pronoun and a definite khabar, no verb (أَيُّنَا الصَّدِي), is the question; `mood()` — a word that IS
+    its paradigm cell is not peeled of a «pronoun» (يُغْنِي، يَبْنِي are no يُغْ + نِي), and the cell minus its nūn is the nūn dropped
+    (لَا تَجْعَلِينِي). Older shelf 4468 → 4470 of 4561 (three older nūn-dropped prohibitions now read; one older line goes against its
+    author — for the hoca); with the poem 4525 of 4616 = 98.0.
+  - **MaEngine (A)**, two decisive seats in the wave-184 block: مَا + a verb of knowing + a question word is the negation (the question
+    fills the verb's object seat — taʿlīq: «وَمَا أَدْرِي عَلَامَ يَلُومُنِي», and al-Talkhīṣ's «مَا أَدْرِي أَأَحْلَامُ نَائِمٍ», wrong before);
+    after a verb whose doer stands written (a jarr phrase may sit between) and which still owes its object, «مَا كُنْتَ + khabar» is that
+    object (سَتُبْدِي لَكَ الْأَيَّامُ مَا كُنْتَ جَاهِلًا — the ʿāʾid deleted). The «مَا» measure: older wrong 46 → 45; with the poem 45.
+  - **IsmEngine.posOf (A)**: a word reached only as the DUAL of a shorter lemma (سَلْمَان ← سَلْم) answers «propn» only where a NAME is
+    spelled like that lemma (al-Talkhīṣ's سَلْم the poet); the dual of a common noun (Ṭarafa's سَلْم «bucket») says nothing of the word.
+  - **JamEngine.build (A)**: أَفْعِلَة on a doubled root fuses (حِفَاف → أَحِفَّة، دَلِيل → أَدِلَّة); a hamza ʿayn before the alif of
+    أَفْعَال is a madda (ظِئْر → أَظْآر، رِئْم → أَرْآم); أَإِمَّة is written أَئِمَّة. Older disagreements 297 → 289.
+  - **HamzaEngine (A)**: the later convention `jazmEnd` — a hamza made final only by the jazm (the weak lām dropped) keeps the seat it
+    had inside the word: Ṭarafa's received «يَنْأَ عَنِّي» (نَأَى). «other» stays 0.
+  - **DabtEngine.encObj327 (A)**: the speaker's yāʾ takes a kasra before it, so a «ي» after a fatḥa is a dual's yāʾ in iḍāfa, never the
+    object's pronoun (كَمَكْحُولَتَيْ مَذْعُورَةٍ). Older fp unchanged (4).
+  - **CaseEngine.claim (A)**: the short «ـُونَ» read as a broken فُعُول (عُيُونَ) only when its first letter wears a ḍamma; بَنُونَ، سِنُونَ
+    are the plural's own wāw — «بَنُونَ كِرَامٌ» was vetoed as a naʿt of a «manṣūb» head. Older vetoNat unchanged (3).
+  - **Measures (B)**, each token examined and listed in its check: JamEngine ceiling 297 → 301 (older 289 after the builder's fixes;
+    Ṭarafa's twelve heard plurals: عُلُوب، حُدُوج، جُيُوب، خُلُوف، سُمُوط، قِلَات، عُسُب، كُنُس، أَضْبَاع، دَمَالِيج، مَحَال، نَدَامَى); the Tartīb
+    corpus count 2440/937/5 → 2524/949/5 (no new violation); the Hadhf floor (v316 and «Faces») and the Taʿalluq floor (v328) set the
+    poem apart with the v333/v335 imports (Ṭarafa's Hadhf 7/19 — the khabar of an unsaid «هُوَ / هِيَ» at a hemistich's head, kāf
+    phrases in that seat, أَيُّهٰذَا without يَا, «وَيَوْمَ» under an unsaid اذْكُرْ).
+  - **C (the poem's own slips)**, fixed in the author script (and frag-05.py): the IBN helper wrote «بْنُ» for the naṣb — v. 80 now
+    «قَيْسَ بْنَ خَالِدٍ … عَمْرَو بْنَ مَرْثَدِ» (the print leaves بن unvowelled; the line said «مَنْصُوبٌ»); حَتَّى before تُشَادَ (v. 23) now names the
+    manṣūb muḍāriʿ after it («… وَالْمُضَارِعُ بَعْدَهَا مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ وُجُوبًا»), as the shelf's other lines do.
+- Smoke: «v333 — the received imports…» holds the Poetry shelf at five poems: Imruʾ al-Qays 81, Zuhayr 62, ʿAntara 75, Labīd 88,
+  Ṭarafa 103, each verse with exactly one «•»; `sarfAudit().samai` the seven heard paradigms.
+- **For the hoca.** al-Uṣūl al-Munīfa 14:s36 «وَلَوْ أَعْتَقَهُ حَمِدُوهُ» is authored «الْوَصْلِيَّة» but its answer is written — the audit now reads
+  the condition; Ṭarafa v. 79 «وَلَوْ حَلَّ بَيْتِي نَائِيًا» (al-Durra: شرط امتناع, answer deleted) — the concessive or the condition;
+  whether اِسْتَاءَ (istaa-tf) is heard or by rule (stored as heard); the vowel of بن in v. 80 (by the line's own iʿrāb); «يَنْأَ» on its alif as
+  printed; دَمَالِيج (the glossary's plural of دُمْلُج) against the qiyās دَمَالِج; and the Hadhf seats the engine leaves open (above).
