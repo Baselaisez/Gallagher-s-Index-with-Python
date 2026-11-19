@@ -14932,3 +14932,104 @@ One cluster per tool, each fixed at its cause; every finding's inputs are assert
 - Smoke: two checks after «v329 — a demonstrative is never muḍāf». Full suite: 500 pass, 1 fail — SPEED III, the IrabModel refit
   only (`node tools/gen_irab_model.js && python3 tools/build_prototype.py`).
 - Written by the orchestrator from the agent's PROGRESS notes: the agent stopped (model limit) after its full run.
+
+## v334 — the Atölye audit, group B (iʿrāb): findings B01–B54, and the ẓarf in the Ta'alluq engine
+
+Every finding's inputs are now a smoke check (seven «v334 — …» checks, inserted before «v333 — the received imports»). The fixes are in the
+ENGINES the labs call; each was measured over the whole corpus (scratchpad b334: `dump.js` = every token's authored line against `Murib.line`
+and `TaalluqEngine.of`, before = the v333 reader; `cmp.py` classes the office and the sign on both sides).
+
+- **The sign of a declined noun (B01, B49; Iẓhār L162, L177–L180)** — root cause: `Murib.line` wrote the plain vowel for any claim and
+  «بِالْحُرُوفِ» for the letters, and nothing when the case claim stood down (ـَانِ، ـِيَ). `Murib.sign334` names the sign by
+  `SignEngine.classify`: the five nouns, the dual and the sound plural by their letter («لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ / مُثَنًّى / جَمْعُ مُذَكَّرٍ سَالِمٌ»),
+  the diptote's «الْفَتْحَةُ نِيَابَةً عَنِ الْكَسْرَةِ» (also behind a fused jarr letter), the manqūṣ / maqṣūr / speaker's yāʾ by an estimated vowel
+  — only on a seat the vowelling engine settled (jarr, muḍāf ilayh, the nawāsikh, mubtadaʾ, khabar), never under a hedged office. A class whose
+  letter contradicts the claim is not used; a singular on ـان / ـين (الْعَيْنِ، بَيَانٌ) and a bare ـَا with no lexicon entry (لِيَنْصُرَا) are no dual
+  and no maqṣūr. Corpus: authored sign statements matched 3068 → 3199 of 3879 (+131, none lost).
+- **Every sister named after itself (B02; Iẓhār L22, L33)** — root cause: `RULE_OFFICE` holds four fixed strings. `Murib.govName334` finds
+  the governing sister (NasikhGate family, the inna particle) and writes «اسْمُ لَيْسَ، خَبَرُ أَصْبَحَ، اسْمُ مَا زَالَ، اسْمُ لَعَلَّ، خَبَرُ كَأَنَّ»; كَانَ
+  and إِنَّ keep the old wording. A kāna-family māḍī the tables lack is «فِعْلٌ مَاضٍ نَاقِصٌ، مَبْنِيٌّ عَلَى الْفَتْحِ» (it was «فِعْلٌ، مَنْصُوبٌ»);
+  a nāsikh with a cell is «… نَاقِصٌ»; لَيْتَ (no shadda) is «حَرْفُ تَمَنٍّ وَنَصْبٍ».
+- **The seat of a built noun, the vocative, lā's noun (B08, B13, B47, B50)** — `Murib.seat334 / doerSlot334 / opens334`: a demonstrative or
+  relative right after a verb whose doer slot is open is its doer — EXACT when the noun after the demonstrative writes the case
+  (هٰذَا الْعَالَمُ rafʿ, هٰذِهِ الْأَصْنَامَ naṣb → «فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ»), when the verb is lāzim or opens the sentence; otherwise OFFERED
+  («فِي مَحَلِّ رَفْعٍ فَاعِلٌ، أَوْ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ إِنْ عَادَ فَاعِلُ «…» عَلَى مَذْكُورٍ قَبْلَهُ») — in running text the hidden doer usually
+  returns to a noun before, which the analyzer cannot see. Never after قَالَ (the quotation opens a clause), never هُنَا / هُنَاكَ. Opening a clause
+  before a khabar it is the mubtadaʾ. The built noun's bina is named by its last vowel; the single vocative «مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ
+  نَصْبٍ», lā's noun «مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ نَصْبٍ», لَا itself «النَّافِيَةُ لِلْجِنْسِ». The ghosts (`TaqdirEngine.ghosts`) no longer conceal a
+  doer beside a written one (جَاءَ الَّذِي …، زَيْدٌ قَامَ أَبُوهُ); a mubtadaʾ followed by a verb gets «وَالْجُمْلَةُ الْفِعْلِيَّةُ «…» فِي مَحَلِّ رَفْعٍ
+  خَبَرُهُ». The wonder (`Murib.taajjub334`, MaEngine's reading): مَا «نَكِرَةٌ تَامَّةٌ … مُبْتَدَأٌ», أَفْعَلَ «فِعْلٌ مَاضٍ جَامِدٌ لِإِنْشَاءِ التَّعَجُّبِ …
+  وُجُوبًا … يَعُودُ عَلَى «مَا»» — exact when مَا opens the sentence, the negation offered beside it inside a clause. The pronoun clause no longer
+  hides the tawkīd / badal / naʿt / ʿaṭf office (كُلُّهُمْ «تَوْكِيدٌ»), except a joined noun in rafʿ with its own predicate after it (وَعَلَامَتُهَا صِحَّةُ …
+  opens a clause). عَلَيْهِ: «حَرْفُ جَرٍّ، وَالْهَاءُ … فِي مَحَلِّ جَرٍّ بِهِ».
+- **Offices the seats left unnamed (B09, B12, B14)** — `Murib.office334`: لَا before a majzūm verb is «النَّاهِيَةُ، حَرْفُ نَهْيٍ وَجَزْمٍ»; a manṣūb behind
+  a joined wāw, nothing manṣūb anywhere before it, after a lāzim verb — «مَفْعُولٌ مَعَهُ» (MansubEngine.joined: وَحْدَهُ's wāw is no conjunction;
+  no ẓarf); a definite noun in rafʿ right after the doer that the decision engine left a «mubtadaʾ» — «بَدَلٌ مِنْ «زَيْدٌ» (بَدَلُ كُلٍّ مِنْ كُلٍّ)» for a
+  name or an annexed noun, «نَعْتٌ … أَوْ بَدَلٌ» OFFERED for an ال-noun; the tanwīn vocative is manṣūb, «مُنَادًى شَبِيهٌ بِالْمُضَافِ» with a dependant
+  after it (else «نَكِرَةٌ غَيْرُ مَقْصُودَةٍ»), and the noun after an active participle there is its object. B04 (mafʿūl lahu) was already OFFERED by
+  v332 and stays offered (R102's «same time, same agent» is the reader's check). B12's tamyīz after a measure was fixed by v332.
+- **The header (B15; Qawāʿid ch. 1)** — `sentenceType`: a condition «جُمْلَةٌ شَرْطِيَّةٌ — فِعْلِيَّةٌ», an oath «قَسَمِيَّةٌ — فِعْلِيَّةٌ (فِعْلُهَا «أُقْسِمُ»
+  مَحْذُوفٌ)», a fronted كَمْ / كَيْفَ / مَتَى before a verb that wears its own doer → verbal.
+- **Signs / Endings / Shop (B05, B07, B23–B29, B43)** — root cause: the word was classed with no part of speech. `signOpt334` asks the analyzer:
+  a verb in a paradigm cell is a verb (unless the lexicon owns the same vowelled letters as a noun — أَحْمَد), a second typed word is the
+  annexation (ذُو مَالٍ), a weak-lām noun on ـٍ lost its yāʾ (قَاضٍ، جَوَارٍ، لَيَالٍ). AlamaEngine: the diptote's jarr sign «الْفَتْحَةُ نِيَابَةً عَنِ
+  الْكَسْرَةِ»; the five nouns and أُولُو / مُعَلِّمُو typed with their letter are always annexed; «الْمُضَافُ إِلَى يَاءِ الْمُتَكَلِّمِ» when the root's lām is no yāʾ;
+  أَشْيَاءُ / أُخَرُ lexical diptotes; a maqṣūr whose alif is no root letter (ذِكْرَى) or a maqṣūr name (مُوسَى) is barred; no fatḥa beside the tanwīn
+  (مُصْطَفًى); كِلَا / كِلْتَا never take tanwīn; a built word gets a refusal, not a table; فُو (+ muḍāf) no longer throws. IrabShop reads the core
+  behind a fused jarr letter (the analyzer's own note) and the five nouns behind it.
+- **Iḍāfa / Vocative (B17–B22, B45)** — IdafaEngine: the manqūṣ head keeps its yāʾ with the ḍamma / kasra estimated (قَاضٍ restored), the maqṣūr
+  head loses its tanwīn, the manqūṣ tail is «بِكَسْرَةٍ مُقَدَّرَةٍ»; a diptote tail by AlamaEngine.mamnu (the lexicon's proper names: عُمَرَ، فَاطِمَةَ),
+  the sound plural / dual tail by the yāʾ; the LAFẒĪ iḍāfa allowed for a description with ال when the tail has ال or the head is a dual / plural
+  (Kāfiya L1329–L1344), الضَّارِبُ زَيْدٍ still refused; a munṣarif name «عَلَمٌ مُنْصَرِفٌ فَيُنَوَّنُ تَنْوِينَ التَّمْكِينِ» (Iẓhār L168); a detached
+  pronoun tail refused with the reason (the Pronoun lab joins it). NidaEngine: the maqṣūr and built munādā on an estimated ḍamma, tarkhīm
+  (يَا فَاطِمَ، يَا حَارِ — the lexicon or the received list restores the name), the hamza of calling joined to the name (أَزَيْدُ).
+- **Order (B10, B11, B37, B38, B52)** — `TartibEngine.readRows` takes the doer and object by the WRITTEN case (a rafʿ after a naṣb follows
+  nothing), the qarīna of meaning where both cases are hidden (one proper name: أَكَلَ الْكُمَّثْرَى مُوسَى — free), the object before the verb
+  (زَيْدًا ضَرَبْتُ; مَنْ ضَرَبْتَ → mf5 «الْمَفْعُولُ لَهُ صَدْرُ الْكَلَامِ»), the forward pronoun in a sentence with nothing before it (mf1 now fires on
+  ضَرَبَ غُلَامُهُ زَيْدًا and is SAID broken: «✗ … — هٰذَا التَّرْتِيبُ مَمْنُوعٌ»); proper names are definite (زَيْدٌ قَائِمٌ free), قَائِمٌ زَيْدٌ is a fronted
+  khabar, mk5 (ḥaṣr by إِلَّا / إِنَّمَا), mk6 (the lām of ibtidāʾ), the question frames (أَيْنَ / كَمْ the khabar first, مَنْ the mubtadaʾ), the two
+  equals. The corpus audit (clausesOf) is unchanged: 2341 / 921 / 5.
+- **Pause, Kernel, Dabt (B06, B30–B33, B39, B40, B48)** — WaqfEngine: the «three states estimated» note only on a word declined by a vowel
+  (`vowelCase334`; Iẓhār L183), the maqṣūr's tanwīn its own rule with all states estimated. GrammarKernel.askWord: the part of speech first
+  (`signOpt334`) — a verb's meaning is its lemma's (قُلْ is قَالَ), its bina by `Murib.binaVowel`, no diminutive, no noun scale, and only a verb
+  goes to the thirty-five doors (مِيزَان does not); askPhrase hands MaEngine a verb ORACLE (it threw) and shows the stored lines of the typed
+  words only, said «found inside a longer sentence» where it is, the typed vowels matched (ضَرَبَ is not ضَرْبُ). DabtEngine: the wonder frame
+  typed bare or with only its endings, written «أَحْسَنَ». B30: NOT reached — see below.
+- **Faces, Inna, Unsaid (B03, B34–B36, B41, B42, B53, B54)** — WujuhEngine.table reads a joined wāw in TYPED text (`waw334`: the oath, the
+  maʿiyya, the ḥāl after a complete verbal clause, the joining wāw by matching case; the corpus wāw stays the Waw engine's); أَيُّهُمْ; a majzūm
+  muḍāriʿ after مَا makes it conditional (the negating مَا never jazms); مَنْ قَامَ with no answer and مَا + a ẓarf alone are questions (offered
+  with the relative). InnaEngine: the wāw of ḥāl seat in typed text; a hamza typed bare / the Ottoman اَنَّ / no vowels at all is «open» — the
+  seat decides, no tick. HadhfEngine: a proper name at the head is the mubtadaʾ (زَيْدٌ قَائِمٌ unsaid nothing), أَهْلًا / سَهْلًا / مَرْحَبًا
+  «مَفْعُولٌ بِهِ لِفِعْلٍ مَحْذُوفٍ» (seat `mafulSamai`; Kāfiya «اَتَيْتَ اَهْلاً»), the ikhtiṣāṣ after the speaker's pronoun on a jarr letter (لَنَا).
+  The Hadhf audit holds 85.2 (1444, 1 false).
+- **Qawāʿid checker and the map (B16, B44, B46, B51)** — new kept / broken rules, each silent on the four negative packages and on the whole
+  corpus (0 alarms of the new rules over 6619 sentences): kāna's khabar, the annexed vocative, the object beside an attached doer (two-word
+  sentences only), the five nouns' letter after a jarr letter, the diptote after a jarr letter (not the last word of a long line — a rhyme), the
+  tamyīz of 20–90, the muḍāf ilayh in a two-word iḍāfa; `IdafaEngine.notChain334` ends a chain at a head that keeps its nūn (عِشْرُونَ) or a
+  compound number (خَمْسَةَ عَشَرَ). Six seeds added. The map draws an ism and a khabar under kāna, no fāʿil beside an attached doer. The empty
+  ledger says «None of the ledger's rules applies…» instead of «nothing here governs anything». عَمْرٌو / عَمْرًا is the name ʿAmr, not «life».
+- **The ẓarf in the Ta'alluq engine (the brief's extra item; Qawāʿid bāb 2, Shudhūr R104)** — `TaalluqEngine.zarf334`: إِذَا on its answer's verb
+  (ShartEngine's frame), لَمَّا on the next verb after its condition, مَتَى / أَيَّانَ / أَيْنَ / حَيْثُمَا / أَنَّى on the condition's verb (alone: a maḥdhūf
+  khabar), إِذْ on the verb before it, a manṣūb noun of time or place by the jarr phrase's own walk (before, then the verb after, then maḥdhūf).
+  Graded attachments 554 → 571 of 1018 (54.4 → 56.1%), none lost; older shelf 471 → 477 of 831 (56.7 → 57.4), the six imports 53 → 64 of 132.
+  Floors: «names what every jarr-majrur hangs on» 54 → 56, v328 older shelf 55.5 → 57.
+- **The corpus, before → after** (37318 noun tokens with an authored office): the engine's office equals the authors' 26339 → 27108 (+835
+  gained, −66 lost); contradictions 4151 → 4080. The 66 lost: 60 lines where the authors name the MOTHER for a sister (listed for the hoca:
+  «اسم كان» under لَيْسَ / صَارَ / زَالَ, «اسم إن» under لٰكِنَّ / لَعَلَّ) — the engine follows Iẓhār L22, L33; 4 ال-nouns after a doer that the authors
+  open a new clause with (the engine offers «نَعْتٌ … أَوْ بَدَلٌ»); 2 badal where the authors say mubtadaʾ; 1 cited ungrammatical example.
+  New contradictions worth naming: wāw-joined nouns with a pronoun that the decision engine calls «مَعْطُوفٌ» and the authors a new mubtadaʾ
+  (16 left after the guard), and the OFFERED demonstrative seat (16).
+- **Older checks changed (each for a stated reason):** v327 kāna — «مَا دُمْتُ حَيًّا» expects «خَبَرُ مَا دَامَ» (was «خَبَرُ كَانَ»: B02, Iẓhār L33),
+  its control accepts no sister's ism on the complete زَالَ; v330 — the engine-side regex for a kāna-ism accepts the sister's name; wave 43
+  (the Tartīb lab) — 20 rule cards, not 17 (mk5, mk6, mf5 joined); wave 68 (Waqf) — the pin فَتًى → «فَتَى / maqsurTanwin» (was tanwinFath:
+  B40, Iẓhār L177); the two Ta'alluq floors raised (measured). The IrabModel refit is byte-identical. `TartibEngine.readRows` keeps an
+  ATTACHED doer (ضَرَبْتُ) and never takes the noun of a new wāw-joined clause as the doer (وَفِي الدَّارِ رَجُلٌ).
+- **Not done:** B30 in the Dabt lab's ENDINGS mode — «العالمينِ» and «رب» left bare (the analyzer now retypes رَبّ before a definite noun as the
+  noun, but DabtEngine's closed-class list still keeps bare رب as rubba, and the endings writer's path for bare ـين behind it was not traced)
+  and «باحمد» typed bare (read as a verb cell); the full mode writes «الْعَالَمِينَ». جَاءَ أَبَاكَ (B51's last input) is not crossed: the analyzer
+  reads أَبَاكَ as the verb أَبَى + كَ, which is a sentence. What is left of the ẓarf (48 lines): a nominal or كَأَنَّ answer of إِذَا, a لَمَّا whose
+  answer lies past a second verb, a ẓarf on the ḥāl / naʿt the authors name, بَيْنَ / لَدَى past a nearer noun.
+- **Full suite** (refit → build → drills → build, then `node tools/smoke_test.js`): 527 checks, 527 pass (the first run had 525 of 527: the Tartīb
+  lab's card count and the Waqf pin above, and the attached-doer fix that followed).
+- **Corpus slips for the hoca:** izhar-al-asrar:1:s16:13 اسْمَيْنِ «علامة جره الكسرة» (a dual — the yāʾ); the 60 sister lines above (list in the
+  v334 report).
