@@ -192,10 +192,13 @@ def build_grammar(grammar_dir: Path):
         # The worked example carries a TRANSLATED explanation, not just Arabic:
         # under TR UI an English gloss here was the last place the app still
         # spoke English to a Turkish reader.
-        note["examples"] = [{"ar": x["ar"],
-                             "gloss": bilingual({"en": x.get("en", ""),
-                                                 "tr": x.get("tr", "")}),
-                             "src": x.get("sourceStory")}
+        # (v334) an example fed from a source book carries `source` — the file and line it was taken from (and the printed
+        # page) — and reaches the reader as `cite`; an example anchored in a story carries sourceStory as before.
+        note["examples"] = [dict({"ar": x["ar"],
+                                  "gloss": bilingual({"en": x.get("en", ""),
+                                                      "tr": x.get("tr", "")}),
+                                  "src": x.get("sourceStory")},
+                                 **({"cite": x["source"]} if x.get("source") else {}))
                             for x in g.get("examples", [])]
         note["mistakes"] = [{"wrong": m["wrong"], "right": m["right"],
                              "why": bilingual(m.get("why"))}

@@ -32,7 +32,25 @@ def find_run(words, bares):
     for i in range(len(bares) - k + 1):
         if bares[i] == words[0] and bares[i:i + k] == words: return i
     return -1
-def assemble(book, story, title, source, prefix=None, area="nahw", anchor_from=1):
+ONLY = set(sys.argv[1:])   # `assemble_catechism.py marah maqsud` rebuilds only the named banks; no argument rebuilds all
+# v334 — the ṣarf banks quote whole sentences of the book, so their Arabic keeps the book's punctuation and guillemets.
+PUNCT = "«»،؛:.؟!()[]\"'…*—–-"
+def core(w): return w.strip(PUNCT)
+def find_run_p(a, bs):
+    """for a punctuated string: (index of the token run its words equal, the words) — punctuation is not a token"""
+    ws = [w for w in a.split() if core(w)]
+    return find_run([bare(core(w)) for w in ws], bs), ws
+def redress_p(a, i, fs):
+    """the string with every word's letters replaced by the chapter token's own vowelled form, its punctuation kept"""
+    out = []; k = 0
+    for w in a.split():
+        c = core(w)
+        if not c: out.append(w); continue
+        j = w.index(c); out.append(w[:j] + fs[i + k] + w[j + len(c):]); k += 1
+    return " ".join(out)
+def src_norm(s): return re.sub(r"[^\u0621-\u064A]", "", bare(s).replace("ى", "ي").replace("ئ", "ء").replace("ؤ", "ء"))
+def assemble(book, story, title, source, prefix=None, area="nahw", anchor_from=1, punct=False, noteless=False):
+    if ONLY and book not in ONLY: return
     items = []
     for f in sorted(HERE.glob(f"{prefix or book}_qa_*.py")):
         spec = importlib.util.spec_from_file_location(f.stem, f); m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); items += m.ITEMS
@@ -45,8 +63,35 @@ def assemble(book, story, title, source, prefix=None, area="nahw", anchor_from=1
         missing = [n for n in it.get("notes", []) if n not in GR]
         if missing: bad.append((it["id"], "notes:" + ",".join(missing)))
         it["notes"] = [n for n in it.get("notes", []) if n in GR] or []
-        if not it["notes"]: bad.append((it["id"], "no note"))
+        if not it["notes"] and not noteless: bad.append((it["id"], "no note"))
         it["ar"] = [N(a) for a in it.get("ar", [])]
+        if it.get("arq"): it["arq"] = [N(a) for a in it["arq"]]
+        # v334 — an item that cites its lines (`src`: file, lines) is checked against them: every Arabic string, letters
+        # only, must stand in the cited lines of the source file
+        if it.get("src"):
+            sl = [""] + (ROOT / it["src"]["file"]).read_text(encoding="utf-8").split("\n")
+            hay = src_norm(" ".join(sl[n] for n in it["src"]["lines"]))
+            for a in it["ar"] + it.get("arq", []):
+                if src_norm(a) not in hay: bad.append((it["id"], "not in the cited lines: " + a[:30]))
+        if punct:
+            # the book's sentences, punctuation kept: the declared chapter is searched first, every string is matched as a
+            # token run with the punctuation set aside, and re-dressed from the chapter's own tokens word by word
+            order = sorted(chs.items(), key=lambda kv: (kv[0] != it.get("chapter"), kv[0]))
+            hit = None
+            for n, (bs, _) in order:
+                if any(find_run_p(a, bs)[0] >= 0 for a in it["ar"] + it.get("arq", [])): hit = n; break
+            if hit:
+                it["story"] = story; it["chapter"] = hit; found += 1; bs, fs = chs[hit]; v = 0
+                for key in ("arq", "ar"):
+                    new = []
+                    for a in it.get(key, []):
+                        i, ws = find_run_p(a, bs)
+                        if i >= 0: new.append(redress_p(a, i, fs)); v += key == "ar"
+                        else: new.append(a); kept.append((it["id"], a[:40]))
+                    if key in it: it[key] = new
+                it["verified"] = v; verified += 1 if v else 0
+            else: it.pop("story", None); it.pop("chapter", None)
+            continue
         hit = None
         # the probe is a TOKEN RUN (the first four words, or all of a shorter string), never a substring — a bare
         # «لفظ» must not anchor inside «اللفظ»; chapters from `anchor_from` are searched first (the ʿalāqa sheet
@@ -87,3 +132,7 @@ assemble("badi", "talkhis-al-miftah", {"ar": "سُؤَالَاتُ الْبَد�
 assemble("alaka", "talkhis-al-miftah", {"ar": "سُؤَالَاتُ الْعَلَاقَةِ", "en": "Questions on the ʿalāqa", "tr": "Alâka Soru-Cevapları"}, "research/sources/alaka-suallar.txt", prefix="alaka", area="balagha", anchor_from=46)
 # wave 66 — Molla Jāmī's sual-cevap on his sharḥ of the Kāfiya
 assemble("jami", "al-kafiya", {"ar": "سُؤَالَاتُ مُلَّا جَامِي", "en": "Molla Jāmī's questions on al-Kāfiya", "tr": "Molla Câmî Soru-Cevapları"}, "research/sources/molla-cami-sual-cevap.txt", prefix="jami")
+# v334 (feeding wave N2) — the first ṣarf banks: Marāḥ al-Arwāḥ's own «فَإِنْ قِيلَ … قُلْنَا» pairs and reasoned refusals (Arabic
+# question in `arq`, Arabic answer in `ar`, both the matn's), and the six pairs of the Maqṣūd's Ottoman lesson notes
+assemble("marah", "marah-al-arwah", {"ar": "سُؤَالَاتُ مَرَاحِ الْأَرْوَاحِ", "en": "Questions of Marāḥ al-Arwāḥ (ṣarf)", "tr": "Merâhu'l-Ervâh Soru-Cevapları (Sarf)"}, "research/sources/marah-al-arwah-src.txt", prefix="marah", area="sarf", punct=True, noteless=True)
+assemble("maqsud", None, {"ar": "سُؤَالَاتُ الْمَقْصُودِ", "en": "Questions on al-Maqṣūd (ṣarf)", "tr": "Maksûd Soru-Cevapları (Sarf)"}, "research/sources/maqsud-sarf.txt", prefix="maqsud", area="sarf")
