@@ -314,3 +314,11 @@ Token numbers count from 1. Not yet a packet.
   - al-usul-al-munifa 22:s3:21 (after حتى)
   - al-usul-al-munifa 19:s7:37 (the fāʾ of sababiyya after a negation, R159)
 - **بين called «مفعول به»** (it is a ẓarf, R104): al-usul-al-munifa 25:s7:53, 25:s11:31, 32:s2:54.
+
+### o04-engine328 (9 AI-ONAY applied, unconfirmed)
+
+- Nine verbs had «منصوب بحتى». They now read «منصوب بأن مضمرة وجوبًا بعد حتى». The source is the Kāfiya Q&A, l.2489 and l.2537.
+- The other 11 listed tokens were already correct on this branch.
+- The list entry 24:s21:54 لِيُفَرِّقَ follows «وَلَمْ يَبْعَثْ». It is lām al-taʿlīl, not juḥūd, and the line already says so.
+- 22:s3:21 reads «بِأَنْ مُضْمَرَةً» with a fatḥa (as a ḥāl). This can be defended, so it was not raised.
+- Row 8, al-Uṣūl 25:s12:20, is the same token as o03 row 17. It was given its own id, QO-49A51F6D.
