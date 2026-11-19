@@ -1594,9 +1594,9 @@ HOLLOW_N = "أَجْوَفُ: تُحْذَفُ عَيْنُهُ عِنْدَ ا�
 def F5(v, masdar, fail, note=None):
     return _sg.derived(_sg.B5, _sg.W5, "َ", v, v, v, masdar, fail, note=note)
 def F8(v, core, masdar, fail, note=None):
-    return _sg.derived(_sg.B8, _sg.W8, "َ", v, core, v, masdar, fail, note=note)
+    return _sg.derived(_sg.B8, _sg.W8, "َ", v, core, "اِ" + core, masdar, fail, note=note)   # the amr on the muḍāriʿ's stem: اِفْتَعِلْ
 def F10(v, core, masdar, fail, note=None):
-    return _sg.derived(_sg.B10, _sg.W10, "َ", v, core, v, masdar, fail, note=note)
+    return _sg.derived(_sg.B10, _sg.W10, "َ", v, core, "اِ" + core, masdar, fail, note=note)   # اِسْتَفْعِلْ
 def F3(v, core, masdar, fail, maful=None, pmz=None, pmd=None, note=None):
     return _sg.derived(_sg.B3, _sg.W3, "ُ", v, core, core, masdar, fail, maful, pmz, pmd, note)
 def F2(v, core, masdar, fail, maful=None, pmz=None, pmd=None, note=None):
