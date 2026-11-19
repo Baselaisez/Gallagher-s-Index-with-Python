@@ -14932,3 +14932,80 @@ One cluster per tool, each fixed at its cause; every finding's inputs are assert
 - Smoke: two checks after «v329 — a demonstrative is never muḍāf». Full suite: 500 pass, 1 fail — SPEED III, the IrabModel refit
   only (`node tools/gen_irab_model.js && python3 tools/build_prototype.py`).
 - Written by the orchestrator from the agent's PROGRESS notes: the agent stopped (model limit) after its full run.
+
+## v334-S — speed after the shelf grew
+
+The owner asked again for speed before the Samsung (Capacitor) and iPhone (Safari PWA) testers. Measured on the split hosted
+copy (`tools/pubsplit.py`, served over http, 412 px, 4× CPU via CDP) with one probe for boot and every interaction
+(`scratchpad/s334/measure.js`: click → the next painted frame, the long tasks that start in [click, paint + 700 ms]; «cold» = a
+fresh profile, every operation's first use a second after the data lands, Quiet kept out by the probe's own taps; «warm» = the
+same operation again after 25 s idle). The 78-text shelf had made three kinds of work slow again — all of them whole-corpus
+work done in ONE task the first time something asked for it.
+
+| operation (4× CPU) | v333 cold | v334 cold | v333 warm | v334 warm |
+|---|---|---|---|---|
+| boot: data ready / library usable | 1.82–1.90 / 1.93–1.98 s | 1.36–1.38 / 1.41–1.44 s | (2nd visit) 1.80–1.84 / 1.85–1.94 s | 1.42–1.59 / 1.47–1.68 s |
+| boot: longest task / long-task sum | 334–340 / 944–1045 ms | 126–160 / 489–491 ms | 596–610 / 1057–1246 ms | 415–431 / 635–907 ms |
+| Jumla lab (the taggers' held-out grade) | 2.7 s + a **29.1-s** task | 2.2 s (first analysis), grade in ≤ 30-ms slices | 286 ms | 300 ms |
+| ʿalāma / adab / tartīb / ḥadhf / wujūh labs | 2.2–3.7-s tasks after the paint | 120–500-ms tasks (engine first use) | 57–161 ms | 40–99 ms |
+| games hub, its counts (gSign 3.2 s, gAdab 2.7, gHadhf 2.6, gTartib 2.3, gWujuh 1.8 at 4× each) | one task per count | 8-ms slices | 64 ms | 94 ms |
+| game gCloze start (hub counted on a fresh profile) | 3.2 s | 541 ms | 32 ms | 20 ms |
+| search, the second letter (index unbuilt) | 1.93 s, one task | 320 ms, «…» then hits from slices | 364 ms | 310 ms |
+| library render (78 cards) | 446 ms | 225 ms | 215 ms | 173 ms |
+| all 93 operations: long-task total / longest / tasks ≥ 1 s | 112.5 s / 29.1 s / 10 | 53.1 s / 2.2 s / 2 | 3.5 s / 294 ms / 0 | 2.2 s / 264 ms / 0 |
+
+Heap (precise, after GC, 1×, the split copy): boot 144 MB either way; after every body is parsed and every index, pool and
+audit is built, **156 → 120 MB** (the dedup below; its Quiet job runs last). The idle queue at 4× (`quiet.js`): the search index is whole at
+63 s (was 142 s); the five walks then take 2.4 min of idle slices and the dedup 0.5 min, so the queue drains at 5.7 min
+(was 3 min — that work used to land on a tap); the heap once it has drained, 199 → 148 MB.
+
+What changed, and why each returns the same answers:
+1. **The naive-Bayes taggers score from one table per model** (`nbScore334`). SarfTagger.tag0 took `Math.log` of every
+   label × feature on every word; IsmTagger had the wave-112 Map table. Both now read per-model typed arrays: the prior and
+   the zero-count log per label, the sparse logs per feature, each built by the SAME expression the loop used (so the same
+   double), and the sum runs label by label, feature by feature, in the loop's order — no FMA in JS, so every lp is
+   bit-identical. The table hangs off the model, non-enumerable, so a fold's model carries its own (the wave-112 hazard).
+   The grade drained whole: SarfTagger 1.7 s, IsmTagger 0.6 s at 1× in the suite (v333: one task of 29 s at 4× for both). Proven: 1,634 words × (trained model, a fold's model) × both taggers, every label's
+   p (and Sarf's lp) equal to the v333 loop written into the check.
+2. **The held-out grade is a generator** (`evalGen334`, `evalStep334`): fit a fold 64 rows a slice, tag a held-out word a
+   slice, the fold's model swapped in only inside the slice. `evalUnseen()` drains the same generator; the Jumla lab reads it
+   through `Relax.laterUntil334` (step(budget) until done, then the old finish). Proven: sliced (with another tagger call
+   between slices) = drained, for both taggers.
+3. **Five corpus walks are generators** (`Gen334.drain/step`, a `yield` at the top of each sentence, the body untouched):
+   SignEngine.audit, AdabEngine.lint, TartibEngine.audit, HadhfEngine.audit, WujuhEngine.audit, and the library walks of
+   hadhfItems / wujuhItems (kept whole once, handed out as a fresh copy — the games shuffle in place). The five labs read them
+   with `laterUntil334`; the games hub steps an unfinished walk 8 ms a task (`SUPPLY_STEP334`, `Relax.chunkedReady334`) before
+   it reads the count; Quiet finishes them (`audits334`, after the pools). Proven: each walk in 3-ms slices = drained; the
+   hub's five counts from slices = `supply()`, its slowest task ≤ 10 ms at 1×.
+4. **cloze** skips a story with an empty progress map (proven: `senRead({}, …)` is false for every one of 6,619 sentences, and
+   the walk equals the v333 walk written into the check); **foldAr** keeps a string's fold (pure; equal to `foldAr0` on all
+   83,323 index rows); the **search index and fold** run in Quiet before the pools (done at ~1 min at 4×, was 2 min 20 s);
+   **irab-cv2** runs 40-ms slices, not 120 (the same folds in the same order).
+5. **Search before the index exists**: a query of two letters paints «…» at once and the index is built a chapter a slice,
+   then the same search runs (the harness's sync flag keeps the one-shot build). Proven: the sheet's text after the sliced build
+   = the one-shot build's.
+6. **The shelf's cards are `content-visibility: auto`** (`contain-intrinsic-size: auto 220px`, the median card at 412 px): a
+   card off screen is not laid out until it nears the viewport. CSS only; the DOM and every card are the same.
+7. **Memory: the parsed bodies' repeated strings point at one copy** (`dedupGen334`, Quiet job `stories-dedup334`, last). The
+   heap snapshot: at boot 85 of the 148 MB are the bodies' JSON strings; parsed, they hold 1.01 M repeats of 230 k distinct
+   strings (each token's lex, pos, the recurring iʿrāb phrase). The walk writes the first copy back over each repeat — the same
+   characters, so nothing can read the difference — and the parsed bodies fall from 92 to 55 MB at 1×. Proven: every story's
+   chapters and morph serialise to the same characters before and after (FNV over each JSON).
+
+Measured and left alone: ~50 MB more is the data scripts' compiled top level, which V8 drops by itself after a dozen major
+GCs (an aggressive GC — a heap snapshot — drops it at once); the scripts' sources (121 MB, external to the JS heap) stay with
+V8 under memory pressure even with the `<script>` elements removed — only a fetch/JSON loader would avoid them, which wave 127
+measured slower and which the file:// copy cannot use.
+
+Still slow, and why:
+- **An engine's first use before Quiet's `engine-warm`** (~50 s of idle at 4×): the first analysis in a lab compiles the big
+  engines and builds their lazy indexes in the click's task (jadhr 2.2 s, jumla 2.1 s, then 300–800-ms tasks across the
+  analysis labs; a first word tap 700 ms). Quiet does this work idle; a reader who goes straight to the Atölye pays it.
+  Next: drive the engine-warm steps from the lab before its first analysis, as the hub now drives the walks.
+- **Opening a long text** stays 175–320 ms warm (the first 40 sentences' DOM; L6 whole 384 ms): DOM and layout, not engine
+  work. **The search sheet's keystroke** stays 230–310 ms warm: it re-renders the whole sheet and its hits.
+- **IrabModel.accuracy()** in the Jumla lab's perceptron line is one task (1 s at 1× after a refit) — older than this wave.
+
+Smoke: five checks «v334-S — …» before «v333 — the received imports» (the taggers' table and grade; the five walks and the
+hub; cloze / foldAr / the Quiet order; the stepped search and the shelf's CSS; the dedup). No older check changed, no
+threshold loosened. Full suite (`node tools/smoke_test.js`, the reader as built): 525 checks, 525 pass.
