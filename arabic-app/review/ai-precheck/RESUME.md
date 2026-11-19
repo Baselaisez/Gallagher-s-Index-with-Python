@@ -300,3 +300,17 @@ Token numbers here count from 1. Not yet written as a packet.
   - al-Uṣūl 6:s9 t32 فَقَدْ «عاطفة»: it is the fāʾ of the khabar of مَنْ.
   - al-Uṣūl 25:s12 t20 أَنَا and t21 الَّذِي have no role.
   - the three أَلَّا tokens are keyed `illa` (a lexicon issue).
+
+## Engine-found corpus slips (v328 engine wave on main: the implied أَنْ, ẓarf with a pronoun)
+
+Token numbers count from 1. Not yet a packet.
+
+- **حتى named as the nāṣib** (Shudhūr R156: the naṣb is by an implied أَنْ after ḥattā):
+  - al-maqamat-birgivi: 2:s37:29, 2:s40:25
+  - al-usul-al-munifa: 3:s21:28, 19:s3:16, 21:s7:11, 25:s7:50, 25:s11:28, 25:s12:20, 32:s2:64, 34:s2:40
+- **«منصوب بلم» on the verb after lām al-juḥūd** (it is by an implied أَنْ, wujūban): al-usul-al-munifa 3:s14:27, 3:s14:32,
+  24:s21:54, 24:s21:112. Also «منصوب بمن» at al-maqamat-birgivi 7:s5:12.
+- **«منصوب بلا»:**
+  - al-usul-al-munifa 22:s3:21 (after حتى)
+  - al-usul-al-munifa 19:s7:37 (the fāʾ of sababiyya after a negation, R159)
+- **بين called «مفعول به»** (it is a ẓarf, R104): al-usul-al-munifa 25:s7:53, 25:s11:31, 32:s2:54.
