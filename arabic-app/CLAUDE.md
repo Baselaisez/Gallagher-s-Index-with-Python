@@ -1695,17 +1695,18 @@ must never ship.
   **No engine or content change from the review before the hoca has decided** — the fix list is the input to the
   next wave, not a patch to apply.
 
-### Model policy (owner's rule, 2026-11-17)
+### Model policy (owner's rule, 2026-11-17; revised by the owner 2026-11-19)
 
 Applies to every model call the project makes or delegates: subagents, workflows, the authoring tools under
 `tools/` (`analyze_text.py`, `review_batch.py`) and anything added later.
 
-- **Floor: Claude Opus 5.5 (`claude-opus-5-5`).** Never Sonnet, never Haiku, never an older Opus or Fable —
-  not even for a "mechanical" finder or reader stage, and not to save cost.
-- **Claude Fable 5.2 (`claude-fable-5-2`) for crucial work:** iʿrāb, naḥw and ṣarf, anything doctrinal, the
-  stories themselves, and design decisions. When in doubt whether a task is crucial, it is.
-- **Everything else: Claude Opus 5.5 with Claude Fable 5.2 as its advisor** (the advisor tool; with a Fable 5.2
-  advisor the advice comes back encrypted, so nothing may depend on reading its text).
+- **Claude Fable 5.2 (`claude-fable-5-2`) orchestrates, and does the most crucial work itself:** iʿrāb, naḥw and ṣarf, the
+  engines, anything doctrinal, the stories and received-text imports, and design decisions. When in doubt whether a task
+  is crucial, it is.
+- **Lenses** (finder, reader and checker stages around the crucial work) may run on **Claude Opus 5.5 or Claude Opus 4.8**,
+  and on nothing lower.
+- **Sonnet only** for a task that is the simplest kind and already certain to be correct (a mechanical rename, a format
+  conversion). The owner does not recommend it; prefer Opus even there. **Never Haiku.**
 - **Keys.** API calls the tools make read `QISSA_ANTHROPIC_API_KEY` (or the gitignored `arabic-app/.env.local`)
   and pass it explicitly to the client. Never use the name `ANTHROPIC_API_KEY`: it would also move Claude Code's
   own billing onto the API credit. Never print, log or commit a key.
@@ -14497,3 +14498,57 @@ All three are ORIGINAL and pending review. Every upper History shelf now holds a
 silently merges two words. The new story uses `amal-work`. The older splits (amal, rajaa / رجاء, thamani, pron-1s) are a
 cleanup task. Check every new key against `entries` in every glossary: glossaries wrap their entries in an `entries` object,
 and a check that reads the top level sees nothing.
+
+### v331 — one lexicon key, one word: the global key splits healed
+
+A lex key is GLOBAL (`corpusIndex()`, `RootFinder.nounIndex()`, search, glosses and the games span every story), so two words
+under one key silently replace one another. A scan of `entries` in every glossary (content/samples AND content/user-uploads —
+the hadith package is a story too) found 28 keys holding two normalised lemmas. Rule of the heal: the MAJORITY keeps the key;
+the minority word moves to a descriptive key, reused where the shelf already had one; a mere spelling variant is unified, not
+renamed; and the TOKENS decide, not the glossary line — in four packages the entry was the slip and the tokens were right.
+
+- **Renamed (minority → key):** alim عَالِم → `alim-scholar` (talkhis, wasiyya-L2; aqaid's عَالِمًا) · amal عَمَل → `amal-work`
+  (manar, wasiyya-L2, -L4, the hadith package) and al-Kāfiya's «عَمَل» of a governor → `amal-governing` · amana أَمَانَة →
+  `amana-trust` (waqf, qisas-1/2/4, samti, wasiyya-L2) · amma عَامَّة → `amma-public` (samti, abi-yusuf-L5), Marāḥ's «وَالْعَامَّةِ» →
+  `amma-common` · an أَنْ → `an-masdariyya` (ashab-al-fil, wasiyya-L2, talkhis ×12) · ashara عَاشَرَ → `ashara-company` (new; samti)
+  · baad بَعْدُ → `badu-after` (min-muqaddimat, izhar) · bad بَدْء → `bad-beginning` (new; bad-al-amali), aqaid's بَعْدَ → `bada` ·
+  barid بَرِيد → `barid-post` (new; izhar), al-Uṣūl's name بُرَيْدَة → `burayda` (new) · fil فِيل → `fil-elephant` · inna: samti's
+  أَنَّكَ → `anna`, aqaid's أَنَّ ×4 → `anna`, adam's لٰكِنَّهُ → `lakinna` · istajara اِسْتَأْجَرَ → `istajara-hire` (new; musa-fi-madyan;
+  al-Kāfiya's اِسْتَجَارَ keeps `istajara`) · jamaa جَمَعَ → `jamaa-gather` (talkhis, samti, L5, al-Kāfiya's يُجْمَعُ) · kabira كَبِرَ →
+  `kabira-grow` (new; musa-fi-madyan, musa-wa-firawn, zakariyya) · qada قَضَى → `qada-verb` (bad-al-amali, samti) · rai رَائِع →
+  `rai-splendid` (new; qisas-4) · rajaa رَجَاء → `rajaa-hope` (manar) · rida رِدَاء → `rida-cloak` (new; talkhis) · safi صَفِيّ →
+  `safi-friend` (new; bad-al-amali, al-Uṣūl) · salam سَلَم → `salam-aqd` (buyūʿ), al-Uṣūl's سَلَمَة (Salama b. Kuhayl) → `salama-name`
+  · salima سَلِمَ → `salima-safe` (samti, talkhis, habil) · shari شَرْعِيّ → `shari-legal` (new; manar, talkhis) · wahid وَحِيد →
+  `wahid-alone` (yunus) · ma-mawsula: min-muqaddimat's «مَنْ / مَا» tokens are both مَنْ → `man-mawsula`.
+- **The drill garden's tāʾ (doctrine: ت is not ي):** jumal-al-tadrib's تُ → `pron-1s-subj`, its تَ → `pron-2ms-subj` (the keys
+  wasiyya-L2 / -L4 / L5 already used); its `pron-1s` is ـي again, its `pron-2ms` كَ.
+- **Unified, not renamed (spelling variants, or the entry was the slip):** thamani ثَمَانِي → ثَمَانٍ (musa-fi-madyan) · dalil
+  دَلَائِل → دَلِيل, plural دَلَائِل (aqaid, talkhis; the shelf was 2 : 2, the singular is the lemma) · pron-3ms «ـهُ / ـهِ» → ـهُ
+  (yunus) · iyya: L5's tokens are the segment إِيَّا, so the entry «إِيَّاكَ» became إِيَّا · bad in ashab-al-kahf and dawud-wa-jalut:
+  the tokens are بَعْضُ, the entry «بَدْء» was copied by PREF from bad-al-amali → بَعْض · rai in jurayj: the tokens are the
+  shepherd (رَاعِيًا، الرَّاعِي), the entry «رَائِع» was PREF's copy from qisas-4 → رَاعٍ · inna in samti: nine of ten tokens are إِنَّ,
+  the entry said أَنَّ → إِنَّ.
+- Entries for reused keys are copied by lemma identity (the shelf's most common entry, the package's own level kept); a verb's
+  paradigm moved with its key, or was copied where the package had none (al-Kāfiya `jamaa-gather`, habil `salima-safe`); every
+  key a package no longer uses was popped with its paradigm. 29 sample packages + the hadith package, 119 token/segment lexes.
+- **Scripts (so a regeneration does not bring a key back):** the token keys and glossary keys in author_samti, author_amali,
+  author_musa4, author_musa, author_zak, author_tadrib, author_waqf, author_habil, author_talkhis_ch7/8/9/10/18/51/53/56/58–61/69/74,
+  author_manar_ch3/6/12/13/16, author_qisas_ch15, author_qisas2_ch6, author_qisas4_ch5/44, author_izhar_ch1/3, author_aqaid_ch8/16/17/18/23,
+  author_kafiya_ch19/28/34/35, sarf_gen.py (SAMTI + COPIES); stale paradigms are POPPED where a script merges into morphology.json
+  (author_samti's merge, talkhis ch56 and ch69); PREF pins in author_kahf / author_dawud (`bad` → qisas-2) and author_jurayj
+  (`rai` → maqāmāt) — those three copy entries by key, which is exactly how the wrong lemmas arrived; author_adam / habil / zak
+  now read لٰكِنَّ (dagger alif) as `lakinna`. The pkg_from_engine packages carry the keys in their fixes: usul/fixes.json
+  (14:s19:8, 27:s5:12 burayda; 30:s3:1, 31:s3:18 salama-name; 15:s4:18 safi-friend; usul/lex.json بريدة) and marah/fixes.json
+  (17:s5:2 amma-common). No author script regenerates wasiyya-L2 / -L4 / L5, ashab-al-fil, min-muqaddimat, kitab-al-buyu, yunus
+  or the hadith package. The drill bank was regenerated (drift = the renamed lexes and دَلِيل for دَلَائِل only); the IrabModel is
+  unchanged.
+- Smoke «v331 — one lexicon key, one word»: across STORIES no key carries two normalised lemmas, save an allow-list of two true
+  spelling variants with their reasons (thamani ثَمَانٍ / ثَمَانِي; pron-3ms «ـهُ / ـهِ»), plus spot checks on the healed keys and the
+  drill garden's tāʾ. It caught the hadith package's `amal` on its first run.
+- **Left (token level, not lemma level — the next cleanup):** `pron-1s` still carries the subject تُ in 265 segments (al-Kāfiya 96,
+  izhar 103, qisas-4 33, talkhis 23, qisas-1 9, al-asad 1) and `pron-2ms` the subject تَ in 78 (al-Kāfiya 33, qisas-4 14, talkhis 11,
+  qisas-2 7, izhar 6, qisas-1 4, luqman 3); the glossary lemmas are right, the segments are not, and ~110 chapter scripts write them
+  (qisas4_ch44's `tu_mazi` defaults `person_lex="pron-1s"`). For the hoca: al-usul-al-munifa:2:s11:1 فَإِمَّا under `amma` with the
+  line of أَمَّا; adam-wa-iblis:1:s4:4 لٰكِنَّهُ whose line says «إِنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ».
+- Before minting a key: check `entries` in every glossary under content/samples AND content/user-uploads, and read the TOKENS
+  under the key, not only the lemma — a PREF copy can give a package the right key's wrong entry.

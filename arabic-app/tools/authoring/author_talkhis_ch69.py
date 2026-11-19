@@ -338,7 +338,7 @@ S.append({"id": "s17", "translation": {
   tok("أَحَدُهُمَا","ahad","noun",[L, "mubtada-khabar", "idafa-definiteness"], "مُبْتَدَأٌ مَرْفُوعٌ، مُضَافٌ — وَالضَّمِيرُ مُضَافٌ إِلَيْهِ.", "«the first of them» — the mubtada.", "«birincisi» — mübtedâ.",
       segments=[seg("أَحَدُ","ahad","noun"), seg("هُمَا","pron-3d","pron")]),
   tok("أَنْ","an-masdariyya","part",[L, "an-masdariyya", "mubtada-khabar"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the clause is the khabar.", "«-ması» — cümle haber."),
-  tok("يَجْمَعَ","jamaa","verb",[L, "an-masdariyya", "maful-bihi"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ.", "«gathers» — mansub by an.", "«bir araya getirsin» — en ile mansûb."),
+  tok("يَجْمَعَ","jamaa-gather","verb",[L, "an-masdariyya", "maful-bihi"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ.", "«gathers» — mansub by an.", "«bir araya getirsin» — en ile mansûb."),
   tok("اللَّفْظَيْنِ","lafz","noun",[L, "maful-bihi", "al-muthanna"], "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ — مُثَنًّى، مُقَدَّمٌ عَلَى الْفَاعِلِ.", "«the two words» — the object, before the doer.", "«iki lafzı» — mef'ul, fâilden önce."),
   tok("الِاشْتِقَاقُ","ishtiqaq","noun",[L, "fail"], "فَاعِلٌ مَرْفُوعٌ مُؤَخَّرٌ — الِاشْتِقَاقُ: رُجُوعُ الْكَلِمَتَيْنِ إِلَى أَصْلٍ وَاحِدٍ.", "«derivation» — the delayed doer: the two go back to one root.", "«iştikak» — sona bırakılmış fâil: ikisi bir köke döner."),
  ]})
@@ -366,8 +366,8 @@ S.append({"id": "s19", "translation": {
   tok("وَالثَّانِي","thani","noun",[L, "mubtada-khabar", "atf-nasaq", "ism-maqsur-manqus"], "الْوَاوُ عَاطِفَةٌ، وَالثَّانِي مُبْتَدَأٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ — مَنْقُوصٌ.", "«and the second» — the mubtada, a manqus.", "«ikincisi» — mübtedâ, manqûs.",
       segments=[seg("وَ","wa","conj"), seg("الثَّانِي","thani","noun")]),
   tok("أَنْ","an-masdariyya","part",[L, "an-masdariyya", "mubtada-khabar"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the clause is the khabar.", "«-ması» — cümle haber."),
-  tok("يَجْمَعَهُمَا","jamaa","verb",[L, "an-masdariyya", "maful-bihi"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ، وَالضَّمِيرُ مَفْعُولٌ بِهِ.", "«gathers them».", "«onları bir araya getirsin».",
-      segments=[seg("يَجْمَعَ","jamaa","verb"), seg("هُمَا","pron-3d","pron")]),
+  tok("يَجْمَعَهُمَا","jamaa-gather","verb",[L, "an-masdariyya", "maful-bihi"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ، وَالضَّمِيرُ مَفْعُولٌ بِهِ.", "«gathers them».", "«onları bir araya getirsin».",
+      segments=[seg("يَجْمَعَ","jamaa-gather","verb"), seg("هُمَا","pron-3d","pron")]),
   tok("الْمُشَابَهَةُ","mushabaha","noun",[L, "fail"], "فَاعِلٌ مَرْفُوعٌ — مَصْدَرُ شَابَهَ.", "«resemblance» — the doer.", "«benzeşme» — fâil.", punct="،"),
   tok("وَهِيَ","hiya","pron",[L, "mubtada-khabar"], "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَهِيَ مُبْتَدَأٌ.", "«and it is» — the mubtada.", "«o da» — mübtedâ.",
       segments=[seg("وَ","wa","conj"), seg("هِيَ","hiya","pron")]),
@@ -432,7 +432,7 @@ CAND = {
  "naba-news": need("naba-news", "نَبَأ", "ن ب ء", "noun", "news, tidings", "haber", 3),
  "yaqin": need("yaqin", "يَقِين", "ي ق ن", "noun", "certainty; sure", "yakîn, kesinlik; kesin", 3),
  "shay": need("shay", "شَيْء", "ش ي ء", "noun", "a thing", "şey", 1, plural="أَشْيَاء"),
- "jamaa": need("jamaa", "جَمَعَ", "ج م ع", "verb", "to gather, to bring together (جَمَعَ يَجْمَعُ)", "toplamak, bir araya getirmek (جَمَعَ يَجْمَعُ)", 2),
+ "jamaa-gather": need("jamaa-gather", "جَمَعَ", "ج م ع", "verb", "to gather, to bring together (جَمَعَ يَجْمَعُ)", "toplamak, bir araya getirmek (جَمَعَ يَجْمَعُ)", 2),
  "ishtiqaq": need("ishtiqaq", "اِشْتِقَاق", "ش ق ق", "noun", "derivation — two words going back to one root (masdar of اِشْتَقَّ)", "iştikak — iki kelimenin bir köke dönmesi (اِشْتَقَّ'nin masdarı)", 4),
  "qayyim": need("qayyim", "قَيِّم", "ق و م", "noun", "upright, straight (of the religion, 30:43)", "dosdoğru (din için, Rûm 43)", 4),
  "thani": need("thani", "ثَانٍ", "ث ن ي", "noun", "second (a manqus)", "ikinci (manqûs)", 1),
@@ -453,7 +453,8 @@ put_morph(mo, "naa", _sg.naqis1("fataha", "نَاقِصٌ يَائِيٌّ مَ�
 put_morph(mo, "fariha", _sg.sound1("samia", "فَرِح", "فْرَح", "اِفْرَح", "فَرَح", "فَرِح", note="لَازِمٌ مِنْ بَابِ سَمِعَ: فَرِحَ يَفْرَحُ فَرَحًا."))
 put_morph(mo, "mariha", _sg.sound1("samia", "مَرِح", "مْرَح", "اِمْرَح", "مَرَح", "مَرِح", note="لَازِمٌ مِنْ بَابِ سَمِعَ: مَرِحَ يَمْرَحُ مَرَحًا."))
 put_morph(mo, "satara", _sg.sound1("nasara", "سَتَر", "سْتُر", "اُسْتُر", "سَتْر", "سَاتِر", "مَسْتُور", "سُتِرَ", "يُسْتَرُ"))
-put_morph(mo, "jamaa", _sg.sound1("fataha", "جَمَع", "جْمَع", "اِجْمَع", "جَمْع", "جَامِع", "مَجْمُوع", "جُمِعَ", "يُجْمَعُ"))
+mo["verbs"].pop("jamaa", None)   # (v331) the verb is keyed jamaa-gather; jamaa is جَمَاعَة on the shelf
+put_morph(mo, "jamaa-gather", _sg.sound1("fataha", "جَمَع", "جْمَع", "اِجْمَع", "جَمْع", "جَامِع", "مَجْمُوع", "جُمِعَ", "يُجْمَعُ"))
 if "amana" in mo["verbs"] and "amana-secure" not in mo["verbs"]:
     mo["verbs"]["amana-secure"] = dict(mo["verbs"]["amana"]); mo["verbs"]["amana-secure"]["note"] = "آمَنَ يُؤْمِنُ إِيمَانًا: جَعَلَهُ آمِنًا — وَبِالْبَاءِ: صَدَّقَ؛ الصَّرْفُ وَاحِدٌ."
 for _k, _v in GLOSS_ADD.items():

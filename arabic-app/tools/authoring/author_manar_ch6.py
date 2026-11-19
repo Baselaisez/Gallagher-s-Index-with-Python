@@ -275,7 +275,7 @@ S.append({"id": "s5", "translation": {
       "فِعْلٌ مَاضٍ عَلَى «اِنْفَعَلَ»، وَهُوَ مُطَاوِعُ «قَطَعَ» — وَالْجُمْلَةُ صِلَةٌ. وَلَمْ يَقُلْ «مَا لَا يُعْلَمُ»، بَلْ قَطَعَ الرَّجَاءَ نَفْسَهُ: فَالطَّلَبُ هُنَا لَا يُجْدِي، بِخِلَافِ الْمُشْكِلِ.",
       "A past verb on اِنْفَعَلَ, the mutawa'a of قَطَعَ; the clause is the sila. The matn does not say «what is not known» — it says the HOPE itself has been cut. Searching helped with the mushkil; here it does not, and the difference is deliberate.",
       "«اِنْفَعَلَ» vezninde mâzî fiil, «قَطَعَ»in mutâvaatı; cümle sıladır. Metin «bilinmeyen şey» demiyor, ÜMİDİN kendisinin kesildiğini söylüyor. Müşkilde araştırmak fayda veriyordu; burada vermez ve bu fark kasıtlıdır."),
-  tok("رَجَاءُ","rajaa","noun",["fail","idafa-definiteness","masdar","ism-mamdud"],
+  tok("رَجَاءُ","rajaa-hope","noun",["fail","idafa-definiteness","masdar","ism-mamdud"],
       "فَاعِلٌ مَرْفُوعٌ وَهُوَ مُضَافٌ — مَصْدَرُ «رَجَا»، وَهُوَ مَمْدُودٌ هَمْزَتُهُ عَنْ وَاوٍ فَهُوَ مُنْصَرِفٌ.",
       "The fa'il in raf' and a mudaf — the masdar of رَجَا, and a mamdud whose hamza comes from a waw, so it too keeps its tanwin when indefinite. It heads a chain of four.",
       "Merfû fâil ve muzâf — «رَجَا»nın masdarı; hemzesi vâvdan dönüşen memdûddur, dolayısıyla nekre iken tenvînini korur. Dört rükünlü bir izâfetin başıdır."),
@@ -312,7 +312,7 @@ GLOSS_ADD = {
  "bayan":      g("بَيَان", "ب ي ن", "noun", "an explanation, a making-plain (masdar)", "beyân; açıklama (masdar)", 3),
  "mujmil":     g("مُجْمِل", "ج م ل", "noun", "the one who left it summed up (ism fa'il)", "mücmil; icmâl eden", 5),
  "inqataa":    g("اِنْقَطَعَ", "ق ط ع", "verb", "to be cut off, to come to an end", "kesilmek, son bulmak", 3),
- "rajaa":      g("رَجَاء", "ر ج و", "noun", "hope, expectation (masdar)", "recâ; ümit (masdar)", 3),
+ "rajaa-hope": g("رَجَاء", "ر ج و", "noun", "hope, expectation (masdar)", "recâ; ümit (masdar)", 3),
 }
 
 def build_morph():

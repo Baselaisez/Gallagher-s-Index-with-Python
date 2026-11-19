@@ -46,7 +46,7 @@ S.append({"id": "s1", "translation": {
  "en": "knowing in governance and in the setting up of the hudud,",
  "tr": "siyâseti ve hadleri ikāme etmeyi bilen,"},
  "tokens": [
-  tok("عَالِمًا","alim","noun",["ism-fail","hal"],
+  tok("عَالِمًا","alim-scholar","noun",["ism-fail","hal"],
       "حَالٌ مَنْصُوبٌ مِنَ الضَّمِيرِ فِي «يَكُونَ» — اسْمُ فَاعِلٍ، وَهُوَ يَعْمَلُ عَمَلَ فِعْلِهِ فَيَتَعَلَّقُ بِهِ الْجَارُّ بَعْدَهُ.",
       "A hal in nasb from the pronoun inside «yakuna» — an ism fa'il, and an ism fa'il GOVERNS as its verb does, which is why the jarr after it attaches to it.",
       "«يَكُونَ»deki zamîrden mansub hâl — ism-i fâildir; ism-i fâil kendi fiili gibi amel eder, bu yüzden sonrasındaki câr ona taalluk eder."),

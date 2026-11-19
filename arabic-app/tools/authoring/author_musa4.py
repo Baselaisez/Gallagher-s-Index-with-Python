@@ -281,7 +281,7 @@ S1.append({"id": "s1", "translation": {"en": "Musa was living in the house of Ph
   MAJR("بَيْتِ", "bayt", note_ar="، مُضَافٌ", note_en=", annexed", note_tr=", muzâf"),
   MUDAF_ILAYH("فِرْعَوْنَ", "firawn", "propn", ["mamnu-min-sarf"], sign=FATHA_JARR, note_ar=DIPT[0], note_en=DIPT[1], note_tr=DIPT[2], punct=".")]})
 S1.append({"id": "s2", "translation": {"en": "And Musa grew up and became a strong man.", "tr": "Mûsâ büyüdü ve güçlü bir adam oldu."},
- "tokens": [MADI("وَكَبِرَ", "kabira"), MUSA_F(), SARA("وَصَارَ"), KHK("رَجُلًا", "rajul"), NAAT("قَوِيًّا", "qawi", "nasb", punct=".")]})
+ "tokens": [MADI("وَكَبِرَ", "kabira-grow"), MUSA_F(), SARA("وَصَارَ"), KHK("رَجُلًا", "rajul"), NAAT("قَوِيًّا", "qawi", "nasb", punct=".")]})
 S1.append({"id": "s3", "translation": {"en": "One day Musa entered the city.", "tr": "Bir gün Mûsâ şehre girdi."},
  "tokens": [PREP("وَفِي", "fi", gloss_tr="«-de»"), MAJR("يَوْمٍ", "yawm"), MADI("دَخَلَ", "dakhala"), MUSA_F(), MAFUL("الْمَدِينَةَ", "madina", punct=".")]})
 S1.append({"id": "s4", "translation": {"en": "And he saw a man from Pharaoh's people striking a man from the Children of Israel.", "tr": "Firavun'un kavminden bir adamın İsrâiloğullarından bir adamı dövdüğünü gördü."},
@@ -412,7 +412,7 @@ S3.append({"id": "s7", "translation": {"en": "And one of the two girls said: «O
   tok("إِحْدَى", "ihda", "noun", ["fail", "ism-maqsur-manqus", "idafa-definiteness"], "فَاعِلٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، مُضَافٌ.", "The doer «one (of)», in raf' by a damma estimated on the alif; annexed.", "Fâil «biri», elif üzerindeki takdîrî damme ile merfû; muzâf."),
   MUDAF_ILAYH("الْبِنْتَيْنِ", "bint", extra=["al-muthanna"], sign="بِالْيَاءِ لِأَنَّهُ مُثَنًّى", note_en=" — by the ya, a dual", note_tr=" — tesniye olduğu için yâ ile", punct=":"),
   YA(), tok("أَبَتِ", "ab", "noun", ["vocative-munada", "ya-al-mutakallim", "idafa-definiteness"], "مُنَادًى مُضَافٌ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ، وَالتَّاءُ عِوَضٌ عَنْ يَاءِ الْمُتَكَلِّمِ الْمَحْذُوفَةِ، وَهِيَ مُضَافٌ إِلَيْهِ.", "The annexed vocative «my father», in nasb by an estimated fatha; the ta replaces the dropped ya of the speaker, which is the second term of the idafa.", "Muzâf münâdâ «babacığım», takdîrî fetha ile mansûb; tâ, hazfedilmiş mütekellim yâ'sının ivazıdır — o yâ muzâfun ileyhtir.", punct="،"),
-  AMR("اسْتَأْجِرْهُ", "istajara", ["form-x-verbs"], enc="هُ", punct="،"),
+  AMR("اسْتَأْجِرْهُ", "istajara-hire", ["form-x-verbs"], enc="هُ", punct="،"),
   tok("فَهُوَ", "huwa", "pron", ["mubtada-khabar", "al-mabni-wal-mudmar"], "الْفَاءُ لِلتَّعْلِيلِ، وَهُوَ ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "The fa gives the reason; «he» is a detached pronoun, built, in the seat of raf' as mubtada.", "Fâ ta'lîl içindir; «o» munfasıl zamir, mebnî, mübtedâ olarak mahallen merfû.", segments=[seg("فَ", "fa", "conj"), seg("هُوَ", "huwa", "pron")]),
   KHABAR("رَجُلٌ", "rajul"), NAAT("قَوِيٌّ", "qawi", "raf", ["sifa-mushabbaha"]), NAAT("أَمِينٌ", "amin", "raf", ["sifa-mushabbaha"], note_ar=" — نَعْتٌ ثَانٍ", note_en=" — a second adjective", note_tr=" — ikinci na't", punct=".")]})
 
@@ -501,8 +501,8 @@ def find_verb(k):
 NEW_GLOSS = {
  "khaif": {"lemma": "خَائِف", "root": "خ و ف", "pos": "noun", "gloss": {"en": "afraid, fearful (the ism fa'il of خَافَ)", "tr": "korkmuş, korkan (خَافَ fiilinin ism-i fâili)"}, "level": 1},
  "rai": {"lemma": "رَاعٍ", "root": "ر ع ي", "pos": "noun", "plural": "رُعَاة", "gloss": {"en": "a shepherd (a manqus noun; pl. رُعَاة)", "tr": "çoban (mankûs isim; ç. رُعَاة)"}, "level": 2},
- "istajara": {"lemma": "اِسْتَأْجَرَ", "root": "أ ج ر", "pos": "verb", "form": "X", "gloss": {"en": "to hire, to take into one's pay (اِسْتَأْجَرَ يَسْتَأْجِرُ)", "tr": "ücretle tutmak, kiralamak (اِسْتَأْجَرَ يَسْتَأْجِرُ)"}, "level": 2},
- "thamani": {"lemma": "ثَمَانِي", "root": "ث م ن", "pos": "noun", "gloss": {"en": "eight — the form used before a feminine counted noun (ثَمَانِي سِنِينَ); shaped like a manqus noun, its ya keeps a visible fatha in nasb", "tr": "sekiz — müennes ma'dûddan önceki şekli (ثَمَانِي سِنِينَ); mankûs isim şeklinde, nasbda yâ'sında fetha görünür"}, "level": 2},
+ "istajara-hire": {"lemma": "اِسْتَأْجَرَ", "root": "أ ج ر", "pos": "verb", "form": "X", "gloss": {"en": "to hire, to take into one's pay (اِسْتَأْجَرَ يَسْتَأْجِرُ)", "tr": "ücretle tutmak, kiralamak (اِسْتَأْجَرَ يَسْتَأْجِرُ)"}, "level": 2},
+ "thamani": {"lemma": "ثَمَانٍ", "root": "ث م ن", "pos": "noun", "gloss": {"en": "eight (feminine form; a manqūṣ: ثَمَانِي)", "tr": "sekiz (müennes şekli; mankûs: semânî)"}, "level": 2},   # (v331) one lemma for the key: ثَمَانِيَ is the same word
 }
 used = set()
 for S in CHAPS:
@@ -522,7 +522,7 @@ for k, e in GLOSS.items():
     if e.get("pos") != "verb": continue
     v = find_verb(k)
     if v: MORPH["verbs"][k] = v
-MORPH["verbs"]["istajara"] = _sg.derived(_sg.B10, "اِسْتَفْعَلَ يَسْتَفْعِلُ", "َ", "اِسْتَأْجَر", "سْتَأْجِر", "اِسْتَأْجِر", "اِسْتِئْجَار", "مُسْتَأْجِر", maful="مُسْتَأْجَر", pmz="اُسْتُؤْجِرَ", pmd="يُسْتَأْجَرُ")
+MORPH["verbs"]["istajara-hire"] = _sg.derived(_sg.B10, "اِسْتَفْعَلَ يَسْتَفْعِلُ", "َ", "اِسْتَأْجَر", "سْتَأْجِر", "اِسْتَأْجِر", "اِسْتِئْجَار", "مُسْتَأْجِر", maful="مُسْتَأْجَر", pmz="اُسْتُؤْجِرَ", pmd="يُسْتَأْجَرُ")
 no_par = [k for k, e in GLOSS.items() if e.get("pos") == "verb" and k not in MORPH["verbs"]]
 assert not no_par, no_par
 

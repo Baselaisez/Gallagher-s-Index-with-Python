@@ -17,7 +17,6 @@
     "inna": { "lemma": "إِنَّ", "pos": "part", "gloss": { "en": "indeed, truly (emphasis; governs its noun in nasb)", "tr": "şüphesiz, gerçekten (ismini nasbeder)" }, "level": 2 },
     "ilm": { "lemma": "عِلْم", "root": "ع ل م", "pos": "noun", "plural": "عُلُوم", "gloss": { "en": "knowledge", "tr": "ilim" }, "level": 1 },
     "bila": { "lemma": "بِلَا", "pos": "prep", "gloss": { "en": "without", "tr": "-sız, -siz" }, "level": 3 },
-    "amal": { "lemma": "عَمَل", "root": "ع م ل", "pos": "noun", "plural": "أَعْمَال", "gloss": { "en": "deed, practice", "tr": "amel, iş" }, "level": 1 },
     "ka": { "lemma": "كَـ", "pos": "prep", "gloss": { "en": "like, as (comparison)", "tr": "gibi (teşbih)" }, "level": 2 },
     "shajar": { "lemma": "شَجَر", "root": "ش ج ر", "pos": "noun", "plural": "أَشْجَار", "gloss": { "en": "trees (collective)", "tr": "ağaç(lar)" }, "level": 2 },
     "thamar": { "lemma": "ثَمَر", "root": "ث م ر", "pos": "noun", "plural": "ثِمَار", "gloss": { "en": "fruit", "tr": "meyve" }, "level": 3 },
@@ -54,6 +53,7 @@
     "pron-3mp": { "lemma": "ـهِمْ", "pos": "pron", "gloss": { "en": "them / their (attached pronoun, masc. plural)", "tr": "onları / onların (çoğul bitişik zamir)" }, "level": 2 },
     "pron-2ms": { "lemma": "ـكَ", "pos": "pron", "gloss": { "en": "you / your (attached pronoun)", "tr": "seni / senin (bitişik zamir)" }, "level": 1 },
     "pron-2ms-subj": { "lemma": "تَ (تاء الفاعل)", "pos": "pron", "gloss": { "en": "you (subject suffix on past verbs)", "tr": "-n (mazide fail zamiri)" }, "level": 1 },
-    "pron-1s": { "lemma": "ـي", "pos": "pron", "gloss": { "en": "my / me (attached pronoun)", "tr": "benim / beni (bitişik zamir)" }, "level": 1 }
+    "pron-1s": { "lemma": "ـي", "pos": "pron", "gloss": { "en": "my / me (attached pronoun)", "tr": "benim / beni (bitişik zamir)" }, "level": 1 },
+    "amal-work": { "lemma": "عَمَل", "pos": "noun", "gloss": { "en": "a deed, work (masdar of عَمِلَ)", "tr": "amel, iş (عَمِلَ'nin masdarı)" }, "level": 1, "root": "ع م ل", "plural": "أَعْمَال" }
   }
 }

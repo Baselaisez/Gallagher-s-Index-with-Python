@@ -40,7 +40,7 @@ def wahiya(tag, full="وَهِيَ"):
     return tok(full, lex, "pron", [tag, "mubtada-khabar"], "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَالضَّمِيرُ مُبْتَدَأٌ.", "«and it is» — the mubtada.", "«ve o» — mübtedâ.",
                segments=[seg("وَ","wa","conj"), seg(full[1:], lex, "pron")])
 def an_masd(tag):
-    return tok("أَنْ","an","part",[tag, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the interpreted masdar is the khabar.", "«… -mesi» — müevvel masdar haber.")
+    return tok("أَنْ","an-masdariyya","part",[tag, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the interpreted masdar is the khabar.", "«… -mesi» — müevvel masdar haber.")
 def mithal(word, lex, tag, first=False, punct=":"):
     return [tok("وَمِثَالُ" if not first else "مِثَالُ","mithal","noun",[tag, "mubtada-khabar", "idafa-definiteness"] + ([] if first else ["atf-nasaq"]), ("الْوَاوُ عَاطِفَةٌ، وَ" if not first else "") + "مِثَالُ مُبْتَدَأٌ مَرْفُوعٌ، مُضَافٌ.", "«the example of» — the mubtada.", "«örneği» — mübtedâ.",
                 segments=(None if first else [seg("وَ","wa","conj"), seg("مِثَالُ","mithal","noun")])),
@@ -365,7 +365,7 @@ S[-1]["badi"] = [{"kind": "laff-nashr", "first": [2], "second": [9, 11], "sub": 
 
 # ---------------------------------------------------------------- glossary
 def FG(*ks): return {k: find_gloss(k) for k in ks}
-GLOSS_ADD = FG("afa", "ahad", "akhar", "ala", "allati", "an", "anna", "arada", "ard", "arsh", "atlaqa", "aw", "awwal", "ay", "baid", "bana", "bayna", "bi", "buhturi",
+GLOSS_ADD = FG("afa", "ahad", "akhar", "ala", "allati", "an", "an-masdariyya", "anna", "arada", "ard", "arsh", "atlaqa", "aw", "awwal", "ay", "baid", "bana", "bayna", "bi", "buhturi",
                "dakhala", "damir", "dar", "darb", "dhikr", "dima", "fadl", "fi", "ghayr", "ghayyara", "ghazal", "ghusn", "hiya", "hum", "huwa", "ibn", "idha", "iham",
                "ila", "illa", "in-shartiyya", "istawa", "jaala", "janna", "ka", "kalam", "kana", "kayfa", "kull", "la-nafiya", "laama", "lafz", "lahu", "lam", "lan",
                "layl", "ma-mawsula", "man-mawsula", "mana", "min", "mithal", "mujarrada", "murashshaha", "mutaaddid", "nahar", "nahwa", "naqd", "nasara-christians",

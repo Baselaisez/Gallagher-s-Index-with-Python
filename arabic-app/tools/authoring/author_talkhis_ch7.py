@@ -362,7 +362,7 @@ GLOSS_ADD = {
  "ala":       g("عَلَى", None, "prep", "upon, over", "üzerine, üzere", 1),
  "nur":       g("نُور", "ن و ر", "noun", "light", "nur, ışık", 2, plural="أَنْوَار"),
  "hilal":     g("هِلَال", "ه ل ل", "noun", "the new moon, a crescent", "hilâl, yeni ay", 3),
- "dalil":     g("دَلَائِل", "د ل ل", "noun", "proofs, indications", "deliller", 3),
+ "dalil":     g("دَلِيل", "د ل ل", "noun", "proof", "delil", 3, plural="دَلَائِل"),   # (v331) the lemma is the singular; دَلَائِل is its plural
  "fasad":     g("فَسَاد", "ف س د", "noun", "corruption, spoiling", "fesad, bozgunculuk", 3),
  "laim":      g("لَئِيم", "ل أ م", "noun", "base, ignoble", "alçak, aşağılık", 4),
  "rabb":      g("رَبّ", "ر ب ب", "noun", "Lord, master", "Rab", 1, plural="أَرْبَاب"),

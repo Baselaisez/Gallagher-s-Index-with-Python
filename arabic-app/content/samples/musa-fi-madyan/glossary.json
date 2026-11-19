@@ -423,17 +423,6 @@
    "root": "ح ي ي",
    "form": "X"
   },
-  "istajara": {
-   "lemma": "اِسْتَأْجَرَ",
-   "root": "أ ج ر",
-   "pos": "verb",
-   "form": "X",
-   "gloss": {
-    "en": "to hire, to take into one's pay (اِسْتَأْجَرَ يَسْتَأْجِرُ)",
-    "tr": "ücretle tutmak, kiralamak (اِسْتَأْجَرَ يَسْتَأْجِرُ)"
-   },
-   "level": 2
-  },
   "jaa": {
    "lemma": "جَاءَ",
    "pos": "verb",
@@ -464,17 +453,6 @@
    },
    "level": 1,
    "root": "ج ل س"
-  },
-  "kabira": {
-   "lemma": "كَبِرَ",
-   "root": "ك ب ر",
-   "pos": "verb",
-   "form": "I",
-   "gloss": {
-    "en": "to grow up, grow big (كَبِرَ يَكْبَرُ)",
-    "tr": "büyümek (كَبِرَ يَكْبَرُ)"
-   },
-   "level": 1
   },
   "kana": {
    "lemma": "كَانَ",
@@ -1021,14 +999,14 @@
    "root": "ط ر ق"
   },
   "thamani": {
-   "lemma": "ثَمَانِي",
-   "root": "ث م ن",
+   "lemma": "ثَمَانٍ",
    "pos": "noun",
    "gloss": {
-    "en": "eight — the form used before a feminine counted noun (ثَمَانِي سِنِينَ); shaped like a manqus noun, its ya keeps a visible fatha in nasb",
-    "tr": "sekiz — müennes ma'dûddan önceki şekli (ثَمَانِي سِنِينَ); mankûs isim şeklinde, nasbda yâ'sında fetha görünür"
+    "en": "eight (feminine form; a manqūṣ: ثَمَانِي)",
+    "tr": "sekiz (müennes şekli; mankûs: semânî)"
    },
-   "level": 2
+   "level": 2,
+   "root": "ث م ن"
   },
   "thani": {
    "lemma": "ثَانِي",
@@ -1140,6 +1118,28 @@
    "level": 2,
    "root": "ظ ل ل",
    "plural": "ظِلَال"
+  },
+  "istajara-hire": {
+   "lemma": "اِسْتَأْجَرَ",
+   "root": "أ ج ر",
+   "pos": "verb",
+   "form": "X",
+   "gloss": {
+    "en": "to hire, to take into one's pay (اِسْتَأْجَرَ يَسْتَأْجِرُ)",
+    "tr": "ücretle tutmak, kiralamak (اِسْتَأْجَرَ يَسْتَأْجِرُ)"
+   },
+   "level": 2
+  },
+  "kabira-grow": {
+   "lemma": "كَبِرَ",
+   "root": "ك ب ر",
+   "pos": "verb",
+   "form": "I",
+   "gloss": {
+    "en": "to grow up, grow big (كَبِرَ يَكْبَرُ)",
+    "tr": "büyümek (كَبِرَ يَكْبَرُ)"
+   },
+   "level": 1
   }
  }
 }

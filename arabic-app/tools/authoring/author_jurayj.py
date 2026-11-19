@@ -237,7 +237,7 @@ PREF = ["qisas-al-nabiyyin-4", "al-kafiya", "al-amana-wa-al-khashaba", "ashab-al
 def _pkg_dir(p): return (OUT_ROOT / p) if (OUT_ROOT / p / "glossary.json").exists() else (ROOT / "content/samples" / p)
 PREF = [p for p in PREF if _pkg_dir(p).joinpath("glossary.json").exists()]
 PREF += sorted(d.name for d in (ROOT / "content/samples").iterdir() if (d / "glossary.json").exists() and d.name not in PREF)
-FORCE = {"ma-masdariyya": "al-kafiya", "sadaqa-verb": "al-kafiya"}
+FORCE = {"ma-masdariyya": "al-kafiya", "sadaqa-verb": "al-kafiya", "rai": "al-maqamat-birgivi"}   # (v331) rai is the shepherd رَاعٍ; qisas-4's رَائِع is rai-splendid
 _G = {p: json.loads((_pkg_dir(p) / "glossary.json").read_text(encoding="utf-8"))["entries"] for p in PREF}
 _M = {p: json.loads((_pkg_dir(p) / "morphology.json").read_text(encoding="utf-8")).get("verbs", {}) for p in PREF if (_pkg_dir(p) / "morphology.json").exists()}
 def find_gloss(k):

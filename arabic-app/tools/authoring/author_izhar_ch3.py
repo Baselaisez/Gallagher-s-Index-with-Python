@@ -144,7 +144,7 @@ S.append({"id": "s4", "translation": {"en": "and like عِنْدَ, لَدَى, 
   nahw(),
   tok("فَرْسَخٍ", "farsakh", "noun", [K, MK, HT], "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ مَجْرُورٌ بِإِضَافَةِ نَحْوُ: نَحْوُ لَفْظِ فَرْسَخٍ.", "«a farsakh» — annexed to نَحْوُ.", "«fersah» — nahvü'ye muzâfun ileyh."),
   majrur_item("وَمِيلٍ", "mil-mile", "«and a mile»", "«ve mil»"),
-  majrur_item("وَبَرِيدٍ", "barid", "«and a post-stage»", "«ve berîd»", punct="،"),
+  majrur_item("وَبَرِيدٍ", "barid-post", "«and a post-stage»", "«ve berîd»", punct="،"),
  ]})
 # ----------- s5 — the exceptions
 S.append({"id": "s5", "translation": {"en": "except جَانِبًا, وَجْهًا, وَسَطًا with a fatḥa on the sīn, خَارِجَ الدَّارِ, دَاخِلَ الدَّارِ and جَوْفَ الْبَيْتِ, and every place-noun that does not mean resting — as in «the killing-place» and «the striking-place» — and likewise if it means that but what it hangs on does not — as in مَقَام and مَكَان,", "tr": "cânib, vech, sin'i fethalı vasat, hâricü'd-dâr, dâhilü'd-dâr ve cevfü'l-beyt hâriç; bir de istikrâr mânâsında olmayan her mekân ismi — «maktel», «madrab» gibi — ve bu mânâda olup da müteallakı bu mânâda olmayan — «makam», «mekân» gibi;"},
@@ -481,7 +481,7 @@ CAND = {
  "mamsuh": G("mamsuh", "مَمْسُوح", "م س ح", "noun", "measured, surveyed (ism mafʿūl of مَسَحَ)", "memsûh — ölçülmüş", 5),
  "farsakh": G("farsakh", "فَرْسَخ", None, "noun", "a farsakh — about three miles (a measure of distance)", "fersah — yaklaşık üç mil", 5, plural="فَرَاسِخ"),
  "mil-mile": G("mil-mile", "مِيل", "م ي ل", "noun", "a mile (a measure of distance)", "mil — uzunluk ölçüsü", 4, plural="أَمْيَال"),
- "barid": G("barid", "بَرِيد", "ب ر د", "noun", "a post-stage — four farsakhs; the post", "berîd — dört fersah; posta menzili", 5),
+ "barid-post": G("barid-post", "بَرِيد", "ب ر د", "noun", "a post-stage — four farsakhs; the post", "berîd — dört fersah; posta menzili", 5),
  "jawf": G("jawf", "جَوْف", "ج و ف", "noun", "the inside, the hollow of", "cevf — içi, boşluğu", 4),
  "istiqrar": G("istiqrar", "اسْتِقْرَار", "ق ر ر", "noun", "resting, being settled (masdar of اِسْتَقَرَّ) — the sense that lets فِي drop", "istikrâr — yerleşme (istekarra'nın masdarı)", 5),
  "maqtal": G("maqtal", "مَقْتَل", "ق ت ل", "noun", "the killing-place (a noun of place on مَفْعَل)", "maktel — öldürme yeri", 5),

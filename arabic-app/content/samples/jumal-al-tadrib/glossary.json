@@ -479,20 +479,20 @@
    "level": 1
   },
   "pron-1s": {
-   "lemma": "ـتُ",
+   "lemma": "ـي",
    "pos": "pron",
    "gloss": {
-    "en": "I (attached subject)",
-    "tr": "ben (bitişik fâil zamiri)"
+    "en": "my (attached pronoun)",
+    "tr": "benim (bitişik zamir)"
    },
    "level": 1
   },
   "pron-2ms": {
-   "lemma": "ـكَ / ـتَ",
+   "lemma": "كَ",
    "pos": "pron",
    "gloss": {
-    "en": "you / your (attached)",
-    "tr": "sen / senin (bitişik zamir)"
+    "en": "you (masc. sg., attached)",
+    "tr": "sen/senin (muttasıl, eril)"
    },
    "level": 1
   },
@@ -881,6 +881,24 @@
    },
    "level": 2,
    "root": "ف ه م"
+  },
+  "pron-1s-subj": {
+   "lemma": "تُ (تاء الفاعل)",
+   "pos": "pron",
+   "gloss": {
+    "en": "I (subject suffix on past verbs)",
+    "tr": "-m/-dım (mazide fail zamiri, 1. tekil)"
+   },
+   "level": 1
+  },
+  "pron-2ms-subj": {
+   "lemma": "تَ (تاء الفاعل)",
+   "pos": "pron",
+   "gloss": {
+    "en": "you (subject suffix on past verbs)",
+    "tr": "-n (mazide fail zamiri)"
+   },
+   "level": 1
   }
  }
 }

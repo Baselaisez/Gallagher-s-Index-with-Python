@@ -159,7 +159,7 @@ S.append({"id": "s2", "translation": {
       "فَاعِلٌ مَرْفُوعٌ — وَجَاءَ نَعْتُهُ لِلْمَدْحِ.",
       "The fa'il, in raf' — and the na't after it is for PRAISE. Note that the syntax has not changed a hair from the sentence before: same case, same agreement, same position. Only the situation is different.",
       "Merfû fâil — ve ardından gelen na't MEDH içindir. Dikkat: nahiv, bir önceki cümleden kıl kadar farklı değildir — aynı hâl, aynı uyum, aynı mevki. Değişen yalnız makāmdır."),
-  tok("الْعَالِمُ","alim","noun",["naat-sifa","tawabi-al-musnad-ilayh"],
+  tok("الْعَالِمُ","alim-scholar","noun",["naat-sifa","tawabi-al-musnad-ilayh"],
       "نَعْتٌ مَرْفُوعٌ — لِلْمَدْحِ، وَذَلِكَ حَيْثُ يَكُونُ الْوَصْفُ مَعْلُومًا لِلسَّامِعِ مِنْ قَبْلُ.",
       "A na't in raf', for PRAISE — and the books add the condition that makes it praise rather than narrowing: the hearer must already know Zayd is learned. An adjective that tells him something new is identifying him; one that tells him nothing new is praising him.",
       "Merfû na't; MEDH içindir — ve kitaplar, onu tahsîs değil medh yapan şartı da ekler: muhâtab, Zeyd'in âlim olduğunu önceden biliyor olmalıdır. Ona yeni bir şey söyleyen sıfat tanıtır; hiçbir yeni şey söylemeyen sıfat över.",

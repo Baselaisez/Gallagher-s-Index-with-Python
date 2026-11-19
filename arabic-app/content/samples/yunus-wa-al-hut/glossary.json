@@ -135,16 +135,6 @@
       },
       "level": 1
     },
-    "wahid": {
-      "lemma": "وَحِيد",
-      "root": "و ح د",
-      "pos": "adj",
-      "gloss": {
-        "en": "alone, lonely",
-        "tr": "yalnız"
-      },
-      "level": 2
-    },
     "zalam": {
       "lemma": "ظَلَام",
       "root": "ظ ل م",
@@ -227,11 +217,11 @@
       "level": 1
     },
     "pron-3ms": {
-      "lemma": "ـهُ / ـهِ",
+      "lemma": "ـهُ",
       "pos": "pron",
       "gloss": {
-        "en": "him / his (attached pronoun)",
-        "tr": "onu / onun (bitişik zamir)"
+        "en": "his / its (attached pronoun)",
+        "tr": "onun (bitişik zamir)"
       },
       "level": 1
     },
@@ -487,6 +477,16 @@
         "tr": "iman etmek, inanmak"
       },
       "level": 1
+    },
+    "wahid-alone": {
+      "lemma": "وَحِيد",
+      "pos": "noun",
+      "gloss": {
+        "en": "alone, lonely (ṣifa mushabbaha)",
+        "tr": "yalnız, tek başına (sıfat-ı müşebbehe)"
+      },
+      "level": 2,
+      "root": "و ح د"
     }
   }
 }

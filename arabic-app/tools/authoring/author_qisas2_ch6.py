@@ -340,7 +340,7 @@ sen("s3", "God knows who carries His message, and God knows who carries His trus
   *allah_yalam(),
   noun_pron("رِسَالَتَهُ", "risala", "رِسَالَتَ", "هُ", "pron-3ms", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.", "«His message» — the object, annexed.", "«risâletini» — mef'ûl, muzâf.", tags=[MB, ID], punct="،"),
   *allah_yalam("وَاللهُ", wa=True),
-  noun_pron("أَمَانَتَهُ", "amana", "أَمَانَتَ", "هُ", "pron-3ms", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.", "«His trust» — the object, annexed.", "«emanetini» — mef'ûl, muzâf.", tags=[MB, ID], punct="."),
+  noun_pron("أَمَانَتَهُ", "amana-trust", "أَمَانَتَ", "هُ", "pron-3ms", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.", "«His trust» — the object, annexed.", "«emanetini» — mef'ûl, muzâf.", tags=[MB, ID], punct="."),
 ])
 sen("s4", "And Nūḥ was a righteous, noble man; and Nūḥ was a wise, forbearing man.", "Nûh sâlih ve cömert bir adamdı; Nûh akıllı ve halîm bir adamdı.", [
   kana(), nuh_ism_kana(),
@@ -524,7 +524,7 @@ CAND = {
  "alima": G("alima", "عَلِمَ", "ع ل م", "verb", "to know", "bilmek", 1),
  "man": G("man", "مَنْ", None, "pron", "who, whoever — the relative and conditional noun", "kim, kimse — ism-i mevsûl ve şart ismi", 1),
  "hamala": G("hamala", "حَمَلَ", "ح م ل", "verb", "to carry", "taşımak", 1),
- "amana": G("amana", "أَمَانَة", "أ م ن", "noun", "trust", "emanet", 1),
+ "amana-trust": G("amana-trust", "أَمَانَة", "أ م ن", "noun", "trust", "emanet", 1),
  "rajul": G("rajul", "رَجُل", "ر ج ل", "noun", "man", "adam", 1, plural="رِجَال"),
  "salih": G("salih", "صَالِح", "ص ل ح", "noun", "righteous person", "sâlih", 1),
  "karim": G("karim", "كَرِيم", "ك ر م", "noun", "noble, generous", "cömert, kerim", 1),

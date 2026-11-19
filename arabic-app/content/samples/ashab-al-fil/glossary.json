@@ -80,15 +80,6 @@
       },
       "level": 2
     },
-    "an": {
-      "lemma": "أَنْ",
-      "pos": "part",
-      "gloss": {
-        "en": "that, to (+ subjunctive)",
-        "tr": "-mek/-mak (masdariyye)"
-      },
-      "level": 2
-    },
     "hadama": {
       "lemma": "هَدَمَ",
       "root": "ه د م",
@@ -116,17 +107,6 @@
       "gloss": {
         "en": "with, together with",
         "tr": "ile, beraber"
-      },
-      "level": 1
-    },
-    "fil": {
-      "lemma": "فِيل",
-      "root": "ف ي ل",
-      "pos": "noun",
-      "plural": "أَفْيَال",
-      "gloss": {
-        "en": "elephant",
-        "tr": "fil"
       },
       "level": 1
     },
@@ -339,6 +319,26 @@
         "en": "A name for the Kaaba. Grammatically it is a noun with its adjective, and the story's «بَيْتَهُ الْحَرَامَ» shows the rule at work: the noun is definite through its pronoun, so its na't takes ال.",
         "tr": "Kâbe'nin adıdır. Gramer bakımından mevsûf ve sıfattır; hikâyedeki «بَيْتَهُ الْحَرَامَ» kuralı gösterir: isim zamirle marife olduğu için sıfatı ال alır."
       }
+    },
+    "an-masdariyya": {
+      "lemma": "أَنْ",
+      "pos": "part",
+      "gloss": {
+        "en": "that (masdar-maker, governs nasb)",
+        "tr": "-mesi (masdariyye, nasbeder)"
+      },
+      "level": 2
+    },
+    "fil-elephant": {
+      "lemma": "فِيل",
+      "pos": "noun",
+      "gloss": {
+        "en": "elephant",
+        "tr": "fil"
+      },
+      "level": 1,
+      "root": "ف ي ل",
+      "plural": "أَفْيَال"
     }
   }
 }

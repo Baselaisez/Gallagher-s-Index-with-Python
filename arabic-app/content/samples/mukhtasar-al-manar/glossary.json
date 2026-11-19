@@ -180,17 +180,6 @@
    },
    "level": 1
   },
-  "amal": {
-   "lemma": "عَمَل",
-   "root": "ع م ل",
-   "pos": "noun",
-   "plural": "أَعْمَال",
-   "gloss": {
-    "en": "action, practice",
-    "tr": "amel, iş"
-   },
-   "level": 1
-  },
   "wa": {
    "lemma": "وَ",
    "pos": "conj",
@@ -545,16 +534,6 @@
    "level": 2,
    "root": "ح ك م",
    "plural": "أَحْكَام"
-  },
-  "shari": {
-   "lemma": "شَرْعِيّ",
-   "pos": "noun",
-   "gloss": {
-    "en": "legal, of the Shari'a (nisba)",
-    "tr": "şer'î (nisbet)"
-   },
-   "level": 3,
-   "root": "ش ر ع"
   },
   "tadiya": {
    "lemma": "تَعْدِيَة",
@@ -1205,16 +1184,6 @@
    },
    "level": 3,
    "root": "ق ط ع"
-  },
-  "rajaa": {
-   "lemma": "رَجَاء",
-   "pos": "noun",
-   "gloss": {
-    "en": "hope, expectation (masdar)",
-    "tr": "recâ; ümit (masdar)"
-   },
-   "level": 3,
-   "root": "ر ج و"
   },
   "ibara": {
    "lemma": "عِبَارَة",
@@ -2558,6 +2527,37 @@
     "tr": "her kim (şart)"
    },
    "level": 3
+  },
+  "amal-work": {
+   "lemma": "عَمَل",
+   "pos": "noun",
+   "gloss": {
+    "en": "a deed, work (masdar of عَمِلَ)",
+    "tr": "amel, iş (عَمِلَ'nin masdarı)"
+   },
+   "level": 1,
+   "root": "ع م ل",
+   "plural": "أَعْمَال"
+  },
+  "rajaa-hope": {
+   "lemma": "رَجَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "hope (maṣdar of رَجَا)",
+    "tr": "ümit (recâ'nın masdarı)"
+   },
+   "level": 3,
+   "root": "ر ج و"
+  },
+  "shari-legal": {
+   "lemma": "شَرْعِيّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "legal, of the Shari'a (nisba)",
+    "tr": "şer'î (nisbet)"
+   },
+   "level": 3,
+   "root": "ش ر ع"
   }
  }
 }

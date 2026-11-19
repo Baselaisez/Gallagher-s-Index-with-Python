@@ -51,7 +51,7 @@ S.append({"id": "s1", "translation": {
       "مُضَافٌ إِلَيْهِ مَجْرُورٌ — وَإِضَافَةُ أَفْعَلِ التَّفْضِيلِ إِلَى الْجِنْسِ تُفِيدُ أَنَّهُ مِنْهُ.",
       "The mudaf ilayh in jarr — an elative joined to its KIND says the best is one OF them.",
       "Mecrûr muzâfun ileyh — ism-i tafdîlin cinse izâfeti, onun o cinsten olduğunu bildirir."),
-  tok("بَعْدَ","bad","noun",["maful-fih","idafa-definiteness"],
+  tok("بَعْدَ","bada","noun",["maful-fih","idafa-definiteness"],
       "ظَرْفُ زَمَانٍ مَنْصُوبٌ وَهُوَ مُضَافٌ، مُتَعَلِّقٌ بِـ«أَفْضَلُ».",
       "A time-adverb in nasb and a mudaf, attaching to «the best».",
       "Mansub zaman zarfı ve muzâf; «أَفْضَلُ»ye taalluk eder."),

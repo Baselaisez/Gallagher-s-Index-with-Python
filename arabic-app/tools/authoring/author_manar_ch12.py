@@ -81,7 +81,7 @@ S.append({"id": "s1", "translation": {
       "مُضَافٌ إِلَيْهِ مَجْرُورٌ — وَبِهِ تَمَّتِ السِّلْسِلَةُ أَرْبَعَ حَلَقَاتٍ: بَيَانُ ← انْتِهَاءِ ← مُدَّةِ ← الْحُكْمِ، وَكُلُّ وَاحِدَةٍ فِي الْوَسَطِ مُضَافٌ وَمُضَافٌ إِلَيْهِ مَعًا. وَهَذِهِ أَطْوَلُ إِضَافَةٍ فِي الْكِتَابِ.",
       "The mudaf ilayh in jarr — and with it the chain closes at FOUR links: بَيَانُ ← انْتِهَاءِ ← مُدَّةِ ← الْحُكْمِ, every middle member a mudaf and a mudaf ilayh at once, and only the last not itself a mudaf. It is the longest idafa in the book, and it is not ornament: each link narrows the one before it, and dropping any of them would change the definition.",
       "Mecrûr muzâfun ileyh — zincir onunla DÖRT halkada kapanır: بَيَانُ ← انْتِهَاءِ ← مُدَّةِ ← الْحُكْمِ; ortadaki her üye aynı anda hem muzâf hem muzâfun ileyhtir, yalnız sonuncusu muzâf değildir. Kitaptaki en uzun izâfettir ve süs değildir: her halka öncekini daraltır; birini düşürsen tarif değişir."),
-  tok("الشَّرْعِيِّ","shari","noun",["naat-sifa"],
+  tok("الشَّرْعِيِّ","shari-legal","noun",["naat-sifa"],
       "نَعْتٌ لِـ«الْحُكْمِ» مَجْرُورٌ — اسْمٌ مَنْسُوبٌ، وَقَدْ مَرَّ نَكِرَةً فِي بَابِ الْإِجْمَاعِ («حُكْمٍ شَرْعِيٍّ») وَهَا هُوَ مَعْرِفَةً.",
       "A na't of «the ruling», in jarr — a nisba noun. It stood INDEFINITE in the chapter on consensus, حُكْمٍ شَرْعِيٍّ, and here it is definite. The na't follows its noun in definiteness as in everything else, and the two occurrences show the rule from both sides.",
       "«الْحُكْمِ»in na'tı, mecrûr — mensûb isim. İcmâ bâbında NEKRE geçmişti («حُكْمٍ شَرْعِيٍّ»), burada marifedir. Na't, mevsûfuna marifelik-nekrelikte de tâbi olur; iki geçiş kaideyi iki yönden gösterir."),

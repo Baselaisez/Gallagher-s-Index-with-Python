@@ -196,7 +196,7 @@ S.append({"id": "s7", "translation": {
   ZAYD(),
   AFDAL("خَبَرٌ مَرْفُوعٌ — مُعَرَّفٌ بِاللَّامِ.", "«the most excellent».", "«en faziletli».", punct="؛", full="الْأَفْضَلُ"),
   atf_wa("وَلَا", "la-nafiya", "part", ["la-nafiya"], "لَا نَافِيَةٌ.", "«and not».", "«ve -mez».", "لَا"),
-  W("يُجْمَعُ", "jamaa", "verb", ["naib-al-fail"], "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ، وَنَائِبُ الْفَاعِلِ الْجَارُّ وَالْمَجْرُورُ.", "«are joined».", "«birleştirilir»."),
+  W("يُجْمَعُ", "jamaa-gather", "verb", ["naib-al-fail"], "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ، وَنَائِبُ الْفَاعِلِ الْجَارُّ وَالْمَجْرُورُ.", "«are joined».", "«birleştirilir»."),
   W("بَيْنَ", "bayna", "noun", ["maful-fih", "idafa-definiteness"], "ظَرْفٌ مَنْصُوبٌ، وَهُوَ مُضَافٌ.", "«between».", "«arası»."),
   W("اثْنَيْنِ", "ithnan", "noun", ["idafa-definiteness", "al-muthanna"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْيَاءِ.", "«two».", "«ikisinin»."),
   W("مِنْهَا", "min", "prep", ["huruf-jarr"], "مِنْ حَرْفُ جَرٍّ، وَهَا مَجْرُورٌ.", "«of them».", "«onlardan».", punct=".", segments=[seg("مِنْ", "min", "prep"), pr3fs()]),

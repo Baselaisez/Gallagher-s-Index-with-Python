@@ -63,11 +63,11 @@
       "level": 3
     },
     "iyya": {
-      "lemma": "إِيَّاكَ",
+      "lemma": "إِيَّا",
       "pos": "pron",
       "gloss": {
-        "en": "beware! (warning object-pronoun)",
-        "tr": "sakın! (tahzir zamiri)"
+        "en": "detached accusative pronoun base (iyyahum: them)",
+        "tr": "munfasıl nasb zamiri (إِيَّاهُمْ: onları)"
       },
       "level": 4
     },
@@ -440,16 +440,6 @@
         "tr": "konuşmak"
       },
       "level": 2
-    },
-    "amma": {
-      "lemma": "الْعَامَّة",
-      "root": "ع م م",
-      "pos": "noun",
-      "gloss": {
-        "en": "the common people, the public",
-        "tr": "halk, avam"
-      },
-      "level": 3
     },
     "illa": {
       "lemma": "إِلَّا",
@@ -1186,17 +1176,6 @@
       },
       "level": 2
     },
-    "jamaa": {
-      "lemma": "جَمَعَ",
-      "root": "ج م ع",
-      "pos": "verb",
-      "form": "I",
-      "gloss": {
-        "en": "to gather, collect",
-        "tr": "toplamak"
-      },
-      "level": 2
-    },
     "tazawwaja": {
       "lemma": "تَزَوَّجَ",
       "root": "ز و ج",
@@ -1383,6 +1362,27 @@
         "en": "The same idiom as بَيْنَ يَدَيْهِ, here with an open mudaf ilayh rather than a pronoun. The two words keep their own i'rab — بَيْنَ a mansub zarf and يَدَيْ its mudaf ilayh in the dual — but they are read together as «in the presence of».",
         "tr": "بَيْنَ يَدَيْهِ ile aynı deyimdir; burada muzâfun ileyh zamir değil açık isimdir. İki kelime kendi i'rabını korur — بَيْنَ mansub zarf, يَدَيْ tesniye muzâfun ileyh — fakat birlikte «huzurunda» diye okunur."
       }
+    },
+    "amma-public": {
+      "lemma": "عَامَّة",
+      "pos": "noun",
+      "gloss": {
+        "en": "the common people, the generality",
+        "tr": "halk, avam; genel"
+      },
+      "level": 3,
+      "root": "ع م م"
+    },
+    "jamaa-gather": {
+      "lemma": "جَمَعَ",
+      "pos": "verb",
+      "gloss": {
+        "en": "to gather, to bring together (جَمَعَ يَجْمَعُ)",
+        "tr": "toplamak, bir araya getirmek (جَمَعَ يَجْمَعُ)"
+      },
+      "level": 2,
+      "root": "ج م ع",
+      "form": "I"
     }
   }
 }

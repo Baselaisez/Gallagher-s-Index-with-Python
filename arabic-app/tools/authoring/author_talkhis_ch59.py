@@ -39,7 +39,7 @@ def wahiya(tag):
     return tok("وَهِيَ","hiya","pron",[tag, "mubtada-khabar"], "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَهِيَ مُبْتَدَأٌ.", "«and it is» — the mubtada.", "«ve o» — mübtedâ.",
                segments=[seg("وَ","wa","conj"), seg("هِيَ","hiya","pron")])
 def an_masd(tag):
-    return tok("أَنْ","an","part",[tag, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the interpreted masdar is the khabar.", "«… -mesi» — müevvel masdar haber.")
+    return tok("أَنْ","an-masdariyya","part",[tag, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the interpreted masdar is the khabar.", "«… -mesi» — müevvel masdar haber.")
 
 # ----------- s1 — the irsad defined (RESTORED matn)
 S.append({"id": "s1", "translation": {
@@ -247,8 +247,8 @@ S.append({"id": "s9", "translation": {
   tok("فِي","fi","part",[Z, "huruf-jarr"], "حَرْفُ جَرٍّ.", "«in».", "«-de»."),
   tok("الشَّرْطِ","shart","noun",[Z, "huruf-jarr"], "مَجْرُورٌ.", "«the condition».", "«şart»."),
   wa_conj("وَالْجَزَاءِ","jaza-answer","noun",[Z, "atf-nasaq"], "الْجَزَاءِ مَعْطُوفٌ مَجْرُورٌ — جَوَابُ الشَّرْطِ.", "«and the answer» — the shart's jawab.", "«ve cezâ» — şartın cevabı.", punct="،"),
-  tok("بِأَنْ","an","part",[Z, "huruf-jarr", "an-masdariyya"], "الْبَاءُ لِلتَّصْوِيرِ، وَأَنْ مَصْدَرِيَّةٌ.", "«by» — the ba of «in that».", "«şöyle ki».",
-      segments=[seg("بِ","bi","part"), seg("أَنْ","an","part")]),
+  tok("بِأَنْ","an-masdariyya","part",[Z, "huruf-jarr", "an-masdariyya"], "الْبَاءُ لِلتَّصْوِيرِ، وَأَنْ مَصْدَرِيَّةٌ.", "«by» — the ba of «in that».", "«şöyle ki».",
+      segments=[seg("بِ","bi","part"), seg("أَنْ","an-masdariyya","part")]),
   tok("يُرَتَّبَ","rattaba","verb",[Z, "an-masdariyya", "naib-al-fail", "form-ii-verbs"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ مَبْنِيٌّ لِلْمَجْهُولِ.", "«be made to follow».", "«tertip edilsin»."),
   tok("عَلَى","ala","part",[Z, "huruf-jarr"], "حَرْفُ جَرٍّ.", "«on».", "«üzerine»."),
   tok("كُلٍّ","kull","noun",[Z, "huruf-jarr"], "مَجْرُورٌ — كُلٍّ مِنْهُمَا.", "«each» — of the two.", "«her biri» — ikisinden."),
@@ -385,7 +385,7 @@ S[-1]["badi"] = [{"kind": "aks", "first": [10, 12], "second": [14, 16], "sub": "
 
 # ---------------------------------------------------------------- glossary
 def FG(*ks): return {k: find_gloss(k) for k in ks}
-GLOSS_ADD = FG("min", "hiya", "an", "samma", "baad", "jaala", "aw", "bayt", "ma-mawsula", "dalla", "ala", "idha", "arafa", "nahwa", "ma-nafiya", "kana", "allah",
+GLOSS_ADD = FG("min", "hiya", "an", "an-masdariyya", "samma", "baad", "jaala", "aw", "bayt", "ma-mawsula", "dalla", "ala", "idha", "arafa", "nahwa", "ma-nafiya", "kana", "allah",
                "zalama", "lakin", "nafs", "qawl", "amr-ibn-madikarib", "ibn", "madikarib", "lam", "istataa", "amr", "ila", "dhikr", "shay", "lafz", "ghayr", "fi",
                "suhba", "tahqiq", "taqdir", "mithal", "qala", "lahu", "tabkh", "alima", "ay", "anna", "iman", "asl", "walad", "ma-water", "huwa", "bayna", "mana",
                "shart", "kull", "wahid", "buhturi", "ma-zaida", "bi", "kalam", "juz", "thumma", "waqaa", "wajh", "ahad", "taraf", "jumla", "ada", "fil",

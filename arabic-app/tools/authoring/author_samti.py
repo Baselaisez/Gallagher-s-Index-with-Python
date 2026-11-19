@@ -192,7 +192,7 @@ S.append({"id": "s3", "translation": {
       "مَعْطُوفٌ مَجْرُورٌ وَهُوَ مُضَافٌ.","Joined, majrur, mudaf.","Matuf, mecrûr, muzâftır."),
   tok("الْخَاصَّةِ","khassa","noun",["idafa-definiteness"],
       "مُضَافٌ إِلَيْهِ مَجْرُورٌ.","Mudaf ilayh in jarr.","Muzâfun ileyh; mecrûr."),
-  tok("وَالْعَامَّةِ","amma","noun",["atf-nasaq"],
+  tok("وَالْعَامَّةِ","amma-public","noun",["atf-nasaq"],
       "مَعْطُوفٌ عَلَى «الْخَاصَّةِ» مَجْرُورٌ.","Joined to «the elite», majrur.","«الخاصة»ye matuf; mecrûr.", punct="،"),
   tok("وَتَفَقُّدِ","tafaqqud","noun",["atf-nasaq","idafa-definiteness","masdar"],
       "مَعْطُوفٌ مَجْرُورٌ وَهُوَ مُضَافٌ (مَصْدَرُ التَّفَعُّلِ).",
@@ -200,7 +200,7 @@ S.append({"id": "s3", "translation": {
       "Matuf, mecrûr, muzâf (tefe''ul masdarı)."),
   tok("أَمْرِ","amr-work","noun",["idafa-definiteness"],
       "مُضَافٌ إِلَيْهِ وَهُوَ مُضَافٌ.","Mudaf ilayh, itself mudaf.","Muzâfun ileyh; kendisi de muzâftır."),
-  tok("الْعَامَّةِ","amma","noun",["idafa-definiteness"],
+  tok("الْعَامَّةِ","amma-public","noun",["idafa-definiteness"],
       "مُضَافٌ إِلَيْهِ مَجْرُورٌ.","Mudaf ilayh in jarr.","Muzâfun ileyh; mecrûr.", punct="."),
  ]})
 
@@ -266,7 +266,7 @@ S.append({"id": "s5", "translation": {
       "الْوَاوُ اسْتِئْنَافِيَّةٌ، «اعْلَمْ» فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
       "The waw begins afresh; «know» is an imperative built on sukun.",
       "و isti'nâfiyyedir; «اعلم» sükûn üzere mebnî emir fiilidir."),
-  tok("أَنَّكَ","inna","part",["inna-wa-akhawatuha"],
+  tok("أَنَّكَ","anna","part",["inna-wa-akhawatuha"],
       "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالْكَافُ اسْمُهَا فِي مَحَلِّ نَصْبٍ.",
       "A verb-like particle; the kaf is its ism in the position of nasb.",
       "Fiile benzeyen harf; ك zamiri mahallen mensub ismidir."),
@@ -386,7 +386,7 @@ S.append({"id": "s7", "translation": {
       "مَفْعُولٌ بِهِ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",
       "Object in nasb with an implied fatha; the ya is mudaf ilayh.",
       "Mef'ûlün bih; fethası mukadderdir, ي zamiri muzâfun ileyhtir."),
-  tok("وَأَجْمَعَ","jamaa","verb",["atf-nasaq","an-masdariyya"],
+  tok("وَأَجْمَعَ","jamaa-gather","verb",["atf-nasaq","an-masdariyya"],
       "مَعْطُوفٌ عَلَى «أُفَرِّغَ» مَنْصُوبٌ.",
       "Joined to «free myself», in nasb.",
       "«أفرغ»a matuf; mensubtur."),
@@ -872,7 +872,7 @@ GLOSS = {
  "raiyya": {"lemma": "رَعِيَّة", "root": "ر ع ي", "pos": "noun", "plural": "رَعَايَا", "gloss": {"en": "the flock; subjects", "tr": "raiyye, tebaa"}, "level": 4},
  "riyada": {"lemma": "رِيَاضَة", "root": "ر و ض", "pos": "noun", "gloss": {"en": "training, schooling (of souls)", "tr": "riyâzet, yetiştirme"}, "level": 4},
  "khassa": {"lemma": "خَاصَّة", "root": "خ ص ص", "pos": "noun", "gloss": {"en": "the elite", "tr": "havâss, seçkinler"}, "level": 4},
- "amma": {"lemma": "عَامَّة", "root": "ع م م", "pos": "noun", "gloss": {"en": "the common people", "tr": "avâm, halk"}, "level": 4},
+ "amma-public": {"lemma": "عَامَّة", "root": "ع م م", "pos": "noun", "gloss": {"en": "the common people", "tr": "avâm, halk"}, "level": 4},
  "tafaqqud": {"lemma": "تَفَقُّد", "root": "ف ق د", "pos": "noun", "gloss": {"en": "looking after, keeping track (Form V masdar)", "tr": "yoklama, gözetme (tefe''ul masdarı)"}, "level": 5},
  "amr-work": {"lemma": "أَمْر", "root": "أ م ر", "pos": "noun", "plural": "أُمُور", "gloss": {"en": "affair, matter", "tr": "iş, husus"}, "level": 2},
  "idha": {"lemma": "إِذَا", "pos": "part", "gloss": {"en": "when, whenever", "tr": "…-dığı zaman"}, "level": 2},
@@ -885,7 +885,8 @@ GLOSS = {
  "zana": {"lemma": "زَانَ", "root": "ز ي ن", "pos": "verb", "form": "I", "gloss": {"en": "to adorn", "tr": "süslemek"}, "level": 4},
  "shana": {"lemma": "شَانَ", "root": "ش ي ن", "pos": "verb", "form": "I", "gloss": {"en": "to disgrace, mar", "tr": "lekelemek, ayıplı kılmak"}, "level": 5},
  "alima": {"lemma": "عَلِمَ", "root": "ع ل م", "pos": "verb", "form": "I", "gloss": {"en": "to know", "tr": "bilmek"}, "level": 1},
- "inna": {"lemma": "أَنَّ", "pos": "part", "gloss": {"en": "that (verb-like particle)", "tr": "ki, şüphesiz (fiile benzeyen harf)"}, "level": 3},
+ "inna": {"lemma": "إِنَّ", "pos": "part", "gloss": {"en": "truly, indeed (governs like a verb)", "tr": "şüphesiz, muhakkak (fiil gibi amel eder)"}, "level": 3},   # (v331) nine of the ten tokens are إِنَّ
+ "anna": {"lemma": "أَنَّ", "pos": "part", "gloss": {"en": "that (heavy anna)", "tr": "-dığını (enne)"}, "level": 3},   # (v331) أَنَّكَ
  "mata": {"lemma": "مَتَى", "pos": "part", "gloss": {"en": "when; whenever (conditional)", "tr": "ne zaman (şart)"}, "level": 3},
  "asaa": {"lemma": "أَسَاءَ", "root": "س و أ", "pos": "verb", "form": "IV", "gloss": {"en": "to do badly, wrong (someone)", "tr": "kötü davranmak"}, "level": 4},
  "ishra": {"lemma": "عِشْرَة", "root": "ع ش ر", "pos": "noun", "gloss": {"en": "companionship, social dealings", "tr": "geçim, ülfet"}, "level": 4},
@@ -902,7 +903,7 @@ GLOSS = {
  "sabara": {"lemma": "صَبَرَ", "root": "ص ب ر", "pos": "verb", "form": "I", "gloss": {"en": "to be patient", "tr": "sabretmek"}, "level": 2},
  "yawm": {"lemma": "يَوْم", "root": "ي و م", "pos": "noun", "plural": "أَيَّام", "gloss": {"en": "day", "tr": "gün"}, "level": 1},
  "farragha": {"lemma": "فَرَّغَ", "root": "ف ر غ", "pos": "verb", "form": "II", "gloss": {"en": "to empty, free (oneself) for", "tr": "boşaltmak; (kendini) ayırmak"}, "level": 4},
- "jamaa": {"lemma": "جَمَعَ", "root": "ج م ع", "pos": "verb", "form": "I", "gloss": {"en": "to gather", "tr": "toplamak"}, "level": 2},
+ "jamaa-gather": {"lemma": "جَمَعَ", "root": "ج م ع", "pos": "verb", "form": "I", "gloss": {"en": "to gather", "tr": "toplamak"}, "level": 2},
  "himma": {"lemma": "هِمَّة", "root": "ه م م", "pos": "noun", "plural": "هِمَم", "gloss": {"en": "resolve, aspiration", "tr": "himmet, gayret"}, "level": 4},
  "arrafa": {"lemma": "عَرَّفَ", "root": "ع ر ف", "pos": "verb", "form": "II", "gloss": {"en": "to acquaint, make known", "tr": "tanıtmak, bildirmek"}, "level": 3},
  "hamida": {"lemma": "حَمِدَ", "root": "ح م د", "pos": "verb", "form": "I", "gloss": {"en": "to praise, thank", "tr": "övmek, hamd etmek"}, "level": 3},
@@ -1072,7 +1073,7 @@ S3.append({"id": "s20", "translation": {
       "مَعْطُوفٌ — أَمْرُ التَّفَعُّلِ.","Joined — a Form V imperative.","Matuf — tefe''ul emridir."),
   tok("مِنَ","min","prep",["huruf-jarr"],
       "حَرْفُ جَرٍّ.","A jarr letter.","Cer harfidir."),
-  tok("الْعَامَّةِ","amma","noun",["huruf-jarr"],
+  tok("الْعَامَّةِ","amma-public","noun",["huruf-jarr"],
       "مَجْرُورٌ.","Majrur.","Mecrûrdur."),
   tok("وَدَارِ","dara-mudarah","verb",["atf-nasaq","form-iii-verbs","naqis-verbs","imperative-amr"],
       "أَمْرُ «دَارَى» مَبْنِيٌّ عَلَى حَذْفِ حَرْفِ الْعِلَّةِ (دَارِي ← دَارِ).",
@@ -2041,7 +2042,7 @@ S6.append({"id": "s42", "translation": {
       "فِعْلُ الشَّرْطِ — أَجْوَفُ — فِي مَحَلِّ جَزْمٍ.",
       "The condition-verb — hollow — in jazm's position.",
       "Şart fiili — ecvef; mahallen meczumdur."),
-  tok("قَضَيْتَ","qada","verb",["in-shartiyya","naqis-verbs"],
+  tok("قَضَيْتَ","qada-verb","verb",["in-shartiyya","naqis-verbs"],
       "جَوَابُ الشَّرْطِ بِلَا فَاءٍ — مَاضٍ نَاقِصٌ فِي مَحَلِّ جَزْمٍ.",
       "The answer WITHOUT فَ — a weak-final past in jazm's position.",
       "Cevap فَ'sızdır — nâkıs mâzî, mahallen meczum."),
@@ -2079,7 +2080,7 @@ GLOSS6 = {
  "hasan-adj": {"lemma": "حَسَن", "root": "ح س ن", "pos": "noun", "gloss": {"en": "fine, good", "tr": "güzel, hasen"}, "level": 2},
  "jamil": {"lemma": "جَمِيل", "root": "ج م ل", "pos": "noun", "gloss": {"en": "beautiful", "tr": "hoş, cemil"}, "level": 2},
  "mata-die": {"lemma": "مَاتَ", "root": "م و ت", "pos": "verb", "form": "I", "gloss": {"en": "to die", "tr": "ölmek"}, "level": 2},
- "qada": {"lemma": "قَضَى", "root": "ق ض ي", "pos": "verb", "form": "I", "gloss": {"en": "to discharge, fulfil", "tr": "yerine getirmek, kaza etmek"}, "level": 3},
+ "qada-verb": {"lemma": "قَضَى", "root": "ق ض ي", "pos": "verb", "form": "I", "gloss": {"en": "to discharge, fulfil", "tr": "yerine getirmek, kaza etmek"}, "level": 3},
 }
 
 JUMAL6 = {
@@ -2329,7 +2330,7 @@ S8.append({"id": "s49", "translation": {
  "tokens": [
   tok("وَمَتَى","mata","part",["in-shartiyya","maful-fih"],
       "اسْمُ شَرْطٍ جَازِمٌ.","A jazm-giving condition.","Câzim şart ismidir."),
-  tok("جَمَعَكَ","jamaa","verb",["in-shartiyya","maful-bihi"],
+  tok("جَمَعَكَ","jamaa-gather","verb",["in-shartiyya","maful-bihi"],
       "فِعْلُ الشَّرْطِ وَالْكَافُ مَفْعُولٌ بِهِ مُقَدَّمٌ.",
       "The condition-verb; the kaf its fronted object.",
       "Şart fiili; ك mukaddem mef'ûlün bihtir."),
@@ -2906,7 +2907,7 @@ S9.append({"id": "s58", "translation": {
       "İf'âl bâbından emir; هُمْ mef'ûlün bihtir."),
   tok("أَحْيَانًا","ahyanan","noun",["maful-fih"],
       "ظَرْفُ زَمَانٍ مَنْصُوبٌ.","A time-adverbial in nasb.","Mensub zaman zarfıdır."),
-  tok("وَاقْضِ","qada","verb",["atf-nasaq","imperative-amr","naqis-verbs"],
+  tok("وَاقْضِ","qada-verb","verb",["atf-nasaq","imperative-amr","naqis-verbs"],
       "مَعْطُوفٌ — أَمْرٌ مَبْنِيٌّ عَلَى حَذْفِ الْيَاءِ.",
       "Joined — a command built on dropping the ya.",
       "Matuf — yânın hazfi üzere mebnî emirdir."),
@@ -3010,7 +3011,7 @@ S9.append({"id": "s61", "translation": {
       "مَعْطُوفٌ — أَمْرٌ مِنَ التَّفْعِيلِ مَبْنِيٌّ عَلَى حَذْفِ الْيَاءِ: يُؤَدِّي ← أَدِّ.",
       "Joined — a Form II command built on dropping the ya: yu'addi becomes addi.",
       "Matuf — tef'îl bâbından, yânın hazfi üzere mebnî emir: يُؤَدِّي ← أَدِّ."),
-  tok("الْأَمَانَةَ","amana","noun",["maful-bihi"],
+  tok("الْأَمَانَةَ","amana-trust","noun",["maful-bihi"],
       "مَفْعُولٌ بِهِ مَنْصُوبٌ.","Object in nasb.","Mensub mef'ûlün bihtir."),
   tok("وَإِنْ","in-harf","part",["in-shartiyya"],
       "الْوَاوُ حَالِيَّةٌ وَ«إِنْ» وَصْلِيَّةٌ — شَرْطٌ جَوَابُهُ مَحْذُوفٌ دَلَّ عَلَيْهِ مَا قَبْلَهُ.",
@@ -3072,7 +3073,7 @@ S9.append({"id": "s63", "translation": {
       "Şartın cevabı — nâkıs-ı vâvî mâzî, mahallen meczum; ت fâildir — şart cümlesinin tamamı «إنّ»nin haberidir."),
   tok("أَنْ","an-masdariyya-lex","part",["an-masdariyya"],
       "مَصْدَرِيَّةٌ نَاصِبَةٌ.","The masdar-making nasb particle.","Masdariye ve nâsıbedir."),
-  tok("تَسْلَمَ","salima","verb",["an-masdariyya","maful-bihi"],
+  tok("تَسْلَمَ","salima-safe","verb",["an-masdariyya","maful-bihi"],
       "مُضَارِعٌ مَنْصُوبٌ بِأَنْ — وَالْمَصْدَرُ الْمُؤَوَّلُ مَفْعُولُ «رَجَوْتُ».",
       "A mudari' in nasb by «an» — the resolved masdar is the object of «I hope».",
       "«أَنْ» ile mensub muzâri — müevvel masdar «رجوت»un mef'ûlüdür."),
@@ -3156,7 +3157,7 @@ GLOSS9 = {
    "gloss": {"en": "treachery", "tr": "gadir, vefasızlık"}, "level": 3},
  "adda": {"lemma": "أَدَّى", "root": "أ د ي", "pos": "verb", "form": "II",
    "gloss": {"en": "to render, deliver (a trust)", "tr": "edâ etmek, yerine getirmek"}, "level": 3},
- "amana": {"lemma": "أَمَانَة", "root": "أ م ن", "pos": "noun",
+ "amana-trust": {"lemma": "أَمَانَة", "root": "أ م ن", "pos": "noun",
    "gloss": {"en": "trust", "tr": "emanet"}, "level": 2},
  "khana": {"lemma": "خَانَ", "root": "خ و ن", "pos": "verb", "form": "I",
    "gloss": {"en": "to betray", "tr": "hıyanet etmek"}, "level": 3},
@@ -3172,7 +3173,7 @@ GLOSS9 = {
    "gloss": {"en": "to hope", "tr": "ummak, ricâ etmek"}, "level": 3},
  "an-masdariyya-lex": {"lemma": "أَنْ", "pos": "part",
    "gloss": {"en": "that (turns the verb into a masdar)", "tr": "…mesi (masdar edatı)"}, "level": 3},
- "salima": {"lemma": "سَلِمَ", "root": "س ل م", "pos": "verb", "form": "I",
+ "salima-safe": {"lemma": "سَلِمَ", "root": "س ل م", "pos": "verb", "form": "I",
    "gloss": {"en": "to come through safe", "tr": "selâmette olmak, kurtulmak"}, "level": 3},
  "shaa": {"lemma": "شَاءَ", "root": "ش ي أ", "pos": "verb", "form": "I",
    "gloss": {"en": "to will", "tr": "dilemek"}, "level": 2},
@@ -3333,7 +3334,7 @@ S10.append({"id": "s67", "translation": {
  "en": "And live with the people of the creeds according to how they live with you.",
  "tr": "Din ehliyle, onların seninle muaşeretine göre muaşeret et."},
  "tokens": [
-  tok("وَعَاشِرْ","ashara","verb",["imperative-amr","form-iii-verbs"],
+  tok("وَعَاشِرْ","ashara-company","verb",["imperative-amr","form-iii-verbs"],
       "أَمْرٌ مِنَ الْمُفَاعَلَةِ — وَبَابُهُ الْمُشَارَكَةُ: عِشْرَةٌ مِنَ الْجَانِبَيْنِ.",
       "A Form III command — the bab of sharing: company from both sides.",
       "Müfâale bâbından emir — bâbı müşârekettir: iki taraflı geçim."),
@@ -3461,7 +3462,7 @@ GLOSS10 = {
    "gloss": {"en": "pride, self-greatness", "tr": "kibir"}, "level": 2},
  "janib": {"lemma": "جَانِب", "root": "ج ن ب", "pos": "noun", "plural": "جَوَانِب",
    "gloss": {"en": "side", "tr": "yan, taraf"}, "level": 2},
- "ashara": {"lemma": "عَاشَرَ", "root": "ع ش ر", "pos": "verb", "form": "III",
+ "ashara-company": {"lemma": "عَاشَرَ", "root": "ع ش ر", "pos": "verb", "form": "III",
    "gloss": {"en": "to live with, keep company", "tr": "muaşeret etmek, birlikte yaşamak"}, "level": 4},
  "din": {"lemma": "دِين", "root": "د ي ن", "pos": "noun", "plural": "أَدْيَان",
    "gloss": {"en": "religion, creed", "tr": "din"}, "level": 1},
@@ -3573,7 +3574,7 @@ S11.append({"id": "s73", "translation": {
  "en": "And he gathered his companions until they saw me off in escort.",
  "tr": "Ashâbını topladı; nihayet beni uğurladılar."},
  "tokens": [
-  tok("وَجَمَعَ","jamaa","verb",["atf-nasaq"],
+  tok("وَجَمَعَ","jamaa-gather","verb",["atf-nasaq"],
       "مَعْطُوفٌ — مَاضٍ، وَالْفَاعِلُ مُسْتَتِرٌ.",
       "Joined — a past, its fa'il concealed.",
       "Matuf — mâzî; fâili gizlidir."),
@@ -4071,6 +4072,7 @@ MANIFEST["chapters"].append({"n": 11, "title": TITLE11})
 _mpath = PKG / "morphology.json"
 if _mpath.exists():
     _prev = json.loads(_mpath.read_text(encoding="utf-8")).get("verbs", {})
+    for _k in ("jamaa", "qada", "salima", "ashara"): _prev.pop(_k, None)   # (v331) renamed: jamaa-gather, qada-verb, salima-safe, ashara-company
     _prev.update(MORPH["verbs"])
     MORPH = {"verbs": _prev}
 _mpath.write_text(json.dumps(MORPH, ensure_ascii=False, indent=1), encoding="utf-8")

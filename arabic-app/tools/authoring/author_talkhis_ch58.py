@@ -43,7 +43,7 @@ S.append({"id": "s1", "translation": {
   tok("الْمُقَابَلَةُ","muqabala","noun",[M, "mubtada-khabar", "masdar", "form-iii-verbs"], "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ — مَصْدَرُ قَابَلَ.", "«the muqabala» — the delayed mubtada; masdar of قَابَلَ.", "«mukâbele» — sona kalmış mübtedâ; قَابَلَ'nin masdarı.", punct="،"),
   tok("وَهِيَ","hiya","pron",[M, "mubtada-khabar"], "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَهِيَ مُبْتَدَأٌ.", "«and it is» — the mubtada.", "«ve o» — mübtedâ.",
       segments=[seg("وَ","wa","conj"), seg("هِيَ","hiya","pron")]),
-  tok("أَنْ","an","part",[M, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the masdar-making an; the interpreted masdar is the khabar.", "«… -mesi» — masdariyye en; müevvel masdar haber."),
+  tok("أَنْ","an-masdariyya","part",[M, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the masdar-making an; the interpreted masdar is the khabar.", "«… -mesi» — masdariyye en; müevvel masdar haber."),
   tok("يُؤْتَى","ata","verb",[M, "an-masdariyya", "naib-al-fail", "naqis-verbs"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ، مَبْنِيٌّ لِلْمَجْهُولِ، وَنَائِبُ الْفَاعِلِ الْجَارُّ وَالْمَجْرُورُ بَعْدَهُ.", "«are brought» — the passive; its deputy doer is the phrase after it.", "«getirilir» — meçhûl; nâib-i fâili sonraki ibare."),
   tok("بِمَعْنَيَيْنِ","mana","noun",[M, "huruf-jarr", "al-muthanna"], "جَارٌّ وَمَجْرُورٌ بِالْيَاءِ — مُثَنَّى مَعْنًى.", "«two meanings» — the dual of مَعْنًى.", "«iki mânâ» — مَعْنًى'nın tesniyesi.",
       segments=[seg("بِ","bi","part"), seg("مَعْنَيَيْنِ","mana","noun")]),
@@ -247,7 +247,7 @@ S.append({"id": "s10", "translation": {
   tok("تَشَابُهَ","tashabuh","noun",[T, "mafulayn", "idafa-definiteness", "masdar", "form-vi-verbs"], "مَفْعُولٌ ثَانٍ مَنْصُوبٌ، مُضَافٌ.", "«the resemblance of» — the second object.", "«benzeşmesi» — ikinci mef'ûl."),
   tok("الْأَطْرَافِ","taraf","noun",[T, "idafa-definiteness", "jam-taksir"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ — جَمْعُ طَرَفٍ: أَوَّلُ الْكَلَامِ وَآخِرُهُ.", "«the ends» — plural of طَرَف: the opening and the close.", "«uçlar» — طَرَف'in çoğulu: sözün başı ve sonu.", punct="،"),
   wa_conj("وَهُوَ","huwa","pron",[T, "mubtada-khabar"], "هُوَ مُبْتَدَأٌ.", "«and it is».", "«ve o»."),
-  tok("أَنْ","an","part",[T, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ.", "«that».", "«… -mesi»."),
+  tok("أَنْ","an-masdariyya","part",[T, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ.", "«that».", "«… -mesi»."),
   tok("يُخْتَمَ","khatama","verb",[T, "an-masdariyya", "naib-al-fail"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ مَبْنِيٌّ لِلْمَجْهُولِ.", "«be closed» — the passive.", "«bitirilsin» — meçhûl."),
   tok("الْكَلَامُ","kalam","noun",[T, "naib-al-fail"], "نَائِبُ فَاعِلٍ مَرْفُوعٌ.", "«speech» — the deputy doer.", "«söz» — nâib-i fâil."),
   tok("بِمَا","ma-mawsula","pron",[T, "huruf-jarr", "ism-mawsul"], "جَارٌّ وَمَجْرُورٌ.", "«with what».", "«… şeyle».",
@@ -353,7 +353,7 @@ S.append({"id": "s14", "translation": {
 
 # ---------------------------------------------------------------- glossary
 GLOSS_ADD = {
- "min": find_gloss("min"), "muqabala": find_gloss("muqabala"), "hiya": find_gloss("hiya"), "an": find_gloss("an"), "ata": find_gloss("ata"), "mana": find_gloss("mana"),
+ "min": find_gloss("min"), "muqabala": find_gloss("muqabala"), "hiya": find_gloss("hiya"), "an": find_gloss("an"), "an-masdariyya": find_gloss("an-masdariyya"), "ata": find_gloss("ata"), "mana": find_gloss("mana"),
  "mutawafiq": G("mutawafiq", "مُتَوَافِق", "و ف ق", "noun", "agreeing with one another (ism fa'il of تَوَافَقَ)", "birbirine uygun (تَوَافَقَ'nin ism-i fâili)", 5),
  "aw": find_gloss("aw"), "akthar": find_gloss("akthar"), "thumma": find_gloss("thumma"), "ma-mawsula": find_gloss("ma-mawsula"),
  "qabala": G("qabala", "قَابَلَ", "ق ب ل", "verb", "to face, to set against, to counter (Form III)", "karşılamak, mukâbil olmak (III. bâb)", 4, form="III"),

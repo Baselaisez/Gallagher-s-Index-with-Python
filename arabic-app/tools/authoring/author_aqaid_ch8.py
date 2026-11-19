@@ -256,7 +256,7 @@ GLOSS_ADD = {
  "sual": g("سُؤَال","س أ ل","noun","questioning (masdar)","sual; sorgu (masdar)",2),
  "munkar": g("مُنْكَر","ن ك ر","noun","Munkar (an angel of the grave)","Münker (kabir meleği)",4),
  "nakir": g("نَكِير","ن ك ر","noun","Nakir (an angel of the grave)","Nekîr (kabir meleği)",4),
- "dalil": g("دَلَائِل","د ل ل","noun","proofs (plural of dalil)","deliller (delîlin cem'i)",3),
+ "dalil": dict(g("دَلِيل","د ل ل","noun","proof","delil",3), plural="دَلَائِل"),   # (v331) the lemma is the singular; دَلَائِل is its plural
  "samiyya": g("سَمْعِيّ","س م ع","noun","transmitted, revelation-based (nisba)","semî'; naklî (nisbe)",4),
  "bath": g("بَعْث","ب ع ث","noun","resurrection","ba's; diriliş",3),
  "wazn": g("وَزْن","و ز ن","noun","weighing (of deeds)","tartı; vezn",3),

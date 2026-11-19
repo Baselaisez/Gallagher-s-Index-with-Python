@@ -422,7 +422,7 @@ sen("s14", "And Yūsuf went out innocent, and the king honoured him.", "Yusuf su
 # ================================================================ §16 على خزائن الأرض (pp. 49–51)
 sen("s15", "And Yūsuf knew that trustworthiness was scarce among people.", "Yusuf, emanetin insanlar arasında az olduğunu biliyordu.", [
   *kana_yalamu("يَعْلَمُ", "alima", "«knew»", "«biliyordu»"),
-  anna(obj_of="يَعْلَمُ"), anna_ism("الْأَمَانَةَ", "amana", "«trustworthiness»", "«emanet»"), anna_khabar("قَلِيلَةٌ", "qalil", "«scarce»", "«az»"), *fi_nas(punct=".")])
+  anna(obj_of="يَعْلَمُ"), anna_ism("الْأَمَانَةَ", "amana-trust", "«trustworthiness»", "«emanet»"), anna_khabar("قَلِيلَةٌ", "qalil", "«scarce»", "«az»"), *fi_nas(punct=".")])
 sen("s16", "And Yūsuf knew that treachery was plentiful among people.", "Yusuf, hıyanetin insanlar arasında çok olduğunu biliyordu.", [
   *kana_yalamu("يَعْلَمُ", "alima", "«knew»", "«biliyordu»"),
   anna(obj_of="يَعْلَمُ"), anna_ism("الْخِيَانَةَ", "khiyana", "«treachery»", "«hıyanet»"), anna_khabar("كَثِيرَةٌ", "kathir", "«plentiful»", "«çok»"), *fi_nas(punct=".")])
@@ -562,7 +562,7 @@ for k in _used:
     try: GLOSS_ADD[k] = find_gloss(k)
     except KeyError: _MISSING.append(k)
 if _MISSING: raise SystemExit("no package owns: " + ", ".join(_MISSING))
-for _k, _lm in [("siddiq", "صديق"), ("liqa", "لقاء"), ("rasul", "رسول"), ("radiya", "رضي"), ("ams", "أمس"), ("aql", "عقل"), ("bab", "باب"), ("amana", "أمانة"), ("mal", "مال"), ("amir", "أمير"), ("intafaa", "انتفع"), ("mata-die", "مات"), ("hamida", "حمد"), ("law", "لو"), ("lam-jawab", "ل"), ("jaa", "جاء"), ("alim", "عليم"), ("khana", "خان"), ("nasaha", "نصح"), ("sayyid", "سيد"), ("hakadha", "هكذا"), ("dhaki", "ذكي"), ("bari", "بريء"), ("amin", "أمين"), ("kabir", "كبير"), ("ana", "أنا"), ("huwa", "هو")]:
+for _k, _lm in [("siddiq", "صديق"), ("liqa", "لقاء"), ("rasul", "رسول"), ("radiya", "رضي"), ("ams", "أمس"), ("aql", "عقل"), ("bab", "باب"), ("amana-trust", "أمانة"), ("mal", "مال"), ("amir", "أمير"), ("intafaa", "انتفع"), ("mata-die", "مات"), ("hamida", "حمد"), ("law", "لو"), ("lam-jawab", "ل"), ("jaa", "جاء"), ("alim", "عليم"), ("khana", "خان"), ("nasaha", "نصح"), ("sayyid", "سيد"), ("hakadha", "هكذا"), ("dhaki", "ذكي"), ("bari", "بريء"), ("amin", "أمين"), ("kabir", "كبير"), ("ana", "أنا"), ("huwa", "هو")]:
     _e = GLOSS_ADD.get(_k) or TG.get(_k); assert _e, _k
     _w = bare(_e["lemma"]).split(" ")[0].replace("ِ", "").replace("ـ", "")
     assert _w.replace("ال", "", 1) == _lm.replace("ال", "", 1) or _w == _lm or _w.startswith(_lm) or _lm.startswith(_w), (_k, _e["lemma"])

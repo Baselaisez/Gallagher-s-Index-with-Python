@@ -335,7 +335,7 @@ S.append({"id": "s19", "translation": {
   tok("اللهِ", "allah", "propn", [K, "huruf-jarr"], "لَفْظُ الْجَلَالَةِ مَجْرُورٌ.", "«God».", "«Allah'tan»."),
   tok("بِمُسْتَنْكَرٍ", "mustankar", "noun", [K, "huruf-jarr", "kana-wa-akhawatuha", "ism-maful", "form-x-verbs"], "الْبَاءُ زَائِدَةٌ، وَمُسْتَنْكَرٍ خَبَرُ لَيْسَ مُقَدَّمٌ مَجْرُورٌ لَفْظًا مَنْصُوبٌ مَحَلًّا — اسْمُ مَفْعُولِ اسْتَنْكَرَ.", "«a thing denied» — laysa's fronted khabar under the extra ba; ism mafʿul of Form X.", "«uzak görülen» — zâid bâ altında leysenin öne alınmış haberi.", segments=[seg("بِ", "bi", "prep"), seg("مُسْتَنْكَرٍ", "mustankar", "noun")], punct="*"),
   tok("أَنْ", "an-masdariyya", "part", [K, "an-masdariyya", "kana-wa-akhawatuha"], "حَرْفٌ مَصْدَرِيٌّ — وَالْمَصْدَرُ اسْمُ لَيْسَ مُؤَخَّرٌ.", "«that» — the masdar is laysa's delayed ism.", "«-ması» — masdar leysenin sona bırakılmış ismi."),
-  tok("يَجْمَعَ", "jamaa", "verb", [K, "an-masdariyya"], "مُضَارِعٌ مَنْصُوبٌ بِأَنْ، وَالْفَاعِلُ مُسْتَتِرٌ.", "«He gather».", "«toplaması»."),
+  tok("يَجْمَعَ", "jamaa-gather", "verb", [K, "an-masdariyya"], "مُضَارِعٌ مَنْصُوبٌ بِأَنْ، وَالْفَاعِلُ مُسْتَتِرٌ.", "«He gather».", "«toplaması»."),
   tok("الْعَالَمَ", "alam-world", "noun", [K, "maful-bihi"], "مَفْعُولٌ بِهِ مَنْصُوبٌ — الْعَالَمُ: الْخَلْقُ كُلُّهُ.", "«the world».", "«âlemi»."),
   fi(K),
   tok("وَاحِدٍ", "wahid", "noun", [K, QF, "huruf-jarr"], "مَجْرُورٌ. الرَّوِيُّ الدَّالُ، وَقَبْلَهُ حَاءٌ مَكْسُورَةٌ.", "«one man» — rhyme: rawi dal.", "«bir kişide» — kafiye: revî dâl."),

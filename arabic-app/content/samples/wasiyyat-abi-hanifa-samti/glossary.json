@@ -328,26 +328,6 @@
    },
    "level": 3
   },
-  "amana": {
-   "lemma": "أَمَانَة",
-   "root": "أ م ن",
-   "pos": "noun",
-   "gloss": {
-    "en": "trust",
-    "tr": "emanet"
-   },
-   "level": 2
-  },
-  "amma": {
-   "lemma": "عَامَّة",
-   "root": "ع م م",
-   "pos": "noun",
-   "gloss": {
-    "en": "the common people",
-    "tr": "avâm, halk"
-   },
-   "level": 4
-  },
   "amr-work": {
    "lemma": "أَمْر",
    "root": "أ م ر",
@@ -492,17 +472,6 @@
     "tr": "isabet etmek, başına gelmek"
    },
    "level": 3
-  },
-  "ashara": {
-   "lemma": "عَاشَرَ",
-   "root": "ع ش ر",
-   "pos": "verb",
-   "form": "III",
-   "gloss": {
-    "en": "to live with, keep company",
-    "tr": "muaşeret etmek, birlikte yaşamak"
-   },
-   "level": 4
   },
   "ata": {
    "lemma": "أَتَى",
@@ -1351,11 +1320,11 @@
    "level": 2
   },
   "inna": {
-   "lemma": "أَنَّ",
+   "lemma": "إِنَّ",
    "pos": "part",
    "gloss": {
-    "en": "that (verb-like particle)",
-    "tr": "ki, şüphesiz (fiile benzeyen harf)"
+    "en": "truly, indeed (governs like a verb)",
+    "tr": "şüphesiz, muhakkak (fiil gibi amel eder)"
    },
    "level": 3
   },
@@ -1637,17 +1606,6 @@
     "tr": "celî, açık olan"
    },
    "level": 4
-  },
-  "jamaa": {
-   "lemma": "جَمَعَ",
-   "root": "ج م ع",
-   "pos": "verb",
-   "form": "I",
-   "gloss": {
-    "en": "to gather",
-    "tr": "toplamak"
-   },
-   "level": 2
   },
   "jamil": {
    "lemma": "جَمِيل",
@@ -2537,17 +2495,6 @@
    },
    "level": 2
   },
-  "qada": {
-   "lemma": "قَضَى",
-   "root": "ق ض ي",
-   "pos": "verb",
-   "form": "I",
-   "gloss": {
-    "en": "to discharge, fulfil",
-    "tr": "yerine getirmek, kaza etmek"
-   },
-   "level": 3
-  },
   "qaddama": {
    "lemma": "قَدَّمَ",
    "root": "ق د م",
@@ -2985,17 +2932,6 @@
     "tr": "sâlih"
    },
    "level": 2
-  },
-  "salima": {
-   "lemma": "سَلِمَ",
-   "root": "س ل م",
-   "pos": "verb",
-   "form": "I",
-   "gloss": {
-    "en": "to come through safe",
-    "tr": "selâmette olmak, kurtulmak"
-   },
-   "level": 3
   },
   "saluha": {
    "lemma": "صَلَحَ",
@@ -3714,6 +3650,79 @@
     "tr": "ziyaret (masdar)"
    },
    "level": 3
+  },
+  "amana-trust": {
+   "lemma": "أَمَانَة",
+   "root": "أ م ن",
+   "pos": "noun",
+   "plural": "أَمَانَات",
+   "gloss": {
+    "en": "a trust, trustworthiness; what one is entrusted with",
+    "tr": "emanet; güvenilirlik"
+   },
+   "level": 2
+  },
+  "amma-public": {
+   "lemma": "عَامَّة",
+   "pos": "noun",
+   "gloss": {
+    "en": "the common people, the generality",
+    "tr": "halk, avam; genel"
+   },
+   "level": 4,
+   "root": "ع م م"
+  },
+  "ashara-company": {
+   "lemma": "عَاشَرَ",
+   "root": "ع ش ر",
+   "pos": "verb",
+   "form": "III",
+   "gloss": {
+    "en": "to live with, keep company",
+    "tr": "muaşeret etmek, birlikte yaşamak"
+   },
+   "level": 4
+  },
+  "anna": {
+   "lemma": "أَنَّ",
+   "pos": "part",
+   "gloss": {
+    "en": "that (heavy anna)",
+    "tr": "-dığını (enne)"
+   },
+   "level": 3
+  },
+  "jamaa-gather": {
+   "lemma": "جَمَعَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to gather, to bring together (جَمَعَ يَجْمَعُ)",
+    "tr": "toplamak, bir araya getirmek (جَمَعَ يَجْمَعُ)"
+   },
+   "level": 2,
+   "root": "ج م ع",
+   "form": "I"
+  },
+  "qada-verb": {
+   "lemma": "قَضَى",
+   "pos": "verb",
+   "gloss": {
+    "en": "to decree; to fulfil (a need); to judge",
+    "tr": "hükmetmek; (ihtiyacı) gidermek; kaza etmek"
+   },
+   "level": 3,
+   "root": "ق ض ي"
+  },
+  "salima-safe": {
+   "lemma": "سَلِمَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to be safe, to come through unharmed",
+    "tr": "sâlim olmak, kurtulmak"
+   },
+   "level": 3,
+   "root": "س ل م",
+   "bab": "I"
   }
  }
 }

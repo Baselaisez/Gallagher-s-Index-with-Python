@@ -374,7 +374,7 @@ S.append({"id": "s17", "translation": {
  "tokens": [
   tok("الْمُسْلِمُ","muslim","noun",[T, "mubtada-khabar", "ism-fail"], "مُبْتَدَأٌ مَرْفُوعٌ — اسْمُ فَاعِلِ أَسْلَمَ.", "«the Muslim» — the mubtada.", "«Müslüman» — mübtedâ."),
   tok("مَنْ","man-mawsula","pron",[T, "mubtada-khabar", "ism-mawsul"], "اسْمٌ مَوْصُولٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعِ خَبَرٍ.", "«he who» — the relative, the khabar.", "«… kimsedir» — ism-i mevsûl, haber."),
-  tok("سَلِمَ","salima","verb",[T, "ism-mawsul", "fail"], "فِعْلٌ مَاضٍ — وَالْجُمْلَةُ صِلَةٌ.", "«are safe» — the sila.", "«selâmette oldu» — sıla."),
+  tok("سَلِمَ","salima-safe","verb",[T, "ism-mawsul", "fail"], "فِعْلٌ مَاضٍ — وَالْجُمْلَةُ صِلَةٌ.", "«are safe» — the sila.", "«selâmette oldu» — sıla."),
   tok("الْمُسْلِمُونَ","muslim","noun",[T, "fail", "jam-mudhakkar-salim"], "فَاعِلٌ مَرْفُوعٌ بِالْوَاوِ.", "«the Muslims» — the doer; raf' by the waw.", "«Müslümanlar» — fâil; vâv ile merfû."),
   tok("مِنْ","min","part",[T, "huruf-jarr"], "حَرْفُ جَرٍّ.", "«from».", "«-den»."),
   tok("لِسَانِهِ","lisan","noun",[T, "huruf-jarr", "idafa-definiteness"], "مَجْرُورٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — عَائِدُ الصِّلَةِ.", "«his tongue» — the sila's returning pronoun.", "«dili» — sılanın âidi.",
@@ -547,7 +547,7 @@ GLOSS_ADD = {
  "tarid": G("tarid", "تَعْرِيض", "ع ر ض", "noun", "taʿrid — the glancing hint, said of one and aimed at another (masdar of عَرَّضَ)", "ta'rîz — birine söylenip başkasına dokundurma (عَرَّضَ'nin masdarı)", 6),
  "man-mawsula": find_gloss("man-mawsula"),
  "adha-verb": G("adha-verb", "آذَى", "أ ذ ي", "verb", "to hurt, harm (Form IV, naqis)", "eziyet etmek (IV. bâb, nâkıs)", 3, form="IV"),
- "muslim": find_gloss("muslim"), "salima": find_gloss("salima"), "lisan": find_gloss("lisan"), "yad": find_gloss("yad"),
+ "muslim": find_gloss("muslim"), "salima-safe": find_gloss("salima-safe"), "lisan": find_gloss("lisan"), "yad": find_gloss("yad"),
  "qassama": G("qassama", "قَسَّمَ", "ق س م", "verb", "to divide (Form II)", "taksim etmek, bölmek (II. bâb)", 3, form="II"),
  "sakkaki": find_gloss("sakkaki"),
  "talwih": G("talwih", "تَلْوِيح", "ل و ح", "noun", "talwih — the far hint, with many rungs (masdar of لَوَّحَ)", "telvîh — çok vasıtalı uzak kinâye (لَوَّحَ'nin masdarı)", 6),
@@ -579,7 +579,8 @@ def doubled(bab, yv, m, mm, d, dd, amr, masdar, fail, maful=None, pmz=None, pmd=
                                 "يَ" + d + "َ", "يَ" + d + "َ", "تَ" + d + "َ", maful, pmz, pmd, note))
 put_morph(mo, "qalla", doubled("daraba", "َ", "قَلّ", "قَلَل", "قِلّ", "قْلِل", ["قِلَّ", "قِلَّا", "قِلُّوا", "قِلِّي", "قِلَّا", "اِقْلِلْنَ"], "قِلَّة", "قَلِيل", None, None, None,
                               "مُضَاعَفٌ لَازِمٌ مِنْ بَابِ ضَرَبَ: قَلَّ يَقِلُّ؛ اسْمُ فَاعِلِهِ صِفَةٌ مُشَبَّهَةٌ: قَلِيل."))
-for k in ("daraba", "salima", "arafa", "dhakara", "taraka", "jaala", "qala", "athbata", "arada", "kana", "intaqala"):
+mo["verbs"].pop("salima", None)   # (v331) سَلِمَ is keyed salima-safe; the shelf's salima is سَلِيم
+for k in ("daraba", "salima-safe", "arafa", "dhakara", "taraka", "jaala", "qala", "athbata", "arada", "kana", "intaqala"):
     if k not in mo["verbs"] and has_morph(k): mo["verbs"][k] = find_morph(k)
 (PKG / "morphology.json").write_text(json.dumps(mo, ensure_ascii=False, indent=1), encoding="utf-8")
 

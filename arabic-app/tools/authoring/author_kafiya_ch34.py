@@ -138,7 +138,7 @@ S.append({"id": "s4", "translation": {
   W("الْكَافَّةُ", "ma-kaffa-adj", "noun", ["naat-sifa", "ism-fail", "anwa-ma"], "صِفَةٌ مَرْفُوعَةٌ.", "«that stops them».", "«kâffe».", punct="،"),
   W("فَتُكَفُّ", "kaffa", "verb", ["naib-al-fail", "doubled-verbs", "al-fa-fi-khabar-al-mubtada"], "الْفَاءُ لِلتَّفْرِيعِ، وَتُكَفُّ فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ، وَنَائِبُ الْفَاعِلِ مُسْتَتِرٌ.", "«so they are held back».", "«alıkonurlar».", segments=[seg("فَ", "fa", "conj"), seg("تُكَفُّ", "kaffa", "verb")]),
   W("عَنِ", "an-jarr", "prep", ["huruf-jarr"], "حَرْفُ جَرٍّ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.", "«from».", "«-den»."),
-  W("الْعَمَلِ", "amal", "noun", ["huruf-jarr", "al-amil-wa-aqsamuh"], "مَجْرُورٌ.", "«governing».", "«amelden»."),
+  W("الْعَمَلِ", "amal-governing", "noun", ["huruf-jarr", "al-amil-wa-aqsamuh"], "مَجْرُورٌ.", "«governing».", "«amelden»."),
   W("عَلَى", "ala", "prep", ["huruf-jarr"], "حَرْفُ جَرٍّ.", "«on».", "«göre»."),
   W("الْأَفْصَحِ", "afsah", "noun", ["huruf-jarr", "ism-tafdil"], "مَجْرُورٌ — اسْمُ تَفْضِيلٍ.", "«the most eloquent usage».", "«en fasih kullanışa»."),
   atf_wa("وَتَدْخُلُ", "dakhala", "verb", ["fail"], "تَدْخُلُ فِعْلٌ مُضَارِعٌ مَرْفُوعٌ.", "«and enter».", "«ve girerler».", "تَدْخُلُ"),

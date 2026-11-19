@@ -1316,17 +1316,6 @@
    "level": 3,
    "root": "ع ل ل"
   },
-  "alim": {
-   "lemma": "عَالِم",
-   "pos": "noun",
-   "gloss": {
-    "en": "learned, a scholar (ism fail)",
-    "tr": "âlim (ism-i fâil)"
-   },
-   "level": 2,
-   "root": "ع ل م",
-   "plural": "عُلَمَاء"
-  },
   "alim-painful": {
    "lemma": "أَلِيم",
    "pos": "noun",
@@ -4355,14 +4344,15 @@
    "root": "ض ل ل"
   },
   "dalil": {
-   "lemma": "دَلَائِل",
+   "lemma": "دَلِيل",
+   "root": "د ل ل",
    "pos": "noun",
+   "plural": "دَلَائِل",
    "gloss": {
-    "en": "proofs, indications",
-    "tr": "deliller"
+    "en": "proof",
+    "tr": "delil"
    },
-   "level": 3,
-   "root": "د ل ل"
+   "level": 3
   },
   "dalla": {
    "lemma": "دَلَّ",
@@ -9458,17 +9448,6 @@
    },
    "level": 2,
    "root": "ج م ع"
-  },
-  "jamaa": {
-   "lemma": "جَمَعَ",
-   "pos": "verb",
-   "gloss": {
-    "en": "to gather, to bring together",
-    "tr": "toplamak"
-   },
-   "level": 1,
-   "root": "ج م ع",
-   "form": "I"
   },
   "jamaa-gather": {
    "lemma": "جَمَعَ",
@@ -17873,17 +17852,6 @@
    "level": 4,
    "root": "ر ي ب"
   },
-  "rida": {
-   "lemma": "رِدَاء",
-   "pos": "noun",
-   "gloss": {
-    "en": "cloak, upper garment",
-    "tr": "ridâ, üste giyilen örtü"
-   },
-   "level": 4,
-   "root": "ر د ي",
-   "plural": "أَرْدِيَة"
-  },
   "ridf": {
    "lemma": "رِدْف",
    "pos": "noun",
@@ -18815,16 +18783,6 @@
    "level": 4,
    "root": "ص ل ب",
    "plural": "صُلْبَان"
-  },
-  "salima": {
-   "lemma": "سَلِيم",
-   "pos": "noun",
-   "gloss": {
-    "en": "sound, unimpaired",
-    "tr": "sağlam, selîm"
-   },
-   "level": 3,
-   "root": "س ل م"
   },
   "salkh": {
    "lemma": "سَلْخ",
@@ -19771,16 +19729,6 @@
    "level": 4,
    "root": "ش ر ط",
    "form": "I"
-  },
-  "shari": {
-   "lemma": "شَارِع",
-   "root": "ش ر ع",
-   "pos": "noun",
-   "gloss": {
-    "en": "the Lawgiver (ism fa'il)",
-    "tr": "Şâri' — şeriat koyan (ism-i fâil)"
-   },
-   "level": 5
   },
   "sharia": {
    "lemma": "شَرِيعَة",
@@ -23803,6 +23751,49 @@
    },
    "level": 3,
    "root": "ز ر ق"
+  },
+  "alim-scholar": {
+   "lemma": "عَالِم",
+   "pos": "noun",
+   "gloss": {
+    "en": "a learned man, a scholar (ism fa'il of عَلِمَ; pl. عُلَمَاء)",
+    "tr": "âlim, bilgin (alime'nin ism-i fâili; ç. عُلَمَاء)"
+   },
+   "level": 2,
+   "root": "ع ل م",
+   "plural": "عُلَمَاء"
+  },
+  "rida-cloak": {
+   "lemma": "رِدَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "cloak, upper garment",
+    "tr": "ridâ, üste giyilen örtü"
+   },
+   "level": 4,
+   "root": "ر د ي",
+   "plural": "أَرْدِيَة"
+  },
+  "salima-safe": {
+   "lemma": "سَلِمَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to be safe, to come through unharmed",
+    "tr": "sâlim olmak, kurtulmak"
+   },
+   "level": 3,
+   "root": "س ل م",
+   "bab": "I"
+  },
+  "shari-legal": {
+   "lemma": "شَرْعِيّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "legal, of the Shari'a (nisba)",
+    "tr": "şer'î (nisbet)"
+   },
+   "level": 5,
+   "root": "ش ر ع"
   }
  }
 }

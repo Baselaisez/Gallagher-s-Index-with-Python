@@ -144,7 +144,7 @@ S.append({"id": "s2", "translation": {
  "en": "Knower of the unseen and the witnessed. — The commander gathered the goldsmiths.",
  "tr": "Gaybı ve şehâdeti bilen. — Emîr kuyumcuları topladı."},
  "tokens": [
-  tok("عَالِمُ","alim","noun",["ism-fail","idafa-definiteness"],
+  tok("عَالِمُ","alim-scholar","noun",["ism-fail","idafa-definiteness"],
       "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ مَرْفُوعٌ، وَهُوَ مُضَافٌ — اسْمُ فَاعِلٍ عَلَى فَاعِلٍ، وَعَمَلُهُ عَمَلُ فِعْلِهِ.",
       "The khabar of an omitted mubtada, in raf', and a mudaf — an ism fa'il on فَاعِل, governing what its own verb would govern. It has no tanwin because it is annexed, not because it is definite by itself.",
       "Mahzûf bir mübtedânın merfû haberi ve muzâf — FÂİL vezninde ism-i fâildir ve kendi fiilinin amelini yapar. Tenvîni yoktur; çünkü muzâftır, kendiliğinden marife olduğu için değil."),
@@ -158,7 +158,7 @@ S.append({"id": "s2", "translation": {
       "«الْغَيْبِ»e ma'tûf ve onun gibi mecrûr; «ال»ı da aynı şekilde hakîkî istiğrâk içindir. İki kelime birlikte bir tayy-i cihettir: gizli olan ile görünen, var olanın tamamıdır ve bütünlük iddia edilmek yerine iki yarım hâlinde hissettirilir.",
       segments=[seg("وَ","wa","conj"), seg("الشَّهَادَةِ","shahada","noun")],
       punct="."),
-  tok("جَمَعَ","jamaa","verb",["fail"],
+  tok("جَمَعَ","jamaa-gather","verb",["fail"],
       "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "A mazi verb, mabni on the fatha. The sentence is verbal, and the two before it were nominal — the chapter alternates on purpose, because the question it asks (why THIS definiteness?) is indifferent to which kind of sentence the word sits in.",
       "Fetha üzere mebnî mâzî fiil. Bu cümle fiiliyye, öncekiler ismiyyedir — bâb bilerek dönüşümlüdür; zira sorduğu soru (niçin BU ma'rifelik?) kelimenin hangi cins cümlede durduğuna bakmaz."),
@@ -357,7 +357,7 @@ GLOSS_ADD = {
  "inna":      g("إِنَّ", None, "part", "truly, indeed (nasb on its noun, raf' on its khabar)", "muhakkak ki (ismini nasb, haberini ref' eder)", 1),
  "laysa":     g("لَيْسَ", None, "verb", "is not (a jamid, incomplete verb)", "değildir (câmid, nâkıs fiil)", 2, form="I"),
  "dakhala":   g("دَخَلَ", "د خ ل", "verb", "to enter, to go in", "girmek", 1, form="I"),
- "jamaa":     g("جَمَعَ", "ج م ع", "verb", "to gather, to bring together", "toplamak", 1, form="I"),
+ "jamaa-gather": g("جَمَعَ", "ج م ع", "verb", "to gather, to bring together", "toplamak", 1, form="I"),
  "rakiba":    g("رَكِبَ", "ر ك ب", "verb", "to ride, to mount", "binmek", 1, form="I"),
  "shana":     g("شَانَ", "ش ي ن", "verb", "to disgrace, to mar", "lekelemek, ayıplı kılmak", 4, form="I"),
 }
@@ -371,7 +371,7 @@ def build_morph():
     """
     out = {}
     for pkg, lex in [("mukhtasar-al-manar", "dakhala"),
-                     ("wasiyyat-abi-yusuf-l5", "jamaa"),
+                     ("wasiyyat-abi-yusuf-l5", "jamaa-gather"),
                      ("wasiyyat-abi-hanifa-samti", "rakiba"),
                      ("wasiyyat-abi-hanifa-samti", "shana"),
                      ("wasiyyat-abi-yusuf-l5", "laysa")]:

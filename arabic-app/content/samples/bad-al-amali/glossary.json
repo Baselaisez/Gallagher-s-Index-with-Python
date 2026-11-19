@@ -31,16 +31,6 @@
    },
    "level": 1
   },
-  "bad": {
-   "lemma": "بَدْء",
-   "root": "ب د أ",
-   "pos": "noun",
-   "gloss": {
-    "en": "beginning, opening",
-    "tr": "başlangıç, bed'"
-   },
-   "level": 3
-  },
   "amali": {
    "lemma": "أَمَالِي",
    "root": "م ل و",
@@ -1563,17 +1553,6 @@
    },
    "level": 2
   },
-  "safi": {
-   "lemma": "صَفِيّ",
-   "root": "ص ف و",
-   "pos": "noun",
-   "plural": "أَصْفِيَاء",
-   "gloss": {
-    "en": "chosen pure friend",
-    "tr": "safî, seçkin dost"
-   },
-   "level": 4
-  },
   "ikhtilal": {
    "lemma": "اِخْتِلَال",
    "root": "خ ل ل",
@@ -2490,17 +2469,6 @@
     "tr": "visâl, kavuşma (müfâale masdarı)"
    },
    "level": 4
-  },
-  "qada": {
-   "lemma": "قَضَى",
-   "root": "ق ض ي",
-   "pos": "verb",
-   "form": "I",
-   "gloss": {
-    "en": "to decree, adjudge",
-    "tr": "hükmetmek, yerine getirmek"
-   },
-   "level": 2
   },
   "kufr": {
    "lemma": "كُفْر",
@@ -3656,6 +3624,37 @@
     "tr": "kim ki (ism-i mevsûl)"
    },
    "level": 3
+  },
+  "bad-beginning": {
+   "lemma": "بَدْء",
+   "root": "ب د أ",
+   "pos": "noun",
+   "gloss": {
+    "en": "beginning, opening",
+    "tr": "başlangıç, bed'"
+   },
+   "level": 3
+  },
+  "qada-verb": {
+   "lemma": "قَضَى",
+   "pos": "verb",
+   "gloss": {
+    "en": "to decree; to fulfil (a need); to judge",
+    "tr": "hükmetmek; (ihtiyacı) gidermek; kaza etmek"
+   },
+   "level": 2,
+   "root": "ق ض ي"
+  },
+  "safi-friend": {
+   "lemma": "صَفِيّ",
+   "root": "ص ف و",
+   "pos": "noun",
+   "plural": "أَصْفِيَاء",
+   "gloss": {
+    "en": "chosen pure friend",
+    "tr": "safî, seçkin dost"
+   },
+   "level": 4
   }
  }
 }

@@ -16707,6 +16707,39 @@ if (!CHROME) {
     const miss = want.filter(id => !r.some(x => x[0] === id));
     if (miss.length || !(by[4] >= 5 && by[5] >= 5 && by[6] >= 5)) throw new Error('the upper shelves: ' + JSON.stringify({ by, miss }));
   });
+  await check('v331 — one lexicon key, one word: across every package no glossary key carries two lemmas (normalised: no vowels, no article, no bracketed note) — corpusIndex, the noun index and the root finder are global, so a shared key silently replaces one word with the other (جَازَ wiped جَزَى); only true spelling variants of ONE word are allowed, each with its reason; the healed keys hold (فِيل is fil-elephant, بَدْء is bad-beginning, the drill garden\'s تُ / تَ are pron-1s-subj / pron-2ms-subj, not ي / كَ)', async () => {
+    const r = await page.evaluate(() => {
+      const ALLOW = {   // key → the spellings of ONE word, and why
+        thamani: { lemmas: ['ثمان', 'ثماني'], why: 'ثَمَانٍ / ثَمَانِيَ — the manqūṣ numeral with and without its yāʾ' },
+        'pron-3ms': { lemmas: ['ه', 'ه / ه'], why: 'ـهُ / ـهِ — one pronoun, its vowel by harmony' },
+      };
+      const norm = l => { let s = String(l || '').normalize('NFC').replace(/\([^)]*\)/g, '').replace(/[ً-ٰٟـۡ]/g, '').trim().replace(/\s+/g, ' ');
+        if (s.startsWith('ال') && s.length > 3) s = s.slice(2); return s.replace(/ٱ/g, 'ا'); };
+      const by = {};
+      for (const st of STORIES) for (const [k, e] of Object.entries(st.glossary || {})) { const n = norm(e && e.lemma); const m = by[k] = by[k] || {}; (m[n] = m[n] || []).push(st.id); }
+      const bad = [];
+      for (const [k, m] of Object.entries(by)) {
+        const ls = Object.keys(m); if (ls.length < 2) continue;
+        if (ALLOW[k] && ls.every(l => ALLOW[k].lemmas.includes(l))) continue;
+        bad.push(k + ': ' + ls.map(l => l + ' ×' + m[l].length + (m[l].length < 4 ? ' (' + m[l].join(', ') + ')' : '')).join(' | '));
+      }
+      const G = id => (STORIES.find(s => s.id === id) || {}).glossary || {};
+      const lem = (id, k) => norm((G(id)[k] || {}).lemma);
+      let drillTa = 0, drillTaWrong = 0;
+      for (const c of (STORIES.find(s => s.id === 'jumal-al-tadrib') || { chapters: [] }).chapters) for (const sn of c.sentences || []) for (const t of sn.tokens || []) for (const sg of t.segments || []) {
+        if (norm(sg.form) !== 'ت') continue; drillTa++; if (!/^pron-(1s|2ms)-subj$/.test(sg.lex)) drillTaWrong++;
+      }
+      return { bad, keys: Object.keys(by).length, drillTa, drillTaWrong,
+        spot: { fil: lem('ashab-al-fil', 'fil-elephant'), filOld: !!G('ashab-al-fil').fil, bad: lem('bad-al-amali', 'bad-beginning'), badKahf: lem('ashab-al-kahf', 'bad'),
+                ta: lem('jumal-al-tadrib', 'pron-1s-subj'), ya: lem('jumal-al-tadrib', 'pron-1s'), ka: lem('jumal-al-tadrib', 'pron-2ms'),
+                amal: lem('wasiyyat-abi-hanifa-L2', 'amal-work'), hadith: lem('deeds-are-by-intentions', 'amal-work'), rajaa: lem('mukhtasar-al-manar', 'rajaa-hope'), inna: lem('wasiyyat-abi-hanifa-samti', 'inna') } };
+    });
+    if (r.bad.length) throw new Error(r.bad.length + ' keys carry two words: ' + r.bad.slice(0, 8).join(' ; '));
+    const s = r.spot;
+    if (s.fil !== 'فيل' || s.filOld || s.bad !== 'بدء' || s.badKahf !== 'بعض' || !/^ت/.test(s.ta) || s.ya !== 'ي' || s.ka !== 'ك' || s.amal !== 'عمل' || s.hadith !== 'عمل' || s.rajaa !== 'رجاء' || s.inna !== 'إن')
+      throw new Error('the healed keys: ' + JSON.stringify(s));
+    if (r.drillTa < 6 || r.drillTaWrong) throw new Error('the drill garden\'s tāʾ: ' + JSON.stringify({ n: r.drillTa, wrong: r.drillTaWrong }));
+  });
   await check('v325 — the bināʾ vowel is a cell of the paradigm (Shudhūr R2–R3, triage T1): the māḍī is named on fatḥa, on ḍamma before the wāw of the plural, on sukūn before a moving rafʿ pronoun; the muḍāriʿ with the nūn of women on sukūn; the amr on the dropped nūn or the dropped weak letter; a weak ending the cell cannot vouch for keeps the old line; and against the corpus\'s authored lines the named vowel agrees ≥ 4,900 times and disagrees no more than twice', async () => {
     const J = JSON.stringify;
     const r = await page.evaluate(() => {

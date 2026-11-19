@@ -240,7 +240,7 @@ sen("s15", "And Shuʿayb's case was the case of every prophet who delivered the 
   mazi("بَلَّغَ", "ballagha", "«delivered»", "«tebliğ etti»", tags=[NA, MB, "form-ii-verbs", "jumla-sifa"]),
   maful_("الرِّسَالَةَ", "risala", "«the message»", "«risaleti»"),
   mazi("وَأَدَّى", "adda", "«and discharged»", "«ve yerine getirdi»", tags=[AT, MB, "form-ii-verbs", "naqis-verbs"], wa=True),
-  maful_("الْأَمَانَةَ", "amana", "«the trust»", "«emaneti»", punct="،"),
+  maful_("الْأَمَانَةَ", "amana-trust", "«the trust»", "«emaneti»", punct="،"),
   mazi("وَأَقَامَ", "aqama", "«and established»", "«ve ikame etti»", tags=[AT, MB, "form-iv-verbs", "hollow-verbs"], wa=True),
   maful_("الْحُجَّةَ", "hujja", "«the proof»", "«hücceti»", punct=":"),
 ])
@@ -325,7 +325,7 @@ CAND = {
  "ballagha": G("ballagha", "بَلَّغَ", "ب ل غ", "verb", "to convey, to deliver (a message) (Form II)", "tebliğ etmek, ulaştırmak (tef'îl)", 2),
  "risala": G("risala", "رِسَالَة", "ر س ل", "noun", "a message, a mission; a letter", "risalet, mesaj; mektup", 1, plural="رِسَالَات"),
  "adda": G("adda", "أَدَّى", "أ د ي", "verb", "to discharge, to fulfil, to render (Form II)", "edâ etmek, yerine getirmek (tef'îl)", 3),
- "amana": G("amana", "أَمَانَة", "أ م ن", "noun", "a trust", "emanet", 2),
+ "amana-trust": G("amana-trust", "أَمَانَة", "أ م ن", "noun", "a trust", "emanet", 2),
  "aqama": G("aqama", "أَقَامَ", "ق و م", "verb", "to set up, to establish; to stay (Form IV)", "ikame etmek, dikmek; kalmak (if'âl)", 2),
  "tawalla": G("tawalla", "تَوَلَّى", "و ل ي", "verb", "to turn away (تَوَلَّى عَنْ); to take charge of (Form V)", "yüz çevirmek; üstlenmek (tefa''ul)", 3),
  "ablagha": G("ablagha", "أَبْلَغَ", "ب ل غ", "verb", "to convey, to deliver to (two objects) (Form IV)", "ulaştırmak, tebliğ etmek (iki mef'ûllü; if'âl)", 2),

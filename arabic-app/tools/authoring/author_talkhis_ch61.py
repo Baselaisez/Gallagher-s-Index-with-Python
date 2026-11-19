@@ -36,7 +36,7 @@ def wahuwa(tag, full="وَهُوَ"):
     return tok(full, lex, "pron", [tag, "mubtada-khabar"], "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَالضَّمِيرُ مُبْتَدَأٌ.", "«and it is» — the mubtada.", "«ve o» — mübtedâ.",
                segments=[seg("وَ","wa","conj"), seg(full[1:], lex, "pron")])
 def an_masd(tag):
-    return tok("أَنْ","an","part",[tag, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the interpreted masdar is the khabar.", "«… -mesi» — müevvel masdar haberdir.")
+    return tok("أَنْ","an-masdariyya","part",[tag, "an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.", "«that» — the interpreted masdar is the khabar.", "«… -mesi» — müevvel masdar haberdir.")
 def wa_conj(full, lex, pos, tags, ar, en, tr, punct=None, pron=None):
     sg = [seg("وَ", "wa", "conj"), seg(full[1:] if pron is None else full[1:-len(pron[0])], lex, pos)]
     if pron: sg.append(seg(pron[0], pron[1], "pron"))
@@ -233,7 +233,7 @@ S.append({"id": "s9", "translation": {
 
 # ---------------------------------------------------------------- glossary
 def FG(*ks): return {k: find_gloss(k) for k in ks}
-GLOSS_ADD = FG("ab", "abd", "ahad", "ala", "amir", "amr", "an", "arada", "aqama", "aw", "ayn", "ayy", "bayna", "bi", "dhikr", "dunya", "fa", "fi", "ghayr", "hadha", "hayat",
+GLOSS_ADD = FG("ab", "abd", "ahad", "ala", "amir", "amr", "an", "an-masdariyya", "arada", "aqama", "aw", "ayn", "ayy", "bayna", "bi", "dhikr", "dunya", "fa", "fi", "ghayr", "hadha", "hayat",
                "hayy", "hiya", "hukm", "huwa", "ibn", "idafa", "illa", "inna", "jam", "kull", "ka", "la-nafiya", "lahu", "li", "ma-mawsula", "ma-nafiya", "mal",
                "mar", "min", "mutaaddid", "naw", "qawl", "rabi", "shabab", "faragh", "tayin", "thumma", "wa", "wahid", "yawm", "taala",
                "pron-3fs", "pron-3ms")

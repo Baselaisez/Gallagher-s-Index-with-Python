@@ -769,7 +769,7 @@ CHAPS = [S1, S2, S3, S4]
 PREF = ["sulayman-wa-al-hudhud", "hud-wa-aad", "salih-wa-al-naqa", "nuh-wa-al-safina", "musa-fi-madyan", "musa-wal-khadir", "musa-wa-bani-israil", "musa-wa-firawn", "bad-al-amali", "qisas-al-nabiyyin-2", "qisas-al-nabiyyin-4", "qisas-al-nabiyyin-1", "yunus-wa-al-hut", "ashab-al-fil",
         "jumal-al-tadrib", "talkhis-al-miftah", "al-kafiya", "izhar-al-asrar", "aqaid-ahl-al-sunna", "wasiyyat-abi-hanifa", "wasiyyat-abi-hanifa-samti", "wasiyyat-abi-yusuf-l5", "kitab-al-waqf", "mukhtasar-al-manar"]
 PREF = [p for p in PREF if (ROOT / "content/samples" / p / "glossary.json").exists()]
-FORCE = {"amana": "yunus-wa-al-hut"}
+FORCE = {"amana": "yunus-wa-al-hut", "bad": "qisas-al-nabiyyin-2"}   # (v331) bad is بَعْض: bad-al-amali's بَدْء is bad-beginning
 _G = {p: json.loads((ROOT / "content/samples" / p / "glossary.json").read_text(encoding="utf-8"))["entries"] for p in PREF}
 _M = {p: json.loads((ROOT / "content/samples" / p / "morphology.json").read_text(encoding="utf-8")).get("verbs", {}) for p in PREF}
 def find_gloss(k):

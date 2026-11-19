@@ -165,15 +165,6 @@
       },
       "level": 1
     },
-    "ma-mawsula": {
-      "lemma": "مَنْ / مَا (المَوْصُولَة)",
-      "pos": "pron",
-      "gloss": {
-        "en": "the one who, that which",
-        "tr": "-en kimse, -dığı şey"
-      },
-      "level": 2
-    },
     "samia": {
       "lemma": "سَمِعَ",
       "root": "س م ع",
@@ -350,16 +341,6 @@
       },
       "level": 1
     },
-    "baad": {
-      "lemma": "بَعْدُ",
-      "root": "ب ع د",
-      "pos": "adv",
-      "gloss": {
-        "en": "after; «wa-ba'du»: to proceed",
-        "tr": "sonra; «ve ba'dü»: imdi"
-      },
-      "level": 4
-    },
     "arabiyya": {
       "lemma": "الْعَرَبِيَّة",
       "root": "ع ر ب",
@@ -533,6 +514,25 @@
         "en": "A fixed time-phrase. It is a maf'ul fih: يَوْمَ is a zarf in nasb and الْقِيَامَةِ its mudaf ilayh, and the whole answers «when?».",
         "tr": "Yerleşik bir zaman ifadesidir. Mef'ûl fîhtir: يَوْمَ mansub zarf, الْقِيَامَةِ onun muzâfun ileyhidir; bütünü «ne zaman?» sorusuna cevap verir."
       }
+    },
+    "badu-after": {
+      "lemma": "بَعْدُ",
+      "pos": "noun",
+      "gloss": {
+        "en": "afterwards (the ẓarf cut off from annexation)",
+        "tr": "sonra (izâfetten kesilmiş zarf)"
+      },
+      "level": 4,
+      "root": "ب ع د"
+    },
+    "man-mawsula": {
+      "lemma": "مَنْ (الْمَوْصُولَة)",
+      "pos": "pron",
+      "gloss": {
+        "en": "the one(s) who (relative man)",
+        "tr": "o kimse(ler) ki (ism-i mevsûl men)"
+      },
+      "level": 2
     }
   }
 }

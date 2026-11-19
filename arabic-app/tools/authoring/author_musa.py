@@ -299,7 +299,7 @@ S2.append({"id": "s10", "translation": {"en": "And she said to Pharaoh: «This i
  ]})
 S2.append({"id": "s11", "translation": {"en": "And Musa grew up in Pharaoh's house.", "tr": "Ve Mûsâ Firavun'un evinde büyüdü."},
  "tokens": [
-  MADI("وَكَبِرَ", "kabira", note_ar=" — مِنْ بَابِ سَمِعَ", note_en=" — of the bab سَمِعَ يَسْمَعُ", note_tr=" — semi'a bâbından"),
+  MADI("وَكَبِرَ", "kabira-grow", note_ar=" — مِنْ بَابِ سَمِعَ", note_en=" — of the bab سَمِعَ يَسْمَعُ", note_tr=" — semi'a bâbından"),
   FAIL("مُوسَى", "musa", "propn", ["ism-maqsur-manqus"], "", MUQ_ALIF[1], MUQ_ALIF[2], sign="بِضَمَّةٍ " + MUQ_ALIF[0]),
   PREP("فِي", "fi", gloss_tr="«-de»"),
   MAJR("بَيْتِ", "bayt", "noun", ["idafa-definiteness"], "، مُضَافٌ", ", the first term of an idafa", ", muzâf"),
@@ -671,7 +671,7 @@ NEW_GLOSS = {
  "sahir": {"lemma": "سَاحِر", "root": "س ح ر", "pos": "noun", "plural": "سَحَرَة", "gloss": {"en": "magician, sorcerer (ism fa'il)", "tr": "sihirbaz, büyücü (ism-i fâil)"}, "level": 2},
  "habl": {"lemma": "حَبْل", "root": "ح ب ل", "pos": "noun", "plural": "حِبَال", "gloss": {"en": "rope", "tr": "ip, halat"}, "level": 1},
  "harr-hot": {"lemma": "حَارّ", "root": "ح ر ر", "pos": "noun", "gloss": {"en": "hot (ism fa'il of حَرَّ)", "tr": "sıcak (harre'nin ism-i fâili)"}, "level": 1},
- "kabira": {"lemma": "كَبِرَ", "root": "ك ب ر", "pos": "verb", "form": "I", "gloss": {"en": "to grow up, grow big (كَبِرَ يَكْبَرُ)", "tr": "büyümek (كَبِرَ يَكْبَرُ)"}, "level": 1},
+ "kabira-grow": {"lemma": "كَبِرَ", "root": "ك ب ر", "pos": "verb", "form": "I", "gloss": {"en": "to grow up, grow big (كَبِرَ يَكْبَرُ)", "tr": "büyümek (كَبِرَ يَكْبَرُ)"}, "level": 1},
 }
 used = set()
 for S in CHAPS:
@@ -691,7 +691,7 @@ for k, e in GLOSS.items():
     if e.get("pos") != "verb": continue
     v = find_verb(k)
     if v: MORPH["verbs"][k] = v
-MORPH["verbs"]["kabira"] = _sg.sound1("samia", "كَبِر", "كْبَر", "اِكْبَر", "كِبَر", "كَبِير",
+MORPH["verbs"]["kabira-grow"] = _sg.sound1("samia", "كَبِر", "كْبَر", "اِكْبَر", "كِبَر", "كَبِير",
     note="فَعِلَ يَفْعَلُ — اسْمُ فَاعِلِهِ عَلَى فَعِيلٍ (صِفَةٌ مُشَبَّهَةٌ): كَبِيرٌ.")
 no_par = [k for k, e in GLOSS.items() if e.get("pos") == "verb" and k not in MORPH["verbs"]]
 assert not no_par, no_par

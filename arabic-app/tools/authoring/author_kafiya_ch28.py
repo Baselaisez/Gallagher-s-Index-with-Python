@@ -76,7 +76,7 @@ S.append({"id": "s2", "translation": {
  "tr": "نِعْمَ ve بِئْسَ'nin amel şartı üç şeyden biridir: fâillerinin lâm ile marife olması — نِعْمَ الرَّجُلُ زَيْدٌ gibi — ya da lâm ile marife olana muzâf olması — نِعْمَ صَاحِبُ الرَّجُلِ زَيْدٌ gibi." + C_TR},
  "tokens": [
   atf_wa("وَشَرْطُ", "shart", "noun", ["mubtada-khabar", "idafa-definiteness"], "شَرْطُ مُبْتَدَأٌ مَرْفُوعٌ، وَهُوَ مُضَافٌ.", "«and the condition of».", "«ve ... şartı».", "شَرْطُ"),
-  W("عَمَلِ", "amal", "noun", ["idafa-definiteness", "al-amil-wa-aqsamuh"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ، وَهُوَ مُضَافٌ.", "«the governing of».", "«amel»."),
+  W("عَمَلِ", "amal-governing", "noun", ["idafa-definiteness", "al-amil-wa-aqsamuh"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ، وَهُوَ مُضَافٌ.", "«the governing of».", "«amel»."),
   cited("نِعْمَ", "nima-verb", "verb", ["idafa-definiteness", K, MD], "مُضَافٌ إِلَيْهِ — الْفِعْلُ مَحْكِيٌّ.", "«niʿma».", "«ni'me»."),
   cited_wa("وَبِئْسَ", "bisa", "verb", [K, MD], "بِئْسَ مَعْطُوفٌ — فِعْلٌ مَحْكِيٌّ.", "«and biʾsa».", "«ve bi'se».", "بِئْسَ"),
   W("أَحَدُ", "ahad", "noun", ["mubtada-khabar", "idafa-definiteness"], "خَبَرٌ مَرْفُوعٌ، وَهُوَ مُضَافٌ.", "«one of».", "«... -den biridir»."),

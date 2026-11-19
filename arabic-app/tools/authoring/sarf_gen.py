@@ -280,7 +280,7 @@ SAMTI["mada"] = naqis1("daraba", "نَاقِصٌ يَائِيٌّ", "y", "مَض
 SAMTI["jara"] = naqis1("daraba", "نَاقِصٌ يَائِيٌّ", "y", "جَرَ", "جْر", "i", "اِجْر",
                        "جَرْي", "جَارٍ (الْجَارِي)",
                        note="نَاقِصٌ يَائِيٌّ: لَمْ يَجْرِ.")
-SAMTI["qada"] = naqis1("daraba", "نَاقِصٌ يَائِيٌّ", "y", "قَضَ", "قْض", "i", "اِقْض",
+SAMTI["qada-verb"] = naqis1("daraba", "نَاقِصٌ يَائِيٌّ", "y", "قَضَ", "قْض", "i", "اِقْض",
                        "قَضَاء", "قَاضٍ (الْقَاضِي)", "مَقْضِيّ",
                        "قُضِيَ", "يُقْضَى", "نَاقِصٌ يَائِيٌّ: لَمْ يَقْضِ.")
 SAMTI["afa"]  = naqis1("nasara", "نَاقِصٌ وَاوِيٌّ", "w", "عَفَ", "عْف", "u", "اُعْف",
@@ -467,7 +467,7 @@ SAMTI["itasama"] = derived(B8, W8, "َ", "اِعْتَصَم", "عْتَصِم",
 SAMTI["raja"] = naqis1("nasara", "نَاقِصٌ وَاوِيٌّ", "w", "رَجَ", "رْج", "u", "اُرْج",
                        "رَجَاء", "رَاجٍ (الرَّاجِي)", "مَرْجُوّ",
                        "رُجِيَ", "يُرْجَى", "نَاقِصٌ وَاوِيٌّ: لَمْ يَرْجُ.")
-SAMTI["salima"] = sound1("samia", "سَلِم", "سْلَم", "اِسْلَم", "سَلَامَة", "سَالِم")
+SAMTI["salima-safe"] = sound1("samia", "سَلِم", "سْلَم", "اِسْلَم", "سَلَامَة", "سَالِم")
 SAMTI["shaa"] = entry("مِنْ بَابِ فَتَحَ يَفْتَحُ — أَجْوَفُ مَهْمُوزُ اللَّامِ", "فَعَلَ يَفْعَلُ",
                       "مَشِيئَة", "شَاءٍ",
                       ["شَاءَ", "شَاءَا", "شَاءُوا", "شَاءَتْ", "شَاءَتَا",
@@ -496,7 +496,7 @@ SAMTI["qaddama"] = derived(B2, W2, "ُ", "قَدَّم", "قَدِّم", "قَد
                            "مُقَدِّم", "مُقَدَّم", "قُدِّمَ", "يُقَدَّمُ")
 SAMTI["taraha"] = sound1("fataha", "طَرَح", "طْرَح", "اِطْرَح", "طَرْح", "طَارِح",
                          "مَطْرُوح", "طُرِحَ", "يُطْرَحُ")
-SAMTI["ashara"] = derived(B3, W3, "ُ", "عَاشَر", "عَاشِر", "عَاشِر", "مُعَاشَرَة",
+SAMTI["ashara-company"] = derived(B3, W3, "ُ", "عَاشَر", "عَاشِر", "عَاشِر", "مُعَاشَرَة",
                           "مُعَاشِر", "مُعَاشَر", "عُوشِرَ", "يُعَاشَرُ")
 SAMTI["hazana"] = sound1("nasara", "حَزَن", "حْزُن", "اُحْزُن", "حُزْن", "حَازِن",
                          "مَحْزُون", "حُزِنَ", "يُحْزَنُ",
@@ -599,7 +599,7 @@ COPIES = {
         "arafa": "mukhtasar-al-manar", "ata": "wasiyyat-abi-hanifa",
         "azama": "wasiyyat-abi-hanifa-l4", "azzama": "wasiyyat-abi-yusuf-l5",
         "dakhala": "aqaid-ahl-al-sunna", "istataa": "kitab-al-kaffarat",
-        "jamaa": "wasiyyat-abi-yusuf-l5", "kana": "aqaid-ahl-al-sunna",
+        "jamaa-gather": "wasiyyat-abi-yusuf-l5", "kana": "aqaid-ahl-al-sunna",
         "kharaja": "wasiyyat-abi-hanifa-l4", "qala": "aqaid-ahl-al-sunna",
         "qasada": "aqaid-ahl-al-sunna", "rahima": "wasiyyat-abi-hanifa",
         "saala": "wasiyyat-abi-yusuf-l5", "sabara": "wasiyyat-abi-hanifa",

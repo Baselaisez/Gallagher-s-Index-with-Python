@@ -277,7 +277,7 @@ S.append({"id": "s5", "translation": {
       "A third mubtada in raf' — its khabar omitted in the same way.",
       "Üçüncü merfû mübtedâ — haberi yine mahzûftur.",
       segments=[seg("وَ","wa","conj"), seg("الْآحَادُ","aahad","noun")]),
-  tok("الْعَمَلَ","amal","noun",["maful-bihi"],
+  tok("الْعَمَلَ","amal-work","noun",["maful-bihi"],
       "مَفْعُولٌ بِهِ مَنْصُوبٌ لِفِعْلٍ مَحْذُوفٍ — وَلَاحِظْ مَا لَمْ يُقَلْ: لَمْ يُذْكَرْ لِلْآحَادِ عِلْمٌ أَصْلًا، بَلِ الْعَمَلُ وَحْدَهُ. فَالسُّلَّمُ يَنْزِلُ مِنْ عِلْمِ الْيَقِينِ إِلَى عِلْمِ الطُّمَأْنِينَةِ ثُمَّ يَخْرُجُ مِنْ بَابِ الْعِلْمِ كُلِّهِ إِلَى الْعَمَلِ — وَكُلُّ ذَلِكَ بِحَذْفٍ وَمُقَابَلَةٍ، بِلَا كَلِمَةٍ زَائِدَةٍ وَاحِدَةٍ.",
       "The maf'ul bihi in nasb of an omitted verb — and notice what is NOT said. For the single-chain report no knowledge is named at all: only action. The scale descends from the knowledge of certainty to the knowledge of confidence and then steps out of the category of knowledge altogether into deed. Three rulings, one written verb, and not a single wasted word. This is what the balagha books mean when they say that ellipsis can say more than statement.",
       "Mahzûf bir fiilin mansub mef'ûlün bihi — ve SÖYLENMEYENE dikkat et. Âhâd için hiçbir ilim zikredilmemiştir; yalnız amel. Ölçek, yakîn ilminden tuma'nînet ilmine iner, sonra ilim kategorisinden büsbütün çıkıp amele geçer. Üç hüküm, tek yazılı fiil ve fazladan tek kelime yok. Belâgat kitaplarının «hazif, sarâhatten çok söyler» derken kastettiği budur.",
