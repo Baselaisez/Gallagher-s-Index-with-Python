@@ -17893,7 +17893,7 @@ if (!CHROME) {
     if (/مُخَفَّفَةٌ|مَصْدَرِيٌّ وَنَصْبٍ/.test(c.anna)) throw new Error('the control أَنَّ: ' + J(c.anna));
     if (r.agree < 510 || r.dis > 3 || r.decided < 515) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis, decided: r.decided, list: r.list }));
   });
-  await check('v327 — the object that carries its own pronoun (Shudhūr R91; triage I-3, DabtEngine.encObj327): after a transitive verb whose doer is seated, a noun + pronoun with a written fatḥa on its host is «مَفْعُولٌ بِهِ», the pronoun still its muḍāf ilayh (سَأَلَ الرَّجُلُ صَاحِبَهُ، رَفَعَ الْأَسَدُ رَأْسَهُ، أَخَذَتِ السَّفِينَةُ مَتَاعَهَا); جَاءَ صَاحِبُهُ stays the doer, كُلَّهَا after an object pronoun stays a tawkīd; against the authored lines ≥ 335 agree and no more than 3 lines call something else an object', async () => {
+  await check('v327 — the object that carries its own pronoun (Shudhūr R91; triage I-3, DabtEngine.encObj327): after a transitive verb whose doer is seated, a noun + pronoun with a written fatḥa on its host is «مَفْعُولٌ بِهِ», the pronoun still its muḍāf ilayh (سَأَلَ الرَّجُلُ صَاحِبَهُ، رَفَعَ الْأَسَدُ رَأْسَهُ، أَخَذَتِ السَّفِينَةُ مَتَاعَهَا); جَاءَ صَاحِبُهُ stays the doer, كُلَّهَا after an object pronoun stays a tawkīd; against the authored lines ≥ 335 agree and no more than 4 lines call something else an object', async () => {
     const J = JSON.stringify;
     const r = await page.evaluate(() => {
       const at = (s, k) => { const rows = SentenceAnalyzer.analyze(s); return (Murib.line(rows, k) || {}).ar || ''; };
@@ -17917,6 +17917,7 @@ if (!CHROME) {
        بَاتَ in its first person: «بت» is also the letters of بَتَّ «to cut», so the kāna family (KANA_FORMS) does not list it and the word after it
        is offered as an object carrying its pronoun (NasikhGate's open item with the kāna tāmma) */
     if (r.both < 335 || r.fp > 4) throw new Error('against the authored lines: ' + J({ both: r.both, auth: r.auth, fp: r.fp, list: r.list }));
+    if (r.both < 335 || r.fp > 4) throw new Error('against the authored lines: ' + J({ both: r.both, auth: r.auth, fp: r.fp, list: r.list }));   // (v336-Sh) 3 → 4: al-usul-al-munifa:23:s7:34 مَرْضَاتَهُ is now «مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «طَالِبًا»» (Shudhūr R92) where the line says «خبر كان … بالكسرة» — the v329 corpus slip
   });
   await check('v327 — kāna and its sisters raise an ISM, never a doer (Shudhūr R70, R71, R200; triage I-2, NasikhGate): the concealed and the attached ism are «اسْمُهَا» (كَانَ أَبْعَدَ، فَصَارَ بَشَرًا، كُنْتُ نَائِمًا، لَا يَزَالُونَ مُخْتَلِفِينَ); دَامَ is a nāsikh only after مَا (مَا دُمْتُ حَيًّا: the tāʾ its ism, حَيًّا its khabar) and زَالَ only after a negation — زَالَ الْخَطَرُ and دَامَ الْمَطَرُ are complete, their noun the doer; a sister with nothing after it names both readings; against the authored lines ≥ 880 agree and no more than 38 differ (complete kāna by meaning, and authored slips)', async () => {
     const J = JSON.stringify;
@@ -18134,6 +18135,137 @@ if (!CHROME) {
     if (/وَهُوَ مُضَافٌ/.test(c.kull[1]) || !/بَدَلٌ/.test(c.kull[2]) || /وَهُوَ مُضَافٌ/.test(c.mal[1]) || !/بَدَلٌ/.test(c.mal[2])) throw new Error('كُلُّ تِلْكَ / مَالِ هَذَا: ' + J([c.kull, c.mal]));
     if (!/وَهُوَ مُضَافٌ/.test(c.ctrl[1]) || !/مُضَافٌ إِلَيْهِ/.test(c.ctrl[2])) throw new Error('the control: ' + J(c.ctrl));
     if (r.mud > 0 || r.mi > 1 || r.named < 272) throw new Error('against the authored lines: ' + J({ mud: r.mud, mi: r.mi, auth: r.auth, named: r.named, list: r.list }));
+  });
+
+  await check('v336-Sh — the two incidental bugs of the Shudhūr triage are gone: a five-verb without its nūn is never «مَرْفُوعٌ … حَذْفُ النُّونِ» (Shudhūr p. 90, src:48 «تُرْفَعُ بِثُبُوتِ النُّونِ، وَتُنْصَبُ وَتُجْزَمُ بِحَذْفِهَا»: لَا تَقْنَطُوا is jazm by the لَا of prohibition, an unseen governor gives «مَنْصُوبٌ أَوْ مَجْزُومٌ»), and Murib.line throws on no corpus word (the amr cells of shape 138 — فَأَجْمِعُوا، بَاقِيَا، هَبْ — and the three sentences ShartIsmEngine read «opens» in its dead zone); a verb is never «وَهُوَ مُضَافٌ»', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => { try { return (Murib.line(rows, k) || {}).ar || ''; } catch (e) { return 'THROW ' + e.message; } }); };
+      const c = { qanat: L('لَا تَقْنَطُوا مِنْ رَحْمَةِ اللهِ'), ajmi: L('فَأَجْمِعُوا أَمْرَكُمْ'), baq: L('فَلَا شَيْءٌ عَلَى الْأَرْضِ بَاقِيَا'), hab: L('فَهَبْ لِي مِنْ لَدُنْكَ وَلِيًّا') };
+      const S = x => stripAr(String(x || '')).replace(/[^ء-ي ]/g, '');
+      let raf = 0, thr = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || []; let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        rows.forEach((x, i) => { const verb = (x.kind || '').startsWith('verb'); const cand = verb && /(ُوا|ُو|َا|ِي)$/.test(String(x.w || '').normalize('NFC').replace(/[«»،.:!؟]/g, ''));
+          const amr = verb && x.cell && /amr/.test(x.cell.tense || ''); const key = st.id + ':' + ch.n + ':' + sn.id;
+          if (!cand && !amr && !/^(al-usul-al-munifa:32:s6|muallaqat-zuhayr:(8:s8|9:s1|10:s1))$/.test(key)) return;
+          let ln = ''; try { ln = S((Murib.line(rows, i) || {}).ar || ''); } catch (e) { thr++; list.push(key + ':' + (i + 1) + ' throws'); return; }
+          if (/مرفوع[^،.]*وعلامة رفعه حذف النون/.test(ln)) { raf++; list.push(key + ':' + (i + 1) + ' raf'); }
+          if (verb && /وهو مضاف/.test(ln)) { raf++; list.push(key + ':' + (i + 1) + ' mudaf'); } }); }
+      return { c, raf, thr, list: list.slice(0, 20) };
+    });
+    const c = r.c;
+    if (!/مَجْزُومٌ بِـ«لَا» النَّاهِيَةِ وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ|مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ/.test(c.qanat[1]) || /مَرْفُوعٌ/.test(c.qanat[1])) throw new Error('لَا تَقْنَطُوا: ' + J(c.qanat));
+    if ([c.ajmi, c.baq, c.hab].some(a => a.some(x => /^THROW/.test(x))) || /وَهُوَ مُضَافٌ/.test(c.ajmi[0])) throw new Error('throws or a muḍāf verb: ' + J([c.ajmi, c.baq, c.hab]));
+    if (r.raf > 0 || r.thr > 0) throw new Error('corpus: ' + J(r));
+  });
+
+  await check('v336-Sh — ishtighāl (Shudhūr R94, p. 241–242, src:191): زَيْدًا ضَرَبْتُهُ — زَيْدًا «مَفْعُولٌ بِهِ لِفِعْلٍ مَحْذُوفٍ وُجُوبًا يُفَسِّرُهُ الْمَذْكُورُ» with its taqdīr, ضَرَبْتُهُ «تَفْسِيرِيَّةٌ لَا مَحَلَّ لَهَا»; وَكُلَّ إِنْسَانٍ أَلْزَمْنَاهُ (the shape-only māḍī now «فِعْلٌ مَاضٍ … وَ«نَا» … فَاعِلٌ»), زَيْدًا ضَرَبْتُ غُلَامَهُ (the mulābis), هَلْ زَيْدًا ضَرَبْتَهُ the same; controls زَيْدٌ ضَرَبْتُهُ (mubtadaʾ), رَاكِبًا رَأَيْتُهُ and يَوْمًا ضَرَبْتُهُ silent', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      return { a: L('زَيْدًا ضَرَبْتُهُ'), b: L('وَكُلَّ إِنْسَانٍ أَلْزَمْنَاهُ طَائِرَهُ'), c: L('زَيْدًا ضَرَبْتُ غُلَامَهُ'), d: L('هَلْ زَيْدًا ضَرَبْتَهُ'), k1: L('زَيْدٌ ضَرَبْتُهُ'), k2: L('رَاكِبًا رَأَيْتُهُ'), k3: L('يَوْمًا ضَرَبْتُهُ') }; });
+    const ISH = /مَفْعُولٌ بِهِ لِفِعْلٍ مَحْذُوفٍ وُجُوبًا يُفَسِّرُهُ الْمَذْكُورُ/;
+    if (!ISH.test(r.a[0]) || !/التَّقْدِيرُ: «ضَرَبْتُ زَيْدًا ضَرَبْتُهُ»/.test(r.a[0]) || !/تَفْسِيرِيَّةٌ لَا مَحَلَّ لَهَا/.test(r.a[1])) throw new Error('زَيْدًا ضَرَبْتُهُ: ' + J(r.a));
+    if (!ISH.test(r.b[0]) || !/فِعْلٌ مَاضٍ، مَبْنِيٌّ عَلَى السُّكُونِ/.test(r.b[2]) || /مَرْفُوعٌ/.test(r.b[2])) throw new Error('وَكُلَّ إِنْسَانٍ أَلْزَمْنَاهُ: ' + J(r.b));
+    if (!ISH.test(r.c[0]) || !ISH.test(r.d[1])) throw new Error('mulābis / hal: ' + J([r.c, r.d]));
+    if (ISH.test(r.k1[0]) || !/مُبْتَدَأٌ/.test(r.k1[0]) || ISH.test(r.k2[0]) || ISH.test(r.k3[0])) throw new Error('controls: ' + J([r.k1, r.k2, r.k3]));
+  });
+
+  await check('v336-Sh — مَاذَا / لِمَاذَا / ذَا (Shudhūr R42, p. 177, src:117): مَاذَا تُرِيدُ — the fronted object ranked first, the مَا + relative ذَا parse named with its signal; فَمَاذَا يَمْنَعُهُمْ (the verb has its object) — mubtadaʾ first; لِمَاذَا تَأَخَّرْتَ — «اللَّامُ حَرْفُ جَرٍّ، وَ«مَاذَا» … فِي مَحَلِّ جَرٍّ»; مَنْ ذَا لَقِيتَ — ذَا the relative; control مَا ذَهَبَ زَيْدٌ silent', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      return { a: L('مَاذَا تُرِيدُ'), b: L('فَمَاذَا يَمْنَعُهُمْ مِنَ الظُّلْمِ'), c: L('لِمَاذَا تَأَخَّرْتَ'), d: L('مَنْ ذَا لَقِيتَ'), e: L('مَاذَا أَنْزَلَ رَبُّكُمْ'), k: L('مَا ذَهَبَ زَيْدٌ') }; });
+    if (!/^اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ مُقَدَّمٌ لِـ«تُرِيدُ»/.test(r.a[0]) || !/«ذَا» اسْمٌ مَوْصُولٌ/.test(r.a[0])) throw new Error('مَاذَا تُرِيدُ: ' + J(r.a));
+    if (!/فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَالْجُمْلَةُ بَعْدَهُ خَبَرُهُ/.test(r.b[0]) || !/مُقَدَّمٌ لِـ«أَنْزَلَ»/.test(r.e[0])) throw new Error('rank: ' + J([r.b, r.e]));
+    if (!/^اللَّامُ حَرْفُ جَرٍّ، وَ«مَاذَا» اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ/.test(r.c[0])) throw new Error('لِمَاذَا: ' + J(r.c));
+    if (!/^اسْمٌ مَوْصُولٌ بِمَعْنَى «الَّذِي»/.test(r.d[1]) || /وَهُوَ مُضَافٌ/.test(r.d[0])) throw new Error('مَنْ ذَا: ' + J(r.d));
+    if (/اسْتِفْهَامٍ|مَوْصُولٌ/.test(r.k[0])) throw new Error('control: ' + J(r.k));
+  });
+
+  await check('v336-Sh — the Ḥijāzī مَا and the bāʾ on its khabar (Shudhūr R78–R79, p. 222–224, src:168): مَا هُوَ بِمُؤْمِنٍ / وَمَا اللهُ بِغَافِلٍ — the noun «اسْمُ «مَا»», the khabar «مَجْرُورٌ لَفْظًا مَنْصُوبٌ مَحَلًّا» with Tamīm\'s reading named; مَا هَذَا بَشَرًا — «خَبَرُ «مَا» الْحِجَازِيَّةِ»; مَا زَيْدٌ قَائِمٌ — Tamīmī, governing nothing; control مَا زَيْدٌ إِلَّا رَسُولٌ — muhmala, زَيْدٌ the mubtadaʾ (never «خَبَرٌ»)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      return { a: L('مَا هُوَ بِمُؤْمِنٍ'), b: L('وَمَا اللهُ بِغَافِلٍ'), c: L('مَا هَذَا بَشَرًا'), d: L('مَا زَيْدٌ قَائِمٌ'), k: L('مَا زَيْدٌ إِلَّا رَسُولٌ'), f: L('وَمَا أَنَا عَلَيْكُمْ بِحَفِيظٍ') }; });
+    if (!/حِجَازِيَّةٌ تَعْمَلُ عَمَلَ «لَيْسَ»/.test(r.a[0]) || !/اسْمُ «مَا»/.test(r.a[1]) || !/خَبَرُ «مَا» مَجْرُورٌ لَفْظًا مَنْصُوبٌ مَحَلًّا/.test(r.a[2]) || !/تَمِيمٍ/.test(r.a[2])) throw new Error('مَا هُوَ بِمُؤْمِنٍ: ' + J(r.a));
+    if (!/اسْمُ «مَا»/.test(r.b[1]) || !/خَبَرُ «مَا» مَجْرُورٌ لَفْظًا/.test(r.b[2]) || !/خَبَرُ «مَا» مَجْرُورٌ لَفْظًا/.test(r.f[3])) throw new Error('وَمَا اللهُ بِغَافِلٍ / عَلَيْكُمْ بِحَفِيظٍ: ' + J([r.b, r.f]));
+    if (!/اسْمُ «مَا»/.test(r.c[1]) || !/خَبَرُ «مَا» الْحِجَازِيَّةِ/.test(r.c[2])) throw new Error('مَا هَذَا بَشَرًا: ' + J(r.c));
+    if (!/مُهْمَلَةٌ عَلَى لُغَةِ تَمِيمٍ/.test(r.d[0]) || !/مُبْتَدَأٌ/.test(r.d[1])) throw new Error('مَا زَيْدٌ قَائِمٌ: ' + J(r.d));
+    if (!/مُهْمَلَةٌ: انْتَقَضَ نَفْيُهَا بِـ«إِلَّا»/.test(r.k[0]) || !/مُبْتَدَأٌ/.test(r.k[1]) || /خَبَرٌ/.test(r.k[1])) throw new Error('control: ' + J(r.k));
+  });
+
+  await check('v336-Sh — إِنْ lightened or negating (Shudhūr R141–R142, p. 303, src:250): وَإِنْ كَانَتْ لَكَبِيرَةً / وَإِنْ وَجَدْنَا أَكْثَرَهُمْ لَفَاسِقِينَ — «مُخَفَّفَةٌ مِنَ الثَّقِيلَةِ مُهْمَلَةٌ» with the lām al-fāriqa named on both words; إِنْ كُلُّ نَفْسٍ لَمَّا عَلَيْهَا حَافِظٌ — negating, لَمَّا = إِلَّا, the «لَمَا» reading named; وَإِنْ كُلًّا لَمَّا — the working one; إِنْ هَذَا إِلَّا سِحْرٌ — negating; controls إِنْ تَجْتَهِدْ تَنْجَحْ، إِنْ قَامَ زَيْدٌ قُمْتُ، إِنْ كَانَ لَكَ مَالٌ stay conditional', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      return { a: L('وَإِنْ كَانَتْ لَكَبِيرَةً'), b: L('وَإِنْ وَجَدْنَا أَكْثَرَهُمْ لَفَاسِقِينَ'), c: L('إِنْ كُلُّ نَفْسٍ لَمَّا عَلَيْهَا حَافِظٌ'), d: L('وَإِنْ كُلًّا لَمَّا لَيُوَفِّيَنَّهُمْ'), e: L('إِنْ هَذَا إِلَّا سِحْرٌ'), k1: L('إِنْ تَجْتَهِدْ تَنْجَحْ'), k2: L('إِنْ قَامَ زَيْدٌ قُمْتُ'), k3: L('إِنْ كَانَ لَكَ مَالٌ فَأَنْفِقْ') }; });
+    if (!/مُخَفَّفَةٌ مِنَ الثَّقِيلَةِ مُهْمَلَةٌ/.test(r.a[0]) || !/الْفَارِقَةُ/.test(r.a[2]) || !/مُخَفَّفَةٌ مِنَ الثَّقِيلَةِ مُهْمَلَةٌ/.test(r.b[0]) || !/الْفَارِقَةُ/.test(r.b[3])) throw new Error('lām al-fāriqa: ' + J([r.a, r.b]));
+    if (!/نَافِيَةٌ بِمَعْنَى «مَا»، وَ«لَمَّا» بَعْدَهَا بِمَعْنَى «إِلَّا»/.test(r.c[0]) || !/لَمَا/.test(r.c[0]) || !/بِمَعْنَى «إِلَّا»/.test(r.c[3])) throw new Error('لَمَّا: ' + J(r.c));
+    if (!/مُخَفَّفَةٌ مِنَ الثَّقِيلَةِ عَامِلَةٌ/.test(r.d[0]) || !/نَافِيَةٌ بِمَعْنَى «مَا»/.test(r.e[0])) throw new Error('iʿmāl / nāfiya: ' + J([r.d, r.e]));
+    if ([r.k1, r.k2, r.k3].some(a => !/حَرْفُ شَرْطٍ/.test(a[0]) || /مُخَفَّفَةٌ|نَافِيَةٌ/.test(a[0]))) throw new Error('controls: ' + J([r.k1, r.k2, r.k3]));
+  });
+
+  await check('v336-Sh — the participle governs its object, the ṣifa mushabbaha its like-an-object (Shudhūr R92, p. 242; R110, p. 269, src:219): زَيْدٌ ضَارِبٌ عَمْرًا — عَمْرًا «مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «ضَارِبٌ»» (no longer «حَالٌ»); هُوَ الضَّارِبُ زَيْدًا, أَنَا قَاتِلٌ الْأَسَدَ the same; زَيْدٌ حَسَنٌ وَجْهَهُ — «مُشَبَّهٌ بِالْمَفْعُولِ بِهِ … لَا تَمْيِيزٌ لِأَنَّهُ مَعْرِفَةٌ» (no «خَبَرُهُ … مُقَدَّمٌ»); control جَاءَ زَيْدٌ رَاكِبًا keeps its ḥāl', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      return { a: L('زَيْدٌ ضَارِبٌ عَمْرًا'), b: L('هُوَ الضَّارِبُ زَيْدًا'), c: L('أَنَا قَاتِلٌ الْأَسَدَ'), d: L('زَيْدٌ حَسَنٌ وَجْهَهُ'), k: L('جَاءَ زَيْدٌ رَاكِبًا') }; });
+    if (!/مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «ضَارِبٌ»/.test(r.a[2]) || /حَالٌ/.test(r.a[2])) throw new Error('ضَارِبٌ عَمْرًا: ' + J(r.a));
+    if (!/مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ/.test(r.b[2]) || /خَبَرُهُ/.test(r.b[2]) || !/مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ/.test(r.c[2])) throw new Error('الضَّارِبُ زَيْدًا / قَاتِلٌ الْأَسَدَ: ' + J([r.b, r.c]));
+    if (!/مُشَبَّهٌ بِالْمَفْعُولِ بِهِ/.test(r.d[2]) || /خَبَرُهُ/.test(r.d[2])) throw new Error('حَسَنٌ وَجْهَهُ: ' + J(r.d));
+    if (!/حَالٌ/.test(r.k[2]) || /لِاسْمِ الْفَاعِلِ/.test(r.k[2])) throw new Error('control: ' + J(r.k));
+  });
+
+  await check('v336-Sh — names on ـوَيْهِ, the noun singled out, وَإِلَّا (Shudhūr R15, p. 123, src:85; R96, p. 243, src:196; R194 / R189, p. 350–359, src:289): قَالَ سِيبَوَيْهِ — the verb\'s doer is «سِيبَوَيْهِ», the name «مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ»; كِتَابَ نِفْطَوَيْهِ — «فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ»; control رَأَيْتُ أَخَوَيْهِ keeps its pronoun; نَحْنُ الْعَرَبَ أَقْرَى النَّاسِ / نَحْنُ مَعَاشِرَ الْأَنْبِيَاءِ — «أَخُصُّ», the pronoun\'s khabar never the manṣūb noun; control نَحْنُ الْعَرَبُ; تُبْ وَإِلَّا عَاقَبْتُكَ — إِنْ + لَا, the condition\'s verb dropped; إِلَّا تَفْعَلُوهُ تَكُنْ فِتْنَةٌ — the verb «مَجْزُومٌ بِـ«إِنْ» الْمُدْغَمَةِ»; control جَاءَ الْقَوْمُ إِلَّا زَيْدًا', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      return { s1: L('قَالَ سِيبَوَيْهِ'), s2: L('قَرَأْتُ كِتَابَ نِفْطَوَيْهِ'), s3: L('رَأَيْتُ أَخَوَيْهِ'), i1: L('نَحْنُ الْعَرَبَ أَقْرَى النَّاسِ لِلضَّيْفِ'), i2: L('نَحْنُ مَعَاشِرَ الْأَنْبِيَاءِ لَا نُورَثُ'), i3: L('نَحْنُ الْعَرَبُ'),
+        w1: L('تُبْ وَإِلَّا عَاقَبْتُكَ'), w2: L('إِلَّا تَفْعَلُوهُ تَكُنْ فِتْنَةٌ'), w3: L('جَاءَ الْقَوْمُ إِلَّا زَيْدًا') }; });
+    if (!/وَفَاعِلُهُ «سِيبَوَيْهِ»/.test(r.s1[0]) || !/مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ/.test(r.s1[1]) || !/مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ/.test(r.s2[2]) || /وَيْهِ/.test(r.s3[1]) || !/الضَّمِيرُ/.test(r.s3[1])) throw new Error('ـوَيْهِ: ' + J([r.s1, r.s2, r.s3]));
+    if (!/«أَخُصُّ»/.test(r.i1[1]) || /خَبَرُهُ «الْعَرَبَ»/.test(r.i1[0]) || !/«أَخُصُّ»/.test(r.i2[1]) || /خَبَرُهُ «مَعَاشِرَ»/.test(r.i2[0]) || /أَخُصُّ/.test(r.i3[1])) throw new Error('ikhtiṣāṣ: ' + J([r.i1, r.i2, r.i3]));
+    if (!/«إِنْ» الشَّرْطِيَّةُ أُدْغِمَتْ نُونُهَا فِي «لَا» النَّافِيَةِ، وَفِعْلُ الشَّرْطِ مَحْذُوفٌ/.test(r.w1[1]) || !/فِعْلُ الشَّرْطِ مَجْزُومٌ بِهَا/.test(r.w2[0]) || !/مَجْزُومٌ بِـ«إِنْ» الْمُدْغَمَةِ/.test(r.w2[1]) || !/حَرْفُ اسْتِثْنَاءٍ/.test(r.w3[2])) throw new Error('وَإِلَّا: ' + J([r.w1, r.w2, r.w3]));
+  });
+
+  await check('v336-Sh — the verbs of the heart: taʿlīq and ilghāʾ (Shudhūr R209 / R208, p. 366–367, src:303): لِنَعْلَمَ أَيُّ الْحِزْبَيْنِ أَحْصَى and عَلِمْتُ لَزَيْدٌ قَائِمٌ — «مُعَلَّقٌ عَنِ الْعَمَلِ لَفْظًا … سَدَّتْ مَسَدَّ مَفْعُولَيْهِ»; زَيْدٌ ظَنَنْتُ قَائِمٌ / زَيْدٌ قَائِمٌ ظَنَنْتُ — «مُلْغًى عَنِ الْعَمَلِ لِتَوَسُّطِهِ / لِتَأَخُّرِهِ», the nouns mubtadaʾ and khabar; control ظَنَنْتُ زَيْدًا قَائِمًا (iʿmāl) silent', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      return { a: L('لِنَعْلَمَ أَيُّ الْحِزْبَيْنِ أَحْصَى'), b: L('عَلِمْتُ لَزَيْدٌ قَائِمٌ'), c: L('زَيْدٌ ظَنَنْتُ قَائِمٌ'), d: L('زَيْدٌ قَائِمٌ ظَنَنْتُ'), k: L('ظَنَنْتُ زَيْدًا قَائِمًا') }; });
+    if (!/مُعَلَّقٌ عَنِ الْعَمَلِ لَفْظًا بِالِاسْتِفْهَامِ/.test(r.a[0]) || !/مُعَلَّقٌ عَنِ الْعَمَلِ لَفْظًا بِلَامِ الِابْتِدَاءِ/.test(r.b[0])) throw new Error('taʿlīq: ' + J([r.a, r.b]));
+    if (!/مُلْغًى عَنِ الْعَمَلِ لِتَوَسُّطِهِ/.test(r.c[1]) || !/مُبْتَدَأٌ/.test(r.c[0]) || !/خَبَرُ الْمُبْتَدَإِ/.test(r.c[2]) || !/مُلْغًى عَنِ الْعَمَلِ لِتَأَخُّرِهِ/.test(r.d[2])) throw new Error('ilghāʾ: ' + J([r.c, r.d]));
+    if (r.k.some(x => /مُلْغًى|مُعَلَّقٌ/.test(x))) throw new Error('control: ' + J(r.k));
+  });
+
+  await check('v336-Sh — against the authored lines (the Shudhūr rules R94, R42, R78–79, R141–142, R92/R110, R15, R194/R189, R209, R208 over the whole corpus): ishtighāl named where authored ≥ 2; لِمَاذَا in jarr ≥ 39 of 39; مَاذَا naṣb-first agreeing ≥ 21; the Ḥijāzī مَا lines named ≥ 36 agreeing; إِنْ lightened / negating named ≥ 14 with 0 contradicted; the participle\'s object ≥ 6 agreeing; ـوَيْهِ names ≥ 25 agreeing; وَإِلَّا ≥ 13 agreeing; taʿlīq ≥ 2 agreeing of ≥ 14 named; ilghāʾ verbs ≥ 4', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const S = x => stripAr(String(x || '')).replace(/[^ء-ي «»]/g, '').replace(/[أإآ]/g, 'ا');
+      const SP = [
+        ['R94', /^(?!.*اشتغال المحل).*(مفعول به|منصوب).*(يفسره|اشتغال)/, /لفعل محذوف وجوبا يفسره/, null],
+        ['R42j', /محل جر/, /محل جر/, /^[وف]?[لب]ماذا$/],
+        ['R42n', /نصب مفعول به مقدم|مفعول به مقدم في محل نصب/, /^[^«]*(«ماذا» )?اسم استفهام مبني على السكون في محل نصب مفعول به مقدم/, /^[وف]?ماذا$/],
+        ['I13', /(اسم|خبر) «?ما»?( |$)|ما»? (ال)?حجازي|عمل ليس|حجازي[ةه]|خبر المبتدا|مبتدا/, /(اسم|خبر) «ما»|حجازي[ةه]/, null],
+        ['R141', /مخفف|نافي/, /مخففة من الثقيلة|نافية بمعنى/, /^[وف]?إن$/],
+        ['I26', /مفعول به (لاسم الفاعل|لاسم فاعل|ل«)|مشبه بالمفعول|على التشبيه بالمفعول/, /مفعول به لاسم الفاعل|مشبه بالمفعول/, null],
+        ['R15', /مبني على الكسر/, /مبني على الكسر/, /ويه$/],
+        ['I22', /شرط|ان ولا|ان لا/, /الشرطي[ةه]/, /^[وف]?إلا$/],
+        ['R209', /معلق|علق الفعل|سدت مسد/, /معلق عن العمل/, null],
+        ['R208', /ملغى|ملغاه|ملغاة|مبتدا|خبر/, /ملغى عن العمل|القلبي ملغى/, null]];
+      const R = {}; for (const s of SP) R[s[0]] = { eng: 0, both: 0, contra: 0, L: [] };
+      const pre = /ماذا$|ما$|^[وف]?إن$|ويه$|^[وف]?إلا$/;
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || []; let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        for (let i = 0; i < T.length; i++) { const x = rows[i], b = stripAr(String(T[i].s.full || '')).replace(/[^ء-ي]/g, ''); let hot = pre.test(b);
+          if (!hot) { try { hot = !!(Sh336Engine.ishtighal(rows, i) || Sh336Engine.ishVerbOf(rows, i) || Sh336Engine.hijaziOf(rows, i) || Sh336Engine.inOf(rows, i) || Sh336Engine.waSfOf(rows, i) || Sh336Engine.taliq(rows, i) || Sh336Engine.ilgha(rows, i) || Sh336Engine.ilghaOf(rows, i)); } catch (e) {} }
+          if (!hot) continue; let E = ''; try { E = S((Murib.line(rows, i) || {}).ar); } catch (e) { E = 'ERR'; } const A = S((T[i].irab || {}).ar);
+          for (const [id, a, e, w] of SP) { if (w && !w.test(b)) continue; if (!e.test(E)) continue; const o = R[id]; o.eng++; if (A && a.test(A)) o.both++; else if (A) { o.contra++; if (o.L.length < 8) o.L.push(st.id + ':' + ch.n + ':' + sn.id + ':' + (i + 1)); } } } }
+      return R; });
+    const R = r, f = [];
+    if (R.R94.both < 2 || R.R94.contra > 0) f.push('R94');
+    if (R.R42j.both < 39 || R.R42j.contra > 0) f.push('R42j');
+    if (R.R42n.both < 21 || R.R42n.contra > 1) f.push('R42n');
+    if (R.I13.both < 36) f.push('I13');
+    if (R.R141.both < 14 || R.R141.contra > 0) f.push('R141');
+    if (R.I26.both < 6 || R.I26.contra > 2) f.push('I26');   // the 2: usul:23:s7:34 مَرْضَاتَهُ (the v329 slip) and صَفِيفَ «مفعول به لـ«منضج»» (agrees; the tatweel defeats the pattern)
+    if (R.R15.both < 25 || R.R15.contra > 0) f.push('R15');
+    if (R.I22.both < 13 || R.I22.contra > 1) f.push('I22');
+    if (R.R209.both < 2 || R.R209.eng < 14) f.push('R209');   // the authors are silent on the rest (read: correct taʿlīq contexts)
+    if (R.R208.both < 4) f.push('R208');
+    if (f.length) throw new Error('floors ' + f.join(',') + ': ' + J(R));
   });
 
   await check('v334-N4 — iʿlāl\'s conditions (feeding backlog L1; Marāḥ ch. 70–76, L757–L821): every origin the book weakens comes out weakened (قَالَ، دَارٌ، مُوسِرٌ، بِيعَ، يَغْزُو، دَاعِيَةٌ، رَضُوا، يَخَافُ، قِيَامٌ …) and every word it keeps comes out kept, each with the gate that held or blocked and the book\'s own line; the Ilal lab shows them; the corpus\'s derived nouns read through the gates with none contradicted', async () => {
