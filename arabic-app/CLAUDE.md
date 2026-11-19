@@ -15099,3 +15099,58 @@ and `TaalluqEngine.of`, before = the v333 reader; `cmp.py` classes the office an
 - **Measured:** refit + rebuild + drills: posAgreement 99.1 over 8132 tokens, caseAgreement 99.1 over 6328 (was 6327). Full suite: 527 pass, 1 fail — «v317 — the library shelves», the persist-and-reload step: a file:// localStorage write lost on
   reload at random, reproduced with a bare script on the untouched v331 audit copy as well (one wait in six loses the key); it passes
   alone twice in a row after the run. Not an engine fault; nothing touched.
+
+## v334-N3 — the hamzated, lafīf and doubled verbs derived by rule (feeding backlog F2, F4, F9)
+
+ENGINE RULES (EXACT), all in `prototype/reader.html`, each rule with its book line beside it as `(v334-N3 · F2/F4/F9)`. Derived, never stored; the
+heard sits in the engine's own table with its line. Three smoke checks «v334-N3 — …» right after «v329 — a demonstrative is never muḍāf».
+
+- **F2 — the hamzated and the doubly-weak verb on ANY root.** `nakilClass` keeps its drill (letter substitution) unchanged; `sarfClassX(entry)`
+  classifies what it refuses: `{rs, x: true, type, base, hamza}` — the root's hamza is read as `ء` whatever its chair; `base` is the weak class the
+  hamza rides (sound, mithāl, ajwaf, nāqiṣ, gem, `lafif-maqrun`, `lafif-mafruq`); refusals `hamza-two` (no book conjugates a root of two hamzas),
+  `lafif-fa-ayn` (ʿIzzī L284 «وَلَا يُبْنَى مِنْهُ فِعْلٌ»). `sarfDerive` routes `cls.x` to `sarfDeriveX`: the hamza is a sound letter (L289
+  «حُكْمُ الْمَهْمُوزِ … كَحُكْمِ الصَّحِيحِ»), the cells are built by `sarfDerive0` and seated afterwards by `sjSeatX` = `sjQalbTwo` (the TWO-HAMZA RULE
+  as a rule, L290: اُءْ → اُو، اِءْ → اِي، أَءْ → آ، أُءْ → أُو، إِءْ → إِي، ءَا → آ) + `sjSeatHamza` (HamzaEngine). The lafīf maqrūn is the nāqiṣ with a
+  sound ʿayn (L266); the lafīf mafrūq (`sjLafifMafruq`) drops its wāw where the mithāl does and keeps it in bāb سَمِعَ (وَجِيَ يَوْجَى اِيجَ, L282–L283),
+  bābs 2/4/6 only (`lafif-bab`). Rules beside the cells: the alif behind a yāʾ (يَحْيَا، أَحْيَا، حَايَا، اسْتَحْيَا, L268–L274); the waqf hāʾ of a one-letter
+  amr (`amrWaqf`: قِهْ، رَهْ, L278, L316); the hamza back after a joiner (`amrWasl`: أْمُلْ → وَأْمُلْ, L291); سَاءٍ، جَاءٍ (L304). **Heard (`SJ_HEARD_X`):**
+  خُذْ كُلْ مُرْ (L293) and مُرْ's waṣl وَأْمُرْ (L294); سَلْ / سَالَ يَسَالُ (L301); تِ (L307); رَأَى — the hamza falls after the sākin rāʾ in the muḍāriʿ and
+  all of أَفْعَلَ (يَرَى رَ، أَرَى يُرِي مُرٍ مُرًى, L312–L322; نَأَى يَنْأَى keeps it by rule); حَيَّ / حَيُّوا / حَيِيُوا and the ṣifa حَيٌّ (L268–L270), رَيَّانُ (L267);
+  اِتَّخَذَ (Marāḥ L543, L571 «وَإِدْغَامُ اِتَّخَذَ شَاذٌّ»; the rule alone gives اِيتَخَذَ, as ايتَالَ, ʿIzzī L327) and اِثَّأَرَ (Marāḥ L543, jāʾiz). `MaqsudEngine.formI` sends every mahmūz /
+  lafīf model through the same road (أ م ل → اُومُلْ, أ ز ر → اِيزِرْ, أ د ب → اُودُبْ, أ و ي → اِيوِ, ه ن أ → يَهْنِئُ, و ج ي bāb 4 → يَوْجَى اِيجَ); the
+  Maqṣūd audit is unchanged (1698 strict of 1922).
+  - **The book's cells:** 132 cells of ʿIzzī ch. 16–17 (and آمَنَ / أُومِنُ / إِيمَان, L290) come out of the engine for their model roots, incl. the
+    full يَرَى paradigm, قِ … قِينَ and the emphatic قِيَنَّ … / رَيَنَّ … read off the Sarf lab's own tawkīd table. Control: سَأَلَ → اِسْأَلْ (no qalb; سَلْ only
+    as the heard variant).
+  - **The corpus:** `sarfAudit()` now classifies with `sarfClassX`: 1462 → 1625 paradigms regenerated, 163 of them hamzated / lafīf, 0 mismatches
+    (`out.x`, per class in `out.xClass`: lafīf maqrūn 26, mafrūq 18, hamza-fāʾ 69, -ʿayn 16, -lām 34; 70 of them Form I). The comparison is
+    `sjCellSame`: exact, or one of five named two-spellings-of-one-reading — the rasm's seat after waṣl (اِئْذَنْ = اِيذَنْ, L291), the verb's final ا/ى behind a
+    yāʾ, a chair HamzaEngine reads as the matn's rule (Marāḥ L683: يُأَثِّرُ، يَيْأَسُ) or the later one, the seat kept from the full muḍāriʿ in a lām-dropped
+    cell (يَنْأَ، يَئِ), HamzaEngine's «twoWaws» (قَرَأُوا، جَاءُوا). Counts in `out.tolerated`. Nothing else is tolerated.
+  - **Content healed** (stored faults the audit caught; scratchpad `feed3/heal_apply.py`, a cell touched only when its stored value was the faulty one):
+    96 cells in 12 packages — the women's nūn after a nūn lām (أَمِنْنَ → أَمِنَّ، آذَنْنَ), a sukūn on a madd wāw (يُوْفِي), a madda after kasra (أَلْجِآ →
+    أَلْجِئَا، أَظْمِآ), a hamza on the line behind a madd yāʾ / wāw mid-word (يُسِيءَانِ → يُسِيئَانِ، تَفِيءَانِ، تَسُوءِينَ), أَسِئَا → أَسِيئَا. **Heard, flagged
+    `samai`:** آيَسَ (metathesis of أَيْأَسَ), تَجَزَّى (hamza softened), وَاسَى (the lugha of آسَى) — the v333 pinned list is now these five with هَرَاقَ and
+    تَحَيَّلَ (older check changed for that reason). **Key collision fixed:** talkhis ch64 يُضِيءُ carried lex `adaa` (the noun أَدَاء); now `adaa-shine`
+    (glossary entry copied from muallaqat-imri-al-qays, morphology key renamed).
+  - Sarf lab: `conjClass` uses `sarfClassX`; the four late doors of an x-root refuse (`x-late`); alt māḍī / muḍāriʿ / amr, waṣl, waqf and ṣifa chips;
+    the heard line under the table; refusals named in en and tr (`conjNoWhy`). `ilalSteps` is not run on an x-root.
+- **F4 — the doubled verb in jazm and amr.** `sarfDerive` is now `sjGemJazm334(sarfDerive1(…))` (`sarfDerive1` is the old wrapper): for a doubled
+  root in any form whose jussive ends on the merged twin, `majzumAlt` / `amrIdghamAlt` list the permitted forms — fatḥa and kasra always, ḍamma only
+  behind a ḍamma (ʿIzzī L146–L150; Marāḥ L530 the reasons), and the fakk built from the SOUND template's jussive with the root put in (يَمْدُدْ، يَفْرِرْ،
+  يَعْضَضْ، يُعْدِدْ، يَعْتَدِدْ، اِيدَدْ); `amrRefused` = the ḍamma where it is not allowed (فِرُّ, Marāḥ L531); `jazmVowels`; the note names them. The stored
+  cell stays the fatḥa. `IdghamRuleEngine.ruleFor` lists them in `allowed` with `vowels` / `vowelsLbl`; `IdghamRuleEngine.judge(word, root, bab)`
+  permits or refuses a typed jussive / amr. Analyzer: `CaseEngine.gemJazm334` — a doubled muḍāriʿ right after a jāzim (لَمْ، لَا of nahy, lām al-amr,
+  a sharṭ) is majzūm whatever permitted vowel it wears, Murib: «مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ السُّكُونُ الْمُقَدَّرُ، وَحُرِّكَ بِالْفَتْحِ لِلْخِفَّةِ / بِالْكَسْرِ
+  لِالْتِقَاءِ السَّاكِنَيْنِ / بِالضَّمِّ لِلْإِتْبَاعِ» (was «السُّكُونُ الظَّاهِرَةُ» on لَمْ يَمُدَّ, and مَرْفُوعٌ on لَمْ يَمُدُّ); `CaseEngine.gemFakk334` (last pass, before
+  `retype329`) gives the fakk jussive written apart its majzūm cell by matching the fakk sarfDerive builds for each corpus verb of the root — مَنْ يُضْلِلِ
+  اللهُ: يُضْلِلِ «… السُّكُونُ، وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، فِعْلُ الشَّرْطِ», and مَنْ gets the I-7 line (in the seat of naṣb, the object of
+  يُضْلِلِ). Control: يَمُدُّ زَيْدٌ stays marfūʿ; «لَمْ يَفِرُّ» (no form of the book's) is not read by the new rule. All 15 corpus doubled jussives after لَمْ
+  whose authored line says majzūm are read so (the sign line now matches the authors' «حُرِّكَ بِالْفَتْحِ»).
+- **F9 — وَأْمُرْ.** `formCandidates`: behind a joiner, «أْ» + stem is also offered as the qalb spelling (اُو / اِي + stem) and «أْمُر» as the stored
+  مُرْ (L294 — only مُرْ comes back on its origin). وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ → «فِعْلُ أَمْرٍ، مَبْنِيٌّ عَلَى السُّكُونِ», أَهْلَكَ its object; all 9 corpus verbs
+  written وَأْ / فَأْ read as amr. Control: وَأَمَرَ stays a māḍī. The Maqāmāt ch5 token وَأْمُرْ (Luqmān 31:17) was authored «فِعْلٌ مَاضٍ» — corrected
+  to the amr, trilingual.
+- **Known and left:** the passive of the hamzated / lafīf verbs is not built by `sarfDerive` (the Maqṣūd engine's `majhul` covers its models);
+  the four late doors of an x-root are refused; the ʿIzzī's fāʿil of a bāb-4 lafīf is the ṣifa (رَيَّانُ، حَيٌّ) shown as a chip — the `fail` cell keeps
+  the qiyāsī ism fāʿil. gSarf's pool is unchanged (it reads stored cells).
