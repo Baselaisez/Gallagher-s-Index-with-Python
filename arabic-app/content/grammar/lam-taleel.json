@@ -9,7 +9,8 @@
   "group": "awamil",
   "classicalSources": [
     "عوامل البركوي — اللام مِنْ حروف الجر العشرين",
-    "قطر الندى (ابن هشام) — لام كي"
+    "قطر الندى (ابن هشام) — لام كي",
+    "شذور الذهب لابن هشام — الفعل المضارع إذا سبقه ناصب، ص 309–335"
   ],
   "amil": "تَنْصِبُ الْمُضَارِعَ بِأَنْ مُضْمَرَةً — governs nasb through an implied أَنْ",
   "plain": {
@@ -17,8 +18,8 @@
     "tr": "«…-mek için» manasındaki لِـ."
   },
   "explanation": {
-    "en": "Prefixed لِ before a present verb means \"in order to\". Grammatically the verb is mansub by a hidden أَنْ after the lam — so it behaves exactly like the أَنْ clause: final fatha, نون dropped in the five verbs. In this story: لِيُوَدِّعَهُ = لِأَنْ يُوَدِّعَهُ (\"in order to bid him farewell\").",
-    "tr": "Muzariden önce gelen لِ '-mek için' demektir. Fiil, lâm'dan sonra gizli bir أَنْ ile mansubdur: son harf fetha, ef'al-i hamsede نون düşer. Hikâyede: لِيُوَدِّعَهُ = لِأَنْ يُوَدِّعَهُ ('onu uğurlamak için')."
+    "en": "Prefixed لِ before a present verb means \"in order to\". Grammatically the verb is mansub by a hidden أَنْ after the lam — so it behaves exactly like the أَنْ clause: final fatha, نون dropped in the five verbs. In this story: لِيُوَدِّعَهُ = لِأَنْ يُوَدِّعَهُ (\"in order to bid him farewell\"). Shudhūr al-Dhahab counts four lāms before the muḍāriʿ, each with a hidden أَنْ: the lām of cause, the lām of outcome, the extra lām after a transitive verb, and the lām of denial (juḥūd) after a negated past كَانَ. After the first three أَنْ may be spoken (وَأُمِرْتُ لِأَنْ أَكُونَ); after the lām of denial it must stay hidden.",
+    "tr": "Muzariden önce gelen لِ '-mek için' demektir. Fiil, lâm'dan sonra gizli bir أَنْ ile mansubdur: son harf fetha, ef'al-i hamsede نون düşer. Hikâyede: لِيُوَدِّعَهُ = لِأَنْ يُوَدِّعَهُ ('onu uğurlamak için'). Şüzûru'z-Zeheb, muzâriden önce gelen ve her birinde «أَنْ»in gizlendiği dört lâm sayar: ta'lîl lâmı, âkıbet lâmı, müteaddî fiilden sonraki zâid lâm ve menfî mâzî «كَانَ»den sonraki cuhûd lâmı. İlk üçünden sonra «أَنْ» söylenebilir (وَأُمِرْتُ لِأَنْ أَكُونَ); cuhûd lâmından sonra gizlenmesi vâciptir."
   },
   "examples": [
     {
@@ -32,6 +33,36 @@
       "ar": "أَدْرُسُ لِأَنْجَحَ.",
       "en": "I study in order to succeed.",
       "tr": "Başarmak için çalışıyorum."
+    },
+    {
+      "ar": "وَأَنْزَلْنَا إِلَيْكَ الذِّكْرَ لِتُبَيِّنَ لِلنَّاسِ",
+      "en": "Shudhūr: the lām of cause (al-Naḥl 16:44).",
+      "tr": "Şüzûr: ta'lîl lâmı (Nahl 16:44).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:157 (ص 316)"
+    },
+    {
+      "ar": "فَالْتَقَطَهُ آلُ فِرْعَوْنَ لِيَكُونَ لَهُمْ عَدُوًّا وَحَزَنًا",
+      "en": "Shudhūr: the lām of outcome (al-ʿāqiba) — they did not pick him up in order to have an enemy (al-Qaṣaṣ 28:8).",
+      "tr": "Şüzûr: âkıbet lâmı — onu düşman olsun diye almadılar (Kasas 28:8).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:157 (ص 316)"
+    },
+    {
+      "ar": "يُرِيدُ اللهُ لِيُبَيِّنَ لَكُمْ",
+      "en": "Shudhūr: the extra lām after a transitive verb (al-Nisāʾ 4:26).",
+      "tr": "Şüzûr: müteaddî fiilden sonra zâid lâm (Nisâ 4:26).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:157 (ص 316)"
+    },
+    {
+      "ar": "وَأُمِرْتُ لِأَنْ أَكُونَ",
+      "en": "Shudhūr: after these three أَنْ may be shown (al-Zumar 39:12).",
+      "tr": "Şüzûr: bu üçünden sonra «أَنْ» izhâr edilebilir (Zümer 39:12).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:157 (ص 316)"
+    },
+    {
+      "ar": "مَا كَانَ اللهُ لِيَذَرَ الْمُؤْمِنِينَ",
+      "en": "Shudhūr: the lām of denial after a negated كَانَ — here أَنْ must stay hidden (Āl ʿImrān 3:179).",
+      "tr": "Şüzûr: menfî «كَانَ»den sonraki cuhûd lâmı — burada «أَنْ» gizli kalmak zorundadır (Âl-i İmrân 3:179).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:157 (ص 316)"
     }
   ],
   "commonMistakes": [

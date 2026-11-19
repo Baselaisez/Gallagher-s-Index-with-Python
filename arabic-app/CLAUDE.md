@@ -14552,3 +14552,78 @@ renamed; and the TOKENS decide, not the glossary line — in four packages the e
   line of أَمَّا; adam-wa-iblis:1:s4:4 لٰكِنَّهُ whose line says «إِنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ».
 - Before minting a key: check `entries` in every glossary under content/samples AND content/user-uploads, and read the TOKENS
   under the key, not only the lemma — a PREF copy can give a package the right key's wrong entry.
+
+## v334-N2 — the first ṣarf catechism, and Shudhūr al-Dhahab into the naḥw notes (feeding backlog F6, R2)
+
+**F6 — two ṣarf banks, fifteen banks in all (591 items).** `content/catechism/marah.json` (35 items, area `sarf`) is Marāḥ al-Arwāḥ
+questioning itself: its fourteen «فَإِنْ قِيلَ … قُلْنَا …» pairs, its three answers to the Kūfans on the maṣdar (ch. 5, «قُلْنَا فِي
+جَوَابِهِمْ»), and eighteen reasoned refusals («وَلَا يُعَلُّ نَحْوُ … لِـ / حَتَّى …», ch. 69, 72–74, 76; «وَلَا يُقَالُ لَهُ صَحِيحٌ لِـ…»,
+ch. 43, 52). `content/catechism/maqsud.json` (6 items) is the six «س؛ … ج؛ …» pairs of the Maqṣūd's Ottoman lesson notes.
+- **The item's shape grew by three optional fields**, and the old banks do not carry them: `arq` (the book's own Arabic QUESTION,
+  a list like `ar`), `src` (`{file, lines, page}` — the lines the Arabic was cut from) and `kind: "refusal"` (the book states a
+  refusal and its reason; there is no Arabic question and **none is composed** — only our en/tr asks «why is X not weakened?»).
+  `ar` stays the book's Arabic answer. The Marāḥ strings are whole sentences with the book's punctuation and guillemets.
+- **The Arabic is never typed.** `marah_qa_1.py` was generated once (the wave's `gen_marah_qa.py`: line numbers in, slices out;
+  a same-line pair is cut at «قُلْنَا»); the assembler then checks every `ar` / `arq` string, letters only, against the cited lines
+  (`src_norm`), and for a `punct=True` bank matches each string as a token run of the anchored chapter with the punctuation set
+  aside (`find_run_p`) and re-dresses it word by word from the chapter's tokens (`redress_p`), punctuation kept. All 35 items
+  anchor to their chapter of `marah-al-arwah` with every string verified; the story and the src agree letter for letter.
+- **`assemble_catechism.py <book> …` rebuilds only the named banks** (no argument rebuilds all; a full run leaves the thirteen old
+  banks byte-identical — check with `diff -r` before landing). `noteless=True` lets a bank ship an item without a note: four
+  Marāḥ items on the softening of the hamza (q13, q14, q15, q34) have none, because no mahmūz note exists yet (backlog F2 adds
+  `mahmuz-verbs`); a near-miss note would be worse. The smoke check pins exactly those four.
+- **The reader:** `CatechismEngine.arAll(it)` (question + answer Arabic: lab filter, search, deck card, export),
+  `CatechismEngine.bareAr` (the audit compares with a chapter's tokens blind to punctuation, and now also holds `arq` to the
+  chapter); `catechismWhy` shows the book's question (`.cat-arq`) above our answer and a source line (`.cat-src`: file · lines ·
+  ص page) under the Arabic; the game shows the Arabic question under ours. Nothing registers a bank: the builder globs
+  `content/catechism/*.json`, the lab lists `CatechismEngine.banks()`, gCatechism draws from `catechismItems()`, and
+  `areaOf` credits `state.elo.sarf`.
+- **The Maqṣūd asks and answers in Ottoman Turkish**, so its q.tr / a.tr are the book's sentences in today's letters and `ar` is only
+  the vowelled Arabic the answer carries. Not banked: the 51-question study sheet of `maksut-sarf-ottoman.txt` (l. 918–971) —
+  questions with no answers beside them; an item would pair a question with prose we chose, which is composing.
+- Left out of the Marāḥ bank for doubt: l. 798 («فَحِينَئِذٍ يَجُوزُ الْإِعْلَالُ فِيهِ وَهُوَ لَيْسَ عَلَى وَزْنِ الْفِعْلِ» reads against l. 797;
+  the item quotes 797 only). Pp. 145–182 are not in the src (backlog F7), so their pairs wait for the collation.
+
+**R2 — the three families, 48 rules, eleven notes fed and one written.** The Shudhūr's own examples (104 of them, from 39 rules;
+the other nine rules have no example of their own, repeat a neighbour's, or are stated in the explanation) now stand in
+`nawasib-wa-jawazim-al-mudari` (+34), `an-masdariyya` (+7), `lam-taleel` (+5), `in-shartiyya` (+8),
+`al-majzum-wal-shart-wal-jaza` (+14), `al-fa-fi-jawab-al-shart` (+9), `jawab-al-talab` (+7), `al-mustathna-wa-nawah-wa-nasbuh`
+(+12), `istithna` (+3), `istithna-mufarragh` (+2), `al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa` (+3), each with a
+«شذور الذهب لابن هشام — <bāb>، ص N» line in `classicalSources` and a closing paragraph «Shudhūr al-Dhahab adds …» for the edge
+cases the note did not teach (إِذَنْ's third condition; the four lāms; the explaining أَنْ; what a condition verb may not be; what
+may be dropped; why مَا خَلَا forces the naṣb; the Tamīmī badal). New note: **`jarr-al-jiwar`** (329 notes) — the book's two
+examples, its «شَاذٌّ», and the āya it excludes «عَلَى الْأَصَحِّ»; not anchored, and its text says so.
+- **An example fed from a book carries `source`** — `research/sources/shudhur-al-dhahab-qawaid.jsonl:<rule line> (ص <page>)`,
+  preceded by `…-src.txt:<matn line> · ` when the matn itself has it. The builder passes it as `cite`; `exCite334` shows
+  «شُذُورُ الذَّهَبِ، ص N» beside the gloss (add a book to `CITE_BOOKS334`). The example's Arabic is taken BY INDEX from the rule's
+  `examples` (the wave's `r2_apply.py`), and the smoke check re-reads every one against the rule and the matn line it cites.
+- **The Kāfiya's chapter notes stay the Kāfiya's.** The fine points on the hidden أَنْ live in `nawasib-al-mudari-fil-kafiya`, but
+  the Shudhūr's examples went to the general note, not into another book's chapter.
+- Left out for doubt: «أَيَّهُمْ يَقُمْ أَقُمْ مَعَهُ» (rule 188 — the fatḥa on أَيّ looks like a slip for أَيُّهُمْ); «كَتَبْتُ إِلَيْهِ أَنْ
+  يَفْعَلَ» and «كَتَبْتُ إِلَيْهِ بِأَنْ أَفْعَلَ» (rule 153 — the page's vowelling was not sure); the āya of rule 168 as the jsonl cuts
+  it (it drops «أَوْ مِنْ وَرَاءِ حِجَابٍ»); the āya of rule 199 («فَيَغْفِرُ» / «فَيَغْفِرْ» — the readings differ and the rule turns on it).
+  The matn's «فَمَن يُؤْمِنُ بِرَبِّهِ» (src l. 286, the print's ḍamma, VERSE-CHECK) was not used; the note has the Qurʾān's «يُؤْمِنْ».
+- Not done: the further families (ʿamal al-fiʿl 11, nāʾib al-fāʿil 13, ism inna 8) — same script, one data file each.
+
+**For the hoca — where the Shudhūr and a note say different things (nothing was rewritten):**
+1. **كَيْ.** `nawasib-wa-jawazim-al-mudari` (Iẓhār): «وَكَيْ لِلسَّبَبِيَّةِ» — a nāṣib whose sense is cause. Shudhūr (src l. 256, 259):
+   «وَهُوَ «لَنْ» أَوْ «كَي» المَصْدَرِيَّةُ مُطْلَقًا» and «وَتُضْمَرُ «أَنْ» بَعْدَ ثَلَاثَةٍ مِنْ حُرُوفِ الْجَرِّ، وَهي: كَيْ …» — the كَيْ that governs is the
+   maṣdariyya; the causal one is a jarr letter with a hidden أَنْ.
+2. **The words of requital.** The same note counts «إِذْمَا، إِذَا مَا، مَتَى» for time. Shudhūr (src l. 284): «إِنْ، وَإِذْ مَا، لمجرَّدِ
+   التَّعْلِيقِ، وَهُما حَرْفَانِ … وَمَتَى وأَيَّانَ لِلزَّمانِ» — إِذْ مَا is a particle of bare conditioning, أَيَّانَ is on the list and إِذَا مَا is not.
+3. **After what the fāʾ gives naṣb.** `nawasib-al-mudari-fil-kafiya`: «fâ yalnız emir, nehiy, istifhâm, nefy, temennî ve arzdan
+   sonra nasb eder» (six). Shudhūr (src l. 262 and rule 160): «مَسْبُوقَيْنِ بِنَفْيٍ مَحْضٍ أوْ طَلَبٍ بِغَيْرِ اسْمِ الْفِعْلِ», the request
+   counted as seven — with the prayer and the urging — eight with the negation.
+4. **إِنْ قُمْتَ أَقُومُ.** `al-majzum-wal-shart-wal-jaza` (Iẓhār): «وَإِنْ كَانَ الْأَوَّلُ مَاضِيًا وَالثَّانِي مُضَارِعًا جَازَ الْجَزْمُ وَالرَّفْعُ» — the
+   marfūʿ is the answer. Shudhūr (src l. 293): «وَيَجِبُ الاسْتِغْنَاءُ عَنْ جَوَابِ الشَّرْطِ بِدَلِيلِهِ مُتَقَدِّمًا لَفْظًا … أو نيَّةً نَحْوُ «إِنْ
+   قُمتَ أَقُومُ»» — the marfūʿ is the evidence of a dropped answer. The forms agree; the analysis does not.
+5. **Oath and condition.** `al-qasam-wal-shart-fil-kafiya`: «إِنْ أَتَيْتَنِي وَاللهِ لَآتِيَنَّكَ» — a middle oath may take the answer.
+   Shudhūr (src l. 293): «وَبِجَوَابِ ما تَقَدَّمَ مِنْ شَرْطٍ مُطْلَقًا، أوْ قَسَمٍ، إلا إِنْ سَبَقَهُ ذو خَبَرٍ، فَيَجُوزُ تَرْجِيحُ الشَّرْطِ الْمُؤَخَّرِ» — a
+   condition that comes first always takes it.
+6. **The doors of the hidden إِنْ.** `jawab-al-talab` (Talkhīṣ): «exactly these doors» — tamannī, istifhām, amr, nahy, ʿarḍ.
+   Shudhūr (src l. 289): «إِنْ تَقَدَّمَهَا طَلَبٌ وَلَوْ باسْمِيةٍ أو باسم فِعْلٍ أو بما لَفْظُه الْخَبَرُ» — any request.
+
+Smoke (after «v329 — a demonstrative is never muḍāf»): «v334-N2 — the first ṣarf catechism» (files against their source lines,
+verbatim for the Marāḥ; fourteen «فَإِنْ قِيلَ» pairs each answered by «قُلْنَا»; anchors and verification; the lab, the game's Arabic
+question, the ṣarf rating) and «v334-N2 — Shudhūr al-Dhahab feeds the naḥw notes» (each family's notes carry Shudhūr examples,
+every one re-read against its rule; `jarr-al-jiwar` exists, resolves and opens).

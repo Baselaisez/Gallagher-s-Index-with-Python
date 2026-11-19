@@ -17121,6 +17121,135 @@ if (!CHROME) {
     if (!/وَهُوَ مُضَافٌ/.test(c.ctrl[1]) || !/مُضَافٌ إِلَيْهِ/.test(c.ctrl[2])) throw new Error('the control: ' + J(c.ctrl));
     if (r.mud > 0 || r.mi > 1 || r.named < 272) throw new Error('against the authored lines: ' + J({ mud: r.mud, mi: r.mi, auth: r.auth, named: r.named, list: r.list }));
   });
+
+  await check('v334-N2 — the first ṣarf catechism (backlog F6): Marāḥ al-Arwāḥ\'s own «فَإِنْ قِيلَ … قُلْنَا» pairs and reasoned refusals and the Maqṣūd\'s six pairs are banks of area sarf; every Arabic string stands in the cited lines of the source file and in the anchored chapter; the lab lists the bank with the book\'s question, and a round credits the ṣarf rating', async () => {
+    const J = JSON.stringify;
+    const root = path.resolve(__dirname, '..');
+    const strip = s => String(s).normalize('NFC').replace(/[ً-ٰٟـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/[^ء-ي]/g, '');
+    // 1. the files: every item cites its lines, and the lines carry its Arabic
+    const want = { marah: 35, maqsud: 6 };
+    for (const [book, floor] of Object.entries(want)) {
+      const bank = JSON.parse(fs.readFileSync(path.join(root, 'content/catechism', book + '.json'), 'utf8'));
+      if (bank.area !== 'sarf') throw new Error(book + ': area ' + bank.area);
+      if (bank.items.length < floor) throw new Error(book + ': ' + bank.items.length + ' items, floor ' + floor);
+      const lines = [''].concat(fs.readFileSync(path.join(root, bank.source), 'utf8').split('\n'));
+      for (const it of bank.items) {
+        if (!(it.src && it.src.file === bank.source && Array.isArray(it.src.lines) && it.src.lines.length)) throw new Error(it.id + ': no source lines');
+        const hay = strip(it.src.lines.map(n => lines[n] || '').join(' '));
+        for (const a of (it.arq || []).concat(it.ar || [])) if (!hay.includes(strip(a))) throw new Error(it.id + ': not in ' + bank.source + ':' + it.src.lines.join(',') + ' — ' + a.slice(0, 40));
+        if (book === 'marah') {
+          // the Marāḥ's Arabic is VERBATIM, vowels and punctuation: the string is a slice of its line
+          for (const a of (it.arq || []).concat(it.ar || [])) if (!it.src.lines.some(n => (lines[n] || '').normalize('NFC').includes(a))) throw new Error(it.id + ': not verbatim — ' + a.slice(0, 40));
+          if (!(it.ar || []).length) throw new Error(it.id + ': no Arabic answer');
+          if (it.kind === 'refusal' ? !!it.arq : !(it.arq || []).length) throw new Error(it.id + ': a pair carries the book\'s question, a refusal composes none');
+        }
+      }
+      if (book === 'marah') {
+        const pairs = bank.items.filter(it => (it.arq || []).some(a => a.startsWith('فَإِنْ قِيلَ')));
+        if (pairs.length !== 14) throw new Error('the src has fourteen «فَإِنْ قِيلَ» questions; the bank carries ' + pairs.length);
+        for (const it of pairs) if (!it.ar[0].startsWith('قُلْنَا')) throw new Error(it.id + ': the answer opens with «قُلْنَا»');
+      }
+    }
+    // 2. the reader: the banks load, anchor and verify; the lab and the game show them
+    const r = await page.evaluate(() => {
+      const a = CatechismEngine.audit();
+      const M = CatechismEngine.items("marah"), Q = CatechismEngine.items("maqsud");
+      const unanch = M.filter(it => !(it.story === "marah-al-arwah" && CatechismEngine.anchor(it) && it.verified === (it.ar || []).length)).map(it => it.id);
+      const notes = M.concat(Q).flatMap(it => (it.notes || []).filter(n => !GRAMMAR[n]).map(n => it.id + ":" + n));
+      const noteless = M.concat(Q).filter(it => !(it.notes || []).length).map(it => it.id);
+      conjState.lab = "sual"; conjState.sualBook = "marah"; conjState.sualQ = ""; openConjugator();
+      const opt = [...document.querySelectorAll("#sualBook option")].map(o => o.value);
+      const listed = document.querySelectorAll("#sualOut details.cat-item").length;
+      const arq = document.querySelectorAll("#sualOut .cat-arq").length, srcs = document.querySelectorAll("#sualOut .cat-src").length;
+      const first = document.querySelector("#sualOut .cat-arq"); const firstText = first ? first.textContent : "";
+      closeSheet && closeSheet();
+      // a round over the bank's pairs: the question shows the book's Arabic, a right answer raises the ṣarf rating
+      const keep = window.catechismItems; let shown = "", wrongSame = false, before = 0, after = 0;
+      try {
+        window.catechismItems = () => CatechismEngine.items("marah").filter(it => (it.arq || []).length);
+        if (!(state.elo.sarf > 0)) state.elo.sarf = 1200;
+        before = state.elo.sarf;
+        startCatechism();
+        const q = document.querySelector(".cat-q .cat-arq"); shown = q ? q.textContent : "";
+        const it = M[0]; const w = CatechismEngine.distractors(it, 3); wrongSame = w.length === 3 && w.every(x => x.bank.book === "marah" && x.id !== it.id);
+        closeSheet && closeSheet();
+        runQuiz({ title: "t", ask: "t", items: [it], restart: () => {}, area: x => CatechismEngine.areaOf(x), lvl: () => 4,
+          question: () => "q", options: () => [{ html: "a", ok: true }].concat(w.map(() => ({ html: "b", ok: false }))), why: () => "" });
+        const btn = document.querySelector(".opts [data-o]"); if (btn) btn.click();
+        after = state.elo.sarf;
+      } finally { window.catechismItems = keep; closeSheet && closeSheet(); }
+      return { bad: a.bad, areas: a.areas, m: M.length, q: Q.length, unanch, notes, noteless, opt, listed, arq, srcs, firstText, shown, wrongSame, before, after,
+               area: CatechismEngine.areaOf(M[0]), all: CatechismEngine.arAll(M[0]).length };
+    });
+    if (r.bad.length) throw new Error('catechism audit: ' + r.bad.slice(0, 5).join(', '));
+    if (!r.areas.includes('sarf') || r.area !== 'sarf') throw new Error('the bank declares sarf: ' + J([r.areas, r.area]));
+    if (r.m < 35 || r.q < 6) throw new Error('bank sizes: ' + J([r.m, r.q]));
+    if (r.unanch.length) throw new Error('every Marāḥ item anchors to its chapter with all its Arabic verified: ' + r.unanch.join(', '));
+    if (r.notes.length) throw new Error('a note id is a claim: ' + r.notes.join(', '));
+    // the four hamza items wait for the mahmūz note (backlog F2); no other item may ship without a note
+    if (J(r.noteless) !== J(['marah-q13', 'marah-q14', 'marah-q15', 'marah-q34'])) throw new Error('noteless items: ' + J(r.noteless));
+    if (!r.opt.includes('marah') || !r.opt.includes('maqsud')) throw new Error('the lab offers both banks: ' + J(r.opt));
+    if (r.listed !== r.m || r.srcs !== r.m) throw new Error('the lab lists the whole bank, each item with its source line: ' + J([r.listed, r.srcs, r.m]));
+    if (r.arq < 17 || !/^فَإِنْ قِيلَ/.test(r.firstText)) throw new Error('the lab shows the book\'s own question: ' + J([r.arq, r.firstText.slice(0, 30)]));
+    if (!r.shown) throw new Error('the game shows the book\'s Arabic question under ours');
+    if (!r.wrongSame) throw new Error('the distractors are three other items of the Marāḥ bank');
+    if (!(r.after > r.before)) throw new Error('a right ṣarf answer raises the ṣarf rating: ' + r.before + ' → ' + r.after);
+    if (r.all < 2) throw new Error('arAll joins the question and the answer');
+  });
+
+  await check('v334-N2 — Shudhūr al-Dhahab feeds the naḥw notes (backlog R2): the notes of the manṣūb muḍāriʿ, the jawāzim and the mustathnā each carry Shudhūr-sourced examples, every one found in the rule it cites; the new note jarr-al-jiwar exists, resolves and opens with the book\'s own example', async () => {
+    const J = JSON.stringify;
+    const root = path.resolve(__dirname, '..');
+    const strip = s => String(s).normalize('NFC').replace(/[ً-ٰٟۖ-ۭـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/[^ء-ي]/g, '');
+    const rules = [null].concat(fs.readFileSync(path.join(root, 'research/sources/shudhur-al-dhahab-qawaid.jsonl'), 'utf8').split('\n').filter(l => l.trim()).map(l => JSON.parse(l)));
+    const matn = [''].concat(fs.readFileSync(path.join(root, 'research/sources/shudhur-al-dhahab-src.txt'), 'utf8').split('\n'));
+    const FAM = {
+      nawasib: ['nawasib-wa-jawazim-al-mudari', 'an-masdariyya', 'lam-taleel'],
+      jawazim: ['al-majzum-wal-shart-wal-jaza', 'in-shartiyya', 'al-fa-fi-jawab-al-shart', 'jawab-al-talab'],
+      mustathna: ['istithna', 'istithna-mufarragh', 'al-mustathna-wa-nawah-wa-nasbuh', 'al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa'],
+      jiwar: ['jarr-al-jiwar'],
+    };
+    const BAB = { nawasib: /نَاصِبٌ/, jawazim: /الْجَوَازِمُ/, mustathna: /الْمُسْتَثْنَى/, jiwar: /بِالْمُجَاوَرَةِ/ };
+    let total = 0; const usedRules = new Set();
+    for (const [fam, ids] of Object.entries(FAM)) for (const id of ids) {
+      const g = JSON.parse(fs.readFileSync(path.join(root, 'content/grammar', id + '.json'), 'utf8'));
+      const fed = g.examples.filter(x => /shudhur-al-dhahab/.test(x.source || ''));
+      if (!fed.length) throw new Error(id + ': no Shudhūr-sourced example');
+      if (!(g.classicalSources || []).some(s => /شذور الذهب/.test(s))) throw new Error(id + ': classicalSources does not name the Shudhūr');
+      for (const x of fed) {
+        const mr = /qawaid\.jsonl:(\d+) \(ص (\d+)\)/.exec(x.source), mm = /src\.txt:(\d+)/.exec(x.source);
+        if (!mr) throw new Error(id + ': the source names no rule line — ' + x.source);
+        const rule = rules[+mr[1]];
+        if (!rule || rule.page !== +mr[2]) throw new Error(id + ': rule ' + mr[1] + ' is not on page ' + mr[2]);
+        // the general note teaches both the nāṣibs and the jāzims, so it may quote both bābs
+        if (!BAB[fam].test(rule.bab) && !(id === 'nawasib-wa-jawazim-al-mudari' && BAB.jawazim.test(rule.bab))) throw new Error(id + ': rule ' + mr[1] + ' belongs to «' + rule.bab + '»');
+        const hay = strip(rule.examples.join(' ') + ' ' + rule.rule_ar + ' ' + (mm ? matn[+mm[1]] : ''));
+        if (!hay.includes(strip(x.ar))) throw new Error(id + ': the example is not the rule\'s own — ' + x.ar.slice(0, 40));
+        if (!(x.en && x.tr)) throw new Error(id + ': an example without both glosses');
+        total++; usedRules.add(+mr[1]);
+      }
+    }
+    if (total < 100 || usedRules.size < 39) throw new Error('floors: ' + total + ' examples from ' + usedRules.size + ' rules');
+    const r = await page.evaluate(() => {
+      const ids = ["nawasib-wa-jawazim-al-mudari", "al-majzum-wal-shart-wal-jaza", "istithna", "jarr-al-jiwar"];
+      const cites = Object.fromEntries(ids.map(id => [id, ((GRAMMAR[id] || {}).examples || []).filter(x => /shudhur/.test(x.cite || "")).length]));
+      const g = GRAMMAR["jarr-al-jiwar"];
+      openRef("jarr-al-jiwar");
+      const text = sheetInner.textContent, tags = sheetInner.querySelectorAll(".ex-cite").length;
+      closeSheet && closeSheet();
+      const citing = Object.keys(GRAMMAR).filter(k => (GRAMMAR[k].sources || []).some(s => /شذور الذهب/.test(s))).length;
+      return { cites, has: !!g, group: g && g.group, related: g ? (g.related || []).filter(n => !GRAMMAR[n]) : null, ex: g ? g.examples.map(x => x.ar) : [],
+               opens: /جُحْرُ ضَبٍّ خَرِبٍ/.test(text), tags, citing, mistakes: g ? g.mistakes.length : 0, plain: g && g.plain ? [g.plain.en.length, g.plain.tr.length] : null };
+    });
+    for (const [id, n] of Object.entries(r.cites)) if (!n) throw new Error('the built registry carries no Shudhūr citation on ' + id);
+    if (!r.has || r.group !== 'nahw') throw new Error('jarr-al-jiwar is a naḥw note: ' + J([r.has, r.group]));
+    if (r.related.length) throw new Error('its related notes resolve: ' + J(r.related));
+    if (!r.ex.includes('هَذَا جُحْرُ ضَبٍّ خَرِبٍ')) throw new Error('it carries the Shudhūr\'s own example: ' + J(r.ex));
+    if (!r.opens || r.tags < 3) throw new Error('the note opens with its example and names the book on each: ' + J([r.opens, r.tags]));
+    if (r.mistakes < 3 || !r.plain) throw new Error('it is a whole note (plain lede, mistakes): ' + J([r.mistakes, r.plain]));
+    if (r.citing < 12) throw new Error('twelve notes name the Shudhūr among their sources: ' + r.citing);
+  });
+
   await check('v330 — the compound numbers are built on two fatḥas (Shudhūr R7, R116; triage I-17, AdadEngine.murakkab330): جَاءَنِي أَحَدَ عَشَرَ رَجُلًا — أَحَدَ «عَدَدٌ مُرَكَّبٌ مَبْنِيٌّ عَلَى فَتْحِ الْجُزْأَيْنِ» and never muḍāf, عَشَرَ «الْجُزْءُ الثَّانِي … لَا مَحَلَّ لَهُ»; رَأَيْتُ خَمْسَةَ عَشَرَ طَالِبًا in the seat of naṣb as the object; اثْنَيْ عَشَرَ declined like the dual (by the yāʾ, no pronoun); the control جَاءَ خَمْسَةُ رِجَالٍ keeps its idafa; against the authored lines all 39 compounds built on two fatḥas and all 17 اثْنَا / اثْنَتَا named the dual, no first part called muḍāf, and no seat that differs from the authors\' (≥ 39 agree)', async () => {
     const J = JSON.stringify;
     const r = await page.evaluate(() => {
