@@ -277,3 +277,26 @@ Token numbers here count from 1. Not yet written as a packet.
     20:s2:31, 24:s17:27, 25:s12:20, 31:s5:53, 31:s5:57, 31:s7:27
   - luqman-wa-ibnuh:4:s3:9 صَارَ
   - qisas-al-nabiyyin-4:22:s4:10 and 22:s4:17 كَانُوا
+
+### o03-engine327: the engine-found list, verified (12 findings: 10 AI-ONAY applied, 2 AI-ŞÜPHELİ, all unconfirmed)
+
+- **Applied:**
+  - row 1, Qaṣaṣ 4 19:s7 أَنْ → maṣdariyya (تَأْكُلَ carries a fatḥa)
+  - row 3, al-Uṣūl 14:s34 أَلَّا: the line of the exceptive إِلَّا is replaced
+  - rows 6, 8, 16–21: kāna-family verbs, «فاعل» → «اسمها / اسمه», with the EN/TR corrected
+- **Gone past the source line:**
+  - rows 6 and 8: the lām answering لَوْ was added. 6:s9 is read with ḍamīr al-shaʾn as the ism and the clause «مَنْ شَرِبَهَا
+    فَقَدْ شَرِبَ» as the khabar.
+  - rows 18 and 19 فَكُونُوا: the fāʾ is now «رابطة لجواب الشرط», not «عاطفة», and the EN/TR plural is fixed.
+- **For the hoca:**
+  - **ŞÜPHELİ, rows 14 and 15, al-Uṣūl 20:s2 «كَيْفَ أَصْبَحْتَ؟ — أَصْبَحْتُ مُؤْمِنًا حَقًّا».** Is أَصْبَحَ nāqiṣa or tāmma? The
+    package disagrees with itself. The line on كَيْفَ says «خبر أصبح مقدم», while the lines on مُؤْمِنًا and the EN/TR read
+    tāmma with a ḥāl.
+  - **Row 1:** if the Karachi print reads تَأْكُلْ (jussive, matching the «وَلَا تَهْشِمْ» after it), the أَنْ is tafsīriyya and the
+    verdict reverses.
+  - **al-Uṣūl 31:s7:** the English "except that I did not fight" has a negation that the Arabic «إِلَّا أَنْ أَكُونَ قَاتَلْتُ»
+    lacks. Check it against the source.
+- **Next batch:**
+  - al-Uṣūl 6:s9 t32 فَقَدْ «عاطفة»: it is the fāʾ of the khabar of مَنْ.
+  - al-Uṣūl 25:s12 t20 أَنَا and t21 الَّذِي have no role.
+  - the three أَلَّا tokens are keyed `illa` (a lexicon issue).
