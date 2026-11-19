@@ -37,7 +37,8 @@ jobs:
           python tools/pubsplit.py prototype/reader.html ../site
           cp prototype/manifest.webmanifest prototype/sw.js prototype/privacy.html ../site/
           cp -r prototype/icons ../site/icons
-          cp ../site/reader.html ../site/index.html
+          # the front door is the entrance page (it warms the offline cache); without it, the app itself
+          if [ -f prototype/welcome.html ]; then cp prototype/welcome.html ../site/index.html; else cp ../site/reader.html ../site/index.html; fi
           ls -la ../site ../site/data
       - uses: actions/upload-pages-artifact@v3
         with:
