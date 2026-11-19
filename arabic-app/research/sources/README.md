@@ -297,3 +297,22 @@ block header gives the printed volume and page. One block per page, the whole pa
 edition's own partial vowelling, its typos and the editors' footnotes untouched; nothing normalised. See
 `tools/authoring/author_muallaqat_zuhayr.py`, whose manifest attribution lists the two vowelling layers, the verse
 numbers of every chapter and every place where the edition's print was departed from, with its witness.
+
+**`muallaqat-imri-al-qays-src.txt`** (2026-11-19) — the Shamela pages behind `content/samples/muallaqat-imri-al-qays`, the
+Muʿallaqa of Imruʾ al-Qays given WHOLE (all 81 verses of al-Zawzanī's recension), in four groups. (A) Ibn Qutayba (d. 276
+AH), «الشعر والشعراء», the edition al-Maktaba al-Shāmila names «دار الحديث، القاهرة، 1423 هـ», book 23785, the entry on
+Imruʾ al-Qays, vol. 1 pp. 108–112 (p. 109 holds the span used as chapter 1, «فبلغه مقتل أبيه … حتّى يثأر بأبيه»; the
+others bear on the khabar and on his similes): https://shamela.ws/book/23785/101, /102, /104, /105. (B) al-Zawzanī (d.
+486 AH), «شرح المعلقات السبع», the edition Shamela names «دار إحياء التراث العربي، ط 1، 1423 هـ / 2002 م», book 11253,
+«معلقة امرئ القيس», printed pp. 35–78 — the verse text, order and count of the package, with his commentary on every
+verse: https://shamela.ws/book/11253/46 through /89. (C) Muḥammad ʿAlī Ṭāhā al-Durra, «فتح الكبير المتعال إعراب المعلقات
+العشر الطوال», the edition Shamela names «مكتبة السوادي، جدة، ط 2، 1409 هـ / 1989 م», book 151017, vol. 1 pp. 23–162 —
+the iʿrāb of the whole ode (his recension orders and counts the verses differently: 92 verses), used as a CHECK on every
+token's line and as a witness for the verse text: https://shamela.ws/book/151017/22 through /161. (D) al-Khaṭīb
+al-Tibrīzī (d. 502 AH), «شرح القصائد العشر», the edition Shamela names «إدارة الطباعة المنيرية، 1352 هـ», book 37488,
+printed pp. 16–54 — a fully vowelled second witness, cited wherever a slip of the e-text is corrected or a bare vowel
+is supplied: https://shamela.ws/book/37488/15 through /53. Fetched 2026-11-19; `/book/<id>/<n>` is the site's running
+page, the block header gives the printed volume and page. One block per page, the whole page exactly as the site gives
+it — the edition's own partial vowelling, its typos and the editors' footnotes untouched; nothing normalised. See
+`tools/authoring/author_muallaqat_imri_al_qays.py`, whose manifest attribution lists the two vowelling layers, the verse
+numbers of every chapter, every correction with its witness, and the basis of every figure of balāgha.
