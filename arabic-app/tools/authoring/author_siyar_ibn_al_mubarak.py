@@ -225,6 +225,15 @@ def ADD(t, n):
     """append a note triple to a finished token's three iʿrāb lines (before the full stop)"""
     for k, x in zip(("ar", "en", "tr"), n): t["irab"][k] = t["irab"][k][:-1] + x + "."
     return t
+# the en/tr half of a case SIGN the kit's helpers state in Arabic only (their `sign=` reaches the Arabic line alone)
+S_SALIM = ("", " by the ya (a sound masculine plural)", " (yâ ile: cem-i müzekker sâlim)")
+S_MULHAQ = ("", " by the ya (it declines like the sound masculine plural)", " (yâ ile: cem-i müzekker sâlime mülhak)")
+S_DUAL = ("", " by the ya (a dual)", " (yâ ile: tesniye)")
+S_K_ALIF = ("", " by a kasra estimated on the alif", " (elif üzerinde takdîrî kesre ile)")
+S_D_YA = ("", " by a damma estimated on the ya", " (yâ üzerinde takdîrî damme ile)")
+def IT(t):
+    """the kit's hidden «he» where the pronoun is a thing, not a person"""
+    assert "«he»" in t["irab"]["en"]; t["irab"]["en"] = t["irab"]["en"].replace("«he»", "«it»"); return t
 D_FIL = ("، عَلَمٌ عَلَى وَزْنِ الْفِعْلِ مَمْنُوعٌ مِنَ الصَّرْفِ", " — a proper name on the pattern of a verb, barred from tanwin: the fatha stands for the kasra", " — fiil vezninde alem, gayr-i munsarif; kesre yerine fetha ile")
 def FA_IDHA(): return tok("فَإِذَا", "idha", "noun", ["huruf-al-shart-fil-kafiya", "maful-fih", "idha-shartiyya"],
     FA_AR + "إِذَا ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ، خَافِضٌ لِشَرْطِهِ مَنْصُوبٌ بِجَوَابِهِ، مَبْنِيٌّ عَلَى السُّكُونِ.",
@@ -326,9 +335,9 @@ S1.append({"id": "s3", "translation": {
   MI("الرَّحْمٰنِ", "rahman", (" — مِنْ أَسْمَاءِ اللهِ الْحُسْنَى", " — one of the Names of God", " — Allah'ın güzel isimlerinden"), "propn"),
   NA("الْحَنْظَلِيُّ", "hanzali", "raf", ("أَبُو عَبْدِ الرَّحْمٰنِ", "Abū ʿAbd al-Raḥmān", "Ebû Abdurrahman"), extra=["ism-mansub"]),
   tok("مَوْلَاهُمْ", "mawla", "noun", ["badal", "al-badal-wa-aqsamuh-wa-atf-al-bayan", "ism-maqsur-manqus", "idafa-definiteness", "al-bariz-al-muttasil"],
-    "بَدَلٌ مِنَ «الْحَنْظَلِيُّ» مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، مُضَافٌ، وَهُمْ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ يَعُودُ عَلَى بَنِي حَنْظَلَةَ — وَيَجُوزُ أَنْ يَكُونَ خَبَرًا لِمُبْتَدَأٍ مَحْذُوفٍ، أَيْ: هُوَ مَوْلَاهُمْ؛ وَالْمَعْنَى أَنَّ نِسْبَتَهُ إِلَيْهِمْ نِسْبَةُ وَلَاءٍ لَا نِسْبَةُ نَسَبٍ.",
-    "A badal of «the Ḥanẓalī», in raf' by a damma estimated on the alif; annexed, and the attached «them» — the Banū Ḥanẓala — is the second term of the idafa, in the seat of jarr. It may also be read as the predicate of a dropped «he is»: «their client». The formula says that he is theirs by the tie of walāʾ, not by descent.",
-    "«Hanzalî»den bedel, elif üzerinde takdîrî damme ile merfû; muzâf, bitişik «onlar» zamiri (Hanzala oğulları) muzâfun ileyh, mahallen mecrûr. Hazfedilmiş «o» mübtedâsının haberi de olabilir: «onların mevlâsı». Bu kalıp, nisbetin nesep değil velâ yoluyla olduğunu bildirir.", punct="،",
+    "بَدَلٌ مِنَ «الْحَنْظَلِيُّ» مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، مُضَافٌ، وَهُمْ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ يَعُودُ عَلَى بَنِي حَنْظَلَةَ الْمَفْهُومِينَ مِنَ النِّسْبَةِ — وَيَجُوزُ أَنْ يَكُونَ خَبَرًا لِمُبْتَدَأٍ مَحْذُوفٍ، أَيْ: هُوَ مَوْلَاهُمْ؛ وَالْمَعْنَى أَنَّ نِسْبَتَهُ إِلَيْهِمْ نِسْبَةُ وَلَاءٍ لَا نِسْبَةُ نَسَبٍ.",
+    "A badal of «the Ḥanẓalī», in raf' by a damma estimated on the alif; annexed, and the attached «them» — the Banū Ḥanẓala, understood from the nisba — is the second term of the idafa, in the seat of jarr. It may also be read as the predicate of a dropped «he is»: «their client». The formula says that he is theirs by the tie of walāʾ, not by descent.",
+    "«Hanzalî»den bedel, elif üzerinde takdîrî damme ile merfû; muzâf, bitişik «onlar» zamiri (nisbetten anlaşılan Hanzala oğulları) muzâfun ileyh, mahallen mecrûr. Hazfedilmiş «o» mübtedâsının haberi de olabilir: «onların mevlâsı». Bu kalıp, nisbetin nesep değil velâ yoluyla olduğunu bildirir.", punct="،",
     segments=[seg("مَوْلَا", "mawla", "noun"), seg("هُمْ", "pron-3mp", "pron")]),
   NA("التُّرْكِيُّ", "turki", "raf", None, (" — مَنْسُوبٌ إِلَى التُّرْكِ: كَانَ أَبُوهُ تُرْكِيًّا", " — a nisba to the Turks: his father was a Turk", " — Türklere nisbet: babası Türk idi"), extra=["ism-mansub"], punct="،", nth="2"),
   THUMMA(),
@@ -337,7 +346,7 @@ S1.append({"id": "s3", "translation": {
       note_en=" — conjoined to «the Turk»: a Turk by origin, then a man of Marw; the nisba to Marw is مَرْوَزِيّ, with an added zāy against the rule",
       note_tr=" — «Türk»e ma'tûf: aslen Türk, sonra Mervli; Merv'e nisbet kıyasa aykırı olarak zây ilavesiyle «Mervezî»dir"),
   NA("الْحَافِظُ", "hafiz", "raf", None, (" — اسْمُ فَاعِلٍ مِنْ حَفِظَ؛ وَالْحَافِظُ عِنْدَ الْمُحَدِّثِينَ: مَنِ اتَّسَعَ حِفْظُهُ لِلْحَدِيثِ وَرِجَالِهِ", " — the active participle of حَفِظَ; among the ḥadīth scholars a ḥāfiẓ is a master who holds a vast store of ḥadīth and its transmitters by heart", " — hafıza'nın ism-i fâili; muhaddislerde hâfız: hadisleri ve râvîlerini geniş ölçüde ezberinde tutan âlim"), extra=["ism-fail"], punct="،", nth="3"),
-  NA("الْغَازِي", "ghazi", "raf", None, (" — اسْمُ فَاعِلٍ مَنْقُوصٌ مِنْ غَزَا", " — a manqūṣ active participle of غَزَا: the one who goes out to fight on the frontier", " — gazâ'nın menkûs ism-i fâili: sınırda cihada çıkan"), extra=["ism-fail", "ism-maqsur-manqus"], punct="،", sign="مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ لِلثِّقَلِ"),
+  NA("الْغَازِي", "ghazi", "raf", None, cat(S_D_YA, (" — اسْمُ فَاعِلٍ مَنْقُوصٌ مِنْ غَزَا", " — a manqūṣ active participle of غَزَا: the one who goes out to fight on the frontier", " — gazâ'nın menkûs ism-i fâili: sınırda cihada çıkan")), extra=["ism-fail", "ism-maqsur-manqus"], punct="،", sign="مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ لِلثِّقَلِ"),
   tok("أَحَدُ", "ahad", "noun", ["badal", "al-badal-wa-aqsamuh-wa-atf-al-bayan", "idafa-definiteness"],
     "بَدَلٌ مِنْ «أَبُو عَبْدِ الرَّحْمٰنِ» مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "A badal of «Abū ʿAbd al-Raḥmān», in raf' by the damma, annexed.", "«Ebû Abdurrahman»dan bedel, damme ile merfû, muzâf."),
   MI("الْأَعْلَامِ", "alam-banner", (" — جَمْعُ عَلَمٍ، وَهُوَ الْجَبَلُ وَالرَّايَةُ، ثُمَّ اسْتُعِيرَ لِلرَّجُلِ الْمَشْهُورِ الَّذِي يُهْتَدَى بِهِ", " — the plural of عَلَم «a mountain, a banner», then used of the famous man by whom others find their way", " — alem'in cem'i: dağ, sancak; sonra kendisiyle yol bulunan meşhur kimse için istiâre edilmiştir"), extra=["jam-taksir", "istiara"], punct="،"),
@@ -366,7 +375,7 @@ S1.append({"id": "s5", "translation": {"en": "He set out to seek knowledge when 
   O("الْعِلْمَ", "ilm"),
   PRON_MUB("وَهُوَ", "huwa", pre="hal"),
   KB("ابْنُ", "ibn", cat(MUDAF, (" — «ابْنُ كَذَا سَنَةً» كِنَايَةٌ عَنِ السِّنِّ", " — «the son of so many years» is the idiom for age", " — «şu kadar senenin oğlu» yaş bildiren deyimdir")), ["idafa-definiteness"]),
-  MI("عِشْرِينَ", "ishrun", extra=UQUD, sign=MULHAQ_Y),
+  MI("عِشْرِينَ", "ishrun", S_MULHAQ, extra=UQUD, sign=MULHAQ_Y),
   TMZ("سَنَةً", "sana", TMZ_UQUD, punct=".")]})
 
 S1.append({"id": "s6", "translation": {
@@ -377,10 +386,10 @@ S1.append({"id": "s6", "translation": {
      "أَقْدَمُ مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — اسْمُ تَفْضِيلٍ مُضَافٌ إِلَى نَكِرَةٍ.", "«the earliest» is the mubtada, in raf', annexed — an elative annexed to an indefinite noun.", "«en eski» mübtedâ, merfû, muzâf — nekreye muzâf ism-i tafdîl."),
   MI("شَيْخٍ", "shaykh"),
   ENC_MADI("لَقِيَهُ", "laqiya", "هُ", hidden=True, **N3(NAAT_OF("jarr", "شَيْخٍ", "a shaykh", "şeyh"))),
-  tok("هُوَ", "huwa", "pron", ["mubtada-khabar", "al-mabni-wal-mudmar", "damir-fasl"],
-    "ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ ثَانٍ — وَجُمْلَةُ «هُوَ الرَّبِيعُ» فِي مَحَلِّ رَفْعٍ خَبَرُ «أَقْدَمُ»؛ وَيَجُوزُ أَنْ يَكُونَ ضَمِيرَ فَصْلٍ لَا مَحَلَّ لَهُ.",
-    "A detached pronoun built on fatha, in the seat of raf' as a second mubtada — the clause «he is al-Rabīʿ» is the predicate of «the earliest», in the seat of raf'; it may also be read as a pronoun of separation with no seat of its own.",
-    "Munfasıl zamir, fetha üzere mebnî, ikinci mübtedâ olarak mahallen merfû — «o, Rebî'dir» cümlesi «en eski»nin haberi, mahallen merfû; i'râbda mahalli olmayan fasıl zamiri de olabilir."),
+  tok("هُوَ", "huwa", "pron", ["mubtada-khabar", "al-mabni-wal-mudmar"],
+    "ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ ثَانٍ — وَجُمْلَةُ «هُوَ الرَّبِيعُ» فِي مَحَلِّ رَفْعٍ خَبَرُ «أَقْدَمُ»؛ وَلَيْسَ ضَمِيرَ فَصْلٍ عِنْدَ الْجُمْهُورِ، لِأَنَّ مَا قَبْلَهُ نَكِرَةٌ.",
+    "A detached pronoun built on fatha, in the seat of raf' as a second mubtada — the clause «he is al-Rabīʿ» is the predicate of «the earliest», in the seat of raf'; on the majority view it is not a pronoun of separation, because the word before it is indefinite.",
+    "Munfasıl zamir, fetha üzere mebnî, ikinci mübtedâ olarak mahallen merfû — «o, Rebî'dir» cümlesi «en eski»nin haberi, mahallen merfû; cumhura göre fasıl zamiri değildir, çünkü öncesi nekredir."),
   PN("الرَّبِيعُ", "rabi-name", "خَبَرُ «هُوَ» مَرْفُوعٌ بِالضَّمَّةِ", "The predicate of «he», in raf' by the damma", "«o»nun haberi, damme ile merfû", ["mubtada-khabar"]),
   BN("raf", "الرَّبِيعُ", "al-Rabīʿ", "Rebî'"),
   MI("أَنَسٍ", "anas", pos="propn"),
@@ -394,7 +403,7 @@ S1.append({"id": "s6", "translation": {
   MINHU(),
   O("نَحْوًا", "nahw", (" — أَيْ: قَدْرًا قَرِيبًا مِنْ أَرْبَعِينَ", " — «about», that is, an amount close to forty", " — «kadar», yani kırka yakın bir miktar")),
   MINP(JM("مُتَعَلِّقٌ بِمَحْذُوفٍ نَعْتٌ لِـ«نَحْوًا»", "hangs on an omitted word that qualifies «about»", "«nahven» için mahzûf bir na'te müteallik")),
-  J("أَرْبَعِينَ", "arbaun", extra=UQUD, sign=MULHAQ_Y),
+  J("أَرْبَعِينَ", "arbaun", S_MULHAQ, extra=UQUD, sign=MULHAQ_Y),
   TMZ("حَدِيثًا", "hadith", TMZ_UQUD, punct="،")]})
 
 S1.append({"id": "s7", "translation": {
@@ -405,13 +414,13 @@ S1.append({"id": "s7", "translation": {
   MADI("ارْتَحَلَ", "irtahala", ["form-viii-verbs"], hidden=True),
   FIP(),
   J("سَنَةِ", "sana", MUDAF, extra=["idafa-definiteness"]),
-  MI("إِحْدَى", "ihda", (" — مُؤَنَّثُ «أَحَد» فِي الْعَدَدِ الْمَعْطُوفِ", " — the feminine of أَحَد in the conjoined number", " — ma'tûf sayıda «ehad»in müennesi"), extra=["ism-maqsur-manqus", "asma-al-adad-fil-kafiya"], sign="بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ"),
-  ATF("وَأَرْبَعِينَ", "arbaun", case="jarr", extra=UQUD, sign="مَجْرُورٌ " + MULHAQ_Y),
+  MI("إِحْدَى", "ihda", cat(S_K_ALIF, (" — مُؤَنَّثُ «أَحَد» فِي الْعَدَدِ الْمَعْطُوفِ", " — the feminine of أَحَد in the conjoined number", " — ma'tûf sayıda «ehad»in müennesi")), extra=["ism-maqsur-manqus", "asma-al-adad-fil-kafiya"], sign="بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ"),
+  ATF("وَأَرْبَعِينَ", "arbaun", case="jarr", extra=UQUD, sign="مَجْرُورٌ " + MULHAQ_Y, note_en=" — in jarr by the ya (it declines like the sound masculine plural)", note_tr=" — yâ ile mecrûr (cem-i müzekker sâlime mülhak)"),
   ATF("وَمِائَةٍ", "mia", case="jarr", extra=["asma-al-adad-fil-kafiya"], punct="،", note_ar=" — أَيْ سَنَةَ ١٤١ مِنَ الْهِجْرَةِ", note_en=" — that is, year 141 of the Hijra", note_tr=" — yani hicretin 141. yılı"),
   MADI("وَأَخَذَ", "akhadha", hidden=True, note_ar=" — وَالْمَفْعُولُ مَحْذُوفٌ، أَيْ: أَخَذَ الْعِلْمَ", note_en="; its object is left unsaid: «he took knowledge»", note_tr="; mef'ûlü hazfedilmiştir: «ilim aldı»"),
   AN_PREP(),
-  J("بَقَايَا", "baqiyya", cat(MUDAF, (" — جَمْعُ بَقِيَّةٍ: مَنْ بَقِيَ مِنْهُمْ حَيًّا", " — the plural of بَقِيَّة: those of them who were still alive", " — bakiyye'nin cem'i: onlardan hayatta kalanlar")), extra=["jam-taksir", "idafa-definiteness", "ism-maqsur-manqus"], sign="بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ"),
-  MI("التَّابِعِينَ", "tabi", (" — جَمْعُ تَابِعٍ، وَهُمْ مَنْ لَقُوا الصَّحَابَةَ", " — the plural of تَابِع: the Successors, those who met the Companions", " — tâbi'in cem'i: sahâbeye yetişenler, tâbiîn"), extra=["jam-mudhakkar-salim", "ism-fail"], sign=SALIM_Y, punct="،")]})
+  J("بَقَايَا", "baqiyya", cat(S_K_ALIF, MUDAF, (" — جَمْعُ بَقِيَّةٍ: مَنْ بَقِيَ مِنْهُمْ حَيًّا", " — the plural of بَقِيَّة: those of them who were still alive", " — bakiyye'nin cem'i: onlardan hayatta kalanlar")), extra=["jam-taksir", "idafa-definiteness", "ism-maqsur-manqus"], sign="بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ"),
+  MI("التَّابِعِينَ", "tabi", cat(S_SALIM, (" — جَمْعُ تَابِعٍ، وَهُمْ مَنْ لَقُوا الصَّحَابَةَ", " — the plural of تَابِع: the Successors, those who met the Companions", " — tâbi'in cem'i: sahâbeye yetişenler, tâbiîn")), extra=["jam-mudhakkar-salim", "ism-fail"], sign=SALIM_Y, punct="،")]})
 
 S1.append({"id": "s8", "translation": {
   "en": "and he travelled and roamed a great deal — and so on until he died — in seeking knowledge, on campaign, in trade, in spending on his brothers in God and in fitting them out to go with him to the ḥajj.",
@@ -422,9 +431,9 @@ S1.append({"id": "s8", "translation": {
   J("التَّرْحَالِ", "tarhal", (" — مَصْدَرٌ عَلَى «تَفْعَالٍ» يَدُلُّ عَلَى الْكَثْرَةِ: كَثْرَةُ الِارْتِحَالِ", " — a masdar on تَفْعَال, the pattern of doing a thing much: constant journeying", " — çokluk bildiren «tef'âl» vezninde masdar: çokça yolculuk"), extra=["masdar"]),
   ATF("وَالتَّطْوَافِ", "tatwaf", case="jarr", extra=["masdar"], punct="،", note_ar=" — مَصْدَرٌ عَلَى «تَفْعَالٍ» مِنْ طَافَ: كَثْرَةُ الطَّوَافِ فِي الْبِلَادِ", note_en=" — a masdar on تَفْعَال from طَافَ: much roaming through the lands", note_tr=" — tâfe'den «tef'âl» vezninde masdar: beldeleri çokça dolaşma"),
   PREP("وَإِلَى", "ila", gloss_tr="«-e kadar»",
-       role_ar=" لِانْتِهَاءِ الْغَايَةِ — وَالْجَارُّ وَالْمَجْرُورُ مَعْطُوفٌ عَلَى ظَرْفٍ مُقَدَّرٍ يَدُلُّ عَلَيْهِ السِّيَاقُ، أَيْ: أَكْثَرَ مِنْ ذٰلِكَ حِينَئِذٍ وَإِلَى أَنْ مَاتَ",
-       role_en=" of the end-point — the jarr phrase is conjoined to a time left unsaid that the context supplies: «he did so then, and until he died»",
-       role_tr=" (gâye bildirir) — câr-mecrûr, siyâkın gösterdiği mukadder bir zarfa ma'tûftur: «o zaman ve ölünceye kadar böyle yaptı»"),
+       role_ar=" لِانْتِهَاءِ الْغَايَةِ — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِفِعْلٍ مَحْذُوفٍ دَلَّ عَلَيْهِ مَا قَبْلَهُ، أَيْ: وَدَامَ عَلَى ذٰلِكَ إِلَى أَنْ مَاتَ، فَالْوَاوُ عَطَفَتْ جُمْلَةً عَلَى جُمْلَةٍ؛ وَيَجُوزُ أَنْ يَكُونَ مَعْطُوفًا عَلَى ظَرْفٍ مُقَدَّرٍ يَدُلُّ عَلَيْهِ السِّيَاقُ، أَيْ: أَكْثَرَ مِنْ ذٰلِكَ حِينَئِذٍ وَإِلَى أَنْ مَاتَ",
+       role_en=" of the end-point — the jarr phrase hangs on a verb left unsaid that the words before it point to: «and he kept to that until he died», so the waw joins a sentence to a sentence; it may also be read as conjoined to a time left unsaid that the context supplies: «he did so then, and until he died»",
+       role_tr=" (gâye bildirir) — câr-mecrûr, öncesinin delâlet ettiği mahzûf bir fiile mütealliktir: «ve ölünceye kadar buna devam etti»; böylece vâv cümleyi cümleye atfeder; siyâkın gösterdiği mukadder bir zarfa ma'tûf da olabilir: «o zaman ve ölünceye kadar böyle yaptı»"),
   AN(" — وَلَا يَعْمَلُ فِي الْمَاضِي لَفْظًا؛ وَالْمَصْدَرُ الْمُؤَوَّلُ (أَيْ: مَوْتِهِ) فِي مَحَلِّ جَرٍّ بِإِلَى", "; before a past verb it changes nothing in the word; the clause it builds («his death») is in the seat of jarr after إِلَى", "; mâzîde lafzen amel etmez; kurduğu müevvel masdar («ölümü») ilâ ile mahallen mecrûr"),
   MADI("مَاتَ", "mata-die", ["hollow-verbs"], hidden=True),
   FIP(JM("مُتَعَلِّقٌ بِـ«التَّرْحَالِ وَالتَّطْوَافِ»", "attaches to «journeying and roaming»", "«yolculuk ve dolaşma»ya müteallik")),
@@ -496,7 +505,7 @@ S2.append({"id": "s3", "translation": {
   F("أُمُّ", "umm", cat(MUDAF, (" — أُمُّ الْوَلَدِ: الْجَارِيَةُ الَّتِي وَلَدَتْ لِسَيِّدِهَا", " — an أُمّ وَلَد is a slave woman who has borne her master a child", " — ümmüveled: efendisinden çocuk doğurmuş câriye")), extra=["idafa-definiteness"]),
   MI("وَلَدٍ", "walad"),
   LI_AL("لِأَمِيرِ", "amir", "أَمِيرِ", extra=["idafa-definiteness"], note_ar="، مُضَافٌ — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِمَحْذُوفٍ نَعْتٌ لِـ«أُمُّ وَلَدٍ»", note_en=", annexed; the jarr phrase hangs on an omitted word that qualifies «a mother of a child»", note_tr=", muzâf; câr-mecrûr «ümmüveled» için mahzûf bir na'te müteallik"),
-  MI("الْمُؤْمِنِينَ", "mumin", extra=["jam-mudhakkar-salim", "ism-fail"], sign=SALIM_Y),
+  MI("الْمُؤْمِنِينَ", "mumin", S_SALIM, extra=["jam-mudhakkar-salim", "ism-fail"], sign=SALIM_Y),
   MINP(JM("مُتَعَلِّقٌ بِـ«أَشْرَفَتْ»", "attaches to «looked down»", "«baktı»ya müteallik")),
   J("بُرْجٍ", "burj"),
   MINP(JM("مُتَعَلِّقٌ بِمَحْذُوفٍ نَعْتٌ لِـ«بُرْجٍ»", "hangs on an omitted word that qualifies «a tower»", "«burç» için mahzûf bir na'te müteallik")),
@@ -528,13 +537,13 @@ S2.append({"id": "s5", "translation": {
     segments=[seg("وَ", "wa-qasam", "part"), seg("اللهِ", "allah", "propn")]),
   KB("الْمُلْكُ", "mulk", (" — وَتَعْرِيفُ الْخَبَرِ بِـ«الْ» يُفِيدُ الْحَصْرَ: هٰذَا هُوَ الْمُلْكُ الْحَقُّ", " — the article on the predicate confines it: this, and nothing else, is true kingship", " — haberin «el» ile marife gelmesi hasr bildirir: gerçek saltanat işte budur"), ["qasr"], punct="،"),
   tok("لَا", "la-nafiya-lil-jins", "part", ["la-nafiya-lil-jins", "ma-la-laysa-wa-la-al-jins"],
-    "لَا النَّافِيَةُ لِلْجِنْسِ عَلَى ضَبْطِ الطَّبْعَةِ (مُلْكَ بِالنَّصْبِ)، تَعْمَلُ عَمَلَ إِنَّ — وَيَجُوزُ أَنْ تَكُونَ عَاطِفَةً فَيُرْفَعَ مَا بَعْدَهَا (لَا مُلْكُ هَارُونَ) عَطْفًا عَلَى «الْمُلْكُ».",
-    "The لَا that denies the kind, by the edition's vowelling (مُلْكَ in nasb); it governs like إِنَّ. It may also be read as the conjunction «not», and then the next word is in raf' (لَا مُلْكُ هَارُونَ), conjoined to «kingship».",
-    "Baskının harekesine göre (مُلْكَ mansûb) cinsi nefyeden lâ; inne gibi amel eder. Atıf lâ'sı da olabilir; o zaman sonrası «el-mülkü»ye ma'tûf olarak merfû okunur (لَا مُلْكُ هَارُونَ)."),
+    "لَا النَّافِيَةُ لِلْجِنْسِ عَلَى ضَبْطِ الطَّبْعَةِ (مُلْكَ بِالْفَتْحِ)، تَعْمَلُ عَمَلَ إِنَّ — وَالْأَقْيَسُ أَنْ تَكُونَ عَاطِفَةً تَنْفِي عَمَّا بَعْدَهَا مَا أُثْبِتَ لِمَا قَبْلَهَا، فَيُرْفَعَ مَا بَعْدَهَا (لَا مُلْكُ هَارُونَ) عَطْفًا عَلَى «الْمُلْكُ».",
+    "The لَا that denies the kind, by the edition's vowelling (مُلْكَ with fatha); it governs like إِنَّ. The reading the rule itself gives is the conjunction «not», which denies of what follows what was affirmed of what precedes: the next word is then in raf' (لَا مُلْكُ هَارُونَ), conjoined to «kingship».",
+    "Baskının harekesine göre (مُلْكَ fetha ile) cinsi nefyeden lâ; inne gibi amel eder. Kıyasa daha uygun olan ise atıf lâ'sı olmasıdır: öncesi için ispat edileni sonrasından nefyeder; o zaman sonrası «el-mülkü»ye ma'tûf olarak merfû okunur (لَا مُلْكُ هَارُونَ)."),
   tok("مُلْكَ", "mulk", "noun", ["la-nafiya-lil-jins", "ma-la-laysa-wa-la-al-jins", "idafa-definiteness", "hadhf-wa-taqdir"],
-    "اسْمُ لَا مَنْصُوبٌ بِالْفَتْحَةِ لِأَنَّهُ مُضَافٌ، وَخَبَرُهَا مَحْذُوفٌ — وَالْمَعْنَى: لَيْسَ مُلْكُ هَارُونَ بِمُلْكٍ يُعْتَدُّ بِهِ عِنْدَ هٰذَا.",
-    "The noun of لَا, in nasb by the fatha because it is annexed; its predicate is left unsaid — the sense: beside this, the kingship of Hārūn is no kingship worth the name.",
-    "Lâ'nın ismi; muzâf olduğu için fetha ile mansûb, haberi mahzûftur — mânâ: bunun yanında Hârûn'un saltanatı saltanat sayılmaz."),
+    "اسْمُ لَا مَنْصُوبٌ بِالْفَتْحَةِ لِأَنَّهُ مُضَافٌ، وَخَبَرُهَا مَحْذُوفٌ — وَاسْمُ «لَا» هٰذِهِ لَا يَكُونُ إِلَّا نَكِرَةً، وَهُوَ هُنَا مُعَرَّفٌ بِالْإِضَافَةِ إِلَى الْعَلَمِ، فَيُؤَوَّلُ بِالنَّكِرَةِ كَمَا أُوِّلَ قَوْلُهُمْ: «قَضِيَّةٌ وَلَا أَبَا حَسَنٍ لَهَا»؛ وَالْمَعْنَى: لَيْسَ مُلْكُ هَارُونَ بِمُلْكٍ يُعْتَدُّ بِهِ عِنْدَ هٰذَا.",
+    "The noun of لَا, in nasb by the fatha because it is annexed; its predicate is left unsaid. The noun of this لَا must be indefinite, and here the idafa to a proper name makes it definite; so it has to be taken as indefinite in sense, the way the grammarians take the saying «قَضِيَّةٌ وَلَا أَبَا حَسَنٍ لَهَا» («a hard case, and no Abū Ḥasan for it»). The sense: beside this, the kingship of Hārūn is no kingship worth the name.",
+    "Lâ'nın ismi; muzâf olduğu için fetha ile mansûb, haberi mahzûftur. Bu lâ'nın ismi ancak nekre olur; burada ise aleme izâfetle marifedir; bu yüzden, nahivcilerin «قَضِيَّةٌ وَلَا أَبَا حَسَنٍ لَهَا» sözünü te'vil ettikleri gibi, nekre te'viliyle anlaşılır. Mânâ: bunun yanında Hârûn'un saltanatı saltanat sayılmaz."),
   MI("هَارُونَ", "harun", D_AJ, "propn", DG, sign=FATHA_JARR),
   tok("الَّذِي", "alladhi", "pron", ["ism-mawsul", "naat-sifa"],
     "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ نَعْتٌ لِـ«هَارُونَ».", "A relative pronoun built on sukun, in the seat of jarr as a na't of «Hārūn».", "İsm-i mevsûl, sükûn üzere mebnî, «Hârûn»un na'tı olarak mahallen mecrûr."),
@@ -633,10 +642,10 @@ S3.append({"id": "s4", "translation": {
   MUDARI("نَصْحَبُكَ", "sahiba", who="نَحْنُ", enc="كَ", wujub=True, punct=".", **N3(MAQUL_CL)),
   YAQULU("فَيَقُولُ"),
   tok("هَاتُوا", "hati", "noun", ["imperative-amr", "ism-fil", "al-bariz-al-muttasil", "fail"],
-    "فِعْلُ أَمْرٍ جَامِدٌ عَلَى الصَّحِيحِ بِمَعْنَى «أَعْطُوا» — وَعَدَّهُ بَعْضُهُمُ اسْمَ فِعْلِ أَمْرٍ — مَبْنِيٌّ عَلَى حَذْفِ النُّونِ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
-    "«Give here!» — on the sounder view a defective imperative verb (some count it a verbal noun of command); built on the dropped nun before the waw of the group, and that waw is its doer, in the seat of raf'.",
-    "«Verin, getirin!» — sahih görüşe göre câmid emir fiili (kimileri emir ism-i fiili sayar); cemâat vâvı bitiştiği için nûnun hazfi üzere mebnî; vâv fâildir, mahallen merfû.",
-    segments=[seg("هَاتُو", "hati", "noun"), seg("ا", "pron-3mp", "pron")]),
+    "فِعْلُ أَمْرٍ جَامِدٌ عَلَى الصَّحِيحِ بِمَعْنَى «أَعْطُوا»، بِدَلِيلِ اتِّصَالِ ضَمَائِرِ الرَّفْعِ بِهِ (هَاتِي، هَاتُوا) — وَعَدَّهُ بَعْضُهُمُ اسْمَ فِعْلِ أَمْرٍ — مَبْنِيٌّ عَلَى حَذْفِ النُّونِ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
+    "«Give here!» — on the sounder view an imperative verb that has no past or present tense (jāmid), since the subject pronouns attach to it (هَاتِي، هَاتُوا); some count it a verbal noun of command. It is built on the dropped nun before the waw of the group, and that waw is its doer, in the seat of raf'.",
+    "«Verin, getirin!» — sahih görüşe göre câmid emir fiili; delili, ref zamirlerinin ona bitişmesidir (هَاتِي، هَاتُوا); kimileri emir ism-i fiili sayar. Cemâat vâvı bitiştiği için nûnun hazfi üzere mebnî; vâv fâildir, mahallen merfû.",
+    segments=[seg("هَاتُو", "hati", "noun"), seg("ا", "pron-2mp", "pron")]),
   NAFAQAT("كُمْ", punct=".")]})
 
 S3.append({"id": "s5", "translation": {
@@ -672,7 +681,7 @@ S3.append({"id": "s6", "translation": {
     "مَفْعُولٌ بِهِ ثَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ — اسْمُ تَفْضِيلٍ مِنْ «طَيِّبٍ».", "The second object, in nasb by the fatha, annexed — the elative of طَيِّب.", "İkinci mef'ûlün bih, fetha ile mansûb, muzâf — tayyib'in ism-i tafdîli."),
   MI("الطَّعَامِ", "taam", punct="،"),
   ATF("وَأَطْيَبَ", "atyab", case="nasb", extra=["ism-tafdil", "idafa-definiteness"], note_ar="، مُضَافٌ", note_en=", annexed", note_tr=", muzâf"),
-  MI("الْحَلْوَى", "halwa", (" — اسْمٌ مَقْصُورٌ: كُلُّ مَا عُولِجَ مِنَ الطَّعَامِ بِحَلَاوَةٍ", " — a noun ending in alif maqṣūra: anything made sweet", " — maksûr isim: tatlı ile yapılan her yiyecek"), extra=["ism-maqsur-manqus"], sign="بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ", punct="،")]})
+  MI("الْحَلْوَى", "halwa", cat(S_K_ALIF, (" — اسْمٌ مَقْصُورٌ: كُلُّ مَا عُولِجَ مِنَ الطَّعَامِ بِحَلَاوَةٍ", " — a noun ending in alif maqṣūra: anything made sweet", " — maksûr isim: tatlı ile yapılan her yiyecek")), extra=["ism-maqsur-manqus"], sign="بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ", punct="،")]})
 
 # ================================================ Chapter 4 — الصُّرَّةُ عَلَيْهَا اسْمُهُ (8/385–386) ================================================
 def YUKHRIJUHUM(): return MUDARI("يُخْرِجُهُمْ", "akhraja", ["form-iv-verbs"], enc="هُمْ")
@@ -683,11 +692,11 @@ def LI_KULL(): return LI_AL("لِكُلِّ", "kull", "كُلِّ", extra=["idaf
 def MA_AMARAKA():
     """مَا أَمَرَكَ عِيَالُكَ أَنْ تَشْتَرِيَ لَهُمْ — the question he puts to each of them"""
     return [
-      MA_ISTIFHAM("فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ", "in the seat of raf' as the mubtada — the clause is what is said, in the seat of nasb", "mübtedâ olarak mahallen merfû — cümle mekûlü'l-kavl, mahallen mansûb", ["mubtada-khabar"]),
-      ENC_MADI("أَمَرَكَ", "amara-command", "كَ", **N3(cat(FBAAD, (" — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ «مَا»، وَالْعَائِدُ مَحْذُوفٌ، أَيْ: أَمَرَكَ بِهِ", "; the clause is the predicate of «what», in the seat of raf'; the pronoun that returns to it is left unsaid: «ordered you (to do)»", "; cümle «mâ»nın haberi, mahallen merfû; âid zamiri mahzûftur: «sana emretti»")))),
+      MA_ISTIFHAM("فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ؛ وَلَمْ يُجْعَلْ مَفْعُولًا مُقَدَّمًا لِـ«تَشْتَرِيَ» لِأَنَّ مَعْمُولَ صِلَةِ «أَنْ» لَا يَتَقَدَّمُ عَلَيْهَا", "in the seat of raf' as the mubtada — the clause is what is said, in the seat of nasb; it is not taken as the fronted object of «buy», because nothing governed by the verb after أَنْ may come before أَنْ", "mübtedâ olarak mahallen merfû — cümle mekûlü'l-kavl, mahallen mansûb; «teşteriye»nin öne alınmış mef'ûlü sayılmaz, çünkü «en»in sılasının ma'mûlü «en»in önüne geçemez", ["mubtada-khabar"]),
+      ENC_MADI("أَمَرَكَ", "amara-command", "كَ", **N3(cat(FBAAD, (" — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ «مَا»، وَالرَّابِطُ ضَمِيرٌ مَحْذُوفٌ هُوَ مَفْعُولُ «تَشْتَرِيَ»، أَيْ: مَا أَمَرَكَ عِيَالُكَ أَنْ تَشْتَرِيَهُ", "; the clause is the predicate of «what», in the seat of raf'; the pronoun that ties it to «what» is left unsaid — it is the object of «buy»: أَنْ تَشْتَرِيَهُ", "; cümle «mâ»nın haberi, mahallen merfû; râbıt zamiri mahzûftur — bu zamir «teşteriye»nin mef'ûlüdür: أَنْ تَشْتَرِيَهُ")))),
       ENC_NOUN("عِيَالُكَ", "iyal", "كَ", "fail", note_ar=" — الْعِيَالُ: أَهْلُ بَيْتِ الرَّجُلِ الَّذِينَ يَعُولُهُمْ", note_en=" — عِيَال: a man's household, those he keeps", note_tr=" — iyâl: kişinin geçimini üstlendiği ev halkı"),
-      AN(" — وَالْمَصْدَرُ الْمُؤَوَّلُ بَدَلٌ مِنَ الْعَائِدِ الْمَحْذُوفِ، أَوْ مَنْصُوبٌ بِنَزْعِ الْخَافِضِ، أَيْ: بِأَنْ تَشْتَرِيَ", "; the clause it builds stands for the dropped pronoun — or is in nasb once its jarr letter is dropped: «(ordered you) to buy»", "; kurduğu müevvel masdar mahzûf âidden bedeldir, yahut cer harfinin hazfiyle mansûbdur: «satın almanı»"),
-      MANSUB_AN("تَشْتَرِيَ", "ishtara", ["form-viii-verbs", "naqis-verbs"], who="أَنْتَ", wujub=True, note_ar=" — وَالْمَفْعُولُ مَحْذُوفٌ، أَيْ: تَشْتَرِيَهُ", note_en="; its object is left unsaid: «to buy (it)»", note_tr="; mef'ûlü mahzûftur: «(onu) satın almanı»"),
+      AN(" — وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ بِنَزْعِ الْخَافِضِ، أَيْ: أَمَرَكَ بِأَنْ تَشْتَرِيَ؛ وَحَذْفُ الْجَارِّ قَبْلَ «أَنْ» مُطَّرِدٌ", "; the clause it builds is in the seat of nasb once its jarr letter is dropped — «told you to buy», that is, بِأَنْ تَشْتَرِيَ; dropping the jarr letter before أَنْ is regular", "; kurduğu müevvel masdar cer harfinin hazfiyle mahallen mansûbdur: «بِأَنْ تَشْتَرِيَ»; «en»den önce cer harfinin hazfi kıyâsîdir"),
+      MANSUB_AN("تَشْتَرِيَ", "ishtara", ["form-viii-verbs", "naqis-verbs"], who="أَنْتَ", wujub=True, note_ar=" — وَالْمَفْعُولُ ضَمِيرٌ مَحْذُوفٌ يَعُودُ عَلَى «مَا»، أَيْ: تَشْتَرِيَهُ، وَهُوَ الرَّابِطُ", note_en="; its object is a pronoun left unsaid that returns to «what» — «to buy (it)» — and it is what ties the clause to «what»", note_tr="; mef'ûlü «mâ»ya dönen mahzûf zamirdir: «(onu) satın almanı»; râbıt da odur"),
       LAHUM()]
 def FAYAQULU_KADHA(end):
     """فَيَقُولُ: كَذَا وَكَذَا."""
@@ -772,7 +781,7 @@ S4.append({"id": "s5", "translation": {
   "tr": "Üç gün geçince onlara bir ziyafet verir ve onları giydirirdi;"},
  "tokens": [
   FA_IDHA(),
-  KANA_HID("كَانَ", note=(" يَعُودُ عَلَى الْوَقْتِ الْمَفْهُومِ مِنَ السِّيَاقِ" + IDHA_CL[0], " — the time understood from the context" + IDHA_CL[1], " — siyâktan anlaşılan vakte döner" + IDHA_CL[2])),
+  IT(KANA_HID("كَانَ", note=(" يَعُودُ عَلَى الْوَقْتِ الْمَفْهُومِ مِنَ السِّيَاقِ" + IDHA_CL[0], " — the time understood from the context" + IDHA_CL[1], " — siyâktan anlaşılan vakte döner" + IDHA_CL[2]))),
   ZARF("بَعْدَ", "bada", *ZAMAN, note_ar=" — مُتَعَلِّقٌ بِمَحْذُوفٍ خَبَرُ كَانَ", note_en=" — it hangs on an omitted word that is the predicate of كَانَ", note_tr=" — kâne'nin mahzûf haberine müteallik"),
   MI("ثَلَاثَةِ", "thalatha", cat(MUDAF, (" — وَجَاءَ الْعَدَدُ بِالتَّاءِ لِأَنَّ مُفْرَدَ الْمَعْدُودِ (يَوْم) مُذَكَّرٌ", " — the number takes the ta because the singular of the counted noun (يَوْم) is masculine", " — sayılanın müfredi (yevm) müzekker olduğu için sayı tâ ile gelmiştir")), extra=["idafa-definiteness", "asma-al-adad-fil-kafiya"]),
   MI("أَيَّامٍ", "yawm", (" — جَمْعُ يَوْمٍ؛ وَتَمْيِيزُ الثَّلَاثَةِ إِلَى الْعَشَرَةِ جَمْعٌ مَجْرُورٌ", " — the plural of يَوْم; what is counted from three to ten stands in the plural, in jarr", " — yevm'in cem'i; üçten ona kadar sayıların temyizi cemi ve mecrûr gelir"), extra=["jam-taksir"], punct="،"),
@@ -927,7 +936,7 @@ S5.append({"id": "s6", "translation": {
     "مَا مَصْدَرِيَّةٌ ظَرْفِيَّةٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ مِنْهَا وَمِنَ الْفِعْلِ بَعْدَهَا نَائِبٌ عَنْ ظَرْفِ الزَّمَانِ، أَيْ: مُدَّةَ عَيْشِهِ.",
     "The مَا of duration: with the verb after it, it builds a masdar that stands as an adverb of time — «for as long as he lived».",
     "Masdariyye-zarfiyye mâ'sı: sonraki fiille birlikte zaman zarfı yerine geçen bir masdar kurar — «yaşadığı müddetçe»."),
-  MADI("عَاشَ", "asha-live", ["hollow-verbs"], hidden=True, punct="،")]})
+  MADI("عَاشَ", "asha-live", ["hollow-verbs"], hidden=True, punct="،", note_ar=" — وَالظَّاهِرُ أَنَّ الضَّمِيرَ لِابْنِ الْمُبَارَكِ، بِدَلِيلِ آخِرِ الْخَبَرِ: «إِلَّا بَعْدَ مَوْتِ عَبْدِ اللهِ»", note_en=" — most likely Ibn al-Mubārak, as the end of the report shows: «not until after ʿAbd Allāh's death»", note_tr=" — zâhire göre İbnü'l-Mübârek'e döner; haberin sonu buna delildir: «ancak Abdullah'ın ölümünden sonra»")]})
 
 # ================================================ Chapter 6 — جَاءَ رَجُلٌ فَقَضَى دَيْنِي (8/387) ================================================
 ABA_ABD = lambda end: [
@@ -949,7 +958,7 @@ S6.append({"id": "s1", "translation": {
   ENC_MADI("فَلَحِقَهُ", "lahiqa", "هُ", **N3(FBAAD)),
   F("الْفَتَى", "fata-youth", (" — اسْمٌ مَقْصُورٌ", " — a noun ending in alif maqṣūra: the damma is estimated on the alif", " — maksûr isim; damme elif üzerinde takdîrîdir"), extra=["ism-maqsur-manqus"], sign="بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ"),
   ALAP(JM("مُتَعَلِّقٌ بِمَحْذُوفٍ حَالٍ، أَيْ: لَحِقَهُ وَهُوَ عَلَى مَسَافَةِ مَرْحَلَتَيْنِ", "hangs on an omitted hal: «he caught up with him when he was two stages away»", "mahzûf bir hâle müteallik: «o iki konak mesafedeyken ona yetişti»")),
-  J("مَرْحَلَتَيْنِ", "marhala", (" — الْمَرْحَلَةُ: الْمَسَافَةُ الَّتِي يَقْطَعُهَا الْمُسَافِرُ فِي يَوْمٍ", " — مَرْحَلَة: a stage, the distance a traveller covers in a day", " — merhale: yolcunun bir günde aldığı mesafe, konak"), extra=["al-muthanna"], sign="بِالْيَاءِ لِأَنَّهُ مُثَنًّى"),
+  J("مَرْحَلَتَيْنِ", "marhala", cat(S_DUAL, (" — الْمَرْحَلَةُ: الْمَسَافَةُ الَّتِي يَقْطَعُهَا الْمُسَافِرُ فِي يَوْمٍ", " — مَرْحَلَة: a stage, the distance a traveller covers in a day", " — merhale: yolcunun bir günde aldığı mesafe, konak")), extra=["al-muthanna"], sign="بِالْيَاءِ لِأَنَّهُ مُثَنًّى"),
   MINA(),
   RAQQA("jarr", punct="،")]})
 
