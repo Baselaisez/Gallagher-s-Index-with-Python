@@ -17030,6 +17030,187 @@ if (!CHROME) {
     if (bad.length) throw new Error(bad.join(' ;; '));
   });
   // <<< v334-C
+  await check('v334-S — the naive-Bayes taggers score a word from one table per model and return the per-label loop\'s numbers to the digit (the trained model and a fold\'s); their held-out grades run in slices and equal the whole run; the Jumla lab fills its grade line with no long task', async () => {
+    const r = await page.evaluate(async () => {
+      const out = { diff: [], n: 0 };
+      // the reference: the per-label loop exactly as v333 wrote it (SarfTagger.tag0), every label ranked
+      const ref = (T, m, word) => { const fs = T.feats(word), wt = 1 / Math.pow(fs.length, T.ALPHA);
+        const sc = m.L.map(y => { let lp = Math.log((m.n[y] + 1) / (m.total + m.L.length)); fs.forEach(k => { lp += wt * Math.log(((m.f[y][k] || 0) + 1) / (m.n[y] + 2)); }); return { y, lp }; });
+        const mx = Math.max(...sc.map(x => x.lp)); let z = 0; sc.forEach(x => { x.p = Math.exp(x.lp - mx); z += x.p; }); sc.forEach(x => { x.p /= z; });
+        return sc.sort((a, b) => b.p - a.p).map(x => x.y + "=" + x.p).join(" "); };
+      const mine = (T, m, word) => { const save = T._model; T._model = m; try { return T.tag0(word, m.L.length).map(x => (x.y || x.wazn) + "=" + x.p).join(" "); } finally { T._model = save; } };
+      for (const T of [SarfTagger, IsmTagger]) {
+        const rows = T.rows(), m = T.train(), held = new Set(T.ROOTS.filter((_, i) => i % 5 === 2)), fm = T.fit(rows.filter(x => !held.has(x.root)));
+        for (const mm of [m, fm]) for (let i = 0; i < rows.length; i += Math.max(1, Math.floor(rows.length / 400))) { out.n++; const a = mine(T, mm, rows[i].w), b = ref(T, mm, rows[i].w); if (a !== b && out.diff.length < 3) out.diff.push(rows[i].w); }
+        for (const w of ["كِتَاب", "يَكْتُبُ", "مَدْرَسَةٌ", "اسْتَغْفَرَ", "", "x"]) { out.n++; if (mine(T, m, w) !== ref(T, m, w) && out.diff.length < 3) out.diff.push(w); }
+        // the sliced Sarf lp, too: tag0 hands it out
+        if (T === SarfTagger) { const w = rows[3].w, a = T.tag0(w, 5).map(x => x.lp), fs = T.feats(w), wt = 1 / Math.pow(fs.length, T.ALPHA);
+          const b = T.tag0(w, 5).map(x => { let lp = Math.log((m.n[x.y] + 1) / (m.total + m.L.length)); fs.forEach(k => { lp += wt * Math.log(((m.f[x.y][k] || 0) + 1) / (m.n[x.y] + 2)); }); return lp; });
+          out.lpSame = JSON.stringify(a) === JSON.stringify(b); }
+      }
+      // the held-out grade: in 4 ms slices (another tagger call between slices) = drained in one go
+      out.eval = {};
+      for (const [name, T] of [["sarf", SarfTagger], ["ism", IsmTagger]]) {
+        T._eval = null; T._evalG334 = null; let steps = 0, longest = 0; const t0 = performance.now();
+        for (;;) { const t = performance.now(); const d = T.evalStep334(4); longest = Math.max(longest, performance.now() - t); steps++; if (d) break; if (steps % 40 === 0) T.tag("كَاتِب", 2); }
+        const slicedMs = performance.now() - t0, sliced = JSON.stringify(T._eval);
+        T._eval = null; T._evalG334 = null; const t1 = performance.now(); const whole = JSON.stringify(T.evalUnseen()); const wholeMs = performance.now() - t1;
+        out.eval[name] = { same: sliced === whole, steps, longest: Math.round(longest), wholeMs: Math.round(wholeMs), slicedMs: Math.round(slicedMs), top1: T._eval.top1, n: T._eval.n };
+      }
+      // the Jumla lab: the grade line fills from slices — no task over the ceiling while it does
+      SarfTagger._eval = null; SarfTagger._evalG334 = null; IsmTagger._eval = null; IsmTagger._evalG334 = null;
+      Relax._mem.delete("tagger-eval"); try { localStorage.removeItem(Relax.key("tagger-eval")); } catch (e) {}
+      const per = {}; const wrap = (o, k, tag) => { const f = o[k]; o[k] = function () { const t = performance.now(); try { return f.apply(this, arguments); } finally { per[tag] = Math.max(per[tag] || 0, Math.round(performance.now() - t)); } }; return () => { o[k] = f; }; };
+      const undo = [wrap(SarfTagger, "evalStep334", "sarfStep"), wrap(IsmTagger, "evalStep334", "ismStep"), wrap(IrabModel, "cvPlan", "cvPlan"), wrap(IrabModel, "cvPlanStep", "cvStep"), wrap(IrabModel, "cvFinish", "cvFinish"), wrap(IrabModel, "accuracy", "accuracy")];
+      closeSheet(); openAtolye(); const b = document.querySelector('.labrail [data-lab="jumla"]'); if (b) b.click();   /* the harness analyses the lab's sentence in the click (RENDER_SYNC) */
+      await new Promise(res => setTimeout(res, 0));
+      const tasks = []; const po = new PerformanceObserver(l => l.getEntries().forEach(e => tasks.push(Math.round(e.duration)))); po.observe({ type: "longtask" });
+      const t2 = Date.now(); while (!((document.getElementById("mlTagLine") || {}).textContent || "").trim() && Date.now() - t2 < 120000) await new Promise(res => setTimeout(res, 100));
+      await new Promise(res => setTimeout(res, 50)); po.disconnect(); undo.forEach(u => u()); out.per = per;
+      out.lab = { line: ((document.getElementById("mlTagLine") || {}).textContent || "").trim().slice(0, 60), ms: Date.now() - t2, longest: Math.max(0, ...tasks) };
+      out.labSame = JSON.stringify(Relax.get("tagger-eval", true)) === JSON.stringify({ v: { top1: SarfTagger._eval.top1, top2: SarfTagger._eval.top2, examples: SarfTagger._eval.examples, roots: SarfTagger._eval.roots }, i: { top1: IsmTagger._eval.top1, top2: IsmTagger._eval.top2, examples: IsmTagger._eval.examples, roots: IsmTagger._eval.roots, shapes: IsmTagger._eval.shapes } });
+      closeSheet();
+      return out;
+    });
+    if (process.env.SMOKE_TRACE) console.log('  ' + JSON.stringify(r).slice(0, 1500));   // the measured numbers, for a triage run
+    if (r.diff.length || r.n < 1000) throw new Error('the table score differs from the per-label loop: ' + JSON.stringify([r.n, r.diff]));
+    if (!r.lpSame) throw new Error('SarfTagger.tag0 lp differs from the per-label sum');
+    for (const k of ['sarf', 'ism']) { const e = r.eval[k];
+      if (!e.same || e.steps < 20 || !(e.n > 1000) || !(e.top1 > 0.3)) throw new Error('the sliced held-out grade differs from the whole run: ' + k + ' ' + JSON.stringify(e));
+      if (e.longest > 250) throw new Error('a held-out slice held the thread: ' + k + ' ' + JSON.stringify(e));   // measured 4–25 ms at 1×; the whole run was one 6-s task at 1× (24 s at 4×) before
+      if (e.wholeMs > 3500) throw new Error('the held-out grade is slow again: ' + k + ' ' + JSON.stringify(e)); }
+    if (!r.lab.line || !r.labSame) throw new Error('the Jumla lab\'s grade line did not fill from the sliced grade: ' + JSON.stringify(r.lab));
+    if (!(r.per.sarfStep >= 0) || Math.max(r.per.sarfStep, r.per.ismStep || 0) > 250) throw new Error('the Jumla lab held the thread while it graded: ' + JSON.stringify([r.per, r.lab]));   // each slice ≤ 25 ms at 1×; v333 graded in one 6-s task at 1× (24 s at 4×)
+  });
+
+  await check('v334-S — the five corpus walks the games and labs read (the ʿalāma audit, the adab lint, the tartīb audit, the ḥadhf and wujūh audits, the ḥadhf and wujūh game walks) run as generators: a walk in slices equals the walk drained in one go; the games hub fills those counts from slices, the same numbers', async () => {
+    const r = await page.evaluate(async () => {
+      const out = { cases: {} };
+      const run = (name, reset, step, whole, proj) => {
+        reset(); let steps = 0, longest = 0, other = 0;
+        for (;;) { const t = performance.now(); const d = step(3); longest = Math.max(longest, performance.now() - t); steps++; if (d) break; if (steps % 25 === 0) { try { other += foldAr("كِتَاب").length; } catch (e) {} } if (steps > 200000) break; }
+        const sliced = proj(whole()); reset(); const t0 = performance.now(); const w = proj(whole()); const ms = performance.now() - t0;
+        out.cases[name] = { same: sliced === w && sliced.length > 20, steps, longest: Math.round(longest), wholeMs: Math.round(ms), len: w.length };
+      };
+      const J = x => JSON.stringify(x);
+      run("sign", () => { SignEngine._audit = null; SignEngine._g334 = null; }, b => SignEngine.auditStep334(b), () => SignEngine.audit(), J);
+      run("adab", () => { AdabEngine._lint = null; AdabEngine._g334 = null; }, b => AdabEngine.lintStep334(b), () => AdabEngine.lint(), J);
+      run("tartib", () => { TartibEngine._audit = null; TartibEngine._g334 = null; }, b => TartibEngine.auditStep334(b), () => TartibEngine.audit(), J);
+      run("hadhfAudit", () => { HadhfEngine._audit = null; HadhfEngine._g334 = null; }, b => HadhfEngine.auditStep334(b), () => HadhfEngine.audit(), J);
+      run("wujuhMa", () => { WujuhEngine._audit = null; WujuhEngine._g334ma = null; WujuhEngine._g334core = null; }, b => WujuhEngine.auditStep334(b, { withMa: true }), () => WujuhEngine.audit(0, { withMa: true }), J);
+      run("wujuhCore", () => { WujuhEngine._audit = null; WujuhEngine._g334ma = null; WujuhEngine._g334core = null; }, b => WujuhEngine.auditStep334(b), () => WujuhEngine.audit(0), J);
+      const itemsProj = a => a.map(x => x.st.id + "/" + x.sen.id + "/" + x.ti + "/" + J(x.v)).join("|");
+      CUR = null; GAME_SCOPE_FALLBACK = false;
+      run("hadhfItems", () => { HADHF_LIB334.g = null; HADHF_LIB334.items = null; HADHF_CACHE = { scope: null, items: null }; }, b => hadhfItemsStep334(b), () => hadhfItems(), itemsProj);
+      run("wujuhItems", () => { WUJUH_LIB334.g = null; WUJUH_LIB334.items = null; WUJUH_CACHE = { scope: null, items: null }; }, b => wujuhItemsStep334(b), () => wujuhItems(), itemsProj);
+      out.copy = hadhfItems() !== hadhfItems() || HADHF_LIB334.items !== hadhfItems();   // the lib walk hands out a copy (the games shuffle in place)
+      // the hub: every other count known, these five owed and their walks unbegun — the counts fill from slices and equal supply()
+      renderLibrary(); const ids = ["gSign", "gAdab", "gTartib", "gHadhf", "gWujuh"];
+      GameFactory.CATALOGUE.forEach(g => { if (!ids.includes(g.id)) GameFactory.supplyOf(g.id); });
+      const want = {}; ids.forEach(id => { want[id] = GameFactory.get(id).supply(); });
+      ids.forEach(id => { const k = "supply:__lib:" + id; Relax._mem.delete(k); try { localStorage.removeItem(Relax.key(k)); } catch (e) {} });
+      SignEngine._audit = null; SignEngine._g334 = null; AdabEngine._lint = null; AdabEngine._g334 = null; TartibEngine._audit = null; TartibEngine._g334 = null;
+      HADHF_LIB334.g = null; HADHF_LIB334.items = null; HADHF_CACHE = { scope: null, items: null }; WUJUH_LIB334.g = null; WUJUH_LIB334.items = null; WUJUH_CACHE = { scope: null, items: null };
+      SIGN_ITEMS = null; ADAB_CACHE = null; TARTIB_ITEMS = null;
+      await new Promise(res => setTimeout(res, 0));   /* the precount above is this task's own work, not the hub's */
+      const tasks = []; const po = new PerformanceObserver(l => l.getEntries().forEach(e => tasks.push(Math.round(e.duration)))); po.observe({ type: "longtask" });
+      const per = {}; const wrap = (o, k, tag) => { const f = o[k]; o[k] = function () { const t = performance.now(); try { return f.apply(this, arguments); } finally { const d = performance.now() - t; per[tag] = Math.max(per[tag] || 0, Math.round(d)); } }; return () => { o[k] = f; }; };
+      const undo = ids.map(id => wrap(SUPPLY_STEP334, id, "step:" + id)).concat([wrap(GameFactory, "supplyOf", "supplyOf")]);
+      const t0 = performance.now(); openGames(); const openMs = performance.now() - t0;
+      const filled = () => ids.every(id => GameFactory.supplyKnown(id) !== undefined);
+      const t1 = Date.now(); while (!filled() && Date.now() - t1 < 120000) await new Promise(res => setTimeout(res, 50));
+      po.disconnect(); undo.forEach(u => u()); out.per = per;
+      out.hub = { openMs: Math.round(openMs), ms: Date.now() - t1, longest: Math.max(0, ...tasks), counts: ids.map(id => GameFactory.supplyKnown(id) + "=" + want[id]).join(" "),
+        same: ids.every(id => GameFactory.supplyKnown(id) === want[id]), painted: ids.every(id => { const b = document.getElementById(id); return b && !b.querySelector(".g-wait"); }) };
+      closeSheet();
+      return out;
+    });
+    if (process.env.SMOKE_TRACE) console.log('  ' + JSON.stringify(r).slice(0, 1500));   // the measured numbers, for a triage run
+    for (const [k, c] of Object.entries(r.cases)) {
+      if (!c.same || c.steps < 2) throw new Error('the walk in slices differs from the walk drained whole: ' + k + ' ' + JSON.stringify(c));
+      if (c.longest > 400) throw new Error('a walk\'s slice held the thread: ' + k + ' ' + JSON.stringify(c));   // a slice is 3 ms + one sentence; the walks were single tasks of 0.5–0.8 s at 1× (2–3 s at 4×)
+    }
+    if (!r.copy) throw new Error('the library walk must hand out a fresh copy');
+    if (!r.hub.same || !r.hub.painted) throw new Error('the hub\'s counts from slices differ from supply(): ' + JSON.stringify(r.hub));
+    const worst = Math.max(...Object.values(r.per || {}));   // every task the hub ran for these five counts: a walk's slice, then supplyOf on a whole walk
+    if (!(worst >= 0) || worst > 200 || Object.keys(r.per || {}).length < 6) throw new Error('the games hub held the thread while it counted: ' + JSON.stringify([r.per, r.hub]));   // 9–10 ms at 1×; v333 counted ʿalāma in one 0.6–0.8-s task (3.2 s at 4×)
+  });
+
+  await check('v334-S — a story with no sentence read adds nothing to the cloze walk (no sentence id collides with a key every object has), so the walk skips it and returns the full walk\'s items; foldAr\'s memo returns foldAr0\'s fold for every row of the search index; the search index is queued before the game pools', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      // (1) senRead on an empty progress map is false for every sentence of the library
+      let bad = 0, all = 0; for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) { all++; if (senRead({}, sen, ch, st)) bad++; }
+      out.empty = { bad, all };
+      // (2) clozeItems = the v333 walk, with a progress map that reads a few sentences of three stories and none of the rest
+      const saveP = state.progress, saveCur = CUR; CUR = null; GAME_SCOPE_FALLBACK = false;
+      const prog = {}; STORIES.slice(0, 3).forEach(st => { const p = {}; st.chapters.forEach(ch => ch.sentences.slice(0, 6).forEach(sen => { p[progKey(sen, ch, st)] = 1; })); prog[st.id] = p; });
+      state.progress = prog;
+      const ref = () => { const items = []; gameStories().forEach(st => { const pr = state.progress[st.id] || {}; const byPos = glossaryByPos(st);
+        st.chapters.forEach(ch => ch.sentences.forEach(sen => { if (!senRead(pr, sen, ch, st)) return; const present = new Set(sen.tokens.map(t => t.lex));
+          sen.tokens.forEach((tok, ti) => { const e = st.glossary[tok.lex]; if (!e || !e.level || !e.lemma) return; if (!CLOZE_POS.includes(e.pos)) return; if (phraseAt(sen, ti)) return;
+            const bucket = byPos[e.pos] || []; if (bucket.length < 3) return; items.push({ storyId: st.id, sen, ti, tok, entry: e, bucket, present }); }); })); }); return items; };
+      const P = a => a.map(x => x.storyId + "/" + x.sen.id + "/" + x.ti + "/" + x.bucket.length).join("|");
+      const t0 = performance.now(); const mine = clozeItems(); out.clozeMs = Math.round(performance.now() - t0);
+      out.cloze = { same: P(mine) === P(ref()), n: mine.length };
+      state.progress = saveP; CUR = saveCur;
+      // (3) foldAr = foldAr0 on every haystack and key of the index
+      const rows = buildCorpus(); let diff = 0; FOLD_MEMO334.clear();
+      for (const x of rows) { if (foldAr(x.hay) !== foldAr0(x.hay) || x.fhay !== foldAr0(x.hay) || x.fBare !== foldAr0(x.tok.s.bare || "")) diff++; if (foldAr(x.hay) !== foldAr0(x.hay)) diff++; }
+      out.fold = { diff, rows: rows.length, memo: FOLD_MEMO334.size, nonString: foldAr(undefined) === foldAr0(undefined) && foldAr(12) === foldAr0(12) };
+      // (4) the idle queue: the search index and fold before the pools; the walks at the end
+      const src = bootWithData.toString(); out.order = src.indexOf('"search-index"') > 0 && src.indexOf('"search-index"') < src.indexOf("[DUEL_POOL") && src.indexOf('"audits334"') > src.indexOf("[DUEL_POOL");
+      return out;
+    });
+    if (process.env.SMOKE_TRACE) console.log('  ' + JSON.stringify(r).slice(0, 1500));   // the measured numbers, for a triage run
+    if (r.empty.bad !== 0 || r.empty.all < 5000) throw new Error('a sentence reads as read on an empty progress map: ' + JSON.stringify(r.empty));
+    if (!r.cloze.same || r.cloze.n < 1) throw new Error('the cloze walk differs from the v333 walk: ' + JSON.stringify(r.cloze));
+    if (r.clozeMs > 400) throw new Error('the cloze walk is slow again: ' + r.clozeMs);   // a hub count re-walked all 78 texts' glossaries and sentences: 915 ms at 4× on a fresh profile
+    if (r.fold.diff || r.fold.rows < 50000 || !r.fold.nonString) throw new Error('foldAr\'s memo differs from foldAr0: ' + JSON.stringify(r.fold));
+    if (!r.order) throw new Error('the search index must be queued before the game pools, the walks after them');
+  });
+
+  await check('v334-S — a search typed before the index is built paints «…» at once and the hits follow from slices of the build — the same sheet the one-shot build gives; the shelf\'s cards are laid out only near the viewport', async () => {
+    const r = await page.evaluate(async () => {
+      const out = {}; const q = "كتب";
+      const sheetText = () => [...sheetInner.querySelectorAll(".ref-intro, .hit-lex, .hit, .txt-hit")].map(e => e.textContent.replace(/\s+/g, " ").trim()).join("|");
+      closeSheet(); CORPUS = null; CORPUS_PART144 = null; window.__QISSA_RENDER_SYNC = false;
+      try {
+        const t0 = performance.now(); openSearch(q); out.tapMs = Math.round(performance.now() - t0); out.wait = !!sheetInner.querySelector(".search-wait");
+        const t1 = Date.now(); while (sheetInner.querySelector(".search-wait") && Date.now() - t1 < 60000) await new Promise(res => setTimeout(res, 50));
+        out.fillMs = Date.now() - t1; out.sliced = sheetText();
+      } finally { window.__QISSA_RENDER_SYNC = true; }
+      closeSheet(); CORPUS = null; CORPUS_PART144 = null; const t2 = performance.now(); openSearch(q); out.oneShotMs = Math.round(performance.now() - t2); out.whole = sheetText(); closeSheet();
+      out.same = out.sliced === out.whole && out.whole.length > 50;
+      renderLibrary(); const card = document.querySelector(".lib-card"); const cs = card && getComputedStyle(card); out.cv = cs ? cs.contentVisibility + " " + cs.containIntrinsicHeight : "";
+      out.cards = document.querySelectorAll(".lib-card").length; out.storyN = STORIES.length;
+      return out;
+    });
+    if (process.env.SMOKE_TRACE) console.log('  ' + JSON.stringify(r).slice(0, 600));
+    if (!r.wait) throw new Error('the sheet did not paint «…» while the index was unbuilt: ' + JSON.stringify(r).slice(0, 300));
+    if (!r.same) throw new Error('the hits after the sliced build differ from the one-shot build: ' + JSON.stringify([r.sliced.slice(0, 200), r.whole.slice(0, 200)]));
+    if (r.tapMs > 250) throw new Error('the keystroke built the index in its own task: ' + JSON.stringify(r).slice(0, 300));   // the one-shot build: 0.4–0.5 s at 1×, 2 s at 4×
+    if (!/^auto/.test(r.cv) || r.cards !== r.storyN) throw new Error('the shelf cards must be content-visibility:auto: ' + JSON.stringify([r.cv, r.cards, r.storyN]));
+  });
+
+  await check('v334-S — the parsed bodies\' repeated strings are pointed at one copy under Quiet (one walk, a slice at a time): every story\'s chapters and morph serialise to the same characters before and after, and the walk is queued last, after the readiness jobs', async () => {
+    const r = await page.evaluate(() => {
+      const fnv = s => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(36) + ":" + s.length; };
+      const sig = () => STORIES.map(st => st.id + "=" + fnv(JSON.stringify(st.chapters)) + "/" + fnv(JSON.stringify(st.morph || null))).join("|");
+      const before = sig();   // reading every body parses it, as the Quiet job before this one does
+      DEDUP334.g = null; DEDUP334.done = false; DEDUP334.dup = 0; DEDUP334.seen = 0;
+      let steps = 0, longest = 0; for (;;) { const t = performance.now(); const d = dedupStep334(10); longest = Math.max(longest, performance.now() - t); steps++; if (d) break; if (steps > 100000) break; }
+      const after = sig(); const src = bootWithData.toString();
+      return { same: before === after, steps, longest: Math.round(longest), dup: DEDUP334.dup, seen: DEDUP334.seen, n: STORIES.length,
+        order: src.indexOf('"stories-parse"') > 0 && src.indexOf('"stories-dedup334"') > src.indexOf('"audits334"') && src.indexOf('"audits334"') > src.indexOf('"stories-parse"') };
+    });
+    if (process.env.SMOKE_TRACE) console.log('  ' + JSON.stringify(r));
+    if (!r.same) throw new Error('a body serialises differently after the strings were pointed at one copy');
+    if (r.dup < 300000 || r.seen < 50000 || r.steps < 5) throw new Error('the walk did not find the repeated strings: ' + JSON.stringify(r));   // 1.01 M repeats of 230 k strings on the v334 shelf
+    if (r.longest > 300) throw new Error('a dedup slice held the thread: ' + JSON.stringify(r));
+    if (!r.order) throw new Error('the dedup walk must be queued last, after the bodies parse and the walks');
+  });
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses) and Zuhayr (62) on the «Poetry» shelf — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

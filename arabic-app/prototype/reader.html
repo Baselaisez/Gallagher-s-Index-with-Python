@@ -1745,6 +1745,9 @@
     position: relative; overflow: hidden; min-height: var(--tap);
     transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease),
                 transform var(--dur-base) var(--ease);
+    /* (v334-S) a card off screen is not laid out or painted until it nears the viewport: the shelf's 78 cards cost 180–320 ms
+       a render at 4× CPU, 100–130 with this (a card's own size is remembered once drawn; 220 px is the median at 412 px) */
+    content-visibility: auto; contain-intrinsic-size: auto 220px;
   }
   /* The level's colour, as a spine on the card — the same colour system the
      word underlines already speak. */
@@ -4588,6 +4591,25 @@ function hydrateStory148(st){
       set(v){ Object.defineProperty(st, k, { value: v, writable: true, configurable: true, enumerable: true }); } }); }
   return st;
 }
+/* (v334-S) the parsed bodies hold the same strings many times over — every token of a lemma its own copy of the lex, the pos, the
+   iʿrāb phrase that recurs a thousand times. A walk under Quiet points every repeated string at one copy: the values are the
+   same strings (=== equal, the same characters), only the duplicates are freed — 21 MB of the 92 MB heap at 1× after the bodies
+   parse. A body that parses later keeps its own copies; nothing reads the difference. */
+const DEDUP334 = { g: null, done: false, dup: 0, seen: 0 };
+function* dedupGen334(){
+  const seen = new Map();
+  for (const st of STORIES) for (const k of ["morph", "chapters"]) {
+    if (!storyParsed148(st, k)) continue;
+    const stack = [st[k]]; let c = 0;
+    while (stack.length) { const o = stack.pop(); if (!o || typeof o !== "object") continue;
+      for (const key of Object.keys(o)) { const v = o[key];
+        if (typeof v === "string") { const w = seen.get(v); if (w === undefined) { seen.set(v, v); DEDUP334.seen++; } else { try { o[key] = w; } catch (e) {} DEDUP334.dup++; } }
+        else if (v && typeof v === "object") stack.push(v); }
+      if (++c % 150 === 0) yield; }
+    yield; }
+  DEDUP334.done = true;
+}
+function dedupStep334(b){ return DEDUP334.done || Gen334.step(DEDUP334, "g", dedupGen334, b); }
 function hydrateStories148(){ try { STORIES.forEach(hydrateStory148); } catch (e) {} }
 function storyParsed148(st, k){ const d = Object.getOwnPropertyDescriptor(st, k || "chapters"); return !(d && d.get); }
 function chapterCount148(st){ return st.stats && typeof st.stats.chapters === "number" ? st.stats.chapters : (st.chapters || []).length; }
@@ -17328,8 +17350,8 @@ function renderLabBody0(){
     // first, measure after, fill the line in when the number exists.
     Relax.laterSteps("irab-cv2", () => IrabModel._cv ? null : IrabModel.cvPlan(), p => p ? IrabModel.cvPlanCount(p) : 0, (p, k) => IrabModel.cvPlanStep(p, k),
       p => { const cv = IrabModel._cv || IrabModel.cvFinish(p), acc = IrabModel.accuracy(); return { top1: cv.top1, top2: cv.top2, n: cv.n, folds: cv.folds, r: acc.top1 }; },   /* (wave 113) one fold per task */
-      v => { const el = document.getElementById("jumlaScore"); if (!el) return; el.textContent = v ? ui().mlScore.replace("{n}", v.n).replace("{k}", v.folds).replace("{a}", Math.round(v.top1 * 100)).replace("{b}", Math.round(v.top2 * 100)).replace("{r}", Math.round(v.r * 100)) : "…"; }, { persist: true });   /* (wave 32p) */
-    Relax.later("tagger-eval", () => { const v = SarfTagger.evalUnseen(), i = IsmTagger.evalUnseen(); return { v: { top1: v.top1, top2: v.top2, examples: v.examples, roots: v.roots }, i: { top1: i.top1, top2: i.top2, examples: i.examples, roots: i.roots, shapes: i.shapes } }; },
+      v => { const el = document.getElementById("jumlaScore"); if (!el) return; el.textContent = v ? ui().mlScore.replace("{n}", v.n).replace("{k}", v.folds).replace("{a}", Math.round(v.top1 * 100)).replace("{b}", Math.round(v.top2 * 100)).replace("{r}", Math.round(v.r * 100)) : "…"; }, { persist: true, budget: 40 });   /* (wave 32p; v334-S 40 ms slices) */
+    Relax.laterUntil334("tagger-eval", b => SarfTagger.evalStep334(b) && IsmTagger.evalStep334(b), () => { const v = SarfTagger.evalUnseen(), i = IsmTagger.evalUnseen(); return { v: { top1: v.top1, top2: v.top2, examples: v.examples, roots: v.roots }, i: { top1: i.top1, top2: i.top2, examples: i.examples, roots: i.roots, shapes: i.shapes } }; },
       r => { const line = document.getElementById("mlTagLine"); if (!line || !r) return; const pc = x => Math.round(x * 100); const v = r.v, i = r.i;
         line.textContent = ui().tagScore.replace("{v}", pc(v.top1)).replace("{v2}", pc(v.top2)).replace("{vn}", v.examples).replace("{vr}", v.roots)
           .replace("{i}", pc(i.top1)).replace("{i2}", pc(i.top2)).replace("{in}", i.examples).replace("{ir}", i.roots).replace("{is}", i.shapes); }, { persist: true, delay: 120 });
@@ -18895,9 +18917,12 @@ const DIACRITICS_RE = /[ً-ْٓ-ٰٕ]/g;
 function strip(t){ return String(t).replace(DIACRITICS_RE, ""); }
 // ا / أ / إ / آ and ة / ه are the two spellings learners actually get wrong when
 // typing, so fold them before matching.
-function foldAr(t){ return strip(t).replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي"); }
+function foldAr0(t){ return strip(t).replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي"); }
+const FOLD_MEMO334 = new Map();   /* (v334-S) the search index folds the same words again and again: a string's fold is kept */
+function foldAr(t){ if (typeof t !== "string") return foldAr0(t); let v = FOLD_MEMO334.get(t); if (v === undefined) { v = foldAr0(t); if (FOLD_MEMO334.size > 60000) FOLD_MEMO334.clear(); FOLD_MEMO334.set(t, v); } return v; }
 
 let searchQuery = "";
+let SEARCH_BUILD334 = false;   /* (v334-S) the index is being built in slices for a waiting query */
 // ---------- search reaches into the text (v319 · design handoff 13c) ----------
 // A learner who types جيش wants to see it IN USE, and one who types «army» or «ordu» has only the translation to go
 // by. One flat index over every sentence (built once, on the first search): the bare letters of each token and the
@@ -19037,7 +19062,17 @@ class DoctrineSearch {
 function openSearch(q){
   if (q !== undefined) searchQuery = q;
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
-  const hits = searchCorpus(searchQuery);
+  /* (v334-S) a query of two letters or more while the index is still unbuilt (Quiet builds it in the first minute): the sheet
+     paints «…» at once and the index is built a chapter a slice; then the same search runs on the same index — before, the
+     keystroke built all 83,000 rows in one task (2 s at 4× CPU). The harness's sync flag keeps the one-shot build. */
+  const pending = !CORPUS && searchQuery.trim().length >= 2 && window.__QISSA_RENDER_SYNC !== true;
+  if (pending && !SEARCH_BUILD334) { SEARCH_BUILD334 = true;
+    const go = () => { let done = true; try { done = buildCorpusStep144(12); } catch (e) { done = true; } if (!done) { setTimeout(go, 0); return; } SEARCH_BUILD334 = false;
+      const inp = document.getElementById("corpusSearch"); if (!inp || !sheet.classList.contains("show")) return;
+      const at = inp.selectionStart, focused = document.activeElement === inp; openSearch(); const again = document.getElementById("corpusSearch");
+      if (again && focused) { again.focus(); try { again.setSelectionRange(at, at); } catch (e) {} } };
+    setTimeout(go, 0); }
+  const hits = pending ? [] : searchCorpus(searchQuery);
   // Group by lex so a word with twenty occurrences is one heading, not twenty.
   const byLex = new Map();
   hits.forEach(h => {
@@ -19053,6 +19088,8 @@ function openSearch(q){
   let body = "";
   if (searchQuery.trim().length < 2) {
     body = `<p class="ref-intro">${ui().searchHint}</p>`;
+  } else if (pending) {
+    body = `<p class="ref-intro search-wait">…</p>`;   /* (v334-S) the index is being built; the hits follow */
   } else if (!groups.length) {
     body = `<p class="ref-intro">${ui().searchNone}</p>`;
   } else {
@@ -19077,7 +19114,7 @@ function openSearch(q){
           .replace("{n}", rows.length - 4)}</div>`;
     });
   }
-  if (searchQuery.trim().length >= 2) { try { body += InText.html(searchQuery); } catch (e) {} }   // v319
+  if (searchQuery.trim().length >= 2 && !pending) { try { body += InText.html(searchQuery); } catch (e) {} }   // v319 (v334-S: after the index)
   if (searchQuery.trim().length >= 2) { try { body += DoctrineSearch.html(searchQuery); } catch (e) {} }   // wave 74
   sheetInner.innerHTML = `<div class="tabs"><button class="on">${arSpan("بَحْث")} ${ui().searchTitle}</button></div>
     <div class="ref-search-row">
@@ -34974,11 +35011,8 @@ class SarfTagger {
     const m = this.train();
     if (!m.L.length) return [];
     const fs = this.feats(word), wt = 1 / Math.pow(fs.length, this.ALPHA);
-    const sc = m.L.map(y => {
-      let lp = Math.log((m.n[y] + 1) / (m.total + m.L.length));
-      fs.forEach(k => { lp += wt * Math.log(((m.f[y][k] || 0) + 1) / (m.n[y] + 2)); });
-      return { y, lp };
-    });
+    const acc = nbScore334(m, fs, wt);   /* (v334-S) the same lp, label by label — see nbScore334 */
+    const sc = m.L.map((y, j) => ({ y, lp: acc[j] }));
     const mx = Math.max(...sc.map(x => x.lp));
     let z = 0;
     sc.forEach(x => { x.p = Math.exp(x.lp - mx); z += x.p; });
@@ -35010,22 +35044,26 @@ class SarfTagger {
                      tr: `${form}. bâb · ${tn.tr} · ${person ? person.tr : "?"}` } };
   }
   // ---- GRADE on roots it has never seen. Anything else would be theatre.
-  static evalUnseen(folds = 5){
+  static evalUnseen(folds = 5){ if (this._eval) return this._eval; return Gen334.drain(folds === 5 ? this : null, "_evalG334", () => this.evalGen334(folds)); }
+  static evalStep334(b){ if (this._eval) return true; return Gen334.step(this, "_evalG334", () => this.evalGen334(5), b); }   /* (v334-S) */
+  static *evalGen334(folds = 5){
     if (this._eval) return this._eval;
     const rows = this.rows();
     let ok = 0, two = 0, form = 0, n = 0;
     for (let k = 0; k < folds; k++) {
       const held = new Set(this.ROOTS.filter((_, i) => i % folds === k));
-      const m = this.fit(rows.filter(x => !held.has(x.root)));
-      const save = this._model; this._model = m;
-      rows.filter(x => held.has(x.root)).forEach(x => {
-        const g = this.tag(x.w, 2);
+      const sub = rows.filter(x => !held.has(x.root));
+      const m = { n: {}, f: {}, total: 0, L: [] }; const seen = new Set(); let q = 0;   /* fit(sub), the same statements in the same order, a slice at a time */
+      for (const x of sub) { if (!seen.has(x.y)) { seen.add(x.y); m.L.push(x.y); } m.n[x.y] = (m.n[x.y] || 0) + 1; m.total++; m.f[x.y] = m.f[x.y] || {};
+        this.feats(x.w).forEach(kk => { m.f[x.y][kk] = (m.f[x.y][kk] || 0) + 1; }); if (++q % 64 === 0) yield; }
+      for (const x of rows.filter(x => held.has(x.root))) {
+        const save = this._model; this._model = m; let g; try { g = this.tag(x.w, 2); } finally { this._model = save; }   /* the fold's model only inside the step */
         n++;
         if (g[0] && g[0].y === x.y) ok++;
         if (g.some(z => z.y === x.y)) two++;
         if (g[0] && g[0].form === x.y.split("|")[0]) form++;
-      });
-      this._model = save;
+        yield;
+      }
     }
     this._eval = { n, folds, roots: this.ROOTS.length, examples: rows.length,
                    top1: n ? ok / n : 0, top2: n ? two / n : 0, form: n ? form / n : 0 };
@@ -35033,6 +35071,22 @@ class SarfTagger {
   }
 }
 
+/* (v334-S) the naive-Bayes score of every label for one word, as the per-label loop computed it: lp = log prior, then for each
+   feature IN ORDER lp += wt * log((count + 1) / (n + 2)), the count 0 where the label never saw the feature. The logarithms are
+   taken once per model (each the same expression, so the same double) and the sums run label by label in the same order,
+   so every lp is bit-identical; what is gone is the per-word Math.log and the dictionary lookups (SarfTagger.evalUnseen
+   ran 24 s at 4× CPU in the Jumla lab). The table hangs off the model, non-enumerable: a fold's model carries its own. */
+function nbScore334(m, fs, wt){
+  let V = m._v334;
+  if (!V) { const L = m.L.length; V = { prior: new Float64Array(L), def: new Float64Array(L), feat: new Map() };
+    for (let j = 0; j < L; j++) { const y = m.L[j]; V.prior[j] = Math.log((m.n[y] + 1) / (m.total + m.L.length)); V.def[j] = Math.log((0 + 1) / (m.n[y] + 2));
+      const fy = m.f[y]; for (const k of Object.keys(fy)) { let a = V.feat.get(k); if (!a) { a = []; V.feat.set(k, a); } a.push(j, Math.log((fy[k] + 1) / (m.n[y] + 2))); } }
+    Object.defineProperty(m, "_v334", { value: V, enumerable: false, configurable: true, writable: true }); }
+  const L = V.prior.length, acc = new Float64Array(V.prior), term = new Float64Array(L);
+  for (let i = 0; i < fs.length; i++) { term.set(V.def); const a = V.feat.get(fs[i]); if (a) for (let q = 0; q < a.length; q += 2) term[a[q]] = a[q + 1];
+    for (let j = 0; j < L; j++) acc[j] += wt * term[j]; }
+  return acc;
+}
 // ---------- the Ta'alluq engine ------------------------------------------
 // Qawa'id al-I'rab, bab 2, in one sentence: EVERY jarr-majrur and every zarf
 // attaches to a verb or to something carrying a verb's meaning. Nothing hangs
@@ -37392,13 +37446,17 @@ class WujuhEngine {
     }
     return null;
   }
-  static audit(limit = 0, opt = {}){
+  static audit(limit = 0, opt = {}){ const ck = opt.withMa ? "ma" : "core"; if (this._audit && this._audit[ck] && this._audit[ck].limit === limit) return this._audit[ck];
+    return Gen334.drain(limit === 0 ? this : null, "_g334" + ck, () => this.auditGen334(limit, opt)); }
+  static auditStep334(b, opt = {}){ const ck = opt.withMa ? "ma" : "core"; if (this._audit && this._audit[ck] && this._audit[ck].limit === 0) return true;
+    return Gen334.step(this, "_g334" + ck, () => this.auditGen334(0, opt), b); }   /* (v334-S) */
+  static *auditGen334(limit = 0, opt = {}){
     const withMa = !!opt.withMa;
     const ck = withMa ? "ma" : "core";
     if (this._audit && this._audit[ck] && this._audit[ck].limit === limit) return this._audit[ck];
     const out = { n: 0, hit: 0, miss: 0, undecided: 0, skipped: 0, byWord: {}, misses: [], limit, withMa };
     let seen = 0;
-    outer: for (const st of STORIES) for (const ch of st.chapters) { let prev = null; for (const sen of ch.sentences) {
+    outer: for (const st of STORIES) for (const ch of st.chapters) { let prev = null; for (const sen of ch.sentences) { yield;
       const toks = sen.tokens || [];
       if (!toks.some(t => this.WORDS[this.keyOf({ full: t.s.full }, [], 0) || ""] || /^[وف]?(من|ما|إن|أن|لا|لو|إذا|إذ|لما|أي|قد|كلا|نعم|بلى|أجل|إي|قط|لولا|لكن|بل|حتى|أما|اما|ان|اي|اذا|اذ|عوض)$/.test(stripAr(t.s.full).replace(/[^ء-ي]/g, "")))) { prev = this.rows(sen); continue; }
       if (limit && ++seen > limit) break outer;
@@ -37916,11 +37974,13 @@ class HadhfEngine {
     if (m) { const mf = full.match(/تَقْدِيرُهُ\s*[:«]?\s*([ء-ي][ء-يً-ٰ ]{1,40}?)(?=[»،.—\-)(]|$)/) || full.match(/\(([ء-ي][ء-يً-ٰ ]{1,30})\)/) || full.match(/[—-]\s*(?:أَيْ|أي)\s*:?\s*([ء-ي][ء-يً-ٰ ]{1,40}?)(?=[»،.—]|$)/) || full.match(/مَحْذُوفٍ?\s*:\s*([ء-ي][ء-يً-ٰ ]{1,30}?)(?=[»،.—]|$)/); if (mf && stripAr(mf[1]).replace(/[^ء-ي ]/g, "").trim() === m[1].trim()) vf = mf[1].trim(); }
     return { seats, verb: m ? m[1].trim() : "", verbFull: vf };
   }
-  static audit(limit = 0){
+  static audit(limit = 0){ if (this._audit && this._audit.limit === limit) return this._audit; return Gen334.drain(limit === 0 ? this : null, "_g334", () => this.auditGen334(limit)); }
+  static auditStep334(b){ if (this._audit && this._audit.limit === 0) return true; return Gen334.step(this, "_g334", () => this.auditGen334(0), b); }   /* (v334-S) */
+  static *auditGen334(limit = 0){
     if (this._audit && this._audit.limit === limit) return this._audit;
     const out = { n: 0, hit: 0, miss: 0, seatHit: 0, verbN: 0, verbHit: 0, bySeat: {}, misses: [], limit, false: 0 };
     let seen = 0;
-    outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) {
+    outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) { yield;
       const toks = sen.tokens || [];
       const want = toks.map(t => this.authored(t.irab && t.irab.ar));
       if (!want.some(Boolean)) continue;
@@ -38070,12 +38130,14 @@ class AdabEngine {
     return { bare, shadda, quran, passiveBefore };
   }
   // ── the corpus: every authored line, every rule
-  static lint(limit = 0){
+  static lint(limit = 0){ if (this._lint && this._lint.limit === limit) return this._lint; return Gen334.drain(limit === 0 ? this : null, "_g334", () => this.lintGen334(limit)); }
+  static lintStep334(b){ if (this._lint && this._lint.limit === 0) return true; return Gen334.step(this, "_g334", () => this.lintGen334(0), b); }   /* (v334-S) */
+  static *lintGen334(limit = 0){
     if (this._lint && this._lint.limit === limit) return this._lint;
     const out = { limit, lines: 0, sentences: 0, rules: {} };
     for (const k of Object.keys(this.RULES)) out.rules[k] = { n: 0, obey: 0, implied: 0, finding: 0, ex: [] };
     let seen = 0;
-    outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) {
+    outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) { yield;
       const toks = sen.tokens || []; const lines = toks.map(t => this.strip((t.irab || {}).ar)); if (!lines.some(Boolean)) continue;
       if (limit && ++seen > limit) break outer;
       out.sentences++; const words = toks.map(t => (t.s || t.surface || {}).full || ""); const ctx = this.ctxOf(words, lines, { quran: toks.some(t => /[۝﴾﴿]/.test(String(t.punctAfter || "") + String(t.quoteBefore || ""))) });
@@ -38337,11 +38399,13 @@ class SignEngine {
     return { kase: this.CASE_WORD[m[1]], sign: this.SIGN_WORD[m[2]], manner, why, niyaba: /نيابة/.test(why), text: m[0] };
   }
   // ── the corpus: every authored sign statement against the derivation from the word's class
-  static audit(limit = 0){
+  static audit(limit = 0){ if (this._audit && this._audit.limit === limit) return this._audit; return Gen334.drain(limit === 0 ? this : null, "_g334", () => this.auditGen334(limit)); }
+  static auditStep334(b){ if (this._audit && this._audit.limit === 0) return true; return Gen334.step(this, "_g334", () => this.auditGen334(0), b); }   /* (v334-S) */
+  static *auditGen334(limit = 0){
     if (this._audit && this._audit.limit === limit) return this._audit;
     const out = { limit, n: 0, hit: 0, viaTag: 0, mannerN: 0, mannerHit: 0, byClass: {}, essence: { haraka: 0, harf: 0, hadhf: 0 }, attribute: { lafzi: 0, taqdiri: 0, mahalli: 0 }, bySign: {}, misses: [], examples: {} };
     let seen = 0;
-    outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) {
+    outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) { yield;
       const toks = sen.tokens || []; if (limit && ++seen > limit) break outer;
       toks.forEach((t, i) => {
         const ar = String((t.irab || {}).ar || "").normalize("NFC"); if (!ar) return;
@@ -38745,12 +38809,14 @@ class TartibEngine {
     return out;
   }
   // ── the audit over the corpus
-  static audit(){
+  static audit(){ if (this._audit) return this._audit; return Gen334.drain(this, "_g334", () => this.auditGen334()); }
+  static auditStep334(b){ if (this._audit) return true; return Gen334.step(this, "_g334", () => this.auditGen334(), b); }   /* (v334-S) */
+  static *auditGen334(){
     if (this._audit) return this._audit;
     const out = { clauses: 0, isnads: 0, orders: { FM: 0, MF: 0, MK: 0, KM: 0 }, rules: {}, examples: {}, violations: [], tanazu: [] };
     for (const k of Object.keys(this.RULES)) out.rules[k] = { n: 0, kept: 0, violated: 0 };
     const push = (k, ex) => { const X = out.examples[k] || (out.examples[k] = []); if (X.length < 8) X.push(ex); };
-    for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) {
+    for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) { yield;
       const toks = sen.tokens || [];
       for (const c of this.clausesOf(sen)) { const v = this.judgeVerb(c, toks); out.clauses++; out.orders[v.order]++;
         for (const k of v.fires) { out.rules[k].n++; if (v.violated.includes(k)) { out.rules[k].violated++; if (out.violations.length < 60) out.violations.push({ st: st.id, ch: ch.n || ch.chapter, sen: sen.id, rule: k, order: v.order, verb: c.verb, fail: c.fail.kind === "written" ? this.surf(toks[c.fail.i]) : c.fail.kind, maful: c.maful.kind === "written" ? this.surf(toks[c.maful.i]) : c.maful.kind }); } else { out.rules[k].kept++; push(k, { st: st.id, ch: ch.n || ch.chapter, sen: sen.id, i: c.vi, text: c.verb + (c.fail.kind === "written" ? " " + this.surf(toks[c.fail.i]) : "") + (c.maful.kind === "written" ? " " + this.surf(toks[c.maful.i]) : ""), order: v.order }); } } }
@@ -40529,19 +40595,9 @@ class IsmTagger {
     // (wave 112) the logarithms live ON the model object: log((count+1)/(n+2)) depends on the label and the
     // feature alone, so each is taken once per model and read back — the same double every time, and a fold's
     // model carries its own table, so the evalUnseen swap that forbids a word cache (below) cannot cross here.
-    const lg = m._lg || (m._lg = { prior: new Map(), f: new Map() });
-    const sc = m.L.map(y => {
-      let lp = lg.prior.get(y);
-      if (lp === undefined) { lp = Math.log((m.n[y] + 1) / (m.total + m.L.length)); lg.prior.set(y, lp); }
-      let ly = lg.f.get(y); if (!ly) { ly = new Map(); lg.f.set(y, ly); }
-      const fy = m.f[y], ny = m.n[y] + 2;
-      for (let i = 0; i < fs.length; i++) {
-        const k = fs[i]; let v = ly.get(k);
-        if (v === undefined) { v = Math.log(((fy[k] || 0) + 1) / ny); ly.set(k, v); }
-        lp += wt * v;
-      }
-      return { y, lp };
-    });
+    /* (v334-S) the wave-112 table became nbScore334's: the same logarithms, read from typed arrays */
+    const acc = nbScore334(m, fs, wt);
+    const sc = m.L.map((y, j) => ({ y, lp: acc[j] }));
     const mx = Math.max(...sc.map(x => x.lp));
     let z = 0;
     sc.forEach(x => { x.p = Math.exp(x.lp - mx); z += x.p; });
@@ -40555,16 +40611,20 @@ class IsmTagger {
              .map(x => ({ wazn: x.y, p: x.p, roles: this.roles(x.y) }));
   }
   // ---- GRADE, on roots it has never seen
-  static evalUnseen(folds = 5){
+  static evalUnseen(folds = 5){ if (this._eval) return this._eval; return Gen334.drain(folds === 5 ? this : null, "_evalG334", () => this.evalGen334(folds)); }
+  static evalStep334(b){ if (this._eval) return true; return Gen334.step(this, "_evalG334", () => this.evalGen334(5), b); }   /* (v334-S) */
+  static *evalGen334(folds = 5){
     if (this._eval) return this._eval;
     const rows = this.rows();
     let ok = 0, two = 0, role = 0, n = 0;
     for (let k = 0; k < folds; k++) {
       const held = new Set(this.ROOTS.filter((_, i) => i % folds === k));
-      const m = this.fit(rows.filter(x => !held.has(x.root)));
-      const save = this._model; this._model = m;
-      rows.filter(x => held.has(x.root)).forEach(x => {
-        const g = this.tag(x.w, 2);
+      const sub = rows.filter(x => !held.has(x.root));
+      const m = { n: {}, f: {}, total: 0, L: [] }; const seen = new Set(); let q = 0;   /* fit(sub), the same statements in the same order, a slice at a time */
+      for (const x of sub) { if (!seen.has(x.y)) { seen.add(x.y); m.L.push(x.y); } m.n[x.y] = (m.n[x.y] || 0) + 1; m.total++; m.f[x.y] = m.f[x.y] || {};
+        this.feats(x.w).forEach(kk => { m.f[x.y][kk] = (m.f[x.y][kk] || 0) + 1; }); if (++q % 64 === 0) yield; }
+      for (const x of rows.filter(x => held.has(x.root))) {
+        const save = this._model; this._model = m; let g; try { g = this.tag(x.w, 2); } finally { this._model = save; }   /* the fold's model only inside the step */
         n++;
         if (g[0] && g[0].wazn === x.y) ok++;
         if (g.some(z => z.wazn === x.y)) two++;
@@ -40574,8 +40634,8 @@ class IsmTagger {
           const want = new Set(this.ROLES[x.y] || []);
           if ((this.ROLES[g[0].wazn] || []).some(r => want.has(r))) role++;
         }
-      });
-      this._model = save;
+        yield;
+      }
     }
     this._eval = { n, folds, roots: this.ROOTS.length, examples: rows.length,
                    shapes: this.SHAPES.length,
@@ -41353,7 +41413,7 @@ function renderSignOut(){
     out.querySelectorAll(".sign-ex").forEach(b => b.addEventListener("click", () => { const sen = signFindSentence({ st: b.dataset.st, ch: b.dataset.ch, sen: b.dataset.sen }); if (sen) { try { openIrabSheet(sen); } catch (e) {} } }));
   };
   paint(SIGN_FOOT);
-  if (!SIGN_FOOT) Relax.later("sign-audit", () => { const a = SignEngine.audit(); return { n: a.n, acc: a.acc, mannerAcc: a.mannerAcc, essence: a.essence, attribute: a.attribute, byClass: a.byClass, examples: a.examples }; }, a => { SIGN_FOOT = a; if (document.getElementById("signOut")) paint(a); }, { persist: true });
+  if (!SIGN_FOOT) Relax.laterUntil334("sign-audit", b => SignEngine.auditStep334(b), () => { const a = SignEngine.audit(); return { n: a.n, acc: a.acc, mannerAcc: a.mannerAcc, essence: a.essence, attribute: a.attribute, byClass: a.byClass, examples: a.examples }; }, a => { SIGN_FOOT = a; if (document.getElementById("signOut")) paint(a); }, { persist: true });
 }
 function renderSignWord(){ const o = document.getElementById("signWordOut"); if (!o) return; o.innerHTML = signWordHtml(conjState.sign || "", state.uiLang === "tr" ? "tr" : "en"); }
 // gSign — عَلَامَةُ إِعْرَابِهِ؟ a corpus word with its authored case: name the sign; the distractors are the other signs that case can take
@@ -41498,7 +41558,7 @@ function renderTartibOut(){
     out.querySelectorAll(".tb-ex").forEach(b => b.addEventListener("click", () => { const sen = tartibFindSentence({ st: b.dataset.st, ch: b.dataset.ch, sen: b.dataset.sen }); if (sen) { try { openIrabSheet(sen); } catch (e) {} } }));
   };
   paint(TARTIB_AUDIT);
-  if (!TARTIB_AUDIT) Relax.later("tartib-audit", () => { const a = TartibEngine.audit(); return { clauses: a.clauses, isnads: a.isnads, orders: a.orders, rules: a.rules, examples: a.examples, violations: a.violations, tanazu: a.tanazu }; }, a => { TARTIB_AUDIT = a; if (document.getElementById("tartibOut")) paint(a); }, { persist: true });
+  if (!TARTIB_AUDIT) Relax.laterUntil334("tartib-audit", b => TartibEngine.auditStep334(b), () => { const a = TartibEngine.audit(); return { clauses: a.clauses, isnads: a.isnads, orders: a.orders, rules: a.rules, examples: a.examples, violations: a.violations, tanazu: a.tanazu }; }, a => { TARTIB_AUDIT = a; if (document.getElementById("tartibOut")) paint(a); }, { persist: true });
 }
 function renderTartibSentence(){
   const o = document.getElementById("tartibSenOut"); if (!o) return; const lang = state.uiLang === "tr" ? "tr" : "en", u = ui(), E = escapeAttr;
@@ -41557,7 +41617,7 @@ function renderAdabOut(){
     out.querySelectorAll(".adab-open").forEach(b => b.addEventListener("click", () => { const ex = lint.rules[b.dataset.k].ex[+b.dataset.j]; const sen = ex && adabFindSentence(ex); if (sen) { try { openIrabSheet(sen); } catch (e) {} } }));
   };
   paint(null);
-  Relax.later("adab-lint", () => { const l = AdabEngine.lint(); return { lines: l.lines, sentences: l.sentences, rules: Object.fromEntries(Object.entries(l.rules).map(([k, v]) => [k, { n: v.n, obey: v.obey, implied: v.implied, finding: v.finding, rate: v.rate, ex: v.ex.slice(0, 12) }])) }; }, l => { if (document.getElementById("adabOut")) paint(l); }, { persist: true });
+  Relax.laterUntil334("adab-lint", b => AdabEngine.lintStep334(b), () => { const l = AdabEngine.lint(); return { lines: l.lines, sentences: l.sentences, rules: Object.fromEntries(Object.entries(l.rules).map(([k, v]) => [k, { n: v.n, obey: v.obey, implied: v.implied, finding: v.finding, rate: v.rate, ex: v.ex.slice(0, 12) }])) }; }, l => { if (document.getElementById("adabOut")) paint(l); }, { persist: true });
 }
 // the ledger the jumla lab shows under the muʿrib's lines: the same nine rules on the engine's own composition
 function adabLedgerHtml(rows, lang){
@@ -41653,7 +41713,7 @@ function renderHadhfOut(){
   const seeds = `<div class="dabt-seeds qw-seeds"><div class="qw-head">${u.dabtSeeds}</div><ul>${HADHF_SEEDS.map(s0 =>
     `<li><button class="qw-seed" data-seed="${E(s0)}" lang="ar" dir="rtl">${E(s0)}</button></li>`).join("")}</ul></div>`;
   const tally = `<p class="ref-intro hadhf-tally" id="hadhfTally">…</p>`;
-  Relax.later("hadhf-audit", () => { const a = HadhfEngine.audit(); return a ? { n: a.n, acc: a.acc, verbN: a.verbN, verbAcc: a.verbAcc, false: a.false } : null; },
+  Relax.laterUntil334("hadhf-audit", b => HadhfEngine.auditStep334(b), () => { const a = HadhfEngine.audit(); return a ? { n: a.n, acc: a.acc, verbN: a.verbN, verbAcc: a.verbAcc, false: a.false } : null; },
     a => { const el = document.getElementById("hadhfTally"); if (!el) return; el.textContent = a ? u.hadhfAudit.replace("{n}", a.n).replace("{acc}", a.acc).replace("{vn}", a.verbN).replace("{vacc}", a.verbAcc).replace("{false}", a.false) : "…"; }, { persist: true });
   if (!txt) { out.innerHTML = `<p class="empty">${u.hadhfEmpty}</p>` + seeds + tally + hadhfLegendHtml(lang); }
   else {
@@ -41672,10 +41732,19 @@ let HADHF_CACHE = { scope: null, items: null };
 function hadhfItems(){
   const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
   if (HADHF_CACHE.scope === scope && HADHF_CACHE.items) return HADHF_CACHE.items;
-  const out = []; const perSeat = {};
   const stories = (CUR && !GAME_SCOPE_FALLBACK) ? [CUR] : STORIES;
+  const out = stories === STORIES ? (HADHF_LIB334.items || Gen334.drain(HADHF_LIB334, "g", () => hadhfItemsWalk334(STORIES, true))).slice() : Gen334.drain(null, "", () => hadhfItemsWalk334(stories, false));   /* (v334-S) */
+  if (out.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return hadhfItems(); } finally { GAME_SCOPE_FALLBACK = false; } }
+  HADHF_CACHE = { scope, items: out }; return out;
+}
+/* (v334-S) the walk hadhfItems always made, as a generator (a yield at the top of each sentence); the library's walk is kept whole once,
+   finished by Quiet or by the games hub a slice at a time — the same items in the same order;
+   the caller gets a fresh copy, as a fresh walk gave it (the games shuffle their list in place) */
+let HADHF_LIB334 = { g: null, items: null };
+function* hadhfItemsWalk334(stories, lib){
+  const out = []; const perSeat = {};
   const re = /مَحْذُوف|اشْتِغَال|تَحْذِير|إِغْرَاء|الِاخْتِصَاص|اسْتِغَاثَة|نُدْبَة|مُنَادًى/;
-  outer: for (const st of stories) for (const ch of st.chapters) for (const sen of ch.sentences) {
+  outer: for (const st of stories) for (const ch of st.chapters) for (const sen of ch.sentences) { yield;
     if (!(sen.tokens || []).some(t => re.test(String((t.irab || {}).ar || "").normalize("NFC")))) continue;
     let T0 = null; try { T0 = HadhfEngine.table(sen); } catch (e) { continue; }
     for (const v of T0.items) {
@@ -41685,9 +41754,10 @@ function hadhfItems(){
       if (out.length >= 64) break outer;
     }
   }
-  if (out.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return hadhfItems(); } finally { GAME_SCOPE_FALLBACK = false; } }
-  HADHF_CACHE = { scope, items: out }; return out;
+  if (lib) HADHF_LIB334.items = out;
+  return out;
 }
+function hadhfItemsStep334(b){ return !!HADHF_LIB334.items || Gen334.step(HADHF_LIB334, "g", () => hadhfItemsWalk334(STORIES, true), b); }
 const HADHF_POOL = ["هُوَ", "مَوْجُودٌ", "اذْكُرْ", "أُحَذِّرُ", "أُسَبِّحُ", "ذٰلِكَ", "أَحَدُهُمَا", "يَا", "أَخُصُّ", "ثَبَتَ", "آضَ", "الْزَمْ", "أَنْدُبُ", "أَسْتَغِيثُ", "قَسَمِي", "مَقْرُونَانِ", "أَعُوذُ", "هِيَ", "نَحْنُ", "أَحَدٌ"];
 function startHadhf(){
   const items = shuffle(hadhfItems()).slice(0, 8);
@@ -41748,7 +41818,7 @@ function renderWujuhOut(){
   const seeds = `<div class="dabt-seeds qw-seeds"><div class="qw-head">${u.dabtSeeds}</div><ul>${WUJUH_SEEDS.map(s0 =>
     `<li><button class="qw-seed" data-seed="${E(s0)}" lang="ar" dir="rtl">${E(s0)}</button></li>`).join("")}</ul></div>`;
   const tally = `<p class="ref-intro wujuh-tally" id="wujuhTally">…</p>`;
-  Relax.later("wujuh-audit", () => { const a = WujuhEngine.audit(0, { withMa: true }); const m = a && a.byWord && a.byWord.ma; return a ? { n: a.n, acc: a.acc, ma: m ? m.acc : 0, man: m ? m.n : 0 } : null; },
+  Relax.laterUntil334("wujuh-audit", b => WujuhEngine.auditStep334(b, { withMa: true }), () => { const a = WujuhEngine.audit(0, { withMa: true }); const m = a && a.byWord && a.byWord.ma; return a ? { n: a.n, acc: a.acc, ma: m ? m.acc : 0, man: m ? m.n : 0 } : null; },
     a => { const el = document.getElementById("wujuhTally"); if (!el) return; el.textContent = a ? u.wujuhAudit.replace("{n}", a.n).replace("{acc}", a.acc).replace("{ma}", a.ma).replace("{man}", a.man) : "…"; }, { persist: true });
   if (!txt) { out.innerHTML = `<p class="empty">${u.wujuhEmpty}</p>` + seeds + tally + wujuhLegendHtml(lang); }
   else {
@@ -41770,9 +41840,18 @@ let WUJUH_CACHE = { scope: null, items: null };
 function wujuhItems(){
   const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
   if (WUJUH_CACHE.scope === scope && WUJUH_CACHE.items) return WUJUH_CACHE.items;
-  const out = []; const perWord = {};
   const stories = (CUR && !GAME_SCOPE_FALLBACK) ? [CUR] : STORIES;
-  outer: for (const st of stories) for (const ch of st.chapters) for (const sen of ch.sentences) {
+  const out = stories === STORIES ? (WUJUH_LIB334.items || Gen334.drain(WUJUH_LIB334, "g", () => wujuhItemsWalk334(STORIES, true))).slice() : Gen334.drain(null, "", () => wujuhItemsWalk334(stories, false));   /* (v334-S) */
+  if (out.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return wujuhItems(); } finally { GAME_SCOPE_FALLBACK = false; } }
+  WUJUH_CACHE = { scope, items: out }; return out;
+}
+/* (v334-S) the walk wujuhItems always made, as a generator (a yield at the top of each sentence); the library's walk is kept whole once,
+   finished by Quiet or by the games hub a slice at a time — the same items in the same order;
+   the caller gets a fresh copy, as a fresh walk gave it (the games shuffle their list in place) */
+let WUJUH_LIB334 = { g: null, items: null };
+function* wujuhItemsWalk334(stories, lib){
+  const out = []; const perWord = {};
+  outer: for (const st of stories) for (const ch of st.chapters) for (const sen of ch.sentences) { yield;
     if (!(sen.tokens || []).some(t => /^[وف]?(من|ما|إن|أن|لا|لو|إذا|إذ|لما|أي|قد|كلا|لولا|لكن|بل|حتى)$/.test(stripAr(t.s.full).replace(/[^ء-ي]/g, "")))) continue;
     let T0 = null; try { T0 = WujuhEngine.table(sen); } catch (e) { continue; }
     for (const v of T0.items) {
@@ -41782,9 +41861,10 @@ function wujuhItems(){
       if (out.length >= 60) break outer;
     }
   }
-  if (out.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return wujuhItems(); } finally { GAME_SCOPE_FALLBACK = false; } }
-  WUJUH_CACHE = { scope, items: out }; return out;
+  if (lib) WUJUH_LIB334.items = out;
+  return out;
 }
+function wujuhItemsStep334(b){ return !!WUJUH_LIB334.items || Gen334.step(WUJUH_LIB334, "g", () => wujuhItemsWalk334(STORIES, true), b); }
 function startWujuh(){
   const items = shuffle(wujuhItems()).slice(0, 8);
   if (!items.length) { openGames(); return; }
@@ -42305,8 +42385,25 @@ function startKinaya(){
 // cross-validation score) is computed once, in a later task, and remembered under a key
 // that names the build — so the second open of anything costs a lookup.
 let GAMES_GEN = 0;
+/* (v334-S) the supplies whose count waits on a whole-corpus walk (2–3 s at 4× CPU each): one slice of that walk per call, true once whole.
+   The hadhf / wujuh walks are the library's, so they are stepped only in the library's scope (a story's own walk is short). */
+const SUPPLY_STEP334 = {
+  gSign: b => SignEngine.auditStep334(b), gAdab: b => AdabEngine.lintStep334(b), gTartib: b => TartibEngine.auditStep334(b),
+  gHadhf: b => GameFactory.scopeKey() !== "__lib" || hadhfItemsStep334(b), gWujuh: b => GameFactory.scopeKey() !== "__lib" || wujuhItemsStep334(b),
+};
+/* (v334-S) a corpus walk written as a generator yields once a sentence: drain() runs it whole (the old one-shot call — the same
+   statements in the same order), step() runs it a budget at a time; a walk Quiet or a lab began is finished, never restarted */
+const Gen334 = {
+  drain(o, k, make){ let g = o && o[k]; if (o) o[k] = null; if (!g) g = make(); for (;;) { const r = g.next(); if (r.done) return r.value; } },
+  step(o, k, make, b){ const t0 = performance.now(); try { const g = o[k] || (o[k] = make()); do { if (g.next().done) { o[k] = null; return true; } } while (performance.now() - t0 < (b || 20)); return false; } catch (e) { o[k] = null; return true; } }
+};
 const Relax = {
   _mem: new Map(), _ver: null,
+  /* (v334-S) later(), but the work runs as STEPS: step(budget) does at most a budget's work and says whether it is done, finish()
+     reads the value (the old fn, now instant) — the panel paints, then fills, and no task is longer than a slice */
+  laterUntil334(k, step, finish, render, opts = {}){ const have = this.get(k, !!opts.persist); if (have !== undefined) { render(have); return; }
+    render(null); setTimeout(() => { const tick = () => { let done = false; try { done = !!step(opts.budget || 24); } catch (e) { done = true; }
+      if (!done) { setTimeout(tick, 0); return; } let v = null; try { v = finish(); } catch (e) { v = null; } if (v !== null && v !== undefined) this.set(k, v, !!opts.persist); render(v); }; tick(); }, opts.delay || 40); },
   ver(){ if (this._ver) return this._ver; let n = 0; try { STORIES.forEach(st => { if (st.stats && typeof st.stats.sentences === "number") n += st.stats.sentences; else st.chapters.forEach(c => { n += c.sentences.length; }); }); } catch (e) {}   /* (wave 148) the build's count, no body parsed */
     this._ver = STORIES.length + "-" + n + "-" + String(document.lastModified || "").replace(/\W/g, ""); return this._ver; },
   key(k){ return "qissa-relax-" + this.ver() + "-" + k; },
@@ -42328,6 +42425,10 @@ const Relax = {
       tick(); }, opts.delay || 40); },
   // step(item, i) over items in slices that leave the screen breathing; done() at the end
   chunked(items, step, done, budget = 10){ let i = 0; const tick = () => { const t0 = performance.now(); while (i < items.length && performance.now() - t0 < budget) { try { step(items[i], i); } catch (e) {} i++; }
+    if (i < items.length) setTimeout(tick, 0); else if (done) done(); }; setTimeout(tick, 0); },
+  // (v334-S) chunked(), but an item waits until ready(item) says its work is done — ready() itself does a slice of that work
+  chunkedReady334(items, ready, step, done, budget = 10){ let i = 0; const tick = () => { const t0 = performance.now();
+    while (i < items.length && performance.now() - t0 < budget) { let ok = true; try { ok = ready(items[i]); } catch (e) { ok = true; } if (!ok) break; try { step(items[i], i); } catch (e) {} i++; }
     if (i < items.length) setTimeout(tick, 0); else if (done) done(); }; setTimeout(tick, 0); },
   // the caches of OTHER builds are dropped once, at start
   sweep(){ try { const pre = "qissa-relax-", mine = this.key(""); for (let i = localStorage.length - 1; i >= 0; i--) { const k = localStorage.key(i); if (k && k.startsWith(pre) && !k.startsWith(mine)) localStorage.removeItem(k); } } catch (e) {} }
@@ -43253,7 +43354,8 @@ function openGames(){
   // (wave 32p) the counts still owed, one game per slice, remembered per build — the hub is live meanwhile
   { const gen = ++GAMES_GEN;
     const owed = GameFactory.CATALOGUE.map(g => g.id).filter(id => GameFactory.supplyKnown(id) === undefined);
-    Relax.chunked(owed, id => { if (GAMES_GEN !== gen) return; const n = GameFactory.supplyOf(id); const b = document.getElementById(id); if (!b) return;
+    /* (v334-S) a count whose corpus walk is unfinished advances that walk a slice per task (SUPPLY_STEP334) and is read when it is whole */
+    Relax.chunkedReady334(owed, id => GAMES_GEN !== gen || !SUPPLY_STEP334[id] || SUPPLY_STEP334[id](8), id => { if (GAMES_GEN !== gen) return; const n = GameFactory.supplyOf(id); const b = document.getElementById(id); if (!b) return;
       const spec = GameFactory.get(id) || { min: 1 }; const num = b.querySelector(".g-n"); const dead = n !== null && n < 1, thin = !dead && n !== null && n < spec.min;
       if (num) { if (n === null || dead) num.remove(); else { num.textContent = n; num.classList.remove("g-wait"); } }
       if (dead) { b.disabled = true; b.dataset.empty = "1"; const d = b.querySelector(".gd"); if (d) d.textContent = ui().scopeEmpty; const x = b.querySelector(".g-thin"); if (x) x.remove(); }
@@ -43439,6 +43541,7 @@ function clozeItems(){
   const items = [];
   gameStories().forEach(st => {
     const prog = state.progress[st.id] || {};
+    if (!Object.keys(prog).length) return;   /* (v334-S) senRead is false for every sentence of an empty progress map — the walk added nothing */
     const byPos = glossaryByPos(st);
     st.chapters.forEach(ch => ch.sentences.forEach(sen => {
       if (!senRead(prog, sen, ch, st)) return;
@@ -44181,13 +44284,17 @@ function bootWithData(){
                  () => { const keep = {}; KEEP.forEach(k => { keep[k] = DabtEngine[k]; }); try { FahmEngine.analyze("كَانَ الرَّجُلُ تَاجِرًا", "en"); } finally { KEEP.forEach(k => { DabtEngine[k] = keep[k]; }); } }];
       if (P.k < W.length) { W[P.k++](); return P.k >= W.length; }
     } catch (e) {} return true; });
+    /* (v334-S) the search index and fold run before the pools: a search in the first minute found the index unbuilt (1.8 s at 4×) */
+    Quiet.add("search-index", b => { try { return buildCorpusStep144(b); } catch (e) { return true; } });   /* (wave 144) the search sheet's index — a chapter a slice since wave 148 */
+    Quiet.add("search-fold", b => DoctrineSearch.warm144(b));   /* (wave 142) the search sheet's folded doctrine, a note a slice since wave 148 */
     [DUEL_POOL, GHOST_POOL, IBARA_POOL, HARAKAT_POOL, KINDS_POOL, SHOPC_POOL, ROLE_POOL, CASE_POOL, NIDA_POOL, WAQF_POOL, SARF_POOL, BAHR_POOL, SHART_POOL].forEach(p => { try { p.warm(); } catch (e) {} });   /* (wave 140, 142) */
     Quiet.add("wajh-pool", () => { try { wajhItems(0); } catch (e) {} return true; });
     Quiet.add("shop-pool", b => { try { if (!SHOPC_POOL.stepFull148(b)) return false; shopItems(0); } catch (e) {} return true; });
     Quiet.add("jinas-pool", () => { try { jinasItems(0); } catch (e) {} return true; });
     Quiet.add("maqsud-warm", b => { try { if (!MaqsudEngine.auditStep(b)) return false; maqsudItems(); } catch (e) {} return true; });
-    Quiet.add("search-index", b => { try { return buildCorpusStep144(b); } catch (e) { return true; } });   /* (wave 144) the search sheet's index — a chapter a slice since wave 148 */
-    Quiet.add("search-fold", b => DoctrineSearch.warm144(b));   /* (wave 142) the search sheet's folded doctrine, a note a slice since wave 148 */
+    Quiet.add("audits334", b => { const t0 = performance.now(), left = () => Math.max(2, (b || 20) - (performance.now() - t0));   /* (v334-S) the five corpus walks the games and labs read */
+      try { return SignEngine.auditStep334(left()) && AdabEngine.lintStep334(left()) && TartibEngine.auditStep334(left()) && hadhfItemsStep334(left()) && wujuhItemsStep334(left()); } catch (e) { return true; } });
+    Quiet.add("stories-dedup334", b => dedupStep334(b));   /* (v334-S) the parsed bodies' repeated strings, one copy each — last: memory waits, readiness does not (≈15 s of idle slices at 4×) */
   } catch (e) {} }, 1500);
 }
 window.__qissaDataReady = bootWithData;
