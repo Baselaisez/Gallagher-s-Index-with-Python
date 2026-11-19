@@ -370,3 +370,16 @@ Token numbers count from 1. Not yet a packet.
     deficient. If it is complete, the maṣdar from أن + muḍāriʿ is the fāʿil.
   - marah-al-arwah 13:s13:9 has اثْنَا as the khabar of صار. اثْنَيْ is due, and the author's own line says so. This is the edition's
     spelling.
+
+### o06-engine330 (4 AI-ONAY applied, unconfirmed)
+
+**Applied**
+- al-Uṣūl 23:s5 t3 and 25:s7 t69 اللهُ now read «اسم عسى». The noun precedes أن, so عسى is nāqiṣ (Iẓhār l.34).
+- al-Uṣūl 2:s22 t0–1 «عَلَيْكَ بِالْأَثَرِ» now reads as the ism fiʿl «الزم» with an extra bāʾ (Iẓhār l.49), the same as the wasiyya package.
+  - For the hoca: some read this bāʾ as one of transitivity.
+
+**Already correct on this branch:** the other three items. qisas-4 45:s4 was settled by r23.
+
+**For the next batch**
+- The verb lines of عَسَى (23:s5 t2, 25:s7 t68), تَكَادُ (25:s17 t66) and بَدَأَتِ (qisas-4 45:s4 t16) do not say the verb is nāqiṣ.
+- Lexicon key and tags of عَلَيْكَ: should be `alayka`, ism-fil.

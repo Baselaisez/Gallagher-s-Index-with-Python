@@ -19,6 +19,25 @@
   "run": "o01-al-usul-al-munifa"
  },
  {
+  "id": "QO-0285861B",
+  "sheet": "RESUME.md#engine330",
+  "row": 6,
+  "pattern": "alayka-ism-fil-read-as-jarr",
+  "package": "al-usul-al-munifa",
+  "folder": "content/samples/al-usul-al-munifa",
+  "chapter": 2,
+  "sentence": "s22",
+  "token": 0,
+  "surface": "عَلَيْكَ",
+  "issue_type": "irab_ar",
+  "field": "irab.ar",
+  "current": "«عَلَى» حَرْفُ جَرٍّ، وَالْكَافُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ.",
+  "suggested": "«عَلَيْكَ» اسْمُ فِعْلِ أَمْرٍ بِمَعْنَى «اِلْزَمْ»، مَبْنِيٌّ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
+  "reason_en": "«عَلَيْكَ بِالْأَثَرِ وَطَرِيقَةِ السَّلَفِ، وَإِيَّاكَ وَكُلَّ مُحْدَثَةٍ»: a command («Hold to …», «… sarıl»). «عَلَيْكَ» here is the ism fiʿl meaning «الزم» (Iẓhār: «وعليك زيدا أي الزمه»), not a preposition with a pronoun; a jarr phrase would leave the sentence with no verb. wasiyyat-abi-hanifa-samti 4:s26 reads the same phrase so.",
+  "reason_tr": "«عَلَيْكَ بِالْأَثَرِ وَطَرِيقَةِ السَّلَفِ، وَإِيَّاكَ وَكُلَّ مُحْدَثَةٍ»: bir emirdir («Esere … sarıl»). «عَلَيْكَ» burada «الزم» manasında ism-i fiildir (İzhâr: «وعليك زيدا أي الزمه»), harf-i cer + zamir değil; cer okuması cümleyi fiilsiz bırakır. wasiyyat-abi-hanifa-samti 4:s26 aynı ifadeyi böyle okur.",
+  "run": "o06-engine330"
+ },
+ {
   "id": "QO-02C29C17",
   "sheet": "outside-packet-notes.md",
   "row": 11,
@@ -1366,6 +1385,25 @@
   "reason_en": "عَطِيَّةُ is not annexed: the next word الْعَوْفِيُّ is in rafʿ (its naʿt), not a muḍāf ilayh in jarr.",
   "reason_tr": "عَطِيَّةُ muzâf değildir: sonraki الْعَوْفِيُّ merfûdur (sıfatı), cer hâlinde muzâfun ileyh değil.",
   "run": "o01-al-usul-al-munifa"
+ },
+ {
+  "id": "QO-432FC6F3",
+  "sheet": "RESUME.md#engine330",
+  "row": 7,
+  "pattern": "alayka-ism-fil-read-as-jarr",
+  "package": "al-usul-al-munifa",
+  "folder": "content/samples/al-usul-al-munifa",
+  "chapter": 2,
+  "sentence": "s22",
+  "token": 1,
+  "surface": "بِالْأَثَرِ",
+  "issue_type": "irab_ar",
+  "field": "irab.ar",
+  "current": "الْبَاءُ حَرْفُ جَرٍّ، وَمَجْرُورٌ بِهِ بِالْكَسْرَةِ.",
+  "suggested": "الْبَاءُ حَرْفُ جَرٍّ زَائِدٌ، وَ«الْأَثَرِ» مَجْرُورٌ لَفْظًا بِالْكَسْرَةِ، فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ لِـ«عَلَيْكَ».",
+  "reason_en": "Once «عَلَيْكَ» is the ism fiʿl «الزم», which governs as its verb does (Iẓhār: «ويعمل عمل مسماه … وعليك زيدا أي الزمه») and takes a direct object, the «بِـ» before its object is extra: «الْأَثَرِ» is majrūr in form and the object in its seat. The line gave it a plain jarr with no role. wasiyyat-abi-hanifa-samti 4:s26 t1 «بِالْمُدَارَاةِ» reads the same way.",
+  "reason_tr": "«عَلَيْكَ», müsemmâsının amelini işleyen ve doğrudan mef'ûl alan «الزم» manasında ism-i fiil olunca (İzhâr: «ويعمل عمل مسماه … وعليك زيدا أي الزمه»), mef'ûlünün başındaki «بِـ» zâiddir: «الْأَثَرِ» lafzen mecrûr, mahallen mef'ûlün bihtir. Satır ona görevsiz, düz bir cer veriyordu. wasiyyat-abi-hanifa-samti 4:s26 t1 «بِالْمُدَارَاةِ» de böyle okunur.",
+  "run": "o06-engine330"
  },
  {
   "id": "QO-44ACD9D0",
@@ -2886,6 +2924,25 @@
   "reason_en": "The sentence lists exactly where a doer is hidden of necessity — «the active and passive participle and what has their sense …». أَسَد is the borrowed noun (Iẓhār: «أسد … i.e. bold»), so it holds a hidden doer; the line says only «joined, in rafʿ» and never why the word is cited. (Its grammar tag already names the hidden doer.)",
   "reason_tr": "Cümle tam da gizli fâilin vücûben bulunduğu yerleri sayıyor: «ism-i fâil, ism-i mef'ûl ve onların mânâsındaki …». أَسَد burada müstear isimdir (Izhâr: «أسد … أي مجترئ»), bu yüzden gizli fâil taşır; satır yalnız «ma'tûf merfû» diyor ve örneğin ne için getirildiğini söylemiyor. (Grammar etiketi zaten al-fail-al-mudmar-al-mustatir-wujuban.)",
   "run": "o02-shelf"
+ },
+ {
+  "id": "QO-83A42342",
+  "sheet": "RESUME.md#engine330",
+  "row": 2,
+  "pattern": "asa-ism-called-doer",
+  "package": "al-usul-al-munifa",
+  "folder": "content/samples/al-usul-al-munifa",
+  "chapter": 25,
+  "sentence": "s7",
+  "token": 69,
+  "surface": "اللهُ",
+  "issue_type": "irab_ar",
+  "field": "irab.ar",
+  "current": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+  "suggested": "اسْمُ «عَسَى» مَرْفُوعٌ بِالضَّمَّةِ، وَالْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنْ يَتُوبَ عَلَيْهِمْ» فِي مَحَلِّ نَصْبٍ خَبَرُهَا.",
+  "reason_en": "«عَسَى» is a verb of hope, one of the verbs of approach, which work like kāna: the noun between «عَسَى» and «أَنْ» is its ism and the maṣdar of «أَنْ» + muḍāriʿ its khabar (Iẓhār: «عسى زيد أن يخرج»). It is complete (tāmma), with the maṣdar as its doer, only when «أَنْ» follows «عَسَى» directly («عسى أن يخرج زيد»); here the noun stands first, so the line's «فاعل» is wrong.",
+  "reason_tr": "«عَسَى» recâ fiilidir, mukârebe fiillerindendir ve kâne gibi amel eder: «عَسَى» ile «أَنْ» arasındaki isim onun ismi, «أَنْ» + muzâriden çıkan masdar haberidir (İzhâr: «عسى زيد أن يخرج»). Masdarı fâil alan tâmm «عَسَى», ancak «أَنْ» doğrudan «عَسَى»dan sonra gelince olur («عسى أن يخرج زيد»); burada isim önde, dolayısıyla satırdaki «فاعل» yanlıştır.",
+  "run": "o06-engine330"
  },
  {
   "id": "QO-84D4EB81",
@@ -4596,6 +4653,25 @@
   "reason_en": "فَسَّرَ is faʿʿala of ف-س-ر; its fāʾ is the first radical, not a conjunction (the same word at t121 is already parsed so). The line also lacked the hidden doer, and the clause is the khabar of الْمَنْسُوخُ.",
   "reason_tr": "فَسَّرَ, ف-س-ر kökünden fa''ale babıdır; fâ aslî harftir, atıf harfi değil (aynı kelime t121'de böyle çözülmüş). Satırda gizli fâil de eksikti; cümle الْمَنْسُوخُ'un haberidir.",
   "run": "o01-al-usul-al-munifa"
+ },
+ {
+  "id": "QO-D420FCCE",
+  "sheet": "RESUME.md#engine330",
+  "row": 1,
+  "pattern": "asa-ism-called-doer",
+  "package": "al-usul-al-munifa",
+  "folder": "content/samples/al-usul-al-munifa",
+  "chapter": 23,
+  "sentence": "s5",
+  "token": 3,
+  "surface": "اللهُ",
+  "issue_type": "irab_ar",
+  "field": "irab.ar",
+  "current": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+  "suggested": "اسْمُ «عَسَى» مَرْفُوعٌ بِالضَّمَّةِ، وَالْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنْ يَنْفَعَهُ» فِي مَحَلِّ نَصْبٍ خَبَرُهَا.",
+  "reason_en": "«عَسَى» is a verb of hope, one of the verbs of approach, which work like kāna: the noun between «عَسَى» and «أَنْ» is its ism and the maṣdar of «أَنْ» + muḍāriʿ its khabar (Iẓhār: «عسى زيد أن يخرج»). It is complete (tāmma), with the maṣdar as its doer, only when «أَنْ» follows «عَسَى» directly («عسى أن يخرج زيد»); here the noun stands first, so the line's «فاعل» is wrong.",
+  "reason_tr": "«عَسَى» recâ fiilidir, mukârebe fiillerindendir ve kâne gibi amel eder: «عَسَى» ile «أَنْ» arasındaki isim onun ismi, «أَنْ» + muzâriden çıkan masdar haberidir (İzhâr: «عسى زيد أن يخرج»). Masdarı fâil alan tâmm «عَسَى», ancak «أَنْ» doğrudan «عَسَى»dan sonra gelince olur («عسى أن يخرج زيد»); burada isim önde, dolayısıyla satırdaki «فاعل» yanlıştır.",
+  "run": "o06-engine330"
  },
  {
   "id": "QO-D43B4C67",
