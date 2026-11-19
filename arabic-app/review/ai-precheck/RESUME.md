@@ -339,3 +339,14 @@ Token numbers count from 1. Not yet written as a packet.
   line is wrong.
 - **For the hoca, بَنَات:** the engine treats it as a SOUND feminine plural, taking the kasra in naṣb (R12; «بَنِينَ وَبَنَاتٍ»).
   The triage had called it broken.
+
+### o05-engine329 (3 AI-ONAY applied, unconfirmed)
+
+- **Applied:** al-Uṣūl 14:s28 t13 and 14:s37 t34/t40 «لِمَا» now read as the jarr lām + relative مَا, not the ḥīniyya لَمَّا
+  (src l.183/193 has a kasra and no shadda).
+- **Already correct on this branch:** the other 10 items. 8:s5 «لَمَا قَدَرَ» is the lām answering لَوْ with nāfiya مَا (src l.115).
+- **Next batch:**
+  - 14:s28 t11 فَكُلٌّ «عاطفة، فاعل»: should be the fāʾ of taʿlīl, and mubtadaʾ
+  - 14:s28 t12 مُيَسَّرٌ «نعت»: should be the khabar
+  - 14:s28 t14 خُلِقَ «الفاعل ضمير مستتر»: should be nāʾib al-fāʿil
+- **Lex keys:** the five «لِمَا» tokens are keyed `lamma` (→ ma-mawsula), and 8:s5 t15 «لَمَا» is keyed `lamma` (→ ma-nafiya).
