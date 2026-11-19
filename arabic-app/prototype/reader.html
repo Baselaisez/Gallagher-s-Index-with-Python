@@ -20786,7 +20786,10 @@ class Sh336Engine {
       const ve = this.encOf(v);
       if (ve) { if (!agrees(ve)) return null; return { noun: i, mi, verb: j, by: "pron", pron: ve }; }
       const o = rows[j + 1]; const oe = this.encOf(o);
-      if (o && this.isNoun(o) && !o.afterJarr && oe && agrees(oe) && this.claim(rows, j + 1) === "nasb" && !this.TIME.test(this.core(o))) return { noun: i, mi, verb: j, obj: j + 1, by: "mulabis", pron: oe };
+      // (v337) the sababī form (زَيْدًا ضَرَبْتُ أَخَاهُ) needs a fronted noun the pronoun can point back to — a name, a definite or an annexed
+      // noun, as in Shudhūr's own example; an indefinite common word (ʿAntara's «هَزِجًا يَحُكُّ ذِرَاعَهُ», a khabar continuing the verse
+      // before, its pronoun the fly's) is no ishtighāl
+      if (o && this.isNoun(o) && !o.afterJarr && oe && agrees(oe) && this.claim(rows, j + 1) === "nasb" && !this.TIME.test(this.core(o)) && (propn || al || mi >= 0)) return { noun: i, mi, verb: j, obj: j + 1, by: "mulabis", pron: oe };
       return null; });
   }
   static ishVerbOf(rows, j){ for (let i = Math.max(0, j - 2); i < j; i++) { const s = this.ishtighal(rows, i); if (s && s.verb === j) return s; } return null; }

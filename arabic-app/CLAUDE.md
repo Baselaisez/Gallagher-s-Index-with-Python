@@ -15482,3 +15482,12 @@ measured over the 78 packages (authored lines naming the construction vs the eng
   run caught the v327 أَلَّا check: `illaShart` had read أَلَّا (أَنْ + لَا) as إِلَّا through the hamza-folding `flat()` — إِلَّا now needs its
   kasra. Refit + rebuild: irab_model 2418 weights over 68931 rows, drills regenerated.
   Scripts: scratchpad sh336/ (engine336.js spliced by splice.py; meas336.js + specs.py via m.sh; patch/*.txt via ed.py).
+
+## v336-Sh merged with Ṭarafa on the shelf — two interactions settled
+
+- The full gate on the merged tree failed two checks, both meetings of the Shudhūr wave (built before Ṭarafa was shelved) with the
+  received poems: (1) R94 named ʿAntara 4:s4 «هَزِجًا يَحُكُّ ذِرَاعَهُ» as ishtighāl in its sababī form. Engine fix: the sababī form
+  (Shudhūr's زَيْدًا ضَرَبْتُ أَخَاهُ) now needs a fronted noun the pronoun can point back to — a name, a definite or an annexed noun; an
+  indefinite common word is no ishtighāl (هَزِجًا is a khabar continuing the verse before, its pronoun the fly's). (2) v327's object-with-
+  pronoun ceiling had been moved 3 → 4 by BOTH waves for different lines (Labīd 10:s4 in v335; the Uṣūl's مَرْضَاتَهُ in v336-Sh); the
+  merge kept two copies of the line. One line now, ceiling 5, both reasons cited.

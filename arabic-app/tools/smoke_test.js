@@ -17916,8 +17916,9 @@ if (!CHROME) {
     /* (v335) ceiling 3 → 4, measured: the older shelf and ʿAntara hold 3; Labīd adds one, examined — 10:s4 «قَدْ بِتُّ سَامِرَهَا», the khabar of
        بَاتَ in its first person: «بت» is also the letters of بَتَّ «to cut», so the kāna family (KANA_FORMS) does not list it and the word after it
        is offered as an object carrying its pronoun (NasikhGate's open item with the kāna tāmma) */
-    if (r.both < 335 || r.fp > 4) throw new Error('against the authored lines: ' + J({ both: r.both, auth: r.auth, fp: r.fp, list: r.list }));
-    if (r.both < 335 || r.fp > 4) throw new Error('against the authored lines: ' + J({ both: r.both, auth: r.auth, fp: r.fp, list: r.list }));   // (v336-Sh) 3 → 4: al-usul-al-munifa:23:s7:34 مَرْضَاتَهُ is now «مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «طَالِبًا»» (Shudhūr R92) where the line says «خبر كان … بالكسرة» — the v329 corpus slip
+    // (v337) the two waves each moved this ceiling 3 → 4 for a different line — Labīd 10:s4 (v335, above) and the Uṣūl's مَرْضَاتَهُ
+    // (v336-Sh, below); together 5, both examined
+    if (r.both < 335 || r.fp > 5) throw new Error('against the authored lines: ' + J({ both: r.both, auth: r.auth, fp: r.fp, list: r.list }));   // (v336-Sh) 3 → 4: al-usul-al-munifa:23:s7:34 مَرْضَاتَهُ is now «مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «طَالِبًا»» (Shudhūr R92) where the line says «خبر كان … بالكسرة» — the v329 corpus slip
   });
   await check('v327 — kāna and its sisters raise an ISM, never a doer (Shudhūr R70, R71, R200; triage I-2, NasikhGate): the concealed and the attached ism are «اسْمُهَا» (كَانَ أَبْعَدَ، فَصَارَ بَشَرًا، كُنْتُ نَائِمًا، لَا يَزَالُونَ مُخْتَلِفِينَ); دَامَ is a nāsikh only after مَا (مَا دُمْتُ حَيًّا: the tāʾ its ism, حَيًّا its khabar) and زَالَ only after a negation — زَالَ الْخَطَرُ and دَامَ الْمَطَرُ are complete, their noun the doer; a sister with nothing after it names both readings; against the authored lines ≥ 880 agree and no more than 38 differ (complete kāna by meaning, and authored slips)', async () => {
     const J = JSON.stringify;
