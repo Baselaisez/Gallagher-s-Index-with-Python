@@ -88,6 +88,26 @@ def amr_naqis(bb, typ):
         return [bb+"ُ", bb+"ُوَا", bb+"ُوا", bb+"ِي", bb+"ُوَا", bb+"ُونَ"]
     return [bb+"َ", bb+"َيَا", bb+"َوْا", bb+"َيْ", bb+"َيَا", bb+"َيْنَ"]
 
+# (v333 · Atölye audit A41) THE HAMZA'S SEAT WHERE A SUFFIX MEETS IT, FOR EVERY PARADIGM.
+# The makers join stem and suffix letter by letter, and three of the joins are not
+# spellings at all — the shelf carried «اِقْرَأَا», «تَقْرَأِينَ» and «أَأْخُذُ» in the stored
+# tables of every hamza verb authored before wave 207, and the Tawkīd lab, the Root
+# Finder and the word sheet showed them:
+#   أَ + ا   → آ     قَرَآ، يَقْرَآنِ، اِقْرَآ      two alifs are one madda
+#   أ/ؤ + ِي → ئِي   تَقْرَئِينَ، اِقْرَئِي          a kasra seats the hamza on the yāʾ
+#   أَ + أْ  → آ     آخُذُ، آكُلُ، آمُرُ             two hamzas at the head of the word
+# (Maqṣūd L785–L786 «آخِذٌ … آخَذُ», L1071 «اَقْرَئَانِ اَقْرَئُونَ».) entry() now writes them
+# for every verb; `seat_hamza` below adds wave 207's fourth join (أ + ُو → ؤُو) for the
+# verbs authored with it — «يَقْرَأُونَ» on the alif is the other received spelling and
+# stays. tools/authoring/heal_paradigm_cells.py applies the same function to the stored
+# tables, so the shelf and the generator cannot part again.
+def seat_cells(x):
+    if isinstance(x, list): return [seat_cells(c) for c in x]
+    if not isinstance(x, str): return x
+    x = unicodedata.normalize("NFC", x)
+    if x.startswith("أَأْ"): x = "آ" + x[len("أَأْ"):]
+    return x.replace("أَا", "آ").replace("أِي", "ئِي").replace("ؤِي", "ئِي")
+
 # ---------------------------------------------------------------- builders
 def entry(bab, wazn, masdar, fail, mazi, mudari, amr,
           mansub, majzum, majzum2, maful=None, pmz=None, pmd=None, note=None):
@@ -110,7 +130,7 @@ def entry(bab, wazn, masdar, fail, mazi, mudari, amr,
             x = x.replace("ُوْ", "ُو").replace("ِيْ", "ِي")                                     # (wave 32q) the madd letter wears no sukūn: يُودِعُ
         return x
     for k in ("mazi", "mudari", "amr", "mansub", "majzum", "majzum2", "majhulMazi", "majhulMudari"):
-        if k in e: e[k] = _seam(e[k])
+        if k in e: e[k] = seat_cells(_seam(e[k]))
     return nfc(e)
 
 BABS = {
