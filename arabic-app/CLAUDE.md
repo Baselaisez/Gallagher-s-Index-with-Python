@@ -14168,3 +14168,80 @@ would be describing the last one.
   bāb); a maṣdar, a noun of time and a noun of the verb's own root are left alone. Corpus: 6 agree, 3 differ (بَقِيَ … مَرِيضًا and كَمُلَ … عَالِمًا
   read by their authors as kāna's khabar, ضَرُورَةً as a mafʿūl li-ajlih) — no slips. طَابَ زَيْدٌ نَفْسًا is reached through the ledger;
   اشْتَعَلَ الرَّأْسُ شَيْبًا is NOT: اِشْتَعَلَ is no verb of the texts and افْتَعَلَ is no lāzim pattern, so it stays «مَفْعُولٌ بِهِ».
+
+### v327 — three Shudhūr iʿrāb gaps in the engine (triage I-1, I-3, I-2)
+- **أَنْ by what follows (R152, R143, R144, R154; I-1)** — `AnEngine.read / term`, hooked first in `Murib.term` for an «أن» whose nūn carries
+  its sukūn or kasra (a bare «أن» may be أَنَّ: left alone) and for أَلَّا. The lightened أَنْ needs a fāṣil before a verbal khabar, so a muḍāriʿ
+  right after أَنْ is the maṣdar particle's: a written fatḥa, the five verbs without their nūn, the nūn of women, or an alif that hides its
+  vowel → «حَرْفٌ مَصْدَرِيٌّ وَنَصْبٍ», no hedge. قَدْ / سَوْفَ / لَنْ / لَوْ / لَمْ, the sīn on the verb, a frozen لَيْسَ / عَسَى, a noun in written rafʿ, a
+  detached pronoun, لَا + a marfūʿ verb or لَا + a noun → «أَنْ مُخَفَّفَةٌ مِنَ الثَّقِيلَةِ … وَاسْمُهَا ضَمِيرُ الشَّأْنِ مَحْذُوفٌ» with the signal named
+  (and «كُسِرَتْ نُونُهَا لِالْتِقَاءِ السَّاكِنَيْنِ» on أَنِ). أَلَّا (shadda on the lām) is أَنْ + لَا: the analyzer no longer peels it as the question
+  hamza on لَا, so its verb is no «جَوَابُ الطَّلَبِ» (`r.alla327`); the lā is «نَافِيَةٌ (أَوْ زَائِدَةٌ)» — مَا مَنَعَكَ أَلَّا تَسْجُدَ. SHORTLISTS, by design:
+  before a māḍī (maṣdariyya / lightened before a prayer / tafsīriyya — the last dropped after a jarr letter or a ẓarf, زَائِدَةٌ first after لَمَّا),
+  before an amr (tafsīriyya / maṣdariyya), between an oath and لَوْ (zāʾida / lightened), and wherever a tafsīr frame is possible — a verb of
+  ن د و، و ح ي، ك ت ب، ش و ر، ر س ل before it, or the sentence opening on أَنْ — before a nominal clause or a five-verb without its nūn after لَا
+  (the lā may be the prohibition's). A cited أَنْ before «نَحْوُ» is left alone.
+  Corpus (578 tokens on the 64 packages of the baseline): before 0 decided (565 hedged, 13 أَلَّا called plain negation); after 521 decided
+  (496 nāṣiba, 25 lightened), 56 shortlists; against the authored lines 514 agree, 2 differ — the Kāfiya's cited «وَحَسِبُوا أَنْ لَا تَكُونَ»
+  (the line names both readings) and a **corpus slip**, qisas-al-nabiyyin-4:19:s7:6 «أَنْ لَا تَأْكُلَ» led as tafsīriyya with a nāhiya while the
+  page writes تَأْكُلَ with a fatḥa and the verb's own line says «مَنْصُوبٌ بِأَنْ».
+- **The object that carries its own pronoun (R91; I-3)** — `DabtEngine.encObj327` (a pass after lazimSeat326) + Murib.line. A noun + attached
+  pronoun with a WRITTEN fatḥa on its host, after an active transitive verb with nothing between but its doer (written in rafʿ, a word the loop
+  seated as the doer that cannot show its vowel — مُوسَى —, attached or concealed) and jarr phrases (لَهُ، إِلَيْهِ، لِلنَّاسِ), is the mafʿūl bihi; the
+  Murib line used to let «وَالضَّمِيرُ مُضَافٌ إِلَيْهِ» take the office slot — now it reads «مَفْعُولٌ بِهِ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ». A passive keeps a
+  second object only with its deputy seated; a first object between only for a verb the ledger knows with two (ضَرَبْتُ زَيْدًا رَأْسَهُ is a badal).
+  Refusals: ẓarf words and nouns of time, tawkīd words after a noun or an object pronoun (فَأَخَذَهَا كُلَّهَا), رَبَّنَا / رَبِّي, the verb's own root
+  (mafʿūl muṭlaq), a seg-joined وَ/فَ, other naṣb offices, and a verb lāzim by pattern — the ledger's «lāzim» is outvoted where the texts seated
+  an object after its noun doer (`of().both`): كَرَّمَ and سَبَقَ had obj = 0 only because these very objects were never named. A doer in written
+  rafʿ that the loop had handed the object's seat gets the doer's back (سَمِعَ الْمَلِكُ سُؤَالَهُ). Corpus (837 noun + pronoun tokens with the
+  fatḥa): 405 authored objects; before 0 named, after 341 (64 missed: مِثْلَهَا, a 2nd object of a verb the ledger does not know, cited
+  fragments), 2 lines call something else an object — both a maʿṭūf in a cited fragment the analyzer did not split (izhar-al-asrar:60:s1:26
+  وَضَارِبَهْ, talkhis-al-miftah:47:s16:11 وَكَثِيرَهُ). Control جَاءَ صَاحِبُهُ stays the doer.
+- **Kāna's sisters raise an ISM (R70, R71, R200; I-2)** — `NasikhGate.family / read`, `Murib.doer`, `DabtEngine.kanaGate327`. The eight work
+  always; زَالَ، بَرِحَ، فَتِئَ، انْفَكَّ only after لَا / مَا / لَمْ / لَنْ / أَلَا (negation, prohibition, prayer) — انْفَكَّ / بَرِحَ before عَنْ / مِنْ are
+  «parted from», complete; دَامَ only after مَا. The concealed and the attached ism are «اسْمُهَا» («فِي مَحَلِّ رَفْعٍ اسْمُهَا»), a written ism
+  outranks a concealed ghost (لَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ: «وَاسْمُهَا «أَحَدٌ»»), a noun in written naṣb the loop had made the ism becomes the khabar,
+  and after the conditional four and دَامَ the first manṣūb noun after the ism is seated as the khabar (مَا دُمْتُ حَيًّا); a built noun right
+  after the verb (كَانَ مَا قَبْلَهَا، كَانَ هٰذَا) is its ism; with no ism written or attached, the line still names the concealed one (kāna always
+  raises an ism). The relabels stop at a noun joined by وَ/فَ and at a particle that is no jarr phrase (wave 151's «… وَالْفِعْلُ بَعْدَهَا»).
+  Without its condition the verb is complete: kanaIsm → fāʿil (زَالَ الْخَطَرُ، دَامَ الْمَطَرُ: «وَفَاعِلُهُ «…»»), the khabar seat dropped (`tamm327`,
+  no office); كُنْ فَيَكُونُ is complete by its formula (wave 149). A sister with nothing after it in its clause (لَا يَكُونُ.) names both
+  readings — complete, or deficient with the khabar dropped: the corpus authors split there. لَكَانَ / لَصَارَ are read through the lām.
+  Corpus (the kāna-family verbs, 64 baseline packages): authored ism vs engine — before 74 agree / 775 differ, after 889 / 37; the authored
+  «وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ» lines: before 0 of 273, after 208 (the rest: a clause-final kāna, now a
+  shortlist, and lines where the engine names a written word as the ism — rightly in some, wrongly in others: «كَمَا», «عَمَّا», «وَغَيْرُ»). The 37: 15 complete kāna by MEANING the letters cannot see (فَلَمَّا كَانَتْ سَنَةُ …، فَلَمَّا أَصْبَحَ الرُّومُ، ذٰلِكَ لَا يَكُونُ إِنَّ …، يَكُونُ
+  «يحدث / يوجد») — left as nawāsikh: a shortlist there would need the meaning —; 3 that are no disagreement (the Kāfiya's cited كَانَ,
+  izhar-al-asrar:27:s8:12 whose «فاعل» is the maṣdar's, usul:32:s3:20 سَيَكُونُ بَعْدِي هَنَاتٌ either way); and 19 **corpus slips**, a deficient
+  verb with its ism or khabar written whose line says «فَاعِل»: maqamat-birgivi:3:s7:11 كُونُوا رَبَّانِيِّينَ; al-usul-al-munifa:6:s9:30,
+  :13:s4:15 لَكَانَ مِنَ الْمُحَالِ, :14:s21:14 لَصَارَ كَافِرًا, :18:s1:18 لَكَانَ أَهْلُ الْكِتَابِ, :21:s5:22, :21:s5:41, :23:s2:66, :23:s7:92 (لَكَانَ +
+  its ism or khabar, «وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ»), :20:s2:29 كَيْفَ أَصْبَحْتَ, :20:s2:31 أَصْبَحْتُ مُؤْمِنًا, :24:s17:27 مَا دَامُوا لَا يُفَسِّرُونَهُ,
+  :25:s12:20 حَتَّى أَكُونَ أَنَا الَّذِي, :31:s5:53 / :31:s5:57 فَكُونُوا, :31:s7:27 أَنْ أَكُونَ قَاتَلْتُ; luqman-wa-ibnuh:4:s3:9 صَارَ رَجُلًا صَالِحًا
+  («وَالْفَاعِلُ مُسْتَتِرٌ … فِعْلٌ نَاقِصٌ»); qisas-al-nabiyyin-4:22:s4:10 / :22:s4:17 كَانُوا.
+- Also for the hoca (not engine disagreements): al-usul-al-munifa:14:s30:37, :14:s34:18 «أَلَّا تَعْبُدُوا» and :19:s10:10 «أَلَّا تَعْدِلُوا» carry the
+  line of «إِلَّا» («أَدَاةُ اسْتِثْنَاءٍ») on the token أَلَّا.
+- Smoke: «v327 — أَنْ is decided by what follows» (agree ≥ 510, dis ≤ 3, decided ≥ 515), «v327 — the object that carries its own pronoun»
+  (≥ 335, others ≤ 3), «v327 — kāna and its sisters raise an ISM» (agree ≥ 880, dis ≤ 38, concealed ism ≥ 200). Measurement scripts:
+  scratchpad e327/m_i1.js, m_i2.js, m_i3.js via `node meas.js <reader.html> <body.js> ids.json`.
+- Not done (next): the fāʿil and the mubtadaʾ with an attached pronoun still lose their office to «وَالضَّمِيرُ مُضَافٌ إِلَيْهِ» in Murib.line (only
+  the object was freed — `encClause327` is gated on `enc327`); «ابْتَلَى إِبْرَاهِيمَ رَبُّهُ»; complete kāna by meaning; the I-16 verbs of approach.
+
+### v327 — the third history wave (Levels 4–6)
+
+Five ORIGINAL retold histories, all pending scholarly review:
+- **L4:** sibawayh-fi-al-basra (25 sentences), ibn-battuta-yakhruju-min-tanja (24)
+- **L5:** bina-baghdad (28)
+- **L6:** ayn-jalut (30), ibn-khaldun-wa-timur (29)
+
+Each History shelf at L4, L5 and L6 now holds at least four stories; the smoke check "v327 — the third history wave"
+holds that floor. The authors reused every verb paradigm already on the shelf by lemma, so no new verb was needed. The
+new keys were checked against the shelf and against one another.
+
+Points left for the scholar:
+- the diptote reasons of فَارِس (taʾnīth or ʿujma) and of خَلْدُون, and whether قُطُز is a diptote
+- whether Tīmūr's interpreter and gift belong in the retelling (al-Taʿrīf has both)
+- the "two walls" of al-Manṣūr's city
+- one Ibn Baṭṭūṭa line, "he met the shaykh's brothers", which follows the Riḥla's own claim. One of those meetings is on
+  the disputed China leg.
+
+**Lesson:** a new history package must also join the `tarikh` regex in `LIB_SOURCES`, or it lands on no shelf. The
+shelf filter is by id, not by a manifest field.
