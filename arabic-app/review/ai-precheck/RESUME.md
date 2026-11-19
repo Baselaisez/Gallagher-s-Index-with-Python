@@ -383,3 +383,39 @@ Token numbers count from 1. Not yet a packet.
 **For the next batch**
 - The verb lines of عَسَى (23:s5 t2, 25:s7 t68), تَكَادُ (25:s17 t66) and بَدَأَتِ (qisas-4 45:s4 t16) do not say the verb is nāqiṣ.
 - Lexicon key and tags of عَلَيْكَ: should be `alayka`, ism-fil.
+
+## Engine-found corpus slips (v332 engine wave on main: MansubEngine — tamyīz, ẓarf, ḥāl, mafʿūl lahu; v331 key splits)
+
+Token numbers count from 1. The list: 23 v332 tokens (al-Uṣūl 21, Maqāmāt 2) and two v331 items (al-Uṣūl 2:s11:1 فَإِمَّا,
+adam-wa-iblis 1:s4:4 لٰكِنَّهُ). It is in main's CLAUDE.md, sections v331 and v332.
+
+### o07-engine332 (0 findings: nothing to apply)
+
+- **Already correct on this branch:** 24 of the 25 tokens. Each has an entry in applied.jsonl whose `before` is the line the engine
+  quoted (r01, r03–r10, r21, r25, p-D05-2, o01). The engine wave ran on main, which still has the old lines.
+  - the counted nouns after a number are «تمييز» (1:s5, 12:s2 ×2, 14:s16, 24:s17 ×2)
+  - 24:s20 مَنْزِلَةً, 26:s2 خَيْرًا / شَرًّا: tamyīz, and the two lines agree
+  - Maqāmāt 13:s7 رَحْمَةً, 24:s17 تَفْسِيرًا: mafʿūl muṭlaq
+  - 23:s5 مَخَافَةَ: mafʿūl li-ajlih
+  - 3:s14 صَائِرُونَ khabar; 20:s2 حَقِيقَةً postponed ism of إِنَّ; 22:s1 مُؤْمِنًا khabar of يَكُونَ
+  - 18:s15 ×2, 29:s3, 24:s21 الْيَوْمَ and 13:s3 وَقْتَ: ẓarf
+  - 14:s2 مُؤْمِنًا, 20:s3 بَارِزًا: ḥāl; Maqāmāt 6:s3 نَصُوحًا: naʿt
+  - adam-wa-iblis 1:s4 لٰكِنَّهُ: the line names لٰكِنَّ (r25)
+- **For the hoca (r01's question, not re-decided):** al-Uṣūl 2:s11 t0 «فَإِمَّا». The engine reads the word as إِمَّا. r01's AI-RET
+  (QR-F50F0360) stands: the line «أَمَّا حَرْفُ شَرْطٍ وَتَفْصِيلٍ» is right and the hamza is wrong — no second إِمَّا, and «فَهٰذَا لَا يَكُونُ»
+  carries the answering fāʾ. Until the hoca chooses, the word and its line contradict each other. If فَأَمَّا: the surface, src l.23
+  and the EN/TR («Either … / Ya …») change, and t6 فَهٰذَا becomes the fāʾ answering أَمَّا, t4 وَهُمَا the ḥāl wāw. If إِمَّا: the line,
+  the key `amma` and the tag change.
+- **Out of scope:**
+  - Lexicon keys: adam-wa-iblis 1:s4 t3 `inna` (→ لٰكِنَّ); al-Uṣūl 2:s11 t0 `amma` (waits for the reading).
+  - Grammar tags still naming the old roles on all 24 corrected tokens (maful-fih on the tamyīz; hal; maful-mutlaq; maful-bihi;
+    naat-sifa; inna-wa-akhawatuha; kana-wa-akhawatuha).
+  - Letters: Maqāmāt 13:s7 «رَحِمَهُ اللهُ عَلَيْهِ رَحْمَةً وَاسِعَةً» (src l.185 the same) — «عَلَيْهِ» after «رَحِمَهُ اللهُ» is odd; perhaps
+    «رَحْمَةُ اللهِ عَلَيْهِ». Check the print.
+- **For the next batch (tokens the list does not name; indices from 0):**
+  - al-Uṣūl 12:s2 t25 أَرْبَعِينَ «خبر كان», while its twin t30 and 14:s16 t31 are «نائب عن ظرف الزمان» (p-D06)
+  - 12:s2 t36 خَلْقًا and 14:s2 t21 أَشْخَاصًا «تمييز» — ḥāl expected (14:s2 t16 مُؤْمِنًا is ḥāl in the same sentence)
+  - 22:s1 t24 وَكَيْفَ: no role
+  - verb lines naming no doer: 23:s5 t11 يَخَافُ, t13 وَيَفِرُّ; 14:s2 t15 خَلَقَهُ; 26:s2 t82 وَقَالَ
+- The engine waves on main keep finding lines this branch has already corrected: main will stop reporting them only when the hoca
+  approves this branch and it is merged.
