@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qissa — Arapça kademeli okuma</title>
+<meta name="description" content="Klasik İslâmî metinler, seviyelere göre; her kelimede medrese usûlü iʿrâb. Classical Islamic texts, graded by level, with madrasah grammar on every word.">
+<meta name="theme-color" content="#0f5c4a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Qissa">
+<!-- The entrance (v334): a small page that paints at once, says what Qissa is and how to install it, and warms the
+     offline cache with the app while it is read — so «Open» is instant. The app itself is reader.html (+ app.js, data/*.js),
+     which the Home-Screen icon opens directly (manifest start_url). No external fonts, scripts or trackers. -->
+<style>
+  :root {
+    --bg: #faf6ef; --card: #ffffff; --ink: #1d2a26; --muted: #5d6b66; --line: #e5ddcf;
+    --brand: #0f5c4a; --brand-ink: #ffffff; --accent: #b8862b; --ok: #1f7a4d;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101716; --card: #17211f; --ink: #e9efe9; --muted: #a3b2ac; --line: #2a3734;
+      --brand: #3fa98a; --brand-ink: #0c1412; --accent: #d9ad57; --ok: #5cc28d; color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+         -webkit-text-size-adjust: 100%; padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
+  main { max-width: 34rem; margin: 0 auto; padding: 1.5rem 1rem 2.5rem; }
+  .top { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+  .brand { display: flex; align-items: center; gap: .6rem; font-weight: 700; font-size: 1.15rem; }
+  .brand img { width: 40px; height: 40px; border-radius: 10px; }
+  .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .lang button { border: 0; background: transparent; color: var(--muted); font: inherit; font-size: .85rem; padding: .3rem .7rem; cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); }
+  .hero { text-align: center; padding: 2rem 0 1.25rem; }
+  .ar { font-family: "Noto Naskh Arabic", "Geeza Pro", "Damascus", "Traditional Arabic", serif; font-size: 2.6rem; line-height: 1.6; color: var(--brand); margin: 0; direction: rtl; }
+  h1 { font-size: 1.45rem; margin: .25rem 0 .5rem; }
+  .lead { color: var(--muted); margin: 0 auto; max-width: 28rem; }
+  .open { display: block; width: 100%; margin: 1.5rem 0 .6rem; padding: 1rem 1.25rem; border: 0; border-radius: 14px;
+          background: var(--brand); color: var(--brand-ink); font: inherit; font-size: 1.15rem; font-weight: 700; text-align: center;
+          text-decoration: none; cursor: pointer; box-shadow: 0 6px 18px rgba(15, 92, 74, .22); }
+  .open:active { transform: translateY(1px); }
+  .prep { font-size: .9rem; color: var(--muted); text-align: center; min-height: 2.6rem; }
+  .bar { height: 6px; background: var(--line); border-radius: 999px; overflow: hidden; margin: .35rem auto 0; max-width: 18rem; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+  .prep.done { color: var(--ok); }
+  .prep button { border: 1px solid var(--line); background: var(--card); color: var(--ink); font: inherit; border-radius: 999px; padding: .3rem .9rem; cursor: pointer; }
+  .feats { display: grid; grid-template-columns: 1fr; gap: .6rem; margin: 1.5rem 0; padding: 0; list-style: none; }
+  .feats li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: .75rem .9rem; }
+  .feats b { display: block; }
+  .feats span { color: var(--muted); font-size: .92rem; }
+  h2 { font-size: 1.1rem; margin: 2rem 0 .6rem; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin: .6rem 0; }
+  summary { cursor: pointer; padding: .8rem .9rem; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: .5rem; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--muted); font-weight: 400; }
+  details[open] summary::after { content: "–"; }
+  details ol { margin: 0; padding: 0 1rem .9rem 2.2rem; }
+  details li { margin: .3rem 0; }
+  details p { margin: 0; padding: 0 .9rem .9rem; color: var(--muted); font-size: .92rem; }
+  .note { font-size: .85rem; color: var(--muted); margin-top: 2rem; text-align: center; }
+  .note a { color: var(--muted); }
+  /* the language switch outranks every layout rule: the other language's elements are never shown */
+  html:not([lang="tr"]) [data-l="tr"], html:not([lang="en"]) [data-l="en"] { display: none !important; }
+  @media (min-width: 560px) { .feats { grid-template-columns: 1fr 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .bar i { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <div class="brand"><img src="icons/icon-192.png" alt="" width="40" height="40">Qissa</div>
+    <div class="lang" role="group" aria-label="Dil / Language">
+      <button type="button" data-set="tr" aria-pressed="true">TR</button>
+      <button type="button" data-set="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+
+  <section class="hero">
+    <p class="ar" lang="ar">قِصَّة</p>
+    <h1 data-l="tr">Arapçayı metnin içinde öğrenin</h1>
+    <h1 data-l="en">Learn Arabic inside the text</h1>
+    <p class="lead" data-l="tr">Klasik İslâmî metinler, başlangıçtan ileri seviyeye; her kelimede medrese usûlüyle iʿrâb, sarf ve belâgat.</p>
+    <p class="lead" data-l="en">Classical Islamic texts from beginner to master level, with madrasah iʿrāb, ṣarf and balāgha on every word.</p>
+
+    <a class="open" id="open" href="reader.html">
+      <span data-l="tr">Qissa'yı aç</span><span data-l="en">Open Qissa</span>
+    </a>
+    <div class="prep" id="prep" aria-live="polite">
+      <div id="prepText"></div>
+      <div class="bar" id="bar" hidden><i id="barFill"></i></div>
+    </div>
+  </section>
+
+  <ul class="feats">
+    <li><b data-l="tr">Hikâyeler ve klasik metinler</b><b data-l="en">Stories and classical texts</b>
+      <span data-l="tr">Siyer, Zehebî'nin Siyer'i, Tenûhî, Muallakalar ve daha fazlası — altı seviye.</span>
+      <span data-l="en">Prophets' stories, al-Dhahabī's Siyar, al-Tanūkhī, the Muʿallaqāt and more — six levels.</span></li>
+    <li><b data-l="tr">Her kelimede iʿrâb</b><b data-l="en">Iʿrāb on every word</b>
+      <span data-l="tr">Bir kelimeye dokunun: görevi, i'râbı, kökü ve vezni — Arapça, Türkçe, İngilizce.</span>
+      <span data-l="en">Tap a word: its role, case, root and pattern — in Arabic, Turkish and English.</span></li>
+    <li><b data-l="tr">Atölye</b><b data-l="en">The Atölye</b>
+      <span data-l="tr">Sarf, i'lâl, i'râb, belâgat ve aruz laboratuvarları; İzzî, Merâh, Şuzûr ve Telhîs'ten.</span>
+      <span data-l="en">Labs for ṣarf, iʿlāl, iʿrāb, balāgha and ʿarūḍ, fed from ʿIzzī, Marāḥ, Shudhūr and the Talkhīṣ.</span></li>
+    <li><b data-l="tr">İnternetsiz çalışır</b><b data-l="en">Works offline</b>
+      <span data-l="tr">Bir kez yüklendikten sonra bağlantı gerekmez; ilerlemeniz cihazınızda kalır.</span>
+      <span data-l="en">After one full load no connection is needed; your progress stays on your device.</span></li>
+  </ul>
+
+  <h2 data-l="tr">Telefona kurulum</h2>
+  <h2 data-l="en">Install on your phone</h2>
+
+  <details id="ios">
+    <summary><span data-l="tr">iPhone / iPad</span><span data-l="en">iPhone / iPad</span></summary>
+    <ol data-l="tr">
+      <li>Bu sayfayı <b>Safari</b> ile açın.</li>
+      <li>Alttaki <b>Paylaş</b> düğmesine dokunun (yukarı oklu kare).</li>
+      <li><b>Ana Ekrana Ekle</b> → <b>Ekle</b>.</li>
+      <li>Ana ekrandaki Qissa simgesi uygulamayı doğrudan, tam ekran açar.</li>
+    </ol>
+    <ol data-l="en">
+      <li>Open this page in <b>Safari</b>.</li>
+      <li>Tap <b>Share</b> (the square with the arrow).</li>
+      <li><b>Add to Home Screen</b> → <b>Add</b>.</li>
+      <li>The Qissa icon then opens the app directly, full screen.</li>
+    </ol>
+  </details>
+
+  <details id="android">
+    <summary><span data-l="tr">Android / Samsung</span><span data-l="en">Android / Samsung</span></summary>
+    <ol data-l="tr">
+      <li>Bu sayfayı <b>Chrome</b> veya <b>Samsung Internet</b> ile açın.</li>
+      <li>Menüden (⋮ veya ≡) <b>Uygulamayı yükle</b> ya da <b>Ana ekrana ekle</b>'yi seçin<span class="inst" hidden> — veya aşağıdaki düğmeye dokunun</span>.</li>
+      <li>Test kullanıcılarına gönderilen <b>APK</b> dosyası da aynı uygulamadır; ikisinden birini kurmanız yeterli.</li>
+    </ol>
+    <ol data-l="en">
+      <li>Open this page in <b>Chrome</b> or <b>Samsung Internet</b>.</li>
+      <li>From the menu (⋮ or ≡) choose <b>Install app</b> or <b>Add to Home screen</b><span class="inst" hidden> — or tap the button below</span>.</li>
+      <li>The <b>APK</b> sent to test users is the same app; install either one.</li>
+    </ol>
+    <p><button type="button" class="open" id="install" hidden style="margin:0;font-size:1rem;padding:.75rem">
+      <span data-l="tr">Uygulamayı yükle</span><span data-l="en">Install the app</span></button></p>
+  </details>
+
+  <details>
+    <summary><span data-l="tr">Bilgisayar</span><span data-l="en">Computer</span></summary>
+    <p data-l="tr">Chrome, Edge veya Safari'de «Qissa'yı aç»a tıklayın. Chrome ve Edge adres çubuğundaki yükle simgesiyle uygulama olarak kurulabilir.</p>
+    <p data-l="en">Click «Open Qissa» in Chrome, Edge or Safari. Chrome and Edge can install it as an app from the install icon in the address bar.</p>
+  </details>
+
+  <p class="note">
+    <span data-l="tr">Test sürümü — bütün metinler ve açıklamalar hoca onayı beklemektedir.</span>
+    <span data-l="en">Test release — every text and explanation is pending scholarly review.</span>
+    · <a href="privacy.html"><span data-l="tr">Gizlilik</span><span data-l="en">Privacy</span></a>
+  </p>
+</main>
+<script>
+(() => {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const T = {
+    tr: { saving: "Uygulama hazırlanıyor… ", ready: "✓ Hazır — internetsiz de açılır", slow: "Veri tasarrufu açık: uygulamayı önceden indirmek için dokunun", fetch: "Şimdi indir (~12 MB)", fail: "Hazırlık tamamlanamadı; uygulama yine de açılır.", offline: "Çevrimdışısınız." },
+    en: { saving: "Preparing the app… ", ready: "✓ Ready — opens offline too", slow: "Data saver is on: tap to download the app ahead", fetch: "Download now (~12 MB)", fail: "Could not finish preparing; the app still opens.", offline: "You are offline." },
+  };
+  // language: saved choice, else the device's
+  let lang = "tr";
+  try { lang = localStorage.getItem("qissa-entrance-lang") || ((navigator.language || "tr").toLowerCase().startsWith("tr") ? "tr" : "en"); } catch (e) {}
+  const setLang = l => { lang = l; document.documentElement.lang = l;
+    document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.set === l)));
+    try { localStorage.setItem("qissa-entrance-lang", l); } catch (e) {} paint(); };
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.set)));
+
+  // open the matching install section
+  const ua = navigator.userAgent || "";
+  if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) $("ios").open = true;
+  else if (/Android/.test(ua)) $("android").open = true;
+
+  // Android / desktop Chrome: the browser's own install prompt, when it offers one
+  let deferred = null;
+  window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); deferred = e; $("install").hidden = false; document.querySelectorAll(".inst").forEach(x => x.hidden = false); });
+  $("install").addEventListener("click", async () => { if (!deferred) return; deferred.prompt(); try { await deferred.userChoice; } catch (e) {} deferred = null; $("install").hidden = true; });
+
+  // the prepare state: idle | running (done/total bytes) | ready | saver | failed | offline
+  let st = { k: "idle", got: 0, total: 0 };
+  function paint() {
+    const t = T[lang], box = $("prep"), txt = $("prepText"), bar = $("bar");
+    box.classList.toggle("done", st.k === "ready");
+    bar.hidden = st.k !== "running";
+    if (st.k === "running") { const pct = st.total ? Math.min(99, Math.round(100 * st.got / st.total)) : 0; txt.textContent = t.saving + (st.total ? pct + "%" : ""); $("barFill").style.width = pct + "%"; }
+    else if (st.k === "ready") txt.textContent = t.ready;
+    else if (st.k === "saver") { txt.textContent = t.slow + " "; const b = document.createElement("button"); b.type = "button"; b.textContent = t.fetch; b.onclick = () => prepare(); txt.appendChild(b); }
+    else if (st.k === "failed") txt.textContent = t.fail;
+    else if (st.k === "offline") txt.textContent = t.offline;
+    else txt.textContent = "";
+  }
+
+  // The files the app needs: the page, its code and its data files, read off the page itself (the hosted split writes
+  // app.js and data/d1…dN.js; their number grows with the shelf, so it is never hard-coded here).
+  async function appFiles() {
+    const res = await fetch("reader.html", { cache: "no-cache" });
+    if (!res.ok) throw new Error("reader " + res.status);
+    const html = await res.text();
+    // the code is a <script src>; the data files are named in the page's loader list (pubsplit inserts them after a frame)
+    const srcs = [...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m => m[1])
+      .concat([...html.matchAll(/["'](data\/d\d+\.js)["']/g)].map(m => m[1]))
+      .filter((s, i, a) => !/^(https?:)?\/\//.test(s) && a.indexOf(s) === i);
+    return { files: srcs, readerBytes: html.length };
+  }
+  // Fetch through the page so the service worker (cache first, stores what it fetches) keeps every file for the app.
+  async function prepare() {
+    if (!navigator.onLine) { st = { k: "offline" }; paint(); return; }
+    st = { k: "running", got: 0, total: 0 }; paint();
+    try {
+      const { files } = await appFiles();
+      // sizes first (HEAD), so the bar means bytes, not files
+      const sizes = await Promise.all(files.map(f => fetch(f, { method: "HEAD" }).then(r => +r.headers.get("content-length") || 0).catch(() => 0)));
+      st.total = sizes.reduce((a, b) => a + b, 0) || files.length;
+      for (let i = 0; i < files.length; i++) {
+        const r = await fetch(files[i]);
+        if (!r.ok) throw new Error(files[i] + " " + r.status);
+        if (r.body && sizes[i]) { const rd = r.body.getReader(); for (;;) { const { done, value } = await rd.read(); if (done) break; st.got += value.length; paint(); } }
+        else { await r.arrayBuffer(); st.got += sizes[i] || 1; paint(); }
+      }
+      st = { k: "ready" }; try { localStorage.setItem("qissa-entrance-ready", String(Date.now())); } catch (e) {}
+    } catch (e) { st = { k: "failed" }; }
+    paint();
+  }
+
+  setLang(lang);
+  // The service worker first (it stores what the page fetches), then warm the app — but only after this page has
+  // painted, and never on a metered «save data» connection without a tap.
+  const start = () => {
+    const warm = () => {
+      const saver = navigator.connection && navigator.connection.saveData;
+      if (saver) { st = { k: "saver" }; paint(); return; }
+      prepare();
+    };
+    if ("serviceWorker" in navigator) {
+      // the worker stores only what it sees: wait until it controls this page (it claims clients on activate)
+      const controlled = () => navigator.serviceWorker.controller ? Promise.resolve() : new Promise(res => {
+        navigator.serviceWorker.addEventListener("controllerchange", res, { once: true }); setTimeout(res, 4000); });
+      navigator.serviceWorker.register("sw.js").then(() => navigator.serviceWorker.ready).then(controlled).then(warm, warm);
+    } else warm();
+  };
+  if (document.readyState === "complete") setTimeout(start, 300); else window.addEventListener("load", () => setTimeout(start, 300));
+})();
+</script>
+</body>
+</html>
