@@ -1084,6 +1084,11 @@
   .feat-chip.off { border-style: dashed; opacity: .5; text-decoration: line-through; }
   .model-hint { color: var(--ink-soft); font-size: var(--t-sm); margin: var(--s2) 0; }
   .model-skip { color: var(--ink-soft); font-size: var(--t-sm); margin: var(--s2) 0; }
+  .model-rule { font-size: var(--t-sm); margin: var(--s1) 0; padding: 2px var(--s2); border-radius: var(--r-sm, 6px); border-inline-start: 3px solid var(--line); }
+  .model-rule.ok { border-inline-start-color: var(--accent); }
+  .model-rule.bad { border-inline-start-color: var(--danger, #b3261e); font-weight: 600; }
+  .model-rule.open { color: var(--ink-soft); }
+  .model-overruled .mbars { opacity: .55; }
   .model-skip b { font-family: var(--ar-font); font-size: 1.1em; color: var(--ink); }
   /* ==== design wave 8: the rule voice in the reveal ======================
      A frame's reveal is the RULE speaking — accent, never the model's
@@ -3144,7 +3149,7 @@ const L = {
         tawkidGame:"Attach the nūn", tawkidGameDesc:"A cell of a verb from the texts and a person: pick it with the nūn of emphasis. The wrong answers are the mistakes learners make — the kept wāw, the wrong vowel, the light nūn on a dual.", tawkidAsk:"Which form carries the nūn of emphasis correctly?", tawkidWhyNot:"Follow the class rule: the singular takes fatḥa before the nūn; the masculine plural drops its wāw and keeps ḍamma (unless a fatḥa stands before the wāw); the feminine «you» drops its yāʾ and keeps kasra; the dual keeps its alif and takes نِّ; the women's plural adds an alif before نِّ — and the light nūn never joins the dual or the women.",
         idghamGame:"Idghām: which ruling?", idghamGameDesc:"A cell of a doubled verb from the texts: is its idghām obligatory, permitted or impossible? The reveal shows the asl and the reason.", idghamAsk:"The idghām in this cell is…", idghamWhyNot:"Look at the two twins in the asl: both vowelled → obligatory; the second sākin by a jazm or an amr → permitted (fakk or idghām); the second sākin by a vowelled pronoun or the women's nūn → impossible.",
         arudTab:"ʿArūḍ", arudIntro:"Paste a bayt with ✽ (or *) between its hemistichs. The engine cuts it into moving and still letters by the classical rules and names the baḥr whose tafāʿīl consume both halves with the fewest ziḥāfāt — or says that none does.", arudPh:"… ✽ …", arudSeeds:"bayts to try", arudEmpty:"Type a bayt, or tap one below.", arudNoStar:"Mark the hemistich cut with ✽ or * — the metre is read on the two halves.", tripletTitle:"one noun, three cases — the sign and what carries it", tripletNote:"The Kafiya's test-bench read by the engines: the case from the stored iʿrāb, the sign off the word's own ending, and whether it declines by a vowel or by a letter. A dashed cell declines by a letter.",
-        arudNote:"The units are read off the marks: a tanwīn is a nūn, a shadda two letters, the article's alif and its assimilated lām fall mid-line, a madd falls before a waṣl, the pronoun's hāʾ may lengthen, and the close is lengthened or read in pause. The baḥr is the one pattern of tafāʿīl that consumes both hemistichs; each foot names the form it took.", arudNone:"no baḥr the engine knows consumes this line — the units are shown as read", arudMudawwar:"mudawwar — a word straddles the cut; the metre closes the ṣadr at", qafiyaLbl:"the qāfiya:",
+        arudNote:"The units are read off the marks: a tanwīn is a nūn, a shadda two letters, the article's alif and its assimilated lām fall mid-line, a madd falls before a waṣl and a sākin consonant there is moved (a tanwīn takes the kasra: حَرْفُنِ لْكَلِمْ), the pronoun's hāʾ may lengthen, and the close is lengthened or read in pause. The baḥr is the one pattern of tafāʿīl that consumes both hemistichs; each foot names the form it took.", arudNone:"no baḥr the engine knows consumes this line — the units are shown as read", arudMudawwar:"mudawwar — a word straddles the cut; the metre closes the ṣadr at", qafiyaLbl:"the qāfiya:",
         bahrGame:"Which baḥr?", bahrGameDesc:"A bayt from the texts — name its metre; the reveal cuts it into its tafāʿīl.", bahrAsk:"Which baḥr carries this bayt?", bahrWhyNot:"Count the units: the reveal shows the tafāʿīl the line really fills — set their pattern against the baḥr you picked.",
         sajGame:"Which sajʿ?", sajGameDesc:"The two fasilas of a sajʿ from the Talkhis are marked — name its kind by the wazn: mutarraf, mutawazi or murassaʿ.", sajAsk:"The two marked words are the fasilas — which sajʿ is it?", sajWhyNot:"Look at the WAZN of the two fasilas: different wazn is mutarraf; one wazn with the rest unmatched is mutawazi; most words of both clauses answering in wazn and rhyme is murassaʿ.", sajWaznLbl:"the engine's wazn:", sajWaznSame:"one wazn", sajWaznDiff:"two wazns",
         raddGame:"The close comes back", raddGameDesc:"A radd al-ʿajuz from the Talkhis: the close of the line is marked — find the earlier word it brings back.", raddAsk:"The marked word closes the line — which earlier word does it return to?", raddWhyNot:"The close returns to a word that is the same word, its jinas, or its derivation — and it sits at the head, the middle or the end of a hemistich.",
@@ -3159,11 +3164,11 @@ const L = {
         wajhAsk:"Which wajh does this sentence carry? The frame engines read it off the surface; name it before the reveal.",
         wajhNote:"the catalogue note",
         modelTab:"Model",
-        modelIntro:"The statistical layer, hand open. Type a sentence: for every open noun the model ranks the roles it believes in, as bars — and shows its evidence, every feature the word fired, named in plain language. Verbs and closed-class words get a stand-down line instead: the rules decide those, and the model only votes where the rules cannot.",
+        modelIntro:"The statistical layer, hand open. Type a sentence: for every open noun the model ranks the roles it believes in, as bars — and shows its evidence, every feature the word fired, named in plain language. Verbs and closed-class words get a stand-down line instead: the rules decide those. In the reader the model only votes where the rules cannot; HERE it scores every open noun, and where the rules settle the noun's seat their verdict stands on the card beside the bars and overrules them.",
         modelScore:"🤖 An averaged perceptron trained at runtime on {n} hand-labelled words. Held out story by story it names the role first try {a}% of the time, within two guesses {b}% — statistics, never i'rab.",
         modelSkipVerb:"a verb — its cell and person come from the paradigms, and the model stands down.",
         modelSkipClosed:"closed class or undecided — the tables answer here, not statistics.",
-        modelHonest:"Bars are the model's belief, not a ruling: the stored hand analyses stay the truth, and the reader always says which one is talking.",
+        modelHonest:"The percentages are the model's raw scores — a softmax over a perceptron's margins, NOT calibrated probabilities: a %100 can be wrong, and is wrong wherever the card says the rules overrule it. The stored hand analyses stay the truth, and the reader always says which one is talking.", modelRules:"the rules settle", modelAgrees:"the model agrees", modelOverruled:"the model is WRONG here — the rules overrule it", modelNoRule:"the rules leave this seat open — only here does the model vote",
         modelTapHint:"🔬 Tap any evidence chip to WITHHOLD it and watch the belief move — the ablation experiment the engineers run, in your hand. Tap again to restore.",
         alaqaGame:"Which relation?", alaqaAsk:"What licenses this transfer of meaning?",
         alaqaGameDesc:"A word says one thing and means another — name the relation between them.",
@@ -3289,9 +3294,9 @@ const L = {
         tahqiqDabtTitle:"the engine's dabt beside the stored one", tahqiqDabtHint:"The endings were stripped from this sentence and written back by the rules alone. Red marks a word where the engine's ending differs from the text as authored; a dotted underline is a word the rules left undecided.",
         tahqiqDabtScore:"{a}/{n} endings rebuilt exactly",
         majazTab:"Majaz", majazIntro:"Type a sentence and the engine looks for a word moved off its meaning: the clue the surface carries (a stacked kaf, a place asked, a season that «grows», the books' own pairs) is claimed; a borrowed likeness is only ever offered as a candidate.", majazPh:"a majaz…",
-        majazLbl:"the word moved off its meaning", majazNone:"no majaz the surface can point at — the literal reading stands", majazHint:"The literal on the right, the intended on the left; the arch is the 'alaqa, the red bar the qarina. Where only knowledge of the two things tells, the engine says candidate.",
+        majazLbl:"the word moved off its meaning", majazNone:"the engine finds no majaz the surface can point at — that is not a ruling that the words are literal: a majaz whose clue is knowledge of the two things stays unseen", majazHint:"The literal on the right, the intended on the left; the arch is the 'alaqa, the red bar the qarina. Where only knowledge of the two things tells, the engine says candidate.",
         majazAgree:"the engine's reading agrees with the authored majaz", majazDisagree:"the engine does NOT read the authored majaz — a question for the author or the engine", majazAuthoredOnly:"authored — the engine finds no surface clue", majazShortlist:"the 'alaqas a mursal may carry:", majazSix:"the six kinds by the sensory and the mental",
-        kinayaTab:"Kinaya", kinayaIntro:"Type a sentence and the engine looks for a kinaya by its SHAPE: a quality annexed to a thing (كَثِيرُ الرَّمَادِ), a quality seated on a place or a garment of someone's (الْمَجْدُ بَيْنَ ثَوْبَيْهِ), marks with no head noun, a definition by exclusion. What is MEANT is knowledge — the chapter's own rungs climb the ladder; the engine only names the kind and runs the pronoun test.", kinayaPh:"a kinaya…", kinayaLbl:"the said and the meant", kinayaNone:"no kinaya the shape can point at — the wording is taken as it stands", kinayaHint:"The ladder climbs from the said (foot) over the rungs the chapter names to the meant (top). No rung: a near kinaya; rungs: a far one, and Sakkaki's name follows their count. A pronoun folded into the wording is lit.", kinayaAgree:"the engine's reading agrees with the authored kinaya", kinayaDisagree:"the engine does NOT read the authored kinaya — a question for the author or the engine", kinayaAuthoredOnly:"authored — the engine finds no shape", kinayaRung:"rungs", kinayaTibaq:"and the tibaq the surface holds", kinayaCorpus:"the chapters' own kinayas and tibaqs — with their authored rungs", badiLbl:"two contraries in one sentence", badiNone:"no tibaq the surface or the stored table can point at", badiHint:"Two poles: the tibaq of affirmation pairs a stored contrary with its opposite; the tibaq of negation is one word denied and affirmed. Two nouns, two verbs, two particles, or one of each.", badiAgree:"the engine's reading agrees with the authored tibaq", badiDisagree:"the engine does NOT read the authored tibaq", badiAuthoredOnly:"authored — the pair is not in the engine's table", taqdirBtn:"the taqdir — the words the sentence carries unwritten: the concealed pronoun, the estimated governor, the dropped mudaf", doorsLbl:"the doors of the bayan this sentence opens", ghostLegend:"dashed: a word the i'rab restores — never written on the page", majazSixHint:"Which of the three — the lent word's thing, the thing meant, the jamiʿ — is sensed and which is reasoned? Tap a cell to read its aya in the engine.",
+        kinayaTab:"Kinaya", kinayaIntro:"Type a sentence and the engine looks for a kinaya by its SHAPE: a quality annexed to a thing (كَثِيرُ الرَّمَادِ), a quality seated on a place or a garment of someone's (الْمَجْدُ بَيْنَ ثَوْبَيْهِ), marks with no head noun, a definition by exclusion. What is MEANT is knowledge — the chapter's own rungs climb the ladder; the engine only names the kind and runs the pronoun test.", kinayaPh:"a kinaya…", kinayaLbl:"the said and the meant", kinayaNone:"the engine finds no kinaya the shape can point at — that is not a ruling that the wording means only what it says: what is meant is knowledge", kinayaHint:"The ladder climbs from the said (foot) over the rungs the chapter names to the meant (top). No rung: a near kinaya; rungs: a far one, and Sakkaki's name follows their count. A pronoun folded into the wording is lit.", kinayaAgree:"the engine's reading agrees with the authored kinaya", kinayaDisagree:"the engine does NOT read the authored kinaya — a question for the author or the engine", kinayaAuthoredOnly:"authored — the engine finds no shape", kinayaRung:"rungs", kinayaTibaq:"and the tibaq the surface holds", kinayaCorpus:"the chapters' own kinayas and tibaqs — with their authored rungs", badiLbl:"two contraries in one sentence", badiNone:"no tibaq the surface or the stored table can point at", badiHint:"Two poles: the tibaq of affirmation pairs a stored contrary with its opposite; the tibaq of negation is one word denied and affirmed. Two nouns, two verbs, two particles, or one of each.", badiAgree:"the engine's reading agrees with the authored tibaq", badiDisagree:"the engine does NOT read the authored tibaq", badiAuthoredOnly:"authored — the pair is not in the engine's table", taqdirBtn:"the taqdir — the words the sentence carries unwritten: the concealed pronoun, the estimated governor, the dropped mudaf", doorsLbl:"the doors of the bayan this sentence opens", ghostLegend:"dashed: a word the i'rab restores — never written on the page", majazSixHint:"Which of the three — the lent word's thing, the thing meant, the jamiʿ — is sensed and which is reasoned? Tap a cell to read its aya in the engine.",
         badiLbl:"the figures of the badiʿ, as the engines read them", badiCount:"counterparts", badiTab:"Badiʿ",
         badiIntro:"Type a sentence and the badiʿ engines read its figures: the figures of MEANING off the surface and the stored tables (the tibaq, the muqabala, muraʿat al-nazir, tashabuh al-atraf, the irsad, the muzawaja, the ʿaks, the rujuʿ; the mushakala, the tawriya, the istikhdam and the summed laff wa-nashr take their word from a chapter's frame), the figures of WORDING by letter comparison (the jinas) and by the pausal letter (the sajʿ).",
         badiPh:"e.g. يُحْيِي وَيُمِيتُ", badiSeedsMeaning:"the figures of meaning — seeds", badiSeedsJinas:"the jinas — seeds", badiSeedsSaj:"the sajʿ — seeds",
@@ -3300,12 +3305,12 @@ const L = {
         sajLbl:"prose that agrees at the pause", sajNone:"no clauses agreeing at the pause", sajHint:"The clauses are cut where a joined verb, a joined particle or a fresh mubtada opens; each clause's last word is ringed, and the rhyme letter is lifted out. The kind follows the wazn of the two fawasil; the length note follows the Talkhis: equal clauses are the finest, a longer second is allowed, a much shorter second is held ugly.", sajTwo:"two letters agree",
         learnTab:"Learning", learnIntro:"Everything else in the Atolye is an exact rule. These three are STATISTICAL — learned from the stories themselves — and they are measured against a held-out slice before they may speak. Wherever they do, the 🧠 badge says so.",
         learnBabTitle:"the bab of a Form-I root, predicted", learnBabIntro:"A multinomial logistic regression over the three radicals (letter × position, the weak-letter, hamza and guttural flags), trained offline on the {n} Form-I roots the packages store, scored by 5-fold cross-validation.",
-        learnHeldOut:"held-out accuracy", learnTop2:"top-2", learnMajority:"majority baseline", learnRootPh:"type a root: ك ت ب", learnBabNote:"The Sarf lab shows this guess only when the corpus has no paradigm for the root — as evidence, never as the rule. The Talkhis's own verbs stay the authority.",
+        learnHeldOut:"held-out accuracy", learnTop2:"top-2", learnMajority:"majority baseline", learnRootPh:"type a root: ك ت ب", learnBabNote:"Where the shelf recites the root (the ʿIzzī's and the Marāḥ's own paradigms), the shelf answers and the guess is shown beside it, marked right or wrong. The Sarf lab shows the guess only when the corpus has no paradigm for the root — as evidence, never as the rule.",
         learnRun:"train and grade on this device", learnRerun:"train and grade again", learnRunning:"training…",
         learnIrabTitle:"the seats of iʿrab, learned from the stored lines", learnIrabIntro:"Every human-written iʿrab line in the corpus names a seat (فَاعِل, مَفْعُولٌ بِهِ, مُضَافٌ إِلَيْهِ…). A naive-Bayes model reads the analyzer's features of each word and predicts the seat; it trains on half the stories and is tested on the other half, beside DabtEngine's own decision on the same words. A rule miner lists the governor → seat pairs the lines support.",
         learnEngineAcc:"DabtEngine, exact rules", learnModelAcc:"the learned model", learnConfAcc:"when ≥85% sure ({n} words)", learnFill:"seats the rules left undecided, filled at {acc}%",
         learnSplit:"trained on {a} words, tested on {b} words of {s} other stories", learnSeat:"seat", learnEngineCol:"rules", learnRulesTitle:"mined rules (support · confidence)", learnRulesNote:"A mined rule is a pattern the stored lines support, not a law: it says how often a feature pair went with a seat. The exact engines are graded, the miner only reports.",
-        learnIrabIdle:"Not run yet — training reads every stored line on this device (a few seconds).", learnBadgeTitle:"a statistical guess, measured on held-out data", babGuess:"the model's guess for the bab:", babGuessMeta:"trained on {n} roots · {acc}% held-out",
+        learnIrabIdle:"Not run yet — training reads every stored line on this device (a few seconds).", learnBadgeTitle:"a statistical guess, measured on held-out data", babGuess:"the model's guess for the bab:", babShelf:"the shelf recites this root's bab:", babGuessAgrees:"the model's guess (it does not read the shelf) agrees:", babGuessWrong:"the model's guess (it does not read the shelf) is WRONG here:", babGuessMeta:"trained on {n} roots · {acc}% held-out",
         badiHint:"Each figure is drawn in its own shape: two poles for the tibaq, rows tied for the muqabala and the laff wa-nashr, arcs from the close back to the opening for tashabuh al-atraf, a dotted arrow for the irsad, crossed arrows for the ʿaks, a struck word for the rujuʿ, two faces for the tawriya. A grey chip means the chapter's frame, not the surface, names the figure.", badiAgree:"the engine's reading agrees with the authored figures", badiDisagree:"the engine does NOT read an authored figure — a question for the author or the engine",
         tashbihTab:"Tashbih", tashbihIntro:"Type a likening — with كَ, كَأَنَّ, مِثْل, a verb of likening, or none at all — and the engine names its four arkan off the nahw seats it already holds: the mushabbah, the mushabbah bihi, the adat and the wajh al-shabah, then the kind (mursal or mu'akkad, mufassal or mujmal, baligh).",
         tashbihPh:"e.g. زيد كالبحر كرما", tashbihLbl:"the four arkan, as the engines read them",
@@ -3560,7 +3565,7 @@ const L = {
         tawkidGame:"Nûnu bitiştir", tawkidGameDesc:"Metinlerden bir fiilin hânesi ve şahsı: te'kid nûnlu şeklini seç. Yanlış şıklar öğrencinin yaptığı hatalardır — kalan vâv, yanlış hareke, tesniyede hafîf nûn.", tawkidAsk:"Te'kid nûnunu doğru taşıyan şekil hangisi?", tawkidWhyNot:"Sınıf kuralını izle: müfredde nûndan önce fetha; cemi müzekkerde vâv düşer, damme kalır (vâvdan önce fetha varsa vâv kalır); müennes muhâtabada yâ düşer, kesre kalır; tesniye elifini korur ve نِّ alır; cemi müennese نِّ'den önce elif girer — hafîf nûn tesniyeye ve nisveye hiç gelmez.",
         idghamGame:"İdgam: hangi hüküm?", idghamGameDesc:"Metinlerden muzâaf bir fiilin hânesi: idgamı vâcib mi, câiz mi, mümteni' mi? Cevap aslı ve sebebi gösterir.", idghamAsk:"Bu hânede idgam…", idghamWhyNot:"Asıldaki iki misle bak: ikisi de harekeli → vâcib; ikincisi cezm ya da emirle sâkin → câiz (fekk de idgam da); ikincisi harekeli zamir ya da nisve nûnuyla sâkin → mümteni'.",
         arudTab:"Arûz", arudIntro:"Mısraları arasına ✽ (veya *) koyarak bir beyit yapıştırın. Motor beyti klasik kurallarla harekeli ve sâkin harflere böler, iki mısrayı en az zihâfla dolduran bahri adlandırır — ya da hiçbirinin dolduramadığını söyler.", arudPh:"… ✽ …", arudSeeds:"denenecek beyitler", arudEmpty:"Bir beyit yazın veya aşağıdan birine dokunun.", arudNoStar:"Mısra kesitini ✽ veya * ile işaretleyin — vezin iki yarım üzerinden okunur.", tripletTitle:"bir isim, üç hâl — alâmet ve onu taşıyan", tripletNote:"Kâfiye'nin deney tezgâhı, motorların okuduğu hâliyle: hâl kayıtlı i'râbdan, alâmet kelimenin kendi sonundan, ve hareke ile mi harf ile mi i'râb aldığı. Kesikli hücre harf ile i'râb alır.",
-        arudNote:"Birimler harekelerden okunur: tenvin bir nûndur, şedde iki harftir, harf-i tarifin elifi ve idgamlı lâmı mısra içinde düşer, vasıl öncesinde med düşer, zamir hâsı uzayabilir, sonda ya işbâ yapılır ya vakıf okunur. Bahir, iki mısrayı da dolduran tek tef'ile örgüsüdür; her tef'ile aldığı şekli söyler.", arudNone:"motorun bildiği hiçbir bahir bu mısrayı doldurmuyor — birimler okunduğu gibi gösterildi", arudMudawwar:"müdevver — bir kelime kesiti aşıyor; vezin sadrı şurada kapatıyor:", qafiyaLbl:"kafiye:",
+        arudNote:"Birimler harekelerden okunur: tenvin bir nûndur, şedde iki harftir, harf-i tarifin elifi ve idgamlı lâmı mısra içinde düşer, vasıl öncesinde med düşer ve oradaki sâkin ünsüz harekelenir (tenvin kesre alır: حَرْفُنِ لْكَلِمْ), zamir hâsı uzayabilir, sonda ya işbâ yapılır ya vakıf okunur. Bahir, iki mısrayı da dolduran tek tef'ile örgüsüdür; her tef'ile aldığı şekli söyler.", arudNone:"motorun bildiği hiçbir bahir bu mısrayı doldurmuyor — birimler okunduğu gibi gösterildi", arudMudawwar:"müdevver — bir kelime kesiti aşıyor; vezin sadrı şurada kapatıyor:", qafiyaLbl:"kafiye:",
         bahrGame:"Hangi bahir?", bahrGameDesc:"Metinlerden bir beyit — veznini adlandır; cevap beyti tef'ilelerine böler.", bahrAsk:"Bu beyit hangi bahirde?", bahrWhyNot:"Birimleri say: cevap, mısranın gerçekten doldurduğu tef'ileleri gösterir — örgüsünü seçtiğin bahirle karşılaştır.",
         sajGame:"Hangi seci?", sajGameDesc:"Telhîs'ten bir secinin iki fâsılası işaretli — cinsini vezinle adlandır: mutarraf, mütevâzî yahut murassa'.", sajAsk:"İşaretli iki kelime fâsılalardır — bu hangi secidir?", sajWhyNot:"İki fâsılanın VEZNİNE bak: vezin farklıysa mutarraf; vezin bir, gerisi uymuyorsa mütevâzî; iki cümlenin çoğu kelimesi vezin ve kafiyede karşılıklıysa murassa'.", sajWaznLbl:"motorun vezni:", sajWaznSame:"tek vezin", sajWaznDiff:"iki vezin",
         raddGame:"Son başa döner", raddGameDesc:"Telhîs'ten bir reddü'l-acüz: satırın sonu işaretli — geri getirdiği önceki kelimeyi bul.", raddAsk:"İşaretli kelime satırı kapatıyor — hangi önceki kelimeye döner?", raddWhyNot:"Son, aynı kelimeye, cinasına yahut iştikakına döner — ve mısraın başında, ortasında yahut sonunda oturur.",
@@ -3575,11 +3580,11 @@ const L = {
         wajhAsk:"Bu cümle hangi vechi taşıyor? Kalıp motorları bunu yüzeyden okur; açılıştan önce siz adlandırın.",
         wajhNote:"katalog notu",
         modelTab:"Model",
-        modelIntro:"İstatistik katmanı, eli açık. Bir cümle yazın: model her açık isim için inandığı görevleri çubuklar hâlinde sıralar — ve delilini gösterir: kelimenin ateşlediği her özellik, açık dille adlandırılmış. Fiiller ve kapalı sınıf kelimeler ise dürüst bir çekilme satırı alır: onları kaideler karara bağlar, model yalnız kaidelerin karar veremediği yerde oy kullanır.",
+        modelIntro:"İstatistik katmanı, eli açık. Bir cümle yazın: model her açık isim için inandığı görevleri çubuklar hâlinde sıralar — ve delilini gösterir: kelimenin ateşlediği her özellik, açık dille adlandırılmış. Fiiller ve kapalı sınıf kelimeler ise dürüst bir çekilme satırı alır: onları kaideler karara bağlar. Okuyucuda model yalnız kaidelerin karar veremediği yerde oy kullanır; BURADA her açık ismi puanlar ve kaideler ismin makamını belirlediğinde onların hükmü kartta çubukların yanında durur ve onları geçersiz kılar.",
         modelScore:"🤖 Çalışma anında {n} el ile etiketlenmiş kelime üzerinde eğitilen ortalamalı perceptron. Hikâye hikâye dışarıda bırakılarak sınandığında görevi ilk tahminde %{a}, ilk iki tahminde %{b} bilir — istatistiktir, i'râb değildir.",
         modelSkipVerb:"fiil — kalıbı ve şahsı çekim cetvellerinden gelir; model geri çekilir.",
         modelSkipClosed:"kapalı sınıf yahut belirsiz — burada cetveller cevap verir, istatistik değil.",
-        modelHonest:"Çubuklar modelin kanaatidir, hüküm değil: saklanan el tahlilleri hakikat olarak kalır ve okuyucu hangisinin konuştuğunu dâimâ söyler.",
+        modelHonest:"Yüzdeler modelin ham puanlarıdır — bir perseptron marjları üzerinde softmax, kalibre edilmiş olasılık DEĞİL: %100 de yanlış olabilir ve kartın kaidelerin onu geçersiz kıldığını söylediği her yerde yanlıştır. Saklanan el tahlilleri hakikat olarak kalır ve okuyucu hangisinin konuştuğunu dâimâ söyler.", modelRules:"kaideler belirliyor", modelAgrees:"model uyuyor", modelOverruled:"model burada YANLIŞ — kaideler onu geçersiz kılar", modelNoRule:"kaideler bu makamı açık bırakıyor — model yalnız burada oy kullanır",
         modelTapHint:"🔬 Delil fişlerinden birine dokunun, o delili SAKLAYIN ve kanaatin nasıl oynadığını izleyin — mühendislerin yaptığı ablasyon deneyi, elinizin altında. Tekrar dokunmak geri getirir.",
         alaqaGame:"Hangi alâka?", alaqaAsk:"Bu mana nakline ne izin veriyor?",
         alaqaGameDesc:"Kelime bir şey söyler, başka bir şey kasteder — aradaki alâkayı adlandırın.",
@@ -3705,9 +3710,9 @@ const L = {
         tahqiqDabtTitle:"motorun zabtı, kayıtlı zabtın yanında", tahqiqDabtHint:"Bu cümlenin sonları silindi ve yalnız kaidelerle geri yazıldı. Kırmızı, motorun sonunun metnin yazıldığı hâlinden ayrıştığı kelimedir; noktalı çizgi kaidelerin kararsız bıraktığı kelime.",
         tahqiqDabtScore:"{n} sondan {a}'i tam olarak yeniden kuruldu",
         majazTab:"Mecaz", majazIntro:"Bir cümle yazın; motor mânâsından kaydırılmış kelimeyi arar: yüzeyin taşıdığı karîne (üst üste kâf, sorulan bir yer, «bitiren» bir mevsim, kitapların kendi çiftleri) iddia edilir; ödünç alınmış bir benzetme yalnız aday olarak sunulur.", majazPh:"bir mecaz…",
-        majazLbl:"mânâsından kaydırılmış kelime", majazNone:"yüzeyin işaret edebileceği bir mecaz yok — hakikat okunur", majazHint:"Sağda hakikat, solda murâd; kemer alâka, kırmızı çizgi karînedir. Yalnız iki şeyin bilgisinin söyleyebildiği yerde motor aday der.",
+        majazLbl:"mânâsından kaydırılmış kelime", majazNone:"motor, yüzeyin işaret edebileceği bir mecaz bulmuyor — bu, sözün hakikat olduğu hükmü değildir: karînesi iki şeyin bilgisi olan mecaz görünmez kalır", majazHint:"Sağda hakikat, solda murâd; kemer alâka, kırmızı çizgi karînedir. Yalnız iki şeyin bilgisinin söyleyebildiği yerde motor aday der.",
         majazAgree:"motorun okuyuşu müellifin mecazıyla uyuşuyor", majazDisagree:"motor müellifin mecazını OKUMUYOR — müellife yahut motora bir soru", majazAuthoredOnly:"müellif yazmış — motor yüzeyde karîne bulamıyor", majazShortlist:"mürselin taşıyabileceği alâkalar:", majazSix:"hissî ve aklî itibariyle altı kısım",
-        kinayaTab:"Kinâye", kinayaIntro:"Bir cümle yazın; motor kinâyeyi ŞEKLİNDEN arar: bir şeye muzâf bir vasıf (كَثِيرُ الرَّمَادِ), birinin mekânına yahut elbisesine oturtulmuş bir vasıf (الْمَجْدُ بَيْنَ ثَوْبَيْهِ), mevsûfsuz alâmetler, hasr yoluyla bir tarif. KASTEDİLEN bilgidir — merdiveni bölümün kendi basamakları çıkar; motor yalnız kısmı söyler ve zamir testini yapar.", kinayaPh:"bir kinâye…", kinayaLbl:"söylenen ve kastedilen", kinayaNone:"şeklin işaret edebileceği bir kinâye yok — söz olduğu gibi alınır", kinayaHint:"Merdiven söylenenden (alt) bölümün adlandırdığı basamaklardan kastedilene (üst) çıkar. Basamak yoksa yakın kinâye; varsa uzak, ve Sekkâkî'nin adı sayıyı izler. Söze katlanmış zamir yakılır.", kinayaAgree:"motorun okuyuşu müellifin kinâyesiyle uyuşuyor", kinayaDisagree:"motor müellifin kinâyesini OKUMUYOR — müellife yahut motora bir soru", kinayaAuthoredOnly:"müellif yazmış — motor bir şekil bulamıyor", kinayaRung:"basamak", kinayaTibaq:"ve yüzeyin taşıdığı tıbâk", kinayaCorpus:"bölümlerin kendi kinâye ve tıbâkları — müellifin basamaklarıyla", badiLbl:"bir cümlede iki zıt", badiNone:"yüzeyin yahut yerleşik tablonun işaret edebileceği bir tıbâk yok", badiHint:"İki kutup: îcâb tıbâkı yerleşik bir zıddı karşıtıyla eşler; selb tıbâkı bir kelimenin nefyedilip isbat edilmesidir. İki isim, iki fiil, iki harf yahut birer tane.", badiAgree:"motorun okuyuşu müellifin tıbâkıyla uyuşuyor", badiDisagree:"motor müellifin tıbâkını OKUMUYOR", badiAuthoredOnly:"müellif yazmış — çift motorun tablosunda yok", taqdirBtn:"takdir — cümlenin yazmadan taşıdığı kelimeler: gizli zamir, takdîrî âmil, düşen muzâf", doorsLbl:"bu cümlenin açtığı beyan kapıları", ghostLegend:"kesik çizgili: i'râbın geri koyduğu, sayfaya hiç yazılmayan kelime", majazSixHint:"Üçünden — ödünç kelimenin şeyi, kastedilen, câmi — hangisi hissî, hangisi aklî? Bir hücreye dokun, âyetini motorda oku.",
+        kinayaTab:"Kinâye", kinayaIntro:"Bir cümle yazın; motor kinâyeyi ŞEKLİNDEN arar: bir şeye muzâf bir vasıf (كَثِيرُ الرَّمَادِ), birinin mekânına yahut elbisesine oturtulmuş bir vasıf (الْمَجْدُ بَيْنَ ثَوْبَيْهِ), mevsûfsuz alâmetler, hasr yoluyla bir tarif. KASTEDİLEN bilgidir — merdiveni bölümün kendi basamakları çıkar; motor yalnız kısmı söyler ve zamir testini yapar.", kinayaPh:"bir kinâye…", kinayaLbl:"söylenen ve kastedilen", kinayaNone:"motor, şeklin işaret edebileceği bir kinâye bulmuyor — bu, sözün yalnız söylediğini kastettiği hükmü değildir: kastedilen bilgidir", kinayaHint:"Merdiven söylenenden (alt) bölümün adlandırdığı basamaklardan kastedilene (üst) çıkar. Basamak yoksa yakın kinâye; varsa uzak, ve Sekkâkî'nin adı sayıyı izler. Söze katlanmış zamir yakılır.", kinayaAgree:"motorun okuyuşu müellifin kinâyesiyle uyuşuyor", kinayaDisagree:"motor müellifin kinâyesini OKUMUYOR — müellife yahut motora bir soru", kinayaAuthoredOnly:"müellif yazmış — motor bir şekil bulamıyor", kinayaRung:"basamak", kinayaTibaq:"ve yüzeyin taşıdığı tıbâk", kinayaCorpus:"bölümlerin kendi kinâye ve tıbâkları — müellifin basamaklarıyla", badiLbl:"bir cümlede iki zıt", badiNone:"yüzeyin yahut yerleşik tablonun işaret edebileceği bir tıbâk yok", badiHint:"İki kutup: îcâb tıbâkı yerleşik bir zıddı karşıtıyla eşler; selb tıbâkı bir kelimenin nefyedilip isbat edilmesidir. İki isim, iki fiil, iki harf yahut birer tane.", badiAgree:"motorun okuyuşu müellifin tıbâkıyla uyuşuyor", badiDisagree:"motor müellifin tıbâkını OKUMUYOR", badiAuthoredOnly:"müellif yazmış — çift motorun tablosunda yok", taqdirBtn:"takdir — cümlenin yazmadan taşıdığı kelimeler: gizli zamir, takdîrî âmil, düşen muzâf", doorsLbl:"bu cümlenin açtığı beyan kapıları", ghostLegend:"kesik çizgili: i'râbın geri koyduğu, sayfaya hiç yazılmayan kelime", majazSixHint:"Üçünden — ödünç kelimenin şeyi, kastedilen, câmi — hangisi hissî, hangisi aklî? Bir hücreye dokun, âyetini motorda oku.",
         badiLbl:"bedî' sanatları, motorların okuduğu gibi", badiCount:"mukâbil", badiTab:"Bedî'",
         badiIntro:"Bir cümle yazın; bedî' motorları sanatlarını okur: MÂNEVÎ sanatlar yüzeyden ve yerleşik tablolardan (tıbâk, mukâbele, mürâât-ı nazîr, teşâbüh-i etrâf, irsâd, müzâvece, aks, rücû; müşâkele, tevriye, istihdâm ve icmâlî leff ü neşr kelimesini bir bâbın çerçevesinden alır), LAFZÎ sanatlar harf karşılaştırmasıyla (cinas) ve vakıf harfiyle (seci).",
         badiPh:"örn. يُحْيِي وَيُمِيتُ", badiSeedsMeaning:"mânevî sanatlar — örnekler", badiSeedsJinas:"cinas — örnekler", badiSeedsSaj:"seci — örnekler",
@@ -3716,12 +3721,12 @@ const L = {
         sajLbl:"vakıfta birleşen nesir", sajNone:"vakıfta birleşen cümle yok", sajHint:"Cümleler atıflı bir fiil, atıflı bir harf yahut yeni bir mübtedâ açıldığında kesilir; her cümlenin son kelimesi halkalanır ve revî harfi dışarı alınır. Kısım iki fâsılanın veznine göre; uzunluk notu Telhîs'e göre: eşit cümleler en güzeli, uzun ikinci câiz, çok kısa ikinci çirkin sayılır.", sajTwo:"iki harf birleşir",
         learnTab:"Öğrenme", learnIntro:"Atölyedeki her şey kesin bir kuraldır. Bu üçü İSTATİSTİKÎDİR — hikâyelerin kendisinden öğrenilmiştir — ve konuşmadan önce ayrılmış bir dilime karşı ölçülür. Konuştukları her yerde 🧠 rozeti bunu söyler.",
         learnBabTitle:"sülâsî mücerred bir kökün bâbı, tahmin", learnBabIntro:"Üç harf üzerinde çok sınıflı lojistik regresyon (harf × konum, illet harfi, hemze ve boğaz bayrakları); paketlerin sakladığı {n} sülâsî mücerred kök üzerinde çevrimdışı eğitildi, 5 katlı çapraz doğrulama ile puanlandı.",
-        learnHeldOut:"ayrılmış veri doğruluğu", learnTop2:"ilk 2", learnMajority:"çoğunluk tabanı", learnRootPh:"bir kök yazın: ك ت ب", learnBabNote:"Sarf lâboratuvarı bu tahmini yalnız külliyatta kökün çekimi yoksa gösterir — delil olarak, asla kural olarak. Telhîs'in kendi fiilleri otorite kalır.",
+        learnHeldOut:"ayrılmış veri doğruluğu", learnTop2:"ilk 2", learnMajority:"çoğunluk tabanı", learnRootPh:"bir kök yazın: ك ت ب", learnBabNote:"Rafın okuduğu bir kökte (İzzî'nin ve Merâh'ın kendi çekimleri) cevabı raf verir; tahmin yanında, doğru ya da yanlış diye işaretli gösterilir. Sarf lâboratuvarı tahmini yalnız külliyatta kökün çekimi yoksa gösterir — delil olarak, asla kural olarak.",
         learnRun:"bu cihazda eğit ve puanla", learnRerun:"yeniden eğit ve puanla", learnRunning:"eğitiliyor…",
         learnIrabTitle:"i'râb makamları, saklı satırlardan öğrenilmiş", learnIrabIntro:"Külliyattaki insan eliyle yazılmış her i'râb satırı bir makam adlandırır (فَاعِل, مَفْعُولٌ بِهِ, مُضَافٌ إِلَيْهِ…). Bir naif Bayes modeli her kelimenin çözümleyici özelliklerini okuyup makamı tahmin eder; hikâyelerin yarısında eğitilir, öbür yarısında, aynı kelimelerde DabtEngine'in kendi kararının yanında sınanır. Bir kural madencisi satırların desteklediği âmil → makam çiftlerini listeler.",
         learnEngineAcc:"DabtEngine, kesin kurallar", learnModelAcc:"öğrenilmiş model", learnConfAcc:"≥%85 eminken ({n} kelime)", learnFill:"kuralların boş bıraktığı makamlar, %{acc} ile doldurulmuş",
         learnSplit:"{a} kelimede eğitildi, {s} başka hikâyenin {b} kelimesinde sınandı", learnSeat:"makam", learnEngineCol:"kurallar", learnRulesTitle:"çıkarılmış kurallar (destek · güven)", learnRulesNote:"Çıkarılmış kural, saklı satırların desteklediği bir örüntüdür, kanun değil: bir özellik çiftinin bir makamla ne sıklıkla gittiğini söyler. Kesin motorlar puanlanır, madenci yalnız bildirir.",
-        learnIrabIdle:"Henüz çalıştırılmadı — eğitim bu cihazda her saklı satırı okur (birkaç saniye).", learnBadgeTitle:"ayrılmış veride ölçülmüş istatistikî bir tahmin", babGuess:"modelin bâb tahmini:", babGuessMeta:"{n} kökte eğitildi · ayrılmış veride %{acc}",
+        learnIrabIdle:"Henüz çalıştırılmadı — eğitim bu cihazda her saklı satırı okur (birkaç saniye).", learnBadgeTitle:"ayrılmış veride ölçülmüş istatistikî bir tahmin", babGuess:"modelin bâb tahmini:", babShelf:"raf bu kökün bâbını okuyor:", babGuessAgrees:"modelin tahmini (rafı okumaz) uyuyor:", babGuessWrong:"modelin tahmini (rafı okumaz) burada YANLIŞ:", babGuessMeta:"{n} kökte eğitildi · ayrılmış veride %{acc}",
         badiHint:"Her sanat kendi şekliyle çizilir: tıbâk için iki kutup, mukâbele ve leff ü neşr için bağlı satırlar, teşâbüh-i etrâf için sondan başa yaylar, irsâd için noktalı ok, aks için çapraz oklar, rücû için üstü çizili kelime, tevriye için iki yüz. Gri çip, sanatı yüzeyin değil bâbın çerçevesinin adlandırdığını söyler.", badiAgree:"motorun okuması müellif sanatlarıyla uyuşuyor", badiDisagree:"motor müellif sanatlarından birini OKUMUYOR — müellife yahut motora bir soru",
         tashbihTab:"Teşbih", tashbihIntro:"Bir benzetme yazın — كَ, كَأَنَّ, مِثْل, bir benzetme fiili ile yahut hiç edatsız — motor, zaten tuttuğu nahiv oturaklarından dört rüknü adlandırsın: müşebbeh, müşebbehün bih, edat ve vech-i şebeh; sonra nev'ini (mürsel/müekked, mufassal/mücmel, belîğ).",
         tashbihPh:"örn. زيد كالبحر كرما", tashbihLbl:"dört rükün, motorların okuduğu gibi",
@@ -6551,6 +6556,9 @@ function sjSarfAgree(surface, cell){
   // passes — missing evidence is not contrary evidence).
   const la = a[a.length - 1], lb = b[b.length - 1];
   if (la && lb && la.m && lb.m && /ّ/.test(la.m) !== /ّ/.test(lb.m)) return false;
+  /* (v334-C · audit C10) a cell's last letter written bare is a MADD letter (نَقِي «we guard»): it is no doubled letter, so a
+     shadda written there (نَقِيُّ «pure», the noun) is contrary evidence, not missing evidence */
+  if (la && lb && la.m && /ّ/.test(la.m) && !lb.m && /^[اويى]$/.test(lb.l || "")) return false;
   return true;
 }
 // ---- الْمَبْنِيُّ لِلْمَجْهُولِ, derived rather than looked up -----------------
@@ -16482,6 +16490,11 @@ function renderModelOut(){
   try { rows = SentenceAnalyzer.analyze(text) || []; } catch (e) { out.innerHTML = ""; return; }
   if (!rows.length) { out.innerHTML = ""; return; }
   const words = rows.map(r => r.w);
+  /* (v334-C · audit C01) the RULES' verdict on every card: the model alone gave زَيْدٌ «khabar %100» after قَامَ — the rules say fāʿil.
+     A score the learner sees is labelled a score, and where the rules settle the seat their answer stands beside it and says
+     whether the model agrees; the model is never hidden. */
+  let dec334 = null; try { dec334 = DabtEngine.decide(rows); } catch (e) { dec334 = null; }
+  const RULE_ROLE334 = { fail: "fail", naib: "fail", maful: "maful", mafulMutlaq: "maful", mafulLah: "maful", munada: "maful", munadaMudaf: "maful", mubtada: "mubtada", kanaIsm: "mubtada", innaIsm: "mubtada", laJins: "mubtada", khabar: "khabar", kanaKhabar: "khabar", innaKhabar: "khabar", khabarMa: "khabar", mudafIlayh: "mudaf", hal: "hal", tamyiz: "hal", zarf: "hal", nat: "tabi", atf: "tabi", badal: "tabi", tawkid: "tabi", jarr: "jarr" };
   MODEL_CARDS = [];
   let prev = null, h = "";
   rows.forEach((r, i) => {
@@ -16495,8 +16508,15 @@ function renderModelOut(){
         nextFull: i + 1 < rows.length ? words[i + 1] : null });
       const ci = MODEL_CARDS.length;
       MODEL_CARDS.push({ fs, dropped: new Set() });
-      h += `<div class="model-card">
+      const ruled = dec334 && dec334.out && dec334.out[i] ? RULE_ROLE334[dec334.out[i].rule] || null : null;
+      let top334 = null; try { top334 = (IrabModel.rank(IrabModel.train(), fs)[0] || {}).r || null; } catch (e) { top334 = null; }
+      const u334 = ui(), R334 = ruled ? DUEL_ROLES[ruled] : null;
+      const RL334 = R334 ? ((DabtEngine.RULE || {})[dec334.out[i].rule] || null) : null;   // the rule's own name (اسْمُ إِنَّ), the model's class beside it
+      const ruleLine = R334 ? `<div class="model-rule ${top334 === ruled ? "ok" : "bad"}">⚖ ${escapeAttr(u334.modelRules)}: <b lang="ar">${escapeAttr(RL334 ? RL334.ar : R334.ar)}</b>${RL334 ? " · " + escapeAttr(state.uiLang === "tr" ? RL334.tr : RL334.en) : ""} <span class="learn-meta">(${R334.ar})</span> — ${escapeAttr(top334 === ruled ? u334.modelAgrees : u334.modelOverruled)}</div>`
+        : `<div class="model-rule open">${escapeAttr(u334.modelNoRule)}</div>`;
+      h += `<div class="model-card${R334 && top334 !== ruled ? " model-overruled" : ""}">
         <div class="model-word" lang="ar" dir="rtl">${escapeAttr(r.w)}</div>
+        ${ruleLine}
         <div class="mbars" id="mbars${ci}">${modelBarsHtml(fs)}</div>
         <div class="feat-chips">${fs.map((f, fi) =>
           `<button class="feat-chip" data-mc="${ci}" data-fi="${fi}">${escapeAttr(modelFeatLbl(f))}</button>`).join("")}</div>
@@ -17175,9 +17195,13 @@ class FahmEngine {
     return null;
   }
   static rootFromShape(core){ const c = core.replace(/^ال/, "").replace(/ة$/, ""); let m; if ((m = c.match(/^م(.)(.)و(.)$/))) return m[1] + " " + m[2] + " " + m[3]; if ((m = c.match(/^م(.)(.)ا(.)$/))) return m[1] + " " + m[2] + " " + m[3]; if ((m = c.match(/^م(.)(.)(.)$/))) return m[1] + " " + m[2] + " " + m[3]; if ((m = c.match(/^(.)ا(.)(.)$/))) return m[1] + " " + m[2] + " " + m[3]; if ((m = c.match(/^(.)(.)ا(.)$/))) return m[1] + " " + m[2] + " " + m[3]; return null; }
+  /* (v334-C · audit C03) a verb the shelf has only in the passive (حُمَّ «to catch a fever») has no doer: no ism fāʿil and no intensive
+     فَعَّال is built on it — الْحَمَّامِ is not «one who catches a fever much» */
+  static passiveOnly(e){ return !!e && /verb/.test(e.pos || "") && /^[ء-ي]ُ/.test(String(e.lemma || "").normalize("NFC")) && /passive|majhul|meçhul/i.test(JSON.stringify(e.gloss || "")); }
   static derive(bareHost, root){
     let R = String(root || "").split(/\s+/).filter(Boolean); if (R.length !== 3) { const r2 = this.rootFromShape(bareHost); if (!r2) return null; R = r2.split(" "); root = r2; }
     const ve = this.byRoot(root, "verb"); if (!ve || !ve.gloss) return null;
+    if (this.passiveOnly(ve)) { const h0 = bareHost.replace(/^ال/, "").replace(/[هة]$/, ""); const [f0, a0, l0] = R.map(x => x.replace(/[أإآ]/g, "ا")); if (h0 === f0 + "ا" + a0 + l0 || h0 === f0 + a0 + "ا" + l0) return null; }
     const en = this.sense(ve.gloss, "en").replace(/^to /, ""), tr = this.trStem(ve.gloss); if (!en) return null;
     const h = bareHost.replace(/^ال/, "").replace(/ه$/, "ة"); const fem = /ة$/.test(h); const core = h.replace(/ة$/, "");
     const [f, a, l] = R.map(x => x.replace(/[أإآ]/g, "ا"));
@@ -17251,7 +17275,7 @@ class FahmEngine {
     // the word only through its root, or matched a DIFFERENT lemma on the bare letters, the deduced meaning is the reading
     if (o.kind !== "particle" && o.pos !== "nasikh" && o.pos !== "adv" && (r.kind !== "verb" || /[\u064b-\u064d]/.test(w) || r.al) && /[\u064b-\u0650]/.test(w)) { try {
       const d = IshtiqaqEngine.read(w);
-      if (d && d.conf === "verb" && d.full && !d.gloss.structural) {
+      if (d && d.conf === "verb" && d.full && !d.gloss.structural && !((d.roles || []).some(x => /^(mubalagha|fail)$/.test(x)) && this.passiveOnly(this.byRoot(d.gloss.root, "verb")))) {
         const own = o.how === "lexicon" && o.lemma && o.pos !== "verb" && IshtiqaqEngine.plain(o.lemma) === IshtiqaqEngine.plain(IshtiqaqEngine.seat(d.out));
         o.ishtiqaq = d;
         if (!own && !(d.roles[0] === "tafdil" && o.gloss) && !(o.how === "lexicon" && o.num === "pl") && !(o.how === "lexicon" && d.said)) {
@@ -17261,7 +17285,7 @@ class FahmEngine {
     } catch (q) {} }
     if (!o.gloss && r.kind !== "verb") { const pg = this.pluralGuess(core0.replace(/(هما|كما|هم|هن|كم|كن|نا|ها|ه|ك|ني|ي)$/, "")); if (pg) { o.lemma = pg.e.lemma; o.gloss = pg.e.gloss; o.pos = pg.e.pos; o.num = "pl"; o.how = "pattern"; o.wazn = "جَمْع تَكْسِير"; o.root = pg.e.root || o.root || null; } }
     if (!o.gloss && (r.root || o.root) && r.kind !== "verb") { const dv = this.derive(core0.replace(/(هما|كما|هم|هن|كم|كن|نا|ها|ه|ك|ني|ي)$/, ""), r.root || o.root); if (dv) { o.lemma = dv.lemma; o.gloss = { en: dv.en, tr: dv.tr }; o.pos = "noun"; o.how = "pattern"; o.wazn = dv.wazn; o.root = r.root || o.root; } }
-    if (!o.gloss && (r.root || o.root)) { const e2 = this.byRoot(r.root || o.root); if (e2) { o.lemma = e2.lemma; o.gloss = e2.gloss; o.pos = e2.pos; o.how = "root"; o.root = r.root || o.root; const hb2 = core0.replace(/^[بلك]?(ال)?/, ""); if (e2.plural && this.bare(e2.plural) === hb2) { o.num = "pl"; o.how = "lexicon"; } } }
+    if (!o.gloss && (r.root || o.root)) { const e2 = this.byRoot(r.root || o.root); if (e2 && !(r.kind !== "verb" && this.passiveOnly(e2))) { o.lemma = e2.lemma; o.gloss = e2.gloss; o.pos = e2.pos; o.how = "root"; o.root = r.root || o.root; const hb2 = core0.replace(/^[بلك]?(ال)?/, ""); if (e2.plural && this.bare(e2.plural) === hb2) { o.num = "pl"; o.how = "lexicon"; } } }
     return o;
   }
   static sentenceType(items){ const first = items.find(x => x.kind !== "particle" || /^(part|pron)$/.test(x.pos || "") && !/^(part|prep|conj)$/.test(x.pos || "")); return items.some(x => x.pos === "verb" && (items.indexOf(x) === 0 || items[items.indexOf(x) - 1].joiner || /^(part|conj)$/.test(items[items.indexOf(x) - 1].pos || ""))) && first && first.pos === "verb" ? "verbal" : "nominal"; }
@@ -17270,7 +17294,7 @@ class FahmEngine {
   static trPlural(g){ const h = this.trHarmony(g); return g + (h.a === "a" ? "lar" : "ler"); }
   static adjShape(x){ return /^(مفعول|فاعل|فعال)/.test(x.wazn || "") || /ed$|ing$|ful$|ous$|ive$|able$|less$|^(big|small|great|good|bad|new|old|long|short|high|low|noble|generous|rich|poor|strong|weak|beautiful|ugly|near|far|many|few|open|closed|true|false|alive|dead)$/.test(this.sense(x.gloss, "en")); }
   static nounGloss(x, lang){
-    let g = this.sense(x.gloss, lang) || "…";
+    let g = this.sense(x.gloss, lang) || ("«" + String(x.w || "").normalize("NFC").replace(/^[وف]?[َ]?(ال|لِل)/, "").replace(/[ًٌٍَُِْ]$/, "") + "»");   /* (v334-C · C03) the word the lexicon lacks is shown, not guessed */
     const propn = x.pos === "propn" || /^(الله|اللّه)$/.test(this.bare(x.lemma || ""));
     if (x.num === "pl") g = lang === "en" ? this.enPlural(g) : this.trPlural(g);
     const approx = x.how === "root" ? (s0 => "[" + s0 + "?]") : (s0 => s0);
@@ -17335,7 +17359,13 @@ class FahmEngine {
     if (lang === "tr" && kh) parts.push(nas ? this.sense(nas.gloss, "tr") : "-dır");
     return parts.filter(Boolean).join(" ");
   }
-  static meaning(items, lang){ const q = items.length && /^(هل|ا|أ)$/.test(this.bare(items[0].w)); const its = q ? items.slice(1) : items; const cl = this.clauses(its); let t = cl.map(c => this.clauseText(c, lang)).join(" "); t = t.replace(/\s+/g, " ").trim(); if (!t) return ""; if (q) t = (lang === "en" ? (its.some(x => x.pos === "verb") ? "did " : "is ") : "") + t + (lang === "tr" ? " mı" : ""); return t[0].toUpperCase() + t.slice(1) + (q || items.some(x => /؟/.test(x.w)) ? "?" : "."); }
+  static meaning(items, lang){
+    { const f = items.find(x => x.taajjub), n = items.find(x => x.taajjubOf);
+      if (f && n) { const ng = this.nounGloss({ ...n, rule: "maful" }, lang); const w = f.wonder || {};
+        const t = lang === "en" ? (w.en ? "How " + w.en + " " + ng + " is!" : "How remarkable " + ng + " is! [" + (this.sense(f.gloss, "en") || "…") + "]")
+                                : (w.tr ? ng[0].toUpperCase() + ng.slice(1) + " ne kadar " + w.tr + "!" : ng[0].toUpperCase() + ng.slice(1) + " ne şaşılacak! [" + (this.sense(f.gloss, "tr") || "…") + "]");
+        return t[0].toUpperCase() + t.slice(1); } }
+    const q = items.length && /^(هل|ا|أ)$/.test(this.bare(items[0].w)); const its = q ? items.slice(1) : items; const cl = this.clauses(its); let t = cl.map(c => this.clauseText(c, lang)).join(" "); t = t.replace(/\s+/g, " ").trim(); if (!t) return ""; if (q) t = (lang === "en" ? (its.some(x => x.pos === "verb") ? "did " : "is ") : "") + t + (lang === "tr" ? " mı" : ""); return t[0].toUpperCase() + t.slice(1) + (q || items.some(x => /؟/.test(x.w)) ? "?" : "."); }
   static structure(items, lang){ const L = DabtEngine.RULE || {}; return items.map(x => { const R = L[x.rule]; const lbl = R ? (R[lang] || R.en) : (x.src === "kept" || x.src === "lexicon" ? (lang === "en" ? "built (mabnī)" : "mebnî") : (lang === "en" ? "undecided" : "kararsız")); return { w: x.out, lbl }; }); }
   static sarf(x, lang){ if (x.pos !== "verb" || !x.cell) return ""; const t = String(x.cell.tense || ""); const u = ui(); const tense = /amr/.test(t) ? u.fahmAmr : /mazi/i.test(t) ? u.fahmPast : u.fahmPresent; const per = this.PERSON[lang][Number(x.cell.i) || 0] || ""; return tense + (/majhul/i.test(t) ? " · " + u.fahmPassive : "") + " · " + per + (x.root ? " · " + x.root : "") + (x.cell.shape138 ? " · " + u.fahmByShape : "") + this.lazim(x, lang); }
   /* (wave 138) the ledger's word on the verb: how the shelf's own analysed sentences used it — the count is the evidence, the verdict the rule's */
@@ -17363,10 +17393,53 @@ class FahmEngine {
     if (memo144.has(key144)) { const hit = memo144.get(key144); memo144.delete(key144); memo144.set(key144, hit); return hit; }   /* (wave 144) the keystroke's debounce and the re-render share one reading */
     const res144 = this.analyze0(text, lang); if (memo144.size >= 24) memo144.delete(memo144.keys().next().value); memo144.set(key144, res144); return res144;
   }
+  /* (v334-C · audit C02, C03) what the TYPED letters settle, which the endings pass (DabtEngine.vowel strips every last vowel to
+     place the iʿrāb) had thrown away:
+     · the māḍī's last vowel on its tāʾ is the DOER, not an ending — رَأَيْتُ is «I saw» (ʿIzzī's māḍī table: تُ the speaker, تَ the
+       one addressed, تِ the woman addressed); the typed word's own cell gives the person;
+     · «عمرا» is the grammar books' ʿAmr (Iẓhār L149 «ضرب زيد عمرا»): the name drops its silent wāw in the naṣb, so a ḍamma on the
+       ʿayn alone (عُمْرًا) makes it «life»;
+     · «مَا أَفْعَلَ …» is the verb of wonder — «How fair the sky is!», not a negation: ما, then أَفْعَلَ on a root's three letters, then
+       the noun wondered at (the taʿajjub of the nahw books). */
+  static typed334(text, items){
+    const src = String(text || "").normalize("NFC").replace(/[«»،.:!؟]/g, " ").trim();
+    let orig = null; try { orig = SentenceAnalyzer.analyze(src) || null; } catch (e) { orig = null; }
+    const typed = src.split(/\s+/).filter(Boolean);
+    if (orig && orig.length === items.length) items.forEach((x, i) => { const o = orig[i];
+      if (x.pos !== "verb" || !x.cell || !o || o.kind !== "verb" || !o.cell) return;
+      if (!/^(mazi|majhulMazi)$/.test(String(o.cell.tense || "")) || String(o.cell.tense) !== String(x.cell.tense || "")) return;
+      if (!/ت[ُِ]/.test(String(o.w || "").normalize("NFC")) && !/تُم|تُن|تُمَا/.test(String(o.w || "").normalize("NFC"))) return;   // a typed vowel on the doer's tāʾ
+      if (x.lemma && o.lemma && this.bare(x.lemma) !== this.bare(o.lemma)) return;
+      x.cell = { ...x.cell, i: o.cell.i, form: o.cell.form }; });
+    items.forEach((x, i) => { const tw = typed[i] || x.w || "";
+      if (x.pos === "verb" && !/^[وف]?عمرا$/.test(this.bare(tw))) return;
+      if (/^[وف]?عمرا$/.test(this.bare(tw)) && !/ع[ّ]?ُ/.test(String(tw).normalize("NFC")) && !/م[ّ]/.test(String(tw).normalize("NFC"))) {
+        let e = null; try { e = DabtEngine.lex("عَمْرو", true); } catch (q) { e = null; }
+        if (e && e.lemma) { x.lemma = e.lemma; x.gloss = e.gloss; x.pos = "propn"; x.kind = "noun"; x.cell = null; x.how = "lexicon"; x.root = e.root || null; x.al = false; x.tanwin = false; x.num = ""; x.name334 = true; } } });
+    for (let i = 0; i + 2 < items.length; i++) {
+      const m = items[i], f = items[i + 1], n = items[i + 2];
+      if (!/^ما$/.test(this.bare(m.w))) continue;
+      const fb = this.bare(f.w); if (!/^ا[^اويى][^اويى][^اويى]$/.test(fb) || f.enc) continue;
+      const fw = String(typed[i + 1] || f.w).normalize("NFC");
+      if (/[ًٌٍ]/.test(fw) || /^[اأإ][ُِ]/.test(fw) || /[ُِْ]$/.test(fw)) continue;   // a tanwīn, the amr's ḍamma (اُحْسُنْ), a case ending: no verb of wonder
+      if (n.pos === "verb" || n.kind === "particle") continue;
+      const R = fb.slice(1).split(""); const root = R.join(" ");
+      f.taajjub = true; f.pos = "verb"; f.kind = "verb"; f.rule = "taajjub"; f.cell = { tense: "mazi", i: 0, form: "أَ" + R[0] + "ْ" + R[1] + "َ" + R[2] + "َ" }; f.lemma = f.cell.form;
+      m.taajjubMa = true; m.pos = "pron"; n.taajjubOf = true; if (n.rule === "fail" || n.rule === "mubtada" || !n.rule) n.rule = "maful";
+      const all = (this._root || (this.byRoot(root), this._root)).get(root) || [];
+      const v1 = all.find(e => /verb/.test(e.pos || "") && (!e.form || e.form === "I"));
+      const adj = all.find(e => /^adj/.test(e.pos || ""));
+      const be = g => { const t = this.sense(g, "en"); return /^to be /.test(t) ? t.replace(/^to be /, "") : ""; };
+      const beTr = g => { const t = this.sense(g, "tr"); return / olmak$/.test(t) ? t.replace(/ olmak$/, "") : ""; };
+      f.wonder = { en: (v1 && be(v1.gloss)) || (adj && this.sense(adj.gloss, "en")) || "", tr: (v1 && beTr(v1.gloss)) || (adj && this.sense(adj.gloss, "tr")) || "" };
+      break;
+    }
+  }
   static analyze0(text, lang){
     let v = null; try { v = DabtEngine.vowel(text, "endings"); } catch (e) { v = null; }
     if (!v || !v.words.length) return null;
     const items = v.words.map((x, i) => this.word(v.rows[i] || { w: x.w }, x, i));
+    try { this.typed334(text, items); } catch (e) {}
     const voc = items.some(x => /^(يا|ايا|هيا)$/.test(this.bare(x.w).replace(/^[وف]/, "")));
     items.forEach((x, i) => {
       if (voc && x.pos === "verb" && x.cell && Number(x.cell.i) === 3 && /^[وف]?ت/.test(this.bare(x.w))) x.cell = { ...x.cell, i: 6 };   // يَا أَبِي لِمَاذَا تَسْجُدُ: the addressee, not «she»
@@ -28939,7 +29012,13 @@ class TashbihEngine {
       f.taaddud = (f.count.mushabbah > 1 && f.count.bihi > 1) ? "malfuf" : f.count.mushabbah > 1 ? "taswiya" : f.count.bihi > 1 ? "jam" : null;
       if (halPair) f.mushabbah = f.mushabbah.concat([Math.max(...f.mushabbah) + 1, Math.max(...f.mushabbah) + 2]).filter((x, q, a) => a.indexOf(x) === q).sort((a, b) => a - b);
       // the RANK by what is dropped: both (a'la), one (mutawassit), neither (adna)
-      f.rank = f.baligh || f.adatKind === "mafulMutlaq" || f.adatKind === "idafa" ? (f.mufassal ? "mid" : "ala") : (f.mufassal ? "adna" : "mid");
+      //      (v334-C · audit C04) count what is DROPPED, each of the two on its own: Talkhīṣ L3434–L3437 — the highest drops
+      //      the adat and the wajh, the middle «one of the two» (زَيْدٌ كَالْأَسَدِ · زَيْدٌ أَسَدٌ فِي الشَّجَاعَةِ), the lowest drops neither.
+      //      The adat is spoken only by a real tool (a mursal, or the verb of تَشَابَهَ); the baligh, the idafa and the
+      //      mafʿūl muṭlaq likenings have dropped it.
+      { const adatSpoken = f.mursal || f.adatKind === "tashabuh";
+        const dropped = (adatSpoken ? 0 : 1) + (f.mufassal ? 0 : 1);
+        f.rank = dropped === 2 ? "ala" : dropped === 1 ? "mid" : "adna"; }
       // TAMTHIL: the wajh is a picture drawn from several things — the hay'a the shape rule reads
       f.tamthil = f.shape.wajh === "murakkab";
     });
@@ -29056,6 +29135,19 @@ class MajazEngine {
     cause: new Set(["سبب", "امر", "أمر", "قدر", "حب", "خوف", "علم", "جهل", "حزن", "فرح", "هم", "غم", "مطر", "ريح", "نار", "ماء", "غيث", "سحاب", "سحابة", "غمامة", "طعام", "دواء", "داء", "مرض", "جوع", "عطش", "برد", "حر"]),
   };
   static ASK = /^(سأل|سال|اسأل|كلم|نادى|دعا|خاطب|استفتى|حدث|أخبر|اخبر|قال|استشار|شاور)$/;
+  /* (v334-C · audit C08) the 'AQLI the Talkhīṣ recites by name (L534–L549) — the deed's true doer is knowledge, so these are
+     STORED, never derived: «عِيشَةٌ رَاضِيَةٌ» (the active form on what is acted on; «رَضِيَ الرَّجُلُ عِيشَتَهُ»), «سَيْلٌ مُفْعَمٌ» (the
+     passive form on the doer), «شِعْرٌ شَاعِرٌ» (on the maṣdar), «نَهَارُهُ صَائِمٌ» (on a time), «نَهْرٌ جَارٍ» (on a place),
+     «بَنَى الْأَمِيرُ الْمَدِينَةَ» (on the cause who commands: «بَنَتِ الْفَعَلَةُ الْمَدِينَةَ بِسَبَبِ أَمْرِ الْأَمِيرِ»). `head` is the word the
+     form is said of, `pred` the form (or the verb, with `fail` its doer). */
+  static AQLI_RECEIVED = [
+    { head: /^عيشة$/, pred: /^راضي[ةه]?$/, alaqa: "mafuliyyaAqli", haqiqa: { en: "the life itself is pleased", tr: "hayatın kendisi razı" }, murad: { en: "the life is one its owner is pleased WITH — «رَضِيَ الرَّجُلُ عِيشَتَهُ»", tr: "sahibinin razı OLDUĞU hayat — «رَضِيَ الرَّجُلُ عِيشَتَهُ»" } },
+    { head: /^سيل$/, pred: /^مفعم$/, alaqa: "failiyyaAqli", haqiqa: { en: "the torrent is filled", tr: "sel doldurulmuş" }, murad: { en: "the torrent FILLS the valley — «أَفْعَمَ السَّيْلُ الْوَادِيَ»", tr: "sel vadiyi DOLDURUR — «أَفْعَمَ السَّيْلُ الْوَادِيَ»" } },
+    { head: /^شعر$/, pred: /^شاعر$/, alaqa: "masdariyyaAqli", haqiqa: { en: "the poetry is a poet", tr: "şiir şair" }, murad: { en: "the man composed his poetry — «شَعَرَ الرَّجُلُ شِعْرَهُ»", tr: "adam şiirini söyledi — «شَعَرَ الرَّجُلُ شِعْرَهُ»" } },
+    { head: /^(نهار|ليل|يوم)$/, pred: /^(صائم|صايم|قائم|قايم)$/, alaqa: "zamaniyya", haqiqa: { en: "the day itself fasts", tr: "gündüzün kendisi oruçlu" }, murad: { en: "the man fasts IN his day — «صَامَ الرَّجُلُ فِي نَهَارِهِ»", tr: "adam gündüzünde oruç tutar — «صَامَ الرَّجُلُ فِي نَهَارِهِ»" } },
+    { head: /^نهر$/, pred: /^(جار|جاري)$/, alaqa: "makaniyya", haqiqa: { en: "the river-bed itself runs", tr: "nehir yatağının kendisi akar" }, murad: { en: "the water runs IN the river — «جَرَى مَاءُ النَّهْرِ»", tr: "nehirde su akar — «جَرَى مَاءُ النَّهْرِ»" } },
+    { verb: /^بنى$/, fail: /^(امير|أمير)$/, alaqa: "sababiyyaAqli", haqiqa: { en: "the commander built it with his own hands", tr: "emîr onu kendi eliyle yaptı" }, murad: { en: "the workmen built it BECAUSE the commander ordered — «بَنَتِ الْفَعَلَةُ الْمَدِينَةَ بِسَبَبِ أَمْرِ الْأَمِيرِ»", tr: "emîr emrettiği İÇİN işçiler yaptı — «بَنَتِ الْفَعَلَةُ الْمَدِينَةَ بِسَبَبِ أَمْرِ الْأَمِيرِ»" } },
+  ];
   static BODY = new Set(["افراس", "أفراس", "فرس", "رواحل", "راحلة", "جناح", "اجنحة", "أجنحة", "مخالب", "مخلب", "انياب", "أنياب", "ريش", "عنان", "سرج",
     "يد", "ايد", "أيد", "عين", "اعين", "أعين", "لسان", "السن", "ألسن", "اصابع", "أصابع", "اصبع", "أصبع", "انامل", "أنامل", "راس", "رأس", "وجه", "قدم", "رجل", "جناح", "مخلب", "ناب", "ظفر", "اظفار", "أظفار", "كف", "عنق", "قلب", "صدر", "فم", "اذن", "أذن", "ذراع", "ساق"]);
   // the received mursal pairs — the books' own examples, each with its 'alaqa
@@ -29065,6 +29157,8 @@ class MajazEngine {
     { verb: /^(آتى|اتى|أتى|اعطى|أعطى)$/, obj: /^(يتامى|ايتام|أيتام)$/, alaqa: "ma-kana", haqiqa: { en: "the orphans", tr: "yetimler" }, murad: { en: "those who WERE orphans, now grown", tr: "yetim OLMUŞ, artık yetişkin olanlar" } },
     { verb: /^عصر$/, obj: /^خمر$/, alaqa: "ma-yaul", haqiqa: { en: "wine", tr: "şarap" }, murad: { en: "grapes that will become wine", tr: "şarap OLACAK üzüm" } },
     { verb: /^دعا$/, obj: /^(نادي|ناد)$/, alaqa: "mahalliyya", haqiqa: { en: "the assembly-place", tr: "meclis yeri" }, murad: { en: "the people of the assembly", tr: "meclis ehli" } },
+    /* (v334-C · audit C08) the whole named for the part: the fingers put in the ears are their tips — Talkhīṣ L3502 «اَنَامِلْ … اصابع … كلى نك اسميله» */
+    { verb: /^(جعل)$/, obj: /^(اصابع|أصابع|إصبع|اصبع|أصبع)(هم|ه|ها|كم|نا|ي)?$/, alaqa: "kulliyya", haqiqa: { en: "the fingers, whole", tr: "parmakların tamamı" }, murad: { en: "the fingertips (أَنَامِل) — the whole named for the part", tr: "parmak uçları (أَنَامِل) — parçaya bütünün adı verilmiş" } },
     { verb: /^(جعل)$/, obj: /^لسان$/, alaqa: "aliyya", haqiqa: { en: "a tongue", tr: "dil" }, murad: { en: "a good mention — the tongue is its instrument", tr: "güzel bir anılış — dil onun aletidir" } },
     { prev: /^(في|فى)$/, obj: /^رحمة$/, alaqa: "halliyya", haqiqa: { en: "mercy", tr: "rahmet" }, murad: { en: "Paradise — the place mercy dwells in", tr: "cennet — rahmetin bulunduğu yer" } },
     // the received ISTI'ARAS the books recite — the likeness is knowledge of the two things, so these are stored, never derived
@@ -29092,6 +29186,9 @@ class MajazEngine {
     zamaniyya:{ ar: "إِسْنَادٌ إِلَى الزَّمَانِ", en: "ascribed to a TIME", tr: "ZAMANA isnâd" },
     makaniyya:{ ar: "إِسْنَادٌ إِلَى الْمَكَانِ", en: "ascribed to a PLACE", tr: "MEKÂNA isnâd" },
     sababiyyaAqli:{ ar: "إِسْنَادٌ إِلَى السَّبَبِ", en: "ascribed to a CAUSE", tr: "SEBEBE isnâd" },
+    mafuliyyaAqli:{ ar: "إِسْنَادٌ إِلَى الْمَفْعُولِ", en: "an active form ascribed to what is ACTED ON", tr: "ism-i fâil kalıbı MEF'ÛLE isnâd" },
+    failiyyaAqli:{ ar: "إِسْنَادٌ إِلَى الْفَاعِلِ", en: "a passive form ascribed to the DOER", tr: "ism-i mef'ûl kalıbı FÂİLE isnâd" },
+    masdariyyaAqli:{ ar: "إِسْنَادٌ إِلَى الْمَصْدَرِ", en: "ascribed to the deed's own MASDAR", tr: "MASDARA isnâd" },
     takhyiliyya:{ ar: "اسْتِعَارَةٌ تَخْيِيلِيَّةٌ", en: "takhyiliyya — a thing of the hidden bihi's, affirmed for the mushabbah (the claws)", tr: "tahyîliyye — gizli bihe ait bir şey, müşebbeh için isbat edilmiş (pençeler)" },
     murakkab:{ ar: "مَجَازٌ مُرَكَّبٌ", en: "compound — a whole picture lent by a tamthil (one foot forward, one back)", tr: "mürekkeb — bir temsille ödünç verilmiş bütün bir resim (bir ayak ileri, bir ayak geri)" },
     // the istiʿara's own badges — what the surface settles (lafz, seat, mulaʾim) and what the chapter names (ends, hissi)
@@ -29126,6 +29223,19 @@ class MajazEngine {
     const frames = [];
     let tsFrames = []; try { tsFrames = TashbihEngine.read(rows); } catch (e) {}
     const inTashbih = i => tsFrames.some(f => f.bihi.includes(i) || f.mushabbah.includes(i) || f.adat === i);
+    // (v334-C · audit C08) the received 'aqli examples first — the words as the Talkhīṣ recites them
+    rows.forEach((r, i) => {
+      const lk = q => { const x = rows[q]; return x ? [this.lemmaOf(x), this.core(x.w), this.core(x.w).replace(/(ه|ها|هم)$/, "")] : []; };
+      for (const rc of this.AQLI_RECEIVED) {
+        if (rc.verb) { if (!isVerb(r) || !rc.verb.test(this.bare(r.lemma || "")) && !rc.verb.test(this.core(r.w))) continue;
+          const fa = [1, 2].map(d => i + d).find(j => rows[j] && isNoun(rows[j]) && lk(j).some(k => rc.fail.test(k)));
+          if (fa === undefined || frames.some(f => f.word === fa)) continue;
+          frames.push({ word: fa, kind: "aqli", alaqa: rc.alaqa, qarina: [i], sure: true, received: true, haqiqa: rc.haqiqa, murad: rc.murad }); continue; }
+        if (!isNoun(r) || !lk(i).some(k => rc.head.test(k)) || !rows[i + 1] || !isNoun(rows[i + 1]) || !lk(i + 1).some(k => rc.pred.test(k))) continue;
+        if (frames.some(f => f.word === i + 1)) continue;
+        frames.push({ word: i + 1, kind: "aqli", alaqa: rc.alaqa, qarina: [i], sure: true, received: true, haqiqa: rc.haqiqa, murad: rc.murad });
+      }
+    });
     const clusterOf = h => { const set = new Set([h]); let grew = true;
       while (grew) { grew = false; rows.forEach((r, j) => { if (set.has(j)) return; const hd = (out[j] || {}).head;
         if (["nat", "mudafIlayh", "badal"].includes(rule(j)) && typeof hd === "number" && set.has(hd)) { set.add(j); grew = true; }
@@ -29382,7 +29492,7 @@ function kinayaLadderSvg(rows, f, h, lang){
   return `<svg class="ts-svg kn-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${E(words.map(x => x.w).join(" ") + " — " + meant)}" direction="rtl">
     <line class="kn-rail" x1="${x1}" y1="${yTop}" x2="${x1}" y2="${yBot}"/><line class="kn-rail" x1="${x2}" y1="${yTop}" x2="${x2}" y2="${yBot}"/>
     ${rungs}
-    ${n ? "" : `<text class="kn-near" x="280" y="${(yTop + yBot) / 2 + 5}" text-anchor="middle">${L.qariba.ar} · ${E((L.qariba[lang] || L.qariba.en).split(" — ")[0])}</text>`}
+    ${n ? "" : lad.known ? `<text class="kn-near" x="280" y="${(yTop + yBot) / 2 + 5}" text-anchor="middle">${L.qariba.ar} · ${E((L.qariba[lang] || L.qariba.en).split(" — ")[0])}</text>` : `<text class="kn-near kn-unknown" x="280" y="${(yTop + yBot) / 2 + 5}" text-anchor="middle">${L.unknown.ar} · ?</text>`}
     <g class="ts-end kn-said"><rect x="${x1 - 60}" y="${yBot - 2}" width="${x2 - x1 + 120}" height="50" rx="14"/><text class="ts-word" x="280" y="${yBot + 32}" text-anchor="middle">${said}</text></g>
     <text class="ts-lbl" x="280" y="${yBot + 68}" text-anchor="middle">${L.said.ar}</text>
     <g class="ts-end kn-meant"><rect x="${x1 - 60}" y="${yTop - 48}" width="${x2 - x1 + 120}" height="46" rx="14"/><text class="ts-word kn-meantw" x="280" y="${yTop - 20}" text-anchor="middle">${E(meant)}</text></g>
@@ -29400,11 +29510,11 @@ function kinayaHtml(rows, opts){
   const chip = (x, cls) => x ? `<span class="ts-chip ${cls || ""}"><span lang="ar">${x.ar}</span> ${E(String(x[lang] || x.en).split(" — ")[0])}</span>` : "";
   const note = GRAMMAR["kinaya"] ? `<button class="qw-note" data-note="kinaya" title="${E(T(GRAMMAR["kinaya"].title))}">§</button>` : "";
   return `<div class="tashbih kinaya"><div class="qw-head"><span lang="ar" class="ar">الْكِنَايَةُ</span> ${u.kinayaLbl} ${note}</div>
-    ${frames.map(f => { const h = hs.find(x => overlap(f, x)) || null; const lad = KinayaEngine.ladder(h);
+    ${frames.map(f => { const h = hs.find(x => overlap(f, x)) || (f.authoredOnly ? null : KinayaEngine.authoredFor(rows, f)) || null; const lad = KinayaEngine.ladder(h);
       const subChip = h && h.sub ? chip(/khafiyya/.test(h.sub) ? L.khafiyya : /wadiha/.test(h.sub) ? L.wadiha : null, "ts-shape-chip") : "";
       return `<div class="ts-frame kn-frame">${kinayaLadderSvg(rows, f, h, lang)}
         <div class="ts-kinds">${chip(L[f.kind])}${f.authoredOnly ? `<span class="ts-chip mj-guess">${u.kinayaAuthoredOnly}</span>` : chip(f.sure ? L.sure : L.guess, f.sure ? "" : "mj-guess")}${typeof f.tasrih === "boolean" ? chip(f.tasrih ? L.tasrih : L.pure, "ts-rank-chip") : ""}</div>
-        ${h ? `<div class="ts-kinds kn-ladder-chips">${chip(lad.near ? L.qariba : L.baida)}${subChip}<span class="ts-chip ts-shape-chip"><span lang="ar">${lad.count}</span> ${E(u.kinayaRung)}</span>${chip(L[lad.sakkaki], lad.sakkakiSure ? "" : "ts-shape-chip")}</div>` : ""}
+        ${h ? `<div class="ts-kinds kn-ladder-chips">${chip(lad.near ? L.qariba : L.baida)}${subChip}<span class="ts-chip ts-shape-chip"><span lang="ar">${lad.count}</span> ${E(u.kinayaRung)}</span>${chip(L[lad.sakkaki], lad.sakkakiSure ? "" : "ts-shape-chip")}</div>` : `<div class="ts-kinds kn-ladder-chips kn-unknown">${chip(L.unknown, "mj-guess")}</div>`}
         ${h && h.lazim ? `<p class="bab-line">${E(h.lazim[lang] || h.lazim.en)}</p>` : ""}</div>`; }).join("")}
     ${agree ? `<p class="ts-agree ${agree.ok ? "ok" : "bad"}">${agree.ok ? u.kinayaAgree : u.kinayaDisagree}</p>` : ""}
     <p class="ref-intro">${u.kinayaHint}</p></div>`;
@@ -29515,14 +29625,17 @@ function jinasAlignSvg(f, lang){
 }
 function jinasHtml(rows, opts){
   const o = opts || {}, lang = state.uiLang === "tr" ? "tr" : "en", u = ui(), E = escapeAttr, L = JinasEngine.LBL;
-  let frames = []; try { frames = JinasEngine.read(rows); } catch (e) { frames = []; }
+  let frames = []; try { frames = JinasEngine.read(rows, o.sen ? { sen: o.sen } : undefined); } catch (e) { frames = []; }
+  /* (v334-C · audit C06) the line the shelf has framed: the authored jinās settles what the letters left a candidate */
+  const authored = o.sen && o.sen.badi ? (Array.isArray(o.sen.badi) ? o.sen.badi : [o.sen.badi]).filter(h => h && h.kind === "jinas" && Array.isArray(h.pair)) : [];
+  frames.forEach(f => { const h = authored.find(x => x.pair[0] === f.pair[0] && x.pair[1] === f.pair[1] && (!x.sub || x.sub === f.sub)); if (h) { f.sure = true; f.book = true; f.ifMeaning = false; } });
   if (!frames.length) return o.always ? `<p class="qw-none">${u.jinasNone}</p>` : "";
   const chip = (x, cls) => x ? `<span class="ts-chip ${cls || ""}"><span lang="ar">${x.ar}</span> ${E(String(x[lang] || x.en).split(" — ")[0])}</span>` : "";
   const note = GRAMMAR["jinas"] ? `<button class="qw-note" data-note="jinas" title="${E(T(GRAMMAR["jinas"].title))}">§</button>` : "";
   const shown = frames.slice(0, 4);
   return `<div class="tashbih jinas"><div class="qw-head"><span lang="ar" class="ar">الْجِنَاسُ</span> ${u.jinasLbl} ${note}</div>
     ${shown.map(f => `<div class="ts-frame jn-frame"><div class="jn-pair" lang="ar" dir="rtl">${badiPoleHtml(rows, f.pair[0])}<span class="bd-vs" aria-hidden="true">≈</span>${badiPoleHtml(rows, f.pair[1])}</div>${jinasAlignSvg(f, lang)}
-      <div class="ts-kinds">${chip(L.jinas)}${chip(L[f.sub], f.sure ? "" : "mj-guess")}${f.kind2 && L[f.kind2] ? chip(L[f.kind2], "ts-shape-chip") : (f.sub2 ? chip(L[f.sub2], "ts-shape-chip") : "")}${f.root ? `<span class="ts-chip ts-shape-chip"><span lang="ar">${E(f.root.split("").join(" "))}</span> ${E(u.jinasRoot)}</span>` : ""}${f.muzdawij ? chip(L.muzdawij, "ts-rank-chip") : ""}</div></div>`).join("")}
+      <div class="ts-kinds">${chip(L.jinas)}${chip(L[f.sub], f.sure ? "" : "mj-guess")}${f.kind2 && L[f.kind2] ? chip(L[f.kind2], "ts-shape-chip") : (f.sub2 ? chip(L[f.sub2], "ts-shape-chip") : "")}${f.root ? `<span class="ts-chip ts-shape-chip"><span lang="ar">${E(f.root.split("").join(" "))}</span> ${E(u.jinasRoot)}</span>` : ""}${f.muzdawij ? chip(L.muzdawij, "ts-rank-chip") : ""}${f.ifMeaning ? chip(L.ifMeaning, "mj-guess jn-if") : ""}${f.book ? chip(L.book, "ts-rank-chip jn-book") : ""}</div></div>`).join("")}
     ${frames.length > shown.length ? `<p class="ref-intro">${u.jinasMore.replace("{n}", frames.length - shown.length)}</p>` : ""}
     <p class="ref-intro">${u.jinasHint}</p></div>`;
 }
@@ -29629,7 +29742,7 @@ function renderBadiOut(){
     ${corpusSeeds.length ? `<div class="qw-seeds kn-corpus"><div class="qw-head"><span lang="ar" class="ar">مِنَ الْمَتْنِ</span> ${u.kinayaCorpus}</div><ul>${corpusSeeds.map(seedBtn).join("")}</ul></div>` : ""}`;
   if (!txt) { out.innerHTML = `<p class="empty">${u.dabtEmpty}</p>` + seeds; }
   else { const r = BadiEngine.readText(txt); const sen = r.sen;
-    out.innerHTML = (r.rows.length ? FigurePredictor.badge(r.rows) + bayanDoorsHtml(r.rows, sen) + badiHtml(r.rows, { always: true, sen }) + jinasHtml(r.rows, { always: true }) + sajHtml(r.rows, { always: true }) : `<p class="empty">${u.jadhrBad}</p>`) + seeds; }
+    out.innerHTML = (r.rows.length ? FigurePredictor.badge(r.rows) + bayanDoorsHtml(r.rows, sen) + badiHtml(r.rows, { always: true, sen }) + jinasHtml(r.rows, { always: true, sen }) + sajHtml(r.rows, { always: true }) : `<p class="empty">${u.jadhrBad}</p>`) + seeds; }
   out.querySelectorAll("[data-note]").forEach(b => b.addEventListener("click", () => openRef(b.dataset.note)));
   out.querySelectorAll("[data-seed]").forEach(b => b.addEventListener("click", () => { conjState.badi = b.dataset.seed; const inp = document.getElementById("badiIn"); if (inp) inp.value = b.dataset.seed; renderBadiOut(); }));
 }
@@ -29641,7 +29754,7 @@ function renderLearnOut(){
   const babPart = bm ? `<div class="learn-card"><div class="qw-head">🧠 <span lang="ar" class="ar">بَابُ الْفِعْلِ</span> ${u.learnBabTitle}</div>
       <p class="ref-intro">${u.learnBabIntro.replace("{n}", bm.trainedOn)}</p>
       <div class="learn-stats"><span class="learn-stat"><b>${bm.heldOut.acc}%</b> ${u.learnHeldOut}</span><span class="learn-stat"><b>${bm.heldOut.top2}%</b> ${u.learnTop2}</span><span class="learn-stat"><b>${bm.heldOut.majority}%</b> ${u.learnMajority}</span></div>
-      <div class="conj-lab"><input id="learnRoot" lang="ar" dir="rtl" autocomplete="off" spellcheck="false" placeholder="${E(u.learnRootPh)}" value="${E(conjState.learnRoot || "")}"></div><div id="learnBabOut">${conjState.learnRoot ? BabModel.badge(conjState.learnRoot) : ""}</div>
+      <div class="conj-lab"><input id="learnRoot" lang="ar" dir="rtl" autocomplete="off" spellcheck="false" placeholder="${E(u.learnRootPh)}" value="${E(conjState.learnRoot || "")}"></div><div id="learnBabOut">${conjState.learnRoot ? BabModel.labBadge(conjState.learnRoot.replace(/[^ء-ي]/g, "")) : ""}</div>
       <p class="sarf-note">${u.learnBabNote}</p></div>` : "";
   const runBtn = `<button class="btn" id="learnRun">${LEARN_CACHE ? u.learnRerun : u.learnRun}</button>`;
   let irabPart = `<div class="learn-card"><div class="qw-head">🧠 <span lang="ar" class="ar">مَقَاعِدُ الْإِعْرَابِ</span> ${u.learnIrabTitle}</div><p class="ref-intro">${u.learnIrabIntro}</p>`;
@@ -29660,7 +29773,7 @@ function renderLearnOut(){
       <div class="learn-stats"><span class="learn-stat"><b>${fm.heldOut.top3}%</b> ${u.learnTop3}</span><span class="learn-stat"><b>${fm.heldOut.precision}%</b> P</span><span class="learn-stat"><b>${fm.heldOut.recall}%</b> R</span><span class="learn-stat"><b>${fm.heldOut.f1}%</b> F1</span></div>
       <p class="sarf-note">${u.learnFigNote}</p></div>` : "";
   out.innerHTML = `<p class="ref-intro">${u.learnIntro}</p>` + babPart + figPart + irabPart;
-  const inp = document.getElementById("learnRoot"); if (inp) inp.addEventListener("input", debounced(() => { conjState.learnRoot = inp.value; const o = document.getElementById("learnBabOut"); if (o) o.innerHTML = BabModel.badge(inp.value.replace(/[^ء-ي]/g, "")); }));
+  const inp = document.getElementById("learnRoot"); if (inp) inp.addEventListener("input", debounced(() => { conjState.learnRoot = inp.value; const o = document.getElementById("learnBabOut"); if (o) o.innerHTML = BabModel.labBadge(inp.value.replace(/[^ء-ي]/g, "")); }));
   const run = document.getElementById("learnRun"); if (run) run.addEventListener("click", () => { run.disabled = true; run.textContent = u.learnRunning;
     const ids = STORIES.map(s => s.id); const toks = []; let k = 0;
     (function step(){ if (k >= ids.length) { setTimeout(() => { try { LEARN_CACHE = SeatModel.evaluate(null, 40, toks); } catch (e) { LEARN_CACHE = null; } renderLearnOut(); }, 30); return; }
@@ -30212,6 +30325,7 @@ class KinayaEngine {
     talwih:   { ar: "تَلْوِيحٌ", en: "talwih — many rungs", tr: "telvîh — çok basamak" },
     ramz:     { ar: "رَمْزٌ", en: "ramz — few rungs, a hidden tie", tr: "remz — az basamak, gizli bağ" },
     ima:      { ar: "إِيمَاءٌ وَإِشَارَةٌ", en: "imaʾ — few rungs, plain", tr: "îmâ — az basamak, açık" },
+    unknown:  { ar: "الْقُرْبُ وَالْبُعْدُ عِلْمٌ", en: "near or far — knowledge: the letters do not count the rungs the mind climbs", tr: "yakın mı uzak mı — bilgidir: harfler zihnin çıktığı basamakları saymaz" },
     literal:  { ar: "الْحَقِيقَةُ جَائِزَةٌ", en: "the literal reading survives: no clue bars it", tr: "hakikî okuma câiz: engelleyen karîne yok" },
     sure:     { ar: "بِشَكْلِ الْكَلَامِ", en: "the shape settles it", tr: "şekil karar veriyor" },
     guess:    { ar: "مُرَشَّحٌ", en: "a candidate — the meant is knowledge", tr: "aday — kastedilen bilgidir" },
@@ -30241,19 +30355,34 @@ class KinayaEngine {
     const stemOf = i => { const r = rows[i]; let b = this.bare(r.w).replace(/^[وف]/, "").replace(/^ال/, ""); if (r.enc) b = b.replace(new RegExp(this.bare(r.enc) + "$"), ""); return b.replace(/(ين|ان|ون|ات|ي|ا)$/, ""); };
     const quality = i => { const r = rows[i]; if (!isNoun(r) || hasAl(i) && !/^(ال)?/.test("") ) return false;
       let shape = false; try { shape = DabtEngine.sifaShape(r, r.w); } catch (e) {}
-      const q = SifaEngine.isQuality(r.w) || (() => { try { const e = DabtEngine.lex(r.w); return !!e && /sifa mushabbaha|adjective|\(adj|sighat mubalagha|colour|tafdil/i.test(String((e.gloss || {}).en || "")); } catch (e) { return false; } })();
-      return shape && q; };
+      const q = SifaEngine.isQuality(r.w) || (() => { try { const e = DabtEngine.lex(r.w); return !!e && (/sifa mushabbaha|adjective|\(adj|sighat mubalagha|colour|tafdil/i.test(String((e.gloss || {}).en || "")) || e.pos === "adj"); } catch (e) { return false; } })();   /* (v334-C · C10) the lexicon's own «adj» (نَقِيّ) */
+      if (shape && q) return true;
+      /* (v334-C · audit C10) the same shape the intro names, one road wider: a word whose SCALE is a quality's (a sifa
+         mushabbaha, an intensive, an active or passive participle — جَبَانُ، نَؤُومُ، مَهْزُولُ، طَاهِرُ) is the quality the
+         idafa annexes, when the lexicon calls it a quality, or does not know it at all (a known plain noun on such a
+         scale — بَاب، صَاحِب — stays out) */
+      let kinds = []; try { kinds = SifaEngine.classify(r.w).kinds || []; } catch (e) { kinds = []; }
+      if (!kinds.some(x => /^(sifa-mushabbaha|sighat-mubalagha|ism-fail|ism-maful)$/.test(x))) return false;
+      if (q) return true;
+      let known = null; try { known = DabtEngine.lex(r.w); } catch (e) { known = null; }
+      return shape && !known; };
     const cluster = h => { const set = new Set([h]); let grew = true;
       while (grew) { grew = false; rows.forEach((r, j) => { if (set.has(j)) return; const hd = (out[j] || {}).head;
         if ((rule(j) === "nat" || rule(j) === "mudafIlayh" || rule(j) === "badal" || rule(j) === "atf") && typeof hd === "number" && set.has(hd)) { set.add(j); grew = true; }
         else if (rule(j) === "mudafIlayh" && member.has(j) && set.has(member.get(j))) { set.add(j); grew = true; } }); }
       return [...set].sort((a, b) => a - b); };
+    /* (v334-C · audit C10) فُلَانٌ طَاهِرُ الذَّيْلِ: the analyzer may call the annexed quality a naʿt of the noun before it —
+       but when that noun opens the sentence and nothing after the idafa could be its khabar, the quality IS what is said
+       of it (an annexation to its own doer does not make the word definite, so the naʿt reading leaves a bare mubtadaʾ) */
+    const natAsKhabar = i => { const hd = (out[i] || {}).head; if (hd !== i - 1 || i - 1 !== 0 || !isNoun(rows[0]) || hasAl(0)) return false;
+      for (let q = i + 2; q < rows.length; q++) if (!["mudafIlayh", "nat"].includes(rule(q))) return false;
+      return true; };
     const frames = [];
     const taken = i => frames.some(f => i >= f.span[0] && i <= f.span[1]);
     rows.forEach((r, i) => {
       if (!isNoun(r) || taken(i)) return;
       // 1 · a SIFA sought: a quality-word ANNEXED to a definite thing (كَثِيرُ الرَّمَادِ، طَوِيلُ النِّجَادِ، عَرِيضُ الْقَفَا) — the idafa folds a doer in
-      if (quality(i) && !hasAl(i) && !tafdil(i) && head.has(i) && rows[i + 1] && member.get(i + 1) === i && (hasAl(i + 1) || enc(i + 1)) && !isAbstract(i + 1) && rule(i) !== "nat") {
+      if (quality(i) && !hasAl(i) && !tafdil(i) && head.has(i) && rows[i + 1] && member.get(i + 1) === i && (hasAl(i + 1) || enc(i + 1)) && !isAbstract(i + 1) && (rule(i) !== "nat" || natAsKhabar(i))) {
         const cl = cluster(i + 1); const e = Math.max(i + 1, ...cl);
         frames.push({ kind: "sifa", span: [i, e], head: i, tasrih: true, sure: true, shape: "idafa", thing: i + 1 }); return;
       }
@@ -30316,10 +30445,29 @@ class KinayaEngine {
   }
   // the ladder: the authored rungs decide near / far, and Sakkaki's name follows the count and the authored hiddenness
   static ladder(h){
+    /* (v334-C · audit C05) no authored frame, no rungs KNOWN: near or far is knowledge (Talkhīṣ L3901–L3909 — the passage
+       through the burning, the cooking, the guests is the chapter's, not the letters'), so the ladder says it does not know */
+    if (!h) return { rungs: [], count: 0, near: false, known: false, sub: null, sakkaki: null, sakkakiSure: false };
     const rungs = (h && h.wasait) || [];
     const sub = h && h.sub ? h.sub : (rungs.length ? "baida" : "qariba");
     const sakkaki = h && h.sakkaki ? h.sakkaki : (rungs.length >= 3 ? "talwih" : (h && h.sub === "qariba-khafiyya") ? "ramz" : "ima");
-    return { rungs, count: rungs.length, near: !rungs.length, sub, sakkaki, sakkakiSure: !!(h && h.sakkaki) };
+    return { rungs, count: rungs.length, near: !rungs.length, known: true, sub, sakkaki, sakkakiSure: !!(h && h.sakkaki) };
+  }
+  /* (v334-C · audit C05) the SAID phrase the shelf has already framed — كَثِيرُ الرَّمَادِ typed after any subject is the
+     Talkhīṣ's own far kinaya (L3907–L3909), with its four rungs; matched on the said words' letters and on the kind */
+  static _said = null;
+  static saidKey(ws){ return ws.map(w => stripAr(String(w || "")).replace(/[^ء-ي]/g, "")).join(" ").replace(/^[وف](?=..)/, ""); }
+  static authoredFor(rows, f){
+    if (!f || !rows) return null;
+    if (!this._said) { const m = new Map();
+      for (const st of (typeof STORIES === "undefined" ? [] : STORIES)) for (const ch of st.chapters || []) for (const sen of ch.sentences || []) {
+        if (!sen.kinaya) continue;
+        for (const h of (Array.isArray(sen.kinaya) ? sen.kinaya : [sen.kinaya])) { if (!h || !Array.isArray(h.span)) continue;
+          const ws = []; for (let q = h.span[0]; q <= h.span[1]; q++) ws.push(((sen.tokens[q] || {}).s || {}).full);
+          const k = h.kind + "|" + this.saidKey(ws); if (!m.has(k)) m.set(k, h); } }
+      this._said = m; }
+    const ws = []; for (let q = f.span[0]; q <= f.span[1]; q++) ws.push((rows[q] || {}).w);
+    return this._said.get(f.kind + "|" + this.saidKey(ws)) || null;
   }
   // the human frames against the engine's: kind, and a span that overlaps (the head, when both name one), and the pronoun test
   static agree(sen, frames){
@@ -30762,10 +30910,17 @@ class BadiEngine {
     if (segs.length > 1 && segs.slice(0, 2).some(x => /^[بلك]$/.test(x))) s = s.replace(/^[بلك]/, "");
     else if (/^[بلك][َِ]/.test(w) && s.length >= 4 && !this.known(w) && this.known(w.replace(/^[بلك][ً-ٰ]*/, ""))) s = s.replace(/^[بلك]/, "");
     else if (/^[بلك][ِ]/.test(w) && s.length >= 4 && (r.kind || "") !== "verb" && !r.lemma && (!MajazEngine.lemmaOf(r) || this.known(w.replace(/^[بلك][ً-ٰ]*/, "")))) s = s.replace(/^[بلك]/, "");
+    else if ((r.kind || "") === "verb" && /^ل[َِ][يتنأ]/.test(w) && s.length >= 4 && !/^ل/.test(String(r.root || "").replace(/\s+/g, ""))) s = s.replace(/^ل/, "");   /* (v334-C · audit C11) لِيَحْيَا: the lām before the muḍāriʿ's prefix */
     s = s.replace(/^(ال|لل)/, ""); if (e) { const eb = this.bare(e); if (s.endsWith(eb) && s.length - eb.length >= 2) s = s.slice(0, -eb.length); } return s; }
   static keysOf(rows){ return rows.map(r => { const st = this.stem(r); const ks = [this.keyOf(r), this.coreOf(r), st]; if (/ًا$/.test((r.w || "").normalize("NFC")) && st.length >= 3) ks.push(st.replace(/ا$/, "")); return Array.from(new Set(ks.filter(Boolean))); }); }
   static negBefore(rows, i){ const p = rows[i - 1]; if (!p) return false;
-    if (/^[وف]?غير$/.test(this.bare(p.w))) return true;   /* (wave 24d) غَيْرُ خَاصِّيٍّ: the negating noun */
+    if (/^[وف]?غير$/.test(this.bare(p.w))) {   /* (wave 24d) غَيْرُ خَاصِّيٍّ: the negating noun */
+      /* (v334-C · audit C06) …but after a negation in its own clause غَيْرُ is the EXCEPTIVE (مَا لَبِثُوا غَيْرَ سَاعَةٍ = إِلَّا سَاعَةً):
+         the noun after it is AFFIRMED, not denied — no ṭibāq al-salb (the Talkhīṣ L4402–L4403 reads the verse as the jinās tāmm) */
+      for (let q = i - 2; q >= Math.max(0, i - 5); q--) { const x = rows[q]; if (!x) break;
+        if ((x.kind || "") === "particle" && this.NEG.test(this.bare(x.w))) return false;
+        if (/^[وف]?ليس/.test(this.bare(x.w))) return false; }
+      return true; }
     // a ما behind a jarr particle (إِلَى مَا تَسْتَطِيعُ) or one the analyzer read as a relative is no negation
     if (/^[وف]?ما$/.test(this.bare(p.w)) && (/mawsul/.test(p.pk || "") || (rows[i - 2] && (rows[i - 2].kind || "") === "particle" && /^jarr$/.test(rows[i - 2].pk || "")))) return false;
     if ((p.kind || "") === "particle" && (this.NEG.test(this.bare(p.w)) || p.nahy || /^(nahy|jazm)$/.test(p.pk || ""))) return true;
@@ -31526,7 +31681,7 @@ class FigurePredictor {
     let maV = 0, idhaV = 0; for (let i = 0; i + 1 < n; i++) { if (/^(ما|من)$/.test(core(i)) && B.isVerb(rows[i + 1])) maV++; if (/^(اذا|إذا)$/.test(core(i)) && B.isVerb(rows[i + 1])) idhaV++; }
     f.maV = Math.min(maV, 4); f.idhaV = Math.min(idhaV, 4);
     try { f.saj = Math.min((SajEngine.read(rows) || []).length, 2); } catch (e) { f.saj = 0; }
-    try { f.jinas = Math.min((JinasEngine.read(rows) || []).length, 2); } catch (e) { f.jinas = 0; }
+    try { f.jinas = Math.min((JinasEngine.read(rows) || []).filter(x => !x.ifMeaning).length, 2); } catch (e) { f.jinas = 0; }   /* (v334-C) a repetition offered as a candidate is no feature the model was trained on */
     ["verbs", "nouns", "parts", "defs", "indefs", "encl", "afterJarr", "joinedN", "joinedV", "jarr", "mudari", "p1", "p2", "passive", "neg", "dem"].forEach(k => { if (f[k]) f[k] = Math.min(f[k], 6) / 3; });
     return f;
   }
@@ -31565,6 +31720,8 @@ class JinasEngine {
     kull: { ar: "قَلْبُ كُلٍّ", en: "the whole reversed", tr: "bütünün kalbi" }, bad: { ar: "قَلْبُ بَعْضٍ", en: "a part reversed", tr: "kısmın kalbi" }, mujannah: { ar: "مَقْلُوبٌ مُجَنَّحٌ", en: "winged — at the two ends of the line", tr: "mücennah — satırın iki ucunda" },
     "shibh-ishtiqaq": { ar: "مُلْحَقٌ: شِبْهُ اشْتِقَاقٍ", en: "joined to the jinas: one skeleton, two roots", tr: "mülhak: şibh-i iştikak — tek iskelet, iki kök" },
     letters: { ar: "الْحُرُوفُ", en: "the letters, aligned", tr: "harfler, hizalanmış" },
+    ifMeaning: { ar: "إِنِ اخْتَلَفَ الْمَعْنَيَانِ", en: "if the two meanings differ — else a plain repetition: the letters cannot tell", tr: "iki mânâ farklıysa — değilse düz tekrar: harfler bunu ayıramaz" },
+    book: { ar: "مِنَ الْكِتَابِ", en: "the book's own reading of this line", tr: "kitabın bu satır için kendi okuyuşu" },
   };
   static bare(w){ return stripAr(w || "").replace(/[^ء-ي]/g, "").replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة$/, "ه"); }
   static stem(r){ return BadiEngine.stem(r).replace(/ى/g, "ي").replace(/ة$/, "ه"); }
@@ -31593,16 +31750,27 @@ class JinasEngine {
       const core = t.segments.filter(sg => !/^(pron|conj)$/.test(sg.pos || "") && !/^(pron-|wa$|fa$)/.test(sg.lex || "")).map(sg => this.bare(sg.form || "")).join("").replace(/^ال/, ""); if (core && core.length >= 2 && core.length < st[i].length && st[i].startsWith(core)) st[i] = core; }
     for (let i = 0; i < rows.length; i++) { if (st[i].length < 3 && !(st[i].length === 2 && st.some((x, q) => q > i && x.length === 3))) continue;   // (wave 22a) جَدِّي / جَهْدِي: a two-letter stem beside a three-letter one
       for (let j = i + 1; j < rows.length; j++) { if (st[j].length < 3 && !(st[j].length === 2 && st[i].length === 3)) continue; if (st[i].length + st[j].length < 5) continue;
-        const a = st[i], b = st[j]; const sameKey = !!keys[i][0] && keys[i].some(k0 => k0.length >= 3 && keys[j].includes(k0)) && BadiEngine.clsOf(rows[i]) === BadiEngine.clsOf(rows[j]) && !lexDiff(i, j);   // any shared key: مَالًا carries the seat-alif key too (wave 19)
-        let sub = null, align = null, kind2 = null, sub2 = null;
+        /* (v334-C · audit C11) يَحْيَى / لِيَحْيَا: the maqṣūr's last letter is one sound however it is seated (ى or ا) */
+        const maq334 = q => /[ىا][ً-ٰ]*$/.test(String(rows[q].w || "").normalize("NFC"));
+        const a = st[i], b = (st[j] !== st[i] && st[j].length === st[i].length && st[j].slice(0, -1) === st[i].slice(0, -1) && /[يا]$/.test(st[i]) && /[يا]$/.test(st[j]) && maq334(i) && maq334(j)) ? st[i] : st[j]; const sameKey = !!keys[i][0] && keys[i].some(k0 => k0.length >= 3 && keys[j].includes(k0)) && BadiEngine.clsOf(rows[i]) === BadiEngine.clsOf(rows[j]) && !lexDiff(i, j);   // any shared key: مَالًا carries the seat-alif key too (wave 19)
+        let sub = null, align = null, kind2 = null, sub2 = null, ifMeaning = false;
         const ra = this.rootOf(rows[i]), rb = this.rootOf(rows[j]);
         if (a !== b && ra && rb && ra === rb && ra.length >= 3 && !sameKey && !(Math.abs(a.length - b.length) === 1 && (a.startsWith(b) || b.startsWith(a) || a.endsWith(b) || b.endsWith(a)) && !((b.length > a.length ? cls(j) : cls(i)) === "fil" && /^[يتنأ]/.test(b.length > a.length ? b : a) && (b.length > a.length ? b.slice(1) === a : a.slice(1) === b)) /* (wave 24n) */) && !(a.length === b.length && a.split("").filter((c, k) => c !== b[k]).length === 1)) { sub = "ishtiqaq"; align = a.split("").map((c, k) => [c, b[k] || "", b.includes(c)]); }   // (wave 22a) a letter-kind outranks the root (السَّاقُ / الْمَسَاقُ is the naqis)
         else if (plStrip(a) === plStrip(b) && !(ra && rb && ra === rb) && !sameKey && cls(i) !== cls(j) && posOf(i) && posOf(j) && !(a === b && this.vowels(rows[i]) === this.vowels(rows[j])) /* (wave 164) يَحْيَى لَدَى يَحْيَى: the very same word, letter and vowel, as a verb and as a name is the complete jinās (mustawfā), not a look-alike of derivation */) { sub = "ishtiqaq"; kind2 = "shibh-ishtiqaq"; align = a.split("").map((c, k) => [c, b[k], true]); }   // (wave 22a) قَالَ / الْقَالِينَ: one skeleton, two roots — the look-alike of derivation
         else if (a === b && this.vowels(rows[i]) !== this.vowels(rows[j])) { sub = "muharraf"; align = a.split("").map((c, k) => [c, b[k], true]); }   // (wave 22a) الْبُرْدِ / الْبَرْدِ، مُفْرِطٌ / مُفَرِّطٌ: the vowels alone part them, whatever the keys say
         else if (a === b) { if (sameKey) { const va = this.vowels(rows[i]), vb = this.vowels(rows[j]);
             const da = /^[وف]?(ال|لل)/.test(this.bare(rows[i].w)), db = /^[وف]?(ال|لل)/.test(this.bare(rows[j].w));
-            if (va !== vb) sub = "muharraf"; else if (da !== db) sub = "tamm"; else continue; }
-          else sub = "tamm"; align = a.split("").map((c, k) => [c, b[k], true]); }
+            /* (v334-C · audit C11) the very same word twice (صَلَّيْتُ الْمَغْرِبَ فِي الْمَغْرِبِ): the letters cannot tell the complete
+               jinās from a plain repetition — that is the meaning's (Talkhīṣ L4398: the tāmm agrees in letters, number, vowels
+               and order; two meanings make it a jinās). Offered as a labelled candidate, never dropped in silence. */
+            if (va !== vb) sub = "muharraf"; else if (da !== db) sub = "tamm"; else if (BadiEngine.negBefore(rows, i) !== BadiEngine.negBefore(rows, j)) continue; else { sub = "tamm"; ifMeaning = true; } }
+          else { sub = "tamm";
+            /* (v334-C · audit C11) one class, one vowelling, one definiteness, and nothing that says the two words differ in
+               meaning (no lexicon key apart): a candidate, as above — the letters cannot tell the tāmm from a repetition */
+            const da = /^[وف]?(ال|لل)/.test(this.bare(rows[i].w)), db = /^[وف]?(ال|لل)/.test(this.bare(rows[j].w));
+            if (BadiEngine.negBefore(rows, i) !== BadiEngine.negBefore(rows, j) && cls(i) === cls(j) && !lexDiff(i, j)) continue;   // one word affirmed and denied: the ṭibāq al-salb, one meaning
+            if (!lexDiff(i, j) && cls(i) === cls(j) && da === db && this.vowels(rows[i]) === this.vowels(rows[j]) && !(rows[i].lemma && rows[j].lemma && this.bare(rows[i].lemma) !== this.bare(rows[j].lemma))) ifMeaning = true; }
+          align = a.split("").map((c, k) => [c, b[k], true]); }
         else if (Math.abs(a.length - b.length) === 1) { const [s, l] = a.length < b.length ? [a, b] : [b, a];
           if (sameKey && l === s + "ا") continue;   // مَالًا بِمَالٍ: the tanwin's seat-alif is no letter of the word (wave 19)
           if (l.startsWith(s)) { sub = "naqis"; kind2 = "akhir"; sub2 = "mutarraf"; }   // (wave 22a) the extra letter last: the mutarraf
@@ -31620,10 +31788,14 @@ class JinasEngine {
           if (s2.length >= 3 && (l2.startsWith(s0) || l2.startsWith(s2)) && !sameKey && plStrip(l2) !== s2 && !(ra && rb && ra === rb)) { sub = "naqis"; kind2 = "mudhayyal"; align = l2.split("").map((c, k) => [k < s2.length ? s2[k] : "", c, k < s2.length && s2[k] === c]); } }
         if (!sub) continue;
         if (sub === "qalb" && (() => { const ci = rows.map((r, q) => isC(r) && st[q].length >= 3 ? q : -1).filter(q => q >= 0); return ci.length >= 4 && i === ci[0] && j === ci[ci.length - 1]; })()) kind2 = "mujannah";   // (wave 22a) لَاحَ … حَالٍ: the two wings of the line
-        const f = { kind: "jinas", sub, kind2, sub2, pair: [i, j], a, b, root: sub === "ishtiqaq" && kind2 !== "shibh-ishtiqaq" ? ra : null, align, muzdawij: j === i + 1, sure: !(sub === "tamm" && sameKey) && kind2 !== "mudhayyal" };
+        const f = { kind: "jinas", sub, kind2, sub2, pair: [i, j], a, b, root: sub === "ishtiqaq" && kind2 !== "shibh-ishtiqaq" ? ra : null, align, muzdawij: j === i + 1, sure: !(sub === "tamm" && sameKey) && kind2 !== "mudhayyal" && !ifMeaning };
+        if (ifMeaning) f.ifMeaning = true;
         if (sub === "tamm") { f.sub2 = cls(i) === cls(j) ? "mumathil" : "mustawfa"; f.kind2 = f.sub2; }
         frames.push(f); } }
     frames.forEach(f => { f.text = idx => (Array.isArray(idx) ? idx : [idx]).map(q => (rows[q] && rows[q].w || "").normalize("NFC")).join(" "); f.note = "jinas"; });
+    /* (v334-C · audit C06) the line the shelf has framed: the authored jinās settles what the letters left a candidate */
+    if (o.sen && o.sen.badi) { const hs = (Array.isArray(o.sen.badi) ? o.sen.badi : [o.sen.badi]).filter(h => h && h.kind === "jinas" && Array.isArray(h.pair));
+      frames.forEach(f => { if (hs.some(h => h.pair[0] === f.pair[0] && h.pair[1] === f.pair[1] && (!h.sub || h.sub === f.sub))) { f.sure = true; f.book = true; f.ifMeaning = false; } }); }
     { const bw = q => this.bare((rows[q] && rows[q].w) || "").replace(/^[وف](?=..)/, "");   // (wave 22a) the jinas of TARKIB
       for (let i = 0; i + 1 < rows.length; i++) { const two = bw(i) + bw(i + 1); if (two.length < 4 || !bw(i) || !bw(i + 1)) continue;
         for (let j = 0; j < rows.length; j++) { if (j === i || j === i + 1 || bw(j) !== two) continue;
@@ -31963,7 +32135,9 @@ function unitsOfWord(w, wi, lineStart) {
       const hv = look(core); if (hv === undefined) continue;
       hidden = off + (typeof hv === "number" ? hv : hv.h); if (typeof hv === "object") silent = off + hv.s; break; } }
   // a clitic (وَ فَ بِ كَ لِ) before the article or a waṣl alif: the clitic is pronounced, the alif never is
-  if (L.length > 3 && /^[وفبكل]$/.test(L[0].l) && VOW.test(L[0].m) && /^[اٱ]$/.test(L[1].l) && !VOW.test(L[1].m)) {
+  // (v334-C · audit C07, C12) …and only when the letter after that alif is SĀKIN, as every letter after a waṣl alif is (اسْم،
+  // الْ، اسْتَقِمْ): بَانَتْ، كَامِنٌ، وَاحِدٌ carry a vowel there — their alif is the word's own madd, never a waṣl
+  if (L.length > 3 && /^[وفبكل]$/.test(L[0].l) && VOW.test(L[0].m) && /^[اٱ]$/.test(L[1].l) && !VOW.test(L[1].m) && !VOW.test(L[2].m) && !TAN.test(L[2].m)) {
     push("v", L[0].l + L[0].m.match(VOW)[0]);
     const isAl = L[2].l === "ل" && !VOW.test(L[2].m); const sun = isAl && SHD.test(L[3].m);
     i = 2; if (isAl) { if (!sun) push("o", "لْ"); i = 3; }
@@ -32004,6 +32178,12 @@ function unitsOfShatr(text, first) {
   const words = NFC(text).replace(PUNCT, " ").trim().split(/\s+/).filter(Boolean); let out = []; const wl = [];
   words.forEach((w, wi) => { const u = unitsOfWord(w, wi, wi === 0); wl.push(w);
     if (u.wasl && out.length && out[out.length - 1].madd) out.pop();   // مَا الْ… → مَلْ: the madd falls before the waṣl (iltiqāʾ al-sākinayn)
+    /* (v334-C · audit C12) …and a sākin CONSONANT there is moved: حَرْفٌ الْكَلِمْ is «حَرْفُنِ لْكَلِمْ» — the tanwīn's nūn, never written
+       with its vowel, takes the kasra before the waṣl; a written sukūn the same (the mīm of the plural its ḍamma) */
+    else if (u.wasl && out.length && out[out.length - 1].w === wi - 1 && out[out.length - 1].f.length === 1 && out[out.length - 1].f[0] === "o" && !out[out.length - 1].madd) {
+      const p = out[out.length - 1]; const ml = /^م/.test(p.t) && out.length >= 2 && /^[هك]ُ$/.test(out[out.length - 2].t);
+      out[out.length - 1] = Object.assign({}, p, { f: ["v"], t: p.t.replace(/ْ$/, "") + (ml ? "ُ" : "ِ"), moved: true }); }
+    else if (u.wasl && out.length && out[out.length - 1].mu) { const p = out[out.length - 1]; out[out.length - 1] = Object.assign({}, p, { f: ["v"], t: "مُ", moved: true }); }
     out = out.concat(u); });
   if (!out.length) return { units: out, words: wl };
   // the pronoun's hāʾ mid-line may be lengthened (ishbāʿ) — unless a waṣl follows, where the madd would fall again
@@ -32229,6 +32409,26 @@ class BabModel {
     const lang = (typeof state !== "undefined" && state.uiLang === "tr") ? "tr" : "en"; const u = ui(); const E = escapeAttr;
     const top = r.probs.slice(0, 2).map((x, i) => `<span class="ts-chip ${i ? "mj-guess" : ""}"><span lang="ar">${this.NAMES[x.bab].ar}</span>&nbsp;<span dir="ltr">${Math.round(x.p * 100)}%</span></span>`).join("");
     return `<div class="learn-badge"><span class="learn-brain" title="${E(u.learnBadgeTitle)}">🧠</span> ${E(u.babGuess)} ${top} <span class="learn-meta">${E(u.babGuessMeta.replace("{n}", r.trainedOn).replace("{acc}", r.heldOut.acc))}</span></div>`;
+  }
+  /* (v334-C · audit C09) the Learning lab asked the model where the shelf already KNOWS: حَسُنَ يَحْسُنُ and كَرُمَ يَكْرُمُ are the model
+     verbs of the fifth bāb (ʿIzzī L17), yet the guess put ضَرَبَ first. A root the shelf recites is answered from the shelf, the
+     recited verb named; the model's guess stays beside it, labelled, with whether it agrees. Only a root the shelf does not
+     recite is answered by the guess alone. */
+  static BAB_KEY = { 1: "nasara", 2: "daraba", 3: "fataha", 4: "samia", 5: "karuma", 6: "hasiba" };
+  static shelfBab(rootLetters){
+    const key = (Array.isArray(rootLetters) ? rootLetters.join("") : String(rootLetters || "")).replace(/[^ء-ي]/g, "");
+    if (key.length !== 3) return [];
+    try { return IlalEngine.babOf(key).filter(x => this.BAB_KEY[x.bab]); } catch (e) { return []; }
+  }
+  static labBadge(rootLetters){
+    const known = this.shelfBab(rootLetters); const r = this.predict(rootLetters);
+    if (!known.length) return this.badge(rootLetters);
+    const u = ui(), E = escapeAttr;
+    const shelf = known.map(x => `<span class="ts-chip learn-shelf"><span lang="ar">${E(x.mazi)} ${E(x.mudari)}</span>&nbsp;<span lang="ar">${this.NAMES[this.BAB_KEY[x.bab]].ar}</span></span>`).join("");
+    const agrees = !!r && known.some(x => this.BAB_KEY[x.bab] === r.best);
+    const guess = r ? r.probs.slice(0, 2).map(x => `<span class="ts-chip mj-guess"><span lang="ar">${this.NAMES[x.bab].ar}</span>&nbsp;<span dir="ltr">${Math.round(x.p * 100)}%</span></span>`).join("") : "";
+    return `<div class="learn-badge learn-badge-shelf">📚 ${E(u.babShelf)} ${shelf}`
+      + (r ? `<div class="learn-badge-vs"><span class="learn-brain" title="${E(u.learnBadgeTitle)}">🧠</span> ${E(agrees ? u.babGuessAgrees : u.babGuessWrong)} ${guess} <span class="learn-meta">${E(u.babGuessMeta.replace("{n}", r.trainedOn).replace("{acc}", r.heldOut.acc))}</span></div>` : "") + `</div>`;
   }
 }
 
