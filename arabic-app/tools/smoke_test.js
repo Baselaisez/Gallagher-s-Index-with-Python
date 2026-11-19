@@ -9676,7 +9676,9 @@ if (!CHROME) {
     });
     const N = x => (x || '').normalize('NFC');
     const has = (x, lit) => N(x).includes(N(lit));
-    if (N(r.jarr) !== N('ذَهَبَ الطَّالِبُ الى المدرسةِ')) throw new Error('the seed sentence: ' + r.jarr);
+    // (v330) مَدْرَسَة entered the lexicon with the al-Ghazālī story, so the full vowelling now dresses the whole word; the
+    // older answer (only the case vowel, the word unknown) is still accepted — a gain in knowledge must not fail the seed
+    if (![N('ذَهَبَ الطَّالِبُ الى المدرسةِ'), N('ذَهَبَ الطَّالِبُ الى الْمَدْرَسَةِ')].includes(N(r.jarr))) throw new Error('the seed sentence: ' + r.jarr);
     if (!/^إِنَّ اللَّهَ \S+ٌ \S+ٌ$/.test(N(r.inna))) throw new Error('inna from bare letters: ' + r.inna);
     if (N(r.shart) !== N('مَنْ يَطْلُبِ الْعِلْمَ يَجِدْهُ')) throw new Error('the shart frame from bare letters: ' + r.shart);
     if (N(r.kana) !== N('كَانَ الْمُعَلِّمُ فِي الْبَيْتِ')) throw new Error('kana from bare letters: ' + r.kana);
@@ -9954,7 +9956,7 @@ if (!CHROME) {
     // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
     // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
     if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
-    if (r.disagree > 236) throw new Error('the qiyasi builder disagrees with more stored plurals than at v327 (236 DISTINCT — the third history wave added the HEARD plural قُصُور of قَصْر beside the builder\'s paucity أَقْصُر; at v325 it was 235 DISTINCT — the second history wave added two HEARD plurals the builder cannot derive: أَسَانِيد of إِسْنَاد (a plural of a plural\'s shape, heard) and شُرُوح of شَرْح beside the builder\'s paucity أَشْرُح; at v324 it was 233 DISTINCT — the four upper-level history stories added three HEARD plurals the builder cannot derive: شُحُوم of شَحْم beside the builder\'s paucity أَشْحُم, مَلَّاحُونَ of مَلَّاح — the sound plural of a فَعَّال trade-name, which it still tries to break (أَمْلِحَة) — and مَضَايِق of مَضِيق beside أَمْضِقَة, the مَفَاعِل of a mīm-initial فَعِيل; at v256 it was 230 DISTINCT — the Uṣūl added ten HEARD plurals the builder cannot derive: عَاجِزُونَ، عُتَقَاء، أَدْوِيَة، أَحْبَار، مَجْبُورُونَ، نُعُوت، رِوَايَات، شَافِعُونَ، شُرَكَاء, and أَنْبَاء of نَبَأ beside the builder\'s أَنْبَاأ — the hamza-final أَفْعَال, its own gap, owed to a later round; before them 219 DISTINCT — the Maqāmāt added four HEARD plurals the builder cannot derive: أَدْرَاك of دَرْك beside the builder\'s أَدْرُك, هَالِكُونَ of هَالِك (a sound plural for a person) beside هَوَالِك, خَطَايَا of خَطِيئَة beside its broken خَطَائِئ — the hamza-final فَعِيلَة, its own gap, owed to a later round — and أَنْصِبَاء of نَصِيب beside أَنْصِبَة — heard, the glossary stores them; at v229 it was 215 DISTINCT — the four Level-3 originals added four HEARD plurals the builder cannot derive: كُفَلَاء of كَفِيل beside the builder\'s أَكْفِلَة, أُجَرَاء of أَجِير beside آجِرَة, آنِيَة of إِنَاء beside its broken attempt, رُهْبَان of رَاهِب beside رَوَاهِب — heard, the glossary stores them; at v228 the distinct count was 211 — the audit now counts a lemma+plural once however many keys carry it (wave 112); the eight new stories added four HEARD plurals the builder cannot derive: حُسُد of حَسُود beside the builder\'s أَحْسِدَة, نَادِمُونَ of نَادِم (a sound plural for a person) beside نَوَادِم, حَمْقَى of أَحْمَق (the فَعْلَى of afflictions) beside أَحَامِق, عَجَائِز of عَجُوز beside أَعْجِزَة — heard, the glossary stores them; the raw list with copies stood at 220, at v225 the copies-included count was 215 — the Mūsā story added the HEARD plural of plenty حِبَال of حَبْل beside the builder\'s paucity أَحْبُل — the plural of plenty is heard, the glossary stores it; at v217 it was 214 — the Nasafī ch25–46 added the HEARD plural مَعَاصٍ of مَعْصِيَة beside the builder\'s مَعَاصِي, the manqūṣ muntahā it does not yet shorten — its own gap, owed to a later round; at v216 it was 213 — al-Kafiya ch5–46 added three HEARD plurals: جِرَاحَات of جِرَاحَة beside the builder\'s جَرَائِح, أَسِنَّة of سِنَان beside the uncontracted أَسْنِنَة, and جِمَال of جَمَل beside أَجْمَال — its own gaps, owed to a later round; at v214 it was 212 — ch32–66 of the Iẓhār added two HEARD plurals: قِرَاءَات of قِرَاءَة beside the builder\'s قَرَائِء, and ظُرَفَاء of ظَرِيف beside أَظْرِفَة — its own gaps, owed to a later round; at v213 it was 210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (r.disagree > 237) throw new Error('the qiyasi builder disagrees with more stored plurals than at v330 (237 DISTINCT — the fourth history wave added the HEARD plural مُرُوج of مَرْج beside the builder\'s paucity; at v327 it was 236 DISTINCT — the third history wave added the HEARD plural قُصُور of قَصْر beside the builder\'s paucity أَقْصُر; at v325 it was 235 DISTINCT — the second history wave added two HEARD plurals the builder cannot derive: أَسَانِيد of إِسْنَاد (a plural of a plural\'s shape, heard) and شُرُوح of شَرْح beside the builder\'s paucity أَشْرُح; at v324 it was 233 DISTINCT — the four upper-level history stories added three HEARD plurals the builder cannot derive: شُحُوم of شَحْم beside the builder\'s paucity أَشْحُم, مَلَّاحُونَ of مَلَّاح — the sound plural of a فَعَّال trade-name, which it still tries to break (أَمْلِحَة) — and مَضَايِق of مَضِيق beside أَمْضِقَة, the مَفَاعِل of a mīm-initial فَعِيل; at v256 it was 230 DISTINCT — the Uṣūl added ten HEARD plurals the builder cannot derive: عَاجِزُونَ، عُتَقَاء، أَدْوِيَة، أَحْبَار، مَجْبُورُونَ، نُعُوت، رِوَايَات، شَافِعُونَ، شُرَكَاء, and أَنْبَاء of نَبَأ beside the builder\'s أَنْبَاأ — the hamza-final أَفْعَال, its own gap, owed to a later round; before them 219 DISTINCT — the Maqāmāt added four HEARD plurals the builder cannot derive: أَدْرَاك of دَرْك beside the builder\'s أَدْرُك, هَالِكُونَ of هَالِك (a sound plural for a person) beside هَوَالِك, خَطَايَا of خَطِيئَة beside its broken خَطَائِئ — the hamza-final فَعِيلَة, its own gap, owed to a later round — and أَنْصِبَاء of نَصِيب beside أَنْصِبَة — heard, the glossary stores them; at v229 it was 215 DISTINCT — the four Level-3 originals added four HEARD plurals the builder cannot derive: كُفَلَاء of كَفِيل beside the builder\'s أَكْفِلَة, أُجَرَاء of أَجِير beside آجِرَة, آنِيَة of إِنَاء beside its broken attempt, رُهْبَان of رَاهِب beside رَوَاهِب — heard, the glossary stores them; at v228 the distinct count was 211 — the audit now counts a lemma+plural once however many keys carry it (wave 112); the eight new stories added four HEARD plurals the builder cannot derive: حُسُد of حَسُود beside the builder\'s أَحْسِدَة, نَادِمُونَ of نَادِم (a sound plural for a person) beside نَوَادِم, حَمْقَى of أَحْمَق (the فَعْلَى of afflictions) beside أَحَامِق, عَجَائِز of عَجُوز beside أَعْجِزَة — heard, the glossary stores them; the raw list with copies stood at 220, at v225 the copies-included count was 215 — the Mūsā story added the HEARD plural of plenty حِبَال of حَبْل beside the builder\'s paucity أَحْبُل — the plural of plenty is heard, the glossary stores it; at v217 it was 214 — the Nasafī ch25–46 added the HEARD plural مَعَاصٍ of مَعْصِيَة beside the builder\'s مَعَاصِي, the manqūṣ muntahā it does not yet shorten — its own gap, owed to a later round; at v216 it was 213 — al-Kafiya ch5–46 added three HEARD plurals: جِرَاحَات of جِرَاحَة beside the builder\'s جَرَائِح, أَسِنَّة of سِنَان beside the uncontracted أَسْنِنَة, and جِمَال of جَمَل beside أَجْمَال — its own gaps, owed to a later round; at v214 it was 212 — ch32–66 of the Iẓhār added two HEARD plurals: قِرَاءَات of قِرَاءَة beside the builder\'s قَرَائِء, and ظُرَفَاء of ظَرِيف beside أَظْرِفَة — its own gaps, owed to a later round; at v213 it was 210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
     if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
     if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
   });
@@ -16443,20 +16445,26 @@ if (!CHROME) {
       if (shown !== n) throw new Error('shelf ' + id + ' says ' + n + ', shows ' + shown);
       await page.locator('.src-card[data-src="' + id + '"]').click();
     }
-    await page.locator('.src-card[data-src="mutun"]').click();
-    const stored = await page.evaluate(() => { let n = 0, big = []; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i), v = localStorage.getItem(k) || ''; n += k.length + v.length; if (v.length > 50000) big.push(k + ':' + v.length); } return [localStorage.getItem('qissa-libsource'), n, big.slice(0, 6)]; });
-    if (stored[0] !== 'mutun') throw new Error('the choice was not written: ' + J(stored));
-    // Chromium commits localStorage to the browser process asynchronously; a reload in the same few milliseconds as
-    // the write can beat the commit (CI did, once). A person does not reload within a frame of a tap, so neither do we.
-    // (v327) at 69 packages the full suite lost the whole uncommitted area at 400 ms twice — every key written since the
-    // last reload, not just this one — while the check passed alone: the commit is batched later under load. 1.5 s.
-    await page.waitForTimeout(1500);
-    await page.reload(); await page.waitForSelector('.src-card', { timeout: 60000 });
-    const kept = await page.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, document.querySelector('.src-card.on') && document.querySelector('.src-card.on').getAttribute('aria-pressed')]);
-    // what the storage itself says after the reload, and how much of it survived — so a failure names its cause
-    const after = await page.evaluate(() => { const ks = []; for (let i = 0; i < localStorage.length; i++) ks.push(localStorage.key(i)); return { raw: localStorage.getItem('qissa-libsource'), n: ks.length, qissa: ks.filter(k => k.startsWith('qissa-')).length, welcomed: localStorage.getItem('qissa-welcomed'), url: location.href.slice(-40) }; });
-    await page.locator('.src-card[data-src="mutun"]').click();
-    const cleared = await page.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, STORIES.length, localStorage.getItem('qissa-libsource')]);
+    // (v330) persist-and-reload runs in its OWN fresh context. Late in the full suite the shared page's storage carries
+    // whatever two hundred earlier checks wrote, cleared or stubbed, and the reload twice came back with another state
+    // than the one just written (119 chars before, 381 keys after) — pollution, not the app. A clean context tests
+    // exactly the promise: a learner picks a shelf, reloads, finds it; taps again, it clears.
+    const fctx = await browser.newContext();
+    let kept, cleared, stored, after;
+    try {
+      await fctx.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; window.__QISSA_QUIET_OFF = true; try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); } catch (e) {} });
+      const fp = await fctx.newPage();
+      await fp.goto(page.url().split('#')[0]); await fp.waitForSelector('.src-card', { timeout: 60000 });
+      await fp.locator('.src-card[data-src="mutun"]').click();
+      stored = await fp.evaluate(() => [localStorage.getItem('qissa-libsource'), localStorage.length]);
+      if (stored[0] !== 'mutun') throw new Error('the choice was not written: ' + J(stored));
+      await fp.waitForTimeout(600);
+      await fp.reload(); await fp.waitForSelector('.src-card', { timeout: 60000 });
+      kept = await fp.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, document.querySelector('.src-card.on') && document.querySelector('.src-card.on').getAttribute('aria-pressed')]);
+      after = await fp.evaluate(() => ({ raw: localStorage.getItem('qissa-libsource'), n: localStorage.length }));
+      await fp.locator('.src-card[data-src="mutun"]').click();
+      cleared = await fp.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, STORIES.length, localStorage.getItem('qissa-libsource')]);
+    } finally { await fctx.close(); }
     if (kept[0] !== 'mutun' || kept[2] !== 'true' || cleared[0] !== '' || cleared[1] !== cleared[2] || cleared[3] !== '') throw new Error('persist and clear: ' + J([kept, cleared, stored, after]));
     // on a phone the text comes first: the shelf folds into one chip in the sort bar and opens as a sheet
     await page.setViewportSize({ width: 390, height: 844 });
@@ -16691,6 +16699,13 @@ if (!CHROME) {
     const want = ['sibawayh-fi-al-basra', 'ibn-battuta-yakhruju-min-tanja', 'bina-baghdad', 'ayn-jalut', 'ibn-khaldun-wa-timur'];
     const miss = want.filter(id => !r.some(x => x[0] === id));
     if (miss.length || !(by[4] >= 4 && by[5] >= 4 && by[6] >= 4)) throw new Error('the upper shelves: ' + JSON.stringify({ by, miss }));
+  });
+  await check('v330 — the fourth history wave: Ibn Sīnā learns (L4), Marj Dābiq (L5) and al-Ghazālī\'s solitude (L6) stand on the «History» shelf; each upper level now holds at least five, four and five', async () => {
+    const r = await page.evaluate(() => STORIES.filter(st => sourceOf(st) === 'tarikh').map(st => [st.id, st.level]));
+    const by = {}; for (const [, l] of r) by[l] = (by[l] || 0) + 1;
+    const want = ['ibn-sina-yatallam', 'marj-dabiq', 'al-ghazali-wa-al-uzla'];
+    const miss = want.filter(id => !r.some(x => x[0] === id));
+    if (miss.length || !(by[4] >= 5 && by[5] >= 5 && by[6] >= 5)) throw new Error('the upper shelves: ' + JSON.stringify({ by, miss }));
   });
   await check('v325 — the bināʾ vowel is a cell of the paradigm (Shudhūr R2–R3, triage T1): the māḍī is named on fatḥa, on ḍamma before the wāw of the plural, on sukūn before a moving rafʿ pronoun; the muḍāriʿ with the nūn of women on sukūn; the amr on the dropped nūn or the dropped weak letter; a weak ending the cell cannot vouch for keeps the old line; and against the corpus\'s authored lines the named vowel agrees ≥ 4,900 times and disagrees no more than twice', async () => {
     const J = JSON.stringify;
@@ -17072,6 +17087,159 @@ if (!CHROME) {
     if (/وَهُوَ مُضَافٌ/.test(c.kull[1]) || !/بَدَلٌ/.test(c.kull[2]) || /وَهُوَ مُضَافٌ/.test(c.mal[1]) || !/بَدَلٌ/.test(c.mal[2])) throw new Error('كُلُّ تِلْكَ / مَالِ هَذَا: ' + J([c.kull, c.mal]));
     if (!/وَهُوَ مُضَافٌ/.test(c.ctrl[1]) || !/مُضَافٌ إِلَيْهِ/.test(c.ctrl[2])) throw new Error('the control: ' + J(c.ctrl));
     if (r.mud > 0 || r.mi > 1 || r.named < 272) throw new Error('against the authored lines: ' + J({ mud: r.mud, mi: r.mi, auth: r.auth, named: r.named, list: r.list }));
+  });
+  await check('v330 — the compound numbers are built on two fatḥas (Shudhūr R7, R116; triage I-17, AdadEngine.murakkab330): جَاءَنِي أَحَدَ عَشَرَ رَجُلًا — أَحَدَ «عَدَدٌ مُرَكَّبٌ مَبْنِيٌّ عَلَى فَتْحِ الْجُزْأَيْنِ» and never muḍāf, عَشَرَ «الْجُزْءُ الثَّانِي … لَا مَحَلَّ لَهُ»; رَأَيْتُ خَمْسَةَ عَشَرَ طَالِبًا in the seat of naṣb as the object; اثْنَيْ عَشَرَ declined like the dual (by the yāʾ, no pronoun); the control جَاءَ خَمْسَةُ رِجَالٍ keeps its idafa; against the authored lines all 39 compounds built on two fatḥas and all 17 اثْنَا / اثْنَتَا named the dual, no first part called muḍāf, and no seat that differs from the authors\' (≥ 39 agree)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      const c = { ahad: L('جَاءَنِي أَحَدَ عَشَرَ رَجُلًا'), khamsa: L('رَأَيْتُ خَمْسَةَ عَشَرَ طَالِبًا'), ithnay: L('رَأَيْتُ اثْنَيْ عَشَرَ كَوْكَبًا'), ctrl: L('جَاءَ خَمْسَةُ رِجَالٍ') };
+      const S = x => stripAr(String(x || '')).replace(/[^ء-ي ]/g, '').replace(/[أإآ]/g, 'ا'), cs = a => /محل رفع|مرفوع/.test(a) ? 'raf' : /محل نصب|منصوب/.test(a) ? 'nasb' : /محل جر|مجرور/.test(a) ? 'jarr' : '';
+      const U = /^[وفبكل]?(ال)?(احد|احدى|اثنا|اثني|اثنتا|اثنتي|ثلاثة|ثلاث|اربعة|اربع|خمسة|خمس|ستة|ست|سبعة|سبع|ثمانية|ثماني|ثمان|تسعة|تسع)$/;
+      let n = 0, fath = 0, dual = 0, ithna = 0, mudaf = 0, agree = 0, differ = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || []; let rows = null;
+        for (let i = 0; i + 1 < T.length; i++) { const a = S(T[i].s.full).replace(/ /g, ''), b = S(T[i + 1].s.full).replace(/ /g, ''); if (!U.test(a) || !/^(عشر|عشرة)$/.test(b)) continue;
+          if (!rows) { try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { rows = []; } } if (rows.length !== T.length) continue;
+          let e = ''; try { e = S((Murib.line(rows, i) || {}).ar); } catch (x) {} const is2 = /^[وفبكل]?(اثنا|اثني|اثنتا|اثنتي)$/.test(a); n++; if (is2) ithna++;
+          if (!is2 && /فتح الجزاين/.test(e)) fath++; if (is2 && /اعراب المثنى/.test(e)) dual++; if (/مضاف/.test(e.replace(/مضاف اليه/g, ''))) mudaf++;
+          const ac = cs(S((T[i].irab || {}).ar)), ec = /فتح الجزاين/.test(e) ? (/او في محل نصب/.test(e) ? 'raf|nasb' : cs(e)) : /اعراب المثنى/.test(e) ? cs(e.replace(/منصوب او مجرور.*/, '')) : '';
+          if (ac && ec) { if (ec.split('|').includes(ac)) agree++; else { differ++; list.push(st.id + ':' + ch.n + ':' + sn.id + ':' + (i + 1)); } } } }
+      return { c, n, fath, dual, ithna, mudaf, agree, differ, list };
+    });
+    const c = r.c;
+    if (!/عَدَدٌ مُرَكَّبٌ مَبْنِيٌّ عَلَى فَتْحِ الْجُزْأَيْنِ/.test(c.ahad[1]) || /مُضَافٌ/.test(c.ahad[1]) || !/الْجُزْءُ الثَّانِي مِنَ الْعَدَدِ الْمُرَكَّبِ/.test(c.ahad[2]) || /مُضَافٌ إِلَيْهِ/.test(c.ahad[2])) throw new Error('أَحَدَ عَشَرَ: ' + J(c.ahad));
+    if (!/فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ/.test(c.khamsa[1])) throw new Error('خَمْسَةَ عَشَرَ: ' + J(c.khamsa));
+    if (!/مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْيَاءُ لِأَنَّهُ مُلْحَقٌ بِالْمُثَنَّى/.test(c.ithnay[1]) || /الضَّمِيرُ/.test(c.ithnay[1])) throw new Error('اثْنَيْ عَشَرَ: ' + J(c.ithnay));
+    if (!/وَهُوَ مُضَافٌ/.test(c.ctrl[1]) || !/مُضَافٌ إِلَيْهِ/.test(c.ctrl[2]) || /مُرَكَّبٌ/.test(c.ctrl.join(' '))) throw new Error('the control: ' + J(c.ctrl));
+    if (r.fath < 39 || r.dual < 17 || r.mudaf > 0 || r.agree < 39 || r.differ > 0) throw new Error('against the authored lines: ' + J({ n: r.n, fath: r.fath, dual: r.dual, ithna: r.ithna, mudaf: r.mudaf, agree: r.agree, differ: r.differ, list: r.list }));
+  });
+  await check('v330 — the verbs of approach are nawāsikh (Shudhūr R75, R132–R135; triage I-16, MuqarabaEngine): كَادَ الْوَلَدُ يَبْكِي — الْوَلَدُ «اسْمُ «كَادَ»», the clause of يَبْكِي «فِي مَحَلِّ نَصْبٍ خَبَرُ «كَادَ»», no doer on كَادَ; عَسَى رَبُّكُمْ أَنْ يَرْحَمَكُمْ — رَبُّكُمْ the ism, the maṣdar the khabar; وَطَفِقَا يَخْصِفَانِ — the alif «اسْمُهَا»; عَسَى أَنْ يَنْزِلَ names the complete reading and the deficient one; فَبَدَأَ نُوحٌ يَصْنَعُ is a SHORTLIST (beginning, or the complete verb with a ḥāl); the control أَخَذْتُ الْكِتَابَ stays a full verb with its object; against the authored lines ≥ 14 written isms, ≥ 4 attached isms and ≥ 19 khabars named, and no more than 5 isms named where the authors say «فاعل»', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      const c = { kada: L('كَادَ الْوَلَدُ يَبْكِي'), asa: L('عَسَى رَبُّكُمْ أَنْ يَرْحَمَكُمْ'), tafiqa: L('وَطَفِقَا يَخْصِفَانِ'), tamm: L('عَسَى أَنْ يَنْزِلَ بِكَ'), bada: L('فَبَدَأَ نُوحٌ يَصْنَعُ السَّفِينَةَ'), ctrl: L('أَخَذْتُ الْكِتَابَ') };
+      const S = x => stripAr(String(x || '')).replace(/[^ء-ي ]/g, '').replace(/[أإآ]/g, 'ا');
+      const V = /^[وف]?ل?(كاد|كادت|كادوا|كادا|يكاد|تكاد|يكادون|تكادون|اكاد|نكاد|كدت|كدنا|كدتم|يكد|تكد|عسى|عسيت|عسيتم|عسينا|اوشك|اوشكت|اوشكوا|يوشك|توشك|يوشكون|طفق|طفقا|طفقت|طفقوا|كرب|انشا|جعل|جعلت|جعلوا|جعلا|اخذ|اخذت|اخذوا|اخذا|بدا|بدات|بداوا)$/;
+      const VN = '(كاد|يكاد|تكاد|كادوا|كادت|يكد|عسى|اوشك|طفق|طفقا|طفقت|بدا|بدات|اخذ|جعل|انشا|كرب)', IR = new RegExp('اسم ' + VN), KR = new RegExp('خبر ' + VN);
+      let aI = 0, eI = 0, aV = 0, eV = 0, aK = 0, eK = 0, fail = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || []; let rows = null;
+        for (let i = 0; i < T.length; i++) { if (!V.test(S(T[i].s.full).replace(/ /g, ''))) continue;
+          if (!rows) { try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { rows = []; } } if (rows.length !== T.length) break;
+          const m = k => { try { return S((Murib.line(rows, k) || {}).ar || ''); } catch (e) { return ''; } };
+          const av = S((T[i].irab || {}).ar); if (/(الواو|الالف|التاء|النون) اسمها|اسمه ضمير|اسمها ضمير|واسمه مستتر/.test(av)) { aV++; if (/اسمها/.test(m(i))) eV++; }
+          let ak = false, ek = false;
+          for (let k = i + 1; k < Math.min(T.length, i + 4); k++) { const at = S((T[k].irab || {}).ar), et = m(k);
+            if (IR.test(at)) { aI++; if (IR.test(et)) eI++; } if (KR.test(at)) ak = true; if (KR.test(et)) ek = true;
+            if (IR.test(et) && /^فاعل| فاعل مرفوع/.test(at) && !/فاعل (يجيء|يخرج|يكون)/.test(at)) { fail++; list.push(st.id + ':' + ch.n + ':' + sn.id + ':' + (k + 1)); } }
+          if (ak) { aK++; if (ek) eK++; } } }
+      return { c, aI, eI, aV, eV, aK, eK, fail, list };
+    });
+    const c = r.c;
+    if (!/اسْمُ «كَادَ»/.test(c.kada[1]) || !/فِي مَحَلِّ نَصْبٍ خَبَرُ «كَادَ»/.test(c.kada[2]) || /فَاعِلُهُ|فَاعِلٌ/.test(c.kada[0]) || !/اسْمُهَا «الْوَلَدُ»/.test(c.kada[0])) throw new Error('كَادَ الْوَلَدُ يَبْكِي: ' + J(c.kada));
+    if (!/اسْمُ «عَسَى»/.test(c.asa[1]) || !/فِي مَحَلِّ نَصْبٍ خَبَرُ «عَسَى»/.test(c.asa[3])) throw new Error('عَسَى رَبُّكُمْ: ' + J(c.asa));
+    if (!/الْأَلِفُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ اسْمُهَا/.test(c.tafiqa[0])) throw new Error('وَطَفِقَا: ' + J(c.tafiqa));
+    if (!/تَامٌّ/.test(c.tamm[0]) || !/أَوْ نَاقِصٌ/.test(c.tamm[0])) throw new Error('عَسَى أَنْ يَنْزِلَ: ' + J(c.tamm));
+    if (!/أَفْعَالِ الشُّرُوعِ/.test(c.bada[0]) || !/أَوْ تَامٌّ/.test(c.bada[0])) throw new Error('the shortlist: ' + J(c.bada));
+    if (/اسْمُهَا|خَبَرُ/.test(c.ctrl.join(' ')) || !/فَاعِلٌ/.test(c.ctrl[0]) || !/مَفْعُولٌ بِهِ/.test(c.ctrl[1])) throw new Error('the control: ' + J(c.ctrl));
+    if (r.eI < 14 || r.eV < 4 || r.eK < 19 || r.fail > 5) throw new Error('against the authored lines: ' + J({ aI: r.aI, eI: r.eI, aV: r.aV, eV: r.eV, aK: r.aK, eK: r.eK, fail: r.fail, list: r.list }));
+  });
+  await check('v330 — istithnāʾ: the kind named, the case by it (Shudhūr R119–R125, R130, R131; triage I-21, IstithnaEngine): فَشَرِبُوا مِنْهُ إِلَّا قَلِيلًا مِنْهُمْ — tāmm mūjab, قَلِيلًا «مُسْتَثْنًى»; مَا فَعَلُوهُ إِلَّا قَلِيلٌ — tāmm manfī, a badal; جَاءَ الْقَوْمُ غَيْرَ زَيْدٍ — غَيْرَ takes the mustathnā\'s case and is muḍāf; قَامَ الْقَوْمُ مَا عَدَا زَيْدًا — عَدَا a frozen verb, زَيْدًا its object; قَامُوا لَيْسَ زَيْدًا — the khabar of لَيْسَ, its ism hidden of necessity; جَاءَنِي الْقَوْمُ حَاشَا زَيْدٍ — a letter of jarr; the control مَا جَاءَ إِلَّا زَيْدٌ is mufarragh, زَيْدٌ the doer; against the authored lines ≥ 29 «مستثنى» and ≥ 10 badal lines named, ≥ 18 «مفرغ» lines named mufarragh, ≥ 9 غَيْر / سِوَى named an exception with none where the authors give another office, all 8 objects after خَلَا / عَدَا and 3 majrūrs after the letter, and no more than 2 «مُسْتَثْنًى بِـ«إِلَّا»» where the authors give another office', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      const c = { shariba: L('فَشَرِبُوا مِنْهُ إِلَّا قَلِيلًا مِنْهُمْ'), faalu: L('مَا فَعَلُوهُ إِلَّا قَلِيلٌ مِنْهُمْ'), ghayr: L('جَاءَ الْقَوْمُ غَيْرَ زَيْدٍ'), ada: L('قَامَ الْقَوْمُ مَا عَدَا زَيْدًا'), laysa: L('قَامُوا لَيْسَ زَيْدًا'), hasha: L('جَاءَنِي الْقَوْمُ حَاشَا زَيْدٍ'), ctrl: L('مَا جَاءَ إِلَّا زَيْدٌ') };
+      const S = x => stripAr(String(x || '')).replace(/[^ء-ي ]/g, '').replace(/[أإآ]/g, 'ا'), OFF = /فاعل|مفعول|خبر|مبتدا|حال|نعت|صفة|ظرف|نائب|تمييز|معطوف/;
+      let aM = 0, eM = 0, aB = 0, eB = 0, aF = 0, eF = 0, wrongM = 0, aG = 0, eG = 0, wrongG = 0, aK = 0, eK = 0, aJ = 0, eJ = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || []; let rows = null;
+        for (let i = 0; i < T.length; i++) { const a = S(T[i].s.full).replace(/ /g, ''), f = T[i].s.full.normalize('NFC'); let kind = null;
+          if (/^[وف]?الا$/.test(a) && /ّ/.test(f) && !/^(?:[وف]َ?)?أَ/.test(f) && T[i + 1]) kind = 'illa'; else if (/^[وف]?(غير|سوى|سوا)$/.test(a)) kind = 'ghayr'; else if (/^[وف]?(خلا|عدا|حاشا|حاشى)$/.test(a) && T[i + 1]) kind = 'khala';
+          if (!kind) continue; if (!rows) { try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { rows = []; } } if (rows.length !== T.length) break;
+          const m = k => { try { return S((Murib.line(rows, k) || {}).ar || ''); } catch (e) { return ''; } }; const j = kind === 'ghayr' ? i : i + 1, at = S((T[j].irab || {}).ar), et = m(j);
+          if (kind === 'illa') { const ei = m(i);
+            if (/مستثنى/.test(at) && !/مفرغ/.test(at)) { aM++; if (/مستثنى/.test(et)) eM++; } if (/بدل/.test(at)) { aB++; if (/بدل/.test(et)) eB++; } if (/مفرغ/.test(at)) { aF++; if (/مفرغ/.test(ei)) eF++; }
+            if (/مستثنى بـالا/.test(et) && !/مستثنى|بدل|استثناء/.test(at) && OFF.test(at)) { wrongM++; list.push(st.id + ':' + ch.n + ':' + sn.id + ':' + (j + 1)); } }
+          else if (kind === 'ghayr') { if (/استثناء|مستثنى/.test(at)) { aG++; if (/استثناء/.test(et)) eG++; } else if (/استثناء/.test(et) && OFF.test(at)) { wrongG++; list.push(st.id + ':' + ch.n + ':' + sn.id + ':' + (j + 1)); } }
+          else { const ai = S((T[i].irab || {}).ar); if (/مفعول/.test(at)) { aK++; if (/مفعول به ل/.test(et)) eK++; } if (/مجرور/.test(at) && /حرف جر/.test(ai)) { aJ++; if (/مستثنى مجرور/.test(et)) eJ++; } } } }
+      return { c, aM, eM, aB, eB, aF, eF, wrongM, aG, eG, wrongG, aK, eK, aJ, eJ, list };
+    });
+    const c = r.c;
+    if (!/مُسْتَثْنًى بِـ«إِلَّا»/.test(c.shariba[3]) || !/تَامٌّ مُوجَبٌ/.test(c.shariba[2])) throw new Error('فَشَرِبُوا مِنْهُ إِلَّا قَلِيلًا: ' + J(c.shariba));
+    if (!/تَامٌّ مَنْفِيٌّ/.test(c.faalu[2]) || !/بَدَلٌ/.test(c.faalu[3])) throw new Error('مَا فَعَلُوهُ إِلَّا قَلِيلٌ: ' + J(c.faalu));
+    if (!/اسْمُ اسْتِثْنَاءٍ مَنْصُوبٌ عَلَى الِاسْتِثْنَاءِ/.test(c.ghayr[2]) || !/وَهُوَ مُضَافٌ/.test(c.ghayr[2]) || !/مُضَافٌ إِلَيْهِ/.test(c.ghayr[3]) || /مَفْعُولٌ بِهِ/.test(c.ghayr[2])) throw new Error('غَيْرَ زَيْدٍ: ' + J(c.ghayr));
+    if (!/فِعْلٌ مَاضٍ جَامِدٌ لِلِاسْتِثْنَاءِ/.test(c.ada[3]) || !/مَفْعُولٌ بِهِ لِـ«عَدَا»/.test(c.ada[4])) throw new Error('مَا عَدَا: ' + J(c.ada));
+    if (!/وُجُوبًا/.test(c.laysa[1]) || !/خَبَرُ «لَيْسَ»/.test(c.laysa[2])) throw new Error('لَيْسَ زَيْدًا: ' + J(c.laysa));
+    if (!/حَرْفُ جَرٍّ لِلِاسْتِثْنَاءِ/.test(c.hasha[2]) || !/مُسْتَثْنًى مَجْرُورٌ/.test(c.hasha[3])) throw new Error('حَاشَا زَيْدٍ: ' + J(c.hasha));
+    if (!/فَاعِلٌ/.test(c.ctrl[3]) || /مُسْتَثْنًى/.test(c.ctrl[3]) || !/مُفَرَّغٌ/.test(c.ctrl[2])) throw new Error('the control: ' + J(c.ctrl));
+    if (r.eM < 29 || r.eB < 10 || r.eF < 18 || r.eG < 9 || r.wrongG > 0 || r.eK < 8 || r.eJ < 3 || r.wrongM > 2) throw new Error('against the authored lines: ' + J({ aM: r.aM, eM: r.eM, aB: r.aB, eB: r.eB, aF: r.aF, eF: r.eF, aG: r.aG, eG: r.eG, wrongG: r.wrongG, aK: r.aK, eK: r.eK, aJ: r.aJ, eJ: r.eJ, wrongM: r.wrongM, list: r.list }));
+  });
+  await check('v330 — the genus-lā\'s ism that is truly muḍāf is muʿrab, manṣūb (Shudhūr R147; triage I-19, CaseEngine.laMudaf330): لَا غُلَامَ سَفَرٍ عِنْدَنَا and لَا طَالِبَ عِلْمٍ خَاسِرٌ — «مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ», never built; the control لَا تَبْدِيلَ لِخَلْقِ اللهِ stays built and is not muḍāf; across the corpus every authored «اسم لا منصوب … مضاف» line is named manṣūb, and no more than 3 genus-lā isms before a jarr letter are called muḍāf', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      const c = { ghulam: L('لَا غُلَامَ سَفَرٍ عِنْدَنَا'), talib: L('لَا طَالِبَ عِلْمٍ خَاسِرٌ'), ctrl: L('لَا تَبْدِيلَ لِخَلْقِ اللهِ') };
+      const S = x => stripAr(String(x || '')).replace(/[^ء-ي ]/g, '').replace(/[أإآ]/g, 'ا'), nf = x => String(x || '').normalize('NFC').replace(/[«»"،؛.:!؟]/g, '');
+      let auth = 0, named = 0, mudafCtl = 0;
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || []; let rows = null;
+        for (let i = 1; i + 1 < T.length; i++) { if (!/^(?:[وف]َ?)?لَا$/.test(nf(T[i - 1].s.full))) continue; const w = nf(T[i].s.full), wn = nf(T[i + 1].s.full);
+          if (!/[ء-ي]َ$/.test(w) || /^(?:[وف]َ?)?ال/.test(w) || /[ًٌٍ]/.test(w)) continue;
+          if (!rows) { try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { rows = []; } } if (rows.length !== T.length) break;
+          let e = ''; try { e = S((Murib.line(rows, i) || {}).ar); } catch (x) {} const a = S((T[i].irab || {}).ar);
+          if (/اسم لا منصوب/.test(a)) { auth++; if (/منصوب/.test(e) && !/مبني لا يتغير/.test(e)) named++; }
+          if ((/^(?:[وف]َ?)?[بلك]ِ/.test(wn) || (rows[i + 1].kind || '') === 'particle') && /اسم لا النافية للجنس/.test(e) && /وهو مضاف/.test(e)) mudafCtl++; } }
+      return { c, auth, named, mudafCtl };
+    });
+    const c = r.c, M = /مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ/;
+    for (const x of [c.ghulam, c.talib]) if (!M.test(x[1]) || /مَبْنِيٌّ لَا يَتَغَيَّرُ/.test(x[1]) || !/اسْمُ لَا النَّافِيَةِ لِلْجِنْسِ/.test(x[1])) throw new Error('the muḍāf ism: ' + J([c.ghulam, c.talib]));
+    if (!/مَبْنِيٌّ/.test(c.ctrl[1]) || /وَهُوَ مُضَافٌ/.test(c.ctrl[1]) || /مَنْصُوبٌ/.test(c.ctrl[1])) throw new Error('the control: ' + J(c.ctrl));
+    if (r.auth < 3 || r.named < r.auth || r.mudafCtl > 3) throw new Error('against the authored lines: ' + J({ auth: r.auth, named: r.named, mudafCtl: r.mudafCtl }));
+  });
+  await check('v330 — the ism fiʿl is a built noun, not a ḥarf and not majrūr (Shudhūr R16, R27; triage I-20, IsmFilEngine): صَهْ «اسْمُ فِعْلِ أَمْرٍ … مَبْنِيٌّ عَلَى السُّكُونِ», its doer «أَنْتَ»; نَزَالِ built on the kasra and claimed built, never jarr; آمِينَ on the fatḥa; هَيْهَاتَ الْأَمْرُ — a māḍī\'s meaning with its doer written; وَعَلَيْكَ بِالصَّبْرِ «الْزَمْ»; the control سِرْتُ بِحَذَرٍ stays a majrūr noun; against the authored lines ≥ 29 of the authored ism-fiʿl lines named an ism fiʿl and built, none claimed a ḥarf or majrūr', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      const K = (s, k) => { const rows = SentenceAnalyzer.analyze(s); return (CaseEngine.claim(rows, k) || {}).k || null; };
+      const c = { sah: L('صَهْ'), sahK: K('صَهْ', 0), nazal: L('نَزَالِ'), nazalK: K('نَزَالِ', 0), amin: L('آمِينَ'), hayhat: L('هَيْهَاتَ الْأَمْرُ'), alayk: L('وَعَلَيْكَ بِالصَّبْرِ'), ctrl: L('سِرْتُ بِحَذَرٍ') };
+      const S = x => stripAr(String(x || '')).replace(/[^ء-ي ]/g, '').replace(/[أإآ]/g, 'ا');
+      let auth = 0, named = 0, bad = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || [];
+        if (!T.some(t => /اسم فعل|توكيد لفظي/.test(S((t.irab || {}).ar)))) continue;
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (rows.length !== T.length) continue;
+        T.forEach((t, i) => { const a = S((t.irab || {}).ar); if (!(/اسم فعل/.test(a) && !/^مضاف اليه/.test(a)) && !(/توكيد لفظي/.test(a) && rows[i].pk === 'ism-fil')) return; auth++;
+          let e = '', k = null; try { e = S((Murib.line(rows, i) || {}).ar); k = (CaseEngine.claim(rows, i) || {}).k; } catch (x) {}
+          if (/اسم فعل/.test(e) && /مبني/.test(e)) named++; if (k === 'harf' || k === 'jarr') { bad++; list.push(st.id + ':' + ch.n + ':' + sn.id + ':' + (i + 1)); } }); }
+      return { c, auth, named, bad, list };
+    });
+    const c = r.c;
+    if (!/اسْمُ فِعْلِ أَمْرٍ/.test(c.sah[0]) || !/مَبْنِيٌّ عَلَى السُّكُونِ/.test(c.sah[0]) || !/«أَنْتَ»/.test(c.sah[0]) || c.sahK !== 'mabni') throw new Error('صَهْ: ' + J([c.sah, c.sahK]));
+    if (!/مَبْنِيٌّ عَلَى الْكَسْرِ/.test(c.nazal[0]) || c.nazalK !== 'mabni') throw new Error('نَزَالِ: ' + J([c.nazal, c.nazalK]));
+    if (!/مَبْنِيٌّ عَلَى الْفَتْحِ/.test(c.amin[0]) || !/اسْمُ فِعْلِ أَمْرٍ/.test(c.amin[0])) throw new Error('آمِينَ: ' + J(c.amin));
+    if (!/اسْمُ فِعْلٍ مَاضٍ/.test(c.hayhat[0]) || !/وَفَاعِلُهُ «الْأَمْرُ»/.test(c.hayhat[0])) throw new Error('هَيْهَاتَ: ' + J(c.hayhat));
+    if (!/«الْزَمْ»/.test(c.alayk[0]) || /حَرْفُ جَرٍّ/.test(c.alayk[0])) throw new Error('وَعَلَيْكَ: ' + J(c.alayk));
+    if (/اسْمُ فِعْلٍ/.test(c.ctrl.join(' ')) || !/مَجْرُورٌ/.test(c.ctrl[1])) throw new Error('the control: ' + J(c.ctrl));
+    if (r.named < 29 || r.bad > 0) throw new Error('against the authored lines: ' + J({ auth: r.auth, named: r.named, bad: r.bad, list: r.list }));
+  });
+  await check('v330 — the fāʿil and the mubtadaʾ keep their office beside their pronoun (the v327 note; Murib.encSeat330, DabtEngine.diptoteObj330): جَاءَ صَاحِبُهُ — «فَاعِلٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ»; كِتَابُهُ جَمِيلٌ — «مُبْتَدَأٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ»; وَإِذِ ابْتَلَى إِبْرَاهِيمَ رَبُّهُ — رَبُّهُ the doer, إِبْرَاهِيمَ the object; سَمِعَ الْمَلِكُ سُؤَالَهُ keeps v327\'s object; against the authored lines ≥ 230 fāʿils, ≥ 250 mubtadaʾs and ≥ 75 kāna-isms with a pronoun named so, and no more than 200 such lines left with only «وَالضَّمِيرُ مُضَافٌ إِلَيْهِ»', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      const c = { sahib: L('جَاءَ صَاحِبُهُ'), kitab: L('كِتَابُهُ جَمِيلٌ'), ibtala: L('وَإِذِ ابْتَلَى إِبْرَاهِيمَ رَبُّهُ'), samia: L('سَمِعَ الْمَلِكُ سُؤَالَهُ') };
+      const S = x => stripAr(String(x || '')).replace(/[^ء-ي ]/g, '').replace(/[أإآ]/g, 'ا');
+      const OFF = [['fail', /^فاعل|[^ب] فاعل|فاعل مرفوع/], ['mubtada', /مبتدا/], ['kanaIsm', /اسم (كان|يكون|كانت|صار|اصبح|ليس)/]], EO = { fail: /فاعل/, mubtada: /مبتدا/, kanaIsm: /اسم (كان|ها)/ };
+      const n = { fail: 0, mubtada: 0, kanaIsm: 0 }; let pronOnly = 0, all = 0;
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || []; let rows = null;
+        for (let i = 0; i < T.length; i++) { const w = T[i].s.full.normalize('NFC').replace(/[«»"،؛.:!؟]/g, '').replace(/ّ/g, '');
+          if (!/[ُ](هُ|هِ|هَا|هُمْ|هِمْ|هُمَا|هِمَا|هُنَّ|كَ|كِ|كُمْ|كُمَا|كُنَّ|نَا|ي)$/.test(w)) continue; const a = S((T[i].irab || {}).ar);
+          if (/نائب فاعل/.test(a)) continue; const off = OFF.find(([k, re]) => re.test(a)); if (!off) continue;
+          if (!rows) { try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { rows = []; } } if (rows.length !== T.length) break; if (!(rows[i].kind || '').startsWith('noun')) continue;
+          let e = ''; try { e = S((Murib.line(rows, i) || {}).ar); } catch (x) {} const e0 = e.replace(/والضمير مضاف اليه.*/, ''); all++;
+          if (EO[off[0]].test(e0)) n[off[0]]++; if (/والضمير مضاف اليه/.test(e) && !/(فاعل|مبتدا|خبر|اسم كان|اسمها|نائب|مفعول|بدل|نعت|معطوف|حال|توكيد)/.test(e0)) pronOnly++; } }
+      return { c, n, pronOnly, all };
+    });
+    const c = r.c;
+    if (!/فَاعِلٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ/.test(c.sahib[1])) throw new Error('جَاءَ صَاحِبُهُ: ' + J(c.sahib));
+    if (!/مُبْتَدَأٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ/.test(c.kitab[0])) throw new Error('كِتَابُهُ جَمِيلٌ: ' + J(c.kitab));
+    if (!/وَفَاعِلُهُ «رَبُّهُ»/.test(c.ibtala[1]) || !/مَفْعُولٌ بِهِ/.test(c.ibtala[2]) || /فَاعِلٌ/.test(c.ibtala[2]) || !/فَاعِلٌ، وَالضَّمِيرُ/.test(c.ibtala[3])) throw new Error('ابْتَلَى إِبْرَاهِيمَ رَبُّهُ: ' + J(c.ibtala));
+    if (!/مَفْعُولٌ بِهِ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ/.test(c.samia[2]) || !/وَفَاعِلُهُ «الْمَلِكُ»/.test(c.samia[0])) throw new Error('سَمِعَ الْمَلِكُ سُؤَالَهُ: ' + J(c.samia));
+    if (r.n.fail < 230 || r.n.mubtada < 250 || r.n.kanaIsm < 75 || r.pronOnly > 200) throw new Error('against the authored lines: ' + J(r));
   });
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));

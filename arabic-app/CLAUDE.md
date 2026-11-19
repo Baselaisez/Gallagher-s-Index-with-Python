@@ -14392,3 +14392,108 @@ shelf filter is by id, not by a manifest field.
 - Not done (next): the case layer still has no claim on a badal of a demonstrative (الْبَقَرَاتِ، الْمُسْتَثْنَيَاتِ) or on several ḥāls in ـات, so their
   kasra sign waits; أَيٌّ's seat (only its case is named); مَا before a māḍī; the taʿlīl / future senses of إِذْ (named as plain ẓarf); لَا of the genus
   with a dual or a sound masculine plural (R12's «مبني على الياء»: still «منصوب بالحروف»).
+
+### v330 — five iʿrāb gaps from the Shudhūr triage (I-17, I-16, I-21, I-19, I-20), and the fāʿil / mubtadaʾ with its pronoun
+- **The compound numbers 11–19 (Shudhūr R7, R116; I-17)** — `AdadEngine.teenTable330 / murakkab330 / seat330 / claim330 / line330 / retype330`, an early
+  Murib line and a claim hook. The pairs are read off `AdadEngine.parts()` (the Aded Lab's own builder): the unit with its fatḥa (إِحْدَى on its
+  alif, اثْنَا on the alif, اثْنَيْ on the yāʾ) + the ten of the same gender with its fatḥa; a tanwīn, ḍamma or kasra on either part is no compound.
+  «عَدَدٌ مُرَكَّبٌ مَبْنِيٌّ عَلَى فَتْحِ الْجُزْأَيْنِ فِي مَحَلِّ …» — never «مضاف / مضاف إليه»; the ten: «الْجُزْءُ الثَّانِي مِنَ الْعَدَدِ الْمُرَكَّبِ، مَبْنِيٌّ عَلَى
+  الْفَتْحِ لَا مَحَلَّ لَهُ» («قَامَ مَقَامَ نُونِ الْمُثَنَّى» after اثْنَا). اثْنَا / اثْنَتَا are «مُعْرَبٌ إِعْرَابَ الْمُثَنَّى» (alif in rafʿ, yāʾ in naṣb and jarr);
+  the analyzer's last pass no longer reads the yāʾ of اثْنَيْ as a pronoun, nor اثْنَتَا as a verb. The seat is named only where the letters
+  settle it: a jarr letter (fused or written), a muḍāf before it, a passive, a lāzim verb, a verb that wears its own doer (→ object), kāna,
+  the clause opening (mubtadaʾ), a mubtadaʾ before it (khabar), a fronted jarr phrase (mubtadaʾ muʾakhkhar), a وَ-joined compound
+  (maʿṭūf); after a transitive verb with no doer of its own it is a SHORTLIST («فِي مَحَلِّ رَفْعٍ فَاعِلُ «رَأَى»، أَوْ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ إِنْ كَانَ
+  فَاعِلُهُ ضَمِيرًا مُسْتَتِرًا») — for اثْنَا / اثْنَيْ the letter decides between them. A cited list (أَحَدَ عَشَرَ اثْنَا عَشَرَ …) gets no seat.
+  Corpus (56 compounds, 17 of them اثْنَا / اثْنَتَا): «فتح الجزأين» 0 → 39 of 39; the dual named 0 → 17 of 17; a first part called muḍāf 53 → 0;
+  the second part 0 → 56; seats named by both 0 → 39, all agreeing (2 as the shortlist), none differing.
+- **The verbs of approach (R75, R132–R135; I-16)** — `MuqarabaEngine` (`fam / read / frames / verbClause / ismOffice / khabarClause / khabarDoer`),
+  hooked in Murib.line in place of the doer clause. EXACT for كَادَ / كَرَبَ / أَوْشَكَ / عَسَى / طَفِقَ: the ism is the noun in rafʿ written right
+  after (its muḍāf ilayh may follow), the letter the verb wears, or a concealed «هُوَ / هِيَ»; the khabar the muḍāriʿ after it (with or without
+  أَنْ): «نَاقِصٌ مِنْ أَفْعَالِ الْمُقَارَبَةِ (الرَّجَاءِ، الشُّرُوعِ)، اسْمُهَا «…»، خَبَرُهَا جُمْلَةُ «…» فِي مَحَلِّ نَصْبٍ» / «وَالْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنْ» وَ«…» فِي مَحَلِّ
+  نَصْبٍ خَبَرُهَا»; the ism's own line «اسْمُ «كَادَ»», the muḍāriʿ's «وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ «كَادَ»» and its doer «ضَمِيرٌ مُسْتَتِرٌ … يَعُودُ عَلَى
+  «…»» (R132). A cited māḍī and its muḍāriʿ of the same root (أَخَذَ يَأْخُذُ، كُدْتَ تَكَادُ) are no frame. SHORTLISTS, by design: عَسَى / أَوْشَكَ + أَنْ +
+  muḍāriʿ with nothing between — «تَامٌّ، وَالْمَصْدَرُ … فَاعِلُهُ سَدَّ مَسَدَّ الِاسْمِ وَالْخَبَرِ — أَوْ نَاقِصٌ اسْمُهُ ضَمِيرٌ مُسْتَتِرٌ …» (the Iẓhār's own reading
+  first); جَعَلَ / أَخَذَ / بَدَأَ / أَنْشَأَ (a māḍī, no object pronoun) + a marfūʿ muḍāriʿ with no أَنْ — beginning first, «أَوْ تَامٌّ … وَالْجُمْلَةُ حَالٌ».
+  Control أَخَذْتُ الْكِتَابَ: silent. Corpus (63 verb tokens): written ism named 0 → 14 of 15 (رَسِيسُ الْهَوَى: no khabar found); attached /
+  concealed ism 0 → 4 of 4; khabar frames 0 → 19 of 19; the complete عَسَى 0 → 3 of 3. Isms named where the authors say «فاعل»: 5 — four
+  **corpus slips** (below) and nuh-wa-al-safina:2:s2:2 نُوحٌ, whose line reads بَدَأَ as complete with a ḥāl (the shortlist's second reading).
+- **Istithnāʾ (R119–R125, R130, R131; I-21)** — `IstithnaEngine` (`clause / read / frames / illaTerm / nounOffice / masdarClause / ghayr / khala /
+  khalaLine / laysa`), in Murib.term for إِلَّا, an early line for خَلَا / عَدَا / حَاشَا, and the noun's office. The kind is named on إِلَّا:
+  «وَالِاسْتِثْنَاءُ تَامٌّ مُوجَبٌ، فَوَجَبَ نَصْبُ الْمُسْتَثْنَى» (no negation, prohibition or question in the clause — أَلَّا، أَمَا، إِنِ النافية count as
+  negations — and the noun after it in naṣb or built: «مُسْتَثْنًى بِـ«إِلَّا»»); «تَامٌّ مَنْفِيٌّ: يُخْتَارُ إِتْبَاعُ الْمُسْتَثْنَى لِمَا قَبْلَهُ بَدَلًا، وَيَجُوزُ نَصْبُهُ»
+  (a badal with its head named; a naṣb noun whose antecedent is raf / jarr → «مُسْتَثْنًى»; after لَا of the genus «بَدَلٌ مِنْ مَحَلِّ «لَا» وَاسْمِهَا»);
+  «مُفَرَّغٌ: «إِلَّا» أَدَاةُ حَصْرٍ مُلْغَاةٌ …» only where the slot is shown empty (a doer-less verb for a fāʿil, an object-less verb for an object, a
+  jarr phrase, a nominal clause with no antecedent of the noun's case); otherwise إِلَّا is «حَرْفُ اسْتِثْنَاءٍ» and no more. إِلَّا أَنَّهُ …: the maṣdar
+  is «فِي مَحَلِّ نَصْبٍ مُسْتَثْنًى» (munqaṭiʿ after a negation). Refusals: a written raf / jarr noun in an affirmative clause (إِلَّا as غَيْر), a ẓarf
+  (إِلَّا مَعَ، إِلَّا عِنْدَ), a verb whose object slot is still empty with a single doer (أَبَى … إِلَّا الْحَرْبَ — the negation may be in its meaning), a
+  question. غَيْر / سِوَى: «اسْمُ اسْتِثْنَاءٍ مَنْصُوبٌ عَلَى الِاسْتِثْنَاءِ، يَأْخُذُ حُكْمَ الْمُسْتَثْنَى بِـ«إِلَّا»، وَهُوَ مُضَافٌ» — after a noun not in naṣb, no
+  kāna-sister in the clause, the majrūr after it definite or a name (an indefinite or a مُفْعِل / مَفْعُول after غَيْر is a ḥāl or a naʿt), غَيْرَ أَنَّ
+  anywhere; in a negative clause only غَيْرَ in written naṣb after an antecedent of another case. مَا خَلَا / مَا عَدَا: «فِعْلٌ مَاضٍ جَامِدٌ لِلِاسْتِثْنَاءِ …
+  وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا» and «مَفْعُولٌ بِهِ لِـ«عَدَا» (وَهُوَ الْمُسْتَثْنَى)»; bare خَلَا / عَدَا / حَاشَا by the noun's vowel (kasra → «حَرْفُ جَرٍّ
+  لِلِاسْتِثْنَاءِ», fatḥa → the verb); وَعَدَا (و ع د) refused. لَيْسَ / لَا يَكُونُ after a complete clause with a clause-final naṣb noun: «نَاقِصٌ لِلِاسْتِثْنَاءِ،
+  وَاسْمُهُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا …» and «خَبَرُ «لَيْسَ» (وَهُوَ الْمُسْتَثْنَى)» (no corpus instance; the smoke holds R119's example).
+  Corpus (314 nouns after إِلَّا): authored «مستثنى» named 14 → 29 of 39; authored badal 5 → 10 of 15; authored «مفرغ» named mufarragh 0 → 18
+  of 23 (the kind now on 154 إِلَّا lines); «مُسْتَثْنًى بِـ«إِلَّا»» where the authors give another office: 2 (one **corpus slip**; one a line about
+  أَنَّ itself). غَيْر / سِوَى: 0 → 9 of 15, none where the authors give another office. After خَلَا / عَدَا: objects 0 → 8 of 8, majrūrs 0 → 3 of 3.
+- **The genus-lā's ism that is truly muḍāf (R147; I-19)** — `CaseEngine.laMudaf330`: لَا + an indefinite noun on a bare fatḥa + a noun in written
+  kasratayn with no jarr letter of its own → the claim is naṣb, «مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ (مُعْرَبٌ لَا مَبْنِيٌّ)». A definite muḍāf
+  ilayh is the joining لَا (لَا اسْمَ الْمَفْعُولِ), a ẓarf after a repeated لَا is a ẓarf. «وَهُوَ مُضَافٌ» is dropped from the genus-lā's ism before a jarr
+  letter (لَا تَبْدِيلَ لِخَلْقِ اللهِ). Corpus: the 3 authored «اسم لا منصوب لأنه مضاف» lines built 3 → 0, manṣūb 0 → 3; «وَهُوَ مُضَافٌ» on an ism before
+  a jarr letter 11 → 3.
+- **The ism fiʿl (R16, R27; I-20)** — `IsmFilEngine` (`read / line / nounOffice`), an early Murib line and a claim hook placed before the particle
+  return. A table (صَهْ، مَهْ، آمِينَ، نَزَالِ، حَذَارِ، دَرَاكِ، تَرَاكِ، رُوَيْدَ، هَلُمَّ، بَلْهَ، حَيَّهَلَ، هَيْهَاتَ، شَتَّانَ، سَرْعَانَ، وَشْكَانَ، أُفٍّ، فَقَطْ) with its meaning:
+  «اسْمُ فِعْلِ أَمْرٍ (مَاضٍ، مُضَارِعٍ) بِمَعْنَى «…» مَبْنِيٌّ عَلَى <the written vowel>، لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ» + the doer («أَنْتَ» wujūban / «أَنَا» / the
+  written rafʿ noun / «هُوَ»); the same ism fiʿl twice — «تَوْكِيدٌ لَفْظِيٌّ لِلْأَوَّلِ»; a manṣūb noun after a transitive one is «مَفْعُولٌ بِهِ لِاسْمِ الْفِعْلِ». عَلَيْكَ /
+  إِلَيْكَ / دُونَكَ only at the head of the clause with their object after them (عَلَيْكَ بِـ…، إِلَيْكَ هَذِهِ …), «وَالْكَافُ حَرْفُ خِطَابٍ»; هَا only before a
+  tanwīn-naṣb noun; آمِينَ only with its madda, أُفٍّ only with its shadda, مَهْ never فَمِهِ. فَقَطْ is a SHORTLIST led by the authors' reading:
+  «اسْمٌ بِمَعْنَى «حَسْبُ» مَبْنِيٌّ عَلَى السُّكُونِ (أَوِ اسْمُ فِعْلٍ مُضَارِعٍ بِمَعْنَى «يَكْفِي»)». Corpus (31 authored ism-fiʿl lines and their tawkīds): named
+  a built ism fiʿl 0 → 30 (هَاتِ is left a verb); claimed a ḥarf 16 → 0, majrūr 0, built 3 → 30. Named where the authors do not: 3 — the Kāfiya's
+  cited نَزَالِ / تَرَاكِ (their lines give the meaning only) and one **corpus slip** (below).
+- **The fāʿil and the mubtadaʾ with an attached pronoun (the v327 note)** — `Murib.encSeat330`: the pronoun's clause follows the office for
+  every seat the vowelling engine gave (fāʿil, nāʾib, mubtadaʾ, khabar, kāna's ism, inna's ism and khabar), as v327 did for the object — except
+  a mubtadaʾ whose khabar is a fronted word (the doer of a ṣifa) and a kāna-ism with no kāna-sister before it. `DabtEngine.diptoteObj330`:
+  after an active verb with no doer of its own, a diptote on its bare fatḥa (MamnuEngine sure) followed by a noun in written rafʿ is the
+  object and the rafʿ noun the doer — «وَإِذِ ابْتَلَى إِبْرَاهِيمَ رَبُّهُ». Corpus (793 marfūʿ nouns + pronoun with an authored fāʿil / mubtadaʾ / kāna-ism):
+  fāʿil named 6 → 236, mubtadaʾ 1 → 258, kāna-ism 1 → 78; lines with only «وَالضَّمِيرُ مُضَافٌ إِلَيْهِ» 777 → 158. The seat is the loop's, now shown:
+  about 75 of these lines name another office than the authors' (a mubtadaʾ muʾakhkhar read as the khabar, a ṣifa's doer read as a mubtadaʾ …).
+- **Corpus slips for the hoca** (package:chapter:sentence:token, tokens counted from 1):
+  - the noun between عَسَى / تَكَادُ and its khabar called «فاعل» (it is the ism of a nāsikh): al-usul-al-munifa:23:s5:4 اللهُ (عَسَى اللهُ أَنْ يَنْفَعَهُ),
+    :25:s7:70 اللهُ (عَسَى اللهُ أَنْ يَتُوبَ), :25:s17:68 السَّمَاوَاتُ (تَكَادُ السَّمَاوَاتُ يَتَفَطَّرْنَ); qisas-al-nabiyyin-4:45:s4:18 النَّصْرَانِيَّةُ «فاعل» while the
+    next line calls تَأْخُذُ «خبر بدأت من أفعال الشروع».
+  - al-usul-al-munifa:2:s25:32 السَّوَادَ in «كُلُّهُمْ فِي النَّارِ إِلَّا السَّوَادَ الْأَعْظَمَ» called «مفعول به» (tāmm mūjab: the manṣūb mustathnā, R125).
+  - al-usul-al-munifa:2:s22:1 «عَلَيْكَ بِالْأَثَرِ» read as a jarr phrase with no clause to stand in (it is the ism fiʿl «الْزَمْ», the bāʾ extra — as
+    wasiyyat-abi-hanifa-samti:4:s26:1 reads the same phrase).
+  - marah-al-arwah:13:s13:9 — the page writes «اثْنَا عَشَرَ» as صَارَ's khabar (its own line says the yāʾ is due: the edition's spelling).
+  - Also for the hoca (no engine disagreement): the Uṣūl's «عَسَى أَنْ …» lines (2:s16:2, 23:s4:62, 24:s20:19, 30:s4:42) give عَسَى «وَالْفَاعِلُ ضَمِيرٌ
+    مُسْتَتِرٌ» — a pronoun after a nāsikh is its ism, and in the complete reading the fāʿil is the maṣdar (R134).
+- Smoke: «v330 — the compound numbers are built on two fatḥas» (fath ≥ 39, dual ≥ 17, muḍāf 0, seats agree ≥ 39 / differ 0), «v330 — the verbs of
+  approach are nawāsikh» (written ism ≥ 14, attached ≥ 4, khabar ≥ 19, ism-where-«فاعل» ≤ 5), «v330 — istithnāʾ: the kind named, the case by it»
+  (mustathnā ≥ 29, badal ≥ 10, mufarragh ≥ 18, غَيْر / سِوَى ≥ 9 and 0 against another office, خَلَا / عَدَا 8 + 3, «مُسْتَثْنًى بِـ«إِلَّا»» against another
+  office ≤ 2), «v330 — the genus-lā's ism that is truly muḍāf is muʿrab, manṣūb» (every authored line, the control ≤ 3), «v330 — the ism fiʿl is a
+  built noun» (≥ 29, ḥarf / jarr claims 0), «v330 — the fāʿil and the mubtadaʾ keep their office beside their pronoun» (fāʿil ≥ 230, mubtadaʾ ≥ 250,
+  kāna-ism ≥ 75, pronoun-only ≤ 200). Measurement scripts: scratchpad e330/m_i17.js, m_i16.js, m_i21.js, m_i19.js, m_i20.js, m_g6.js / m_g6s.js
+  (+ the *rep.py beside them) via the page server e330/server.js + p.sh; before = e330/*_before.json (base.html), after = *_after.json / g6_final.json.
+- Full suite (`node tools/smoke_test.js`, the reader as built): 497 checks, 497 pass — SPEED III and «v317 — the library shelves its texts by
+  source» among them; no older check changed.
+- Not done (next): إِلَّا أَنْ (the light أَنْ's maṣdar as mustathnā or ẓarf); the fronted mustathnā (مَا جَاءَنِي إِلَّا زَيْدًا أَحَدٌ) is left silent; سِوَى in a
+  negative clause; a negation by meaning (أَبَى، مَعَاذَ اللهِ أَنْ) or a rhetorical question before إِلَّا (silent, not named); هَاتِ / هَا as ism fiʿl in general;
+  the compound number's seat after a doer-less transitive verb (a shortlist); the loop's mubtadaʾ / khabar seats now visible on pronoun nouns.
+
+### v330 — the fourth history wave
+
+- **ibn-sina-yatallam (L4, 26 sentences):** follows the order of al-Sīra.
+- **marj-dabiq (L5, 28):** after Ibn Iyās, with Ibn Ṭūlūn for Syria.
+- **al-ghazali-wa-al-uzla (L6, 30):** after al-Munqidh.
+
+All three are ORIGINAL and pending review. Every upper History shelf now holds at least five stories (the v330 story check).
+
+**Points for the scholar:**
+- the blended compound طُومَانَ بَايُ
+- whether دَابِق is declined or a feminine diptote
+- the diptote reasons of سِينَا، بُخَارَى، نَيْسَابُور
+- الْغَزَالِيّ or الْغَزَّالِيّ
+
+**Shelf lesson:** the wave caught a global-key collision. `amal` is عَمَل in three packages and أَمَل in four, so the corpus index
+silently merges two words. The new story uses `amal-work`. The older splits (amal, rajaa / رجاء, thamani, pron-1s) are a
+cleanup task. Check every new key against `entries` in every glossary: glossaries wrap their entries in an `entries` object,
+and a check that reads the top level sees nothing.
