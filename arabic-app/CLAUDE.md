@@ -14315,3 +14315,80 @@ shelf filter is by id, not by a manifest field.
 - Not done (next): the ḥāl seat after a definite noun (the evidence above says the found word), a forward governor in general (the walk
   looks forward only behind an inna wall and at a clause-opening phrase), maḥdhūf after a proper name the glossary does not gloss as one,
   the I-11 time nouns' own Murib line (يَوْمَئِذٍ is read by the walk, its line is unchanged).
+
+### v329 — four exact iʿrāb gaps from the Shudhūr triage (I-10, I-7, I-12, I-15)
+- **The sound feminine plural is manṣūb by the KASRA (Shudhūr R12; I-10)** — `JamEngine.salimFem329(r)` + Murib.line §2 (`fem329`, `Murib.laFem329`).
+  The class is never read off a final ـات: the alif and the tāʾ must both be augmented. With the lexicon's singular, the plural must be its
+  stem + (و/ي/ه/ا) + ات behind nothing but clitics (مُسْلِمَة → مُسْلِمَات، سَنَة → سَنَوَات، سَمَاء → سَمَاوَات، أُمّ → أُمَّهَات، بِنْت → بَنَات); a broken
+  plural with a radical tāʾ fails (وَقْت → أَوْقَات، بَيْت → أَبْيَات، مَيْت → أَمْوَات), and so does a singular whose own tāʾ shows before a pronoun
+  (زَكَاتَهُ، ذَاتَ); with no stored singular a radical tāʾ in the root refuses and the page must write the kasra; a shape `JamEngine.recognize`
+  is sure of is never this class. In naṣb: «مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْكَسْرَةُ نِيَابَةً عَنِ الْفَتْحَةِ لِأَنَّهُ جَمْعُ مُؤَنَّثٍ سَالِمٌ» (not on the
+  speaker's yāʾ: حَاجَاتِي keeps its old line). The genus-lā's single ism: «مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ نَصْبٍ» (the kasra written) or «… عَلَى
+  الْفَتْحِ …» (the fatḥa written); a tanwīn, the article, a pronoun or a muḍāf note leave it. Also: `IrabSign.of`'s five-noun test now needs a
+  pronoun tail — أَبْيَاتًا was «one of the five nouns, by letters», ذَاتَهُ too. NB the brief's «بَنَات is broken»: R12's own definition
+  (alif and tāʾ augmented) takes بَنَات (root ب ن و) in, the Qurʾān has «بَنِينَ وَبَنَاتٍ» in naṣb, and the corpus authors say «جمع مؤنث سالم»
+  on it — the engine follows them.
+  Corpus (72 ـات tokens in naṣb by line or claim; 65 authored «منصوب … بالكسرة»): before 0 of 65, after 49; the kasra named where the
+  authors write the fatḥa: 0. Missed: no case claim on the word (badal of a demonstrative, a ḥāl the case layer leaves open: 7), a jarr claim (3),
+  ثُبَاتٍ (the lexicon owns ثَبَات «firmness», a radical tāʾ), حَاجَاتِي, and four **corpus slips** (below).
+- **The conditional noun (Shudhūr R187, R188; I-7)** — `ShartIsmEngine` (`frames / nounLine / verbSeat / jazmShown / role / retype329`), hooked as
+  an early Murib line for the noun and in §2 for its verbs. EXACT where the jazm SHOWS — the first verb after the noun (nothing between that
+  jazms by itself; the verb not joined by و/ف) written with its sukūn (or the kasra of two stills), without the five verbs' nūn, or without its
+  weak letter; or the answer, with no jāzim of its own (only where the noun opens its clause); or a noun that is nothing but conditional
+  (مَهْمَا، أَيْنَمَا، حَيْثُمَا). مَا only on its own verb's visible jazm (and not after أَيٌّ: أَيًّا مَا). A muḍāriʿ showing rafʿ or naṣb kills the
+  frame. Line: «اسْمُ شَرْطٍ جَازِمٌ مَبْنِيٌّ عَلَى <its vowel> <seat>، يَجْزِمُ فِعْلَيْنِ، وَجَزْمُ «…» ظَاهِرٌ». Seats: a ẓarf for مَتَى / أَيَّانَ (time) and
+  أَيْنَ / أَنَّى / أَيْنَمَا / حَيْثُمَا (place, «وَ«مَا» زَائِدَةٌ»); for مَنْ / مَا / مَهْمَا the mubtadaʾ — khabar muqaddam of a kāna-sister with its own ism,
+  mafʿūl bihi muqaddam of a transitive verb (LazimEngine.takesObject) with no object written whose doer is not the noun (وَمَا تَفْعَلُوا مِنْ خَيْرٍ),
+  ism of an inna written bare before it; أَيٌّ is «مُعْرَبٌ» with its own case and «وَهُوَ مُضَافٌ». The verbs: «مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ …، فِعْلُ
+  الشَّرْطِ / جَوَابُ الشَّرْطِ», a māḍī «فِي مَحَلِّ جَزْمٍ فِعْلُ الشَّرْطِ»; a fāʾ-answer and an answer behind لَمْ / the lām of command are not touched.
+  Five-verbs without their nūn are no longer «مرفوع … بحذف النون» there; يُدْرِكْكُمُ is no longer rafʿ. The analyzer's last pass retypes the answer
+  that lost its weak letter (يُجْزَ: given back its alif, the corpus owns يُجْزَى) — only after a condition that shows its jazm and has no verbal
+  answer. SHORTLIST, by design: مَنْ (and مَتَى / أَيْنَ / أَيَّانَ / أَنَّى the analyzer kept as conditional) before a māḍī, or before لَمْ + a
+  muḍāriʿ, with an answer found and the noun opening its clause (first, behind a stop, a joining letter, ثُمَّ / بَلْ / لٰكِنْ / أَمَّا, inna and its
+  sisters, a verb of saying or تَعَالَى / وَسَلَّمَ, كَذَا / حَيْثُ, a noun with the article or a tanwīn): «… وَالْفِعْلَانِ بَعْدَهُ مَاضِيَانِ فِي مَحَلِّ جَزْمٍ —
+  أَوِ اسْمٌ مَوْصُولٌ بِمَعْنَى «الَّذِي» … (أَوِ اسْمُ اسْتِفْهَامٍ before a ؟)؛ لَا جَزْمَ ظَاهِرٌ يَفْصِلُ بَيْنَ الْقِرَاءَتَيْنِ». مَا before a māḍī is left alone (too
+  many readings for a shortlist). Control جَاءَ مَنْ أَحَبَّكَ: silent.
+  Corpus (147 authored «اسم شرط» / «شرطية» on the conditional nouns): before 0 named, after 128 (22 exact, 106 shortlist first); EXACT where
+  the authors read a relative or a question: 1 (a corpus slip, below); shortlists offered where the authors read the relative or the question: 22
+  (no disagreement — the relative is the second reading). Verbs this wave names «فِعْلُ الشَّرْطِ / جَوَابُ الشَّرْطِ»: 45, all agreeing but two
+  (corpus slips). Missed: an answer the walk does not find (it stops at the next conditional, a cited «نَحْوُ», a stop), a verb the analyzer
+  reads as a noun (مَنْ جَدَّ وَجَدَ), cited fragments in the Kāfiya, أَيَّتِهِمَا, لَمَّا (called «اسم شرط غير جازم» by one line — I-12 names it the
+  ḥīniyya ẓarf).
+- **The built ẓurūf (Shudhūr R19, R30, R31; I-12)** — `ZarfBinaEngine.read / line / retype`, an early Murib line. إِذْ (sukūn), حَيْثُ (ḍamma),
+  الْآنَ (fatḥa), أَمْسِ (kasra, bare: the Ḥijāzī day-before-today), لَمَّا before a māḍī / لَمْ / أَنْ + māḍī (the ḥīniyya «حِينَ», sukūn, «مُتَضَمِّنٌ
+  مَعْنَى الشَّرْطِ»): «… مَبْنِيٌّ عَلَى <vowel> فِي مَحَلِّ نَصْبٍ» — «فِي مَحَلِّ جَرٍّ بِـ«مِنْ»» behind a jarr letter (also the fused بِحَيْثُ), «فِي مَحَلِّ
+  جَرٍّ مُضَافٌ إِلَيْهِ» behind a time noun (بَعْدَ إِذْ) or, for أَمْسِ / الْآنَ, any bare noun (حَدِيثُ أَمْسِ); إِذْ / حَيْثُ / لَمَّا «مُضَافٌ إِلَى الْجُمْلَةِ
+  بَعْدَهُ». إِذْ after بَيْنَمَا is «ظَرْفٌ لِلْمُفَاجَأَةِ … وَالْجُمْلَةُ بَعْدَهُ جَوَابُ «بَيْنَمَا»»; after a verb of ذ ك ر it is that verb's object
+  (وَاذْكُرُوا إِذْ); first in its sentence before a verb «مَفْعُولٌ بِهِ لِفِعْلٍ مَحْذُوفٍ تَقْدِيرُهُ «اذْكُرْ» (أَوْ ظَرْفٌ لِعَامِلٍ قَبْلَهُ)» — the authors'
+  own wording; إِذِ before a waṣl hamza «حُرِّكَ بِالْكَسْرِ». بَيْنَمَا names both parses (بَيْنَ manṣūb + an extra مَا, as all five authored
+  lines have it — or one built word). Left alone: الْأَمْسُ، أَمْسًا، أَمْسُ، مِنَ الْآنِ، مِنْ حَيْثِ، حَيْثُمَا (I-7)، لِمَا، لَمَّا + a muḍāriʿ (the jāzim).
+  The analyzer's last pass makes the sentence-opening «noun» in naṣb before a bare أَمْسِ / الْآنَ the corpus māḍī it spells (ذَهَبَ أَمْسِ).
+  Corpus (269 tokens; 221 the authors call a ẓarf): before 0 named, after 212 (all with the built / manṣūb seat); a ẓarf where the authors say
+  otherwise: 13 — cited words in the Kāfiya and Iẓhār (إِذْ / حَيْثُ / الْآنَ as a mubtadaʾ or a maʿṭūf), four إِذْ the authors call «حرف تعليل» (the
+  brief: never a ḥarf; the taʿlīl sense is not named), أَمْسِ الدَّابِرُ (a mubtadaʾ in verse). Missed: لِمَا lines (slips, below), لَمَّا before a
+  noun or a particle in cited text.
+- **A demonstrative is never muḍāf (Shudhūr R46; I-15)** — `IdafaEngine.chain` stops at a demonstrative (it may close a chain as muḍāf ilayh,
+  never extend it), and Murib.line names the ال noun after a demonstrative in the seat of jarr «بَدَلٌ مِنِ اسْمِ الْإِشَارَةِ (أَوْ عَطْفُ بَيَانٍ)» where
+  no other office stands (كُلُّ تِلْكَ الْمَرَاتِبِ). Corpus (913 demonstratives): «وَهُوَ مُضَافٌ» on a demonstrative 65 → 0; the ال noun after it called
+  «مُضَافٌ إِلَيْهِ» 53 → 1 (أَهَذَا الَّذِي, a relative); its authored badal / naʿt / bayān named so 230 → 278 of 284; demonstratives the authors
+  call «مضاف إليه» 43 → 77 of 78. Control هَذَا كِتَابُ زَيْدٍ keeps its idafa.
+- **Corpus slips for the hoca** (package:chapter:sentence:token, tokens counted from 1):
+  - a singular called «جمع مؤنث سالم» with the kasra, while its own tāʾ wears the fatḥa before a pronoun: al-usul-al-munifa:22:s11:21 وَصَلَاتَهُمْ,
+    :23:s7:34 مَرْضَاتَهُ, :24:s7:36 and :24:s7:59 زَكَاتَهُ (all «منصوب بالفتحة»).
+  - يَرَهُ in «فَمَنْ يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ» called «منصوب وعلامة نصبه الفتحة» — it is the answer of مَنْ, majzūm by the dropped alif
+    (يَرَى → يَرَ): al-usul-al-munifa:26:s2:76, :26:s2:82.
+  - مَنْ in «إِنَّهُ مَنْ يَتَّقِ وَيَصْبِرْ» led as a relative («ويصح جعلها شرطية») while the jazm of يَتَّقِ shows: qisas-al-nabiyyin-1:21:s24:11.
+  - لِمَا (the jarr lām + a relative مَا) called «ظرف بمعنى حين»: al-usul-al-munifa:14:s25:8, :14:s28:14, :14:s37:35, :14:s37:41, :25:s18:27; and
+    :8:s5:16 «لَمَا قَدَرَ» (no shadda written on a line that calls it the ḥīniyya — the page or the line).
+- Smoke: «v329 — the sound feminine plural is manṣūb by the kasra» (≥ 47, kasra where the authors write the fatḥa 0), «v329 — the conditional noun
+  that makes two verbs jussive» (≥ 125 named, exact-where-relative ≤ 1, verbs ≤ 2), «v329 — the built ẓurūf» (≥ 208, extra ≤ 13), «v329 — a
+  demonstrative is never muḍāf» (0 «وَهُوَ مُضَافٌ», ≤ 1 مضاف إليه, ≥ 272 badal). Measurement scripts: scratchpad e329/m_i10.js, m_i7.js, m_i12.js,
+  m_i15.js (+ the *rep.py beside them) via the page server e329/server.js + p.sh; before = e329/*_before.json (i12_cur.json), after = *_final.json.
+- Older checks: «v325 — the defective verb wears its sign on the weak letter» ceiling dis ≤ 16 → ≤ 18 — the two new «disagreements» are the
+  يَرَهُ corpus slips above (the line says naṣb by a visible fatḥa; doctrine and the engine say jazm by the dropped alif). «wave 136 — SPEED III»
+  fails until the IrabModel is refitted — the analyzer's retypes (يُجْزَ، ذَهَبَ أَمْسِ), the chain that stops at a demonstrative and the five-noun
+  fix change its features (2390 → 2392 weights over the same 65,169 rows): `node tools/gen_irab_model.js && python3 tools/build_prototype.py`
+  (writes content/models/irab_model.json; verified on a dry copy, after which both checks pass).
+- Not done (next): the case layer still has no claim on a badal of a demonstrative (الْبَقَرَاتِ، الْمُسْتَثْنَيَاتِ) or on several ḥāls in ـات, so their
+  kasra sign waits; أَيٌّ's seat (only its case is named); مَا before a māḍī; the taʿlīl / future senses of إِذْ (named as plain ẓarf); لَا of the genus
+  with a dual or a sound masculine plural (R12's «مبني على الياء»: still «منصوب بالحروف»).
