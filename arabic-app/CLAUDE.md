@@ -14720,6 +14720,49 @@ what was learned from the Talkhīṣ»; open the Shamela story of Muḥammad ibn
   the other five Muʿallaqāt (Ṭarafa, Labīd, ʿAntara, ʿAmr ibn Kulthūm, al-Ḥārith), whole, by the same brief.
 - Questions for the hoca from these imports: Zuhayr's chapter cuts; «فَمِنْ أَيِّهِمْ» for the e-text's «أمن أيهم»; whether to keep only the
   figures a commentator names; ishtiqāq or plain repetition for same-verb pairs.
+- **The gate made green (integration).** The imports failed 18 checks once rebuilt; each was traced to the token that moved it and
+  sorted: (A) an engine the new texts exposed, (B) a measure over authored lines, (C) an authored slip. No received text, vowel or
+  authored line was changed; every engine fix was measured on the older shelf (the same build with the six ids left out) and on the
+  typed-sentence family (2153 sentence literals of the suite, four engines): the older shelf's typed output moved on 5 sentences, all
+  better or neutral (سَلْ بَنِي إِسْرَائِيلَ ×3, مَا أَحْسَنَ زَيْدًا named taʿajjub, عُدُّوا wrong → wrong in a balāgha-only pin).
+  - **SignEngine (A)** 99.4 → 99.6 (older shelf 29565 → 29584 of 29697; imports 1881/1946 → 1922/1925). `authored()` drops a sign
+    statement that follows a head clause (before « — » / «؛») building the token itself with no case of its own (مَنْ / مَهْمَا / مَتَى «…
+    مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ …», اسْمُ «لَا» مَبْنِيٌّ عَلَى الْأَلِفِ): it describes the sharṭ verbs. A jazm verb whose LEMMA ends in a sound
+    letter keeps the sukūn whatever vowel the rhyme or a helping kasra wrote (يُحَوَّلِ، تَكَلَّمِ، تَكُ). A diptote written with the kasra at
+    the rhyme is declined (the audit passes `rhyme`). A maqṣūr diptote in jarr accepts «بِفَتْحَةٍ مُقَدَّرَةٍ … نِيَابَةً عَنِ الْكَسْرَةِ» beside the
+    older «بِكَسْرَةٍ مُقَدَّرَةٍ» until the review branch (rule M01) is merged. Pausal ـونْ is the sound plural; a fused كَ (not only بِ/لِ)
+    and short nouns behind a fused jarr letter (لِحَيٍّ، لِكُلِّ، بِبَنِي) are read as the noun; `ownsTail` ignores a doubled final (أَيِّهِمْ);
+    فُتَاتَ's ـات is its stem; a dual is never ـانِ in jarr/naṣb (بِالْقَنَانِ، بِالْحَيَوَانِ، لِسُلْطَانِهَا) nor the diminutive فُعَيْن (الْحُسَيْنِ).
+  - **AdabEngine `naibNotFail` (A)**: binds only when the line says THIS verb is passive (مجهول in the head clause, or «مبني للمجهول /
+    عمل المجهول / ضمير المجهول»). Bindings 4268 → 4264, findings 3 → 0; the only bindings dropped are four active verbs of the imports.
+  - **LazimEngine ledger (A)**: an object line «مَفْعُولٌ بِهِ لِفِعْلٍ مَحْذُوفٍ» (أَهْلَ الْبَيْتِ after اذْهَبْ بِمَتَاعِكَ) is not the verb's object, and
+    lāzim needs a doer row whose verb does not WEAR its object pronoun (doer − both ≥ 1: زَارَهُ عَضُدُ الدَّوْلَةِ). Sixteen older verbs lose a
+    lāzim verdict that rested only on such rows (زَيَّنَ، أَحَسَّ، أَعْلَمَ، أَنْشَأَ، شَفَى، حَاصَرَ…); the typed family on the older shelf did not move.
+  - **Typed homographs (A)**: `RootFinder.common333` — within one walk pass a lemma the shelf meets ≤ 2× yields to another paradigm's
+    non-dual cell whose lemma it meets ≥ 20× and ≥ 10× as often (أَعْطِنَا ← أَعْطَى, not Zuhayr's عَطَا); the bare letters سل reach the
+    takhfīf amr اِسْأَلْ and are dressed سَلْ; `lemmaShadda182` lets no manqūṣ lemma (عَمٍ «blind») own bare letters (عمه → عمُّهُ); Dabt's
+    wonder frame also takes أَفْعَلَ read as the corpus māḍī (أَجْمَلَ). Verse was not excluded from the ledger: the order/transitivity faults
+    traced to two prose lines, not to verse — the frequency rule is the guard against the rare poetic lemma.
+  - **Compounds, genus-lā, naʿt, «مَا», ḥadhf, v326 (A)**: ثَمَانِ عَشْرَةَ (yāʾ dropped, a lugha) joins the teen table; a proper name after the
+    genus-lā's ism (لَا مُلْكَ هَارُونَ, Shudhūr's «لَا هَيْثَمَ اللَّيْلَةَ») makes it muḍāf and muʿrab (the line had said «مبني … وهو مضاف» at once);
+    `DabtEngine.natChain333` — a naʿt that WRITES its case follows the chain noun bearing it (the nisba after a nasab chain, the rhyme-word
+    after a construct; never past a mubtadaʾ still owed its khabar or a misread naʿt), and the veto walks past a chain muḍāf left on the
+    khabar/naʿt shortlist: natMis older shelf 19 → 12, all 13 now; MaEngine: مَا إِنْ + a verb (clause-initial), مَا right after لَعَمْرُكَ / وَاللهِ
+    before a verb, مَا عَاشَ after a whole clause; HadhfEngine `authored()` grades the line's own seat (what follows «وَيَجُوزُ / وَيُرْوَى / وَقِيلَ /
+    قَالَ الزَّوْزَنِيُّ» is another reading) and the doer of the deleted verb after «إِذَا مَا» across a jarr phrase: 84.4 → 85.2 (older 86.2 → 86.3);
+    v326 offers no tamyīz for a heart maṣdar (صَبَابَةً, HEART_WORDS).
+  - **Measures moved (B)**, each with its token list in the check: wave 184 «مَا» wrong ≤ 45 → ≤ 47 (older shelf 45 → 46: the new seat
+    rules read al-usul-al-munifa 24:s6:17 against its line; imports 4 → 1); v327 kāna dis ≤ 41 → ≤ 45 (older shelf unchanged at 40; imports
+    4: two kāna tāmma the gate cannot see — NasikhGate's next item —, one for the hoca, one the measure misreads). v328 keeps «the older
+    shelf» as defined: the six imports are measured apart (reported, no floor). The Sarf lab's 🧠 probe root ن س ج → ل ص ق (نَسَجَ is now a
+    corpus verb). «v333 — the received imports…» asserts `sarfAudit().samai` is exactly هَرَاقَ and تَحَيَّلَ.
+  - **For the hoca** (older lines the engines now read against, not edited): al-usul-al-munifa 22:s11:20 وَصَلَاتَهُمْ, 23:s7:33 مَرْضَاتَهُ,
+    24:s7:35 and 24:s7:58 زَكَاتَهُ «منصوب بالكسرة … جمع مؤنث سالم» (singulars, fatḥa); 25:s19:51 يَكُ, 30:s3:42 and 30:s3:46 نَكُ «علامة جزمه
+    حذف حرف العلة» (the sukūn on the dropped nūn); 24:s6:17 «وَاللهِ مَا رَأَيْتُ أَعْلَمَ …» مَا «اسم موصول» (a negation). In the imports:
+    siyar-ibn-al-mubarak 2:s5 «لَا مُلْكَ هَارُونَ» (genus-lā as authored, or ʿāṭifa «لَا مُلْكُ»); Imruʾ al-Qays 13:s3 «مَا مُتَأَمَّلِي» (zāʾida / the
+    relative); muhammad-ibn-zayd 2:s5 «يَكُونُ بَعْدَ جَهْلِكَ جَهْلٌ» (tāmma / nāqiṣa with a fronted ẓarf).
+  - **Left**: SignEngine — يَمَانُونْ، سِيَّمَا، وَاللهِ (the oath wāw fused); HadhfEngine — the vocative without يَا on a name (دَمُّونُ), خَلِيلَيَّ, the
+    nidāʾ hamza with tarkhīm (أَفَاطِمَ، أَصَاحِ), the Siyar's heading «خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ»; NasikhGate — kāna tāmma; TaalluqEngine — the ẓarf seats.
 
 ## v334-N2 — the first ṣarf catechism, and Shudhūr al-Dhahab into the naḥw notes (feeding backlog F6, R2)
 
