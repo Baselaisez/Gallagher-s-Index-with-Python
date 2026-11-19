@@ -315,3 +315,19 @@ https://shamela.ws/book/12876/1083 («{الله أعلم حيث يجعل رسا�
 `content/samples/muhammad-ibn-zayd-wa-al-umawi` (see `tools/authoring/author_muhammad_ibn_zayd_wa_al_umawi.py`, whose
 manifest attribution lists every correction `was → now`, the readings kept against the witness, and the vowels left for
 the scholar — the e-text being bare, every vowel in the package is editorial).
+
+**`siyar-ibn-al-mubarak-src.txt`** (2026-11-19) — four passages (six chapter spans) of al-Dhahabī's entry on ʿAbd Allāh ibn
+al-Mubārak (no. 112) in «سير أعلام النبلاء» by Shams al-Dīn Muḥammad ibn Aḥmad al-Dhahabī (d. 748 AH), in the edition
+al-Maktaba al-Shāmila names «ط الرسالة» (Muʾassasat al-Risāla), book 10906, vol. 8, printed pp. 378, 379, 384, 385, 386, 387.
+Fetched 2026-11-19 from https://shamela.ws/book/10906/5504, /5505, /5510, /5511, /5512 and /5513 (the running page of the
+site, not the printed page; the entry runs /5504–/5549). One block per Shamela page and chapter, each holding only the
+contiguous span the package uses, copied exactly as the page gives it — the edition's own partial vowelling, its spelling,
+punctuation and footnote marks, nothing normalised or corrected; the editor's footnotes are not copied. It is the source of
+`content/samples/siyar-ibn-al-mubarak` (see `tools/authoring/author_siyar_ibn_al_mubarak.py`, which checks every chapter
+against this file letter by letter and whose manifest attribution lists the two vowelling layers, the one correction and
+everything left out between the spans). **`siyar-ibn-al-mubarak-witness.txt`** (2026-11-19) holds the witness lines: the
+Risāla edition's own 8/381 (https://shamela.ws/book/10906/5507) and Ibn Kathīr, «البداية والنهاية», the edition Shamela
+names «ت التركي», book 4445, 13/610–611 (https://shamela.ws/book/4445/8278, /8279) — the witnesses for the one correction
+«خُوَارِزْميَّةٌ» → «خُوَارِزْمِيَّةً» and for the kept reading «لَا مُلْكَ هَارُونَ»; and the same passages in «سير أعلام النبلاء»
+«ط الحديث» (Dār al-Ḥadīth), book 22669, 7/365, 368, 369 (https://shamela.ws/book/22669/3930, /3933, /3934), which differ
+from the Risāla text in one word («يطعمهم» for «وَيُطعِمُهُم»).
