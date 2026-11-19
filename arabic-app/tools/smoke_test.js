@@ -17914,6 +17914,129 @@ if (!CHROME) {
     if (r.mud > 0 || r.mi > 1 || r.named < 272) throw new Error('against the authored lines: ' + J({ mud: r.mud, mi: r.mi, auth: r.auth, named: r.named, list: r.list }));
   });
 
+  await check('v334-N4 — iʿlāl\'s conditions (feeding backlog L1; Marāḥ ch. 70–76, L757–L821): every origin the book weakens comes out weakened (قَالَ، دَارٌ، مُوسِرٌ، بِيعَ، يَغْزُو، دَاعِيَةٌ، رَضُوا، يَخَافُ، قِيَامٌ …) and every word it keeps comes out kept, each with the gate that held or blocked and the book\'s own line; the Ilal lab shows them; the corpus\'s derived nouns read through the gates with none contradicted', async () => {
+    const J = JSON.stringify;
+    const src = { 'Marāḥ': fs.readFileSync(path.resolve(__dirname, '..', 'research/sources/marah-al-arwah-src.txt'), 'utf8').split('\n'),
+                  'ʿIzzī': fs.readFileSync(path.resolve(__dirname, '..', 'research/sources/tasrif-al-izzi-src.txt'), 'utf8').split('\n') };
+    const r = await page.evaluate(() => {
+      const E = IlalEngine, N = s => E.join(E.parse(String(s || '').normalize('NFC'))), bad = [];
+      const run = (w) => { const x = ilalAslRead(w); return x[0] || null; };
+      // the origins the book weakens, and what it says they become (L763, L786, L788, L789, L746/L794, L795, L799, L806, L766, L815)
+      const YES = { 'قَوَلَ': 'قَالَ', 'دَوَرٌ': 'دَارٌ', 'مُيْسِرٌ': 'مُوسِرٌ', 'بُيِعَ': 'بِيعَ', 'يَغْزُوُ': 'يَغْزُو', 'مِوْزَانٌ': 'مِيزَانٌ', 'دَاعِوَةٌ': 'دَاعِيَةٌ',
+        'رَضِيُوا': 'رَضُوا', 'تَرْمِيِينَ': 'تَرْمِينَ', 'يَخْوَفُ': 'يَخَافُ', 'يَبْيِعُ': 'يَبِيعُ', 'يَقْوُلُ': 'يَقُولُ', 'قِوَامٌ': 'قِيَامٌ', 'دِوَارٌ': 'دِيَارٌ', 'سِوَاطٌ': 'سِيَاطٌ',
+        'إِقْوَامَةٌ': 'إِقَامَةٌ', 'طَوَيَ': 'طَوَى' };
+      for (const [a, w] of Object.entries(YES)) { const d = E.derive(a); if (N(E.spell(d.out)) !== N(w)) bad.push('weakened ' + a + ' → ' + d.out + ' ≠ ' + w); }
+      // the words the book keeps — unchanged, and the gate that kept each one
+      const NO = { 'الْحَوَكَةِ': 'tanith', 'الْخَوَنَةِ': 'tanith', 'حَيَدَى': 'tanith', 'صَوَرَى': 'tanith', 'دَعَوُا الْقَوْمَ': 'arida', 'عَوِرَ': 'hukm-sukun', 'اجْتَوَرَ': 'hukm-sukun',
+        'حَيَوَانٍ': 'idtirab', 'الْمَوَتَانُ': 'idtirab', 'طَوَى': 'ilalan', 'طَوَيَا': 'ilalan', 'حَيِيَ': 'damm-mudari', 'الْقَوَدِ': 'kept:qawad', 'غُيَبَةٌ': 'fath-damm', 'نُوَمَةٌ': 'fath-damm',
+        'دِوَلٍ': 'ghayr-mushtaqq', 'أَدْوُرٍ': 'afal', 'أَعْيُنٍ': 'afal', 'جَدْوَلٍ': 'ilhaq', 'قَوَّمَ': 'tadif', 'الرَّمْيِ': 'akhir', 'تَقْوِيمٍ': 'sakinan', 'تِبْيَانٍ': 'sakinan',
+        'مِقْوَالٍ': 'sakinan', 'مِخْيَاطٍ': 'sakinan', 'مِخْيَطٌ': 'mifal', 'مَا أَقْوَلَهُ': 'kept:aqwala', 'أَغْيَلَتِ الْمَرْأَةُ': 'kept:aghyala', 'اسْتَحْوَذَ': 'kept:istahwadha' };
+      for (const [a, g] of Object.entries(NO)) { const d = run(a); if (!d) { bad.push('no reading ' + a); continue; }
+        if (N(d.out) !== N(d.w) || d.steps.length) bad.push('kept ' + a + ' → ' + d.out + ' [' + d.steps.map(s => s.id) + ']');
+        if (!d.gates.some(x => x.id === g && x.verdict === 'blocked')) bad.push(a + ' gate ' + g + ' not blocked: ' + J(d.gates.map(x => x.verdict + ':' + x.id))); }
+      // the book's list and the lab's chips are the same words
+      for (const a of ILAL_BOOK_NO) if (!(a in NO)) bad.push('chip without a test ' + a);
+      // controls: the conditions held on قَالَ; a فِعَال the letters cannot place is left open, not turned (سِوَارٌ); the old pins stand
+      const q = E.derive('قَوَلَ'); if (!q.gates.some(x => x.id === 'shurut' && x.verdict === 'held')) bad.push('قَالَ held: ' + J(q.gates));
+      const sw = E.derive('سِوَارٌ'); if (N(sw.out) !== N('سِوَارٌ') || !sw.gates.some(x => x.verdict === 'open')) bad.push('سِوَارٌ: ' + sw.out + ' ' + J(sw.gates));
+      const qy = E.derive('قِوَامٌ'); if (!qy.gates.some(x => x.id === 'tabaa-fial' && x.verdict === 'held')) bad.push('قِيَامٌ follows قَامَ: ' + J(qy.gates));
+      for (const [a, w] of [['قَوَلْتُ', 'قُلْتُ'], ['مَقْوُولٌ', 'مَقُولٌ'], ['مَكْيُولٌ', 'مَكِيلٌ'], ['قَاوِلٌ', 'قَائِلٌ'], ['اُقْوُلْ', 'قُلْ'], ['أَقْوَمَ', 'أَقَامَ'], ['اِسْتَقْوَمَ', 'اِسْتَقَامَ'], ['حَوَلَ', 'حَالَ'], ['يَحْوُلُ', 'يَحُولُ'], ['مُيَسَّرٌ', 'مُيَسَّرٌ']])
+        { const d = E.derive(a); if (N(d.out) !== N(w)) bad.push('control ' + a + ' → ' + d.out + ' ≠ ' + w); }
+      // every gate carries its source, its line and both glosses
+      const all = E.GATES.filter(g => g.id !== 'kept' && g.id !== 'tabaa').concat(E.KEPT, E.QUIET, Object.values(E.HELD));
+      for (const g of all) if (!g.src || !g.book || !g.en || !g.tr) bad.push('gate without its line ' + g.id);
+      // the lab: the root shapes show their gates; the book's words, tapped, show which condition held or blocked
+      conjState.lab = 'ilal'; conjState.ilalRoot = 'قول'; conjState.ilalShape = 'maful'; openConjugator();
+      const lab = { root: [...document.querySelectorAll('#ilalOut .ilal-gates li')].map(x => x.dataset.verdict + ':' + x.dataset.gate), chips: document.querySelectorAll('[data-ilasl]').length, taps: {} };
+      for (const w of ['حَيَوَانٍ', 'قَوَلَ', 'مَا أَقْوَلَهُ']) { const c = [...document.querySelectorAll('[data-ilasl]')].find(x => x.dataset.ilasl === w); c.click();
+        lab.taps[w] = { out: (document.querySelector('#ilalAslOut .if-end.out b') || {}).textContent, gates: [...document.querySelectorAll('#ilalAslOut .ilal-gates li')].map(x => x.dataset.verdict + ':' + x.dataset.gate), book: (document.querySelector('#ilalAslOut .ig-book') || {}).textContent || '' }; }
+      // the corpus: every derived noun the engine reads, rebuilt through the gates
+      const seen = new Set();
+      for (const st of STORIES) for (const ch of (st.chapters || [])) for (const sn of (ch.sentences || [])) for (const t of (sn.tokens || [])) { const e = (st.glossary || {})[t.lex] || {}; const pos = String(t.pos || e.pos || ''); if (!/noun|adj|masdar|ism|sifa/i.test(pos) || /prop|name/i.test(pos)) continue; seen.add(t.s.full); }
+      let read = 0, gated = 0; const blocked = [];
+      for (const w of seen) { const d = IshtiqaqEngine.read0(w); if (!d) continue; read++; const g = IshtiqaqEngine.synth(d.root, d.pat).gates || []; if (g.length) gated++; if (g.some(x => x.verdict === 'blocked')) blocked.push(w); }
+      return { bad, gates: all.map(g => ({ id: g.id, src: g.src, book: g.book })), lab, sweep: { n: seen.size, read, gated, blocked } };
+    });
+    if (r.bad.length) throw new Error(r.bad.length + ': ' + r.bad.slice(0, 10).join(' · '));
+    // the book's words are the book's: each quoted line stands in the cited source within the cited lines
+    const badSrc = [];
+    for (const g of r.gates) { const seg = g.src.split('·')[0], book = seg.includes('ʿIzzī') ? 'ʿIzzī' : 'Marāḥ', ls = (seg.match(/L(\d+)/g) || []).map(x => +x.slice(1));
+      if (!ls.length) { badSrc.push(g.id + ' no line'); continue; }
+      const text = src[book].slice(Math.min(...ls) - 1, Math.max(...ls)).join(' ').normalize('NFC');
+      for (const frag of g.book.split(' … ')) if (!text.includes(frag.normalize('NFC'))) badSrc.push(g.id + ' «' + frag.slice(0, 40) + '» not in ' + seg); }
+    if (badSrc.length) throw new Error('sources: ' + badSrc.join(' · '));
+    const L = r.lab;
+    if (!L.root.includes('held:tabaa-maful') || L.chips < 40) throw new Error('lab: ' + J(L));
+    if (!L.taps['حَيَوَانٍ'].gates.includes('blocked:idtirab') || !/اضْطِرَابِ/.test(L.taps['حَيَوَانٍ'].book)) throw new Error('lab حَيَوَانٍ: ' + J(L.taps['حَيَوَانٍ']));
+    if (L.taps['قَوَلَ'].out !== 'قَالَ' || !L.taps['قَوَلَ'].gates.includes('held:shurut')) throw new Error('lab قَوَلَ: ' + J(L.taps['قَوَلَ']));
+    if (!L.taps['مَا أَقْوَلَهُ'].gates.includes('blocked:kept:aqwala')) throw new Error('lab مَا أَقْوَلَهُ: ' + J(L.taps['مَا أَقْوَلَهُ']));
+    // measured at v334-N4: 16,049 noun surfaces, 7,509 read (7,508 before the gates: الْمُعْتَوِرَةِ is now read, through «عَوِرَ وَاجْتَوَرَ»), 419 through a gate, none lost
+    const S = r.sweep;
+    if (S.read < 7450 || S.gated < 400 || !S.blocked.includes('الْمُعْتَوِرَةِ')) throw new Error('corpus: ' + J(S));
+  });
+
+  await check('v334-N4 — مَا أَقْوَلَهُ، أَغْيَلَتِ الْمَرْأَةُ، اسْتَحْوَذَ keep their weak letter (feeding backlog L2; Marāḥ L821): the recited set in IlalEngine.KEPT with its line; sarfDerive conjugates اسْتَحْوَذَ and أَغْيَلَ sound (the Sarf lab shows them with the book\'s line), the elative stays blocked, and اِسْتَقَامَ، أَقَامَ still weaken', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = s => String(s || '').normalize('NFC'), bad = [], E = IlalEngine;
+      const K = E.KEPT.map(k => k.id + ':' + (k.src || '')); if (!['qawad:Marāḥ L783', 'aqwala:Marāḥ L821', 'aghyala:Marāḥ L821', 'istahwadha:Marāḥ L821'].every(x => K.includes(x))) bad.push('KEPT ' + J(K));
+      const D = (root, form) => sarfDerive(nakilClass({ root }), form, 1);
+      const x = D('ح و ذ', 'X'), iv = D('غ ي ل', 'IV');
+      const want = [[x.mazi[0], 'اِسْتَحْوَذَ'], [x.mudari[0], 'يَسْتَحْوِذُ'], [x.amr[0], 'اِسْتَحْوِذْ'], [x.masdar, 'اِسْتِحْوَاذ'], [x.fail, 'مُسْتَحْوِذ'],
+        [iv.mazi[0], 'أَغْيَلَ'], [iv.mazi[3], 'أَغْيَلَتْ'], [iv.mudari[0], 'يُغْيِلُ'], [iv.masdar, 'إِغْيَال'],
+        [D('ق و م', 'X').mazi[0], 'اِسْتَقَامَ'], [D('ق و م', 'IV').mazi[0], 'أَقَامَ'], [D('ح و ج', 'IV').mazi[0], 'أَحْوَجَ']];
+      for (const [g, w] of want) if (N(g) !== N(w)) bad.push(g + ' ≠ ' + w);
+      if (!/اسْتَحْوَذَ/.test(x.note || '') || x.kept !== 'Marāḥ L821' || iv.kept !== 'Marāḥ L821' || !/أَحْوَجَ يُحْوِجُ/.test(D('ح و ج', 'IV').note || '')) bad.push('notes ' + J([x.note, x.kept, iv.kept]));
+      const t = E.build('قول', 'tafdil'); if (!t || !t.blocked || t.blocked.why !== 'wazn') bad.push('the elative must stay blocked');
+      for (const [a, k] of [['مَا أَقْوَلَهُ', 'kept:aqwala'], ['أَغْيَلَتْ', 'kept:aghyala'], ['اِسْتَحْوَذَ', 'kept:istahwadha'], ['يَسْتَحْوِذُ', 'kept:istahwadha'], ['اِسْتِحْوَاذٌ', 'kept:istahwadha']]) {
+        const d = E.derive(a); if (d.steps.length || !d.gates.some(g => g.id === k)) bad.push(a + ' ' + J(d.gates)); }
+      conjState.lab = 'sarf'; openConjugator(); conjState.root = 'حوذ'; conjState.form = 'X'; renderConjOut();
+      const tx = N(document.getElementById('conjOut').textContent);
+      for (const w of ['اِسْتَحْوَذَ', 'يَسْتَحْوِذُ', 'يَدْلُلْنَ عَلَى الْأَصْلِ']) if (!tx.includes(N(w))) bad.push('Sarf lab lacks ' + w);
+      conjState.root = 'قوم'; renderConjOut(); if (!N(document.getElementById('conjOut').textContent).includes(N('اِسْتَقَامَ'))) bad.push('Sarf lab control اِسْتَقَامَ');
+      return bad;
+    });
+    if (r.length) throw new Error(r.join(' · '));
+  });
+
+  await check('v334-N4 — the meanings of the augmented bābs (feeding backlog F3; Maqṣūd L462–L541, ʿIzzī L46, the 35-door table): Bab35Engine.meanings offers a bāb\'s meanings as a SHORTLIST with the book\'s example for each, puts one first only on a book\'s ground (أَخْرَجَ: taʿdiya, its Form I lāzim; قَاتَلَ: mushāraka, the other «rare»; اِسْتَغْفَرَ: ṭalab, the book\'s own example) and leaves أَرْسَلَ unranked; the Sarf lab, the word sheet and the notes carry them', async () => {
+    const J = JSON.stringify;
+    const maq = fs.readFileSync(path.resolve(__dirname, '..', 'research/sources/maqsud-sarf.txt'), 'utf8').split('\n');
+    const izzi = fs.readFileSync(path.resolve(__dirname, '..', 'research/sources/tasrif-al-izzi-src.txt'), 'utf8').split('\n');
+    const r = await page.evaluate(async () => {
+      const bad = [], M = (f, root) => Bab35Engine.meanings(f, { root });
+      const a = M('IV', 'خرج'), q = M('III', 'قتل'), x = M('X', 'غفر'), c = M('IV', 'رسل'), v6 = M('VI', 'بعد');
+      if (!a.ranked || a.items[0].id !== 'tadiya' || a.ground.by !== 'usage' || a.items.length !== 7) bad.push('أَخْرَجَ ' + J(a.ground) + ' ' + a.items.map(i => i.id));
+      if (!q.ranked || q.items[0].id !== 'musharaka' || q.ground.by !== 'book-frequency') bad.push('قَاتَلَ ' + J(q.ground));
+      if (!x.ranked || x.items[0].id !== 'talab' || x.ground.by !== 'example' || x.items.length !== 6) bad.push('اِسْتَغْفَرَ ' + J(x.ground));
+      if (c.ranked || c.items[0].id !== 'tadiya' || !c.shortlist) bad.push('أَرْسَلَ must stay unranked: ' + J(c.ground));
+      if (!v6.ranked || v6.items[0].id !== 'musharaka') bad.push('VI ' + J(v6.ground));
+      const items = Object.entries(Bab35Engine.MEANINGS).flatMap(([f, L]) => L.map(i => ({ f, ...i })));
+      for (const i of items) if (!i.ex || !i.src || !i.en || !i.tr) bad.push('item without its example or line ' + i.f + ':' + i.id);
+      conjState.lab = 'sarf'; openConjugator(); conjState.root = 'خرج'; conjState.form = 'IV'; renderConjOut();
+      const bm = document.querySelector('#conjOut .bab-mean');
+      const lab = bm ? { ranked: bm.dataset.ranked, first: bm.querySelector('li').dataset.mean, n: bm.querySelectorAll('li').length, head: bm.querySelector('.bm-head').textContent } : null;
+      conjState.root = 'رسل'; renderConjOut(); const bm2 = document.querySelector('#conjOut .bab-mean'); const lab2 = bm2 ? bm2.dataset.ranked : null;
+      conjState.form = 'I'; renderConjOut(); const none = !document.querySelector('#conjOut .bab-mean');
+      let hit = null; outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) for (const t of sen.tokens) { const m = (st.morph || {})[t.lex]; if (!m || m.jamid) continue; let at = null; try { at = sjAttested(m); } catch (e) {} if (at && at.form === 'X') { hit = { st, t }; break outer; } }
+      let sheet = null; if (hit) { openStory(hit.st); openWord(hit.t, null, 'sarf'); const b3 = document.querySelector('.sheet .bab-mean'); sheet = { word: hit.t.s.full, form: b3 && b3.dataset.form, n: b3 ? b3.querySelectorAll('li').length : 0 }; const sc = document.getElementById('scrim'); if (sc) sc.click(); renderLibrary(); }
+      const G = id => (typeof GRAMMAR !== 'undefined' ? GRAMMAR[id] : null) || {};
+      const notes = { aug: /SHORTLIST/.test((G('augmented-babs').explanation || {}).en || ''), iv: (G('form-iv-verbs').examples || []).filter(e => /^maqsud-sarf\.txt:/.test(e.cite || '')).length,
+        x: (G('form-x-verbs').examples || []).filter(e => /^maqsud-sarf\.txt:/.test(e.cite || '')).length, hollow: (G('hollow-verbs').examples || []).filter(e => /^marah-al-arwah-src\.txt:(7[5-9]\d|8[0-2]\d)$/.test(e.cite || '')).length };
+      return { bad, items: items.map(i => ({ id: i.f + ':' + i.id, ex: i.ex, src: i.src })), lab, lab2, none, sheet, notes };
+    });
+    if (r.bad.length) throw new Error(r.bad.join(' · '));
+    // every example is the book's own: its letters stand in the cited lines (hamza seats and marks set aside)
+    const bare = s => String(s || '').normalize('NFC').replace(/[ً-ْٰ]/g, '').replace(/[أإآ]/g, 'ا').replace(/ى/g, 'ي').replace(/[^ء-ي]/g, '');
+    const miss = [];
+    for (const i of r.items) { const m = /^(Maqṣūd|ʿIzzī) L(\d+)(?:–L(\d+))?/.exec(i.src); if (!m) continue; const lines = (m[1] === 'Maqṣūd' ? maq : izzi).slice(+m[2] - 1, +(m[3] || m[2])).join(' ');
+      for (const frag of i.ex.split(' · ')) if (!bare(lines).includes(bare(frag))) miss.push(i.id + ' «' + frag + '» not in ' + i.src); }
+    if (miss.length) throw new Error('examples: ' + miss.join(' · '));
+    if (!r.lab || r.lab.ranked !== '1' || r.lab.first !== 'tadiya' || r.lab.n !== 7 || !/SHORTLIST|KISA L/.test(r.lab.head) || r.lab2 !== '0' || !r.none) throw new Error('Sarf lab: ' + J([r.lab, r.lab2, r.none]));
+    if (!r.sheet || r.sheet.form !== 'X' || r.sheet.n !== 6) throw new Error('word sheet: ' + J(r.sheet));
+    if (!r.notes.aug || r.notes.iv < 7 || r.notes.x < 6 || r.notes.hollow < 13) throw new Error('notes: ' + J(r.notes));
+  });
+
   await check('v334-N3 — the hamzated and the lafīf verbs derived by rule (feeding backlog F2; ʿIzzī L266–L327): every cell the ʿIzzī recites for its model roots comes out of sarfDerive (اُومُلْ / وَأْمُلْ، اِيزِرْ، اُودُبْ، يَهْنِئُ، اِيتِ / تِ، اِيوِ، وَقَى يَقِي قِ / قِهْ، وَجِيَ يَوْجَى اِيجَ، يَرَى رَ رَهْ، أَرَى يُرِي مُرٍ مُرًى، سَاءٍ، اِيتَالَ، إِيمَان …); the heard (خُذْ كُلْ مُرْ، سَلْ، تِ، يَرَى) sits in SJ_HEARD_X with its line; sarfAudit reaches ≥ 160 hamzated / lafīf corpus paradigms with 0 mismatches; two-hamza, fāʾ-ʿayn and bāb refusals; MaqsudEngine.formI on any root; control سَأَلَ → اِسْأَلْ', async () => {
     const J = JSON.stringify;
     const r = await page.evaluate(() => {
