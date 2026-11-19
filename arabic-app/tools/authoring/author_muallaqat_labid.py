@@ -2055,7 +2055,8 @@ G_ADD.update({
 })
 V_ADD.update({
  "lb-tashadhdhara": F5("تَشَذَّر", "تَشَذُّر", "مُتَشَذِّر"),
- "lb-baa": _sg.hollow1("nasara", "أَجْوَفُ وَاوِيٌّ مَهْمُوزُ اللَّامِ", "بَاء", "بُؤ", "بُوء", "بُؤ", "بُوء", "بُؤ", "بَوْء", "بَاءٍ", note=HOLLOW_N + "يَبُوءُ ← لَمْ يَبُؤْ؛ بُؤْتُ بِحَقِّهِ: أَقْرَرْتُ بِهِ."),
+ # (v335 integration) the middle hamza with a kasra sits on a nabra, after the long wāw too (al-Kāfiya's تَسُوئِينَ، تَنُوئِينَ، نُوئِي; the Sarf check)
+ "lb-baa": (lambda p: (p["mudari"].__setitem__(9, "تَبُوئِينَ"), p["amr"].__setitem__(3, "بُوئِي"), p)[-1])(_sg.hollow1("nasara", "أَجْوَفُ وَاوِيٌّ مَهْمُوزُ اللَّامِ", "بَاء", "بُؤ", "بُوء", "بُؤ", "بُوء", "بُؤ", "بَوْء", "بَاءٍ", note=HOLLOW_N + "يَبُوءُ ← لَمْ يَبُؤْ؛ بُؤْتُ بِحَقِّهِ: أَقْرَرْتُ بِهِ.")),
 })
 T_ADD.update({
  "kathir": ("much, many; كَثِيرَةٌ غُرَبَاؤُهَا: thronged with strangers", "çok; كَثِيرَةٌ غُرَبَاؤُهَا: yabancılarla dolu"),
