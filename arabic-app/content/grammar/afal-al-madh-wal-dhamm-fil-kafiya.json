@@ -1,0 +1,127 @@
+{
+ "id": "afal-al-madh-wal-dhamm-fil-kafiya",
+ "title": {
+  "ar": "أَفْعَالُ الْمَدْحِ وَالذَّمِّ فِي الْكَافِيَةِ",
+  "en": "Niʿma, biʾsa, sāʾa and ḥabbadhā in the Kafiya: the three shapes of the doer, the makhṣūṣ and its two parsings, agreement and its taʾwīl, the dropped makhṣūṣ, and ḥabbadhā's frozen dhā",
+  "tr": "Kâfiye'de ni'me, bi'se, sâe ve habbezâ: fâilin üç şekli, mahsûs ve iki i'rabı, mutâbakat ve te'vili, mahzûf mahsûs ve habbezâ'nın donmuş zâ'sı"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — أفعال المدح والذم: ما وضع لإنشاء مدح أو ذم",
+  "ضياء صونغور اوغلى — دفتر الكافية: شروط عمل نعم وبئس الثلاثة؛ المخصوص وقولا النحاة فيه؛ المطابقة وتأويل آية الجمعة؛ حذف المخصوص إذا علم؛ ساء كبئس؛ حبذا وفاعلها ذا والتمييز والحال"
+ ],
+ "question": {
+  "en": [
+   "What do these verbs do? They PERFORM praise or blame rather than report it — niʿma is not «was good», it is «how excellent!» — so they are jāmid, past in form only, and their subject is read by a different grammar.",
+   "What may the doer of niʿma be? One of three: a noun wearing the article (نِعْمَ الرَّجُلُ), a noun annexed to one (نِعْمَ صَاحِبُ الرَّجُلِ), or a hidden pronoun explained by a manṣūb indefinite or by mā (نِعْمَ رَجُلًا، نِعِمَّا). Nothing else — no bare indefinite, no proper name — may sit there.",
+   "What is the makhṣūṣ? The one actually praised, named after the doer: زَيْدٌ in نِعْمَ الرَّجُلُ زَيْدٌ. Most read it as a delayed mubtada with the verb-sentence as its fronted khabar; some as the khabar of a dropped هُوَ. Both are stored; neither is adjudicated.",
+   "Must it agree with the doer? Yes, in number and gender — الرَّجُلَانِ الزَّيْدَانِ، الرِّجَالُ الزَّيْدُونَ، نِعْمَتِ الْمَرْأَةُ هِنْدٌ. Where the Qurʾān seems not to (بِئْسَ مَثَلُ الْقَوْمِ الَّذِينَ كَذَّبُوا), the notebook gives the two taʾwīls: a supplied مَثَلُ, or الَّذِينَ as an attribute with the makhṣūṣ dropped.",
+   "May the makhṣūṣ be dropped? When known: نِعْمَ الْعَبْدُ — Job, from the story it stands in; فَنِعْمَ الْمَاهِدُونَ — We, from the clause before it. The signal that it is dropped is simply that nothing follows the doer.",
+   "What about sāʾa and ḥabbadhā? سَاءَ is بِئْسَ in every rule (وَسَاءَتْ مَصِيرًا, the makhṣūṣ dropped). حَبَّذَا praises with a doer that never changes — ذَا, whether Zayd, two Zayds, the Zayds or Hind follows — and admits a tamyīz or ḥāl on either side of its makhṣūṣ.",
+   "What does the engine do? The kernel's PARTICLES table knows niʿma, biʾsa, sāʾa and ḥabbadhā as jāmid verbs of praise; the analyzer reads the article-bearing noun after them as the doer and the next marfūʿ as the makhṣūṣ; the jāmid flag keeps their paradigms to the māḍī."
+  ],
+  "tr": [
+   "Bu fiiller ne yapar? Medh ya da zemmi bildirmez, İCRA eder — ni'me «iyi idi» değil «ne güzel!»dir — bu yüzden câmiddirler, yalnız şekilce mâzîdirler ve özneleri başka bir gramerle okunur.",
+   "Ni'me'nin fâili ne olabilir? Üçten biri: lâm giyen bir isim (نِعْمَ الرَّجُلُ), ona muzâf bir isim (نِعْمَ صَاحِبُ الرَّجُلِ) ya da mansûb bir nekre veya mâ ile açıklanan gizli bir zamir (نِعْمَ رَجُلًا، نِعِمَّا). Başka hiçbir şey — ne çıplak nekre ne özel ad — orada duramaz.",
+   "Mahsûs nedir? Asıl övülen, fâilden sonra anılan: نِعْمَ الرَّجُلُ زَيْدٌ'deki زَيْدٌ. Çoğunluk onu fiil cümlesi mukaddem haberi olan muahhar mübtedâ okur; bazıları mahzûf هُوَ'nin haberi. İkisi de saklanır; hüküm verilmez.",
+   "Fâile uymalı mı? Evet, sayı ve cinste — الرَّجُلَانِ الزَّيْدَانِ، الرِّجَالُ الزَّيْدُونَ، نِعْمَتِ الْمَرْأَةُ هِنْدٌ. Kur'ân uymuyor göründüğünde (بِئْسَ مَثَلُ الْقَوْمِ الَّذِينَ كَذَّبُوا) defter iki te'vili verir: takdir edilen bir مَثَلُ ya da mahsûsu mahzûf bir sıfat olarak الَّذِينَ.",
+   "Mahsûs düşebilir mi? Bilindiğinde: نِعْمَ الْعَبْدُ — içinde geçtiği kıssadan Eyyûb; فَنِعْمَ الْمَاهِدُونَ — öncesindeki cümleden Biz. Düştüğünün işareti fâilden sonra hiçbir şeyin gelmemesidir.",
+   "Ya sâe ve habbezâ? سَاءَ her kuralda بِئْسَ'dir (وَسَاءَتْ مَصِيرًا, mahsûs mahzûf). حَبَّذَا hiç değişmeyen bir fâille över — ardından Zeyd, iki Zeyd, Zeydler ya da Hind gelsin ذَا — ve mahsûsunun iki yanında temyiz ya da hâl kabul eder.",
+   "Motor ne yapar? Çekirdeğin PARTICLES tablosu ni'me, bi'se, sâe ve habbezâ'yı câmid medh fiilleri olarak bilir; analizör ardlarındaki lâmlı ismi fâil, sonraki merfûu mahsûs okur; câmid bayrağı çekimlerini mâzîde tutar."
+  ]
+ },
+ "plain": {
+  "en": "Niʿma and biʾsa are Arabic's «what a fine…» and «what a wretched…». Their subject must wear the article or be explained by a following word, and the person really meant comes last as the makhṣūṣ. Ḥabbadhā does the same with a subject that is always dhā.",
+  "tr": "Ni'me ve bi'se Arapçanın «ne güzel…» ve «ne kötü…»südür. Özneleri lâm giymeli ya da sonraki bir kelimeyle açıklanmalıdır; asıl kastedilen kişi en sonda mahsûs olarak gelir. Habbezâ aynı işi daima zâ olan bir özneyle yapar."
+ },
+ "explanation": {
+  "en": "The chapter is the Kafiya's definition and the notebook's catechism. The definition sets the speech-act (inshāʾ, as in the chapter of wonder), and the notebook's question «what are the conditions of niʿma's governing?» is answered by the three admissible doers, each with its stock example — the madrasah's own list, with فَنِعِمَّا هِيَ (2:271) showing the mā that explains a hidden doer. The makhṣūṣ gets the chapter's only real dispute, and it is a dispute about iʿrāb, not meaning: a delayed mubtada or the khabar of a hidden هُوَ. The agreement rule is then stressed by the one Qurʾānic verse that appears to break it, and the two taʾwīls are given as the notebook gives them; the dropped makhṣūṣ follows with its two Qurʾānic cases and, for each, the qarīna that licenses the dropping. سَاءَ is dispatched in a line, and حَبَّذَا closes with the fact that makes it its own rule — its doer is the demonstrative ذَا and never agrees — plus the tamyīz and ḥāl that may flank its makhṣūṣ. The Iẓhār already teaches these verbs as governors; this chapter is the Kafiya's fuller account of their subject and their makhṣūṣ.",
+  "tr": "Bâb, Kâfiye'nin tarifi ve defterin sual-cevabıdır. Tarif söz edimini koyar (taaccüb bâbındaki gibi inşâ) ve defterin «ni'me'nin amel şartları nelerdir?» sorusu her biri alışılmış örneğiyle üç câiz fâille cevaplanır — medresenin kendi listesi; فَنِعِمَّا هِيَ (2:271) gizli fâili açıklayan mâ'yı gösterir. Mahsûs bâbın tek gerçek ihtilâfını alır ve bu mânâ değil i'rab ihtilâfıdır: muahhar mübtedâ mı, gizli هُوَ'nin haberi mi. Mutâbakat kuralı sonra onu bozar görünen tek Kur'ân âyetiyle vurgulanır ve iki te'vil defterin verdiği gibi verilir; mahzûf mahsûs iki Kur'ânî örneği ve her biri için hazfi câiz kılan karîneyle izler. سَاءَ bir satırda geçilir; حَبَّذَا onu kendi kuralı yapan olguyla kapar — fâili işaret ismi ذَا'dır ve hiç uymaz — artı mahsûsunun iki yanına gelebilen temyiz ve hâl. İzhar bu fiilleri zaten âmil olarak öğretir; bu bâb Kâfiye'nin özneleri ve mahsûsları hakkındaki daha dolu anlatımıdır."
+ },
+ "examples": [
+  {
+   "ar": "أَفْعَالُ الْمَدْحِ وَالذَّمِّ: مَا وُضِعَ لِإِنْشَاءِ مَدْحٍ أَوْ ذَمٍّ",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "نِعْمَ الرَّجُلُ زَيْدٌ — نِعْمَ صَاحِبُ الرَّجُلِ زَيْدٌ",
+   "en": "The lām-definite doer and the annexed doer.",
+   "tr": "Lâmlı fâil ve muzâf fâil.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "نِعْمَ رَجُلًا زَيْدٌ — فَنِعِمَّا هِيَ",
+   "en": "The hidden doer explained by a tamyīz or by mā.",
+   "tr": "Temyiz ya da mâ ile açıklanan gizli fâil.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "بِئْسَ مَثَلُ الْقَوْمِ مَثَلُ الَّذِينَ كَذَّبُوا",
+   "en": "The taʾwīl of the aya.",
+   "tr": "Âyetin te'vili.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "نِعْمَ الْعَبْدُ — فَنِعْمَ الْمَاهِدُونَ",
+   "en": "The makhṣūṣ dropped when known.",
+   "tr": "Bilindiğinde mahzûf mahsûs.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "حَبَّذَا الزَّيْدُونَ — حَبَّذَا هِنْدٌ رَاكِبَةً",
+   "en": "Ḥabbadhā's frozen doer and its ḥāl.",
+   "tr": "Habbezâ'nın donmuş fâili ve hâli.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s10"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«نِعْمَ رَجُلٌ زَيْدٌ»",
+   "right": "«نِعْمَ الرَّجُلُ زَيْدٌ — ya da نِعْمَ رَجُلًا زَيْدٌ; ni'me'nin fâili çıplak nekre olamaz»",
+   "why": {
+    "en": "The doer must wear the article, be annexed to one, or be a hidden pronoun explained by a manṣūb tamyīz.",
+    "tr": "Fâil lâm giymeli, lâmlıya muzâf olmalı ya da mansûb temyizle açıklanan gizli zamir olmalıdır."
+   }
+  },
+  {
+   "wrong": "«نِعْمَ الرَّجُلُ هِنْدٌ»",
+   "right": "«نِعْمَتِ الْمَرْأَةُ هِنْدٌ — mahsûs fâile cinste uyar»",
+   "why": {
+    "en": "The makhṣūṣ matches the doer in number and gender.",
+    "tr": "Mahsûs sayı ve cinste fâile uyar."
+   }
+  },
+  {
+   "wrong": "«حَبَّذَانِ الزَّيْدَانِ»",
+   "right": "«حَبَّذَا الزَّيْدَانِ — zâ hiç değişmez»",
+   "why": {
+    "en": "Ḥabbadhā's doer is the frozen demonstrative, whatever follows.",
+    "tr": "Habbezâ'nın fâili donmuş işaret ismidir, ardından ne gelirse gelsin."
+   }
+  },
+  {
+   "wrong": "«زَيْدٌ, نِعْمَ الرَّجُلُ زَيْدٌ'da fâildir»",
+   "right": "«الرَّجُلُ fâil, زَيْدٌ mahsûstur — muahhar mübtedâ»",
+   "why": {
+    "en": "The doer is the article-bearing noun; the name after it is the one praised.",
+    "tr": "Fâil lâmlı isimdir; ardındaki ad övülendir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "takid-al-madh-wal-dhamm",
+  "fil-al-taajjub-fil-kafiya",
+  "tamyiz",
+  "hal",
+  "al-muthanna"
+ ]
+}

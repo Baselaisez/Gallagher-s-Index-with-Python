@@ -1,0 +1,136 @@
+{
+ "id": "naqis-verbs",
+ "title": {
+  "ar": "الْفِعْلُ النَّاقِص",
+  "en": "Defective verbs (final و or ي)",
+  "tr": "Nâkıs fiil (sonu و veya ي)"
+ },
+ "level": 3,
+ "group": "sarf",
+ "classicalSources": [
+  "مراح الأرواح",
+  "بناء الأفعال — الأقسام السبعة",
+  "المقصود",
+  "تَصْرِيفُ الْعِزِّيِّ لِلزَّنْجَانِيِّ (tasrif-al-izzi-src.txt، س 223، 266، 277)"
+ ],
+ "plain": {
+  "en": "Verbs ending in و or ي, like رَمَى. The final letter shifts or falls away depending on what comes after it.",
+  "tr": "Sonu و veya ي olan fiiller (رَمَى gibi). Son harf, gelen eke göre değişir yahut düşer."
+ },
+ "explanation": {
+  "en": "A naqis verb ends in و or ي: رَمَى (رَمَيَ), دَعَا (دَعَوَ), خَلَا, عَصَى. Four rules do almost all the work. FIRST, a voweled و or ي preceded by fatha turns into alif — that is why the past looks like رَمَى and غَزَا rather than رَمَيَ and غَزَوَ. SECOND, a damma on a final و or ي is simply dropped as too heavy: يَغْزُوُ → يَغْزُو, يَرْمِيُ → يَرْمِي. So the present ends in a long vowel with no visible case ending, and its raf' is مُقَدَّر — implied. THIRD, a kasra in the same position goes the same way: تَغْزُوِينَ → تَغْزِينَ, تَرْمِيِينَ → تَرْمِينَ. FOURTH, in anything longer than three letters a final و turns into ي: أَعْطَوَ → أَعْطَى, اِعْتَدَوَ → اِعْتَدَى — which is why ادَّعَى, from the root د ع و, still ends in ى. The practical consequences: before تْ the weak letter vanishes (رَمَتْ, خَلَتْ); in the jussive it vanishes too (لَمْ يَرْمِ, لَمْ يَخْلُ); the imperative is bare (اِرْمِ, اُخْلُ); and the ism fa'il is manqus (رَامٍ / الرَّامِي, مُدَّعٍ / الْمُدَّعِي). This is precisely why the app stores these forms rather than deriving them.",
+  "tr": "Nâkıs fiilin sonu و veya ي'dir: رَمَى (رَمَيَ), دَعَا (دَعَوَ), خَلَا، عَصَى. Dört kaide işin neredeyse tamamını görür. BİRİNCİ: harekeli و/ي, öncesi fethalı ise elife kalbolur — mâzinin رَمَى ve غَزَا görünmesinin sebebi budur. İKİNCİ: sondaki و/ي üzerindeki damme ağır geldiği için düşer: يَغْزُوُ → يَغْزُو، يَرْمِيُ → يَرْمِي. Böylece muzâri uzun bir sesle biter, i'rab alâmeti görünmez ve ref takdîrî olur. ÜÇÜNCÜ: aynı yerdeki kesre de düşer: تَغْزُوِينَ → تَغْزِينَ، تَرْمِيِينَ → تَرْمِينَ. DÖRDÜNCÜ: üç harften uzun kelimelerde sondaki و, يا'ya kalbolur: أَعْطَوَ → أَعْطَى، اِعْتَدَوَ → اِعْتَدَى — د ع و kökünden gelen ادَّعَى'nın ى ile bitmesi bundandır. Pratik neticeler: tâ-i te'nisten önce illetli harf düşer (رَمَتْ، خَلَتْ); cezmde de düşer (لَمْ يَرْمِ، لَمْ يَخْلُ); emir çıplaktır (اِرْمِ، اُخْلُ); ism-i fâili mankûstur (رَامٍ / الرَّامِي، مُدَّعٍ / الْمُدَّعِي). Uygulamanın bu şekilleri türetmek yerine saklamasının sebebi tam olarak budur."
+ },
+ "examples": [
+  {
+   "ar": "رَمَتْهُمْ بِحِجَارَةٍ.",
+   "en": "They pelted them with stones — before the feminine تْ the ي of رَمَى disappears.",
+   "sourceStory": "ashab-al-fil",
+   "chapter": 1,
+   "sentence": "s8",
+   "tr": "Onlara taşlar attılar — tâ-i te'nisten önce رَمَى'nın yâsı düşer."
+  },
+  {
+   "ar": "قَدْ خَلَتْ مِنْ قَبْلِهِ الرُّسُلُ.",
+   "en": "Messengers have passed away before him — the same loss in خَلَا, a defective wawi.",
+   "sourceStory": "aqaid-ahl-al-sunna",
+   "chapter": 4,
+   "sentence": "s4",
+   "tr": "Ondan önce resuller gelip geçti — nâkıs-ı vâvî olan خَلَا'da da aynı düşme."
+  },
+  {
+   "ar": "صِدْقِ مَنِ ادَّعَى أَنَّهُ رَسُولٌ.",
+   "en": "…of one who claims to be a messenger — ادَّعَى is from د ع و, yet ends in ى because the word runs past three letters.",
+   "sourceStory": "aqaid-ahl-al-sunna",
+   "chapter": 4,
+   "sentence": "s2",
+   "tr": "…resul olduğunu iddia eden kimsenin — ادَّعَى, د ع و kökündendir, fakat kelime üç harfi aştığı için ى ile biter."
+  },
+  {
+   "ar": "الْبَيِّنَةُ لِلْمُدَّعِي.",
+   "en": "The proof is on the claimant — the ism fa'il of a defective verb is a manqus noun.",
+   "sourceStory": "aqaid-ahl-al-sunna",
+   "chapter": 4,
+   "sentence": "s3",
+   "tr": "Beyyine davacıya aittir — nâkıs fiilin ism-i fâili mankûs isimdir."
+  },
+  {
+   "ar": "وَتَثْبُتُ فِي غَيْرِهَا، فَتَقُولُ: غَزَا غَزَوَا غَزَوْا، غَزَتْ غَزَتَا غَزَوْنَ، غَزَوْتَ غَزَوْتُمَا غَزَوْتُمْ، غَزَوْتِ غَزَوْتُمَا غَزَوْتُنَّ، غَزَوْتُ غَزَوْنَا.",
+   "en": "The ʿIzzī recites the past of the nāqiṣ whole: the last radical falls before the wāw of the group (غَزَوْا) and before the feminine tāʾ (غَزَتْ, غَزَتَا), and returns as a wāw everywhere else — غَزَوَا, غَزَوْنَ, غَزَوْتُ.",
+   "tr": "İzzî nâkısın mâzîsini baştan sona çeker: lâm, cemâat vâvından önce (غَزَوْا) ve te'nîs tâsından önce (غَزَتْ، غَزَتَا) düşer, başka her yerde vâv olarak döner — غَزَوَا، غَزَوْنَ، غَزَوْتُ.",
+   "sourceStory": "tasrif-al-izzi",
+   "chapter": 15,
+   "sentence": "s7",
+   "source": "tasrif-al-izzi-src.txt:223"
+  },
+  {
+   "ar": "الرَّابِعُ: الْمُعْتَلُّ الْعَيْنِ وَاللَّامِ، وَيُقَالُ لَهُ اللَّفِيفُ الْمَقْرُونُ، فَتَقُولُ: شَوَى يَشْوِي شَيًّا، مِثْلُ: رَمَى يَرْمِي رَمْيًا.",
+   "en": "The lafīf maqrūn — weak in its middle AND its last letter — is a class of its own in the book, yet the ʿIzzī conjugates its last letter exactly as the nāqiṣ's: شَوَى يَشْوِي «like رَمَى يَرْمِي». The middle wāw stays sound.",
+   "tr": "Lefîf-i makrûn — hem aynı hem lâmı illetli fiil — metinde ayrı bir kısımdır; fakat İzzî onun lâmını tam nâkıs gibi çeker: شَوَى يَشْوِي «رَمَى يَرْمِي gibi». Ortadaki vâv sahih gibi kalır.",
+   "sourceStory": "tasrif-al-izzi",
+   "chapter": 16,
+   "sentence": "s1",
+   "source": "tasrif-al-izzi-src.txt:266"
+  },
+  {
+   "ar": "الْخَامِسُ: الْمُعْتَلُّ الْفَاءِ وَاللَّامِ، وَيُقَالُ لَهُ اللَّفِيفُ الْمَفْرُوقُ، فَتَقُولُ فِي وَقَى يَقِي: وَقَى وَقَيَا وَقَوْا، كَرَمَى رَمَيَا رَمَوْا.",
+   "en": "And the lafīf mafrūq — weak in its first and its last letter — goes the same way in its ending: وَقَى وَقَيَا وَقَوْا «like رَمَى رَمَيَا رَمَوْا».",
+   "tr": "Lefîf-i mefrûk — fâsı ile lâmı illetli fiil — sonunda aynı yolu tutar: وَقَى وَقَيَا وَقَوْا «رَمَى رَمَيَا رَمَوْا gibi».",
+   "sourceStory": "tasrif-al-izzi",
+   "chapter": 16,
+   "sentence": "s11",
+   "source": "tasrif-al-izzi-src.txt:277"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "لَمْ يَرْمِي",
+   "right": "لَمْ يَرْمِ",
+   "why": {
+    "en": "The jussive of a defective verb is marked by DROPPING the weak letter, not by a sukun. Nothing is left to carry one.",
+    "tr": "Nâkıs fiilin cezmi sükûnla değil, illetli harfin HAZFİYLE olur. Sükûn taşıyacak harf kalmaz."
+   }
+  },
+  {
+   "wrong": "رَمَيَتْ الطُّيُورُ",
+   "right": "رَمَتِ الطُّيُورُ",
+   "why": {
+    "en": "Before تْ the ي falls away: رَمَتْ, not رَمَيَتْ.",
+    "tr": "Tâ-i te'nisten önce ي düşer: رَمَتْ، رَمَيَتْ değil."
+   }
+  },
+  {
+   "wrong": "جَاءَ الْقَاضِي — «الْقَاضِي» مَرْفُوعٌ بِضَمَّةٍ ظَاهِرَةٍ",
+   "right": "مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ",
+   "why": {
+    "en": "The damma was dropped as too heavy on the ي. It is still raf' — but the mark is implied, and saying it is visible misreads the whole class.",
+    "tr": "Damme, يا üzerinde ağır geldiği için düşmüştür. İ'rab yine reftir, fakat alâmeti takdîrîdir."
+   }
+  },
+  {
+   "wrong": "اِرْمِي الْحَجَرَ (أَمْرًا لِلْمُذَكَّرِ)",
+   "right": "اِرْمِ الْحَجَرَ",
+   "why": {
+    "en": "اِرْمِي is the feminine singular imperative. The masculine drops the weak letter entirely: اِرْمِ.",
+    "tr": "اِرْمِي müennes tekil emirdir. Müzekkerde illetli harf tamamen düşer: اِرْمِ."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "mithal-verbs",
+  "hollow-verbs",
+  "ism-maqsur-manqus",
+  "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+  "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+  "taqsim-al-irab-bil-naw-wal-sifa-wal-taqdiri-al-awwal",
+  "al-taqdiri-al-rabi-ila-al-sadis-al-ya-wal-waw-wal-murab-bil-huruf-qabl-al-sakin"
+ ],
+ "gameSeeds": {
+  "spotTheError": true,
+  "harakatTargets": [
+   "رَمَتْ",
+   "لَمْ يَرْمِ",
+   "اِرْمِ"
+  ]
+ }
+}

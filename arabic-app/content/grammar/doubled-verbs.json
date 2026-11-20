@@ -1,0 +1,93 @@
+{
+ "id": "doubled-verbs",
+ "title": {
+  "ar": "الْفِعْلُ الْمُضَاعَف",
+  "en": "The doubled verb",
+  "tr": "Muzâaf fiil"
+ },
+ "level": 3,
+ "group": "sarf",
+ "classicalSources": [
+  "مراح الأرواح",
+  "بناء الأفعال",
+  "المقصود",
+  "تَصْرِيفُ الْعِزِّيِّ لِلزَّنْجَانِيِّ (tasrif-al-izzi-src.txt، س 140، 145، 147)"
+ ],
+ "plain": {
+  "en": "Verbs whose last two root letters are the same, like مَدَّ. They merge into one doubled letter — except where the grammar pulls them apart again.",
+  "tr": "Son iki kök harfi aynı olan fiiller (مَدَّ gibi). İki harf tek şeddeli harfe birleşir; ancak bazı yerlerde tekrar ayrılır."
+ },
+ "explanation": {
+  "en": "A doubled verb has the same letter for its second and third radicals — عَدَّ (ع د د), مَدَّ, اِسْتَعَدَّ. The two are written as one letter with a shadda whenever they can be, and pulled apart — فَكُّ الْإِدْغَامِ — whenever the second of them would have to take sukun. That happens in exactly two places: before the moving subject pronouns of the past (اِسْتَعْدَدْتُ, not *اِسْتَعَدَّتُ) and before نُونُ النِّسْوَةِ (يَسْتَعْدِدْنَ). Everywhere else the shadda stands: يَسْتَعِدُّ, اِسْتَعَدُّوا. The jussive and the imperative allow BOTH, which is worth knowing before you mark someone wrong: لَمْ يَسْتَعِدَّ and لَمْ يَسْتَعْدِدْ are equally correct, and so are اِسْتَعِدَّ and اِسْتَعْدِدْ.",
+  "tr": "Muzâaf fiil, ayn'ı ile lâm'ı aynı harf olan fiildir: عَدَّ (ع د د)، مَدَّ، اِسْتَعَدَّ. İki harf mümkün olduğunca şeddeli tek harf yazılır; ikincisinin sükûn alması gerektiğinde ise idgam çözülür (fekkü'l-idgâm). Bu da tam olarak iki yerde olur: mâzide müteharrik fâil zamirlerinden önce (اِسْتَعْدَدْتُ, *اِسْتَعَدَّتُ değil) ve nûnu'n-nisveden önce (يَسْتَعْدِدْنَ). Bunun dışında şedde durur: يَسْتَعِدُّ، اِسْتَعَدُّوا. Cezm ve emirde İKİ vecih de caizdir; birini yanlış saymadan önce bunu bilmek gerekir: لَمْ يَسْتَعِدَّ ile لَمْ يَسْتَعْدِدْ eşit derecede doğrudur, اِسْتَعِدَّ ile اِسْتَعْدِدْ de öyle."
+ },
+ "examples": [
+  {
+   "ar": "قُوَّةٌ لِلنَّفْسِ بِهَا تَسْتَعِدُّ لِلْعُلُومِ.",
+   "en": "…a faculty by which it is made ready for the sciences — the shadda stands, since nothing forces a sukun.",
+   "sourceStory": "aqaid-ahl-al-sunna",
+   "sentence": "s4",
+   "chapter": 2,
+   "tr": "…kendisiyle ilimlere hazır hâle geldiği bir kuvvet — sükûnu gerektiren bir şey olmadığı için şedde durur."
+  },
+  {
+   "ar": "اِسْتَعْدَدْتُ لِلِامْتِحَانِ.",
+   "en": "I prepared for the examination — the ت of the speaker forces the doubling apart.",
+   "tr": "İmtihana hazırlandım — mütekellim tâsı idgamı çözer."
+  },
+  {
+   "ar": "لَمْ يَسْتَعِدَّ / لَمْ يَسْتَعْدِدْ.",
+   "en": "He did not prepare — the jussive permits both forms.",
+   "tr": "Hazırlanmadı — cezimde iki vecih de caizdir."
+  },
+  {
+   "ar": "وَالْإِدْغَامُ وَاجِبٌ فِي نَحْوِ: مَدَّ يَمُدُّ، وَأَعَدَّ يُعِدُّ، وَاعْتَدَّ يَعْتَدُّ، وَانْقَدَّ يَنْقَدُّ، وَاسْوَدَّ يَسْوَدُّ، وَاسْوَادَّ يَسْوَادُّ، وَاسْتَعَدَّ يَسْتَعِدُّ، وَاطْمَأَنَّ يَطْمَئِنُّ، وَتَمَادَّ يَتَمَادُّ.",
+   "en": "Where the merging is OBLIGATORY, in the ʿIzzī's list: the past and the present of the doubled verb in every bāb — مَدَّ يَمُدُّ, أَعَدَّ يُعِدُّ, اِعْتَدَّ, اِنْقَدَّ, اِسْتَعَدَّ …",
+   "tr": "İdgamın VÂCİB olduğu yerler, İzzî'nin listesiyle: muzâafın her bâbdaki mâzîsi ve muzârisi — مَدَّ يَمُدُّ، أَعَدَّ يُعِدُّ، اِعْتَدَّ، اِنْقَدَّ، اِسْتَعَدَّ …",
+   "sourceStory": "tasrif-al-izzi",
+   "chapter": 12,
+   "sentence": "s6",
+   "source": "tasrif-al-izzi-src.txt:140"
+  },
+  {
+   "ar": "وَالْإِدْغَامُ مُمْتَنِعٌ فِي نَحْوِ: مَدَدْتُ وَمَدَدْنَا وَمَدَدْتَ إِلَى مَدَدْتُنَّ، وَمَدَدْنَ وَيَمْدُدْنَ وَتَمْدُدْنَ وَامْدُدْنَ وَلَا تَمْدُدْنَ.",
+   "en": "Where it is IMPOSSIBLE: before every ending that makes the second of the two letters quiescent — مَدَدْتُ, مَدَدْنَا, مَدَدْنَ, يَمْدُدْنَ, اُمْدُدْنَ.",
+   "tr": "İdgamın MÜMTENİ olduğu yerler: iki harfin ikincisini sâkin kılan her ekten önce — مَدَدْتُ، مَدَدْنَا، مَدَدْنَ، يَمْدُدْنَ، اُمْدُدْنَ.",
+   "sourceStory": "tasrif-al-izzi",
+   "chapter": 12,
+   "sentence": "s10",
+   "source": "tasrif-al-izzi-src.txt:145"
+  },
+  {
+   "ar": "فَإِنْ كَانَ مَكْسُورَ الْعَيْنِ كَيَفِرُّ، أَوْ مَفْتُوحَهَا كَيَعَضُّ، فَتَقُولُ: لَمْ يَفِرَّ وَلَمْ يَعَضَّ بِكَسْرِ اللَّامِ وَفَتْحِهَا، وَتَقُولُ: لَمْ يَفْرِرْ وَلَمْ يَعْضَضْ بِفَكِّ الْإِدْغَامِ.",
+   "en": "Where it is PERMITTED — the jussive of the single person. With kasra or fatḥa in the present (يَفِرُّ, يَعَضُّ) the merged form may end in kasra or in fatḥa, or the two letters are pulled apart: لَمْ يَفْرِرْ, لَمْ يَعْضَضْ.",
+   "tr": "İdgamın CÂİZ olduğu yer — müfredin meczûmu. Muzârisinin aynı kesreli yahut fethalı ise (يَفِرُّ، يَعَضُّ) idgamlı şekil kesre yahut fetha ile biter, yahut idgam çözülür: لَمْ يَفْرِرْ، لَمْ يَعْضَضْ.",
+   "sourceStory": "tasrif-al-izzi",
+   "chapter": 12,
+   "sentence": "s12",
+   "source": "tasrif-al-izzi-src.txt:147"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "مَدَّتُ يَدِي",
+   "right": "مَدَدْتُ يَدِي",
+   "why": {
+    "en": "Before تُ the doubling must be pulled apart; a shadda cannot survive there.",
+    "tr": "تُ zamirinden önce idgam çözülmelidir; orada şedde duramaz."
+   }
+  },
+  {
+   "wrong": "النِّسَاءُ يَمْدُدْنَ — أَوْ يَمُدَّنَ؟ الْأَوَّلُ خَطَأٌ",
+   "right": "يَمْدُدْنَ صَحِيحٌ",
+   "why": {
+    "en": "Before the ن of the feminine plural the letters separate — يَمْدُدْنَ is the correct form, not يَمُدَّنَ.",
+    "tr": "Nûnu'n-nisveden önce harfler ayrılır: doğru şekil يَمْدُدْنَ'dir, يَمُدَّنَ değil."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "hollow-verbs",
+  "form-x-verbs"
+ ]
+}

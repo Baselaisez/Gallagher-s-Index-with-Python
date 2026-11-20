@@ -1,0 +1,85 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "title": "Records mined from a treatise",
+ "type": "object",
+ "required": [
+  "source",
+  "status",
+  "records"
+ ],
+ "properties": {
+  "source": {
+   "type": "string"
+  },
+  "status": {
+   "type": "string"
+  },
+  "note": {
+   "type": "string"
+  },
+  "records": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "source",
+     "section",
+     "page",
+     "kind",
+     "text",
+     "status"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+:p[0-9]+:[0-9]+$"
+     },
+     "source": {
+      "type": "string"
+     },
+     "section": {
+      "type": "string"
+     },
+     "page": {
+      "type": "integer",
+      "minimum": 1
+     },
+     "kind": {
+      "type": "string",
+      "enum": [
+       "qa",
+       "definition",
+       "statement"
+      ]
+     },
+     "text": {
+      "type": "string"
+     },
+     "question": {
+      "type": "string"
+     },
+     "answer": {
+      "type": "string"
+     },
+     "examples": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "raw-unreviewed",
+       "collated",
+       "reviewed"
+      ]
+     }
+    }
+   }
+  }
+ },
+ "additionalProperties": false
+}

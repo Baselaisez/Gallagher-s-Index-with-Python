@@ -1,0 +1,81 @@
+{
+ "id": "aks",
+ "title": {
+  "ar": "الْعَكْسُ — أَنْ يُقَدَّمَ فِي الْكَلَامِ جُزْءٌ ثُمَّ يُؤَخَّرَ",
+  "en": "The ʿaks — a part put first, then put last",
+  "tr": "Aks — bir cüz'ün önce öne, sonra sona konması"
+ },
+ "level": 6,
+ "group": "badi",
+ "classicalSources": [
+  "تلخيص المفتاح — العكس: أن يقدم في الكلام جزء ثم يؤخر"
+ ],
+ "question": {
+  "en": [
+   "Do two words TRADE PLACES? عَادَاتُ السَّادَاتِ سَادَاتُ الْعَادَاتِ — the habits of the masters are the masters of habits. That is the ʿAKS.",
+   "Between what and what? Three shapes: a word and what it is ANNEXED to (habits-of-masters / masters-of-habits); the two DEPENDENTS of two verbs (the living out of the dead / the dead out of the living, 10:31); two words at the two ENDS of two sentences (they … for them / they … for them, 60:10).",
+   "How does the engine see it? By lemma: the pair (A, B) appears, then (B, A), with the same governing shape — idafa, verb-dependents, or sentence-ends."
+  ],
+  "tr": [
+   "İki kelime YER Mİ DEĞİŞTİRİYOR? عَادَاتُ السَّادَاتِ سَادَاتُ الْعَادَاتِ — efendilerin âdetleri, âdetlerin efendileridir. AKS budur.",
+   "Ne ile ne arasında? Üç şekil: bir kelime ile İZÂFE edildiği şey (efendilerin âdetleri / âdetlerin efendileri); iki fiilin iki MÜTEALLİKİ (ölüden diriyi / diriden ölüyü, Yûnus 10:31); iki cümlenin iki UCUNDAKİ iki lafız (onlar … onlara / onlar … onlara, Mümtehine 60:10).",
+   "Motor nasıl görür? Kökle: (A, B) çifti geçer, sonra (B, A), aynı âmil şekliyle — izâfet, fiil müteallikleri yahut cümle uçları."
+  ]
+ },
+ "plain": {
+  "en": "A part of the speech is put first, then the same part put last: «the habits of the masters are the masters of habits»; «He brings the living out of the dead and the dead out of the living»; «they are not lawful for them, nor they for them». The engine finds the swapped pair by lemma and names the shape.",
+  "tr": "Sözün bir cüz'ü önce öne, sonra sona konur: «efendilerin âdetleri âdetlerin efendileridir»; «ölüden diriyi, diriden ölüyü çıkarır»; «onlar onlara helâl değil, onlar da onlara». Motor yer değiştiren çifti kökle bulur, şekli adlandırır."
+ },
+ "explanation": {
+  "en": "The ʿAKS (reversal) is أَنْ يُقَدَّمَ فِي الْكَلَامِ جُزْءٌ ثُمَّ يُؤَخَّرَ — that a part of the speech be put FIRST, then put LAST; and it falls in several SHAPES. (1) Between one of a sentence's two ends and what is ANNEXED to it: عَادَاتُ السَّادَاتِ سَادَاتُ الْعَادَاتِ — the mudaf ilayh of the mubtada is the mudaf of the khabar, and the other way round. (2) Between the two DEPENDENTS of two verbs in two sentences: يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَيُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ (10:31) — the object of the first verb is the majrur of the second, and the majrur the object. (3) Between two words at the two ENDS of two sentences: لَا هُنَّ حِلٌّ لَهُمْ وَلَا هُمْ يَحِلُّونَ لَهُنَّ (60:10) — the mubtada of the first sentence is the majrur of the second, and the majrur the mubtada. WHAT THE ENGINE CLAIMS: the BadiEngine reads the ʿaks by LEMMA: it looks for an ordered pair of content words (A, B) followed later in the sentence by (B, A), and names the shape from the seats DabtEngine gives the four words — mudaf/mudaf ilayh (shape 1), maf'ul/majrur of two verbs of one lemma (shape 2), mubtada/majrur across two clauses (shape 3). A pair reversed without a matching shape is reported as a plain reversal. It grades itself against the authored `aks` frames of ch59, whose sub it must match.",
+  "tr": "AKS (tersine çevirme) أَنْ يُقَدَّمَ فِي الْكَلَامِ جُزْءٌ ثُمَّ يُؤَخَّرَ'dir — sözün bir cüz'ünün önce ÖNE, sonra SONA konması; birkaç ŞEKİLDE olur. (1) Cümlenin iki tarafından biri ile ona İZÂFE edilen arasında: عَادَاتُ السَّادَاتِ سَادَاتُ الْعَادَاتِ — mübtedânın muzâfun ileyhi haberin muzâfı olur, tersi de öyle. (2) İki cümledeki iki fiilin iki MÜTEALLİKİ arasında: يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَيُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ (Yûnus 10:31) — birinci fiilin mef'ûlü ikincinin mecruru, mecrur mef'ûl olur. (3) İki cümlenin iki UCUNDAKİ iki lafız arasında: لَا هُنَّ حِلٌّ لَهُمْ وَلَا هُمْ يَحِلُّونَ لَهُنَّ (Mümtehine 60:10) — birinci cümlenin mübtedâsı ikincinin mecruru, mecrur mübtedâ olur. MOTORUN İDDİASI: BadiEngine aksi KÖKLE okur: sıralı bir anlamlı kelime çifti (A, B) ve cümlede daha sonra (B, A) arar, şekli DabtEngine'in dört kelimeye verdiği makamlardan adlandırır — muzâf/muzâfun ileyh (1. şekil), tek kökten iki fiilin mef'ûl/mecruru (2. şekil), iki cümlecik boyunca mübtedâ/mecrur (3. şekil). Şekli tutmayan tersine çevrilmiş çift, düz tersine çevirme olarak bildirilir. Kendini 59. bâbın müellif `aks` çerçevelerine karşı sınar; alt kısımlarını tutturması gerekir."
+ },
+ "examples": [
+  {
+   "ar": "عَادَاتُ السَّادَاتِ سَادَاتُ الْعَادَاتِ",
+   "en": "shape 1: the mudaf and its mudaf ilayh.",
+   "tr": "1. şekil: muzâf ve muzâfun ileyhi.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s12"
+  },
+  {
+   "ar": "يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَيُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ",
+   "en": "shape 2: the dependents of two verbs (10:31).",
+   "tr": "2. şekil: iki fiilin müteallikleri (Yûnus 10:31).",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s13"
+  },
+  {
+   "ar": "لَا هُنَّ حِلٌّ لَهُمْ وَلَا هُمْ يَحِلُّونَ لَهُنَّ",
+   "en": "shape 3: the ends of two sentences (60:10).",
+   "tr": "3. şekil: iki cümlenin uçları (Mümtehine 60:10).",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s14"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ … yalnız bir tıbâktır»",
+   "right": "«Tıbâk da vardır (diri/ölü), fakat sanat akstir: iki müteallik yer değiştirmiştir»",
+   "why": {
+    "en": "Two figures live in one aya. The tibaq is in the pair of contraries; the ʿaks is in their trading of seats.",
+    "tr": "Bir âyette iki sanat yaşar. Tıbâk zıt çiftte, aks makam değiştirmelerindedir."
+   }
+  },
+  {
+   "wrong": "«Her tekrar edilen kelime çifti akstir»",
+   "right": "«Sıra tersine dönmelidir: (A, B) sonra (B, A)»",
+   "why": {
+    "en": "The definition is «put first, then put last». Same order twice is repetition, not reversal.",
+    "tr": "Tarif «önce öne, sonra sona»dır. Aynı sıranın iki kere gelmesi tekrardır, ters çevirme değil."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "tibaq",
+  "idafa-definiteness",
+  "taqdim-al-musnad",
+  "muzawaja",
+  "ilm-al-badi"
+ ]
+}

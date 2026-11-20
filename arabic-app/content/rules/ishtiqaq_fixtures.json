@@ -1,0 +1,671 @@
+{
+ "version": 1,
+ "note": "Hand-verified derivations shared by both interpreters of ishtiqaq.json: the reader's IshtiqaqEngine (smoke test) and qissa_core (unit tests). Each row: the written word, its root, the law-table pattern id, the origin form the wazn gives, the surface the rules reach, and the ids of the rules that fire, in order. Rows with en/tr also fix the deduced meaning (the verb's gloss comes from the corpus lexicon).",
+ "fixtures": [
+  {
+   "word": "قَاتِلٌ",
+   "root": "ق ت ل",
+   "pattern": "fail-1",
+   "asl": "قَاتِلٌ",
+   "out": "قَاتِلٌ",
+   "steps": [],
+   "en": "one who kills",
+   "tr": "öldüren / katl eden"
+  },
+  {
+   "word": "قَائِلٌ",
+   "root": "ق و ل",
+   "pattern": "fail-1",
+   "asl": "قَاوِلٌ",
+   "out": "قَائِلٌ",
+   "steps": [
+    "hamz-fail"
+   ],
+   "en": "one who says",
+   "tr": "diyen / kavl eden"
+  },
+  {
+   "word": "بَائِعٌ",
+   "root": "ب ي ع",
+   "pattern": "fail-1",
+   "asl": "بَايِعٌ",
+   "out": "بَائِعٌ",
+   "steps": [
+    "hamz-fail"
+   ]
+  },
+  {
+   "word": "مَقْتُولٌ",
+   "root": "ق ت ل",
+   "pattern": "maful-1",
+   "asl": "مَقْتُولٌ",
+   "out": "مَقْتُولٌ",
+   "steps": [],
+   "en": "one killed",
+   "tr": "öldürülen / katl edilen"
+  },
+  {
+   "word": "مَقُولٌ",
+   "root": "ق و ل",
+   "pattern": "maful-1",
+   "asl": "مَقْوُولٌ",
+   "out": "مَقُولٌ",
+   "steps": [
+    "naql",
+    "hadhf-sakinayn"
+   ],
+   "en": "one said",
+   "tr": "denen / kavl edilen"
+  },
+  {
+   "word": "مَبِيعٌ",
+   "root": "ب ي ع",
+   "pattern": "maful-1",
+   "asl": "مَبْيُوعٌ",
+   "out": "مَبِيعٌ",
+   "steps": [
+    "naql",
+    "hadhf-sakinayn",
+    "harmoniya"
+   ],
+   "en": "one sold",
+   "tr": "satılan / bey edilen"
+  },
+  {
+   "word": "دَاعٍ",
+   "root": "د ع و",
+   "pattern": "fail-1",
+   "asl": "دَاعِوٌ",
+   "out": "دَاعٍ",
+   "steps": [
+    "qalb-waw-tarafiyya",
+    "hadhf-manqus"
+   ]
+  },
+  {
+   "word": "رَامٍ",
+   "root": "ر م ي",
+   "pattern": "fail-1",
+   "asl": "رَامِيٌ",
+   "out": "رَامٍ",
+   "steps": [
+    "hadhf-manqus"
+   ],
+   "en": "one who throws",
+   "tr": "atan / remy eden"
+  },
+  {
+   "word": "مَدْعُوٌّ",
+   "root": "د ع و",
+   "pattern": "maful-1",
+   "asl": "مَدْعُووٌ",
+   "out": "مَدْعُوٌّ",
+   "steps": [
+    "idgham"
+   ]
+  },
+  {
+   "word": "مَرْمِيٌّ",
+   "root": "ر م ي",
+   "pattern": "maful-1",
+   "asl": "مَرْمُويٌ",
+   "out": "مَرْمِيٌّ",
+   "steps": [
+    "qalb-waw-ya",
+    "idgham",
+    "munasaba"
+   ]
+  },
+  {
+   "word": "مَادٌّ",
+   "root": "م د د",
+   "pattern": "fail-1",
+   "asl": "مَادِدٌ",
+   "out": "مَادٌّ",
+   "steps": [
+    "idgham-mithlayn"
+   ],
+   "en": "one who stretches out",
+   "tr": "uzatan / medd eden"
+  },
+  {
+   "word": "وَاعِدٌ",
+   "root": "و ع د",
+   "pattern": "fail-1",
+   "asl": "وَاعِدٌ",
+   "out": "وَاعِدٌ",
+   "steps": []
+  },
+  {
+   "word": "مَوْعُودٌ",
+   "root": "و ع د",
+   "pattern": "maful-1",
+   "asl": "مَوْعُودٌ",
+   "out": "مَوْعُودٌ",
+   "steps": []
+  },
+  {
+   "word": "آخِذٌ",
+   "root": "أ خ ذ",
+   "pattern": "fail-1",
+   "asl": "آخِذٌ",
+   "out": "آخِذٌ",
+   "steps": []
+  },
+  {
+   "word": "مَأْخُوذٌ",
+   "root": "أ خ ذ",
+   "pattern": "maful-1",
+   "asl": "مَأْخُوذٌ",
+   "out": "مَأْخُوذٌ",
+   "steps": []
+  },
+  {
+   "word": "سَائِلٌ",
+   "root": "س أ ل",
+   "pattern": "fail-1",
+   "asl": "سَائِلٌ",
+   "out": "سَائِلٌ",
+   "steps": []
+  },
+  {
+   "word": "مَسْؤُولٌ",
+   "root": "س أ ل",
+   "pattern": "maful-1",
+   "asl": "مَسْؤُولٌ",
+   "out": "مَسْؤُولٌ",
+   "steps": []
+  },
+  {
+   "word": "جَاءٍ",
+   "root": "ج ي أ",
+   "pattern": "fail-1",
+   "asl": "جَايِئٌ",
+   "out": "جَاءٍ",
+   "steps": [
+    "hamz-fail",
+    "qalb-hamza-ya",
+    "hadhf-manqus"
+   ]
+  },
+  {
+   "word": "مُكْرِمٌ",
+   "root": "ك ر م",
+   "pattern": "fail-4",
+   "asl": "مُكْرِمٌ",
+   "out": "مُكْرِمٌ",
+   "steps": []
+  },
+  {
+   "word": "مُكْرَمٌ",
+   "root": "ك ر م",
+   "pattern": "maful-4",
+   "asl": "مُكْرَمٌ",
+   "out": "مُكْرَمٌ",
+   "steps": [],
+   "en": "one honoured",
+   "tr": "ikram edilen"
+  },
+  {
+   "word": "إِكْرَامٌ",
+   "root": "ك ر م",
+   "pattern": "masdar-4",
+   "asl": "إِكْرَامٌ",
+   "out": "إِكْرَامٌ",
+   "steps": []
+  },
+  {
+   "word": "مُقِيمٌ",
+   "root": "ق و م",
+   "pattern": "fail-4",
+   "asl": "مُقْوِمٌ",
+   "out": "مُقِيمٌ",
+   "steps": [
+    "naql",
+    "qalb-waw-kasra"
+   ]
+  },
+  {
+   "word": "مُقَامٌ",
+   "root": "ق و م",
+   "pattern": "maful-4",
+   "asl": "مُقْوَمٌ",
+   "out": "مُقَامٌ",
+   "steps": [
+    "naql",
+    "qalb-alif"
+   ]
+  },
+  {
+   "word": "إِقَامَةٌ",
+   "root": "ق و م",
+   "pattern": "masdar-4",
+   "asl": "إِقْوَامٌ",
+   "out": "إِقَامَةٌ",
+   "steps": [
+    "qiyas-hollow-masdar"
+   ]
+  },
+  {
+   "word": "مُعْطٍ",
+   "root": "ع ط و",
+   "pattern": "fail-4",
+   "asl": "مُعْطِوٌ",
+   "out": "مُعْطٍ",
+   "steps": [
+    "qalb-waw-tarafiyya",
+    "hadhf-manqus"
+   ]
+  },
+  {
+   "word": "مُعْطًى",
+   "root": "ع ط و",
+   "pattern": "maful-4",
+   "asl": "مُعْطَوٌ",
+   "out": "مُعْطًى",
+   "steps": [
+    "qalb-maqsur"
+   ]
+  },
+  {
+   "word": "إِعْطَاءٌ",
+   "root": "ع ط و",
+   "pattern": "masdar-4",
+   "asl": "إِعْطَاوٌ",
+   "out": "إِعْطَاءٌ",
+   "steps": [
+    "hamz-tarafiyya"
+   ]
+  },
+  {
+   "word": "مُحِبٌّ",
+   "root": "ح ب ب",
+   "pattern": "fail-4",
+   "asl": "مُحْبِبٌ",
+   "out": "مُحِبٌّ",
+   "steps": [
+    "idgham-mithlayn"
+   ]
+  },
+  {
+   "word": "إِيمَانٌ",
+   "root": "أ م ن",
+   "pattern": "masdar-4",
+   "asl": "إِئْمَانٌ",
+   "out": "إِيمَانٌ",
+   "steps": [
+    "tashil-hamza"
+   ]
+  },
+  {
+   "word": "مُؤْمِنٌ",
+   "root": "أ م ن",
+   "pattern": "fail-4",
+   "asl": "مُؤْمِنٌ",
+   "out": "مُؤْمِنٌ",
+   "steps": []
+  },
+  {
+   "word": "مُعَلِّمٌ",
+   "root": "ع ل م",
+   "pattern": "fail-2",
+   "asl": "مُعَلِّمٌ",
+   "out": "مُعَلِّمٌ",
+   "steps": [],
+   "en": "one who teaches",
+   "tr": "öğreten / ta'lîm eden"
+  },
+  {
+   "word": "مُعَلَّمٌ",
+   "root": "ع ل م",
+   "pattern": "maful-2",
+   "asl": "مُعَلَّمٌ",
+   "out": "مُعَلَّمٌ",
+   "steps": []
+  },
+  {
+   "word": "تَعْلِيمٌ",
+   "root": "ع ل م",
+   "pattern": "masdar-2",
+   "asl": "تَعْلِيمٌ",
+   "out": "تَعْلِيمٌ",
+   "steps": []
+  },
+  {
+   "word": "تَزْكِيَةٌ",
+   "root": "ز ك و",
+   "pattern": "masdar-2",
+   "asl": "تَزْكِيوٌ",
+   "out": "تَزْكِيَةٌ",
+   "steps": [
+    "qiyas-naqis-tafila"
+   ]
+  },
+  {
+   "word": "مُقَاتِلٌ",
+   "root": "ق ت ل",
+   "pattern": "fail-3",
+   "asl": "مُقَاتِلٌ",
+   "out": "مُقَاتِلٌ",
+   "steps": []
+  },
+  {
+   "word": "مُقَاتَلَةٌ",
+   "root": "ق ت ل",
+   "pattern": "masdar-3",
+   "asl": "مُقَاتَلَةٌ",
+   "out": "مُقَاتَلَةٌ",
+   "steps": []
+  },
+  {
+   "word": "مُتَعَلِّمٌ",
+   "root": "ع ل م",
+   "pattern": "fail-5",
+   "asl": "مُتَعَلِّمٌ",
+   "out": "مُتَعَلِّمٌ",
+   "steps": []
+  },
+  {
+   "word": "تَعَلُّمٌ",
+   "root": "ع ل م",
+   "pattern": "masdar-5",
+   "asl": "تَعَلُّمٌ",
+   "out": "تَعَلُّمٌ",
+   "steps": []
+  },
+  {
+   "word": "تَلَقٍّ",
+   "root": "ل ق ي",
+   "pattern": "masdar-5",
+   "asl": "تَلَقُّيٌ",
+   "out": "تَلَقٍّ",
+   "steps": [
+    "qiyas-naqis-tafaul"
+   ]
+  },
+  {
+   "word": "مُتَقَاتِلٌ",
+   "root": "ق ت ل",
+   "pattern": "fail-6",
+   "asl": "مُتَقَاتِلٌ",
+   "out": "مُتَقَاتِلٌ",
+   "steps": []
+  },
+  {
+   "word": "تَقَاتُلٌ",
+   "root": "ق ت ل",
+   "pattern": "masdar-6",
+   "asl": "تَقَاتُلٌ",
+   "out": "تَقَاتُلٌ",
+   "steps": []
+  },
+  {
+   "word": "مُنْكَسِرٌ",
+   "root": "ك س ر",
+   "pattern": "fail-7",
+   "asl": "مُنْكَسِرٌ",
+   "out": "مُنْكَسِرٌ",
+   "steps": []
+  },
+  {
+   "word": "اِنْكِسَارٌ",
+   "root": "ك س ر",
+   "pattern": "masdar-7",
+   "asl": "اِنْكِسَارٌ",
+   "out": "اِنْكِسَارٌ",
+   "steps": []
+  },
+  {
+   "word": "مُجْتَمِعٌ",
+   "root": "ج م ع",
+   "pattern": "fail-8",
+   "asl": "مُجْتَمِعٌ",
+   "out": "مُجْتَمِعٌ",
+   "steps": []
+  },
+  {
+   "word": "اِجْتِمَاعٌ",
+   "root": "ج م ع",
+   "pattern": "masdar-8",
+   "asl": "اِجْتِمَاعٌ",
+   "out": "اِجْتِمَاعٌ",
+   "steps": []
+  },
+  {
+   "word": "مُخْتَارٌ",
+   "root": "خ ي ر",
+   "pattern": "fail-8",
+   "asl": "مُخْتَيِرٌ",
+   "out": "مُخْتَارٌ",
+   "steps": [
+    "qalb-alif"
+   ]
+  },
+  {
+   "word": "اِخْتِيَارٌ",
+   "root": "خ ي ر",
+   "pattern": "masdar-8",
+   "asl": "اِخْتِيَارٌ",
+   "out": "اِخْتِيَارٌ",
+   "steps": []
+  },
+  {
+   "word": "مُصْطَفًى",
+   "root": "ص ف و",
+   "pattern": "maful-8",
+   "asl": "مُصْتَفَوٌ",
+   "out": "مُصْطَفًى",
+   "steps": [
+    "ibdal-iftial",
+    "qalb-maqsur"
+   ]
+  },
+  {
+   "word": "مُدَّعٍ",
+   "root": "د ع و",
+   "pattern": "fail-8",
+   "asl": "مُدْتَعِوٌ",
+   "out": "مُدَّعٍ",
+   "steps": [
+    "ibdal-iftial",
+    "qalb-waw-tarafiyya",
+    "hadhf-manqus",
+    "idgham-mithlayn"
+   ]
+  },
+  {
+   "word": "مُتَّصِلٌ",
+   "root": "و ص ل",
+   "pattern": "fail-8",
+   "asl": "مُوْتَصِلٌ",
+   "out": "مُتَّصِلٌ",
+   "steps": [
+    "qiyas-mithal-iftial"
+   ]
+  },
+  {
+   "word": "اِتِّصَالٌ",
+   "root": "و ص ل",
+   "pattern": "masdar-8",
+   "asl": "اِوْتِصَالٌ",
+   "out": "اِتِّصَالٌ",
+   "steps": [
+    "qiyas-mithal-iftial"
+   ]
+  },
+  {
+   "word": "مُتَّقٍ",
+   "root": "و ق ي",
+   "pattern": "fail-8",
+   "asl": "مُوْتَقِيٌ",
+   "out": "مُتَّقٍ",
+   "steps": [
+    "qiyas-mithal-iftial",
+    "hadhf-manqus"
+   ]
+  },
+  {
+   "word": "مُتَّبِعٌ",
+   "root": "ت ب ع",
+   "pattern": "fail-8",
+   "asl": "مُتْتَبِعٌ",
+   "out": "مُتَّبِعٌ",
+   "steps": [
+    "idgham-mithlayn"
+   ]
+  },
+  {
+   "word": "مُسْتَغْفِرٌ",
+   "root": "غ ف ر",
+   "pattern": "fail-10",
+   "asl": "مُسْتَغْفِرٌ",
+   "out": "مُسْتَغْفِرٌ",
+   "steps": []
+  },
+  {
+   "word": "اِسْتِغْفَارٌ",
+   "root": "غ ف ر",
+   "pattern": "masdar-10",
+   "asl": "اِسْتِغْفَارٌ",
+   "out": "اِسْتِغْفَارٌ",
+   "steps": []
+  },
+  {
+   "word": "مُسْتَقِيمٌ",
+   "root": "ق و م",
+   "pattern": "fail-10",
+   "asl": "مُسْتَقْوِمٌ",
+   "out": "مُسْتَقِيمٌ",
+   "steps": [
+    "naql",
+    "qalb-waw-kasra"
+   ]
+  },
+  {
+   "word": "اِسْتِقَامَةٌ",
+   "root": "ق و م",
+   "pattern": "masdar-10",
+   "asl": "اِسْتِقْوَامٌ",
+   "out": "اِسْتِقَامَةٌ",
+   "steps": [
+    "qiyas-hollow-masdar"
+   ]
+  },
+  {
+   "word": "مُسْتَمِرٌّ",
+   "root": "م ر ر",
+   "pattern": "fail-10",
+   "asl": "مُسْتَمْرِرٌ",
+   "out": "مُسْتَمِرٌّ",
+   "steps": [
+    "idgham-mithlayn"
+   ]
+  },
+  {
+   "word": "قَتَّالٌ",
+   "root": "ق ت ل",
+   "pattern": "faal",
+   "asl": "قَتَّالٌ",
+   "out": "قَتَّالٌ",
+   "steps": [],
+   "en": "one who kills much",
+   "tr": "çok öldüren / çok katl eden"
+  },
+  {
+   "word": "غَفُورٌ",
+   "root": "غ ف ر",
+   "pattern": "faul",
+   "asl": "غَفُورٌ",
+   "out": "غَفُورٌ",
+   "steps": []
+  },
+  {
+   "word": "عَلِيمٌ",
+   "root": "ع ل م",
+   "pattern": "fail-sifa",
+   "asl": "عَلِيمٌ",
+   "out": "عَلِيمٌ",
+   "steps": []
+  },
+  {
+   "word": "مِفْتَاحٌ",
+   "root": "ف ت ح",
+   "pattern": "mifal",
+   "asl": "مِفْتَاحٌ",
+   "out": "مِفْتَاحٌ",
+   "steps": [],
+   "en": "tool for opening",
+   "tr": "açma aleti"
+  },
+  {
+   "word": "مَكْتَبَةٌ",
+   "root": "ك ت ب",
+   "pattern": "mafala",
+   "asl": "مَكْتَبَةٌ",
+   "out": "مَكْتَبَةٌ",
+   "steps": []
+  },
+  {
+   "word": "مَجْلِسٌ",
+   "root": "ج ل س",
+   "pattern": "mafil",
+   "asl": "مَجْلِسٌ",
+   "out": "مَجْلِسٌ",
+   "steps": []
+  },
+  {
+   "word": "أَكْبَرُ",
+   "root": "ك ب ر",
+   "pattern": "tafdil",
+   "asl": "أَكْبَرُ",
+   "out": "أَكْبَرُ",
+   "steps": []
+  },
+  {
+   "word": "أَشَدُّ",
+   "root": "ش د د",
+   "pattern": "tafdil",
+   "asl": "أَشْدَدُ",
+   "out": "أَشَدُّ",
+   "steps": [
+    "idgham-mithlayn"
+   ]
+  },
+  {
+   "word": "قَتْلٌ",
+   "root": "ق ت ل",
+   "pattern": "masdar-fal",
+   "asl": "قَتْلٌ",
+   "out": "قَتْلٌ",
+   "steps": [],
+   "en": "killing",
+   "tr": "öldürme"
+  },
+  {
+   "word": "قَوْلٌ",
+   "root": "ق و ل",
+   "pattern": "masdar-fal",
+   "asl": "قَوْلٌ",
+   "out": "قَوْلٌ",
+   "steps": []
+  },
+  {
+   "word": "دُخُولٌ",
+   "root": "د خ ل",
+   "pattern": "masdar-fuul",
+   "asl": "دُخُولٌ",
+   "out": "دُخُولٌ",
+   "steps": []
+  },
+  {
+   "word": "دُعَاءٌ",
+   "root": "د ع و",
+   "pattern": "masdar-fual",
+   "asl": "دُعَاوٌ",
+   "out": "دُعَاءٌ",
+   "steps": [
+    "hamz-tarafiyya"
+   ]
+  }
+ ]
+}

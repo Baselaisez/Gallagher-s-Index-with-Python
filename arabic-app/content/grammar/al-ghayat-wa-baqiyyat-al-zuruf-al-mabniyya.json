@@ -1,0 +1,128 @@
+{
+ "id": "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+ "title": {
+  "ar": "الْغَايَاتُ وَبَقِيَّةُ الظُّرُوفِ الْمَبْنِيَّةِ فِي الْكَافِيَةِ",
+  "en": "The limit-words (قَبْلُ، بَعْدُ…), حَيْثُ، لَدَى، قَطُّ، عَوْضُ, and the optional building of an adverb before a clause (يَوْمَ يَنْفَعُ، يَوْمَئِذٍ، مِثْلَ مَا)",
+  "tr": "Gâyeler (قَبْلُ، بَعْدُ…), حَيْثُ، لَدَى، قَطُّ، عَوْضُ ve bir cümleden önce zarfın ihtiyârî binâsı (يَوْمَ يَنْفَعُ، يَوْمَئِذٍ، مِثْلَ مَا)"
+ },
+ "level": 5,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — الغايات مبنية على الضم؛ حيث؛ لدى ولدن؛ قط وعوض؛ ما أضيف إلى الجملة أو إلى إذ جاز بناؤه على الفتح؛ غير ومثل مع ما وأن وأنّ",
+  "ضياء صونغور اوغلى — دفتر الكافية: حذف مميز كم لقرينة، لا غير وليس غير وحسب، الفرق بين لدى وعند، لغات لدن، يومئذ في المصحف، أمثلة مثل"
+ ],
+ "question": {
+  "en": [
+   "Why is قَبْلُ written with a ḍamma? Because it has been cut off from its annexation — the muḍāf ilayh is dropped and its meaning kept (مِنْ قَبْلُ = «from before [that]») — and a word cut off like that is built on the ḍamm: قَبْلُ، بَعْدُ، تَحْتُ، فَوْقُ، قُدَّامُ، خَلْفُ، وَرَاءُ. The notebook adds لَا غَيْرُ، لَيْسَ غَيْرُ and حَسْبُ to the same rule.",
+   "What is حَيْثُ? A place-adverb built on the ḍamm; it is annexed to a whole sentence (اجْلِسْ حَيْثُ زَيْدٌ جَالِسٌ) and only rarely to a single noun (أَمَا تَرَى حَيْثُ سُهَيْلٍ).",
+   "لَدَى and لَدُنْ? Both mean عِنْدَ — but لَدَى only for what is actually present (الْمَالُ لَدَى زَيْدٍ), while عِنْدَ also covers what is in one's keeping elsewhere.",
+   "قَطُّ and عَوْضُ? Both built on the ḍamm, both «ever» under a negation — قَطُّ over the past (مَا رَأَيْتُهُ قَطُّ), عَوْضُ over the future (لَا أَرَاهُ عَوْضُ).",
+   "When may a declinable adverb be built? When it is annexed to a sentence or to إِذْ: يَوْمَ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ may stand on the fatḥ or in naṣb; يَوْمَئِذٍ is built on the fatḥ in one reading, though the muṣḥaf has it declined, يَوْمِئِذٍ. The same choice holds for غَيْر and مِثْل before مَا، أَنْ، أَنَّ: قِيَامِي مِثْلَ مَا قَامَ زَيْدٌ or مِثْلُ.",
+   "What does the engine read? The DabtEngine keeps the limit-words on their ḍamma and حَيْثُ، قَطُّ، عَوْضُ on theirs, takes the clause after حَيْثُ or يَوْمَ as the muḍāf ilayh, and accepts both the built fatḥa and the case ending on an adverb before a clause."
+  ],
+  "tr": [
+   "قَبْلُ neden damme ile yazılır? İzâfetten kesildiği için — muzâfun ileyh hazfedilmiş, manası niyet edilmiştir (مِنْ قَبْلُ = «[ondan] önce») — ve böyle kesilen kelime damm üzere mebnî olur: قَبْلُ، بَعْدُ، تَحْتُ، فَوْقُ، قُدَّامُ، خَلْفُ، وَرَاءُ. Defter aynı kurala لَا غَيْرُ، لَيْسَ غَيْرُ ve حَسْبُ'yü ekler.",
+   "حَيْثُ nedir? Damm üzere mebnî bir mekân zarfı; bütün bir cümleye muzâf olur (اجْلِسْ حَيْثُ زَيْدٌ جَالِسٌ), nadiren bir müfrede (أَمَا تَرَى حَيْثُ سُهَيْلٍ).",
+   "لَدَى ve لَدُنْ? İkisi de عِنْدَ demektir — ama لَدَى yalnız bilfiil hâzır olan için (الْمَالُ لَدَى زَيْدٍ); عِنْدَ başka yerdeki malı da kapsar.",
+   "قَطُّ ve عَوْضُ? İkisi de damm üzere mebnî, ikisi de nefiy altında «hiç» — قَطُّ geçmişin tamamı (مَا رَأَيْتُهُ قَطُّ), عَوْضُ geleceğin tamamı (لَا أَرَاهُ عَوْضُ).",
+   "Mu'reb bir zarf ne zaman mebnî olabilir? Bir cümleye ya da إِذْ'e muzâf olduğunda: يَوْمَ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ feth üzere de mansûb da olabilir; يَوْمَئِذٍ bir kıraatte feth üzere mebnîdir, mushafta ise mu'reb: يَوْمِئِذٍ. Aynı seçim مَا، أَنْ، أَنَّ'den önce غَيْر ve مِثْل için de geçerlidir: قِيَامِي مِثْلَ مَا قَامَ زَيْدٌ ya da مِثْلُ.",
+   "Motor neyi okur? DabtEngine gâyeleri dammesinde, حَيْثُ، قَطُّ، عَوْضُ'yü kendi dammelerinde tutar; حَيْثُ ya da يَوْمَ'den sonraki cümleyi muzâfun ileyh sayar; bir cümleden önceki zarfta hem bina fethasını hem i'râb sonunu kabul eder."
+  ]
+ },
+ "plain": {
+  "en": "«Before», «after», «above», «below» lose their partner and freeze on -u (قَبْلُ، بَعْدُ); حَيْثُ «where», قَطُّ «never (past)» and عَوْضُ «never (future)» freeze the same way; and a time-word like يَوْمَ «the day» may freeze on -a when a whole clause follows it.",
+  "tr": "«Önce», «sonra», «üst», «alt» eşini kaybedince -u üzere donar (قَبْلُ، بَعْدُ); حَيْثُ «nerede», قَطُّ «hiç (geçmiş)» ve عَوْضُ «asla (gelecek)» aynı şekilde donar; يَوْمَ «gün» gibi bir zaman kelimesi ardından bütün bir cümle gelince -a üzere donabilir."
+ },
+ "explanation": {
+  "en": "The mabnī chapter closes with the adverbs whose building is a matter of position rather than of class. The limit-words (الْغَايَات) are ordinary declinable nouns — قَبْلَ، بَعْدَ take the fatḥa like any ẓarf — until the noun they lean on is cut away while its meaning is kept; then, having lost the partner that made them a complete expression, they are built on the ḍamm (مِنْ قَبْلُ، مِنْ بَعْدُ), and the notebook reads لَا غَيْرُ، لَيْسَ غَيْرُ and حَسْبُ on the same footing. حَيْثُ is built outright and needs a whole sentence to lean on, as إِذْ did in the previous chapter; لَدَى and لَدُنْ duplicate عِنْدَ with a narrower sense (the notebook's gloss: لَدَى only for what is actually at hand, عِنْدَ also for what is in one's store); قَطُّ and عَوْضُ are the two «evers», one over the whole past and one over the whole future, each riding a negation. The chapter's last ruling is a choice, not a rule: a ẓarf annexed to a sentence, or to the clause-word إِذْ, may be built on the fatḥ or may keep its iʿrāb — the two readings of ﴿يَوْمَ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ﴾ and the fatḥ/kasr readings of يَوْمَئِذٍ — and غَيْر and مِثْل before مَا، أَنْ and أَنَّ enjoy the same freedom, because the clause after them is a maṣdar in the making and leaves their annexation unsettled. The notebook keeps the muṣḥaf's reading apart from the grammarians' option: in the Qurʾān يَوْمِئِذٍ is declined.",
+  "tr": "Mebnî bâbı, binâsı sınıfa değil konuma bağlı olan zarflarla kapanır. Gâyeler sıradan mu'reb isimlerdir — قَبْلَ، بَعْدَ her zarf gibi fetha alır — tâ ki dayandıkları isim, manası korunarak kesilinceye kadar; o zaman kendilerini tam bir ifade yapan eşi kaybettikleri için damm üzere mebnî olurlar (مِنْ قَبْلُ، مِنْ بَعْدُ); defter لَا غَيْرُ، لَيْسَ غَيْرُ ve حَسْبُ'yü aynı zemine koyar. حَيْثُ doğrudan mebnîdir ve önceki bâbdaki إِذْ gibi dayanacak bütün bir cümle ister; لَدَى ve لَدُنْ, عِنْدَ'yi daha dar bir manayla tekrarlar (defterin açıklaması: لَدَى yalnız elde hâzır olan için, عِنْدَ hazinede olan için de); قَطُّ ve عَوْضُ, biri bütün geçmiş biri bütün gelecek üzerinde, her biri bir nefye binen iki «hiç»tir. Bâbın son hükmü kural değil seçimdir: bir cümleye ya da cümle-kelimesi إِذْ'e muzâf olan zarf feth üzere mebnî olabilir ya da i'râbını koruyabilir — ﴿يَوْمَ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ﴾'nun iki okunuşu ile يَوْمَئِذٍ'in feth/kesr okunuşları — ve مَا، أَنْ، أَنَّ'den önce غَيْر ile مِثْل aynı serbestliğe sahiptir; çünkü sonlarındaki cümle oluşmakta olan bir masdardır ve izâfetlerini askıda bırakır. Defter mushafın okunuşunu nahivcilerin seçiminden ayrı tutar: Kur'ân'da يَوْمِئِذٍ mu'rebdir."
+ },
+ "examples": [
+  {
+   "ar": "قَبْلُ وَبَعْدُ وَتَحْتُ وَفَوْقُ وَقُدَّامُ وَخَلْفُ وَوَرَاءُ",
+   "en": "The limit-words on the ḍamm.",
+   "tr": "Damm üzere gâyeler.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "لَا غَيْرُ، لَيْسَ غَيْرُ، حَسْبُ",
+   "en": "The notebook's additions to the rule.",
+   "tr": "Defterin kurala ekledikleri.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "اجْلِسْ حَيْثُ زَيْدٌ جَالِسٌ — أَمَا تَرَى حَيْثُ سُهَيْلٍ",
+   "en": "حَيْثُ before a sentence and before a single noun.",
+   "tr": "Cümleden ve müfredden önce حَيْثُ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "مَا رَأَيْتُهُ قَطُّ — لَا أَرَاهُ عَوْضُ",
+   "en": "The two «evers».",
+   "tr": "İki «hiç».",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "يَوْمَ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ — مِنْ خِزْيِ يَوْمَئِذٍ",
+   "en": "The optional building before a clause and before إِذْ (5:119, 11:66).",
+   "tr": "Cümleden ve إِذْ'den önce ihtiyârî binâ (5:119, 11:66).",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "قِيَامِي مِثْلَ مَا قَامَ زَيْدٌ، مِثْلَ أَنْ يَقُومَ زَيْدٌ، مِثْلَ أَنَّكَ تَقُومُ",
+   "en": "مِثْل built or declined before the three.",
+   "tr": "Üçünden önce mebnî ya da mu'reb مِثْل.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«مِنْ قَبْلِ — min'den sonra mecrûrdur, kesre alır»",
+   "right": "«مِنْ قَبْلُ — muzâfun ileyhi hazfedilip manası niyet edildiğinden damm üzere mebnîdir; مِنْ قَبْلِ ذٰلِكَ ise mecrûr»",
+   "why": {
+    "en": "The ḍamma is a building mark that appears only when the partner is cut away; with the partner present the word declines normally.",
+    "tr": "Damme ancak eş kesilince gelen bir bina alâmetidir; eş yerindeyken kelime normal i'râblanır."
+   }
+  },
+  {
+   "wrong": "«حَيْثُ زَيْدٍ — haysü bir isme muzâf olur, sonrası mecrûr»",
+   "right": "«حَيْثُ زَيْدٌ جَالِسٌ — haysü cümleye muzâf olur; müfrede izâfeti nadirdir (حَيْثُ سُهَيْلٍ)»",
+   "why": {
+    "en": "The Kafiya makes the sentence the normal annex of حَيْثُ and the single noun the exception.",
+    "tr": "Kâfiye, cümleyi haysü'nün asıl muzâfun ileyhi, müfredi istisnâ sayar."
+   }
+  },
+  {
+   "wrong": "«لَا أَرَاهُ قَطُّ — kattu her nefiyle kullanılır»",
+   "right": "«مَا رَأَيْتُهُ قَطُّ — kattu geçmişin nefyi için; gelecek için عَوْضُ: لَا أَرَاهُ عَوْضُ»",
+   "why": {
+    "en": "The two adverbs split the timeline: قَطُّ sweeps the past, عَوْضُ the future.",
+    "tr": "İki zarf zamanı paylaşır: قَطُّ geçmişi, عَوْضُ geleceği süpürür."
+   }
+  },
+  {
+   "wrong": "«يَوْمَ يَنْفَعُ — feth, mef'ûlün fîh nasbıdır; bina söz konusu değildir»",
+   "right": "«يَوْمَ يَنْفَعُ — cümleye muzâf zarfta feth, bina fethası da olabilir nasb fethası da; ikisi de câizdir»",
+   "why": {
+    "en": "Before a clause the adverb's ending is genuinely ambiguous, and the Kafiya records the choice rather than forcing one reading.",
+    "tr": "Cümleden önce zarfın sonu gerçekten çift anlamlıdır; Kâfiye tek okunuşu dayatmak yerine seçimi kaydeder."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-mabni-wal-mudmar",
+  "al-kinayat-wal-zuruf-al-mabniyya",
+  "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+  "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha",
+  "ism-mawsul",
+  "an-masdariyya",
+  "inna-wa-akhawatuha",
+  "tamyiz"
+ ]
+}

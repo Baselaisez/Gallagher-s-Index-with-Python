@@ -1,0 +1,110 @@
+{
+ "id": "kaanna-lakinna-layta-laalla-fil-kafiya",
+ "title": {
+  "ar": "كَأَنَّ وَلَكِنَّ وَلَيْتَ وَلَعَلَّ فِي الْكَافِيَةِ",
+  "en": "Ka-anna, lākinna, layta and laʿalla in the Kafiya: likeness and its ungoverning ka-an, correction between yes and no, wish and al-Farrāʾ's double naṣb, hope for the wished and the feared",
+  "tr": "Kâfiye'de keenne, lâkinne, leyte ve lealle: teşbih ve amelsiz keen, evet ile hayır arasında istidrak, temennî ve Ferrâ'nın çifte nasbı, arzu edilen ve korkulan için tereccî"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — كأن للتشبيه؛ لكن للاستدراك؛ ليت للتمني؛ لعل للترجي",
+  "ضياء صونغور اوغلى — دفتر الكافية: كأن ثدياه حقان؛ لكن بين جملتين مختلفتين إثباتا ونفيا؛ لكن المخففة والواو؛ الفراء وليت زيدا قائما؛ لعلكم تفلحون ولعل الساعة قريب؛ الجر بلعل شاذ"
+ ],
+ "question": {
+  "en": [
+   "What does ka-anna do? It likens: كَأَنَّ زَيْدًا أَسَدٌ. Lightened to ka-an it stops governing on the best usage, and the notebook proves it from a half-line: كَأَنْ ثَدْيَاهُ حُقَّانِ keeps the alif of the dual, so the word is a mubtada and not ka-an's ism — had it been governed it would read ثَدْيَيْهِ. The SignEngine's dual rule is the whole argument.",
+   "When is lākinna used? To correct a false inference from what was just said, and so it stands between an affirmative and a negative (or the reverse): «Zayd came to me — but ʿAmr did not». Its lightened lākin governs nothing, and lākinna may take a wāw before it.",
+   "What is special about layta? It wishes for what cannot be. Al-Farrāʾ let both its ism and its khabar stand in naṣb — لَيْتَ زَيْدًا قَائِمًا — a Kufan reading the notebook records and does not adopt.",
+   "And laʿalla? Hope — awaiting something, whether wished for (لَعَلَّكُمْ تُفْلِحُونَ) or feared (لَعَلَّ السَّاعَةَ قَرِيبٌ). Putting its noun in jarr is irregular, a dialect form the books mention and the engine refuses.",
+   "What does the engine do? All four sit in the INNA table with their government; the lightened forms are listed as ungoverning; the analyzer's dual-alif test is what decides ثَدْيَاهُ, and laʿalla's majrūr noun is flagged shādhdh rather than parsed."
+  ],
+  "tr": [
+   "Keenne ne yapar? Benzetir: كَأَنَّ زَيْدًا أَسَدٌ. Keen'e hafifleyince en iyi kullanışa göre amelden kesilir; defter bunu bir mısradan kanıtlar: كَأَنْ ثَدْيَاهُ حُقَّانِ tesniye elifini tutar, dolayısıyla kelime keen'in ismi değil mübtedâdır — yönetilseydi ثَدْيَيْهِ okunurdu. SignEngine'in tesniye kuralı bütün delildir.",
+   "Lâkinne ne zaman kullanılır? Az önce söylenenden çıkan yanlış bir sonucu düzeltmek için; bu yüzden bir müsbet ile bir menfî (ya da tersi) arasında durur: «Zeyd bana geldi — fakat Amr gelmedi». Hafiflemiş lâkin hiçbir şeyi yönetmez ve lâkinne önüne vâv alabilir.",
+   "Leyte'de özel olan ne? Olamayacak şeyi diler. Ferrâ hem ismini hem haberini nasbda bıraktı — لَيْتَ زَيْدًا قَائِمًا — defterin kaydettiği ve benimsemediği bir Kûfe okuyuşu.",
+   "Ya lealle? Tereccî — ister arzu edilen (لَعَلَّكُمْ تُفْلِحُونَ) ister korkulan (لَعَلَّ السَّاعَةَ قَرِيبٌ) bir şeyi beklemek. İsmini cer etmek şâzdır; kitapların andığı, motorun reddettiği bir lehçe biçimi.",
+   "Motor ne yapar? Dördü de amelleriyle INNA tablosunda oturur; hafiflemiş biçimler amelsiz olarak listelenir; analizörün tesniye elifi testi ثَدْيَاهُ'yu belirler; lealle'nin mecrûr ismi çözümlenmek yerine şâz diye işaretlenir."
+  ]
+ },
+ "plain": {
+  "en": "Ka-anna says «as if», lākinna says «but», layta says «if only», laʿalla says «maybe». All four govern like inna. Shortened, ka-an and lākin govern nothing; one grammarian let layta put both its words in naṣb; and laʿalla with a majrūr noun is a dialect oddity.",
+  "tr": "Keenne «sanki», lâkinne «fakat», leyte «keşke», lealle «belki» der. Dördü de inne gibi amel eder. Kısalınca keen ve lâkin hiçbir şeyi yönetmez; bir nahivci leyte'nin iki kelimesini de nasbda bıraktı; mecrûr isimli lealle ise bir lehçe tuhaflığıdır."
+ },
+ "explanation": {
+  "en": "The four remaining sisters, each with its meaning and its one notable ruling. For كَأَنَّ the ruling is the lightened كَأَنْ, and the notebook's proof is the kind a parser can run: in the half-line كَأَنْ ثَدْيَاهُ حُقَّانِ the dual keeps its alif, so nothing governed it. For لَكِنَّ the notebook gives the function — correction of a false inference — and the structural consequence: it sits between an affirmative and a negative, as the stock example shows; the lightened لَكِنْ is ungoverning, and the wāw may precede لَكِنَّ. For لَيْتَ the only ruling is al-Farrāʾ's double naṣb, recorded with his name. For لَعَلَّ the two Qurʾānic cases show hope reaching toward the wished-for and toward the feared, and the chapter closes on the irregular jarr. The chapter is short because the Kafiya is short here; the Iẓhār's chapter on the sisters of إِنَّ supplies the drill.",
+  "tr": "Kalan dört kardeş, her biri mânâsı ve dikkate değer tek hükmüyle. كَأَنَّ için hüküm hafiflemiş كَأَنْ'dir ve defterin delili bir çözümleyicinin çalıştırabileceği türdendir: كَأَنْ ثَدْيَاهُ حُقَّانِ mısraında tesniye elifini tutar, demek ki onu hiçbir şey yönetmemiştir. لَكِنَّ için defter işlevi — yanlış bir çıkarımın düzeltilmesi — ve yapısal sonucu verir: alışılmış örneğin gösterdiği gibi bir müsbet ile bir menfî arasında oturur; hafiflemiş لَكِنْ amelsizdir ve لَكِنَّ'nin önüne vâv gelebilir. لَيْتَ için tek hüküm, adıyla kaydedilen Ferrâ'nın çifte nasbıdır. لَعَلَّ için iki Kur'ânî örnek ümidin arzu edilene ve korkulana uzandığını gösterir; bâb şâz cerle kapanır. Bâb kısadır çünkü Kâfiye burada kısadır; İzhar'ın إِنَّ'nin kardeşleri bâbı alıştırmayı sağlar."
+ },
+ "examples": [
+  {
+   "ar": "كَأَنْ ثَدْيَاهُ حُقَّانِ",
+   "en": "Ka-an lightened and ungoverning.",
+   "tr": "Hafiflemiş ve amelsiz keen.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "جَاءَنِي زَيْدٌ لَكِنَّ عَمْرًا لَمْ يَجِئْ",
+   "en": "Correction between an affirmative and a negative.",
+   "tr": "Müsbet ile menfî arasında istidrak.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "لَيْتَ زَيْدًا قَائِمًا",
+   "en": "Al-Farrāʾ's double naṣb.",
+   "tr": "Ferrâ'nın çifte nasbı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "لَعَلَّكُمْ تُفْلِحُونَ — لَعَلَّ السَّاعَةَ قَرِيبٌ",
+   "en": "Hope for the wished-for and the feared.",
+   "tr": "Arzu edilen ve korkulan için tereccî.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«كَأَنْ ثَدْيَيْهِ حُقَّانِ»",
+   "right": "«كَأَنْ ثَدْيَاهُ حُقَّانِ — hafif keen amel etmez; isim mübtedâdır»",
+   "why": {
+    "en": "The dual's alif shows no governor touched it.",
+    "tr": "Tesniyenin elifi ona hiçbir âmilin dokunmadığını gösterir."
+   }
+  },
+  {
+   "wrong": "«جَاءَنِي زَيْدٌ لَكِنَّ عَمْرًا جَاءَ»",
+   "right": "«جَاءَنِي زَيْدٌ لَكِنَّ عَمْرًا لَمْ يَجِئْ — iki cümle müsbet ve menfî olmakla ayrılmalı»",
+   "why": {
+    "en": "Lākinna corrects; two affirmatives leave nothing to correct.",
+    "tr": "Lâkinne düzeltir; iki müsbet düzeltecek bir şey bırakmaz."
+   }
+  },
+  {
+   "wrong": "«لَيْتَ زَيْدًا قَائِمًا — cumhûrun görüşü»",
+   "right": "«لَيْتَ زَيْدًا قَائِمٌ — çifte nasb yalnız Ferrâ'nındır»",
+   "why": {
+    "en": "The majority keep layta's khabar in rafʿ.",
+    "tr": "Çoğunluk leyte'nin haberini ref'te tutar."
+   }
+  },
+  {
+   "wrong": "«لَعَلَّ زَيْدٍ قَائِمٌ»",
+   "right": "«لَعَلَّ زَيْدًا قَائِمٌ — lealle ile cer şâzdır»",
+   "why": {
+    "en": "Laʿalla governs like inna; the jarr is a dialect oddity.",
+    "tr": "Lealle inne gibi amel eder; cer bir lehçe tuhaflığıdır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-huruf-al-mushabbaha-bil-fil-fil-kafiya",
+  "masail-inna-wal-mukhaffafa-fil-kafiya",
+  "inna-wa-akhawatuha",
+  "tashbih",
+  "insha-wa-tamanni",
+  "al-muthanna"
+ ]
+}

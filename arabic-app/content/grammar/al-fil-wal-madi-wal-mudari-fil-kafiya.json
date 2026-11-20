@@ -1,0 +1,134 @@
+{
+ "id": "al-fil-wal-madi-wal-mudari-fil-kafiya",
+ "title": {
+  "ar": "الْفِعْلُ وَالْمَاضِي وَالْمُضَارِعُ فِي الْكَافِيَةِ",
+  "en": "The verb in the Kafiya: its definition and marks, قَدْ and the two futures, the māḍī and its three bināʾs, the muḍāriʿ of نَأَيْتَ with its prefix vowel and its iʿrāb",
+  "tr": "Kâfiye'de fiil: tarifi ve hâssaları, قَدْ ile iki istikbâl, mâzî ve üç binâsı, نَأَيْتَ'nin muzârisi, ön ek harekesi ve i'râbı"
+ },
+ "level": 3,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — الفعل: ما دل على معنى في نفسه مقترن بأحد الأزمنة الثلاثة؛ ومن خواصه قد والسين وسوف والجوازم وتاء التأنيث الساكنة والضمائر المرفوعة البارزة المتصلة؛ الماضي: ما دل على زمان قبل زمانك، مبني على الفتح؛ المضارع: ما أشبه الاسم بأحد حروف نأيت؛ حرف المضارعة مضموم في الرباعي مفتوح فيما سواه؛ ويعرب إذا لم تتصل به نون جمع المؤنث ونون التأكيد",
+  "ضياء صونغور اوغلى — دفتر الكافية: قد للتحقيق وللتقليل؛ السين وسوف؛ ضرب ضربا ضربت ضربتا؛ رمى؛ ضربوا؛ وجه شبه المضارع بالاسم؛ الهمزة والنون والتاء والياء؛ علامات الرفع والنصب والجزم"
+ ],
+ "question": {
+  "en": [
+   "What makes a word a VERB? It means something in itself (so it is not a particle) and that meaning is tied to a time (so it is not a noun): past, present or future. The definition is the same three-way split the first chapter made, now from the verb's side.",
+   "How do you recognise one? By what only a verb admits: قَدْ, the sīn, سَوْفَ and the jāzims in front; the quiescent tāʾ of the feminine (فَعَلَتْ) and the raised attached pronouns (فَعَلْتَ) behind.",
+   "What do the particles mean? قَدْ before a māḍī confirms (قَدْ صَدَقَ, «he did speak truly»); before a muḍāriʿ it says «sometimes» (إِنَّ الْكَذُوبَ قَدْ يَصْدُقُ). The sīn is the near future, سَوْفَ the far.",
+   "What is the MĀḌĪ and how is it built? A verb for a time before the moment of speaking, built on the fatḥa — written (ضَرَبَ، ضَرَبَا، ضَرَبَتْ، ضَرَبَتَا) or estimated on an alif (رَمَى) — on the sukūn when a vowelled subject pronoun follows (ضَرَبْتُ، ضَرَبْنَ، ضَرَبْنَا), and on the ḍamma before the wāw of the plural (ضَرَبُوا). The sukūn is its bināʾ, never a jazm.",
+   "What is the MUḌĀRIʿ? The verb that «resembles the noun» by one of نَأَيْتَ — hamza for I, nūn for we, tāʾ for you and for she and they-two-f., yāʾ for the rest of the absent. It resembles the noun because, like a noun, it is shared between two meanings (present and future) until the sīn or سَوْفَ narrows it — and that resemblance is why it, alone among verbs, declines.",
+   "Which vowel does the prefix take? A ḍamma whenever the māḍī has four letters — bare دَحْرَجَ or augmented أَفْعَلَ، فَعَّلَ، فَاعَلَ (يُفْعِلُ، يُفَعِّلُ، يُفَاعِلُ) — and a fatḥa everywhere else (يَضْرِبُ، يَسْتَفْعِلُ).",
+   "How does it decline? Rafʿ, naṣb and jazm, as long as neither the feminine-plural nūn nor the emphatic nūn is attached. A sound verb with no apparent pronoun shows ḍamma, fatḥa, sukūn (يَضْرِبُ، لَنْ يَضْرِبَ، لَمْ يَضْرِبْ); one carrying a dual, plural or second-feminine pronoun keeps its nūn in rafʿ and drops it in naṣb and jazm (يَضْرِبَانِ، لَنْ يَضْرِبَا، لَمْ يَضْرِبَا) — the five verbs. The SarfTagger reads the person off exactly these letters, and the IrabSign reads the case off exactly these endings."
+  ],
+  "tr": [
+   "Bir kelimeyi FİİL yapan nedir? Kendi başına bir mânâsı vardır (harf değildir) ve o mânâ bir zamana bağlıdır (isim değildir): mâzî, hâl ya da istikbâl. Tarif, ilk bâbın yaptığı üçlü ayrımın fiil tarafından görülmüş hâlidir.",
+   "Nasıl tanınır? Yalnız fiilin kabul ettikleriyle: önünde قَدْ, sîn, سَوْفَ ve cezm ediciler; ardında sâkin te'nîs tâsı (فَعَلَتْ) ve merfû bitişik zamirler (فَعَلْتَ).",
+   "Edatlar ne anlatır? Mâzî önündeki قَدْ tahkîk eder (قَدْ صَدَقَ, «gerçekten doğru söyledi»); muzâri önünde «bazen» der (إِنَّ الْكَذُوبَ قَدْ يَصْدُقُ). Sîn yakın istikbâl, سَوْفَ uzak.",
+   "MÂZÎ nedir, nasıl binâ edilir? Konuşma ânından önceki zaman için fiil; fetha üzere mebnî — lafzan (ضَرَبَ، ضَرَبَا، ضَرَبَتْ، ضَرَبَتَا) ya da elif üzerinde takdîren (رَمَى) — harekeli özne zamiri gelince sükûn üzere (ضَرَبْتُ، ضَرَبْنَ، ضَرَبْنَا), cemi vâvından önce zamme üzere (ضَرَبُوا). Sükûn onun binâsıdır, asla cezm değil.",
+   "MUZÂRİ nedir? نَأَيْتَ'den biriyle «isme benzeyen» fiil — hemze ben, nûn biz, tâ sen ve o (kadın) ile o iki kadın, yâ gâibin geri kalanı. İsme benzer, çünkü isim gibi, sîn ya da سَوْفَ daraltana kadar iki mânâ (hâl ve istikbâl) arasında müşterektir — ve bu benzerlik, fiiller içinde yalnız onun mu'reb olmasının sebebidir.",
+   "Ön ek hangi harekeyi alır? Mâzî dört harfli olduğunda zamme — mücerred دَحْرَجَ ya da mezîd أَفْعَلَ، فَعَّلَ، فَاعَلَ (يُفْعِلُ، يُفَعِّلُ، يُفَاعِلُ) — başka her yerde fetha (يَضْرِبُ، يَسْتَفْعِلُ).",
+   "Nasıl çekilir? Cemi müennes nûnu ile te'kîd nûnu bitişmedikçe ref', nasb ve cezm. Bâriz zamirsiz sahîh fiil zamme, fetha, sükûn gösterir (يَضْرِبُ، لَنْ يَضْرِبَ، لَمْ يَضْرِبْ); tesniye, cemi ya da muhâtaba zamiri taşıyan ref'te nûnunu tutar, nasb ve cezmde düşürür (يَضْرِبَانِ، لَنْ يَضْرِبَا، لَمْ يَضْرِبَا) — ef'âl-i hamse. SarfTagger şahsı tam bu harflerden, IrabSign hâli tam bu sonlardan okur."
+  ]
+ },
+ "plain": {
+  "en": "A verb is a word whose meaning carries a time; only verbs take قَدْ, the sīn, سَوْفَ, a jāzim, the feminine تْ or a subject ending. The past is fixed on a fatḥa (sukūn before a vowelled ending, ḍamma before وا); the present-future starts with one of نَأَيْتَ and alone changes its ending for case.",
+  "tr": "Fiil, mânâsı bir zaman taşıyan kelimedir. Tanırsınız, çünkü yalnız fiiller قَدْ, sîn, سَوْفَ, cezm edici, dişil تْ ya da özne eki alır. Geçmiş zaman fethaya sabitlenir (harekeli ekten önce sükûn, وا'dan önce zamme); şimdiki-gelecek zaman نَأَيْتَ'den biriyle başlar ve hâle göre sonu değişen tek fiildir."
+ },
+ "explanation": {
+  "en": "The chapter opens the Kafiya's second part — the verb — with the definition that mirrors the noun's: a meaning in itself (against the particle) joined to a time (against the noun). The marks follow, and they are the practical half of the definition: a learner who cannot yet parse a word can still ask whether قَدْ, the sīn, سَوْفَ or لَمْ could stand before it and whether تْ or تَ could stand after it. The notebook's gloss on the particles is kept because it is doctrine, not decoration: قَدْ confirms a past and limits a present. The māḍī is defined by position relative to the speaker's own moment and built on the fatḥa, and the chapter's most useful sentence is the three-way account of that bināʾ — fatḥa written or estimated, sukūn before a vowelled subject pronoun because two vowels would otherwise crowd the ending, ḍamma before the wāw because the wāw demands it. None of these is iʿrāb, and the engine's IrabSign has the rule that the opening vowel, not the ending, decides what an ending means. The muḍāriʿ is defined by its letters, and the notebook's question — why does it resemble the noun? — is answered the classical way: it is ambiguous between present and future as a noun is ambiguous among meanings, and it is narrowed by the sīn and سَوْفَ as a noun is narrowed by the article. That resemblance is the ground of its iʿrāb, and the chapter closes on the two shapes that iʿrāb takes: vowels on a sound verb, the nūn kept or dropped on the five verbs. The received يُدَحْرِجُ is the notebook's model of the bare four-lettered verb; it is printed there with a khāʾ, and the chapter cites the patterns rather than the word.",
+  "tr": "Bâb Kâfiye'nin ikinci kısmını — fiili — ismin tarifini aynalayan tarifle açar: kendi başına bir mânâ (harfe karşı), bir zamana bağlı (isme karşı). Hâssalar izler ve tarifin pratik yarısıdır: henüz bir kelimeyi tahlil edemeyen öğrenci yine de önüne قَدْ, sîn, سَوْفَ ya da لَمْ, ardına تْ ya da تَ gelip gelemeyeceğini sorabilir. Defterin edat açıklaması süs değil doktrin olduğu için tutulmuştur: قَدْ mâzîyi tahkîk eder, muzâriyi azaltır. Mâzî konuşanın kendi ânına göre konumla tarif edilir ve fetha üzere binâ edilir; bâbın en yararlı cümlesi bu binânın üçlü hesabıdır — fetha lafzan ya da takdîren, harekeli özne zamirinden önce sükûn (yoksa sonda iki hareke sıkışırdı), vâvdan önce zamme (vâv öyle ister). Bunların hiçbiri i'râb değildir ve motorun IrabSign'ı bir sonun ne anlama geldiğine sonun değil açılış harekesinin karar verdiği kuralını taşır. Muzâri harfleriyle tarif edilir ve defterin sorusu — neden isme benzer? — klasik biçimde cevaplanır: isim mânâlar arasında müphem olduğu gibi o da hâl ile istikbâl arasında müphemdir ve isim lâm ile daraltıldığı gibi o da sîn ve سَوْفَ ile daraltılır. Bu benzerlik i'râbının temelidir ve bâb i'râbın aldığı iki biçimle kapanır: sahîh fiilde harekeler, ef'âl-i hamsede tutulan ya da düşen nûn. Alınan يُدَحْرِجُ defterin mücerred rubâî modelidir; orada hâ ile basılmıştır ve bâb kelimeyi değil vezinleri zikreder."
+ },
+ "examples": [
+  {
+   "ar": "الْفِعْلُ: مَا دَلَّ عَلَى مَعْنًى فِي نَفْسِهِ مُقْتَرِنٍ بِأَحَدِ الْأَزْمِنَةِ الثَّلَاثَةِ",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "قَدْ صَدَقَ — إِنَّ الْكَذُوبَ قَدْ يَصْدُقُ",
+   "en": "قَدْ confirming, then limiting.",
+   "tr": "Tahkîk eden, sonra azaltan قَدْ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "الْمَاضِي: مَا دَلَّ عَلَى زَمَانٍ قَبْلَ زَمَانِكَ",
+   "en": "The māḍī.",
+   "tr": "Mâzî.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "ضَرَبَ، رَمَى — ضَرَبْتُ — ضَرَبُوا",
+   "en": "Fatḥa, sukūn, ḍamma: the three bināʾs.",
+   "tr": "Fetha, sükûn, zamme: üç binâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "الْمُضَارِعُ: مَا أَشْبَهَ الِاسْمَ بِأَحَدِ حُرُوفِ نَأَيْتَ",
+   "en": "The muḍāriʿ.",
+   "tr": "Muzâri.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "يُفْعِلُ، يُفَعِّلُ، يُفَاعِلُ — يَسْتَفْعِلُ",
+   "en": "The prefix vowel.",
+   "tr": "Ön ek harekesi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  },
+  {
+   "ar": "يَضْرِبُ، لَنْ يَضْرِبَ، لَمْ يَضْرِبْ — يَضْرِبَانِ، لَنْ يَضْرِبَا، لَمْ يَضْرِبَا",
+   "en": "The signs of the three cases.",
+   "tr": "Üç hâlin alâmetleri.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s11"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«ضَرَبْتُ — cezm ile sükûn»",
+   "right": "«ضَرَبْتُ — harekeli merfû zamirden önce sükûn üzere MEBNÎ; mâzî hiç mu'reb olmaz»",
+   "why": {
+    "en": "There is no jāzim; the sukūn is the māḍī's bināʾ before a vowelled subject pronoun.",
+    "tr": "Cezm edici yoktur; sükûn, harekeli özne zamirinden önce mâzînin binâsıdır."
+   }
+  },
+  {
+   "wrong": "«يَضْرِبُ — ön ek zammeli: يُضْرِبُ»",
+   "right": "«يَضْرِبُ — sülâsî mücerredde fetha; zamme yalnız dört harfli mâzîde: يُكْرِمُ، يُعَلِّمُ، يُقَاتِلُ»",
+   "why": {
+    "en": "The ḍamma marks the four-lettered māḍī; يُضْرِبُ would be the passive.",
+    "tr": "Zamme dört harfli mâzîyi işaretler; يُضْرِبُ meçhûl olurdu."
+   }
+  },
+  {
+   "wrong": "«لَمْ يَضْرِبَانِ»",
+   "right": "«لَمْ يَضْرِبَا — ef'âl-i hamsede cezm nûnun hazfiyledir»",
+   "why": {
+    "en": "A verb carrying the dual alif takes its naṣb and jazm by dropping the nūn.",
+    "tr": "Tesniye elifi taşıyan fiil nasb ve cezmini nûnu düşürerek alır."
+   }
+  },
+  {
+   "wrong": "«قَدْ يَصْدُقُ — kesinlikle doğru söyler»",
+   "right": "«قَدْ يَصْدُقُ — bazen doğru söyler; قَدْ muzâri önünde taklîl içindir»",
+   "why": {
+    "en": "قَدْ confirms only before a māḍī; before a muḍāriʿ it limits.",
+    "tr": "قَدْ yalnız mâzî önünde tahkîk eder; muzâri önünde azaltır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-murab-wal-mabni-wal-irab",
+  "nawasib-wa-jawazim-al-mudari",
+  "al-mabni-wal-mudmar",
+  "al-majzum-wal-shart-wal-jaza",
+  "form-iv-verbs"
+ ]
+}

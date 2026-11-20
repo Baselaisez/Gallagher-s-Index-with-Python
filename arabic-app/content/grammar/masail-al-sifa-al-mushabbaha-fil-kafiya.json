@@ -1,0 +1,112 @@
+{
+ "id": "masail-al-sifa-al-mushabbaha-fil-kafiya",
+ "title": {
+  "ar": "مَسَائِلُ الصِّفَةِ الْمُشَبَّهَةِ الثَّمَانِيَ عَشْرَةَ",
+  "en": "The eighteen cases of the ṣifa mushabbaha graded: one pronoun is best, two is good, none is ugly — and how the pronoun is found, how the ṣifa agrees, and which participles share the grid",
+  "tr": "Sıfat-ı müşebbehenin on sekiz meselesi derecelendirilir: tek zamir en iyi, iki iyi, hiç çirkin — zamir nasıl bulunur, sıfat nasıl uyar, hangi ismler tabloyu paylaşır"
+ },
+ "level": 5,
+ "group": "nahw",
+ "classicalSources": [
+  "ضياء صونغور اوغلى — دفتر الكافية: ما فيه ضمير واحد أحسن (تسع)، ما فيه ضميران حسن (اثنتان)، ما لا ضمير فيه قبيح (أربع)؛ الضمير في المعمول ظاهر وفي الصفة بحسب رفع المعمول؛ مطابقة الصفة للموصوف؛ اسم الفاعل من اللازم واسم المفعول من المتعدي إلى واحد كالصفة المشبهة",
+  "شرح الرضي على الكافية — باب الصفة المشبهة: تقسيم المسائل وما يحسن منها وما يقبح"
+ ],
+ "question": {
+  "en": [
+   "How are the sixteen live cases ranked? By counting pronouns. The ṣifa must tie back to its described noun exactly once: one pronoun is BEST (nine cases), two is merely GOOD (two cases), none is UGLY (four cases). Lightness is the measure throughout the chapter.",
+   "Where does the pronoun hide? In the governed word it is visible (وَجْهُهُ). In the ṣifa it is there only when the ṣifa is NOT raising its governed word: حَسَنٌ وَجْهُهُ has the noun as doer and the ṣifa works like a verb with no pronoun of its own; حَسَنٌ وَجْهَهُ and حَسَنُ وَجْهٍ have the noun in naṣb or jarr, so a pronoun inside the ṣifa stands for the described noun.",
+   "Which nine are best? The seven in which the ṣifa carries the pronoun and the noun is not annexed to one (حَسَنُ وَجْهٍ، حَسَنُ الْوَجْهِ، حَسَنٌ وَجْهًا، الْحَسَنُ الْوَجْهِ …), and the two in which the pronoun sits on the raised noun (حَسَنٌ وَجْهُهُ، الْحَسَنُ وَجْهُهُ).",
+   "Which four are ugly? Those with no pronoun anywhere — الْحَسَنُ وَجْهٌ and its kin — because nothing in the wording ties the phrase to زَيْدٌ at all.",
+   "Does the ṣifa agree? Fully: هِنْدٌ حَسَنَةُ وَجْهٍ, الزَّيْدَانِ حَسَنَا وَجْهٍ, الزَّيْدُونَ حَسَنُو وَجْهٍ — and in annexation the dual and plural drop their nūn (حَسَنَا، حَسَنُو), exactly as the IdafaEngine builds them.",
+   "Who else lives in this grid? The ism fāʿil of an intransitive verb (قَائِمٌ الْأَبُ / الْأَبَ / الْأَبِ) and the ism mafʿūl of a one-object verb (مَضْرُوبٌ الْأَبُ / الْأَبَ / الْأَبِ): both may take their noun in all three cases. A transitive verb's ism fāʿil and any ism mafʿūl keep their doer or deputy doer in rafʿ only.",
+   "What does the engine do? The IdafaEngine drops the nūn of حَسَنَا and حَسَنُو and the TartibEngine keeps the described noun first; the eighteen-cell table itself is the kind of exact, enumerable rule the drill bank can replay cell by cell."
+  ],
+  "tr": [
+   "On altı canlı mesele nasıl sıralanır? Zamir sayarak. Sıfat mevsûfuna tam bir kez bağlanmalıdır: tek zamir EN İYİ (dokuz mesele), iki yalnızca İYİ (iki mesele), hiç ÇİRKİN (dört mesele). Bâb boyunca ölçü hafifliktir.",
+   "Zamir nerede saklanır? Ma'mûlde görünür (وَجْهُهُ). Sıfatta yalnız sıfat ma'mûlünü ref' ETMEDİĞİNDE vardır: حَسَنٌ وَجْهُهُ'da isim fâildir ve sıfat kendi zamiri olmayan bir fiil gibi çalışır; حَسَنٌ وَجْهَهُ ve حَسَنُ وَجْهٍ'de isim nasb ya da cerdedir, dolayısıyla sıfatın içindeki bir zamir mevsûfu temsil eder.",
+   "En iyi dokuz hangileridir? Sıfatın zamiri taşıdığı ve ismin zamire muzâf olmadığı yedisi (حَسَنُ وَجْهٍ، حَسَنُ الْوَجْهِ، حَسَنٌ وَجْهًا، الْحَسَنُ الْوَجْهِ …) ile zamirin ref'edilmiş isimde oturduğu ikisi (حَسَنٌ وَجْهُهُ، الْحَسَنُ وَجْهُهُ).",
+   "Çirkin dört hangileridir? Hiçbir yerde zamiri olmayanlar — الْحَسَنُ وَجْهٌ ve benzerleri — çünkü lafızda ibareyi زَيْدٌ'e bağlayan hiçbir şey yoktur.",
+   "Sıfat uyar mı? Tamamen: هِنْدٌ حَسَنَةُ وَجْهٍ, الزَّيْدَانِ حَسَنَا وَجْهٍ, الزَّيْدُونَ حَسَنُو وَجْهٍ — izâfette tesniye ve cemi nûnunu düşürür (حَسَنَا، حَسَنُو), tam IdafaEngine'in kurduğu gibi.",
+   "Bu tabloda başka kim yaşar? Lâzım fiilin ism-i fâili (قَائِمٌ الْأَبُ / الْأَبَ / الْأَبِ) ve bir mef'ûllü fiilin ism-i mef'ûlü (مَضْرُوبٌ الْأَبُ / الْأَبَ / الْأَبِ): ikisi de ismini üç hâlde alabilir. Müteaddî fiilin ism-i fâili ve her ism-i mef'ûl fâilini ya da nâib-i fâilini yalnız ref'te tutar.",
+   "Motor ne yapar? IdafaEngine حَسَنَا ve حَسَنُو'nun nûnunu düşürür, TartibEngine mevsûfu önde tutar; on sekiz hücreli tablonun kendisi, tatbik bankasının hücre hücre tekrar oynatabileceği türden kesin, sayılabilir bir kuraldır."
+  ]
+ },
+ "plain": {
+  "en": "Of the eighteen ways to say «Zayd is beautiful of face», the best have exactly one pronoun pointing back at Zayd, two pronouns is acceptable, and none at all is ugly. The adjective agrees with Zayd in gender and number, and a few participles can use the same grid.",
+  "tr": "«Zeyd yüzü güzel» demenin on sekiz yolundan en iyileri Zeyd'e dönen tam bir zamir taşır; iki zamir kabul edilir, hiç zamir çirkindir. Sıfat Zeyd'e cinsiyet ve sayıda uyar ve birkaç ism aynı tabloyu kullanabilir."
+ },
+ "explanation": {
+  "en": "The previous chapter counted eighteen cells and emptied two; this one grades the sixteen that remain, and the yardstick is a single idea — the ṣifa must be tied to the noun it describes, once. A pronoun does the tying. Where it sits is not arbitrary: in the governed word it is written (وَجْهُهُ), and in the ṣifa it exists exactly when the ṣifa is not acting as a verb, that is, when its noun is in naṣb or jarr rather than raised as its doer. Counting pronouns then sorts the cells: one tie is best and gives nine cases, two ties are a redundancy the grammarians tolerate and give two, no tie leaves the phrase floating and gives four they call ugly. The agreement rule follows naturally — a ṣifa that stands for a feminine, dual or plural noun takes that noun's form, and in the annexed cases the dual and plural lose their nūn as every muḍāf does. The last two sentences widen the grid: an intransitive verb's ism fāʿil and a one-object verb's ism mafʿūl have a noun after them that can play the same three roles, so قَائِمٌ الْأَبُ and مَضْرُوبُ الْأَبِ sit in the same table; but a transitive verb's ism fāʿil already owes its noun a case, and the doer of such a participle and the deputy doer of any ism mafʿūl keep their rafʿ. The chapter is the notebook's own exposition rather than the matn, and it is kept as commentary.",
+  "tr": "Önceki bâb on sekiz hücre sayıp ikisini boşalttı; bu bâb kalan on altıyı derecelendirir ve ölçü tek bir fikirdir — sıfat nitelediği isme bir kez bağlanmalıdır. Bağlamayı zamir yapar. Nerede oturduğu keyfî değildir: ma'mûlde yazılıdır (وَجْهُهُ), sıfatta ise tam olarak sıfat fiil gibi davranmadığında, yani ismi fâil olarak ref'edilmek yerine nasb ya da cerdeyken vardır. Zamir saymak sonra hücreleri sıralar: tek bağ en iyidir ve dokuz mesele verir, iki bağ nahivcilerin hoş gördüğü bir fazlalıktır ve iki verir, hiç bağ ibareyi havada bırakır ve çirkin dedikleri dört verir. Uyum kuralı doğal olarak izler — müennes, tesniye ya da cemi bir ismin yerine duran sıfat o ismin biçimini alır ve muzâf hâllerde tesniye ile cemi her muzâf gibi nûnunu kaybeder. Son iki cümle tabloyu genişletir: lâzım fiilin ism-i fâili ile bir mef'ûllü fiilin ism-i mef'ûlünün ardında aynı üç rolü oynayabilen bir isim vardır; böylece قَائِمٌ الْأَبُ ve مَضْرُوبُ الْأَبِ aynı tabloda oturur; ama müteaddî fiilin ism-i fâili ismine zaten bir hâl borçludur ve böyle bir ismin fâili ile her ism-i mef'ûlün nâib-i fâili ref'ini korur. Bâb metin değil defterin kendi açıklamasıdır ve şerh olarak tutulur."
+ },
+ "examples": [
+  {
+   "ar": "حَسَنُ وَجْهٍ — حَسَنٌ وَجْهُهُ",
+   "en": "One pronoun: in the ṣifa, or in the governed word.",
+   "tr": "Tek zamir: sıfatta ya da ma'mûlde.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "الْحَسَنُ وَجْهَهُ، حَسَنٌ وَجْهَهُ",
+   "en": "Two pronouns: good, not best.",
+   "tr": "İki zamir: iyi, en iyi değil.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "الْحَسَنُ وَجْهٌ",
+   "en": "No pronoun: ugly.",
+   "tr": "Zamirsiz: çirkin.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "هِنْدٌ حَسَنَةُ وَجْهٍ، الزَّيْدَانِ حَسَنَا وَجْهٍ، الزَّيْدُونَ حَسَنُو وَجْهٍ",
+   "en": "Agreement, with the nūn dropped in annexation.",
+   "tr": "Uyum; izâfette nûn düşer.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "زَيْدٌ قَائِمٌ الْأَبُ، قَائِمٌ الْأَبَ، قَائِمُ الْأَبِ",
+   "en": "The intransitive participle in the same grid.",
+   "tr": "Lâzım fiilin ism-i fâili aynı tabloda.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«حَسَنٌ وَجْهُهُ — sıfatta zamir var»",
+   "right": "«ma'mûl merfû olunca sıfatta zamir yoktur; وَجْهُهُ fâildir ve zamir ondadır»",
+   "why": {
+    "en": "A ṣifa raising its noun works like a verb and has no pronoun of its own.",
+    "tr": "İsmini ref' eden sıfat fiil gibi çalışır ve kendi zamiri yoktur."
+   }
+  },
+  {
+   "wrong": "«الزَّيْدَانِ حَسَنَانِ وَجْهٍ»",
+   "right": "«الزَّيْدَانِ حَسَنَا وَجْهٍ — muzâf tesniye nûnunu düşürür; حَسَنَانِ وَجْهًا ise temyizle»",
+   "why": {
+    "en": "In annexation the dual's nūn goes; keep the nūn only when the noun stands as a tamyīz.",
+    "tr": "İzâfette tesniyenin nûnu gider; nûn yalnız isim temyiz olduğunda kalır."
+   }
+  },
+  {
+   "wrong": "«زَيْدٌ ضَارِبُ الْأَبِ — fâil mecrûr»",
+   "right": "«müteaddî fiilin ism-i fâilinin fâili yalnız merfû olur; الْأَبِ burada mef'ûldür»",
+   "why": {
+    "en": "The three-case licence belongs to intransitive participles and the ṣifa; a transitive participle's doer stays marfūʿ.",
+    "tr": "Üç hâl ruhsatı lâzım ismlere ve sıfata aittir; müteaddî ismin fâili merfû kalır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-sifa-al-mushabbaha-fil-kafiya",
+  "sifa-mushabbaha",
+  "idafa-lafziyya",
+  "ism-fail",
+  "ism-maful"
+ ]
+}

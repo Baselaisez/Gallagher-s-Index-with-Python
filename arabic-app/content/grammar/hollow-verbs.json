@@ -1,0 +1,246 @@
+{
+ "id": "hollow-verbs",
+ "title": {
+  "ar": "الْفِعْل الأَجْوَف",
+  "en": "Hollow verbs",
+  "tr": "Ecvef fiil"
+ },
+ "level": 3,
+ "group": "sarf",
+ "classicalSources": [
+  "بناء الأفعال — الأقسام السبعة",
+  "المقصود — الأجوف",
+  "مراح الأرواح",
+  "تَصْرِيفُ الْعِزِّيِّ لِلزَّنْجَانِيِّ (tasrif-al-izzi-src.txt، س 184، 192، 208)",
+  "مَرَاحُ الْأَرْوَاحِ لِأَحْمَدَ بْنِ عَلِيِّ بْنِ مَسْعُودٍ (marah-al-arwah-src.txt، س 760، 761، 762، 763، 766، 771، 775، 778، 780، 783، 808، 813، 821)"
+ ],
+ "plain": {
+  "en": "Verbs with و or ي in the middle, like قَالَ. The weak letter shortens or vanishes in some forms — which is why «he did not say» is لَمْ يَقُلْ and not لَمْ يَقُولْ.",
+  "tr": "Ortası و veya ي olan fiiller (قَالَ gibi). İllet harfi bazı sîgalarda kısalır veya düşer; «demedi» bu yüzden لَمْ يَقُلْ'dur, لَمْ يَقُولْ değil."
+ },
+ "explanation": {
+  "en": "A hollow (ajwaf) verb has و or ي as its middle radical: قَالَ (aslu-hu قَوَلَ), خَافَ (خَوِفَ), أَرَادَ (أَرْوَدَ). Two rules explain almost every form. FIRST, a voweled و or ي moves its vowel onto the preceding sound letter: يَقْوُلُ → يَقُولُ, and if that vowel is a fatha the letter becomes alif instead: يَخْوَفُ → يَخَافُ. SECOND, when that move would leave two vowelless letters together, the weak letter is dropped outright: لَمْ يَقْوُلْ → لَمْ يَقُلْ, قَوَلْنَ → قُلْنَ. The vowel left behind is not arbitrary — it points to what was lost: damma for a dropped و (قُلْنَ, قُمْنَ), kasra for a dropped ي (بِعْنَ, كِلْنَ). The passive follows the same logic from the other side: قُوِلَ → قِيلَ, بُيِعَ → بِيعَ, خُوِفَ → خِيفَ. Two limits are worth memorising. In the augmented babs, i'lal happens only in إِفْعَال, اِنْفِعَال, اِفْتِعَال and اِسْتِفْعَال; فَعَّلَ, فَاعَلَ, تَفَعَّلَ, تَفَاعَلَ and اِفْعَلَّ keep the weak letter intact — طَوَّلَ, طَاوَلَ, تَحَوَّلَ, تَصَوَّرَ. And the masdars of if'al and istif'al compensate for the lost و with a final ة: إِقْوَام → إِقَامَة, اِسْتِقْوَام → اِسْتِقَامَة. The Bina counts these among the seven irregular classes.",
+  "tr": "Ecvef fiilin orta harfi و veya ي'dir: قَالَ (aslı قَوَلَ), خَافَ (خَوِفَ), أَرَادَ (أَرْوَدَ). Neredeyse bütün şekilleri iki kaide açıklar. BİRİNCİ: harekeli و/ي harekesini kendinden önceki sahih sâkin harfe nakleder: يَقْوُلُ → يَقُولُ; o hareke fetha ise harf elife kalbolur: يَخْوَفُ → يَخَافُ. İKİNCİ: bu nakil iki sâkini bir araya getirecekse illetli harf tamamen düşer: لَمْ يَقْوُلْ → لَمْ يَقُلْ، قَوَلْنَ → قُلْنَ. Geriye kalan hareke keyfî değildir, düşen harfe delâlet eder: و düşmüşse damme (قُلْنَ، قُمْنَ), ي düşmüşse kesre (بِعْنَ، كِلْنَ). Meçhul de aynı mantığı öbür yönden izler: قُوِلَ → قِيلَ، بُيِعَ → بِيعَ، خُوِفَ → خِيفَ. Ezberlenmesi gereken iki sınır vardır. Mezîd bablarda i'lal yalnız إِفْعَال، اِنْفِعَال، اِفْتِعَال ve اِسْتِفْعَال'de olur; فَعَّلَ، فَاعَلَ، تَفَعَّلَ، تَفَاعَلَ ve اِفْعَلَّ illetli harfi olduğu gibi korur — طَوَّلَ، طَاوَلَ، تَحَوَّلَ، تَصَوَّرَ. Ayrıca if'âl ve istif'âl masdarlarında düşen و'ın yerine sona tâ getirilir: إِقْوَام → إِقَامَة، اِسْتِقْوَام → اِسْتِقَامَة. Binâ bunları aksâm-ı seb'a içinde sayar."
+ },
+ "examples": [
+  {
+   "ar": "قَالَ لَهُ أَبُو حَنِيفَةَ.",
+   "en": "Abu Hanifa said to him.",
+   "sourceStory": "wasiyyat-abi-hanifa-L2",
+   "sentence": "s3",
+   "tr": "Ebû Hanîfe ona dedi."
+  },
+  {
+   "ar": "قُلْتُ الْحَقَّ وَقَالُوا كَذِبًا.",
+   "en": "I spoke the truth and they spoke a lie — long and short stems side by side.",
+   "tr": "Ben doğruyu söyledim, onlar yalan söylediler — uzun ve kısa gövde yan yana."
+  },
+  {
+   "ar": "خَافَ يُونُسُ فَدَعَا رَبَّهُ.",
+   "en": "Yunus was afraid and called upon his Lord — خَافَ shows the fatha route: خَوِفَ → خَافَ.",
+   "sourceStory": "yunus-wa-al-hut",
+   "tr": "Yunus korktu ve Rabbine dua etti — خَافَ fetha yolunu gösterir: خَوِفَ → خَافَ."
+  },
+  {
+   "ar": "صَانَ صَانَا صَانُوا، صَانَتْ صَانَتَا صُنَّ، صُنْتَ صُنْتُمَا صُنْتُمْ، صُنْتِ صُنْتُمَا صُنْتُنَّ، صُنْتُ صُنَّا.",
+   "en": "The ʿIzzī recites the past of a hollow verb whole. The alif stands while the last letter has a vowel (صَانَ … صَانَتَا) and falls from صُنَّ onward; the ḍamma it leaves on the first letter points to the lost wāw.",
+   "tr": "İzzî ecvefin mâzîsini baştan sona çeker. Elif, son harf harekeli iken durur (صَانَ … صَانَتَا), صُنَّ'den itibaren düşer; ilk harfte bıraktığı zamme düşen vâva delâlet eder.",
+   "sourceStory": "tasrif-al-izzi",
+   "chapter": 14,
+   "sentence": "s5",
+   "source": "tasrif-al-izzi-src.txt:184"
+  },
+  {
+   "ar": "لَمْ يَصُنْ لَمْ يَصُونَا لَمْ يَصُونُوا، لَمْ تَصُنْ لَمْ تَصُونَا لَمْ يَصُنَّ، لَمْ تَصُنْ لَمْ تَصُونَا لَمْ تَصُونُوا، لَمْ تَصُونِي لَمْ تَصُونَا لَمْ تَصُنَّ، لَمْ أَصُنْ لَمْ نَصُنْ.",
+   "en": "The same verb in the jussive: the middle letter falls wherever the last letter is quiescent (لَمْ يَصُنْ, لَمْ يَصُنَّ) and stays wherever it has a vowel (لَمْ يَصُونَا, لَمْ يَصُونُوا, لَمْ تَصُونِي).",
+   "tr": "Aynı fiilin meczûmu: son harf sâkin olan her yerde ayn düşer (لَمْ يَصُنْ، لَمْ يَصُنَّ), harekeli olan her yerde kalır (لَمْ يَصُونَا، لَمْ يَصُونُوا، لَمْ تَصُونِي).",
+   "sourceStory": "tasrif-al-izzi",
+   "chapter": 14,
+   "sentence": "s12",
+   "source": "tasrif-al-izzi-src.txt:192"
+  },
+  {
+   "ar": "وَيَصِحُّ نَحْوُ: قَوَّلَ وَتَقَوَّلَ وَقَاوَلَ وَتَقَاوَلَ، وَزَيَّنَ وَتَزَيَّنَ، وَسَايَرَ وَتَسَايَرَ، وَاسْوَدَّ وَاسْوَادَّ، وَابْيَضَّ وَابْيَاضَّ، وَكَذَا سَائِرُ تَصَارِيفِهَا.",
+   "en": "The forms in which a hollow root is NOT weakened, in the ʿIzzī's own list: قَوَّلَ, تَقَوَّلَ, قَاوَلَ, تَقَاوَلَ, زَيَّنَ, سَايَرَ, and the colour bābs اِسْوَدَّ, اِسْوَادَّ, اِبْيَضَّ, اِبْيَاضَّ — the wāw and the yāʾ stand as sound letters.",
+   "tr": "Ecvef kökün İ'LÂL GÖRMEDİĞİ bâblar, İzzî'nin kendi listesiyle: قَوَّلَ، تَقَوَّلَ، قَاوَلَ، تَقَاوَلَ، زَيَّنَ، سَايَرَ ve renk bâbları اِسْوَدَّ، اِسْوَادَّ، اِبْيَضَّ، اِبْيَاضَّ — vâv ile yâ sahih harf gibi durur.",
+   "sourceStory": "tasrif-al-izzi",
+   "chapter": 14,
+   "sentence": "s26",
+   "source": "tasrif-al-izzi-src.txt:208"
+  },
+  {
+   "ar": "إِذَا كُنَّ فِي فِعْلٍ أَوْ فِي اسْمٍ عَلَى وَزْنِ فِعْلٍ إِذَا كَانَتْ حَرَكَتُهُنَّ غَيْرَ عَارِضِيَّةٍ.",
+   "en": "Ibn Jinnī's conditions for turning the weak letter into an alif (Marāḥ ch. 70), first: it stands in a verb or in a noun on a verb's measure, and its vowel is its own, not accidental.",
+   "tr": "İbn Cinnî'nin illet harfini elife çevirme şartları (Merâh 70. bâb), ilki: fiilde ya da fiil veznindeki isimde bulunması ve harekesinin ârızî değil kendi harekesi olması.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 70,
+   "sentence": "s2",
+   "source": "marah-al-arwah-src.txt:760"
+  },
+  {
+   "ar": "وَلَا يَكُونُ فَتْحَةُ مَا قَبْلَهَا فِي حُكْمِ السُّكُونِ وَلَا يَكُونُ فِي مَعْنَى الْكَلِمَةِ اضْطِرَابٌ.",
+   "en": "Then: the fatḥa before it is not standing in for a sukūn, and the word's meaning holds no restlessness.",
+   "tr": "Sonra: öncesindeki fetha sükûn hükmünde olmaması ve kelimenin manasında ıztırap bulunmaması.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 70,
+   "sentence": "s3",
+   "source": "marah-al-arwah-src.txt:761"
+  },
+  {
+   "ar": "وَلَا يَجْتَمِعُ فِيهَا إِعْلَالَانِ وَلَا يَلْزَمُ ضَمُّ حُرُوفِ الْعِلَّةِ فِي مُضَارِعِهِ وَلَا يُتْرَكُ لِلدَّلَالَةِ عَلَى الْأَصْلِ.",
+   "en": "And: no second iʿlāl in the same word, no ḍamma forced onto the weak letter in its muḍāriʿ, and the word not kept to point to its origin.",
+   "tr": "Ve: aynı kelimede ikinci bir i'lâl olmaması, muzârisinde illet harfine damme gerekmemesi ve kelimenin aslına delâlet için bırakılmamış olması.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 70,
+   "sentence": "s4",
+   "source": "marah-al-arwah-src.txt:762"
+  },
+  {
+   "ar": "وَمِنْ ثَمَّ يُعَلُّ نَحْوُ «قَالَ» أَصْلُهُ «قَوَلَ» وَنَحْوُ «دَارٌ» أَصْلُهُ «دَوَرٌ» لِوُجُودِ الشَّرَائِطِ الْمَذْكُورَةِ.",
+   "en": "Where every condition holds the letter turns: قَالَ from قَوَلَ, دَارٌ from دَوَرٌ. The Iʿlāl lab names the condition that held.",
+   "tr": "Bütün şartlar bulununca harf döner: قَوَلَ'den قَالَ, دَوَرٌ'den دَارٌ. İ'lâl atölyesi hangi şartın bulunduğunu gösterir.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 70,
+   "sentence": "s5",
+   "source": "marah-al-arwah-src.txt:763"
+  },
+  {
+   "ar": "وَيُعَلُّ مِثْلُ «دِيَارٌ» تَبَعًا لِوَاحِدِهِ وَمِثْلُ «قِيَامٍ» تَبَعًا لِفِعْلِهِ وَمِثْلُ «سِيَاطٍ» تَبَعًا لِوَاوِ وَاحِدِهِ.",
+   "en": "Weakened by following, though neither a verb nor on its measure: the plural follows its singular (دِيَارٌ after دَارٌ), the maṣdar its verb (قِيَامٌ after قَامَ).",
+   "tr": "Ne fiil ne fiil vezninde olduğu hâlde tâbi olarak i'lâl edilir: cemi müfredine (دَارٌ'a tâbi دِيَارٌ), masdar fiiline (قَامَ'a tâbi قِيَامٌ).",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 71,
+   "sentence": "s1",
+   "source": "marah-al-arwah-src.txt:766"
+  },
+  {
+   "ar": "وَلَا يُعَلُّ نَحْوُ «الْحَوَكَةِ» وَ «الْخَوَنَةِ» وَ «حَيَدَى» وَ «صَوَرَى» لِخُرُوجِهِنَّ عَنْ وَزْنِ الْفِعْلِ بِعَلَامَةِ التَّأْنِيثِ.",
+   "en": "Not weakened for want of a condition: the feminine's mark takes these words off the verb's measure.",
+   "tr": "Bir şart eksik olduğu için i'lâl edilmez: te'nîs alâmeti bu kelimeleri fiil vezninden çıkarır.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 72,
+   "sentence": "s1",
+   "source": "marah-al-arwah-src.txt:771"
+  },
+  {
+   "ar": "وَنَحْوُ «حَيَوَانٍ» حَتَّى يَدُلَّ حَرَكَتُهُ عَلَى اضْطِرَابِ مَعْنَاهُ.",
+   "en": "حَيَوَانٌ keeps its weak letters: the run of its vowels shows the restlessness of its meaning (the shape فَعَلَان).",
+   "tr": "حَيَوَانٌ illet harflerini korur: harekelerinin art arda gelişi manasındaki çalkantıyı gösterir (فَعَلَان vezni).",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 72,
+   "sentence": "s5",
+   "source": "marah-al-arwah-src.txt:775"
+  },
+  {
+   "ar": "وَنَحْوُ «طَوَى» حَتَّى لَا يَجْتَمِعَ فِيهِ إِعْلَالَانِ.",
+   "en": "طَوَى keeps its wāw: its lām already takes the iʿlāl, and two iʿlāls do not meet in one word.",
+   "tr": "طَوَى vâvını korur: i'lâli lâmı almıştır, bir kelimede iki i'lâl toplanmaz.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 72,
+   "sentence": "s7",
+   "source": "marah-al-arwah-src.txt:778"
+  },
+  {
+   "ar": "وَنَحْوُ «حَيِيَ» حَتَّى لَا يَلْزَمَ ضَمُّ الْيَاءِ فِي الْمُسْتَقْبَلِ.",
+   "en": "حَيِيَ keeps its yāʾ: turned, it would force a ḍamma onto the yāʾ in the muḍāriʿ (يَحَايُ).",
+   "tr": "حَيِيَ yâsını korur: çevrilseydi muzâride yâya damme gerekirdi (يَحَايُ).",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 72,
+   "sentence": "s9",
+   "source": "marah-al-arwah-src.txt:780"
+  },
+  {
+   "ar": "وَنَحْوُ «الْقَوَدِ» حَتَّى يَدُلَّ عَلَى الْأَصْلِ.",
+   "en": "الْقَوَدُ keeps its wāw to point to its origin — a word the book names, not a rule over its shape.",
+   "tr": "الْقَوَدُ aslına delâlet için vâvını korur — kitabın saydığı bir kelimedir, vezne kaide değildir.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 72,
+   "sentence": "s11",
+   "source": "marah-al-arwah-src.txt:783"
+  },
+  {
+   "ar": "وَلَا يُعَلُّ نَحْوُ «أَدْوُرٍ» وَ «أَعْيُنٍ» حَتَّى لَا يَلْتَبِسَ بِالْأَفْعَالِ.",
+   "en": "With a quiescent letter before it the vowel normally moves back (يَقُولُ); not in the plural أَفْعُل, lest it be taken for a verb.",
+   "tr": "Öncesi sâkin olunca hareke normalde geri nakledilir (يَقُولُ); أَفْعُل cemiinde ise fiille karışmasın diye nakledilmez.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 76,
+   "sentence": "s1",
+   "source": "marah-al-arwah-src.txt:808"
+  },
+  {
+   "ar": "وَنَحْوُ «تَقْوِيمٍ» وَ «تِبْيَانٍ» وَ «مِقْوَالٍ» وَ «مِخْيَاطٍ» حَتَّى لَا يَجْتَمِعَ السَّاكِنَانِ بِتَقْدِيرِ الْإِعْلَالِ.",
+   "en": "Nor where a long vowel follows the weak letter: the iʿlāl would bring two quiescent letters together.",
+   "tr": "İllet harfini med harfi izlediğinde de nakledilmez: i'lâl iki sâkini bir araya getirirdi.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 76,
+   "sentence": "s5",
+   "source": "marah-al-arwah-src.txt:813"
+  },
+  {
+   "ar": "وَلَا يُعَلُّ مِثْلُ «مَا أَقْوَلَهُ» وَ «أَغْيَلَتِ الْمَرْأَةُ» وَ «اسْتَحْوَذَ» حَتَّى يَدْلُلْنَ عَلَى الْأَصْلِ.",
+   "en": "And three words the book recites as kept to point to their origin: the wonder-verb مَا أَقْوَلَهُ, أَغْيَلَتْ, اسْتَحْوَذَ — the Sarf lab conjugates the two verbs sound.",
+   "tr": "Kitabın aslına delâlet için korunmuş saydığı üç kelime: taaccüb fiili مَا أَقْوَلَهُ, أَغْيَلَتْ, اسْتَحْوَذَ — Sarf atölyesi bu iki fiili sahih çeker.",
+   "sourceStory": "marah-al-arwah",
+   "chapter": 76,
+   "sentence": "s12",
+   "source": "marah-al-arwah-src.txt:821"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "قَالْتُ لك",
+   "right": "قُلْتُ لك",
+   "why": {
+    "en": "Before the consonant suffix ـتُ the long alif must shorten to damma: قُلْتُ.",
+    "tr": "ـتُ ünsüz ekinden önce uzun elif ötreye kısalmalıdır: قُلْتُ."
+   }
+  },
+  {
+   "wrong": "لم يَقُولْ شيئًا",
+   "right": "لم يَقُلْ شيئًا",
+   "why": {
+    "en": "In the jussive after لم the long vowel shortens: لم يَقُلْ.",
+    "tr": "لم'den sonra meczumda uzun ünlü kısalır: لم يَقُلْ."
+   }
+  },
+  {
+   "wrong": "قُوِلَ الْحَقُّ",
+   "right": "قِيلَ الْحَقُّ",
+   "why": {
+    "en": "In the passive of a hollow verb the damma before the weak letter goes and its kasra moves back: قُوِلَ → قِيلَ.",
+    "tr": "Ecvefin meçhulünde illetli harften önceki damme düşer ve kesre öne nakledilir: قُوِلَ → قِيلَ."
+   }
+  },
+  {
+   "wrong": "تَصَاوَرَ / يَتَصَاوَرُ",
+   "right": "تَصَوَّرَ / يَتَصَوَّرُ",
+   "why": {
+    "en": "No i'lal in bab V. The و is doubled and stable there, so the verb conjugates exactly like a sound one.",
+    "tr": "Tefe'ul bâbında i'lal yoktur. و şeddeli ve sabittir, fiil sahih gibi çekilir."
+   }
+  },
+  {
+   "wrong": "إِقْوَامٌ",
+   "right": "إِقَامَةٌ",
+   "why": {
+    "en": "The masdar of أَقَامَ loses its و and takes a ة in compensation — the same happens in اِسْتِقَامَة.",
+    "tr": "أَقَامَ'nin masdarı و'ını kaybeder ve karşılığında tâ alır; اِسْتِقَامَة'de de böyledir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "mithal-verbs",
+  "naqis-verbs",
+  "imperative-amr",
+  "form-iv-verbs",
+  "al-majhul-fil-kafiya"
+ ],
+ "gameSeeds": {
+  "spotTheError": true,
+  "harakatTargets": [
+   "قُلْتُ",
+   "لَمْ يَقُلْ",
+   "قُلْ"
+  ]
+ }
+}

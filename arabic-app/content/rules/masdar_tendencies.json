@@ -1,0 +1,222 @@
+{
+ "version": 1,
+ "status": "induced",
+ "note": "Tendencies of the Form I maṣdar, induced from the verbs the corpus recites and promoted through a gate (support, confidence, gain over the rule refined). A teacher may show them; the builder never applies them — a Form I maṣdar is recited.",
+ "trained_on": 701,
+ "gate": {
+  "min_support": 12,
+  "min_confidence": 0.6,
+  "min_gain": 0.08,
+  "min_plurality": 0.33,
+  "min_lift": 2.5,
+  "plurality_support": 24
+ },
+ "default": "فَعْل",
+ "cv_accuracy": 0.5378,
+ "cv_baseline": 0.4779,
+ "rules": [
+  {
+   "if": {
+    "mazi": "a",
+    "mudari": "a",
+    "transitive": "yes"
+   },
+   "then": "فَعْل",
+   "support": 68,
+   "confidence": 0.853,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "class": "sahih",
+    "mazi": "a",
+    "transitive": "yes"
+   },
+   "then": "فَعْل",
+   "support": 216,
+   "confidence": 0.773,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "class": "sahih",
+    "mazi": "i",
+    "transitive": "no"
+   },
+   "then": "فَعَل",
+   "support": 48,
+   "confidence": 0.583,
+   "kind": "plurality"
+  },
+  {
+   "if": {
+    "class": "sahih",
+    "mazi": "a",
+    "transitive": "no"
+   },
+   "then": "فُعُول",
+   "support": 70,
+   "confidence": 0.486,
+   "kind": "plurality"
+  },
+  {
+   "if": {
+    "class": "sahih",
+    "mudari": "a",
+    "transitive": "no"
+   },
+   "then": "فَعَل",
+   "support": 64,
+   "confidence": 0.438,
+   "kind": "plurality"
+  },
+  {
+   "if": {
+    "class": "sahih",
+    "mudari": "u",
+    "transitive": "no"
+   },
+   "then": "فُعُول",
+   "support": 55,
+   "confidence": 0.4,
+   "kind": "plurality"
+  },
+  {
+   "if": {
+    "class": "naqis",
+    "mudari": "u",
+    "transitive": "no"
+   },
+   "then": "فُعُول",
+   "support": 25,
+   "confidence": 0.4,
+   "kind": "plurality"
+  },
+  {
+   "if": {
+    "class": "mithal",
+    "transitive": "yes"
+   },
+   "then": "فَعْل",
+   "support": 19,
+   "confidence": 0.789,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "class": "sahih",
+    "mudari": "i"
+   },
+   "then": "فَعْل",
+   "support": 108,
+   "confidence": 0.769,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "class": "mithal",
+    "mazi": "a"
+   },
+   "then": "فَعْل",
+   "support": 24,
+   "confidence": 0.75,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "mazi": "a",
+    "mudari": "a"
+   },
+   "then": "فَعْل",
+   "support": 97,
+   "confidence": 0.742,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "class": "sahih",
+    "mazi": "a"
+   },
+   "then": "فَعْل",
+   "support": 286,
+   "confidence": 0.654,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "class": "hollow",
+    "mudari": "u"
+   },
+   "then": "فَعْل",
+   "support": 58,
+   "confidence": 0.638,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "class": "mahmuz",
+    "mazi": "a"
+   },
+   "then": "فَعْل",
+   "support": 18,
+   "confidence": 0.611,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "mazi": "i",
+    "transitive": "no"
+   },
+   "then": "فَعَل",
+   "support": 73,
+   "confidence": 0.452,
+   "kind": "plurality"
+  },
+  {
+   "if": {
+    "class": "sahih",
+    "mazi": "i"
+   },
+   "then": "فَعَل",
+   "support": 82,
+   "confidence": 0.439,
+   "kind": "plurality"
+  },
+  {
+   "if": {
+    "class": "mithal"
+   },
+   "then": "فَعْل",
+   "support": 31,
+   "confidence": 0.645,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "transitive": "yes"
+   },
+   "then": "فَعْل",
+   "support": 378,
+   "confidence": 0.635,
+   "kind": "majority"
+  },
+  {
+   "if": {
+    "class": "doubled"
+   },
+   "then": "فُعُول",
+   "support": 24,
+   "confidence": 0.375,
+   "kind": "plurality"
+  },
+  {
+   "if": {
+    "mazi": "i"
+   },
+   "then": "فَعَل",
+   "support": 123,
+   "confidence": 0.341,
+   "kind": "plurality"
+  }
+ ]
+}

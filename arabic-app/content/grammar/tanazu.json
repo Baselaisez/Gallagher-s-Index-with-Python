@@ -1,0 +1,57 @@
+{
+  "id": "tanazu",
+  "title": {
+    "ar": "التَّنَازُعُ فِي الْعَمَلِ",
+    "en": "Tanazu': two verbs contending over one noun",
+    "tr": "Tenâzu (iki fiilin bir isimde çekişmesi)"
+  },
+  "level": 6,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب) — التنازع",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "In «he struck me and honoured me — Zayd», two verbs both want زيد. Only one may govern him; the other gets a hidden pronoun instead.",
+    "tr": "«Beni dövdü ve bana ikram etti — Zeyd» cümlesinde iki fiil de زيد'i ister. Yalnız biri onda amel edebilir; öbürüne gizli bir zamir düşer."
+  },
+  "explanation": {
+    "en": "التَّنَازُع is two verbs (or quasi-verbs) followed by ONE overt noun that either could take, as its fa'il, its maf'ul, or one of each. The Kafiya's three cases: contention over the fa'il — ضَرَبَنِي وَأَكْرَمَنِي زَيْدٌ («he struck me and he honoured me — Zayd»); over the maf'ul — ضَرَبْتُ وَأَكْرَمْتُ زَيْدًا; and mixed — أَكْرَمَنِي وَضَرَبْتُ زَيْدًا. One word cannot carry two governments at once, so one verb wins the noun and the loser governs a concealed pronoun that refers to it. The schools split over who wins: the Basrans prefer the NEARER verb (its claim is adjacent), the Kufans the FIRST (its claim is earlier). The corpus follows the Basran choice, which is also the reading the received examples assume. What the reader needs in practice: when a noun after two verbs seems to belong to both, its i'rab is assigned by exactly one of them — parse it once, not twice.",
+    "tr": "التَّنَازُع: iki fiilin (yahut şibh-i fiilin) kendilerinden sonra gelen TEK bir zâhir isimde çekişmesidir — isim her ikisine fâil, her ikisine mef'ûl yahut birine fâil öbürüne mef'ûl olmaya elverişlidir. Kâfiye'nin üç sûreti: fâilde çekişme — ضَرَبَنِي وَأَكْرَمَنِي زَيْدٌ; mef'ûlde çekişme — ضَرَبْتُ وَأَكْرَمْتُ زَيْدًا; ve karışık — أَكْرَمَنِي وَضَرَبْتُ زَيْدًا. Bir kelime iki ameli birden taşıyamaz; fiillerden biri ismi alır, kaybeden ise ona râci gizli bir zamirde amel eder. Kimin kazanacağında mektepler ayrılır: Basralılar YAKIN fiili (komşuluk hakkı), Kûfeliler İLK fiili (öncelik hakkı) tercih eder. Külliyat Basra tercihini takip eder; me'sur misallerin okunuşu da budur. Okuyucu için pratik netice: iki fiilden sonra gelen isim ikisine de ait görünüyorsa, i'rabını yalnız BİRİ vermiştir — bir kere tahlil edin, iki kere değil."
+  },
+  "examples": [
+    {
+      "ar": "ضَرَبَنِي وَأَكْرَمَنِي زَيْدٌ.",
+      "en": "Contention over the fa'il: زَيْدٌ is raf' as fa'il of the nearer verb أَكْرَمَنِي; ضَرَبَنِي keeps a hidden «he».",
+      "tr": "Fâilde tenâzu: زَيْدٌ yakın fiil أَكْرَمَنِي'nin fâili olarak merfûdur; ضَرَبَنِي'ye gizli bir «o» kalır."
+    },
+    {
+      "ar": "ضَرَبْتُ وَأَكْرَمْتُ زَيْدًا.",
+      "en": "Contention over the maf'ul: زَيْدًا is nasb by the nearer أَكْرَمْتُ; the first verb's object is an understood pronoun.",
+      "tr": "Mef'ûlde tenâzu: زَيْدًا yakın fiil أَكْرَمْتُ ile mensubtur; ilk fiilin mef'ûlü mukadder bir zamirdir."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "ضَرَبَنِي وَأَكْرَمَنِي زَيْدًا",
+      "right": "ضَرَبَنِي وَأَكْرَمَنِي زَيْدٌ",
+      "why": {
+        "en": "Both verbs want زيد as their FA'IL here, so whoever wins, the overt noun stands in raf'. Nasb would treat it as an object neither verb is missing.",
+        "tr": "Burada iki fiil de زيد'i FÂİL ister; hangisi kazanırsa kazansın zâhir isim merfû olur. Nasb, hiçbir fiilin aramadığı bir mef'ûl uydurmak olur."
+      }
+    },
+    {
+      "wrong": "زَيْدٌ ضَرَبَنِي وَأَكْرَمَنِي (على أنه تنازع)",
+      "right": "ضَرَبَنِي وَأَكْرَمَنِي زَيْدٌ",
+      "why": {
+        "en": "Tanazu' requires the noun AFTER both governors. With زيد in front there is no contest — he is simply mubteda and the verbs carry his pronouns.",
+        "tr": "Tenâzu, ismin iki âmilden SONRA gelmesini ister. زيد başa geçince çekişme kalmaz — o artık mübtedâdır, fiiller onun zamirlerini taşır."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "fail",
+    "maful-bihi",
+    "atf-nasaq"
+  ]
+}

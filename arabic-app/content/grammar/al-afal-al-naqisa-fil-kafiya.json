@@ -1,0 +1,135 @@
+{
+ "id": "al-afal-al-naqisa-fil-kafiya",
+ "title": {
+  "ar": "الْأَفْعَالُ النَّاقِصَةُ فِي الْكَافِيَةِ",
+  "en": "Kāna and her sisters in the Kafiya: the definition, the seventeen, why «defective», كَانَ's five faces, صَارَ's transition, the sisters' senses, and the fronting rules in three groups",
+  "tr": "Kâfiye'de kâne ve kardeşleri: tarif, on yedi, neden «nâkıs», كَانَ'nin beş yüzü, صَارَ'nin intikali, kardeşlerin mânâları ve üç gruptaki takdim kuralları"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — الأفعال الناقصة: ما وضع لتقرير الفاعل على صفة؛ كان وصار وأصبح وأمسى وأضحى وظل وبات وآض وعاد وغدا وراح وما زال وما انفك وما فتئ وما برح وما دام وليس",
+  "ضياء صونغور اوغلى — دفتر الكافية: مذهب سيبويه؛ وجه التسمية؛ كان الدائمة والمنقطعة، كان بمعنى صار، ضمير الشأن، التامة، الزائدة؛ صار من صفة إلى صفة ومن حقيقة إلى حقيقة؛ أصبح وأمسى وأضحى؛ ما زال للاستمرار وما دام للتوقيت؛ ليس بين الجمهور وسيبويه؛ تقديم الخبر على الاسم وعلى الفعل في الأقسام الثلاثة"
+ ],
+ "question": {
+  "en": [
+   "What is a DEFECTIVE verb? One set down to fix its doer upon a quality — not to report an act. كَانَ زَيْدٌ قَائِمًا does not say Zayd did anything; it fixes «standing» on him in the past. The Kafiya counts seventeen; Sībawayh admits any verb that needs a khabar in naṣb.",
+   "Why «defective»? Because the verb and its marfūʿ do not make an utterance: عَلِمَ اللهُ is a sentence, كَانَ اللهُ is not — the khabar is still owed. That is exactly the «expectation» the analyzer pushes when it meets a sister of كَانَ.",
+   "What does كَانَ do, and what can it mean? It takes a nominal sentence and raises its first part as ism, puts the second in naṣb as khabar. Its senses: permanence in the past, lasting (كَانَ اللهُ عَلِيمًا) or interrupted (كَانَ زَيْدٌ غَنِيًّا فَافْتَقَرَ); the sense of صَارَ (قَدْ كَانَتْ فِرَاخًا بُيُوضُهَا); with the shaʾn pronoun as its ism and a whole sentence as its khabar; complete, meaning ثَبَتَ (كَانَتِ الْكَائِنَةُ، كُنْ فَيَكُونُ); and redundant (مَنْ كَانَ فِي الْمَهْدِ صَبِيًّا).",
+   "What is صَارَ? Transition — from quality to quality (صَارَ زَيْدٌ عَالِمًا) or from one reality to another (صَارَ الطِّينُ خَزَفًا); complete when it means «move», and then it takes إِلَى (صَارَ زَيْدٌ إِلَى بَلَدٍ).",
+   "And the others? أَصْبَحَ، أَمْسَى، أَضْحَى tie the sentence to morning, evening, forenoon, and may mean صَارَ; ظَلَّ and بَاتَ to day and night; آضَ، عَادَ، غَدَا، رَاحَ mean صَارَ; مَا زَالَ and her sisters say the state continues; مَا دَامَ gives it a span; لَيْسَ negates — in the present for most, absolutely for Sībawayh.",
+   "May the khabar come first? Before the ism, yes, unless something prevents it (لَيْسَ قَائِمًا زَيْدٌ). Before the verb itself: permitted for the eleven from كَانَ to رَاحَ, barred for the five that begin with مَا (a negation must open its clause), and disputed for لَيْسَ — the Kufans and al-Mubarrad say no, the Basrans and Sībawayh say yes.",
+   "What does the engine do? The kernel's KANA table pushes [ism-raf, khabar-naṣb] at every sister; the TartibEngine's order ledger records whether a fronted khabar is lawful by this three-way rule; the jāmid flag on لَيْسَ keeps the paradigm honest."
+  ],
+  "tr": [
+   "NÂKIS fiil nedir? Fâilini bir sıfat üzerine karar kıldırmak için konulan fiil — bir iş bildirmek için değil. كَانَ زَيْدٌ قَائِمًا Zeyd'in bir şey yaptığını söylemez; «ayakta»yı mâzîde ona sabitler. Kâfiye on yedi sayar; Sîbeveyh mansûb habere muhtaç her fiili kabul eder.",
+   "Neden «nâkıs»? Çünkü fiil ile merfûu bir kelâm oluşturmaz: عَلِمَ اللهُ bir cümledir, كَانَ اللهُ değildir — haber hâlâ bekleniyor. Analizörün كَانَ'nin bir kardeşiyle karşılaşınca ittiği «beklenti» tam budur.",
+   "كَانَ ne yapar, ne anlama gelebilir? Bir isim cümlesini alıp birinci cüz'ünü isim olarak ref', ikincisini haber olarak nasb eder. Mânâları: mâzîde sübût, dâimî (كَانَ اللهُ عَلِيمًا) ya da munkatı (كَانَ زَيْدٌ غَنِيًّا فَافْتَقَرَ); صَارَ mânâsı (قَدْ كَانَتْ فِرَاخًا بُيُوضُهَا); ismi şan zamiri, haberi bütün bir cümle; tam, ثَبَتَ mânâsında (كَانَتِ الْكَائِنَةُ، كُنْ فَيَكُونُ); ve zâid (مَنْ كَانَ فِي الْمَهْدِ صَبِيًّا).",
+   "صَارَ nedir? İntikal — sıfattan sıfata (صَارَ زَيْدٌ عَالِمًا) ya da bir hakikatten başkasına (صَارَ الطِّينُ خَزَفًا); «gitmek» anlamında tam olur ve o zaman إِلَى alır (صَارَ زَيْدٌ إِلَى بَلَدٍ).",
+   "Ya ötekiler? أَصْبَحَ، أَمْسَى، أَضْحَى cümleyi sabaha, akşama, kuşluğa bağlar ve صَارَ anlamına gelebilir; ظَلَّ ve بَاتَ gündüz ve geceye; آضَ، عَادَ، غَدَا، رَاحَ صَارَ demektir; مَا زَالَ ve kardeşleri hâlin sürdüğünü söyler; مَا دَامَ ona bir süre verir; لَيْسَ nefy eder — çoğunluğa göre hâlde, Sîbeveyh'e göre mutlak.",
+   "Haber önce gelebilir mi? İsmin önüne, evet, bir mâni yoksa (لَيْسَ قَائِمًا زَيْدٌ). Fiilin kendisinin önüne: كَانَ'den رَاحَ'ya on bir için câiz, مَا ile başlayan beşi için mümteni' (nefy cümlesini açmalıdır), لَيْسَ için ihtilâflı — Kûfeliler ve Müberred hayır, Basralılar ve Sîbeveyh evet der.",
+   "Motor ne yapar? Çekirdeğin KANA tablosu her kardeşte [ism-ref', haber-nasb] iter; TartibEngine'in sıra defteri öne alınmış bir haberin bu üçlü kuralla câiz olup olmadığını kaydeder; لَيْسَ üzerindeki câmid bayrağı çekimi dürüst tutar."
+  ]
+ },
+ "plain": {
+  "en": "Kāna and her sisters are verbs that do not describe an act but fix a state on their subject: كَانَ «was», صَارَ «became», لَيْسَ «is not», مَا زَالَ «still is». They take a plain sentence and keep its subject in rafʿ while putting its predicate in naṣb. كَانَ alone has five uses, from «was» to a word that adds nothing.",
+  "tr": "Kâne ve kardeşleri bir işi değil özneye bir hâli sabitleyen fiillerdir: كَانَ «idi», صَارَ «oldu», لَيْسَ «değildir», مَا زَالَ «hâlâ». Düz bir cümleyi alır, öznesini ref'te tutup yüklemini nasb ederler. Tek başına كَانَ'nin «idi»den hiçbir şey katmayan bir kelimeye kadar beş kullanımı vardır."
+ },
+ "explanation": {
+  "en": "The definition is the Kafiya's and the list is the madrasah's: seventeen verbs whose work is not to report an action but to settle a quality on a subject, which is why their «doer» is called an ism and their complement a khabar — the parts of the nominal sentence they entered. The notebook's remark on the name is the key to the whole class: كَانَ with its marfūʿ is not yet a sentence, so a khabar is owed, and every rule in the chapter is about that owed khabar. كَانَ is treated first and at length because it has five faces: the plain past, lasting or interrupted; the sense of «became»; the construction in which its ism is the pronoun of the matter and its khabar an entire clause, which the notebook illustrates with a verse; the complete كَانَ that means «came to pass» and takes a doer like any verb; and the redundant كَانَ of the Qurʾānic cradle, whose removal changes nothing. صَارَ follows with its two transitions and its complete sense with إِلَى. The remaining sisters are given by what they add — a time of day, continuance, a span, negation — and the notebook records the one doctrinal split on لَيْسَ. The chapter ends with the order rules, which are the TartibEngine's material: a khabar may stand before its ism unless something bars it, and before the verb only in the first eleven; the مَا-verbs refuse it because the negation must open the clause, and لَيْسَ divides the schools along the line of whether it is a verb at all. The verse's صِنِفَانِ in the notebook is cited in the received form صِنْفَانِ, and the manifest says so.",
+  "tr": "Tarif Kâfiye'nin, liste medresenindir: işi bir eylemi bildirmek değil bir niteliği özneye yerleştirmek olan on yedi fiil; «fâil»lerine isim, tamamlayıcılarına haber denmesinin sebebi budur — girdikleri isim cümlesinin parçaları. Defterin ad üzerine notu bütün sınıfın anahtarıdır: كَانَ merfûuyla henüz cümle değildir, dolayısıyla bir haber beklenir ve bâbdaki her kural o beklenen haber hakkındadır. كَانَ önce ve uzun ele alınır, çünkü beş yüzü vardır: düz mâzî, dâimî ya da munkatı; «oldu» anlamı; isminin şan zamiri, haberinin bütün bir cümle olduğu yapı — defter bunu bir beyitle örnekler; «vuku buldu» anlamına gelip her fiil gibi fâil alan tam كَانَ; ve kaldırılması hiçbir şeyi değiştirmeyen Kur'ânî beşik âyetindeki zâid كَانَ. صَارَ iki intikali ve إِلَى ile tam anlamıyla izler. Kalan kardeşler ekledikleriyle verilir — günün bir vakti, devam, süre, nefy — ve defter لَيْسَ üzerindeki tek doktriner ayrılığı kaydeder. Bâb TartibEngine'in malzemesi olan sıra kurallarıyla biter: haber bir mâni yoksa isminin önünde, fiilin önünde ise yalnız ilk on birde durabilir; مَا-fiilleri reddeder, çünkü nefy cümleyi açmalıdır; لَيْسَ ise mektepleri onun bir fiil olup olmadığı çizgisinde böler. Defterdeki beyitte geçen صِنِفَانِ alınan biçim صِنْفَانِ ile zikredilir ve manifest bunu söyler."
+ },
+ "examples": [
+  {
+   "ar": "الْأَفْعَالُ النَّاقِصَةُ: مَا وُضِعَ لِتَقْرِيرِ الْفَاعِلِ عَلَى صِفَةٍ",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "عَلِمَ اللهُ تَامٌّ، وَكَانَ اللهُ نَاقِصٌ",
+   "en": "Why «defective».",
+   "tr": "Neden «nâkıs».",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "كَانَ اللهُ عَلِيمًا حَكِيمًا — كَانَ زَيْدٌ غَنِيًّا فَافْتَقَرَ",
+   "en": "Lasting and interrupted.",
+   "tr": "Dâimî ve munkatı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "إِذَا مِتُّ كَانَ النَّاسُ صِنْفَانِ",
+   "en": "The shaʾn pronoun as kāna's ism.",
+   "tr": "Kâne'nin ismi olarak şan zamiri.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "كَانَتِ الْكَائِنَةُ — كُنْ فَيَكُونُ — مَنْ كَانَ فِي الْمَهْدِ صَبِيًّا",
+   "en": "Complete and redundant.",
+   "tr": "Tam ve zâid.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "صَارَ الطِّينُ خَزَفًا — صَارَ زَيْدٌ إِلَى بَلَدٍ",
+   "en": "ṣāra's transition and its complete sense.",
+   "tr": "Sâra'nın intikali ve tam anlamı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s8"
+  },
+  {
+   "ar": "لَيْسَ قَائِمًا زَيْدٌ",
+   "en": "The khabar before the ism.",
+   "tr": "Haber ismin önünde.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s10"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«كَانَ زَيْدٌ قَائِمٌ»",
+   "right": "«كَانَ زَيْدٌ قَائِمًا — kâne ikinci cüz'ü nasb eder»",
+   "why": {
+    "en": "The predicate of the nominal sentence becomes kāna's khabar in naṣb.",
+    "tr": "İsim cümlesinin yüklemi kâne'nin mansûb haberi olur."
+   }
+  },
+  {
+   "wrong": "«كَانَتِ الْكَائِنَةُ — haberi mahzûf»",
+   "right": "«كَانَتِ الْكَائِنَةُ — tam kâne, ثَبَتَ mânâsında; الْكَائِنَةُ fâildir, haber yoktur»",
+   "why": {
+    "en": "The complete كَانَ is an ordinary verb with a doer; nothing is owed.",
+    "tr": "Tam كَانَ fâili olan sıradan bir fiildir; beklenen bir şey yoktur."
+   }
+  },
+  {
+   "wrong": "«قَائِمًا مَا زَالَ زَيْدٌ»",
+   "right": "«مَا زَالَ زَيْدٌ قَائِمًا — مَا ile başlayanların haberi fiilin önüne geçemez»",
+   "why": {
+    "en": "The negation must open its clause; only the eleven from كَانَ to رَاحَ allow the khabar before the verb.",
+    "tr": "Nefy cümlesini açmalıdır; haberin fiilin önüne geçmesine yalnız كَانَ'den رَاحَ'ya on bir izin verir."
+   }
+  },
+  {
+   "wrong": "«لَيْسَ زَيْدٌ قَائِمًا — Zeyd hiçbir zaman ayakta olmadı»",
+   "right": "«cumhûra göre: Zeyd şu an ayakta değil; mutlak nefy yalnız Sîbeveyh'in görüşüdür»",
+   "why": {
+    "en": "The notebook keeps both readings and names their holders.",
+    "tr": "Defter iki okuyuşu da tutar ve sahiplerini adlandırır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "kana-wa-akhawatuha",
+  "al-mubtada-wa-nawah",
+  "mawadi-al-munfasil-wa-damir-al-fasl-wal-shan",
+  "al-mutaaddi-wa-afal-al-qulub-fil-kafiya",
+  "al-fil-wal-madi-wal-mudari-fil-kafiya",
+  "afal-al-muqaraba-fil-kafiya"
+ ]
+}
