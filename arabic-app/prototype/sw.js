@@ -20,6 +20,9 @@ const CACHE = 'qissa-v448';
 // lists once every body is in.
 const DATA = 'qissa-data';
 const HASHED = /\/data\/[a-z]\d+-[0-9a-f]{10}\.js$/;
+// (v347) a narration file heard once stays offline: the page keeps it in qissa-narration (Narr347.prime) and plays it from
+// a blob; a version bump must not delete that cache, and the worker leaves /narration/ requests to the page.
+const NARR = 'qissa-narration';
 const ASSETS = [
   './reader.html',
   './manifest.webmanifest',
@@ -42,7 +45,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE && k !== DATA).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE && k !== DATA && k !== NARR).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -51,6 +54,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const req = event.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
+  if (new URL(req.url).pathname.includes('/narration/')) return;
   if (HASHED.test(new URL(req.url).pathname)) {
     event.respondWith(caches.open(DATA).then(c => c.match(req).then(hit => hit || fetch(req).then(res => {
       if (res && res.ok) c.put(req, res.clone());

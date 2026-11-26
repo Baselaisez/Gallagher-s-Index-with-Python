@@ -43,6 +43,9 @@ def write_www():
     shutil.copy(PROTO / "manifest.webmanifest", WWW / "manifest.webmanifest")
     shutil.copytree(PROTO / "icons", WWW / "icons")
     if (PROTO / "privacy.html").exists(): shutil.copy(PROTO / "privacy.html", WWW / "privacy.html")   # the privacy page travels with the shell (wave 71)
+    # (v347) shipped narration (tools/narration_pack.py mirrors it to prototype/narration/<story>/audio/…): plain files beside
+    # the page, fetched only when a chapter is played — never part of the data slices the WebView parses at boot
+    if (PROTO / "narration").is_dir(): shutil.copytree(PROTO / "narration", WWW / "narration")
     # the data files are classic scripts sharing one global scope with the page (pubsplit's contract); assert the
     # page really references every one of them, or a WebView would show an empty library with no error anyone can see
     page = (WWW / "index.html").read_text(encoding="utf-8")
