@@ -16261,3 +16261,48 @@ themes, 390 px, en and tr.
   A word tap writes none of it (v338's rule).
 - Smoke: four «v344 — …» checks before «v333 — the received imports» (the rule check builds its own split copy with every body held: the
   rule on the door, no body read). No older check changed. Full suite: 577 checks, 577 pass.
+
+## v345-D — the vowelling engine's endings repaired
+
+The work order `research/engine-faults-2026-11-27.md` listed 649 case-ending contradictions of `DabtEngine` (the vowelling / Zabt engine) against
+correct authored lines, in 13 clusters. One cause runs under most of them: on the authored text the grader hands the engine the page WITH its
+endings (`_orig24`, the receipts), and the seat rules still decided by shape alone — a name annexes nothing, the first noun after a verb is its
+object, a follower copies the nearest noun, لِ is lām kay, the paradigm cell picks the person. The fix reads the page's own mark where it chooses
+between readings the engine already sees, and stays silent where it cannot see the governor. Typed text carries no receipts: every pass below is
+inert there (the smoke's typed controls). Measured with `DabtEngine.grade` over every sentence (the Zabt lab's corpus score) and
+`GrammarAudit339.kase` (`node tools/grammar_audit.js --only kase --out research/story-grammar-audit-dabt.md`):
+**agree 86,893 → 87,169, contradicts 663 → 303, undecided 262 → 346; 0 new contradictions; 0 agreeing words lost** (11 agreeing words relabelled,
+each to the author's own office: اثْنَتَيْنِ، ثَهْلَانَ، أَدْهَمَ، خَمْسِينَ… now muḍāf ilayh). Every rule of the work order keeps or raises its agreeing
+count (maful 3,534 → 3,541, mudafIlayh 6,918 → 6,987, nat 2,522 → 2,545, raf 5,170 → 5,200, mazi 9,231 → 9,246, jazm 611 → 641, …; mabni 23,621 →
+23,620 by the two relabels).
+
+| cluster | before → after | cause → fix |
+|---|---:|---|
+| T-C-tanwin | 106 → 45 | the chain cut a name / verb+noun+ال-noun pair → `annexByMarks345` (receipt head without tanwīn before a receipt-majrūr noun — kasra, a diptote's fatḥa, ـِينَ — is the muḍāf; before أَنْ / a cited verb / the relative مَا مَنْ it keeps no tanwīn; the hemistich mark is no pause); the name before ابن whose next name the author tagged a verb (`__propn25`) or that begins with its own wāw (وَهْب، وَائِل) |
+| T-C-mood | 87 → 27 | the mood carried across a clause, لِ as lām kay, a cited particle before its own verb taken for no governor → `moodByMarks345` (the written mood stands when the clause licenses it: a jāzim / request / earlier jussive; a nāṣib / earlier manṣūb verb joined to it; rafʿ when nothing governs directly) — no licence in the sentence and the verb opens it or joins on: **silent** (`mood-unseen`); the grader takes the page's sukūn before a waṣl for the reading's kasra (`wasl345`) |
+| T-C-built | 65 → 32 | the cell rule re-derived the person → the cell writer's `twin345`: the written form, when it is a corpus cell of the same root with the same ending, is the reading (نَزَلْتِ، عُنِيتُ، أَخَافُ — a muḍāriʿ so found takes its mood) |
+| T-C-maful (+nasb, raf) | 62 → 8 | the object's seat on a word written majrūr / marfūʿ → `seatByMarks345`: majrūr → muḍāf ilayh of the head before it / majrūr by the jarr letter / naʿt of an indefinite majrūr; marfūʿ → the doer when the verb's doer seat is open; else **silent** |
+| T-C-follower | 57 → 21 | the follower copied the nearest noun across a verb / comma → `followByMarks345`: the head is the nearest noun of the clause whose case is the follower's written one; none → **silent** |
+| T-C-verse | 56 → 5 | the rhyme forgiveness covered the hemistich's last word only → the grader yields (`lic345`, undecided) where the line names the licence (لِلْقَافِيَةِ، لِلرَّوِيِّ، ضَرُورَةً، لِلْوَزْنِ، الْإِطْلَاقُ) or on a poem's rhyme seat (`verse345`), letters equal up to the tanwīn's / iṭlāq's alif |
+| T-C-hikaya | 22 → 0 | the grader read «مَحْكِيٌّ» only before «—» → anywhere in the line |
+| T-C-mamnu (+jarr) | 31 → 24, 35 → 25 | the shape test's diptote → the writer: a written TANWĪN says declined, a bare written fatḥa in jarr says diptote |
+| letters, raf, muqaddar | 37 → 35, 36 → 30, 33 → 28 | not attempted (side effects of the passes above) |
+
+`seatByMarks345` and `followByMarks345` do not overwrite `out[i]`: they leave `__alt345`, applied in `vowel()` only where the rules' written word is
+NOT the page's — a word the rules already wrote as the page has it keeps its reading (this kept 15 agreeing words a direct rewrite lost).
+Limit: `DabtEngine.decide` callers other than `vowel()` (the word sheet's `fromDabt`) see the seat / follower before that step.
+- **Offered / silent instead of asserted**: 84 more words are undecided (mood without a visible governor, a seat or a follower whose written case no
+  head in the clause bears, a poem's licence, a cited form).
+- **Triage**: the regenerated audit (`research/story-grammar-audit-dabt.json`, 303 records) adds no record to the 2026-11-27 one — the delta file
+  `research/story-audit-triage-delta-dabt.json` has 0 records. A wrong authored line met on the way: al-usul-al-munifa 27:s7 «قَيْسُ بْنُ أَسْلَمَ»
+  (قَيْسُ «مُضَافٌ»، بْنُ «فَاعِلٌ»، أَسْلَمَ «فِعْلٌ مَاضٍ») → `research/story-corrections-proposed-2026-11-27.dabt.jsonl` (3 likely, Shudhūr l.131, l.30).
+- **Ledgers**: no open or ⚠ row is carried by DabtEngine; the builders were not re-run (the applied rows re-prove in the v342 checks: pass).
+- **Hand-overs**: none needed.
+- **Left** (303): tanwin 45 (cited verbs after مِثْل with a colon, case not tanwīn: رَبُّكَ / رَبَّكَ doer–object, بَيْنَمَا), letters 35 (nūn of emphasis
+  / women, five nouns, duals), built 32 (verse mīm al-jamʿ ḍamma مِنْكُمُ، فِيهِمُ; the iṭlāq alif on a māḍī فَقَالَا), raf 30, muqaddar 28, mood 27
+  (misread nouns أَمِيرَ، أَصْلَهُمَا; nūn forms), jarr 25, mamnu 24, follower 21, nasb 13, maful 8, verse 5.
+- Smoke «v345-D — the vowelling engine's case endings repaired …» (before «v333 — the received imports»): the reproducing sentences with the
+  book's ruling, a control per pass (بْنِ stays naʿt, بَصَرِي keeps its object, three typed sentences), the corpus floors (agree ≥ 87,169,
+  contradicts ≤ 303, 22 rules' agreeing counts ≥ their 2026-11-27 values), the 13 clusters' ceilings, no unjudged new record. No older check changed.
+- Full suite (after the refit chain): 591 checks, 586 pass; of the 5 failures three were timing (the completion toast, the cross-validation time, v341 door) and pass alone, two were this wave's — wave 193 (typed «سَاكِنا»: the analyzer's «نَا» pronoun guess made the seat pass read a kasra → the seat / follower passes now read only the analyzer's own pronoun, and only when the page vowelled it) and v329 (a demonstrative taken as the muḍāf of a written majrūr → excluded) — both fixed and re-run with v345-D: pass.
+- Scripts: scratchpad `dabt345/` (`meas.js` the uncapped corpus with hits by rule, `show.py --cmp`, `dbg.js` per-token probe, `left.py`, `PROGRESS.md`).

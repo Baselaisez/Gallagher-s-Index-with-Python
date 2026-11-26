@@ -26455,7 +26455,7 @@ class DabtEngine {
         if (isVerb(r)) { r.__vcell = r.cell; r.cell = null; r.kind = "noun"; r.__kindNoun = true; } r.enc = "ي"; r.__encYa = true; }   // (wave 22c) كِنِّي، جَدِّي: the ya of «my» on a stem the analyzer took whole
       if (isVerb(r) && r.cell && /mazi/i.test(r.cell.tense || "") && encOf(r) === "ني" && /ا$/.test(this.bare(r.cell.form || "")) && rows.slice(i + 1, i + 5).some(x => encOf(x) === "كما")) r.__dualAmr = true;   // (wave 22c) دَعَانِي مِنْ مَلَامِكُمَا: the two addressees make «he called me» the dual command «leave me, you two»
       if (isVerb(r) && r.cell && /mudari/i.test(r.cell.tense || "") && r.cell.i === 3 && /^[وف]?ت/.test(b0) && nx && isNoun(nx) && hasAl(nx) && !nx.afterJarr && !joined(nx) && this.MASC_HUMAN.test(bareOf(nx))) r.__youDoer = true;   // (wave 22c) وَتَخْشَى النَّاسَ: the tāʾ before a masculine human noun is the addressee's
-      if (isNoun(r) && /^(ابن|بن)$/.test(b0) && pv && isNoun(pv) && nx && isNoun(nx) && (!hasAl(nx) || (b0 === "بن" && !nx.afterJarr && !joined(nx))) && !(b0 === "ابن" && /^[وف]?ل[^ا]/.test(bareOf(pv)) && (jarrClit(pv) || (pv.lemma && this.bare(String(pv.lemma).split(/[()\s]/)[0]) === bareOf(pv).replace(/^[وف]?ل/, ""))) && (() => { const pv2 = rows[i - 2]; return !pv2 || this.KANA_FORMS.has(this.core(pv2.w || "")) || /^[وف]?(كان|كانت|ليس|ليست|صار|صارت)$/.test(bareOf(pv2)); })()) /* (wave 100) كَانَ لِلُقْمَانَ ابْنٌ: «X has a son», not «son of» */) { r.__ibn = true; if (!prePairs.some(p => p[0] === i)) prePairs.push([i, i + 1]);   // بْنِ الْوَلِيدِ (wave 21)
+      if (isNoun(r) && /^(ابن|بن)$/.test(b0) && pv && isNoun(pv) && nx && (isNoun(nx) || (nx.__propn25 && propn(pv))) /* (v345-D) قَيْسُ بْنُ أَسْلَمَ: the lexicon's name the author tagged a verb */ && (!hasAl(nx) || (b0 === "بن" && !nx.afterJarr && !joined(nx))) && !(b0 === "ابن" && /^[وف]?ل[^ا]/.test(bareOf(pv)) && (jarrClit(pv) || (pv.lemma && this.bare(String(pv.lemma).split(/[()\s]/)[0]) === bareOf(pv).replace(/^[وف]?ل/, ""))) && (() => { const pv2 = rows[i - 2]; return !pv2 || this.KANA_FORMS.has(this.core(pv2.w || "")) || /^[وف]?(كان|كانت|ليس|ليست|صار|صارت)$/.test(bareOf(pv2)); })()) /* (wave 100) كَانَ لِلُقْمَانَ ابْنٌ: «X has a son», not «son of» */) { r.__ibn = true; if (!prePairs.some(p => p[0] === i)) prePairs.push([i, i + 1]);   // بْنِ الْوَلِيدِ (wave 21)
         if (b0 === "ابن" && !propn(pv) && !pv.__name && !hasAl(pv) && !encOf(pv) && !prePairs.some(p => p[1] === i)) { prePairs.push([i - 1, i]); r.__ibnAnnexed = true; } }   // كَقَوْلِ ابْنِ حَيُّوسٍ: the saying is annexed to the son
       if (/^[وف]?(امرئ|امرؤ|امرأ|امريء|امرء)$/.test(b0) && nx && isNoun(nx) && (hasAl(nx) || propn(nx)) && !nx.afterJarr) { if (!isNoun(r)) { r.__vcell = r.cell; r.cell = null; r.kind = "noun"; r.__kindNoun = true; } if (!prePairs.some(p => p[0] === i)) prePairs.push([i, i + 1]);
         if (pv && isNoun(pv) && !hasAl(pv) && !encOf(pv) && !propn(pv) && !prePairs.some(p => p[1] === i)) prePairs.push([i - 1, i]); }   // امْرِئِ الْقَيْسِ، كَقَوْلِ امْرِئِ (wave 20)
@@ -29593,12 +29593,16 @@ class DabtEngine {
           if (ox.rule === "maful" && ox.k === "nasb" && isNoun(rows[x]) && !isVerb(rows[x])) { ox.rule = "kanaKhabar"; kh185 = x; break; }
           if (!/^(mudafIlayh|nat|jarr)$/.test(ox.rule || "") && (rows[x].kind || "") !== "particle") break; }
         if (kh185 > 0) o1.rule = "kanaIsm"; } } catch (e) {}
+    try { this.annexByMarks345(rows, out, head, member); } catch (e) {}   // (v345-D) the head the page writes without tanwīn, before its majrūr
     try { this.relabel170(rows, out); } catch (e) {}
     try { this.lazimSeat326(rows, out, head); } catch (e) {}
     try { this.encObj327(rows, out); } catch (e) {}
     try { this.diptoteObj330(rows, out); } catch (e) {}   // (v330) ابْتَلَى إِبْرَاهِيمَ رَبُّهُ
     try { this.kanaGate327(rows, out); } catch (e) {}
     try { this.natChain333(rows, out); } catch (e) {}   // (v333) the naʿt follows the chain noun whose written case it bears
+    try { this.moodByMarks345(rows, out); } catch (e) {}
+    try { this.seatByMarks345(rows, out, head, member); } catch (e) {}
+    try { this.followByMarks345(rows, out); } catch (e) {}   // (v345-D) the follower whose written case names another head   // (v345-D) the object's seat on a word the page writes majrūr or marfūʿ   // (v345-D) the muḍāriʿ's mood, where the page's mark chooses between governors the engine sees
     return { out, head, member };
   }
   /* (v326 · Shudhūr R202 with R117, R201; triage T4 and I-9 (d)) AFTER A LĀZIM VERB WHOSE DOER IS STATED, an indefinite manṣūb noun has
@@ -29612,6 +29616,168 @@ class DabtEngine {
       (عَبْدُ اللهِ بْنُ الْمُبَارَكِ بْنِ وَاضِحٍ الْحَنْظَلِيُّ، عَلِيُّ بْنُ الْمُحَسِّنِ بْنِ عَلِيٍّ التَّنُوخِيُّ) or the rhyme-word after a construct (مَنَارَةُ مُمْسَى رَاهِبٍ
       مُتَبَتِّلِ). Walking back over the chain (muḍāf ilayh, naʿt, badal), the first noun whose case — written, else decided — is the naʿt's own
       becomes its head. Bare letters write no case, so typed text and the stripped grader are untouched. */
+  /* (v345-D · T-C-tanwin, T-C-raf; Shudhūr l.274 «الثَّاني الْمَجْرُورُ بِالإِضَافَةِ كـ«غُلَام زَيْدٍ» وَيُجَرَّدُ الْمُضَافُ مِنْ تَنْوِينٍ أَوْ نُونٍ تُشْبِهُهُ مُطْلَقًا»)
+     THE ANNEXATION THE PAGE'S OWN MARKS SHOW. The chain reader cuts a pair on shape (a name annexes nothing; verb + noun + ال-noun is doer +
+     object), and the grader then wrote صَلَاحٌ الدِّينَ، نُورٌ الدِّينَ، فِي سَنَةٍ اثْنَتَيْنِ، كِلَابٌ الْحَيِّ. Where the sentence carries its marks (the
+     grader's receipts, `_orig24`), a bare indefinite noun written with a case vowel and NO tanwīn, right before a noun written MAJRŪR
+     (kasra / kasratān), with no pause between, is the muḍāf and the next word its muḍāf ilayh — the two marks together leave no other
+     reading (a naʿt would need the head's tanwīn; a diptote head is left alone). A noun written without tanwīn right before أَنْ / أَنَّ or a
+     cited verb (شَهَادَةُ أَنْ، مِثْلُ رَضِيَ، قِيَاسُ لَمْ يَبِعْ) is annexed to what follows: no tanwīn, its own case kept.
+     Typed text carries no receipts: untouched. */
+  static annexByMarks345(rows, out, head, member){
+    const O = this._orig24; if (!Array.isArray(O) || !O.length || !head || !member) return;
+    const W = i => String(O[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟*]/g, "").replace(/ّ/g, "");
+    const B = i => this.bare((rows[i] || {}).w || "");
+    const isV = i => { const r = rows[i]; return !!r && (r.kind || "").startsWith("verb") && !r.__kindNoun; };
+    const isN = i => { const r = rows[i]; return !!r && ((r.kind || "").startsWith("noun") || !!r.__kindNoun) && !isV(i); };
+    const al = i => /^[وف]?([بلك]?ال|لل)/.test(B(i));
+    const lemB = i => { try { return this.bare(this.lemmaOf((rows[i] || {}).w || "") || ""); } catch (e) { return ""; } };
+    const enc = i => { try { return (rows[i] || {}).enc || this.guessEnc(rows[i], rows[i].w) || ""; } catch (e) { return ""; } };
+    const L0 = i => lemB(i).replace(/^ال/, "");
+    const jc = i => { if ((this._jarr131 || [])[i] || (rows[i] || {}).__jarrClitic) return true; const b = B(i).replace(/^[وف](?=..)/, ""); if (/^(بال|كال|لل)/.test(b)) return true; if (!/^[بكل]/.test(b) || /^ال/.test(b)) return false; const l = L0(i); return !(l && l[0] === b[0]); };
+    const joinedN = i => { const b = B(i); if (!/^[وف]/.test(b)) return false; const l = L0(i); return !(l && l[0] === b[0]); };
+    for (let i = 0; i + 1 < rows.length; i++) {
+      const r = rows[i], o = out[i]; if (!r || !o || !/^(raf|nasb|jarr)$/.test(o.k || "") || head.has(i) || !isN(i) || al(i) || enc(i) || r.__five || r.construct || /^(ishara|mawsul|pron)$/.test(r.pk || "")) continue;
+      const P = Array.isArray(this._punct133) && this._punct133.length === rows.length ? String(this._punct133[i] || "") : (this._punctAt && this._punctAt.has(i) ? "،" : "");
+      const pause = /[،؛.!؟]/.test(P), colon = /:/.test(P);   /* the hemistich mark is no pause: سَعَفِ• الْبَحْرَيْنِ */
+      if (pause) continue;
+      const w = W(i), b = B(i); if (!w || this.bare(w) !== b || !/[ء-ي][َُِ]$/.test(w) || /[ًٌٍ]/.test(w) || /(ان|ين|ون)$/.test(b) || /[اىءي]$/.test(b)) continue;
+      if (/^[وف]?(الذي|التي|من|ما|هذا|هذه|ذلك|تلك|كيف|اين|أين|متى|حيث|اذ|إذ|اذا|إذا|لدن|امس|أمس)$/.test(b)) continue;
+      let dip = false; try { dip = this.diptote(r.w, r.lemma, r.root, !!r.__propn35); } catch (e) {} if (dip) continue;
+      const j = i + 1, n = rows[j], wn = W(j), bn = B(j); if (!n || /^(ابن|بن|ابنة|بنت)$/.test(bn)) continue;   /* زَيْدُ بْنُ: the naʿt, not the annex */
+      if (!colon && (/^(mawsul|ma|man)$/.test(n.pk || "") || /^(ما|من|الذي|التي|الذين|اللذين|اللتين)$/.test(bn)) && !/[ًٌٍ]/.test(w)) { r.__forceMudaf135 = true; continue; }   /* حَرَكَةِ مَا قَبْلَهَا: annexed to the relative */
+      if (/^(ishara|pron|ma|mawsul|man)$/.test(n.pk || "")) continue;
+      let nDip = false; if (/َ$/.test(wn) && !al(j) && !enc(j)) { try { nDip = this.diptote(n.w, n.lemma, n.root, !!n.__propn35) || !!n.__propn35; } catch (e) {} }   /* حَزْمِ ثَهْلَانَ، زِيِّ عَذْرَاءَ: the diptote's jarr is its fatḥa */
+      if (!colon && isN(j) && (n.kind || "") !== "particle" && !jc(j) && !(member.has(j) && member.get(j) !== i) && wn && this.bare(wn) === bn && (/[ٍِ]$/.test(wn) || nDip || /ين[َ]?$/.test(bn + "") && /ِ?ينَ$|َيْنِ$/.test(wn)) && !joinedN(j)) {
+        head.add(i); member.set(j, i); if (!(out[j] && out[j].k === "jarr" && out[j].rule === "mudafIlayh")) out[j] = { k: "jarr", rule: "mudafIlayh", head: i, by345: "annex" }; continue; }
+      if (/^(ان|أن|انه|أنه|انها|أنها|انهم|أنهم)$/.test(bn) || isV(j) || (/^(لم|لن|قد)$/.test(bn) && isV(j + 1))) r.__forceMudaf135 = true;
+    }
+  }
+  /* (v345-D · T-C-mood; Shudhūr l.185 «العَاشِرُ المُضَارِعُ إِذَا تَجَرَّدَ مِنْ نَاصِبٍ وَجَازِمٍ», l.256 «وَالمضَارِعُ بَعْدَ نَاصِبٍ، وَهُوَ «لَنْ» أَوْ «كَي»
+     المَصْدَرِيَّةُ …», l.284 «الْمَجْزُومَاتُ … جازِمٌ لِفِعْلٍ، وَهُوَ: لَمْ، وَلَمَّا، وَلَامُ الأَمْرِ، وَلَا في النَّهْيِ»). THE MOOD THE PAGE WRITES, WHERE A GOVERNOR
+     THE ENGINE CAN SEE LICENSES IT. The mood rules carry a mood along a chain of joined verbs, read لِ before a verb as lām kay, take مَنْ for a
+     condition and a cited particle for no governor; on the authored text they then overwrote فَيَقُولُ، وَلِيَعْلَمْ، يُخْبِرْكِ، وَلَنْ تَجِدَ. Where the
+     sentence carries its marks (the grader's receipts) and the muḍāriʿ's own written vowel names a mood (ḍamma, fatḥa, sukūn on a sound last
+     letter), that mood is kept when the clause licenses it:
+       · jazm — a jāzim before it in the clause (لَمْ، لَمَّا، لَا، lām al-amr written لْ / لِ + sukūn, a condition word إِنْ مَنْ مَا مَهْمَا مَتَى أَيْنَ أَيٌّ
+         حَيْثُمَا إِذْمَا أَنَّى), a request before it (an amr verb, a lām al-amr) — the answer — or an earlier jussive it joins;
+       · naṣb — a nāṣib before it in the clause (أَنْ without shadda، لَنْ، كَيْ، لِ، حَتَّى، إِذَنْ) or an earlier manṣūb verb it joins by وَ / فَ / أَوْ / ثُمَّ;
+       · rafʿ — the verb stands free: no nāṣib or jāzim directly before it except the homographs (لَا nafy / nahy, مَنْ / مَا relative /
+         conditional), no lām on it.
+     A clause ends at the page's own stop. Typed text carries no receipts: untouched. */
+  static moodByMarks345(rows, out){
+    const O = this._orig24; if (!Array.isArray(O) || !O.length) return;
+    const B = i => this.bare((rows[i] || {}).w || "").replace(/[أإآ]/g, "ا");
+    const isV = i => { const r = rows[i]; return !!r && (r.kind || "").startsWith("verb") && !r.__kindNoun; };
+    const W = i => String(O[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟*•]/g, "");
+    const cutLetters = (w, n) => { let k = w.length; while (n > 0 && k > 0) { k--; if (/[ء-ي]/.test(w[k])) n--; } return w.slice(0, k); };
+    const wasl = q => { const w = String(O[q] || "").normalize("NFC").replace(/^[«"]+/, ""); return !!w && /^ا/.test(w) && !/^ا[ًٌٍَُِْ]/.test(w); };
+    /* the written mood: ḍamma, fatḥa, sukūn on a sound last letter; a kasra before a hamzat al-waṣl is the jussive's (لَمْ يَأْخُذِ اسْمُ، وَمَنْ لَا يَظْلِمِ النَّاسَ);
+       a doubled verb's fatḥa is naṣb or jazm («nj»); the weak verb whose last letter fell, the five verbs and the nūn of the women / of emphasis say nothing here */
+    const moodOf = i => { const r = rows[i]; let w = W(i); if (!w || this.bare(w) !== this.bare(r.w || "")) return null; let e = ""; try { e = r.enc || this.guessEnc(r, r.w) || ""; } catch (x) {} if (e) w = cutLetters(w, this.bare(e).length);
+      if (/[ويىا]$/.test(this.bare(String(r.root || "")).replace(/\s/g, "")) || /[اوىي]$/.test(this.bare(String(r.lemma || "").split(/[()\s]/)[0]))) return null;   /* تَقْفُ، يَخْشَ */
+      const L = this.bare(w); if (!L || /[اويىة]$/.test(L) || /(ان|ون|ين)$/.test(L) || (/ن$/.test(L) && !/ن$/.test(this.bare(String(r.root || "")).replace(/\s/g, "")))) return null;   /* the nūn of the women or of emphasis is no radical: لِتَنْصُرَنْ، يَصُنَّ */
+      const dbl = /ّ/.test(w.slice(-3)); const m = (w.replace(/ّ/g, "").match(/[ء-ي]([َُِْ]?)$/) || [])[1];
+      if (m === "ِ" && !e && rows[i + 1] && wasl(i + 1)) return "jazm";
+      if (m === "َ" && dbl) return "nj";
+      return m === "ُ" ? "raf" : m === "َ" ? "nasb" : m === "ْ" ? "jazm" : null; };
+    const P = Array.isArray(this._punct133) && this._punct133.length === rows.length ? this._punct133 : null;
+    const hardStop = q => P ? /[.:!؟؛]/.test(P[q] || "") : !!(this._punctAt && this._punctAt.has(q));   /* a comma or the hemistich mark does not close the clause */
+    const NASIB = /^[وف]?(ان|لن|كي|لكي|كيلا|حتى|اذن|لان)$/, JAZIM = /^[وف]?(لم|لما|ان|من|ما|مهما|متى|اين|اينما|اي|حيثما|اذما|انى)$/;
+    const anOK = q => !/ّ/.test(W(q)) && !/^[وف]?[ً-ٰ]*إ/.test(W(q));
+    for (let i = 0; i < rows.length; i++) {
+      const r = rows[i], o = out[i]; if (!r || !o || !isV(i) || !r.cell || !/^(mudari|majhulMudari|mansub|majzum|majzum2)$/.test(String(r.cell.tense || ""))) continue;
+      if (!/^(raf|nasb|jazm)$/.test(o.k || "") || !/^(raf|nasbVerb|jazm|shart)$/.test(o.rule || "")) continue;
+      let m = moodOf(i); if (!m || m === o.k) continue;
+      const bw = B(i), Wi = W(i), pvB = i > 0 ? B(i - 1) : "";
+      if (m === "nj") { if (o.k !== "raf") continue; m = i > 0 && ((NASIB.test(pvB) && (!/^[وف]?ان$/.test(pvB) || anOK(i - 1)))) ? "nasb" : i > 0 && /^[وف]?(لم|لما)$/.test(pvB) ? "jazm" : null; if (!m) continue; }
+      const lamOn = /^(?:[وف][ً-ٰ]*)?ل[َِْ][يتنأ]/.test(Wi) && /^[وف]?ل[يتنا]/.test(bw) && !/^[وف]?ل[يتنا]/.test(this.bare(String(r.cell.form || "")));
+      const joinedV = (/^[وف]/.test(bw) && !/^[وف]/.test(this.bare(String(r.cell.form || "")))) || (i > 0 && /^(او|ثم)$/.test(pvB));
+      const span = []; for (let q = i - 1; q >= 0 && !hardStop(q); q--) span.push(q);
+      const pvAn = i > 0 && /^[وف]?ان$/.test(pvB) && anOK(i - 1);
+      let ok = false;
+      if (m === "jazm") ok = (lamOn && /ْ$|ِ$/.test(Wi.replace(/ّ/g, ""))) || span.some(q => { const b = B(q), oq = out[q] || {};
+          if (!isV(q) && (/^[وف]?(لم|لما|لا)$/.test(b) || (JAZIM.test(b) && !(/^[وف]?ان$/.test(b) && !(/^[وف]?[ً-ٰ]*إ/.test(W(q)) && !/ّ/.test(W(q))))))) return true;
+          if (isV(q) && rows[q].cell && /amr/.test(String(rows[q].cell.tense || ""))) return true;
+          return isV(q) && oq.k === "jazm"; });
+      else if (m === "nasb") ok = (lamOn && /َ$/.test(Wi.replace(/ّ/g, ""))) || span.some(q => { const b = B(q); if (NASIB.test(b) && (!/^[وف]?ان$/.test(b) || anOK(q))) return true; return joinedV && isV(q) && (out[q] || {}).k === "nasb"; });
+      else ok = !lamOn && !pvAn && !(i > 0 && /^[وف]?(لن|كي|لكي|لم|لما|حتى|اذن)$/.test(pvB));
+      if (ok) { out[i] = { ...o, k: m, rule: m === "raf" ? "raf" : m === "nasb" ? "nasbVerb" : "jazm", by345: "mood" }; continue; }
+      /* no governor for the written mood inside the sentence: the verb opens it or joins on (فَتُنْتِجْ، يُخْبِرْكِ، وَلَا يَأْمُرَكُمْ) — its governor stands in the sentence
+         before, which this reading does not see. The engine says nothing (no seat), it does not overwrite the page. */
+      if (m !== "raf" && (i === 0 || joinedV) && (span.every(q => !isV(q)) || (joinedV && !span.some(q => isV(q) && (out[q] || {}).k === o.k)))) out[i] = { ...o, k: "none", rule: "mood-unseen", by345: "mood-silent" };
+    }
+  }
+  /* (v345-D · T-C-maful, T-C-follower, T-C-nasb; Shudhūr l.188 «الْمَفْعُولُ بِهِ، وَهُوَ: مَا وقَعَ عَلَيْهِ فِعْلُ الْفَاعِلِ»، l.131 «الْفَاعِلُ، وَهُوَ: مَا قُدِّمَ
+     الْفِعْلُ أوْ شِبْهُهُ عَلَيْهِ وَأُسْنِدَ إلَيْهِ»، l.274) THE OBJECT'S SEAT IS NAṢB. The seat rules hand the mafʿūl bihi (or a ḥāl) to the first free noun after a
+     verb; on the authored text they then wrote خِزَانَةِ كُتُبَهُ، بِمُثَقَّفٍ صَدْقَ الْكُعُوبِ، أَطَاعَ اللهَ الْعَبْدَ. Where the page writes that word's case
+     (receipts) and it is not naṣb, the engine does not keep a naṣb seat it cannot hold:
+       · written MAJRŪR — annexed to the noun before it when that noun is a chain head or written without tanwīn (muḍāf ilayh); after a jarr
+         letter, majrūr by it; an adjective-shaped indefinite word after an indefinite majrūr noun is its naʿt; otherwise the seat is left
+         unnamed (silent);
+       · written MARFŪʿ — the doer of the verb before it when that verb's doer seat is still open (an active «he / she» verb, no doer
+         named between); otherwise silent.
+     The sound feminine plural (its naṣb is a kasra), the duals and plurals in letters and the weak endings are not read here. */
+  static seatByMarks345(rows, out, head, member){
+    const O = this._orig24; if (!Array.isArray(O) || !O.length) return;
+    const B = i => this.bare((rows[i] || {}).w || "");
+    const isV = i => { const r = rows[i]; return !!r && (r.kind || "").startsWith("verb") && !r.__kindNoun; };
+    const isN = i => { const r = rows[i]; return !!r && ((r.kind || "").startsWith("noun") || !!r.__kindNoun) && !isV(i); };
+    const W = i => String(O[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟*•]/g, "");
+    const enc = i => { try { return (rows[i] || {}).enc || this.guessEnc(rows[i], rows[i].w) || ""; } catch (e) { return ""; } };
+    const cutLetters = (w, n) => { let k = w.length; while (n > 0 && k > 0) { k--; if (/[ء-ي]/.test(w[k])) n--; } return w.slice(0, k); };
+    const caseOf = i => { let w = W(i); if (!w || this.bare(w) !== B(i) || /ي$/.test(B(i)) || /^(ishara|mawsul|pron|ma|man)$/.test(rows[i].pk || "") || /(مائة|مئة)$/.test(B(i).replace(/^[وف]/, "")) && B(i).length > 5) return null; const e = (rows[i] || {}).enc || "";   /* ثَلَاثَمِائَةِ: the compound number's case rides its first half */ if (e === "ي") return null; if (e) { const w0 = w; w = cutLetters(w, this.bare(e).length); if (!/[َُِْ]/.test(w0.slice(w.length))) return null; }   /* the pronoun the page wrote vowelled — سَاكِنا with a bare نا is the word, not «sākin + nā» */ const L = this.bare(w);   /* بَصَرِي: the speaker's yāʾ hides the case */
+      if (!L || /[اىيوء]$/.test(L) || /(ات|ان|ين|ون)$/.test(L)) return null; const m = (w.replace(/ّ/g, "").match(/[ء-ي]([ًٌٍَُِ]+)$/) || [])[1] || "";
+      if (/ٍ/.test(m) && (/[وي]$/.test(this.bare(String(rows[i].root || "")).replace(/\s/g, "")) || (() => { try { return this.manqusBare181(L.replace(/^[وف]/, "")); } catch (e2) { return true; } })())) return null;   /* ثَانٍ: the manqūṣ */
+      return /[ٍِ]/.test(m) ? "i" : /[ٌُ]/.test(m) ? "u" : null; };
+    const P = Array.isArray(this._punct133) && this._punct133.length === rows.length ? this._punct133 : null;
+    const pause = q => P ? /[،؛.:!؟]/.test(P[q] || "") : !!(this._punctAt && this._punctAt.has(q));
+    const tanw = i => /[ًٌٍ]/.test(W(i));
+    for (let i = 1; i < rows.length; i++) {
+      const o = out[i]; if (!o || o.k !== "nasb" || !/^(maful|maful2|hal)$/.test(o.rule || "") || !isN(i)) continue;
+      const c = caseOf(i); if (!c) continue;
+      const pv = i - 1, silent = () => { out[i] = { ...o, __alt345: { k: "none", rule: "seat-unseen", by345: "seat-silent" } }; };
+      if (c === "i") {
+        if (!pause(pv) && isN(pv) && !/^(ishara|mawsul|pron|ma|man)$/.test(rows[pv].pk || "") && ((head && head.has(pv) && (!member.has(i) || member.get(i) === pv)) || (!tanw(pv) && !/^[وف]?(ال|لل)/.test(B(pv)) && !enc(pv) && /[َُِ]$/.test(W(pv).replace(/ّ/g, "")) && (out[pv] || {}).k !== "none" && !(/َ$/.test(W(pv).replace(/ّ/g, "")) && (() => { try { return !!rows[pv].__propn35 || this.diptote(rows[pv].w, rows[pv].lemma, rows[pv].root, false); } catch (e) { return true; } })())))) {   /* آدَمَ ثَلَاثَمِائَةِ: a diptote's fatḥa is no muḍāf's */
+          if (head) { head.add(pv); member.set(i, pv); } out[i] = { k: "jarr", rule: "mudafIlayh", head: pv, by345: "seat" }; continue; }
+        if ((rows[pv].kind || "") === "particle" && (rows[pv].pk || "") === "jarr") { out[i] = { k: "jarr", rule: "jarr", by345: "seat" }; continue; }
+        let q = pv; while (q >= 0 && !pause(q) && isN(q) && (out[q] || {}).k !== "jarr" && /^(nat|badal)$/.test((out[q] || {}).rule || "")) q--;
+        if (q >= 0 && q < i && !pause(q) && isN(q) && (out[q] || {}).k === "jarr" && tanw(i) && tanw(q) && (() => { try { return !!this.sifaShape(rows[i], rows[i].w); } catch (e) { return false; } })()) { out[i] = { ...o, __alt345: { k: "jarr", rule: "nat", head: q, by345: "seat" } }; continue; }
+        silent(); continue; }
+      if (c === "u") {
+        let v = -1; for (let q = pv; q >= 0 && !pause(q); q--) { if (isV(q)) { v = q; break; } }
+        const cl = v >= 0 ? (rows[v].cell || {}) : {};
+        const open = v >= 0 && !/majhul/i.test(String(cl.tense || "")) && [0, 3].includes(Number(cl.i)) && !/^(ه|ها|هم|هن|هما|ك|كم|كما|ني|نا)?$/.test(enc(v)) === false && !out.some((x, q) => q > v && q < i && x && /^(fail|naib)$/.test(x.rule || ""));
+        if (open) { out[i] = { ...o, __alt345: { k: "raf", rule: "fail", by345: "seat" } }; continue; }
+        silent(); }
+    }
+  }
+  /* (v345-D · T-C-follower; Shudhūr l.274, and the follower takes its head's case) THE FOLLOWER'S HEAD, BY ITS OWN WRITTEN CASE. The follower
+     rule (naʿt, ʿaṭf, badal, tawkīd) copies the case of the nearest earlier noun — usually a majrūr across a verb or a comma: فَرَضَ عَلَى الصَّلَاةَ
+     وَالصِّيَامِ، نَقَضَ قَوْلَهُ السَّابِقِ. Where the page writes the follower's case (receipts: ḍamma, fatḥa on a word that is no diptote, kasra) and it
+     is not the copied one, the head is the nearest earlier noun of the same clause whose case — written, else decided — is the follower's
+     (v333's natChain333 does this for the naʿt behind a chain); with none, the follower's seat is left unnamed (silent). */
+  static followByMarks345(rows, out){
+    const O = this._orig24; if (!Array.isArray(O) || !O.length) return;
+    const B = i => this.bare((rows[i] || {}).w || "");
+    const isV = i => { const r = rows[i]; return !!r && (r.kind || "").startsWith("verb") && !r.__kindNoun; };
+    const isN = i => { const r = rows[i]; return !!r && ((r.kind || "").startsWith("noun") || !!r.__kindNoun) && !isV(i); };
+    const W = i => String(O[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟*•]/g, "");
+    const enc = i => { try { return (rows[i] || {}).enc || this.guessEnc(rows[i], rows[i].w) || ""; } catch (e) { return ""; } };
+    const cutLetters = (w, n) => { let k = w.length; while (n > 0 && k > 0) { k--; if (/[ء-ي]/.test(w[k])) n--; } return w.slice(0, k); };
+    const caseOf = i => { if (!isN(i)) return null; let w = W(i); if (!w || this.bare(w) !== B(i) || /ي$/.test(B(i)) || /^(ishara|mawsul|pron|ma|man)$/.test(rows[i].pk || "")) return null; const e = (rows[i] || {}).enc || ""; if (e === "ي") return null; if (e) { const w0 = w; w = cutLetters(w, this.bare(e).length); if (!/[َُِْ]/.test(w0.slice(w.length))) return null; }   /* the pronoun the page wrote vowelled — سَاكِنا with a bare نا is the word, not «sākin + nā» */
+      const L = this.bare(w); if (!L || L.length < 3 || rows[i].__exact56 || /[اىيوء]$/.test(L) || /(ات|ان|ين|ون)$/.test(L)) return null; const m = (w.replace(/ّ/g, "").match(/[ء-ي]([ًٌٍَُِ]+)$/) || [])[1] || "";
+      if (/ٍ/.test(m) && (/[وي]$/.test(this.bare(String(rows[i].root || "")).replace(/\s/g, "")) || (() => { try { return this.manqusBare181(L.replace(/^[وف]/, "")); } catch (e2) { return true; } })())) return null;   /* عَاصٍ، جَارٍ: the manqūṣ's tanwīn is no kasra of jarr */
+      if (/[ٍِ]/.test(m)) return "jarr"; if (/[ٌُ]/.test(m)) return "raf"; if (/ً/.test(m)) return "nasb"; if (/َ/.test(m) && (/^[وف]?(ال|لل)/.test(B(i)) || e)) return "nasb"; return null; };   /* a bare fatḥa on an indefinite word (a diptote's jarr, a built word) is not read */
+    const P = Array.isArray(this._punct133) && this._punct133.length === rows.length ? this._punct133 : null;
+    const hard = q => P ? /[.:!؟؛]/.test(P[q] || "") : false;
+    for (let i = 1; i < rows.length; i++) {
+      const o = out[i]; if (!o || !/^(nat|atf|badal|tawkid)$/.test(o.rule || "") || !/^(raf|nasb|jarr)$/.test(o.k || "")) continue;
+      const c = caseOf(i); if (!c || c === o.k) continue;
+      let h = -1; for (let q = i - 1; q >= 0 && q >= i - 12 && !hard(q); q--) { if (!isN(q) || !out[q]) continue; const cq = caseOf(q) || (/^(raf|nasb|jarr)$/.test(out[q].k || "") ? out[q].k : null); if (cq === c) { h = q; break; } }
+      out[i] = { ...o, __alt345: h >= 0 ? { k: c, rule: o.rule, head: h, by345: "follow" } : { k: "none", rule: "follow-unseen", by345: "follow-silent" } };
+    }
+  }
   static natChain333(rows, out){
      if (typeof MansubEngine === "undefined") return; const M = MansubEngine;
      const wk = x => { const c = M.WR(M.W(x), M.hasAl(x)); return c && c.length === 1 ? c[0] : null; };
@@ -30105,6 +30271,14 @@ class DabtEngine {
         const h2 = this.setEnding(host, m);
         res.out = h2 + (pron ? this.pron(pron, h2) : "");
         res.src = res.src === "none" ? "cell" : res.src;
+        /* (v345-D · T-C-built; Shudhūr l.71 «الماضي المجرَّدُ كضَرَبَ وضرَبكَ وضَرَبَا», l.22) the paradigm fills a MISSING vowel; it does not overwrite the
+           page's own. نَزَلْتِ / نَزَلْتُ، عُنِيتُ / عُنِيَتْ، أَخَافُ / أَخَافَ share their letters: where the page writes the word to its end and the written
+           form is itself a cell of the same root whose ending is the page's, that cell is the reading — the context guess (twinCell, youCtx, the
+           Form IV reading) yields. A muḍāriʿ cell so found takes its mood from that ending. */
+        if (mode !== "full") { try { const oT = String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟*•]/g, ""), tail = z => (String(z || "").normalize("NFC").replace(/ّ/g, "").match(/[ء-ي][ًٌٍَُِْ]*$/) || [""])[0];
+          if (oT && oT !== res.out.normalize("NFC") && bw0(oT) === bw0(res.out) && /[َُِْ]$/.test(oT.replace(/ّ/g, "")) && !this.dualNun151(r)) { const c = RootFinder.fromCorpus(oT); const cf2 = c && c.cell ? String(c.cell.form || "").normalize("NFC") : "";
+            if (c && c.root && r.root && this.bare(c.root) === this.bare(r.root) && cf2 && tail(cf2) === tail(oT) && this.bare(cf2) === bw0(oT).replace(/^[وف](?=...)/, "").replace(/^[وف]/, m0 => this.bare(cf2)[0] === m0 ? m0 : "")) {
+              res.out = oT; res.twin345 = true; const tt = String(c.cell.tense || ""); if (/mudari|majzum|mansub/i.test(tt) && !/mazi|amr/.test(tt)) { const v = tail(oT).slice(-1); res.k = v === "ُ" ? "raf" : v === "َ" ? "nasb" : v === "ْ" ? "jazm" : res.k; res.rule = res.k === "raf" ? "raf" : res.k === "nasb" ? "nasbVerb" : res.k === "jazm" ? "jazm" : res.rule; } else if (tt) res.rule = /amr/.test(tt) ? "amr" : "mazi"; } } } catch (e) {} }
         return res;
       }
       if (dec.k === "raf" && dec.rule === "raf" && !pron) { const oM = (((this._orig24 || [])[i] || "").normalize("NFC")); if (oM && bw0(oM) === bw0(w) && /(ِ[ً-ٰ]*ي|ُ[ً-ٰ]*و|َ[ً-ٰ]*ى)$/.test(oM) && !/(ون|ان|ين)$/.test(this.bare(oM))) { res.out = oM; res.src = "nahw"; res.taqdiri = true; return res; } }   /* (round 73c) whatever kind the row was given, the verb-mood rafʿ on a weak ending is estimated */
@@ -30186,9 +30360,14 @@ class DabtEngine {
       const kasraYa32 = /ِ[ً-ٰ]*ي[ً-ٰ]*ن$/.test(hN0) && !/َ[ً-ٰ]*يْ[ً-ٰ]*ن$/.test(hN0);   /* (wave 32e) الْعَالَمِينَ، عَالِمِينَ: the kasra-yāʾ before the nūn is the sound plural's */
       const singular = /(ون|ين)$/.test(bh) && lb && !((kasraYa32 || !/[ً-ٰ]/.test(hN0)) && /^(عالمين|اهلين|أهلين|بنين|سنين|ارضين|أرضين|عالمون|اهلون|أهلون|بنون|سنون|ارضون|أرضون)$/.test(bhD))   /* (v334 · audit B30) typed bare, الْعَالَمِينَ is still the sound plural */ && (lb === bh || lb === bhD || lb.replace(/^ال/, "") === bhD || lb === bh.replace(/^[وف]/, "") /* (wave 26q2) وَبِنْيَامِينُ */);   /* (wave 24g) وَالتَّضْمِينُ */                    // عِشْرِين is not a plural; هَامَان is no dual
       const isPropn = (() => { if (r.__propn35) return true; const n = this.lex(w); if (n && /propn/.test(n.pos || "")) return true; try { const w32 = (w || "").normalize("NFC").replace(/^[وف][ً-ٰ]*/, ""); if (/^[بلك]/.test(w32) && !/^[بلك][ً-ٰ]*ا/.test(w32) && this.bare(w32).length >= 5) { const n2 = this.lex(w32.replace(/^[بلك][ً-ٰ]*/, "")); return !!(n2 && /propn/.test(n2.pos || "")); } } catch (e) {} return false; })();   /* (wave 32e) لِدَاوُدَ، وَلِسُلَيْمَانَ: the name behind its jarr letter */
-      const ibnNext = (isPropn || !!r.__name) && !!rows[i + 1] && /^(بن|ابن)$/.test(this.bare(rows[i + 1].w)) && !!rows[i + 2] && (rows[i + 2].kind || "").startsWith("noun") && !rows[i + 2].afterJarr && !/^[وف][ً-ٰ]*[^ً-ٰ]/.test((rows[i + 2].w || "").normalize("NFC").replace(/^[وف][ً-ٰ]*(ال)/, "X")) /* (wave 35c) لِنُوحٍ ابْنٌ كَانَ: the bare ابْنٌ annexes nothing — the name keeps its tanwīn */;   // wave 21d: كَقَوْلِ مُسْلِمِ بْنِ   // زَيْدُ بْنُ ثَابِتٍ: the tanwin falls between the two names (wave 18)
+      const ibnNext = (isPropn || !!r.__name) && !!rows[i + 1] && /^(بن|ابن)$/.test(this.bare(rows[i + 1].w)) && !!rows[i + 2] && ((rows[i + 2].kind || "").startsWith("noun") || !!rows[i + 2].__propn25 /* (v345-D) */) && !rows[i + 2].afterJarr && (!/^[وف][ً-ٰ]*[^ً-ٰ]/.test((rows[i + 2].w || "").normalize("NFC").replace(/^[وف][ً-ٰ]*(ال)/, "X")) || (() => { try { const l = this.bare(this.lemmaOf(rows[i + 2].w || "") || ""); return !!l && l[0] === this.bare(rows[i + 2].w || "")[0]; } catch (e) { return false; } })() /* (v345-D) بَكْرِ بْنِ وَائِلٍ، زَيْدِ بْنِ وَهْبٍ: the name's own wāw */) /* (wave 35c) لِنُوحٍ ابْنٌ كَانَ: the bare ابْنٌ annexes nothing — the name keeps its tanwīn */;   // wave 21d: كَقَوْلِ مُسْلِمِ بْنِ   // زَيْدُ بْنُ ثَابِتٍ: the tanwin falls between the two names (wave 18)
       const lemmaTanwin24 = /ً[ً-ٰ]*ى$/.test(String(lm || "").normalize("NFC"));   /* (wave 26g) مِنًى: the lexicon's own tanwīn is the receipt of ṣarf */
-      const dip = lemmaTanwin24 ? false : this.diptote((r.__hamzaQ || r.__mubtadaQ24) ? host.replace(/^([وف][ً-ٰ]*)?أ[ً-ٰ]*/, "") : host, lm, r.root, isPropn);   /* (wave 46o) أَزَيْدٌ: the question hamza is no letter of the name */
+      let dip = lemmaTanwin24 ? false : this.diptote((r.__hamzaQ || r.__mubtadaQ24) ? host.replace(/^([وف][ً-ٰ]*)?أ[ً-ٰ]*/, "") : host, lm, r.root, isPropn);   /* (wave 46o) أَزَيْدٌ: the question hamza is no letter of the name */
+      /* (v345-D · T-C-mamnu; Shudhūr l.30 «مَا لَا يَنْصَرِفُ، فَإِنَّهُ يُجَرُّ بِالْفَتْحَةِ … إِلَّا إِنْ أُضِيفَ أَوْ دَخَلَتْهُ أَلْ») the diptote causes of a place, a
+         woman's name, a fuʿal name the lexicon does not mark, and the noun the shape test takes for a diptote (مَعْشَر، يَامِن): where the page
+         writes the word's own ending, a TANWĪN says it is declined (or the poet declined it), a bare FATḤA in jarr says it is not */
+      if (mode !== "full" && !pron && !mudaf && !artHere && ["raf", "nasb", "jarr"].includes(dec.k) && !/(ان|ين|ون|ات)$/.test(this.bare(host))) { try { const oD = String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟*•]/g, "").replace(/ّ/g, "");
+        if (oD && bw0(oD) === bw0(w)) { if (/[ٌٍ]$|ً$|ًا$|اً$/.test(oD) && !/ًى$/.test(oD)) dip = false; else if (dec.k === "jarr" && /[ء-ي]َ$/.test(oD) && !/[اىي]$/.test(this.bare(oD))) dip = true; } } catch (e) {} }
       // مُعَاوِيَةَ بْنِ مَالِكٍ: the name before ابن loses its tanwin, but a diptote name keeps its jarr fatha (wave 19)
       const opt = { definite: (isDef || (ibnNext && !dip) || dec.k === "fath" || dec.k === "damm" || !!pron) && !seatAlif, mudaf: (mudaf || !!pron) && !seatAlif, root: r.root, manqus, dual, singular, pron, propn: isPropn, lemmaTanwin24,
                     mamnu: seatAlif ? false : (dec.k === "fath" || dec.k === "damm" ? true : dip) };
@@ -30231,6 +30410,11 @@ class DabtEngine {
       if ((!/^م/.test(b8) || DabtEngine.fatlaMim151(v8)) && /^[ء-ي][ء-ي](ى|يا)$/.test(b8.slice(1)) && /^[ء-ي]([ً-ٰ]*)[ء-ي](ْ|(?![ً-ٰ]))/.test(v8)) {
         if (/ًى$/.test(o8)) { x.out = o8.replace(/ًى$/, "َى"); x.rule = (x.rule || "") + "+alifTanith"; } else if (/يًا$/.test(o8)) { x.out = o8.replace(/يًا$/, "يَا"); x.rule = (x.rule || "") + "+alifTanith"; } } });   /* (wave 24h) فَعْلَى / فِعْلَى / فُعْلَى: the alif is the feminine's, the noun is diptote */
     const words = rhymeAt ? words0.map((x, i) => rhymeAt.has(i) ? ((this._rhymeSukun && this._rhymeSukun.has(i) && x.out && !/ا$/.test(this.bare(x.out))) ? { ...x, out: this.setEnding(x.out.normalize("NFC"), "ْ"), rhyme: true, rule: "qafiya-muqayyada" } : this.rhymeForm(x, rows[i])) : x) : words0;   /* (wave 24h) الْوَكِيلْ: the author's sukun-close on the rhyme (a muqayyada qafiya) is kept like the sajʿ's pausal close */
+    /* (v345-D) the readings the receipts settled after the seats were written (seatByMarks345, followByMarks345): applied only where the word
+       as written by the rules is NOT the page's — a word the rules already wrote as the page has it keeps its reading */
+    if (mode !== "full") words.forEach((x, i) => { const p = d.out && d.out[i] && d.out[i].__alt345; if (!p || !x) return;
+      const o = String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟*•]/g, ""); if (!o || this.bare(o).replace(/ا$/, "") !== this.bare(x.out || "").replace(/ا$/, "") || String(x.out || "").normalize("NFC") === o) return;
+      x.out = o; x.by345 = p.by345; if (p.k === "none") { x.src = "none"; x.k = null; x.rule = p.rule; return; } x.k = p.k; x.rule = p.rule; if (typeof p.head === "number") x.head = p.head; x.src = "nahw"; });
     // اِلْتِقَاءُ السَّاكِنَيْنِ: a word ending in a sukun before a wasl (the article,
     // an amr, ابن/اسم) breaks its sukun — مِنْ with a fatha, the plural pronouns
     // (هُمْ، كُمْ، أَنْتُمْ) with a damma, everything else with a kasra
@@ -30437,6 +30621,8 @@ class DabtEngine {
       M.set(st, v); return v;
     } catch (e) { return false; }
   }
+  /* (v345-D) a received POEM: a sentence carrying the hemistich mark, a token the author tags al-qafiya, or a verse story (wave 149) */
+  static verse345(sen){ try { return (sen.tokens || []).some(t => t.punctAfter === "*" || /•/.test(String((t.s || {}).full || "")) || (Array.isArray(t.grammar) && t.grammar.includes("al-qafiya"))) || this.verseStory149(sen); } catch (e) { return false; } }
   static _grade136(sen, mode){
     const toks = (sen.tokens || []).map(t => (t.s ? t.s.full : t.surface ? t.surface.full : "").normalize("NFC"));
     this._pos24 = (sen.tokens || []).map(t => (t && t.pos) || "");   /* (wave 32c) the author's part of speech, by index */ this._pos24G = this._pos24;
@@ -30472,6 +30658,7 @@ class DabtEngine {
       const jal = z => z.replace(/^لِل[َّ]*ه/, "لله").replace(/^([وفبل][َِ]?)?ال+َ?ّ?[َ]?ه/, m0 => m0.replace(/ّ|(?<=ل)َ/g, ""));   // اللَّهُ ~ اللهُ
       x.ok = x.out.normalize("NFC") === want || (mode === "full" && jal(x.out.normalize("NFC")) === jal(want)) || x.out.normalize("NFC").replace(/^لِل[َّ]*ه/, "لله") === want.normalize("NFC").replace(/^لِل[َّ]*ه/, "لله");   /* (wave 23j) لِلهِ */
       if (!x.ok) { const vj = String((((sen.tokens || [])[i] || {}).irab || {}).ar || "").normalize("NFC").match(/وَالْوَجْهُ:\s*([^\s).،]+)/); if (vj && vj[1] === x.out.normalize("NFC")) { x.ok = true; x.printVariant = true; } }   /* (wave 133) the author's correction of the print — «وَالْوَجْهُ: عَمْرًا» — is the receipt, not the print's slip */
+      if (!x.ok && /ْ$/.test(want.normalize("NFC")) && x.out.normalize("NFC") === want.normalize("NFC").replace(/ْ$/, "ِ") && toks[i + 1] && /^[«"]?ا(?![ًٌٍَُِ])/.test(toks[i + 1].normalize("NFC")) && !/[،.:!؟؛]$/.test(toks[i])) { x.ok = true; x.wasl345 = true; }   /* (v345-D) لَمْ يَأْخُذْ اسْمُ ~ لَمْ يَأْخُذِ اسْمُ: the page prints the jussive's sukūn, the reading breaks it before the waṣl — one ending */
       if (!x.ok && this._rhymeAtGrade && this._rhymeAtGrade.has(i)) { const it9 = z => z.normalize("NFC").replace(/ًا$/, "َا").replace(/ٌ$/, "ُ").replace(/ٍ$/, "ِ"); if (it9(x.out) === it9(want)) { x.ok = true; x.rhyme = true; } }   // (wave 22c) مُغْرَمَا، بِسَرِيعِ: at the rhyme the waqf and the wasl
       if (!x.ok && this._sajAtGrade && this._sajAtGrade.has(i) && /ْ$/.test(want.normalize("NFC"))) { const wq = z => z.normalize("NFC").replace(/ًا$/, "ْ").replace(/[ًٌٍَُِ]$/, "ْ"); if (wq(x.out) === want.normalize("NFC")) { x.ok = true; x.rhyme = true; } }   // (wave 23a) the sajʿ close on the sukun forms are one reading
       // (wave 83) the grader reads the book honestly. A CITED form — the author's «لَفْظٌ مَحْكِيٌّ», the Kāfiya quoting فَعَالِ or
@@ -30479,15 +30666,19 @@ class DabtEngine {
       // (اخْتِلَاف، الطَّيْر: the source's print carried no mark there) gives nothing to compare; there the author's own iʿrāb
       // line names the case, and the engine's sign is judged against THAT — ḍamma ~ مَرْفُوع، fatḥa ~ مَنْصُوب، kasra ~ مَجْرُور،
       // sukūn ~ مَجْزُوم. A silent word whose line names no case is undecided. Nothing here feeds the engine: it only judges.
+      /* (v345-D · T-C-verse) a received poem's licence: the line names it (لِلْقَافِيَةِ، لِلرَّوِيِّ، ضَرُورَةً، لِلْوَزْنِ، الْإِطْلَاقُ، صُرِفَ / نُوِّنَ لِلضَّرُورَةِ),
+         or the word stands on the poem's rhyme seat — the stored vowel is the poet's; where the engine reads the un-licensed norm, it yields (undecided) */
+      const lic345 = !x.ok && (/قافي|للروي|الروي|ضرور|للوزن|الاطلاق|اشبع|للاطلاق/.test(String(irab24[i] || "").replace(/[أإآ]/g, "ا")) || (this._rhymeAtGrade && this._rhymeAtGrade.has(i) && this.verse345(sen)));
+      if (lic345 && !/قافي|للوقف|حذف التنوين|سكن اخره|سكن آخره/.test(String(irab24[i] || "").replace(/[أإآ]/g, "ا"))) { const lb = z => this.bare(z).replace(/[اي]$/, "").replace(/[اي]$/, ""); if (lb(x.out) === lb(want)) { res.n--; res.undecided++; x.ok = null; x.src = "kept"; x.rule = "licence"; return; } }
       if (!x.ok && /قافي|للوقف|حذف التنوين|سكن اخره|سكن آخره/.test(String(irab24[i] || "").replace(/[أإآ]/g, "ا"))) {
         /* (wave 131) the author's line names the RHYME or the PAUSE as the reason for the written ending (وَاتِّصَالِ، تَرْجُمَانْ، الْأَهَالِ، نَاهِدِ): the engine's full ending is judged against the un-rhymed norm, as the hemistich seats of wave 22c are; where only the letters agree the seat is undecided, not wrong */
         const it9 = z => z.normalize("NFC").replace(/ًا$/, "َا").replace(/ٌ$/, "ُ").replace(/ٍ$/, "ِ").replace(/ً$/, "َ"); const wq = z => z.normalize("NFC").replace(/ًا$/, "ْ").replace(/[ًٌٍَُِ]$/, "ْ"); const wantN = want.normalize("NFC"), outN = x.out.normalize("NFC");
         if (it9(outN) === it9(wantN) || (/ْ$/.test(wantN) && wq(outN) === wantN) || (/ِ$/.test(wantN) && it9(outN).replace(/ِي$/, "ِ") === wantN)) { x.ok = true; x.rhyme = true; }
-        else if (this.bare(outN) === this.bare(wantN)) { res.n--; res.undecided++; x.ok = null; x.src = "kept"; x.rule = "qafiya"; return; }
+        else if (this.bare(outN) === this.bare(wantN) || this.bare(outN).replace(/[اي]$/, "") === this.bare(wantN).replace(/[اي]$/, "")) { res.n--; res.undecided++; x.ok = null; x.src = "kept"; x.rule = "qafiya"; return; }   /* (v345-D) مُكَلَّمًا / مُكَلَّمِ: the tanwīn's alif, the iṭlāq's, the manqūṣ's yāʾ are no letters of the word */
       }
       if (!x.ok) {
         const head = (irab24[i] || "").split("—")[0];
-        if (/محكي/.test(head)) { res.n--; res.undecided++; x.ok = null; x.src = "kept"; x.rule = "hikaya"; return; }
+        if (/محكي/.test(head) || /لفظ محكي|محكي قصد لفظه|قصد لفظه/.test(irab24[i] || "")) { res.n--; res.undecided++; x.ok = null; x.src = "kept"; x.rule = "hikaya"; return; }   /* (v345-D · T-C-hikaya) «… — لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ»: the cited form carries no case of its own, wherever the line names it */
         const wantN = want.normalize("NFC"), outN = x.out.normalize("NFC").replace(/\u064b\u0627$/, "\u064b");
         if (/[\u0621-\u064a]$/.test(wantN) && !/[اىوي]$/.test(wantN) && outN.replace(/[\u064b-\u0652\u0670]+$/, "") === wantN && !/بال(واو|الف|ياء|نون|حذف)/.test(head)) {
           // the sign the line NAMES outranks the case it names (مَنْصُوبٌ بِالْكَسْرَةِ on a sound feminine plural; مَجْرُورٌ بِالْفَتْحَةِ on a diptote)
