@@ -364,6 +364,20 @@ def load_amthal():
     p = ROOT / "content/rules/amthal_index.json"
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
+def load_usul():
+    """(v352-U) the uṣūl feeders, shipped small (≈ 12 KB): the kinds of ʿilla as al-Iqtirāḥ reports them + the {ilal id → kind} side table
+    (content/rules/ilal_kinds.json), and the «İki yöntem» cards of the khilaf lab (content/rules/usul_methods.json). Every `*ar` is a
+    verbatim substring of its source file (smoke «v352-U …»)."""
+    p, q = ROOT / "content/rules/ilal_kinds.json", ROOT / "content/rules/usul_methods.json"
+    out = {}
+    if p.exists():
+        d = json.loads(p.read_text(encoding="utf-8"))
+        out["kinds"] = [{k: x[k] for k in ("id", "name_ar", "ex_ar", "page", "shamela", "by", "en", "tr")} for x in d["kinds"]]
+        out["tags"] = {i: v["kind"] for i, v in d["tags"].items()}
+    if q.exists():
+        out["methods"] = json.loads(q.read_text(encoding="utf-8"))["cards"]
+    return out or None
+
 
 def build_catalog(pkgs):
     """Build a catalog.json index from discovered packages.
@@ -447,6 +461,9 @@ def main():
         # (v352-A) the Alfiyya's verses on the notes — the «Elfiye» cards and the «beyti bul» round read this
         js("ALFIYYA_JSON", json.dumps(load_alfiyya(), ensure_ascii=False, separators=(",", ":"))),
         js("AMTHAL", load_amthal()),
+
+        # (v352-U) the kinds of ʿilla (al-Iqtirāḥ) and the khilaf lab's «İki yöntem» cards
+        js("USUL", load_usul()),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",
              "label": {"en": "Morphology — after Emsile & Bina",

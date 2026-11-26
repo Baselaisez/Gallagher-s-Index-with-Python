@@ -17183,3 +17183,50 @@ design pass» at the end of the main `<style>`; nothing in an older function rew
   «Göster», Esc → «skip:tap», Settings and the backup key, en/tr for every g351/h351 string); «v351 — one-time hints»
   (none without the guide; registry ids, strings and live targets; once each, 44 px, not during the tour, the observer
   disarmed); «v351 — the guide costs a returning learner nothing»; «v351 — the design pass, measured at 360×740 in tr».
+## v352-U — uṣūl al-naḥw: al-Khaṣāʾiṣ and al-Iqtirāḥ as feeders
+
+The owner: «Particularly al-Khaṣāʾiṣ is so important: it must be both feeder and story / text» (the text half is v352-K's). Sources (received
+2026-11-26): `research/sources/al-khasais-ibn-jinni-src.txt` (Shamela 9986, 1,357 pp.) and `al-iqtirah-suyuti-src.txt` (Shamela 14246, 405 pp.;
+its «--- hashiya ---» is the modern editor's «الإصباح» — every script here reads the MATN only, and nothing is cited as al-Suyūṭī's from it).
+- **Script chain (`tools/usul/`, rerun in this order):** `src.py` (pages / matn lines / `on_page`, on top of tools/ilal/common.py) →
+  `build_toc.py` → `content/rules/toc_khasais.json` (160 abwāb: vol. 1 52 from the in-text heading lines — the e-text prints no index for vol. 1,
+  2 of its 54 abwāb have no findable heading, so vol. 1's `n` is the order found; vols. 2–3 55 + 53 from the printed «فهرس», numbered 55–162,
+  printed pages mapped to Shamela pages, Shamela's labels preferred where they match; each bāb: heading verbatim, span, pages, chars,
+  `key_terms` [term, count] from 57 technical words, the index's sub-entries) and `toc_iqtirah.json` (116 headings: 8 kutub, faṣl / khātima /
+  dhikr, masʾala / farʿ / maslak / qādiḥ, tanbīh) → `build_usul.py` → `usul_nahw.json` (al-Suyūṭī's plan: أصول النحو، السماع، الإجماع، القياس
+  with its pillars الأصل/الفرع/الحكم/العلة، الاستصحاب، أدلة شتى، التعارض والترجيح، المستنبط; each with the defining sentence verbatim + page + whose
+  it is (`by`: al-Suyūṭī or the one he quotes), our rendering, sub-headings with their first sentence (Arabic only), and his 58 citations of
+  Ibn Jinnī with the passage FOUND in al-Khaṣāʾiṣ for 41 — exact first seven words, else the page sharing ≥ 40 % of word bigrams) →
+  `kinds.py` → `ilal_kinds.json` → `cut_khasais.py` → `research/usul/khasais_candidates.json` (754 taʿlīl sentences joined to topics by
+  tools/ilal/concepts.py) → hand reading `tools/usul/kept_khasais.json` → `append_ilal.py` → `build_methods.py` → `usul_methods.json` →
+  `coverage.py` → `research/usul-coverage-2026-11-27.md`. Rerun `kinds.py` after any append to ilal.json.
+- **The kinds of ʿilla** (`ilal_kinds.json`): al-Iqtirāḥ pp. 205–216 — al-Dīnawarī al-Jalīs's list of 24 «famous» kinds (from «ثمار الصناعة»),
+  each with Ibn Maktūm's example as al-Suyūṭī quotes it (التحليل: Ibn al-Ṣāʾigh's), verbatim + page, our en/tr. `tags` {ilal id → kind, marker}:
+  ONLY where the reason's own words decide it (للفرق / فرقا بين → farq; تشبيها / لشبهه / حملا على → tashbīh; حملا على المعنى; نظيره / نقيضه;
+  للتخفيف / تخفيفا; لثقل / استثقال; عوضا; للتوكيد; استغناء; لتدافع → taḍādd, which outranks an earlier adverbial; «حملا على اللفظ/الموضع» stays
+  untagged): 18 of 121. A NEW side table — ilal.json's entries are not edited.
+- **al-Khaṣāʾiṣ's reasons → ilal.json:** 31 appended at the END (`ilal-khasais-<page>-<k>`, book `khasais` = «الخصائص», `books.khasais` added;
+  `counts` left as v348-F wrote it — another wave appends too). The fāʿil now has a book reason (p. 204 «فلهذا قلنا: ارتفع الفاعل بإسناد الفعل
+  إليه», and al-Zajjāj's «للفرق بينهما» p. 51 with Ibn Jinnī's why-not-the-reverse); the mubtadaʾ's own reason is kept WITHOUT `role` so the
+  chain's mubtadaʾ step stays Shaykhzāde's (v348's pin). Of the 44 topics v348-F left without a reason, 12 are answered (asma-afal, hadhf,
+  maful-fih, mudmar, sakinayn, tajjub, taksir, tanith, tasghir, tathniya, tawkid, waqf); al-Khaṣāʾiṣ's «بدل» is the letter substitution, not
+  apposition — not joined to badal.
+- **Where it shows** (`Usul352`, after `startLimadha`; data `USUL` from `build_prototype.load_usul`, ≈ 17.5 KB in the data block, tiny —
+  kinds, tags, methods): (1) an «العِلَّة» card whose reason is tagged ends with a `<details class="usul-kd">` chip «علة فرق · gerekçenin çeşidi»
+  (44 px) that opens the book's example + rendering + page — placed AFTER the card's own source line so v348's first-match reads are unchanged;
+  (2) «لِمَاذَا؟» at the reader's chosen Level ≥ 5 (`state.myLevel`) swaps items 4 and 7 of 8 for «what kind of reason is this?» on a tagged
+  reason (its clause from `why_at`, verbatim; three kinds from the table, kinds already used by tags preferred as rivals; Elo lvl 5, key
+  `ilal-kind:`); the ask line then reads `usulAskMixed352`; (3) the khilaf lab: «المَنْهَجَان · İki yöntem» (`<details open>`) between the
+  tally and the filters — 4 cards (what counts as samāʿ; how far qiyās goes; from whom the language is taken; the proof, not the school),
+  11 verbatim quotes (al-Iqtirāḥ pp. 168, 391–393, 402; al-Khaṣāʾiṣ pp. 121, 397) with page, our rendering, and masʾala buttons that clear the
+  filters and open that masʾala. Links by script ONLY where al-Inṣāf's stored text names the proof outright: samāʿ → 70; qiyās → 70, 109.
+- **Checks** (before v333): «v352-U — uṣūl al-naḥw by script …» (TOC counts 160 = 52 + 55 + 53, 55–162 once each, every heading on its page;
+  the plan's ids and pillars; every Arabic in usul_nahw / ilal_kinds / usul_methods / the 31 reasons a substring of its page's MATN; 58
+  citations ≥ 40 found; the 24 kinds in the list's order; every tag's marker in its reason; the appended block after the first 90; 12 of 44;
+  USUL = the tables) and «v352-U — the kind of ʿilla where the reasons show …» (the chip, closed, opening on the example, 44 px, absent on an
+  untagged card; the fāʿil's chain step `ilal-khasais-204-1` «— İbn Cinnî, s. 1/197»; Level 4 → no kind items, Level 5 → 2 of 8, options
+  well-formed, the clause verbatim; the lab in tr and en: 4 cards, 11 quotes verbatim, before the list, links 70,70,109, 44 px, no overflow at
+  390 px, a link opens masʾala 109). **Older check changed:** «v348-F — the reasons where they belong» expected the fāʿil to have NO book
+  reason (`c.fail`); al-Khaṣāʾiṣ now gives one, so it expects one (`!c.fail`).
+- **Left** (research/usul-coverage-2026-11-27.md): ≈ 520 of the 754 candidates unread; 110 of 160 abwāb not fed; 32 of the 44 topics; 17
+  citations not found; kitāb 7 without a defining sentence; every rendering awaits the hoca.
