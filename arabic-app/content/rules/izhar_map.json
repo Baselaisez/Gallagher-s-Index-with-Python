@@ -16,27 +16,37 @@
    "matn": 60,
    "pkg": 60,
    "tr": 60,
+   "tr_sc": 60,
+   "tercume": 53,
+   "tercume_ex": 1,
    "engine": 59,
    "notes": 60,
    "games": 60,
-   "examples": 43,
-   "examples3": 32,
+   "examples": 45,
+   "examples3": 33,
    "ilal": 48,
-   "complete": 43
+   "complete": 51,
+   "book_example": 7,
+   "book_ex": 1
   },
   "mamul": {
    "total": 30,
    "book": 30,
    "matn": 30,
    "pkg": 30,
-   "tr": 26,
+   "tr": 30,
+   "tr_sc": 26,
+   "tercume": 20,
+   "tercume_ex": 0,
    "engine": 30,
    "notes": 30,
    "games": 30,
-   "examples": 28,
+   "examples": 29,
    "examples3": 25,
    "ilal": 21,
-   "complete": 24
+   "complete": 30,
+   "book_example": 1,
+   "book_ex": 1
   },
   "irab": {
    "total": 10,
@@ -44,33 +54,24 @@
    "matn": 10,
    "pkg": 10,
    "tr": 10,
+   "tr_sc": 10,
+   "tercume": 2,
+   "tercume_ex": 0,
    "engine": 10,
    "notes": 10,
    "games": 10,
    "examples": 10,
    "examples3": 10,
    "ilal": 7,
-   "complete": 10
+   "complete": 10,
+   "book_example": 0,
+   "book_ex": 0
   }
  },
  "missing": [
   {
-   "id": "I-A09",
-   "item": "حَتَّى",
-   "lacks": [
-    "examples"
-   ]
-  },
-  {
    "id": "I-A13",
    "item": "حَاشَا",
-   "lacks": [
-    "examples"
-   ]
-  },
-  {
-   "id": "I-A14",
-   "item": "مُذْ",
    "lacks": [
     "examples"
    ]
@@ -83,51 +84,15 @@
    ]
   },
   {
-   "id": "I-A17",
-   "item": "عَدَا",
-   "lacks": [
-    "examples"
-   ]
-  },
-  {
-   "id": "I-A18",
-   "item": "لَوْلَا",
-   "lacks": [
-    "examples"
-   ]
-  },
-  {
-   "id": "I-A19",
-   "item": "كَيْ",
-   "lacks": [
-    "examples"
-   ]
-  },
-  {
    "id": "I-A20",
    "item": "لَعَلَّ (لُغَةُ عُقَيْلٍ)",
    "lacks": [
-    "engine",
-    "examples"
-   ]
-  },
-  {
-   "id": "I-A30",
-   "item": "لَا الْمُشَبَّهَةُ بِلَيْسَ",
-   "lacks": [
-    "examples"
+    "engine"
    ]
   },
   {
    "id": "I-A33",
    "item": "كَيْ",
-   "lacks": [
-    "examples"
-   ]
-  },
-  {
-   "id": "I-A34",
-   "item": "إِذَنْ",
    "lacks": [
     "examples"
    ]
@@ -165,55 +130,6 @@
    "item": "إِذَا مَا",
    "lacks": [
     "examples"
-   ]
-  },
-  {
-   "id": "I-A53",
-   "item": "الصِّفَةُ الْمُشَبَّهَةُ",
-   "lacks": [
-    "examples"
-   ]
-  },
-  {
-   "id": "I-B04",
-   "item": "الصِّفَةُ بَعْدَ الِاسْتِفْهَامِ وَالنَّفْيِ",
-   "lacks": [
-    "examples"
-   ]
-  },
-  {
-   "id": "I-B14",
-   "item": "الْمَفْعُولُ مَعَهُ",
-   "lacks": [
-    "examples"
-   ]
-  },
-  {
-   "id": "I-B18",
-   "item": "خَبَرُ بَابِ كَانَ",
-   "lacks": [
-    "tr"
-   ]
-  },
-  {
-   "id": "I-B19",
-   "item": "اسْمُ بَابِ إِنَّ",
-   "lacks": [
-    "tr"
-   ]
-  },
-  {
-   "id": "I-B20",
-   "item": "الْمَنْصُوبُ بِلَا لِنَفْيِ الْجِنْسِ",
-   "lacks": [
-    "tr"
-   ]
-  },
-  {
-   "id": "I-B21",
-   "item": "خَبَرُ مَا وَلَا الْمُشَبَّهَتَيْنِ بِلَيْسَ",
-   "lacks": [
-    "tr"
    ]
   }
  ],
@@ -285,7 +201,18 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İlsaq (bağlamak) ,sebebiyet, beraberlik,…e, …a",
+    "en": "ilṣāq (attaching), cause, accompaniment — “to, at, with”",
+    "lines": [
+     178,
+     179
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A02",
@@ -354,7 +281,18 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İbtida (başlamak), yakınlık, …den,…dan",
+    "en": "ibtidāʾ (beginning), nearness — “from”",
+    "lines": [
+     182,
+     183
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A03",
@@ -423,7 +361,18 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İntiha (nihayet), sonuç, …e , …a ..ye, ..ya",
+    "en": "intihāʾ (the end point), result — “to”",
+    "lines": [
+     185,
+     186
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A04",
@@ -492,7 +441,18 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Bu’d ve mücavezet (Uzaklaşma) ..den , …dan",
+    "en": "buʿd and mujāwaza (moving away) — “from, away from”",
+    "lines": [
+     189,
+     190
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A05",
@@ -561,7 +521,17 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İsti’la (Üzerinde Olmak)",
+    "en": "istiʿlāʾ (being upon) — “on, upon”",
+    "lines": [
+     201
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A06",
@@ -630,7 +600,17 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Ta’lil (Sebebiyyet, illetlik),.. için",
+    "en": "taʿlīl (cause, reason) — “for”",
+    "lines": [
+     204
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A07",
@@ -699,7 +679,17 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Zarf, içine almak (…de, …da )",
+    "en": "ẓarf (containing) — “in, at”",
+    "lines": [
+     207
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A08",
@@ -768,7 +758,17 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Teşbih (benzetme), gibi",
+    "en": "tashbīh (likening) — “like”",
+    "lines": [
+     213
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A09",
@@ -809,18 +809,45 @@
    ],
    "spec": {
     "a": "مجرور ب«?حتى»?([ ،.]|$)",
-    "e": "مجرور",
+    "e": "في محل جر|مجرور",
     "w": null
    },
    "authored": 19,
    "checked": 19,
-   "agreeing": 0,
-   "examples": [],
-   "pool": [],
+   "agreeing": 12,
+   "examples": [
+    "jurayj-al-abid:1:s5:7",
+    "sibawayh-fi-al-basra:2:s4:8",
+    "al-bukhari-fi-baghdad:1:s4:6"
+   ],
+   "pool": [
+    "jurayj-al-abid:1:s5:7",
+    "sibawayh-fi-al-basra:2:s4:8",
+    "al-bukhari-fi-baghdad:1:s4:6",
+    "muhammad-ibn-zayd-wa-al-umawi:4:s4:4",
+    "tariq-ibn-ziyad:4:s5:6",
+    "abu-hanifa-wa-al-safina:2:s4:3",
+    "bina-baghdad:3:s1:6",
+    "marj-dabiq:4:s2:9",
+    "ayn-jalut:2:s2:10",
+    "fath-al-qustantiniyya:4:s3:9",
+    "salah-al-din-wa-al-quds:3:s2:15",
+    "ibn-khaldun-wa-timur:5:s4:16"
+   ],
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Gaye,sonuç, …ye kadar",
+    "en": "ghāya (the limit), result — “until, up to”",
+    "lines": [
+     216
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A10",
@@ -879,7 +906,18 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Azlık, çokluk, öyleleri var ki, nice…",
+    "en": "fewness, muchness — “many a …”",
+    "lines": [
+     220,
+     221
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A11",
@@ -947,7 +985,17 @@
    ],
    "ilal": [
     "ilal-shaykhzade-162-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Qasem (yemin)",
+    "en": "qasam (an oath) — “by …”",
+    "lines": [
+     224
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A12",
@@ -1004,7 +1052,17 @@
    ],
    "ilal": [
     "ilal-shaykhzade-162-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Qasem (yemin)",
+    "en": "qasam (an oath) — “by …”",
+    "lines": [
+     265
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A13",
@@ -1056,7 +1114,17 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İstisna, tenzih",
+    "en": "exception, clearing of blame — “except”",
+    "lines": [
+     276
+    ],
+    "ex": null
+   },
+   "no_example": true
   },
   {
    "id": "I-A14",
@@ -1108,7 +1176,23 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": {
+    "k": "izhar-al-asrar:5:s4:26",
+    "ok": false,
+    "why": "مَا رَأَيْتُهُ مُذْ أَنَّكَ قَائِمٌ — the maṣdar of أَنَّ in jarr by مُذْ",
+    "eng": "حرف لا محل له من الإعراب."
+   },
+   "tc": {
+    "m": "Geçmiş zamanda başlangıç,.. den beri, …dan beri.",
+    "en": "the beginning in past time — “since”",
+    "lines": [
+     284,
+     285
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A15",
@@ -1164,7 +1248,18 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Geçmiş zamanda başlangıç,.. den beri, …dan beri.",
+    "en": "the beginning in past time — “since”",
+    "lines": [
+     288,
+     289
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A16",
@@ -1216,7 +1311,17 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İstisna, tenzih",
+    "en": "exception, clearing of blame — “except”",
+    "lines": [
+     278
+    ],
+    "ex": null
+   },
+   "no_example": true
   },
   {
    "id": "I-A17",
@@ -1268,7 +1373,22 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": {
+    "k": "izhar-al-asrar:22:s10:23",
+    "ok": false,
+    "why": "جَاءَنِي الْقَوْمُ عَدَا … زَيْدًا — the book's عَدَا as a verb («وَيَكُونَانِ فِعْلَيْنِ وَهُوَ الْأَكْثَرُ»); not the jarr reading",
+    "eng": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، خبر كان."
+   },
+   "tc": {
+    "m": "İstisna, tenzih",
+    "en": "exception, clearing of blame — “except”",
+    "lines": [
+     281
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A18",
@@ -1320,7 +1440,22 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": {
+    "k": "izhar-al-asrar:2:s5:9",
+    "ok": false,
+    "why": "لَوْلَاكَ لَهَلَكَ زَيْدٌ — the pronoun in jarr by لَوْلَا",
+    "eng": "اسم، مرفوع وعلامة رفعه الألف لأنه مثنى، مضاف إليه، والضمير مضاف إليه، وخبره «قائم»."
+   },
+   "tc": {
+    "m": "….olmasaydı, ….olurdu",
+    "en": "“had it not been for …, … would have”",
+    "lines": [
+     315
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A19",
@@ -1372,7 +1507,22 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": {
+    "k": "izhar-al-asrar:2:s7:15",
+    "ok": false,
+    "why": "كَيْمَهْ عَصَيْتَ — the interrogative mā in jarr by كَيْ",
+    "eng": "حرف استفهام، لا محل له من الإعراب."
+   },
+   "tc": {
+    "m": "İçin, ta ki, … e kadar",
+    "en": "“for, so that” (with interrogative mā: “why?”)",
+    "lines": [
+     325
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A20",
@@ -1422,7 +1572,23 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": {
+    "k": "izhar-al-asrar:2:s5:13",
+    "ok": true,
+    "why": "لَعَلَّ زَيْدٍ قَائِمٌ — جَرٌّ in the dialect of ʿUqayl",
+    "eng": "اسم، مجرور وعلامة جره الكسرة الظاهرة."
+   },
+   "tc": {
+    "m": "Umulur ki, keşke olsa Teracci (ümid)",
+    "en": "tarajjī (hope) — “perhaps, would that”",
+    "lines": [
+     334,
+     335
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A21",
@@ -1499,7 +1665,17 @@
     "ilal-ibn-malik-487-1",
     "ilal-ibn-malik-487-2",
     "ilal-ibn-malik-476-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Tahkik için;",
+    "en": "taḥqīq (making certain) — “indeed”",
+    "lines": [
+     607
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A22",
@@ -1576,7 +1752,17 @@
     "ilal-ibn-malik-487-1",
     "ilal-ibn-malik-487-2",
     "ilal-ibn-malik-476-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Tahkik için;",
+    "en": "taḥqīq (making certain) — “that (it is certain that)”",
+    "lines": [
+     612
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A23",
@@ -1653,7 +1839,17 @@
     "ilal-ibn-malik-487-1",
     "ilal-ibn-malik-487-2",
     "ilal-ibn-malik-476-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Teşbih İçin;",
+    "en": "tashbīh (likening) — “as if, like”",
+    "lines": [
+     622
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A24",
@@ -1730,7 +1926,17 @@
     "ilal-ibn-malik-487-1",
     "ilal-ibn-malik-487-2",
     "ilal-ibn-malik-476-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İstidrak İçin;",
+    "en": "istidrāk (correcting what went before) — “but”",
+    "lines": [
+     627
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A25",
@@ -1794,7 +2000,17 @@
     "ilal-ibn-malik-487-1",
     "ilal-ibn-malik-487-2",
     "ilal-ibn-malik-476-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Temenni İçin;",
+    "en": "tamannī (wishing) — “would that”",
+    "lines": [
+     634
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A26",
@@ -1860,7 +2076,17 @@
     "ilal-ibn-malik-487-1",
     "ilal-ibn-malik-487-2",
     "ilal-ibn-malik-476-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Teracci İçin;",
+    "en": "tarajjī (hoping) — “perhaps, it is hoped that”",
+    "lines": [
+     640
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A27",
@@ -1929,7 +2155,18 @@
     "ilal-shaykhzade-43-1",
     "ilal-shaykhzade-117-2",
     "ilal-shaykhzade-117-3"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Cinsini Nefy Etmek İçin;",
+    "en": "denying the whole genus — “there is no … at all”",
+    "lines": [
+     659,
+     660
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A28",
@@ -1994,7 +2231,10 @@
     "qisas-al-nabiyyin-4:5:s14:4",
     "al-kafiya:4:s13:14"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-A29",
@@ -2048,7 +2288,18 @@
    ],
    "ilal": [
     "ilal-shaykhzade-170-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Leyse’ ye benzeyen ma;",
+    "en": "mā resembling laysa",
+    "lines": [
+     701,
+     702
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A30",
@@ -2098,7 +2349,23 @@
    "pool": [],
    "ilal": [
     "ilal-shaykhzade-170-1"
-   ]
+   ],
+   "book": {
+    "k": "izhar-al-asrar:6:s4:31",
+    "ok": false,
+    "why": "وَلَا رَجُلٌ حَاضِرًا — the ism of lā like laysa",
+    "eng": "اسم، مرفوع وعلامة رفعه الضمة الظاهرة، معطوف."
+   },
+   "tc": {
+    "m": "Leyse’ ye benzeyen La;",
+    "en": "lā resembling laysa",
+    "lines": [
+     714,
+     715
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A31",
@@ -2163,7 +2430,10 @@
     "wasiyyat-abi-hanifa-L2:1:s1:4",
     "dawud-wa-jalut:1:s4:5"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-A32",
@@ -2228,7 +2498,10 @@
     "shudhur-al-dhahab:3:s2:12",
     "al-maqamat-birgivi:4:s5:24"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-A33",
@@ -2276,7 +2549,10 @@
    "agreeing": 0,
    "examples": [],
    "pool": [],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": true
   },
   {
    "id": "I-A34",
@@ -2324,7 +2600,15 @@
    "agreeing": 0,
    "examples": [],
    "pool": [],
-   "ilal": []
+   "ilal": [],
+   "book": {
+    "k": "izhar-al-asrar:7:s4:14",
+    "ok": false,
+    "why": "إِذَنْ أَظُنُّكَ كَاذِبًا — the book's example of إِذَنْ NOT governing (the verb is for the present)",
+    "eng": "فعل مضارع، مرفوع وعلامة رفعه الضمة الظاهرة، وفيه ضمير هو المفعول به، والفاعل ضمير مستتر وجوبا تقديره «أنا»."
+   },
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-A35",
@@ -2393,7 +2677,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Mazide nefy için",
+    "en": "negating the past",
+    "lines": [
+     1101
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A36",
@@ -2450,7 +2744,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Mazide nefy için",
+    "en": "negating the past",
+    "lines": [
+     1101
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A37",
@@ -2507,7 +2811,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Talep için",
+    "en": "requesting (a command)",
+    "lines": [
+     1102
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A38",
@@ -2576,7 +2890,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Talep için",
+    "en": "requesting (a prohibition)",
+    "lines": [
+     1102
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A39",
@@ -2645,7 +2969,10 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-A40",
@@ -2699,7 +3026,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Mekan için",
+    "en": "for place",
+    "lines": [
+     1152
+    ],
+    "ex": null
+   },
+   "no_example": true
   },
   {
    "id": "I-A41",
@@ -2752,7 +3089,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Mekan için",
+    "en": "for place",
+    "lines": [
+     1152
+    ],
+    "ex": null
+   },
+   "no_example": true
   },
   {
    "id": "I-A42",
@@ -2805,7 +3152,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Mekan için",
+    "en": "for place",
+    "lines": [
+     1152
+    ],
+    "ex": null
+   },
+   "no_example": true
   },
   {
    "id": "I-A43",
@@ -2858,7 +3215,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Zaman için",
+    "en": "for time",
+    "lines": [
+     1151
+    ],
+    "ex": null
+   },
+   "no_example": true
   },
   {
    "id": "I-A44",
@@ -2911,7 +3278,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Zaman için",
+    "en": "for time",
+    "lines": [
+     1151
+    ],
+    "ex": null
+   },
+   "no_example": true
   },
   {
    "id": "I-A45",
@@ -2981,7 +3358,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Zaman için",
+    "en": "for time",
+    "lines": [
+     1151
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A46",
@@ -3044,7 +3431,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "şey",
+    "en": "“whatever (thing)”",
+    "lines": [
+     1188
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A47",
@@ -3103,7 +3500,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "şey",
+    "en": "“whatever (thing)”",
+    "lines": [
+     1188
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A48",
@@ -3160,7 +3567,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İstifham (soru) için",
+    "en": "interrogative (question) word",
+    "lines": [
+     1153
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A49",
@@ -3230,7 +3647,10 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-A50",
@@ -3307,7 +3727,18 @@
    "ilal": [
     "ilal-ibn-malik-568-1",
     "ilal-ibn-malik-568-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Fiiller tek bir fail alır ref ederler, bir veya birden fazla meful alıp nasb ederler.",
+    "en": "every verb takes one doer in rafʿ and one or more objects in naṣb",
+    "lines": [
+     1306,
+     1307
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A51",
@@ -3374,7 +3805,18 @@
     "al-kafiya:16:s3:22",
     "al-kafiya:38:s5:37"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "Malum fiilin ameli gibi amel eder. Yani Failini ref, mefulunu nasb eder.",
+    "en": "works like the active verb: rafʿ of its doer, naṣb of its object",
+    "lines": [
+     1956,
+     1957
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A52",
@@ -3430,7 +3872,18 @@
     "al-kafiya:16:s14:4",
     "al-kafiya:16:s13:30"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "Mechul fiilin ameli gibi amel eder. Yani Naib Fail alıp ref eder.",
+    "en": "works like the passive verb: takes a deputy doer in rafʿ",
+    "lines": [
+     1982,
+     1983
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A53",
@@ -3478,10 +3931,27 @@
    },
    "authored": 6,
    "checked": 6,
-   "agreeing": 0,
-   "examples": [],
-   "pool": [],
-   "ilal": []
+   "agreeing": 3,
+   "examples": [
+    "muallaqat-antara:3:s5:7",
+    "izhar-al-asrar:12:s8:25"
+   ],
+   "pool": [
+    "muallaqat-antara:3:s5:7",
+    "muallaqat-antara:9:s6:2",
+    "izhar-al-asrar:12:s8:25"
+   ],
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "Kendi fiili gibi amel eder yani failini raf eder.",
+    "en": "works like its own verb: rafʿ of its doer",
+    "lines": [
+     2099
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A54",
@@ -3542,7 +4012,32 @@
     "aqaid-ahl-al-sunna:1:s4:2",
     "izhar-al-asrar:37:s4:8"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "Zahir fail dışında, şartsız olarak amel edebilir, yani müstedir zamiri ,fail olarak alıp ref edebilir ve de zarfda, halde, temyizde nasb ameli işleyebilir.",
+    "en": "without conditions it governs a hidden pronoun as doer and naṣb of a ẓarf, ḥāl and tamyīz",
+    "lines": [
+     2165,
+     2166,
+     2136,
+     2137,
+     2138,
+     2139,
+     2140,
+     2141,
+     2142
+    ],
+    "ex": {
+     "ch": 13,
+     "sid": "s3",
+     "from": 1,
+     "to": 11,
+     "ar": "مَا رَأَيْتُ رَجُلًا أَحْسَنَ فِي عَيْنِهِ الْكُحْلُ مِنْهُ فِي عَيْنِ زَيْدٍ",
+     "tr": "Ben hiçbir adam görmedim ki, onun gözünde olan kuhlin güzelliği, Zeydin gözünde olan kuhlin güzelliği gibi olsun. Belki Zeydin gözünde olan kuhlin güzelliği başkalarının gözünde olan kuhlin güzelliğinin fevkindedir. Zeydin gözündeki kuhl daha güzeldir ”"
+    }
+   },
+   "no_example": false
   },
   {
    "id": "I-A55",
@@ -3607,7 +4102,20 @@
     "al-kafiya:15:s5:17",
     "al-kafiya:21:s10:33"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "Bu cümlede i’taen mastarı, abdu kelimesini fail almış ref etmiş, fakir ve dirhem kelimelerini de meful alarak nasb etmiştir.",
+    "en": "governs a doer in rafʿ and objects in naṣb",
+    "lines": [
+     2314,
+     2315,
+     2316,
+     2317
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A56",
@@ -3684,7 +4192,18 @@
    "ilal": [
     "ilal-shaykhzade-37-3",
     "ilal-shaykhzade-38-3"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İsmi muzaf , kendisnden sonra gelen ve muzafun ileyh diye isimlendirilen kelimeyi cer eder.",
+    "en": "puts the word after it, the muḍāf ilayh, in jarr",
+    "lines": [
+     2398,
+     2399
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A57",
@@ -3762,7 +4281,24 @@
     "ilal-shaykhzade-169-1",
     "ilal-ibn-malik-776-1",
     "ilal-ibn-malik-774-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İşrune amildir, reka’ten kelimesini nasb etmiştir.",
+    "en": "governs: puts the tamyīz after it in naṣb",
+    "lines": [
+     2621,
+     2622,
+     2623,
+     2624,
+     2625,
+     2626,
+     2627,
+     2628
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A58",
@@ -3822,7 +4358,18 @@
     "talkhis-al-miftah:28:s3:1",
     "talkhis-al-miftah:76:s9:11"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "Burada , isim fiiller,aynı anlamı taşıdıkları mazi fiillerin amelini işlerler.",
+    "en": "the verb-nouns do the work of the past verbs whose meaning they carry",
+    "lines": [
+     2872,
+     2873
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A59",
@@ -3893,7 +4440,23 @@
     "ilal-shaykhzade-158-1",
     "ilal-shaykhzade-174-1",
     "ilal-ibn-malik-788-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Manevi amil tarafından hem mübteda hem de haber ref edilmişlerdir.",
+    "en": "by a governor of meaning both mubtadaʾ and khabar are in rafʿ",
+    "lines": [
+     3055,
+     3056,
+     3057,
+     3058,
+     3059,
+     3060,
+     3061
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-A60",
@@ -3967,7 +4530,19 @@
     "al-ghurab-wa-al-thalab:2:s3:2",
     "musa-wal-khadir:2:s2:4"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "Muzari fiilin manevi amille ref edilmesi, muzari fiilin, nasbedici, ve cezm edici edatlardan uzak olduğu zaman gerçekleşir.",
+    "en": "the muḍāriʿ is in rafʿ by a governor of meaning when it is free of the particles of naṣb and jazm",
+    "lines": [
+     3094,
+     3095,
+     3096
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B01",
@@ -4039,7 +4614,20 @@
     "ilal-ibn-malik-584-1",
     "ilal-ibn-malik-584-2",
     "ilal-ibn-malik-593-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Yani fiillerin merfu mamulleri , onların failleri (özneleri) dir,",
+    "en": "the verbs’ rafʿ governees are their doers",
+    "lines": [
+     1306,
+     1307,
+     1308,
+     1309
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B02",
@@ -4111,7 +4699,10 @@
     "ilal-ibn-malik-584-1",
     "ilal-ibn-malik-584-2",
     "ilal-ibn-malik-593-1"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-B03",
@@ -4183,7 +4774,23 @@
     "ilal-shaykhzade-158-1",
     "ilal-shaykhzade-174-1",
     "ilal-ibn-malik-788-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Manevi amil tarafından hem mübteda hem de haber ref edilmişlerdir.",
+    "en": "by a governor of meaning both mubtadaʾ and khabar are in rafʿ",
+    "lines": [
+     3055,
+     3056,
+     3057,
+     3058,
+     3059,
+     3060,
+     3061
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B04",
@@ -4224,16 +4831,30 @@
     "gTahlil"
    ],
    "spec": {
-    "a": "سد مسد الخبر",
+    "a": "^(نائب )?فاعل[^—(]*سد مسد الخبر",
     "e": "سد مسد الخبر",
     "w": null
    },
-   "authored": 9,
-   "checked": 9,
-   "agreeing": 0,
-   "examples": [],
-   "pool": [],
-   "ilal": []
+   "authored": 8,
+   "checked": 8,
+   "agreeing": 8,
+   "examples": [
+    "izhar-al-asrar:21:s4:18"
+   ],
+   "pool": [
+    "izhar-al-asrar:21:s4:18",
+    "izhar-al-asrar:21:s3:20",
+    "izhar-al-asrar:19:s4:24",
+    "izhar-al-asrar:28:s3:13",
+    "izhar-al-asrar:28:s3:16",
+    "izhar-al-asrar:12:s5:23",
+    "izhar-al-asrar:12:s5:29",
+    "izhar-al-asrar:20:s3:7"
+   ],
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-B05",
@@ -4305,7 +4926,23 @@
     "ilal-shaykhzade-44-2",
     "ilal-shaykhzade-60-3",
     "ilal-ibn-malik-379-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Manevi amil tarafından hem mübteda hem de haber ref edilmişlerdir.",
+    "en": "by a governor of meaning both mubtadaʾ and khabar are in rafʿ",
+    "lines": [
+     3055,
+     3056,
+     3057,
+     3058,
+     3059,
+     3060,
+     3061
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B06",
@@ -4376,7 +5013,17 @@
     "ilal-ibn-malik-487-1",
     "ilal-ibn-malik-487-2",
     "ilal-ibn-malik-476-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İSMİNİ NASB HABERİNİ REF EDEN HARFLER",
+    "en": "the letters that put their ism in naṣb and their khabar in rafʿ",
+    "lines": [
+     602
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B07",
@@ -4447,7 +5094,19 @@
    "ilal": [
     "ilal-ibn-malik-406-1",
     "ilal-ibn-malik-402-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Merfu olan Zeydun kelimesine kane fiilinin ismi,",
+    "en": "the word in rafʿ is called the ism of kāna",
+    "lines": [
+     1766,
+     1767,
+     1768
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B08",
@@ -4504,7 +5163,17 @@
    ],
    "ilal": [
     "ilal-shaykhzade-170-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Bu harfler isimlerini ref, haberlerini nasb ederler.",
+    "en": "these letters put their ism in rafʿ and their khabar in naṣb",
+    "lines": [
+     1018
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B09",
@@ -4565,7 +5234,20 @@
     "ilal-shaykhzade-43-1",
     "ilal-shaykhzade-117-2",
     "ilal-shaykhzade-117-3"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "‘calisun’ kelimesini haber alıp sonunu ref etti.",
+    "en": "it took «jālisun» as its khabar and put its end in rafʿ",
+    "lines": [
+     998,
+     999,
+     1000,
+     1001
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B10",
@@ -4633,7 +5315,10 @@
     "adam-wa-iblis:4:s1:4",
     "al-asad-wa-al-arnab:4:s1:3"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-B11",
@@ -4704,7 +5389,18 @@
    "ilal": [
     "ilal-ibn-malik-568-1",
     "ilal-ibn-malik-568-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "mensub mamulleri de onların mefulleri (nesneleri)dir.",
+    "en": "their naṣb governees are their objects",
+    "lines": [
+     1308,
+     1309
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B12",
@@ -4772,7 +5468,18 @@
     "ashab-al-kahf:2:s3:3",
     "dawud-wa-jalut:1:s9:4"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "‘fi’ ve ‘fi’ anlamında olanlar , müteallakları için mef’ulu fih olurlar.",
+    "en": "(phrases with) «fī» and what means «fī» are mafʿūl fīhi for what they hang on",
+    "lines": [
+     374,
+     375
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B13",
@@ -4840,7 +5547,18 @@
     "salah-al-din-wa-al-quds:4:s4:5",
     "muallaqat-al-harith:1:s6:6"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "‘Lam’ ve ‘lam’ manasında olanlar, müteallakları için mef’ulu leh olurlar",
+    "en": "(phrases with) «li» and what means «li» are mafʿūl lahu for what they hang on",
+    "lines": [
+     376,
+     377
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B14",
@@ -4893,7 +5611,15 @@
    "pool": [],
    "ilal": [
     "ilal-shaykhzade-160-1"
-   ]
+   ],
+   "book": {
+    "k": "izhar-al-asrar:35:s1:13",
+    "ok": true,
+    "why": "جِئْتُ وَزَيْدًا",
+    "eng": "الواو واو المعية، و«زيدا» مفعول معه منصوب وعلامة نصبه الفتحة الظاهرة."
+   },
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-B15",
@@ -4965,7 +5691,10 @@
     "ilal-shaykhzade-87-3",
     "ilal-ibn-malik-770-1",
     "ilal-ibn-malik-751-1"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-B16",
@@ -5037,7 +5766,19 @@
     "ilal-shaykhzade-169-1",
     "ilal-ibn-malik-776-1",
     "ilal-ibn-malik-774-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Rek’aten kelimesi manası kapalı olan Işrune kelimesini temyiz etmekte, ona açıklık kazandırmaktadır.",
+    "en": "«rakʿatan» makes clear (tamyīz) the vague «ʿishrūna»",
+    "lines": [
+     2625,
+     2626,
+     2627
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B17",
@@ -5112,7 +5853,17 @@
     "al-usul-al-munifa:24:s4:21",
     "qisas-al-nabiyyin-2:10:s2:8"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "İstisna harflerinin mecruru, ‘illa’ nın müstesnaları gibidir.",
+    "en": "what the exception letters put in jarr is like the mustathnā of «illā»",
+    "lines": [
+     358
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B18",
@@ -5175,7 +5926,19 @@
    "ilal": [
     "ilal-ibn-malik-406-1",
     "ilal-ibn-malik-402-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "mensub olan alimen kelimesine , kane fiilinin haberi denilir.",
+    "en": "the word in naṣb is called the khabar of kāna",
+    "lines": [
+     1766,
+     1767,
+     1768
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B19",
@@ -5239,7 +6002,17 @@
     "ilal-ibn-malik-487-1",
     "ilal-ibn-malik-487-2",
     "ilal-ibn-malik-476-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İSMİNİ NASB HABERİNİ REF EDEN HARFLER",
+    "en": "the letters that put their ism in naṣb and their khabar in rafʿ",
+    "lines": [
+     602
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B20",
@@ -5304,7 +6077,20 @@
     "ilal-shaykhzade-43-1",
     "ilal-shaykhzade-117-2",
     "ilal-shaykhzade-117-3"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Bu cümlede , Cinsini nefyeden ‘la’ harfi , ‘ğulame’ kelimesini isim alıp, sonunu nasb etti,",
+    "en": "the lā that denies the genus took «ghulāma» as its ism and put its end in naṣb",
+    "lines": [
+     998,
+     999,
+     1000,
+     1001
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B21",
@@ -5353,7 +6139,17 @@
    ],
    "ilal": [
     "ilal-shaykhzade-170-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Bu harfler isimlerini ref, haberlerini nasb ederler.",
+    "en": "these letters put their ism in rafʿ and their khabar in naṣb",
+    "lines": [
+     1018
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B22",
@@ -5419,7 +6215,17 @@
     "wasiyyat-abi-hanifa-L2:1:s1:4",
     "dawud-wa-jalut:1:s4:5"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "MUZARİ FİİLİ NASB EDEN HARFLER",
+    "en": "the letters that put the muḍāriʿ in naṣb",
+    "lines": [
+     1063
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B23",
@@ -5489,7 +6295,19 @@
    "ilal": [
     "ilal-shaykhzade-50-2",
     "ilal-shaykhzade-191-2"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "Cer harfleri ; fiil, fiil benzeri ve fiil manasında olan müteallaklarının anlamlarını mecrurlarına ulaştırıp, bitiştirir.",
+    "en": "the jarr letters carry the meaning of what they hang on — a verb, its like or its meaning — to the word in jarr",
+    "lines": [
+     342,
+     343,
+     344
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B24",
@@ -5566,7 +6384,18 @@
    "ilal": [
     "ilal-shaykhzade-37-3",
     "ilal-shaykhzade-38-3"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "İsmi muzaf , kendisnden sonra gelen ve muzafun ileyh diye isimlendirilen kelimeyi cer eder.",
+    "en": "the muḍāf puts the word after it, the muḍāf ilayh, in jarr",
+    "lines": [
+     2398,
+     2399
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B25",
@@ -5642,7 +6471,17 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": {
+    "m": "TEK BİR MUZARİ FİİLİ CEZM EDEN HARFLER",
+    "en": "the letters that put one muḍāriʿ in jazm",
+    "lines": [
+     1095
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-B26",
@@ -5713,7 +6552,10 @@
     "ilal-shaykhzade-44-1",
     "ilal-shaykhzade-87-2",
     "ilal-shaykhzade-169-3"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-B27",
@@ -5785,7 +6627,10 @@
     "ilal-shaykhzade-158-2",
     "ilal-ibn-malik-923-1",
     "ilal-ibn-malik-958-1"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-B28",
@@ -5853,7 +6698,10 @@
     "tariq-ibn-ziyad:3:s6:5",
     "marj-dabiq:3:s2:4"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-B29",
@@ -5921,7 +6769,10 @@
     "qarun-wa-kunuzuh:1:s4:4",
     "al-asad-wa-al-arnab:3:s3:6"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-B30",
@@ -5983,7 +6834,10 @@
     "izhar-al-asrar:51:s7:20",
     "izhar-al-asrar:9:s7:22"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-C01",
@@ -6059,7 +6913,18 @@
     "al-asad-wa-al-far:3:s2:2",
     "musa-fi-madyan:2:s2:4"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "zammenin faillik işareti",
+    "en": "the ḍamma is the sign of being the doer",
+    "lines": [
+     46,
+     47
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-C02",
@@ -6135,7 +7000,18 @@
     "ashab-al-fil:1:s2:4",
     "musa-fi-madyan:1:s7:3"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": {
+    "m": "fethanın mefulluk işareti",
+    "en": "the fatḥa is the sign of being the object",
+    "lines": [
+     46,
+     47
+    ],
+    "ex": null
+   },
+   "no_example": false
   },
   {
    "id": "I-C03",
@@ -6211,7 +7087,10 @@
     "qisas-al-nabiyyin-2:37:s2:4",
     "al-ghurab-wa-al-thalab:1:s3:3"
    ],
-   "ilal": []
+   "ilal": [],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-C04",
@@ -6289,7 +7168,10 @@
    ],
    "ilal": [
     "ilal-ibn-malik-191-1"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-C05",
@@ -6367,7 +7249,10 @@
    ],
    "ilal": [
     "ilal-ibn-malik-191-1"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-C06",
@@ -6443,7 +7328,10 @@
    ],
    "ilal": [
     "ilal-ibn-malik-191-1"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-C07",
@@ -6523,7 +7411,10 @@
     "ilal-shaykhzade-178-3",
     "ilal-ibn-malik-1612-1",
     "ilal-ibn-malik-1556-2"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-C08",
@@ -6602,7 +7493,10 @@
    "ilal": [
     "ilal-shaykhzade-42-1",
     "ilal-ibn-malik-1602-1"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-C09",
@@ -6681,7 +7575,10 @@
    "ilal": [
     "ilal-ibn-malik-213-1",
     "ilal-ibn-malik-213-2"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   },
   {
    "id": "I-C10",
@@ -6761,7 +7658,10 @@
     "ilal-shaykhzade-178-3",
     "ilal-ibn-malik-1612-1",
     "ilal-ibn-malik-1556-2"
-   ]
+   ],
+   "book": null,
+   "tc": null,
+   "no_example": false
   }
  ],
  "writer": [

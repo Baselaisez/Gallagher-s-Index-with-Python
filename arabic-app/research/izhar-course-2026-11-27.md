@@ -6,8 +6,8 @@ one corpus example whose authored line and engine line both name it. The lithogr
 
 | bāb | book | items | package line | suʾāl–cevap | engine | note | game | ≥ 1 example | ≥ 3 examples | ʿilal reason | complete |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1 · ʿāmil | 60 | 60 | 60 | 60 | 59 | 60 | 60 | 43 | 32 | 48 | **43** |
-| 2 · maʿmūl | 30 | 30 | 30 | 26 | 30 | 30 | 30 | 28 | 25 | 21 | **24** |
+| 1 · ʿāmil | 60 | 60 | 60 | 60 | 59 | 60 | 60 | 45 | 33 | 48 | **51** |
+| 2 · maʿmūl | 30 | 30 | 30 | 30 | 30 | 30 | 30 | 29 | 25 | 21 | **30** |
 | 3 · iʿrāb (signs) | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 10 | 7 | **10** |
 
 The ʿāmil split as the matn counts it: samāʿī 49 · qiyāsī 9 · maʿnawī 2.
@@ -16,29 +16,33 @@ The ʿāmil split as the matn counts it: samāʿī 49 · qiyāsī 9 · maʿnawī
 
 | id | item | lacks | why |
 |---|---|---|---|
-| I-A09 | حَتَّى | examples | authored lines naming it: 19; engine agreeing: 0 of 19 checked |
-| I-A13 | حَاشَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A14 | مُذْ | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A16 | خَلَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A17 | عَدَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A18 | لَوْلَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A19 | كَيْ | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A20 | لَعَلَّ (لُغَةُ عُقَيْلٍ) | engine, examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked; ledger status noted |
-| I-A30 | لَا الْمُشَبَّهَةُ بِلَيْسَ | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A33 | كَيْ | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A34 | إِذَنْ | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A40 | حَيْثُمَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A41 | أَيْنَ | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A42 | أَنَّى | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A43 | إِذْمَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A44 | إِذَا مَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-A53 | الصِّفَةُ الْمُشَبَّهَةُ | examples | authored lines naming it: 6; engine agreeing: 0 of 6 checked |
-| I-B04 | الصِّفَةُ بَعْدَ الِاسْتِفْهَامِ وَالنَّفْيِ | examples | authored lines naming it: 9; engine agreeing: 0 of 9 checked |
-| I-B14 | الْمَفْعُولُ مَعَهُ | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked |
-| I-B18 | خَبَرُ بَابِ كَانَ | tr | no question in the suʾāl–cevap |
-| I-B19 | اسْمُ بَابِ إِنَّ | tr | no question in the suʾāl–cevap |
-| I-B20 | الْمَنْصُوبُ بِلَا لِنَفْيِ الْجِنْسِ | tr | no question in the suʾāl–cevap |
-| I-B21 | خَبَرُ مَا وَلَا الْمُشَبَّهَتَيْنِ بِلَيْسَ | tr | no question in the suʾāl–cevap |
+| I-A13 | حَاشَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked; the matn names it in a list and gives no example of its use |
+| I-A16 | خَلَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked; the matn names it in a list and gives no example of its use |
+| I-A20 | لَعَلَّ (لُغَةُ عُقَيْلٍ) | engine | ledger status noted |
+| I-A33 | كَيْ | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked; the matn names it in a list and gives no example of its use |
+| I-A40 | حَيْثُمَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked; the matn names it in a list and gives no example of its use |
+| I-A41 | أَيْنَ | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked; the matn names it in a list and gives no example of its use |
+| I-A42 | أَنَّى | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked; the matn names it in a list and gives no example of its use |
+| I-A43 | إِذْمَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked; the matn names it in a list and gives no example of its use |
+| I-A44 | إِذَا مَا | examples | authored lines naming it: 0; engine agreeing: 0 of 0 checked; the matn names it in a list and gives no example of its use |
+
+## v353-I — the owner's translation and the book's own examples
+
+The «Anlamı / Meaning» card: the meaning in the owner's Turkish translation (`research/sources/izhar-tercume-full.txt`, joined by
+`tools/ledger/izhar_tercume.py` → `content/rules/izhar_tercume.json`, every string verbatim from its cited lines) — ʿāmil 53 / 60, maʿmūl 20 / 30,
+signs 2 / 10; an example is shown with it only where its broken Arabic equals a package token window as a bag of letters: 1.
+The suʾāl–cevap cell of B18–B21 is the translation's line.
+
+| id | item | the book's own example (package token) | exercised? | why |
+|---|---|---|---|---|
+| I-A14 | مُذْ | izhar-al-asrar:5:s4:26 | no — engine: حرف لا محل له من الإعراب. | مَا رَأَيْتُهُ مُذْ أَنَّكَ قَائِمٌ — the maṣdar of أَنَّ in jarr by مُذْ |
+| I-A17 | عَدَا | izhar-al-asrar:22:s10:23 | no — engine: اسم، منصوب وعلامة نصبه الفتحة الظاهرة، خبر كان. | جَاءَنِي الْقَوْمُ عَدَا … زَيْدًا — the book's عَدَا as a verb («وَيَكُونَانِ فِعْلَيْنِ وَهُوَ الْأَكْثَرُ»); not the jarr reading |
+| I-A18 | لَوْلَا | izhar-al-asrar:2:s5:9 | no — engine: اسم، مرفوع وعلامة رفعه الألف لأنه مثنى، مضاف إليه، | لَوْلَاكَ لَهَلَكَ زَيْدٌ — the pronoun in jarr by لَوْلَا |
+| I-A19 | كَيْ | izhar-al-asrar:2:s7:15 | no — engine: حرف استفهام، لا محل له من الإعراب. | كَيْمَهْ عَصَيْتَ — the interrogative mā in jarr by كَيْ |
+| I-A20 | لَعَلَّ (لُغَةُ عُقَيْلٍ) | izhar-al-asrar:2:s5:13 | yes | لَعَلَّ زَيْدٍ قَائِمٌ — جَرٌّ in the dialect of ʿUqayl |
+| I-A30 | لَا الْمُشَبَّهَةُ بِلَيْسَ | izhar-al-asrar:6:s4:31 | no — engine: اسم، مرفوع وعلامة رفعه الضمة الظاهرة، معطوف. | وَلَا رَجُلٌ حَاضِرًا — the ism of lā like laysa |
+| I-A34 | إِذَنْ | izhar-al-asrar:7:s4:14 | no — engine: فعل مضارع، مرفوع وعلامة رفعه الضمة الظاهرة، وفيه ض | إِذَنْ أَظُنُّكَ كَاذِبًا — the book's example of إِذَنْ NOT governing (the verb is for the present) |
+| I-B14 | الْمَفْعُولُ مَعَهُ | izhar-al-asrar:35:s1:13 | yes | جِئْتُ وَزَيْدًا |
 
 ## Unit by unit
 
@@ -52,7 +56,7 @@ The ʿāmil split as the matn counts it: samāʿī 49 · qiyāsī 9 · maʿnawī
 | I-A06 | اللَّامُ | 14 | 1:s19 | 9 | Murib.line · the jarr letters | 1 | 3 | 6 |
 | I-A07 | فِي | 14 | 1:s19 | 9 | Murib.line · the jarr letters | 1 | 3 | 6 |
 | I-A08 | الْكَافُ | 14 | 1:s19 | 9 | Murib.line · the jarr letters | 1 | 3 | 6 |
-| I-A09 | حَتَّى | 14 | 1:s19 | 9 | Murib.line · the jarr letters | 1 | 0 | 0 |
+| I-A09 | حَتَّى | 14 | 1:s19 | 9 | Murib.line · the jarr letters | 1 | 3 | 6 |
 | I-A10 | رُبَّ | 14 | 1:s19 | 9 | Murib.line · the jarr letters | 1 | 2 | 3 |
 | I-A11 | وَاوُ الْقَسَمِ | 14 | 1:s19 | 9 | Nahw342Engine · qasam | 1 | 3 | 6 |
 | I-A12 | تَاءُ الْقَسَمِ | 14 | 1:s19 | 9 | Nahw342Engine · qasam | 1 | 1 | 3 |
@@ -96,7 +100,7 @@ The ʿāmil split as the matn counts it: samāʿī 49 · qiyāsī 9 · maʿnawī
 | I-A50 | الْفِعْلُ | 28 | 8:s2 | 28, 30 | Murib.doer / DabtEngine | 1 | 3 | 6 |
 | I-A51 | اسْمُ الْفَاعِلِ | 35 | 12:s1 | 35 | Sh336Engine · R92 | 2 | 3 | 6 |
 | I-A52 | اسْمُ الْمَفْعُولِ | 35 | 12:s2 | 35 | Nahw342Engine · sababi | 2 | 1 | 2 |
-| I-A53 | الصِّفَةُ الْمُشَبَّهَةُ | 37 | 12:s8 | 36 | Sh336Engine · R110 | 2 | 0 | 0 |
+| I-A53 | الصِّفَةُ الْمُشَبَّهَةُ | 37 | 12:s8 | 36 | Sh336Engine · R110 | 2 | 2 | 3 |
 | I-A54 | اسْمُ التَّفْضِيلِ | 37 | 13:s1 | 37 | Murib.line | 2 | 3 | 5 |
 | I-A55 | الْمَصْدَرُ | 37 | 13:s4 | 39 | Murib.line | 1 | 3 | 6 |
 | I-A56 | الْمُضَافُ | 40 | 14:s1 | 40, 41 | IdafaEngine | 1 | 3 | 6 |
@@ -107,7 +111,7 @@ The ʿāmil split as the matn counts it: samāʿī 49 · qiyāsī 9 · maʿnawī
 | I-B01 | الْفَاعِلُ | 80 | 21:s3 | 53 | Murib.doer | 2 | 3 | 6 |
 | I-B02 | نَائِبُ الْفَاعِلِ | 80 | 21:s4 | 53 | Murib.doer | 2 | 3 | 6 |
 | I-B03 | الْمُبْتَدَأُ | 101 | 28:s3 | 62 | Murib.khabarOf | 2 | 3 | 6 |
-| I-B04 | الصِّفَةُ بَعْدَ الِاسْتِفْهَامِ وَالنَّفْيِ | 101 | 28:s3 | 62 | Nahw342Engine · wasf | 1 | 0 | 0 |
+| I-B04 | الصِّفَةُ بَعْدَ الِاسْتِفْهَامِ وَالنَّفْيِ | 101 | 28:s3 | 62 | Nahw342Engine · wasf | 1 | 1 | 6 |
 | I-B05 | خَبَرُ الْمُبْتَدَإِ | 101 | 29:s1 | 63 | Murib.khabarOf | 2 | 3 | 6 |
 | I-B06 | خَبَرُ بَابِ إِنَّ | 107 | 31:s2 | 64 | Murib.line · inna | 1 | 3 | 6 |
 | I-B07 | اسْمُ بَابِ كَانَ | 107 | 31:s1 | 64 | Murib.line · kāna (I-2) | 2 | 3 | 6 |

@@ -21102,7 +21102,11 @@ const Izhar351 = {
 .iz351 .iz-row .chip, .iz351 .iz-row .btn { min-height: var(--tap); }
 .iz351 .iz-x + .iz-x { border-top: 1px dashed var(--line); margin-top: var(--s2); padding-top: var(--s2); }
 .iz351 .iz-pend { font-size: var(--t-xs); color: var(--ink-soft); border: 1px dashed var(--line); border-radius: var(--r-full); padding: 0 var(--s2); }
-.iz351 .iz-prog .q-bar { margin-top: var(--s1); }`;
+.iz351 .iz-prog .q-bar { margin-top: var(--s1); }
+.iz351 .iz-card { border-color: var(--accent); }
+.iz351 .iz-mean { margin: 0; font-size: var(--t-md); line-height: 1.5; color: var(--ink); }
+.iz351 .iz-book { margin: 0 0 var(--s1); }
+.iz351 details.iz-sc > summary { min-height: var(--tap); cursor: pointer; }`;
     document.head.appendChild(s); },
   nameOf(x){ return `<span lang="ar" dir="rtl">${this.E(x.item)}</span>`; },
   babTitle(b){ return ui()["iz351Bab" + b]; },
@@ -21131,13 +21135,16 @@ const Izhar351 = {
     const p = this.load(); p.cur = id; this.save(p);
     const pk = x.pkg, mt = pk ? (() => { const r = this.tok(this.SID + ":" + pk.ch + ":" + pk.sid + ":" + ((pk.hi == null ? 0 : pk.hi) + 1)); return r ? this.senHtml(r.sen, pk.hi == null ? -1 : pk.hi) : this.E(pk.ar); })() : "";
     const trs = (x.tr || []).map(t => l === "tr"
-      ? `<p><b>${u.iz351TrQ.replace("{q}", t.q)}</b> ${this.E(t.ask)}</p><p>${this.E(t.ans)}</p>${/…/.test(t.ask + t.ans) ? `<p class="iz-tl">${u.iz351Holes}</p>` : ""}`
+      ? (/…/.test(t.ask + t.ans) ? `<details class="iz-sc"><summary><b>${u.iz351TrQ.replace("{q}", t.q)}</b> ${this.E(t.ask)}</summary><p>${this.E(t.ans)}</p><p class="iz-tl">${u.iz351Holes}</p></details>`
+        : `<p><b>${u.iz351TrQ.replace("{q}", t.q)}</b> ${this.E(t.ask)}</p><p>${this.E(t.ans)}</p>`)
       : `<p><b>${u.iz351TrQ.replace("{q}", t.q)}</b> ${this.E(t.en || "")} <span class="iz-pend">${u.iz351Pending}</span></p><details><summary>${u.iz351TrSrc}</summary><p lang="tr">${this.E(t.ask)}</p><p lang="tr">${this.E(t.ans)}</p></details><p class="iz-tl">${u.iz351TrNoEn}</p>${/…/.test(t.ask + t.ans) ? `<p class="iz-tl">${u.iz351Holes}</p>` : ""}`).join("");
     const exs = (x.examples || []).map(k => this.tok(k)).filter(Boolean);
+    /* (v353-I) the book's own example where no story token carries the item: the package token of the matn's example */
+    const bk = !exs.length && x.book ? this.tok(x.book.k) : null; if (bk) exs.push(Object.assign(bk, { book: true }));
     let why = "";
     for (const r of exs) { let ch = null; try { ch = Illa346.chain(r.tok); } catch (e) { ch = null; } if (ch && ch.steps && ch.steps.length) {
       why = `<details class="illa" open><summary><span class="illa-h">${u.iz351Why}</span> <span lang="ar" dir="rtl">${r.tok.s.full}</span></summary><ol class="illa-steps">${Illa346.stepsHtml(ch, l)}</ol></details>`; break; } }
-    const exHtml = exs.map((r, k) => `<div class="iz-x"><p class="iz-ar" lang="ar">${this.senHtml(r.sen, r.ti)}</p>${r.sen.translation ? `<p class="iz-tl">${this.E(T(r.sen.translation))}</p>` : ""}
+    const exHtml = exs.map((r, k) => `<div class="iz-x">${r.book ? `<p class="iz-book"><span class="iz-pend">${u.iz353Book}</span>${x.book.ok ? "" : ` <small>${u.iz353BookNoEx}</small>`}</p>` : ""}<p class="iz-ar" lang="ar">${this.senHtml(r.sen, r.ti)}</p>${r.sen.translation ? `<p class="iz-tl">${this.E(T(r.sen.translation))}</p>` : ""}
       <p class="iz-irab" lang="ar">${this.E((r.tok.irab || {}).ar || "")}</p><p class="iz-cite">${this.E(T(r.st.title))} · ${u.chapter} ${r.ch}</p>
       <div class="iz-row"><button class="chip" type="button" data-iz-open="${k}">${u.iz351Open}</button><button class="chip" type="button" data-iz-eng="${k}">${u.iz351Engine}</button></div></div>`).join("");
     const items = this.items(x);
@@ -21145,11 +21152,12 @@ const Izhar351 = {
     body.innerHTML = `<div class="iz351 iz-unit" id="iz351" data-unit="${x.id}">
       <div class="iz-row"><button class="chip" type="button" id="iz351Home">${u.iz351Back}</button></div>
       <h3>${this.nameOf(x)} <small>${this.babTitle(x.bab)}${x.group ? " · " + u["iz351Grp_" + x.group] : ""}</small></h3>
+      ${this.card(x)}
       <section class="iz-matn"><h4>${u.iz351Matn}</h4>${mt ? `<p class="iz-ar" lang="ar">${mt}</p>` : ""}<p class="iz-cite">${u.iz351Cite.replace("{l}", x.line).replace("{c}", pk ? pk.ch : "—")}</p></section>
       <section class="iz-tr"><h4>${u.iz351Tr}</h4>${trs || `<p class="iz-tl">${u.iz351NoTr}</p>`}</section>
       ${why ? `<section class="iz-why">${why}</section>` : ""}
       <section class="iz-ex"><h4>${u.iz351Ex}</h4>${exHtml || `<p class="iz-tl">${u.iz351NoEx}</p>`}</section>
-      <div class="iz-row">${items.length >= 2 ? `<button class="btn primary" type="button" id="iz351Quiz">${u.iz351Exercise.replace("{n}", items.length)}</button>` : ""}
+      <div class="iz-row">${items.length >= 2 || (items.length && x.book && x.book.ok) ? `<button class="btn primary" type="button" id="iz351Quiz">${u.iz351Exercise.replace("{n}", items.length)}</button>` : ""}
         ${notes.map(g => `<button class="chip" type="button" data-note="${this.E(g)}">📖 ${this.E(T(GRAMMAR[g].title))}</button>`).join("")}
         ${games.map(g => `<button class="chip" type="button" data-iz-game="${g}">${this.E(u.toolGame)}: ${this.E(u[this.GAMES[g][1]] || g)}</button>`).join("")}</div>
     </div>`;
@@ -21162,12 +21170,21 @@ const Izhar351 = {
     const q = body.querySelector("#iz351Quiz"); if (q) q.addEventListener("click", () => this.quiz(x));
   },
   // ── the exercise items: the unit's corpus tokens (examples first, then the pool), each with its sentence
-  items(x){ const seen = new Set(), out = []; for (const k of [].concat(x.examples || [], x.pool || [])) { if (seen.has(k)) continue; seen.add(k); const r = this.tok(k); if (r && r.tok.irab) out.push(r); } return out.slice(0, 6); },
+  /* (v353-I) «Anlamı / Meaning»: the owner's Turkish translation (content/rules/izhar_tercume.json, verbatim from its lines); the example only
+     where its Arabic is the package's own (paired by letters); EN is our one-line rendering, pending review */
+  card(x){ const c = x.tc; if (!c || !c.m) return ""; const u = ui(), l = this.L();
+    const ex = c.ex ? `<p class="iz-ar" lang="ar">${this.E(c.ex.ar)}</p><p class="iz-tl" lang="tr">${this.E(c.ex.tr)}</p>` : "";
+    const src = `<p class="iz-cite">${u.iz353Src.replace("{l}", (c.lines || []).length ? c.lines[0] + ((c.lines.length > 1 && c.lines[c.lines.length - 1] !== c.lines[0]) ? "–" + c.lines[c.lines.length - 1] : "") : "—")}</p>`;
+    const body = l === "tr" ? `<p class="iz-mean" lang="tr">${this.E(c.m)}</p>`
+      : `<p class="iz-mean">${this.E(c.en || "")} <span class="iz-pend">${u.iz351Pending}</span></p><p class="iz-tl" lang="tr">${this.E(c.m)}</p>`;
+    return `<section class="iz-card" data-tc="1"><h4>${u.iz353Card}</h4>${body}${ex}${src}</section>`; },
+  items(x){ const seen = new Set(), out = []; if (!(x.examples || []).length && x.book && x.book.ok) { const r = this.tok(x.book.k); if (r && r.tok.irab) out.push(r); }
+    for (const k of [].concat(x.examples || [], x.pool || [])) { if (seen.has(k)) continue; seen.add(k); const r = this.tok(k); if (r && r.tok.irab) out.push(r); } return out.slice(0, 6); },
   others(x){ const d = this.data(), n = +x.id.slice(3), same = d.items.filter(y => y.bab === x.bab && y.id !== x.id && y.item !== x.item);
     const rg = (this.RANGES[x.bab] || []).find(([a, b]) => n >= a && n <= b) || [0, 0], near = same.filter(y => { const m = +y.id.slice(3); return m >= rg[0] && m <= rg[1]; });
     const pick = shuffle(near.slice()).slice(0, 3); if (pick.length < 3) pick.push(...shuffle(same.filter(y => !pick.includes(y))).slice(0, 3 - pick.length)); return pick; },
   quiz(x){
-    const u = ui(), items = shuffle(this.items(x)).map(r => Object.assign({ unit: x }, r)); if (items.length < 2) return;
+    const u = ui(), items = shuffle(this.items(x)).map(r => Object.assign({ unit: x }, r)); if (items.length < 2 && !(items.length && x.book && x.book.ok)) return;   // (v353-I) the book's own example alone makes an exercise
     let right = 0; const back = () => { conjState.lab = "izhar"; this.unitId = x.id; openConjugator(); };
     const ask = x.bab === 1 ? u.iz351AskAmil : x.bab === 2 ? u.iz351AskMamul : u.iz351AskSign;
     const opts = shuffle([x].concat(this.others(x)));
@@ -21224,6 +21241,7 @@ Object.assign(L.en, {
   iz351Writer: "<bdi lang=\"ar\" dir=\"rtl\">«يُقَالُ / لَا يُقَالُ»</bdi> — is it said?", iz351WriterIntro: "Rules for the writer: what the book says is said and what it says is not. The engine cannot meet them in a text — you can.",
   iz351WriterGo: "The book's examples ({n})", iz351WriterAsk: "The book's own example: is it said?", iz351Said: "it is said", iz351NotSaid: "it is not said",
   iz351WriterWhy: "The matn (lithograph line {l}), as the Iẓhār story carries it:", iz351OpenMatn: "Open the matn", iz351None: "The course's table is not in this build.",
+  iz353Card: "Meaning", iz353Src: "Iẓhār in Turkish translation, line {l}", iz353Book: "the book's example", iz353BookNoEx: "(shown, not exercised: the engine does not read it as the book does)",
 });
 Object.assign(L.tr, {
   izharTab: "İzhâr dersi", iz351Intro: "Birgivî'nin İzhârü'l-Esrâr'ı bir yol olarak, kitabın sırasıyla: 1. bab âmil (altmış âmil), 2. bab ma'mûl (otuz ma'mûl), 3. bab i'râb (on alâmeti). Her ünitede: matnın satırı, sual-cevabın izahı, sebebi, hikâyelerden misaller ve kısa bir alıştırma.",
@@ -21239,6 +21257,7 @@ Object.assign(L.tr, {
   iz351Writer: "<bdi lang=\"ar\" dir=\"rtl\">«يُقَالُ / لَا يُقَالُ»</bdi> — söylenir mi?", iz351WriterIntro: "Yazana kurallar: kitabın «söylenir» ve «söylenmez» dedikleri. Motor bunları metinde göremez — sen görebilirsin.",
   iz351WriterGo: "Kitabın misalleri ({n})", iz351WriterAsk: "Kitabın kendi misali: böyle söylenir mi?", iz351Said: "söylenir", iz351NotSaid: "söylenmez",
   iz351WriterWhy: "Matn (taş baskı satır {l}), İzhâr hikâyesindeki hâliyle:", iz351OpenMatn: "Matnı aç", iz351None: "Dersin tablosu bu sürümde yok.",
+  iz353Card: "Anlamı", iz353Src: "İzhâr tercümesi, satır {l}", iz353Book: "kitabın misali", iz353BookNoEx: "(gösterilir, alıştırması yok: motor kitabın okuduğu gibi okumuyor)",
 });
 // ── v351-I END
 let ILAL_ITEMS = null;
@@ -25484,6 +25503,8 @@ class Nahw342Engine {
     sababi:   { cert: "exact", cite: ["Shudhūr R49 (p. 189) «مُخْتَلِفٌ أَلْوَانُهُ»", "Shudhūr R51 «عَمْرٌو مَضْرُوبٌ غُلَامُهُ»", "Iẓhār l. 35", "Kāfiya 16:s14"], gate: "a participle with tanwīn (a khabar or a naʿt) and right after it a noun in written rafʿ carrying a pronoun" },
     wasf:     { cert: "exact", cite: ["Shudhūr R65, R68 (p. 210–213) «أَقَائِمٌ الزَّيْدَانِ»", "Iẓhār l. 101 «الصِّفَةُ الْوَاقِعَةُ بَعْدَ … الِاسْتِفْهَامِ أَوِ النَّفْيِ رَافِعَةً لِظَاهِرٍ»"], gate: "a singular waṣf after the question or the negation and then a dual / plural in rafʿ" },
     wasfOff:  { cert: "offered", cite: ["Shudhūr R65"], gate: "the same with a singular after it: the doer that fills the khabar, or the delayed mubtadaʾ" },
+    sifaFail: { cert: "exact", cite: ["Iẓhār l. 28 «نَحْوُ كُلُّ صِفَةٍ مُشَبَّهَةٍ تَرْفَعُ الْفَاعِلَ»", "Iẓhār 12:s8 «زَيْدٌ حَسَنٌ وَجْهُهُ»", "Shudhūr R110 (the base «حَسَنٌ وَجْهُهُ»)"], gate: "(v353-I) a ṣifa mushabbaha by the lexicon (SifaEngine) with tanwīn in jarr or naṣb, and right after it a noun in written rafʿ carrying the pronoun that returns to what it describes — no stop between, no rafʿ noun or verb after the noun" },
+    sifaFailOff: { cert: "offered", cite: ["Iẓhār l. 28", "Iẓhār 12:s8 «زَيْدٌ حَسَنٌ وَجْهُهُ»"], gate: "(v353-I) the same with the ṣifa in rafʿ: its doer, or the delayed mubtadaʾ of the ṣifa as a fronted khabar — both readings" },
     wasfHead: { cert: "exact", cite: ["Iẓhār l. 101 «وَلَيْسَ … مُبْتَدَأً … بَلْ فَاعِلُهُ سَادٌّ مَسَدَّ الْخَبَرِ»", "Iẓhār l. 80 «أَمَضْرُوبٌ الزَّيْدَانِ»"], gate: "(v351-I) the waṣf whose dual / plural after it the wasf rule names «سَدَّ مَسَدَّ الْخَبَرِ»: its own line drops «وَخَبَرُهُ «…»» — the waṣf has no khabar" },
     maful2Off:{ cert: "offered", cite: ["Shudhūr R207 (the heart verbs take two objects only in their heart senses)"], gate: "the second accusative of a heart verb (رَأَى، وَجَدَ، عَلِمَ …): its second object, or a ḥāl when the verb means seeing" },
     tawkidPron: { cert: "exact", cite: ["Ibn ʿAqīl p. 891 (3:213) «ومضمر الرفع الذي قد انفصل ... أكد به كل ضمير اتصل» — نحو قمت أنت، أكرمتني أنا (v352-A)"], gate: "a bare detached rafʿ pronoun right after a verb whose own attached (or hidden 1st/2nd-person) pronoun is that person; not after a verb of saying, kāna and its sisters, a heart verb; nothing after it but the end, a wāw / fāʾ, or a particle" },
@@ -25508,7 +25529,7 @@ class Nahw342Engine {
     const r = rows[i]; if (!r) return null;
     this._busy = true;
     try {
-      for (const f of [this.laDual, this.fiveRaf, this.qasam, this.rubba, this.qabl, this.fujaa, this.idhaFail, this.dem, this.fasl, this.shaan, this.sababi, this.wasf, this.wasfHead, this.maful2, this.tawkidPron]) {
+      for (const f of [this.laDual, this.fiveRaf, this.qasam, this.rubba, this.qabl, this.fujaa, this.idhaFail, this.dem, this.fasl, this.shaan, this.sababi, this.sifaFail, this.wasf, this.wasfHead, this.maful2, this.tawkidPron]) {
         const v = f.call(this, rows, i, L, r); if (v) return v;
       }
       return null;
@@ -25692,6 +25713,27 @@ class Nahw342Engine {
     return this.out(L, { rule: "sababi", ar: "اسْمٌ، مَرْفُوعٌ " + sign + "، " + off + "، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ",
       en: "raised — the " + (kind === "act" ? "doer of the active participle" : "deputy doer of the passive participle") + " «" + this.nf(p) + "», which leans on what it describes", tr: "merfû — «" + this.nf(p) + "» " + (kind === "act" ? "ism-i fâilinin fâili" : "ism-i mef'ûlünün nâib-i fâili") });
   }
+  // ── sifaFail (v353-I) · زَيْدٌ حَسَنٌ وَجْهُهُ، عَذْبٍ مُقَبَّلُهُ: the ṣifa mushabbaha raises its doer as its verb does (Iẓhār l. 28). The ṣifa is
+  //    known by the lexicon (SifaEngine.classify — the scale alone is no signal: فَعْل is every other maṣdar). After a ṣifa in jarr or naṣb the
+  //    noun can be nothing but its doer — EXACT; after a ṣifa in rafʿ the noun may also be a delayed mubtadaʾ with the ṣifa its fronted khabar
+  //    (the muʿrib's «طَوِيلٌ نِجَادُهُ») — OFFERED, both named. Silent when the noun opens a clause of its own (a rafʿ noun or a verb after it).
+  static sifaFail(rows, i, L, r){
+    if (!this.isNoun(r) || r.afterJarr || r.fusedJarr || !r.enc || r.alam) return null;
+    const rf = this.nf(r); if (/^[وف]َ/.test(rf) && !(r.root && /^[وف]/.test(String(r.root).trim())) || /^[بلك]َ|^[بل]ِ/.test(rf) && !(r.root && /^[بلك]/.test(String(r.root).trim()))) return null;
+    if (!/ُ(ه|ها|هم|هما|هن|ك|كم|كما|كن|نا)[ُِ]?[َُِْ]?$|َاهُ$|َا(ه|هم|ها|ك)[ُِ]?[َُِْ]?$/.test(rf) && !(/ِي$/.test(rf) && this.claim(rows, i) === "raf")) return null;
+    if (/^(غير|سوي|نفس|عين|كل|بعض|جميع|كلا|كلتا|اسم|مثل|شبه|بين|عند|لدي|لدى|مع|فوق|تحت|امام|خلف|وراء|دون|حول|قبل|بعد|حين|يوم)/.test(this.flat(r))) return null;
+    const p = rows[i - 1]; if (!p || !this.isNoun(p) || p.alam || p.enc || p.pk) return null;
+    const pf = this.nf(p).replace(/^[وف]َ/, ""); if (!/[ًٌٍ]ا?$/.test(pf) || /[.:!؟؛،]/.test(String(p.punct || "") + String(p.w || "").slice(-1))) return null;
+    let sifa = false; try { const c = SifaEngine.classify(pf.replace(/ًا$/, "ً").replace(/[ًٌٍ]$/, "")); sifa = !!c && (c.kinds || []).includes("sifa-mushabbaha"); } catch (e) { sifa = false; }
+    if (!sifa) return null;
+    const nx = rows[i + 1]; if (nx && (this.isVerb(nx) || (this.isNoun(nx) && !nx.afterJarr && !/^[وف]َ/.test(this.nf(nx)) && this.claim(rows, i + 1) === "raf"))) return null;
+    const raf = /ٌ$/.test(pf), sg = (L.ar.match(/وَعَلَامَةُ رَفْعِهِ [^،.]+/) || [""])[0], sign = sg ? " " + sg : "";
+    const W = this.nf(p), off = "فَاعِلٌ لِلصِّفَةِ الْمُشَبَّهَةِ «" + W + "»";
+    if (!raf) return this.out(L, { rule: "sifaFail", ar: "اسْمٌ، مَرْفُوعٌ" + sign + "، " + off + "، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ",
+      en: "raised — the doer of the ṣifa mushabbaha «" + W + "», which raises it as its verb does (Iẓhār l. 28)", tr: "merfû — sıfat-ı müşebbehe «" + W + "»nin fâili; onu fiili gibi ref eder (İzhâr s. 28)" });
+    return this.out(L, { rule: "sifaFailOff", ar: "اسْمٌ، مَرْفُوعٌ" + sign + "، " + off + "، أَوْ مُبْتَدَأٌ مُؤَخَّرٌ خَبَرُهُ «" + W + "» الْمُقَدَّمُ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ",
+      en: "raised — the doer of the ṣifa mushabbaha «" + W + "», or the delayed mubtadaʾ with «" + W + "» its fronted khabar: both readings", tr: "merfû — sıfat-ı müşebbehe «" + W + "»nin fâili, ya da «" + W + "» önce gelmiş haberi olan muahhar mübtedâ: iki okuyuş" });
+  }
   // ── wasfHead (v351-I) · أَمَضْرُوبٌ الزَّيْدَانِ: the waṣf is the mubtadaʾ with no khabar — its doer fills the khabar's place (Iẓhār l. 101)
   static wasfHead(rows, i, L, r){
     if (!this.isNoun(r) || !/، وَخَبَرُهُ «[^»]+»/.test(L.ar) || !rows[i + 1]) return null;
@@ -25703,13 +25745,21 @@ class Nahw342Engine {
   static wasf(rows, i, L, r){
     if (!this.isNoun(r) || r.afterJarr) return null;
     const p = rows[i - 1]; if (!p || !this.isNoun(p)) return null;
-    const pf = this.nf(p); if (!/ٌ$/.test(pf)) return null;
-    const q = rows[i - 2]; const lead = /^أَ/.test(pf) && this.partOf({ w: pf.replace(/^أَ/, "") }) ? "hamza" : (q && /^(ما|لا|هل|غير)$/.test(this.flat(q)) && this.partOf(p)) ? "neg" : null;
+    /* (v353-I) the book cites its examples after «نَحْوُ» and joins them with a wāw (Iẓhār 21:s3 «نَحْوُ ضَرَبَ زَيْدٌ وَأَقَائِمٌ الزَّيْدَانِ»، 28:s3
+       «نَحْوُ أَقَائِمٌ الزَّيْدَانِ وَمَا قَائِمٌ الزَّيْدُونَ»): a wāw / fāʾ before the hamza or the negation, and «نَحْوُ» before the clause, open it as a
+       stop does; the hamza of the question on a participle opens its clause wherever it stands (عَلِمْتُ أَقَائِمٌ زَيْدٌ). A JOINED lead with no
+       stop or «نَحْوُ» before it speaks only for a definite dual / plural after the waṣf (the exact branch). Iẓhār l. 101. */
+    const pf0 = this.nf(p), pj = /^[وف]َأَ/.test(pf0), pf = pj ? pf0.replace(/^[وف]َ/, "") : pf0; if (!/ٌ$/.test(pf)) return null;
+    const q = rows[i - 2], qf = q ? this.flat(q) : "", qj = /^[وف](ما|لا|هل)$/.test(qf);
+    const lead = /^أَ/.test(pf) && this.partOf({ w: pf.replace(/^أَ/, "") }) ? "hamza" : (q && (/^(ما|لا|هل|غير)$/.test(qf) || qj) && this.partOf(p)) ? "neg" : null;
     if (!lead) return null;
-    if (lead === "neg" && !this.stopBefore(rows, i - 2)) return null; if (lead === "hamza" && !this.stopBefore(rows, i - 1)) return null;
+    const opened = k => this.stopBefore(rows, k) || (rows[k - 1] && this.flat(rows[k - 1]) === "نحو");
+    const joined = lead === "neg" ? (qj && !opened(i - 2)) : false;
+    if (lead === "neg" && !qj && !opened(i - 2)) return null;
     if (this.claim(rows, i) !== "raf" && !/ُ$|ٌ$|انِ$|ونَ$/.test(this.nf(r))) return null;
     const kind = this.partOf({ w: lead === "hamza" ? pf.replace(/^أَ/, "") : pf }) || "act";
     const fb = this.flat(r), many = /(ان|ون)$/.test(fb) && /^ال/.test(fb);
+    if (joined && !many) return null;
     const sign = (L.ar.match(/وَعَلَامَةُ رَفْعِهِ [^،.]+/) || [""])[0];
     const office = (kind === "pass" ? "نَائِبُ فَاعِلٍ" : "فَاعِلٌ") + " سَدَّ مَسَدَّ الْخَبَرِ";
     if (many) return this.out(L, { rule: "wasf", ar: "اسْمٌ، مَرْفُوعٌ " + sign + "، " + office, en: "the " + (kind === "pass" ? "deputy doer" : "doer") + " of the waṣf, standing in the khabar's place (the waṣf is the mubtadaʾ)", tr: "vasfın " + (kind === "pass" ? "nâib-i fâili" : "fâili") + "; haberin yerini tutar (vasf mübtedâdır)" });
@@ -40444,8 +40494,20 @@ class TaalluqEngine {
     for (let k = i + 1; k < rows.length && k <= i + 4; k++) { if (/[.؟!؛]/.test(String(rows[k - 1].punct || ""))) break; if (isV(rows[k])) return found(k, "after"); }
     return { kind: "mahdhuf", state: this.STATE_LBL.mustaqarr, text: this.MAHDHUF_TEXT };
   }
+  /* (v353-I · T-T01) the grammar books' «X لِـY» lists — «وَخَلَا وَعَدَا لِلِاسْتِثْنَاءِ»، «وَلَا النَّهْيِ لِلطَّلَبِ»، «نِعْمَ لِلْمَدْحِ»: a lām phrase whose noun
+     is a closed list of MEANING NAMES says what the cited word before it is for — its khabar or its ḥāl, on an omitted governor (Iẓhār 1:s18–s21,
+     7:s6–s7, 8:s4). On the shelf all 82 such phrases are written so (none on a written word). Where the walk found a VERB (not itself a cited
+     name: نِعْمَ، بِئْسَ، عَدَا، خَلَا …) the verb keeps it — خَرَجَ الرَّجُلُ لِلطَّلَبِ */
+  static LABEL353 = /^[وف]?لل(الصاق|ابتداء|انتهاء|بعد|مجاوزه|استعلاء|تعليل|تخصيص|ظرف|تشبيه|غايه|تقليل|تكثير|استثناء|ترجي|تمني|مصدريه|نفي|سببيه|شرط|جزاء|طلب|مدح|ذم|مكان|زمان|تحقيق|استدراك|تنبيه|استفهام|تاكيد|توكيد|قسم|تفسير|تحضيض|ردع|تعجب|اضراب|ترتيب|تخيير|استقبال|مستقبل|ماضي|معيه)$/;
+  static label353(rows, i){
+    const r = rows[i]; if (!r) return false;
+    const f = this.flatOf(r.w).replace(/[أإآ]/g, "ا").replace(/ة$/, "ه"); if (!this.LABEL353.test(f)) return false;
+    return true; }
+  static citedVerb353(r){ return /^[وف]?(نعم|بئس|عسى|عسي|حبذا|عدا|خلا|حاشا|ليس|كان|كاد)$/.test(this.flatOf((r || {}).w)); }
   static of(rows, i){
     let t = this._of(rows, i);
+    if (t && t.kind === "found" && this.label353(rows, i) && !(this.isVerb328(rows[t.at]) && !this.citedVerb353(rows[t.at]))) { Object.keys(t).forEach(k => delete t[k]); Object.assign(t, { kind: "mahdhuf", state: this.STATE_LBL.mustaqarr, text: this.MAHDHUF_TEXT, why353: "label" });
+      const seat = this.seatOf(rows, i); if (seat) { t.seat = seat.lbl; t.seatKey = seat.key; } return t; }
     if (!t) { try { t = this.zarf334(rows, i); } catch (e) { t = null; } if (!t) return t; if (t.why334 === "jawab" || t.why334 === "shart" || t.why334 === "idh") return t; }
     try {
       const row = rows[i], f = this.flatOf(row.w);

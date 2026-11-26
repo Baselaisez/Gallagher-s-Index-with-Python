@@ -1,0 +1,2051 @@
+{
+ "source": "research/sources/izhar-tercume-full.txt",
+ "built_by": "tools/ledger/izhar_tercume.py",
+ "note": "Turkish strings verbatim from the source lines (lines joined, whitespace folded; Arabic-script and page-number lines dropped); the example is shown only where its broken Arabic equals, as a bag of bare letters, a token window of the Iẓhār package — then the Arabic is the package's vowelled tokens; «en» is our rendering, pending review",
+ "coverage": {
+  "units": 100,
+  "meaning": 75,
+  "example_tr": 58,
+  "paired": 1,
+  "by_bab": {
+   "A": {
+    "units": 60,
+    "meaning": 53,
+    "paired": 1
+   },
+   "B": {
+    "units": 30,
+    "meaning": 20,
+    "paired": 0
+   },
+   "C": {
+    "units": 10,
+    "meaning": 2,
+    "paired": 0
+   }
+  }
+ },
+ "units": [
+  {
+   "id": "I-A01",
+   "meaning_tr": "İlsaq (bağlamak) ,sebebiyet, beraberlik,…e, …a",
+   "example_tr": "Allahu Subhanehu ve Teala’ya iman ettim.",
+   "src_lines": [
+    178,
+    179,
+    180,
+    181
+   ],
+   "meaning_lines": [
+    178,
+    179
+   ],
+   "example_lines": [
+    180,
+    181
+   ],
+   "arabic_lines": [
+    175,
+    176
+   ],
+   "en": "ilṣāq (attaching), cause, accompaniment — “to, at, with”",
+   "example": null
+  },
+  {
+   "id": "I-A02",
+   "meaning_tr": "İbtida (başlamak), yakınlık, …den,…dan",
+   "example_tr": "Bütün günahlardan tövbe ettim.",
+   "src_lines": [
+    182,
+    183,
+    184
+   ],
+   "meaning_lines": [
+    182,
+    183
+   ],
+   "example_lines": [
+    184
+   ],
+   "arabic_lines": [
+    193,
+    194
+   ],
+   "en": "ibtidāʾ (beginning), nearness — “from”",
+   "example": null
+  },
+  {
+   "id": "I-A03",
+   "meaning_tr": "İntiha (nihayet), sonuç, …e , …a ..ye, ..ya",
+   "example_tr": "Allahu Subhanehu ve Teala’ya tevbe ettim.",
+   "src_lines": [
+    185,
+    186,
+    187,
+    188
+   ],
+   "meaning_lines": [
+    185,
+    186
+   ],
+   "example_lines": [
+    187,
+    188
+   ],
+   "arabic_lines": [
+    195,
+    196
+   ],
+   "en": "intihāʾ (the end point), result — “to”",
+   "example": null
+  },
+  {
+   "id": "I-A04",
+   "meaning_tr": "Bu’d ve mücavezet (Uzaklaşma) ..den , …dan",
+   "example_tr": "Haramdan men edildim",
+   "src_lines": [
+    189,
+    190,
+    191
+   ],
+   "meaning_lines": [
+    189,
+    190
+   ],
+   "example_lines": [
+    191
+   ],
+   "arabic_lines": [
+    197,
+    198,
+    199
+   ],
+   "en": "buʿd and mujāwaza (moving away) — “from, away from”",
+   "example": null
+  },
+  {
+   "id": "I-A05",
+   "meaning_tr": "İsti’la (Üzerinde Olmak)",
+   "example_tr": "Her günahkar üzerine tevbe vaciptir.",
+   "src_lines": [
+    201,
+    202,
+    203
+   ],
+   "meaning_lines": [
+    201
+   ],
+   "example_lines": [
+    202,
+    203
+   ],
+   "arabic_lines": [
+    210,
+    211
+   ],
+   "en": "istiʿlāʾ (being upon) — “on, upon”",
+   "example": null
+  },
+  {
+   "id": "I-A06",
+   "meaning_tr": "Ta’lil (Sebebiyyet, illetlik),.. için",
+   "example_tr": "Ben, Allahu Subhanehu ve Teala için küçücük bir kulcağızım.",
+   "src_lines": [
+    204,
+    205,
+    206
+   ],
+   "meaning_lines": [
+    204
+   ],
+   "example_lines": [
+    205,
+    206
+   ],
+   "arabic_lines": [
+    237
+   ],
+   "en": "taʿlīl (cause, reason) — “for”",
+   "example": null
+  },
+  {
+   "id": "I-A07",
+   "meaning_tr": "Zarf, içine almak (…de, …da )",
+   "example_tr": "İtaat eden cennettedir",
+   "src_lines": [
+    207,
+    208
+   ],
+   "meaning_lines": [
+    207
+   ],
+   "example_lines": [
+    208
+   ],
+   "arabic_lines": [
+    240,
+    241
+   ],
+   "en": "ẓarf (containing) — “in, at”",
+   "example": null
+  },
+  {
+   "id": "I-A08",
+   "meaning_tr": "Teşbih (benzetme), gibi",
+   "example_tr": "Allahu Subhanehu ve Teala’ya benzer yoktur.",
+   "src_lines": [
+    213,
+    214,
+    215
+   ],
+   "meaning_lines": [
+    213
+   ],
+   "example_lines": [
+    214,
+    215
+   ],
+   "arabic_lines": [
+    229
+   ],
+   "en": "tashbīh (likening) — “like”",
+   "example": null
+  },
+  {
+   "id": "I-A09",
+   "meaning_tr": "Gaye,sonuç, …ye kadar",
+   "example_tr": "Ölünceye kadar ,Allahu Subhanehu ve Teala ’ya ibadet ederim.",
+   "src_lines": [
+    216,
+    217,
+    218,
+    219
+   ],
+   "meaning_lines": [
+    216
+   ],
+   "example_lines": [
+    217,
+    218,
+    219
+   ],
+   "arabic_lines": [
+    246,
+    247
+   ],
+   "en": "ghāya (the limit), result — “until, up to”",
+   "example": null
+  },
+  {
+   "id": "I-A10",
+   "meaning_tr": "Azlık, çokluk, öyleleri var ki, nice…",
+   "example_tr": "Nice okuyucular vardır ki Kur’an onlara lanet eder.",
+   "src_lines": [
+    220,
+    221,
+    222,
+    223
+   ],
+   "meaning_lines": [
+    220,
+    221
+   ],
+   "example_lines": [
+    222,
+    223
+   ],
+   "arabic_lines": [
+    249,
+    250,
+    251,
+    252
+   ],
+   "en": "fewness, muchness — “many a …”",
+   "example": null
+  },
+  {
+   "id": "I-A11",
+   "meaning_tr": "Qasem (yemin)",
+   "example_tr": "Allahu Subhanehu ve Teala ’ya yemin ederim ki asla büyük günahları yapmayacağım.",
+   "src_lines": [
+    224,
+    225,
+    226,
+    227
+   ],
+   "meaning_lines": [
+    224
+   ],
+   "example_lines": [
+    225,
+    226,
+    227
+   ],
+   "arabic_lines": [
+    253,
+    254
+   ],
+   "en": "qasam (an oath) — “by …”",
+   "example": null
+  },
+  {
+   "id": "I-A12",
+   "meaning_tr": "Qasem (yemin)",
+   "example_tr": "Allahu Subhanehu ve Teala ’ya yemin ederim ki elbette farzları yapacağım.",
+   "src_lines": [
+    265,
+    266,
+    267,
+    268
+   ],
+   "meaning_lines": [
+    265
+   ],
+   "example_lines": [
+    266,
+    267,
+    268
+   ],
+   "arabic_lines": [
+    261,
+    262,
+    263
+   ],
+   "en": "qasam (an oath) — “by …”",
+   "example": null
+  },
+  {
+   "id": "I-A13",
+   "meaning_tr": "İstisna, tenzih",
+   "example_tr": "Alim hariç, insanlar helak oldu.",
+   "src_lines": [
+    276,
+    277
+   ],
+   "meaning_lines": [
+    276
+   ],
+   "example_lines": [
+    277
+   ],
+   "arabic_lines": [
+    270,
+    271,
+    272,
+    273,
+    274
+   ],
+   "en": "exception, clearing of blame — “except”",
+   "example": null
+  },
+  {
+   "id": "I-A14",
+   "meaning_tr": "Geçmiş zamanda başlangıç,.. den beri, …dan beri.",
+   "example_tr": "Buluğ gününden beri işlediğim bütün günahlara tövbe ettim.",
+   "src_lines": [
+    284,
+    285,
+    286,
+    287
+   ],
+   "meaning_lines": [
+    284,
+    285
+   ],
+   "example_lines": [
+    286,
+    287
+   ],
+   "arabic_lines": [
+    306,
+    307
+   ],
+   "en": "the beginning in past time — “since”",
+   "example": null
+  },
+  {
+   "id": "I-A15",
+   "meaning_tr": "Geçmiş zamanda başlangıç,.. den beri, …dan beri.",
+   "example_tr": "Buluğ gününden beri , namaz vacib oldu.",
+   "src_lines": [
+    288,
+    289,
+    290,
+    291
+   ],
+   "meaning_lines": [
+    288,
+    289
+   ],
+   "example_lines": [
+    290,
+    291
+   ],
+   "arabic_lines": [
+    308,
+    309,
+    310
+   ],
+   "en": "the beginning in past time — “since”",
+   "example": null
+  },
+  {
+   "id": "I-A16",
+   "meaning_tr": "İstisna, tenzih",
+   "example_tr": "İlmiyle amel edenler hariç, alimler helak oldu.",
+   "src_lines": [
+    278,
+    279,
+    280
+   ],
+   "meaning_lines": [
+    278
+   ],
+   "example_lines": [
+    279,
+    280
+   ],
+   "arabic_lines": [
+    293,
+    294
+   ],
+   "en": "exception, clearing of blame — “except”",
+   "example": null
+  },
+  {
+   "id": "I-A17",
+   "meaning_tr": "İstisna, tenzih",
+   "example_tr": "İhlaslılar hariç, amel edenler helak oldu.",
+   "src_lines": [
+    281,
+    282,
+    283
+   ],
+   "meaning_lines": [
+    281
+   ],
+   "example_lines": [
+    282,
+    283
+   ],
+   "arabic_lines": [
+    299,
+    300,
+    301,
+    302,
+    303,
+    304,
+    305
+   ],
+   "en": "exception, clearing of blame — “except”",
+   "example": null
+  },
+  {
+   "id": "I-A18",
+   "meaning_tr": "….olmasaydı, ….olurdu",
+   "example_tr": "Ey Allahu Subhanehu ve Teala’nın rahmeti !, Sen olmasaydın elbette insanlar helak olurdu.",
+   "src_lines": [
+    315,
+    316,
+    317,
+    318,
+    319
+   ],
+   "meaning_lines": [
+    315
+   ],
+   "example_lines": [
+    316,
+    317,
+    318,
+    319
+   ],
+   "arabic_lines": [
+    312,
+    313
+   ],
+   "en": "“had it not been for …, … would have”",
+   "example": null
+  },
+  {
+   "id": "I-A19",
+   "meaning_tr": "İçin, ta ki, … e kadar",
+   "example_tr": "Niçin asi oldun?",
+   "src_lines": [
+    325,
+    326
+   ],
+   "meaning_lines": [
+    325
+   ],
+   "example_lines": [
+    326
+   ],
+   "arabic_lines": [
+    321,
+    322,
+    323
+   ],
+   "en": "“for, so that” (with interrogative mā: “why?”)",
+   "example": null
+  },
+  {
+   "id": "I-A20",
+   "meaning_tr": "Umulur ki, keşke olsa Teracci (ümid)",
+   "example_tr": "Keşke Allahu Subhanehu ve Teala günahımı bağışlasa !",
+   "src_lines": [
+    334,
+    335,
+    336,
+    337
+   ],
+   "meaning_lines": [
+    334,
+    335
+   ],
+   "example_lines": [
+    336,
+    337
+   ],
+   "arabic_lines": [
+    332
+   ],
+   "en": "tarajjī (hope) — “perhaps, would that”",
+   "example": null
+  },
+  {
+   "id": "I-A21",
+   "meaning_tr": "Tahkik için;",
+   "example_tr": "Şüphesiz Allahu Subhanehu ve Teala her şeyi bilicidir.",
+   "src_lines": [
+    607,
+    608,
+    609,
+    610,
+    611
+   ],
+   "meaning_lines": [
+    607
+   ],
+   "example_lines": [
+    608,
+    609,
+    610,
+    611
+   ],
+   "arabic_lines": [
+    667
+   ],
+   "en": "taḥqīq (making certain) — “indeed”",
+   "example": null
+  },
+  {
+   "id": "I-A22",
+   "meaning_tr": "Tahkik için;",
+   "example_tr": "Allahu Subhanehu ve Teala’nın, Muhakkak her şeye gücü yetici olduğuna itikad ettim.",
+   "src_lines": [
+    612,
+    613,
+    614,
+    615,
+    616,
+    620,
+    621
+   ],
+   "meaning_lines": [
+    612
+   ],
+   "example_lines": [
+    613,
+    614,
+    615,
+    616,
+    620,
+    621
+   ],
+   "arabic_lines": [
+    669,
+    670,
+    671
+   ],
+   "en": "taḥqīq (making certain) — “that (it is certain that)”",
+   "example": null
+  },
+  {
+   "id": "I-A23",
+   "meaning_tr": "Teşbih İçin;",
+   "example_tr": "Haram ateş gibidir.",
+   "src_lines": [
+    622,
+    623
+   ],
+   "meaning_lines": [
+    622
+   ],
+   "example_lines": [
+    623
+   ],
+   "arabic_lines": [
+    672,
+    673,
+    674
+   ],
+   "en": "tashbīh (likening) — “as if, like”",
+   "example": null
+  },
+  {
+   "id": "I-A24",
+   "meaning_tr": "İstidrak İçin;",
+   "example_tr": "Cahil kurtulmadı lakin ,alim kurtulucudur.",
+   "src_lines": [
+    627,
+    628,
+    629,
+    630
+   ],
+   "meaning_lines": [
+    627
+   ],
+   "example_lines": [
+    628,
+    629,
+    630
+   ],
+   "arabic_lines": [
+    675,
+    676,
+    677,
+    678
+   ],
+   "en": "istidrāk (correcting what went before) — “but”",
+   "example": null
+  },
+  {
+   "id": "I-A25",
+   "meaning_tr": "Temenni İçin;",
+   "example_tr": "Keşke , her kişi, ilimle rızıklanmış olsaydı.",
+   "src_lines": [
+    634,
+    635,
+    636
+   ],
+   "meaning_lines": [
+    634
+   ],
+   "example_lines": [
+    635,
+    636
+   ],
+   "arabic_lines": [
+    680,
+    681,
+    682
+   ],
+   "en": "tamannī (wishing) — “would that”",
+   "example": null
+  },
+  {
+   "id": "I-A26",
+   "meaning_tr": "Teracci İçin;",
+   "example_tr": "Allahu Subhanehu ve Teala’nın, günahımı bağışlayıcı olması ümid edilir.",
+   "src_lines": [
+    640,
+    641,
+    642,
+    643,
+    644,
+    645
+   ],
+   "meaning_lines": [
+    640
+   ],
+   "example_lines": [
+    641,
+    642,
+    643,
+    644,
+    645
+   ],
+   "arabic_lines": [
+    683
+   ],
+   "en": "tarajjī (hoping) — “perhaps, it is hoped that”",
+   "example": null
+  },
+  {
+   "id": "I-A27",
+   "meaning_tr": "Cinsini Nefy Etmek İçin;",
+   "example_tr": "Şer işleyen hiç kimse , yani bütün şer işleyiciler gurubu, (topluluğu,cinsi) kurtulucu olmadı.",
+   "src_lines": [
+    659,
+    660,
+    661,
+    662,
+    663,
+    664,
+    665
+   ],
+   "meaning_lines": [
+    659,
+    660
+   ],
+   "example_lines": [
+    661,
+    662,
+    663,
+    664,
+    665
+   ],
+   "arabic_lines": [
+    692,
+    693
+   ],
+   "en": "denying the whole genus — “there is no … at all”",
+   "example": null
+  },
+  {
+   "id": "I-A28",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-A29",
+   "meaning_tr": "Leyse’ ye benzeyen ma;",
+   "example_tr": "Allahu Subhanehu ve Teala , her hangi bir mekanda mütemekkin değildir.",
+   "src_lines": [
+    701,
+    702,
+    703,
+    704,
+    705,
+    706,
+    707
+   ],
+   "meaning_lines": [
+    701,
+    702
+   ],
+   "example_lines": [
+    703,
+    704,
+    705,
+    706,
+    707
+   ],
+   "arabic_lines": [
+    709,
+    710
+   ],
+   "en": "mā resembling laysa",
+   "example": null
+  },
+  {
+   "id": "I-A30",
+   "meaning_tr": "Leyse’ ye benzeyen La;",
+   "example_tr": "hiçbir şey , Allahu Subhanehu ve Teala’ya müşabih değildir",
+   "src_lines": [
+    714,
+    715,
+    716,
+    717,
+    718,
+    719
+   ],
+   "meaning_lines": [
+    714,
+    715
+   ],
+   "example_lines": [
+    716,
+    717,
+    718,
+    719
+   ],
+   "arabic_lines": [
+    721
+   ],
+   "en": "lā resembling laysa",
+   "example": null
+  },
+  {
+   "id": "I-A31",
+   "meaning_tr": null,
+   "example_tr": "Allah Subhanehu ve Teala’ya itaat etmeyi severim.",
+   "src_lines": [
+    1064,
+    1065
+   ],
+   "meaning_lines": [],
+   "example_lines": [
+    1064,
+    1065
+   ],
+   "arabic_lines": [
+    1075,
+    1076,
+    1077,
+    1078
+   ],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-A32",
+   "meaning_tr": null,
+   "example_tr": "Allah Subhanehu ve Teala, kafirleri, asla affetmeyecektir.",
+   "src_lines": [
+    1066,
+    1067
+   ],
+   "meaning_lines": [],
+   "example_lines": [
+    1066,
+    1067
+   ],
+   "arabic_lines": [
+    1081,
+    1082
+   ],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-A33",
+   "meaning_tr": null,
+   "example_tr": "Uzun ömrü severim, niçin ? İlim tahsil edebilmem için .",
+   "src_lines": [
+    1068,
+    1069
+   ],
+   "meaning_lines": [],
+   "example_lines": [
+    1068,
+    1069
+   ],
+   "arabic_lines": [
+    1083,
+    1084,
+    1085,
+    1086,
+    1087
+   ],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-A34",
+   "meaning_tr": null,
+   "example_tr": "Birisi sana, “Allah Teala’ya itaat ediyorum” dediği zaman , sen ona; “Öyleyse cennete girersin” dersin",
+   "src_lines": [
+    1070,
+    1071,
+    1072
+   ],
+   "meaning_lines": [],
+   "example_lines": [
+    1070,
+    1071,
+    1072
+   ],
+   "arabic_lines": [
+    1090,
+    1091,
+    1092,
+    1093
+   ],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-A35",
+   "meaning_tr": "Mazide nefy için",
+   "example_tr": "Allah Subhanehu ve Teala doğurmadı ve doğrulmadı.",
+   "src_lines": [
+    1096,
+    1097,
+    1101
+   ],
+   "meaning_lines": [
+    1101
+   ],
+   "example_lines": [
+    1096,
+    1097
+   ],
+   "arabic_lines": [
+    1104
+   ],
+   "en": "negating the past",
+   "example": null
+  },
+  {
+   "id": "I-A36",
+   "meaning_tr": "Mazide nefy için",
+   "example_tr": "Ömrüm fayda vermedi",
+   "src_lines": [
+    1098,
+    1101
+   ],
+   "meaning_lines": [
+    1101
+   ],
+   "example_lines": [
+    1098
+   ],
+   "arabic_lines": [
+    1106
+   ],
+   "en": "negating the past",
+   "example": null
+  },
+  {
+   "id": "I-A37",
+   "meaning_tr": "Talep için",
+   "example_tr": "(O’na Söyleyin!) Salih amel işlesin!",
+   "src_lines": [
+    1099,
+    1102
+   ],
+   "meaning_lines": [
+    1102
+   ],
+   "example_lines": [
+    1099
+   ],
+   "arabic_lines": [
+    1108,
+    1109
+   ],
+   "en": "requesting (a command)",
+   "example": null
+  },
+  {
+   "id": "I-A38",
+   "meaning_tr": "Talep için",
+   "example_tr": "Günah işleme!",
+   "src_lines": [
+    1100,
+    1102
+   ],
+   "meaning_lines": [
+    1102
+   ],
+   "example_lines": [
+    1100
+   ],
+   "arabic_lines": [
+    1110,
+    1111
+   ],
+   "en": "requesting (a prohibition)",
+   "example": null
+  },
+  {
+   "id": "I-A39",
+   "meaning_tr": null,
+   "example_tr": "Eğer tövbe edersen günahların bağışlanır.",
+   "src_lines": [
+    1119
+   ],
+   "meaning_lines": [],
+   "example_lines": [
+    1119
+   ],
+   "arabic_lines": [
+    1122,
+    1123,
+    1124
+   ],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-A40",
+   "meaning_tr": "Mekan için",
+   "example_tr": "Her nerede (bir iş) işlersen, o işin yazılır.",
+   "src_lines": [
+    1146,
+    1152
+   ],
+   "meaning_lines": [
+    1152
+   ],
+   "example_lines": [
+    1146
+   ],
+   "arabic_lines": [
+    1166,
+    1167
+   ],
+   "en": "for place",
+   "example": null
+  },
+  {
+   "id": "I-A41",
+   "meaning_tr": "Mekan için",
+   "example_tr": "Her nerede olursan ol, ölüm sana ulaşır.",
+   "src_lines": [
+    1139,
+    1152
+   ],
+   "meaning_lines": [
+    1152
+   ],
+   "example_lines": [
+    1139
+   ],
+   "arabic_lines": [
+    1155,
+    1156,
+    1157
+   ],
+   "en": "for place",
+   "example": null
+  },
+  {
+   "id": "I-A42",
+   "meaning_tr": "Mekan için",
+   "example_tr": "Her nerede günah işlersen işle , Allahu Subhanehu ve Teala, seni bilir.",
+   "src_lines": [
+    1142,
+    1143,
+    1152
+   ],
+   "meaning_lines": [
+    1152
+   ],
+   "example_lines": [
+    1142,
+    1143
+   ],
+   "arabic_lines": [
+    1159,
+    1160
+   ],
+   "en": "for place",
+   "example": null
+  },
+  {
+   "id": "I-A43",
+   "meaning_tr": "Zaman için",
+   "example_tr": "Her ne zaman tövbe edersen, tövben kabul edilir.",
+   "src_lines": [
+    1147,
+    1148,
+    1151
+   ],
+   "meaning_lines": [
+    1151
+   ],
+   "example_lines": [
+    1147,
+    1148
+   ],
+   "arabic_lines": [
+    1169,
+    1170
+   ],
+   "en": "for time",
+   "example": null
+  },
+  {
+   "id": "I-A44",
+   "meaning_tr": "Zaman için",
+   "example_tr": "Her ne zaman İlminle amel edersin, o zaman, insanların en hayırlısı olursun.",
+   "src_lines": [
+    1149,
+    1150,
+    1151
+   ],
+   "meaning_lines": [
+    1151
+   ],
+   "example_lines": [
+    1149,
+    1150
+   ],
+   "arabic_lines": [
+    1172,
+    1173,
+    1174,
+    1175,
+    1176
+   ],
+   "en": "for time",
+   "example": null
+  },
+  {
+   "id": "I-A45",
+   "meaning_tr": "Zaman için",
+   "example_tr": "Her ne zaman hased edersen , helak olursun.",
+   "src_lines": [
+    1140,
+    1141,
+    1151
+   ],
+   "meaning_lines": [
+    1151
+   ],
+   "example_lines": [
+    1140,
+    1141
+   ],
+   "arabic_lines": [
+    1158
+   ],
+   "en": "for time",
+   "example": null
+  },
+  {
+   "id": "I-A46",
+   "meaning_tr": "şey",
+   "example_tr": "Her ne yaparsan ondan sorulursun",
+   "src_lines": [
+    1120,
+    1188
+   ],
+   "meaning_lines": [
+    1188
+   ],
+   "example_lines": [
+    1120
+   ],
+   "arabic_lines": [
+    1127
+   ],
+   "en": "“whatever (thing)”",
+   "example": null
+  },
+  {
+   "id": "I-A47",
+   "meaning_tr": "şey",
+   "example_tr": "Hayırdan her ne işlersen, Allahu Subhanehu ve Teala indinde onu bulursun",
+   "src_lines": [
+    1129,
+    1130,
+    1188
+   ],
+   "meaning_lines": [
+    1188
+   ],
+   "example_lines": [
+    1129,
+    1130
+   ],
+   "arabic_lines": [
+    1132
+   ],
+   "en": "“whatever (thing)”",
+   "example": null
+  },
+  {
+   "id": "I-A48",
+   "meaning_tr": "İstifham (soru) için",
+   "example_tr": "Hangi alim ki kibirlenir, Allahu Subhanehu ve Teala, O’na gazap eder.",
+   "src_lines": [
+    1144,
+    1145,
+    1153
+   ],
+   "meaning_lines": [
+    1153
+   ],
+   "example_lines": [
+    1144,
+    1145
+   ],
+   "arabic_lines": [
+    1161,
+    1162,
+    1163,
+    1164
+   ],
+   "en": "interrogative (question) word",
+   "example": null
+  },
+  {
+   "id": "I-A49",
+   "meaning_tr": null,
+   "example_tr": "Kim salih amel işlerse, o, kurtulucu olur.",
+   "src_lines": [
+    1134
+   ],
+   "meaning_lines": [],
+   "example_lines": [
+    1134
+   ],
+   "arabic_lines": [
+    1136,
+    1137
+   ],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-A50",
+   "meaning_tr": "Fiiller tek bir fail alır ref ederler, bir veya birden fazla meful alıp nasb ederler.",
+   "example_tr": "Allah Sübhane ve Teala Teala, her şeyi yarattı.",
+   "src_lines": [
+    1294,
+    1295,
+    1306,
+    1307
+   ],
+   "meaning_lines": [
+    1306,
+    1307
+   ],
+   "example_lines": [
+    1294,
+    1295
+   ],
+   "arabic_lines": [
+    1298,
+    1299
+   ],
+   "en": "every verb takes one doer in rafʿ and one or more objects in naṣb",
+   "example": null
+  },
+  {
+   "id": "I-A51",
+   "meaning_tr": "Malum fiilin ameli gibi amel eder. Yani Failini ref, mefulunu nasb eder.",
+   "example_tr": "Her hasedcinin hasedi, amelini yakıcıdır.",
+   "src_lines": [
+    1956,
+    1957,
+    1965
+   ],
+   "meaning_lines": [
+    1956,
+    1957
+   ],
+   "example_lines": [
+    1965
+   ],
+   "arabic_lines": [
+    1970,
+    1971,
+    1972
+   ],
+   "en": "works like the active verb: rafʿ of its doer, naṣb of its object",
+   "example": null
+  },
+  {
+   "id": "I-A52",
+   "meaning_tr": "Mechul fiilin ameli gibi amel eder. Yani Naib Fail alıp ref eder.",
+   "example_tr": "Her tövbe edenin, tövbesi kabul edilmiştir",
+   "src_lines": [
+    1982,
+    1983,
+    1988
+   ],
+   "meaning_lines": [
+    1982,
+    1983
+   ],
+   "example_lines": [
+    1988
+   ],
+   "arabic_lines": [
+    1990,
+    1991
+   ],
+   "en": "works like the passive verb: takes a deputy doer in rafʿ",
+   "example": null
+  },
+  {
+   "id": "I-A53",
+   "meaning_tr": "Kendi fiili gibi amel eder yani failini raf eder.",
+   "example_tr": "İbadet, sevabı güzel olandır ve günah, azabı çirkin olandır",
+   "src_lines": [
+    2099,
+    2115,
+    2116
+   ],
+   "meaning_lines": [
+    2099
+   ],
+   "example_lines": [
+    2115,
+    2116
+   ],
+   "arabic_lines": [
+    2118,
+    2119,
+    2120,
+    2121,
+    2122,
+    2123,
+    2124,
+    2125,
+    2126,
+    2127
+   ],
+   "en": "works like its own verb: rafʿ of its doer",
+   "example": null
+  },
+  {
+   "id": "I-A54",
+   "meaning_tr": "Zahir fail dışında, şartsız olarak amel edebilir, yani müstedir zamiri ,fail olarak alıp ref edebilir ve de zarfda, halde, temyizde nasb ameli işleyebilir.",
+   "example_tr": "Ben hiçbir adam görmedim ki, onun gözünde olan kuhlin güzelliği, Zeydin gözünde olan kuhlin güzelliği gibi olsun. Belki Zeydin gözünde olan kuhlin güzelliği başkalarının gözünde olan kuhlin güzelliğinin fevkindedir. Zeydin gözündeki kuhl daha güzeldir ”",
+   "src_lines": [
+    2136,
+    2137,
+    2138,
+    2139,
+    2140,
+    2141,
+    2142,
+    2165,
+    2166
+   ],
+   "meaning_lines": [
+    2165,
+    2166
+   ],
+   "example_lines": [
+    2136,
+    2137,
+    2138,
+    2139,
+    2140,
+    2141,
+    2142
+   ],
+   "arabic_lines": [
+    2153,
+    2154,
+    2155,
+    2156
+   ],
+   "en": "without conditions it governs a hidden pronoun as doer and naṣb of a ẓarf, ḥāl and tamyīz",
+   "example": {
+    "ch": 13,
+    "sid": "s3",
+    "from": 1,
+    "to": 11,
+    "ar": "مَا رَأَيْتُ رَجُلًا أَحْسَنَ فِي عَيْنِهِ الْكُحْلُ مِنْهُ فِي عَيْنِ زَيْدٍ"
+   }
+  },
+  {
+   "id": "I-A55",
+   "meaning_tr": "Bu cümlede i’taen mastarı, abdu kelimesini fail almış ref etmiş, fakir ve dirhem kelimelerini de meful alarak nasb etmiştir.",
+   "example_tr": "Allah Subhanehu ve Teala, kulunun , kendisi için , bir fakire dirhem vermesini sever.",
+   "src_lines": [
+    2312,
+    2313,
+    2314,
+    2315,
+    2316,
+    2317
+   ],
+   "meaning_lines": [
+    2314,
+    2315,
+    2316,
+    2317
+   ],
+   "example_lines": [
+    2312,
+    2313,
+    2314
+   ],
+   "arabic_lines": [],
+   "en": "governs a doer in rafʿ and objects in naṣb",
+   "example": null
+  },
+  {
+   "id": "I-A56",
+   "meaning_tr": "İsmi muzaf , kendisnden sonra gelen ve muzafun ileyh diye isimlendirilen kelimeyi cer eder.",
+   "example_tr": "Allahu Subhanehu ve Teala’ya ibadet etmek hayırdır.",
+   "src_lines": [
+    2392,
+    2393,
+    2398,
+    2399
+   ],
+   "meaning_lines": [
+    2398,
+    2399
+   ],
+   "example_lines": [
+    2392,
+    2393
+   ],
+   "arabic_lines": [
+    2395,
+    2396
+   ],
+   "en": "puts the word after it, the muḍāf ilayh, in jarr",
+   "example": null
+  },
+  {
+   "id": "I-A57",
+   "meaning_tr": "İşrune amildir, reka’ten kelimesini nasb etmiştir.",
+   "example_tr": "Teravih yirmidir ! Ne yönünden yirmidir ? Rekat yönünden yirmidir.",
+   "src_lines": [
+    2618,
+    2619,
+    2620,
+    2621,
+    2622,
+    2623,
+    2624,
+    2625,
+    2626,
+    2627,
+    2628
+   ],
+   "meaning_lines": [
+    2621,
+    2622,
+    2623,
+    2624,
+    2625,
+    2626,
+    2627,
+    2628
+   ],
+   "example_lines": [
+    2618,
+    2619,
+    2620
+   ],
+   "arabic_lines": [
+    2654,
+    2655,
+    2656,
+    2657,
+    2658
+   ],
+   "en": "governs: puts the tamyīz after it in naṣb",
+   "example": null
+  },
+  {
+   "id": "I-A58",
+   "meaning_tr": "Burada , isim fiiller,aynı anlamı taşıdıkları mazi fiillerin amelini işlerler.",
+   "example_tr": null,
+   "src_lines": [
+    2872,
+    2873
+   ],
+   "meaning_lines": [
+    2872,
+    2873
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the verb-nouns do the work of the past verbs whose meaning they carry",
+   "example": null
+  },
+  {
+   "id": "I-A59",
+   "meaning_tr": "Manevi amil tarafından hem mübteda hem de haber ref edilmişlerdir.",
+   "example_tr": "Muhammed (sav), Allah’ın elçisidir",
+   "src_lines": [
+    3044,
+    3055,
+    3056,
+    3057,
+    3058,
+    3059,
+    3060,
+    3061
+   ],
+   "meaning_lines": [
+    3055,
+    3056,
+    3057,
+    3058,
+    3059,
+    3060,
+    3061
+   ],
+   "example_lines": [
+    3044
+   ],
+   "arabic_lines": [
+    3048,
+    3049,
+    3050,
+    3051,
+    3052
+   ],
+   "en": "by a governor of meaning both mubtadaʾ and khabar are in rafʿ",
+   "example": null
+  },
+  {
+   "id": "I-A60",
+   "meaning_tr": "Muzari fiilin manevi amille ref edilmesi, muzari fiilin, nasbedici, ve cezm edici edatlardan uzak olduğu zaman gerçekleşir.",
+   "example_tr": "Allahu Subhanehu ve Teala tevbe edene merhamet eder .",
+   "src_lines": [
+    3045,
+    3046,
+    3094,
+    3095,
+    3096
+   ],
+   "meaning_lines": [
+    3094,
+    3095,
+    3096
+   ],
+   "example_lines": [
+    3045,
+    3046
+   ],
+   "arabic_lines": [
+    3053
+   ],
+   "en": "the muḍāriʿ is in rafʿ by a governor of meaning when it is free of the particles of naṣb and jazm",
+   "example": null
+  },
+  {
+   "id": "I-B01",
+   "meaning_tr": "Yani fiillerin merfu mamulleri , onların failleri (özneleri) dir,",
+   "example_tr": null,
+   "src_lines": [
+    1306,
+    1307,
+    1308,
+    1309
+   ],
+   "meaning_lines": [
+    1306,
+    1307,
+    1308,
+    1309
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the verbs’ rafʿ governees are their doers",
+   "example": null
+  },
+  {
+   "id": "I-B02",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-B03",
+   "meaning_tr": "Manevi amil tarafından hem mübteda hem de haber ref edilmişlerdir.",
+   "example_tr": null,
+   "src_lines": [
+    3055,
+    3056,
+    3057,
+    3058,
+    3059,
+    3060,
+    3061
+   ],
+   "meaning_lines": [
+    3055,
+    3056,
+    3057,
+    3058,
+    3059,
+    3060,
+    3061
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "by a governor of meaning both mubtadaʾ and khabar are in rafʿ",
+   "example": null
+  },
+  {
+   "id": "I-B04",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-B05",
+   "meaning_tr": "Manevi amil tarafından hem mübteda hem de haber ref edilmişlerdir.",
+   "example_tr": null,
+   "src_lines": [
+    3055,
+    3056,
+    3057,
+    3058,
+    3059,
+    3060,
+    3061
+   ],
+   "meaning_lines": [
+    3055,
+    3056,
+    3057,
+    3058,
+    3059,
+    3060,
+    3061
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "by a governor of meaning both mubtadaʾ and khabar are in rafʿ",
+   "example": null
+  },
+  {
+   "id": "I-B06",
+   "meaning_tr": "İSMİNİ NASB HABERİNİ REF EDEN HARFLER",
+   "example_tr": null,
+   "src_lines": [
+    602
+   ],
+   "meaning_lines": [
+    602
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the letters that put their ism in naṣb and their khabar in rafʿ",
+   "example": null
+  },
+  {
+   "id": "I-B07",
+   "meaning_tr": "Merfu olan Zeydun kelimesine kane fiilinin ismi,",
+   "example_tr": null,
+   "src_lines": [
+    1766,
+    1767,
+    1768
+   ],
+   "meaning_lines": [
+    1766,
+    1767,
+    1768
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the word in rafʿ is called the ism of kāna",
+   "example": null
+  },
+  {
+   "id": "I-B08",
+   "meaning_tr": "Bu harfler isimlerini ref, haberlerini nasb ederler.",
+   "example_tr": null,
+   "src_lines": [
+    1018
+   ],
+   "meaning_lines": [
+    1018
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "these letters put their ism in rafʿ and their khabar in naṣb",
+   "example": null
+  },
+  {
+   "id": "I-B09",
+   "meaning_tr": "‘calisun’ kelimesini haber alıp sonunu ref etti.",
+   "example_tr": null,
+   "src_lines": [
+    998,
+    999,
+    1000,
+    1001
+   ],
+   "meaning_lines": [
+    998,
+    999,
+    1000,
+    1001
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "it took «jālisun» as its khabar and put its end in rafʿ",
+   "example": null
+  },
+  {
+   "id": "I-B10",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-B11",
+   "meaning_tr": "mensub mamulleri de onların mefulleri (nesneleri)dir.",
+   "example_tr": null,
+   "src_lines": [
+    1308,
+    1309
+   ],
+   "meaning_lines": [
+    1308,
+    1309
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "their naṣb governees are their objects",
+   "example": null
+  },
+  {
+   "id": "I-B12",
+   "meaning_tr": "‘fi’ ve ‘fi’ anlamında olanlar , müteallakları için mef’ulu fih olurlar.",
+   "example_tr": null,
+   "src_lines": [
+    374,
+    375
+   ],
+   "meaning_lines": [
+    374,
+    375
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "(phrases with) «fī» and what means «fī» are mafʿūl fīhi for what they hang on",
+   "example": null
+  },
+  {
+   "id": "I-B13",
+   "meaning_tr": "‘Lam’ ve ‘lam’ manasında olanlar, müteallakları için mef’ulu leh olurlar",
+   "example_tr": null,
+   "src_lines": [
+    376,
+    377
+   ],
+   "meaning_lines": [
+    376,
+    377
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "(phrases with) «li» and what means «li» are mafʿūl lahu for what they hang on",
+   "example": null
+  },
+  {
+   "id": "I-B14",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-B15",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-B16",
+   "meaning_tr": "Rek’aten kelimesi manası kapalı olan Işrune kelimesini temyiz etmekte, ona açıklık kazandırmaktadır.",
+   "example_tr": null,
+   "src_lines": [
+    2625,
+    2626,
+    2627
+   ],
+   "meaning_lines": [
+    2625,
+    2626,
+    2627
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "«rakʿatan» makes clear (tamyīz) the vague «ʿishrūna»",
+   "example": null
+  },
+  {
+   "id": "I-B17",
+   "meaning_tr": "İstisna harflerinin mecruru, ‘illa’ nın müstesnaları gibidir.",
+   "example_tr": null,
+   "src_lines": [
+    358
+   ],
+   "meaning_lines": [
+    358
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "what the exception letters put in jarr is like the mustathnā of «illā»",
+   "example": null
+  },
+  {
+   "id": "I-B18",
+   "meaning_tr": "mensub olan alimen kelimesine , kane fiilinin haberi denilir.",
+   "example_tr": null,
+   "src_lines": [
+    1766,
+    1767,
+    1768
+   ],
+   "meaning_lines": [
+    1766,
+    1767,
+    1768
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the word in naṣb is called the khabar of kāna",
+   "example": null
+  },
+  {
+   "id": "I-B19",
+   "meaning_tr": "İSMİNİ NASB HABERİNİ REF EDEN HARFLER",
+   "example_tr": null,
+   "src_lines": [
+    602
+   ],
+   "meaning_lines": [
+    602
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the letters that put their ism in naṣb and their khabar in rafʿ",
+   "example": null
+  },
+  {
+   "id": "I-B20",
+   "meaning_tr": "Bu cümlede , Cinsini nefyeden ‘la’ harfi , ‘ğulame’ kelimesini isim alıp, sonunu nasb etti,",
+   "example_tr": null,
+   "src_lines": [
+    998,
+    999,
+    1000,
+    1001
+   ],
+   "meaning_lines": [
+    998,
+    999,
+    1000,
+    1001
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the lā that denies the genus took «ghulāma» as its ism and put its end in naṣb",
+   "example": null
+  },
+  {
+   "id": "I-B21",
+   "meaning_tr": "Bu harfler isimlerini ref, haberlerini nasb ederler.",
+   "example_tr": null,
+   "src_lines": [
+    1018
+   ],
+   "meaning_lines": [
+    1018
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "these letters put their ism in rafʿ and their khabar in naṣb",
+   "example": null
+  },
+  {
+   "id": "I-B22",
+   "meaning_tr": "MUZARİ FİİLİ NASB EDEN HARFLER",
+   "example_tr": null,
+   "src_lines": [
+    1063
+   ],
+   "meaning_lines": [
+    1063
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the letters that put the muḍāriʿ in naṣb",
+   "example": null
+  },
+  {
+   "id": "I-B23",
+   "meaning_tr": "Cer harfleri ; fiil, fiil benzeri ve fiil manasında olan müteallaklarının anlamlarını mecrurlarına ulaştırıp, bitiştirir.",
+   "example_tr": null,
+   "src_lines": [
+    342,
+    343,
+    344
+   ],
+   "meaning_lines": [
+    342,
+    343,
+    344
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the jarr letters carry the meaning of what they hang on — a verb, its like or its meaning — to the word in jarr",
+   "example": null
+  },
+  {
+   "id": "I-B24",
+   "meaning_tr": "İsmi muzaf , kendisnden sonra gelen ve muzafun ileyh diye isimlendirilen kelimeyi cer eder.",
+   "example_tr": null,
+   "src_lines": [
+    2398,
+    2399
+   ],
+   "meaning_lines": [
+    2398,
+    2399
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the muḍāf puts the word after it, the muḍāf ilayh, in jarr",
+   "example": null
+  },
+  {
+   "id": "I-B25",
+   "meaning_tr": "TEK BİR MUZARİ FİİLİ CEZM EDEN HARFLER",
+   "example_tr": null,
+   "src_lines": [
+    1095
+   ],
+   "meaning_lines": [
+    1095
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the letters that put one muḍāriʿ in jazm",
+   "example": null
+  },
+  {
+   "id": "I-B26",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-B27",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-B28",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-B29",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-B30",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-C01",
+   "meaning_tr": "zammenin faillik işareti",
+   "example_tr": null,
+   "src_lines": [
+    46,
+    47
+   ],
+   "meaning_lines": [
+    46,
+    47
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the ḍamma is the sign of being the doer",
+   "example": null
+  },
+  {
+   "id": "I-C02",
+   "meaning_tr": "fethanın mefulluk işareti",
+   "example_tr": null,
+   "src_lines": [
+    46,
+    47
+   ],
+   "meaning_lines": [
+    46,
+    47
+   ],
+   "example_lines": [],
+   "arabic_lines": [],
+   "en": "the fatḥa is the sign of being the object",
+   "example": null
+  },
+  {
+   "id": "I-C03",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-C04",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-C05",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-C06",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-C07",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-C08",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-C09",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  },
+  {
+   "id": "I-C10",
+   "meaning_tr": null,
+   "example_tr": null,
+   "src_lines": [],
+   "en": null,
+   "example": null
+  }
+ ]
+}

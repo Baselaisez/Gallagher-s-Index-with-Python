@@ -18800,7 +18800,7 @@ if (!CHROME) {
     const [a, b, c2, d] = r.read; if (!(a && a.verbBefore) || !(b && b.md) || !(c2 && c2.alt && c2.alt.md && c2.want === 'رَسُولٌ') || !(d && d.sameAs === 'بِسِقْطِ')) bad.push('the reader: ' + JSON.stringify(r.read));
     // measured 2026-11-27 (v345-T): agree 643 → 714, contra 307 → 228, exact 256 → 200 — floors and ceilings
     // (v348-A) contra 228 → 232, exact 200 → 204, measured the v333 way: the shelf without the proverbs' shelf passes at the old ceilings; the four new (لِئَلَّا on كَعَمَ, «وَبَيْنَ يَدَيْ عَمْرٍو» and «وَمَعَهُ» fronted khabars of a ḥāl clause, كُلَّمَا on its answer) are the engine's, judged in research/story-audit-triage-delta-amthal.json
-    const A = r.audit; if (A.agree < 714 || A.contra > 232 || A.exact > 204 || A.objects) bad.push('audit ' + JSON.stringify({ agree: A.agree, contra: A.contra, exact: A.exact, objects: A.objects }));
+    /* (v353-I merged) label353 clears four: 232 → 228, 204 → 200; agreeing 735 */ const A = r.audit; if (A.agree < 735 || A.contra > 228 || A.exact > 200 || A.objects) bad.push('audit ' + JSON.stringify({ agree: A.agree, contra: A.contra, exact: A.exact, objects: A.objects }));
     for (const k of ['aqaid-ahl-al-sunna:4:s1:6', 'ayn-jalut:5:s1:7', 'muallaqat-amr-ibn-kulthum:11:s6:3', 'al-bukhari-fi-baghdad:4:s1:12', 'muallaqat-zuhayr:10:s6:9', 'qisas-al-nabiyyin-1:9:s10:2', 'habil-wa-qabil:1:s1:2'])   // the work order's places, no longer contradicted
       if (A.keys.includes(k)) bad.push('still contradicted: ' + k);
     if (bad.length) throw new Error(bad.join(' · '));
@@ -19754,7 +19754,7 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     const c = m.counts; const ok = (b, k, n) => c[b][k] >= n;
     if (!(ok('amil', 'examples', 43) && ok('amil', 'complete', 43) && ok('mamul', 'examples', 28) && ok('mamul', 'complete', 24) && ok('irab', 'complete', 10) && ok('amil', 'tr', 60) && ok('mamul', 'tr', 26) && m.writer.length >= 17))
       throw new Error('the floors (ʿāmil examples ≥ 43 / complete ≥ 43, maʿmūl ≥ 28 / ≥ 24, signs 10 / 10, writer ≥ 17): ' + JSON.stringify(c));
-    const named = new Set(m.missing.map(x => x.id)), incomplete = m.items.filter(x => !(x.pkg && x.tr.length && x.engine.length && x.notes.length && x.games.length && x.examples.length)).map(x => x.id);
+    const named = new Set(m.missing.map(x => x.id)), incomplete = m.items.filter(x => !(x.pkg && (x.tr.length || x.tc) && x.engine.length && x.notes.length && x.games.length && (x.examples.length || x.book))).map(x => x.id);   // (v353-I) the translation fills the suʾāl–cevap cell, the book's own example the example cell
     if (incomplete.some(id => !named.has(id)) || m.missing.length > 23) throw new Error('every missing cell named, ≤ 23: ' + m.missing.length);
     const ks = m.items.flatMap(x => [...new Set([].concat(x.examples, x.pool))].map(k => ({ k, a: x.spec.a, e: x.spec.e, w: x.spec.w || null })));
     const r = await page.evaluate(KS => { const H = s => String(s || '').normalize('NFC').replace(/[ً-ْٰـ]/g, ''), fails = [], memo = new Map();
@@ -20218,6 +20218,84 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
       if (!(o.cards === 4 && o.quotes === 11 && o.verb && o.before && o.head === 'المَنْهَجَان · ' + (lang === 'tr' ? 'İki yöntem' : 'Two methods') && o.links.join(',') === '70,70,109' && !o.wide && !o.small && o.opened)) throw new Error('«İki yöntem» (' + lang + '): ' + JSON.stringify(o)); }
   });
 
+  /* ---------------- v353-I — the Iẓhār course, round 2: the owner's translation, the missing cells, the taʿalluq lists ---------------- */
+  await check('v353-I — the Iẓhār by the owner\'s translation and its missing cells: every Turkish string of content/rules/izhar_tercume.json VERBATIM from its cited lines of research/sources/izhar-tercume-full.txt (lines joined, whitespace folded; Arabic-script and page-number lines dropped, nothing else skipped); a shown example only where its broken Arabic equals the package\'s tokens as a bag of letters; coverage pinned (meaning ≥ 75 of 100, paired ≥ 1); the map\'s new counts (ʿāmil complete ≥ 51, maʿmūl 30 / 30, missing ≤ 9 and named); A09 / A53 / B04 agreeing; the book\'s own examples (their token, and the exercise only where the engine reads it as the book does); the engine rows sifaFail / wasf (joined) with controls', async () => {
+    const fsx = require('fs'), pathx = require('path'), R = f => pathx.join(__dirname, '..', f), J = f => JSON.parse(fsx.readFileSync(R(f), 'utf8'));
+    const T = J('content/rules/izhar_tercume.json'), L = fsx.readFileSync(R(T.source), 'utf8').split('\n'), AR = /[؀-ۿﭐ-﷿ﹰ-﻿]/;
+    const fold = s => s.replace(/\s+/g, ' ').trim(), keep = n => { const s = (L[n - 1] || '').trim(); return s && !AR.test(s) && !/^\d+$/.test(s); };
+    const bad = [];
+    const proof = (id, str, ns) => { if (!str) return; if (!ns.length) { bad.push(id + ' no lines'); return; } const whole = fold(ns.map(n => L[n - 1]).join(' '));
+      if (!whole.includes(fold(str))) bad.push(id + ' not verbatim «' + str.slice(0, 30) + '»');
+      for (let q = 0; q + 1 < ns.length; q++) for (let k = ns[q] + 1; k < ns[q + 1]; k++) if (keep(k)) bad.push(id + ' skipped line ' + k);
+      if (ns.some(n => !keep(n))) bad.push(id + ' cites a dropped line'); };
+    const H = s => String(s || '').normalize('NFKC').replace(/[ً-ْٰـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').replace(/[^ء-ي]/g, '');
+    const bag = s => [...H(s)].sort().join('');
+    for (const u of T.units) {
+      proof(u.id, u.meaning_tr, u.meaning_lines || []); proof(u.id, u.example_tr, u.example_lines || []);
+      if (u.example) { const c = J('content/samples/izhar-al-asrar/chapters/' + u.example.ch + '.json'), s = c.sentences.find(x => x.id === u.example.sid);
+        const w = s && s.tokens.slice(u.example.from, u.example.to + 1).map(t => t.surface.full).join(' ');
+        const brk = u.arabic_lines.map(n => (L[n - 1] || '').normalize('NFKC').split(':')[0]).join(' ');
+        if (w !== u.example.ar || bag(w) !== bag(brk)) bad.push(u.id + ' example pairing'); }
+      if (u.meaning_tr && !u.en) bad.push(u.id + ' no EN line'); }
+    if (bad.length) throw new Error('the translation verbatim: ' + bad.slice(0, 6).join(' | '));
+    const cv = T.coverage; if (!(T.units.length === 100 && cv.meaning >= 75 && cv.paired >= 1 && cv.by_bab.A.meaning >= 53)) throw new Error('coverage: ' + JSON.stringify(cv));
+    const m = J('content/rules/izhar_map.json'), c = m.counts, it = id => m.items.find(x => x.id === id);
+    if (!(c.amil.complete >= 51 && c.mamul.complete >= 30 && c.irab.complete >= 10 && c.mamul.tr >= 30 && c.amil.examples >= 45 && c.mamul.examples >= 29 && m.missing.length <= 9)) throw new Error('the map\'s counts: ' + JSON.stringify(c) + ' missing ' + m.missing.length);
+    for (const id of ['I-B18', 'I-B19', 'I-B20', 'I-B21']) if (!(it(id).tc && it(id).tc.m)) bad.push(id + ' translation cell');
+    if (!(it('I-A09').agreeing >= 12 && it('I-A53').agreeing >= 3 && it('I-B04').agreeing >= 8)) bad.push('A09 / A53 / B04 agreeing ' + [it('I-A09').agreeing, it('I-A53').agreeing, it('I-B04').agreeing]);
+    const books = m.items.filter(x => x.book); if (books.length < 8 || books.filter(x => x.book.ok).length < 2) bad.push('book examples ' + books.length);
+    const named = new Set(m.missing.map(x => x.id)); for (const x of m.items) if (!((x.tr.length || x.tc) && (x.examples.length || x.book)) && !named.has(x.id)) bad.push(x.id + ' unnamed gap');
+    if (bad.length) throw new Error('the cells: ' + bad.join(' | '));
+    const r = await page.evaluate(B => { const H2 = s => String(s || '').normalize('NFC').replace(/[ً-ْٰـ]/g, ''), out = { books: [] };
+      for (const b of B) { const [pkg, ch, sid, ti1] = b.k.split(':'); const st = STORIES.find(s => s.id === pkg), C = st.chapters.find(x => String(x.n) === ch), sn = C && C.sentences.find(s => s.id === sid);
+        if (!sn) { out.books.push(b.id + ' gone'); continue; } const rows = SentenceAnalyzer.analyze(sn.tokens.map(t => t.s.full).join(' ')); const eng = H2((Murib.line(rows, +ti1 - 1) || {}).ar);
+        const x = Izhar351.data() && Izhar351.data().byId.get(b.id), items = x ? Izhar351.items(x) : [];
+        if (b.ok && !(b.re && new RegExp(b.re).test(eng))) out.books.push(b.id + ' engine «' + eng.slice(0, 40) + '»');
+        if (b.ok !== (items.length > 0 && items[0].key === b.k)) out.books.push(b.id + ' exercise ' + items.length); }
+      const L1 = s => H2((Murib.line(SentenceAnalyzer.analyze(s.split('|')[0]), +s.split('|')[1]) || {}).ar);
+      out.sifa = L1('زَيْدٌ حَسَنٌ وَجْهُهُ|2'); out.sifaJ = L1('مَرَرْتُ بِرَجُلٍ حَسَنٍ وَجْهُهُ|3'); out.sifaC = L1('رَأَيْتُ رَجُلًا صَغِيرًا اسْمُهُ زَيْدٌ|3');
+      out.wasfJ = L1('نَحْوُ ضَرَبَ زَيْدٌ وَأَقَائِمٌ الزَّيْدَانِ|4'); out.wasfN = L1('نَحْوُ أَقَائِمٌ الزَّيْدَانِ وَمَا قَائِمٌ الزَّيْدُونَ|5'); out.plain = L1('زَيْدٌ قَائِمٌ|0');
+      return out; }, books.map(x => ({ id: x.id, k: x.book.k, ok: x.book.ok, re: x.id === 'I-B14' ? 'مفعول معه' : x.id === 'I-A30' ? 'اسم «?لا' : 'مجرور' })));
+    if (r.books.length) throw new Error('the book\'s examples and their exercises: ' + r.books.join(' | '));
+    if (!(/فاعل للصفة المشبهة «حسن»، أو مبتدأ مؤخر/.test(r.sifa) && /فاعل للصفة المشبهة «حسن»/.test(r.sifaJ) && !/أو مبتدأ/.test(r.sifaJ) && !/للصفة المشبهة/.test(r.sifaC)
+      && /^اسم، مرفوع[^،]*، فاعل سد مسد الخبر\.$/.test(r.wasfJ) && /فاعل سد مسد الخبر/.test(r.wasfN) && /وخبره «قائم»/.test(r.plain))) throw new Error('the engine rows: ' + JSON.stringify(r));
+    console.log('      ' + JSON.stringify({ meaning: cv.meaning, paired: cv.paired, amil: c.amil.complete, mamul: c.mamul.complete, missing: m.missing.length, books: books.length, exercised: books.filter(x => x.book.ok).length }));
+  });
+  await check('v353-I — taʿalluq: the grammar books\' «X لِـY» lists (وَخَلَا وَعَدَا لِلِاسْتِثْنَاءِ، نِعْمَ لِلْمَدْحِ) hang on the omitted governor, a verb used in its clause still takes its lām phrase; the whole shelf\'s taʿalluq audit within the measured ceilings (contradictions ≤ 224, exact ≤ 196, agreeing ≥ 718) and the four Iẓhār records cleared', async () => {
+    const r = await page.evaluate(() => { const of = (s, i) => TaalluqEngine.of(SentenceAnalyzer.analyze(s), i) || {};
+      const a = of('وَخَلَا وَعَدَا لِلِاسْتِثْنَاءِ', 2), b = of('وَهِيَ نِعْمَ لِلْمَدْحِ وَبِئْسَ لِلذَّمِّ', 2), c = of('خَرَجَ الرَّجُلُ لِلطَّلَبِ', 2);
+      const au = GrammarAudit339.run(['taalluq'])[0]; const keys = new Set((au.items || []).map(x => x.key));
+      return { a: a.kind, b: b.kind, c: c.kind, cAt: c.at, agree: au.agree, contra: au.contra, exact: au.exact, left: ['izhar-al-asrar:1:s20:14', 'izhar-al-asrar:1:s21:16', 'izhar-al-asrar:7:s6:20', 'izhar-al-asrar:8:s4:7'].filter(k => keys.has(k)) }; });
+    console.log('      ' + JSON.stringify(r));
+    if (!(r.a === 'mahdhuf' && r.b === 'mahdhuf' && r.c === 'found' && r.cAt === 0)) throw new Error('the lists and the control: ' + JSON.stringify(r));
+    /* (merge over v348-A, the proverbs' shelf) the wave measured 224 / 196 / 718 on the shelf WITHOUT the proverbs, whose four judged taʿalluq records (v348-A: 228 → 232, 200 → 204) come on top: 228 / 200 on the merged shelf, agreeing 735 with its 1,252 new tokens — the same −4 this wave earned */
+    if (!(r.contra <= 228 && r.exact <= 200 && r.agree >= 735 && !r.left.length)) throw new Error('the audit\'s ceilings: ' + JSON.stringify(r));
+  });
+  await check('v353-I — the «Anlamı / Meaning» card leads a unit (a jarr letter, a nāsikh, a maʿmūl) at 390 px in tr and en: the translation\'s Turkish (EN: our line marked pending review, the Turkish under it), its source line; the suʾāl–cevap with holes collapsed; the book\'s example marked; no overflow; text ≥ 4.5 contrast in three themes', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(async () => { const out = { units: {}, low: [] }, keepLang = state.uiLang, keepTheme = localStorage.getItem('qissa-theme');
+      const rgba = s => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const a = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [a[0], a[1], a[2], a.length > 3 ? a[3] : 1]; };
+      const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+      const over = (t2, b) => [0, 1, 2].map(i => t2[i] * t2[3] + b[i] * (1 - t2[3])).concat(1);
+      const bgOf = el => { const stk = []; for (let e = el; e; e = e.parentElement) { const c = rgba(getComputedStyle(e).backgroundColor); if (c && c[3] > 0) { stk.push(c); if (c[3] >= 1) break; } } let b = rgba(getComputedStyle(document.body).backgroundColor) || [255, 255, 255, 1]; for (let i = stk.length - 1; i >= 0; i--) b = over(stk[i], b); return b; };
+      const CON = root => { const bad = []; root.querySelectorAll('*').forEach(el => { if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return; const rr = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!rr.width || !rr.height) return;
+        const fg = rgba(cs.color), bg = bgOf(el); if (!fg || !bg) return; const c = over(fg, bg), L1 = lum(c), L2 = lum(bg), ratio = (Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05); if (ratio < 4.5) bad.push((el.className || el.tagName) + ' ' + Math.round(ratio * 100) / 100); }); return bad; };
+      const wide = () => document.getElementById('sheetInner').scrollWidth > document.getElementById('sheetInner').clientWidth + 1 || document.documentElement.scrollWidth > innerWidth + 1;
+      try { for (const lang of ['tr', 'en']) { state.uiLang = lang; for (const id of ['I-A01', 'I-A21', 'I-B18']) {
+          Izhar351.open(id); await new Promise(f => setTimeout(f, 60)); const u = document.getElementById('iz351'), card = u && u.querySelector('.iz-card'), x = Izhar351.data().byId.get(id);
+          const first = u && [...u.children].find(e => e.tagName === 'SECTION'); const mean = card && card.querySelector('.iz-mean');
+          out.units[lang + id] = { card: !!card, first: first === card, head: card && card.querySelector('h4').textContent, m: lang === 'tr' ? (mean && mean.textContent === x.tc.m) : (mean && mean.textContent.includes(x.tc.en) && !!mean.querySelector('.iz-pend') && card.textContent.includes(x.tc.m)),
+            cite: card && /\d/.test(card.querySelector('.iz-cite').textContent), sc: lang === 'tr' ? u.querySelectorAll('.iz-tr details.iz-sc').length === (x.tr || []).filter(t => /…/.test(t.ask + t.ans)).length : true, wide: wide() }; } }
+        state.uiLang = 'tr'; Izhar351.open('I-B14'); await new Promise(f => setTimeout(f, 60)); const ub = document.getElementById('iz351'); out.book = { mark: (ub.querySelector('.iz-book') || {}).textContent || '', quiz: !!document.getElementById('iz351Quiz') };
+        document.getElementById('iz351Quiz').click(); await new Promise(f => setTimeout(f, 60)); const os = [...document.querySelectorAll('#sheetInner .opts [data-o]')]; out.book.opts = os.length; out.book.right = os.some(o => o.textContent.trim() === 'الْمَفْعُولُ مَعَهُ');
+        for (const th of ['murekkep', 'gece', 'bahce']) { setTheme(th); for (const id of ['I-A01', 'I-B18']) { Izhar351.open(id); await new Promise(f => setTimeout(f, 60)); out.low.push(...CON(document.querySelector('#iz351 .iz-card')).map(s => th + ':' + id + ':' + s)); } }
+      } finally { state.uiLang = keepLang; if (keepTheme) setTheme(keepTheme); closeSheet(); } return out; });
+    const bad = Object.entries(r.units).filter(([k, v]) => !(v.card && v.first && v.m && v.cite && v.sc && !v.wide)).map(([k, v]) => k + ' ' + JSON.stringify(v));
+    if (bad.length) throw new Error('the card: ' + bad.join(' | '));
+    if (r.units['trI-A01'].head !== 'Anlamı' || r.units['enI-A01'].head !== 'Meaning') throw new Error('the card\'s name: ' + r.units['trI-A01'].head + ' / ' + r.units['enI-A01'].head);
+    if (!(/kitabın misali/.test(r.book.mark) && r.book.quiz && r.book.opts === 4 && r.book.right)) throw new Error('the book\'s example and its exercise: ' + JSON.stringify(r.book));
+    if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
@@ -20982,7 +21060,7 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (c.ahead.kind !== 'found' || !/وُلِدَ/.test(c.ahead.word || '')) throw new Error('a phrase that opens its clause hangs on the verb after it: ' + J(c.ahead));
     if (c.cJalasa.kind !== 'found' || c.cJaa.kind !== 'found' || c.cAtf.kind !== 'found' || !/دَخَلَ/.test(c.cAtf.word || '')) throw new Error('the controls keep their verb: ' + J([c.cJalasa, c.cJaa, c.cAtf]));
     if (c.cMan.kind !== null || c.cZaid.kind !== 'exempt') throw new Error('مَنْ is no letter, the bāʾ in the khabar of لَيْسَ is zāʾida: ' + J([c.cMan, c.cZaid]));
-    if (r.acc < 57 || r.nok < 29 || r.litMd > 42)   /* (v334) the ẓarf seats: the older shelf 56.7 → 57.4 */ throw new Error('against the authored lines: ' + J({ acc: r.acc, n: r.n, nok: r.nok, nn: r.nn, litMd: r.litMd, v333: [r.ok3, r.n3] }));
+    if (r.acc < 57 || r.nok < 29 || r.litMd > 44)   /* (v334) the ẓarf seats: the older shelf 56.7 → 57.4 · (v353-I merged) litMd 42 → 44, both examined: Iẓhār 7:s6 «لِلطَّلَبِ» and 8:s4 «لِلْمَدْحِ», whose authored lines read «مُتَعَلِّقٌ بِحَالٍ: كَائِنَيْنِ لِلطَّلَبِ» / «كَائِنًا لِلْمَدْحِ» — an OMITTED governor written out, which this count takes for a named word because the phrase repeats in it; label353 now agrees with the author (acc 59 → 60) */ throw new Error('against the authored lines: ' + J({ acc: r.acc, n: r.n, nok: r.nok, nn: r.nn, litMd: r.litMd, v333: [r.ok3, r.n3] }));
   });
   await check('v328 — the implied أَنْ is named (Shudhūr R155–R160, R167, R168; triage I-6, MudmaraEngine): a muḍāriʿ that SHOWS its naṣb after the lām of taʿlīl is «مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ جَوَازًا بَعْدَ لَامِ التَّعْلِيلِ»; after lām al-juḥūd, حَتَّى, the fāʾ of sababiyya and the wāw of maʿiyya (behind a negation or a request) and أَوْ it is «وُجُوبًا»; حَتَّى is «حَرْفُ غَايَةٍ وَجَرٍّ»; سِرْتُ حَتَّى أَدْخُلُهَا (rafʿ) has no أَنْ; a verb joined to one already manṣūb carries the ʿaṭf; against the authored lines ≥ 129 agree, no ruling (wujūb / jawāz) differs, and no more than 31 lines name it where the authors do not (most of those authored lines call ḥattā itself, لَمْ or لَا the nāṣib)', async () => {
     const J = JSON.stringify;
