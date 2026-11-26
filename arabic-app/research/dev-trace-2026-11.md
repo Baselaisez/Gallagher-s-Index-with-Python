@@ -43,3 +43,28 @@ Running:
 
 Waiting on people:
 - the hoca's answers (this weekend); the 64 certain story-correction proposals; the al-Inṣāf and Marāḥ pp. 145–182 renderings; six typos in the uploaded sheets.
+
+## 2026-11-26 20:10 — round 2 landed with speed V and the reasons; voices merging; two agents on the new books
+
+Landed since the last entry (dev branch):
+- `ad32ec4` — four books received from the owner, verbatim and page-marked in `research/sources/`: Shaykhzāde's Sharḥ Qawāʿid al-Iʿrāb, al-Bakrī's Faṣl al-Maqāl, al-Raḍī's Sharḥ al-Shāfiya, Ibn Mālik's Sharḥ al-Kāfiya al-Shāfiya. (The archive.org item could not be reached.)
+- v346 `78bb934` — «Neden? / Why?»: the reason chain (role → family and state → governor → kind and sign → what the sign tells) in the word sheet, the games' feedback, the role notes, the sentence sheet and the lab; 0 contradictions with the authored lines over 87,818 tokens.
+- v345-Q `44a8cc6` — al-Maqṣūd open 204 → 0; the typed iʿlāl road agrees with the derivation on 671 of 673 forms of the eighteen models.
+- v345-R, v345-T, v345-D and v343-S together `1d15db3` — full gate 609/609:
+  - roles: nāʾib al-fāʿil 514 → 569 of 623 agreeing, أَمْ / لَا / حَتَّى as ʿāṭifa, the khabar of lā 4 → 51 of 82; sign contradictions 141 → 58; naḥw ledgers — Shudhūr open 0, Qawāʿid 21, Iẓhār 2, Kāfiya 2; ⚠ rows 79 → 24;
+  - taʿalluq contradictions 307 → 228; إِنَّ / أَنَّ 27 → 15; order 2 → 0;
+  - the vowelling engine on authored text: contradictions 663 → 303 (the page's own marks choose between the readings it sees; blind vowelling of typed text unchanged);
+  - speed V: first-use tasks over 200 ms about 100 → 10–19 at 4× CPU; the shell copy proved offline by a check; covers as bitmaps.
+
+Merging:
+- v347 «Dinle» (`tmp/voice347`, 40f3b72): the listening bar, the Arabic voice sheet and no-voice message, the Android speech plugin (untested on a phone), the narration studio and packs. On the merge a page-wide `:has()` rule cost 1.7 s at the door; replaced by a class set in showSheet / closeSheet (door 2.86 s → 1.08 s at 4× CPU).
+
+Running:
+| wave | worktree / branch | job |
+|---|---|---|
+| v348-F | qissa-feed1 · tmp/ilal348 | the commentaries' reasons (Shaykhzāde whole first) into the notes, the reason chain and a game round |
+| v348-A | qissa-feed2 · tmp/amthal348 | the proverbs' index and a first shelf «الأمثال» from Faṣl al-Maqāl |
+
+Waiting on people:
+- the hoca's answers (this weekend); the story-correction proposals (64 certain + 4 + 3 new); the renderings (al-Inṣāf, Marāḥ pp. 145–182, al-Maqṣūd's 78 units, the 28 role definitions of v346); 304 lines whose role and stated case disagree;
+- the owner: the archive.org item's title or file; who records the narration; whether to price a generated voice (778,063 characters for the shelf); whether the «Neden?» ladder should always open in full.

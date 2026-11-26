@@ -19004,6 +19004,314 @@ if (!CHROME) {
     } finally { await ctx.close(); split343.close(); }
   });
 
+  // ---------- v347 — «Dinle»: the stories can be listened to in Arabic ----------
+  // A FAKE synthesiser stands in for the device: utterances are recorded, never spoken, and the test fires their events.
+  const fake347 = async (voices) => page.evaluate(vs => {
+    const S = window.__fs347 = { utts: [], saved: { speak: speechSynthesis.speak, cancel: speechSynthesis.cancel, getVoices: speechSynthesis.getVoices, U: window.SpeechSynthesisUtterance, voice: arVoice, rate: state.rate, listen: localStorage.getItem('qissa-listen347'), lrate: localStorage.getItem('qissa-rate'), pick: localStorage.getItem('qissa-voice'), lang: state.uiLang } };
+    state.uiLang = 'en';
+    window.SpeechSynthesisUtterance = class { constructor(t){ this.text = t; } };
+    speechSynthesis.speak = u => S.utts.push(u); speechSynthesis.cancel = () => {};
+    speechSynthesis.getVoices = () => vs;
+    localStorage.removeItem('qissa-voice'); localStorage.removeItem('qissa-listen347');
+    Voice347.warned = false; voiceWarned = false; Voice347.settle(true);
+    return { status: Voice347.status, voice: arVoice && arVoice.voiceURI };
+  }, voices);
+  const unfake347 = () => page.evaluate(() => {
+    const S = window.__fs347; if (!S) return;
+    try { stopPlayAll(); } catch (e) {}
+    speechSynthesis.speak = S.saved.speak; speechSynthesis.cancel = S.saved.cancel; speechSynthesis.getVoices = S.saved.getVoices; window.SpeechSynthesisUtterance = S.saved.U;
+    const put = (k, v) => v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v);
+    put('qissa-listen347', S.saved.listen); put('qissa-rate', S.saved.lrate); put('qissa-voice', S.saved.pick); state.rate = S.saved.rate; state.uiLang = S.saved.lang;
+    delete window.Capacitor; Voice347.nv = null; Voice347.settle(true); arVoice = S.saved.voice; Voice347.warned = false;
+    try { closeSheet(); } catch (e) {} delete window.__fs347;
+  });
+  const AR347 = [{ voiceURI: 'fake-ar-sa', name: 'Fake Arabic (Saudi Arabia)', lang: 'ar-SA', localService: true, default: false }];
+  // a story of two chapters or more, free, whose first chapter has at least three sentences
+  const pick347 = () => page.evaluate(() => { const st = STORIES.find(s => BODY341.ready(s.id) && !storyLocked(s) && s.chapters.length >= 2 && s.chapters[0].sentences.length >= 3);
+    openStory(st); flushStoryRender(); return st.id; });
+
+  await check('v347 — the listening bar: play / pause, previous / next, speed (0.6–1.2, remembered), repeat ×3 and ∞ for shadowing, the word marked only from a boundary event, an error halts on its sentence without advancing, the chapter\'s end stops unless crossing was asked, the reading credited only on screen, Media Session metadata', async () => {
+    try {
+      await page.evaluate(() => { try { closeSheet(); } catch (e) {} });   // pick347 opens its story directly
+      const f = await fake347(AR347);
+      if (f.status !== 'ok' || f.voice !== 'fake-ar-sa') throw new Error('the fake voice must be picked: ' + JSON.stringify(f));
+      const sid = await pick347();
+      const r = await page.evaluate(sid => {
+        const S = window.__fs347, out = {}, last = () => S.utts[S.utts.length - 1], bar = document.getElementById('playerPill');
+        const ch1 = CHAPTERS[0], n1 = ch1.sentences.length;
+        const keepProg = state.progress[sid]; state.progress[sid] = {};
+        out.hiddenBefore = bar.hidden;
+        startPlayAll(0);
+        out.shown = !bar.hidden; out.lbl = document.getElementById('ppLbl').textContent; out.pressed = document.getElementById('ppPlay').getAttribute('aria-pressed');
+        const s0 = SENTENCE_FLAT[0], sent = Voice347.sentence(s0.sen);
+        out.text = last().text === sent.text; out.rate = last().rate; out.lang = last().lang;
+        // the word: marked from a boundary event, the right one, and nothing marked before any event arrived
+        out.markedBefore = document.querySelectorAll('.word.speaking').length;
+        last().onboundary({ charIndex: sent.offsets[1].start, name: 'word' });
+        const w = document.querySelector('.word.speaking'); out.marked = w && w.dataset.ti;
+        // speed: the bar cycles 0.6 · 0.8 · 1 · 1.2, remembers it, and a voice restarts the sentence at the new rate
+        state.rate = 1; const nU = S.utts.length; document.getElementById('ppRate').click();
+        out.rate2 = state.rate; out.rateStored = localStorage.getItem('qissa-rate'); out.restarted = S.utts.length === nU + 1 && last().rate === 1.2;
+        out.rateLbl = document.getElementById('ppRate').textContent;
+        document.getElementById('ppRate').click(); out.rate3 = state.rate;
+        state.rate = 1;
+        // repeat ×3: the same sentence three times, then on
+        document.getElementById('ppRep').click(); out.rep = JSON.parse(localStorage.getItem('qissa-listen347')).rep;
+        playAllStep(0); last().onend(); out.idxA = playAllIdx; last().onend(); out.idxB = playAllIdx; last().onend(); out.idxC = playAllIdx;
+        document.getElementById('ppRep').click(); out.repInf = JSON.parse(localStorage.getItem('qissa-listen347')).rep; out.repLbl = document.getElementById('ppRep').textContent;
+        SENTENCE_FLAT[1].sec.scrollIntoView({ block: 'center' });   // a real sentence lasts seconds: the smooth scroll has landed by its end
+        for (let k = 0; k < 5; k++) last().onend(); out.idxInf = playAllIdx;
+        document.getElementById('ppRep').click(); out.rep1 = JSON.parse(localStorage.getItem('qissa-listen347')).rep;
+        // the reading credit: the sentence that ended on screen is read
+        const key = progKey(SENTENCE_FLAT[1].sen, SENTENCE_FLAT[1].ch, CUR); out.credited = !!state.progress[sid][key];
+        // previous / next
+        document.getElementById('ppNext').click(); out.next = playAllIdx; document.getElementById('ppPrev').click(); out.prev = playAllIdx;
+        // pause: the voice is stopped, a late onend does nothing; play resumes the same sentence
+        const before = S.utts.length, stale = last();
+        document.getElementById('ppPlay').click(); out.paused = Listen347.paused; out.pausePressed = document.getElementById('ppPlay').getAttribute('aria-pressed');
+        stale.onend(); out.afterStale = { idx: playAllIdx, utts: S.utts.length - before };
+        document.getElementById('ppPlay').click(); out.resumed = !Listen347.paused && S.utts.length === before + 1 && playAllIdx === out.prev;
+        // an error: halted on this sentence, said in the bar, nothing advanced, nothing new spoken
+        const eIdx = playAllIdx, eN = S.utts.length; last().onerror({ error: 'synthesis-failed' });
+        out.err = { idx: playAllIdx === eIdx, active: playAllActive, utts: S.utts.length === eN, note: document.getElementById('ppNote').textContent.trim() === ui().l347Err, highlight: !!document.querySelector('.sentence.playing') };
+        document.getElementById('ppPlay').click(); out.errRetry = S.utts.length === eN + 1 && playAllIdx === eIdx;
+        // the chapter's end: stop there, offer the next chapter, do not speak it
+        playAllStep(n1 - 1); const endN = S.utts.length; last().onend();
+        out.end = { active: playAllActive, shown: !bar.hidden, ended: Listen347.ended && Listen347.ended.n, utts: S.utts.length === endN, btn: !!bar.querySelector('[data-pp="next"]') };
+        bar.querySelector('[data-pp="next"]').click(); out.nextCh = { active: playAllActive, idx: playAllIdx === n1, ch: SENTENCE_FLAT[playAllIdx].ch === CHAPTERS[1] };
+        // crossing when asked
+        document.getElementById('ppScope').click(); out.cross = JSON.parse(localStorage.getItem('qissa-listen347')).cross;
+        playAllStep(n1 - 1); last().onend(); out.crossed = playAllActive && playAllIdx === n1;
+        document.getElementById('ppScope').click();
+        // listening does not count as reading when the sentence is off screen
+        const far = SENTENCE_FLAT[SENTENCE_FLAT.length - 1]; window.scrollTo(0, 0);
+        out.offScreen = Listen347.credit(far) === false && !state.progress[sid][progKey(far.sen, far.ch, CUR)];
+        // the lock screen
+        const ms = navigator.mediaSession; out.media = ms && ms.metadata ? { title: ms.metadata.title === (T(CUR.title) || CUR.title.ar), state: ms.playbackState } : 'none';
+        // the learner scrolls away: the bar offers the way back, and returns to the sentence
+        window.dispatchEvent(new Event('wheel')); out.follow = Listen347.follow; out.backLbl = document.getElementById('ppSub').textContent === ui().l347Back;
+        document.getElementById('ppBack').click(); out.followBack = Listen347.follow;
+        // a sentence's own ▶ while the bar is up moves the player there
+        SENTENCE_FLAT[2].sec.querySelector('.play:not(.irab-btn)').click(); out.fromSentence = playAllActive && playAllIdx === 2;
+        document.getElementById('ppStop').click(); out.closed = bar.hidden && !playAllActive;
+        state.progress[sid] = keepProg || {}; localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
+        return out;
+      }, sid);
+      if (!r.hiddenBefore || !r.shown || !/1 \/ \d+/.test(r.lbl) || r.pressed !== 'true') throw new Error('the bar rises playing on sentence 1: ' + JSON.stringify(r));
+      if (!r.text || r.lang !== 'ar-SA') throw new Error('the voice is sent the sendable sentence in ar-SA: ' + JSON.stringify(r));
+      if (r.markedBefore !== 0 || r.marked !== '1') throw new Error('the word mark must come from the boundary event, on the right word: ' + JSON.stringify(r));
+      if (r.rate2 !== 1.2 || r.rateStored !== '1.2' || !r.restarted || r.rateLbl !== '1.2×' || r.rate3 !== 0.6) throw new Error('speed: ' + JSON.stringify(r));
+      if (r.rep !== 3 || r.idxA !== 0 || r.idxB !== 0 || r.idxC !== 1) throw new Error('repeat ×3 plays the sentence three times, then moves on: ' + JSON.stringify(r));
+      if (r.repInf !== 0 || r.idxInf !== 1 || !/∞/.test(r.repLbl) || r.rep1 !== 1) throw new Error('repeat ∞ holds the sentence: ' + JSON.stringify(r));
+      if (!r.credited) throw new Error('a sentence heard on screen counts as read: ' + JSON.stringify(r));
+      if (r.next !== 2 || r.prev !== 1) throw new Error('next / previous: ' + JSON.stringify(r));
+      if (!r.paused || r.pausePressed !== 'false' || r.afterStale.idx !== 1 || r.afterStale.utts !== 0 || !r.resumed) throw new Error('pause / resume: ' + JSON.stringify(r));
+      if (!r.err.idx || !r.err.active || !r.err.utts || !r.err.note || r.err.highlight || !r.errRetry) throw new Error('an error must halt on its sentence and never advance: ' + JSON.stringify(r));
+      if (r.end.active || !r.end.shown || r.end.ended !== 1 || !r.end.utts || !r.end.btn) throw new Error('the chapter\'s end stops and offers the next: ' + JSON.stringify(r));
+      if (!r.nextCh.active || !r.nextCh.idx || !r.nextCh.ch) throw new Error('«next chapter» starts chapter 2: ' + JSON.stringify(r));
+      if (r.cross !== true || !r.crossed) throw new Error('crossing into the next chapter when asked: ' + JSON.stringify(r));
+      if (!r.offScreen) throw new Error('an off-screen sentence must not be credited: ' + JSON.stringify(r));
+      if (r.media !== 'none' && (!r.media.title || r.media.state !== 'playing')) throw new Error('Media Session: ' + JSON.stringify(r));
+      if (r.follow !== false || !r.backLbl || r.followBack !== true) throw new Error('scrolled away → back to the sentence: ' + JSON.stringify(r));
+      if (!r.fromSentence || !r.closed) throw new Error('sentence ▶ moves the player; ✕ closes it: ' + JSON.stringify(r));
+    } finally { await unfake347(); }
+  });
+
+  await check('v347 — the device\'s Arabic voice, chosen well: local ar-SA before ar-EG before an online voice, the sheet lists them with «dene» and remembers the pick; with NO Arabic voice the bar, the word sheet and the voice sheet say so plainly with the per-platform fix in en and tr, and nothing pretends to speak', async () => {
+    try {
+      await page.evaluate(() => { try { closeSheet(); } catch (e) {} });   // pick347 opens its story directly
+      await fake347([{ voiceURI: 'net-sa', name: 'Online SA', lang: 'ar-SA', localService: false }, { voiceURI: 'loc-eg', name: 'Local EG', lang: 'ar-EG', localService: true },
+        { voiceURI: 'loc-sa', name: 'Local SA', lang: 'ar-SA', localService: true }, { voiceURI: 'en', name: 'English', lang: 'en-US', localService: true }, { voiceURI: 'loc-ma', name: 'Local MA', lang: 'ar_MA', localService: true }]);
+      await pick347();
+      const r = await page.evaluate(() => {
+        const S = window.__fs347, out = {};
+        out.order = arabicVoices().map(v => v.voiceURI); out.auto = arVoice.voiceURI;
+        Voice347.openSheet();
+        out.rows = sheetInner.querySelectorAll('.vs347-row').length; out.sample = sheetInner.querySelector('.vs347-sample span').textContent === Voice347.sample();
+        const radio = sheetInner.querySelector('input[value="loc-eg"]'); radio.checked = true; radio.dispatchEvent(new Event('change'));
+        out.stored = localStorage.getItem('qissa-voice'); out.picked = arVoice.voiceURI;
+        sheetInner.querySelector('[data-vs-try="loc-sa"]').click(); out.tried = S.utts.length === 1 && S.utts[0].text === Voice347.sample();
+        closeSheet();
+        // now a device with no Arabic voice at all
+        speechSynthesis.getVoices = () => [{ voiceURI: 'en', name: 'English', lang: 'en-US', localService: true }];
+        Voice347.settle(true); out.status = Voice347.status; out.none = arVoice === null;
+        const n0 = S.utts.length;
+        startPlayAll(0);
+        const note = document.getElementById('ppNote'); out.barNote = !note.hidden && note.textContent.includes(ui().l347SilentNote); out.sub = document.getElementById('ppSub').textContent;
+        note.querySelector('[data-pp="fix"]').click();
+        out.sheetFix = sheetInner.querySelectorAll('.nv347-fix li').length; out.en = sheetInner.querySelector('.nv347').textContent;
+        stopPlayAll(); closeSheet();
+        state.uiLang = 'tr'; Voice347.openSheet(); out.tr = sheetInner.querySelector('.nv347').textContent; closeSheet(); state.uiLang = 'en';
+        // the word sheet's «Dinle»
+        const tok = SENTENCE_FLAT[0].sen.tokens.find(t => GLOSSARY[t.lex]); openWord(tok, null, 'word');
+        document.getElementById('sayWord').click(); out.wordMsg = !!sheetInner.querySelector('.nv347'); closeSheet();
+        out.spoke = S.utts.length - n0;
+        // the Settings row opens the same sheet
+        openDoorSettings340(); out.setRow = !!document.getElementById('set347VoiceOpen'); document.getElementById('set347VoiceOpen').click(); out.setSheet = !!sheetInner.querySelector('.vs347 .nv347'); closeSheet();
+        return out;
+      });
+      if (r.order.join() !== 'loc-sa,loc-eg,loc-ma,net-sa' || r.auto !== 'loc-sa') throw new Error('the order is local ar-SA, ar-EG, other ar, then online: ' + JSON.stringify(r));
+      if (r.rows !== 5 || !r.sample || r.stored !== 'loc-eg' || r.picked !== 'loc-eg' || !r.tried) throw new Error('the voice sheet: ' + JSON.stringify(r));
+      if (r.status !== 'none' || !r.none) throw new Error('no Arabic voice must be detected: ' + JSON.stringify(r));
+      if (!r.barNote || !/silent/.test(r.sub)) throw new Error('the bar says it is silent: ' + JSON.stringify(r));
+      if (r.sheetFix !== 2 || !/System → Languages → Text-to-speech/.test(r.en) || !/Spoken Content → Voices → Arabic/.test(r.en)) throw new Error('the per-platform fix (en): ' + r.en);
+      if (!/Sistem → Diller → Metin okuma/.test(r.tr) || !/Sesli İçerik → Sesler → Arapça/.test(r.tr)) throw new Error('the per-platform fix (tr): ' + r.tr);
+      if (!r.wordMsg || r.spoke !== 0) throw new Error('the word sheet says so and nothing is spoken: ' + JSON.stringify(r));
+      if (!r.setRow || !r.setSheet) throw new Error('Settings reaches the voice sheet: ' + JSON.stringify(r));
+    } finally { await unfake347(); }
+  });
+
+  await check('v347 — what is sent to the voice: the SEND347 table strips the verse mark, tatweel, brackets, the asterisk, Quranic pause and āya marks, spells out ﷺ, turns digits Arabic-Indic, keeps «تَعَالَى» as text; across the whole shelf no stripped character reaches a synthesiser, the displayed text is untouched, every token keeps its range, and tools/narration_generate.py sends the same text', async () => {
+    const r = await page.evaluate(() => {
+      const out = { keys: SEND347.map(x => x[0]) };
+      const c = s => Voice347.clean(s);
+      out.cases = {
+        verse: c('قَالَ • ثُمَّ'), tatweel: c('اللّـهُ'), brackets: c('﴿بِسْمِ اللَّهِ﴾ «قَالَ» (هُوَ) [هُوَ] *'), ayah: c('الْعَالَمِينَ ۝١٢ ثُمَّ'),
+        pause: c('رَيْبَ ۛ فِيهِ ۚ هُدًى'), salla: c('مُحَمَّدٌ ﷺ قَالَ'), taala: c('اللَّهُ تَعَالَى'), digits: c('سَنَةَ 132'), ctl: c('قَالَ‏'),
+      };
+      const bad = /[•ـ﴾﴿«»*۝ۖ-ۜﷺ0-9‏]/;
+      let sens = 0, changed = 0, leaks = [], ranges = 0, shownChanged = 0;
+      STORIES.filter(s => BODY341.ready(s.id)).forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+        sens++; const shown = sentenceText(sen).text, { text, offsets } = Voice347.sentence(sen);
+        if (text !== shown) changed++;
+        if (bad.test(text) && leaks.length < 3) leaks.push(st.id + '/' + sen.id);
+        sen.tokens.forEach((t, i) => { if (text.slice(offsets[i].start, offsets[i].end) !== Voice347.clean(t.s.full).trim()) ranges++; });
+        if (sentenceText(sen).text !== shown) shownChanged++;
+      })));
+      Object.assign(out, { sens, changed, leaks, ranges, shownChanged });
+      // a sample for the Python skeleton: the first sentence of three stories that carry a stripped mark
+      out.sample = [];
+      STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => { if (out.sample.length < 6 && /[•«*۝ﷺ]/.test(sentenceText(sen).text)) out.sample.push({ pkg: st.id, ch: ch.n, id: sen.id, text: Voice347.sentence(sen).text }); })));
+      return out;
+    });
+    const C = r.cases;
+    if (r.keys.join() !== 'ayah,pause,salla,jalla,allah,alayhi,rahma,radiya,verse,tatweel,brackets,dash,colon,digits,controls') throw new Error('the table\'s rows changed — update CLAUDE.md and narration_generate.py with it: ' + r.keys.join());
+    if (C.verse !== 'قَالَ، ثُمَّ' || C.tatweel !== 'اللّهُ' || /[﴾﴿«»()[\]*]/.test(C.brackets) || !C.brackets.includes('بِسْمِ اللَّهِ') || !C.brackets.includes('هُوَ')) throw new Error('verse / tatweel / brackets: ' + JSON.stringify(C));
+    if (/[۝١٢]/.test(C.ayah) || /[ۛۚ]/.test(C.pause) || !C.salla.includes('صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ') || C.taala !== 'اللَّهُ تَعَالَى' || C.digits !== 'سَنَةَ ١٣٢' || C.ctl !== 'قَالَ') throw new Error('marks / honorific / digits: ' + JSON.stringify(C));
+    if (!r.sens || r.leaks.length || r.ranges || r.shownChanged || !r.changed) throw new Error('across the shelf: ' + JSON.stringify({ sens: r.sens, changed: r.changed, leaks: r.leaks, ranges: r.ranges, shown: r.shownChanged }));
+    // the Python skeleton sends exactly what the page sends
+    const { execFileSync } = require('node:child_process');
+    const py = execFileSync('python3', ['-c', `
+import json, sys, pathlib
+sys.path.insert(0, 'tools'); import narration_generate as g
+want = json.load(sys.stdin); bad = []
+idx = {}
+for coll in g.COLLECTIONS:
+    if coll.is_dir():
+        for d in coll.iterdir():
+            m = d / 'manifest.json'
+            if m.is_file(): idx[json.loads(m.read_text(encoding='utf-8'))['id']] = d
+for w in want:
+    d = idx[w['pkg']]; c = json.loads((d / 'chapters' / f"{w['ch']}.json").read_text(encoding='utf-8'))
+    s = next(x for x in c['sentences'] if x['id'] == w['id'])
+    if g.sendable(s) != w['text']: bad.append(w['pkg'] + '/' + w['id'])
+print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stringify(r.sample) }).toString();
+    if (r.sample.length < 3 || JSON.parse(py).length) throw new Error('narration_generate.py and the page must send the same text: ' + py + ' of ' + r.sample.length);
+  });
+
+  await check('v347 — the Android bridge: with a FAKE Capacitor TextToSpeech plugin the adapter routes speak (ar-SA, rate, the voice index), stop and the voice list through it — never speechSynthesis — marks the word from onRangeStart, advances play-all on the plugin\'s completion and halts on its error', async () => {
+    try {
+      await page.evaluate(() => { try { closeSheet(); } catch (e) {} });   // pick347 opens its story directly
+      await fake347(AR347);
+      await pick347();
+      const r = await page.evaluate(async () => {
+        const S = window.__fs347, out = {}, calls = [], P = { stops: 0, lis: null, pend: [] };
+        window.Capacitor = { isNativePlatform: () => true, isPluginAvailable: n => n === 'TextToSpeech', Plugins: { TextToSpeech: {
+          speak(o){ calls.push(o); return new Promise((res, rej) => P.pend.push({ res, rej })); },
+          stop(){ P.stops++; return Promise.resolve(); },
+          getSupportedVoices(){ return Promise.resolve({ voices: [{ voiceURI: 'en-us-x', name: 'en-us-x', lang: 'en-US', localService: true, default: true }, { voiceURI: 'ar-xa-x-arz-local', name: 'ar-xa-x-arz-local', lang: 'ar-SA', localService: true, default: false }] }); },
+          addListener(ev, cb){ if (ev === 'onRangeStart') P.lis = cb; return Promise.resolve({ remove(){} }); },
+        } } };
+        await Voice347.load();
+        out.path = Voice347.path(); out.voices = arabicVoices().map(v => v.voiceURI + '#' + v.idx); out.picked = arVoice && arVoice.native && arVoice.idx;
+        const webN = S.utts.length;
+        state.rate = 0.8; startPlayAll(0); await new Promise(r => setTimeout(r, 0));
+        const sent = Voice347.sentence(SENTENCE_FLAT[0].sen);
+        out.call = calls[0] && { text: calls[0].text === sent.text, lang: calls[0].lang, rate: calls[0].rate, voice: calls[0].voice };
+        P.lis({ start: sent.offsets[2].start, end: sent.offsets[2].end, spokenWord: '' }); const w = document.querySelector('.word.speaking'); out.word = w && w.dataset.ti;
+        P.pend[0].res(); await new Promise(r => setTimeout(r, 0)); await new Promise(r => setTimeout(r, 0));
+        out.advanced = playAllIdx === 1 && calls.length === 2;
+        P.pend[1].rej(new Error('engine error')); await new Promise(r => setTimeout(r, 0)); await new Promise(r => setTimeout(r, 0));
+        out.halted = playAllActive && playAllIdx === 1 && calls.length === 2 && Listen347.failedAt === 1;
+        const st0 = P.stops; stopPlayAll(); out.stopped = P.stops > st0;
+        Voice347.openSheet(); out.sheetPath = sheetInner.querySelector('.vs347-path').textContent === ui().l347PathNative; out.sheetRows = sheetInner.querySelectorAll('.vs347-row').length; closeSheet();
+        out.webUsed = S.utts.length - webN;
+        // gone again: the adapter falls back to the web path by itself
+        delete window.Capacitor; await Voice347.load(); out.back = Voice347.path();
+        return out;
+      });
+      if (r.path !== 'native' || r.voices.join() !== 'ar-xa-x-arz-local#1' || r.picked !== 1) throw new Error('native voices: ' + JSON.stringify(r));
+      if (!r.call || !r.call.text || r.call.lang !== 'ar-SA' || r.call.rate !== 0.8 || r.call.voice !== 1) throw new Error('native speak: ' + JSON.stringify(r));
+      if (r.word !== '2' || !r.advanced || !r.halted || !r.stopped) throw new Error('native events: ' + JSON.stringify(r));
+      if (!r.sheetPath || r.sheetRows !== 2 || r.webUsed !== 0 || r.back !== 'web') throw new Error('native sheet / no web path / fallback: ' + JSON.stringify(r));
+    } finally { await unfake347(); }
+  });
+
+  await check('v347 — the narration studio: synthetic takes (a tone made in the page) → one WAV and its timings in a pack → imported on the device → the EXISTING recorded path plays that sentence\'s slice; a pack whose ids do not match is refused; tools/narration_pack.py ships the pack into a temp copy of the package and refuses the mismatched one; the backup knows the takes exist but does not carry them', async () => {
+    const os = require('node:os'), { spawnSync } = require('node:child_process');
+    await page.evaluate(() => { try { closeSheet(); } catch (e) {} });   // pick347 opens its story directly
+    const r = await page.evaluate(async () => {
+      const lang0 = state.uiLang; state.uiLang = 'en';
+      const out = {}, st = STORIES.filter(s => BODY341.ready(s.id) && !storyLocked(s) && s.chapters[0].sentences.length >= 3).sort((a, b) => a.chapters[0].sentences.length - b.chapters[0].sentences.length)[0];
+      openStory(st); flushStoryRender();
+      const ch = CHAPTERS[0];
+      const tone = (secs, hz) => { const rate = 8000, n = Math.round(rate * secs), buf = new ArrayBuffer(44 + n), v = new DataView(buf), w = (o, s) => [...s].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+        w(0, 'RIFF'); v.setUint32(4, 36 + n, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, rate, true); v.setUint32(28, rate, true); v.setUint16(32, 1, true); v.setUint16(34, 8, true); w(36, 'data'); v.setUint32(40, n, true);
+        for (let i = 0; i < n; i++) v.setUint8(44 + i, 128 + Math.round(60 * Math.sin(2 * Math.PI * hz * i / rate)));
+        return new Blob([buf], { type: 'audio/wav' }); };
+      for (let k = 0; k < ch.sentences.length; k++) await Studio347.putTake(st, ch, ch.sentences[k].id, tone(0.2 + 0.05 * k, 300 + 40 * k));
+      const idx = Studio347.load(); out.idxKeys = Object.keys(idx.takes).filter(k => k.startsWith(st.id + '/')).length; out.n = ch.sentences.length;
+      out.backup = Backup.keys().includes('qissa-studio347'); out.idxBytes = localStorage.getItem('qissa-studio347').length;
+      // the studio on its first sentence, then the pack
+      Studio347.open(ch.n); await Studio347.draw(); out.studio = { ar: sheetInner.querySelector('.st347-ar').textContent === sentenceText(ch.sentences[0]).text, count: sheetInner.querySelector('.st347-count').textContent };
+      const pk = await Studio347.build(st, ch), m = pk.manifest;
+      out.man = { pkg: m.package === st.id, ch: m.chapter, file: m.audioFile, ids: m.sentences.map(s => s.id).join() === ch.sentences.map(s => s.id).join(), ordered: m.sentences.every((s, i) => s.audio[0] < s.audio[1] && (!i || s.audio[0] >= m.sentences[i - 1].audio[1])), dur: m.durationMs, last: m.sentences[m.sentences.length - 1].audio[1] };
+      // the take lengths survive the join (±25 ms)
+      out.lens = m.sentences.map((s, k) => Math.abs((s.audio[1] - s.audio[0]) - (200 + 50 * k)) <= 25).every(Boolean);
+      const imported = await Studio347.importPack(pk.blob);
+      const s2 = ch.sentences[2], ent = SEN_AUDIO.get(s2.id); out.overlay = !!ent && ent.src.startsWith('blob:') && ent.span.join() === m.sentences[2].audio.join();
+      // play it through the existing path: the shared element takes the pack's file at that sentence's slice
+      const f2 = SENTENCE_FLAT.find(f => f.sen === s2); let done = false; speak(s2, f2.sec, () => { done = true; });
+      await new Promise(r => setTimeout(r, 30));
+      out.play = { src: narration.src === ent.src, at: Math.abs(narration.currentTime * 1000 - m.sentences[2].audio[0]) < 60 };
+      for (let k = 0; k < 100 && !done; k++) await new Promise(r => setTimeout(r, 50));
+      out.play.done = done && narration.paused;
+      // a pack with a wrong id is refused
+      const bad = JSON.parse(JSON.stringify(m)); bad.sentences[1].id = 'no-such-sentence';
+      const wavU8 = new Uint8Array(await (await Studio347.unzip(await pk.blob.arrayBuffer()))[m.audioFile]);
+      const badZip = Studio347.zip([['narration.json', new TextEncoder().encode(JSON.stringify(bad))], [m.audioFile, wavU8]]);
+      try { await Studio347.importPack(badZip); out.refused = false; } catch (e) { out.refused = e.message === ui().st347Mismatch.replace('{n}', ch.n); }
+      // the export sheet
+      await Studio347.exportSheet(st, ch); out.sheet = !!sheetInner.querySelector('.st347-man') && !!document.getElementById('st347Dl'); closeSheet();
+      const b64 = async b => { const u8 = new Uint8Array(await b.arrayBuffer()); let s = ''; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode(...u8.subarray(i, i + 0x8000)); return btoa(s); };
+      out.pack = await b64(pk.blob); out.badPack = await b64(badZip); out.story = st.id; out.chN = ch.n;
+      // clean up: the overlay, the index, the open story
+      Studio347.packs.delete(st.id + '/' + ch.n); localStorage.removeItem('qissa-studio347'); buildSenAudio(); state.uiLang = lang0;
+      return out;
+    });
+    if (r.idxKeys !== r.n || !r.backup || r.idxBytes > 4000) throw new Error('the index: every take listed, in the backup, small: ' + JSON.stringify({ k: r.idxKeys, n: r.n, b: r.backup, bytes: r.idxBytes }));
+    if (!r.studio.ar || !r.studio.count.startsWith(r.n + ' of ' + r.n)) throw new Error('the studio: ' + JSON.stringify(r.studio));
+    if (!r.man.pkg || r.man.ch !== r.chN || r.man.file !== 'ch' + r.chN + '.wav' || !r.man.ids || !r.man.ordered || r.man.last > r.man.dur || !r.lens) throw new Error('the pack: ' + JSON.stringify(r.man));
+    if (!r.overlay || !r.play.src || !r.play.at || !r.play.done) throw new Error('the imported pack plays through the recorded path: ' + JSON.stringify({ o: r.overlay, p: r.play }));
+    if (!r.refused || !r.sheet) throw new Error('mismatched pack refused / export sheet: ' + JSON.stringify({ refused: r.refused, sheet: r.sheet }));
+    // the developer's step, on a temp copy of the package
+    const root = path.resolve(__dirname, '..'), tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'qissa347-'));
+    try {
+      const src = ['content/samples', 'content/user-uploads'].map(c => path.join(root, c)).flatMap(c => fs.existsSync(c) ? fs.readdirSync(c).map(d => path.join(c, d)) : [])
+        .find(d => fs.existsSync(path.join(d, 'manifest.json')) && JSON.parse(fs.readFileSync(path.join(d, 'manifest.json'), 'utf8')).id === r.story);
+      const pkg = path.join(tmp, path.basename(src)); fs.cpSync(src, pkg, { recursive: true });
+      fs.writeFileSync(path.join(tmp, 'pack.zip'), Buffer.from(r.pack, 'base64')); fs.writeFileSync(path.join(tmp, 'bad.zip'), Buffer.from(r.badPack, 'base64'));
+      const run = (zip, extra) => spawnSync('python3', ['tools/narration_pack.py', path.join(tmp, zip), '--package-dir', pkg, '--no-mirror'].concat(extra || []), { cwd: root, encoding: 'utf8' });
+      const badRun = run('bad.zip'); if (badRun.status !== 2 || !/REFUSED: sentence ids do not match/.test(badRun.stdout)) throw new Error('narration_pack.py must refuse the mismatched pack: ' + badRun.status + ' ' + badRun.stdout);
+      const ok = run('pack.zip'); if (ok.status !== 0) throw new Error('narration_pack.py: ' + ok.stdout + ok.stderr);
+      const man = JSON.parse(fs.readFileSync(path.join(pkg, 'manifest.json'), 'utf8')), che = man.chapters.find(c => c.n === r.chN);
+      const chj = JSON.parse(fs.readFileSync(path.join(pkg, 'chapters', r.chN + '.json'), 'utf8'));
+      if (!che.audioFile || !fs.existsSync(path.join(pkg, che.audioFile)) || !chj.sentences.every(s => Array.isArray(s.audio) && s.audio.length === 2)) throw new Error('the content drop was not written: ' + JSON.stringify(che));
+      const val = spawnSync('python3', ['tools/validate_content.py', pkg, '--grammar-dir', path.join(root, 'content/grammar')], { cwd: root, encoding: 'utf8' });
+      if (val.status !== 0) throw new Error('the shipped package must validate: ' + (val.stdout + val.stderr).split('\n').filter(l => /error/i.test(l)).slice(0, 3).join(' | '));
+    } finally { fs.rmSync(tmp, { recursive: true, force: true }); }
+  });
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

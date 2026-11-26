@@ -16701,3 +16701,80 @@ Full suite (refit chain, then `node tools/smoke_test.js`): 577 checks, 575 pass;
 and the v334-S sliced search (the render after the index arrived had been split too) — both fixed (above). Re-run of every v334-S / v340 / v341 /
 v343 check on the final code: 18 of 19 pass; «v341 — the door» read 1811 ms against its 1800 at load 6 and passes alone (1523 ms). `tools/entrance_test.js` on the assembled final site: «✓ Ready — opens offline too» in
 6.0 s, the app from the cache in 1.17 s, no error.
+
+## v347 — the stories can be listened to
+
+The owner: «add voices for the qiṣaṣ». Every story is fully vowelled, which is what a voice needs. What existed: `speak()` (device
+synthesis with a word highlight from boundary events, and the finished-but-never-used RECORDED path: `audioFile` + `audio: [a, b]`,
+`buildSenAudio`, `playSpan`), the play-all queue, the wave-80 pill, the wave-78 voice select in «Aa», the wave-105 silent pace walk.
+What v347 adds sits in four classes beside `speak()` (search `v347`); no engine class, BODY341 path or boot code was touched.
+
+- **`Voice347` is the only place that knows the speech path.** `path()` is `native` when `window.Capacitor.Plugins.TextToSpeech` is
+  there (`@capacitor-community/text-to-speech` 8.x, matching Capacitor 8; `voice` is an INDEX into its `getSupportedVoices()` list,
+  `onRangeStart` is its boundary event), else `web` (`speechSynthesis`), else `none`. `say / stop / list / load` route through it;
+  `arabicVoices()` is `Voice347.list()`, sorted local before online, then ar-SA, ar-EG, other ar, then bare `ar`. The status is
+  `pending` until `voiceschanged` or 1.5 s (web) or the plugin's list (native), then `ok` / `none`; a press during `pending` WAITS.
+- **No Arabic voice is said, not hidden:** the bar labels the wave-105 walk «silent» and offers the fix; the word sheet's «Dinle»
+  inserts `.nv347` (never a silent button); the voice sheet shows both platform lines (Android: Settings → System → Languages →
+  Text-to-speech → engine ⚙ → Install voice data → Arabic; Apple: Settings → Accessibility → Spoken Content → Voices → Arabic).
+- **What is SENT is not what is SHOWN.** `SEND347` (and its row-for-row twin `SEND` in `tools/narration_generate.py`; the smoke check
+  compares them on real sentences): ۝ and its number → pause; Quranic pause / small high marks → dropped; ﷺ (and U+0610) → صَلَّى
+  اللَّهُ عَلَيْهِ وَسَلَّمَ; ﷻ, ﷲ, U+0611–0613 spelt out; • → «، »; tatweel, brackets ﴾﴿()[]{}«»"“”, the editorial * → dropped (words
+  kept); — – … → pause; ： → :; Western digits → Arabic-Indic; zero-width / bidi controls → dropped. «تَعَالَى» formulas stay text.
+  `Voice347.sentence(sen)` builds the sendable string AND each token's range in it — offsets are into the SENT text, so boundary
+  events still land on the right word. `sentenceText()` (the displayed text) is unchanged.
+- **The bar (`Listen347`, in `#playerPill`):** play/pause (`#ppPlay`; pause = stop the utterance, resume = replay the sentence — a
+  voice cannot resume mid-sentence reliably), prev/next, ✕ (`#ppStop`, the old stop), speed 0.6/0.8/1/1.2 (one scale for the bar,
+  the toolbar and «Aa», `qissa-rate`), repeat ×1/×3/∞ and the chapter-crossing switch (`qissa-listen347`). The chapter's end STOPS
+  and offers «next chapter» unless crossing was asked. A sentence's own ▶ while the bar is up moves the player there. Wheel/touch
+  during play stops the page from chasing the voice; the bar's label then reads «↩ back to the sentence».
+- **Listening counts as reading only on screen.** `markRead` moved from the start of a play-all step to its END, and only when the
+  page is visible and the sentence intersects the viewport (`Listen347.credit`): a story played to a locked phone is heard, not
+  read. A single sentence's ▶ still marks it read at once (the learner pressed it on screen).
+- **An error halts on its sentence** (`Listen347.failed`: highlight cleared, the bar says so, play retries it) — the old contract
+  stopped play-all; both never call onDone, which is the invariant. Media Session: title/chapter + play/pause/next/previous/stop.
+  Chrome gives speechSynthesis no media session of its own, so lock-screen keys are reliable for RECORDINGS (an `<audio>` plays).
+- **Recordings resolve through `Narr347.url`:** a package-relative `audioFile` is served at `narration/<story id>/<file>` beside
+  the page; `data:`/`blob:`/absolute URLs pass through. `Narr347.prime()` fetches a chapter's file when play starts and keeps it in
+  the `qissa-narration` cache (sw.js no longer deletes it and leaves `/narration/` to the page) — lazy, offline after first listen,
+  never in the core slice. `tools/build_android.py` copies `prototype/narration/` into the APK's www.
+- **The studio (`Studio347`, Settings → «Seslendirme stüdyosu», off by default):** one sentence at a time, MediaRecorder at
+  48 kb/s (Chrome/Android: webm/opus; Firefox: ogg/opus; Safari/iOS: mp4/AAC — `Studio347.mime()` picks the first supported).
+  Takes live in IndexedDB `qissa-studio347`; the localStorage key `qissa-studio347` is only the index (which takes exist, the
+  reader's name, imported packs) — so `Backup` carries that they exist, never megabytes. Export = WebAudio decode → 24 kHz mono →
+  250 ms breaths → ONE WAV (the one format every browser can write) + `narration.json` in a stored zip. Import puts the pack in
+  IndexedDB and an overlay that `buildSenAudio()` reads FIRST — the teacher hears it through the existing recorded path at once.
+
+**The pack:** `qissa-narration-<story>-ch<N>.zip` = `narration.json` `{package, chapter, audioFile, reader, recorded, format,
+sampleRate, durationMs, sentences: [{id, audio: [startMs, endMs]}]}` + the audio file it names.
+
+**How to ship a narration** (the developer's step; `tools/narration_pack.py`):
+1. `python3 tools/narration_pack.py qissa-narration-<story>-ch<N>.zip` — refuses ids that are not the chapter's in order, slices
+   that overlap / run past the file / miss a sentence; transcodes WAV → AAC .m4a 48 kb/s with ffmpeg (else keeps the WAV and says
+   so); writes `audio/ch<N>.m4a` + the chapter's `audioFile` + every sentence's `audio`, keeping each JSON file's indentation; mirrors
+   the file to `prototype/narration/<story>/audio/` (hosted copy, Android assets).
+2. `python3 tools/validate_content.py <package>` → `python3 tools/build_prototype.py` → the release as usual.
+Sizes: WAV 24 kHz ≈ 2.9 MB a minute (the pack only); AAC 48 kb/s ≈ 0.37 MB a minute; Opus 48 kb/s ≈ 0.34 MB. A median Level-1
+story (musa-fi-madyan, 938 letters) is ≈ 1.6 min ≈ 0.6 MB. The whole shelf (≈ 10 h) would be ≈ 220 MB — packs must stay lazy.
+
+**Generated narration** (`tools/narration_generate.py`): a skeleton that calls nothing. It walks the shelf with the sendable text
+and, given `--adapter module:synthesize` (`synthesize(text) -> (wav_bytes, ms)`), writes packs in the studio's format. With no
+adapter it prints the counts: **83 stories, 7,108 sentences, 778,063 characters sent (371,172 letters without vowel marks)**.
+
+**Android:** `package.json` + lockfile pin `@capacitor-community/text-to-speech@^8.0.2`; `android/capacitor.settings.gradle` and
+`android/app/capacitor.build.gradle` carry the plugin as `npx cap sync` writes them. Nothing here could run Gradle or a phone.
+**CI must:** `npm ci` (installs the plugin), `python3 tools/build_android.py` (cap sync regenerates the glue and
+`capacitor.plugins.json`), assemble, then ON A DEVICE: an Arabic voice listed in the voice sheet; «Dinle» speaks; play-all
+advances on completion; `onRangeStart` marks words (Android API 26+ only); stop interrupts; with the Arabic data not installed the
+no-voice message appears. The smoke suite proves only the adapter's routing with a fake plugin.
+
+**Smoke** (before «v333»): «v347 — the listening bar», «— the device's Arabic voice», «— what is sent to the voice», «— the Android
+bridge», «— the narration studio» (tone takes → pack → import → recorded path plays the slice; `narration_pack.py` on a temp copy).
+
+**Open decisions for the owner:** (1) a READER for the recordings — a hoca who reads iʿrāb correctly is the honest best voice; the
+studio makes it a few minutes a chapter; (2) a PROVIDER for generated voices (a neural TTS with a good Arabic voice; billed by
+characters — 778,063 for the shelf as sent; ask whether vowel marks count); (3) where packs travel on Android: in the APK (≈ 220 MB
+for the shelf: too big) or fetched from the hosted copy on first listen — the latter needs an absolute narration base in the shell.
+**Older checks changed:** none edited. Full suite: 600 checks, 595 pass; the two v341 speed pins failed on time under the machine's load
+(the pre-v347 reader fails the door pin the same way, ≈3 s, run alone), the three later v347 checks failed only because they began with
+the library round-trip — they now open their story directly and pass, with v344–v347 and v333 re-run in order. `check_i18n.py` clean.
