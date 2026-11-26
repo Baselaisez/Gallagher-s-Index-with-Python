@@ -68,3 +68,27 @@ Running:
 Waiting on people:
 - the hoca's answers (this weekend); the story-correction proposals (64 certain + 4 + 3 new); the renderings (al-Inṣāf, Marāḥ pp. 145–182, al-Maqṣūd's 78 units, the 28 role definitions of v346); 304 lines whose role and stated case disagree;
 - the owner: the archive.org item's title or file; who records the narration; whether to price a generated voice (778,063 characters for the shelf); whether the «Neden?» ladder should always open in full.
+
+## 2026-11-26 20:00 UTC
+
+Landed since the last entry (dev branch):
+- v347 `f9d202f` — «Dinle»: the listening bar, the voice sheet and the no-voice message, the Android speech plugin, the narration studio and packs; the page-wide `:has()` rule that cost 1.7 s at the door replaced by a class.
+- `2cf1075` — owner, 2026-11-26: «Neden?» opens on touch only (word sheet and game feedback start as the one-line summary); a check forbids `body:has(…)` / `html:has(…)` / `:root:has(…)`.
+- v348-F `6baad21` — the commentaries' reasons: 90 reasons from Shaykhzāde, Ibn Mālik and al-Raḍī, verbatim and anchored, in the notes' «Neden böyle?», the reason chain's family → state and kind → sign steps, the rule of the day on alternate days, and the game round «لِمَاذَا؟». APK run 22 built from this commit; CI (the whole suite) passed on `2cf1075`, running on `6baad21`.
+
+On the hoca's branch (`claude/ai-precheck-2026-11-17`, never merged by us):
+- o08 `6fe9802` — the triage's 67 «certain» story corrections compared with that branch: 55 were already corrected there, 1 is on a package the branch does not hold, 10 applied with book citations, 1 judged right as authored (Talkhīṣ 4:s3 ارْتَدَعَ: the seat of jazm on the VERB is the commentary's own ruling, Shaykhzāde l.398).
+  Follow-up for the next engine round on dev: move that record from L to C (pins: L 650 → 649, C 102 → 103, certain 64 → 63), and re-word the two T-J01 proposals (قَتَلْتُكُمْ, جَاءَكُمْ) to keep «الفعل وحده في محل جزم».
+
+Running:
+| wave | worktree / branch | scratch folder | job | progress |
+|---|---|---|---|---|
+| v348-A | qissa-feed2 · tmp/amthal348 | amthal348 | the proverbs' index (746 records) and a first shelf «الأمثال» from Faṣl al-Maqāl | 11 packages (12 chapters, ≈1,250 tokens) authored and valid; audit judged; full suite running |
+| v349-V | qissa-audit · tmp/voicein349 | voicein349 | the app's own Arabic voice (owner: «a voice within the app») | the one neural Arabic voice reachable is non-commercial → unfit; a formant voice reading by the app's own phonemes scores 30/30 on the endings test; delivery path built; steered: audio is rendered at deploy time, never committed; two sample files for the owner's ear |
+| v350-S | qissa-speed · tmp/speed350 | speed350 | speed VI on the whole of today's app | sentence sheet first paint 3.98 s → 0.32 s cold; word iʿrāb tab cold 0.58 s → ≈0; labs stepped; budgets and suite pending |
+
+Hand-overs still open for the next engine round: DabtEngine (a noun after a passive → nāʾib; the five verbs after أَنْ), JumlaMahallEngine `claimed()` for an open مَنْ / مَا mubtadaʾ, SentenceAnalyzer (أُكْرِمَكَ after إِذَنْ), InnaEngine R83 (kasr after حَيْثُ), أَحْوَجَ kept sound, 20 WujuhEngine face probes, Qawāʿid's 21 open rows; contradictions left — case 303, taʿalluq 228, clause 114, sign 58, inna 15; 44 topics without a book reason (why the fāʿil is rafʿ needs Asrār al-ʿArabiyya or the unscanned parts of Ibn Mālik and al-Raḍī).
+
+Waiting on people:
+- the hoca: his answers (this weekend); packet o08 with the earlier packets; the 586 «likely» proposals (not applied); the renderings (al-Inṣāf, Marāḥ pp. 145–182, al-Maqṣūd's 78 units, 28 role definitions, 84 commentary reasons); 304 lines whose role and stated case disagree;
+- the owner: the archive.org item's title or file; a phone test of «Dinle» in the APK; his ear on the app's own voice once the samples are ready; who records the narration.
