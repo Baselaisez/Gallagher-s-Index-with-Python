@@ -1749,6 +1749,8 @@
        a render at 4× CPU, 100–130 with this (a card's own size is remembered once drawn; 220 px is the median at 412 px) */
     content-visibility: auto; contain-intrinsic-size: auto 220px;
   }
+  /* (v341-S) the search sheet's hits: one off screen is not laid out or painted until it nears the view (layout 40–150 → 5–30 ms a keystroke at 4×) */
+  .sheet .hit, .sheet .txt-hit, .sheet .hit-lex, .sheet .in-text > h4 { content-visibility: auto; contain-intrinsic-size: auto 72px; }
   /* The level's colour, as a spine on the card — the same colour system the
      word underlines already speak. */
   .lib-card::before {
@@ -4611,6 +4613,48 @@ function* dedupGen334(){
 }
 function dedupStep334(b){ return DEDUP334.done || Gen334.step(DEDUP334, "g", dedupGen334, b); }
 function hydrateStories148(){ try { STORIES.forEach(hydrateStory148); } catch (e) {} }
+/* (v341-S) THE DOOR BEFORE THE BODIES. The hosted copy (tools/pubsplit.py) ships the stories in two parts: the core slice — every
+   story's catalog fields (titles, level, counts, the new-word list, the about text) and the grammar tables — and the BODY slices
+   (chapters, morph, glossary), a few stories each, named by their content hash. The door paints and answers from the core alone;
+   the bodies are fetched after it, three at a time, the slice of a story the reader taps first. Until a story's body is in, opening
+   it shows the quiet «loading» toast and opens it on arrival; the corpus-wide doors (search, games, Atölye, deck, progress, a
+   word's sheet, an about card) wait the same way for every body, and Quiet's jobs wait for them too — so no index, pool or
+   count is ever built from part of the shelf. The repository reader and every copy whose stories carry their bodies never
+   enter this path (missing stays null). A slice that fails (offline before it was cached) is retried when the network
+   returns, still quietly. */
+const BODY341 = {
+  missing: null, slices: null, of: null, state: [], waiters: new Map(), inflight: 0, KEYS: ["chapters", "morph", "glossary"],
+  init(){ const S = window.__qissaSlices341; if (!S || !Array.isArray(S.bodies) || typeof STORIES === "undefined") return;
+    const miss = STORIES.filter(st => !Object.prototype.hasOwnProperty.call(st, "chapters")); if (!miss.length) return;
+    this.missing = new Set(miss.map(st => st.id)); this.slices = S.bodies; this.of = new Map();
+    this.slices.forEach(([f, ids], i) => { this.state[i] = 0; ids.forEach(id => this.of.set(id, i)); });
+    miss.forEach(st => this.stub(st)); window.__bodiesAt = 0;
+    try { addEventListener("online", () => this.pump()); } catch (e) {}
+    const go = () => this.pump(); if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 300 }); else setTimeout(go, 0); },
+  ready(id){ return !this.missing || (id ? !this.missing.has(id) : this.missing.size === 0); },
+  stub(st){ for (const k of this.KEYS) Object.defineProperty(st, k, { configurable: true, enumerable: true,
+    get(){ (window.__bodyMiss341 = window.__bodyMiss341 || []).push(st.id + ":" + k); return k === "chapters" ? [] : {}; },
+    set(v){ Object.defineProperty(st, k, { value: v, writable: true, configurable: true, enumerable: true }); } }); },
+  arrive(map){ if (!this.missing) return; for (const id of Object.keys(map)) { if (!this.missing.has(id)) continue; const st = STORIES.find(x => x.id === id), b = map[id]; if (!st) continue;
+      for (const k of this.KEYS) { if (Object.prototype.hasOwnProperty.call(b, k)) Object.defineProperty(st, k, { value: b[k], writable: true, configurable: true, enumerable: true }); else delete st[k]; }
+      hydrateStory148(st); this.missing.delete(id); }
+    for (const [slot, w] of [...this.waiters]) if (this.ready(w.id)) { this.waiters.delete(slot); try { w.fn(); } catch (e) {} }
+    if (!this.missing.size) { window.__bodiesAt = performance.now(); try { Quiet.kick(); } catch (e) {} this.prune(); } },
+  load(i){ if (this.state[i]) return; this.state[i] = 1; this.inflight++; const s = document.createElement("script"); s.src = this.slices[i][0]; s.async = true;
+    s.onload = () => { this.inflight--; this.state[i] = 2; s.remove(); this.pump(); };
+    s.onerror = () => { this.inflight--; this.state[i] = 0; s.remove(); if (navigator.onLine !== false) setTimeout(() => this.pump(), 4000); };
+    document.body.appendChild(s); },
+  pump(){ if (!this.slices) return; for (const w of this.waiters.values()) { const i = w.id ? this.of.get(w.id) : undefined; if (i !== undefined && !this.state[i]) this.load(i); }
+    for (let i = 0; i < this.slices.length && this.inflight < 3; i++) if (!this.state[i]) this.load(i); },
+  wait(fn, id, slot){ this.waiters.set(slot || "ui", { fn, id }); this.pump(); },
+  // the offline cache keeps only this build's data slices once every body is in (the service worker keeps hashed slices across versions)
+  prune(){ try { if (!window.caches || !/^https?:$/.test(location.protocol) || (typeof NATIVE_SHELL !== "undefined" && NATIVE_SHELL)) return; const keep = new Set(this.slices.map(x => new URL(x[0], location.href).href));
+    caches.open("qissa-data").then(c => c.keys().then(ks => ks.forEach(r => { if (/\/data\//.test(r.url) && !keep.has(r.url) && !(window.__qissaSlices341.core || []).some(f => new URL(f, location.href).href === r.url)) c.delete(r); }))).catch(() => {}); } catch (e) {} },
+};
+window.BODY341 = BODY341;
+window.__qissaBodies341 = m => BODY341.arrive(m);
+/* a door that reads the corpus: true (and the call is kept for the moment the bodies are in) while a body is missing */
+function bodyGate341(fn, id){ if (BODY341.ready(id)) return false; BODY341.wait(fn, id); try { showToast(ui().loadingStory); } catch (e) {} return true; }
 function storyParsed148(st, k){ const d = Object.getOwnPropertyDescriptor(st, k || "chapters"); return !(d && d.get); }
 function chapterCount148(st){ return st.stats && typeof st.stats.chapters === "number" ? st.stats.chapters : (st.chapters || []).length; }
 /* design wave D-1 · 02 — story end: read → finish → review */
@@ -4763,7 +4807,21 @@ function setHeader(titleAr, sub, chipsHtml){
 // its level's muted colour, parameterised by a hash of the story id so no two
 // covers repeat and none is an asset. Deterministic: the same story always
 // weaves the same cloth.
-function coverArt(st){
+/* (v341-S) the covers' cache: one string per story, level and theme, drawn once per session (the shelf redraws its cards on every
+   return to the library). CoverArt341.lazy(card, st, draw) is the path for a costlier cover (the design wave's richer SVG): the
+   card is drawn when it comes within two screens of the viewport, from the same cache; today's cheap covers stay inline. */
+const CoverArt341 = {
+  cache: new Map(), io: null, LAZY_MARGIN: "200% 0px",
+  key(st){ let th = ""; try { th = document.documentElement.dataset.theme || ""; } catch (e) {} return st.id + "|" + st.level + "|" + th; },
+  get(st, draw){ const k = this.key(st); let v = this.cache.get(k); if (v === undefined) { v = (draw || coverArt0)(st); this.cache.set(k, v); } return v; },
+  lazy(card, st, draw){ const el = card.querySelector(".cover"); if (!el) return;
+    if (!window.IntersectionObserver) { el.style.backgroundImage = `url('${this.get(st, draw)}')`; return; }
+    if (!this.io) this.io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const c = e.target; this.io.unobserve(c);
+      try { c.style.backgroundImage = `url('${this.get(c.__st341, c.__draw341)}')`; } catch (x) {} }), { rootMargin: this.LAZY_MARGIN });
+    el.__st341 = st; el.__draw341 = draw; this.io.observe(el); },
+};
+function coverArt(st){ return CoverArt341.get(st); }
+function coverArt0(st){
   let h = 0;
   for (const c of st.id) h = (h * 31 + c.charCodeAt(0)) >>> 0;
   const cols = { 1: "#5a9e6f", 2: "#6b93c4", 3: "#cf9f5d", 4: "#9a7fb8" };
@@ -4949,6 +5007,7 @@ function setMyLevel(lv){
 // it used to live only on disk. A reader is entitled to it, and so is a reviewer, in their own language.
 function aboutParas(text){ return String(text || "").split(/\n\s*\n/).map(x => x.trim()).filter(Boolean).map(x => `<p>${escapeAttr(x).replace(/\n/g, "<br>")}</p>`).join(""); }
 function openAbout(st){
+  if (bodyGate341(() => openAbout(st), st.id)) return;   /* (v341-S) */
   const U = ui(), a = st.about || {};
   const body = T(a) || a.en || a.tr || "";
   const review = st.review === "reviewed" ? U.aboutReviewed : (st.review ? U.aboutPending : U.aboutPending);
@@ -5074,6 +5133,7 @@ function resumeScroll(){
   hit.sec.addEventListener("animationend", () => hit.sec.classList.remove("resume-target"), { once: true });
 }
 function openStory(st, resume){
+  if (st && bodyGate341(() => openStory(st, resume), st.id)) return;   /* (v341-S) its body first */
   stopPlayAll();
   CUR = st; GLOSSARY = st.glossary; MORPH = st.morph; CHAPTERS = st.chapters;
   if (STORIES.length > 1) {
@@ -10407,7 +10467,11 @@ class RootFinder {
      Level-6 poem (عَطَا «to reach», whose jussive is أَعْطُ) took أَعْطِنَا from أَعْطَى, met ninety times. Within the same pass, a lemma the
      shelf uses at most twice yields to another paradigm's cell whose lemma the shelf uses at least twenty times and ten times as often.
      Counts are tokens of the lemma's lex across the shelf, built once per corpus index. */
-  static lexFreq333(){ const idx = this.corpusIndex(); if (this._lf333 && this._lf333For === idx) return this._lf333; const f = new Map();
+  static lexFreqStep341(b){ const idx = this.corpusIndex(); if (this._lf333 && this._lf333For === idx) return true; const t0 = performance.now();   /* (v341-S) lexFreq333 a story a step */
+    const P = this._lfP341 && this._lfP341.idx === idx ? this._lfP341 : (this._lfP341 = { idx, k: 0, f: new Map() }), S = typeof STORIES !== "undefined" ? STORIES : [];
+    while (P.k < S.length) { const st = S[P.k++]; for (const ch of st.chapters || []) for (const sen of ch.sentences || []) for (const t of sen.tokens || []) if (t.lex) P.f.set(t.lex, (P.f.get(t.lex) || 0) + 1); if (P.k < S.length && performance.now() - t0 > (b || 20)) return false; }
+    this._lf333 = P.f; this._lf333For = idx; this._lfP341 = null; return true; }
+  static lexFreq333(){ const idx = this.corpusIndex(); if (this._lf333 && this._lf333For === idx) return this._lf333; if (this._lfP341 && this._lfP341.idx === idx) { this.lexFreqStep341(1e9); return this._lf333; } const f = new Map();
     for (const st of (typeof STORIES !== "undefined" ? STORIES : [])) for (const ch of st.chapters || []) for (const sen of ch.sentences || []) for (const t of sen.tokens || []) if (t.lex) f.set(t.lex, (f.get(t.lex) || 0) + 1);
     this._lf333 = f; this._lf333For = idx; return f; }
   /* (v335) the same weight by LEMMA (a noun or a particle has no paradigm to weigh): tokens of each lemma across the shelf */
@@ -10514,8 +10578,10 @@ class RootFinder {
   // come off — which is the only difference between the written word and the
   // dictionary head.
   static _nouns = null;
-  static nounIndex(){
-    if (this._nouns) return this._nouns;
+  static nounIndex(){ if (this._nouns) return this._nouns; Gen334.drain(this._nP341 || (this._nP341 = {}), "g", () => this.nounGen341()); return this._nouns; }
+  /* (v341-S) the same walk a story a step: the lab's warm-up and Quiet drive it in slices; nounIndex() drains what is left */
+  static nounIndexStep341(b){ return !!this._nouns || Gen334.step(this._nP341 || (this._nP341 = {}), "g", () => this.nounGen341(), b); }
+  static *nounGen341(){
     const m = new Map();
     // a key derived from a BRACKETED lemma is weak: a plain lemma later in
     // the walk (رَاضٍ beside «رَاضٍ (الرَّاضِي)») takes the key over it —
@@ -10526,7 +10592,7 @@ class RootFinder {
       if (!m.has(b) || (weak.has(b) && !isWeak)) { const old = m.get(b); if (old && old !== v) v.alts = (old.alts || []).concat([old]); m.set(b, v); if (isWeak) weak.add(b); else weak.delete(b); }
       else if (!weak.has(b)) { const old = m.get(b); if (old && old !== v && String(old.lemma || "").normalize("NFC") === String(v.lemma || "").normalize("NFC") && (old.pos === "propn") !== (v.pos === "propn") && !old.twin337) old.twin337 = v;   /* (v337) one spelling, a NAME and a common noun (قَتَادَة the poet, قَتَادَة the thorn tree): the second is kept as a twin for the written ending to choose */
         if (old && old !== v && String(old.lemma || "").normalize("NFC") !== String(v.lemma || "").normalize("NFC") && !(old.alts || []).includes(v)) old.alts = (old.alts || []).concat([v]); } };   /* (wave 54idx) جَارٍ (الْجَارِي) beside جَارّ: the weak homograph stays reachable whatever the walk order */   /* (wave 27j) قَسَم beside قِسْم: a refused homograph stays reachable as an alternate */   // (wave 20r) جَارٍ beside جَار: the manqus stays reachable
-    (typeof STORIES === "undefined" ? [] : STORIES).forEach(st => {
+    for (const st of (typeof STORIES === "undefined" ? [] : STORIES)) {
       const gl = st.glossary || {};
       Object.keys(gl).forEach(lex => {
         const e = gl[lex];
@@ -10562,7 +10628,8 @@ class RootFinder {
         }
         if (e.plural) String(e.plural).split(/[\/،,]/).forEach(pl => put(pl.trim(), { ...rec, viaPlural: true, plural: pl.trim() }, true)   /* (wave 23b) */);
       });
-    });
+      yield;
+    }
     // a plural is a WEAK key: أُسُود (the lions) and أَسْوَد (black) bare to the
     // same letters, and the first entry walked was taking the word — so a
     // lemma anywhere in the corpus wins the key over any entry's plural
@@ -12895,10 +12962,11 @@ class IrabModel {
   // The ids are global instead of per-fold, but a weight is a weight: each (role, feature) cell sees the same
   // updates in the same order and the score sums run in the row's own feature order, so every number the gates
   // read is unchanged to the digit (verified on the v228 corpus: 65.246 / 79.924 over 42 folds, before and after).
-  static intern(rows){
+  static intern(rows){ return Gen334.drain(null, null, () => this.internGen341(rows)); }
+  static *internGen341(rows){   /* (v341-S) intern() as a generator, 2,048 rows a step — the same ids in the same order */
     const idOf = new Map();
     const fid = new Array(rows.length), rid = new Int32Array(rows.length);
-    rows.forEach((x, i) => {
+    for (let i = 0; i < rows.length; i++) { const x = rows[i];
       const a = x.fs, o = new Int32Array(a.length);
       for (let k = 0; k < a.length; k++) {
         let id = idOf.get(a[k]);
@@ -12906,7 +12974,8 @@ class IrabModel {
         o[k] = id;
       }
       fid[i] = o; rid[i] = this.ROLES.indexOf(x.role);
-    });
+      if ((i & 2047) === 2047) yield;
+    }
     // (wave 131) the same ids packed FLAT: one Int32Array holding every row's feature cells (already × NR, so a cell
     // is base + role) and each row's offset into it. fitCore walks a row as one contiguous run instead of chasing
     // 41k separate little arrays in shuffled order — the cache miss was the cost, not the arithmetic: 6.2 → 2.5 s
@@ -13032,6 +13101,74 @@ class IrabModel {
         return { avg, touched: last, F, total: idx.length }; },
     };
   }
+  /* (v341-S) fitCore, resumable: the SAME integer loop (Int32 cells, the inlined LCG and update, eight roles as eight locals),
+     its state kept between calls, the clock read every 256 examples. step(budget) → true when every epoch is done; finish() is
+     fitCore's closing average. The same additions in the same order, so the same core, bit for bit (a smoke check compares).
+     Any role count but eight takes the wave-130 stepper. */
+  static fitCoreSliced341(it, idx){
+    const NR = this.ROLES.length; if (NR !== 8) return this.fitCoreStepper(it, idx);
+    const F = it.F, rid = it.rid, M = NR * F, flat = it.flat, off = it.off, EP = this.EPOCHS;
+    const w = new Int32Array(M), acc = new Float64Array(M), last = new Int32Array(M);
+    let t = 1, seed = this.SEED, e = 0, q = 0, shuffled = false;
+    const ord = Int32Array.from(idx), n = ord.length;
+    return {
+      step(budget){ const t0 = performance.now();
+        while (e < EP) {
+          if (!shuffled) { for (let i = n - 1; i > 0; i--) { seed = (seed * 1103515245 + 12345) & 0x7fffffff; const j = Math.floor((seed / 0x80000000) * (i + 1)); const tmp = ord[i]; ord[i] = ord[j]; ord[j] = tmp; } shuffled = true; }
+          while (q < n) {
+            const qe = Math.min(n, q + 256);
+            for (; q < qe; q++) {
+              const ix = ord[q], role = rid[ix], a0 = off[ix], a1 = off[ix + 1];
+              let s0 = w[0], s1 = w[1], s2 = w[2], s3 = w[3], s4 = w[4], s5 = w[5], s6 = w[6], s7 = w[7];
+              for (let k = a0; k < a1; k++) { const b = flat[k]; s0 += w[b]; s1 += w[b + 1]; s2 += w[b + 2]; s3 += w[b + 3]; s4 += w[b + 4]; s5 += w[b + 5]; s6 += w[b + 6]; s7 += w[b + 7]; }
+              let best = 0, bs = s0;
+              if (s1 > bs) { bs = s1; best = 1; } if (s2 > bs) { bs = s2; best = 2; } if (s3 > bs) { bs = s3; best = 3; }
+              if (s4 > bs) { bs = s4; best = 4; } if (s5 > bs) { bs = s5; best = 5; } if (s6 > bs) { bs = s6; best = 6; } if (s7 > bs) { bs = s7; best = 7; }
+              if (best !== role) {
+                for (let k = a0; k < a1; k++) {
+                  const a = flat[k] + role, b = flat[k] + best;
+                  acc[a] += w[a] * (t - last[a]); last[a] = t; w[a] += 1;
+                  acc[b] += w[b] * (t - last[b]); last[b] = t; w[b] -= 1;
+                }
+                acc[role] += w[role] * (t - last[role]); last[role] = t; w[role] += 1;
+                acc[best] += w[best] * (t - last[best]); last[best] = t; w[best] -= 1;
+              }
+              t++;
+            }
+            if (q < n && performance.now() - t0 > budget) return false;
+          }
+          q = 0; e++; shuffled = false;
+          if (e < EP && performance.now() - t0 > budget) return false;
+        }
+        return true; },
+      finish(){ const avg = new Float64Array(M);
+        for (let k = 0; k < M; k++) if (last[k]) avg[k] = (acc[k] + w[k] * (t - last[k])) / t;
+        return { avg, touched: last, F, total: idx.length }; },
+    };
+  }
+  /* (v341-S) the cross-validation plan walked in slices of ~budget ms: the featurising chapters as cvPlanStep does them, then each
+     fold's fit through fitCoreSliced341 and its held-out rows ranked a block at a time. The same folds, the same rows in the same
+     order, the same counts — cvFinish(p) reads them as before. */
+  static cvStep341(p, b){ const t0 = performance.now(), B = b || 24, over = () => performance.now() - t0 > B, n = this.cvPlanCount(p);
+    if (p.i341 === undefined) p.i341 = 0;
+    while (p.i341 < n) { const i = p.i341, k = i - p.prep;
+      if (i >= p.prep && k < p.ids.length) {
+        if (!p.f341) { const held = p.ids[k], rows = p.rows, tr = [], te = []; for (let j = 0; j < rows.length; j++) (rows[j].st !== held ? tr : te).push(j);
+          p.f341 = { fit: this.fitCoreSliced341(p.it, tr), te, q: 0, core: null }; if (over()) return false; }
+        const f = p.f341;
+        if (!f.core) { if (!f.fit.step(Math.max(1, B - (performance.now() - t0)))) return false; f.core = f.fit.finish(); }
+        while (f.q < f.te.length) { const ix = f.te[f.q++], pr = this.rankFlat(f.core, p.it.fid[ix]);
+          p.n++; if (pr[0] && pr[0].r === p.rows[ix].role) p.ok++; if (pr.slice(0, 2).some(y => y.r === p.rows[ix].role)) p.t2++;
+          if ((f.q & 63) === 0 && over()) return false; }
+        p.f341 = null;
+      } else if (i === p.prep - 1) {   /* the interning, stepped; then exactly cvPlanStep's closing of the prep */
+        const g = p.in341 || (p.in341 = this.internGen341(p.rows)); let r;
+        do { r = g.next(); } while (!r.done && !over());
+        if (!r.done) return false;
+        p.in341 = null; if (!this._rows) this._rows = p.rows; p.it = r.value; p.ids = [...new Set(p.rows.map(x => x.st))];
+      } else this.cvPlanStep(p, i);
+      p.i341++; if (p.i341 < n && over()) return false; }
+    return true; }
   // (wave 130) the string-keyed model from a flat core — fit() and the pre-warm share it, so they cannot drift apart
   static modelFromCore(it, core, total){
     const R = this.ROLES, NR = R.length, F = it.F;
@@ -13178,7 +13315,9 @@ class IrabModel {
      this order, and the per-pass tag memo is only a memo — so every sum, and the score, is the same to the digit. */
   static cvPlan(){
     const have = this._rows;
-    const units = []; if (!have) STORIES.forEach(st => st.chapters.forEach(ch => units.push({ id: st.id, chapters: [ch] })));
+    /* (v341-S) a unit is at most 24 sentences of a chapter (rows() reads a sentence on its own — prev and the hood reset per
+       sentence — so the rows are the same rows in the same order); one long chapter was one 170-ms step at 1× */
+    const units = []; if (!have) STORIES.forEach(st => st.chapters.forEach(ch => { for (let a = 0; a < ch.sentences.length; a += 24) units.push({ id: st.id, chapters: [{ sentences: ch.sentences.slice(a, a + 24) }] }); }));
     return { rows: have || [], units, prep: units.length + 1, it: null, ids: [], ok: 0, t2: 0, n: 0, memo: new Map() };
   }
   static cvPlanCount(p){ return p.prep + STORIES.length; }
@@ -13203,10 +13342,11 @@ class IrabModel {
     return this._cv;
   }
   static _acc = null;
-  static accuracy(){
-    if (this._acc) return this._acc;
+  static accuracy(){ if (this._acc) return this._acc; Gen334.drain(this._aP341 || (this._aP341 = {}), "g", () => this.accGen341()); return this._acc; }
+  static accuracyStep341(b){ return !!this._acc || Gen334.step(this._aP341 || (this._aP341 = {}), "g", () => this.accGen341(), b); }   /* (v341-S) */
+  static *accGen341(){   /* (v341-S) accuracy() a sentence a step — the same walk, the same counts */
     let ok = 0, two = 0, n = 0;
-    STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+    for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) { yield; ((sen) => {
       let prev = null;
       const N = sen.tokens.length;
       sen.tokens.forEach((t, i) => {
@@ -13228,7 +13368,7 @@ class IrabModel {
              : (t.irab && /حَرْفُ جَرٍّ|جَارَّة/.test(t.irab.ar || "")) ? "jarr"
              : t.pos === "noun" ? "noun" : null;
       });
-    })));
+    })(sen); }
     this._acc = { n, top1: n ? ok / n : 0, top2: n ? two / n : 0 };
     return this._acc;
   }
@@ -17415,15 +17555,15 @@ function renderLabBody0(){
       </div>
       <div id="jumlaOut"></div>`;
     const inp = document.getElementById("jumlaIn");
-    inp.addEventListener("input", debounced(() => { conjState.jumla = inp.value; renderJumlaOut(); }));
-    if (window.__QISSA_RENDER_SYNC === true) renderJumlaOut(); else setTimeout(renderJumlaOut, 0);   /* (wave 130) the sheet paints first; the analysis fills in a frame later */
+    inp.addEventListener("input", debounced(() => { conjState.jumla = inp.value; Warm341.then("jumlaOut", renderJumlaOut, 2); }));   /* (v341-S) the engines' first-use work in slices first */
+    if (window.__QISSA_RENDER_SYNC === true) renderJumlaOut(); else Warm341.then("jumlaOut", renderJumlaOut, 2);   /* (wave 130) the sheet paints first; the analysis fills in a frame later */
     // Grading the two distilled taggers costs about two seconds of arithmetic,
     // which is two seconds too many to spend before the panel paints. Paint
     // first, measure after, fill the line in when the number exists.
-    Relax.laterSteps("irab-cv2", () => IrabModel._cv ? null : IrabModel.cvPlan(), p => p ? IrabModel.cvPlanCount(p) : 0, (p, k) => IrabModel.cvPlanStep(p, k),
-      p => { const cv = IrabModel._cv || IrabModel.cvFinish(p), acc = IrabModel.accuracy(); return { top1: cv.top1, top2: cv.top2, n: cv.n, folds: cv.folds, r: acc.top1 }; },   /* (wave 113) one fold per task */
-      v => { const el = document.getElementById("jumlaScore"); if (!el) return; el.textContent = v ? ui().mlScore.replace("{n}", v.n).replace("{k}", v.folds).replace("{a}", Math.round(v.top1 * 100)).replace("{b}", Math.round(v.top2 * 100)).replace("{r}", Math.round(v.r * 100)) : "…"; }, { persist: true, budget: 40 });   /* (wave 32p; v334-S 40 ms slices) */
-    Relax.laterUntil334("tagger-eval", b => SarfTagger.evalStep334(b) && IsmTagger.evalStep334(b), () => { const v = SarfTagger.evalUnseen(), i = IsmTagger.evalUnseen(); return { v: { top1: v.top1, top2: v.top2, examples: v.examples, roots: v.roots }, i: { top1: i.top1, top2: i.top2, examples: i.examples, roots: i.roots, shapes: i.shapes } }; },
+    Relax.laterUntil334("irab-cv2", b => { if (!Warm341.step(b, 0)) return false; if (!IrabModel._cv) { const p = IrabModel._cvP341 || (IrabModel._cvP341 = IrabModel.cvPlan()); if (!IrabModel.cvStep341(p, b)) return false; IrabModel.cvFinish(p); IrabModel._cvP341 = null; } return IrabModel.accuracyStep341(b); },
+      () => { const cv = IrabModel._cv, acc = IrabModel.accuracy(); return { top1: cv.top1, top2: cv.top2, n: cv.n, folds: cv.folds, r: acc.top1 }; },   /* (wave 113) one fold per task; (v341-S) a fold in ~24-ms slices, accuracy() a sentence a step */
+      v => { const el = document.getElementById("jumlaScore"); if (!el) return; el.textContent = v ? ui().mlScore.replace("{n}", v.n).replace("{k}", v.folds).replace("{a}", Math.round(v.top1 * 100)).replace("{b}", Math.round(v.top2 * 100)).replace("{r}", Math.round(v.r * 100)) : "…"; }, { persist: true, budget: 24 });   /* (wave 32p; v334-S 40 ms slices; v341-S 24) */
+    Relax.laterUntil334("tagger-eval", b => Warm341.step(b, 0) && SarfTagger.evalStep334(b) && IsmTagger.evalStep334(b), () => { const v = SarfTagger.evalUnseen(), i = IsmTagger.evalUnseen(); return { v: { top1: v.top1, top2: v.top2, examples: v.examples, roots: v.roots }, i: { top1: i.top1, top2: i.top2, examples: i.examples, roots: i.roots, shapes: i.shapes } }; },
       r => { const line = document.getElementById("mlTagLine"); if (!line || !r) return; const pc = x => Math.round(x * 100); const v = r.v, i = r.i;
         line.textContent = ui().tagScore.replace("{v}", pc(v.top1)).replace("{v2}", pc(v.top2)).replace("{vn}", v.examples).replace("{vr}", v.roots)
           .replace("{i}", pc(i.top1)).replace("{i2}", pc(i.top2)).replace("{in}", i.examples).replace("{ir}", i.roots).replace("{is}", i.shapes); }, { persist: true, delay: 120 });
@@ -17691,8 +17831,8 @@ function renderLabBody0(){
       </div>
       <div id="jadhrOut"></div>`;
     const inp = document.getElementById("jadhrIn");
-    inp.addEventListener("input", debounced(() => { conjState.jadhr = inp.value; renderJadhrOut(); }));
-    if (window.__QISSA_RENDER_SYNC === true) renderJadhrOut(); else setTimeout(renderJadhrOut, 0);   /* (wave 130) the sheet paints first; the analysis fills in a frame later */
+    inp.addEventListener("input", debounced(() => { conjState.jadhr = inp.value; Warm341.then("jadhrOut", renderJadhrOut, 0); }));   /* (v341-S) */
+    if (window.__QISSA_RENDER_SYNC === true) renderJadhrOut(); else Warm341.then("jadhrOut", renderJadhrOut, 0);   /* (wave 130) the sheet paints first; the analysis fills in a frame later */
     return;
   }
   if (conjState.lab === "adad") {
@@ -18425,6 +18565,7 @@ const LabIndex = {
   },
 };
 function openAtolye(){
+  if (bodyGate341(() => openAtolye())) return;   /* (v341-S) */
   let seen = true; try { seen = !!localStorage.getItem("qissa-atolye-seen"); localStorage.setItem("qissa-atolye-seen", "1"); } catch (e) {}
   if (!seen) conjState.lab = "home";
   openConjugator();
@@ -18573,6 +18714,7 @@ function decisionChainHtml(tok){
 
 let wordCtx = null;
 function openWord(tok, el, tab, ctx){
+  if (bodyGate341(() => openWord(tok, el, tab, ctx))) return;   /* (v341-S) the engines read the whole shelf */
   if (ctx) wordCtx = ctx;
   if (tab !== "sarf") sarfUserPick = false;
   if (activeWordEl) activeWordEl.classList.remove("active");
@@ -19017,12 +19159,16 @@ const InText = {
     // Latin script matches at the START of a word: Turkish adds suffixes (ordusu, orduyla) but «sordu» is another word
     const re = ar ? null : new RegExp("(?:^|[^a-z0-9])" + f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
     const hits = []; let n = 0;
-    for (const x of this.sentences()) {
+    /* (v341-S) a sentence that matches the longer needle matched the shorter one (Arabic: the folded needle contains the last;
+       Latin: it starts with the last, at the same word start) — so the walk narrows the last query's matched sentences, in order */
+    const all = this.sentences(), L = this._last341, from = L && L.all === all && L.ar === ar && (ar ? f.includes(L.f) : f.startsWith(L.f)) ? L.sens : all, sens = [];
+    for (const x of from) {
       let ti = -1, inL = null;
       if (ar) { const r = x.rows.find(r => (r.fBare || "").includes(f)); if (!r) continue; ti = r.ti; }
       else { const t = this.trOf(x.sen), e = re.test(t.en), k = re.test(t.tr); if (!e && !k) continue; inL = { en: e, tr: k }; }
-      n++; if (hits.length < cap) hits.push({ st: x.st, ch: x.ch, sen: x.sen, k: x.ch.sentences.indexOf(x.sen), ti, f, ar, inL });
+      n++; sens.push(x); if (hits.length < cap) hits.push({ st: x.st, ch: x.ch, sen: x.sen, k: x.ch.sentences.indexOf(x.sen), ti, f, ar, inL });
     }
+    this._last341 = { all, ar, f, sens };
     return { n, hits };
   },
   mark(text, f){   // highlight a folded match inside the original text: fold char by char and keep the position map
@@ -19048,12 +19194,19 @@ const InText = {
     return `<section class="in-text"><h4>${u.searchInText.replace("{n}", res.n)}</h4>${items}${more}</section>`;
   },
 };
+let SEARCH_LAST341 = null;
 function searchCorpus(q){
   const needle = q.trim();
   if (needle.length < 2) return [];
-  const nAr = foldAr(needle), nLat = needle.toLowerCase();
-  return buildCorpus().filter(r =>
+  const nAr = foldAr(needle), nLat = needle.toLowerCase(), rows = buildCorpus();
+  /* (v341-S) typing on: when the new folded needle CONTAINS the last one (and the Latin one likewise), every row that matches the
+     new query matched the last — so the last hits, filtered by the same test, are the same rows in the same order (filter keeps
+     corpus order). A keystroke after the first two letters scans hundreds of rows instead of 83,000. */
+  const L = SEARCH_LAST341, from = L && L.rows === rows && L.len === rows.length && nAr.includes(L.nAr) && nLat.includes(L.nLat) ? L.hits : rows;
+  const hits = from.filter(r =>
     r.fhay.includes(nAr) || r.hay.includes(nLat));   /* (wave 144) */
+  SEARCH_LAST341 = { rows, len: rows.length, nAr, nLat, hits };
+  return hits.slice();
 }
 // A substring match is not a match of the same worth. Type ق و ل and المنقول
 // comes back, because م-ن-ق-و-ل really does contain ق-و-ل — the letters are
@@ -19132,6 +19285,7 @@ class DoctrineSearch {
   }
 }
 function openSearch(q){
+  if (bodyGate341(() => openSearch(q))) return;   /* (v341-S) */
   if (q !== undefined) searchQuery = q;
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   /* (v334-S) a query of two letters or more while the index is still unbuilt (Quiet builds it in the first minute): the sheet
@@ -19154,8 +19308,9 @@ function openSearch(q){
   // Rank first, count second — twenty incidental substring hits must not bury
   // the one word the learner actually typed.
   const rankOf = rows => Math.max(...rows.map(r => searchRank(r, searchQuery)));
+  const rk341 = new Map(); for (const [lex, rows] of byLex) rk341.set(rows, rankOf(rows));   /* (v341-S) once per group — the comparator read the same numbers */
   const groups = [...byLex.entries()]
-    .sort((a, b) => (rankOf(b[1]) - rankOf(a[1])) || (b[1].length - a[1].length))
+    .sort((a, b) => (rk341.get(b[1]) - rk341.get(a[1])) || (b[1].length - a[1].length))
     .slice(0, 12);
   let body = "";
   if (searchQuery.trim().length < 2) {
@@ -19188,17 +19343,32 @@ function openSearch(q){
   }
   if (searchQuery.trim().length >= 2 && !pending) { try { body += InText.html(searchQuery); } catch (e) {} }   // v319 (v334-S: after the index)
   if (searchQuery.trim().length >= 2) { try { body += DoctrineSearch.html(searchQuery); } catch (e) {} }   // wave 74
+  /* (v341-S) a keystroke (or the «all in this text» button, or the index arriving) on the open search sheet replaces only what
+     follows the search row: the tabs and the input stay, so the input keeps its focus, caret and listener, and the browser
+     re-creates and re-lays out only the hits. The nodes after the row are the same nodes the whole render writes. */
+  const live = q === undefined && sheet.classList.contains("show") && document.getElementById("corpusSearch");
+  const keep = live && live.closest("#sheetInner") && live.dataset.lang341 === state.uiLang && live.value === searchQuery ? live.closest(".ref-search-row") : null;
+  const bindHits = () => {
+    sheetInner.querySelectorAll(".txt-hit").forEach(b =>
+      b.addEventListener("click", () => jumpTo(b.dataset.sid, b.dataset.sen, Number(b.dataset.ti), Number(b.dataset.ch))));
+    const ita = document.getElementById("inTextAll");
+    if (ita) ita.addEventListener("click", () => { searchAllInText = true; openSearch(); });
+  };
+  const bindRest = () => {
+    sheetInner.querySelectorAll(".hit:not(.hit-note):not(.hit-qa)").forEach(b =>
+      b.addEventListener("click", () => jumpTo(b.dataset.sid, b.dataset.sen, Number(b.dataset.ti), Number(b.dataset.ch))));
+    DoctrineSearch.bind(sheetInner);
+    showSheet();
+  };
+  if (keep) { while (keep.nextSibling) keep.nextSibling.remove(); keep.insertAdjacentHTML("afterend", body); bindHits(); bindRest(); return; }
   sheetInner.innerHTML = `<div class="tabs"><button class="on">${arSpan("بَحْث")} ${ui().searchTitle}</button></div>
     <div class="ref-search-row">
-      <input type="search" id="corpusSearch" class="ref-search" autocomplete="off"
+      <input type="search" id="corpusSearch" class="ref-search" autocomplete="off" data-lang341="${state.uiLang}"
         placeholder="${escapeAttr(ui().searchPlaceholder)}" aria-label="${escapeAttr(ui().searchTitle)}"
         value="${escapeAttr(searchQuery)}">
     </div>${body}`;
   const input = document.getElementById("corpusSearch");
-  sheetInner.querySelectorAll(".txt-hit").forEach(b =>
-    b.addEventListener("click", () => jumpTo(b.dataset.sid, b.dataset.sen, Number(b.dataset.ti), Number(b.dataset.ch))));
-  const ita = document.getElementById("inTextAll");
-  if (ita) ita.addEventListener("click", () => { searchAllInText = true; openSearch(); });
+  bindHits();
   input.addEventListener("input", () => {
     searchQuery = input.value; searchAllInText = false;
     const at = input.selectionStart;
@@ -19207,10 +19377,7 @@ function openSearch(q){
     again.focus();
     try { again.setSelectionRange(at, at); } catch (e) {}
   });
-  sheetInner.querySelectorAll(".hit:not(.hit-note):not(.hit-qa)").forEach(b =>
-    b.addEventListener("click", () => jumpTo(b.dataset.sid, b.dataset.sen, Number(b.dataset.ti), Number(b.dataset.ch))));
-  DoctrineSearch.bind(sheetInner);
-  showSheet();
+  bindRest();
   if (q !== undefined) input.focus();
 }
 // Jumping across stories has to survive the paywall: a locked premium story
@@ -19229,6 +19396,7 @@ function senOnPage(st, senId, chN){
   return false;
 }
 function jumpTo(storyId, senId, ti, chN){
+  if (bodyGate341(() => jumpTo(storyId, senId, ti, chN))) return;   /* (v341-S) */
   const st = STORIES.find(s => s.id === storyId);
   if (!st) return;
   if (!CUR || CUR.id !== st.id) openStory(st);
@@ -35057,6 +35225,7 @@ function notePrompt(card){
 }
 let reviewStep = 0;
 function openDeck(){
+  if (bodyGate341(() => openDeck())) return;   /* (v341-S) */
   reviewStep = 0;
   renderDeck();
   showSheet();
@@ -35150,6 +35319,7 @@ const Backup = {
       r.onload = () => { if (!window.confirm(ui().bkAsk)) return; const n = self.importText(r.result); if (n === null) { msg(ui().bkBad); return; } msg(ui().bkDone.replace("{n}", n)); setTimeout(() => location.reload(), 600); }; r.readAsText(f); }); }
 };
 function openStats(){
+  if (bodyGate341(() => openStats())) return;   /* (v341-S) */
   const c = corpusStats(), d = deckStats(), t = rollDay();
   const noteCards = state.deck.filter(x => x.type === "note").length;
   const tile = (n, lbl) => `<div class="stat-tile"><b>${n}</b><span>${lbl}</span></div>`;
@@ -43025,9 +43195,45 @@ let GAMES_GEN = 0;
 const SUPPLY_STEP334 = {
   gSign: b => SignEngine.auditStep334(b), gAdab: b => AdabEngine.lintStep334(b), gTartib: b => TartibEngine.auditStep334(b),
   gHadhf: b => GameFactory.scopeKey() !== "__lib" || hadhfItemsStep334(b), gWujuh: b => GameFactory.scopeKey() !== "__lib" || wujuhItemsStep334(b),
+  /* (v341-S) the pool-backed counts: the pool is built a unit a step (stepFull148, the same steps full() takes) and then read */
+  gSarf: b => SARF_POOL.stepFull148(b), gHarakat: b => HARAKAT_POOL.stepFull148(b), gCase: b => CASE_POOL.stepFull148(b), gRole: b => ROLE_POOL.stepFull148(b),
+  gNida: b => NIDA_POOL.stepFull148(b), gWaqf: b => WAQF_POOL.stepFull148(b), gShop: b => SHOPC_POOL.stepFull148(b), gHizli: b => HARAKAT_POOL.stepFull148(b),
+  gDuel: b => DUEL_POOL.stepFull148(b), gShart: b => SHART_POOL.stepFull148(b), gGhost: b => GHOST_POOL.stepFull148(b), gBahr: b => BAHR_POOL.stepFull148(b),
+  gKinds: b => KINDS_POOL.stepFull148(b), gIbaraTr: b => IBARA_POOL.stepFull148(b), gIbaraAr: b => IBARA_POOL.stepFull148(b),
 };
 /* (v334-S) a corpus walk written as a generator yields once a sentence: drain() runs it whole (the old one-shot call — the same
    statements in the same order), step() runs it a budget at a time; a walk Quiet or a lab began is finished, never restarted */
+/* (v341-S) THE FIRST ANALYSIS WITHOUT A STALL. The Jumla and root labs' first analysis built the engines' corpus work in the
+   click's task — every story body parsed, the paradigm bare index, both taggers, the valency ledger, the noun index, the shelf's
+   lemma counts: 1.8 s at 1×, one task of ~7 s at 4×. Quiet builds the same things idle (engine-warm), but Quiet waits while a
+   sheet is open, and the Atölye is one. Now the lab paints «…» and drives the same steps in slices of ~24 ms until they are done,
+   then runs the analysis it would have run. Every step builds exactly what the one-shot builder builds (each is the builder
+   walked a slice at a time); the analysis reads them as before. The harness's sync flag keeps the one-shot path. */
+const Warm341 = {
+  done: false, q: new Map(), _t: null,
+  step(b, wN){ if (this.done) return true; const B = b || 24, NW = wN === undefined ? 1e9 : wN, t0 = performance.now(), left = () => Math.max(1, B - (performance.now() - t0));
+    for (const st of STORIES) for (const k of ["morph", "chapters"]) if (!storyParsed148(st, k)) { void st[k]; if (performance.now() - t0 > B) return false; }
+    if (!RootFinder.bareIndexStep(left())) return false; if (!SarfTagger.trainStep(left())) return false; if (!IsmTagger.trainStep(left())) return false;
+    if (!LazimEngine.ledgerStep(left())) return false; if (!RootFinder.nounIndexStep341(left())) return false; if (!RootFinder.lexFreqStep341(left())) return false;
+    if (this.k < Math.min(NW, this.W.length)) { if (performance.now() - t0 > B / 2) return false; try { this.W[this.k++](); } catch (e) {} if (this.k < Math.min(NW, this.W.length)) return false; }
+    if (this.k < this.W.length) return true;   /* what this caller needs is ready; Quiet finishes the rest */
+    return (this.done = true); },
+  /* one reading of each engine the labs open with, so their code is compiled and their lazy tables built — each its own task
+     (the wave-148 engine-warm set; DabtEngine's per-call memo fields are kept and restored, so the warm-up leaves no trace) */
+  k: 0, KEEP: ["_lex24", "_pos24", "_orig24", "_lastGraded26", "_carry26", "_carryKana29", "_punctAt", "_colonAt", "_punct133", "_seg24", "_jarr131", "_rhymeAt", "_full135", "_rows135", "_senKey138"],
+  keep341(fn){ const keep = {}; this.KEEP.forEach(k => { keep[k] = DabtEngine[k]; }); try { fn(); } finally { this.KEEP.forEach(k => { DabtEngine[k] = keep[k]; }); } },
+  get W(){ return [() => SentenceAnalyzer.analyze("ذَهَبَ الْوَلَدُ"),
+    () => this.keep341(() => DabtEngine.vowel("ذَهَبَ الْوَلَدُ إِلَى الْمَدْرَسَةِ", "endings")),
+    () => JinasEngine.readText("سَلَامٌ عَلَى قَوْمٍ سَالِمِينَ"),
+    () => this.keep341(() => FahmEngine.analyze("كَانَ الرَّجُلُ تَاجِرًا", "en"))]; },
+  then(outId, render, wN){ if (this.done || window.__QISSA_RENDER_SYNC === true) { render(); return; }
+    const out = document.getElementById(outId); if (out && !out.children.length) out.innerHTML = `<p class="ref-intro warm341" aria-busy="true">…</p>`;
+    this.q.set(outId, render); this.wN = Math.max(this.wN || 0, wN || 0); if (this._t) return;
+    const tick = () => { let ok = true; try { ok = this.step(24, this.wN); } catch (e) { ok = true; } if (!ok) { this._t = setTimeout(tick, 0); return; } this._t = null;
+      const q = [...this.q.values()]; this.q.clear(); q.forEach(f => { try { f(); } catch (e) {} }); };
+    this._t = setTimeout(tick, 0); },
+};
+window.Warm341 = Warm341;
 const Gen334 = {
   drain(o, k, make){ let g = o && o[k]; if (o) o[k] = null; if (!g) g = make(); for (;;) { const r = g.next(); if (r.done) return r.value; } },
   step(o, k, make, b){ const t0 = performance.now(); try { const g = o[k] || (o[k] = make()); do { if (g.next().done) { o[k] = null; return true; } } while (performance.now() - t0 < (b || 20)); return false; } catch (e) { o[k] = null; return true; } }
@@ -43851,6 +44057,7 @@ const HubLayout = {
   },
 };
 function openGames(){
+  if (bodyGate341(() => openGames())) return;   /* (v341-S) */
   QUIZ_RESUME = null;
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   // The memory model whispers into the hub: when deck words are fading, the
@@ -44884,6 +45091,7 @@ function renderLibrarySkeleton(){
 }
 function bootWithData(){
   hydrateStories148();   // (wave 148) the bodies become lazy getters before anything reads a story
+  BODY341.init();        // (v341-S) the hosted copy's bodies arrive after the door, in slices
   window.__qissaBootedAt = performance.now();   // the moment the stories are in — the speed gate reads it
   document.body.classList.remove("data-pending");
   if (STORIES.length === 1) openStory(STORIES[0]); else renderLibrary();
@@ -44907,19 +45115,12 @@ function bootWithData(){
        index — a tap during any of them waited. Order: the stories' bodies first (one a slice), the perceptron, the pools
        (a chapter a step), the three seeds over pools already full, the audit (a model a step), the index (a chapter a
        step), the fold (a note a step). */
+    Quiet.add("ishtiqaq", b => { try { return IshtiqaqEngine.lexStep(b) && IshtiqaqEngine.inverseStep(b); } catch (e) { return true; } });   /* (wave 158) the derivation engine's inverse templates, a few wazns a slice; (v341-S) first: a reader's first derived noun tapped read them in the tap */
     Quiet.add("stories-parse", b => { const t0 = performance.now(); for (const k of ["morph", "chapters"]) for (const st of STORIES) { if (!storyParsed148(st, k)) { void st[k]; if (performance.now() - t0 > (b || 20)) return false; } } return true; });   /* the paradigms first: the Atölye opens on them */
     Quiet.add("irab-model", b => IrabModel.prewarmStep(b));
     Quiet.add("conj-known", b => { try { return conjKnownStep(b); } catch (e) { return true; } });   /* (wave 152) the sarf lab's attested-verb map, a story a slice — thirty milliseconds in all, before the engines' long warm */
-    Quiet.add("ishtiqaq", b => { try { return IshtiqaqEngine.lexStep(b) && IshtiqaqEngine.inverseStep(b); } catch (e) { return true; } });   /* (wave 158) the derivation engine's inverse templates, a few wazns a slice */
     Quiet.add("engine-warm", b => { try {   /* (wave 148) the engines' corpus indexes, in slices; then one reading of each engine so its code is compiled */
-      if (!RootFinder.bareIndexStep(b)) return false; if (!SarfTagger.trainStep(b)) return false; if (!IsmTagger.trainStep(b)) return false; if (!LazimEngine.ledgerStep(b)) return false;
-      RootFinder.nounIndex();
-      const P = (window.__warm148 = window.__warm148 || { k: 0 });
-      const KEEP = ["_lex24", "_pos24", "_orig24", "_lastGraded26", "_carry26", "_carryKana29", "_punctAt", "_colonAt", "_punct133", "_seg24", "_jarr131", "_rhymeAt", "_full135", "_rows135", "_senKey138"];
-      const W = [() => { const keep = {}; KEEP.forEach(k => { keep[k] = DabtEngine[k]; }); try { DabtEngine.vowel("ذَهَبَ الْوَلَدُ إِلَى الْمَدْرَسَةِ", "endings"); } finally { KEEP.forEach(k => { DabtEngine[k] = keep[k]; }); } },
-                 () => JinasEngine.readText("سَلَامٌ عَلَى قَوْمٍ سَالِمِينَ"),
-                 () => { const keep = {}; KEEP.forEach(k => { keep[k] = DabtEngine[k]; }); try { FahmEngine.analyze("كَانَ الرَّجُلُ تَاجِرًا", "en"); } finally { KEEP.forEach(k => { DabtEngine[k] = keep[k]; }); } }];
-      if (P.k < W.length) { W[P.k++](); return P.k >= W.length; }
+      if (!Warm341.step(b)) return false;   /* (v341-S) the same steps the labs drive: the bodies, the bare index, the taggers, the ledger, the noun index, the lemma counts, then one reading of each engine (the wave-148 compile warm-up, now Warm341.W) */
     } catch (e) {} return true; });
     /* (v334-S) the search index and fold run before the pools: a search in the first minute found the index unbuilt (1.8 s at 4×) */
     Quiet.add("search-index", b => { try { return buildCorpusStep144(b); } catch (e) { return true; } });   /* (wave 144) the search sheet's index — a chapter a slice since wave 148 */
@@ -44944,6 +45145,7 @@ const Quiet = {
   last: 0, jobs: [], _t: null, BUDGET: 30,
   note(){ Quiet.last = performance.now(); },
   ok(){ try { if (window.__QISSA_QUIET_OFF === true) return false;   /* the test harness holds the jobs so its own timings stay clean */
+    if (!BODY341.ready()) return false;   /* (v341-S) no job reads part of the shelf */
     return document.visibilityState !== "hidden" && !(typeof sheet !== "undefined" && sheet && sheet.classList.contains("show")) &&
     (performance.now() - Quiet.last) > 1200 && !(typeof STORY_RENDER_FLUSH !== "undefined" && STORY_RENDER_FLUSH); } catch (e) { return false; } },
   add(name, fn){ if (this.jobs.some(j => j.name === name)) return; this.jobs.push({ name, fn }); this.kick(); },
