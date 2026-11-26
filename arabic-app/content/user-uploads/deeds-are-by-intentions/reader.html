@@ -20256,7 +20256,9 @@ const Illa346 = {
   },
   // ── the views
   pref(){ try { return localStorage.getItem(this.KEY); } catch (e) { return null; } },
-  open(){ const v = this.pref(); return v == null ? true : v === "1"; },
+  /* (owner, 2026-11-26) «Neden?» is seen by TOUCHING it: the ladder always starts as its one-line summary, in the word sheet and in a game's
+     feedback alike; a tap opens it (a tap on a word of the sentence's «Neden?» list is such a touch and opens it in full) */
+  open(){ return false; },
   remember(o){ try { localStorage.setItem(this.KEY, o ? "1" : "0"); } catch (e) {} },
   force: false,
   stepsHtml(ch, lang){
@@ -20269,10 +20271,8 @@ const Illa346 = {
     return `<details class="illa" id="illa346"${op ? " open" : ""} data-n="${ch.steps.length}"${vm ? ` data-vm="${vm}"` : ""}><summary><span class="illa-h">${u.illaHead}</span><span class="illa-one">${escapeAttr(this.short(ch, lang))}</span>${ch.auto ? `<span class="vmark auto illa-auto">${u.illaAuto}</span>` : ""}</summary>
       <ol class="illa-steps">${this.stepsHtml(ch, lang)}</ol></details>`;
   },
-  /* the first time (no stored choice) the ladder opens — unless that would push «Cümlede âmili» off the first screen: then the one-line
-     chain in its summary stands for it until the learner opens it (and the choice is kept) */
+  /* the ladder starts as its one-line summary; the learner's touch opens it (see open()) */
   bind(root){ const d = root && root.querySelector("#illa346"); if (!d) return;
-    if (d.open && !this._forced && this.pref() == null) { const g = root.querySelector(".gov-block"); if (g && g.getBoundingClientRect().top + 24 > (window.innerHeight || 844)) d.open = false; }
     // the learner's own tap is what is kept (a click on the summary runs before the details toggles, so it keeps the state it is about to take)
     this._forced = false; const sm = d.querySelector("summary"); if (sm) sm.addEventListener("click", () => this.remember(!d.open)); },
   short(ch, lang){ const s = k => ch.steps.find(x => x.kind === k), r = s("role"), f = s("family"), g = s("sign"), b = s("built"), u = L[lang];
@@ -20282,7 +20282,7 @@ const Illa346 = {
     const sen = it && it.sen, ti = it && it.ti, tok = sen && sen.tokens && sen.tokens[ti]; if (!tok || !tok.irab) return "";
     let ch = null; try { ch = this.chain(tok, { sen, ti }); } catch (e) { ch = null; } if (!ch || !ch.steps.length) return "";
     const lang = this.L(), u = ui();
-    return `<details class="illa illa-q"${ok ? "" : " open"} data-n="${ch.steps.length}"><summary><span class="illa-h">${u.illaHead}</span> <span class="illa-one">${u.illaBecause} ${escapeAttr(this.short(ch, lang))}</span> <span class="illa-more">${u.illaShowAll}</span></summary>
+    return `<details class="illa illa-q" data-n="${ch.steps.length}" data-ok="${ok ? 1 : 0}"><summary><span class="illa-h">${u.illaHead}</span> <span class="illa-one">${u.illaBecause} ${escapeAttr(this.short(ch, lang))}</span> <span class="illa-more">${u.illaShowAll}</span></summary>
       <ol class="illa-steps">${this.stepsHtml(ch, lang)}</ol></details>`;
   },
   senHtml(sen){

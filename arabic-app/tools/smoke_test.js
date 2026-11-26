@@ -18511,7 +18511,7 @@ if (!CHROME) {
     if (r.trStr.join() === r.enStr.join() || r.trStr[0] !== 'Neden?' || r.trStr[1] !== 'Neden böyle?') throw new Error('en / tr: ' + J([r.trStr, r.enStr]));
   });
 
-  await check('v346 — the four surfaces: the word sheet\'s «Neden?» ladder under the line (open the first time unless it would push «Cümlede âmili» off a 390×844 screen; the choice kept in qissa-illa346), a role\'s note «Neden böyle?» from the same tables with the book\'s own line, the iʿrāb sheet\'s per-word «Neden?» list whose tap opens the full ladder, the asked token\'s chain in a game\'s feedback (open on a wrong answer, one line on a right one); no overflow at 390 px; the v320 contrast in three themes; the split door reads no story body', async () => {
+  await check('v346 — the four surfaces: the word sheet\'s «Neden?» ladder under the line (seen by touching it: closed at first, a 44 px summary opens it), a role\'s note «Neden böyle?» from the same tables with the book\'s own line, the iʿrāb sheet\'s per-word «Neden?» list whose tap opens the full ladder, the asked token\'s chain in a game\'s feedback (one line, opened by a touch); no overflow at 390 px; the v320 contrast in three themes; the split door reads no story body', async () => {
     await page.setViewportSize({ width: 390, height: 844 });
     const r = await page.evaluate(() => {
       const out = { low: {} }, keepTheme = localStorage.getItem('qissa-theme'), keepLang = state.uiLang, keepPref = localStorage.getItem('qissa-illa346');
@@ -18534,8 +18534,7 @@ if (!CHROME) {
         let d = ow(); const g = document.querySelector('#sheet .gov-block'), irab = document.querySelector('#sheet .irab-en');
         out.sheet = { n: +d.dataset.n, open: d.open, govTop: g && g.getBoundingClientRect().top, under: !!irab && !!(irab.compareDocumentPosition(d) & Node.DOCUMENT_POSITION_FOLLOWING) && !!(d.compareDocumentPosition(g) & Node.DOCUMENT_POSITION_FOLLOWING), one: (d.querySelector('.illa-one') || {}).textContent, wide: wide() };
         out.sheet.fits = d.open ? g.getBoundingClientRect().top + 24 <= innerHeight : g.getBoundingClientRect().top <= innerHeight;
-        d.querySelector('summary').click(); out.pref1 = localStorage.getItem('qissa-illa346'); d = ow(); out.kept = d.open === (out.pref1 === '1');
-        if (!d.open) d.querySelector('summary').click(); out.pref2 = localStorage.getItem('qissa-illa346');
+        out.closed0 = !d.open; out.tap = d.querySelector('summary').getBoundingClientRect().height; d.querySelector('summary').click(); out.opened = d.open; d = ow(); out.closedAgain = !d.open;
         // the note
         openRef('fail'); const nt = document.querySelector('#sheet .illa-note'); out.note = nt && { h: nt.querySelector('.illa-h').textContent, rows: nt.querySelectorAll('.illa-tab tr').length, cite: !!nt.querySelector('.illa-cite'), fam: /merfûâttandır/.test(nt.textContent), wide: wide() };
         out.noteNone = !document.createRange().createContextualFragment(renderNote('khabar-insha')).querySelector('.illa-note');
@@ -18559,10 +18558,11 @@ if (!CHROME) {
     await toLibrary();
     const J = JSON.stringify;
     if (!r.sheet || r.sheet.n !== 5 || !r.sheet.under || !r.sheet.fits || r.sheet.wide || !/Fâil \(özne\) → merfûât → merfû → damme/.test(r.sheet.one || '')) throw new Error('the word sheet: ' + J(r.sheet));
-    if (!/^[01]$/.test(r.pref1 || '') || !r.kept || r.pref2 !== '1') throw new Error('the choice is kept: ' + J([r.pref1, r.kept, r.pref2]));
+    // (owner, 2026-11-26) the ladder is seen by touching it: closed at first, a 44 px summary opens it, the next word starts closed again
+    if (!r.closed0 || !r.opened || !r.closedAgain || r.tap < 44) throw new Error('«Neden?» opens on touch only: ' + J([r.closed0, r.opened, r.closedAgain, r.tap]));
     if (!r.note || r.note.h !== 'Neden böyle?' || r.note.rows < 8 || !r.note.cite || !r.note.fam || r.note.wide || !r.noteNone) throw new Error('the note: ' + J([r.note, r.noteNone]));
     if (!r.sen || r.sen.rows !== r.sen.want || r.sen.rows < 3 || r.sen.wide || !r.tapOpen) throw new Error('the sentence list: ' + J([r.sen, r.tapOpen]));
-    if (!r.gWrong || !r.gWrong.open || !r.gWrong.same || !r.gRight || r.gRight.open || !r.gRight.same || !/^çünkü /.test(r.gRight.one || '')) throw new Error('the game feedback: ' + J([r.gWrong, r.gRight]));
+    if (!r.gWrong || r.gWrong.open || !r.gWrong.same || !r.gRight || r.gRight.open || !r.gRight.same || !/^çünkü /.test(r.gRight.one || '')) throw new Error('the game feedback: ' + J([r.gWrong, r.gRight]));
     if (Object.keys(r.low).length) throw new Error('contrast: ' + J(r.low));
     // the split copy: the door paints with every body held, and a note's «Neden böyle?» reads the grammar tables alone
     const fsx = require('fs'), pathx = require('path'), cp = require('child_process'), os = require('os'), http = require('http');
@@ -19310,6 +19310,14 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
       const val = spawnSync('python3', ['tools/validate_content.py', pkg, '--grammar-dir', path.join(root, 'content/grammar')], { cwd: root, encoding: 'utf8' });
       if (val.status !== 0) throw new Error('the shipped package must validate: ' + (val.stdout + val.stderr).split('\n').filter(l => /error/i.test(l)).slice(0, 3).join(' | '));
     } finally { fs.rmSync(tmp, { recursive: true, force: true }); }
+  });
+
+  await check('v347 — no page-wide :has() rule: a «body:has(…)», «html:has(…)» or «:root:has(…)» selector makes every DOM change under it re-style the page (v347 found one costing 1.7 s at the door, 4× CPU, through the covers\' getComputedStyle) — such a state is a class set by the code that changes it', async () => {
+    const fsx = require('fs'), pathx = require('path'); const fd = fsx.openSync(pathx.join(__dirname, '..', 'prototype', 'reader.html'), 'r'); const buf = Buffer.alloc(900000); const n = fsx.readSync(fd, buf, 0, buf.length, 0); fsx.closeSync(fd);
+    const head = buf.slice(0, n).toString('utf8'); const css = head.slice(0, head.lastIndexOf('</style>') + 8);
+    if (css.length < 100000) throw new Error('the page\'s CSS was not found in its first 900 KB: ' + css.length);
+    const bad = css.split('\n').map((l, i) => [i + 1, l]).filter(([, l]) => /(^|[\s,{}>+~])(body|html|:root)(\[[^\]]*\]|\.[\w-]+)*:has\(/.test(l.replace(/\/\*.*?\*\//g, ''))).map(([i, l]) => i + ': ' + l.trim().slice(0, 90));
+    if (bad.length) throw new Error('a page-wide :has() rule: ' + JSON.stringify(bad.slice(0, 4)));
   });
 
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
