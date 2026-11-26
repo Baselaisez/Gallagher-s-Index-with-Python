@@ -1,124 +1,340 @@
 {
- "id": "mithal-verbs",
- "title": {
-  "ar": "الْفِعْلُ الْمِثَال",
-  "en": "Assimilated verbs (initial و or ي)",
-  "tr": "Misal fiil (başı و veya ي)"
- },
- "level": 3,
- "group": "sarf",
- "classicalSources": [
-  "مراح الأرواح (ص ٨٣-٨٤)",
-  "العزّي (ص ١٤٨-١٥٠)",
-  "المقصود (ص ١٨٣، ٢٠٥)",
-  "ملخّص الصرف العربي (ص ٦٦)",
-  "بناء الأفعال — الأقسام السبعة",
-  "تَصْرِيفُ الْعِزِّيِّ لِلزَّنْجَانِيِّ (tasrif-al-izzi-src.txt، س 162، 165، 173)"
- ],
- "plain": {
-  "en": "Verbs that start with و or ي. The و often drops out in the present and the command: وَقَفَ «he stood» gives قِفْ «stop!».",
-  "tr": "Başı و veya ي olan fiiller. و çoğu zaman muzâri ve emirde düşer: وَقَفَ «durdu» → قِفْ «dur!»."
- },
- "explanation": {
-  "en": "A mithal verb has و or ي as its FIRST radical: وَعَدَ, وَصَلَ, يَسَرَ. The past tense is completely regular — وَعَدْتُ, وَصَلَتْ, conjugated exactly like a sound verb, active and passive alike. Everything interesting happens in the present. The rule is precise: a و caught between the fatha-bearing prefix يَ and an original kasra is dropped. يَوْعِدُ becomes يَعِدُ, يَوْصِلُ becomes يَصِلُ. It disappears from everything built on that present too — لَمْ يَعِدْ, لَنْ يَعِدَ, لِيَعِدْ, and the imperative عِدْ, which is one letter long. Note the two conditions: the vowel after the و must be an original KASRA (so bab 4's يَوْجَلُ keeps its و), and the passive restores it, because there the vowel is damma: يُوعَدُ. A mithal with ي behaves quite differently — the ي is never dropped in any bab: يَيْسِرُ, يَيْمُنُ, يَيْئَسُ. Two further habits: masdars on فِعْلَة shed the و and compensate with a ة (وِعْدَة → عِدَة), and in bab VIII the و or ي turns into ت and merges with the bab's own ت — اِوْتَعَدَ → اِتَّعَدَ.",
-  "tr": "Misal fiilin BİRİNCİ harfi و veya ي'dir: وَعَدَ، وَصَلَ، يَسَرَ. Mâzisi tamamen düzgündür — وَعَدْتُ، وَصَلَتْ; malum ve meçhulüyle sahih fiil gibi çekilir. Bütün mesele muzâridedir. Kaide nettir: fethalı يَ ile aslî bir kesre arasında kalan و düşer. يَوْعِدُ → يَعِدُ، يَوْصِلُ → يَصِلُ. Muzâriye tâbi olan her sîgada da düşer — لَمْ يَعِدْ، لَنْ يَعِدَ، لِيَعِدْ ve tek harflik emir عِدْ. İki şarta dikkat: و'dan sonraki hareke aslî KESRE olmalıdır (bu yüzden dördüncü babın يَوْجَلُ'ü و'ını korur) ve meçhulde و geri döner, çünkü orada hareke dammedir: يُوعَدُ. Misal-i yâî ise bambaşkadır — ي hiçbir babda düşmez: يَيْسِرُ، يَيْمُنُ، يَيْئَسُ. İki âdet daha: فِعْلَة vezinli masdarlarda و düşer ve yerine tâ gelir (وِعْدَة → عِدَة); iftiâl bâbında ise و/ي, تا'ya kalbolup bâbın tâsına idgam edilir — اِوْتَعَدَ → اِتَّعَدَ."
- },
- "examples": [
-  {
-   "ar": "وَقَفَ الْفِيلُ أَمَامَ مَكَّةَ.",
-   "en": "The elephant stopped before Mecca — وَقَفَ is sound in the past; its present is يَقِفُ, with the و gone.",
-   "sourceStory": "ashab-al-fil",
-   "chapter": 1,
-   "sentence": "s5",
-   "tr": "Fil Mekke'nin önünde durdu — وَقَفَ mâzide sahihtir; muzârisi يَقِفُ'dur, vâv düşmüştür."
+  "id": "mithal-verbs",
+  "title": {
+    "ar": "الْفِعْلُ الْمِثَال",
+    "en": "Assimilated verbs (initial و or ي)",
+    "tr": "Misal fiil (başı و veya ي)"
   },
-  {
-   "ar": "مَا وَصَلَ الْجَيْشُ إِلَى مَكَّةَ.",
-   "en": "The army did not reach Mecca — وَصَلَ / يَصِلُ, another mithal wawi.",
-   "sourceStory": "ashab-al-fil",
-   "chapter": 1,
-   "sentence": "s6",
-   "tr": "Ordu Mekke'ye ulaşmadı — وَصَلَ / يَصِلُ, bir başka misal-i vâvî."
+  "level": 3,
+  "group": "sarf",
+  "classicalSources": [
+    "مراح الأرواح (ص ٨٣-٨٤)",
+    "العزّي (ص ١٤٨-١٥٠)",
+    "المقصود (ص ١٨٣، ٢٠٥)",
+    "ملخّص الصرف العربي (ص ٦٦)",
+    "بناء الأفعال — الأقسام السبعة",
+    "تَصْرِيفُ الْعِزِّيِّ لِلزَّنْجَانِيِّ (tasrif-al-izzi-src.txt، س 162، 165، 173)"
+  ],
+  "plain": {
+    "en": "Verbs that start with و or ي. The و often drops out in the present and the command: وَقَفَ «he stood» gives قِفْ «stop!».",
+    "tr": "Başı و veya ي olan fiiller. و çoğu zaman muzâri ve emirde düşer: وَقَفَ «durdu» → قِفْ «dur!»."
   },
-  {
-   "ar": "وَقَعَ يُونُسُ فِي الْبَحْرِ.",
-   "en": "Yunus fell into the sea — وَقَعَ / يَقَعُ: bab IV, so the vowel is fatha, yet the و still drops.",
-   "sourceStory": "yunus-wa-al-hut",
-   "tr": "Yunus denize düştü — وَقَعَ / يَقَعُ: dördüncü bâb, hareke fethadır, yine de vâv düşer."
+  "explanation": {
+    "en": "A mithal verb has و or ي as its FIRST radical: وَعَدَ, وَصَلَ, يَسَرَ. The past tense is completely regular — وَعَدْتُ, وَصَلَتْ, conjugated exactly like a sound verb, active and passive alike. Everything interesting happens in the present. The rule is precise: a و caught between the fatha-bearing prefix يَ and an original kasra is dropped. يَوْعِدُ becomes يَعِدُ, يَوْصِلُ becomes يَصِلُ. It disappears from everything built on that present too — لَمْ يَعِدْ, لَنْ يَعِدَ, لِيَعِدْ, and the imperative عِدْ, which is one letter long. Note the two conditions: the vowel after the و must be an original KASRA (so bab 4's يَوْجَلُ keeps its و), and the passive restores it, because there the vowel is damma: يُوعَدُ. A mithal with ي behaves quite differently — the ي is never dropped in any bab: يَيْسِرُ, يَيْمُنُ, يَيْئَسُ. Two further habits: masdars on فِعْلَة shed the و and compensate with a ة (وِعْدَة → عِدَة), and in bab VIII the و or ي turns into ت and merges with the bab's own ت — اِوْتَعَدَ → اِتَّعَدَ.",
+    "tr": "Misal fiilin BİRİNCİ harfi و veya ي'dir: وَعَدَ، وَصَلَ، يَسَرَ. Mâzisi tamamen düzgündür — وَعَدْتُ، وَصَلَتْ; malum ve meçhulüyle sahih fiil gibi çekilir. Bütün mesele muzâridedir. Kaide nettir: fethalı يَ ile aslî bir kesre arasında kalan و düşer. يَوْعِدُ → يَعِدُ، يَوْصِلُ → يَصِلُ. Muzâriye tâbi olan her sîgada da düşer — لَمْ يَعِدْ، لَنْ يَعِدَ، لِيَعِدْ ve tek harflik emir عِدْ. İki şarta dikkat: و'dan sonraki hareke aslî KESRE olmalıdır (bu yüzden dördüncü babın يَوْجَلُ'ü و'ını korur) ve meçhulde و geri döner, çünkü orada hareke dammedir: يُوعَدُ. Misal-i yâî ise bambaşkadır — ي hiçbir babda düşmez: يَيْسِرُ، يَيْمُنُ، يَيْئَسُ. İki âdet daha: فِعْلَة vezinli masdarlarda و düşer ve yerine tâ gelir (وِعْدَة → عِدَة); iftiâl bâbında ise و/ي, تا'ya kalbolup bâbın tâsına idgam edilir — اِوْتَعَدَ → اِتَّعَدَ."
   },
-  {
-   "ar": "وَعَدَ يَعِدُ عِدَةً وَوَعْدًا فَهُوَ وَاعِدٌ، وَذَاكَ مَوْعُودٌ، وَالْأَمْرُ: عِدْ، وَالنَّهْيُ: لَا تَعِدْ.",
-   "en": "The ʿIzzī's model row of the mithāl: the wāw falls in the present on يَفْعِلُ and in the maṣdar on فِعْلَة, and nowhere else — وَعَدَ, يَعِدُ, عِدَةً, the command عِدْ, the prohibition لَا تَعِدْ.",
-   "tr": "İzzî'nin misâl için verdiği örnek dizi: vâv yalnız يَفْعِلُ veznindeki muzâride ve فِعْلَة veznindeki masdarda düşer — وَعَدَ، يَعِدُ، عِدَةً, emir عِدْ, nehiy لَا تَعِدْ.",
-   "sourceStory": "tasrif-al-izzi",
-   "chapter": 13,
-   "sentence": "s6",
-   "source": "tasrif-al-izzi-src.txt:162"
-  },
-  {
-   "ar": "وَتَثْبُتُ فِي يَفْعَلُ بِالْفَتْحِ، كَوَجِلَ يَوْجَلُ، وَالْأَمْرُ مِنْهُ: اِيجَلْ، أَصْلُهُ: اِوْجَلْ، قُلِبَتِ الْوَاوُ يَاءً لِسُكُونِهَا وَانْكِسَارِ مَا قَبْلَهَا.",
-   "en": "In يَفْعَلُ the wāw stays: وَجِلَ يَوْجَلُ. Its imperative is written اِيجَلْ — originally اِوْجَلْ; the quiescent wāw after a kasra became a yāʾ.",
-   "tr": "يَفْعَلُ vezninde vâv yerinde kalır: وَجِلَ يَوْجَلُ. Emri اِيجَلْ diye yazılır — aslı اِوْجَلْ'dür; kesreden sonraki sâkin vâv yâ'ya kalbolmuştur.",
-   "sourceStory": "tasrif-al-izzi",
-   "chapter": 13,
-   "sentence": "s8",
-   "source": "tasrif-al-izzi-src.txt:165"
-  },
-  {
-   "ar": "وَأَمَّا الْيَاءُ فَتَثْبُتُ عَلَى كُلِّ حَالٍ، نَحْوُ: يَمُنَ يَيْمُنُ، وَيَئِسَ يَيْأَسُ، وَيَسَرَ يَيْسِرُ",
-   "en": "A first-radical yāʾ is never dropped, whatever the bāb: يَمُنَ يَيْمُنُ, يَئِسَ يَيْأَسُ, يَسَرَ يَيْسِرُ.",
-   "tr": "Fâu'l-fiil yâ ise hiçbir bâbda düşmez: يَمُنَ يَيْمُنُ، يَئِسَ يَيْأَسُ، يَسَرَ يَيْسِرُ.",
-   "sourceStory": "tasrif-al-izzi",
-   "chapter": 13,
-   "sentence": "s15",
-   "source": "tasrif-al-izzi-src.txt:173"
+  "examples": [
+    {
+      "ar": "وَقَفَ الْفِيلُ أَمَامَ مَكَّةَ.",
+      "en": "The elephant stopped before Mecca — وَقَفَ is sound in the past; its present is يَقِفُ, with the و gone.",
+      "sourceStory": "ashab-al-fil",
+      "chapter": 1,
+      "sentence": "s5",
+      "tr": "Fil Mekke'nin önünde durdu — وَقَفَ mâzide sahihtir; muzârisi يَقِفُ'dur, vâv düşmüştür."
+    },
+    {
+      "ar": "مَا وَصَلَ الْجَيْشُ إِلَى مَكَّةَ.",
+      "en": "The army did not reach Mecca — وَصَلَ / يَصِلُ, another mithal wawi.",
+      "sourceStory": "ashab-al-fil",
+      "chapter": 1,
+      "sentence": "s6",
+      "tr": "Ordu Mekke'ye ulaşmadı — وَصَلَ / يَصِلُ, bir başka misal-i vâvî."
+    },
+    {
+      "ar": "وَقَعَ يُونُسُ فِي الْبَحْرِ.",
+      "en": "Yunus fell into the sea — وَقَعَ / يَقَعُ: bab IV, so the vowel is fatha, yet the و still drops.",
+      "sourceStory": "yunus-wa-al-hut",
+      "tr": "Yunus denize düştü — وَقَعَ / يَقَعُ: dördüncü bâb, hareke fethadır, yine de vâv düşer."
+    },
+    {
+      "ar": "وَعَدَ يَعِدُ عِدَةً وَوَعْدًا فَهُوَ وَاعِدٌ، وَذَاكَ مَوْعُودٌ، وَالْأَمْرُ: عِدْ، وَالنَّهْيُ: لَا تَعِدْ.",
+      "en": "The ʿIzzī's model row of the mithāl: the wāw falls in the present on يَفْعِلُ and in the maṣdar on فِعْلَة, and nowhere else — وَعَدَ, يَعِدُ, عِدَةً, the command عِدْ, the prohibition لَا تَعِدْ.",
+      "tr": "İzzî'nin misâl için verdiği örnek dizi: vâv yalnız يَفْعِلُ veznindeki muzâride ve فِعْلَة veznindeki masdarda düşer — وَعَدَ، يَعِدُ، عِدَةً, emir عِدْ, nehiy لَا تَعِدْ.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s6",
+      "source": "tasrif-al-izzi-src.txt:162"
+    },
+    {
+      "ar": "وَتَثْبُتُ فِي يَفْعَلُ بِالْفَتْحِ، كَوَجِلَ يَوْجَلُ، وَالْأَمْرُ مِنْهُ: اِيجَلْ، أَصْلُهُ: اِوْجَلْ، قُلِبَتِ الْوَاوُ يَاءً لِسُكُونِهَا وَانْكِسَارِ مَا قَبْلَهَا.",
+      "en": "In يَفْعَلُ the wāw stays: وَجِلَ يَوْجَلُ. Its imperative is written اِيجَلْ — originally اِوْجَلْ; the quiescent wāw after a kasra became a yāʾ.",
+      "tr": "يَفْعَلُ vezninde vâv yerinde kalır: وَجِلَ يَوْجَلُ. Emri اِيجَلْ diye yazılır — aslı اِوْجَلْ'dür; kesreden sonraki sâkin vâv yâ'ya kalbolmuştur.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s8",
+      "source": "tasrif-al-izzi-src.txt:165"
+    },
+    {
+      "ar": "وَأَمَّا الْيَاءُ فَتَثْبُتُ عَلَى كُلِّ حَالٍ، نَحْوُ: يَمُنَ يَيْمُنُ، وَيَئِسَ يَيْأَسُ، وَيَسَرَ يَيْسِرُ",
+      "en": "A first-radical yāʾ is never dropped, whatever the bāb: يَمُنَ يَيْمُنُ, يَئِسَ يَيْأَسُ, يَسَرَ يَيْسِرُ.",
+      "tr": "Fâu'l-fiil yâ ise hiçbir bâbda düşmez: يَمُنَ يَيْمُنُ، يَئِسَ يَيْأَسُ، يَسَرَ يَيْسِرُ.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s15",
+      "source": "tasrif-al-izzi-src.txt:173"
+    },
+    {
+      "ar": "وَيُقَالُ لِلْمُعْتَلِّ الْفَاءِ «مِثَالٌ» لِأَنَّ مَاضِيَهُ مِثْلُ مَاضِي الصَّحِيحِ.",
+      "en": "The verb whose first radical is weak is called «مِثَالٌ» (the like), because its past is like the past of the sound verb.",
+      "tr": "Fâü'l-fiili illetli olana «مِثَالٌ» denir; çünkü mâzîsi sahîhin mâzîsi gibidir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 63,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:689 (ص 126)"
+    },
+    {
+      "ar": "وَهُوَ يَجِيءُ مِنْ خَمْسَةِ أَبْوَابٍ.",
+      "en": "It comes from five bābs.",
+      "tr": "Beş bâbdan gelir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 63,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:691 (ص 126)"
+    },
+    {
+      "ar": "فَحُذِفَ الْوَاوُ فِي «يَجُدُ» فِي لُغَتِهِمْ لِثِقَلِ الْوَاوِ مَعَ ضَمَّةِ مَا بَعْدَهَا.",
+      "en": "The wāw was dropped in «يَجُدُ» in their dialect because the wāw is heavy with the ḍamma of what follows it.",
+      "tr": "Onların lügatinde «يَجُدُ»da vâv, kendisinden sonrakinin dammesiyle birlikte ağır olduğu için hazfedilmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 63,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:693 (ص 126)"
+    },
+    {
+      "ar": "وَقِيلَ إِنَّ الْإِعْلَالَ إِنَّمَا يَكُونُ بِالسُّكُونِ أَوْ بِالْقَلْبِ إِلَى حَرْفِ الْعِلَّةِ أَوْ بِالْحَذْفِ، وَثَلَاثَتُهَا لَا تُمْكِنُ.",
+      "en": "And it has been said: weakening happens only by making quiescent, or by turning into a weak letter, or by dropping — and none of the three is possible.",
+      "tr": "Şöyle de denilmiştir: i'lâl ancak sükûn ile, ya da illet harfine kalb ile, ya da hazf ile olur; üçü de mümkün değildir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 64,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:698 (ص 127)"
+    },
+    {
+      "ar": "أَمَّا السُّكُونُ فَلِتَعَذُّرِهِ لِأَنَّهُ مُبْتَدَأٌ وَالِابْتِدَاءُ مِنَ السَّاكِنِ مُتَعَذِّرٌ.",
+      "en": "As for making it quiescent, because that cannot be: it is begun with, and beginning with a quiescent letter is impossible.",
+      "tr": "Sükûna gelince, imkânsız olduğu içindir; çünkü kendisiyle başlanır, sâkin ile başlamak ise müteazzirdir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 64,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:699 (ص 127)"
+    },
+    {
+      "ar": "وَكَذَا الْقَلْبُ لِأَنَّ الْمَقْلُوبَ بِهِ غَالِبًا يَكُونُ بِحَرْفِ الْعِلَّةِ وَحَرْفُ الْعِلَّةِ لَا يَكُونُ إِلَّا سَاكِنَةً.",
+      "en": "So too the turning, because what a letter is turned into is mostly a weak letter, and the weak letter is only ever quiescent.",
+      "tr": "Kalb de böyledir; çünkü kendisine kalbedilen çoğunlukla illet harfi olur, illet harfi ise ancak sâkin olur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 64,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:700 (ص 127)"
+    },
+    {
+      "ar": "وَأَمَّا الْحَذْفُ فَلِنُقْصَانِهِ مِنَ الْقَدْرِ الصَّالِحِ فِي الثُّلَاثِيِّ.",
+      "en": "As for the dropping, because the word would fall short of the proper measure in the triliteral.",
+      "tr": "Hazfe gelince, sülâsîde elverişli miktardan eksik kalacağı içindir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 64,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:701 (ص 127)"
+    },
+    {
+      "ar": "وَلَا يُعَوَّضُ بِالتَّاءِ فِي الْأَوَّلِ وَالْآخِرِ حَتَّى لَا يَلْتَبِسَ بِالْمُسْتَقْبَلِ وَالْمَصْدَرِ فِي نَفْسِ الْحُرُوفِ.",
+      "en": "And it is not compensated with a tāʾ at the beginning or at the end, so that it is not confused with the future and the maṣdar in the letters themselves.",
+      "tr": "Başta ve sonda tâ ile telâfi edilmez; tâ ki harflerin kendisinde müstakbel ve masdar ile karışmasın.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 64,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:703 (ص 127)"
+    },
+    {
+      "ar": "وَمِنْ ثَمَّ لَا يَجُوزُ إِدْخَالُ التَّاءِ فِي الْأَوَّلِ فِي «عِدَةٍ» لِلِالْتِبَاسِ بِالْمُسْتَقْبَلِ.",
+      "en": "Hence it is not allowed to bring the tāʾ in at the beginning of «عِدَةٍ», because it would be confused with the future.",
+      "tr": "Bundan dolayı «عِدَةٍ»de tâyı başa getirmek câiz olmaz; müstakbel ile karışacağı için.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 65,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:705 (ص 127)"
+    },
+    {
+      "ar": "وَيَجُوزُ فِي «التُّكْلَانِ» لِعَدَمِ الِالْتِبَاسِ.",
+      "en": "It is allowed in «التُّكْلَانِ», because there is no confusion.",
+      "tr": "«التُّكْلَانِ»da ise câizdir; karışıklık olmadığı için.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 65,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:707 (ص 128)"
+    },
+    {
+      "ar": "وَعِنْدَ الْفَرَّاءِ لَا يَجُوزُ الْحَذْفُ لِأَنَّهَا عِوَضٌ مِنَ الْحَرْفِ الْأَصْلِيِّ إِلَّا فِي الْإِضَافَةِ لِأَنَّ الْإِضَافَةَ تَقُومُ مَقَامَهَا.",
+      "en": "According to al-Farrāʾ the dropping is not allowed, because it stands in place of the original letter — except in annexation, because the annexation takes its place.",
+      "tr": "Ferrâ'ya göre hazif câiz değildir; çünkü o, aslî harfin bedelidir; yalnız izâfette câizdir, çünkü izâfet onun yerini tutar.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 65,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:709 (ص 128)"
+    },
+    {
+      "ar": "وَمِنْ ثَمَّ حُذِفَ التَّاءُ فِي قَوْلِهِ تَعَالَى «وَإِقَامَ الصَّلَاةِ».",
+      "en": "Hence the tāʾ was dropped in His saying, Most High: «وَإِقَامَ الصَّلَاةِ».",
+      "tr": "Bundan dolayı Allah Teâlâ'nın «وَإِقَامَ الصَّلَاةِ» sözünde tâ hazfedilmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 65,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:712 (ص 129)"
+    },
+    {
+      "ar": "وَيَجُوزُ فِي «وَعَدتُّ» إِدْغَامُ الدَّالِ فِي التَّاءِ لِقُرْبِ الْمَخْرَجِ.",
+      "en": "In «وَعَدتُّ» it is allowed to merge the dāl into the tāʾ, because their points of articulation are near.",
+      "tr": "«وَعَدتُّ»da, mahreçleri yakın olduğu için dâlın tâya idgâmı câizdir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 66,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:715 (ص 129)"
+    },
+    {
+      "ar": "أَصْلُهُ «يَوْعِدُ» فَحُذِفَ الْوَاوُ لِأَنَّهُ يَلْزَمُ الْخُرُوجُ مِنَ الْكَسْرَةِ التَّقْدِيرِيَّةِ إِلَى الضَّمَّةِ التَّقْدِيرِيَّةِ وَمِنَ الضَّمَّةِ التَّقْدِيرِيَّةِ إِلَى الْكَسْرَةِ الْحَقِيقِيَّةِ، وَمِثْلُ هٰذَا ثَقِيلٌ.",
+      "en": "Its origin is «يَوْعِدُ»; the wāw was dropped because one would have to pass from an implied kasra to an implied ḍamma, and from the implied ḍamma to a real kasra — and the like of this is heavy.",
+      "tr": "Aslı «يَوْعِدُ»dür; vâv hazfedilmiştir, çünkü takdîrî kesreden takdîrî dammeye, takdîrî dammeden de hakîkî kesreye geçmek lâzım gelir; böylesi ise ağırdır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 66,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:717 (ص 129)"
+    },
+    {
+      "ar": "وَمِنْ ثَمَّ لَا يَجِيءُ لُغَةٌ عَلَى وَزْنِ «فِعُلٍ» وَ «فُعِلٍ» إِلَّا «حِبُكٌ» وَ «دُئِلٌ».",
+      "en": "Hence no word comes on the measure «فِعُلٍ» or «فُعِلٍ», except «حِبُكٌ» and «دُئِلٌ».",
+      "tr": "Bundan dolayı «فِعُلٍ» ve «فُعِلٍ» vezninde kelime gelmez; yalnız «حِبُكٌ» ve «دُئِلٌ» gelmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 66,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:718 (ص 129)"
+    },
+    {
+      "ar": "وَهُمْ يَقْلِبُونَهَا بِالْحَاجِزِ فِي نَحْوِ «قِنْيَةٍ» فَبِغَيْرِ حَاجِزٍ يَكُونُونَ أَقْلَبَ.",
+      "en": "They turn it even across a barrier, as in «قِنْيَةٍ»; without a barrier, then, they turn it all the more.",
+      "tr": "Onu, «قِنْيَةٍ» gibilerinde arada engel varken bile kalbederler; engel yokken elbette daha çok kalbederler.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 66,
+      "sentence": "s15",
+      "source": "marah-al-arwah-src.txt:730 (ص 131)"
+    },
+    {
+      "ar": "الْمُعْتَلُّ هُوَ مَا كَانَ أَحَدُ أُصُولِهِ حَرْفَ عِلَّةٍ، وَهِيَ: الْوَاوُ وَالْيَاءُ وَالْأَلِفُ، وَتُسَمَّى حُرُوفَ الْمَدِّ وَاللِّينِ.",
+      "en": "The weak verb (muʿtall) is that one of whose root letters is a weak letter; these are the wāw, the yāʾ and the alif, and they are called the letters of prolongation and softness.",
+      "tr": "Mu'tell, aslî harflerinden biri illet harfi olandır; illet harfleri vâv, yâ ve eliftir; bunlara med ve lîn harfleri de denir.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s1",
+      "source": "tasrif-al-izzi-src.txt:157 (ص 76)"
+    },
+    {
+      "ar": "وَأَنْوَاعُهُ سَبْعَةٌ.",
+      "en": "Its kinds are seven.",
+      "tr": "Onun nevileri yedidir.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s3",
+      "source": "tasrif-al-izzi-src.txt:159 (ص 76)"
+    },
+    {
+      "ar": "الْأَوَّلُ: الْمُعْتَلُّ الْفَاءِ، وَيُقَالُ لَهُ الْمِثَالُ لِمُمَاثَلَتِهِ الصَّحِيحَ فِي احْتِمَالِ الْحَرَكَاتِ.",
+      "en": "The first: the weak-fāʾ verb; it is called al-mithāl («the like») because it resembles the sound verb in bearing the vowels.",
+      "tr": "Birincisi: fâsı illetli olan (mu'tellü'l-fâ); harekeleri taşımada sahîhe benzediği için ona «misâl» denir.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s4",
+      "source": "tasrif-al-izzi-src.txt:160 (ص 76)"
+    },
+    {
+      "ar": "وَكَذٰلِكَ وَمِقَ يَمِقُ مِقَةً، فَإِذَا أُزِيلَتْ كَسْرَةُ مَا بَعْدَهَا أُعِيدَتِ الْوَاوُ الْمَحْذُوفَةُ، نَحْوُ: لَمْ يُوعَدْ.",
+      "en": "And likewise وَمِقَ يَمِقُ مِقَةً («to love»). When the kasra of what follows it is removed, the dropped wāw is brought back, like لَمْ يُوعَدْ.",
+      "tr": "وَمِقَ يَمِقُ مِقَةً («sevmek») de böyledir. Kendisinden sonraki harfin kesresi giderildiğinde hazfedilen vâv geri getirilir: «لَمْ يُوعَدْ» gibi.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s7",
+      "source": "tasrif-al-izzi-src.txt:163 (ص 76)"
+    },
+    {
+      "ar": "وَحُذِفَتْ مِنْ يَذَرُ لِكَوْنِهِ بِمَعْنَى يَدَعُ.",
+      "en": "And it was dropped from يَذَرُ because it has the meaning of يَدَعُ.",
+      "tr": "«يَذَرُ»dan da, «يَدَعُ» mânâsında olduğu için hazfedilmiştir.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s12",
+      "source": "tasrif-al-izzi-src.txt:170 (ص 78)"
+    },
+    {
+      "ar": "وَأَمَاتُوا مَاضِيَ يَدَعُ وَيَذَرُ.",
+      "en": "And they let the past of يَدَعُ and يَذَرُ die out.",
+      "tr": "«يَدَعُ» ve «يَذَرُ»nun mâzîsini ise (Araplar) terk etmişlerdir.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s13",
+      "source": "tasrif-al-izzi-src.txt:171 (ص 78)"
+    },
+    {
+      "ar": "وَحَذْفُ الْفَاءِ دَلِيلٌ عَلَى أَنَّهُ وَاوِيٌّ.",
+      "en": "The dropping of the fāʾ is a sign that the verb is wāw-rooted.",
+      "tr": "Fânın hazfi, onun vâvî olduğuna delildir.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s14",
+      "source": "tasrif-al-izzi-src.txt:172 (ص 78)"
+    },
+    {
+      "ar": "وَقَدْ يُقَالُ: ايتَعَدَ يَاتَعِدُ فَهُوَ مُوتَعِدٌ، وَذَاكَ مُوتَعَدٌ، وَايتَسَرَ يَاتَسِرُ فَهُوَ مُوتَسِرٌ، وَذَاكَ مُوتَسَرٌ بِهِ، وَهٰذَا مَكَانٌ مُوتَسَرٌ فِيهِ.",
+      "en": "And it may be said: ايتَعَدَ يَاتَعِدُ, so he is مُوتَعِدٌ and that is مُوتَعَدٌ; and ايتَسَرَ يَاتَسِرُ, so he is مُوتَسِرٌ and that is مُوتَسَرٌ بِهِ; and «this is a place مُوتَسَرٌ فِيهِ».",
+      "tr": "Şöyle de denebilir: ايتَعَدَ يَاتَعِدُ; o «مُوتَعِدٌ», öteki «مُوتَعَدٌ»dir; ve ايتَسَرَ يَاتَسِرُ; o «مُوتَسِرٌ», öteki «مُوتَسَرٌ بِهِ»dir; «bu, مُوتَسَرٌ فِيهِ bir yerdir» de denir.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 13,
+      "sentence": "s17",
+      "source": "tasrif-al-izzi-src.txt:176 (ص 79)"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "لَمْ يَوْصِلْ إِلَى مَكَّةَ",
+      "right": "لَمْ يَصِلْ إِلَى مَكَّةَ",
+      "why": {
+        "en": "Whatever is built on the present inherits the dropped و — jussive, subjunctive, imperative and prohibition all lose it.",
+        "tr": "Muzâriden türeyen her sîga düşen و'ı da devralır: cezm, nasb, emir ve nehiy hepsinde و yoktur."
+      }
+    },
+    {
+      "wrong": "اِوْصِلْ",
+      "right": "صِلْ",
+      "why": {
+        "en": "The imperative of a mithal is built from the jussive, which has already lost the و — so no connecting hamza is needed and the word is one letter plus its ending.",
+        "tr": "Misalin emri meczumdan yapılır ve orada و zaten düşmüştür; bu yüzden vasıl hemzesine gerek kalmaz."
+      }
+    },
+    {
+      "wrong": "يَسَرَ – يَسِرُ",
+      "right": "يَسَرَ – يَيْسِرُ",
+      "why": {
+        "en": "The rule is for و only. A mithal ya'i keeps its ي in every bab — nothing is dropped.",
+        "tr": "Kaide yalnız و içindir. Misal-i yâînin يا'sı hiçbir babda düşmez."
+      }
+    },
+    {
+      "wrong": "يُعَدُ (مَجْهُولُ يَعِدُ)",
+      "right": "يُوعَدُ",
+      "why": {
+        "en": "The و was dropped because it stood before a kasra. The passive has damma there instead, so the condition fails and the و comes back.",
+        "tr": "و, kesreden önce bulunduğu için düşmüştü. Meçhulde orada damme vardır, şart bozulur ve و geri döner."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "hollow-verbs",
+    "naqis-verbs",
+    "imperative-amr"
+  ],
+  "gameSeeds": {
+    "spotTheError": true,
+    "harakatTargets": [
+      "يَقِفُ",
+      "يَصِلُ",
+      "عِدْ"
+    ]
   }
- ],
- "commonMistakes": [
-  {
-   "wrong": "لَمْ يَوْصِلْ إِلَى مَكَّةَ",
-   "right": "لَمْ يَصِلْ إِلَى مَكَّةَ",
-   "why": {
-    "en": "Whatever is built on the present inherits the dropped و — jussive, subjunctive, imperative and prohibition all lose it.",
-    "tr": "Muzâriden türeyen her sîga düşen و'ı da devralır: cezm, nasb, emir ve nehiy hepsinde و yoktur."
-   }
-  },
-  {
-   "wrong": "اِوْصِلْ",
-   "right": "صِلْ",
-   "why": {
-    "en": "The imperative of a mithal is built from the jussive, which has already lost the و — so no connecting hamza is needed and the word is one letter plus its ending.",
-    "tr": "Misalin emri meczumdan yapılır ve orada و zaten düşmüştür; bu yüzden vasıl hemzesine gerek kalmaz."
-   }
-  },
-  {
-   "wrong": "يَسَرَ – يَسِرُ",
-   "right": "يَسَرَ – يَيْسِرُ",
-   "why": {
-    "en": "The rule is for و only. A mithal ya'i keeps its ي in every bab — nothing is dropped.",
-    "tr": "Kaide yalnız و içindir. Misal-i yâînin يا'sı hiçbir babda düşmez."
-   }
-  },
-  {
-   "wrong": "يُعَدُ (مَجْهُولُ يَعِدُ)",
-   "right": "يُوعَدُ",
-   "why": {
-    "en": "The و was dropped because it stood before a kasra. The passive has damma there instead, so the condition fails and the و comes back.",
-    "tr": "و, kesreden önce bulunduğu için düşmüştü. Meçhulde orada damme vardır, şart bozulur ve و geri döner."
-   }
-  }
- ],
- "relatedNotes": [
-  "hollow-verbs",
-  "naqis-verbs",
-  "imperative-amr"
- ],
- "gameSeeds": {
-  "spotTheError": true,
-  "harakatTargets": [
-   "يَقِفُ",
-   "يَصِلُ",
-   "عِدْ"
-  ]
- }
 }

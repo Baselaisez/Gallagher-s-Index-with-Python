@@ -17997,6 +17997,92 @@ if (!CHROME) {
     if (live.length !== 6 || out.length) throw new Error('not judged: ' + J(out.slice(0, 12)));
   });
 
+  // >>> v342-S — the ṣarf books' ledger and the rules consumed (Marāḥ al-Arwāḥ, al-Maqṣūd, Taṣrīf al-ʿIzzī)
+  {
+    const LEDGER342 = {   // measured 2026-11-26 (v342-S): a count may only move the right way — applied and noted up, open down
+      marah: { n: 669, applied: 316, carried: 664, open: 0, na: 5 },
+      izzi: { n: 278, applied: 175, carried: 277, open: 0, na: 1 },
+      maqsud: { n: 693, applied: 411, carried: 422, open: 204, na: 67 } };
+    const TITLE342 = { marah: 'Marāḥ al-Arwāḥ', izzi: 'Taṣrīf al-ʿIzzī', maqsud: 'al-Maqṣūd' };
+    for (const book of ['marah', 'maqsud', 'izzi']) {
+      await check(`v342 — the ṣarf ledger of ${TITLE342[book]}: every rule sentence cut by script from its source with its line, each one applied (a probe runs the book's own words through an engine and passes), noted (a note or a bank quotes or anchors it), not automatable (with the reason) or open — the counts may only improve, and every «applied» is re-proved here`, async () => {
+        const J = JSON.stringify, root = path.resolve(__dirname, '..');
+        const cov = JSON.parse(fs.readFileSync(path.join(root, 'content', 'rules', `coverage_${book}.json`), 'utf8'));
+        const probes = JSON.parse(fs.readFileSync(path.join(root, 'content', 'rules', 'sarf_ledger_probes.json'), 'utf8')).probes.filter(p => p.entry.startsWith(book + ':'));
+        const src = {}; const lines = f => src[f] || (src[f] = fs.readFileSync(path.join(root, 'research', 'sources', f), 'utf8').split('\n'));
+        const bad = []; const C = { applied: 0, noted: 0, 'not-automatable': 0, open: 0 };
+        const byEntry = new Map(); for (const p of probes) (byEntry.get(p.entry) || byEntry.set(p.entry, []).get(p.entry)).push(p);
+        for (const e of cov.entries) {
+          C[e.status] = (C[e.status] || 0) + 1;
+          const f = (e.file || cov.source[0]).replace(/^research\/sources\//, ''), L = lines(f), at = e.lines || [e.line];
+          const text = at.map(n => L[n - 1] || '').join('\n');
+          if (!text.includes(e.ar) && !at.map(n => (L[n - 1] || '').trim()).join('\n').includes(e.ar) && !text.replace(/\s+/g, ' ').includes(e.ar.replace(/\s+/g, ' '))) bad.push(e.id + ' not verbatim at its line');
+          const pr = byEntry.get(e.id) || [];
+          if (e.status === 'applied' && (!pr.length || !e.carried_by.some(c => c.probe))) bad.push(e.id + ' applied without a probe');
+          if (e.status === 'noted' && !e.carried_by.some(c => c.note || c.bank)) bad.push(e.id + ' noted without a note or a bank');
+          if (e.status === 'not-automatable' && !e.why) bad.push(e.id + ' not automatable without the reason');
+        }
+        const P = LEDGER342[book];
+        if (cov.entries.length !== P.n) bad.push('entries ' + cov.entries.length + ' ≠ ' + P.n + ' (a re-cut must be re-measured)');
+        if (C.applied < P.applied || C.applied + C.noted < P.carried || C.open > P.open || C['not-automatable'] > P.na) bad.push('counts went back: ' + J(C) + ' vs ' + J(P));
+        if (J(cov.counts) !== J(Object.fromEntries(Object.entries(C).filter(([, v]) => v).sort()))) bad.push('the file\'s own counts disagree with its entries: ' + J(cov.counts));
+        // every probe of the book, re-run in the page: the book's word through the engine
+        const r = await page.evaluate(([src, probes]) => { const Lx = (0, eval)(src); const fail = [];
+          for (const p of probes) { const x = Lx.run(p); if (!x.ok) fail.push(p.id + ' ' + (p.w || p.asl || p.id) + ' → ' + x.got); } return { n: probes.length, fail }; },
+          [require(path.join(__dirname, 'ledger', 'sarf_probe_eval.js')), probes]);
+        if (r.fail.length) bad.push(r.fail.length + ' probes failed: ' + r.fail.slice(0, 6).join(' · '));
+        if (bad.length) throw new Error(bad.length + ': ' + bad.slice(0, 8).join(' · '));
+      });
+    }
+  }
+
+  await check('v342 — iʿlāl by the books\' own words (the ledger\'s probes found them missing): اِوْتَقَدَ → اِتَّقَدَ and اِيتَسَرَ → اِتَّسَرَ (Marāḥ L567–L568), اِيتَكَلَ kept «لِأَنَّ الْيَاءَ لَيْسَتْ بِلَازِمَةٍ» (L569); أَغْزَوْتُ → أَغْزَيْتُ (L748); رَمَيُوا → رَمَوْا, يَخْشَيُونَ → يَخْشَوْنَ (ʿIzzī L225, Maqṣūd l. 644); دَعَوَتْ → دَعَتْ (was دَعُتْ); غَزَوَتَا → غَزَتَا (Marāḥ L114) — and the controls stand', async () => {
+    const r = await page.evaluate(() => {
+      const E = IlalEngine, N = s => String(s || '').normalize('NFC'), bad = [];
+      const D = a => { const d = E.derive(a); return { out: N(E.spell(d.out)), steps: d.steps.map(s => s.id), gates: d.gates.map(g => g.verdict + ':' + g.id) }; };
+      const BOOK = [['اِوْتَقَدَ', 'اِتَّقَدَ', 'ibdal-ta'], ['اِيتَسَرَ', 'اِتَّسَرَ', 'ibdal-ta'], ['يَوْتَقِدُ', 'يَتَّقِدُ', 'ibdal-ta'], ['مُوْتَقِدٌ', 'مُتَّقِدٌ', 'ibdal-ta'],
+        ['أَغْزَوْتُ', 'أَغْزَيْتُ', 'qalb-waw-rabia'], ['أَعْطَوْتُ', 'أَعْطَيْتُ', 'qalb-waw-rabia'], ['اِسْتَدْعَوْتُ', 'اِسْتَدْعَيْتُ', 'qalb-waw-rabia'],
+        ['رَمَيُوا', 'رَمَوْا', 'hadhf-sakinayn'], ['غَزَوُوا', 'غَزَوْا', 'hadhf-sakinayn'], ['يَخْشَيُونَ', 'يَخْشَوْنَ', 'hadhf-sakinayn'], ['مُصْطَفَيُونَ', 'مُصْطَفَوْنَ', 'hadhf-sakinayn'],
+        ['دَعَوَتْ', 'دَعَتْ', 'hadhf-sakinayn'], ['غَزَوَتَا', 'غَزَتَا', 'hadhf-alif-ta'], ['رَمَيَتَا', 'رَمَتَا', 'hadhf-alif-ta']];
+      for (const [a, w, id] of BOOK) { const d = D(a); if (d.out !== N(w) || !d.steps.includes(id)) bad.push(a + ' → ' + d.out + ' [' + d.steps + '] ≠ ' + w); }
+      const ys = D('اِيتَسَرَ'); if (ys.gates.includes('open:ghayr-lazima') || ys.gates.includes('blocked:ghayr-lazima')) bad.push('اِيتَسَرَ is from ي س ر by the teacher\'s ruling of 2026-11-26 — one reading, no «أ س ر» beside it: ' + ys.gates);
+      const yk = D('اِيتَكَلَ'); if (yk.out !== N('اِيتَكَلَ') || !yk.gates.includes('blocked:ghayr-lazima')) bad.push('اِيتَكَلَ kept: ' + JSON.stringify(yk));
+      for (const [a, w] of [['دَعَوْتُ', 'دَعَوْتُ'], ['غَزَوْتُ', 'غَزَوْتُ'], ['غَزَوَا', 'غَزَوَا'], ['رَمَيَا', 'رَمَيَا'], ['قَوَلْتُ', 'قُلْتُ'], ['قَوَلْنَ', 'قُلْنَ'], ['بَيَعْتُ', 'بِعْتُ'], ['تَقْوِيمٌ', 'تَقْوِيمٌ'],
+        ['مَوْتٌ', 'مَوْتٌ'], ['يَرْمِيُونَ', 'يَرْمُونَ'], ['رَضِيُوا', 'رَضُوا'], ['الْفَتَيُ', 'الْفَتَى'], ['أَغْزَوْتُمَا', 'أَغْزَيْتُمَا'], ['قَوَلْتُمَا', 'قُلْتُمَا'], ['رَمَيْنَا', 'رَمَيْنَا'], ['قَاوِلٌ', 'قَائِلٌ']])
+        { const d = D(a); if (d.out !== N(w)) bad.push('control ' + a + ' → ' + d.out + ' ≠ ' + w); }
+      const g = E.GATES.find(x => x.id === 'ghayr-lazima'); const rules = ['ibdal-ta', 'qalb-waw-rabia', 'hadhf-alif-ta'].map(id => E.RULES.find(x => x.id === id));
+      return { bad, gate: g && { src: g.src, book: g.book }, ar: rules.map(x => x && x.ar), audit: (() => { const A = sarfAudit(); return { bad: (A.bad || []).length, x: A.x }; })() };
+    });
+    if (r.bad.length) throw new Error(r.bad.join(' · '));
+    // the rules speak the book's own words: each `ar` is a line (or a clause) of the Marāḥ, verbatim
+    const M = fs.readFileSync(path.resolve(__dirname, '..', 'research/sources/marah-al-arwah-src.txt'), 'utf8').split('\n');
+    if (!r.gate || r.gate.src !== 'Marāḥ L569' || r.gate.book !== M[568]) throw new Error('the gate quotes L569: ' + JSON.stringify(r.gate));
+    if (!M[566].includes(r.ar[0]) || r.ar[1] !== M[747] || r.ar[2] !== M[113]) throw new Error('the rules\' Arabic is not the book\'s: ' + JSON.stringify(r.ar));
+    // measured at v342-S: sarfAudit regenerates every stored paradigm with none newly wrong; the derived-noun sweep is unchanged (8184 read, 455 through a gate)
+    if (r.audit.bad !== 0) throw new Error('sarfAudit: ' + JSON.stringify(r.audit));
+  });
+
+  await check('v342 — the books\' lines in the notes: the rule sentences the engines do not apply stand in their chapter\'s ṣarf note, verbatim, each with its line and the story\'s own translation (Marāḥ pp. 145–182 with renderings awaiting review); mahmuz-verbs, lafif-verbs and ibdal exist; a note shows its book lines behind one tap', async () => {
+    const root = path.resolve(__dirname, '..'), G = path.join(root, 'content', 'grammar'), bad = [];
+    const L = {}; const lines = f => L[f] || (L[f] = fs.readFileSync(path.join(root, 'research', 'sources', f), 'utf8').split('\n'));
+    let n = 0, matn = 0;
+    for (const f of fs.readdirSync(G).filter(x => x.endsWith('.json'))) { const note = JSON.parse(fs.readFileSync(path.join(G, f), 'utf8'));
+      for (const x of note.examples || []) { const m = /^(marah-al-arwah-src\.txt|tasrif-al-izzi-src\.txt|marah-al-arwah-matn\.txt):(\d+)(?:–(\d+))?/.exec(x.source || ''); if (!m) continue; n++;
+        const text = lines(m[1]).slice(+m[2] - 1, +(m[3] || m[2])).join(' ');
+        if (m[1] === 'marah-al-arwah-matn.txt') { matn++; if (!text.replace(/\[ص \d+\]/g, ' ').replace(/\s+/g, ' ').includes(x.ar.replace(/\s+/g, ' '))) bad.push(f + ' matn ' + m[2] + ' not verbatim');   // a unit across a page break: the page mark is no text
+          if (!/awaiting review/.test(x.en) || !/inceleme bekliyor/.test(x.tr)) bad.push(f + ' matn ' + m[2] + ' rendering not marked'); }
+        else if (text.replace(/\s*\[print: [^\]]*\]/g, '').trim() !== x.ar && !text.includes(x.ar)) bad.push(f + ' ' + m[1] + ':' + m[2] + ' not verbatim');
+        if (!x.en || !x.tr) bad.push(f + ' ' + x.source + ' untranslated'); } }
+    if (n < 420 || matn < 35) bad.push('book lines in notes: ' + n + ' (matn ' + matn + ')');
+    const r = await page.evaluate(() => { const out = {};
+      for (const id of ['mahmuz-verbs', 'lafif-verbs', 'ibdal', 'hollow-verbs']) { const d = document.createElement('div'); d.innerHTML = renderNote(id) || '';
+        out[id] = { title: (GRAMMAR[id] || {}).title, book: d.querySelectorAll('details.book-ex .ex').length, own: d.querySelectorAll(':scope .gnote > .ex').length, sum: (d.querySelector('details.book-ex summary') || {}).textContent || '', cite: (d.querySelector('details.book-ex .ex-cite') || {}).textContent || '' }; }
+      return out; });
+    for (const [id, x] of Object.entries(r)) if (!x.title || x.book < 5 || !/books/i.test(x.sum + ' ') && !/Kitap/.test(x.sum) || !x.cite) bad.push(id + ' ' + JSON.stringify(x));
+    if (r.ibdal.title.ar !== 'الْإِبْدَالُ' || r['lafif-verbs'].title.ar !== 'اللَّفِيفُ' || r['mahmuz-verbs'].title.ar !== 'الْمَهْمُوزُ') bad.push('titles: ' + JSON.stringify([r.ibdal.title, r['lafif-verbs'].title, r['mahmuz-verbs'].title]));
+    if (bad.length) throw new Error(bad.length + ': ' + bad.slice(0, 8).join(' · '));
+  });
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

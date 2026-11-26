@@ -1,102 +1,372 @@
 {
- "id": "imperative-amr",
- "title": {
-  "ar": "فِعْل الأَمْر",
-  "en": "The Imperative (fi'l al-amr)",
-  "tr": "Emir fiili"
- },
- "level": 2,
- "group": "sarf",
- "classicalSources": [
-  "الأمثلة المطردة — الأمر الحاضر",
-  "بناء الأفعال",
-  "المقصود — بناء الأمر",
-  "تَصْرِيفُ الْعِزِّيِّ لِلزَّنْجَانِيِّ (tasrif-al-izzi-src.txt، س 92، 95)"
- ],
- "plain": {
-  "en": "How you tell someone to do something.",
-  "tr": "Birine bir işi yapmasını söyleme şekli."
- },
- "explanation": {
-  "en": "The imperative commands someone to do something. It is built from the present-tense (مضارع) stem: drop the prefix, and if the result starts with a consonant cluster, add a helping alif. From تَسْمَعُ (you listen) → اسْمَعْ (listen!). The final letter takes sukun (or drops for weak-final verbs).",
-  "tr": "Emir fiili, muzari gövdesinden yapılır: muzaraat harfi atılır, gerekirse başa hemze getirilir. تَسْمَعُ → اسْمَعْ (dinle!). Son harf cezimlenir."
- },
- "examples": [
-  {
-   "ar": "اسْمَعْ وَصِيَّتِي.",
-   "en": "Listen to my testament.",
-   "sourceStory": "wasiyyat-abi-hanifa-L2",
-   "sentence": "s3",
-   "tr": "Vasiyetimi dinle."
+  "id": "imperative-amr",
+  "title": {
+    "ar": "فِعْل الأَمْر",
+    "en": "The Imperative (fi'l al-amr)",
+    "tr": "Emir fiili"
   },
-  {
-   "ar": "اُكْتُبْ دَرْسَكَ.",
-   "en": "Write your lesson.",
-   "tr": "Dersini yaz."
+  "level": 2,
+  "group": "sarf",
+  "classicalSources": [
+    "الأمثلة المطردة — الأمر الحاضر",
+    "بناء الأفعال",
+    "المقصود — بناء الأمر",
+    "تَصْرِيفُ الْعِزِّيِّ لِلزَّنْجَانِيِّ (tasrif-al-izzi-src.txt، س 92، 95)"
+  ],
+  "plain": {
+    "en": "How you tell someone to do something.",
+    "tr": "Birine bir işi yapmasını söyleme şekli."
   },
-  {
-   "ar": "قُلِ الْحَقَّ.",
-   "en": "Speak the truth. (hollow verb: قال → قُلْ)",
-   "tr": "Doğruyu söyle. (ecvef fiil: قال → قُلْ)"
+  "explanation": {
+    "en": "The imperative commands someone to do something. It is built from the present-tense (مضارع) stem: drop the prefix, and if the result starts with a consonant cluster, add a helping alif. From تَسْمَعُ (you listen) → اسْمَعْ (listen!). The final letter takes sukun (or drops for weak-final verbs).",
+    "tr": "Emir fiili, muzari gövdesinden yapılır: muzaraat harfi atılır, gerekirse başa hemze getirilir. تَسْمَعُ → اسْمَعْ (dinle!). Son harf cezimlenir."
   },
-  {
-   "ar": "وَأَمَّا الْأَمْرُ بِالصِّيغَةِ، وَهُوَ أَمْرُ الْحَاضِرِ، فَهُوَ جَارٍ عَلَى لَفْظِ الْمُضَارِعِ الْمَجْزُومِ.",
-   "en": "The ʿIzzī's definition: the imperative «by the form» — the command to the one present — runs on the wording of the jussive present.",
-   "tr": "İzzî'nin tarifi: «sîga ile emir» — emr-i hâzır — meczûm muzârinin lafzı üzere cereyan eder.",
-   "sourceStory": "tasrif-al-izzi",
-   "chapter": 8,
-   "sentence": "s1",
-   "source": "tasrif-al-izzi-src.txt:92"
-  },
-  {
-   "ar": "وَإِنْ كَانَ مَا بَعْدَ حَرْفِ الْمُضَارَعَةِ سَاكِنًا فَتَحْذِفُ مِنْهُ حَرْفَ الْمُضَارَعَةِ وَتَأْتِي بِصُورَةِ الْبَاقِي مَجْزُومًا، مَزِيدًا فِي أَوَّلِهِ هَمْزَةُ وَصْلٍ مَكْسُورَةً، إِلَّا أَنْ تَكُونَ عَيْنُ الْمُضَارِعِ مِنْهُ مَضْمُومَةً فَتَضُمُّهَا، فَتَقُولُ: اُنْصُرْ اُنْصُرَا اُنْصُرُوا، اُنْصُرِي اُنْصُرَا اُنْصُرْنَ.",
-   "en": "When the letter after the prefix is quiescent, the prefix is dropped and a waṣl hamza is put in front — with kasra, or with ḍamma when the present's middle letter has ḍamma: اُنْصُرْ اُنْصُرَا اُنْصُرُوا, اُنْصُرِي اُنْصُرَا اُنْصُرْنَ.",
-   "tr": "Muzâraat harfinden sonraki harf sâkin ise o harf atılır ve başa bir vasıl hemzesi getirilir — kesreli olarak, muzârinin aynı zammeli ise zammeli: اُنْصُرْ اُنْصُرَا اُنْصُرُوا، اُنْصُرِي اُنْصُرَا اُنْصُرْنَ.",
-   "sourceStory": "tasrif-al-izzi",
-   "chapter": 8,
-   "sentence": "s4",
-   "source": "tasrif-al-izzi-src.txt:95"
+  "examples": [
+    {
+      "ar": "اسْمَعْ وَصِيَّتِي.",
+      "en": "Listen to my testament.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s3",
+      "tr": "Vasiyetimi dinle."
+    },
+    {
+      "ar": "اُكْتُبْ دَرْسَكَ.",
+      "en": "Write your lesson.",
+      "tr": "Dersini yaz."
+    },
+    {
+      "ar": "قُلِ الْحَقَّ.",
+      "en": "Speak the truth. (hollow verb: قال → قُلْ)",
+      "tr": "Doğruyu söyle. (ecvef fiil: قال → قُلْ)"
+    },
+    {
+      "ar": "وَأَمَّا الْأَمْرُ بِالصِّيغَةِ، وَهُوَ أَمْرُ الْحَاضِرِ، فَهُوَ جَارٍ عَلَى لَفْظِ الْمُضَارِعِ الْمَجْزُومِ.",
+      "en": "The ʿIzzī's definition: the imperative «by the form» — the command to the one present — runs on the wording of the jussive present.",
+      "tr": "İzzî'nin tarifi: «sîga ile emir» — emr-i hâzır — meczûm muzârinin lafzı üzere cereyan eder.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 8,
+      "sentence": "s1",
+      "source": "tasrif-al-izzi-src.txt:92"
+    },
+    {
+      "ar": "وَإِنْ كَانَ مَا بَعْدَ حَرْفِ الْمُضَارَعَةِ سَاكِنًا فَتَحْذِفُ مِنْهُ حَرْفَ الْمُضَارَعَةِ وَتَأْتِي بِصُورَةِ الْبَاقِي مَجْزُومًا، مَزِيدًا فِي أَوَّلِهِ هَمْزَةُ وَصْلٍ مَكْسُورَةً، إِلَّا أَنْ تَكُونَ عَيْنُ الْمُضَارِعِ مِنْهُ مَضْمُومَةً فَتَضُمُّهَا، فَتَقُولُ: اُنْصُرْ اُنْصُرَا اُنْصُرُوا، اُنْصُرِي اُنْصُرَا اُنْصُرْنَ.",
+      "en": "When the letter after the prefix is quiescent, the prefix is dropped and a waṣl hamza is put in front — with kasra, or with ḍamma when the present's middle letter has ḍamma: اُنْصُرْ اُنْصُرَا اُنْصُرُوا, اُنْصُرِي اُنْصُرَا اُنْصُرْنَ.",
+      "tr": "Muzâraat harfinden sonraki harf sâkin ise o harf atılır ve başa bir vasıl hemzesi getirilir — kesreli olarak, muzârinin aynı zammeli ise zammeli: اُنْصُرْ اُنْصُرَا اُنْصُرُوا، اُنْصُرِي اُنْصُرَا اُنْصُرْنَ.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 8,
+      "sentence": "s4",
+      "source": "tasrif-al-izzi-src.txt:95"
+    },
+    {
+      "ar": "وَهُوَ مَا اشْتُقَّ مِنَ الْمُضَارِعِ لِمُشَابَهَةٍ بَيْنَهُمَا فِي الِاسْتِقْبَالِيَّةِ.",
+      "en": "And it is what is derived from the muḍāriʿ, because of a likeness between the two in being about the future.",
+      "tr": "O, muzâriden türetilendir; çünkü ikisi arasında istikbâle delâlette bir benzerlik vardır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 24,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:304 (ص 63)"
+    },
+    {
+      "ar": "وَزِيدَتِ اللَّامُ فِي الْغَائِبِ لِأَنَّهَا مِنْ وَسَطِ الْمَخَارِجِ، وَالْغَائِبُ أَيْضًا وَسَطٌ بَيْنَ الْمُتَكَلِّمِ وَالْمُخَاطَبِ.",
+      "en": "And the lām was added for the absent one because it comes from the middle of the points of articulation, and the absent one too is a middle between the speaker and the one addressed.",
+      "tr": "Gâibde lâm eklendi; çünkü o, mahreçlerin ortasındandır; gâib de mütekellim ile muhâtab arasında bir ortadır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 24,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:305 (ص 63)"
+    },
+    {
+      "ar": "وَأَيْضًا هِيَ مِنَ الْحُرُوفِ الزَّوَائِدِ.",
+      "en": "And besides, it is one of the letters of increase.",
+      "tr": "Ayrıca o, zâid harflerdendir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 24,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:306 (ص 63)"
+    },
+    {
+      "ar": "وَالْحُرُوفُ الزَّوَائِدُ هِيَ الَّتِي يَشْتَمِلُهَا قَوْلُ الشَّاعِرِ.",
+      "en": "And the letters of increase are those that the poet's saying holds.",
+      "tr": "Zâid harfler, şairin şu sözünün içerdiği harflerdir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 24,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:307 (ص 63)"
+    },
+    {
+      "ar": "هَوِيتُ السِّمَانَ فَشَيَّبْنَنِي وَقَدْ كُنْتُ قِدْمًا هَوِيتُ السِّمَانَا.",
+      "en": "I loved the plump ones and they turned my hair grey — and long had I loved the plump ones.",
+      "tr": "Dolgun güzelleri sevdim, onlar da saçımı ağarttı; hâlbuki eskiden beri dolgun güzelleri severdim.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 24,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:308 (ص 63)"
+    },
+    {
+      "ar": "وَلَمْ يُزَدْ مِنْ حُرُوفِ الْعِلَّةِ حَتَّى لَا يَجْتَمِعَ حَرْفَا عِلَّةٍ.",
+      "en": "And none of the weak letters was added, so that two weak letters should not come together.",
+      "tr": "İllet harflerinden biri eklenmedi; iki illet harfi bir araya gelmesin diye.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 24,
+      "sentence": "s8",
+      "source": "marah-al-arwah-src.txt:311 (ص 64)"
+    },
+    {
+      "ar": "وَكُسِرَتِ اللَّامُ فِي الْأَمْرِ الْغَائِبِ لِأَنَّهَا مُشَابِهَةٌ بِاللَّامِ الْجَارَّةِ، لِأَنَّ الْجَزْمَ فِي الْأَفْعَالِ كَالْجَرِّ فِي الْأَسْمَاءِ.",
+      "en": "And the lām was given a kasra in the command to the absent one because it resembles the lām of jarr — for jazm among verbs is like jarr among nouns.",
+      "tr": "Emr-i gâibde lâm kesrelendi; çünkü cer lâmına benzer; zira fiillerde cezm, isimlerde cer gibidir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 25,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:313 (ص 64)"
+    },
+    {
+      "ar": "وَأُسْكِنَتْ إِذَا اتَّصَلَتْ بِالْوَاوِ وَالْفَاءِ وَ «ثُمَّ» مِثْلُ «وَلْيَضْرِبْ» وَ «فَلْيَضْرِبْ» وَ «ثُمَّ لْيَضْرِبْ».",
+      "en": "And it is made quiescent when it is joined to the wāw, the fāʾ and «thumma», like «wa-l-yaḍrib», «fa-l-yaḍrib» and «thumma l-yaḍrib».",
+      "tr": "Vâva, fâya ve «ثُمَّ»ye bitiştiğinde sâkin kılınır: «وَلْيَضْرِبْ», «فَلْيَضْرِبْ» ve «ثُمَّ لْيَضْرِبْ» gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 25,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:314 (ص 64)"
+    },
+    {
+      "ar": "كَمَا أُسْكِنَتِ الْخَاءُ فِي «فَخْذٌ».",
+      "en": "Just as the khāʾ is made quiescent in «fakhdh».",
+      "tr": "Tıpkı «فَخْذٌ»de hânın sâkin kılınması gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 25,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:315 (ص 64)"
+    },
+    {
+      "ar": "وَنَظِيرُهُ «وَهْيَ» وَ «فَهْيَ» بِالْوَاوِ وَالْفَاءِ بِسُكُونِ الْهَاءِ.",
+      "en": "And its like is «wa-hya» and «fa-hya», with the wāw and the fāʾ, the hāʾ quiescent.",
+      "tr": "Bunun benzeri, vâv ve fâ ile, hânın sükûnuyla «وَهْيَ» ve «فَهْيَ»dir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 25,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:316 (ص 64)"
+    },
+    {
+      "ar": "وَحُذِفَ حَرْفُ الِاسْتِقْبَالِ فِي الْمُخَاطَبِ لِلْفَرْقِ بَيْنَ الْمُخَاطَبِ وَالْغَائِبِ.",
+      "en": "And the letter of the future was dropped for the one addressed, to tell the one addressed from the absent one.",
+      "tr": "Muhâtabda istikbâl harfi hazfedildi; muhâtab ile gâibi ayırmak için.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 25,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:317 (ص 64)"
+    },
+    {
+      "ar": "وَعُيِّنَ الْحَذْفُ فِي الْمُخَاطَبِ لِكَثْرَتِهِ.",
+      "en": "And the dropping was assigned to the one addressed because he is the more frequent.",
+      "tr": "Hazif muhâtaba tayin edildi; çünkü o daha çok kullanılır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 25,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:318 (ص 64)"
+    },
+    {
+      "ar": "وَمِنْ ثَمَّ لَا يُحْذَفُ اللَّامُ فِي مَجْهُولِهِ، أَعْنِي يُقَالُ «لِتُضْرَبْ» لِقِلَّةِ اسْتِعْمَالِهِ.",
+      "en": "And hence the lām is not dropped in its passive — I mean, one says «li-tuḍrab» — because it is little used.",
+      "tr": "Bundan ötürü meçhulünde lâm hazfedilmez; yani «لِتُضْرَبْ» denir; çünkü kullanımı azdır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 25,
+      "sentence": "s7",
+      "source": "marah-al-arwah-src.txt:320 (ص 65)"
+    },
+    {
+      "ar": "وَاجْتُلِبَتِ الْهَمْزَةُ بَعْدَ حَذْفِ حَرْفِ الْمُضَارَعَةِ إِذَا كَانَ مَا بَعْدَهُ سَاكِنَةً لِلِافْتِتَاحِ.",
+      "en": "And the hamza is brought in after the letter of the muḍāriʿ is dropped, when what follows it is quiescent, to open the word.",
+      "tr": "Muzâraat harfi hazfedildikten sonra, ardındaki sâkin olduğunda, söze başlayabilmek için hemze getirilir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 26,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:322 (ص 65)"
+    },
+    {
+      "ar": "وَلَا اعْتِبَارَ لِلْكَافِ السَّاكِنِ لِأَنَّ الْحَرْفَ السَّاكِنَ لَا يَكُونُ حَاجِزًا حَصِينًا عِنْدَهُمْ.",
+      "en": "And the quiescent kāf does not count, because a quiescent letter is no strong barrier in their view.",
+      "tr": "Sâkin kâfa itibar edilmez; çünkü sâkin harf onlara göre sağlam bir engel olmaz.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 26,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:325 (ص 65)"
+    },
+    {
+      "ar": "وَمِنْ ثَمَّ جُعِلَ وَاوُ «قِنْوَةٍ» يَاءً وَيُقَالُ «قِنْيَةٌ».",
+      "en": "And hence the wāw of «qinwa» was made a yāʾ, and one says «qinya».",
+      "tr": "Bundan ötürü «قِنْوَة»nin vâvı yâ yapılmış ve «قِنْيَة» denmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 26,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:326 (ص 65)"
+    },
+    {
+      "ar": "لِأَنَّهُ يَلْتَبِسُ بِقَوْلِ الشَّاعِرِ.",
+      "en": "Because it would be confused with the poet's saying.",
+      "tr": "Çünkü şairin şu sözüyle karışır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 26,
+      "sentence": "s7",
+      "source": "marah-al-arwah-src.txt:329 (ص 66)"
+    },
+    {
+      "ar": "الْيَوْمَ أَشْرَبْ مِنْ غَيْرِ مُسْتَحْقِبٍ إِثْمًا مِنَ اللهِ وَلَا وَاغِلِ.",
+      "en": "Today I drink, bearing no sin from God, and no intruder.",
+      "tr": "Bugün içiyorum; Allah katında bir günah yüklenmeden ve davetsiz misafir olmadan.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 26,
+      "sentence": "s8",
+      "source": "marah-al-arwah-src.txt:330 (ص 66)"
+    },
+    {
+      "ar": "وَفُتِحَ أَلِفُ التَّعْرِيفِ لِكَثْرَتِهِ أَيْضًا.",
+      "en": "And the alif of the article was given a fatḥa because it too is so frequent.",
+      "tr": "Tarif elifi de çok kullanıldığı için fethalanmıştır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 26,
+      "sentence": "s11",
+      "source": "marah-al-arwah-src.txt:333 (ص 66)"
+    },
+    {
+      "ar": "وَحُذِفَتْ فِي «بِسْمِ اللهِ» لِكَثْرَةِ الِاسْتِعْمَالِ.",
+      "en": "And it was dropped in «bismi llāh» because it is used so much.",
+      "tr": "«بِسْمِ اللهِ»de ise çok kullanıldığı için hazfedilmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 27,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:341 (ص 67)"
+    },
+    {
+      "ar": "وَجُزِمَ آخِرُهُ فِي الْغَائِبِ بِاللَّامِ إِجْمَاعًا، لِأَنَّ اللَّامَ مُشَابِهَةٌ لِكَلِمَةِ الشَّرْطِ فِي النَّقْلِ.",
+      "en": "Its ending is apocopated in the absent one by the lām, by agreement of all, because the lām resembles the word of condition in shifting the meaning.",
+      "tr": "Gâibde sonu lâm ile icmâen cezmedilir; çünkü lâm, mânâyı nakletmekte şart edatına benzer.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 28,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:344 (ص 67)"
+    },
+    {
+      "ar": "وَمِنْ ثَمَّ قَرَأَ النَّبِيُّ صَلَّى اللهُ تَعَالَى عَلَيْهِ وَسَلَّمَ «فَبِذٰلِكَ فَلْتَفْرَحُوا».",
+      "en": "And that is why the Prophet — may God Most High bless him and grant him peace — recited «fa-bi-dhālika fa-l-tafraḥū».",
+      "tr": "Bundan ötürü Peygamber — sallallâhu teâlâ aleyhi ve sellem — «فَبِذٰلِكَ فَلْتَفْرَحُوا» diye okumuştur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 28,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:347 (ص 68)"
+    },
+    {
+      "ar": "فَحُذِفَتِ اللَّامُ لِكَثْرَةِ الِاسْتِعْمَالِ، ثُمَّ حُذِفَ عَلَامَةُ الِاسْتِقْبَالِ لِلْفَرْقِ بَيْنَهُ وَبَيْنَ الْمُضَارِعِ.",
+      "en": "Then the lām was dropped because it is used so much, then the mark of the future was dropped to tell it from the muḍāriʿ.",
+      "tr": "Sonra çok kullanıldığı için lâm hazfedildi; ardından muzâriden ayırmak için istikbâl alâmeti hazfedildi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 28,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:348 (ص 68)"
+    },
+    {
+      "ar": "فَبَقِيَ الضَّادُ سَاكِنًا، فَاجْتُلِبَتْ هَمْزَةُ الْوَصْلِ وَوُضِعَتْ مَوْضِعَ عَلَامَةِ الِاسْتِقْبَالِ.",
+      "en": "So the ḍād was left quiescent; the hamza of connection was brought and set in the place of the mark of the future.",
+      "tr": "Böylece dâd sâkin kaldı; vasıl hemzesi getirildi ve istikbâl alâmetinin yerine kondu.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 28,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:349 (ص 68)"
+    },
+    {
+      "ar": "وَأُعْطِيَ لَهُ أَثَرُ عَلَامَةِ الِاسْتِقْبَالِ كَمَا أُعْطِيَ لِفَاءِ «رُبَّ» عَمَلُ «رُبَّ» فِي قَوْلِ الشَّاعِرِ.",
+      "en": "And it was given the effect of the mark of the future, as the fāʾ of «rubba» was given the work of «rubba» in the poet's words.",
+      "tr": "Ona istikbâl alâmetinin etkisi verildi; tıpkı şâirin sözünde «رُبَّ» fâsına «رُبَّ»nin ameli verildiği gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 28,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:350 (ص 68)"
+    },
+    {
+      "ar": "فَمِثْلِكِ حُبْلَى قَدْ طَرَقْتُ وَمُرْضِعٍ فَأَلْهَيْتُهَا عَنْ ذِي تَمَائِمَ مُحْوِلِ.",
+      "en": "Many a one like you, pregnant, have I come to by night, and many a nursing mother — and I drew her mind away from her amuleted one-year-old.",
+      "tr": "Senin gibi nice gebeye gece vakti vardım, nice emzikliye de; onu muskalı bir yaşındaki yavrusundan alıkoydum.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 28,
+      "sentence": "s7",
+      "source": "marah-al-arwah-src.txt:351 (ص 68)"
+    },
+    {
+      "ar": "وَعِنْدَ الْبَصْرِيِّينَ مَبْنِيٌّ، لِأَنَّ الْأَصْلَ فِي الْأَفْعَالِ الْبِنَاءُ.",
+      "en": "And with the Basrans it is built, because the rule in verbs is to be built.",
+      "tr": "Basralılara göre ise mebnîdir; çünkü fiillerde asıl olan binâdır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 28,
+      "sentence": "s8",
+      "source": "marah-al-arwah-src.txt:352 (ص 68)"
+    },
+    {
+      "ar": "وَإِنَّمَا أُعْرِبَ الْمُضَارِعُ لِمُشَابَهَةٍ بَيْنَهُ وَبَيْنَ الِاسْمِ، وَلَمْ تَبْقَ الْمُشَابَهَةُ بَيْنَ الْأَمْرِ وَالِاسْمِ بِحَذْفِ حَرْفِ الْمُضَارَعَةِ.",
+      "en": "The muḍāriʿ was only declined for a likeness between it and the noun, and no likeness is left between the amr and the noun once the letter of the muḍāriʿ is dropped.",
+      "tr": "Muzâri, ancak isimle arasındaki bir benzerlik sebebiyle mu'reb kılınmıştır; muzâraat harfi hazfedilince emir ile isim arasında benzerlik kalmamıştır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 28,
+      "sentence": "s9",
+      "source": "marah-al-arwah-src.txt:353 (ص 68)"
+    },
+    {
+      "ar": "وَمِنْ ثَمَّ قِيلَ: قَوْلُهُ صَلَّى اللهُ تَعَالَى عَلَيْهِ وَسَلَّمَ «فَلْتَفْرَحُوا» مُعْرَبٌ بِالْإِجْمَاعِ لِوُجُودِ عِلَّةِ الْإِعْرَابِ، وَهِيَ حَرْفُ الْمُضَارَعَةِ.",
+      "en": "And that is why it was said: his saying — may God Most High bless him and grant him peace — «fa-l-tafraḥū» is declined by agreement of all, because the cause of declension is there, and that is the letter of the muḍāriʿ.",
+      "tr": "Bundan ötürü denmiştir ki: Peygamber'in — sallallâhu teâlâ aleyhi ve sellem — «فَلْتَفْرَحُوا» sözü icmâ ile mu'rebdir; çünkü i'râbın illeti, yani muzâraat harfi mevcuttur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 28,
+      "sentence": "s10",
+      "source": "marah-al-arwah-src.txt:355 (ص 69)"
+    },
+    {
+      "ar": "فَإِنْ كَانَ مَا بَعْدَ حَرْفِ الْمُضَارَعَةِ مُتَحَرِّكًا فَتُسْقِطُ مِنْهُ حَرْفَ الْمُضَارَعَةِ وَتَأْتِي بِصُورَةِ الْبَاقِي مَجْزُومًا، فَتَقُولُ فِي أَمْرِ الْحَاضِرِ مِنْ تُدَحْرِجُ: دَحْرِجْ دَحْرِجَا دَحْرِجُوا، دَحْرِجِي دَحْرِجَا دَحْرِجْنَ.",
+      "en": "If what follows the present-tense letter is vowelled, you drop the present-tense letter from it and bring the form of the remainder in the jussive; so in commanding the one present from تُدَحْرِجُ you say دَحْرِجْ، دَحْرِجَا، دَحْرِجُوا، دَحْرِجِي، دَحْرِجَا، دَحْرِجْنَ («roll!» in its six persons).",
+      "tr": "Muzâraat harfinden sonraki harf harekeli ise ondan muzâraat harfini düşürür, geri kalanın sûretini meczûm olarak getirirsin; «تُدَحْرِجُ»dan hâzırın emrinde دَحْرِجْ، دَحْرِجَا، دَحْرِجُوا، دَحْرِجِي، دَحْرِجَا، دَحْرِجْنَ dersin («yuvarla!» — altı şahsıyla).",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 8,
+      "sentence": "s2",
+      "source": "tasrif-al-izzi-src.txt:93 (ص 64)"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "اِسْمَعُ وصيتي",
+      "right": "اسْمَعْ وصيتي",
+      "why": {
+        "en": "Learners keep the present-tense damma on the last letter. The imperative ends in sukun: اسْمَعْ, not اسمَعُ.",
+        "tr": "Öğrenciler son harfte muzarinin ötresini bırakır; emirde son harf cezimli olmalı."
+      }
+    },
+    {
+      "wrong": "أَسْمَعْ! (meaning: listen!)",
+      "right": "اسْمَعْ!",
+      "why": {
+        "en": "Using hamzat qat' (أَ) instead of hamzat wasl (ا). أَسْمَعُ means 'I hear'. The Form-I imperative takes hamzat wasl, which drops in connected speech: يا يوسفُ اسْمَعْ.",
+        "tr": "Hemze-i kat' değil hemze-i vasl gelir; أَسْمَعُ 'duyuyorum' demektir."
+      }
+    },
+    {
+      "wrong": "اِسْمَعْ إلى وصيتي",
+      "right": "اسْمَعْ وصيتي / اِسْتَمِعْ إِلَى وصيتي",
+      "why": {
+        "en": "Preposition transfer from English 'listen TO'. سَمِعَ takes a direct object; only اِسْتَمَعَ (Form VIII) takes إلى.",
+        "tr": "İngilizce 'listen to'dan aktarma; سمع nesneyi doğrudan alır, إلى yalnız استمع ile kullanılır."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "hollow-verbs",
+    "lam-taleel",
+    "al-mamul-wa-aqsamuh",
+    "al-bariz-al-muttasil",
+    "al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh"
+  ],
+  "gameSeeds": {
+    "spotTheError": true,
+    "harakatTargets": [
+      "اسْمَعْ",
+      "اُكْتُبْ",
+      "قُلْ"
+    ]
   }
- ],
- "commonMistakes": [
-  {
-   "wrong": "اِسْمَعُ وصيتي",
-   "right": "اسْمَعْ وصيتي",
-   "why": {
-    "en": "Learners keep the present-tense damma on the last letter. The imperative ends in sukun: اسْمَعْ, not اسمَعُ.",
-    "tr": "Öğrenciler son harfte muzarinin ötresini bırakır; emirde son harf cezimli olmalı."
-   }
-  },
-  {
-   "wrong": "أَسْمَعْ! (meaning: listen!)",
-   "right": "اسْمَعْ!",
-   "why": {
-    "en": "Using hamzat qat' (أَ) instead of hamzat wasl (ا). أَسْمَعُ means 'I hear'. The Form-I imperative takes hamzat wasl, which drops in connected speech: يا يوسفُ اسْمَعْ.",
-    "tr": "Hemze-i kat' değil hemze-i vasl gelir; أَسْمَعُ 'duyuyorum' demektir."
-   }
-  },
-  {
-   "wrong": "اِسْمَعْ إلى وصيتي",
-   "right": "اسْمَعْ وصيتي / اِسْتَمِعْ إِلَى وصيتي",
-   "why": {
-    "en": "Preposition transfer from English 'listen TO'. سَمِعَ takes a direct object; only اِسْتَمَعَ (Form VIII) takes إلى.",
-    "tr": "İngilizce 'listen to'dan aktarma; سمع nesneyi doğrudan alır, إلى yalnız استمع ile kullanılır."
-   }
-  }
- ],
- "relatedNotes": [
-  "hollow-verbs",
-  "lam-taleel",
-  "al-mamul-wa-aqsamuh",
-  "al-bariz-al-muttasil",
-  "al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh"
- ],
- "gameSeeds": {
-  "spotTheError": true,
-  "harakatTargets": [
-   "اسْمَعْ",
-   "اُكْتُبْ",
-   "قُلْ"
-  ]
- }
 }

@@ -1,101 +1,227 @@
 {
- "id": "masdar",
- "title": {
-  "ar": "الْمَصْدَر",
-  "en": "The masdar (verbal noun)",
-  "tr": "Masdar"
- },
- "level": 3,
- "group": "sarf",
- "classicalSources": [
-  "المقصود",
-  "مراح الأرواح",
-  "الكافية (ابن الحاجب)",
-  "مَرَاحُ الْأَرْوَاحِ لِأَحْمَدَ بْنِ عَلِيِّ بْنِ مَسْعُودٍ (marah-al-arwah-src.txt، س 51، 58)"
- ],
- "plain": {
-  "en": "The name of the action itself — «entering», «knowing» — a noun made out of a verb.",
-  "tr": "İşin kendisinin adı — «girmek», «bilmek» — fiilden yapılmış isim."
- },
- "explanation": {
-  "en": "The masdar names the act itself, with no doer and no time: نَقْل «transferring», حَبْس «holding», تَمْلِيك «conveying ownership». It is a NOUN, so it takes case endings and can head an idafa — and that is why almost every classical definition is built on one. «الرَّهْنُ حَبْسُ شَيْءٍ» is mubtada and khabar, and the khabar is a masdar governing what follows. For the augmented babs the masdar is regular and can simply be learned with the pattern: أَفْعَلَ → إِفْعَال, فَعَّلَ → تَفْعِيل, فَاعَلَ → مُفَاعَلَة, تَفَعَّلَ → تَفَعُّل, تَفَاعَلَ → تَفَاعُل, اِنْفَعَلَ → اِنْفِعَال, اِفْتَعَلَ → اِفْتِعَال, اِسْتَفْعَلَ → اِسْتِفْعَال. For the BARE triliteral it is not regular at all: it is سَمَاعِيّ, heard and memorised, and the manuals count some thirty-two patterns for it — قَتْلٌ, فِسْقٌ, شُغْلٌ, رَحْمَةٌ, بُشْرَى, حِرْمَانٌ, طَلَبٌ, ذَهَابٌ, دُخُولٌ, صُهُوبَةٌ and the rest. There is no rule to apply; the masdar of a bare verb is learned with the verb, exactly like its bab.",
-  "tr": "Masdar, fâili ve zamanı olmaksızın işin kendisini adlandırır: نَقْل «devretme», حَبْس «tutma», تَمْلِيك «temlik». İSİMDİR; i'rab alır ve izafetin başına geçer — klasik tariflerin neredeyse tamamının masdarla kurulmasının sebebi budur. «الرَّهْنُ حَبْسُ شَيْءٍ» mübteda ve haberdir, haber ise sonrasını izafetle alan bir masdardır. Mezîd bablarda masdar kıyasîdir ve vezniyle birlikte öğrenilir: أَفْعَلَ → إِفْعَال، فَعَّلَ → تَفْعِيل، فَاعَلَ → مُفَاعَلَة، تَفَعَّلَ → تَفَعُّل، تَفَاعَلَ → تَفَاعُل، اِنْفَعَلَ → اِنْفِعَال، اِفْتَعَلَ → اِفْتِعَال، اِسْتَفْعَلَ → اِسْتِفْعَال. Sülâsî MÜCERREDDE ise hiç kıyasî değildir: semâîdir, işitilip ezberlenir; kitaplar bunun için otuz iki kadar vezin sayar — قَتْلٌ، فِسْقٌ، شُغْلٌ، رَحْمَةٌ، بُشْرَى، حِرْمَانٌ، طَلَبٌ، ذَهَابٌ، دُخُولٌ، صُهُوبَةٌ ve diğerleri. Uygulanacak bir kaide yoktur; mücerred fiilin masdarı, tıpkı bâbı gibi, fiille birlikte öğrenilir."
- },
- "examples": [
-  {
-   "ar": "الْبَيْعُ مُبَادَلَةُ مَالٍ بِمَالٍ.",
-   "en": "A sale is the exchange of property for property — the khabar is a Form III masdar heading an idafa.",
-   "sourceStory": "kitab-al-buyu",
-   "chapter": 1,
-   "sentence": "s1",
-   "tr": "Bey', bir malın bir malla mübâdelesidir — haber, izafetin başındaki mufâale masdarıdır."
+  "id": "masdar",
+  "title": {
+    "ar": "الْمَصْدَر",
+    "en": "The masdar (verbal noun)",
+    "tr": "Masdar"
   },
-  {
-   "ar": "وَالرَّهْنُ حَبْسُ شَيْءٍ بِحَقٍّ.",
-   "en": "A pledge is the holding of a thing against a right — حَبْس is a sama'i masdar of the bare verb.",
-   "sourceStory": "kitab-al-buyu",
-   "chapter": 3,
-   "sentence": "s2",
-   "tr": "Rehin, bir hak sebebiyle bir şeyi tutmaktır — حَبْس mücerred fiilin semâî masdarıdır."
+  "level": 3,
+  "group": "sarf",
+  "classicalSources": [
+    "المقصود",
+    "مراح الأرواح",
+    "الكافية (ابن الحاجب)",
+    "مَرَاحُ الْأَرْوَاحِ لِأَحْمَدَ بْنِ عَلِيِّ بْنِ مَسْعُودٍ (marah-al-arwah-src.txt، س 51، 58)"
+  ],
+  "plain": {
+    "en": "The name of the action itself — «entering», «knowing» — a noun made out of a verb.",
+    "tr": "İşin kendisinin adı — «girmek», «bilmek» — fiilden yapılmış isim."
   },
-  {
-   "ar": "وَالْوَكَالَةُ إِقَامَةُ الْغَيْرِ مَقَامَ نَفْسِهِ.",
-   "en": "Agency is putting another in one's own place — إِقَامَة is the Form IV masdar of أَقَامَ, its ة standing in for the lost و.",
-   "sourceStory": "kitab-al-buyu",
-   "chapter": 3,
-   "sentence": "s3",
-   "tr": "Vekâlet, başkasını kendi yerine geçirmektir — إِقَامَة, أَقَامَ'nin if'âl masdarıdır; tâsı düşen vâvın yerini tutar."
+  "explanation": {
+    "en": "The masdar names the act itself, with no doer and no time: نَقْل «transferring», حَبْس «holding», تَمْلِيك «conveying ownership». It is a NOUN, so it takes case endings and can head an idafa — and that is why almost every classical definition is built on one. «الرَّهْنُ حَبْسُ شَيْءٍ» is mubtada and khabar, and the khabar is a masdar governing what follows. For the augmented babs the masdar is regular and can simply be learned with the pattern: أَفْعَلَ → إِفْعَال, فَعَّلَ → تَفْعِيل, فَاعَلَ → مُفَاعَلَة, تَفَعَّلَ → تَفَعُّل, تَفَاعَلَ → تَفَاعُل, اِنْفَعَلَ → اِنْفِعَال, اِفْتَعَلَ → اِفْتِعَال, اِسْتَفْعَلَ → اِسْتِفْعَال. For the BARE triliteral it is not regular at all: it is سَمَاعِيّ, heard and memorised, and the manuals count some thirty-two patterns for it — قَتْلٌ, فِسْقٌ, شُغْلٌ, رَحْمَةٌ, بُشْرَى, حِرْمَانٌ, طَلَبٌ, ذَهَابٌ, دُخُولٌ, صُهُوبَةٌ and the rest. There is no rule to apply; the masdar of a bare verb is learned with the verb, exactly like its bab.",
+    "tr": "Masdar, fâili ve zamanı olmaksızın işin kendisini adlandırır: نَقْل «devretme», حَبْس «tutma», تَمْلِيك «temlik». İSİMDİR; i'rab alır ve izafetin başına geçer — klasik tariflerin neredeyse tamamının masdarla kurulmasının sebebi budur. «الرَّهْنُ حَبْسُ شَيْءٍ» mübteda ve haberdir, haber ise sonrasını izafetle alan bir masdardır. Mezîd bablarda masdar kıyasîdir ve vezniyle birlikte öğrenilir: أَفْعَلَ → إِفْعَال، فَعَّلَ → تَفْعِيل، فَاعَلَ → مُفَاعَلَة، تَفَعَّلَ → تَفَعُّل، تَفَاعَلَ → تَفَاعُل، اِنْفَعَلَ → اِنْفِعَال، اِفْتَعَلَ → اِفْتِعَال، اِسْتَفْعَلَ → اِسْتِفْعَال. Sülâsî MÜCERREDDE ise hiç kıyasî değildir: semâîdir, işitilip ezberlenir; kitaplar bunun için otuz iki kadar vezin sayar — قَتْلٌ، فِسْقٌ، شُغْلٌ، رَحْمَةٌ، بُشْرَى، حِرْمَانٌ، طَلَبٌ، ذَهَابٌ، دُخُولٌ، صُهُوبَةٌ ve diğerleri. Uygulanacak bir kaide yoktur; mücerred fiilin masdarı, tıpkı bâbı gibi, fiille birlikte öğrenilir."
   },
-  {
-   "ar": "وَمَصْدَرُ الثُّلَاثِيِّ كَثِيرٌ، وَهُوَ عِنْدَ سِيبَوَيْهِ يَرْتَقِي إِلَى اثْنَيْنِ وَثَلَاثِينَ بَابًا.",
-   "en": "The Marāḥ on the maṣdar of the bare triliteral: its patterns are many — by Sībawayh's count they rise to thirty-two.",
-   "tr": "Merâh'ta sülâsî mücerredin masdarı: vezni çoktur — Sîbeveyh'e göre otuz iki bâba ulaşır.",
-   "sourceStory": "marah-al-arwah",
-   "chapter": 6,
-   "sentence": "s1",
-   "source": "marah-al-arwah-src.txt:51"
-  },
-  {
-   "ar": "وَمَصْدَرُ غَيْرِ الثُّلَاثِيِّ يَجِيءُ عَلَى سَنَنٍ وَاحِدٍ إِلَّا فِي كَلَّمَ كِلَّامًا وَفِي قَاتَلَ قِتَّالًا وَقِيتَالًا وَفِي تَحَمَّلَ تِحِمَّالًا وَفِي زَلْزَلَ زِلْزَالًا.",
-   "en": "…while the maṣdar of everything beyond three letters follows one fixed way — the Marāḥ lists the few that depart from it.",
-   "tr": "…üç harften fazla olanların masdarı ise tek bir yol üzere gelir — Merâh bundan ayrılan birkaçını sayar.",
-   "sourceStory": "marah-al-arwah",
-   "chapter": 6,
-   "sentence": "s5",
-   "source": "marah-al-arwah-src.txt:58"
-  }
- ],
- "commonMistakes": [
-  {
-   "wrong": "أَكْرَمَ — إِكْرَامَة",
-   "right": "أَكْرَمَ — إِكْرَام",
-   "why": {
-    "en": "Form IV's masdar is إِفْعَال. The ة appears only where a weak letter was lost — إِقَامَة for أَقَامَ, إِطَاعَة for أَطَاعَ.",
-    "tr": "İf'âl bâbının masdarı إِفْعَال'dir. Tâ yalnız illetli harf düştüğünde gelir: أَقَامَ → إِقَامَة، أَطَاعَ → إِطَاعَة."
-   }
-  },
-  {
-   "wrong": "ذَهَبَ — ذَهْب",
-   "right": "ذَهَبَ — ذَهَاب",
-   "why": {
-    "en": "There is no rule to fall back on for a bare verb; the masdar is heard, not derived. ذَهَاب is the one that is used.",
-    "tr": "Mücerred fiilde başvurulacak bir kaide yoktur; masdar semâîdir. Kullanılan şekil ذَهَاب'tır."
-   }
-  },
-  {
-   "wrong": "«حَبْسُ شَيْءٌ»",
-   "right": "«حَبْسُ شَيْءٍ»",
-   "why": {
-    "en": "A masdar governs its complement by idafa, so what follows is majrur — not by any verbal force it might seem to have.",
-    "tr": "Masdar mütemmimini izafetle alır; sonrası mecrûrdur."
-   }
-  }
- ],
- "relatedNotes": [
-  "thulathi-mujarrad-babs",
-  "augmented-babs",
-  "idafa-definiteness",
-  "amal-ism-al-tafdil-wal-masdar",
-  "al-masdar-fil-kafiya"
- ]
+  "examples": [
+    {
+      "ar": "الْبَيْعُ مُبَادَلَةُ مَالٍ بِمَالٍ.",
+      "en": "A sale is the exchange of property for property — the khabar is a Form III masdar heading an idafa.",
+      "sourceStory": "kitab-al-buyu",
+      "chapter": 1,
+      "sentence": "s1",
+      "tr": "Bey', bir malın bir malla mübâdelesidir — haber, izafetin başındaki mufâale masdarıdır."
+    },
+    {
+      "ar": "وَالرَّهْنُ حَبْسُ شَيْءٍ بِحَقٍّ.",
+      "en": "A pledge is the holding of a thing against a right — حَبْس is a sama'i masdar of the bare verb.",
+      "sourceStory": "kitab-al-buyu",
+      "chapter": 3,
+      "sentence": "s2",
+      "tr": "Rehin, bir hak sebebiyle bir şeyi tutmaktır — حَبْس mücerred fiilin semâî masdarıdır."
+    },
+    {
+      "ar": "وَالْوَكَالَةُ إِقَامَةُ الْغَيْرِ مَقَامَ نَفْسِهِ.",
+      "en": "Agency is putting another in one's own place — إِقَامَة is the Form IV masdar of أَقَامَ, its ة standing in for the lost و.",
+      "sourceStory": "kitab-al-buyu",
+      "chapter": 3,
+      "sentence": "s3",
+      "tr": "Vekâlet, başkasını kendi yerine geçirmektir — إِقَامَة, أَقَامَ'nin if'âl masdarıdır; tâsı düşen vâvın yerini tutar."
+    },
+    {
+      "ar": "وَمَصْدَرُ الثُّلَاثِيِّ كَثِيرٌ، وَهُوَ عِنْدَ سِيبَوَيْهِ يَرْتَقِي إِلَى اثْنَيْنِ وَثَلَاثِينَ بَابًا.",
+      "en": "The Marāḥ on the maṣdar of the bare triliteral: its patterns are many — by Sībawayh's count they rise to thirty-two.",
+      "tr": "Merâh'ta sülâsî mücerredin masdarı: vezni çoktur — Sîbeveyh'e göre otuz iki bâba ulaşır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 6,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:51"
+    },
+    {
+      "ar": "وَمَصْدَرُ غَيْرِ الثُّلَاثِيِّ يَجِيءُ عَلَى سَنَنٍ وَاحِدٍ إِلَّا فِي كَلَّمَ كِلَّامًا وَفِي قَاتَلَ قِتَّالًا وَقِيتَالًا وَفِي تَحَمَّلَ تِحِمَّالًا وَفِي زَلْزَلَ زِلْزَالًا.",
+      "en": "…while the maṣdar of everything beyond three letters follows one fixed way — the Marāḥ lists the few that depart from it.",
+      "tr": "…üç harften fazla olanların masdarı ise tek bir yol üzere gelir — Merâh bundan ayrılan birkaçını sayar.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 6,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:58"
+    },
+    {
+      "ar": "الصَّحِيحُ هُوَ الَّذِي لَيْسَ فِي مُقَابَلَةِ الْفَاءِ وَالْعَيْنِ وَاللَّامِ حَرْفُ عِلَّةٍ وَتَضْعِيفٌ وَهَمْزَةٌ، نَحْوُ الضَّرْبِ.",
+      "en": "The sound word is the one that has, in the place of the fāʾ, the ʿayn and the lām, no weak letter, no doubling and no hamza — like «al-ḍarb», striking.",
+      "tr": "Sahîh; fâ, ayn ve lâm karşılığında illet harfi, tad'îf ve hemze bulunmayan kelimedir; «الضَّرْب» (vurmak) gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 3,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:20 (ص 15)"
+    },
+    {
+      "ar": "فَقُلْنَا: الضَّرْبُ مَصْدَرٌ يَتَوَلَّدُ مِنْهُ الْأَشْيَاءُ التِّسْعَةُ، وَهُوَ أَصْلٌ فِي الِاشْتِقَاقِ عِنْدَ الْبِصْرِيِّينَ.",
+      "en": "So we say: «al-ḍarb» is a maṣdar from which the nine things are generated, and it is the root in derivation according to the Basrans.",
+      "tr": "Öyleyse deriz ki: «الضَّرْب» bir masdardır; dokuz şey ondan doğar; Basralılara göre türetmede asıl odur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 3,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:24 (ص 16)"
+    },
+    {
+      "ar": "لِأَنَّ مَفْهُومَهُ وَاحِدٌ وَمَفْهُومَ الْفِعْلِ مُتَعَدِّدٌ، لِدَلَالَتِهِ عَلَى الْحَدَثِ وَالزَّمَانِ، وَالْوَاحِدُ قَبْلَ الْمُتَعَدِّدِ.",
+      "en": "Because what it conveys is one and what the verb conveys is several — for the verb points to the event and to the time — and the one comes before the several.",
+      "tr": "Çünkü onun mefhumu tektir, fiilin mefhumu ise birden çoktur — fiil hem olaya hem zamana delâlet eder —; tek olan da çok olandan öncedir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 3,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:25 (ص 16)"
+    },
+    {
+      "ar": "وَإِذَا كَانَ أَصْلًا لِلْأَفْعَالِ يَكُونُ أَصْلًا لِمُتَعَلِّقَاتِهَا أَيْضًا.",
+      "en": "And if it is the root of the verbs, it is the root of what depends on them as well.",
+      "tr": "Fiillerin aslı olunca, onlara bağlı olanların da aslı olur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 3,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:26 (ص 16)"
+    },
+    {
+      "ar": "وَلِأَنَّهُ اسْمٌ وَالِاسْمُ مُسْتَغْنٍ عَنِ الْفِعْلِ.",
+      "en": "And because it is a noun, and the noun can do without the verb.",
+      "tr": "Bir de o isimdir; isim ise fiilden müstağnîdir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 3,
+      "sentence": "s7",
+      "source": "marah-al-arwah-src.txt:27 (ص 16)"
+    },
+    {
+      "ar": "وَيُقَالُ لَهُ مَصْدَرٌ، لِأَنَّ هٰذِهِ الْأَشْيَاءَ تَصْدُرُ عَنْهُ.",
+      "en": "It is called «maṣdar», a source, because these things issue from it.",
+      "tr": "Ona «masdar» denir; çünkü bu şeyler ondan sâdır olur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 3,
+      "sentence": "s8",
+      "source": "marah-al-arwah-src.txt:29 (ص 17)"
+    },
+    {
+      "ar": "وَالِاشْتِقَاقُ هُوَ أَنْ تَجِدَ بَيْنَ اللَّفْظَيْنِ تَنَاسُبًا فِي اللَّفْظِ وَالْمَعْنَى، وَهُوَ عَلَى ثَلَاثَةِ أَنْوَاعٍ.",
+      "en": "Derivation is that you find between two words a correspondence in wording and in meaning; it is of three kinds.",
+      "tr": "İştikak, iki lafız arasında lafızda ve mânâda bir münasebet bulmandır; üç çeşittir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 4,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:31 (ص 17)"
+    },
+    {
+      "ar": "صَغِيرٌ، وَهُوَ أَنْ يَكُونَ بَيْنَهُمَا تَنَاسُبٌ فِي الْحُرُوفِ وَالتَّرْتِيبِ، نَحْوُ ضَرَبَ مِنَ الضَّرْبِ.",
+      "en": "The small: there is between the two a correspondence in the letters and in their order — like «ḍaraba» from «al-ḍarb».",
+      "tr": "Sağîr (küçük): ikisi arasında harflerde ve sırada münasebet bulunmasıdır; «الضَّرْب»den «ضَرَبَ» gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 4,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:32 (ص 17)"
+    },
+    {
+      "ar": "وَكَبِيرٌ، وَهُوَ أَنْ يَكُونَ بَيْنَهُمَا تَنَاسُبٌ فِي اللَّفْظِ دُونَ التَّرْتِيبِ، نَحْوُ جَبَذَ مِنَ الْجَذْبِ.",
+      "en": "The great: there is between the two a correspondence in the wording but not in the order — like «jabadha» from «al-jadhb».",
+      "tr": "Kebîr (büyük): ikisi arasında sırada değil, lafızda münasebet bulunmasıdır; «الْجَذْب»den «جَبَذَ» gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 4,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:34 (ص 18)"
+    },
+    {
+      "ar": "وَأَكْبَرُ، وَهُوَ أَنْ يَكُونَ بَيْنَهُمَا تَنَاسُبٌ فِي الْمَخْرَجِ دُونَ الْحُرُوفِ وَالتَّرْتِيبِ، نَحْوُ نَعَقَ مِنَ النَّهْقِ.",
+      "en": "The greatest: there is between the two a correspondence in the place of articulation, not in the letters and the order — like «naʿaqa» from «al-nahq».",
+      "tr": "Ekber (en büyük): ikisi arasında harflerde ve sırada değil, mahreçte münasebet bulunmasıdır; «النَّهْق»dan «نَعَقَ» gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 4,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:35 (ص 18)"
+    },
+    {
+      "ar": "وَالْمُرَادُ مِنَ الِاشْتِقَاقِ الْمَذْكُورِ هٰهُنَا اشْتِقَاقٌ صَغِيرٌ.",
+      "en": "The derivation meant here is the small derivation.",
+      "tr": "Burada sözü edilen iştikaktan maksat, küçük iştikaktır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 4,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:36 (ص 18)"
+    },
+    {
+      "ar": "وَيَجِيءُ عَلَى اسْمَيِ الْفَاعِلِ وَالْمَفْعُولِ، نَحْوُ قُمْتُ قَائِمًا، وَنَحْوُ قَوْلِهِ تَعَالَى بِأَيِّكُمُ الْمَفْتُونُ.",
+      "en": "It also comes on the measures of the ism fāʿil and the ism mafʿūl, as in «qumtu qāʾiman» (I stood a standing), and as in His saying, exalted is He: «bi-ayyikumu l-maftūn» (which of you is the afflicted).",
+      "tr": "İsm-i fâil ve ism-i mef'ûl vezinlerinde de gelir: «قُمْتُ قَائِمًا» gibi ve Yüce Allah'ın «بِأَيِّكُمُ الْمَفْتُونُ» sözü gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 6,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:54 (ص 24)"
+    },
+    {
+      "ar": "وَيَجِيءُ لِلْمُبَالَغَةِ، نَحْوُ التَّهْدَارُ وَالتَّلْعَابُ وَالْحِثِّيثَى وَالدِّلِّيلَى.",
+      "en": "And it comes for intensity, as in al-tahdār, al-talʿāb, al-ḥiththīthā and al-dillīlā.",
+      "tr": "Mübalağa için de gelir: «التَّهْدَارُ», «التَّلْعَابُ», «الْحِثِّيثَى» ve «الدِّلِّيلَى» gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 6,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:56 (ص 25)"
+    },
+    {
+      "ar": "نَحْوُ قَتْلٍ وَفِسْقٍ وَشُغْلٍ وَرَحْمَةٍ وَنِشْدَةٍ وَكُدْرَةٍ وَدَعْوَى وَذِكْرَى وَبُشْرَى وَلَيَّانٍ وَحِرْمَانٍ وَغُفْرَانٍ وَنَزَوَانٍ وَطَلَبٍ وَخَنِقٍ وَصِغَرٍ وَهُدًى وَغَلَبَةٍ وَسَرِقَةٍ وَذَهَابٍ وَصِرَافٍ وَسُؤَالٍ وَمَدْخَلٍ وَمَرْجِعٍ وَمَسْعَاةٍ وَمَحْمِدَةٍ وَزَهَادَةٍ وَدِرَايَةٍ وَدُخُولٍ وَقَبُولٍ وَوَجِيفٍ وَصُهُوبَةٍ.",
+      "en": "Such as: qatl, fisq, shughl, raḥma, nishda, kudra, daʿwā, dhikrā, bushrā, layyān, ḥirmān, ghufrān, nazawān, ṭalab, khaniq, ṣighar, hudan, ghalaba, sariqa, dhahāb, ṣirāf, suʾāl, madkhal, marjiʿ, masʿāh, maḥmida, zahāda, dirāya, dukhūl, qabūl, wajīf and ṣuhūba.",
+      "tr": "Şunlar gibi: katl, fısk, şuğl, rahmet, nişde, küdre, da'vâ, zikrâ, büşrâ, leyyân, hırmân, gufrân, nezevân, taleb, hanik, sıgar, hüdâ, galebe, serika, zehâb, sırâf, suâl, medhal, merci', mes'ât, mahmide, zehâde, dirâye, duhûl, kabûl, vecîf ve suhûbe.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 6,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:52 (ص 22)"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "أَكْرَمَ — إِكْرَامَة",
+      "right": "أَكْرَمَ — إِكْرَام",
+      "why": {
+        "en": "Form IV's masdar is إِفْعَال. The ة appears only where a weak letter was lost — إِقَامَة for أَقَامَ, إِطَاعَة for أَطَاعَ.",
+        "tr": "İf'âl bâbının masdarı إِفْعَال'dir. Tâ yalnız illetli harf düştüğünde gelir: أَقَامَ → إِقَامَة، أَطَاعَ → إِطَاعَة."
+      }
+    },
+    {
+      "wrong": "ذَهَبَ — ذَهْب",
+      "right": "ذَهَبَ — ذَهَاب",
+      "why": {
+        "en": "There is no rule to fall back on for a bare verb; the masdar is heard, not derived. ذَهَاب is the one that is used.",
+        "tr": "Mücerred fiilde başvurulacak bir kaide yoktur; masdar semâîdir. Kullanılan şekil ذَهَاب'tır."
+      }
+    },
+    {
+      "wrong": "«حَبْسُ شَيْءٌ»",
+      "right": "«حَبْسُ شَيْءٍ»",
+      "why": {
+        "en": "A masdar governs its complement by idafa, so what follows is majrur — not by any verbal force it might seem to have.",
+        "tr": "Masdar mütemmimini izafetle alır; sonrası mecrûrdur."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "thulathi-mujarrad-babs",
+    "augmented-babs",
+    "idafa-definiteness",
+    "amal-ism-al-tafdil-wal-masdar",
+    "al-masdar-fil-kafiya"
+  ]
 }

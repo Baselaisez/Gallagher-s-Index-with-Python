@@ -1,0 +1,198 @@
+{
+  "id": "ibdal",
+  "title": {
+    "ar": "الْإِبْدَالُ",
+    "en": "Substitution of letters (ibdāl)",
+    "tr": "İbdâl"
+  },
+  "level": 4,
+  "group": "sarf",
+  "classicalSources": [
+    "مَرَاحُ الْأَرْوَاحِ — حروف الإبدال (marah-al-arwah-matn.txt، [ص 162]–[ص 176])",
+    "مَرَاحُ الْأَرْوَاحِ (marah-al-arwah-src.txt، س 566–573)"
+  ],
+  "plain": {
+    "en": "One letter put in place of another. The Marāḥ counts the letters that may replace others in a mnemonic sentence and gives, for each, what it replaces, why, and whether the change is necessary and regular, allowed and regular, or only heard.",
+    "tr": "Bir harfin başka bir harfin yerine konması. Merâh, başkalarının yerine geçebilen harfleri bir hatırlatma cümlesinde sayar ve her biri için neyin yerine geçtiğini, niçin geçtiğini ve değişmenin vâcip ve muttarid mi, câiz ve muttarid mi, yoksa yalnız işitilmiş mi olduğunu söyler."
+  },
+  "explanation": {
+    "en": "The Marāḥ (pp. 162–176 of the raw matn) names the letters of substitution in one sentence and goes through them one by one. Some changes are NECESSARY AND REGULAR, and the app's engines make them: the alif for the wāw and the yāʾ (قال وباع), the hamza for the alif and the weak letter (صحراء، قائل، بائع), the yāʾ for the wāw after a kasra (ميقات), the wāw for the yāʾ after a ḍamma (مُوقِن), the tāʾ and the merge in the iftiʿāl of a wāw (اِتَّقَدَ, src l. 567), the ṭāʾ after the covered letters (اِضْطَرَبَ), the hāʾ of pause for the tāʾ. Others are ALLOWED AND REGULAR (the hamza softened: راس، ذيب، لُوم), and the rest are HEARD — dialects and single words the book quotes (the jīm for the yāʾ in حَجَّتِجْ … بِجْ, the mīm for the lām of the article in امْبِرِّ امصْيَامُ, أُصَيْلاَل). «والموضع الذي لم يقيد فيه من الصور المذكورة يكون جائزاً غيرَ غير مطرد» — where the book sets no condition, the change is allowed but not regular, so no engine makes it. These pages are raw and uncollated; they are quoted as printed, and their renderings await the hoca's review.",
+    "tr": "Merâh (ham metnin 162–176. sayfaları) ibdâl harflerini tek bir cümlede sayar ve onları tek tek ele alır. Bazı değişmeler VÂCİP VE MUTTARİDdir ve uygulamanın motorları onları yapar: vâv ve yânın yerine elif (قال وباع), elif ve illet harfinin yerine hemze (صحراء، قائل، بائع), kesreden sonra vâvın yerine yâ (ميقات), dammeden sonra yânın yerine vâv (مُوقِن), vâvın ifti'âlinde tâ ve idgâm (اِتَّقَدَ, src s. 567), itbak harflerinden sonra tâ (اِضْطَرَبَ), vakıfta tânın yerine hâ. Bazıları CÂİZ VE MUTTARİDdir (hafifletilmiş hemze: راس، ذيب، لُوم), geri kalanı İŞİTİLMİŞTİR — kitabın alıntıladığı lehçeler ve tek kelimeler. Kitap kayıt koymadığı yerde değişme câizdir ama muttarid değildir; bu yüzden hiçbir motor onu yapmaz. Bu sayfalar ham ve karşılaştırılmamıştır; basıldıkları gibi alıntılanır, tercümeleri hocanın incelemesini bekler."
+  },
+  "examples": [
+    {
+      "ar": "وَنَحْوُ «اِتَّقَدَ» أَصْلُهُ «اِوْتَقَدَ»، فَجُعِلَ الْوَاوُ تَاءً، لِأَنَّهُ إِنْ لَمْ تُجْعَلْ تَاءً يَصِيرُ يَاءً لِكَسْرَةِ مَا قَبْلَهَا، فَيَلْزَمُ حِينَئِذٍ كَوْنُ الْفِعْلِ مَرَّةً يَائِيًّا نَحْوُ «اِيتَقَدَ» وَمَرَّةً وَاوِيًّا نَحْوُ «اُوتُقِدَ»، أَوْ يَلْزَمُ تَوَالِي الْكَسَرَاتِ.",
+      "en": "And like «اِتَّقَدَ»: its origin is «اِوْتَقَدَ», and the wāw was made a tāʾ; because if it were not made a tāʾ it would become a yāʾ, for the kasra of what is before it, and then the verb would have to be at one time yāʾ-rooted, as in «اِيتَقَدَ», and at another wāw-rooted, as in «اُوتُقِدَ»; or a run of kasras would follow.",
+      "tr": "Bir de «اِتَّقَدَ» gibi; aslı «اِوْتَقَدَ»dir; vâv tâ yapıldı; çünkü tâ yapılmasaydı, öncesinin kesresinden dolayı yâ olurdu; o zaman fiilin bir defa «اِيتَقَدَ» gibi yâî, bir defa da «اُوتُقِدَ» gibi vâvî olması gerekirdi; yahut kesrelerin art arda gelmesi gerekirdi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 49,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:567"
+    },
+    {
+      "ar": "«ل يُغزي» مع أن الياء من حروف الإبدال وحروفها: إِسْتَنْجَدَهُ يَوْمَ صَالَ زَطٌّ،",
+      "en": "…(following) «يُغزي», since the yāʾ is one of the letters of substitution, and they are: إِسْتَنْجَدَهُ يَوْمَ صَالَ زَطٌّ. [rendering awaiting review]",
+      "tr": "…«يُغزي»'ye (tâbi olarak), çünkü yâ ibdâl harflerindendir; onlar da şunlardır: إِسْتَنْجَدَهُ يَوْمَ صَالَ زَطٌّ. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:472 [1] (ص 163)"
+    },
+    {
+      "ar": "الهمزة أبدلت وجوباً مطرداً من الألف في نحو صحراء لأنّ همزتها ألف في الأصل كألف سكرى ثمّ زيدت قبلها ألف لمدّ الصوت ثم جعلت همزةً لوقوعها طرفاً بعد ألفٍ زائدةٍ",
+      "en": "The hamza is substituted, necessarily and regularly, for the alif in words like صحراء: its hamza was an alif in origin, like the alif of سكرى; an alif was added before it to lengthen the voice, then it became a hamza, falling final after an added alif. [rendering awaiting review]",
+      "tr": "Hemze, صحراء gibi kelimelerde elifin yerine vücûben ve muttarid olarak getirilir: hemzesi aslında سكرى'nın elifi gibi bir eliftir; sesi uzatmak için önüne bir elif eklendi, sonra ziyade bir eliften sonra sonda kaldığı için hemze yapıldı. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:472 [2] (ص 163)"
+    },
+    {
+      "ar": "ومن ثَمّ لا يجوز جعلها همزةً في صحارٰى يعني: لو كانت في الأصل همزة لجاز صحارئُ بالهمزة في صورةٍ مّا كما يجوز في نحو: خَطِيَّة ومن الواو وجوباً مطّرداً في نحو: أواصل",
+      "en": "Hence it may not be made a hamza in صحارٰى: had it been a hamza in origin, صحارئ with a hamza would be allowed in some form, as it is in خَطِيَّة. And (the hamza is substituted) for the wāw, necessarily and regularly, in words like أواصل… [rendering awaiting review]",
+      "tr": "Bu yüzden صحارٰى'da hemze yapılamaz: aslında hemze olsaydı, خَطِيَّة'de olduğu gibi bir sûrette hemzeli صحارئ câiz olurdu. Ve (hemze) أواصل gibi kelimelerde vâvın yerine vücûben ve muttarid olarak gelir… [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:475 [1] (ص 164)"
+    },
+    {
+      "ar": "ومن الواو الغير المضمومة، نحو: إِشَاحٍ وأَحِّدْ أَحِّدْ في الحديث ومن الياء في قَ«طع اللهُ أَدَيْه» لثقل الحركة على الياء ومن الهاء نحو: ماء أصله ماه ومن ثَمّ يجيء جمعه مياه ومن الألف نحو: فقد هيجت شوق المشتئق",
+      "en": "…and for the wāw not vowelled with ḍamma, as in إِشَاح and «أَحِّدْ أَحِّدْ» in the ḥadīth; and for the yāʾ in «طع اللهُ أَدَيْه» (as printed: قَ«طع اللهُ أَدَيْه»), for the weight of a vowel on the yāʾ; and for the hāʾ, as in ماء, whose origin is ماه — hence its plural is مياه; and for the alif, as in «فقد هيجت شوق المشتئق». [rendering awaiting review]",
+      "tr": "…ve mazmûm olmayan vâvın yerine: إِشَاح ve hadîsteki «أَحِّدْ أَحِّدْ» gibi; ve yânın yerine: «طع اللهُ أَدَيْه» (as printed: قَ«طع اللهُ أَدَيْه»)'de, yâ üzerinde harekenin ağırlığı için; ve hânın yerine: aslı ماه olan ماء gibi — çoğulu bu yüzden مياه'dır; ve elifin yerine: «فقد هيجت شوق المشتئق» gibi. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:481 [1] (ص 166)"
+    },
+    {
+      "ar": "التاء أبدلت من الواو، نحو: تُخَ مة وأختٍ لقرب مخرجهما ومن الياء نحو: ثنتان واسنتوا حتّى لا يقع الحركة على الياء ومن السين، نحو: ستّ أصله سدس ونحو ع: عَمرو بن يَربُوع شِرار النات، ومن الصاد نحو: لِصتٌ",
+      "en": "The tāʾ is substituted for the wāw, as in تُخَ مة and أخت, for the nearness of their places of articulation; for the yāʾ, as in ثنتان and اسنتوا, so that no vowel falls on the yāʾ; for the sīn, as in ستّ, whose origin is سدس, and in «عَمرو بن يَربُوع شِرار النات»; and for the ṣād, as in لِصتٌ… [rendering awaiting review]",
+      "tr": "Tâ, mahreçlerinin yakınlığı için vâvın yerine gelir: تُخَ مة ve أخت gibi; yânın yerine, yâ üzerine hareke düşmesin diye: ثنتان ve اسنتوا gibi; sînin yerine: aslı سدس olan ستّ ve «عَمرو بن يَربُوع شِرار النات» gibi; ve sâdın yerine: لِصتٌ gibi… [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:484–487 [2] (ص 168)"
+    },
+    {
+      "ar": "لقربهنّ في المهموسيةومن الباء نحو: الذعالة",
+      "en": "…for their nearness among the whispered letters; and for the bāʾ, as in الذعالة. [rendering awaiting review]",
+      "tr": "…mehmûs harfler içinde yakınlıkları için; ve bânın yerine: الذعالة gibi. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:490 [1] (ص 169)"
+    },
+    {
+      "ar": "النون أبدلت من الواو، نحو: صنعاني لقرب النون من حروف العلة ومن اللام نحو: لعنَّ لقربهما في المجهوريّة،",
+      "en": "The nūn is substituted for the wāw, as in صنعاني, for the nūn's nearness to the weak letters; and for the lām, as in لعنَّ, for their nearness among the voiced letters. [rendering awaiting review]",
+      "tr": "Nûn vâvın yerine gelir: صنعاني gibi, nûnun illet harflerine yakınlığı için; ve lâmın yerine: لعنَّ gibi, mechûr harfler içinde yakınlıkları için. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:490 [2] (ص 169)"
+    },
+    {
+      "ar": "والجيم أبدلت من الياء المشدّدة، نحو: أبو عَلِجٍّ حتّى لا يقع الحركات المختلفة على الياء، وأبدلت الجيم من الياء الغير المشددة حملاً على المشددة،",
+      "en": "The jīm is substituted for the doubled yāʾ, as in «أبو عَلِجٍّ», so that different vowels do not fall on the yāʾ; and for the undoubled yāʾ, by analogy with the doubled… [rendering awaiting review]",
+      "tr": "Cîm şeddeli yânın yerine gelir: «أبو عَلِجٍّ» gibi, yâ üzerine farklı harekeler düşmesin diye; şeddesiz yânın yerine de şeddeliye kıyasla gelir… [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:490 [3] (ص 169)"
+    },
+    {
+      "ar": "نحو: لاَهُمَّ إن كنت قبلتَ حَجَّتِجْ، فلا يزال شاحج ياتيك بِجْ",
+      "en": "…as in the verse «لاَهُمَّ إن كنت قبلتَ حَجَّتِجْ، فلا يزال شاحج ياتيك بِجْ». [rendering awaiting review]",
+      "tr": "…şu beyitteki gibi: «لاَهُمَّ إن كنت قبلتَ حَجَّتِجْ، فلا يزال شاحج ياتيك بِجْ». [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:493 [1] (ص 170)"
+    },
+    {
+      "ar": "الدال أبدلت من التاء، نحو: فُزْدُ واِجْدَمَعُوْا لقرب مخرجهما.",
+      "en": "The dāl is substituted for the tāʾ, as in فُزْدُ and اِجْدَمَعُوْا, for the nearness of their places of articulation. [rendering awaiting review]",
+      "tr": "Dâl, mahreçlerinin yakınlığı için tânın yerine gelir: فُزْدُ ve اِجْدَمَعُوْا gibi. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:493 [2] (ص 170)"
+    },
+    {
+      "ar": "الهاء أبدلت من الهمزة، نحو: هَرَقْتُ ومن الألف نحو: حَيَّهَلهُ وأَهْنَ ومن الياء في هذه",
+      "en": "The hāʾ is substituted for the hamza, as in هَرَقْتُ; for the alif, as in حَيَّهَلهُ and أَهْنَ; and for the yāʾ in هذه… [rendering awaiting review]",
+      "tr": "Hâ hemzenin yerine gelir: هَرَقْتُ gibi; elifin yerine: حَيَّهَلهُ ve أَهْنَ gibi; ve هذه'deki yânın yerine… [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:493 [3] (ص 170)"
+    },
+    {
+      "ar": "أمة الله لمناسبتها بحروف العلّة في الخفاء ومن ثَمّ لا تمنع الإمالة في مثل «لن يضربها» وتمنع في أكلت عنباً ومن التاء وجوباً مطّرداً في نحو طَلْحَه للفرق بينها وبين التاء التي في الفعل،",
+      "en": "…«أمة الله», for its kinship with the weak letters in their faintness — hence the imāla is not prevented in «لن يضربها» and is prevented in «أكلت عنباً»; and (the hāʾ is substituted) for the tāʾ, necessarily and regularly, in words like طَلْحَه (in pause), to tell it from the tāʾ of the verb. [rendering awaiting review]",
+      "tr": "…«أمة الله»'de; gizlilikte illet harflerine benzerliği için — bu yüzden «لن يضربها»'da imâle engellenmez, «أكلت عنباً»'da engellenir; ve (hâ) طَلْحَه gibi kelimelerde (vakıfta) tânın yerine vücûben ve muttarid olarak gelir, fiildeki tâdan ayrılsın diye. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:496 [1] (ص 171)"
+    },
+    {
+      "ar": "الياء أبدلت من الألف",
+      "en": "The yāʾ is substituted for the alif… [rendering awaiting review]",
+      "tr": "Yâ elifin yerine gelir… [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:496 [2] (ص 171)"
+    },
+    {
+      "ar": "وجوباً مطرداً نحو: مُفَيْتِيْح ومن الواو وجوباً مطّرداً نحو: ميقات لكسرة ما قبلهما ومن الهمزة جوازاً مطّرداً نحو: ذيب ومن أحد حرفي التضعيف نحو: قَتَ ضِّيَ الْبَازِي لما مرّ ومن النون، نحو أَناسيّ ودينارٍ لقرب الياء من النون، ومن العين نحو: ضَفَادِي لثقل العين وكسرة ما قبلها",
+      "en": "…necessarily and regularly, as in مُفَيْتِيْح; for the wāw, necessarily and regularly, as in ميقات — for the kasra before them both; for the hamza, by permission and regularly, as in ذيب; for one of the two doubled letters, as in «قَتَ ضِّيَ الْبَازِي», as said before; for the nūn, as in أَناسيّ and دينار, for the yāʾ's nearness to the nūn; and for the ʿayn, as in ضَفَادِي, for the weight of the ʿayn and the kasra before it. [rendering awaiting review]",
+      "tr": "…vücûben ve muttarid olarak: مُفَيْتِيْح gibi; vâvın yerine vücûben ve muttarid olarak: ميقات gibi — ikisinde de öncesindeki kesre sebebiyle; hemzenin yerine cevâzen ve muttarid olarak: ذيب gibi; şeddeli iki harften birinin yerine: geçtiği gibi «قَتَ ضِّيَ الْبَازِي»; nûnun yerine, yânın nûna yakınlığı için: أَناسيّ ve دينار gibi; ve aynın yerine, aynın ve öncesindeki kesrenin ağırlığı için: ضَفَادِي gibi. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:499 [1] (ص 172)"
+    },
+    {
+      "ar": "ومن التاء نحو: ايتصلت؛ لأنّ أصله واو ومن الباء نحو: الثّعالي ومن السين نحو: السادي ومن الثاء نحو: الثالي لكسرة ما قبلها.",
+      "en": "And for the tāʾ, as in ايتصلت, because its origin is a wāw; for the bāʾ, as in الثّعالي; for the sīn, as in السادي; and for the thāʾ, as in الثالي — for the kasra before them. [rendering awaiting review]",
+      "tr": "Ve tânın yerine: ايتصلت gibi, çünkü aslı vâvdır; bânın yerine: الثّعالي gibi; sînin yerine: السادي gibi; ve sânın yerine: الثالي gibi — öncelerindeki kesre sebebiyle. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:502 [1] (ص 173)"
+    },
+    {
+      "ar": "الواو أبدلت من الألف وجوباً مطّرداً نحو: ضَوَارِب لقربهما في العلية",
+      "en": "The wāw is substituted for the alif, necessarily and regularly, as in ضَوَارِب, for their nearness in weakness… [rendering awaiting review]",
+      "tr": "Vâv elifin yerine vücûben ve muttarid olarak gelir: ضَوَارِب gibi, illette yakınlıkları… [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:502 [2] (ص 173)"
+    },
+    {
+      "ar": "واجتماع الساكنين ومن الياء نحو: مُوقِن لضمّة ما قبلها ومن الهمزة جوازاً مطّرداً نحو: لُوم لما مرّ.",
+      "en": "…and the meeting of two quiescent letters; for the yāʾ, as in مُوقِن, for the ḍamma before it; and for the hamza, by permission and regularly, as in لُوم, as said before. [rendering awaiting review]",
+      "tr": "…ve iki sâkinin buluşması için; yânın yerine, öncesindeki damme sebebiyle: مُوقِن gibi; ve hemzenin yerine cevâzen ve muttarid olarak: geçtiği gibi لُوم. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:505 [1] (ص 174)"
+    },
+    {
+      "ar": "الميم أبدلت من الواو نحو: فم أصله: فوه لاتّحاد مخرجهما ومن اللام نحو قوله صلى الله تعالى عليه وسلم: «وَلَيْسَ مِنَ امْبِرِّ امصْيَامُ في امْسَفَر» لقربهما في المجهوريّة ومن النون الساكنة نحو: عَمْبَرٍ ومن المتحرّكة في نحو وكَفّك المخضَّب البنام",
+      "en": "The mīm is substituted for the wāw, as in فم, whose origin is فوه, for their one place of articulation; for the lām, as in the Prophet's saying «وَلَيْسَ مِنَ امْبِرِّ امصْيَامُ في امْسَفَر», for their nearness among the voiced letters; for the quiescent nūn, as in عَمْبَر; and for the vowelled nūn, as in «وكَفّك المخضَّب البنام»… [rendering awaiting review]",
+      "tr": "Mîm, mahreçleri bir olduğu için vâvın yerine gelir: aslı فوه olan فم gibi; mechûr harfler içinde yakınlıkları için lâmın yerine: Peygamberin «وَلَيْسَ مِنَ امْبِرِّ امصْيَامُ في امْسَفَر» sözündeki gibi; sâkin nûnun yerine: عَمْبَر gibi; ve harekeli nûnun yerine: «وكَفّك المخضَّب البنام» gibi… [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:505 [2] (ص 174)"
+    },
+    {
+      "ar": "لقربهما في المجهوريّة ومن الباء نحو: ما زِلتُ راتماً لاتّحاد مخرجهما،",
+      "en": "…for their nearness among the voiced letters; and for the bāʾ, as in «ما زِلتُ راتماً», for their one place of articulation. [rendering awaiting review]",
+      "tr": "…mechûr harfler içinde yakınlıkları için; ve bânın yerine, mahreçleri bir olduğu için: «ما زِلتُ راتماً» gibi. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:508 [1] (ص 175)"
+    },
+    {
+      "ar": "الصاد أبدلت من السين نحو قوله تعالى: ﴿وَأَسْبَغَ عَلَيْكُمْ نِعَمَهُ﴾ لقمان:١٣/٠٢ لقرب مخرجهما،",
+      "en": "The ṣād is substituted for the sīn, as in the Qurʾān's «وَأَسْبَغَ عَلَيْكُمْ نِعَمَهُ», for the nearness of their places of articulation. [rendering awaiting review]",
+      "tr": "Sâd, mahreçlerinin yakınlığı için sînin yerine gelir: «وَأَسْبَغَ عَلَيْكُمْ نِعَمَهُ» âyetindeki gibi. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:508 [2] (ص 175)"
+    },
+    {
+      "ar": "الألف أبدلت من أختيهما وجوباً ] [ مطرداً نحو: قال وباع ومن الهمزة جوازاً مطّرداً نحو: راس كما مرّ،",
+      "en": "The alif is substituted for its two sisters (the wāw and the yāʾ), necessarily and regularly, as in قال and باع; and for the hamza, by permission and regularly, as in راس, as said before. [rendering awaiting review]",
+      "tr": "Elif iki kardeşinin (vâv ve yânın) yerine vücûben ve muttarid olarak gelir: قال ve باع gibi; ve hemzenin yerine cevâzen ve muttarid olarak: geçtiği gibi راس. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:508 [3] (ص 175)"
+    },
+    {
+      "ar": "اللام أبدلت من النون نحو: أُصَيْلاَل ومن الضاد نحو: الطَجَعَ لاتّحادهن في المجهوريّة،",
+      "en": "The lām is substituted for the nūn, as in أُصَيْلاَل, and for the ḍād, as in الطَجَعَ, for their being alike among the voiced letters. [rendering awaiting review]",
+      "tr": "Lâm, mechûr harflerde birleştikleri için nûnun yerine gelir: أُصَيْلاَل gibi; ve dâdın yerine: الطَجَعَ gibi. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:508 [4] (ص 175)"
+    },
+    {
+      "ar": "الزاء أبدلت من السين نحو: يزدِلُ ومن الصاد",
+      "en": "The zāy is substituted for the sīn, as in يزدِل, and for the ṣād… [rendering awaiting review]",
+      "tr": "Zây sînin yerine gelir: يزدِل gibi; ve sâdın yerine… [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:508 [5] (ص 175)"
+    },
+    {
+      "ar": "نحو: قول الحاتم هكذا فَزْدِيْ أنَهْ،",
+      "en": "…as in Ḥātim's saying «هكذا فَزْدِيْ أنَهْ». [rendering awaiting review]",
+      "tr": "…Hâtim'in «هكذا فَزْدِيْ أنَهْ» sözündeki gibi. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:511 [1] (ص 176)"
+    },
+    {
+      "ar": "الطاءُ أبدلت من التاء وجوباً مطرداً في الافتعال نحو: اضطرب وفي فَحَصْطُ لقرب مخرجهما والموضع الذي لم يقيد فيه من الصور المذكورة يكون جائزاً غيرَ غير مطرد.",
+      "en": "The ṭāʾ is substituted for the tāʾ, necessarily and regularly, in the iftiʿāl, as in اضطرب, and in فَحَصْطُ, for the nearness of their places of articulation. Every case among these where no qualification was given is allowed but not regular. [rendering awaiting review]",
+      "tr": "Tâ (ط), ifti'âlde vücûben ve muttarid olarak tânın (ت) yerine gelir: اضطرب gibi, ve فَحَصْطُ'da, mahreçlerinin yakınlığı için. Bu sûretlerden kayıt konmayanların hepsi câizdir, ama muttarid değildir. [tercüme inceleme bekliyor]",
+      "source": "marah-al-arwah-matn.txt:511 [2] (ص 176)"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "اِوْتَقَدَ",
+      "right": "اِتَّقَدَ",
+      "why": {
+        "en": "The wāw before the tāʾ of iftiʿāl becomes a tāʾ and merges into it (Marāḥ src l. 567).",
+        "tr": "İfti'âl tâsından önceki vâv tâya döner ve ona idgâm edilir (Merâh src s. 567)."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "form-viii-verbs",
+    "hollow-verbs",
+    "mahmuz-verbs"
+  ]
+}
