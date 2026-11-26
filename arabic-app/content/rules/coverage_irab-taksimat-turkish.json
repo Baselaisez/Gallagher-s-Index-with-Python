@@ -1,0 +1,682 @@
+{
+ "book": "irab-taksimat-turkish",
+ "ledger": "aux",
+ "title": "İrab taksimatı (Turkish .doc; ~95% OLE noise)",
+ "source": "research/sources/irab-taksimat-turkish.txt",
+ "files": [
+  "research/sources/irab-taksimat-turkish.txt"
+ ],
+ "group": "awamil",
+ "note": "The readable fragments are ledgered one per line; the rest is binary noise (one not-automatable entry).",
+ "counts": {
+  "applied": 11,
+  "not-automatable": 3
+ },
+ "entries": [
+  {
+   "id": "l162",
+   "line": 162,
+   "ar": "Harfi Cerle Mecrur",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majrur-bil-harf-wa-bil-idafa",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jarr",
+     "topics": [
+      "jarr"
+     ]
+    }
+   ],
+   "probe": {
+    "s": "تُبْتُ مِنْ كُلِّ ذَنْبٍ",
+    "w": "كل",
+    "re": "مجرور"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، مجرور وعلامة جره الكسرة الظاهرة، وهو مضاف."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l171",
+   "line": 171,
+   "ar": "Cevazımdan biri kendisine dâhil olan Fiili muzarı",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "nawasib-wa-jawazim-al-mudari",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "lam-jazim",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-fil-wal-madi-wal-mudari-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mudari-marfu",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jawazim,mudari",
+     "topics": [
+      "jawazim",
+      "mudari"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+      "w": "يلد",
+      "re": "مجزوم"
+     },
+     {
+      "js": "sarfDerive(nakilClass({root:'ن ص ر'}),'I',1).mudari[0]==='يَنْصُرُ'"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; فعل مضارع، مجزوم وعلامة جزمه السكون، والفاعل ضمير مستتر جوازا تقديره «هو». ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l178",
+   "line": 178,
+   "ar": "Hareke (Zamme, Fetha, Kesre)",
+   "kind": "row",
+   "carried_by": [],
+   "reason": "a fragment with no grammar term",
+   "status": "not-automatable"
+  },
+  {
+   "id": "l182",
+   "line": 182,
+   "ar": "Hazif (Harekeyi Hazif, Ahiri Hazif, Nunu Hazif)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ijaz-al-hadhf",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "hadhf-al-mudaf-wal-mudaf-ilayh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "hadhf",
+     "topics": [
+      "hadhf"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "HadhfEngine.seedAudit().bad.length===0"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l227",
+   "line": 227,
+   "ar": "Müfret munsarıf, cemi mükesser munsarıflar",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muthanna",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mamnu-min-sarf",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-jumu-wa-tanith-amiliha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "signs,mamnu",
+     "topics": [
+      "signs",
+      "mamnu",
+      "jam"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "js": "SignEngine.seedAudit().bad.length===0"
+     },
+     {
+      "js": "MamnuEngine.verdict('أَحْمَدُ').barred===true"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; true ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l1390",
+   "line": 1390,
+   "ar": "Cemi müennes salimler",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muthanna",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muannath-wa-alamatuh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "signs",
+     "topics": [
+      "signs",
+      "muannath"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "SignEngine.seedAudit().bad.length===0"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l1396",
+   "line": 1396,
+   "ar": "Esma-i sitte-i mu’telle",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muthanna",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "signs",
+     "topics": [
+      "signs"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "SignEngine.seedAudit().bad.length===0"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l1400",
+   "line": 1400,
+   "ar": "ابوه,اخوه,حموها,هانوه,فوه,ذو مال",
+   "kind": "row",
+   "carried_by": [],
+   "reason": "a fragment with no grammar term",
+   "status": "not-automatable"
+  },
+  {
+   "id": "l1402",
+   "line": 1402,
+   "ar": "Tesniye, اثنان, zamire muzaf کلا kelimesi",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mudaf-wa-nawa-al-idafa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majrur-bil-harf-wa-bil-idafa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muthanna",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mabni-wal-mudmar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-marifa-al-mudmarat-wal-alam",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "idafa,signs,damir",
+     "topics": [
+      "idafa",
+      "signs",
+      "damir"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "عِباَدَةُ اللهِ تَعاَلىَ خَيْرٌ",
+      "w": "الله",
+      "re": "مضاف اليه|مجرور"
+     },
+     {
+      "js": "SignEngine.seedAudit().bad.length===0"
+     },
+     {
+      "any": [
+       {
+        "s": "كَيْفَ أَنْتَ",
+        "w": 1,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَهِيَ لَيْسَتْ بِأَسْمَاءٍ",
+        "w": 0,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَنَحْنُ لَا نَدْخُلُهَا",
+        "w": 0,
+        "re": "ضمير"
+       }
+      ],
+      "at": [
+       "talkhis-al-miftah:26:s3:2",
+       "marah-al-arwah:17:s19:1",
+       "musa-wa-bani-israil:4:s3:1"
+      ]
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم علم، مجرور وعلامة جره الكسرة الظاهرة، مضاف اليه. ‖ true ‖ 3/3 pass; ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الضم."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l1408",
+   "line": 1408,
+   "ar": "Cemi müennes salim,",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muthanna",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muannath-wa-alamatuh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "signs",
+     "topics": [
+      "signs",
+      "muannath"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "SignEngine.seedAudit().bad.length===0"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l1423",
+   "line": 1423,
+   "ar": "Ahiri sahıh olduğu halde ahirine zamir bitişmeyen fiili muzari",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mabni-wal-mudmar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-marifa-al-mudmarat-wal-alam",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-fil-wal-madi-wal-mudari-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mudari-marfu",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "damir,mudari",
+     "topics": [
+      "damir",
+      "mudari"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "any": [
+       {
+        "s": "كَيْفَ أَنْتَ",
+        "w": 1,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَهِيَ لَيْسَتْ بِأَسْمَاءٍ",
+        "w": 0,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَنَحْنُ لَا نَدْخُلُهَا",
+        "w": 0,
+        "re": "ضمير"
+       }
+      ],
+      "at": [
+       "talkhis-al-miftah:26:s3:2",
+       "marah-al-arwah:17:s19:1",
+       "musa-wa-bani-israil:4:s3:1"
+      ]
+     },
+     {
+      "js": "sarfDerive(nakilClass({root:'ن ص ر'}),'I',1).mudari[0]==='يَنْصُرُ'"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; 3/3 pass; ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الضم. ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l1429",
+   "line": 1429,
+   "ar": "Ahiri illetli olduğu halde ahirine zamir bitişmeyen fiili muzari",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mabni-wal-mudmar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-marifa-al-mudmarat-wal-alam",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-fil-wal-madi-wal-mudari-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mudari-marfu",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "hollow-verbs",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "naqis-verbs",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "damir,mudari,ilal",
+     "topics": [
+      "damir",
+      "mudari",
+      "ilal"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "any": [
+       {
+        "s": "كَيْفَ أَنْتَ",
+        "w": 1,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَهِيَ لَيْسَتْ بِأَسْمَاءٍ",
+        "w": 0,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَنَحْنُ لَا نَدْخُلُهَا",
+        "w": 0,
+        "re": "ضمير"
+       }
+      ],
+      "at": [
+       "talkhis-al-miftah:26:s3:2",
+       "marah-al-arwah:17:s19:1",
+       "musa-wa-bani-israil:4:s3:1"
+      ]
+     },
+     {
+      "js": "sarfDerive(nakilClass({root:'ن ص ر'}),'I',1).mudari[0]==='يَنْصُرُ'"
+     },
+     {
+      "ilal": "قَوَلَ",
+      "out": "قَالَ"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; 3/3 pass; ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الضم. ‖ true ‖ قَالَ ← qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "l1435",
+   "line": 1435,
+   "ar": "Ahirine cemi müennes nunu’nun gayrı zamir bitişen fiili muzarı",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muthanna",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mabni-wal-mudmar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-marifa-al-mudmarat-wal-alam",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muannath-wa-alamatuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-fil-wal-madi-wal-mudari-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mudari-marfu",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "signs,damir,mudari",
+     "topics": [
+      "signs",
+      "damir",
+      "muannath",
+      "mudari"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "js": "SignEngine.seedAudit().bad.length===0"
+     },
+     {
+      "any": [
+       {
+        "s": "كَيْفَ أَنْتَ",
+        "w": 1,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَهِيَ لَيْسَتْ بِأَسْمَاءٍ",
+        "w": 0,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَنَحْنُ لَا نَدْخُلُهَا",
+        "w": 0,
+        "re": "ضمير"
+       }
+      ],
+      "at": [
+       "talkhis-al-miftah:26:s3:2",
+       "marah-al-arwah:17:s19:1",
+       "musa-wa-bani-israil:4:s3:1"
+      ]
+     },
+     {
+      "js": "sarfDerive(nakilClass({root:'ن ص ر'}),'I',1).mudari[0]==='يَنْصُرُ'"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; true ‖ 3/3 pass; ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الضم. ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "noise",
+   "line": "1-2288",
+   "ar": "2275 lines of OLE binary noise",
+   "kind": "row",
+   "carried_by": [],
+   "reason": "undecodable bytes; a clean .doc is needed",
+   "status": "not-automatable"
+  }
+ ]
+}

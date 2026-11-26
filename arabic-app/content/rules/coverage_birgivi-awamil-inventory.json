@@ -1,0 +1,2722 @@
+{
+ "book": "birgivi-awamil-inventory",
+ "ledger": "aux",
+ "title": "Birgivī's ʿAwāmil — the inventory tables (Ottoman and Turkish)",
+ "source": "research/sources/awamil-birgivi-tables.txt",
+ "files": [
+  "research/sources/awamil-birgivi-tables.txt",
+  "research/sources/amil-tablolari-turkce.txt",
+  "research/sources/mamul-tablolari-turkce.txt",
+  "research/sources/irab-taksimat-tablolari-turkce.txt"
+ ],
+ "group": "awamil",
+ "note": "One inventory stated four times (the Ottoman tables, and the Turkish amil / mamul / irab-taksimat sheets): ledgered once.",
+ "counts": {
+  "noted": 74,
+  "applied": 32
+ },
+ "entries": [
+  {
+   "id": "inv001",
+   "line": 3,
+   "ar": "ب",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv002",
+   "line": 3,
+   "ar": "من",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "qisas-al-nabiyyin-1:17:s2:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "مِنْ أَيْنَ أَنْتُمْ",
+      "w": 0,
+      "re": "حرف جر"
+     },
+     {
+      "s": "قَالُوا مِنْ كَنْعَانَ",
+      "w": 1,
+      "re": "حرف جر"
+     },
+     {
+      "s": "فَضَحِكَ مِنْ كَلَامِهَا",
+      "w": 1,
+      "re": "حرف جر"
+     }
+    ],
+    "at": [
+     "qisas-al-nabiyyin-1:17:s2:1",
+     "qisas-al-nabiyyin-1:17:s3:2",
+     "sulayman-wa-al-hudhud:2:s7:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv003",
+   "line": 3,
+   "ar": "الى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "ashab-al-fil:1:s5:3"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "مَا وَصَلَ إِلَى الْكَعْبَةِ",
+      "w": 2,
+      "re": "حرف جر"
+     },
+     {
+      "s": "رَجَعَ الْوَلَدُ إِلَى الْبَيْتِ",
+      "w": 2,
+      "re": "حرف جر"
+     },
+     {
+      "s": "وَالْفَاعِلُ رَاءٍ إِلَى آخِرِهِ",
+      "w": 2,
+      "re": "حرف جر"
+     }
+    ],
+    "at": [
+     "ashab-al-fil:1:s5:3",
+     "jumal-al-tadrib:1:s5:3",
+     "marah-al-arwah:60:s1:3"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv004",
+   "line": 3,
+   "ar": "عن",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "qisas-al-nabiyyin-1:12:s9:3"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَسَأَلَا يُوسُفَ عَنِ التَّأْوِيلِ",
+      "w": 2,
+      "re": "حرف جر"
+     },
+     {
+      "s": "لِمَاذَا غَابَ عَنِ الطَّيْرِ",
+      "w": 2,
+      "re": "حرف جر"
+     },
+     {
+      "s": "وَانْقَبَضْتَ عَنْ مُعَاشَرَتِهِمْ وَمُخَالَطَتِهِمْ",
+      "w": 1,
+      "re": "حرف جر"
+     }
+    ],
+    "at": [
+     "qisas-al-nabiyyin-1:12:s9:3",
+     "sulayman-wa-al-hudhud:3:s4:3",
+     "wasiyyat-abi-hanifa-samti:2:s12:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv005",
+   "line": 3,
+   "ar": "على",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "aqaid-ahl-al-sunna:43:s1:2"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَالنُّصُوصُ عَلَى ظَوَاهِرِهَا",
+      "w": 1,
+      "re": "حرف جر"
+     },
+     {
+      "s": "فَخَافَتْ عَلَى النَّمْلِ",
+      "w": 1,
+      "re": "حرف جر"
+     },
+     {
+      "s": "قُلْنَا إِنَّهُ عَلَى الْعَقْلِ",
+      "w": 2,
+      "re": "حرف جر"
+     }
+    ],
+    "at": [
+     "aqaid-ahl-al-sunna:43:s1:2",
+     "sulayman-wa-al-hudhud:2:s4:2",
+     "al-maqamat-birgivi:2:s4:3"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv006",
+   "line": 3,
+   "ar": "لام",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv007",
+   "line": 3,
+   "ar": "فى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "jumal-al-tadrib:2:s5:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "فِي الْبَيْتِ رَجُلٌ",
+      "w": 0,
+      "re": "حرف جر"
+     },
+     {
+      "s": "مَنْ فِي الدَّارِ",
+      "w": 1,
+      "re": "حرف جر"
+     },
+     {
+      "s": "أَيَجُوزُ هٰذَا فِي الْعَقْلِ",
+      "w": 2,
+      "re": "حرف جر"
+     }
+    ],
+    "at": [
+     "jumal-al-tadrib:2:s5:1",
+     "talkhis-al-miftah:25:s5:2",
+     "abu-hanifa-wa-al-safina:2:s6:3"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv008",
+   "line": 3,
+   "ar": "كف (كَـ)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv009",
+   "line": 3,
+   "ar": "حتى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "ashab-al-ghar:1:s2:7"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "فَدَخَلُوا غَارًا فِي جَبَلٍ لِيَبِيتُوا فِيهِ حَتَّى الصَّبَاحِ",
+      "w": 6,
+      "re": "حرف جر"
+     },
+     {
+      "s": "فَفَتَحَ مُدُنًا أُخْرَى ثُمَّ سَارَ حَتَّى يَلْحَقَ بِطَارِقٍ",
+      "w": 5,
+      "re": "حرف جر"
+     },
+     {
+      "s": "وَكَانَ سُلْطَانُ مِصْرَ قَدْ نَزَلَ بِجَيْشِهِ فِي الرَّيْدَانِيَّةِ حَتَّى يَمْنَعَهُ مِنْ دُخُولِ الْقَاهِرَةِ",
+      "w": 8,
+      "re": "حرف جر"
+     }
+    ],
+    "at": [
+     "ashab-al-ghar:1:s2:7",
+     "tariq-ibn-ziyad:4:s5:6",
+     "marj-dabiq:4:s2:9"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "1/3 pass; حرف جر، لا محل له من الاعراب. ‖ حرف غاية وجر، لا محل له من الاعراب، والمصدر المؤول من «ان» المضمرة والفعل في محل جر به. ‖ حرف غاية وجر، لا محل له من الاعراب، والمصدر المؤول من «ان» المضمرة و"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv010",
+   "line": 3,
+   "ar": "رب",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "muallaqat-al-harith:1:s3:4"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "آذَنَتْنَا بِبَيْنِهَا أَسْمَاءُ رُبَّ ثَاوٍ يُمَلُّ مِنْهُ الثَّوَاءُ",
+      "w": 3,
+      "re": "حرف جر"
+     },
+     {
+      "s": "آذَنَتْنَا بِبَيْنِهَا أَسْمَاءُ رُبَّ ثَاوٍ يُمَلُّ مِنْهُ الثَّوَاءُ",
+      "w": 3,
+      "re": "حرف جر"
+     },
+     {
+      "s": "أَلَا رُبَّ يَوْمٍ لَكَ مِنْهُنَّ صَالِحٍ وَلَا سِيَّمَا يَوْمٍ بِدَارَةِ جُلْجُلِ",
+      "w": 1,
+      "re": "حرف جر"
+     }
+    ],
+    "at": [
+     "muallaqat-al-harith:1:s3:4",
+     "muallaqat-al-harith:2:s1:4",
+     "muallaqat-imri-al-qays:3:s4:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv011",
+   "line": 4,
+   "ar": "واو القسم",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv012",
+   "line": 4,
+   "ar": "تاء القسم",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv013",
+   "line": 4,
+   "ar": "حاشا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv014",
+   "line": 4,
+   "ar": "مذ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv015",
+   "line": 4,
+   "ar": "منذ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "fath-al-qustantiniyya:1:s3:5"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَكَانَ الْمُسْلِمُونَ يَرْجُونَ فَتْحَهَا مُنْذُ زَمَنٍ بَعِيدٍ",
+      "w": 4,
+      "re": "حرف جر"
+     },
+     {
+      "s": "فَقَالَ طَالُوتُ أَنْتَ صَغِيرٌ وَهُوَ رَجُلٌ قَوِيٌّ قَدْ قَاتَلَ مُنْذُ صِغَرِهِ",
+      "w": 9,
+      "re": "حرف جر"
+     },
+     {
+      "s": "إِنَّ يُوسُفَ كَانَ وَحِيدًا مُنْذُ زَمَنٍ طَوِيلٍ لَا يَرَى أَحَدًا مِنْ أَهْلِهِ",
+      "w": 4,
+      "re": "حرف جر"
+     }
+    ],
+    "at": [
+     "fath-al-qustantiniyya:1:s3:5",
+     "dawud-wa-jalut:3:s8:10",
+     "qisas-al-nabiyyin-1:19:s24:5"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب. ‖ حرف جر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv016",
+   "line": "amil-tablolari-turkce.txt:?",
+   "ar": "خلى (خَلَا)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv017",
+   "line": "amil-tablolari-turkce.txt:?",
+   "ar": "عدى (عَدَا)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv018",
+   "line": 4,
+   "ar": "لولا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv019",
+   "line": 4,
+   "ar": "كيمه (كَيْ)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv020",
+   "line": 4,
+   "ar": "لعل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv021",
+   "line": 7,
+   "ar": "اِن",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "jumal-al-tadrib:2:s7:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "إِنَّ الْعِلْمَ نَافِعٌ",
+      "w": 0,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     },
+     {
+      "s": "إِنَّ الدَّرْسَ سَهْلٌ",
+      "w": 0,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     },
+     {
+      "s": "إِنَّ الدَّرْسَ سَهْلٌ",
+      "w": 0,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     }
+    ],
+    "at": [
+     "jumal-al-tadrib:2:s7:1",
+     "jumal-al-tadrib:3:s4:1",
+     "jumal-al-tadrib:6:s2:1"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب. ‖ حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب. ‖ حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv022",
+   "line": 7,
+   "ar": "ان",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "jumal-al-tadrib:2:s7:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "إِنَّ الْعِلْمَ نَافِعٌ",
+      "w": 0,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     },
+     {
+      "s": "إِنَّ الدَّرْسَ سَهْلٌ",
+      "w": 0,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     },
+     {
+      "s": "إِنَّ الدَّرْسَ سَهْلٌ",
+      "w": 0,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     }
+    ],
+    "at": [
+     "jumal-al-tadrib:2:s7:1",
+     "jumal-al-tadrib:3:s4:1",
+     "jumal-al-tadrib:6:s2:1"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب. ‖ حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب. ‖ حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv023",
+   "line": 7,
+   "ar": "كأن",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "qisas-al-nabiyyin-2:12:s3:2"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "حَتَّى كَأَنَّ السَّمَاءَ مِنْخَلَةٌ لَا تُمْسِكُ مَاءً",
+      "w": 1,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     },
+     {
+      "s": "كَأَنَّ دِمَاءَ الْهَادِيَاتِ بِنَحْرِهِ عُصَارَةُ حِنَّاءٍ بِشَيْبٍ مُرَجَّلِ",
+      "w": 0,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     },
+     {
+      "s": "كَأَنَّ مَكَاكِيَّ الْجِوَاءِ غُدَيَّةً صُبِحْنَ سُلَافًا مِنْ رَحِيقٍ مُفَلْفَلِ",
+      "w": 0,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     }
+    ],
+    "at": [
+     "qisas-al-nabiyyin-2:12:s3:2",
+     "muallaqat-imri-al-qays:11:s5:1",
+     "muallaqat-imri-al-qays:14:s5:1"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف تشبيه ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب. ‖ حرف تشبيه ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب. ‖ حرف تشبيه ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv024",
+   "line": 7,
+   "ar": "لكن",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "luqman-wa-ibnuh:1:s2:4"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَكَانَ عَبْدًا فَقِيرًا لَكِنَّ النَّاسَ كَانُوا يَأْتُونَ إِلَيْهِ لِيَسْمَعُوا كَلَامَهُ",
+      "w": 3,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     }
+    ],
+    "at": [
+     "luqman-wa-ibnuh:1:s2:4"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "1/1 pass; حرف استدراك ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv025",
+   "line": 7,
+   "ar": "ليت",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "talkhis-al-miftah:67:s2:5"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "كَقَوْلِ مَنْ قَالَ لِأَعْوَرَ لَيْتَ عَيْنَيْهِ سَوَاءٌ",
+      "w": 4,
+      "re": "مشبه بالفعل|ناسخ|حرف توكيد|حرف تمن|حرف ترج|حرف استدراك|حرف تشبيه"
+     }
+    ],
+    "at": [
+     "talkhis-al-miftah:67:s2:5"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "1/1 pass; حرف تمن ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv026",
+   "line": 4,
+   "ar": "لعل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv027",
+   "line": 7,
+   "ar": "الا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-tanbih",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv028",
+   "line": 3,
+   "ar": "لا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "la-nafiya-lil-jins",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv029",
+   "line": "amil-tablolari-turkce.txt:?",
+   "ar": "ما مشابه بليس",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ma-la-mushabbaha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "talkhis-al-miftah:18:s3:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "مَا زَيْدٌ شَيْئًا",
+      "w": 0,
+      "re": "ليس|حجازي"
+     },
+     {
+      "s": "مَا زَيْدٌ إِلَّا كَاتِبٌ",
+      "w": 0,
+      "re": "ليس|حجازي"
+     },
+     {
+      "s": "فَقَالَ الْحُقُوقُ كَثِيرَةٌ وَلَيْسَ عِنْدِي مَا أُعْطِيكَ",
+      "w": 5,
+      "re": "ليس|حجازي"
+     }
+    ],
+    "at": [
+     "talkhis-al-miftah:18:s3:1",
+     "talkhis-al-miftah:21:s3:1",
+     "al-abras-wa-al-aqra-wa-al-ama:3:s3:6"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/3 pass; نافية حجازية تعمل عمل «ليس»: ترفع الاسم وتنصب الخبر، حرف مبني علي السكون لا محل له من الاعراب. ‖ نافية مهملة: انتقض نفيها ب«الا» فلا تعمل عمل «ليس»، حرف مبني علي السكون لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv030",
+   "line": "amil-tablolari-turkce.txt:?",
+   "ar": "لا مشابه بليس",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ma-la-mushabbaha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv031",
+   "line": 7,
+   "ar": "ان",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "an-masdariyya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "aqaid-ahl-al-sunna:22:s1:3"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَلَا يُشْتَرَطُ أَنْ يَكُونَ مَعْصُومًا",
+      "w": 2,
+      "re": "نصب|مصدري"
+     },
+     {
+      "s": "وَحُكْمُهُ أَنْ يُوجِبَ الْحُكْمَ قَطْعًا",
+      "w": 1,
+      "re": "نصب|مصدري"
+     },
+     {
+      "s": "وَلَا أَنْ يَكُونَ أَفْضَلَ أَهْلِ زَمَانِهِ",
+      "w": 1,
+      "re": "نصب|مصدري"
+     }
+    ],
+    "at": [
+     "aqaid-ahl-al-sunna:22:s1:3",
+     "mukhtasar-al-manar:4:s3:2",
+     "aqaid-ahl-al-sunna:22:s2:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف مصدري ونصب، لا محل له من الاعراب. ‖ حرف مصدري ونصب، لا محل له من الاعراب. ‖ حرف مصدري ونصب، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv032",
+   "line": 13,
+   "ar": "لن",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "an-masdariyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv033",
+   "line": 4,
+   "ar": "كى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "an-masdariyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv034",
+   "line": 14,
+   "ar": "اذن",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "an-masdariyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv035",
+   "line": 17,
+   "ar": "لم",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "lam-jazim",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "jumal-al-tadrib:1:s7:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "لَمْ يَكْتُبْ زَيْدٌ رِسَالَةً",
+      "w": 0,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "وَلٰكِنْ يُوسُفُ لَمْ يَسْتَعْجِلْ",
+      "w": 2,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "وَلٰكِنَّ يُوسُفَ لَمْ يُسْرِعْ",
+      "w": 2,
+      "re": "جزم|شرط"
+     }
+    ],
+    "at": [
+     "jumal-al-tadrib:1:s7:1",
+     "qisas-al-nabiyyin-1:13:s6:3",
+     "qisas-al-nabiyyin-1:15:s10:3"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف نفي وجزم وقلب، لا محل له من الاعراب. ‖ حرف نفي وجزم وقلب، لا محل له من الاعراب. ‖ حرف نفي وجزم وقلب، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv036",
+   "line": 17,
+   "ar": "لما",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "lam-jazim",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "wasiyyat-abi-hanifa-l4:1:s1:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "لَمَّا عَزَمَ يُوسُفُ عَلَى الرُّجُوعِ إِلَى الْبَصْرَةِ أَتَى أَبَا حَنِيفَةَ مُوَدِّعًا",
+      "w": 0,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "فَقُلْتُ لَهُ لَمَّا عَوَى إِنَّ شَأْنَنَا قَلِيلُ الْغِنَى إِنْ كُنْتَ لَمَّا تَمَوَّلِ",
+      "w": 10,
+      "re": "جزم|شرط"
+     }
+    ],
+    "at": [
+     "wasiyyat-abi-hanifa-l4:1:s1:1",
+     "muallaqat-imri-al-qays:9:s7:11"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; ظرف زمان بمعني «حين» (لما الحينية) متضمن معني الشرط مبني علي السكون في محل نصب، مضاف الي الجملة بعده، متعلق ب«اتي». ‖ ظرف زمان بمعني «حين» (لما الحينية) متضمن معني الشرط مبني علي السكون في م"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv037",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "امر لامى (لام الأمر)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "lam-amr",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv038",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "نهى لاسى (لا الناهية)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "la-nahiya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "talkhis-al-miftah:29:s1:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "لَا تَمْتَثِلْ أَمْرِي",
+      "w": 0,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "لَا تَكْتُبْ عَلَى الْجِدَارِ",
+      "w": 0,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "لَا تَعْبُدُوا إِلَّا إِيَّاهُ",
+      "w": 0,
+      "re": "جزم|شرط"
+     }
+    ],
+    "at": [
+     "talkhis-al-miftah:29:s1:1",
+     "jumal-al-tadrib:5:s6:1",
+     "qisas-al-nabiyyin-1:13:s36:1"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/3 pass; «لا» الناهية، حرف نهي وجزم، لا محل له من الاعراب. ‖ «لا» الناهية، حرف نهي وجزم، لا محل له من الاعراب. ‖ حرف نفي، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv039",
+   "line": 7,
+   "ar": "ان",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "jumal-al-tadrib:5:s1:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "إِنْ تَدْرُسْ تَنْجَحْ",
+      "w": 0,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "قَالُوا فَمَا جَزَاؤُهُ إِنْ كُنْتُمْ كَاذِبِينَ",
+      "w": 3,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "وَنُنْكِرُ إِنْ شِئْنَا عَلَى النَّاسِ قَوْلَهُمْ",
+      "w": 1,
+      "re": "جزم|شرط"
+     }
+    ],
+    "at": [
+     "jumal-al-tadrib:5:s1:1",
+     "qisas-al-nabiyyin-1:19:s16:4",
+     "talkhis-al-miftah:45:s17:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف شرط، لا محل له من الاعراب. ‖ حرف شرط، لا محل له من الاعراب. ‖ حرف شرط، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv040",
+   "line": 17,
+   "ar": "مهما",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "muallaqat-imri-al-qays:5:s2:7"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "أَغَرَّكِ مِنِّي أَنَّ حُبَّكِ قَاتِلِي وَأَنَّكِ مَهْمَا تَأْمُرِي الْقَلْبَ يَفْعَلِ",
+      "w": 6,
+      "re": "جزم|شرط"
+     }
+    ],
+    "at": [
+     "muallaqat-imri-al-qays:5:s2:7"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "1/1 pass; اسم شرط جازم مبني علي السكون في محل رفع مبتدا، يجزم فعلين، وجزم «تامري» ظاهر."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv041",
+   "line": 10,
+   "ar": "ما",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "مَا أَصَابُوا مِنْ تَغْلَبِيٍّ فَمَطْلُولٌ عَلَيْهِ إِذَا أُصِيبَ الْعَفَاءُ",
+      "w": 0,
+      "re": "جزم|شرط"
+     }
+    ],
+    "at": [
+     "muallaqat-al-harith:7:s6:1"
+    ]
+   },
+   "proof": {
+    "ok": false,
+    "got": "0/1 pass; اسم، مبني لا يتغير اخره."
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "inv042",
+   "line": 3,
+   "ar": "من",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "jumal-al-tadrib:5:s2:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "مَنْ يَطْلُبِ الْعِلْمَ يَجِدْهُ",
+      "w": 0,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "مَنْ شَرِبَ مِنْهُ فَلَا يَظْمَأُ أَبَدًا",
+      "w": 0,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "فَالدَّرْسُ مَنْ مَدَحَكَ بِالْكَذِبِ فَهُوَ يُرِيدُ شَيْئًا مِنْكَ",
+      "w": 1,
+      "re": "جزم|شرط"
+     }
+    ],
+    "at": [
+     "jumal-al-tadrib:5:s2:1",
+     "aqaid-ahl-al-sunna:1:s5:1",
+     "al-ghurab-wa-al-thalab:4:s3:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم شرط جازم مبني علي السكون في محل رفع مبتدا، يجزم فعلين، وجزم «يطلب» ظاهر. ‖ اسم شرط جازم مبني علي السكون في محل رفع مبتدا، والفعلان بعده ماضيان في محل جزم — او اسم موصول بمعني «الذي» مبني"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv043",
+   "line": 18,
+   "ar": "اين",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَجَعَلَنِي مُبَارَكًا أَيْنَ مَا كُنْتُ وَأَوْصَانِي بِالصَّلَاةِ وَالزَّكَاةِ مَا دُمْتُ حَيًّا",
+      "w": 2,
+      "re": "جزم|شرط"
+     }
+    ],
+    "at": [
+     "qisas-al-nabiyyin-4:34:s3:3"
+    ]
+   },
+   "proof": {
+    "ok": false,
+    "got": "0/1 pass; اسم، مبني لا يتغير اخره."
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "inv044",
+   "line": 18,
+   "ar": "متى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "talkhis-al-miftah:39:s3:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "مَتَى أَضَعِ الْعِمَامَةَ تَعْرِفُونِي",
+      "w": 0,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "مَتَى تَبْعَثُوهَا تَبْعَثُوهَا ذَمِيمَةً وَتَضْرَ إِذَا ضَرَّيْتُمُوهَا فَتَضْرَمِ",
+      "w": 0,
+      "re": "جزم|شرط"
+     },
+     {
+      "s": "مَتَى نَعْقِدْ قَرِينَتَنَا بِحَبْلٍ تَجُذَّ الْحَبْلَ أَوْ تَقِصِ الْقَرِينَا",
+      "w": 0,
+      "re": "جزم|شرط"
+     }
+    ],
+    "at": [
+     "talkhis-al-miftah:39:s3:1",
+     "muallaqat-zuhayr:6:s2:1",
+     "muallaqat-amr-ibn-kulthum:11:s2:1"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم شرط جازم مبني علي السكون في محل نصب علي الظرفية الزمانية، يجزم فعلين، وجزم «اضع» ظاهر. ‖ اسم شرط جازم مبني علي السكون في محل نصب علي الظرفية الزمانية، يجزم فعلين، وجزم «تبعثوها» ظاهر. ‖ "
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv045",
+   "line": 18,
+   "ar": "انى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv046",
+   "line": 6,
+   "ar": "اى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv047",
+   "line": 18,
+   "ar": "حيثما",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv048",
+   "line": 18,
+   "ar": "اذما",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv049",
+   "line": 18,
+   "ar": "اذاما",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv050",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Mutlak Fiil",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "fail",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv051",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "İsmi Fail",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ism-fail",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv052",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "İsmi Meful",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ism-maful",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv053",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Sıfatı Müşebbehe",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "sifa-mushabbaha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv054",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "İsmi Tefdıl",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ism-tafdil",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv055",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Masdar",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "masdar",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv056",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "İsmi Muzaf",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "idafa-definiteness",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv057",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "İsmi Mübhemüt Tam",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "tamyiz",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv058",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Manayı Fiil",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mana-al-fil",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv059",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Mübteda – Haberi Raf eder",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mubtada-khabar",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv060",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Nevasıb ve Cevazımdan Hali olan Fiili Muzariyi raf eder",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mudari-marfu",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv061",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Mefulu mutlak",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "maful-mutlaq",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv062",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Mefulu bih",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "maful-bihi",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv063",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Mefulu fih",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "maful-fih",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv064",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Mefulu leh",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "maful-lah",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv065",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Mefulu maah",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "maful-maah",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv066",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Hal",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "hal",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv067",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Temyiz",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "tamyiz",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv068",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Müstesna",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "istithna",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "istithna-mufarragh",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv069",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "كان Babının Haberi",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "kana-wa-akhawatuha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv070",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "ان Babının ismi",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv071",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Cinsini nefi için olan لا nın ismi",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "la-nafiya-lil-jins",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv072",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "ليس Müşabih olan ما ve لا nın haberi",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ma-la-mushabbaha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv073",
+   "line": "mamul-tablolari-turkce.txt:?",
+   "ar": "Nevasıbdan biri kendisine dahil olan fiili muzari",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "an-masdariyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv074",
+   "line": "irab-taksimat-tablolari-turkce.txt:?",
+   "ar": "Harfi Cerle Mecrur",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv075",
+   "line": "irab-taksimat-tablolari-turkce.txt:?",
+   "ar": "İzafetle Mecrur",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "idafa-definiteness",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv076",
+   "line": "irab-taksimat-tablolari-turkce.txt:?",
+   "ar": "Cevazımdan biri kendisine dâhil olan Fiili muzari",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "lam-jazim",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "la-nahiya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "lam-amr",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "in-shartiyya",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv077",
+   "line": "irab-taksimat-tablolari-turkce.txt:?",
+   "ar": "Sıfat",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "naat-sifa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "jumla-sifa",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv078",
+   "line": "irab-taksimat-tablolari-turkce.txt:?",
+   "ar": "Atıf",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "atf-nasaq",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv079",
+   "line": "irab-taksimat-tablolari-turkce.txt:?",
+   "ar": "Te'kid",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "tawkid",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv080",
+   "line": "irab-taksimat-tablolari-turkce.txt:?",
+   "ar": "Bedel",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "badal",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv081",
+   "line": "irab-taksimat-tablolari-turkce.txt:?",
+   "ar": "Atfı beyan",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "atf-bayan",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv082",
+   "line": 21,
+   "ar": "فاعل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-marfuat-al-fail-wa-naibuh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "jumal-al-tadrib:4:s4:2"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "كُتِبَتِ الرِّسَالَةُ",
+      "w": 1,
+      "re": "فاعل"
+     },
+     {
+      "s": "ثُمَّ قَالَ",
+      "w": 1,
+      "re": "فاعل"
+     },
+     {
+      "s": "وَخَافَ فِرْعَوْنُ",
+      "w": 1,
+      "re": "فاعل"
+     }
+    ],
+    "at": [
+     "jumal-al-tadrib:4:s4:2",
+     "muallaqat-imri-al-qays:1:s6:2",
+     "musa-wa-firawn:5:s4:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم، مرفوع وعلامة رفعه الضمة الظاهرة، نائب فاعل. ‖ فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو». ‖ اسم، فاعل."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv083",
+   "line": 27,
+   "ar": "نائب فاعل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-marfuat-al-fail-wa-naibuh",
+     "how": "names"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَيُقَالُ لَهُ أَصَمُّ لِشِدَّتِهِ",
+      "w": 2,
+      "re": "نائب فاعل"
+     },
+     {
+      "s": "الثَّانِيَةُ الْمَطْلُوبُ بِهَا صِفَةٌ",
+      "w": 3,
+      "re": "نائب فاعل"
+     },
+     {
+      "s": "وَيُقَالُ لَهُ الْأَصَمُّ لِشِدَّتِهِ",
+      "w": 2,
+      "re": "نائب فاعل"
+     }
+    ],
+    "at": [
+     "marah-al-arwah:43:s1:3",
+     "talkhis-al-miftah:56:s6:4",
+     "tasrif-al-izzi:12:s1:3"
+    ]
+   },
+   "proof": {
+    "ok": false,
+    "got": "0/3 pass; اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا، وهو مضاف. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا، وخبره «المطلوب» مقدم. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا."
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "inv084",
+   "line": 24,
+   "ar": "مُبْتَدَأ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mubtada-wa-nawah",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "al-kafiya:11:s2:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَالْمُذَكَّرُ بِخِلَافِهِ",
+      "w": 0,
+      "re": "مبتدا"
+     },
+     {
+      "s": "وَسَادِسُهَا السَّخَاءُ",
+      "w": 0,
+      "re": "مبتدا"
+     },
+     {
+      "s": "وَالْأَجَلُ وَاحِدٌ",
+      "w": 0,
+      "re": "مبتدا"
+     }
+    ],
+    "at": [
+     "al-kafiya:11:s2:1",
+     "al-maqamat-birgivi:10:s3:1",
+     "aqaid-ahl-al-sunna:36:s3:1"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا، وهو مضاف. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا، والضمير مضاف اليه، وخبره «السخاء». ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا، وخبره "
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv085",
+   "line": 6,
+   "ar": "خبر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mubtada-wa-nawah",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "al-maqamat-birgivi:10:s3:2"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَسَادِسُهَا السَّخَاءُ",
+      "w": 1,
+      "re": "خبر"
+     },
+     {
+      "s": "وَالْأَجَلُ وَاحِدٌ",
+      "w": 1,
+      "re": "خبر"
+     },
+     {
+      "s": "وَالْحَرَامُ رِزْقٌ",
+      "w": 1,
+      "re": "خبر"
+     }
+    ],
+    "at": [
+     "al-maqamat-birgivi:10:s3:2",
+     "aqaid-ahl-al-sunna:36:s3:2",
+     "aqaid-ahl-al-sunna:37:s1:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم، مرفوع وعلامة رفعه الضمة الظاهرة، خبر. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، خبر. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، خبر."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv086",
+   "line": 7,
+   "ar": "\"كَانَ\" بابنك اسمى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "kana-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "aqaid-ahl-al-sunna:42:s3:2"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَالْمَعْدُومُ لَيْسَ بِشَيْءٍ",
+      "w": 1,
+      "re": "اسم كان|اسم «كان»|اسمها|اسمه"
+     },
+     {
+      "s": "كَانَ الدَّرْسُ سَهْلًا",
+      "w": 1,
+      "re": "اسم كان|اسم «كان»|اسمها|اسمه"
+     },
+     {
+      "s": "وَكَانَتِ الصَّحْرَاءُ حَارَّةً",
+      "w": 1,
+      "re": "اسم كان|اسم «كان»|اسمها|اسمه"
+     }
+    ],
+    "at": [
+     "aqaid-ahl-al-sunna:42:s3:2",
+     "jumal-al-tadrib:6:s1:2",
+     "musa-wa-bani-israil:3:s2:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/3 pass; فعل ماض ناقص، مبني علي الفتح، واسمها ضمير مستتر جوازا تقديره «هو»، والجملة في محل رفع خبر المبتدا «والمعدوم»، ويحتمل غيره ل«والمعدوم» قبلها. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، اسم كان. "
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv087",
+   "line": 7,
+   "ar": "\"اِنَّ\" بابنك خبرى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "jumal-al-tadrib:2:s7:3"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "إِنَّ الْعِلْمَ نَافِعٌ",
+      "w": 2,
+      "re": "خبر ان|خبر «ان»|خبرها"
+     },
+     {
+      "s": "إِنَّ الدَّرْسَ سَهْلٌ",
+      "w": 2,
+      "re": "خبر ان|خبر «ان»|خبرها"
+     },
+     {
+      "s": "إِنَّ الدَّرْسَ سَهْلٌ",
+      "w": 2,
+      "re": "خبر ان|خبر «ان»|خبرها"
+     }
+    ],
+    "at": [
+     "jumal-al-tadrib:2:s7:3",
+     "jumal-al-tadrib:3:s4:3",
+     "jumal-al-tadrib:6:s2:3"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم، مرفوع وعلامة رفعه الضمة الظاهرة، خبر ان. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، خبر ان. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، خبر ان."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv088",
+   "line": 3,
+   "ar": "جنسينى نفى ايجون اولان \"لا\"نك خبرى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "la-nafiya-lil-jins",
+     "how": "names"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "ذَلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ",
+      "w": 4,
+      "re": "خبر لا"
+     },
+     {
+      "s": "إِلَّا لِضَرُورَةِ الشِّعْرِ كَقَوْلِهِ أَمَّا الْقِتَالُ لَا قِتَالَ لَدَيْكُمْ",
+      "w": 8,
+      "re": "خبر لا"
+     },
+     {
+      "s": "وَإِنْ أَرَدْتَهُمَا جَمِيعًا كَانَ كِنَايَةً وَلَا بُدَّ فِيهِمَا مِنْ قَرِينَةٍ",
+      "w": 8,
+      "re": "خبر لا"
+     }
+    ],
+    "at": [
+     "talkhis-al-miftah:32:s1:5",
+     "izhar-al-asrar:30:s2:9",
+     "talkhis-al-miftah:56:s21:9"
+    ]
+   },
+   "proof": {
+    "ok": false,
+    "got": "0/3 pass; حرف لا محل له من الاعراب. ‖ ظرف مكان مبني علي السكون في محل نصب، وهو مضاف، و«كم» ضمير متصل مبني في محل جر مضاف اليه، متعلق بمحذوف خبر «لا» النافية للجنس، تقديره «كائن» او «استقر». ‖ حرف جر، "
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "inv089",
+   "line": 10,
+   "ar": "\"لَيْسَ\"يه مشابه اولان \"ما\" و \"لا\"نك اسمى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ma-la-mushabbaha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "qisas-al-nabiyyin-2:26:s15:2"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "لَا عَاصِمَ الْيَوْمَ مِنْ أَمْرِ اللهِ",
+      "w": 1,
+      "re": "اسم ما|اسم لا"
+     },
+     {
+      "s": "وَلَا غَرَابَةَ فَإِنَّهَا قِصَصٌ شَائِقَةٌ مُثِيرَةٌ",
+      "w": 1,
+      "re": "اسم ما|اسم لا"
+     },
+     {
+      "s": "فَقَالَ الرَّاهِبُ لَا لَا تَوْبَةَ لَكَ",
+      "w": 4,
+      "re": "اسم ما|اسم لا"
+     }
+    ],
+    "at": [
+     "qisas-al-nabiyyin-2:26:s15:2",
+     "qisas-al-nabiyyin-4:1:s6:2",
+     "tawbat-al-qatil:1:s5:5"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم، مبني علي الفتح في محل نصب، اسم لا النافية للجنس، وهو مضاف. ‖ اسم، مبني علي الفتح في محل نصب، اسم لا النافية للجنس. ‖ اسم، مبني علي الفتح في محل نصب، اسم لا النافية للجنس."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv090",
+   "line": 24,
+   "ar": "نواصب و جوازمدن خالى اولان فعل مضارع",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mudari-marfu",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-amil-al-manawi",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "qisas-al-nabiyyin-1:3:s27:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَيَنْصُرُنِي اللهُ",
+      "w": 0,
+      "re": "فعل مضارع، مرفوع|فعل مضارع مرفوع"
+     },
+     {
+      "s": "أَتَتْرُكُنِي هُنَا",
+      "w": 0,
+      "re": "فعل مضارع، مرفوع|فعل مضارع مرفوع"
+     },
+     {
+      "s": "مَاذَا تَخَافُ",
+      "w": 1,
+      "re": "فعل مضارع، مرفوع|فعل مضارع مرفوع"
+     }
+    ],
+    "at": [
+     "qisas-al-nabiyyin-1:3:s27:1",
+     "qisas-al-nabiyyin-1:5:s20:1",
+     "qisas-al-nabiyyin-1:9:s7:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; فعل مضارع، مرفوع وعلامة رفعه الضمة الظاهرة، وفيه ضمير هو المفعول به، وفاعله «الله». ‖ فعل مضارع، مرفوع وعلامة رفعه الضمة الظاهرة، وفيه ضمير هو المفعول به، والفاعل ضمير مستتر وجوبا تقديره «ان"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv091",
+   "line": 44,
+   "ar": "وَاوْ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv092",
+   "line": 44,
+   "ar": "فَاء",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv093",
+   "line": 44,
+   "ar": "ثُمَّ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "muallaqat-imri-al-qays:1:s6:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "ثُمَّ قَالَ",
+      "w": 0,
+      "re": "حرف عطف"
+     },
+     {
+      "s": "ثُمَّ تَرَكَهُ وَنَامَ",
+      "w": 0,
+      "re": "حرف عطف"
+     },
+     {
+      "s": "ثُمَّ رَكِبَا سَفِينَةً",
+      "w": 0,
+      "re": "حرف عطف"
+     }
+    ],
+    "at": [
+     "muallaqat-imri-al-qays:1:s6:1",
+     "al-asad-wa-al-far:2:s4:1",
+     "musa-wal-khadir:2:s3:1"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف عطف، لا محل له من الاعراب. ‖ حرف عطف، لا محل له من الاعراب. ‖ حرف عطف، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv094",
+   "line": 44,
+   "ar": "حَتَّى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv095",
+   "line": 44,
+   "ar": "اَوْ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "talkhis-al-miftah:71:s13:1"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "أَوِ الثَّالِثَةُ",
+      "w": 0,
+      "re": "حرف عطف"
+     },
+     {
+      "s": "أَوْ غَيْرُ مُمْكِنَةٍ",
+      "w": 0,
+      "re": "حرف عطف"
+     },
+     {
+      "s": "أَوْ يَنْفَعُونَكُمْ أَوْ يَضُرُّونَ",
+      "w": 0,
+      "re": "حرف عطف"
+     }
+    ],
+    "at": [
+     "talkhis-al-miftah:71:s13:1",
+     "talkhis-al-miftah:65:s9:1",
+     "qisas-al-nabiyyin-1:4:s5:1"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; حرف عطف، لا محل له من الاعراب. ‖ حرف عطف، لا محل له من الاعراب. ‖ حرف عطف، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv096",
+   "line": 44,
+   "ar": "اِمَّا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv097",
+   "line": 44,
+   "ar": "اَمْ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "ءَأَرْبَابٌ مُتَفَرِّقُونَ خَيْرٌ أَمِ اللهُ الْوَاحِدُ الْقَهَّارُ",
+      "w": 3,
+      "re": "حرف عطف"
+     },
+     {
+      "s": "أَتَمْشِي هٰذِهِ فِي الرَّمْلِ أَمْ تَصْعَدُ الْجَبَلَ",
+      "w": 4,
+      "re": "حرف عطف"
+     },
+     {
+      "s": "قَالَ سَنَنْظُرُ أَصَدَقْتَ أَمْ كُنْتَ مِنَ الْكَاذِبِينَ",
+      "w": 3,
+      "re": "حرف عطف"
+     }
+    ],
+    "at": [
+     "qisas-al-nabiyyin-1:13:s28:4",
+     "qisas-al-nabiyyin-2:11:s11:5",
+     "qisas-al-nabiyyin-4:13:s8:4"
+    ]
+   },
+   "proof": {
+    "ok": false,
+    "got": "0/3 pass; حرف لا محل له من الاعراب. ‖ حرف لا محل له من الاعراب. ‖ حرف لا محل له من الاعراب."
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "inv098",
+   "line": 44,
+   "ar": "لاَ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَالْإِغْرَاقُ مَا أَمْكَنَ عَقْلًا لَا عَادَةً",
+      "w": 4,
+      "re": "حرف عطف"
+     },
+     {
+      "s": "وَهُوَ شَيْءٌ لَا كَالْأَشْيَاءِ وَمَعْنَى الشَّيْءِ الثَّابِتُ",
+      "w": 2,
+      "re": "حرف عطف"
+     },
+     {
+      "s": "وَهِيَ مَبْنِيَّةٌ كَسَائِرِ الْمَوْصُولَاتِ لِأَنَّ اخْتِلَافَ آخِرِهَا بِالْوَضْعِ لَا بِالْعَامِلِ",
+      "w": 8,
+      "re": "حرف عطف"
+     }
+    ],
+    "at": [
+     "talkhis-al-miftah:64:s4:5",
+     "al-usul-al-munifa:4:s2:3",
+     "al-kafiya:5:s13:9"
+    ]
+   },
+   "proof": {
+    "ok": false,
+    "got": "0/3 pass; حرف نفي، لا محل له من الاعراب. ‖ حرف نفي، لا محل له من الاعراب. ‖ حرف نفي، لا محل له من الاعراب."
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "inv099",
+   "line": 44,
+   "ar": "بَلْ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line",
+     "at": "talkhis-al-miftah:71:s18:7"
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "وَقِيلَ لَا يُقَالُ فِي الْقُرْآنِ أَسْجَاعٌ بَلْ فَوَاصِلُ",
+      "w": 6,
+      "re": "حرف عطف"
+     },
+     {
+      "s": "وَقِيلَ لَا يَخْتَصُّ السَّجْعُ بِالنَّثْرِ بَلْ يَكُونُ فِي النَّظْمِ",
+      "w": 5,
+      "re": "حرف عطف"
+     }
+    ],
+    "at": [
+     "talkhis-al-miftah:71:s18:7",
+     "talkhis-al-miftah:71:s19:6"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; حرف عطف، لا محل له من الاعراب. ‖ حرف عطف، لا محل له من الاعراب."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "inv100",
+   "line": 44,
+   "ar": "لَكِنْ",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv101",
+   "line": "irab-taksimat-tablolari-turkce.txt:6",
+   "ar": "Hareke (Zamme, Fetha, Kesre)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv102",
+   "line": "irab-taksimat-tablolari-turkce.txt:6",
+   "ar": "Harf (Vav, Ya, Elif, Nun)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv103",
+   "line": "irab-taksimat-tablolari-turkce.txt:6",
+   "ar": "Hazif (Harekeyi Hazif, Ahiri Hazif, Nunu Hazif)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv104",
+   "line": "irab-taksimat-tablolari-turkce.txt:10",
+   "ar": "İ'rabı Lâfzî",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv105",
+   "line": "irab-taksimat-tablolari-turkce.txt:10",
+   "ar": "İ'rabı Takdiri",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "inv106",
+   "line": "irab-taksimat-tablolari-turkce.txt:10",
+   "ar": "İ'rabı Mahallî",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  }
+ ]
+}

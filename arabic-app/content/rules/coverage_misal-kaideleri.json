@@ -1,0 +1,218 @@
+{
+ "book": "misal-kaideleri",
+ "ledger": "aux",
+ "title": "Mithāl rules (Ottoman), with the Marāḥ / ʿIzzī citations",
+ "source": "research/sources/misal-kaideleri-mesnedli.txt",
+ "files": [
+  "research/sources/misal-kaideleri-mesnedli.txt",
+  "research/sources/ilal-misal-ecvef-naqis.txt"
+ ],
+ "group": "sarf",
+ "note": "Both files carry the same numbered rules (the first adds «(مراح الارواح، صحيفه N)، (عزى، صحيفه N)»); the first ~150 lines of each are OLE noise.",
+ "counts": {
+  "noted": 11,
+  "not-automatable": 1
+ },
+ "entries": [
+  {
+   "id": "r1",
+   "line": 151,
+   "ar": "1- بوتون مثال فعللر، فعل ماضيلرينك معلوم و مجهولرينده \"صحيح\" فعللر كبى جكيلير.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "r2",
+   "line": 153,
+   "ar": "2- \"واو\"؛ \"يا\"ء مفتوحه ايله كسرهء آصلى آراسينده واقع اولديغى زمان، حذف ايديلور.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "ilal": "يَوْعِدُ",
+      "out": "يَعِدُ"
+     },
+     {
+      "ilal": "يَوْهِبُ",
+      "out": "يَهَبُ"
+     }
+    ]
+   },
+   "cites": [
+    "(مراح الارواح، صحيفه 83)",
+    "(عزى، صحيفه 149)"
+   ],
+   "proof": {
+    "ok": false,
+    "got": "1/2 pass; يَعِدُ ← hadhf-waw-mithal ‖ يَهِبُ ← hadhf-waw-mithal"
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "r3",
+   "line": 157,
+   "ar": "3- مثال \"يا\"ئيلرك فعل مضارعلرينده \"يا\" هيج بر بابده حذف اولونماز.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "cites": [
+    "(عزى، صحيفه 149)"
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "r4",
+   "line": 160,
+   "ar": "4- \"فِعْلَةٌ\" وزننده اولان مصدرلرده؛ \"واو\" اوزرينه كسره آغير كلديكى ايجون \"واو\"ك كسره سى ما بعدنده كى حرفه ويريلير و \"واو\" حذف اولونور. و محذوف \"واو\"دن عوضاً \"تاء تأنيث\" كتيريلير.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "cites": [
+    "(عزى، صحيفه 148)"
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "r5",
+   "line": 163,
+   "ar": "5- مثال \"واو\"يلرده فعل مضارعه تبعا جحد مطلق، جحد مستغرق، نفى حال، نفى استقبال، تأكيد نفى استقبال، امر غائب، نهى غائب، امر حاضر، نهى حاضرلرده دخى \"واو\" حذف اولونور.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "cites": [
+    "(عزى، صحيفه 148)"
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "r6",
+   "line": 166,
+   "ar": "6- \"واو\" ساكن اولوب؛ ما قبلى مكسور اولورسه \"واو\" \"يا\"يه قلب اولونورب، حالى اوزره ترك اولونور.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "cites": [
+    "(مراح الارواح، صحيفه 84)",
+    "(عزى، صحيفه 149)"
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "r7",
+   "line": 589,
+   "ar": "8- ايستر مثال \"واوى\" اولسون، ايستر مثال \"يا\"ئى اولسون؛ \"اِفْتِعَالْ\" بابنه نقل اولونان كلمه نك فاعل فعلى (يعنى \"واو\" و ياخوط \"يا\") \"تا\"يه قلب اولونور، \"تا\"ده \"تا\"ده ادغام اولونور.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "cites": [
+    "(عزى، صحيفه 150)"
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "r8",
+   "line": 592,
+   "ar": "9- كلمه نك اوّلنده ايكى \"واو\" متحرك بولونسه؛ اولكى \"واو\"، \"همزه\" قلب اولونور.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "r9",
+   "line": 595,
+   "ar": "10- مثال \"واو\"يلرك؛ ايكى، اوج، آلتينجى بابلرينك مضارعلرينده و دوردينجى بابده ده ايكى كلمه ده (وَطِأَ – يَطَأُ، وَسِعَ – يَسَعُ) مضارعده \"واو\" دوشر.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "r10",
+   "line": 598,
+   "ar": "11- مثال فعللرده؛ مصدر ميمى، اسم زمان، اسم مكان \"مَفْعِلٌ\" وزنى اوزره كلير.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "r11",
+   "line": 601,
+   "ar": "12- مثال فعللر؛ ثلاثى مجردك ايكى، اوج، دورد، بش و ألتينجى بابلريندن كلير.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mithal-verbs",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "noise",
+   "line": "1-150",
+   "ar": "OLE header bytes",
+   "kind": "row",
+   "carried_by": [],
+   "reason": "undecodable bytes before the text",
+   "status": "not-automatable"
+  }
+ ]
+}

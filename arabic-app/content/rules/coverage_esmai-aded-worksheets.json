@@ -1,0 +1,1796 @@
+{
+ "book": "esmai-aded-worksheets",
+ "ledger": "aux",
+ "title": "Esmâ-i aded — the number-name worksheets (125–3000)",
+ "source": "research/sources/esmai-aded-worksheets.txt",
+ "files": [
+  "research/sources/esmai-aded-worksheets.txt"
+ ],
+ "group": "sarf",
+ "note": "",
+ "counts": {
+  "applied": 89
+ },
+ "entries": [
+  {
+   "id": "n125",
+   "line": 15,
+   "ar": "125\tمائة وخمسة وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(125))===H(\"مائة وخمسة وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n131",
+   "line": 16,
+   "ar": "131\tمائة وواحد وثلاثون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(131))===H(\"مائة وواحد وثلاثون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n146",
+   "line": 17,
+   "ar": "146\tمائة وستة وأربعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(146))===H(\"مائة وستة وأربعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n185",
+   "line": 18,
+   "ar": "185\tمائة وخمسة وثمانون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(185))===H(\"مائة وخمسة وثمانون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n245",
+   "line": 19,
+   "ar": "245\tمائتان وخمسة وأربعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(245))===H(\"مائتان وخمسة وأربعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n255",
+   "line": 20,
+   "ar": "255\tمائتان وخمسة وخمسون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(255))===H(\"مائتان وخمسة وخمسون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n265",
+   "line": 21,
+   "ar": "265\tمائتان وخمسة وستون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(265))===H(\"مائتان وخمسة وستون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n345",
+   "line": 22,
+   "ar": "345\tثلاثمائة وخمسة وأربعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(345))===H(\"ثلاثمائة وخمسة وأربعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n355",
+   "line": 23,
+   "ar": "355\tثلاثمائة وخمسة وخمسون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(355))===H(\"ثلاثمائة وخمسة وخمسون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n368",
+   "line": 24,
+   "ar": "368\tثلاثمائة وثمانية وستون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(368))===H(\"ثلاثمائة وثمانية وستون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n462",
+   "line": 25,
+   "ar": "462\tأربعمائة واثنان وستون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(462))===H(\"أربعمائة واثنان وستون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n485",
+   "line": 26,
+   "ar": "485\tأربعمائة وخمسة وثمانون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(485))===H(\"أربعمائة وخمسة وثمانون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n495",
+   "line": 27,
+   "ar": "495\tأربعمائة وخمسة وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(495))===H(\"أربعمائة وخمسة وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n511",
+   "line": 28,
+   "ar": "511\tخمسمائة وأحد عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(511))===H(\"خمسمائة وأحد عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n512",
+   "line": 29,
+   "ar": "512\tخمسمائة واثنا عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(512))===H(\"خمسمائة واثنا عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n521",
+   "line": 30,
+   "ar": "521\tخمسمائة وواحد وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(521))===H(\"خمسمائة وواحد وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n622",
+   "line": 31,
+   "ar": "622\tستمائة واثنان وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(622))===H(\"ستمائة واثنان وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n623",
+   "line": 32,
+   "ar": "623\tستمائة وثلاثة وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(623))===H(\"ستمائة وثلاثة وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n624",
+   "line": 33,
+   "ar": "624\tستمائة وأربعة وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(624))===H(\"ستمائة وأربعة وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n631",
+   "line": 34,
+   "ar": "631\tستمائة وواحد وثلاثون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(631))===H(\"ستمائة وواحد وثلاثون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n635",
+   "line": 35,
+   "ar": "635\tستمائة وخمسة وثلاثون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(635))===H(\"ستمائة وخمسة وثلاثون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n745",
+   "line": 36,
+   "ar": "745\tسبعمائة وخمسة وأربعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(745))===H(\"سبعمائة وخمسة وأربعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n822",
+   "line": 37,
+   "ar": "822\tثمانمائة واثنان وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(822))===H(\"ثمانمائة واثنان وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n921",
+   "line": 38,
+   "ar": "921\tتسعمائة وواحد وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(921))===H(\"تسعمائة وواحد وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n999",
+   "line": 39,
+   "ar": "999\tتسعمائة وتسعة وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(999))===H(\"تسعمائة وتسعة وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n100",
+   "line": 40,
+   "ar": "100\tمائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(100))===H(\"مائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1001",
+   "line": 41,
+   "ar": "1001\tألف وواحد",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1001))===H(\"ألف وواحد\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1002",
+   "line": 42,
+   "ar": "1002\tألف واثنان",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1002))===H(\"ألف واثنان\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1003",
+   "line": 43,
+   "ar": "1003\tألف وثلاثة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1003))===H(\"ألف وثلاثة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1010",
+   "line": 44,
+   "ar": "1010\tألف وعشرة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1010))===H(\"ألف وعشرة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1011",
+   "line": 45,
+   "ar": "1011\tألف وأحد عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1011))===H(\"ألف وأحد عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1012",
+   "line": 46,
+   "ar": "1012\tألف واثنا عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1012))===H(\"ألف واثنا عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1013",
+   "line": 47,
+   "ar": "1013\tألف وثلاثة عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1013))===H(\"ألف وثلاثة عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1020",
+   "line": 48,
+   "ar": "1020\tألف وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1020))===H(\"ألف وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1021",
+   "line": 49,
+   "ar": "1021\tألف وواحد وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1021))===H(\"ألف وواحد وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1022",
+   "line": 50,
+   "ar": "1022\tألف واثنان وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1022))===H(\"ألف واثنان وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1023",
+   "line": 51,
+   "ar": "1023\tألف وثلاثة وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1023))===H(\"ألف وثلاثة وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1099",
+   "line": 52,
+   "ar": "1099\tألف وتسعة وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1099))===H(\"ألف وتسعة وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1100",
+   "line": 53,
+   "ar": "1100\tألف ومائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1100))===H(\"ألف ومائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1101",
+   "line": 54,
+   "ar": "1101\tألف ومائة وواحد",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1101))===H(\"ألف ومائة وواحد\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1102",
+   "line": 55,
+   "ar": "1102\tألف ومائة واثنان",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1102))===H(\"ألف ومائة واثنان\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1103",
+   "line": 56,
+   "ar": "1103\tألف ومائة وثلاثة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1103))===H(\"ألف ومائة وثلاثة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1111",
+   "line": 57,
+   "ar": "1111\tألف ومائة وأحد عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1111))===H(\"ألف ومائة وأحد عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1112",
+   "line": 58,
+   "ar": "1112\tألف ومائة واثنا عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1112))===H(\"ألف ومائة واثنا عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1113",
+   "line": 59,
+   "ar": "1113\tألف ومائة وثلاثة عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1113))===H(\"ألف ومائة وثلاثة عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1120",
+   "line": 60,
+   "ar": "1120\tألف ومائة وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1120))===H(\"ألف ومائة وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1122",
+   "line": 61,
+   "ar": "1122\tألف ومائة واثنان وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1122))===H(\"ألف ومائة واثنان وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1133",
+   "line": 62,
+   "ar": "1133\tألف ومائة وثلاثة وثلاثون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1133))===H(\"ألف ومائة وثلاثة وثلاثون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1200",
+   "line": 65,
+   "ar": "1200\tألف ومائتان",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1200))===H(\"ألف ومائتان\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1300",
+   "line": 66,
+   "ar": "1300\tألف وثلاثمائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1300))===H(\"ألف وثلاثمائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1400",
+   "line": 67,
+   "ar": "1400\tألف وأربعمائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1400))===H(\"ألف وأربعمائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1500",
+   "line": 68,
+   "ar": "1500\tألف وخمسمائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1500))===H(\"ألف وخمسمائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1600",
+   "line": 69,
+   "ar": "1600\tألف وستمائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1600))===H(\"ألف وستمائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1700",
+   "line": 70,
+   "ar": "1700\tألف وسبعمائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1700))===H(\"ألف وسبعمائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1800",
+   "line": 71,
+   "ar": "1800\tألف وثمانمائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1800))===H(\"ألف وثمانمائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1900",
+   "line": 72,
+   "ar": "1900\tألف وتسعمائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1900))===H(\"ألف وتسعمائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1901",
+   "line": 73,
+   "ar": "1901\tألف وتسعمائة وواحد",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1901))===H(\"ألف وتسعمائة وواحد\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1902",
+   "line": 74,
+   "ar": "1902\tألف وتسعمائة واثنان",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1902))===H(\"ألف وتسعمائة واثنان\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1910",
+   "line": 75,
+   "ar": "1910\tألف وتسعمائة وعشرة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1910))===H(\"ألف وتسعمائة وعشرة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1915",
+   "line": 76,
+   "ar": "1915\tألف وتسعمائة وخمسة عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1915))===H(\"ألف وتسعمائة وخمسة عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1920",
+   "line": 77,
+   "ar": "1920\tألف وتسعمائة وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1920))===H(\"ألف وتسعمائة وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1921",
+   "line": 78,
+   "ar": "1921\tألف وتسعمائة وواحد وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1921))===H(\"ألف وتسعمائة وواحد وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1922",
+   "line": 79,
+   "ar": "1922\tألف وتسعمائة واثنان وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1922))===H(\"ألف وتسعمائة واثنان وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1923",
+   "line": 80,
+   "ar": "1923\tألف وتسعمائة وثلاثة وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1923))===H(\"ألف وتسعمائة وثلاثة وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1930",
+   "line": 81,
+   "ar": "1930\tألف وتسعمائة وثلاثون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1930))===H(\"ألف وتسعمائة وثلاثون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1940",
+   "line": 82,
+   "ar": "1940\tألف وتسعمائة وأربعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1940))===H(\"ألف وتسعمائة وأربعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1990",
+   "line": 83,
+   "ar": "1990\tألف وتسعمائة وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1990))===H(\"ألف وتسعمائة وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1991",
+   "line": 84,
+   "ar": "1991\tألف وتسعمائة وواحد وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1991))===H(\"ألف وتسعمائة وواحد وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1992",
+   "line": 85,
+   "ar": "1992\tألف وتسعمائة واثنان وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1992))===H(\"ألف وتسعمائة واثنان وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1995",
+   "line": 86,
+   "ar": "1995\tألف وتسعمائة وخمسة وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1995))===H(\"ألف وتسعمائة وخمسة وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n1999",
+   "line": 87,
+   "ar": "1999\tألف وتسعمائة وتسعة وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(1999))===H(\"ألف وتسعمائة وتسعة وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2000",
+   "line": 88,
+   "ar": "2000\tألفان",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2000))===H(\"ألفان\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2001",
+   "line": 89,
+   "ar": "2001\tألفان وواحد",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2001))===H(\"ألفان وواحد\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2002",
+   "line": 90,
+   "ar": "2002\tألفان واثنان",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2002))===H(\"ألفان واثنان\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2003",
+   "line": 91,
+   "ar": "2003\tألفان وثلاثة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2003))===H(\"ألفان وثلاثة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2010",
+   "line": 92,
+   "ar": "2010\tألفان وعشرة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2010))===H(\"ألفان وعشرة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2011",
+   "line": 93,
+   "ar": "2011\tألفان وأحد عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2011))===H(\"ألفان وأحد عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2012",
+   "line": 94,
+   "ar": "2012\tألفان واثنا عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2012))===H(\"ألفان واثنا عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2013",
+   "line": 95,
+   "ar": "2013\tألفان وثلاثة عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2013))===H(\"ألفان وثلاثة عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2014",
+   "line": 96,
+   "ar": "2014\tألفان وأربعة عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2014))===H(\"ألفان وأربعة عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2019",
+   "line": 97,
+   "ar": "2019\tألفان وتسعة عشر",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2019))===H(\"ألفان وتسعة عشر\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2020",
+   "line": 98,
+   "ar": "2020\tألفان وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2020))===H(\"ألفان وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2021",
+   "line": 99,
+   "ar": "2021\tألفان وواحد وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2021))===H(\"ألفان وواحد وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2022",
+   "line": 100,
+   "ar": "2022\tألفان واثنان وعشرون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2022))===H(\"ألفان واثنان وعشرون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2099",
+   "line": 101,
+   "ar": "2099\tألفان وتسعة وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2099))===H(\"ألفان وتسعة وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2100",
+   "line": 102,
+   "ar": "2100\tألفان ومائة",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2100))===H(\"ألفان ومائة\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2101",
+   "line": 103,
+   "ar": "2101\tألفان ومائة وواحد",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2101))===H(\"ألفان ومائة وواحد\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n2999",
+   "line": 104,
+   "ar": "2999\tألفان وتسعمائة وتسعة وتسعون",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(2999))===H(\"ألفان وتسعمائة وتسعة وتسعون\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "n3000",
+   "line": 105,
+   "ar": "3000\tثلاثة آلاف",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "AdadEngine.name"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const H=s=>stripAr(String(s||'')).replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/[^ء-ي ]/g,'').replace(/\\s+/g,' ').trim();return H(AdadEngine.name(3000))===H(\"ثلاثة آلاف\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  }
+ ]
+}

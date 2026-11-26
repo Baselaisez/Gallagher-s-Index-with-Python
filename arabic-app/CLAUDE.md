@@ -15899,3 +15899,66 @@ same folds and scores, which the check still compares), so it asserts units ≥ 
 Full suite (refit chain, then `node tools/smoke_test.js`): 559 checks, 558 pass; the one failure was that wave-189 pin, fixed
 and passing alone after. In that run: door 986 ms, first Jumla worst task 938 ms, keystroke median 5.7 ms, hub step 14 ms.
 `tools/entrance_test.js`: ready offline in 5.1 s, app from the cache in 0.57 s (the hashed slices sit in `qissa-data`, 24 files).
+
+## v342-A — the other resources' ledger
+
+Every file of `research/sources/` that the two book ledgers (naḥw: Shudhūr, Qawāʿid al-Iʿrāb, Iẓhār, Kāfiya; ṣarf: Marāḥ, Maqṣūd, ʿIzzī)
+do not hold is accounted for BY SCRIPT — 45 ledgers over 66 files (a source stated twice is one ledger naming both files), 3,406
+entries. This wave did not edit engine code (the book agents held the engines): it built the ledgers, proved «applied» on the built
+page, consumed open entries only as data, and wrote every entry that needs an engine rule into a ranked work order.
+
+- **Tools.** `tools/ledger/aux_ledger.py [--prove]` builds every ledger from the source files (one entry per table row / rule / question /
+  page / heading / verse; line numbers from the file) → `content/rules/coverage_<source>.json` (`"ledger": "aux"`; schema: book, source,
+  files, entries[{id, line, ar (verbatim), kind, carried_by[], status, probe?, proof?, reason?}]) and `research/book-coverage-2026-11-27.aux.md`;
+  `--prove` runs every probe through `tools/ledger/aux_prove.js` (one page load) and the in-page runner `tools/ledger/aux_probe.js`
+  (`{s, w, re}` the source's example through SentenceAnalyzer + Murib.line; `{ilal, out}` IlalEngine.derive of a sheet's origin, Ottoman
+  spelling compared away — ى for yāʾ, no hamza seat, a fatḥa on the madd alif, the wiqāya alif; `{js}`; `{any}` the three SHORTEST story
+  sentences whose authored line states the rule, where the source gives no example; `{all}` every topic a page names). A failing probe
+  demotes the entry («applied» is never claimed by reading code; a settle() bug that kept failing claims «applied» was caught and fixed
+  before the numbers below). Statuses: applied / noted / banked / shelved (a received text or lab table on the shelf) / slip (the sheet's
+  own typo — the engine is right) / not-automatable (with the reason) / open.
+- **Prose sources** (lecture decks, the Kâfiye summary, Qaṭr, the bayān notes, the Talkhīṣ notebook) are ledgered per page / heading /
+  paragraph and carried by TOPIC: a table of ~70 topics (Turkish / Ottoman / Arabic keywords → note ids → one probe per topic, proved once).
+  Honest about its grain: a page is «applied» when every topic it names has a passing probe.
+- **Numbers (after; before the data consumption open was 78).**
+
+  | group | ledgers | entries | applied | noted | banked | shelved | slip | not-automatable | open |
+  |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+  | ʿawāmil and iʿrāb tables (Birgivī inventory ×4 files, the Ottoman sheet, edatlar, mensubat, Jāmī, Hayma, Şerhu'l-Muğnî, Kâfiye özeti, Qaṭr, irab-taksimat, Jurjānī) | 11 | 687 | 338 | 115 | 229 | — | — | 5 | 0 |
+  | ṣarf tables and sheets (nakil ×2, 35 doors, ziyade muhtelife, iʿlāl sheet, mithāl ×2, maṣdar/ṣifa wazns, ṣifa mushabbaha, esmâ-i aded, İzzî grafikleri) | 9 | 422 | 369 | 33 | — | — | 6 | 10 | 4 |
+  | balāgha (bayān notes ×2, ʿalāqa sual, Talkhīṣ notebook) | 3 | 439 | 9 | 233 | 70 | 118 | — | 5 | 4 |
+  | received texts and term sheets (ʿAqāʾid, Amālī, Uṣūl, Waṣiyya, Maqāmāt, 3 Siyar, Tanūkhī, 7 Muʿallaqāt + their witnesses, Inṣāf, 4 term sheets, Nadwī) | 22 | 1,858 | — | 36 | — | 1,709 | — | 47 | 66 |
+  | **all** | 45 | 3,406 | 716 | 417 | 299 | 1,827 | 6 | 67 | 74 |
+
+  Per ledger in `research/book-coverage-2026-11-27.aux.md` (each open / slip / not-automatable entry with its reason and the engine's
+  words). The received texts are whole on the shelf: every package sentence found in its source by its words points at its source line;
+  the package sentences that are not from these files (a restored matn, a ḥadīth, an editorial bridge) are named on the ledger's note.
+- **Re-measured against `research/COVERAGE.md`.** #3 `alaqat-al-majaz-balagha.txt` is NOT unrecoverable: it is the raw Word dump of
+  `alaka-ilm-bayan.txt` (582 of its 583 text lines letter for letter) — the row is corrected and the two are one ledger.
+- **Consumed as data (verbatim, line-anchored notes).** The Birgivī sheet's three examples the analyzer cannot read in their Ottoman
+  spelling — «اَعْبُدُ اللهَ تَعاَلَى» (mafʿūl bih, `awamil-birgivi-ottoman.txt:32`, note `al-maful-bihi-wa-qismah`), «اِحْفَظِ اللهَ تَعاَلَى حَقَّهُ»
+  (badal, l. 35, `al-badal-wa-aqsamuh-wa-atf-al-bayan`), «اُحِبُّ اَنْ اُطِيعَ اللهَ تَعاَلَى» (the nāṣib أَنْ, `awamil-birgivi-tables.txt:13`, `an-masdariyya`);
+  the ṣifa mushabbaha table's wajh 17 «الحسنُ وجْهاً» with the sheet's rule «كنديسنده بر ضمير اولانلر احسن» (`sifa-mushabbaha-vezinleri.txt:10`).
+  No question bank or rule table was needed: every question sheet was already banked (mensubat 144, Jāmī 80, ʿalāqa 70 — all found).
+- **The work order: `research/engine-gaps-2026-11-27.md`** — ten gaps ranked by measured corpus weight (each authored statement of the
+  role vs the engine's line on its sentence): the nāʾib al-fāʿil 622 authored / 477 agree (**145**); أَمْ the ʿāṭifa 42 / 0; the mafʿūl lahu
+  90 / 53; لَا the ʿāṭifa 32 / 0; the khabar of the genus-lā 17 / 0; حَتَّى the ʿāṭifa 4 / 0 (its follower already «معطوف» — the lines
+  contradict); مَا / أَيْنَ as the jāzim condition noun; IlalEngine.derive on a typed origin (غَزَوُوا→غَزَوْا, رَمَيُوا→رَمَوْا, غَزَوَتَا→غَزَتَا,
+  رَمَيَتَا→رَمَتَا, يَوْهِبُ→يَهَبُ — sarfDerive and the lab's build are right, only the typed-origin path stops short); the Ottoman spelling of
+  hamzat al-qaṭʿ (0 story tokens); six ʿalāqas MajazEngine does not name. Each with source line, rule, engine and function, probes, weight.
+- **For the hoca** (the sheets' own slips; the engine gives the right form): `bablara-nakil-12-wazn.txt` l. 15 اِتّجّلَ (اِتَّجَلَ), l. 16 اِنَعَمَّ
+  (اِنْعَمَّ), l. 17 تَفّتَّحَ (تَفَتَّحَ), l. 19 اِسَتْذْهَبَ (اِسْتَذْهَبَ); `ilal-kaideleri-turkce.txt` l. 45 غَِبوَ (غَبِوَ); `sifa-mushabbaha-vezinleri.txt` l. 3
+  وحْهُهُ (وجْهُهُ). The corpus disagreements measured above are the ENGINE's against the authored lines (listed in the work order);
+  this wave asserted no new exact rule, so it adds no authored slip.
+- **Still open, and why.** 66 term-sheet terms (`buyu-tarifler-turkish.txt` 64 — the sheet covers the whole of the muʿāmalāt, kitab-al-buyu
+  tells the sale; sulh 1, vakıf 1): they need authoring with the Arabic term, not a rule. 4 iʿlāl derivations (engine gaps 8). 2 bayān
+  paragraphs and 2 Talkhīṣ notebook pages that name no topic the app carries. Not-automatable: OLE noise (irab-taksimat-turkish, the
+  mithāl sheets' first 150 lines, the maṣdar wazn rows), near-empty pages, the khuṭba commentary, Nadwī's leveling notes (a reference in
+  copyright), the Jurjānī deck's untranscribed pages, the commentary/khabar witnesses of the received texts.
+- **Smoke** (two checks «v342 — the other resources' …» right before «v333 — the received imports»): (1) all 45 ledgers present, counts
+  pinned per ledger (applied ≥, carried ≥, open ≤, entries =), every one of the 716 «applied» probes re-proved on the page, every note /
+  bank carrier exists; (2) the four consumed examples stand verbatim on their anchored source line and on the page; alaqat-al-majaz is
+  ledgered with #2. No older check was changed.
+- Refit + full suite (`build → gen_irab_model → build → gen_drills → ml_engine → build`, then `node tools/smoke_test.js`): irab_model 2,459
+  weights over 72,955 rows; **574 checks, 573 pass** — the one failure «v341 — speed: a search keystroke» (17.5 ms against 15, the machine
+  shared with two other agents) passes run alone. `check_i18n.py` and `check_canon.py --strict` clean.

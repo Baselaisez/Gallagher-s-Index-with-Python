@@ -1,0 +1,135 @@
+{
+ "book": "avamil-curcani-slides",
+ "ledger": "aux",
+ "title": "ʿAwāmil of al-Jurjānī — slide deck notes (kind 1 transcribed)",
+ "source": "research/sources/avamil-curcani-slides.txt",
+ "files": [
+  "research/sources/avamil-curcani-slides.txt"
+ ],
+ "group": "awamil",
+ "note": "",
+ "counts": {
+  "noted": 3,
+  "applied": 1,
+  "not-automatable": 2
+ },
+ "entries": [
+  {
+   "id": "c8",
+   "line": 8,
+   "ar": "- 100 amil in all (الْعَوَامِلُ فِي النَّحْوِ ... مِئَةُ عَامِلٍ).",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-amil-wa-aqsamuh",
+     "how": "names"
+    },
+    {
+     "type": "topics",
+     "ref": "amil"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "c9",
+   "line": 9,
+   "ar": "- They divide into LAFZI and MANEVI; the lafzi into SEMA'I (91) and",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-amil-wa-aqsamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-amil-al-manawi",
+     "how": "names"
+    },
+    {
+     "type": "topics",
+     "ref": "amil,manawi"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "c11",
+   "line": 11,
+   "ar": "- The sema'i come in 13 kinds (تَتَنَوَّعُ عَلَى ثَلَاثَةَ عَشَرَ نَوْعًا).",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-amil-wa-aqsamuh",
+     "how": "names"
+    },
+    {
+     "type": "topics",
+     "ref": "amil"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "c12",
+   "line": 12,
+   "ar": "- Kind 1: the letters that put a SINGLE noun in jarr — SEVENTEEN",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majrur-bil-harf-wa-bil-idafa",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jarr",
+     "topics": [
+      "jarr"
+     ]
+    }
+   ],
+   "probe": {
+    "s": "تُبْتُ مِنْ كُلِّ ذَنْبٍ",
+    "w": "كل",
+    "re": "مجرور"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، مجرور وعلامة جره الكسرة الظاهرة، وهو مضاف."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "walk",
+   "line": 14,
+   "ar": "- The deck then walks the 17 one by one with the meanings each adds",
+   "kind": "rule",
+   "carried_by": [],
+   "reason": "the per-particle walk is in the PDF (pages 10–80), not in this file",
+   "status": "not-automatable"
+  },
+  {
+   "id": "rest",
+   "line": 17,
+   "ar": "The full particle-by-particle walk (pages 10-80) remains in the PDF;",
+   "kind": "rule",
+   "carried_by": [],
+   "reason": "pages 10–80 of the PDF were never transcribed into the file: nothing in the file to carry",
+   "status": "not-automatable"
+  }
+ ]
+}

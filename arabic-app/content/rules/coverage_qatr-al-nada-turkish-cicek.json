@@ -1,0 +1,2445 @@
+{
+ "book": "qatr-al-nada-turkish-cicek",
+ "ledger": "aux",
+ "title": "Qaṭr al-Nadā — Turkish rendering (Çiçek 2020), distilled study notes",
+ "source": "research/sources/qatr-al-nada-turkish-cicek.txt",
+ "files": [
+  "research/sources/qatr-al-nada-turkish-cicek.txt"
+ ],
+ "group": "awamil",
+ "note": "",
+ "counts": {
+  "noted": 4,
+  "applied": 37
+ },
+ "entries": [
+  {
+   "id": "b01",
+   "line": 13,
+   "ar": "kelime ve kısımları (69)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-kalima-wal-kalam",
+     "how": "names"
+    },
+    {
+     "type": "topics",
+     "ref": "kalima-kalam"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "b02",
+   "line": 13,
+   "ar": "isim/fiil/harf özellikleri, murab-mebni (70-71) kelâm (71)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-kalima-wal-kalam",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "irab",
+     "topics": [
+      "kalima-kalam",
+      "irab"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "SignEngine.seedAudit().bad.length===0"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b03",
+   "line": 13,
+   "ar": "i'rab çeşitleri: ref/nasb/cer/cezm (72)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "nawasib-wa-jawazim-al-mudari",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "lam-jazim",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jawazim,irab",
+     "topics": [
+      "jawazim",
+      "irab"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+      "w": "يلد",
+      "re": "مجزوم"
+     },
+     {
+      "js": "SignEngine.seedAudit().bad.length===0"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; فعل مضارع، مجزوم وعلامة جزمه السكون، والفاعل ضمير مستتر جوازا تقديره «هو». ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b04",
+   "line": 13,
+   "ar": "esmâ-i sitte, müsenna, cem-i müzekker/müennes salim, gayr-ı munsarıf i'rabı (72-73)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muthanna",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mamnu-min-sarf",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muannath-wa-alamatuh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "irab,signs,mamnu",
+     "topics": [
+      "irab",
+      "signs",
+      "mamnu",
+      "muannath"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "js": "SignEngine.seedAudit().bad.length===0"
+     },
+     {
+      "js": "SignEngine.seedAudit().bad.length===0"
+     },
+     {
+      "js": "MamnuEngine.verdict('أَحْمَدُ').barred===true"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; true ‖ true ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b05",
+   "line": 13,
+   "ar": "EMSİLETÜ'L-HAMSE i'rabı (73)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "afal-khamsa",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "irab",
+     "topics": [
+      "irab",
+      "afalkhamsa"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "SignEngine.seedAudit().bad.length===0"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b06",
+   "line": 13,
+   "ar": "takdiri hareke yerleri; muzari i'rabı, nasb edenler + masdariyet أَنْ'in gizlenme yerleri (73-75)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "nawasib-wa-jawazim-al-mudari",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "an-masdariyya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-amil-wa-aqsamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "imal-al-masdar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "amal-ism-al-tafdil-wal-masdar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-taqdiri-al-rabi-ila-al-sadis-al-ya-wal-waw-wal-murab-bil-huruf-qabl-al-sakin",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-fil-wal-madi-wal-mudari-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mudari-marfu",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "nawasib,irab,taqdiri,mudari",
+     "topics": [
+      "nawasib",
+      "qiyasi",
+      "irab",
+      "taqdiri",
+      "mudari"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "any": [
+       {
+        "s": "وَلَنْ يَغْزُوَ لَنْ يَغْزُوَا",
+        "w": 2,
+        "re": "نصب|ناصب"
+       },
+       {
+        "s": "قَالَ الْخَضِرُ لَنْ تَصْبِرَ مَعِي",
+        "w": 2,
+        "re": "نصب|ناصب"
+       },
+       {
+        "s": "قَالَ الْخَضِرُ إِنَّكَ لَنْ تَصْبِرَ مَعِي",
+        "w": 3,
+        "re": "نصب|ناصب"
+       }
+      ],
+      "at": [
+       "tasrif-al-izzi:15:s18:3",
+       "musa-wal-khadir:3:s5:3",
+       "musa-wal-khadir:2:s1:4"
+      ]
+     },
+     {
+      "js": "SignEngine.seedAudit().bad.length===0"
+     },
+     {
+      "any": [
+       {
+        "s": "هُدًى لِلْمُتَّقِينَ",
+        "w": 0,
+        "re": "مقدر"
+       },
+       {
+        "s": "تَأْتِينِي غَدًا",
+        "w": 0,
+        "re": "مقدر"
+       },
+       {
+        "s": "جَدِّي جَهْدِي",
+        "w": 0,
+        "re": "مقدر"
+       }
+      ],
+      "at": [
+       "talkhis-al-miftah:18:s2:1",
+       "talkhis-al-miftah:30:s4:1",
+       "talkhis-al-miftah:68:s17:1"
+      ]
+     },
+     {
+      "js": "sarfDerive(nakilClass({root:'ن ص ر'}),'I',1).mudari[0]==='يَنْصُرُ'"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "4/4 pass; 3/3 pass; حرف نفي ونصب واستقبال، لا محل له من الاعراب. ‖ حرف نفي ونصب واستقبال، لا محل له من الاعراب. ‖ حرف نفي ونصب واس ‖ true ‖ 2/3 pass; اسم، مرفوع وعلامة رفعه الضمة المقدرة علي الالف للت"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b07",
+   "line": 13,
+   "ar": "cezm edenler, tek-fiil ve iki-fiil cazimleri (75)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "nawasib-wa-jawazim-al-mudari",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "lam-jazim",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jawazim",
+     "topics": [
+      "jawazim"
+     ]
+    }
+   ],
+   "probe": {
+    "s": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+    "w": "يلد",
+    "re": "مجزوم"
+   },
+   "proof": {
+    "ok": true,
+    "got": "فعل مضارع، مجزوم وعلامة جزمه السكون، والفاعل ضمير مستتر جوازا تقديره «هو»."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b08",
+   "line": 13,
+   "ar": "nekre-marife: zamir, alem, işaret, mevsûl, ال, muzaf (75-78)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mudaf-wa-nawa-al-idafa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majrur-bil-harf-wa-bil-idafa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mabni-wal-mudmar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-marifa-al-mudmarat-wal-alam",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "asma-al-ishara",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "asma-al-ishara-wal-mawsulat",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-marifa-wal-nakira-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "idafa,damir,ishara,mawsul",
+     "topics": [
+      "idafa",
+      "damir",
+      "ishara",
+      "mawsul",
+      "marifa"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "عِباَدَةُ اللهِ تَعاَلىَ خَيْرٌ",
+      "w": "الله",
+      "re": "مضاف اليه|مجرور"
+     },
+     {
+      "any": [
+       {
+        "s": "كَيْفَ أَنْتَ",
+        "w": 1,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَهِيَ لَيْسَتْ بِأَسْمَاءٍ",
+        "w": 0,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَنَحْنُ لَا نَدْخُلُهَا",
+        "w": 0,
+        "re": "ضمير"
+       }
+      ],
+      "at": [
+       "talkhis-al-miftah:26:s3:2",
+       "marah-al-arwah:17:s19:1",
+       "musa-wa-bani-israil:4:s3:1"
+      ]
+     },
+     {
+      "any": [
+       {
+        "s": "مَنْ هَذَا",
+        "w": 1,
+        "re": "اشارة"
+       },
+       {
+        "s": "هٰذَا أَمْرٌ عَجِيبٌ",
+        "w": 0,
+        "re": "اشارة"
+       },
+       {
+        "s": "وَلَيْسَ هٰذَا بِرَأْيٍ",
+        "w": 1,
+        "re": "اشارة"
+       }
+      ],
+      "at": [
+       "talkhis-al-miftah:27:s6:2",
+       "qisas-al-nabiyyin-1:8:s25:1",
+       "wasiyyat-abi-hanifa-samti:2:s15:2"
+      ]
+     },
+     {
+      "any": [
+       {
+        "s": "الَّذِي خَلَقَنِي فَهُوَ يَهْدِينِ",
+        "w": 0,
+        "re": "موصول"
+       },
+       {
+        "s": "الْجَزْعُ الَّذِي لَمْ يُثَقَّبْ",
+        "w": 1,
+        "re": "موصول"
+       },
+       {
+        "s": "هُوَ الَّذِي عَلَى خَزَائِنِ الْأَرْضِ",
+        "w": 1,
+        "re": "موصول"
+       }
+      ],
+      "at": [
+       "qisas-al-nabiyyin-1:4:s10:1",
+       "talkhis-al-miftah:41:s4:2",
+       "qisas-al-nabiyyin-1:21:s20:2"
+      ]
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "4/4 pass; اسم علم، مجرور وعلامة جره الكسرة الظاهرة، مضاف اليه. ‖ 3/3 pass; ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الضم. ‖ 3/3 pass; اسم اشارة، مبني علي السكون"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b09",
+   "line": 13,
+   "ar": "MERFUAT: mübteda-haber (haberin hazfi/takdimi dahil) (78-79)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mubtada-wa-nawah",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mubtada-khabar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "khabar-al-mubtada-wa-ahkamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "ijaz-al-hadhf",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "hadhf-al-mudaf-wal-mudaf-ilayh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "mubtada,tartib,hadhf",
+     "topics": [
+      "mubtada",
+      "tartib",
+      "hadhf"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "مُحَمَّدٌ خاَتَمُ الْاَنْبِياَءِ عَلَيْهِمُ الصَّلاَةُ وَالسَّلاَمُ",
+      "w": "محمد",
+      "re": "مبتدا"
+     },
+     {
+      "js": "TartibEngine.seedAudit().bad.length===0"
+     },
+     {
+      "js": "HadhfEngine.seedAudit().bad.length===0"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا، وخبره «خاتم». ‖ true ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b10",
+   "line": 13,
+   "ar": "nevasih: كان ve kardeşleri (tam kullanımlar, ما zaide, كان'ın hazfi; Hicaz ما'sının şartları; şiirde لا = ليس; لاتَ + حين) (79-80)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "ma-la-mushabbaha",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "ma-la-laysa-wa-la-al-jins",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "kana-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-fil-al-tamm-wal-naqis",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "ijaz-al-hadhf",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "hadhf-al-mudaf-wal-mudaf-ilayh",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "inna,shart,kana,hadhf",
+     "topics": [
+      "inna",
+      "laysa",
+      "shart",
+      "kana",
+      "hadhf"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "any": [
+       {
+        "s": "وَعَرَفَ أَنَّ يُوسُفَ أَمِينٌ",
+        "w": 1,
+        "re": "مشبه بالفعل|ناسخ|توكيد"
+       },
+       {
+        "s": "إِنَّ هٰذَا لَا يَكُونُ",
+        "w": 0,
+        "re": "مشبه بالفعل|ناسخ|توكيد"
+       },
+       {
+        "s": "إِنَّ النَّفْسَ لَأَمَّارَةٌ بِالسُّوءِ",
+        "w": 0,
+        "re": "مشبه بالفعل|ناسخ|توكيد"
+       }
+      ],
+      "at": [
+       "qisas-al-nabiyyin-1:11:s21:2",
+       "qisas-al-nabiyyin-1:20:s15:1",
+       "talkhis-al-miftah:34:s4:1"
+      ]
+     },
+     {
+      "s": "مَتَى تَحْسُدْ تَهْلُكْ",
+      "w": "تحسد",
+      "re": "مجزوم"
+     },
+     {
+      "any": [
+       {
+        "s": "كَانَ الدَّرْسُ سَهْلًا",
+        "w": 0,
+        "re": "ناقص"
+       },
+       {
+        "s": "كَانَ زَيْدٌ مُنْطَلِقًا",
+        "w": 0,
+        "re": "ناقص"
+       },
+       {
+        "s": "وَلَكِنَّهُ كَانَ رِيحًا شَدِيدَةً",
+        "w": 1,
+        "re": "ناقص"
+       }
+      ],
+      "at": [
+       "jumal-al-tadrib:6:s1:1",
+       "talkhis-al-miftah:16:s4:1",
+       "hud-wa-aad:3:s7:2"
+      ]
+     },
+     {
+      "js": "HadhfEngine.seedAudit().bad.length===0"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "4/4 pass; 2/3 pass; حرف لا محل له من الاعراب. ‖ حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب. ‖ حرف توكيد ونصب، تن ‖ فعل مضارع، مجزوم وعلامة جزمه السكون، فعل الشرط، وهو جواب الطلب، وفا"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b11",
+   "line": 13,
+   "ar": "إنّ ve kardeşleri (meksur/meftuh yerleri; lâm-ı muzahlaka; şeddesiz أنْ/إنْ/كأنْ amel şartları) (81-82)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "inna,shart",
+     "topics": [
+      "inna",
+      "shart"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "any": [
+       {
+        "s": "وَعَرَفَ أَنَّ يُوسُفَ أَمِينٌ",
+        "w": 1,
+        "re": "مشبه بالفعل|ناسخ|توكيد"
+       },
+       {
+        "s": "إِنَّ هٰذَا لَا يَكُونُ",
+        "w": 0,
+        "re": "مشبه بالفعل|ناسخ|توكيد"
+       },
+       {
+        "s": "إِنَّ النَّفْسَ لَأَمَّارَةٌ بِالسُّوءِ",
+        "w": 0,
+        "re": "مشبه بالفعل|ناسخ|توكيد"
+       }
+      ],
+      "at": [
+       "qisas-al-nabiyyin-1:11:s21:2",
+       "qisas-al-nabiyyin-1:20:s15:1",
+       "talkhis-al-miftah:34:s4:1"
+      ]
+     },
+     {
+      "s": "مَتَى تَحْسُدْ تَهْلُكْ",
+      "w": "تحسد",
+      "re": "مجزوم"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; 2/3 pass; حرف لا محل له من الاعراب. ‖ حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب. ‖ حرف توكيد ونصب، تن ‖ فعل مضارع، مجزوم وعلامة جزمه السكون، فعل الشرط، وهو جواب الطلب، وفا"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b12",
+   "line": 13,
+   "ar": "cinsini nefyeden لا (82)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "la-nafiya-lil-jins",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "la-nafiya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "lajins",
+     "topics": [
+      "lajins",
+      "nafy"
+     ]
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "لَا رَيْبَ فِيهِ",
+      "w": 1,
+      "re": "اسم لا النافية للجنس|اسم «لا»"
+     },
+     {
+      "s": "لَا إِلَهَ إِلَّا اللهُ",
+      "w": 1,
+      "re": "اسم لا النافية للجنس|اسم «لا»"
+     },
+     {
+      "s": "وَلَا تَوْفِيقَ إِلَّا بِاللهِ",
+      "w": 1,
+      "re": "اسم لا النافية للجنس|اسم «لا»"
+     }
+    ],
+    "at": [
+     "talkhis-al-miftah:19:s2:2",
+     "talkhis-al-miftah:21:s1:2",
+     "wasiyyat-abi-hanifa-samti:1:s8:2"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم، مبني علي الفتح في محل نصب، اسم لا النافية للجنس. ‖ اسم، مبني علي الفتح في محل نصب، اسم لا النافية للجنس. ‖ اسم، مبني علي الفتح في محل نصب، اسم لا النافية للجنس."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b13",
+   "line": 13,
+   "ar": "ظنّ ve kardeşleri, ilga/ta'lik (82-83)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mutaaddi-wa-afal-al-qulub",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "zanna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "topics",
+     "ref": "qulub"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "b14",
+   "line": 13,
+   "ar": "fail (te'nis ta'sı kaideleri; نعم/بئس faili) (83-84)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-marfuat-al-fail-wa-naibuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-muannath-wa-alamatuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "afal-al-madh-wal-dhamm-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "fail",
+     "topics": [
+      "fail",
+      "muannath",
+      "madh"
+     ]
+    }
+   ],
+   "probe": {
+    "s": "رَحِمَ اللهُ تَعاَلَى اَلتَّاءِبَ",
+    "w": "الله",
+    "re": "فاعل"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم علم، مرفوع وعلامة رفعه الضمة الظاهرة، والظاهر انه فاعل."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b15",
+   "line": 13,
+   "ar": "naib-i fail (84-85)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-marfuat-al-fail-wa-naibuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majhul-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "fail,naib",
+     "topics": [
+      "fail",
+      "naib"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "رَحِمَ اللهُ تَعاَلَى اَلتَّاءِبَ",
+      "w": "الله",
+      "re": "فاعل"
+     },
+     {
+      "any": [
+       {
+        "s": "كَمَا أُسْكِنَتِ الْخَاءُ فِي فَخْذٌ",
+        "w": 2,
+        "re": "نائب فاعل"
+       },
+       {
+        "s": "وَعُيِّنَ الْحَذْفُ فِي الْمُخَاطَبِ لِكَثْرَتِهِ",
+        "w": 1,
+        "re": "نائب فاعل"
+       },
+       {
+        "s": "وَفُتِحَ أَلِفُ التَّعْرِيفِ لِكَثْرَتِهِ أَيْضًا",
+        "w": 1,
+        "re": "نائب فاعل"
+       }
+      ],
+      "at": [
+       "marah-al-arwah:25:s3:3",
+       "marah-al-arwah:25:s6:2",
+       "marah-al-arwah:26:s11:2"
+      ]
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; اسم علم، مرفوع وعلامة رفعه الضمة الظاهرة، والظاهر انه فاعل. ‖ 2/3 pass; اسم، مرفوع وعلامة رفعه الضمة الظاهرة، نائب فاعل. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، والظاهر انه فاعل. ‖ ا"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b16",
+   "line": 13,
+   "ar": "İŞTİĞAL BABI (85)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ijaz-al-hadhf",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "hadhf-al-mudaf-wal-mudaf-ilayh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "thulathi-mujarrad-babs",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "augmented-babs",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "rubai-babs",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "hadhf,bab",
+     "topics": [
+      "hadhf",
+      "bab"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "js": "HadhfEngine.seedAudit().bad.length===0"
+     },
+     {
+      "js": "Bab35Engine.audit().bad.length===0"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; true ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b17",
+   "line": 13,
+   "ar": "TENAZÛ (Basrî/Kûfî tercihleri) (86)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "tanazu",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "tanazu",
+     "topics": [
+      "tanazu"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "TartibEngine.seedAudit().bad.length===0"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b18",
+   "line": 13,
+   "ar": "MANSUBAT: mef'ul bih, münâda (tabileri, TERXİM şartları, İSTİĞASE, NÜDBE) (86-88)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-maful-bihi-wa-qismah",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "shart,mafulbih,munada",
+     "topics": [
+      "shart",
+      "mafulbih",
+      "munada"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "مَتَى تَحْسُدْ تَهْلُكْ",
+      "w": "تحسد",
+      "re": "مجزوم"
+     },
+     {
+      "any": [
+       {
+        "s": "فَأَحَبَّتِ الْوَلَدَ",
+        "w": 1,
+        "re": "مفعول به"
+       },
+       {
+        "s": "مَاذَا تَخَافُ",
+        "w": 0,
+        "re": "مفعول به"
+       },
+       {
+        "s": "أَزَيْدًا ضَرَبْتَ",
+        "w": 0,
+        "re": "مفعول به"
+       }
+      ],
+      "at": [
+       "musa-wa-firawn:2:s9:2",
+       "qisas-al-nabiyyin-1:9:s7:1",
+       "talkhis-al-miftah:24:s3:1"
+      ]
+     },
+     {
+      "js": "NidaEngine.read('يَا زَيْدُ').ok===true"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; فعل مضارع، مجزوم وعلامة جزمه السكون، فعل الشرط، وهو جواب الطلب، وفاعله «تهلك». ‖ 3/3 pass; اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول به. ‖ اسم استفهام مبني علي السكون في محل نصب مفعول به "
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b19",
+   "line": 13,
+   "ar": "mef'ul-ü mutlak/leh/fih/mea (88-89)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mansubat-al-maful-al-mutlaq",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "mutlaq",
+     "topics": [
+      "mutlaq"
+     ]
+    }
+   ],
+   "probe": {
+    "s": "وَنَزَلَ الْقُرْأَنُ نُزُولاً",
+    "w": "نزولا",
+    "re": "مفعول مطلق"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول مطلق."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b20",
+   "line": 13,
+   "ar": "hâl (zil-hal şartları) (89-90)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-maful-maah-wal-hal",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-hal-jumla-wa-rabituha",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "shart,hal",
+     "topics": [
+      "shart",
+      "hal"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "مَتَى تَحْسُدْ تَهْلُكْ",
+      "w": "تحسد",
+      "re": "مجزوم"
+     },
+     {
+      "any": [
+       {
+        "s": "جَاءَ زَيْدٌ رَاكِبًا",
+        "w": 2,
+        "re": "حال"
+       },
+       {
+        "s": "أَوَلَوْ كُنَّا كَارِهِينَ",
+        "w": 0,
+        "re": "حال"
+       },
+       {
+        "s": "أَيَقْتُلُنِي وَالْمَشْرَفِيُّ مُضَاجِعِي",
+        "w": 1,
+        "re": "حال"
+       }
+      ],
+      "at": [
+       "jumal-al-tadrib:1:s4:3",
+       "qisas-al-nabiyyin-4:5:s4:1",
+       "talkhis-al-miftah:46:s21:2"
+      ]
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; فعل مضارع، مجزوم وعلامة جزمه السكون، فعل الشرط، وهو جواب الطلب، وفاعله «تهلك». ‖ 1/3 pass; اسم، منصوب وعلامة نصبه الفتحة الظاهرة، حال. ‖ اسم. ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، والظاهر "
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b21",
+   "line": 13,
+   "ar": "temyiz (dönüşüm tahlili: failden/mef'ulden/muzaftan) (90)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-tamyiz-wa-ahkamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mudaf-wa-nawa-al-idafa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majrur-bil-harf-wa-bil-idafa",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "tamyiz,idafa",
+     "topics": [
+      "tamyiz",
+      "idafa"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "any": [
+       {
+        "s": "وَالْخِلَافَةُ ثَلَاثُونَ سَنَةً",
+        "w": 2,
+        "re": "تمييز"
+       },
+       {
+        "s": "اشْتَرَيْتُ عِشْرِينَ كِتَابًا",
+        "w": 2,
+        "re": "تمييز"
+       },
+       {
+        "s": "زَيْدٌ أَفْضَلُ الطُّلَّابِ فَهْمًا",
+        "w": 3,
+        "re": "تمييز"
+       }
+      ],
+      "at": [
+       "aqaid-ahl-al-sunna:18:s1:3",
+       "jumal-al-tadrib:6:s4:3",
+       "jumal-al-tadrib:6:s8:4"
+      ]
+     },
+     {
+      "s": "عِباَدَةُ اللهِ تَعاَلىَ خَيْرٌ",
+      "w": "الله",
+      "re": "مضاف اليه|مجرور"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; 3/3 pass; اسم، منصوب وعلامة نصبه الفتحة الظاهرة، تمييز. ‖ اسم، منصوب وعلامة نصبه الفتحة الظاهرة، تمييز. ‖ اسم، منصوب وعل ‖ اسم علم، مجرور وعلامة جره الكسرة الظاهرة، مضاف اليه."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b22",
+   "line": 13,
+   "ar": "istisna (müferrağ; غير/سوى; خلا/عدا fiil-harf ikiliği) (90-91)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mustathna-wa-nawah-wa-nasbuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "istithna",
+     "topics": [
+      "istithna"
+     ]
+    }
+   ],
+   "probe": {
+    "any": [
+     {
+      "s": "إِلَّا اثْنَيْ عَشَرَ",
+      "w": 1,
+      "re": "مستثني"
+     },
+     {
+      "s": "جَاءَ الطُّلَّابُ إِلَّا زَيْدًا",
+      "w": 3,
+      "re": "مستثني"
+     },
+     {
+      "s": "وَدَامَتْ أَسْفَارُهُ ثَلَاثِينَ سَنَةً إِلَّا قَلِيلًا",
+      "w": 5,
+      "re": "مستثني"
+     }
+    ],
+    "at": [
+     "al-kafiya:6:s11:2",
+     "jumal-al-tadrib:6:s5:4",
+     "ibn-battuta-yakhruju-min-tanja:5:s3:6"
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; الجزء الاول من العدد المركب «اثني عشر»، معرب اعراب المثني: مستثني منصوب وعلامة نصبه الياء لانه ملحق بالمثني، وحذفت نونه لقيام «عشر» مقامها. ‖ اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مستثني. ‖"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b23",
+   "line": 13,
+   "ar": "MECRURAT: harf-i cer (zamire girenler ve girmeyenler), izafe-i maneviye/lafziye (91-92)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majrur-bil-harf-wa-bil-idafa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-amil-al-manawi",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mudaf-wa-nawa-al-idafa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mabni-wal-mudmar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-marifa-al-mudmarat-wal-alam",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jarr,idafa,damir",
+     "topics": [
+      "jarr",
+      "manawi",
+      "idafa",
+      "damir"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "تُبْتُ مِنْ كُلِّ ذَنْبٍ",
+      "w": "كل",
+      "re": "مجرور"
+     },
+     {
+      "s": "عِباَدَةُ اللهِ تَعاَلىَ خَيْرٌ",
+      "w": "الله",
+      "re": "مضاف اليه|مجرور"
+     },
+     {
+      "any": [
+       {
+        "s": "كَيْفَ أَنْتَ",
+        "w": 1,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَهِيَ لَيْسَتْ بِأَسْمَاءٍ",
+        "w": 0,
+        "re": "ضمير"
+       },
+       {
+        "s": "وَنَحْنُ لَا نَدْخُلُهَا",
+        "w": 0,
+        "re": "ضمير"
+       }
+      ],
+      "at": [
+       "talkhis-al-miftah:26:s3:2",
+       "marah-al-arwah:17:s19:1",
+       "musa-wa-bani-israil:4:s3:1"
+      ]
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; اسم، مجرور وعلامة جره الكسرة الظاهرة، وهو مضاف. ‖ اسم علم، مجرور وعلامة جره الكسرة الظاهرة، مضاف اليه. ‖ 3/3 pass; ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبني علي الفتح. ‖ ضمير منفصل، مبن"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b24",
+   "line": 13,
+   "ar": "fiil gibi amel edenler: İSİM FİİLLER, mastar (8 amel şartı), ism-i fail (ال'lı mutlak amel; ال'sız iki şart), mübalağa sigaları, ism-i mef'ul, sıfat-ı müşebbehe",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-kalima-wal-kalam",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-amil-wa-aqsamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "imal-al-masdar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "amal-ism-al-tafdil-wal-masdar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-marfuat-al-fail-wa-naibuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "asma-al-afal-wal-aswat-wal-murakkabat",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "ism-fail",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "ism-maful",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "shart,fail,ismfailtab",
+     "topics": [
+      "kalima-kalam",
+      "shart",
+      "qiyasi",
+      "fail",
+      "asmaafal",
+      "ismfailtab"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "مَتَى تَحْسُدْ تَهْلُكْ",
+      "w": "تحسد",
+      "re": "مجزوم"
+     },
+     {
+      "s": "رَحِمَ اللهُ تَعاَلَى اَلتَّاءِبَ",
+      "w": "الله",
+      "re": "فاعل"
+     },
+     {
+      "ilal": "مَقْوُولٌ",
+      "out": "مَقُولٌ"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; فعل مضارع، مجزوم وعلامة جزمه السكون، فعل الشرط، وهو جواب الطلب، وفاعله «تهلك». ‖ اسم علم، مرفوع وعلامة رفعه الضمة الظاهرة، والظاهر انه فاعل. ‖ مَقُولٌ ← naql,hadhf-sakinayn"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b25",
+   "line": 13,
+   "ar": "TEVABİ: sıfat, te'kid (lafzî/manevî; كِلَا/كِلْتَا şartları), atf-ü beyan, atf-ü nesak (harf harf manaları), bedel (ALTI çeşit: küll, ba'd, iştimal, galat, idra",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-amil-al-manawi",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "jumla-sifa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-atf-bil-huruf-wa-ahkamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "atf-nasaq",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "atf-bayan",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-tawkid-al-lafzi-wal-manawi",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-badal-wa-aqsamuh-wa-atf-al-bayan",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "shart,naat,atf,tawkid,badal,irab",
+     "topics": [
+      "shart",
+      "manawi",
+      "naat",
+      "atf",
+      "tawkid",
+      "badal",
+      "irab"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "مَتَى تَحْسُدْ تَهْلُكْ",
+      "w": "تحسد",
+      "re": "مجزوم"
+     },
+     {
+      "s": "اَعْبُدُ اللهَ الْعَظِيمَ",
+      "w": "العظيم",
+      "re": "نعت|صفة"
+     },
+     {
+      "s": "اُطِيعُ اللهَ وَ رَسُولَهُ",
+      "w": "رسوله",
+      "re": "معطوف"
+     },
+     {
+      "any": [
+       {
+        "s": "أَبَدًا أَبَدًا",
+        "w": 1,
+        "re": "توكيد"
+       },
+       {
+        "s": "وَالْمَعْدُومُ لَيْسَ بِشَيْءٍ",
+        "w": 2,
+        "re": "توكيد"
+       },
+       {
+        "s": "إِنَّ الْعِلْمَ نَافِعٌ",
+        "w": 0,
+        "re": "توكيد"
+       }
+      ],
+      "at": [
+       "qisas-al-nabiyyin-1:19:s27:2",
+       "aqaid-ahl-al-sunna:42:s3:3",
+       "jumal-al-tadrib:2:s7:1"
+      ]
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "4/4 pass; فعل مضارع، مجزوم وعلامة جزمه السكون، فعل الشرط، وهو جواب الطلب، وفاعله «تهلك». ‖ اسم، منصوب وعلامة نصبه الفتحة الظاهرة، نعت. ‖ اسم، منصوب وعلامة نصبه الفتحة الظاهرة، معطوف، والضمير مضاف اليه"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b26",
+   "line": 13,
+   "ar": "sayılar ve temyizleri (97)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-tamyiz-wa-ahkamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "asma-al-adad-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "tamyiz,adad",
+     "topics": [
+      "tamyiz",
+      "adad"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "any": [
+       {
+        "s": "وَالْخِلَافَةُ ثَلَاثُونَ سَنَةً",
+        "w": 2,
+        "re": "تمييز"
+       },
+       {
+        "s": "اشْتَرَيْتُ عِشْرِينَ كِتَابًا",
+        "w": 2,
+        "re": "تمييز"
+       },
+       {
+        "s": "زَيْدٌ أَفْضَلُ الطُّلَّابِ فَهْمًا",
+        "w": 3,
+        "re": "تمييز"
+       }
+      ],
+      "at": [
+       "aqaid-ahl-al-sunna:18:s1:3",
+       "jumal-al-tadrib:6:s4:3",
+       "jumal-al-tadrib:6:s8:4"
+      ]
+     },
+     {
+      "js": "AdadEngine.name(125)==='مِائَةٌ وَخَمْسَةٌ وَعِشْرُونَ'"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; 3/3 pass; اسم، منصوب وعلامة نصبه الفتحة الظاهرة، تمييز. ‖ اسم، منصوب وعلامة نصبه الفتحة الظاهرة، تمييز. ‖ اسم، منصوب وعل ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b27",
+   "line": 13,
+   "ar": "sarfı engelleyen dokuz sebep + hangileri tek başına yeter (97-98)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "mamnu-min-sarf",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "mamnu",
+     "topics": [
+      "mamnu"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "MamnuEngine.verdict('أَحْمَدُ').barred===true"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b28",
+   "line": 13,
+   "ar": "taaccüp iki kalıbının kelime kelime i'rabı (98-99)",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-kalima-wal-kalam",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "fil-al-taajjub-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "irab",
+     "topics": [
+      "kalima-kalam",
+      "irab",
+      "taajjub"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "SignEngine.seedAudit().bad.length===0"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b29",
+   "line": 13,
+   "ar": "VAKF kaideleri, elif/ya yazımı, vasıl hemzesi (99-100).",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "waqf",
+     "topics": [
+      "waqf",
+      "mahmuz"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "WaqfEngine.pause('كِتَابًا').ok===true"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b30",
+   "line": 42,
+   "ar": "- Tenazû: Basrîler ameli İKİNCİ (yakın) amile verir — tanazu.json ✓.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-amil-wa-aqsamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "tanazu",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "tanazu",
+     "topics": [
+      "amil",
+      "tanazu"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "TartibEngine.seedAudit().bad.length===0"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b31",
+   "line": 43,
+   "ar": "- Kalp fiilleri: iki mef'ul; ortada/sonda ilga caiz; istifham/nefiy/lâm sonrası ta'lik — zanna-wa-akhawatuha.json ✓ (ilga dipnotu: hem lafzen hem",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mutaaddi-wa-afal-al-qulub",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "zanna-wa-akhawatuha",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "la-nafiya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-istifham",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "istifham",
+     "topics": [
+      "qulub",
+      "nafy",
+      "istifham"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "typeof IstifhamEngine==='function'"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b32",
+   "line": 46,
+   "ar": "- Hicaz ما'sının üç şartı (إنْ gelmemesi; ma'mulün öne geçmemesi — zarf/car-mecrur hariç; haberin إلا'sız olması) — ma-la-mushabbaha ✓.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majrur-bil-harf-wa-bil-idafa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mubtada-wa-nawah",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mubtada-khabar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "khabar-al-mubtada-wa-ahkamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-maful-fih-wal-maful-lah",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jarr,shart,mubtada,mafulfih,tartib",
+     "topics": [
+      "jarr",
+      "shart",
+      "mubtada",
+      "mafulfih",
+      "tartib"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "تُبْتُ مِنْ كُلِّ ذَنْبٍ",
+      "w": "كل",
+      "re": "مجرور"
+     },
+     {
+      "s": "مَتَى تَحْسُدْ تَهْلُكْ",
+      "w": "تحسد",
+      "re": "مجزوم"
+     },
+     {
+      "s": "مُحَمَّدٌ خاَتَمُ الْاَنْبِياَءِ عَلَيْهِمُ الصَّلاَةُ وَالسَّلاَمُ",
+      "w": "محمد",
+      "re": "مبتدا"
+     },
+     {
+      "any": [
+       {
+        "s": "أَبَدًا أَبَدًا",
+        "w": 0,
+        "re": "ظرف زمان|ظرف مكان|مفعول فيه"
+       },
+       {
+        "s": "تَأْتِينِي غَدًا",
+        "w": 1,
+        "re": "ظرف زمان|ظرف مكان|مفعول فيه"
+       },
+       {
+        "s": "وَأَخَذَا مَعَهُمَا حُوتًا",
+        "w": 1,
+        "re": "ظرف زمان|ظرف مكان|مفعول فيه"
+       }
+      ],
+      "at": [
+       "qisas-al-nabiyyin-1:19:s27:1",
+       "talkhis-al-miftah:30:s4:2",
+       "musa-wal-khadir:1:s5:2"
+      ]
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "4/4 pass; اسم، مجرور وعلامة جره الكسرة الظاهرة، وهو مضاف. ‖ فعل مضارع، مجزوم وعلامة جزمه السكون، فعل الشرط، وهو جواب الطلب، وفاعله «تهلك». ‖ اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا، وخبره «خاتم». "
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b33",
+   "line": 48,
+   "ar": "- حاشا/خلا/عدا fiil↔harf ikiliği (fiilse mensub, harfse mecrur müstesna) — huruf-jarr-nawadir ✓.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "huruf-jarr-nawadir",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majrur-bil-harf-wa-bil-idafa",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mustathna-wa-nawah-wa-nasbuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jarr,istithna",
+     "topics": [
+      "jarr",
+      "istithna"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "تُبْتُ مِنْ كُلِّ ذَنْبٍ",
+      "w": "كل",
+      "re": "مجرور"
+     },
+     {
+      "any": [
+       {
+        "s": "إِلَّا اثْنَيْ عَشَرَ",
+        "w": 1,
+        "re": "مستثني"
+       },
+       {
+        "s": "جَاءَ الطُّلَّابُ إِلَّا زَيْدًا",
+        "w": 3,
+        "re": "مستثني"
+       },
+       {
+        "s": "وَدَامَتْ أَسْفَارُهُ ثَلَاثِينَ سَنَةً إِلَّا قَلِيلًا",
+        "w": 5,
+        "re": "مستثني"
+       }
+      ],
+      "at": [
+       "al-kafiya:6:s11:2",
+       "jumal-al-tadrib:6:s5:4",
+       "ibn-battuta-yakhruju-min-tanja:5:s3:6"
+      ]
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; اسم، مجرور وعلامة جره الكسرة الظاهرة، وهو مضاف. ‖ 3/3 pass; الجزء الاول من العدد المركب «اثني عشر»، معرب اعراب المثني: مستثني منصوب وعلامة نصبه الياء لانه ملحق بالمثني، و"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b34",
+   "line": 50,
+   "ar": "- Cinsini nefyeden لا'nın ismi nekre+bitişik; mebnilik/i'rab halleri — la-nafiya-lil-jins ✓.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "la-nafiya-lil-jins",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-marifa-wal-nakira-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "la-nafiya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "lajins,irab",
+     "topics": [
+      "lajins",
+      "irab",
+      "marifa",
+      "nafy"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "any": [
+       {
+        "s": "لَا رَيْبَ فِيهِ",
+        "w": 1,
+        "re": "اسم لا النافية للجنس|اسم «لا»"
+       },
+       {
+        "s": "لَا إِلَهَ إِلَّا اللهُ",
+        "w": 1,
+        "re": "اسم لا النافية للجنس|اسم «لا»"
+       },
+       {
+        "s": "وَلَا تَوْفِيقَ إِلَّا بِاللهِ",
+        "w": 1,
+        "re": "اسم لا النافية للجنس|اسم «لا»"
+       }
+      ],
+      "at": [
+       "talkhis-al-miftah:19:s2:2",
+       "talkhis-al-miftah:21:s1:2",
+       "wasiyyat-abi-hanifa-samti:1:s8:2"
+      ]
+     },
+     {
+      "js": "SignEngine.seedAudit().bad.length===0"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; 3/3 pass; اسم، مبني علي الفتح في محل نصب، اسم لا النافية للجنس. ‖ اسم، مبني علي الفتح في محل نصب، اسم لا النافية للجنس.  ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b35",
+   "line": 52,
+   "ar": "- İki fiili cezm edenler listesi (حيثما ما مهما متى من أين أنّى أيّان أيّ إذما إنْ) — in-shartiyya ✓.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "nawasib-wa-jawazim-al-mudari",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "lam-jazim",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "afal-al-madh-wal-dhamm-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jawazim",
+     "topics": [
+      "jawazim",
+      "madh"
+     ]
+    }
+   ],
+   "probe": {
+    "s": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+    "w": "يلد",
+    "re": "مجزوم"
+   },
+   "proof": {
+    "ok": true,
+    "got": "فعل مضارع، مجزوم وعلامة جزمه السكون، والفاعل ضمير مستتر جوازا تقديره «هو»."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b36",
+   "line": 54,
+   "ar": "- Masdariyet أَنْ'in gizlenme yerleri (حتى، lâm-ı kê, lâm-ı cuhûd, sebep fâ'sı, maiyyet vâv'ı, إلى/إلا manasına أو) — kafiya-internet-digest ile",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-amil-wa-aqsamuh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "imal-al-masdar",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "amal-ism-al-tafdil-wal-masdar",
+     "how": "names"
+    },
+    {
+     "type": "topics",
+     "ref": "qiyasi"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "b37",
+   "line": 59,
+   "ar": "- EMSİLETÜ'L-HAMSE / الأفعال الخمسة — now authored as afal-khamsa.json.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "afal-khamsa",
+     "how": "names"
+    },
+    {
+     "type": "topics",
+     "ref": "afalkhamsa"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "b38",
+   "line": 60,
+   "ar": "- İştiğal babı (زيداً ضربتُه; talep fiilinde nasb tercihi; فإذا sonrası merfu zorunluluğu) — future note.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ijaz-al-hadhf",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "hadhf-al-mudaf-wal-mudaf-ilayh",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "thulathi-mujarrad-babs",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "augmented-babs",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "rubai-babs",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "hadhf,bab",
+     "topics": [
+      "hadhf",
+      "bab"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "js": "HadhfEngine.seedAudit().bad.length===0"
+     },
+     {
+      "js": "Bab35Engine.audit().bad.length===0"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "2/2 pass; true ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b39",
+   "line": 62,
+   "ar": "- İsim fiiller (هيهات، صه، وي; cevabındaki muzari meczum olur) — future note; the kafiya digest lists them among mebni asıllar.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "nawasib-wa-jawazim-al-mudari",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "lam-jazim",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-majzum-wal-shart-wal-jaza",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-murab-wal-mabni-wal-irab",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "asma-al-afal-wal-aswat-wal-murakkabat",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "al-fil-wal-madi-wal-mudari-fil-kafiya",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "mudari-marfu",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "jawazim,irab,mudari",
+     "topics": [
+      "jawazim",
+      "irab",
+      "asmaafal",
+      "mudari"
+     ]
+    }
+   ],
+   "probe": {
+    "all": [
+     {
+      "s": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+      "w": "يلد",
+      "re": "مجزوم"
+     },
+     {
+      "js": "SignEngine.seedAudit().bad.length===0"
+     },
+     {
+      "js": "sarfDerive(nakilClass({root:'ن ص ر'}),'I',1).mudari[0]==='يَنْصُرُ'"
+     }
+    ]
+   },
+   "proof": {
+    "ok": true,
+    "got": "3/3 pass; فعل مضارع، مجزوم وعلامة جزمه السكون، والفاعل ضمير مستتر جوازا تقديره «هو». ‖ true ‖ true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b40",
+   "line": 64,
+   "ar": "- Nüdbe & istiğase (وا زيدا; يا لله للمسلمين) — future note, extends vocative-munada.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "munada",
+     "topics": [
+      "munada"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "NidaEngine.read('يَا زَيْدُ').ok===true"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "b41",
+   "line": 66,
+   "ar": "- Vakf kaideleri (رحمة → ه; قاضٍ; nasbda mutlaka ي) — could become a pronunciation aid in the reader one day (smart layer already handles",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "waqf",
+     "topics": [
+      "waqf"
+     ]
+    }
+   ],
+   "probe": {
+    "js": "WaqfEngine.pause('كِتَابًا').ok===true"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  }
+ ]
+}

@@ -1,0 +1,856 @@
+{
+ "book": "sarf-35-bab-tablosu",
+ "ledger": "aux",
+ "title": "İlmi sarfın babları otuzbeştir — the 35 doors with binā and ʿalāma",
+ "source": "research/sources/sarf-35-bab-tablosu.txt",
+ "files": [
+  "research/sources/sarf-35-bab-tablosu.txt"
+ ],
+ "group": "sarf",
+ "note": "Two sheets of one table (kısa l. 1–39, Türkçe l. 41–85); the full sheet (l. 51–85, 35 rows) is ledgered, the short one is its subset.",
+ "counts": {
+  "applied": 42
+ },
+ "entries": [
+  {
+   "id": "door01",
+   "line": 51,
+   "ar": "نصَر - ينصُر | فعَل - يفعُل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(1)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ن\", \"ص\", \"ر\"],1);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"نصر\"&&Bab35Engine.audit().rows.find(r=>r.n===1).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door02",
+   "line": 52,
+   "ar": "ضرَب- يضرِب | فعَل - يفعِل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(2)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ض\", \"ر\", \"ب\"],2);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"ضرب\"&&Bab35Engine.audit().rows.find(r=>r.n===2).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door03",
+   "line": 53,
+   "ar": "فتَح - يفتَح | فعَل - يفعَل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(3)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ف\", \"ت\", \"ح\"],3);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"فتح\"&&Bab35Engine.audit().rows.find(r=>r.n===3).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door04",
+   "line": 54,
+   "ar": "علِم - يعلَم | فعِل - يفعَل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(4)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ع\", \"ل\", \"م\"],4);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"علم\"&&Bab35Engine.audit().rows.find(r=>r.n===4).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door05",
+   "line": 55,
+   "ar": "حسُن - يحسُن | فعُل - يفعُل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(5)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ح\", \"س\", \"ن\"],5);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"حسن\"&&Bab35Engine.audit().rows.find(r=>r.n===5).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door06",
+   "line": 56,
+   "ar": "نعِم - ينعِم | فعِل - يفعِل",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(6)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ن\", \"ع\", \"م\"],6);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"نعم\"&&Bab35Engine.audit().rows.find(r=>r.n===6).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door07",
+   "line": 57,
+   "ar": "اكرَم يكرِم اِكراما | افعَل – يفعِل -افعالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(7)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ك\", \"ر\", \"م\"],7);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"اكرم\"&&Bab35Engine.audit().rows.find(r=>r.n===7).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door08",
+   "line": 58,
+   "ar": "فَرَّحَ يُفَرِّحُ تفريحا | فعَّل - يُفعِّل - تفعيلا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(8)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ف\", \"ر\", \"ح\"],8);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"فرح\"&&Bab35Engine.audit().rows.find(r=>r.n===8).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door09",
+   "line": 59,
+   "ar": "قاتَل يقاتِل مقاتَلة وقتالا وقيتالا | فاعَل - يفاعِل– مفاعَلةو فعالا- و فيعالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(9)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ق\", \"ت\", \"ل\"],9);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"قاتل\"&&Bab35Engine.audit().rows.find(r=>r.n===9).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door10",
+   "line": 60,
+   "ar": "انكسَر ينكسِر انكسارًا | انفعَل - ينفعِل- انفعالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(10)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ك\", \"س\", \"ر\"],10);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"انكسر\"&&Bab35Engine.audit().rows.find(r=>r.n===10).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door11",
+   "line": 61,
+   "ar": "اجتَمع يجتمِع اجتِماعًا | افتَعل - يفتعِل - افتِعالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(11)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ج\", \"م\", \"ع\"],11);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"اجتمع\"&&Bab35Engine.audit().rows.find(r=>r.n===11).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door12",
+   "line": 62,
+   "ar": "احمر يحمر احمرارًا | افعلَّ - يفعَلَّ - افعلالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(12)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ح\", \"م\", \"ر\"],12);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"احمر\"&&Bab35Engine.audit().rows.find(r=>r.n===12).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door13",
+   "line": 63,
+   "ar": "تكَلَّم يتكَلَّم تكلُّملا | تفعَّل - يتَفعَّل - تفعُّلا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(13)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ك\", \"ل\", \"م\"],13);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"تكلم\"&&Bab35Engine.audit().rows.find(r=>r.n===13).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door14",
+   "line": 64,
+   "ar": "تباعَد يتَباعَد تباعُدًا | تَفاعَل - يتَفاعَل-تفاعلا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(14)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ب\", \"ع\", \"د\"],14);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"تباعد\"&&Bab35Engine.audit().rows.find(r=>r.n===14).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door15",
+   "line": 65,
+   "ar": "استَخرَج يستَخرِج استِخراجًا | استَفعَل - يستَفعِل - اسِتفعالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(15)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"خ\", \"ر\", \"ج\"],15);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"استخرج\"&&Bab35Engine.audit().rows.find(r=>r.n===15).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door16",
+   "line": 66,
+   "ar": "اغشَوشَب يغشَوشِب اغشيشابا | افعَوعَل - يفعَوعِل - افعيعالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(16)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"غ\", \"ش\", \"ب\"],16);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"اغشوشب\"&&Bab35Engine.audit().rows.find(r=>r.n===16).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door17",
+   "line": 67,
+   "ar": "اجلَوَّذ يجلَوِّذ اجلِواذا | افعَوَّل - يفعَوِّل - افعِوالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(17)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ج\", \"ل\", \"ذ\"],17);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"اجلوذ\"&&Bab35Engine.audit().rows.find(r=>r.n===17).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door18",
+   "line": 68,
+   "ar": "احمارَّ يحمَرُّ احميرارًا | افعالَّ - يفعالُّ - افعِيلالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(18)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ح\", \"م\", \"ر\"],18);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"احمار\"&&Bab35Engine.audit().rows.find(r=>r.n===18).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door19",
+   "line": 69,
+   "ar": "دحرج يدحرج دحرجة و دحراجا | فَعْلَلَ - يُفَعْلِلُ – فعلَلَة و فعلا لا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(19)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"د\", \"ح\", \"ر\", \"ج\"],19);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"دحرج\"&&Bab35Engine.audit().rows.find(r=>r.n===19).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door20",
+   "line": 70,
+   "ar": "حوقل يحوقل حوقلة و حيقالا | فَوْعَلَ يُفَوْعِلُ فوْعَلة و فِيعالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(20)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ح\", \"و\", \"ق\", \"ل\"],20);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"حوقل\"&&Bab35Engine.audit().rows.find(r=>r.n===20).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door21",
+   "line": 71,
+   "ar": "بيطر يبيطر بيطرة و بيطارا | فَيْعَلَ يُفَيْعِلُ فَيْعَلَةً و فِيعالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(21)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ب\", \"ي\", \"ط\", \"ر\"],21);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"بيطر\"&&Bab35Engine.audit().rows.find(r=>r.n===21).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door22",
+   "line": 72,
+   "ar": "جهور يجهور جهورة و جهوارا | فَعْوَلَ يُفَعْوِلُ فَعْوَلَة و فِعْوَالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(22)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ج\", \"ه\", \"و\", \"ر\"],22);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"جهور\"&&Bab35Engine.audit().rows.find(r=>r.n===22).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door23",
+   "line": 73,
+   "ar": "عثير يعثير عثيرة و عثيارا | فَعْيَلَ يُفَعْيِلُ فَعْيَلَةً و فِعْيالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(23)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ع\", \"ث\", \"ي\", \"ر\"],23);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"عثير\"&&Bab35Engine.audit().rows.find(r=>r.n===23).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door24",
+   "line": 74,
+   "ar": "جلبب يجلبب جلببة و جلبابا | فَعْلَلَ يُفعْلِلُ فَعْلَلَةً و فِعْلالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(24)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ج\", \"ل\", \"ب\", \"ب\"],24);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"جلبب\"&&Bab35Engine.audit().rows.find(r=>r.n===24).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door25",
+   "line": 75,
+   "ar": "سلقى يسلقي سلقية وسلقاء | فَعْلَى يُفَعْلِي فَعْلَيَةً و فِعْلاء",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(25)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"س\", \"ل\", \"ق\"],25);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"سلقي\"&&Bab35Engine.audit().rows.find(r=>r.n===25).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door26",
+   "line": 76,
+   "ar": "تدخرج يتدخرج تدخرجا | تَفَعْلَلَ يَتَفَعْلَلُ تفعلُلا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(26)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"د\", \"خ\", \"ر\", \"ج\"],26);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"تدخرج\"&&Bab35Engine.audit().rows.find(r=>r.n===26).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door27",
+   "line": 77,
+   "ar": "احرنجم يحرنحم احرنجاما | ِافْعَنْلَلَ يَفْعَنْلِلُ اِفْعِنْلا لًا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(27)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ح\", \"ر\", \"ج\", \"م\"],27);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"احرنجم\"&&Bab35Engine.audit().rows.find(r=>r.n===27).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door28",
+   "line": 78,
+   "ar": "اقشعر يقشعر اقشعرارا | اِفْعلَلَّ يَفْعَلِلُّ اِفْعِلّا لًا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(28)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ق\", \"ش\", \"ع\", \"ر\"],28);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"اقشعر\"&&Bab35Engine.audit().rows.find(r=>r.n===28).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door29",
+   "line": 79,
+   "ar": "تجلبب يتجلبب تجلببا | تَفَعْلَلَ يَتَفَعْلَلُ تفعلُلا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(29)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ج\", \"ل\", \"ب\", \"ب\"],29);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"تجلبب\"&&Bab35Engine.audit().rows.find(r=>r.n===29).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door30",
+   "line": 80,
+   "ar": "تجورب يتجورب تجوربا | َتفَوْعَلَ يَتَفَوْعَل تَفَوْعُلاً",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(30)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ج\", \"و\", \"ر\", \"ب\"],30);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"تجورب\"&&Bab35Engine.audit().rows.find(r=>r.n===30).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door31",
+   "line": 81,
+   "ar": "تشيطن يتشيطن تشيطنا | تَفيْعَل يَتفَيْعَل تفيْعُلا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(31)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ش\", \"ي\", \"ط\", \"ن\"],31);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"تشيطن\"&&Bab35Engine.audit().rows.find(r=>r.n===31).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door32",
+   "line": 82,
+   "ar": "ترهوك يترهوك ترهوكا | تَفَعْوَل يَتفَعْوَل تفعوُلا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(32)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ر\", \"ه\", \"و\", \"ك\"],32);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"ترهوك\"&&Bab35Engine.audit().rows.find(r=>r.n===32).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door33",
+   "line": 83,
+   "ar": "تشلقى يتسلقى تسلقيا | تَفَعْلَى يَتَفَعْلَى تفعلِيًا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(33)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ش\", \"ل\", \"ق\"],33);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"تشلقي\"&&Bab35Engine.audit().rows.find(r=>r.n===33).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door34",
+   "line": 84,
+   "ar": "اقعنسس يقعنسس اقعنساسا | ِافْعَنْلَلَ يَفْعَنْلِلُ اِفعِنْلالا",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(34)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"ق\", \"ع\", \"س\", \"س\"],34);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"اقعنسس\"&&Bab35Engine.audit().rows.find(r=>r.n===34).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "door35",
+   "line": 85,
+   "ar": "اسلنقى يسلنقى اسلنقاء | اِفعَنْلَى يَفْعَنْلِي اِفْعِنْلاء",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.door(35)"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const x=Bab35Engine.derive([\"س\", \"ل\", \"ق\"],35);const H=s=>stripAr(String(s||'')).replace(/[^ء-ي]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي');return !!x.ok&&H(x.mazi[0])===\"اسلنقي\"&&Bab35Engine.audit().rows.find(r=>r.n===35).ok})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "tally43",
+   "line": 43,
+   "ar": "ثلاثى مجرد | 6.0 | OTUZBEŞ BABIN TAKSİMATI",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.byGroup"
+    }
+   ],
+   "probe": {
+    "js": "Bab35Engine.DOORS.length===35"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "tally44",
+   "line": 44,
+   "ar": "ثلا ثى مزيد | 12.0",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.byGroup"
+    }
+   ],
+   "probe": {
+    "js": "Bab35Engine.DOORS.length===35"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "tally45",
+   "line": 45,
+   "ar": "رباعى مجرد | 1.0",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.byGroup"
+    }
+   ],
+   "probe": {
+    "js": "Bab35Engine.DOORS.length===35"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "tally46",
+   "line": 46,
+   "ar": "رباعى ملحق | 6.0",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.byGroup"
+    }
+   ],
+   "probe": {
+    "js": "Bab35Engine.DOORS.length===35"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "tally47",
+   "line": 47,
+   "ar": "رباعى مزيد | 3.0",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.byGroup"
+    }
+   ],
+   "probe": {
+    "js": "Bab35Engine.DOORS.length===35"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "tally48",
+   "line": 48,
+   "ar": "تدخرج يه ملحق | 5.0",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.byGroup"
+    }
+   ],
+   "probe": {
+    "js": "Bab35Engine.DOORS.length===35"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "tally49",
+   "line": 49,
+   "ar": "احرنجم يه ملحق | 2.0",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Bab35Engine.byGroup"
+    }
+   ],
+   "probe": {
+    "js": "Bab35Engine.DOORS.length===35"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  }
+ ]
+}
