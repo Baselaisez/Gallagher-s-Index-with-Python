@@ -16820,3 +16820,73 @@ to the places they belong — verbatim, unvowelled as printed, anchored by book,
 - **Left** (research/commentary-coverage-2026-11-27.md has the lists): Ibn Mālik 96 sections / 1,213 pp. and al-Raḍī 57 / 815 pp. not
   scanned; 44 joined topics with no reason kept (badal, istithna, mafʿūl muṭlaq/fīh/lahu, nāʾib, the pronouns, taṣghīr, nasab, waqf, …);
   of the 984 candidates about 510 were read (Shaykhzāde 193 of 379, Ibn Mālik ≈260 of 350, al-Raḍī ≈60 of 255); the renderings await the hoca.
+
+## v350-S — speed VI: the whole of today's app, measured; what a phone feels, fixed
+
+Measured as v343 did (split hosted copy over http no-store, 390×844, 4× CPU via CDP; tools in `scratchpad/speed350/`: `m.js`, `p.js`
+(+ mode `tap`: story, 1st/9th word + iʿrāb tab + «Neden?», the sentence's sheet, a poem's word, a game round), `sc.js`/`scp.js`, `cnt.js`
+(engine call counts), `gcheck.js`, `bytes.py`; `baseline.md`). The machine's load was 8–15 (other agents' suites) for every A/B set.
+**Baseline vs v343** (`baseline.md`, 2 A/B rounds + quiet single runs with profiles) — regressions and their causes:
+- the sentence's iʿrāb sheet: ONE task of 1.6 s warm / 3.8 s cold at 4× (v343 1.35 / 3.4 s): `DabtEngine.decide` ×16 (870 ms), the bayān
+  doors' five engine reads (580 ms), taḥqīq (257 ms), + v346 `Illa346.senHtml` (53 ms); cold also the bare index (1.4 s) in that task;
+- the Jumla lab's first analysis 0.2 → 0.9–1.1 s: v346's reason chain under each engine line reads `GovView.index()` (the shelf's sentence
+  index, 0.3–0.4 s) and a second `DabtEngine.vowel` — in the lab's first task;
+- a word's iʿrāb tab tapped right after the bodies: `decisionChainHtml` → `IrabModel.predict` → `IsmTagger.train()` in the tap (0.45 s in v343,
+  0.5–1.15 s now); warm tab 36 → 54–180 ms (v346 ladder 8–10 ms, v344 actions, GovView block 1–2 ms); a game answer's feedback 44 → 124 ms
+  (`Illa346.quizHtml`); «Neden?» opening 4 → 26–110 ms (its `<ol>` laid out on the touch);
+- the per-line hooks on `Murib.line` cost ≈ 11 of 381 ms of a Jumla analysis (`Nahw342Engine.post` 11× 1 ms, `Roles345.post` 7 ms, chains 3 ms) — no cut;
+- the core slice grew 1.51 → 1.62 MB gzip (GRAMMAR 1.00 MB, CATECHISM 0.17 MB of it); app.js 1.60 → 1.70 MB;
+- the `#story:has(.lib-card)` rules: no measurable style cost at the door today (390 vs 398 ms cumulative recalc) — replaced anyway (below).
+
+**Before / after** (A = this wave's base, B = this wave; 4× CPU; A/B alternated, 3 rounds at load 8–12, median [min–max]; * = quiet single runs):
+| | base | v350 |
+|---|---|---|
+| door usable (local) · at 20 Mbit/s · at 4 Mbit/s | 1456 [1287–2922] · 3743 [3142–4469] · 8893 [8732–9419] ms | **945 [931–1844] · 2526 [2510–3746] · 6974 [6556–7564] ms** |
+| style recalc during boot (Performance metrics) | 523 [351–541] ms | 376 [306–407] ms |
+| sentence's iʿrāb sheet: paint · worst task, cold* | 3977 · 3818 ms | **317 · 756 ms** (check alone: 305–458 · 356–402) |
+| the same, warm* | 1763 · 1593 ms | **286–401 · 286 ms** |
+| word's iʿrāb tab right after the bodies: worst task* | 582 (up to 1153) ms | 0–231 ms (check: 175) |
+| Inna lab first open · Hamza lab: worst task* | 405–868 · 515–1536 ms (one task) | 0–163 · 77–217 ms (fills in 1.1 · 0.7–2.2 s) |
+| Jumla lab first open: worst task* | 882–1086 ms | 664 ms |
+| JS heap after three stories (GC'd) · settled 30 s after the door at 1× | 167 [166–167] · 178 MB | **154 [153–154] · 125–140 MB** (−21 %) |
+| bytes: core slice (gzip) | 1.615 MB | **0.691 MB** + `data/g1-<hash>.js` 0.91 MB fetched first after the door |
+| shelf scroll (`sc.js`): p95 · frames > 34 ms · long tasks | 33 [33–50] · 14 · 1 | 50 [33–50] · 19 · 8 — **worse; not explained** (see «still slow») |
+
+What changed (same answers, same screens once each block lands; each a check):
+1. **`Late350`** — a sheet paints what the reader sees first; the blocks below land in later tasks, in order, each where the one-shot render
+   puts it (a hidden `<i class="late350">` marker replaced by the block's own HTML; a marker that left the page drops its block; `step(b)` =
+   sliceable work the block needs first). The sentence sheet: the table, the «Neden?» list and the clauses at once; then the shelf's warm-up
+   in slices (`Warm341.step`), the reading of the sentence, the bayān doors' five reads one per task (`bayanHas350`), tashbīh / majāz /
+   kināya / badīʿ, the lafẓī blocks, taḥqīq. The word sheet's iʿrāb tab: with the noun tagger cold, the decision chain lands after
+   `parseStep343` + `IsmTagger.trainStep` slices. `window.__QISSA_RENDER_SYNC` keeps the one-shot path (the suite); `Late350.flush()`.
+2. **The Inna and Hamza audits stepped inside the engines** (`auditGen350` generators; `audit()` drains, `auditStep350(b)` steps — the same
+   object): the Inna tally via `Relax.laterUntil334`, the Hamza lab paints «…» (`.warm341`) and renders when the walk is done.
+3. **`GovView.index()`** is a generator too (`indexStep350`), built inside `Warm341.step` after the lemma counts — the Jumla lab's first task lost it.
+4. **The heap**: `dedupStep334` runs in `Early343` right after every body is parsed (idle slices), not as Quiet's last job minutes later.
+   Raw body strings were already released on parse (the getter's closure): 19 MB of them at boot + 1.5 s, none at 30 s.
+5. **The grammar tables after the door** (`tools/pubsplit.py`, `QISSA_NO_GSPLIT=1` turns it off): the core keeps of GRAMMAR only ids,
+   titles, groups, levels, related, sources, amil, mamul and the examples the rule of the day reads (every example that cites a book and a
+   note's first own example), and of CATECHISM a question's n, id, story, chapter, verified, src, kind; the rest rides in `data/g1-<hash>.js`
+   (`__qissaGrammar350`), which `BODY341.pump` fetches FIRST and `arriveG350` merges into the same objects in their original key order
+   (`__o`), resetting `CatechismEngine._byId`. Until it is in, `BODY341.ready()` is false — every corpus door waits as for a body; `openRef`
+   is gated too (the one door reader found: a note's text). `prune()` keeps the slice; the SW's hashed-slice rule matches `g1-…`.
+6. **`#story.shelf350`** replaces `#story:has(.lib-card)` / `:not(:has(.lib-card))` (ten rules): `shelf350()` sets it exactly while #story holds a
+   card — called where #story is emptied (renderStory, renderLibrary) and after the cards are appended (renderLibrary, the skeleton).
+
+Tried and dropped / not done: the ladder's steps computed on touch (the chain costs 8–10 ms at 4×; `data-n` and the summary need most of it);
+caching `DabtEngine.decide` across one sheet's 16 calls (callers mutate the rows they pass — identical results not provable); warming the Inna /
+Hamza audits in idle (not needed once stepped).
+Still slow: the bayān doors' heaviest single read (Tashbih / Badīʿ, 0.2–0.45 s at 4×), taḥqīq 0.25–0.4 s, the Jumla render (`DabtEngine.decide`
+×5, 0.4–0.5 s), the model lab's first cv slice (`IrabModel` rows, 0.5 s), DabtEngine's compile; the shelf's scroll measured worse in the
+final A/B (8 vs 1 long tasks) — suspected: the garbage of the early dedup collected during the scroll window; not profiled (see below);
+the labs' stepped chains keep running after their lab closes (they fill Relax's cache).
+**Not done — the disk was full** (the machine's `/tmp` held 180+ leaked `qissa-v34x-*` suite copies of all agents, 13 GB; free space 5–25 MB):
+the 6× CPU numbers, the second A/B set (first-use sweep, taps, search, five rounds), the whole suite (two runs crashed the page at «Target
+crashed» / ENOSPC after 403 and 186 passes; before the crash only timing failures: wave 138's ledger 1051 > 400 ms and the model's cv 15.4 s at
+load 12, and «recorded narration plays…»'s card click timed out — to re-run alone) and `tools/entrance_test.js` on the assembled site (crashed).
+**Smoke** (before «v333»): «v350 — speed: a sheet paints first…» (Late350 markup = one-shot; paint ≤ 600, worst ≤ 600 ms), «— the Inna and
+Hamza labs' corpus audits are stepped…» (stepped = one-shot; worst ≤ 250 ms), «— the grammar tables after the door» (core ≤ 1.04 MB gz; with
+the slice held the door reads no missing field — traps on every absent field — and picks the same rule; merged = the repository reader's),
+«— the heap after the door», «v350 — the shelf's grid by a class». **Older checks changed:** wave 150's loader regex accepts `grammar:"…"`
+(and checks the slice is on disk); the v347 `:has()` lint also forbids a `:has()` whose subject is `#story`, `main`, `#sheet` or `.sheet`.
+All five new checks, wave 150 and the lint passed alone. `check_i18n.py` clean; the refit chain ran (before the last code-only edit).

@@ -10764,7 +10764,8 @@ if (!CHROME) {
     const m = page.match(/var L=(\[[^\]]*\]);(?:window\.__qissaSlices341=.*?;)?function go\(\)/); if (!m) throw new Error('the loader list is missing');
     const L = JSON.parse(m[1]); if (JSON.stringify(L) !== JSON.stringify(files.map(f => 'data/' + f))) throw new Error('the loader lists the core data file: ' + m[1] + ' vs ' + files.join(','));
     /* (v341-S) the body slices are named in the loader's __qissaSlices341 list (the shell fetches them after the door): every one on disk, each story once */
-    const bm = page.match(/window\.__qissaSlices341=\{core:L,bodies:(\[.*?\])\};function go/); if (!bm) throw new Error('the body slice list is missing');
+    const bm = page.match(/window\.__qissaSlices341=\{core:L,(?:grammar:"(data\/g1-[0-9a-f]{10}\.js)",)?bodies:(\[.*?\])\};function go/); if (!bm) throw new Error('the body slice list is missing');
+    bm[1] = bm[2] || bm[1]; if (/grammar:/.test(page) && !(bm[0].match(/grammar:"([^"]+)"/) && fsx.existsSync(pathx.join(dir, bm[0].match(/grammar:"([^"]+)"/)[1])))) throw new Error('(v350) the grammar slice the loader names is on disk');
     const B = JSON.parse(bm[1]), bodyFiles = fsx.readdirSync(pathx.join(dir, 'data')).filter(f => /^b\d+-[0-9a-f]{10}\.js$/.test(f)).sort();
     if (JSON.stringify(B.map(x => x[0]).sort()) !== JSON.stringify(bodyFiles.map(f => 'data/' + f))) throw new Error('the body list names every body slice: ' + B.length + ' vs ' + bodyFiles.length);
     const ids = B.flatMap(x => x[1]); if (new Set(ids).size !== ids.length || ids.length < 50) throw new Error('each story in one body slice: ' + ids.length);
@@ -17870,7 +17871,7 @@ if (!CHROME) {
     if (!/const DATA = 'qissa-data'/.test(sw) || !/k !== CACHE && k !== DATA/.test(sw) || !/HASHED\.test\(new URL\(req\.url\)\.pathname\)/.test(sw)) throw new Error('sw.js keeps the hashed data slices in their own cache across versions');
     if (!/data\\\/\[\\w\.-\]\+\\\.js/.test(welcome)) throw new Error('the entrance precaches the hashed slices too');
     const files = fsx.readdirSync(pathx.join(split341.dir, 'data'));
-    if (!files.every(f => /^[db]\d+-[0-9a-f]{10}\.js$/.test(f)) || files.filter(f => /^d/.test(f)).length !== 1 || files.length < 10) throw new Error('one core and the body slices, hash-named: ' + files.slice(0, 5).join(','));
+    if (!files.every(f => /^[dbg]\d+-[0-9a-f]{10}\.js$/.test(f)) || files.filter(f => /^d/.test(f)).length !== 1 || files.filter(f => /^g/.test(f)).length > 1 || files.length < 10) throw new Error('one core, at most one grammar slice (v350) and the body slices, hash-named: ' + files.slice(0, 5).join(','));
     const DOOR_MS = 1800;   // v341: door usable 1.02 / 1.19 / 1.67 s at 4× CPU in three suite runs (load ~4), the bodies held (before: the whole shelf had to parse first, 1.8–2.2 s); budget = median × 1.5
     split341.hold = true; const { ctx, p, errs } = await split341.fresh(4);
     try {
@@ -19319,7 +19320,8 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     const fsx = require('fs'), pathx = require('path'); const fd = fsx.openSync(pathx.join(__dirname, '..', 'prototype', 'reader.html'), 'r'); const buf = Buffer.alloc(900000); const n = fsx.readSync(fd, buf, 0, buf.length, 0); fsx.closeSync(fd);
     const head = buf.slice(0, n).toString('utf8'); const css = head.slice(0, head.lastIndexOf('</style>') + 8);
     if (css.length < 100000) throw new Error('the page\'s CSS was not found in its first 900 KB: ' + css.length);
-    const bad = css.split('\n').map((l, i) => [i + 1, l]).filter(([, l]) => /(^|[\s,{}>+~])(body|html|:root)(\[[^\]]*\]|\.[\w-]+)*:has\(/.test(l.replace(/\/\*.*?\*\//g, ''))).map(([i, l]) => i + ': ' + l.trim().slice(0, 90));
+    /* (v350-S) and a :has() whose subject is a large container — #story, main, the sheet (it was «#story:has(.lib-card)», now the class .shelf350) */
+    const bad = css.split('\n').map((l, i) => [i + 1, l]).filter(([, l]) => /(^|[\s,{}>+~])((body|html|:root)|(main)?#(story|sheet|sheetInner)|main|\.sheet)(\[[^\]]*\]|\.[\w-]+|#[\w-]+)*(:not\()?:has\(/.test(l.replace(/\/\*.*?\*\//g, ''))).map(([i, l]) => i + ': ' + l.trim().slice(0, 90));
     if (bad.length) throw new Error('a page-wide :has() rule: ' + JSON.stringify(bad.slice(0, 4)));
   });
 
@@ -19413,6 +19415,141 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (!(d.even && d.odd && d.line && d.card && d.none && !d.wide)) throw new Error('the rule of the day: ' + JSON.stringify(d));
     if (!(g.supply >= 8 && g.card && g.q && g.opts === 3 && g.verb && g.why && !g.wide)) throw new Error('the round لِمَاذَا؟: ' + JSON.stringify(g));
     if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
+  });
+
+  /* ---------------- v350-S — speed VI: the whole of today's app, measured; what a phone feels, fixed ---------------- */
+  const split350 = await (async () => {
+    const cp = require('child_process'), os = require('os'), fsx = require('fs'), pathx = require('path'), http = require('http');
+    const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-v350-'));
+    cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
+    const st = { dir, hold: false, held: [] };
+    const srv = http.createServer((q, r) => { const p = decodeURIComponent(q.url.split('?')[0]).replace(/^\/+/, '') || 'reader.html'; const f = pathx.join(dir, p);
+      if (!f.startsWith(dir) || !fsx.existsSync(f) || fsx.statSync(f).isDirectory()) { r.writeHead(404); r.end(); return; }
+      const go = () => { r.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(r); };
+      if (st.hold && /^data\/g1-/.test(p)) st.held.push(go); else go(); }).listen(0); srv.unref();
+    st.url = 'http://127.0.0.1:' + srv.address().port + '/reader.html';
+    st.release = () => { st.hold = false; st.held.splice(0).forEach(f => f()); };
+    st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
+    st.fresh = async (cpu, opt = {}) => { const ctx = await browser.newContext({ viewport: { width: opt.w || 390, height: 844 }, serviceWorkers: 'block' });
+      await ctx.addInitScript(o => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '3'); } catch (e) {}
+        if (o.hold) window.__QISSA_QUIET_OFF = true; if (o.init) (0, eval)(o.init);
+        window.__lt350 = []; try { new PerformanceObserver(l => l.getEntries().forEach(e => window.__lt350.push([e.startTime, e.duration]))).observe({ type: 'longtask', buffered: true }); } catch (e) {}
+        window.__worst350 = t0 => Math.round(Math.max(0, ...window.__lt350.filter(([s]) => s >= t0 - 1).map(x => x[1])));
+        window.__until350 = async (fn, ms = 60000) => { const t0 = performance.now(); while (!fn()) { if (performance.now() - t0 > ms) throw new Error('timeout'); await new Promise(r => setTimeout(r, 10)); } }; }, { hold: !!opt.hold, init: opt.init || '' });
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      const c = await ctx.newCDPSession(p); if (cpu) await c.send('Emulation.setCPUThrottlingRate', { rate: cpu }); return { ctx, p, errs, c }; };
+    return st;
+  })();
+
+  await check('v350 — speed: a sheet paints first, the blocks below land a task each (Late350) — the sentence\'s iʿrāb sheet was ONE task of 1.6 s at 4× (3.8 s cold: the shelf\'s warm-up and the engines\' reading of the sentence for the bayān doors, the tashbīh / majāz / kināya / badīʿ blocks and the taḥqīq table, all below the word table); a word\'s iʿrāb tab tapped right after the bodies trained the noun tagger in the tap (0.6–1.2 s). Now the table (or the tab) paints at once and each block lands where the one-shot render puts it — the sheet then holds exactly the one-shot render\'s markup', async () => {
+    const PAINT_MS = 600, WORST_MS = 600;   // v350 at 4×, cold, this check alone (load 1–9): paint 305 / 458 ms, worst task 356 / 402 (iʿrāb tab 175); budget ≈ 1.5 × the worse run (before: one task of 3.8 s cold, 1.6 s warm)
+    const { ctx, p, errs } = await split350.fresh(4, { hold: true });
+    try {
+      await p.goto(split350.url); await p.waitForFunction(() => window.BODY341 && BODY341.ready() && window.__qissaBootedAt, null, { timeout: 180000 });
+      const r = await p.evaluate(async () => { const o = {}; window.__QISSA_RENDER_SYNC = false; const st = STORIES.find(s => s.level === 3) || STORIES[3]; openStory(st);
+        await new Promise(res => setTimeout(res, 300));
+        /* a noun of the first sentences, its iʿrāb tab, the tagger still cold */
+        const ws = [...document.querySelectorAll('#story .word')]; let wi = -1; for (let i = 0; i < ws.length && wi < 0; i++) { ws[i].click(); if (wordCtx && /^(noun|propn)$/.test(wordCtx.sen.tokens[wordCtx.ti].pos || '') && wordCtx.sen.tokens[wordCtx.ti].irab) wi = i; }
+        o.cold = !IsmTagger._model; let t0 = performance.now(); document.querySelector('.ws-tabs [data-tab="irab"]').click(); o.tabPaint = Math.round(performance.now() - t0);
+        o.lateTab = !!sheetInner.querySelector('i.late350');
+        await window.__until350(() => !sheetInner.querySelector('i.late350')); o.tabWorst = window.__worst350(t0); const tabHtml = sheetInner.innerHTML;
+        window.__QISSA_RENDER_SYNC = true; document.querySelector('.ws-tabs [data-tab="irab"]').click(); o.tabSame = sheetInner.innerHTML === tabHtml; window.__QISSA_RENDER_SYNC = false;
+        /* the sentence's sheet, cold (Quiet held: no warm-up ran) */
+        const sen = wordCtx.sen; t0 = performance.now(); openIrabSheet(sen); o.senPaint = Math.round(performance.now() - t0); o.lateN = sheetInner.querySelectorAll('i.late350').length;
+        await window.__until350(() => !sheetInner.querySelector('i.late350'), 120000); o.senDone = Math.round(performance.now() - t0); o.senWorst = window.__worst350(t0); const senHtml = sheetInner.innerHTML;
+        window.__QISSA_RENDER_SYNC = true; openIrabSheet(sen); o.senSame = sheetInner.innerHTML === senHtml; o.len = senHtml.length;
+        /* a closed sheet drops its blocks; a flush lands them at once */
+        window.__QISSA_RENDER_SYNC = false; openIrabSheet(sen); const n0 = Late350.q.length; closeSheet(); openWord(sen.tokens[0], null, 'word', { sen, ti: 0 }); await new Promise(res => setTimeout(res, 50)); o.dropped = n0 > 0 && Late350.q.length === 0;
+        openIrabSheet(sen); Late350.flush(); o.flushSame = sheetInner.innerHTML === senHtml; window.__QISSA_RENDER_SYNC = true; closeSheet(); return o; });
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      console.log(`      4× cold: the iʿrāb tab paints in ${r.tabPaint} ms (tagger ${r.cold ? 'cold → late block' : 'warm'}), worst task ${r.tabWorst}; the sentence's sheet paints in ${r.senPaint} ms, ${r.lateN} blocks land by ${r.senDone} ms, worst task ${r.senWorst}`);
+      if (!r.senSame || !r.flushSame || !r.tabSame) throw new Error('the late blocks must leave the one-shot markup: ' + JSON.stringify(r));
+      if (!r.lateN || !r.dropped || (r.cold && !r.lateTab)) throw new Error('the blocks land late and a closed sheet drops them: ' + JSON.stringify(r));
+      if (r.senPaint > PAINT_MS || r.senWorst > WORST_MS || r.tabWorst > WORST_MS) throw new Error('the sentence sheet / the iʿrāb tab at 4×: ' + JSON.stringify(r) + ' (budgets ' + PAINT_MS + ' / ' + WORST_MS + ')');
+    } finally { await ctx.close(); }
+  });
+
+  await check('v350 — speed: the Inna and Hamza labs\' corpus audits are stepped inside the engines — each audit is a generator walked a sentence at a time: audit() drains it at once, auditStep350(b) walks it b ms at a time; the stepped walk gives exactly the one-shot result, and the labs\' first open (one 0.4–1.2-s task at 4×) paints «…» and fills without a long task', async () => {
+    const WORST_MS = 250;   // v350 at 4×: worst task 77–166 ms while the audits step (Hamza; Inna 0–163); budget ≈ 1.5 × the worst run (before: one task of 0.4–1.2 s)
+    const eq = await page.evaluate(() => { const out = {};
+      for (const [E, k] of [[InnaEngine, 'inna'], [HamzaEngine, 'hamza']]) { E._audit = null; E._g350 = null; const one = JSON.stringify(E.audit()); E._audit = null; E._g350 = null;
+        let n = 0; while (!E.auditStep350(3)) n++; out[k] = { same: JSON.stringify(E._audit) === one, steps: n, len: one.length }; }
+      return out; });
+    if (!eq.inna.same || !eq.hamza.same || eq.inna.steps < 3 || eq.hamza.steps < 3) throw new Error('the stepped audits must equal the one-shot ones: ' + JSON.stringify(eq));
+    const { ctx, p, errs } = await split350.fresh(4, { hold: true });
+    try {
+      await p.goto(split350.url); await p.waitForFunction(() => window.BODY341 && BODY341.ready() && window.__qissaBootedAt, null, { timeout: 180000 });
+      const r = await p.evaluate(async () => { window.__QISSA_RENDER_SYNC = false; openAtolye(); await new Promise(res => setTimeout(res, 300)); const o = {};
+        while (!Warm341.step(1e9)); await new Promise(res => setTimeout(res, 300));   /* the shelf warm: what is measured is the audit */
+        let t0 = performance.now(); document.querySelector('.labrail [data-lab="hamza"]').click(); await window.__until350(() => document.querySelector('#hamzaOut .hamza-rules'), 120000); o.hamza = [Math.round(performance.now() - t0), window.__worst350(t0)];
+        t0 = performance.now(); document.querySelector('.labrail [data-lab="inna"]').click(); await window.__until350(() => { const e = document.getElementById('innaTally'); return e && e.textContent !== '…'; }, 120000); o.inna = [Math.round(performance.now() - t0), window.__worst350(t0)];
+        window.__QISSA_RENDER_SYNC = true; closeSheet(); return o; });
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      console.log(`      4×: the Hamza lab fills in ${r.hamza[0]} ms (worst task ${r.hamza[1]}), the Inna tally in ${r.inna[0]} ms (worst ${r.inna[1]}); stepped = one-shot (${eq.inna.steps} / ${eq.hamza.steps} steps)`);
+      if (Math.max(r.hamza[1], r.inna[1]) > WORST_MS) throw new Error('a lab held the thread: ' + JSON.stringify(r) + ' (budget ' + WORST_MS + ')');
+    } finally { await ctx.close(); }
+  });
+
+  await check('v350 — speed: the grammar tables after the door — the hosted copy\'s core carries of GRAMMAR and CATECHISM only what the door reads (ids, titles, groups, levels, the rule of the day\'s book lines; a question\'s id); the rest rides in data/g1-<hash>.js, fetched first after the door and merged into the same objects in their key order; until it is in, BODY341 is not ready (a story, a note, the deck… wait as for a body). With that slice held, the door (shelf, lesson steps, the rule of the day, every tab, a story, a note) reads no missing field and picks the same rule; released, the waiting note opens and the tables equal the repository reader\'s', async () => {
+    const CORE_GZ = 1040e3;   // v350: the core slice 0.69 MB gzip (was 1.62: GRAMMAR 1.00, CATECHISM 0.17); budget × 1.5
+    const fsx = require('fs'), pathx = require('path'), zlib = require('zlib');
+    const core = fsx.readdirSync(pathx.join(split350.dir, 'data')).find(f => /^d1-/.test(f)), gz = zlib.gzipSync(fsx.readFileSync(pathx.join(split350.dir, 'data', core)), { level: 6 }).length;
+    if (gz > CORE_GZ) throw new Error('the core slice is ' + gz + ' bytes gzip (budget ' + CORE_GZ + ')');
+    const want = await page.evaluate(() => ({ G: JSON.stringify(GRAMMAR), C: JSON.stringify(CATECHISM) }));
+    const TRAP = `(() => { window.__miss = []; const rec = (k) => window.__miss.push(k + ' @ ' + (new Error().stack || '').split('\\n').slice(2, 5).map(x => x.trim()).join(' < '));
+      const trap = (o, ks, tag) => ks.forEach(k => { if (Object.prototype.hasOwnProperty.call(o, k)) return; Object.defineProperty(o, k, { configurable: true, enumerable: false, get() { rec(tag + k); return undefined; }, set(v) { Object.defineProperty(o, k, { value: v, writable: true, configurable: true, enumerable: true }); } }); });
+      let f; Object.defineProperty(window, '__qissaDataReady', { configurable: true, get() { return function () { try {
+        for (const id in GRAMMAR) { const g = GRAMMAR[id]; trap(g, ['explanation', 'question', 'mistakes', 'plain'], 'G.'); const ex = g.examples; if (Array.isArray(ex)) Object.defineProperty(g, 'examples', { configurable: true, enumerable: true, get() { if (!/RuleDay344|candidates|lines|pick/.test(new Error().stack || '')) rec('G.examples'); return ex; }, set(v) { Object.defineProperty(g, 'examples', { value: v, writable: true, configurable: true, enumerable: true }); } }); }
+        for (const b of CATECHISM) for (const it of b.items || []) trap(it, ['q', 'a', 'ar', 'arq', 'notes'], 'C.');
+        const I0 = CatechismEngine.items; CatechismEngine.items = function (...a) { const r = I0.apply(this, a); if (BODY341.g350) r.forEach(x => trap(x, ['q', 'a', 'ar', 'arq', 'notes'], 'C.')); return r; };
+      } catch (e) { window.__miss.push('setup ' + e.message); } return f && f.apply(this, arguments); }; }, set(v) { f = v; } }); })();`;
+    split350.hold = true; const { ctx, p, errs } = await split350.fresh(0, { init: TRAP });
+    try {
+      await p.goto(split350.url); await p.waitForFunction(() => window.BODY341 && BODY341.g350 && document.querySelector('.lib-card:not(.skel)'), null, { timeout: 180000 }); await p.waitForTimeout(1500);
+      const door = await p.evaluate(async () => { const o = {}, sleep = ms => new Promise(r => setTimeout(r, ms));
+        renderLibrary(); o.steps = lessonSteps().map(s => s.id + ':' + s.sub); o.pick = JSON.stringify(RuleDay344.pick()); RuleDay344.open(); o.rd = !!document.getElementById('ruleDay'); closeSheet();
+        for (const id of ['navDeck', 'navGames', 'navAtolye', 'navProgress', 'doorSearch']) { const b = document.getElementById(id); if (b) b.click(); await sleep(150); }
+        openStory(STORIES[2]); await sleep(200); o.note = Object.keys(GRAMMAR).find(id => GRAMMAR[id].level === 1) || Object.keys(GRAMMAR)[0]; openRef(o.note); await sleep(1500);
+        o.ready = BODY341.ready(); o.miss = window.__miss.slice(0, 6); o.nMiss = window.__miss.length; return o; });
+      split350.release(); await p.waitForFunction(() => BODY341.ready() && window.__bodiesAt, null, { timeout: 300000 }); await p.waitForTimeout(300);
+      const after = await p.evaluate(n => ({ opened: !!document.querySelector('.sheet.show') && BODY341.waiters.size === 0, pick: JSON.stringify(RuleDay344.pick()), ref: (openRef(n), !!sheetInner.textContent.trim()) }), door.note);
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      if (door.ready || door.nMiss || !door.rd) throw new Error('the door read a field the core does not carry: ' + JSON.stringify(door));
+      if (after.pick !== door.pick || !after.opened || !after.ref) throw new Error('the rule of the day and the waiting note: ' + JSON.stringify({ door: door.pick, after }));
+    } finally { await ctx.close(); split350.hold = false; }
+    const { ctx: c2, p: p2 } = await split350.fresh(0);
+    try { await p2.goto(split350.url); await p2.waitForFunction(() => window.BODY341 && BODY341.ready() && window.__bodiesAt, null, { timeout: 300000 });
+      const got = await p2.evaluate(() => ({ G: JSON.stringify(GRAMMAR), C: JSON.stringify(CATECHISM), q: !!(CatechismEngine.item(CATECHISM[0].items[0].id) || {}).q }));
+      if (got.G !== want.G || got.C !== want.C || !got.q) throw new Error('the merged tables must equal the repository reader\'s: ' + JSON.stringify({ G: [got.G.length, want.G.length], C: [got.C.length, want.C.length], q: got.q }));
+      console.log(`      core slice ${(gz / 1e6).toFixed(2)} MB gzip; the door read no missing field; merged GRAMMAR / CATECHISM = the repository reader's (${got.G.length} / ${got.C.length} chars)`);
+    } finally { await c2.close(); }
+  });
+
+  await check('v350 — speed: the heap after the door — the bodies\' repeated strings are pointed at one copy right after they parse (Early343, idle slices), not as Quiet\'s last job minutes later (178 → 140 MB at 1× 30 s after the door); a parsed body keeps no raw text', async () => {
+    const { ctx, p, errs, c } = await split350.fresh(0);
+    try {
+      await p.goto(split350.url); await p.waitForFunction(() => window.BODY341 && BODY341.ready() && window.__bodiesAt, null, { timeout: 180000 });
+      const r = await p.evaluate(async () => { const t0 = performance.now(); while (!DEDUP334.done && performance.now() - t0 < 90000) await new Promise(res => setTimeout(res, 200));
+        const pend = Quiet.pending ? Quiet.pending() : []; return { done: DEDUP334.done, ms: Math.round(performance.now() - t0), quietLeft: pend.length, dup: DEDUP334.dup,
+          raw: STORIES.filter(st => ['chapters', 'morph'].some(k => !storyParsed148(st, k))).length }; });
+      await c.send('HeapProfiler.collectGarbage'); const mb = Math.round(await p.evaluate(() => performance.memory.usedJSHeapSize) / 1e6);
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      console.log(`      deduplicated ${r.ms} ms after every body (${r.dup} repeated strings), Quiet's jobs still pending ${r.quietLeft}; heap ${mb} MB`);
+      if (!r.done || r.raw) throw new Error('the strings are deduplicated soon after the bodies and every body parsed: ' + JSON.stringify(r));
+    } finally { await ctx.close(); split350.close(); }
+  });
+
+  await check('v350 — the shelf\'s grid by a class: #story carries .shelf350 exactly while it holds a library card (the shelf, the skeleton shelf; not a story, not an empty filter) — the rules that were «#story:has(.lib-card)» / «:not(:has(.lib-card))» key on it, and the same layout follows (a grid of cards at 900 px, the reading measure in a story)', async () => {
+    const r = await page.evaluate(() => { const S = () => [storyEl.classList.contains('shelf350'), !!storyEl.querySelector('.lib-card')]; const o = {};
+      renderLibrary(); o.lib = S(); openStory(STORIES[0]); o.story = S(); renderLibrary(); o.back = S(); return o; });
+    for (const [k, [cls, has]] of Object.entries(r)) if (cls !== has) throw new Error('.shelf350 must follow the cards: ' + k + ' ' + JSON.stringify(r));
+    if (!r.lib[0] || r.story[0]) throw new Error('the shelf has cards, a story none: ' + JSON.stringify(r));
+    const ctx = await browser.newContext({ viewport: { width: 900, height: 800 }, serviceWorkers: 'block' }); await ctx.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; window.__QISSA_QUIET_OFF = true; try { localStorage.setItem('qissa-welcomed', '1'); } catch (e) {} });
+    try { const p = await ctx.newPage(); await p.goto(url); await p.waitForFunction(() => typeof STORIES !== 'undefined' && document.querySelector('.lib-card'), null, { timeout: 180000 });
+      const g = await p.evaluate(() => { renderLibrary(); const a = getComputedStyle(storyEl); const lib = [a.display, a.maxWidth]; openStory(STORIES[0]); const b = getComputedStyle(storyEl); return { lib, story: [b.display, b.maxWidth] }; });
+      if (g.lib[0] !== 'grid' || g.lib[1] !== 'none' || g.story[0] === 'grid' || g.story[1] === 'none') throw new Error('the layout keyed on the class: ' + JSON.stringify(g));
+    } finally { await ctx.close(); }
   });
 
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {

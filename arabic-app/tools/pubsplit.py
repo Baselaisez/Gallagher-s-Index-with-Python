@@ -39,9 +39,53 @@ for k,chunk in enumerate(bodies):
     text="__qissaBodies341("+jp({i:b for i,b in chunk})+");\n"
     fn=hname(f"b{k+1}",text); open(os.path.join(out,fn),"w",encoding="utf-8").write(text)
     body_list.append([fn,[i for i,_ in chunk]])
+# (v350-S) THE GRAMMAR TABLES' BODIES AFTER THE DOOR. GRAMMAR was 1.0 MB of the core's 1.6 MB gzip and CATECHISM 0.17 MB; the door reads
+# of them only ids, titles, groups, levels, the rule of the day's book lines (an example that cites a book, and a note's first own example)
+# and a question's id. The core keeps exactly that ("light"); the rest (a note's explanation, question, mistakes, plain text and its whole
+# examples list; a question's text, answer, Arabic and notes) rides in data/g1-<hash>.js, which the shell (BODY341) fetches FIRST after
+# the door and merges into the same objects in their original key order. Until it is in, BODY341.ready() is false, so every door that
+# reads the corpus (search, games, Atölye, deck, progress, a word's sheet, a grammar note, a story) waits exactly as for a story body.
+# A smoke check proves the door reads no missing field and that the merged tables equal the repository reader's.
+G_HEAVY=("explanation","question","mistakes","plain")
+C_KEEP=("n","id","story","chapter","verified","src","kind")
+gsplit=None
+def _cut(text, name):
+    k=text.find("const "+name+" = ")
+    if k<0: return None
+    e=text.find("\n",k); line=text[k:e if e>=0 else len(text)]
+    if not line.endswith(";"): return None
+    return k, k+len(line), json.loads(line[len("const "+name+" = "):-1])
+cg=_cut(rest,"GRAMMAR"); cc=_cut(rest,"CATECHISM")
+if cg and cc and os.environ.get("QISSA_NO_GSPLIT") != "1":
+    G=cg[2]; C=cc[2]; gl={}; gh={}
+    for gid,g in G.items():
+        l={}; h={}
+        for k,v in g.items():
+            if k in G_HEAVY: h[k]=v
+            elif k=="examples" and isinstance(v,list):
+                own=[False]; keep=[x for x in v if (isinstance(x,dict) and x.get("cite")) or (not own[0] and not own.__setitem__(0,True))]
+                l[k]=keep
+                if len(keep)<len(v): h[k]=v
+            else: l[k]=v
+        gl[gid]=l
+        if h: h["__o"]=list(g.keys()); gh[gid]=h
+    cl=[]; ch=[]
+    for bi,b in enumerate(C):
+        b2={k:v for k,v in b.items() if k!="items"}; its=[]
+        for ii,it in enumerate(b.get("items") or []):
+            l={k:v for k,v in it.items() if k in C_KEEP}; h={k:v for k,v in it.items() if k not in C_KEEP}
+            its.append(l)
+            if h: h["__o"]=list(it.keys()); ch.append([bi,ii,h])
+        if "items" in b: b2["items"]=its
+        if list(b2.keys())!=list(b.keys()): b2={k:b2[k] for k in b.keys()}
+        cl.append(b2)
+    parts=sorted([(cg[0],cg[1],"const GRAMMAR = "+jp(gl)+";"),(cc[0],cc[1],"const CATECHISM = "+jp(cl)+";")],reverse=True)
+    for a,z,s in parts: rest=rest[:a]+s+rest[z:]
+    gtext="__qissaGrammar350("+jp({"g":gh,"c":ch})+");\n"
+    gsplit=hname("g1",gtext); open(os.path.join(out,gsplit),"w",encoding="utf-8").write(gtext)
 core_text=head+"const STORIES = "+jp(meta)+";\n"+rest
 core=hname("d1",core_text); open(os.path.join(out,core),"w",encoding="utf-8").write(core_text)
-names=[core]+[b[0] for b in body_list]
+names=[core]+([gsplit] if gsplit else [])+[b[0] for b in body_list]
 tags="".join(f'<script src="{n}"></script>' for n in [core])
 page=t[:i]+"// data served from data/*.js for the hosted copy — the repository reader keeps it inline\n</script>"+tags+"<script>\n"+t[j:]
 # (wave 150) the CODE leaves the page too: an external classic script is compiled off the main thread as it streams in, and
@@ -58,7 +102,7 @@ catalog=code[cat_i:cat_j+len("// __CATALOG_END__")]
 app=code[:cat_i]+code[cat_j+len("// __CATALOG_END__"):]
 open(os.path.join(out,"app.js"),"w",encoding="utf-8").write(app)
 data_names=list(names)
-loader=("<script>(function(){var L="+json.dumps([core])+";window.__qissaSlices341={core:L,bodies:"+json.dumps(body_list,ensure_ascii=False)+"};"
+loader=("<script>(function(){var L="+json.dumps([core])+";window.__qissaSlices341={core:L,"+("grammar:"+json.dumps(gsplit)+"," if gsplit else "")+"bodies:"+json.dumps(body_list,ensure_ascii=False)+"};"
         "function go(){L.forEach(function(n){var s=document.createElement('script');s.src=n;s.async=false;document.body.appendChild(s);});}"
         "if(window.requestAnimationFrame)requestAnimationFrame(function(){setTimeout(go,0);});else go();})();</script>")
 page=page[:cs]+"<script>\n"+catalog+"\n</script><script src=\"app.js\"></script>"+loader+page[ce+len("</script>"):]

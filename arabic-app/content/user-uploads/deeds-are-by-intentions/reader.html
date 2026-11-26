@@ -402,7 +402,7 @@
 
   /* The reading column. Arabic is set RTL and the sentence block bleeds a
      little into the gutter so the hover ground reads as a band, not a box. */
-  #story:not(:has(.lib-card)) { max-width: var(--measure); margin-inline: auto; }
+  #story:not(.shelf350) { max-width: var(--measure); margin-inline: auto; }   /* (v350-S) a class set by the code that renders the shelf or a story, not #story:not(:has(.lib-card)): a :has() whose subject is #story re-matched on every change inside it */
   section.sentence {
     margin: var(--s5) calc(var(--s2) * -1); padding: var(--s1) var(--s2);
     border-radius: var(--radius);
@@ -1845,11 +1845,11 @@
     font-size: .55rem; letter-spacing: .3em; color: var(--ink-soft); opacity: .5;
   }
   @media (min-width: 720px) {
-    #story:has(.lib-card) { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: .95rem 1.05rem; align-items: stretch; }
-    #story:has(.lib-card) > :not(.lib-card) { grid-column: 1 / -1; }
-    #story:has(.lib-card) .lib-card { margin: 0; display: flex; flex-direction: column; }
-    #story:has(.lib-card) .lib-card .progress { margin-top: auto; padding-top: 0; }
-    #story:has(.lib-card) .lib-card .meta-row { margin-bottom: .55rem; }
+    #story.shelf350 { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: .95rem 1.05rem; align-items: stretch; }
+    #story.shelf350 > :not(.lib-card) { grid-column: 1 / -1; }
+    #story.shelf350 .lib-card { margin: 0; display: flex; flex-direction: column; }
+    #story.shelf350 .lib-card .progress { margin-top: auto; padding-top: 0; }
+    #story.shelf350 .lib-card .meta-row { margin-bottom: .55rem; }
   }
 
   /* ---- poetry wears verse dress -----------------------------------------
@@ -2011,13 +2011,13 @@
      redefined on the column, not overridden per element. The sepia
      palette deliberately commits to one look in both app themes —
      that is what choosing sepia means. */
-  body[data-rt="sepia"] main#story:not(:has(.lib-card)) {
+  body[data-rt="sepia"] main#story:not(.shelf350) {
     --bg: #f5edda; --panel: #efe5cd; --ink: #38301d; --ink-soft: #7a6f52;
     --line: #d9cbaa; --accent-soft: #e7d9b6;
     background: var(--bg); color: var(--ink);
     border-radius: var(--radius); padding: .35rem .8rem .8rem;
   }
-  body[data-rt="night"] main#story:not(:has(.lib-card)) {
+  body[data-rt="night"] main#story:not(.shelf350) {
     --bg: #101418; --panel: #161c22; --ink: #d5dbe2; --ink-soft: #8b95a1;
     --line: #232b34; --accent-soft: #1d2733;
     background: var(--bg); color: var(--ink);
@@ -3109,7 +3109,7 @@ body.data-pending header.app::after{content:"";position:absolute;left:0;right:0;
 .lib-card[data-lvlc="2"], .cov[data-lvlc="2"] { --lvlc: var(--lvl2); }
 .lib-card[data-lvlc="3"], .cov[data-lvlc="3"] { --lvlc: var(--lvl3); }
 .lib-card[data-lvlc="4"], .cov[data-lvlc="4"] { --lvlc: var(--lvl4); }
-#story .lib-card, #story:has(.lib-card) .lib-card { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; }
+#story .lib-card, #story.shelf350 .lib-card { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; }
 #story .lib-card::before { z-index: 2; }
 #story .lib-card .cover, #story .lib-card .t { grid-area: 1 / 1; margin: calc(-1 * var(--s4)) calc(-1 * var(--s4)) var(--s2) calc(-1 * (var(--s4) + var(--s1))); }
 #story .lib-card .cover { display: block; height: auto; min-height: 104px; border-radius: 0; background-repeat: no-repeat; background-size: auto 100%;
@@ -3117,7 +3117,7 @@ body.data-pending header.app::after{content:"";position:absolute;left:0;right:0;
 #story .lib-card .t { z-index: 1; display: flex; align-items: center; justify-content: flex-start; min-height: 104px; background: none; border-bottom: 0;
   text-align: right; padding: var(--s3) var(--s4); padding-inline-end: 40%; font-size: 1.6rem; line-height: 1.5; color: var(--ink); }
 #story .lib-card .t::after { content: none; }
-@media (min-width: 720px) { #story:has(.lib-card) .lib-card { grid-template-rows: auto auto 1fr auto; } #story:has(.lib-card) .lib-card .progress { align-self: end; } }
+@media (min-width: 720px) { #story.shelf350 .lib-card { grid-template-rows: auto auto 1fr auto; } #story.shelf350 .lib-card .progress { align-self: end; } }
 @media (max-width: 860px) {
   #story .lib-card .cover, #story .lib-card .t { margin: calc(-1 * var(--s3)) calc(-1 * var(--s3)) var(--s2); }
   #story .lib-card .cover, #story .lib-card .t { min-height: 84px; }
@@ -4784,7 +4784,7 @@ const ReviewNotes = {
 function renderStory(){
   if (!CUR) return;
   if (playAllActive) stopPlayAll(); // section elements are about to be replaced
-  storyEl.innerHTML = "";
+  storyEl.innerHTML = ""; shelf350();
   storyEl.classList.toggle("underlines", state.underlines);
   SENTENCE_FLAT = [];
   // The deck is visible while reading (LingQ's most-loved idea): a word
@@ -5134,35 +5134,51 @@ function hydrateStories148(){ try { STORIES.forEach(hydrateStory148); } catch (e
    returns, still quietly. */
 const BODY341 = {
   missing: null, slices: null, of: null, state: [], waiters: new Map(), inflight: 0, KEYS: ["chapters", "morph", "glossary"],
-  init(){ const S = window.__qissaSlices341; if (!S || !Array.isArray(S.bodies) || typeof STORIES === "undefined") return;
-    const miss = STORIES.filter(st => !Object.prototype.hasOwnProperty.call(st, "chapters")); if (!miss.length) return;
+  /* (v350-S) g350: the grammar tables' bodies (GRAMMAR's texts and examples, CATECHISM's questions — pubsplit keeps only what the door reads
+     in the core) — fetched before any story slice, merged into the same objects in their original key order; until then nothing is ready */
+  g350: null, gst350: 0,
+  init(){ const S = window.__qissaSlices341; if (S && S.grammar && typeof GRAMMAR !== "undefined") this.g350 = S.grammar;
+    if (!S || !Array.isArray(S.bodies) || typeof STORIES === "undefined") return;
+    const miss = STORIES.filter(st => !Object.prototype.hasOwnProperty.call(st, "chapters")); if (!miss.length) { if (this.g350) this.pump(); return; }
     this.missing = new Set(miss.map(st => st.id)); this.slices = S.bodies; this.of = new Map();
     this.slices.forEach(([f, ids], i) => { this.state[i] = 0; ids.forEach(id => this.of.set(id, i)); });
     miss.forEach(st => this.stub(st)); window.__bodiesAt = 0;
     try { addEventListener("online", () => this.pump()); } catch (e) {}
     const go = () => this.pump(); if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 300 }); else setTimeout(go, 0); },
-  ready(id){ return !this.missing || (id ? !this.missing.has(id) : this.missing.size === 0); },
+  ready(id){ if (this.g350) return false; return !this.missing || (id ? !this.missing.has(id) : this.missing.size === 0); },
   stub(st){ for (const k of this.KEYS) Object.defineProperty(st, k, { configurable: true, enumerable: true,
     get(){ (window.__bodyMiss341 = window.__bodyMiss341 || []).push(st.id + ":" + k); return k === "chapters" ? [] : {}; },
     set(v){ Object.defineProperty(st, k, { value: v, writable: true, configurable: true, enumerable: true }); } }); },
   arrive(map){ if (!this.missing) return; for (const id of Object.keys(map)) { if (!this.missing.has(id)) continue; const st = STORIES.find(x => x.id === id), b = map[id]; if (!st) continue;
       for (const k of this.KEYS) { if (Object.prototype.hasOwnProperty.call(b, k)) Object.defineProperty(st, k, { value: b[k], writable: true, configurable: true, enumerable: true }); else delete st[k]; }
       hydrateStory148(st); this.missing.delete(id); }
-    for (const [slot, w] of [...this.waiters]) if (this.ready(w.id)) { this.waiters.delete(slot); try { w.fn(); } catch (e) {} }
-    if (!this.missing.size) { window.__bodiesAt = performance.now(); try { Quiet.kick(); } catch (e) {} this.prune(); } },
+    this.settle350(); },
+  settle350(){ for (const [slot, w] of [...this.waiters]) if (this.ready(w.id)) { this.waiters.delete(slot); try { w.fn(); } catch (e) {} }
+    if (this.ready() && !this._all350) { this._all350 = true; window.__bodiesAt = performance.now(); try { Quiet.kick(); } catch (e) {} this.prune(); } },
+  arriveG350(m){ if (!this.g350) return;
+    const put = (o, h) => { const all = Object.assign({}, o, h), ord = h.__o || Object.keys(all); for (const k of Object.keys(o)) delete o[k]; for (const k of ord) if (k !== "__o" && k in all) o[k] = all[k]; };
+    try { for (const id of Object.keys(m.g || {})) if (GRAMMAR[id]) put(GRAMMAR[id], m.g[id]);
+      for (const [b, i, h] of m.c || []) { const it = CATECHISM[b] && CATECHISM[b].items && CATECHISM[b].items[i]; if (it) put(it, h); }
+      CatechismEngine._byId = null; } catch (e) {}
+    this.g350 = null; this.gst350 = 2; this.settle350(); },
   load(i){ if (this.state[i]) return; this.state[i] = 1; this.inflight++; const s = document.createElement("script"); s.src = this.slices[i][0]; s.async = true;
     s.onload = () => { this.inflight--; this.state[i] = 2; s.remove(); this.pump(); };
     s.onerror = () => { this.inflight--; this.state[i] = 0; s.remove(); if (navigator.onLine !== false) setTimeout(() => this.pump(), 4000); };
     document.body.appendChild(s); },
-  pump(){ if (!this.slices) return; for (const w of this.waiters.values()) { const i = w.id ? this.of.get(w.id) : undefined; if (i !== undefined && !this.state[i]) this.load(i); }
+  pump(){ if (this.g350 && !this.gst350) { this.gst350 = 1; this.inflight++; const s = document.createElement("script"); s.src = this.g350; s.async = true;   /* (v350-S) the grammar tables first */
+      s.onload = () => { this.inflight--; s.remove(); if (this.g350) this.gst350 = 0; this.pump(); };
+      s.onerror = () => { this.inflight--; this.gst350 = 0; s.remove(); if (navigator.onLine !== false) setTimeout(() => this.pump(), 4000); };
+      document.body.appendChild(s); }
+    if (!this.slices) return; for (const w of this.waiters.values()) { const i = w.id ? this.of.get(w.id) : undefined; if (i !== undefined && !this.state[i]) this.load(i); }
     for (let i = 0; i < this.slices.length && this.inflight < 3; i++) if (!this.state[i]) this.load(i); },
   wait(fn, id, slot){ this.waiters.set(slot || "ui", { fn, id }); this.pump(); },
   // the offline cache keeps only this build's data slices once every body is in (the service worker keeps hashed slices across versions)
-  prune(){ try { if (!window.caches || !/^https?:$/.test(location.protocol) || (typeof NATIVE_SHELL !== "undefined" && NATIVE_SHELL)) return; const keep = new Set(this.slices.map(x => new URL(x[0], location.href).href));
+  prune(){ try { if (!window.caches || !/^https?:$/.test(location.protocol) || (typeof NATIVE_SHELL !== "undefined" && NATIVE_SHELL)) return; const keep = new Set(this.slices.map(x => new URL(x[0], location.href).href)); if (window.__qissaSlices341.grammar) keep.add(new URL(window.__qissaSlices341.grammar, location.href).href);
     caches.open("qissa-data").then(c => c.keys().then(ks => ks.forEach(r => { if (/\/data\//.test(r.url) && !keep.has(r.url) && !(window.__qissaSlices341.core || []).some(f => new URL(f, location.href).href === r.url)) c.delete(r); }))).catch(() => {}); } catch (e) {} },
 };
 window.BODY341 = BODY341;
 window.__qissaBodies341 = m => BODY341.arrive(m);
+window.__qissaGrammar350 = m => BODY341.arriveG350(m);
 /* a door that reads the corpus: true (and the call is kept for the moment the bodies are in) while a body is missing */
 function bodyGate341(fn, id){ if (BODY341.ready(id)) return false; BODY341.wait(fn, id); try { showToast(ui().loadingStory); } catch (e) {} return true; }
 function storyParsed148(st, k){ const d = Object.getOwnPropertyDescriptor(st, k || "chapters"); return !(d && d.get); }
@@ -5439,7 +5455,7 @@ function renderLibrary(){
   const pr = document.getElementById("premiumReset");
   if (pr) pr.addEventListener("click", () => { setPremium(false); renderLibrary(); });
   doorHeader340();
-  storyEl.innerHTML = "";
+  storyEl.innerHTML = ""; shelf350();
   { const old = sheetInner.querySelector(".lib-sort"); if (old) old.remove(); }   // a sort bar the filter sheet borrowed is rebuilt below
   // design wave 9 / 79 / v338, joined in v340: ONE card — the goal ring at the head with the goal line and today's XP, the
   // three stat chips (same ids, same data, one tap into the deck) folded into that head, the lesson's steps under it and one
@@ -5550,8 +5566,13 @@ function renderLibrary(){
     card.addEventListener("click", () => openStory(st));
     storyEl.appendChild(card);
   });
+  shelf350();
   closeSheet();
 }
+/* (v350-S) #story carries .shelf350 exactly while it holds a .lib-card (the shelf's grid and the reading column's measure key on it).
+   It was «#story:has(.lib-card)» — the same family as the page-wide :has() that cost 1.7 s at the door (v347): every change inside
+   #story (a sentence appended, a cover's bitmap) re-matched it. Called by the only code that adds or clears cards. */
+function shelf350(){ storyEl.classList.toggle("shelf350", !!storyEl.querySelector(".lib-card")); }
 // ---------- v340: the door's header, level pills, filter and settings sheets ----------
 function doorHeader340(){
   const U = ui(), app = document.querySelector("header.app");
@@ -18127,6 +18148,10 @@ function ilalKhilafHtml(w){
 function renderHamzaOut(){
   const out = document.getElementById("hamzaOut");
   if (!out) return;
+  if (!HamzaEngine._audit && window.__QISSA_RENDER_SYNC !== true) {   /* (v350-S) the shelf's hamza walk in ~24-ms slices, then this same render («…» meanwhile, as a warming lab) */
+    if (!out.children.length) out.innerHTML = `<p class="ref-intro warm341" aria-busy="true">…</p>`;
+    if (!HamzaEngine._t350) { const go = () => { if (!HamzaEngine.auditStep350(24)) { HamzaEngine._t350 = setTimeout(go, 0); return; } HamzaEngine._t350 = null; renderHamzaOut(); }; HamzaEngine._t350 = setTimeout(go, 0); }
+    return; }
   const E = escapeAttr, a = HamzaEngine.audit();
   let h = `<ol class="idf-steps hamza-rules">${HamzaEngine.RULES.slice(1).map(R => { const m = HamzaEngine.matn(R.sen), c = a.byRule[R.n];
       return `<li><b class="damir-n">${R.n}</b> <span class="idf-why">${T(R)}</span>${m ? `<br><span lang="ar" dir="rtl" class="idf-rule">${E(m.text)}</span> <button class="chip" data-hj="${E(m.sen)}">${ui().hamzaSee}</button>` : ""}<br><small>${ui().hamzaCount.replace("{ok}", c.ok).replace("{n}", c.n)}</small></li>`; }).join("")}</ol>`;
@@ -19922,8 +19947,12 @@ const GovView = {
   WHY: { amil: "govWhyAmil", manevi: "govWhyManevi", tabi: "govWhyTabi", self: "govWhySelf", hidden: "govWhyHidden", mebni: "govWhyMebni", none: "govWhyNone" },
   _idx: null,
   key(words){ return words.map(w => stripAr(String(w || "")).replace(/[^ء-ي]/g, "")).filter(Boolean).join(" "); },
-  index(){ if (this._idx) return this._idx; const m = new Map();
-    for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) { const k = this.key(sen.tokens.map(t => t.s.full)); if (k && !m.has(k)) m.set(k, sen); }
+  index(){ if (this._idx) return this._idx; return Gen334.drain(this, "_g350", () => this.indexGen350()); },
+  /* (v350-S) the shelf's sentence index as a generator, a chapter a step: the Jumla lab's first analysis (v346's reason chain under each
+     engine line reads it) built it in its task — 0.3–0.4 s of the 0.9-s task at 4×; Warm341.step now builds it in slices, the same map */
+  indexStep350(b){ if (this._idx) return true; return Gen334.step(this, "_g350", () => this.indexGen350(), b); },
+  *indexGen350(){ if (this._idx) return this._idx; const m = new Map();
+    for (const st of STORIES) for (const ch of st.chapters) { yield; for (const sen of ch.sentences) { const k = this.key(sen.tokens.map(t => t.s.full)); if (k && !m.has(k)) m.set(k, sen); } }
     return (this._idx = m); },
   stored(sen){ return sen.tokens.map((t, i) => { try { return AmilEngine.word(sen, i); } catch (e) { return null; } }); },
   // the DabtEngine's rule → the governor's kind and seat, for typed text the corpus does not hold
@@ -20618,9 +20647,9 @@ function openWord(tok, el, tab, ctx){
       <p class="irab-en">${tok.irab[state.uiLang] || tok.irab.en}</p>
       <div class="vm-row">${Review344.markHtml(CUR, tok)}${CUR && wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok ? `<button class="vm-report" id="irabReport">⚑ ${ui().vmReport}</button>` : ""}</div>
       ${(() => { const on = wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok; return Illa346.ladderHtml(tok, on ? { sen: wordCtx.sen, ti: wordCtx.ti, st: CUR } : { st: CUR }, Review344.markHtml(CUR, tok)); })()}
-      ${Review344.actionsHtml(tok)}
+      ${Review344.actionsHtml(tok)}${""/* (v350-S) below: a cold noun tagger (a tap right after the bodies trained it in the tap, 1.15 s at 4×) — the tab paints, the tagger trains in slices, the decision chain lands where it stands */}
       ${wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok ? GovView.blockHtml(wordCtx.sen, wordCtx.ti) : ""}
-      ${decisionChainHtml(tok)}
+      ${(tok.pos === "noun" || tok.pos === "propn") && wordCtx && wordCtx.sen && typeof IsmTagger !== "undefined" && !IsmTagger._model ? Late350.mark(() => decisionChainHtml(tok), b => parseStep343(b) && IsmTagger.trainStep(b)) : decisionChainHtml(tok)}
       ${Khilaf344.rowsHtml(tok.grammar)}
       <p class="sarf-note">${ui().irabNote}</p>`;
   } else {
@@ -34098,14 +34127,18 @@ function sajHtml(rows, opts){
     <p class="ref-intro">${u.sajHint}</p></div>`;
 }
 // the doors strip, widened: the badiʿ's two halves are two doors (the meaning-figures, the wording-figures)
-function bayanDoorsHtml(rows, sen){
-  const u = ui();
-  const has = { ts: !!(sen && sen.tashbih), mj: !!(sen && sen.majaz), kn: !!(sen && sen.kinaya), bd: !!(sen && sen.badi), lf: false };
+/* (v350-S) the doors' five readings as steps (a task each in the sentence sheet's late blocks); bayanDoorsHtml drains them when not given */
+function* bayanHas350(rows, sen, has){
+  Object.assign(has, { ts: !!(sen && sen.tashbih), mj: !!(sen && sen.majaz), kn: !!(sen && sen.kinaya), bd: !!(sen && sen.badi), lf: false });
   try { if (!has.ts) has.ts = TashbihEngine.read(rows).length > 0; } catch (e) {}
-  try { if (!has.mj) has.mj = MajazEngine.read(rows).length > 0; } catch (e) {}
-  try { if (!has.kn) has.kn = KinayaEngine.read(rows).length > 0; } catch (e) {}
-  try { if (!has.bd) has.bd = BadiEngine.read(rows, { sen }).length > 0; } catch (e) {}
-  try { has.lf = JinasEngine.read(rows).some(f => f.sub !== "ishtiqaq" || f.muzdawij) || SajEngine.read(rows).length > 0; } catch (e) {}
+  yield; try { if (!has.mj) has.mj = MajazEngine.read(rows).length > 0; } catch (e) {}
+  yield; try { if (!has.kn) has.kn = KinayaEngine.read(rows).length > 0; } catch (e) {}
+  yield; try { if (!has.bd) has.bd = BadiEngine.read(rows, { sen }).length > 0; } catch (e) {}
+  yield; try { has.lf = JinasEngine.read(rows).some(f => f.sub !== "ishtiqaq" || f.muzdawij) || SajEngine.read(rows).length > 0; } catch (e) {}
+}
+function bayanDoorsHtml(rows, sen, has0){
+  const u = ui();
+  const has = has0 || {}; if (!has0) for (const _ of bayanHas350(rows, sen, has)) {}
   if (!Object.values(has).some(Boolean)) return "";
   const doors = [["ts", "🪞", "تَشْبِيه"], ["mj", "🌉", "مَجَاز"], ["kn", "🪜", "كِنَايَة"], ["bd", "⇄", "بَدِيع"], ["lf", "🔡", "لَفْظِيّ"]];
   return `<div class="bayan-doors" title="${escapeAttr(u.doorsLbl)}">${doors.map(([k, g, ar]) => `<span class="door ${has[k] ? "lit" : ""}" data-door="${k}">${g} <span lang="ar">${ar}</span></span>`).join("")}</div>`;
@@ -34347,6 +34380,30 @@ function tahqiqHtml(sen){
       return dabt + shajaraHtml(rows, lang) + qawaidLedgerHtml(rows, lang);
     })();
 }
+/* (v350-S) LATE BLOCKS. A sheet paints what the reader sees first and fills the blocks below it in later tasks, in order, each exactly
+   where the one-shot render puts it: a hidden marker <i class="late350"> holds the place and is replaced by the block's own HTML (the
+   same markup as the one-shot render — a check compares them). step(b), when given, is work the block needs first that can be done a
+   slice at a time (a tagger trained ~24 ms at a time). A marker that left the page (another sheet, the sheet closed) drops its block.
+   The sentence's iʿrāb sheet was ONE task of 1.6 s at 4× warm (3.8 s cold): the engines' reading of the sentence for the bayān doors,
+   the tashbīh / majāz / kināya / badīʿ blocks and the taḥqīq table — all below the word table. The harness's sync flag keeps the
+   one-shot path. */
+const Late350 = {
+  q: [], n: 0, _t: null,
+  sync(){ return window.__QISSA_RENDER_SYNC === true; },
+  mark(html, step, bind){ if (this.sync()) return html();   /* one-shot: html() builds what it needs in the call, as before */
+    const id = ++this.n; this.q.push({ id, html, step, bind }); this.kick(); return `<i class="late350" data-late="${id}" hidden></i>`; },
+  kick(){ if (!this._t && this.q.length) this._t = setTimeout(() => this.tick(), 0); },
+  el(e){ return document.querySelector(`i.late350[data-late="${e.id}"]`); },
+  put(e, m){ const t = document.createElement("template"); let h = ""; try { h = e.html(); } catch (x) { h = ""; } t.innerHTML = h; if (e.bind) try { e.bind(t.content); } catch (x) {} m.replaceWith(t.content); },
+  tick(){ this._t = null;
+    while (this.q.length && !this.el(this.q[0])) this.q.shift();
+    const e = this.q[0]; if (!e) return;
+    if (e.step) { let ok = true; try { ok = e.step(24); } catch (x) { ok = true; } if (ok) e.step = null; }
+    else { this.q.shift(); const m = this.el(e); if (m) this.put(e, m); }
+    this.kick(); },
+  flush(){ while (this.q.length) { const e = this.q.shift(), m = this.el(e); if (!m) continue; if (e.step) while (!e.step(1e9)) {} this.put(e, m); } },
+};
+window.Late350 = Late350;
 function openIrabSheet(sen){
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   const topics = [];
@@ -34378,6 +34435,13 @@ function openIrabSheet(sen){
         <div class="jr" lang="ar" dir="rtl">${j.ar}</div>
         <div class="jg">${state.uiLang === "tr" ? j.tr : j.en}</div>
       </div>`).join("")}</div>` : "";
+  function bindL(root){   /* the sheet's two bindings, on the sheet and on each late block as it lands */
+    root.querySelectorAll(".jump").forEach(b => b.addEventListener("click", () => {
+      const ti = Number(b.dataset.ti);
+      openWord(sen.tokens[ti], null, null, {sen, ti});
+    }));
+    root.querySelectorAll("[data-note]").forEach(b =>
+      b.addEventListener("click", () => openRef(b.dataset.note))); }
   sheetInner.innerHTML = quizReturnHtml() + `<div class="tabs"><button class="on">${arSpan("تَرْكِيبُ الْجُمْلَة")} ${ui().sheetTitle}</button></div>
     <p class="sheet-line" lang="ar" dir="rtl">${sen.tokens.map(t => t.s.full).join(" ")}</p>
     <p class="sheet-tr">${T(sen.translation)}</p>
@@ -34390,18 +34454,19 @@ function openIrabSheet(sen){
     </div>
     ${Illa346.senHtml(sen)}
     ${jumalHtml}
-    ${(() => { let rows = []; try { rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(" ")) || []; } catch (e) {} return bayanDoorsHtml(rows, sen) + tashbihHtml(rows, { sen }) + majazHtml(rows, { sen }) + kinayaHtml(rows, { sen }) + badiHtml(rows, { sen }) + jinasHtml(rows, {}) + sajHtml(rows, { sen }) + arudHtml({ sen }) + tripletHtml(sen); })()}
-    ${tahqiqHtml(sen)}
+    ${(() => { /* (v350-S) one reading of the sentence shared by the blocks, as before; each block its own task (Late350) */
+      let rows = null; const R = () => { if (rows) return rows; rows = []; try { rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(" ")) || []; } catch (e) {} return rows; };
+      const L = (f, st) => Late350.mark(f, st, bindL);
+      let has = null, hg = null;
+      return L(() => bayanDoorsHtml(R(), sen, has), b => { if (!Warm341.step(b)) return false; if (!rows) { R(); return false; }
+          if (!hg) { has = {}; hg = bayanHas350(rows, sen, has); } return !!hg.next().done; })   /* a cold sheet: the shelf's warm-up in slices (the bare index alone was a 1.4-s task at 4×), the reading, then the doors */ + L(() => tashbihHtml(R(), { sen })) + L(() => majazHtml(R(), { sen })) + L(() => kinayaHtml(R(), { sen })) + L(() => badiHtml(R(), { sen }))
+        + L(() => jinasHtml(R(), {}) + sajHtml(R(), { sen }) + arudHtml({ sen }) + tripletHtml(sen)); })()}
+    ${Late350.mark(() => tahqiqHtml(sen), null, bindL)}
     ${topics.length ? `<div class="ref-group">${ui().sheetTopics}</div>
       <div class="sheet-topics">${topics.map(g =>
         `<button class="btn" data-note="${escapeAttr(g)}">${arSpan(GRAMMAR[g].title.ar)}</button>`).join("")}</div>` : ""}`;
   Illa346.bindSen(sheetInner, sen);
-  sheetInner.querySelectorAll(".jump").forEach(b => b.addEventListener("click", () => {
-    const ti = Number(b.dataset.ti);
-    openWord(sen.tokens[ti], null, null, {sen, ti});
-  }));
-  sheetInner.querySelectorAll("[data-note]").forEach(b =>
-    b.addEventListener("click", () => openRef(b.dataset.note)));
+  bindL(sheetInner);
   bindQuizReturn();
   showSheet();
 }
@@ -37893,6 +37958,7 @@ function openAvamil100(){
 }
 
 function openRef(noteId){
+  if (BODY341.g350 && bodyGate341(() => openRef(noteId))) return;   /* (v350-S) a note's text rides in the grammar slice (the hosted copy): it opens on arrival, as a story does */
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   if (noteId) {
     sheetInner.innerHTML = quizReturnHtml() +
@@ -43237,11 +43303,15 @@ class InnaEngine {
     return { ar: `${h.ar} — ${S.ar}`, text: `${h[L]} — ${S[L]}`, hamza: h, seat: S };
   }
   // the corpus audit: every authored إِنَّ / أَنَّ against the seat's verdict (quoted particles are skipped; «both» is undecided)
-  static audit(limit = 0){
+  /* (v350-S) the audit is a generator walked a sentence at a time: audit() drains it at once (the same walk, the same object), auditStep350(b)
+     walks it for b ms — the lab's tally no longer costs one 0.6–1.2-s task at 4× on its first open */
+  static audit(limit = 0){ if (this._audit && this._audit.limit === limit) return this._audit; return Gen334.drain(limit === 0 ? this : null, "_g350", () => this.auditGen350(limit)); }
+  static auditStep350(b){ if (this._audit && this._audit.limit === 0) return true; return Gen334.step(this, "_g350", () => this.auditGen350(0), b); }
+  static *auditGen350(limit = 0){
     if (this._audit && this._audit.limit === limit) return this._audit;
     const out = { n: 0, decided: 0, hit: 0, miss: 0, both: 0, quoted: 0, bySeat: {}, misses: [], limit };
     let seen = 0;
-    outer: for (const st of STORIES) for (const ch of st.chapters) { let tail = null, age = 0; for (const sen of ch.sentences) {
+    outer: for (const st of STORIES) for (const ch of st.chapters) { let tail = null, age = 0; for (const sen of ch.sentences) { yield;
       const anTail = () => { const tk = sen.tokens || []; for (let q = tk.length - 1; q >= 0; q--) { const f = String(tk[q].s.full).normalize("NFC"); if (/^(وَ|فَ)?(بِ|لِ)?أَنْ$/.test(f) && q + 1 < tk.length && this.bare(tk[q + 1].s.full) === "لا") return { i: q, w: tk[q].s.full, hamza: "fath", seat: "atfAn", quoted: false, light: true }; } return null; };   // (wave 157)
       /* (v345-T · T-I01) the tail a sentence-initial وَأَنَّ joins: the last أَنَّ / إِنَّ of the previous sentences whose hamza a seat decided, carried
          across a sentence whose only أَنَّ is governed by a letter (a letter-governed maṣdar as the tail itself was measured: it joined two
@@ -45340,7 +45410,7 @@ function renderInnaOut(){
   const seeds = `<div class="dabt-seeds qw-seeds"><div class="qw-head">${u.dabtSeeds}</div><ul>${INNA_SEEDS.map(s0 =>
     `<li><button class="qw-seed" data-seed="${E(s0)}" lang="ar" dir="rtl">${E(s0)}</button></li>`).join("")}</ul></div>`;
   const tally = `<p class="ref-intro inna-tally" id="innaTally">…</p>`;   /* (wave 32p) filled after the panel paints, remembered per build */
-  Relax.later("inna-audit", () => { const a = InnaEngine.audit(); return a ? { n: a.n, acc: a.acc, coverage: a.coverage } : null; },
+  Relax.laterUntil334("inna-audit", b => InnaEngine.auditStep350(b), () => { const a = InnaEngine.audit(); return a ? { n: a.n, acc: a.acc, coverage: a.coverage } : null; },   /* (v350-S) stepped */
     a => { const el = document.getElementById("innaTally"); if (!el) return; el.textContent = a ? u.innaAudit.replace("{n}", a.n).replace("{acc}", a.acc).replace("{cov}", a.coverage) : "…"; }, { persist: true });
   if (!txt) { out.innerHTML = `<p class="empty">${u.innaEmpty}</p>` + seeds + tally + innaLegendHtml(lang); }
   else {
@@ -46499,6 +46569,7 @@ const Warm341 = {
     for (const st of STORIES) for (const k of ["morph", "chapters"]) if (!storyParsed148(st, k)) { void st[k]; if (performance.now() - t0 > B) return false; }
     if (!RootFinder.bareIndexStep(left())) return false; if (!SarfTagger.trainStep(left())) return false; if (!IsmTagger.trainStep(left())) return false;
     if (!LazimEngine.ledgerStep(left())) return false; if (!RootFinder.nounIndexStep341(left())) return false; if (!RootFinder.lexFreqStep341(left())) return false;
+    if (!GovView.indexStep350(left())) return false;   /* (v350-S) */
     if (this.k < Math.min(NW, this.W.length)) { if (performance.now() - t0 > B / 2) return false; try { this.W[this.k++](); } catch (e) {} if (this.k < Math.min(NW, this.W.length)) return false; }
     if (this.k < this.W.length) return true;   /* what this caller needs is ready; Quiet finishes the rest */
     return (this.done = true); },
@@ -47119,11 +47190,15 @@ class HamzaEngine {
     return { word: w, hamzas: out };
   }
   // every hamza on the shelf, read by the five rules
-  static audit(){
+  /* (v350-S) the shelf's walk as a generator, a sentence a step: audit() drains it, auditStep350(b) walks it b ms at a time (the lab's first
+     open was one 0.4–1.2-s task at 4×) */
+  static audit(){ if (this._audit) return this._audit; return Gen334.drain(this, "_g350", () => this.auditGen350()); }
+  static auditStep350(b){ if (this._audit) return true; return Gen334.step(this, "_g350", () => this.auditGen350(), b); }
+  static *auditGen350(){
     if (this._audit) return this._audit;
     const r = { total: 0, matn: 0, later: 0, other: 0, unknown: 0, byRule: [null, { n: 0, ok: 0 }, { n: 0, ok: 0 }, { n: 0, ok: 0 }, { n: 0, ok: 0 }, { n: 0, ok: 0 }], laterBy: {}, otherEx: [], laterEx: [], pool: [null, [], [], [], [], []] };
     const seen = new Set();
-    for (const st of STORIES) for (const ch of (st.chapters || [])) for (const sn of (ch.sentences || [])) for (const t of (sn.tokens || [])) {
+    for (const st of STORIES) for (const ch of (st.chapters || [])) for (const sn of (ch.sentences || [])) { yield; for (const t of (sn.tokens || [])) {
       const full = t && t.s && t.s.full; if (!full || !/[ءأإؤئآ]/.test(full)) continue;
       const lemma = ((st.glossary || {})[t.lex] || {}).lemma;
       const a = this.analyse(full, { lemma });
@@ -47134,7 +47209,7 @@ class HamzaEngine {
         if (h.verdict === "other" && r.otherEx.length < 60 && !seen.has("O" + a.word)) { seen.add("O" + a.word); r.otherEx.push(a.word); }
         if (h.verdict === "matn" && a.hamzas.length === 1 && a.word.length <= 14 && !seen.has(a.word) && r.pool[h.rule].length < 80) { seen.add(a.word); r.pool[h.rule].push(a.word); }
       }
-    }
+    } }
     return (this._audit = r);
   }
   static pool(){ return this.audit().pool; }
@@ -48994,6 +49069,7 @@ function renderLibrarySkeleton(){
     card.addEventListener("click", () => { PENDING_OPEN = st.id; showToast(ui().loadingStory); });
     storyEl.appendChild(card);
   });
+  shelf350();
 }
 function bootWithData(){
   hydrateStories148();   // (wave 148) the bodies become lazy getters before anything reads a story
@@ -49075,6 +49151,7 @@ const Early343 = {
   steps: [
     { body: true, fn: b => IshtiqaqEngine.inverseStep(b) },        /* the law's inverse templates (no body read; after the bodies all the same — before them it delayed the last body by ~0.6 s at 4×) */
     { body: true, fn: b => parseStep343(b) },                       /* every body parsed, a slice at a time */
+    { body: true, fn: b => dedupStep334(b) },                       /* (v350-S) then the repeated strings pointed at one copy — Quiet's LAST job, minutes after the door (the pools, the audits first): the heap held 178 MB at 1× 30 s after the door, 140 MB once deduplicated */
     { body: true, fn: b => IshtiqaqEngine.lexStep(b) },
     { body: true, fn: b => Warm341.step(b, 0) },                    /* the labs' data warm-up: bare index, taggers, ledger, nouns, lemma counts */
     { body: true, idle: 1200, fn: b => Warm341.step(b) },           /* then one reading of each engine, a task each (compiles) */
