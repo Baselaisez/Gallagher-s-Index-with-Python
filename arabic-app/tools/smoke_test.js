@@ -17997,6 +17997,257 @@ if (!CHROME) {
     if (live.length !== 6 || out.length) throw new Error('not judged: ' + J(out.slice(0, 12)));
   });
 
+  // ---------------- v344 — the teacher's review, khilāf links, the rule of the day, the level from reading ----------------
+  await check('v344 — the teacher\'s review: off by default; a Settings switch asks the reviewer\'s name once; approve / correct / doubtful per iʿrāb line and a whole sentence, stored with the line\'s hash in a qissa-* key Backup carries; the mark follows the LOCAL verdict and falls back to pending when the line changes; nothing reads «reviewed» without a verdict; a chapter tally; the export\'s shape; an import shows conflicts without resolving them; no story text changes', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    let r;
+    try {
+      r = await page.evaluate(async () => {
+        const keep = { v: localStorage.getItem('qissa-verdicts'), rev: localStorage.getItem('qissa-review'), lang: state.uiLang }, out = {};
+        const wait = ms => new Promise(res => setTimeout(res, ms));
+        try {
+          localStorage.removeItem('qissa-verdicts'); state.uiLang = 'tr';
+          const st = STORIES.find(s => s.id === 'al-asad-wa-al-far'); openStory(st);
+          const ch = CHAPTERS[0], sen = ch.sentences.find(s => s.tokens.filter(t => t.irab).length >= 3), idx = sen.tokens.map((t, i) => t.irab ? i : -1).filter(i => i >= 0);
+          const before = JSON.stringify(CHAPTERS.map(c => c.sentences.map(s => s.tokens.map(t => [t.s.full, t.irab && t.irab.ar]))));
+          const ow = i => openWord(sen.tokens[i], null, 'irab', { sen, ti: i }), mark = () => { const m = sheetInner.querySelector('.vmark'); return m && { vm: m.dataset.vm, rv: m.dataset.rv344 || '', t: m.textContent }; };
+          out.offDefault = !Review344.on(); ow(idx[0]); out.offActs = sheetInner.querySelectorAll('[data-rv]').length; out.offMark = mark();
+          // every line of the shelf's open story reads pending with no verdict
+          out.noneReviewed = CHAPTERS.every(c => c.sentences.every(s => s.tokens.every((t, i) => { if (!t.irab) return true; wordCtx = { sen: s, ti: i }; return Review344.markOf(t) === null; })));
+          openDoorSettings340(); out.setLbl = (document.querySelector('#rv344Set .ls-lbl') || {}).textContent; document.getElementById('rv344Toggle').click();
+          out.askName = !!document.getElementById('rv344SetName'); document.getElementById('rv344SetName').value = 'Hoca A'; document.getElementById('rv344SetNameOk').click();
+          out.name = Review344.load().by; out.askedAgain = !!document.getElementById('rv344SetName'); out.fileBtn = !!document.getElementById('rv344Open');
+          renderStory(); ow(idx[0]); out.acts = [...sheetInner.querySelectorAll('[data-rv]')].map(b => b.dataset.rv + ':' + b.textContent.trim());
+          out.sheetOver = sheetInner.scrollWidth > sheetInner.clientWidth + 1 || document.documentElement.scrollWidth > innerWidth;
+          sheetInner.querySelector('[data-rv="approved"]').click(); out.approved = mark();
+          const v0 = Review344.load().v[Review344.keyOf(st, ch, sen, idx[0])]; out.stored = v0 && { verdict: v0.verdict, hashOk: v0.hash === Review344.hash(sen.tokens[idx[0]]), by: v0.by, ar: v0.ar === sen.tokens[idx[0]].irab.ar };
+          const t0 = sen.tokens[idx[0]], a0 = t0.irab.ar; t0.irab.ar = a0 + ' ؟'; ow(idx[0]); out.changed = mark(); t0.irab.ar = a0; ow(idx[0]); out.restored = mark();
+          // «Düzelt»: the reviewers' form, the line prefilled, the verdict recorded on save
+          ow(idx[1]); sheetInner.querySelector('[data-rv="corrected"]').click(); let f = sheetInner.querySelector('.rev-form');
+          out.fixForm = f && { kind: (f.querySelector('.rev-kinds .on') || {}).dataset.kind, ti: f.querySelector('.rev-ti').value, pre: f.querySelector('.rev-fix').value === sen.tokens[idx[1]].irab.ar };
+          f.querySelector('.rev-fix').value = sen.tokens[idx[1]].irab.ar + ' (مُصَحَّح)'; f.querySelector('.rev-problem').value = 'the case'; f.querySelector('.rev-save:not(.rev-del)').click(); await wait(750); out.fixed = mark();
+          ow(idx[2]); sheetInner.querySelector('[data-rv="doubtful"]').click(); f = sheetInner.querySelector('.rev-form'); out.doubtFixHidden = f.querySelector('.rev-fix').closest('label').hidden;
+          f.querySelector('.rev-problem').value = 'unsure'; f.querySelector('.rev-save:not(.rev-del)').click(); await wait(750); out.doubt = mark();
+          ow(idx[0]); sheetInner.querySelector('[data-rv="all"]').click();
+          const vs = Review344.load().v; out.sentence = idx.map(i => (vs[Review344.keyOf(st, ch, sen, i)] || {}).verdict).join();
+          out.tally = (storyEl.querySelector('.rv344-tally[data-ch="' + chN(ch) + '"]') || {}).textContent; out.tallyObj = Review344.tally(st, ch);
+          out.backup = Backup.keys().includes('qissa-verdicts');
+          const ex = JSON.parse(Review344.exportJson()); out.ex = { keys: Object.keys(ex).join(), n: ex.verdicts.length, v: ex.verdicts.find(x => x.verdict === 'corrected'), d: ex.verdicts.find(x => x.verdict === 'doubtful'), a: ex.verdicts.find(x => x.verdict === 'approved') };
+          out.exWhere = ex.verdicts.every(x => x.package === st.id && /^\d+:[^:]+:\d+$/.test(x.where) && x.surface && x.before && x.before.ar && /^[0-9a-f]{8}$/.test(x.line_hash));
+          out.fileName = Review344.fileName();
+          // a second reviewer's file: one line differs, one agrees, one only theirs — shown, not merged; the marks stay the device's own
+          const other = { reviewer: 'Hoca B', exported: '2026-11-27T10:00:00Z', app_build: 'x', verdicts: [
+            { ...out.ex.a, verdict: 'doubtful', note: 'not sure' }, { ...out.ex.v }, { package: st.id, where: chN(ch) + ':' + CHAPTERS[0].sentences.slice(-1)[0].id + ':0', surface: 'x', verdict: 'approved', before: { ar: 'x' }, line_hash: '00000000' } ] };
+          out.bad = Review344.importText('{"app":"qissa-backup"}'); out.imp = Review344.importText(JSON.stringify(other)); out.imp2 = Review344.importText(JSON.stringify(other)); if (!out.imp) out.dbg = JSON.stringify(other).slice(0, 600);
+          out.conf = Review344.conflicts().map(c => c.where + '=' + c.xs.length); out.files = Review344.load().imported.length;
+          const lastSen = CHAPTERS[0].sentences.slice(-1)[0]; wordCtx = { sen: lastSen, ti: 0 }; out.importedMark = lastSen.tokens[0].irab ? Review344.markOf(lastSen.tokens[0]) : 'noirab';
+          Review344.openSheet(); out.sheet = { h: (sheetInner.querySelector('.welcome-h') || {}).textContent, conf: sheetInner.querySelectorAll('#rv344Conf > li').length, exp: !!document.getElementById('rv344Export'), imp: !!document.getElementById('rv344Import') };
+          out.after = JSON.stringify(CHAPTERS.map(c => c.sentences.map(s => s.tokens.map(t => [t.s.full, t.irab && t.irab.ar])))) === before;
+          out.tr = [ui().rv344Mode, ui().rv344Approve, ui().rv344Correct, ui().rv344DoubtBtn, ui().rv344Export]; state.uiLang = 'en'; out.en = [ui().rv344Mode, ui().rv344Approve, ui().rv344Correct, ui().rv344DoubtBtn, ui().rv344Export];
+          Review344.setOn(false); renderStory(); out.offTally = storyEl.querySelectorAll('.rv344-tally').length;
+        } finally {
+          if (keep.v === null) localStorage.removeItem('qissa-verdicts'); else localStorage.setItem('qissa-verdicts', keep.v);
+          if (keep.rev === null) localStorage.removeItem('qissa-review'); else localStorage.setItem('qissa-review', keep.rev);
+          state.uiLang = keep.lang; closeSheet(); if (CUR) renderStory();
+        }
+        return out;
+      });
+    } finally { await page.setViewportSize({ width: 1280, height: 720 }); }
+    await toLibrary();
+    const J = JSON.stringify;
+    if (!r.offDefault || r.offActs || !r.offMark || r.offMark.vm !== 'pending' || !r.noneReviewed) throw new Error('off by default, no actions, pending marks without a verdict: ' + J([r.offDefault, r.offActs, r.offMark, r.noneReviewed]));
+    if (r.setLbl !== 'Hoca incelemesi' || !r.askName || r.name !== 'Hoca A' || r.askedAgain || !r.fileBtn) throw new Error('the Settings switch asks the name once: ' + J(r));
+    if (r.acts.map(a => a.split(':')[0]).join() !== 'approved,corrected,doubtful,all' || !/Onayla/.test(r.acts[0]) || !/Düzelt/.test(r.acts[1]) || !/Şüpheli/.test(r.acts[2]) || !/bütün satırlarını onayla/.test(r.acts[3])) throw new Error('three actions and the sentence: ' + J(r.acts));
+    if (r.sheetOver) throw new Error('the word sheet with the actions overflows 390 px');
+    if (!r.approved || r.approved.vm !== 'ok' || !/Hoca onaylı · Hoca A/.test(r.approved.t) || !r.stored || r.stored.verdict !== 'approved' || !r.stored.hashOk || !r.stored.ar || r.stored.by !== 'Hoca A') throw new Error('approve: the mark and the stored verdict with the hash: ' + J([r.approved, r.stored]));
+    if (!r.changed || r.changed.vm !== 'pending' || r.changed.rv !== 'changed' || !/yeniden incelenmeli/.test(r.changed.t) || !r.restored || r.restored.vm !== 'ok') throw new Error('a changed line falls back to pending: ' + J([r.changed, r.restored]));
+    if (!r.fixForm || r.fixForm.kind !== 'irab' || !r.fixForm.pre || !r.fixed || r.fixed.vm !== 'fix' || !/Düzeltme önerildi/.test(r.fixed.t)) throw new Error('correct: the form prefilled, «Düzeltme önerildi»: ' + J([r.fixForm, r.fixed]));
+    if (!r.doubtFixHidden || !r.doubt || r.doubt.vm !== 'doubt') throw new Error('doubtful: a note without a correction: ' + J(r.doubt));
+    if (!/^approved,corrected,doubtful(,approved)*$/.test(r.sentence)) throw new Error('approving the sentence keeps a standing correction and doubt: ' + r.sentence);
+    const t = r.tallyObj; if (!r.tally || t.corrected !== 1 || t.doubtful !== 1 || t.approved < 1 || !r.tally.includes(t.approved + '/' + t.lines) || r.offTally) throw new Error('the chapter tally: ' + J([r.tally, t, r.offTally]));
+    if (!r.backup) throw new Error('Backup carries qissa-verdicts');
+    if (r.ex.keys !== 'reviewer,exported,app_build,verdicts' || !r.exWhere || !r.ex.v || !/مُصَحَّح/.test(r.ex.v.after_ar) || r.ex.v.note !== 'the case' || !r.ex.d || r.ex.d.after_ar || r.ex.d.note !== 'unsure' || !/^qissa-inceleme-Hoca_A-\d{4}-\d\d-\d\d\.json$/.test(r.fileName)) throw new Error('the export\'s shape: ' + J(r.ex) + ' ' + r.fileName);
+    if (r.bad !== null || !r.imp || r.imp.n !== 3 || r.imp.reviewer !== 'Hoca B' || r.files !== 1) throw new Error('import: a review file once (re-import replaces), a backup is refused: ' + J([r.bad, r.imp, r.files, r.dbg]));
+    if (r.conf.length !== 1 || !r.conf[0].endsWith('=2') || r.sheet.conf !== 1 || !r.sheet.exp || !r.sheet.imp || r.sheet.h !== 'İnceleme dosyası') throw new Error('one conflict shown, both sides: ' + J([r.conf, r.sheet]));
+    if (r.importedMark !== null && r.importedMark !== 'noirab') throw new Error('an imported verdict never marks this device\'s line: ' + J(r.importedMark));
+    if (!r.after) throw new Error('the review changed story text');
+    if (r.tr.some((x, i) => !x || x === r.en[i])) throw new Error('tr and en: ' + J([r.tr, r.en]));
+  });
+  await check('v344 — khilāf links: a grammar note that al-Inṣāf\'s table links (and only through `links`) carries at most two quiet rows «Basra–Kûfe ihtilafı» + «+N»; a row opens the masʾala\'s card in a sheet and «back» returns; the word sheet\'s iʿrāb tab carries the rows of its notes; a note with no link has none; every link names a real note', async () => {
+    const fsx = require('fs');
+    const tab = JSON.parse(fsx.readFileSync('content/rules/insaf_masail.json', 'utf8'));
+    const want = {}; tab.masail.forEach(m => (m.links || []).forEach(id => { (want[id] = want[id] || []).push(m.n); }));
+    if (!Object.keys(want).every(id => fsx.existsSync('content/grammar/' + id + '.json'))) throw new Error('a link names no note');
+    for (const [n, id] of [[58, 'masail-inna-wal-mukhaffafa-fil-kafiya'], [71, 'al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada'], [90, 'masail-inna-wal-mukhaffafa-fil-kafiya']])
+      if (!(want[id] || []).includes(n)) throw new Error('v344\'s added link ' + n + ' → ' + id);
+    const r = await page.evaluate(want => {
+      const out = { bad: [] }, keepLang = state.uiLang;
+      try {
+        state.uiLang = 'tr';
+        Object.keys(GRAMMAR).forEach(id => { const exp = (want[id] || []).slice().sort((a, b) => a - b), got = Khilaf344.of([id]).map(m => m.n);
+          if (exp.join() !== got.join()) out.bad.push(id); const h = document.createElement('div'); h.innerHTML = renderNote(id);
+          const rows = h.querySelectorAll('.kh344-row').length, more = h.querySelector('.kh344-more');
+          if (rows !== Math.min(2, exp.length) || (exp.length > 2) !== !!more || (more && more.textContent !== '+' + (exp.length - 2))) out.bad.push(id + ':rows'); });
+        openRef('vocative-munada'); const row = sheetInner.querySelector('.kh344-row'); out.rowTxt = row.textContent; out.n = +row.dataset.khn; row.click();
+        out.card = !!sheetInner.querySelector('.khilaf-card[data-n="' + out.n + '"]'); out.h = (sheetInner.querySelector('.welcome-h') || {}).textContent;
+        out.noSide = !/(Basra|Kûfe)[^:]*(haklı|doğru|tercih)/.test(sheetInner.querySelector('.kh344-h') ? sheetInner.querySelector('.kh344-h').textContent : '');
+        document.getElementById('kh344Back').click(); out.back = !!sheetInner.querySelector('.gnote') && !!sheetInner.querySelector('.kh344-row');
+        sheetInner.querySelector('.kh344-more').click(); out.moreCards = sheetInner.querySelectorAll('.khilaf-card').length;
+        // the word sheet: a token tagged with a linked note, and one with none
+        let hit = null, miss = null;
+        for (const st of STORIES) { if (hit && miss) break; for (const ch of st.chapters || []) { for (const sen of ch.sentences) { sen.tokens.forEach((t, ti) => {
+          if (!t.irab) return; const k = Khilaf344.of(t.grammar || []).length; if (k && !hit) hit = { st, sen, ti, k }; if (!k && (t.grammar || []).length && !miss) miss = { st, sen, ti }; }); if (hit && miss) break; } if (hit && miss) break; } }
+        const ow = x => { CUR = x.st; openWord(x.sen.tokens[x.ti], null, 'irab', { sen: x.sen, ti: x.ti }); return sheetInner.querySelectorAll('.kh344-row').length; };
+        out.irabHit = hit && ow(hit); out.irabWant = hit && Math.min(2, hit.k); out.irabMiss = miss ? ow(miss) : -1;
+        if (hit) { ow(hit); sheetInner.querySelector('.kh344-row').click(); out.irabCard = !!sheetInner.querySelector('.khilaf-card'); document.getElementById('kh344Back').click(); out.irabBack = (sheetInner.querySelector('.ws-tabs [data-tab].on, [data-tab="irab"].on') || {}) && !!sheetInner.querySelector('.irab-ar'); }
+        state.uiLang = 'en'; out.en = ui().kh344Row; state.uiLang = 'tr'; out.tr = ui().kh344Row;
+      } finally { state.uiLang = keepLang; closeSheet(); }
+      return out;
+    }, want);
+    await toLibrary();
+    const J = JSON.stringify;
+    if (r.bad.length) throw new Error('rows not from `links` exactly: ' + r.bad.slice(0, 5).join());
+    if (!/Basra–Kûfe ihtilafı var/.test(r.rowTxt) || !r.card || !r.noSide || !r.back || r.moreCards < 3) throw new Error('the row opens the card and returns: ' + J(r));
+    if (!r.irabHit || r.irabHit !== r.irabWant || r.irabMiss !== 0 || !r.irabCard || !r.irabBack) throw new Error('the iʿrāb tab: ' + J(r));
+    if (!r.en || r.en === r.tr) throw new Error('en / tr: ' + r.en);
+  });
+  await check('v344 — the rule of the day: folded into «Pekiştir» (a fifth row would pass the v340 pin), a note of the weakest area that has one, at or below the learner\'s level, deterministic per date, not one shown in the 14 days before; ONE book line verbatim — a substring of its source file — with its book and page or line, the note\'s own example, «Notu aç» / «Bir tur oyna»; it ticks when opened; the split copy\'s door shows it with every body held and reads none', async () => {
+    const fsx = require('fs'), pathx = require('path');
+    await page.setViewportSize({ width: 390, height: 844 });
+    let r;
+    try {
+      r = await page.evaluate(async () => {
+        const keep = { lv: state.myLevel, elo: JSON.stringify(state.elo), rd: localStorage.getItem('qissa-ruleday'), qlang: localStorage.getItem('qissa-lang'), lang: state.uiLang, progress: JSON.stringify(state.progress), deck: JSON.stringify(state.deck), last: state.lastRead, today: localStorage.getItem('qissa-today') }, out = {};
+        try {
+          localStorage.removeItem('qissa-ruleday'); state.uiLang = 'tr'; localStorage.setItem('qissa-lang', 'tr'); state.progress = {}; state.deck = []; state.lastRead = null;
+          state.myLevel = 0; out.none0 = RuleDay344.pick('2026-11-26'); state.myLevel = 1; out.none1 = RuleDay344.pick('2026-11-26');
+          state.myLevel = 1; renderLibrary(); window.scrollTo(0, 0); await new Promise(res => setTimeout(res, 60)); out.card1 = Math.round(document.querySelector('.lib-card').getBoundingClientRect().top);
+          state.myLevel = 3; state.elo = Object.assign({}, state.elo, { vocab: 1300, sarf: 1200, nahw: 1000, adad: 1250, balagha: 1100 });
+          const w = hubRecoPick().weak, order = [w].concat(EloModel.AREAS.slice().sort((a, b) => state.elo[a] - state.elo[b]).filter(a => a !== w));
+          out.wantArea = order.find(a => RuleDay344.candidates(a, 3).length);
+          const days = ['2026-11-26', '2026-11-27', '2026-11-28', '2026-12-01'];
+          out.picks = days.map(d => { const a = RuleDay344.pick(d), b = RuleDay344.pick(d); return { d, id: a && a.id, same: JSON.stringify(a) === JSON.stringify(b), area: a && a.area, lvl: a && GRAMMAR[a.id].level }; });
+          const p = RuleDay344.pick(todayKey()); const d0 = RuleDay344.load(); d0.seen[p.id] = dayShift344(todayKey(), -3); RuleDay344.save(d0);
+          out.excl = RuleDay344.pick(todayKey()).id !== p.id || RuleDay344.candidates(p.area, 3).length === 1;
+          d0.seen[p.id] = dayShift344(todayKey(), -15); RuleDay344.save(d0); out.back15 = RuleDay344.pick(todayKey()).id === p.id; localStorage.removeItem('qissa-ruleday');
+          // every line the picker can show, for the file check
+          out.lines = []; EloModel.AREAS.forEach(a => RuleDay344.candidates(a, 6).forEach(id => RuleDay344.lines(GRAMMAR[id]).forEach(l => out.lines.push([l.file, l.ar]))));
+          renderLibrary(); window.scrollTo(0, 0); await new Promise(res => setTimeout(res, 60));
+          const pk = RuleDay344.pick(todayKey());
+          out.card3 = Math.round(document.querySelector('.lib-card').getBoundingClientRect().top);
+          out.steps = [...document.querySelectorAll('#todayCard .tc-step')].map(b => b.dataset.ls).join();
+          const sub = document.querySelector('#todayCard [data-ls="strong"] small'); out.sub = sub.textContent; out.subHas = sub.textContent.includes(GRAMMAR[pk.id].title.ar.split(' — ')[0]);
+          out.doneBefore = RuleDay344.done();
+          document.querySelector('#todayCard [data-ls="strong"]').click();
+          const rd = document.getElementById('ruleDay'); out.sheet = rd && { bq: rd.querySelector('blockquote').textContent === pk.line.ar, file: rd.querySelector('blockquote').dataset.file, cap: rd.querySelector('figcaption').textContent,
+            own: !!rd.querySelector('.rd344-own') === !!pk.own, title: rd.querySelector('.welcome-h').textContent.includes(GRAMMAR[pk.id].title.ar), btns: [document.getElementById('rd344Note').textContent, document.getElementById('rd344Play').textContent] };
+          out.over = document.documentElement.scrollWidth > innerWidth || sheetInner.scrollWidth > sheetInner.clientWidth + 1;
+          out.doneAfter = RuleDay344.done(); out.lessonBefore = LESSON;
+          document.getElementById('rd344Play').click(); out.lesson = LESSON && LESSON.step;
+          LESSON = null; closeSheet(); renderLibrary(); out.subAfter = document.querySelector('#todayCard [data-ls="strong"] small').textContent;
+          out.n = document.querySelectorAll('#todayCard .tc-step').length;
+          state.uiLang = 'en'; out.en = [ui().rd344Label, ui().rd344Open, ui().rd344Play];
+        } finally {
+          state.myLevel = keep.lv; state.elo = JSON.parse(keep.elo); state.uiLang = keep.lang; state.progress = JSON.parse(keep.progress); state.deck = JSON.parse(keep.deck); state.lastRead = keep.last; LESSON = null;
+          if (keep.rd === null) localStorage.removeItem('qissa-ruleday'); else localStorage.setItem('qissa-ruleday', keep.rd);
+          if (keep.qlang === null) localStorage.removeItem('qissa-lang'); else localStorage.setItem('qissa-lang', keep.qlang);
+          if (keep.today !== null) localStorage.setItem('qissa-today', keep.today);
+          closeSheet(); renderLibrary();
+        }
+        return out;
+      });
+    } finally { await page.setViewportSize({ width: 1280, height: 720 }); }
+    const J = JSON.stringify;
+    if (r.none0 !== null || r.none1 !== null) throw new Error('no level, or no rule at or below level 1 → no rule: ' + J([r.none0, r.none1]));
+    if (r.picks.some(p => !p.id || !p.same || p.area !== r.wantArea || p.lvl > 3) || new Set(r.picks.map(p => p.id)).size < 2) throw new Error('deterministic per date, the weakest area with a rule, at or below the level: ' + J([r.picks, r.wantArea]));
+    if (!r.excl || !r.back15) throw new Error('a rule shown in the last 14 days is left out, and comes back after: ' + J([r.excl, r.back15]));
+    const cache = {}; const bad = r.lines.filter(([f, ar]) => { const p = pathx.join('research/sources', pathx.basename(f)); if (!(p in cache)) cache[p] = fsx.existsSync(p) ? fsx.readFileSync(p, 'utf8') : null; return !cache[p] || !cache[p].includes(ar); });
+    if (r.lines.length < 20 || bad.length) throw new Error('every book line is a substring of its source file: ' + r.lines.length + ' lines, ' + bad.length + ' not: ' + J(bad.slice(0, 2)));
+    if (r.steps !== 'read,collect,check,strong' || r.n !== 4 || !r.subHas || !/Günün kaidesi/.test(r.sub)) throw new Error('folded into «Pekiştir», four rows: ' + J([r.steps, r.sub]));
+    if (r.card3 !== r.card1 || r.card3 > 640) throw new Error('the door pin: the first shelf card at ' + r.card3 + ' px (without the rule ' + r.card1 + '; pin 640)');
+    if (!r.sheet || !r.sheet.bq || !r.sheet.own || !r.sheet.title || !/\S/.test(r.sheet.cap) || !/aynen/.test(r.sheet.cap) || r.sheet.btns.join() !== 'Notu aç,Bir tur oyna') throw new Error('the rule card: ' + J(r.sheet));
+    if (!/(شُذُورُ|تَصْرِيفُ|مَرَاحُ|قَوَاعِدُ)/.test(r.sheet.cap) || !/(ص \d+|satır \d+)/.test(r.sheet.cap)) throw new Error('book and page (or line): ' + r.sheet.cap);
+    if (r.over) throw new Error('the rule card overflows 390 px');
+    if (r.doneBefore || !r.doneAfter || r.lesson !== 'strong' || !/✓/.test(r.subAfter)) throw new Error('ticks when opened; «Bir tur oyna» runs the step\'s round: ' + J([r.doneBefore, r.doneAfter, r.lesson, r.subAfter]));
+    if (r.en.join() === 'Günün kaidesi,Notu aç,Bir tur oyna') throw new Error('en strings');
+    // the split copy: the door shows the rule with every body held, and reads no body
+    const cp = require('child_process'), os = require('os'), http = require('http');
+    const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-v344-')); cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
+    const held = []; let hold = true;
+    const srv = http.createServer((q, s) => { const p = decodeURIComponent(q.url.split('?')[0]).replace(/^\/+/, '') || 'reader.html', f = pathx.join(dir, p);
+      if (!f.startsWith(dir) || !fsx.existsSync(f) || fsx.statSync(f).isDirectory()) { s.writeHead(404); s.end(); return; }
+      const send = () => { s.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(s); };
+      if (hold && /^data\/b\d+-/.test(p)) held.push(send); else send(); }).listen(0);
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    try {
+      await ctx.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '3'); localStorage.setItem('qissa-lang', 'tr'); } catch (e) {} });
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      await p.goto('http://127.0.0.1:' + srv.address().port + '/reader.html');
+      await p.waitForFunction(() => document.querySelectorAll('.lib-card:not(.skel)').length >= 50 && !document.body.classList.contains('data-pending'), null, { timeout: 120000 });
+      const s = await p.evaluate(() => { const o = { missing: BODY341.missing ? BODY341.missing.size : -1, n: STORIES.length };
+        const sub = document.querySelector('#todayCard [data-ls="strong"] small'); o.sub = sub && sub.textContent;
+        document.querySelector('#todayCard [data-ls="strong"]').click(); o.sheet = !!document.querySelector('#ruleDay blockquote'); o.miss = (window.__bodyMiss341 || []).length; return o; });
+      if (s.missing !== s.n || !/Günün kaidesi/.test(s.sub || '') || !s.sheet || s.miss || errs.length) throw new Error('the split door: the rule with the bodies held, no body read: ' + J(s) + ' ' + errs.slice(0, 2).join(' | '));
+    } finally { hold = false; held.splice(0).forEach(f => f()); await ctx.close(); srv.close(); fsx.rmSync(dir, { recursive: true, force: true }); }
+  });
+  await check('v344 — the level from reading: the highest level right ≥ 75 % over ≥ 12 answers in the last 14 days (chapter questions at the story\'s level, deck reviews of a story\'s cards, game answers); suggested only after three days running of a different level, in Settings, the filter sheet and the progress page; «geç» / «kalsın» — never applied by itself; a word tap is not evidence', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    let r;
+    try {
+      r = await page.evaluate(() => {
+        const K = ['qissa-lvlev', 'qissa-lvlsug', 'qissa-chq', 'qissa-mylevel'], keep = {}; K.forEach(k => { keep[k] = localStorage.getItem(k); });
+        const keepLv = state.myLevel, keepDeck = JSON.stringify(state.deck), keepLang = state.uiLang, keepSort = state.libSort, keepSortK = localStorage.getItem('qissa-libsort'), keepToday = localStorage.getItem('qissa-today'), keepTodayS = JSON.stringify(state.today), out = {};
+        const T0 = todayKey(), setLog = a => localStorage.setItem('qissa-lvlev', JSON.stringify(a)), ans = (lv, n, c, d) => Array.from({ length: n }, (_, i) => ({ d: d || T0, lv, ok: i < c ? 1 : 0, k: 'game' }));
+        try {
+          state.uiLang = 'tr'; state.myLevel = 2; localStorage.setItem('qissa-mylevel', '2'); localStorage.removeItem('qissa-lvlsug'); localStorage.removeItem('qissa-chq');
+          setLog(ans(3, 11, 11)); out.e11 = LevelEv344.estimate();
+          setLog(ans(3, 12, 12)); out.e12 = LevelEv344.estimate();
+          setLog(ans(3, 12, 12).concat(ans(4, 12, 8))); out.e4low = LevelEv344.estimate();
+          setLog(ans(3, 12, 12).concat(ans(4, 12, 9))); out.e4ok = LevelEv344.estimate();
+          setLog(ans(4, 20, 20, dayShift344(T0, -14))); out.old = LevelEv344.estimate();
+          // chapter questions count at the story's level, the deck's review at its story's level
+          const st5 = STORIES.find(s => s.level === 5); setLog([]);
+          localStorage.setItem('qissa-chq', JSON.stringify({ [st5.id + '|1']: { asked: 12, correct: 10, date: T0 } })); out.chq = LevelEv344.estimate();
+          localStorage.removeItem('qissa-chq'); setLog([]);
+          const st3 = STORIES.find(s => s.level === 3); state.deck = [{ id: 'word:x344', type: 'word', lex: 'x344', ctx: { story: st3.id, sen: 's1' } }];
+          for (let i = 0; i < 12; i++) grade(state.deck[0], 'good'); out.rev = LevelEv344.byLevel()[3];
+          out.quizHook = /LevelEv344\.add\("game", cfg\.lvl\(it\)/.test(runQuiz.toString()) && /!cfg\.chq/.test(runQuiz.toString());
+          // three days running
+          setLog(ans(3, 14, 13)); localStorage.removeItem('qissa-lvlsug'); out.day1 = LevelEv344.suggestion();
+          const sg = JSON.parse(localStorage.getItem('qissa-lvlsug')); sg.days[dayShift344(T0, -1)] = 3; sg.days[dayShift344(T0, -2)] = 2; localStorage.setItem('qissa-lvlsug', JSON.stringify(sg)); out.brk = LevelEv344.suggestion();
+          sg.days[dayShift344(T0, -2)] = 4; localStorage.setItem('qissa-lvlsug', JSON.stringify(sg)); out.run3 = LevelEv344.suggestion();
+          openDoorSettings340(); const box = document.getElementById('lvSuggest'); out.set = box && { h: box.querySelector('.lv344-h').textContent, ev: box.querySelector('.lv344-ev').textContent, btns: [...box.querySelectorAll('button')].map(b => b.textContent) };
+          out.setOver = sheetInner.scrollWidth > sheetInner.clientWidth + 1;
+          renderLibrary(); openLibFilter340(); out.filt = !!document.querySelector('.sheet.show #lvSuggest') && !!document.querySelector('.sheet.show #myLevelChip');
+          openStats(); out.prog = (document.getElementById('lvEvidence') || {}).textContent;
+          out.auto = [state.myLevel, localStorage.getItem('qissa-mylevel')];
+          // a word tap is not evidence
+          const before = K.map(k => localStorage.getItem(k)).join('§'); closeSheet();
+          openStory(st3); const w = storyEl.querySelector('.word'); w.click(); closeSheet(); out.tap = K.map(k => localStorage.getItem(k)).join('§') === before;
+          renderLibrary(); openDoorSettings340(); document.getElementById('lvSugKeep').click(); out.kept = LevelEv344.suggestion(); out.keptLv = state.myLevel;
+          const s2 = JSON.parse(localStorage.getItem('qissa-lvlsug')); delete s2.keep; localStorage.setItem('qissa-lvlsug', JSON.stringify(s2));
+          openDoorSettings340(); document.getElementById('lvSugGo').click(); out.went = state.myLevel;
+          state.uiLang = 'en'; out.en = [ui().lv344Says, ui().lv344Go, ui().lv344Keep];
+        } finally {
+          K.forEach(k => { if (keep[k] === null) localStorage.removeItem(k); else localStorage.setItem(k, keep[k]); });
+          state.myLevel = keepLv; state.deck = JSON.parse(keepDeck); persistDeck(); state.uiLang = keepLang; state.libSort = keepSort; state.today = JSON.parse(keepTodayS);
+          if (keepSortK === null) localStorage.removeItem('qissa-libsort'); else localStorage.setItem('qissa-libsort', keepSortK); if (keepToday === null) localStorage.removeItem('qissa-today'); else localStorage.setItem('qissa-today', keepToday); closeSheet();
+        }
+        return out;
+      });
+    } finally { await page.setViewportSize({ width: 1280, height: 720 }); }
+    await toLibrary();
+    const J = JSON.stringify;
+    if (r.e11 !== null || !r.e12 || r.e12.lv !== 3 || r.e4low.lv !== 3 || r.e4ok.lv !== 4 || r.old !== null) throw new Error('the thresholds (≥ 12 answers, ≥ 75 %, 14 days): ' + J([r.e11, r.e12, r.e4low, r.e4ok, r.old]));
+    if (!r.chq || r.chq.lv !== 5 || r.chq.n !== 12 || !r.rev || r.rev.n !== 12 || r.rev.c !== 12 || !r.quizHook) throw new Error('the evidence: chapter questions, reviews, game answers: ' + J([r.chq, r.rev, r.quizHook]));
+    if (r.day1 !== null || r.brk !== null || !r.run3 || r.run3.lv !== 3) throw new Error('three days running: ' + J([r.day1, r.brk, r.run3]));
+    if (!r.set || r.set.h !== 'Okumana göre seviyen: 3' || !/son 14 gün: seviye 3 — 14 sorudan 13 doğru/.test(r.set.ev) || r.set.btns.join() !== 'Geç,Kalsın' || r.setOver) throw new Error('Settings: ' + J(r.set));
+    if (!r.filt || r.prog !== r.set.ev) throw new Error('the filter sheet and the progress page carry it: ' + J([r.filt, r.prog]));
+    if (r.auto.join() !== '2,2' || r.keptLv !== 2) throw new Error('never applied by itself: ' + J(r.auto));
+    if (!r.tap) throw new Error('a word tap wrote evidence');
+    if (r.kept !== null || r.went !== 3) throw new Error('«kalsın» hides it, «geç» applies it on the tap: ' + J([r.kept, r.went]));
+    if (r.en[0] === 'Okumana göre seviyen: {l}') throw new Error('en strings');
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
