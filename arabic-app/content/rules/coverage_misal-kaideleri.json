@@ -10,7 +10,8 @@
  "group": "sarf",
  "note": "Both files carry the same numbered rules (the first adds «(مراح الارواح، صحيفه N)، (عزى، صحيفه N)»); the first ~150 lines of each are OLE noise.",
  "counts": {
-  "noted": 11,
+  "noted": 10,
+  "applied": 1,
   "not-automatable": 1
  },
  "entries": [
@@ -35,6 +36,10 @@
    "kind": "rule",
    "carried_by": [
     {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    },
+    {
      "type": "note",
      "ref": "mithal-verbs",
      "how": "names"
@@ -57,11 +62,10 @@
     "(عزى، صحيفه 149)"
    ],
    "proof": {
-    "ok": false,
-    "got": "1/2 pass; يَعِدُ ← hadhf-waw-mithal ‖ يَهِبُ ← hadhf-waw-mithal"
+    "ok": true,
+    "got": "2/2 pass; يَعِدُ ← hadhf-waw-mithal ‖ يَهَبُ ← hadhf-waw-mithal,fath-halq"
    },
-   "status": "noted",
-   "gap": "engine probe fails"
+   "status": "applied"
   },
   {
    "id": "r3",

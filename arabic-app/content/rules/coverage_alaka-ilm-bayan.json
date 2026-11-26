@@ -10,10 +10,9 @@
  "group": "balagha",
  "note": "RE-MEASURED: `alaqat-al-majaz-balagha.txt` is not unrecoverable (research/COVERAGE.md #3 is stale) — it is the raw Word dump of `alaka-ilm-bayan.txt`: 582 of the latter's 583 text lines stand in it letter for letter, and it holds no Arabic the other lacks. Ledgered once.",
  "counts": {
-  "noted": 184,
+  "noted": 175,
   "not-automatable": 5,
-  "applied": 9,
-  "open": 2
+  "applied": 20
  },
  "entries": [
   {
@@ -2510,11 +2509,23 @@
      "type": "note",
      "ref": "majaz-murakkab",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "كون سابق"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «كون سابق»",
-   "gap": "MajazEngine names no ʿalāqa «كون سابق»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"ma-kana\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p062",
@@ -2551,11 +2562,23 @@
      "type": "note",
      "ref": "majaz-murakkab",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "كون سابق"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «كون سابق»",
-   "gap": "MajazEngine names no ʿalāqa «كون سابق»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"ma-kana\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p063",
@@ -2592,11 +2615,23 @@
      "type": "note",
      "ref": "majaz-murakkab",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "كون لاحق"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «كون لاحق»",
-   "gap": "MajazEngine names no ʿalāqa «كون لاحق»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"ma-yaul\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p064",
@@ -2633,11 +2668,23 @@
      "type": "note",
      "ref": "majaz-murakkab",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "كون لاحق"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «كون لاحق»",
-   "gap": "MajazEngine names no ʿalāqa «كون لاحق»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"ma-yaul\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p065",
@@ -2880,11 +2927,23 @@
      "type": "note",
      "ref": "majaz-murakkab",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "اطلاق"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «اطلاق»",
-   "gap": "MajazEngine names no ʿalāqa «اطلاق»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"itlaq\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p070",
@@ -2921,11 +2980,23 @@
      "type": "note",
      "ref": "majaz-murakkab",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "تقييد"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «تقييد»",
-   "gap": "MajazEngine names no ʿalāqa «تقييد»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"taqyid\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p071",
@@ -3807,8 +3878,39 @@
    "line": 252,
    "ar": "( تركجه مثال ؛ بو ايش ياپيلمش ده ييب ياپمايى، زورلاشمش ده ييب زورلغنى مراد ايتمك كبى",
    "kind": "section",
-   "carried_by": [],
-   "status": "open"
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "haqiqa-majaz",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "majaz-mursal",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "anwa-al-majaz",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "qarinat-al-majaz",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "majaz-aqli",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "majaz-murakkab",
+     "how": "continues the paragraph before"
+    }
+   ],
+   "status": "noted"
   },
   {
    "id": "p091",
@@ -4207,8 +4309,39 @@
    "line": 282,
    "ar": "( تركجه مثال ؛ تركجه ده صفت اوگجه موصوف صوگرا گلير ده ييب صفت وموصوفه دلالت ايدن لفظلرى مراد ايتمك كبى",
    "kind": "section",
-   "carried_by": [],
-   "status": "open"
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "haqiqa-majaz",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "majaz-mursal",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "anwa-al-majaz",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "qarinat-al-majaz",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "majaz-aqli",
+     "how": "continues the paragraph before"
+    },
+    {
+     "type": "note",
+     "ref": "majaz-murakkab",
+     "how": "continues the paragraph before"
+    }
+   ],
+   "status": "noted"
   },
   {
    "id": "p100",
@@ -4284,11 +4417,23 @@
      "type": "note",
      "ref": "majaz-murakkab",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "تقييد"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «تقييد»",
-   "gap": "MajazEngine names no ʿalāqa «تقييد»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"taqyid\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p102",
@@ -4414,11 +4559,28 @@
      "type": "note",
      "ref": "al-iqtibas-wal-tadmin",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "كون سابق",
+      "كون لاحق",
+      "عموم",
+      "خصوص",
+      "اطلاق",
+      "تقييد"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «كون سابق، كون لاحق، اطلاق، تقييد»",
-   "gap": "MajazEngine names no ʿalāqa «كون سابق، كون لاحق، اطلاق، تقييد»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"ma-kana\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p104",
@@ -4460,11 +4622,27 @@
      "type": "note",
      "ref": "al-iqtibas-wal-tadmin",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "كون سابق",
+      "عموم",
+      "خصوص",
+      "اطلاق",
+      "تقييد"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «كون سابق، اطلاق، تقييد»",
-   "gap": "MajazEngine names no ʿalāqa «كون سابق، اطلاق، تقييد»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"ma-kana\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p105",
@@ -8815,11 +8993,23 @@
      "type": "note",
      "ref": "fadl-al-majaz-wal-kinaya",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "اطلاق"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «اطلاق»",
-   "gap": "MajazEngine names no ʿalāqa «اطلاق»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"itlaq\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p174",
@@ -10091,11 +10281,28 @@
      "type": "note",
      "ref": "al-iqtibas-wal-tadmin",
      "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "MajazEngine.ALAQA_NAMES",
+     "alaqa": [
+      "كون سابق",
+      "كون لاحق",
+      "عموم",
+      "خصوص",
+      "اطلاق",
+      "تقييد"
+     ]
     }
    ],
-   "reason": "MajazEngine names no ʿalāqa «كون سابق، كون لاحق، اطلاق، تقييد»",
-   "gap": "MajazEngine names no ʿalāqa «كون سابق، كون لاحق، اطلاق، تقييد»",
-   "status": "noted"
+   "probe": {
+    "js": "Object.values(MajazEngine.ALAQA_NAMES).includes(\"ma-kana\")"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
   },
   {
    "id": "p200",

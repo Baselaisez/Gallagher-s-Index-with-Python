@@ -9,8 +9,7 @@
  "group": "sarf",
  "note": "",
  "counts": {
-  "applied": 44,
-  "open": 4,
+  "applied": 48,
   "slip": 1,
   "noted": 3
  },
@@ -146,68 +145,84 @@
    "line": 21,
    "ar": "غَزَوْ ← غَزَوُوا",
    "kind": "derivation",
-   "carried_by": [],
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
    "probe": {
     "ilal": "غَزَوُوا",
     "out": "غَزَوْ"
    },
    "proof": {
-    "ok": false,
-    "got": "غَزَوُوا ← "
+    "ok": true,
+    "got": "غَزَوْا ← qalb-alif,hadhf-sakinayn"
    },
-   "status": "open",
-   "gap": "engine probe fails"
+   "status": "applied"
   },
   {
    "id": "d22-8",
    "line": 22,
    "ar": "رَمَوْا ← رَمَيُوا",
    "kind": "derivation",
-   "carried_by": [],
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
    "probe": {
     "ilal": "رَمَيُوا",
     "out": "رَمَوْا"
    },
    "proof": {
-    "ok": false,
-    "got": "رَمَيُوا ← "
+    "ok": true,
+    "got": "رَمَوْا ← qalb-alif,hadhf-sakinayn"
    },
-   "status": "open",
-   "gap": "engine probe fails"
+   "status": "applied"
   },
   {
    "id": "d23-9",
    "line": 23,
    "ar": "غَزَتاَ ← غَزَوَتَا",
    "kind": "derivation",
-   "carried_by": [],
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
    "probe": {
     "ilal": "غَزَوَتَا",
     "out": "غَزَتاَ"
    },
    "proof": {
-    "ok": false,
-    "got": "غَزَاتَا ← qalb-alif"
+    "ok": true,
+    "got": "غَزَتَا ← qalb-alif,hadhf-alif-ta"
    },
-   "status": "open",
-   "gap": "engine probe fails"
+   "status": "applied"
   },
   {
    "id": "d24-10",
    "line": 24,
    "ar": "رَمَتاَ ← رَمَيَتَا",
    "kind": "derivation",
-   "carried_by": [],
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
    "probe": {
     "ilal": "رَمَيَتَا",
     "out": "رَمَتاَ"
    },
    "proof": {
-    "ok": false,
-    "got": "رَمَاتَا ← qalb-alif"
+    "ok": true,
+    "got": "رَمَتَا ← qalb-alif,hadhf-alif-ta"
    },
-   "status": "open",
-   "gap": "engine probe fails"
+   "status": "applied"
   },
   {
    "id": "d32-11",
@@ -500,7 +515,7 @@
    },
    "proof": {
     "ok": true,
-    "got": "تَغْزِينَ ← hadhf-lam-damir,munasaba"
+    "got": "تَغْزِينَ ← hadhf-lam-damir"
    },
    "status": "applied"
   },

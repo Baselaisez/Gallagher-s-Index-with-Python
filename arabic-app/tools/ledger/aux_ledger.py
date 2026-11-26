@@ -733,6 +733,7 @@ BTOPICS = [
     ('bayan', r'علم بيان|علم البيان|بيان', ['ilm-al-bayan']),
     ('tashbih', r'تشبيه|مشبه', ['tashbih', 'aghrad-al-tashbih', 'arkan-al-tashbih', 'aqsam-al-tashbih']),
     ('haqiqa', r'حقيقت|حقيقة', ['haqiqa-majaz']),
+    ('hal-jumla', r'حال واقع|جملهء حاليه|جملة حالية|واو الحال', ['al-hal-jumla-wa-rabituha']),   # v345-Q: the Talkhīṣ on the ḥāl clause and its wāw
     ('majaz', r'مجاز|علاقه|علاقة|لزوم|ما وضع له|موضوع له', ['haqiqa-majaz', 'majaz-mursal', 'anwa-al-majaz', 'qarinat-al-majaz', 'majaz-aqli', 'majaz-murakkab']),
     ('istiara', r'استعاره|استعارة|مصرحه|مكنيه|مكنيّه|تخييليه|تحقيقيه|تمثيليه|مستعار', ['istiara', 'aqsam-al-istiara', 'istiara-makniyya', 'istiara-tabaiyya', 'arkan-al-istiara']),
     ('kinaya', r'كنايه|كناية|مكني', ['kinaya', 'aqsam-al-kinaya', 'kinaya-qariba-baida', 'farq-al-kinaya-wal-majaz', 'fadl-al-majaz-wal-kinaya']),
@@ -752,9 +753,9 @@ def btopics(text):
 
 
 ALAQA = [  # the ʿalāqas the notes name: (Ottoman name, key in MajazEngine.ALAQA_NAMES or None)
-    ('مصدريه', None), ('مظهريه', None), ('مجاوره', 'mujawara'), ('جزئيه', 'juziyya'), ('كليه', 'kulliyya'), ('سببيه', 'sababiyya'),
-    ('مسببيه', 'musabbabiyya'), ('كون سابق', None), ('كون لاحق', None), ('محليه', 'mahalliyya'), ('حاليه', 'halliyya'), ('آليه', 'aliyya'),
-    ('لازميه', 'lazimiyya'), ('ملزوميه', 'malzumiyya'), ('عموم', 'umum'), ('خصوص', 'khusus'), ('اطلاق', None), ('تقييد', None),
+    ('مصدريه', 'masdariyya'), ('مظهريه', 'mazhariyya'), ('مجاوره', 'mujawara'), ('جزئيه', 'juziyya'), ('كليه', 'kulliyya'), ('سببيه', 'sababiyya'),
+    ('مسببيه', 'musabbabiyya'), ('كون سابق', 'ma-kana'), ('كون لاحق', 'ma-yaul'), ('محليه', 'mahalliyya'), ('حاليه', 'halliyya'), ('آليه', 'aliyya'),
+    ('لازميه', 'lazimiyya'), ('ملزوميه', 'malzumiyya'), ('عموم', 'umum'), ('خصوص', 'khusus'), ('اطلاق', 'itlaq'), ('تقييد', 'taqyid'),   # v345-Q: the six MajazEngine.ALAQA_NAMES now names (engine gap 10)
 ]
 
 
@@ -779,7 +780,7 @@ def g_balagha():
     prev_cb = []
     for k, (ln, txt) in enumerate(paras, 1):
         tops, cb = btopics(txt)
-        if not tops and re.match(r'\(\s*(تركجه مثال|مثلا|نوط|معناسي|ذاته مثال|صفته مثال|حسا)', H(txt.strip())):
+        if not tops and re.match(r'\(\s*(تركجه\s+مثال|مثلا|نوط|معناسي|ذاته مثال|صفته مثال|حسا)', H(txt.strip())):
             cb = [dict(c, how='continues the paragraph before') for c in prev_cb]
         if not tops and not cb and re.search(r'حمد|صلات|آل:|اوّلين|طيّبين|طاهرين', txt):
             E(en, f'p{k:03d}', ln, re.sub(r'\s+', ' ', txt.strip())[:160], 'section', [], 'not-automatable',

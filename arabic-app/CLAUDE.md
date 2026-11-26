@@ -16315,3 +16315,63 @@ sign tells**, each step `{kind, ar, en, tr, term, cite?}`; the en/tr sentences a
 - **Suite.** 592 checks: 589 PASS in the full run; the three FAILs re-run alone: v338 (my first ladder repeated the visible mark —
   fixed, PASS), v334-S naive-Bayes (PASS alone), v334-S «five corpus walks» (a games-hub thread-hold timing; it fails the same way on the
   pre-v346 reader under the same load, load average ≈ 12 from the other agents — not this wave). No older check was edited.
+## v345-Q — al-Maqṣūd's prose carried, the typed iʿlāl road
+
+Worktree `arabic-app` (scratch maqsud345). Engines touched: `IlalEngine`, `MaqsudEngine`, `MajazEngine.ALAQA_NAMES` (+ the ledger tools). No iʿrāb
+engine, so no triage delta (the gate's live engines are unchanged). **Measured before → after:** `sarfAudit()` 1,892 checked / 0 bad / 180 x / 8
+samāʿī → identical; `MaqsudEngine.audit()` strict 1,698 / 1,922 → identical; `Bab35Engine.audit()` 0 bad → 0; `IlalEngine.derive` on all 69,785
+vowelled shelf words (scratch `sweep.js`): 21 outputs moved — شَمِمَ / حَبُبَ / لَبُبَ now merge (شَمَّ، حَبَّ، لَبَّ — right), the IV māḍī أَحْوَجْنَ
+reads أَحَجْنَ (the regular rule's output; أَحْوَجَ itself is a kept word either way), and surfaces read as origins that were garbage before
+and after (وَيُبْدَلُ، أَوْدِعْ، اِعْوَرْ). No stored paradigm newly disagrees.
+
+**1. al-Maqṣūd's 204 open units → 0 open** (applied 411 → **525**, noted 11 → **89**, not automatable 67 → **79**).
+- **Applied by engine, on the book's own word (114 units).** `MaqsudEngine.recite(letters, door, {variant})` recites ANY door the way the
+  commentary does (L312–L356, L366–L456): Bab35Engine derives the door (sarfDerive / mazidDerive / rubai17Derive), `muhtelife` the Emsile
+  row (+ its extension rows for every door, not only the nine ziyāde heads), `jus14` the amr ghāʾib / nahy ghāʾib and ḥāḍir blocks, the
+  passive from `MaqsudEngine.majhul` (form I) or sjMajhul, the two nūns from TawkidEngine; the print's glued particle (لاَيَنْصُرْ،
+  فَهُوَمُنْكَسِرٌ) is a cell too. `idghamTa` is L424's PERMITTED idghām of tafaʿʿul / tafāʿul for the eleven letters (اِدَّثَّرَ، اِثَّاقَلَ) —
+  only as `{variant: 'idgham-ta'}`, never in the door. Probe kind **`mqr` {root, key, variant?, w}** in `sarf_probe_eval.js`. The readings
+  (root, door) are fixed by hand in **`tools/ledger/maqsud_hand_probes.py`** → `.json` (344 probes, every word asserted on its cited line;
+  the runner's default hand list), because a runner's guess proves the wrong bāb (اِسْتَجَدْنَ is also VIII of س ج د). The iʿlāl units take
+  `ilal` probes on the book's «X اصلنده Y» (8 aṣls the book does not print are the sound template's, marked `aslBy: template`), the kept
+  words `kept` probes with their gate. Probes 3,916 → 4,260.
+- **Carried (78 units)** in the chapter's ṣarf note by **`tools/ledger/add_maqsud_prose.py`** from **`tools/ledger/maqsud_renderings.json`**:
+  `ar` = the unit verbatim at its line, `matn` = its vowelled Arabic verbatim, `source` «maqsud-sarf.txt:N[–M]», `tr` / `en` OUR renderings
+  marked «[çeviri · hoca onayı bekliyor]» / «[translation · awaiting the hoca's review]». 16 notes (imperative-amr 12, thulathi-mujarrad-babs 9,
+  augmented-babs 9, masdar 8, ism-al-zaman-wal-makan 8 …).
+- **Not automatable (12)** with the reason in `sarf_ledger_plan.json`: four headings, the ḥadīth's Turkish meaning and its gloss (L342–L345),
+  the teacher's advice and its glosses (L383, L386, L793), the istirjāʿ's meaning (L541), a transition (L559).
+
+**2. The typed iʿlāl road agrees with sarfDerive (engine gap 8).** `IlalEngine.typedVerb(u)` reads a TYPED origin as the lab reads its verb
+shapes: prefix + quiescent letter = muḍāriʿ, waṣl + quiescent letter ending quiescent / in a pronoun = amr; the mithāl's flags (the shelf's
+bāb decides `fath`: يَوْهِبُ → يَهَبُ, Maqṣūd L714; the amr from the muḍāriʿ: اِوْعِدْ → عِدْ, اِوْهَبْ → هَبْ, L711–L713); the doubled twin at
+the ʿayn / lām (مَدَدَ → مَدَّ, يَمْدُدُ → يَمُدُّ, اُمْدُدَا → مُدَّا, فَاعِل مَادِدٌ → مَادٌّ; the fakk اُمْدُدْ kept, permitted); the lafīf maqrūn's ʿayn marked for
+the gate «ilalan» (L717: رَوَيَتْ → رَوَتْ, يَرْوِيُونَ → يَرْوُونَ). Rule edits: `harmoniya` gives the fāʾ the fallen ʿayn's own kasra / ḍamma
+(خَوِفْتُ → خِفْتُ, طَوُلْتُ → طُلْتُ); `hadhf-jazm` takes a typed lām written quiescent (اُغْزُوْ → اُغْزُ, Maqṣūd L698) but never the pronoun
+(اِرْمِيِيْ → اِرْمِيْ); `hadhf-lam-damir` moves the wāw's kasra (تَغْزُوِينَ → تَغْزِينَ); `spell(s, asl)` keeps a typed dual alif (وَعَدَا).
+**Measured over the Maqṣūd's eighteen models** (every sarfDerive cell typed as its sound-template aṣl): 489 / 702 → **671 / 673**; left out by
+line: the samāʿī hamza drops (كُلْ ʿIzzī L293, يَرَى L313; 29 cells); the two left are named homographs — اِرْوَيْ / تَرْوَيْ are also the
+feminine addressee's amr and jussive, and the typed road keeps them. The aux ledger's four gap-8 rows (ilal-kaideleri-turkce) now prove.
+
+**3. The ʿalāqas and the balāgha rows.** `MajazEngine.ALAQA_NAMES` names مصدر، مظهر، سابق، لاحق، إطلاق، تقييد (alaka-ilm-bayan l. 293–296);
+`ALAQA_PHRASE` reads «بِاعْتِبَارِ مَا كَانَ / مَا يَكُونُ / مَا يَؤُولُ»; the two kawns keep the frames' keys `ma-kana` / `ma-yaul` (the authored data's),
+and `ALAQA_ALIAS` lets `alaqaDoc` give them ALAQAT's kawn-sabiq / kawn-lahiq definitions (the lab drew «—» for them before). `aux_ledger.py`:
+the six keys, «تركجه\s+مثال» (two Turkish-example paragraphs fell through a double space), a ḥāl-clause topic → `al-hal-jumla-wa-rabituha`.
+alaka-ilm-bayan applied 9 → 20, open 2 → 0; talkhis open 2 → 0; misal-kaideleri applied 0 → 1.
+
+**4. The hollow mafʿūl two ways** (backlog L3): `IlalEngine.mafulKhilaf` + `ilalKhilafHtml` in the Iʿlāl lab — مَقْوُولٌ / مَبْيُوعٌ by Sībawayh
+(the wāw of mafʿūl falls) and by al-Akhfash (the ʿayn falls; مَبُوعٌ → مَبِوْعٌ → مَبِيعٌ), each attributed to ʿIzzī L212, neither called «the»
+derivation; derive() keeps its road.
+
+**Smoke** (before «v333»): «v345-Q — al-Maqṣūd consumed», «v345-Q — the typed iʿlāl road agrees with sarfDerive», «v345-Q — the six ʿalāqas».
+**Older checks changed:** the v342 Maqṣūd ledger pin (applied 525, carried 614, open 0, na 79 — the 12 reasons above) and four v342-A pins
+(alaka-ilm-bayan, ilal-kaideleri-turkce, misal-kaideleri, talkhis) moved the right way. Rebuild: `python3 tools/ledger/maqsud_hand_probes.py &&
+python3 tools/ledger/sarf_ledger.py --candidates <s>/cand.json && node tools/ledger/sarf_probe_run.js <s>/cand.json content/rules/sarf_ledger_probes.json
+&& python3 tools/ledger/sarf_ledger.py` (the hand list is read by default).
+**For the hoca:** (1) the 78 renderings; (2) print slips the engine proves around: L366 دَخْرَجَ (دَحْرَجَ? proved on the letters as printed),
+L425–L427 اِتَّرَكَ، اِذَّكَرَ، اِشَّقَقَ without the ʿayn's shadda, L537 اِسْتِجَادُوا, L276 ضَحِمٌ (ضَخِمٌ?); (3) is a typed اِرْوَيْ to be read as the
+masculine origin (→ اِرْوَ) or the feminine form (kept)? **Left:** nothing open in the Maqṣūd; the hamza's own tahfīf (يَاكُلُ، يُومِنُ, L766–L770)
+and سَلْ from اِسْأَلْ (L776–L778) are carried, not derived.
+Refit (`build → gen_irab_model → build → gen_drills → ml_engine → build`; irab_model 2,459 weights over 72,955 rows) and the full suite: **593 checks,
+589 pass**; the four failures were timing only (narration click, held-out CV 15.3 s, v334-S held-out grade, v341 door) under load ≈ 10.9 from other
+agents — run alone after, all four passed. `check_i18n.py` clean.

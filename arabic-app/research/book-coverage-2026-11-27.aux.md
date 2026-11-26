@@ -25,13 +25,13 @@ carrier but records `gap`; every such gap that needs an engine rule is ranked in
 | bablara-nakil | sarf | `bablara-nakil-12-wazn.txt`, `bablara-nakil-tablosu.txt` | 132 | 128 | 0 | 0 | 0 | 4 | 0 | 0 |
 | sarf-35-bab-tablosu | sarf | `sarf-35-bab-tablosu.txt` | 42 | 42 | 0 | 0 | 0 | 0 | 0 | 0 |
 | ziyade-bab-muhtelife-cekimi | sarf | `ziyade-bab-muhtelife-cekimi.txt` | 25 | 25 | 0 | 0 | 0 | 0 | 0 | 0 |
-| ilal-kaideleri-turkce | sarf | `ilal-kaideleri-turkce.txt` | 52 | 44 | 3 | 0 | 0 | 1 | 0 | 4 |
-| misal-kaideleri | sarf | `misal-kaideleri-mesnedli.txt`, `ilal-misal-ecvef-naqis.txt` | 12 | 0 | 11 | 0 | 0 | 0 | 1 | 0 |
+| ilal-kaideleri-turkce | sarf | `ilal-kaideleri-turkce.txt` | 52 | 48 | 3 | 0 | 0 | 1 | 0 | 0 |
+| misal-kaideleri | sarf | `misal-kaideleri-mesnedli.txt`, `ilal-misal-ecvef-naqis.txt` | 12 | 1 | 10 | 0 | 0 | 0 | 1 | 0 |
 | masdar-sifa-mubalagha-vezinleri | sarf | `masdar-sifa-mubalagha-vezinleri.txt` | 6 | 2 | 3 | 0 | 0 | 0 | 1 | 0 |
 | sifa-mushabbaha-vezinleri | sarf | `sifa-mushabbaha-vezinleri.txt` | 16 | 0 | 15 | 0 | 0 | 1 | 0 | 0 |
 | esmai-aded-worksheets | sarf | `esmai-aded-worksheets.txt` | 89 | 89 | 0 | 0 | 0 | 0 | 0 | 0 |
-| alaka-ilm-bayan | balagha | `alaka-ilm-bayan.txt`, `alaqat-al-majaz-balagha.txt` | 200 | 9 | 184 | 0 | 0 | 0 | 5 | 2 |
-| talkhis-al-miftah-balagha | balagha | `talkhis-al-miftah-balagha.txt` | 169 | 0 | 49 | 0 | 118 | 0 | 0 | 2 |
+| alaka-ilm-bayan | balagha | `alaka-ilm-bayan.txt`, `alaqat-al-majaz-balagha.txt` | 200 | 20 | 175 | 0 | 0 | 0 | 5 | 0 |
+| talkhis-al-miftah-balagha | balagha | `talkhis-al-miftah-balagha.txt` | 169 | 0 | 51 | 0 | 118 | 0 | 0 | 0 |
 | aqaid-nasafi | texts | `aqaid-nasafi-matn-full.txt` | 150 | 0 | 0 | 0 | 150 | 0 | 0 | 0 |
 | emali-qasida | texts | `emali-qasida-ottoman.txt` | 68 | 0 | 0 | 0 | 67 | 0 | 1 | 0 |
 | usul-al-munifa | texts | `usul-al-munifa-src.txt` | 351 | 0 | 0 | 0 | 351 | 0 | 0 | 0 |
@@ -54,7 +54,7 @@ carrier but records `gap`; every such gap that needs an engine rule is ranked in
 | sulh-fiqh | texts | `sulh-fiqh-turkce.txt` | 18 | 0 | 17 | 0 | 0 | 0 | 0 | 1 |
 | vakif-mali | texts | `vakif-mali-turkce.txt` | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 1 |
 | qisas-al-nabiyyin-nadwi-leveling-notes | texts | `qisas-al-nabiyyin-nadwi-leveling-notes.txt` | 32 | 0 | 0 | 0 | 0 | 0 | 32 | 0 |
-| **all** | | | 3406 | 716 | 417 | 299 | 1827 | 6 | 67 | 74 |
+| **all** | | | 3406 | 732 | 409 | 299 | 1827 | 6 | 67 | 66 |
 
 ## birgivi-awamil-inventory — Birgivī's ʿAwāmil — the inventory tables (Ottoman and Turkish)
 
@@ -154,10 +154,6 @@ Nothing open.
 
 | id | line | entry | status | why / where it goes |
 |---|---|---|---|---|
-| d21-7 | 21 | غَزَوْ ← غَزَوُوا | open | engine probe fails — engine says: غَزَوُوا ← |
-| d22-8 | 22 | رَمَوْا ← رَمَيُوا | open | engine probe fails — engine says: رَمَيُوا ← |
-| d23-9 | 23 | غَزَتاَ ← غَزَوَتَا | open | engine probe fails — engine says: غَزَاتَا ← qalb-alif |
-| d24-10 | 24 | رَمَتاَ ← رَمَيَتَا | open | engine probe fails — engine says: رَمَاتَا ← qalb-alif |
 | d45-13 | 45 | غَبِىَ ← غَِبوَ | slip | the sheet's own typo: غَِبوَ — the kasra sits on the ghayn with a fatḥa (the origin is غَبِوَ, the rule's own words) — engine says: غَِبوَ ← |
 
 ## misal-kaideleri — Mithāl rules (Ottoman), with the Marāḥ / ʿIzzī citations
@@ -195,15 +191,10 @@ RE-MEASURED: `alaqat-al-majaz-balagha.txt` is not unrecoverable (research/COVERA
 | p013 | 32 | ( اوّلين دن مراد؛ پيغمبر افنديمزدن اوگجه كيلردر. آخرين دن مراد؛ پيغمبر | not-automatable | commentary on the khuṭba (praise, blessing, the Prophet's family): no rule to carry |
 | p014 | 33 | ( آل: هر نه قادار لفظاً مفرد اولسه ده معنًا جمع اولديغى ايچون صفتى جمع | not-automatable | commentary on the khuṭba (praise, blessing, the Prophet's family): no rule to carry |
 | p015 | 34 | ( طيّبين:ايمان وعمل صالح نوريله گوزل ديمكدر.طاهرين:كفر نوعلرندن و گوتو | not-automatable | commentary on the khuṭba (praise, blessing, the Prophet's family): no rule to carry |
-| p090 | 252 | ( تركجه مثال ؛ بو ايش ياپيلمش ده ييب ياپمايى، زورلاشمش ده ييب زورلغنى  | open |  |
-| p099 | 282 | ( تركجه مثال ؛ تركجه ده صفت اوگجه موصوف صوگرا گلير ده ييب صفت وموصوفه  | open |  |
 
 ## talkhis-al-miftah-balagha — Talkhīṣ al-Miftāḥ — the Ottoman lesson notebook (Ziya Sungur-oğlu), per page
 
-| id | line | entry | status | why / where it goes |
-|---|---|---|---|---|
-| page89 | 2540 | صحيفه:٨٨ مثبت مضارعده بويلدر. يعنى مفرد اولان حالده بولونان ايكى شى مث | open | no matn run on the shelf and no balāgha topic named |
-| page91 | 2592 | صحيفه:٩۰ بو كلامك تحقيقى شويله در. عدمك دوام ايتمه سى بر فاعله محتاج د | open | no matn run on the shelf and no balāgha topic named |
+Nothing open.
 
 ## aqaid-nasafi — al-ʿAqāʾid al-Nasafiyya — the matn
 

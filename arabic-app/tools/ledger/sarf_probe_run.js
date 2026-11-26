@@ -8,7 +8,9 @@ const { chromium } = require('playwright');
 (async () => {
   const [cand, out, hand] = process.argv.slice(2);
   const C = JSON.parse(fs.readFileSync(cand, 'utf8'));
-  const H = hand && fs.existsSync(hand) ? JSON.parse(fs.readFileSync(hand, 'utf8')) : [];
+  // (v345-Q) the hand list defaults to the Maqṣūd's applied units (tools/ledger/maqsud_hand_probes.py writes it)
+  const H0 = hand || path.join(__dirname, 'maqsud_hand_probes.json');
+  const H = fs.existsSync(H0) ? JSON.parse(fs.readFileSync(H0, 'utf8')) : [];
   const b = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH });
   const p = await b.newPage();
   await p.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); } catch (e) {} });
