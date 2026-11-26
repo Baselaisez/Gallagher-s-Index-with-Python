@@ -69,7 +69,7 @@ Waiting on people:
 - the hoca's answers (this weekend); the story-correction proposals (64 certain + 4 + 3 new); the renderings (al-Inṣāf, Marāḥ pp. 145–182, al-Maqṣūd's 78 units, the 28 role definitions of v346); 304 lines whose role and stated case disagree;
 - the owner: the archive.org item's title or file; who records the narration; whether to price a generated voice (778,063 characters for the shelf); whether the «Neden?» ladder should always open in full.
 
-## 2026-11-26 20:00 UTC
+## 2026-11-26 19:55 UTC
 
 Landed since the last entry (dev branch):
 - v347 `f9d202f` — «Dinle»: the listening bar, the voice sheet and the no-voice message, the Android speech plugin, the narration studio and packs; the page-wide `:has()` rule that cost 1.7 s at the door replaced by a class.
@@ -92,3 +92,20 @@ Hand-overs still open for the next engine round: DabtEngine (a noun after a pass
 Waiting on people:
 - the hoca: his answers (this weekend); packet o08 with the earlier packets; the 586 «likely» proposals (not applied); the renderings (al-Inṣāf, Marāḥ pp. 145–182, al-Maqṣūd's 78 units, 28 role definitions, 84 commentary reasons); 304 lines whose role and stated case disagree;
 - the owner: the archive.org item's title or file; a phone test of «Dinle» in the APK; his ear on the app's own voice once the samples are ready; who records the narration.
+
+## 2026-11-26 20:23 UTC
+
+Nothing merged since the last entry; CI passed on `6baad21` and `2bd12f2`.
+
+Owner, 2026-11-26 evening: three more books — al-Suyūṭī's al-Iqtirāḥ (Shamela 14246), Ibn Jinnī's al-Khaṣāʾiṣ (9986; «must be both feeder and text»), Ibn ʿAqīl on the Alfiyya (9904; «so important a naḥw resource, automatable»); «Iẓhār is so important and you have sufficient resource for it»; design improvements; an onboarding guide; speed.
+
+Running (scratch folder = wave tag):
+| wave | worktree / branch | scratch folder | job | progress |
+|---|---|---|---|---|
+| v348-A | qissa-feed2 · tmp/amthal348 | amthal348 | the proverbs' shelf | audit judged (33 records), full suite running |
+| v349-V | qissa-audit · tmp/voicein349 | voicein349 | the app's own voice | delivery path, deploy-time rendering, two samples for the owner's ear; full suite running |
+| v350-S | qissa-speed · tmp/speed350 | speed350 | speed VI | fixes in; final A/B and full suite running |
+| v351-O | qissa-why · tmp/guide351 | guide351 | the guide (tour on the real screens, one-time hints, «Kılavuz» page) and a design pass | tour built; design audit started |
+| v351-I | qissa-sarf · tmp/izhar351 | izhar351 | Iẓhār as a course (`izhar_map.json`, the course page, «söylenir mi?» round, the Iẓhār story's audit) | ledger's two open rows applied; course built; checks next |
+
+Queued (briefs in the scratchpad's V352_BRIEFS.md; start as worktrees free, at most five agents at once): v352-A Ibn ʿAqīl as feeder (qissa-feed1), v352-U al-Khaṣāʾiṣ + al-Iqtirāḥ as uṣūl feeders, v352-K readings from al-Khaṣāʾiṣ as a shelf. Sources: al-Iqtirāḥ 405 pp. and al-Khaṣāʾiṣ 1,357 pp. fetched; Ibn ʿAqīl fetching (scratchpad newsrc/dl/b9904).
