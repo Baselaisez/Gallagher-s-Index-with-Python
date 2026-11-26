@@ -1,0 +1,119 @@
+{
+ "book": "masdar-sifa-mubalagha-vezinleri",
+ "ledger": "aux",
+ "title": "Samāʿī maṣdar, ṣifa mushabbaha and mubālagha wazns (headers only survive)",
+ "source": "research/sources/masdar-sifa-mubalagha-vezinleri.txt",
+ "files": [
+  "research/sources/masdar-sifa-mubalagha-vezinleri.txt"
+ ],
+ "group": "sarf",
+ "note": "",
+ "counts": {
+  "noted": 3,
+  "applied": 2,
+  "not-automatable": 1
+ },
+ "entries": [
+  {
+   "id": "h155",
+   "line": 155,
+   "ar": "ثلاثى(سماعى)مصدرلررى",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "masdar",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "h156",
+   "line": 156,
+   "ar": "مصدر جوقورلرى(۳٢)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "masdar",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "h160",
+   "line": 160,
+   "ar": "صفت مشبهه وزنلرى (۱٧)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "masdar",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "ISHTIQAQ_LAW.patterns"
+    }
+   ],
+   "probe": {
+    "js": "ISHTIQAQ_LAW.patterns.some(p=>p.roles.includes('sifa'))"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "h720",
+   "line": 720,
+   "ar": "اسم فاعلك مبالغه وزنلرى (۸)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "masdar",
+     "how": "names"
+    },
+    {
+     "type": "engine",
+     "ref": "ISHTIQAQ_LAW.patterns"
+    }
+   ],
+   "probe": {
+    "js": "ISHTIQAQ_LAW.patterns.some(p=>p.roles.includes('mubalagha'))"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "h724",
+   "line": 724,
+   "ar": "اسم مفعولك مبالغه وزنى (۱)",
+   "kind": "row",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "masdar",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "rows",
+   "line": "1-861",
+   "ar": "the wazn rows themselves",
+   "kind": "row",
+   "carried_by": [],
+   "reason": "the data rows are unrecoverable bytes (only the five headers decode)",
+   "status": "not-automatable"
+  }
+ ]
+}

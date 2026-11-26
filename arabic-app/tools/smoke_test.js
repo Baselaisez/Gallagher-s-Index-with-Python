@@ -18083,6 +18083,56 @@ if (!CHROME) {
     if (bad.length) throw new Error(bad.length + ': ' + bad.slice(0, 8).join(' · '));
   });
 
+  await check('v342 — the other resources\' ledger (v342-A): every file of research/sources/ the two book ledgers do not hold is accounted for by script (content/rules/coverage_*.json with ledger «aux», 45 ledgers) — its counts pinned so they can only improve (applied ≥, applied + noted/banked/shelved ≥, open ≤, the entry count fixed), every «applied» entry re-proved on the page by its own probe (tools/ledger/aux_probe.js: the source\'s own example through SentenceAnalyzer + Murib.line, an IlalEngine.derive of the sheet\'s origin, a nakil / Bab35 / muhtelife / AdadEngine cell, or the shortest story sentences where the source gives none), and every note / bank carrier named exists', async () => {
+    const J = JSON.stringify;
+    // [applied, noted+banked+shelved, open, entries] measured 2026-11-27 (tools/ledger/aux_ledger.py --prove)
+    const PIN = {"alaka-ilm-bayan":[9,184,2,200],"alaka-suallar":[0,70,0,70],"aqaid-nasafi":[0,150,0,150],"avamil-curcani-slides":[1,3,0,6],"avamil-dersi-servet-hayma-2023":[43,1,0,44],"awamil-birgivi-ottoman":[19,18,0,37],"bablara-nakil":[128,0,0,132],"birgivi-awamil-inventory":[32,74,0,106],"buyu-tarifler":[0,14,64,78],"edatlar-irab-soru-testi":[0,9,0,9],"emali-qasida":[0,67,0,68],"esmai-aded-worksheets":[89,0,0,89],"ilal-kaideleri-turkce":[44,3,4,52],"insaf-ibn-al-anbari":[0,121,0,121],"irab-taksimat-turkish":[11,0,0,14],"izzi-sarf-grafikleri":[39,1,0,48],"keffaretler":[0,4,0,4],"maqamat-birgivi":[0,150,0,150],"masdar-sifa-mubalagha-vezinleri":[2,3,0,6],"mensubat":[0,144,0,144],"misal-kaideleri":[0,11,0,12],"molla-cami-sual-cevap":[0,80,0,80],"muallaqat-al-harith":[0,88,0,90],"muallaqat-amr-ibn-kulthum":[0,111,0,114],"muallaqat-antara":[0,83,0,84],"muallaqat-imri-al-qays":[0,89,0,90],"muallaqat-labid":[0,95,0,98],"muallaqat-tarafa":[0,111,0,114],"muallaqat-zuhayr":[0,70,0,71],"muhammad-ibn-zayd-wa-al-umawi":[0,48,0,48],"nahiv-kafiye-ozeti-turkce":[100,10,0,110],"qatr-al-nada-turkish-cicek":[37,4,0,41],"qisas-al-nabiyyin-nadwi-leveling-notes":[0,0,0,32],"sarf-35-bab-tablosu":[42,0,0,42],"serhul-mugni-ders-notlari-kisa-1":[95,1,0,96],"sifa-mushabbaha-vezinleri":[0,15,0,16],"siyar-abi-hanifa":[0,36,0,36],"siyar-al-shaykh-al-mufid":[0,19,0,19],"siyar-ibn-al-mubarak":[0,38,0,38],"sulh-fiqh":[0,17,1,18],"talkhis-al-miftah-balagha":[0,167,2,169],"usul-al-munifa":[0,351,0,351],"vakif-mali":[0,1,1,2],"wasiyya-samti":[0,82,0,82],"ziyade-bab-muhtelife-cekimi":[25,0,0,25]};
+    const dir = path.join(__dirname, '..', 'content', 'rules');
+    const docs = fs.readdirSync(dir).filter(f => /^coverage_.*\.json$/.test(f)).map(f => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))).filter(d => d.ledger === 'aux');
+    const f = [];
+    for (const k of Object.keys(PIN)) if (!docs.find(d => d.book === k)) f.push('missing ledger ' + k);
+    const probes = [], notes = new Set(), banks = new Set();
+    for (const d of docs) {
+      const c = {}; d.entries.forEach(e => { c[e.status] = (c[e.status] || 0) + 1; });
+      const P = PIN[d.book]; if (!P) { f.push('unpinned ' + d.book); continue; }
+      const app = c.applied || 0, car = (c.noted || 0) + (c.banked || 0) + (c.shelved || 0);
+      if (app < P[0]) f.push(d.book + ' applied ' + app + ' < ' + P[0]);
+      if (app + car < P[0] + P[1]) f.push(d.book + ' carried ' + (app + car) + ' < ' + (P[0] + P[1]));
+      if ((c.open || 0) > P[2]) f.push(d.book + ' open ' + c.open + ' > ' + P[2]);
+      if (d.entries.length !== P[3]) f.push(d.book + ' entries ' + d.entries.length + ' ≠ ' + P[3]);
+      for (const e of d.entries) {
+        if (e.status === 'applied') { if (!e.probe) f.push(d.book + '#' + e.id + ' applied without a probe'); else probes.push({ key: d.book + '#' + e.id, probe: e.probe }); }
+        for (const cb of e.carried_by || []) { if (cb.type === 'note') notes.add(cb.ref); if (cb.type === 'bank') banks.add(cb.ref); }
+      }
+    }
+    const fn = fs.readFileSync(path.join(__dirname, 'ledger', 'aux_probe.js'), 'utf8').replace(/^\s*\/\/.*$/mg, '').trim();
+    const r = await page.evaluate(([src, ps, ns, bs]) => {
+      const res = (0, eval)('(' + src + ')')(ps.map(p => p.probe));
+      const bad = ps.map((p, i) => res[i].ok ? null : p.key + ' → ' + res[i].got.slice(0, 80)).filter(Boolean);
+      const ids = new Set(CATECHISM.flatMap(b => b.items.map(i => i.id)));
+      return { n: ps.length, bad, noNote: ns.filter(n => !GRAMMAR[n]), noBank: bs.filter(b => !ids.has(b)) };
+    }, [fn, probes, [...notes], [...banks]]);
+    if (r.n < 716) f.push('applied probes ' + r.n + ' < 716');
+    if (r.bad.length) f.push(r.bad.length + ' applied probes fail: ' + r.bad.slice(0, 4).join(' | '));
+    if (r.noNote.length) f.push('notes missing: ' + r.noNote.join(','));
+    if (r.noBank.length) f.push('bank items missing: ' + r.noBank.slice(0, 5).join(','));
+    if (f.length) throw new Error(f.slice(0, 8).join('; ') + ' ' + J({ probes: r.n }));
+  });
+
+  await check('v342 — the other resources\' open entries consumed as data, verbatim: the Birgivī sheet\'s own examples «اَعْبُدُ اللهَ تَعاَلَى» (mafʿūl bih, awamil-birgivi-ottoman.txt:32), «اِحْفَظِ اللهَ تَعاَلَى حَقَّهُ» (badal, l. 35), «اُحِبُّ اَنْ اُطِيعَ اللهَ تَعاَلَى» (the nāṣib أَنْ, awamil-birgivi-tables.txt:13) and the ṣifa mushabbaha table\'s wajh 17 «الحسنُ وجْهاً» (sifa-mushabbaha-vezinleri.txt:10) stand in their notes letter for letter as the source prints them, each with its line anchor; and alaqat-al-majaz-balagha.txt (COVERAGE #3, once «unrecoverable») is ledgered as the raw Word dump of alaka-ilm-bayan.txt', async () => {
+    const S = n => fs.readFileSync(path.join(__dirname, '..', 'research', 'sources', n), 'utf8');
+    const want = [['al-maful-bihi-wa-qismah', 'awamil-birgivi-ottoman.txt', 32], ['al-badal-wa-aqsamuh-wa-atf-al-bayan', 'awamil-birgivi-ottoman.txt', 35],
+                  ['an-masdariyya', 'awamil-birgivi-tables.txt', 13], ['sifa-mushabbaha', 'sifa-mushabbaha-vezinleri.txt', 10]];
+    // the anchor is the note file's `source` (the build keeps the example, not its anchor); the page must show the same words
+    const disk = want.map(([id, src, ln]) => { const ex = (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content', 'grammar', id + '.json'), 'utf8')).examples || []).find(e => String(e.source || '').startsWith('research/sources/' + src + ':' + ln)); return ex ? ex.ar : null; });
+    const onPage = await page.evaluate(([w, d]) => w.map(([id], i) => !!d[i] && ((GRAMMAR[id] || {}).examples || []).some(e => e.ar === d[i])), [want, disk]);
+    const f = [];
+    want.forEach(([id, src, ln], i) => { if (!disk[i]) f.push(id + ': no example anchored to ' + src + ':' + ln); else if (!S(src).split('\n')[ln - 1].includes(disk[i])) f.push(id + ': «' + disk[i] + '» is not verbatim on ' + src + ':' + ln); else if (!onPage[i]) f.push(id + ': the page does not show «' + disk[i] + '»'); });
+    const L = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content', 'rules', 'coverage_alaka-ilm-bayan.json'), 'utf8'));
+    if (!(L.files || []).includes('research/sources/alaqat-al-majaz-balagha.txt')) f.push('alaqat-al-majaz-balagha.txt not named by the alaka-ilm-bayan ledger');
+    if (f.length) throw new Error(f.join('; '));
+  });
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

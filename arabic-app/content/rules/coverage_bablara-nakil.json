@@ -1,0 +1,2662 @@
+{
+ "book": "bablara-nakil",
+ "ledger": "aux",
+ "title": "Bablara nakil — 11 model roots carried through the 12 augmented wazns",
+ "source": "research/sources/bablara-nakil-12-wazn.txt",
+ "files": [
+  "research/sources/bablara-nakil-12-wazn.txt",
+  "research/sources/bablara-nakil-tablosu.txt"
+ ],
+ "group": "sarf",
+ "note": "The second file is the first minus its preamble (cells identical): ledgered once.",
+ "counts": {
+  "applied": 128,
+  "slip": 4
+ },
+ "entries": [
+  {
+   "id": "اَفْعَلَ:نعم",
+   "line": 11,
+   "ar": "اَنْعَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَنْعَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:حسب",
+   "line": 11,
+   "ar": "اَحْسَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَحْسَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:حسن",
+   "line": 11,
+   "ar": "اَحْسَنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَحْسَنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:وجل",
+   "line": 11,
+   "ar": "اَوْجَلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَوْجَلَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:علم",
+   "line": 11,
+   "ar": "اَعْلَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَعْلَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:ذهب",
+   "line": 11,
+   "ar": "اَذْهَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَذْهَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:فتح",
+   "line": 11,
+   "ar": "اَفْتَحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَفْتَحَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:جلس",
+   "line": 11,
+   "ar": "اَجْلَسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَجْلَسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:ضرب",
+   "line": 11,
+   "ar": "اَضْرَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَضْرَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:خرج",
+   "line": 11,
+   "ar": "اَخْرَجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَخْرَجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اَفْعَلَ:نصر",
+   "line": 11,
+   "ar": "اَنْصَرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[0].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[0];return N(B.make(f,a,l,c.type))===N(\"اَنْصَرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:نعم",
+   "line": 12,
+   "ar": "نَعَّمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"نَعَّمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:حسب",
+   "line": 12,
+   "ar": "حَسَّبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"حَسَّبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:حسن",
+   "line": 12,
+   "ar": "حَسَّنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"حَسَّنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:وجل",
+   "line": 12,
+   "ar": "وَجَّلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"وَجَّلَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:علم",
+   "line": 12,
+   "ar": "عَلَّمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"عَلَّمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:ذهب",
+   "line": 12,
+   "ar": "ذَهَّبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"ذَهَّبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:فتح",
+   "line": 12,
+   "ar": "فَتَّحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"فَتَّحَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:جلس",
+   "line": 12,
+   "ar": "جَلَّسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"جَلَّسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:ضرب",
+   "line": 12,
+   "ar": "ضَرَّبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"ضَرَّبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:خرج",
+   "line": 12,
+   "ar": "خَرَّجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"خَرَّجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَعَّلَ:نصر",
+   "line": 12,
+   "ar": "نَصَّرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[1].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[1];return N(B.make(f,a,l,c.type))===N(\"نَصَّرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:نعم",
+   "line": 13,
+   "ar": "نَاعَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"نَاعَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:حسب",
+   "line": 13,
+   "ar": "حَاسَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"حَاسَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:حسن",
+   "line": 13,
+   "ar": "حَاسَنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"حَاسَنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:وجل",
+   "line": 13,
+   "ar": "وَاجَلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"وَاجَلَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:علم",
+   "line": 13,
+   "ar": "عَالَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"عَالَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:ذهب",
+   "line": 13,
+   "ar": "ذَاهَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"ذَاهَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:فتح",
+   "line": 13,
+   "ar": "فَاتَحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"فَاتَحَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:جلس",
+   "line": 13,
+   "ar": "جَالَسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"جَالَسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:ضرب",
+   "line": 13,
+   "ar": "ضَارَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"ضَارَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:خرج",
+   "line": 13,
+   "ar": "خَارَجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"خَارَجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "فَاعَلَ:نصر",
+   "line": 13,
+   "ar": "نَاصَرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[2].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[2];return N(B.make(f,a,l,c.type))===N(\"نَاصَرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:نعم",
+   "line": 14,
+   "ar": "اِنْنَعَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْنَعَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:حسب",
+   "line": 14,
+   "ar": "اِنْحَسَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْحَسَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:حسن",
+   "line": 14,
+   "ar": "اِنْحَسَنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْحَسَنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:وجل",
+   "line": 14,
+   "ar": "اِنْوَجَلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْوَجَلَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:علم",
+   "line": 14,
+   "ar": "اِنْعَلَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْعَلَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:ذهب",
+   "line": 14,
+   "ar": "اِنْذَهَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْذَهَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:فتح",
+   "line": 14,
+   "ar": "اِنْفَتَحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْفَتَحَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:جلس",
+   "line": 14,
+   "ar": "اِنْجَلَسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْجَلَسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:ضرب",
+   "line": 14,
+   "ar": "اِنْضَرَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْضَرَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:خرج",
+   "line": 14,
+   "ar": "اِنْخَرَجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْخَرَجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِنْفَعَلَ:نصر",
+   "line": 14,
+   "ar": "اِنْنَصَرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[3].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[3];return N(B.make(f,a,l,c.type))===N(\"اِنْنَصَرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:نعم",
+   "line": 15,
+   "ar": "اِنْتَعَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِنْتَعَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:حسب",
+   "line": 15,
+   "ar": "اِحْتَسَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِحْتَسَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:حسن",
+   "line": 15,
+   "ar": "اِحْتَسَنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِحْتَسَنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:وجل",
+   "line": 15,
+   "ar": "اِتّجّلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِتّجّلَ\")})()"
+   },
+   "proof": {
+    "ok": false,
+    "got": "false"
+   },
+   "status": "slip",
+   "reason": "the sheet's own typo: اِتّجّلَ — two stray shaddas; the sheet means اِتَّجَلَ (the waw assimilated to the tāʾ)"
+  },
+  {
+   "id": "اِفْتَعَلَ:علم",
+   "line": 15,
+   "ar": "اِعْتَلَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِعْتَلَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:ذهب",
+   "line": 15,
+   "ar": "اِذَّهَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِذَّهَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:فتح",
+   "line": 15,
+   "ar": "اِفْتَتَحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِفْتَتَحَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:جلس",
+   "line": 15,
+   "ar": "اِجْتَلَسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِجْتَلَسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:ضرب",
+   "line": 15,
+   "ar": "اِضْطَرَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِضْطَرَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:خرج",
+   "line": 15,
+   "ar": "اِخْتَرَجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِخْتَرَجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْتَعَلَ:نصر",
+   "line": 15,
+   "ar": "اِنْتَصَرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[4].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[4];return N(B.make(f,a,l,c.type))===N(\"اِنْتَصَرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:نعم",
+   "line": 16,
+   "ar": "اِنَعَمَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِنَعَمَّ\")})()"
+   },
+   "proof": {
+    "ok": false,
+    "got": "false"
+   },
+   "status": "slip",
+   "reason": "the sheet's own typo: اِنَعَمَّ — the sukūn of the fāʾ is missing (اِنْعَمَّ, as every other cell of the row)"
+  },
+  {
+   "id": "اِفْعَلَّ:حسب",
+   "line": 16,
+   "ar": "اِحْسَبَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِحْسَبَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:حسن",
+   "line": 16,
+   "ar": "اِحْسَنَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِحْسَنَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:وجل",
+   "line": 16,
+   "ar": "اِيجَلَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِيجَلَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:علم",
+   "line": 16,
+   "ar": "اِعْلَمَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِعْلَمَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:ذهب",
+   "line": 16,
+   "ar": "اِذْهَبَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِذْهَبَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:فتح",
+   "line": 16,
+   "ar": "اِفْتَحَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِفْتَحَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:جلس",
+   "line": 16,
+   "ar": "اِجْلَسَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِجْلَسَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:ضرب",
+   "line": 16,
+   "ar": "اِضْرَبَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِضْرَبَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:خرج",
+   "line": 16,
+   "ar": "اِخْرَجَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِخْرَجَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَلَّ:نصر",
+   "line": 16,
+   "ar": "اِنْصَرَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[5].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[5];return N(B.make(f,a,l,c.type))===N(\"اِنْصَرَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:نعم",
+   "line": 17,
+   "ar": "تَنَعَّمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَنَعَّمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:حسب",
+   "line": 17,
+   "ar": "تَحَسَّبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَحَسَّبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:حسن",
+   "line": 17,
+   "ar": "تَحَسَّنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَحَسَّنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:وجل",
+   "line": 17,
+   "ar": "تَوَجَّلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَوَجَّلَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:علم",
+   "line": 17,
+   "ar": "تَعَلَّمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَعَلَّمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:ذهب",
+   "line": 17,
+   "ar": "تَذَهَّبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَذَهَّبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:فتح",
+   "line": 17,
+   "ar": "تَفّتَّحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَفّتَّحَ\")})()"
+   },
+   "proof": {
+    "ok": false,
+    "got": "false"
+   },
+   "status": "slip",
+   "reason": "the sheet's own typo: تَفّتَّحَ — a stray shadda on the fāʾ (تَفَتَّحَ)"
+  },
+  {
+   "id": "تَفَعَّلَ:جلس",
+   "line": 17,
+   "ar": "تَجَلَّسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَجَلَّسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:ضرب",
+   "line": 17,
+   "ar": "تَضَرَّبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَضَرَّبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:خرج",
+   "line": 17,
+   "ar": "تَخَرَّجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَخَرَّجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَعَّلَ:نصر",
+   "line": 17,
+   "ar": "تَنَصَّرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[6].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[6];return N(B.make(f,a,l,c.type))===N(\"تَنَصَّرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:نعم",
+   "line": 18,
+   "ar": "تَناَعَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَناَعَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:حسب",
+   "line": 18,
+   "ar": "تَحَاسَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَحَاسَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:حسن",
+   "line": 18,
+   "ar": "تَحَاسَنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَحَاسَنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:وجل",
+   "line": 18,
+   "ar": "تَوَاجَلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَوَاجَلَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:علم",
+   "line": 18,
+   "ar": "تَعَالَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَعَالَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:ذهب",
+   "line": 18,
+   "ar": "تَذَاهَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَذَاهَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:فتح",
+   "line": 18,
+   "ar": "تَفَاتَحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَفَاتَحَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:جلس",
+   "line": 18,
+   "ar": "تَجَالَسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَجَالَسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:ضرب",
+   "line": 18,
+   "ar": "تَضَارَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَضَارَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:خرج",
+   "line": 18,
+   "ar": "تَخَارَجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَخَارَجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "تَفَاعَلَ:نصر",
+   "line": 18,
+   "ar": "تَنَاصَرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[7].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[7];return N(B.make(f,a,l,c.type))===N(\"تَنَاصَرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:نعم",
+   "line": 19,
+   "ar": "اِسْتَنْعَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَنْعَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:حسب",
+   "line": 19,
+   "ar": "اِسْتَحْسَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَحْسَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:حسن",
+   "line": 19,
+   "ar": "اِسْتَحْسَنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَحْسَنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:وجل",
+   "line": 19,
+   "ar": "اِسْتَوْجَلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَوْجَلَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:علم",
+   "line": 19,
+   "ar": "اِسْتَعْلَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَعْلَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:ذهب",
+   "line": 19,
+   "ar": "اِسَتْذْهَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسَتْذْهَبَ\")})()"
+   },
+   "proof": {
+    "ok": false,
+    "got": "false"
+   },
+   "status": "slip",
+   "reason": "the sheet's own typo: اِسَتْذْهَبَ — the fatḥa and sukūn of سْتَ swapped (اِسْتَذْهَبَ)"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:فتح",
+   "line": 19,
+   "ar": "اِسْتَفْتَحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَفْتَحَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:جلس",
+   "line": 19,
+   "ar": "اِسْتَجْلَسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَجْلَسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:ضرب",
+   "line": 19,
+   "ar": "اِسْتَضْرَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَضْرَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:خرج",
+   "line": 19,
+   "ar": "اِسْتَخْرَجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَخْرَجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِسْتَفْعَلَ:نصر",
+   "line": 19,
+   "ar": "اِسْتَنْصَرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[8].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[8];return N(B.make(f,a,l,c.type))===N(\"اِسْتَنْصَرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:نعم",
+   "line": 20,
+   "ar": "اِنْعَوْعَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِنْعَوْعَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:حسب",
+   "line": 20,
+   "ar": "اِحْسَوْسَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِحْسَوْسَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:حسن",
+   "line": 20,
+   "ar": "اِحْسَوْسَنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِحْسَوْسَنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:وجل",
+   "line": 20,
+   "ar": "اِيجَوْجَلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِيجَوْجَلَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:علم",
+   "line": 20,
+   "ar": "اِعْلَوْلَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِعْلَوْلَمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:ذهب",
+   "line": 20,
+   "ar": "اِذْهَوْهَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِذْهَوْهَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:فتح",
+   "line": 20,
+   "ar": "اِفْتَوْتَحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِفْتَوْتَحَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:جلس",
+   "line": 20,
+   "ar": "اِجْلَوْلَسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِجْلَوْلَسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:ضرب",
+   "line": 20,
+   "ar": "اِضْرَوْرَبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِضْرَوْرَبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:خرج",
+   "line": 20,
+   "ar": "اِخْرَوْرَجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِخْرَوْرَجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوْعَلَ:نصر",
+   "line": 20,
+   "ar": "اِنْصَوْصَرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[9].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[9];return N(B.make(f,a,l,c.type))===N(\"اِنْصَوْصَرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:نعم",
+   "line": 21,
+   "ar": "اِنْعَوَّمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِنْعَوَّمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:حسب",
+   "line": 21,
+   "ar": "اِحْسَوَّبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِحْسَوَّبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:حسن",
+   "line": 21,
+   "ar": "اِحْسَوَّنَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِحْسَوَّنَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:وجل",
+   "line": 21,
+   "ar": "اِيجَوَّلَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِيجَوَّلَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:علم",
+   "line": 21,
+   "ar": "اِعْلَوَّمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِعْلَوَّمَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:ذهب",
+   "line": 21,
+   "ar": "اِذْهَوَّبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِذْهَوَّبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:فتح",
+   "line": 21,
+   "ar": "اِفْتَوَّحَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِفْتَوَّحَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:جلس",
+   "line": 21,
+   "ar": "اِجْلَوَّسَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِجْلَوَّسَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:ضرب",
+   "line": 21,
+   "ar": "اِضْرَوَّبَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِضْرَوَّبَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:خرج",
+   "line": 21,
+   "ar": "اِخْرَوَّجَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِخْرَوَّجَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَوَّلَ:نصر",
+   "line": 21,
+   "ar": "اِنْصَوَّرَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[10].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[10];return N(B.make(f,a,l,c.type))===N(\"اِنْصَوَّرَ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:نعم",
+   "line": 22,
+   "ar": "اِنْعَامَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ع م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِنْعَامَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:حسب",
+   "line": 22,
+   "ar": "اِحْسَابَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِحْسَابَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:حسن",
+   "line": 22,
+   "ar": "اِحْسَانَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ح س ن\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِحْسَانَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:وجل",
+   "line": 22,
+   "ar": "اِيجَالَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"و ج ل\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِيجَالَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:علم",
+   "line": 22,
+   "ar": "اِعْلاَمَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ع ل م\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِعْلاَمَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:ذهب",
+   "line": 22,
+   "ar": "اِذْهَابَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ذ ه ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِذْهَابَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:فتح",
+   "line": 22,
+   "ar": "اِفْتَاحَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ف ت ح\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِفْتَاحَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:جلس",
+   "line": 22,
+   "ar": "اِجْلاَسَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ج ل س\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِجْلاَسَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:ضرب",
+   "line": 22,
+   "ar": "اِضْرَابَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ض ر ب\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِضْرَابَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:خرج",
+   "line": 22,
+   "ar": "اِخْرَاجَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"خ ر ج\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِخْرَاجَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "اِفْعَالَّ:نصر",
+   "line": 22,
+   "ar": "اِنْصَارَّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "NAKIL_BABS[11].make"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const c=nakilClass({root:\"ن ص ر\"});const [f,a,l]=c.rs;const B=NAKIL_BABS[11];return N(B.make(f,a,l,c.type))===N(\"اِنْصَارَّ\")})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  }
+ ]
+}

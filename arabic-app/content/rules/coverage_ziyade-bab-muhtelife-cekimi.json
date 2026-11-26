@@ -1,0 +1,516 @@
+{
+ "book": "ziyade-bab-muhtelife-cekimi",
+ "ledger": "aux",
+ "title": "Ziyade bablardan muhtelife çekimi — the recitation of أَكْرَمَ with its extension rows",
+ "source": "research/sources/ziyade-bab-muhtelife-cekimi.txt",
+ "files": [
+  "research/sources/ziyade-bab-muhtelife-cekimi.txt"
+ ],
+ "group": "sarf",
+ "note": "",
+ "counts": {
+  "applied": 25
+ },
+ "entries": [
+  {
+   "id": "İsm-i fâil",
+   "line": 9,
+   "ar": "İsmi fail: فَهُوَ مُكْرِمٌ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"İsm-i fâil\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"فَهُوَ مُكْرِمٌ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Masdar (gayr-i mîmî)",
+   "line": 9,
+   "ar": "Mastar gayri mimi: اِكْرَامًا",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Masdar (gayr-i mîmî)\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"اِكْرَامًا\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Fiil-i muzâri",
+   "line": 9,
+   "ar": "Fiili muzari: يُكْرِمُ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Fiil-i muzâri\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"يُكْرِمُ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Fiil-i mâzî",
+   "line": 9,
+   "ar": "Fiili mazi: اَكْرَمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Fiil-i mâzî\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"اَكْرَمَ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Nefy-i hâl",
+   "line": 11,
+   "ar": "Nefi hal: مَا يُكْرِمُ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Nefy-i hâl\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"مَا يُكْرِمُ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Cahd-ı müstağrak",
+   "line": 11,
+   "ar": "Cahdı müstarak: لَمَّا يُكْرِمْ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Cahd-ı müstağrak\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"لَمَّا يُكْرِمْ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Cahd-ı mutlak",
+   "line": 11,
+   "ar": "Cahdı mutlak: لَمْ يُكْرِمْ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Cahd-ı mutlak\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"لَمْ يُكْرِمْ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "İsm-i mef'ûl",
+   "line": 11,
+   "ar": "İsmi meful: وَذَاكَ مُكْرَمٌ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"İsm-i mef'ûl\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"وَذَاكَ مُكْرَمٌ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Nehy-i gâib",
+   "line": 13,
+   "ar": "Nehyi ğaib: لاَ يُكْرِمْ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Nehy-i gâib\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"لاَ يُكْرِمْ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Emr-i gâib",
+   "line": 13,
+   "ar": "Emri ğaib: لِيُكْرِمْ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Emr-i gâib\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"لِيُكْرِمْ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Te'kîd-i nefy-i istikbâl",
+   "line": 13,
+   "ar": "Te'kidi nefi istikbal: لَنْ يُكْرِمَ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Te'kîd-i nefy-i istikbâl\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"لَنْ يُكْرِمَ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Nefy-i istikbâl",
+   "line": 13,
+   "ar": "Nefi istikbal: لاَ يُكْرِمُ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Nefy-i istikbâl\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"لاَ يُكْرِمُ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Nehy-i hâzır",
+   "line": 15,
+   "ar": "Nehyi hazır: لاَ تُكْرِمْ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Nehy-i hâzır\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"لاَ تُكْرِمْ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Emr-i hâzır",
+   "line": 15,
+   "ar": "emri hazır: اَكْرِمْ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Emr-i hâzır\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"اَكْرِمْ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Binâ-i nev'",
+   "line": 17,
+   "ar": "Mastar binai nevi: اِكْرَامَةً شَدِيدَةً",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Binâ-i nev'\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"اِكْرَامَةً شَدِيدَةً\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Binâ-i merre",
+   "line": 17,
+   "ar": "Mastar binai merre: اِكْرَامَةً وَاحِدَةً",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Binâ-i merre\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"اِكْرَامَةً وَاحِدَةً\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "none:İsmi alet",
+   "line": 17,
+   "ar": "İsmi alet: ………",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "ziyadeExt() gives no such row"
+    }
+   ],
+   "probe": {
+    "js": "muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1)).every(r=>!/alet|bala|tasg|tesg|teşg/i.test(r.tr))"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Masdar-ı mîmî; ism-i zaman ve mekân",
+   "line": 17,
+   "ar": "Mastar mimi, ismi zaman, ismi mekan: مُكْرَمٌ مُكْرَمٌ فِيه",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Masdar-ı mîmî; ism-i zaman ve mekân\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"مُكْرَمٌ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "İsm-i tafdîl (şedde ile)",
+   "line": 19,
+   "ar": "İsmi tefdıl: هُوَ اَشَدُّ مِنْهُ اِكْرَامًا",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"İsm-i tafdîl (şedde ile)\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"هُوَ اَشَدُّ مِنْهُ اِكْرَامًا\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "none:Mubalağa ismi fail",
+   "line": 19,
+   "ar": "Mubalağa ismi fail: ………",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "ziyadeExt() gives no such row"
+    }
+   ],
+   "probe": {
+    "js": "muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1)).every(r=>!/alet|bala|tasg|tesg|teşg/i.test(r.tr))"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "İsm-i mensûb",
+   "line": 19,
+   "ar": "İsmi mensup: اِكْرَامِىٌّ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"İsm-i mensûb\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"اِكْرَامِىٌّ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "none:İsmi tesgır",
+   "line": 19,
+   "ar": "İsmi tesgır: ……",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "ziyadeExt() gives no such row"
+    }
+   ],
+   "probe": {
+    "js": "muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1)).every(r=>!/alet|bala|tasg|tesg|teşg/i.test(r.tr))"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Fiil-i taaccüb-i sânî",
+   "line": 21,
+   "ar": "Fiili teaccüp sani: وَ اَشْدِدْ بِاِكْرَامِهِ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Fiil-i taaccüb-i sânî\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"وَ اَشْدِدْ بِاِكْرَامِهِ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "Fiil-i taaccüb-i evvel",
+   "line": 21,
+   "ar": "Fiili teaccüp evvel: مَا اَشَدَّ اِكْرَامَهُ",
+   "kind": "cell",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "muhtelife() / ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "(()=>{const N=s=>IlalEngine.join(IlalEngine.parse(String(s||'').normalize('NFC').replace(/[أإآ]/g,'ا').replace(/(.)اَ/g,'$1ا').replace(/َ(?=ا)/g,'').replace(/ى/g,'ي').replace(/[ًٌٍ]/g,'').replace(/ا$/,'')));const m=muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1));const r=m.find(x=>x.tr===\"Fiil-i taaccüb-i evvel\");return !!r&&N(r.ar.replace(/^(فَهُوَ|وَذَاكَ) /,''))===N(\"مَا اَشَدَّ اِكْرَامَهُ\".replace(/^(فَهُوَ|وَذَاكَ) /,'').replace(/^وَ /,'وَ'))})()"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule-l23",
+   "line": 23,
+   "ar": "ZİYADE BABLARDAN İSMİ ALET, İSMİ TESGIR VE MÜBALAĞA İSMİ FAİL GELMEZ",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "ziyadeExt()"
+    }
+   ],
+   "probe": {
+    "js": "muhtelife(sarfDerive(nakilClass({root:'ك ر م'}),'IV',1)).every(r=>!/alet|bala|tasg|tesg|teşg/i.test(r.tr))"
+   },
+   "proof": {
+    "ok": true,
+    "got": "true"
+   },
+   "status": "applied"
+  }
+ ]
+}
