@@ -388,3 +388,16 @@ package holds the entire entry, in three adjacent spans).
 - `sharh-al-shafiya-radi-src.txt` — Raḍī al-Dīn al-Astarābādhī (d. 686 AH), «شرح شافية ابن الحاجب», with ʿAbd al-Qādir al-Baghdādī's (d. 1093 AH) «شرح شواهده», تحقيق محمد نور الحسن، محمد الزفزاف، محمد محيي الدين عبد الحميد (Shamela book 21567), https://shamela.ws/book/21567/1–1542 (whole). A FEEDER for the ṣarf engines and notes.
 - `sharh-al-kafiya-al-shafiya-ibn-malik-src.txt` — Ibn Mālik (d. 672 AH), «شرح الكافية الشافية», تحقيق عبد المنعم أحمد هريدي، جامعة أم القرى، مكة المكرمة، ط ١، ١٤٠٢ هـ / ١٩٨٢ م، ٥ أجزاء (the last is indexes) (Shamela book 12024), https://shamela.ws/book/12024/1–2235 (whole). A FEEDER for naḥw and ṣarf (the naẓm «الكافية الشافية» with its author's commentary).
 - NOT received: https://archive.org/details/20200404_20200404_0403 — the host is not reachable from the build machine; title unknown.
+
+## The proverbs' shelf (v348-A) — passages cut from `fasl-al-maqal-bakri-src.txt`, and their witnesses
+
+Each `mathal-<slug>-src.txt` is the exact passage of al-Bakrī's «فصل المقال» (Shamela 1025) that the package `content/samples/mathal-<slug>`
+carries, cut verbatim from the matn (headers and ḥāshiya removed) and saved before authoring; the package's script is
+`tools/authoring/author_mathal_<slug>.py`. The whole book's proverbs are indexed by `tools/sources/amthal_index.py` into
+`content/rules/amthal_index.json`. A witness file holds the second text a correction was made against, and nothing else is corrected:
+- `mathal-sabaqa-al-sayf-al-adhal-witness.txt` — Abū ʿUbayd, «كتاب الأمثال» (ed. Qaṭāmish, Dār al-Maʾmūn 1980), Shamela 135 pp. 29–30 (printed 61–62).
+- `mathal-wafaqa-shannun-tabaqah-witness.txt` — al-Maydānī, «مجمع الأمثال», Shamela 12929 p. 4439 (2:359, § 4340).
+- `mathal-kilahuma-wa-tamran-witness.txt` — al-Maydānī, «مجمع الأمثال», Shamela 12929 p. 3163 (2:151, § 3079).
+Three more corrections rest on the edition's own apparatus or the book itself, as each manifest says (al-Zabbāʾ, p. 436 n. 2; «سر», p. 346 n. 1;
+«المتلمس», p. 203 n. 1 and the book's spelling elsewhere; «عند الصباح», the line as al-Bakrī quotes it from Abū ʿUbayd). Fetched 2026-11-26.
+
