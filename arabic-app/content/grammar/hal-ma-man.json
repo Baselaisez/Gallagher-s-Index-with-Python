@@ -10,7 +10,8 @@
  "classicalSources": [
   "تلخيص المفتاح (الخطيب القزويني) — باب الإنشاء: الاستفهام، هل وما ومن",
   "مفتاح العلوم (السكاكي) — سؤال الجنس والوصف",
-  "شروح التلخيص — ترتيب المطالب الأربعة"
+  "شروح التلخيص — ترتيب المطالب الأربعة",
+  "الإعراب عن قواعد الإعراب (ابن هشام) — الباب الثالث"
  ],
  "question": {
   "en": [
@@ -56,6 +57,12 @@
    "tr": "Şey sorusu ile kişi sorusu — her biri cevabının kalıbından teşhis edilir.",
    "sourceStory": "talkhis-al-miftah",
    "sentence": "s4"
+  },
+  {
+   "ar": "مررتُ بِمَنْ مُعجِبٍ لك",
+   "en": "«man» as an indefinite described: «I passed by someone who pleases you».",
+   "tr": "Mevsûf nekre «men»: «seni hoşnut eden biriyle karşılaştım».",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:316 (Qawāʿid al-Iʿrāb bāb 3)"
   }
  ],
  "commonMistakes": [
@@ -84,6 +91,14 @@
    }
   }
  ],
- "relatedNotes": ["al-istifham", "insha-wa-tamanni", "anwa-ma", "khabar-insha", "mubtada-khabar"],
- "gameSeeds": {"spotTheError": true}
+ "relatedNotes": [
+  "al-istifham",
+  "insha-wa-tamanni",
+  "anwa-ma",
+  "khabar-insha",
+  "mubtada-khabar"
+ ],
+ "gameSeeds": {
+  "spotTheError": true
+ }
 }
