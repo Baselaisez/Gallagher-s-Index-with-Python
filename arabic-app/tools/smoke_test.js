@@ -2,6 +2,7 @@
 // Usage: npm i playwright-core && node tools/smoke_test.js
 // Override the browser binary with CHROMIUM_PATH if needed.
 const fs = require('node:fs');
+const SIG350 = s => process.on(s, () => process.exit(130)); ['SIGINT', 'SIGTERM', 'SIGHUP'].forEach(SIG350);   // so 'exit' handlers (temp copies) run when a run is stopped
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright-core');
@@ -17854,6 +17855,7 @@ if (!CHROME) {
     st.url = 'http://127.0.0.1:' + srv.address().port + '/reader.html'; st.dir = dir;
     st.release = () => { st.hold = false; st.held.splice(0).forEach(f => f()); };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
       await ctx.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); } catch (e) {}
         window.__lt341 = []; try { new PerformanceObserver(l => l.getEntries().forEach(e => window.__lt341.push([e.startTime, e.duration]))).observe({ type: 'longtask', buffered: true }); } catch (e) {} });
@@ -18867,6 +18869,7 @@ if (!CHROME) {
       r.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(r); }).listen(0); srv.unref();
     const st = { url: 'http://127.0.0.1:' + srv.address().port + '/reader.html', dir };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu, opt = {}) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: opt.dpr || 1, serviceWorkers: 'block' });   /* no sw.js on this server */
       await ctx.addInitScript(hold => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '3'); } catch (e) {}
         if (hold) window.__QISSA_QUIET_OFF = true;
@@ -19410,6 +19413,195 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (!(d.even && d.odd && d.line && d.card && d.none && !d.wide)) throw new Error('the rule of the day: ' + JSON.stringify(d));
     if (!(g.supply >= 8 && g.card && g.q && g.opts === 3 && g.verb && g.why && !g.wide)) throw new Error('the round لِمَاذَا؟: ' + JSON.stringify(g));
     if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
+  });
+
+  // ===== v351 — the guide: a tour on the real screens, one-time hints, the Guide page; then the design pass's measured classes =====
+  const CON351 = `(() => { const rgba = s => { const m = s.match(/rgba?\\(([^)]+)\\)/); if (!m) return null; const a = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [a[0], a[1], a[2], a.length > 3 ? a[3] : 1]; };
+      const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+      const over = (t2, b) => [0, 1, 2].map(i => t2[i] * t2[3] + b[i] * (1 - t2[3])).concat(1);
+      const bgOf = el => { const stk = []; for (let e = el; e; e = e.parentElement) { const c = rgba(getComputedStyle(e).backgroundColor); if (c && c[3] > 0) { stk.push(c); if (c[3] >= 1) break; } }
+        let b = rgba(getComputedStyle(document.body).backgroundColor) || [255, 255, 255, 1]; for (let i = stk.length - 1; i >= 0; i--) b = over(stk[i], b); return b; };
+      return sel => { const bad = []; document.querySelectorAll(sel).forEach(root => [root, ...root.querySelectorAll('*')].forEach(el => { if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return;
+        const rr = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!rr.width || !rr.height || cs.visibility === 'hidden') return;
+        const fg = rgba(cs.color), bg = bgOf(el); if (!fg || !bg) return; const c = over(fg, bg), L1 = lum(c), L2 = lum(bg), ratio = (Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05);
+        if (ratio < 4.5) bad.push((el.className || el.tagName) + ' ' + Math.round(ratio * 100) / 100 + ' «' + el.textContent.trim().slice(0, 14) + '»'); })); return bad; }; })()`;
+  await check('v351 — the guided tour on the real screens: after the first-run questions a dimmed page with one ring and a small card walks seven steps (shelf → open the story → the learner REALLY taps a word, the tour waits → the sheet\'s tabs → «Neden?» → the sentence tools and «Dinle» → Today\'s lesson → games and Atölye); skippable at every step, Esc skips, non-modal, survives a rotation and the three themes, shown once (qissa-guide351), replayable from the Guide page', async () => {
+    const J = JSON.stringify;
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    try {
+      await ctx.addInitScript(() => { window.__QISSA_QUIET_OFF = true; try { if (!sessionStorage.getItem('v351')) { sessionStorage.setItem('v351', '1'); localStorage.setItem('qissa-lang', 'tr'); localStorage.setItem('qissa-ui', 'tr'); } } catch (e) {} });
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      await p.goto(url);
+      await p.waitForSelector('.sheet.show .level-pick [data-pick-level]', { timeout: 120000 });
+      await p.locator('.sheet.show .level-pick [data-pick-level]').first().click();
+      await p.locator('.sheet.show #onbNext').click(); await p.locator('.sheet.show #onbNext').click();
+      await p.waitForSelector('#tour351 .t351-card', { timeout: 10000 }); await p.waitForTimeout(400);
+      const look = () => p.evaluate((con) => { const CON = eval(con), r = document.getElementById('tour351'); if (!r) return null;
+        const c = r.querySelector('.t351-card'), cr = c.getBoundingClientRect(), ring = r.querySelector('.t351-ring').getBoundingClientRect(), a = r.querySelector('.t351-arrow').getBoundingClientRect();
+        const btns = [...c.querySelectorAll('button')].filter(b => !b.hidden).map(b => [Math.round(b.getBoundingClientRect().height), Math.round(b.getBoundingClientRect().width)]);
+        return { step: r.dataset.step, n: r.querySelector('#t351N').textContent, h: r.querySelector('#t351H').textContent, noT: r.classList.contains('no-target'),
+          inView: cr.left >= 0 && cr.top >= 0 && cr.right <= innerWidth + 0.5 && cr.bottom <= innerHeight + 0.5, ring: [ring.left, ring.top, ring.width, ring.height].map(Math.round),
+          overlap: !(cr.bottom <= ring.top + 1 || cr.top >= ring.bottom - 1) && !r.classList.contains('no-target') && c.dataset.arrow !== 'none',
+          arrowIn: c.dataset.arrow === 'none' || (a.left + a.width / 2 >= ring.left - 2 && a.left + a.width / 2 <= ring.right + 2), arrow: c.dataset.arrow,
+          role: c.getAttribute('role'), modal: c.getAttribute('aria-modal'), live: r.querySelector('#t351B').getAttribute('aria-live'), btns,
+          next: !r.querySelector('#t351Next').hidden, low: CON('#tour351 .t351-card'), wide: document.documentElement.scrollWidth > innerWidth }; }, CON351);
+      const seen = [];
+      let s = await look(); seen.push(s);
+      if (!s || s.step !== 'shelf' || s.n !== '1 / 7' || s.noT || !s.inView || s.overlap || s.role !== 'dialog' || s.modal !== 'false' || s.live !== 'polite' || s.btns.some(([h, w]) => h < 44 || w < 44))
+        throw new Error('step 1 — the shelf, the card beside its ring, 44 px: ' + J(s));
+      await p.locator('#t351Next').click(); await p.waitForFunction(() => document.getElementById('tour351').dataset.step === 'tap', null, { timeout: 15000 }); await p.waitForTimeout(400);
+      s = await look(); seen.push(s);
+      if (s.next || s.noT || !s.inView) throw new Error('step 2 waits for a real tap (no «İleri»): ' + J(s));
+      const focusWord = await p.evaluate(() => document.activeElement && document.activeElement.classList.contains('word'));
+      await p.waitForTimeout(800); if ((await look()).step !== 'tap') throw new Error('the tap step advanced by itself');
+      await p.keyboard.press('Enter');   // the keyboard learner: focus sits on the line's first word
+      await p.waitForFunction(() => document.getElementById('tour351').dataset.step === 'tabs', null, { timeout: 5000 }).catch(() => {});
+      if ((await look()).step !== 'tabs') { await p.locator('#story .sentence .word').first().click(); await p.waitForFunction(() => document.getElementById('tour351').dataset.step === 'tabs', null, { timeout: 5000 }); }
+      await p.waitForTimeout(400); s = await look(); seen.push(s);
+      if (s.noT || !s.inView || s.overlap) throw new Error('step 3 — the sheet\'s tabs: ' + J(s));
+      // a rotation mid-step: the card stays on screen, beside its ring
+      await p.setViewportSize({ width: 844, height: 390 }); await p.waitForTimeout(500); const rot = await look();
+      await p.setViewportSize({ width: 390, height: 844 }); await p.waitForTimeout(500);
+      if (!rot.inView || rot.wide) throw new Error('a rotation: ' + J(rot));
+      for (const want of ['why', 'tools', 'today', 'more']) { await p.locator('#t351Next').click(); await p.waitForFunction(w => document.getElementById('tour351').dataset.step === w, want, { timeout: 15000 }); await p.waitForTimeout(500);
+        s = await look(); seen.push(s); if (s.noT || !s.inView || s.overlap || !s.arrowIn || s.wide) throw new Error('step ' + want + ': ' + J(s)); }
+      if (s.h !== 'Oyunlar ve Atölye' || (await p.locator('#t351Next').textContent()) !== 'Bitir') throw new Error('the last step in tr: ' + s.h);
+      // the three themes: the card's text at 4.5:1 (the v320 measure)
+      const low = await p.evaluate(con => { const CON = eval(con), out = [], keep = localStorage.getItem('qissa-theme');
+        for (const th of ['murekkep', 'gece', 'bahce']) { setTheme(th); out.push(...CON('#tour351 .t351-card').map(x => th + ':' + x)); } if (keep) setTheme(keep); return out; }, CON351);
+      if (low.length) throw new Error('contrast under 4.5: ' + low.slice(0, 4).join(' | '));
+      await p.locator('#t351Next').click(); await p.waitForTimeout(300);
+      const after = await p.evaluate(() => ({ gone: !document.getElementById('tour351'), key: localStorage.getItem('qissa-guide351') }));
+      if (!after.gone || after.key !== 'done') throw new Error('done: ' + J(after));
+      // shown once: a reload does not start it again; the Guide page replays one step («Göster») and the whole tour; Esc skips
+      await p.reload(); await p.waitForSelector('.lib-card:not(.skel)', { timeout: 120000 }); await p.waitForTimeout(800);
+      if (await p.evaluate(() => !!document.getElementById('tour351'))) throw new Error('the tour started again after a reload');
+      const door = await p.evaluate(() => { const b = document.getElementById('doorGuide'), r = b && b.getBoundingClientRect(); return b ? [Math.round(r.width), Math.round(r.height), b.getAttribute('aria-label')] : null; });
+      if (!door || door[0] < 44 || door[1] < 44 || door[2] !== 'Kılavuz — Qissa\'yı tanı') throw new Error('the door\'s «?»: ' + J(door));
+      await p.locator('#doorGuide').click(); await p.waitForSelector('#g351Page');
+      const page1 = await p.evaluate(() => ({ steps: document.querySelectorAll('#g351Page [data-g351-show]').length, heads: [...document.querySelectorAll('#g351Page h4')].map(h => h.textContent),
+        marks: document.querySelector('#g351Page .g351-marks').textContent, small: [...document.querySelectorAll('#g351Page button')].filter(b => b.getBoundingClientRect().height < 44).length,
+        wide: [...document.querySelectorAll('#g351Page *')].some(e => e.getBoundingClientRect().right > innerWidth + 1) }));
+      if (page1.steps !== 7 || page1.heads.join('|') !== 'Tur, adım adım|İşaretlerin anlamı|Dinlemek|Hoca için|Medrese sırası' || !/hoca onayı bekliyor/.test(page1.marks) || !/Otomatik çözümleme/.test(page1.marks) || !/çeviri · hoca onayı bekliyor/.test(page1.marks) || page1.small || page1.wide)
+        throw new Error('the Guide page: ' + J(page1));
+      const replays = [];
+      for (let i = 0; i < 7; i++) { await p.evaluate(() => Guide351.openPage()); await p.locator(`[data-g351-show="${i}"]`).click();
+        await p.waitForFunction(() => { const r = document.getElementById('tour351'); return r && !r.classList.contains('no-target'); }, null, { timeout: 15000 }).catch(() => {});
+        const q = await look(); replays.push(q.step + (q.noT ? ':none' : '') + (q.inView ? '' : ':off')); await p.locator('#t351Next').click(); }
+      if (replays.join() !== 'shelf,tap,tabs,why,tools,today,more') throw new Error('«Göster» replays each step at its place: ' + replays.join());
+      await p.evaluate(() => { localStorage.setItem('qissa-guide351', 'done'); Guide351.openPage(); }); await p.locator('#g351Play').click(); await p.waitForSelector('#tour351');
+      await p.locator('#t351Next').click(); await p.waitForFunction(() => document.getElementById('tour351').dataset.step === 'tap', null, { timeout: 15000 });
+      await p.keyboard.press('Escape'); await p.waitForTimeout(200);
+      const esc = await p.evaluate(() => ({ gone: !document.getElementById('tour351'), key: localStorage.getItem('qissa-guide351') }));
+      if (!esc.gone || esc.key !== 'skip:tap') throw new Error('Esc skips: ' + J(esc));
+      // Settings carries the Guide; Backup carries the key
+      await p.evaluate(() => openDoorSettings340()); const set = await p.evaluate(() => !!document.querySelector('#g351Set #g351Open') && Backup.keys().includes('qissa-guide351'));
+      if (!set) throw new Error('Settings → Guide, and the backup key');
+      // every string of the guide in en AND tr
+      const par = await p.evaluate(() => { Guide351.words(); const ks = Object.keys(L.en).filter(k => /^(g351|h351)/.test(k)); return { n: ks.length, miss: ks.filter(k => !L.tr[k] || L.tr[k] === L.en[k] && !/^g351Of$/.test(k)) }; });
+      if (par.n < 50 || par.miss.length) throw new Error('en/tr: ' + J(par));
+      if (errs.length) throw new Error('page errors: ' + errs.slice(0, 2).join(' | '));
+      console.log('      ' + seen.map(x => x.step + '(' + x.arrow + ')').join(' → ') + '; focus on a word at the tap step: ' + focusWord + '; replays ' + replays.join());
+    } finally { await ctx.close(); }
+  });
+
+  await check('v351 — one-time hints: a registry (id → target, text, when) whose every id has en and tr and a live target; the first visit to a lab, the games hub, the sentence\'s iʿrāb sheet, the teacher\'s review, the narration studio and a khilāf card shows ONE quiet dismissible chip, once, never during the tour, and a learner who never met the guide gets none', async () => {
+    const J = JSON.stringify;
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    try {
+      await ctx.addInitScript(() => { window.__QISSA_QUIET_OFF = true; try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '1'); } catch (e) {} });
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      await p.goto(url); await p.waitForSelector('.lib-card:not(.skel)', { timeout: 120000 }); await p.waitForTimeout(2500);
+      const r = await p.evaluate(async () => { const out = { before: { armed: !!Hint351.mo }, places: {}, again: {}, tr: {} }, w = ms => new Promise(r => setTimeout(r, ms));
+        const places = { lab: () => { conjState.lab = 'home'; openConjugator(); const b = sheetInner.querySelector('[data-tool]'); b.click(); }, games: () => openGames(),
+          irab: () => openIrabSheet(SENTENCE_FLAT[0].sen), review: () => Review344.openSheet(), studio: () => Studio347.open(), khilaf: () => Khilaf344.open([1]) };
+        openStory(STORIES.find(s => s.level === 1 && !storyLocked(s))); await w(600);
+        // a learner who never met the guide: no hint anywhere
+        for (const [id, f] of Object.entries(places)) { f(); await w(150); if (document.querySelector('.h351')) out.before.leak = id; closeSheet(); }
+        localStorage.setItem('qissa-guide351', 'done'); localStorage.removeItem('qissa-hints351'); Hint351.arm(); out.ids = HINTS351.map(h => h.id);
+        Guide351.words(); out.strings = HINTS351.filter(h => !L.en[h.key] || !L.tr[h.key] || L.en[h.key] === L.tr[h.key]).map(h => h.id);
+        // never during the tour
+        Tour351.start(0); places.games(); await w(150); out.duringTour = !!document.querySelector('.h351'); Tour351.end(null); closeSheet(); openStory(STORIES.find(s => s.level === 1 && !storyLocked(s))); await w(600);
+        for (const [id, f] of Object.entries(places)) { f(); await w(200); const hs = [...document.querySelectorAll('#sheetInner .h351')], h = hs[0];
+          out.places[id] = { n: hs.length, id: h && h.dataset.hint, live: !!sheetInner.querySelector(HINTS351.find(x => x.id === id).sel), btn: h ? Math.round(h.querySelector('button').getBoundingClientRect().height) : 0,
+            wide: !!h && h.getBoundingClientRect().right > innerWidth + 1 || document.documentElement.scrollWidth > innerWidth };
+          if (h) h.querySelector('button').click(); out.places[id].gone = !document.querySelector('.h351'); closeSheet(); }
+        for (const [id, f] of Object.entries(places)) { f(); await w(150); out.again[id] = document.querySelectorAll('.h351').length; closeSheet(); }
+        out.seen = JSON.parse(localStorage.getItem('qissa-hints351') || '[]').sort().join(); out.disarmed = !Hint351.mo; return out; });
+      if (r.before.armed || r.before.leak) throw new Error('a learner who never met the guide: ' + J(r.before));
+      if (r.ids.join() !== 'lab,games,irab,review,studio,khilaf' || r.strings.length) throw new Error('the registry and its strings: ' + J([r.ids, r.strings]));
+      if (r.duringTour) throw new Error('a hint showed during the tour');
+      const bad = Object.entries(r.places).filter(([id, x]) => x.n !== 1 || x.id !== id || !x.live || x.btn < 44 || x.wide || !x.gone);
+      if (bad.length) throw new Error('each place shows its own hint once, 44 px, no overflow: ' + J(bad));
+      if (Object.values(r.again).some(n => n) || r.seen !== 'games,irab,khilaf,lab,review,studio' || !r.disarmed) throw new Error('once: ' + J([r.again, r.seen, r.disarmed]));
+      if (errs.length) throw new Error('page errors: ' + errs.slice(0, 2).join(' | '));
+    } finally { await ctx.close(); }
+  });
+
+  await check('v351 — the guide costs a returning learner nothing: on a returning profile the door matches no tour CSS (no #g351css), runs no tour code and loads none of its strings (Guide351.words never ran), arms no observer; the first-run cost stated separately (door-usable A/B: CLAUDE.md v351-O)', async () => {
+    const J = JSON.stringify;
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    try {
+      await ctx.addInitScript(() => { window.__QISSA_QUIET_OFF = true; try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '2'); } catch (e) {} });
+      const p = await ctx.newPage(); await p.goto(url); await p.waitForSelector('.lib-card:not(.skel)', { timeout: 120000 }); await p.waitForTimeout(2500);
+      const r = await p.evaluate(() => ({ css: !!document.getElementById('g351css'), tour: !!document.getElementById('tour351'), words: !!Guide351._w, tr: 'g351s1T' in L.tr, mo: !!Hint351.mo, hint: !!document.querySelector('.h351'),
+        door: !!document.getElementById('doorGuide') }));
+      if (r.css || r.tour || r.words || r.tr || r.mo || r.hint || !r.door) throw new Error('returning learner: ' + J(r));
+      // the first run, by contrast: the tour's style sheet and strings arrive with the tour
+      const first = await p.evaluate(() => { const t0 = performance.now(); Tour351.start(0); const ms = performance.now() - t0; const o = { css: !!document.getElementById('g351css'), ms: Math.round(ms * 10) / 10, bytes: document.getElementById('g351css').textContent.length }; Tour351.end(null); return o; });
+      if (!first.css) throw new Error('the first run: ' + J(first));
+      console.log('      returning: none of it; first tour start ' + first.ms + ' ms, its CSS ' + first.bytes + ' B (injected then)');
+    } finally { await ctx.close(); }
+  });
+
+  await check('v351 — the design pass, measured at 360×740 in tr: on the audited screens (the door, a story, the word sheet\'s tabs, the tarkib sheet, the games hub, the labs hub and the Jumla / Khilāf / Ṣarf labs, a note, Settings, the teacher\'s review) no element wider than the viewport, every control ≥ 44 px (v320\'s rule: an invisible 44 px hit area counts), the tarkib sheet\'s Arabic words readable and unclipped, a lone-tab sheet header a title, no «undefined», and the touched colours at 4.5:1 in three themes', async () => {
+    const J = JSON.stringify;
+    const ctx = await browser.newContext({ viewport: { width: 360, height: 740 } });
+    try {
+      await ctx.addInitScript(() => { window.__QISSA_QUIET_OFF = true; window.__QISSA_RENDER_SYNC = true; try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '1'); localStorage.setItem('qissa-lang', 'tr'); localStorage.setItem('qissa-ui', 'tr'); } catch (e) {} });
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      await p.goto(url); await p.waitForSelector('.lib-card:not(.skel)', { timeout: 120000 }); await p.waitForTimeout(800);
+      await p.addStyleTag({ content: '*, *::before, *::after { transition: none !important; animation: none !important; }' });
+      const r = await p.evaluate(async (con) => { const CON = eval(con), w = ms => new Promise(r => setTimeout(r, ms)), out = { bad: [], undef: [], low: [] };
+        const meas = name => { const vw = document.documentElement.clientWidth, sheetOn = sheet.classList.contains('show');
+          const roots = sheetOn ? [sheetInner] : [document.querySelector('header.app'), document.getElementById('story')];
+          if (document.documentElement.scrollWidth > vw) out.bad.push(name + ': page ' + document.documentElement.scrollWidth);
+          const scrollAnc = el => { for (let e = el.parentElement; e && e !== document.body; e = e.parentElement) { const ox = getComputedStyle(e).overflowX; if (ox !== 'visible') return true; } return false; };
+          roots.forEach(root => root.querySelectorAll('*').forEach(el => { const q = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!q.width || !q.height || cs.visibility === 'hidden') return;
+            if ((q.right > vw + 1 || q.left < -1) && !scrollAnc(el)) out.bad.push(name + ': wide ' + (el.className || el.tagName) + ' ' + Math.round(q.right));
+            if (el.matches('button, a[href], [role=button]:not(.word), [role=tab], input:not([type=hidden]), select, summary') && !el.closest('.ar-line') && !el.disabled) {
+              const ps = getComputedStyle(el, '::after'), ph = ps.content && ps.content !== 'none' && ps.position === 'absolute' ? parseFloat(ps.height) || 0 : 0;
+              if ((q.height < 43.5 && ph < 43.5) || q.width < 24) out.bad.push(name + ': small ' + (el.id || el.className || el.tagName) + ' ' + Math.round(q.width) + 'x' + Math.round(q.height)); }
+            const t = [...el.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent).join(''); if (/\bundefined\b/.test(t)) out.undef.push(name + ' ' + (el.className || el.tagName)); })); };
+        const st = STORIES.find(s => s.id === 'al-asad-wa-al-far') || STORIES.find(s => s.level === 1 && !storyLocked(s));
+        closeSheet(); renderLibrary(); await w(100); meas('door');
+        openStory(st); await w(300); meas('story');
+        document.querySelector('#story .word').click(); await w(150);
+        for (const tb of ['word', 'sarf', 'irab', 'grammar']) { const b = sheetInner.querySelector(`.ws-tabs [data-tab="${tb}"]`); if (b) { b.click(); await w(150); const d = document.getElementById('illa346'); if (d) d.open = true; meas('word-' + tb); } }
+        closeSheet(); openIrabSheet(SENTENCE_FLAT[0].sen); await w(150); meas('tarkib');
+        const js = [...sheetInner.querySelectorAll('table.irab-sheet button.jump[lang="ar"]')];
+        out.jump = { n: js.length, minFont: Math.min(...js.map(j => parseFloat(getComputedStyle(j).fontSize))), clipped: js.filter(j => getComputedStyle(j).overflow !== 'visible' || j.scrollHeight > j.clientHeight + 2).length };   /* the vowels inside the word's own line box (2 px for the face's ink); sideways the glyphs' bearings may overhang, nothing clips them */
+        const hb = sheetInner.querySelector(':scope > .tabs:first-child > button.on:only-child'); out.title = hb ? { bg: getComputedStyle(hb.parentElement).backgroundColor, fs: parseFloat(getComputedStyle(hb).fontSize), clip: hb.scrollHeight > hb.clientHeight + 1 } : null;
+        closeSheet(); openGames(); await w(300); meas('games');
+        conjState.lab = 'home'; openConjugator(); await w(150); meas('labs');
+        for (const lab of ['jumla', 'khilaf', 'sarf']) { conjState.lab = lab; openConjugator(); await w(300); meas('lab-' + lab); }
+        openRef('fail'); await w(150); meas('note');
+        closeSheet(); renderLibrary(); openDoorSettings340(); await w(150); meas('settings');
+        Review344.openSheet(); await w(150); meas('review');
+        // the colours this pass touched, in three themes
+        const keep = localStorage.getItem('qissa-theme');
+        for (const th of ['murekkep', 'gece', 'bahce']) { setTheme(th); closeSheet(); renderLibrary(); await w(50); out.low.push(...CON('.chip.freeweek').map(x => th + ' door:' + x));
+          openRef('fail'); await w(50); out.low.push(...CON('#sheetInner .mistake').map(x => th + ' note:' + x)); }
+        if (keep) setTheme(keep); closeSheet();
+        return out; }, CON351);
+      if (r.bad.length) throw new Error(r.bad.length + ' faults: ' + r.bad.slice(0, 6).join(' | '));
+      if (r.undef.length) throw new Error('«undefined» on screen: ' + r.undef.join(' | '));
+      if (!(r.jump.n >= 5 && r.jump.minFont >= 16 && !r.jump.clipped)) throw new Error('the tarkib sheet\'s Arabic words: ' + J(r.jump));
+      if (!r.title || r.title.clip || r.title.fs < 17 || !/rgba\(0, 0, 0, 0\)|transparent/.test(r.title.bg)) throw new Error('the lone-tab header as a title: ' + J(r.title));
+      if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
+      if (errs.length) throw new Error('page errors: ' + errs.slice(0, 2).join(' | '));
+      console.log('      tarkib words ' + r.jump.n + ' at ' + r.jump.minFont + ' px; header title ' + r.title.fs + ' px');
+    } finally { await ctx.close(); }
   });
 
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {

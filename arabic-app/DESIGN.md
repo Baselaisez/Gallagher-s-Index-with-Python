@@ -1283,3 +1283,15 @@ dark card above the thumb bar with `role=status`.
 
 **Empty states** get the covers' mark (the khātam star as a CSS mask in `--accent`, `.e340`), one sentence and one action
 (the empty deck opens a story; a search with no hit clears itself; a lab before input keeps its example chips).
+
+## v351 — the guide, and the design pass's rules
+
+**The tour** is drawn on the real screens: four `--scrim` panels round one hole, a 3 px `--accent` ring, one small card
+(`--panel`, `--radius`, `--e2`) above or below the ring with its arrow at the ring's centre, never over the thumb bar.
+Non-modal: the page under it stays usable; Esc skips. **A hint** is one `.h351` note in `--accent-soft` with «Tamam»,
+placed just before the thing it explains, once. **The Guide page** reads like a note: a title, one intro line, one primary
+button, then sections with t-md heads. Rules the audit made explicit: a sheet opens with ONE title (a lone tab is styled
+as that title, not a pill); interface text inside a sheet is in the UI face — the reading serif is for the text, its
+translations and the note titles; `--muted` is the theme's soft ink (it was never defined); a control in a dense row keeps
+its size and gets v320's invisible 44 px hit area, a control in a sheet grows; radii are `--r-sm` / `--r-md` / `--r-full`
+(no literal 10 px); a segmented row that wraps has card corners; Arabic in a list is never under 1 rem.

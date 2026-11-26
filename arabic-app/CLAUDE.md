@@ -16820,3 +16820,63 @@ to the places they belong — verbatim, unvowelled as printed, anchored by book,
 - **Left** (research/commentary-coverage-2026-11-27.md has the lists): Ibn Mālik 96 sections / 1,213 pp. and al-Raḍī 57 / 815 pp. not
   scanned; 44 joined topics with no reason kept (badal, istithna, mafʿūl muṭlaq/fīh/lahu, nāʾib, the pronouns, taṣghīr, nasab, waqf, …);
   of the 984 candidates about 510 were read (Shaykhzāde 193 of 379, Ibn Mālik ≈260 of 350, al-Raḍī ≈60 of 255); the renderings await the hoca.
+
+## v351-O — the guide and the design pass
+
+The owner: «Maybe we can add an onboarding kind of guide to use the app better. Design improvements also important.» Testers
+did not find that a word can be tapped, what the sheet's tabs are for, where the labs are, what the marks on a line mean.
+Three new classes beside `Onboarding` (`Guide351`, `Tour351`, `Hint351` + the data `HINTS351`); a CSS block «v351-O — the
+design pass» at the end of the main `<style>`; nothing in an older function rewritten (one-line hooks in `Onboarding.finish`,
+`bootWithData`, `levelPills340`, `openDoorSettings340`).
+- **The tour «Qissa'yı tanı / Get to know Qissa»** (`Tour351`) — on the REAL screens, after the first-run questions
+  (`Onboarding.finish` → `Guide351.afterOnboarding`, once: key `qissa-guide351` = «1» while it runs, then «done» or
+  «skip:<step>»). Seven steps: (1) the shelf and the level chip, ringed on the sample story's card («Aç» opens it, or the
+  learner taps it); (2) **tap a word** — the ring is on the first line, focus on its first word, no «İleri»: the tour waits
+  until the word sheet is open; (3) the sheet's tabs (Anlam · Sarf · İ'rab · Gramer); (4) «Neden?» (the iʿrāb tab is opened
+  for it); (5) the sentence tools (▶, تركيب) and «▶ Dinle»; (6) Today's lesson; (7) the games and Atölye tabs (the toolbar's
+  buttons on a desktop). A dimmed page (four `--scrim` panels round the hole — a 200vmax box-shadow did not paint in
+  Chromium), a ring in `--accent`, a small card (step n / N, title, one or two sentences, «Geç» / «İleri», 44 px) above or
+  below the ring with an arrow at the ring's centre (physical coordinates, so RTL-safe), placed above the thumb bar.
+  `role="dialog"` `aria-modal="false"`, the text `aria-live="polite"`, focus moved to the card's title (never trapped), Esc =
+  skip (captured, so the sheet under it stays). A 200 ms tick while it runs re-measures (rotation, sheet slide, scroll) and
+  re-runs a step's `prep` when its target has not appeared (a story still loading, a sheet closed by the learner). Each
+  step's `prep` puts the place in front of the learner, so «Göster» on the Guide page replays a single step from anywhere.
+- **One-time hints** (`HINTS351`: lab → `#labBody` when a tool is open, games → `#hubTask`, irab → `.sheet-line` (the tarkib
+  sheet), review → `.rv344-who`, studio → `.st347`, khilaf → `.khilaf-card`; each with a `ui()` key `h351*`). A quiet
+  `.h351` note with «Tamam», inserted before its target the first time the place renders in the sheet (a MutationObserver on
+  `#sheetInner`, armed after the door), at most one per sheet visit, never during the tour, each id once (`qissa-hints351`);
+  the observer disconnects when all six are seen. **Only for a learner who has met the guide** (`qissa-guide351` set: the
+  first run since v351, or the tour or Guide page opened once) — a returning learner from before keeps every sheet as it was,
+  and so do the suite's pages.
+- **The Guide page** (`Guide351.openPage`) from Settings («Kılavuz») and from a «?» on the door — beside the shelf's
+  «Filtrele» (a fourth round button in the header pushed «Kütüphane» under the search button and wrapped the date): the
+  tour's steps with «Göster», «Turu oynat», what the marks mean (the level colours with their names, role colours, [هُوَ],
+  v338's three verification marks and «çeviri · hoca onayı bekliyor» by their own `ui()` strings, the Atölye's percentages),
+  listening, the teacher's review and the narration studio, and «Medrese sırası» (the shelf by level; the naḥw notes and labs
+  from al-ʿAwāmil, Iẓhār, al-Kāfiya, Qaṭr, Shudhūr; the ṣarf labs from al-Amthila, al-Bināʾ, al-Maqṣūd, al-ʿIzzī, Marāḥ).
+- **Cost.** A returning learner: `Guide351.boot()` reads two keys; no tour code, no observer, no strings (`Guide351.words()`
+  adds the 52 g351/h351 strings (each in en and tr) to `L` on first use) and no CSS (`Guide351.css()` injects `#g351css`, 4.1 KB, on first use).
+  Eager: two labels (the «?» and Settings). Core data slice: 0 bytes (all of it is code): app.js +34.8 KB raw / +11.7 KB
+  gzip, the page +5.0 KB (the design pass's CSS). Door A/B (`speed341/m.js` boot, the split copy, 4× CPU, 390×844, the
+  worktree's starting page vs this wave after the refit chain, 12 interleaved rounds, load 3.2–6.6): door usable median
+  963 ms (834–1546) vs 985 ms (849–1288); longest task median 175 vs 188 ms; long-task sum median 1250 vs 1175 ms — within
+  the noise; no long task added. First run: the tour's start ~7 ms (strings + 4.1 KB CSS + the overlay).
+- **The design pass** — `research/design-audit-2026-11-27.md` (240 screenshots: 20 screens × 390/360 × three themes × TR/EN,
+  each measured by script). Done, biggest first: TR «undefined» on the games hub (`gGroupVocab` had no tr); the tarkib sheet's
+  Arabic words at 0.7 rem → the reading face at 1.15 rem with room for their vowels; 44 px on the back links, chapter pills,
+  root chip, tarkib words, lab chips, «Kitapların kendi sözleri», the Settings switches, the Jumla ↗ (v320's invisible hit
+  area where a row would grow); İznik `--ok` / `--danger` one step darker and the gold «Bu hafta ücretsiz» / model chips
+  mixed toward the ink (were 3.2–4.35:1); **`--muted` defined** (50 rules used it, none defined it: every quiet label was
+  full ink, and its one fallback was #666 on Gece); a lone-tab sheet header (games hub, tarkib) set as a title (scoped
+  `:has()`, never page-wide); the UI face for interface text inside sheets (governor card, lab heads and fields, khilāf
+  chips); the iʿrāb tab's rhythm (line cluster tight, sections `--s5` apart, one head style for the governor card, the decision
+  section and «Neden?»); 22 literal 10 px radii → `--r-md`; the Ṣarf lab's wrapping rows with card corners; the door's
+  title at 360 px (`min(2.1rem, 8.9vw)`). Left: the Today head's title cut at 360 px, tight line-heights on wrapping
+  Arabic display lines (story title: wave 72 pins the first sentence), Settings' control styles, a round's buttons under
+  the thumb bar.
+- **Checks** (before «v333 — the received imports»): «v351 — the guided tour on the real screens» (fresh profile, tr: the
+  seven steps, the card beside its ring and on screen, 44 px, dialog/live attributes, the tap step waits and the keyboard
+  opens a word, a rotation, the three themes' contrast, «done», no restart after a reload, the «?» and the Guide page, every
+  «Göster», Esc → «skip:tap», Settings and the backup key, en/tr for every g351/h351 string); «v351 — one-time hints»
+  (none without the guide; registry ids, strings and live targets; once each, 44 px, not during the tour, the observer
+  disarmed); «v351 — the guide costs a returning learner nothing»; «v351 — the design pass, measured at 360×740 in tr».
