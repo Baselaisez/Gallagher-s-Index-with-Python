@@ -3,10 +3,10 @@
  "source_file": "research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src.txt",
  "built_by": "tools/ledger/build_ledger.py",
  "counts": {
-  "applied": 146,
-  "noted": 65,
+  "applied": 182,
+  "noted": 30,
   "not-automatable": 22,
-  "open": 1,
+  "open": 0,
   "heading": 1,
   "fragment": 0,
   "example": 0
@@ -258,19 +258,19 @@
    "ar": "وَأُلْحِقَ بِهِ اثْنَانِ، وَاثْنَتَانِ، وَثِنْتَانِ مُطْلَقًا، وَكِلَا وَكِلْتَا مُضَافَيْنِ إِلَى مُضْمَرٍ.",
    "kind": "rule",
    "carried_by": [
+    "engine:SignEngine · كِلَا with a pronoun",
     "note:al-muthanna"
    ],
-   "status": "noted",
+   "status": "applied",
    "probes": [
     {
      "s": "جَاءَ الرَّجُلَانِ كِلَاهُمَا",
      "w": "كلاهما",
      "re": "الألف",
-     "ok": false,
-     "got": "اسم، وعلامته مقدرة، توكيد، والضمير مضاف إليه."
+     "ok": true,
+     "got": "اسم، مرفوع وعلامة رفعه الألف لأنه ملحق بالمثنى (مضاف إلى ضمير)، توكيد، والضمير مضاف إليه."
     }
-   ],
-   "engine_hint": "SignEngine · كِلَا with a pronoun"
+   ]
   },
   {
    "id": "S43",
@@ -297,19 +297,19 @@
    "ar": "وَأُلْحِقَ بِهِ: أُولُو، وَعَالَمُونَ، وَأَرَضُونَ، وَسِنُونَ، وَعِشْرُونَ وَبَابُهُمَا، وَأَهْلُونَ، وَعِلِّيُّونَ، وَنَحْوُهُ.",
    "kind": "rule",
    "carried_by": [
+    "engine:SignEngine · what is joined to it",
     "note:jam-mudhakkar-salim"
    ],
-   "status": "noted",
+   "status": "applied",
    "probes": [
     {
      "s": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
      "w": "العالمين",
      "re": "الياء",
-     "ok": false,
-     "got": "اسم، مجرور بالحروف، مضاف إليه."
+     "ok": true,
+     "got": "اسم، مجرور وعلامة جره الياء لأنه ملحق بجمع المذكر السالم، مضاف إليه."
     }
-   ],
-   "engine_hint": "SignEngine · what is joined to it"
+   ]
   },
   {
    "id": "S48",
@@ -589,9 +589,10 @@
    "ar": "هُوَ يَأْتِينَا صَبَاحَ مَسَاءَ ، صَبَاحَ مَسَاءٍ ، هَمْزَةُ بَيْنٍ بَيْنٍ ، وَلَوْلَا يَوْمُ يَوْمٍ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 105,
    "en": "Compounded adverbs and ḥāls (صباحَ مساءَ، بينَ بينَ، بيتَ بيتَ) are built on two fatḥas only while they carry the sense of an elided wāw; annexed (صباحَ مساءٍ) or out of adverbial/ḥāl use they are declined.",
    "jsonl": 8,
@@ -600,8 +601,8 @@
      "s": "هُوَ يَأْتِينَا صَبَاحَ مَسَاءَ",
      "w": "صباح",
      "re": "مبني على فتح الجزأين",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، وهو مضاف."
+     "ok": true,
+     "got": "ظرف زمان مركب مبني على فتح الجزأين في محل نصب."
     }
    ]
   },
@@ -611,9 +612,10 @@
    "ar": "عَلَى حِينَ عَاتَبْتُ ، هَذَا يَوْمُ يَنْفَعُ ، عَلَى حِينِ التَّوَاصُلُ غَيْرُ دَانِ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 112,
    "en": "A vague time noun (حين، وقت، يوم) annexed to a sentence may be built or declined: building is preferred before a mabnī (past) verb, declension preferred before a muḍāriʿ or nominal sentence.",
    "jsonl": 9,
@@ -622,8 +624,8 @@
      "s": "عَلَى حِينَ عَاتَبْتُ",
      "w": "حين",
      "re": "مبني على الفتح",
-     "ok": false,
-     "got": "اسم، مجرور بالحروف."
+     "ok": true,
+     "got": "ظرف زمان مبني على الفتح في محل جر لإضافته إلى جملة صدرها مبني (ويجوز إعرابه)، وهو مضاف، والجملة بعده في محل جر بالإضافة."
     }
    ]
   },
@@ -645,9 +647,10 @@
    "ar": "وَمِنْ خِزْيِ يَوْمِئِذٍ ، وَمِنَّا دُونَ ذَلِكَ ، لَقَدْ تَقَطَّعَ بَيْنَكُمْ ، إِنَّهُ لَحَقٌّ مِثْلَ مَا أَنَّكُمْ تَنْطِقُونَ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 115,
    "en": "A deeply vague noun (مثل، دون، بين) annexed to a mabnī may borrow bināʾ: يومئذٍ in ﴿من خزي يومئذ﴾ read with fatḥ or jarr; دونَ in ﴿ومنا دون ذلك﴾ mubtadaʾ built on fatḥ; بينَ in ﴿لقد تقطع بينكم﴾ fāʿil in raf or built.",
    "jsonl": 11,
@@ -656,8 +659,8 @@
      "s": "وَمِنْ خِزْيِ يَوْمِئِذٍ",
      "w": "يومئذ",
      "re": "مبني على الفتح",
-     "ok": false,
-     "got": "اسم، مضاف إليه."
+     "ok": true,
+     "got": "مضاف إليه مجرور وعلامة جره الكسرة الظاهرة، أو مبني على الفتح في محل جر لإضافته إلى «إذ» (وبه قرئ «يومئذ»)، وهو مضاف، و«إذ» ظرف مبني على السكون في محل جر مضاف إل"
     }
    ]
   },
@@ -697,9 +700,10 @@
    "ar": "لَا رَجُلَ ظَرِيفًا ، لَا رَجُلَ ظَرِيفٌ ، لَا رَجُلَ ظَرِيفَ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:la-nafiya-lil-jins"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 120,
    "en": "The adjective of a single lā-noun, adjacent and itself single, may be naṣb (on the noun's position), raf (on lā+noun's ibtidāʾ position) or fatḥ (compounded); if separated or either is non-single, fatḥ is barred.",
    "jsonl": 13,
@@ -708,8 +712,8 @@
      "s": "لَا رَجُلَ ظَرِيفًا",
      "w": "ظريفا",
      "re": "نعت",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة."
+     "ok": true,
+     "got": "اسم، نعت لاسم «لا» منصوب على محله وعلامة نصبه الفتحة الظاهرة."
     }
    ]
   },
@@ -786,9 +790,10 @@
    "ar": "يَا خَبَاثِ ، يَا فَسَاقِ ، يَا لَكَاعِ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 127,
    "en": "فَعَالِ as an insult for a female (يا خباثِ، يا لكاعِ) is built on kasra and is used only in the vocative; its use elsewhere (as khabar) is poetic licence.",
    "jsonl": 17,
@@ -797,8 +802,8 @@
      "s": "يَا خَبَاثِ",
      "w": "خباث",
      "re": "مبني على الكسر",
-     "ok": false,
-     "got": "اسم، منادى."
+     "ok": true,
+     "got": "منادى مبني على الكسر في محل نصب (فعال في سب المؤنث)."
     }
    ]
   },
@@ -808,9 +813,10 @@
    "ar": "إِذَا قَالَتْ حَذَامِ فَصَدِّقُوهَا ، مَتَى تَرِدَنْ يَوْمًا سَفَارِ ، هَلَكَتْ جَهْرَةً وَبَارُ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 129,
    "en": "فَعَالِ as a feminine proper name (حذام، قطام): Ḥijāzīs build it on kasra always; some Tamīm decline it as a diptote; most Tamīm build those ending in rāʾ (سفارِ، وبارِ) and decline the rest as diptotes.",
    "jsonl": 18,
@@ -819,8 +825,8 @@
      "s": "إِذَا قَالَتْ حَذَامِ فَصَدِّقُوهَا",
      "w": "حذام",
      "re": "مبني على الكسر",
-     "ok": false,
-     "got": "اسم، مجرور وعلامة جره الكسرة الظاهرة."
+     "ok": true,
+     "got": "اسم مبني على الكسر على لغة أهل الحجاز في محل رفع فاعل."
     }
    ]
   },
@@ -874,9 +880,10 @@
    "ar": "قَبَضْتُ عَشَرَةً لَيْسَ غَيْرُ",
    "kind": "rule",
    "carried_by": [
+    "engine:ZarfBinaEngine · لَيْسَ غَيْرُ",
     "note:al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 141,
    "en": "غيرُ is built on ḍamm after ليس when the annexed word is dropped (قبضت عشرة ليس غيرُ); dropping it is allowed only after ليس, so «لا غير» of the scholars is not Arab usage.",
    "jsonl": 21,
@@ -885,11 +892,10 @@
      "s": "قَبَضْتُ عَشَرَةً لَيْسَ غَيْرُ",
      "w": "غير",
      "re": "مبني على الضم",
-     "ok": false,
-     "got": "اسم، مبني لا يتغير آخره، اسم ليس."
+     "ok": true,
+     "got": "اسم مبني على الضم في محل رفع اسم «ليس»، وخبرها محذوف، قطع عن الإضافة لفظا ونوي معناها."
     }
-   ],
-   "engine_hint": "ZarfBinaEngine · لَيْسَ غَيْرُ"
+   ]
   },
   {
    "id": "R22",
@@ -919,9 +925,10 @@
    "ar": "ثُمَّ لَنَنْزِعَنَّ مِنْ كُلِّ شِيعَةٍ أَيُّهُمْ أَشَدُّ ، اضْرِبْ أَيُّهُمْ أَفْضَلُ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:ism-mawsul"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 143,
    "en": "Relative أيّ is declined in all states except when annexed AND the first part of its ṣila is a dropped pronoun: then built on ḍamm (﴿أيُّهم أشدُّ﴾ though object); some Arabs decline it always (أيَّهم أشد).",
    "jsonl": 23,
@@ -930,8 +937,8 @@
      "s": "اضْرِبْ أَيُّهُمْ أَفْضَلُ",
      "w": "أيهم",
      "re": "مبني على الضم",
-     "ok": false,
-     "got": "اسم، والضمير مضاف إليه."
+     "ok": true,
+     "got": "اسم موصول مبني على الضم في محل نصب مفعول به ل«اضرب»، وهو مضاف، و«هم» ضمير متصل مبني في محل جر مضاف إليه، وصدر صلته محذوف تقديره «هو»."
     }
    ]
   },
@@ -1000,9 +1007,10 @@
    "ar": "سَلَامُ اللهِ يَا مَطَرٌ عَلَيْهَا ، يَا عَدِيًّا لَقَدْ وَقَتْكَ الْأَوَاقِي ، يَا زَيْدَ بْنَ عَمْرٍو ، يَا طَلْحَةَ بْنَ عُبَيْدِ اللهِ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:vocative-munada"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 148,
    "en": "A ḍamm-deserving vocative may take tanwīn in poetic necessity, kept with ḍamma (يا مطرٌ) or turned to naṣb (يا عديًّا); a proper name described by ابن annexed to a proper name may take fatḥat itbāʿ (يا زيدَ بنَ عمرٍو).",
    "jsonl": 26,
@@ -1011,8 +1019,8 @@
      "s": "سَلَامُ اللهِ يَا مَطَرٌ عَلَيْهَا",
      "w": "مطر",
      "re": "ضرورة",
-     "ok": false,
-     "got": "اسم، مبني لا يتغير آخره، منادى."
+     "ok": true,
+     "got": "منادى مبني على الضم في محل نصب، ونون للضرورة."
     }
    ]
   },
@@ -1058,9 +1066,10 @@
    "ar": "هَذَانِ ، هَذَيْنِ ، اللَّذَيْنِ ، أَيُّكُمْ يَأْتِينِي بِعَرْشِهَا ، أَيَّ مُنْقَلَبٍ يَنْقَلِبُونَ ، بِأَيِّكُمُ الْمَفْتُونُ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line · هَذَانِ / أَيٌّ declined",
     "note:asma-al-ishara-wal-mawsulat"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 150,
    "en": "Exceptions within the mabnī classes: ذانِ/تانِ and اللذانِ/اللتانِ are declined like the dual (alif/yāʾ), and أيّ conditional/interrogative is declined by consensus.",
    "jsonl": 28,
@@ -1069,8 +1078,8 @@
      "s": "هَذَانِ",
      "w": "هذان",
      "re": "الألف",
-     "ok": false,
-     "got": "اسم، مبتدأ."
+     "ok": true,
+     "got": "اسم إشارة معرب إعراب المثنى، مرفوع وعلامة رفعه الألف، مبتدأ."
     },
     {
      "s": "أَيُّكُمْ يَأْتِينِي بِعَرْشِهَا",
@@ -1080,8 +1089,7 @@
      "ok": true,
      "got": "اسم، مبتدأ، والضمير مضاف إليه، والجملة الفعلية «يأتيني بعرشها» في محل رفع خبره."
     }
-   ],
-   "engine_hint": "Murib.line · هَذَانِ / أَيٌّ declined"
+   ]
   },
   {
    "id": "R29",
@@ -1145,9 +1153,10 @@
    "ar": "الاسْمُ نَكِرَةٌ وَهُوَ مَا يَقْبَلُ رُبَّ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:huruf-jarr-nawadir"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 164,
    "en": "The test for an indefinite noun is that رُبَّ can enter it; this shows مَنْ and مَا can be indefinite (رُبَّ مَنْ، رُبَّمَا).",
    "jsonl": 32,
@@ -1156,8 +1165,8 @@
      "s": "رُبَّ رَجُلٍ",
      "w": "رب",
      "re": "شبيه بالزائد",
-     "ok": false,
-     "got": "حرف جر، لا محل له من الإعراب."
+     "ok": true,
+     "got": "حرف جر شبيه بالزائد، لا محل له من الإعراب."
     }
    ]
   },
@@ -1450,9 +1459,10 @@
    "ar": "يَا غُلَامُ ، يَا أَللهُ ، الضَّارِبَا زَيْدٍ ، الضَّارِبُو زَيْدٍ ، الضَّارِبُ الرَّجُلِ ، *الْغُلَامِي",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:vocative-munada"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 186,
    "en": "ال must be dropped from a vocative (يا غلامُ) except in the name of God (يا ألله) and a sentence-name (يا المنطلقُ زيدٌ); and from a muḍāf, except an adjective declined by letters (الضاربا زيدٍ) or one annexed to a noun with ال (الضاربُ الرجلِ).",
    "jsonl": 47,
@@ -1468,8 +1478,8 @@
      "s": "يَا أَللهُ",
      "w": "ألله",
      "re": "منادى",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، والضمير مضاف إليه."
+     "ok": true,
+     "got": "لفظ الجلالة منادى مبني على الضم في محل نصب، وقطعت همزته في النداء."
     }
    ]
   },
@@ -2003,9 +2013,10 @@
    "ar": "وَيَجِبُ حَذْفُ «كَانَ» وَحْدَهَا بَعْدَ «أَمَّا»",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:kana-wa-akhawatuha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 215,
    "en": "After أَمَّا (= أَنْ + مَا) kāna alone is obligatorily dropped, with ما as its compensation and the pronoun becoming detached: «أَمَّا أَنْتَ مُنْطَلِقًا انْطَلَقْتُ» < انْطَلَقْتُ لِأَنْ كُنْتَ مُنْطَلِقًا; «أَبَا خُرَاشَةَ أَمَّا أَنْتَ ذَا نَفَرٍ».",
    "jsonl": 72,
@@ -2014,8 +2025,8 @@
      "s": "أَمَّا أَنْتَ مُنْطَلِقًا انْطَلَقْتُ",
      "w": "منطلقا",
      "re": "خبر كان",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة."
+     "ok": true,
+     "got": "خبر كان المحذوفة منصوب وعلامة نصبه الفتحة الظاهرة، والضمير «أنت» اسمها، و«ما» عوض عنها (أما = أن + ما)."
     }
    ]
   },
@@ -2025,9 +2036,10 @@
    "ar": "حَذْفُ «كَانَ» مَعَ اسْمِهَا وَإِبْقَاءُ خَبَرِهَا … أَنْ يَتَقَدَّمَهَا «إِنْ» أَوْ «لَوْ» الشَّرْطِيَّتَانِ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:kana-wa-akhawatuha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 216,
    "en": "Kāna may be dropped together with its ism, leaving the khabar, after conditional إنْ/لو: «النَّاسُ مَجْزِيُّونَ بِأَعْمَالِهِمْ إِنْ خَيْرًا فَخَيْرٌ، وَإِنْ شَرًّا فَشَرٌّ» (إِنْ كَانَ عَمَلُهُمْ خَيْرًا فَجَزَاؤُهُمْ خَيْرٌ, the best of four readings), «الْتَمِسْ وَلَوْ خَاتَمًا مِنْ حَدِيدٍ».",
    "jsonl": 73,
@@ -2036,8 +2048,8 @@
      "s": "الْتَمِسْ وَلَوْ خَاتَمًا مِنْ حَدِيدٍ",
      "w": "خاتما",
      "re": "خبر",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة."
+     "ok": true,
+     "got": "خبر كان المحذوفة مع اسمها منصوب وعلامة نصبه الفتحة الظاهرة."
     }
    ]
   },
@@ -2113,9 +2125,10 @@
    "ar": "«لَاتَ» … وَلَا تَعْمَلُ إِلَّا فِي الْحِينِ بِكَثْرَةٍ، أَوِ السَّاعَةِ أَوِ الْأَوَانِ بِقِلَّةٍ، وَلَا يُجْمَعُ بَيْنَ جُزْأَيْهَا",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:ma-la-mushabbaha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 221,
    "en": "لات works like ليس only with الحين (often) or الساعة/الأوان (rarely), and its two parts never both appear; usually the ism is dropped: «وَلَاتَ حِينَ مَنَاصٍ» = لَيْسَ الْحِينُ حِينَ مَنَاصٍ. The reverse (khabar dropped) is in the reading «وَلَاتَ حِينُ مَنَاصٍ».",
    "jsonl": 77,
@@ -2124,8 +2137,8 @@
      "s": "وَلَاتَ حِينَ مَنَاصٍ",
      "w": "حين",
      "re": "خبر لات",
-     "ok": false,
-     "got": "اسم، مجرور بالحروف، مضاف إليه، وهو مضاف."
+     "ok": true,
+     "got": "خبر لات منصوب وعلامة نصبه الفتحة الظاهرة، واسمها محذوف تقديره «الحين»، وهو مضاف."
     }
    ]
   },
@@ -2179,9 +2192,10 @@
    "ar": "وَأَمَّا «لَا» فَإِنَّهَا تَعْمَلُ بِالشُّرُوطِ الْمَذْكُورَةِ لِمَا … وَيُضَافُ … أَنْ يَكُونَ اسْمُهَا وَخَبَرُهَا نَكِرَتَيْنِ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:ma-la-mushabbaha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 225,
    "en": "لا like ليس needs the same conditions as ما (minus the إنْ condition) plus both parts indefinite: «فَلَا شَيْءٌ عَلَى الْأَرْضِ بَاقِيَا، وَلَا وَزَرٌ مِمَّا قَضَى اللهُ وَاقِيَا». A definite ism is rare («لَا الدَّارُ دَارًا وَلَا الْجِيرَانُ جِيرَانَا»); it is Ḥijāzī; Tamīm leave it inoperative and repeat it.",
    "jsonl": 80,
@@ -2190,8 +2204,8 @@
      "s": "فَلَا شَيْءٌ عَلَى الْأَرْضِ بَاقِيَا",
      "w": "باقيا",
      "re": "خبر",
-     "ok": false,
-     "got": "فعل أمر، مبني لا يتغير آخره، والألف ضمير متصل مبني في محل رفع فاعل."
+     "ok": true,
+     "got": "اسم، خبر لا العاملة عمل «ليس» منصوب وعلامة نصبه الفتحة الظاهرة."
     }
    ]
   },
@@ -2201,9 +2215,10 @@
    "ar": "وَأَمَّا «إِنْ» فَتَعْمَلُ بِالشُّرُوطِ الْمَذْكُورَةِ … وَتَعْمَلُ فِي اسْمِ مَعْرِفَةٍ وَخَبَرِ نَكِرَةٍ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:ma-la-mushabbaha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 227,
    "en": "Negative إنْ (dialect of Ahl al-ʿĀliya) works under the same conditions, with definite or indefinite parts: «إِنِ الَّذِينَ تَدْعُونَ مِنْ دُونِ اللهِ عِبَادًا أَمْثَالَكُمْ» (Saʿīd b. Jubayr), «إِنْ أَحَدٌ خَيْرًا مِنْ أَحَدٍ إِلَّا بِالْعَافِيَةِ», «إِنْ ذَلِكَ نَافِعَكَ وَلَا ضَارَّكَ».",
    "jsonl": 81,
@@ -2212,8 +2227,8 @@
      "s": "إِنْ ذَلِكَ نَافِعَكَ وَلَا ضَارَّكَ",
      "w": "نافعك",
      "re": "خبر",
-     "ok": false,
-     "got": "اسم، مبتدأ، والضمير مضاف إليه."
+     "ok": true,
+     "got": "خبر إن النافية العاملة عمل «ليس» منصوب وعلامة نصبه الفتحة الظاهرة، وهو مضاف، والكاف ضمير متصل مبني في محل جر مضاف إليه."
     }
    ]
   },
@@ -2289,9 +2304,10 @@
    "ar": "وَيَجِبُ الْفَتْحُ فِي ثَمَانِي مَسَائِلَ",
    "kind": "rule",
    "carried_by": [
+    "engine:InnaEngine · أَنَّ in a single-word seat",
     "note:mawadi-fath-anna"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 234,
    "en": "أنّ takes fatḥa where its clause fills a single-word (mufrad) slot: fāʿil («أَوَلَمْ يَكْفِهِمْ أَنَّا أَنْزَلْنَا»), nāʾib («قُلْ أُوحِيَ إِلَيَّ أَنَّهُ اسْتَمَعَ»), object of a verb other than قول («وَلَا تَخَافُونَ أَنَّكُمْ أَشْرَكْتُمْ»), mubtadaʾ («وَمِنْ آيَاتِهِ أَنَّكَ تَرَى الْأَرْضَ»), khabar of an abstract noun («اعْتِقَادِي أَنَّكَ فَاضِلٌ»), after a preposition («ذَلِكَ بِأَنَّ اللهَ هُوَ الْحَقُّ»), muḍāf ilayhi («مِثْلَ مَا أَنَّكُمْ تَنْطِقُونَ»), or a follower of one of these («وَأَنِّي فَضَّلْتُكُمْ»).",
    "jsonl": 85,
@@ -2300,11 +2316,10 @@
      "s": "أَوَلَمْ يَكْفِهِمْ أَنَّا أَنْزَلْنَا",
      "w": "أنا",
      "re": "مصدر|فاعل",
-     "ok": false,
-     "got": "ضمير منفصل، مبني على السكون."
+     "ok": true,
+     "got": "«أن» حرف توكيد ونصب ومصدر، و«نا» ضمير متصل مبني في محل نصب اسمها، والمصدر المؤول من «أن» ومعموليها يعرب بحسب موقعه."
     }
-   ],
-   "engine_hint": "InnaEngine · أَنَّ in a single-word seat"
+   ]
   },
   {
    "id": "R86",
@@ -2346,7 +2361,7 @@
      "w": "أفضل",
      "re": "خبر",
      "ok": true,
-     "got": "اسم، مرفوع وعلامة رفعه الضمة الظاهرة، خبر."
+     "got": "اسم تفضيل، مرفوع وعلامة رفعه الضمة الظاهرة، خبر."
     }
    ]
   },
@@ -2356,9 +2371,10 @@
    "ar": "«قَضِيَّةٌ وَلَا أَبَا حَسَنٍ لَهَا» … فَمُؤَوَّلٌ بِتَقْدِيرِ «مِثْلِ»",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:la-nafiya-lil-jins"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 237,
    "en": "Apparent proper names after لا are interpreted as indefinite by restoring مِثْل: «قَضِيَّةٌ وَلَا أَبَا حَسَنٍ لَهَا», «لَا بَصْرَةَ لَكُمْ», «لَا قُرَيْشَ بَعْدَ الْيَوْمِ», «وَلَا أُمَيَّةَ فِي الْبِلَادِ» (or the name stands for its famous quality).",
    "jsonl": 88,
@@ -2367,8 +2383,8 @@
      "s": "لَا قُرَيْشَ بَعْدَ الْيَوْمِ",
      "w": "قريش",
      "re": "اسم لا",
-     "ok": false,
-     "got": "اسم، مبتدأ، وخبره شبه الجملة «بعد اليوم» متعلق بمحذوف."
+     "ok": true,
+     "got": "اسم لا النافية للجنس مبني على الفتح في محل نصب (العلم مؤول بنكرة)."
     }
    ]
   },
@@ -2559,9 +2575,10 @@
    "ar": "وَالْمَنْصُوبُ بِالْزَمْ أَوْ بِاتَّقِ: إِنْ تَكَرَّرَ أَوْ عُطِفَ عَلَيْهِ، أَوْ كَانَ «إِيَّاكَ»",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:at-tahdhir"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 244,
    "en": "In ighrāʾ (with an implied الزم) and taḥdhīr (with an implied اتّق), dropping the verb is obligatory if the noun is repeated («السِّلَاحَ السِّلَاحَ», «الْأَسَدَ الْأَسَدَ», «أَخَاكَ أَخَاكَ»), coordinated («السَّيْفَ وَالرُّمْحَ», «نَاقَةَ اللهِ وَسُقْيَاهَا»), or uses إيّاك («إِيَّاكَ مِنَ الْأَسَدِ»). Otherwise it is optional («الصَّلَاةَ جَامِعَةً»).",
    "jsonl": 97,
@@ -2570,8 +2587,8 @@
      "s": "السِّلَاحَ السِّلَاحَ",
      "w": 0,
      "re": "إغراء|محذوف",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة."
+     "ok": true,
+     "got": "مفعول به لفعل محذوف وجوبا تقديره «الزم» (إغراء) أو «احذر» (تحذير)، منصوب وعلامة نصبه الفتحة الظاهرة، والثاني توكيد لفظي."
     }
    ]
   },
@@ -2744,9 +2761,10 @@
    "ar": "وَقَدْ يَكُونُ الْعَكْسُ … فَهَذِهِ الْأَنْوَاعُ لَا تُسَمَّى ظَرْفًا فِي الِاصْطِلَاحِ، بَلْ كُلٌّ مِنْهَا مَفْعُولٌ بِهِ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:maful-fih"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 257,
    "en": "A time/place noun that is itself the thing acted on is a mafʿūl bihi, not a ẓarf: «إِنَّا نَخَافُ مِنْ رَبِّنَا يَوْمًا», «لِيُنْذِرَ يَوْمَ التَّلَاقِ», «اللهُ أَعْلَمُ حَيْثُ يَجْعَلُ رِسَالَتَهُ». Conversely «رَغِبَ الْمُتَّقُونَ أَنْ يَفْعَلُوا خَيْرًا» implies في but is neither time nor place.",
    "jsonl": 106,
@@ -2756,8 +2774,8 @@
      "w": "يوما",
      "re": "مفعول به",
      "not": "ظرف",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، ظرف — مفعول فيه."
+     "ok": true,
+     "got": "مفعول به منصوب وعلامة نصبه الفتحة الظاهرة — اليوم نفسه هو المخوف."
     }
    ]
   },
@@ -3198,9 +3216,10 @@
    "ar": "إذا تقدم المستثنى على المستثنى منه وجب نصبه؛ لأن البدل لا يتقدم على المبدل منه",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:al-mustathna-wa-nawah-wa-nasbuh"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 287,
    "en": "When the excepted noun precedes the noun it is excepted from, it must be accusative even after negation, because a badal cannot precede its antecedent.",
    "jsonl": 126,
@@ -3209,8 +3228,8 @@
      "s": "وَمَا لِيَ إِلَّا آلَ أَحْمَدَ شِيعَةٌ",
      "w": "آل",
      "re": "مستثنى",
-     "ok": false,
-     "got": "فعل ماض، مبني على الفتح، وفاعله «شيعة»."
+     "ok": true,
+     "got": "اسم، مستثنى منصوب وجوبا لتقدمه على المستثنى منه «شيعة»، وهو مضاف."
     }
    ]
   },
@@ -3442,8 +3461,10 @@
    "line": 245,
    "ar": "ما حمل على ليس أربعة: لات، وما، ولا، وإن النافية",
    "kind": "rule",
-   "carried_by": [],
-   "status": "open",
+   "carried_by": [
+    "engine:Murib.line"
+   ],
+   "status": "applied",
    "page": 300,
    "en": "Four particles work like laysa (raise the ism, put the khabar in the accusative): lāta, mā, lā, and negative in.",
    "jsonl": 137,
@@ -3452,8 +3473,8 @@
      "s": "وَلَاتَ حِينَ مَنَاصٍ",
      "w": "حين",
      "re": "خبر لات",
-     "ok": false,
-     "got": "اسم، مجرور بالحروف، مضاف إليه، وهو مضاف."
+     "ok": true,
+     "got": "خبر لات منصوب وعلامة نصبه الفتحة الظاهرة، واسمها محذوف تقديره «الحين»، وهو مضاف."
     },
     {
      "s": "مَا هَذَا بَشَرًا",
@@ -3470,9 +3491,10 @@
    "ar": "إن النافية العاملة عمل ليس لا تختص بالنكرات كما تختص بها لا",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:ma-la-mushabbaha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 301,
    "en": "Negative «in» working like laysa is not restricted to indefinites (its ism may be a pronoun), unlike lā.",
    "jsonl": 138,
@@ -3481,8 +3503,8 @@
      "s": "إِنْ هُوَ مُسْتَوْلِيًا عَلَى أَحَدٍ",
      "w": "مستوليا",
      "re": "خبر",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة."
+     "ok": true,
+     "got": "خبر إن النافية العاملة عمل «ليس» منصوب وعلامة نصبه الفتحة الظاهرة."
     }
    ]
   },
@@ -3514,9 +3536,10 @@
    "ar": "احترزت بالمزيدة من الموصولة والمصدرية",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:innama-kaffa"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 302,
    "en": "The cancelling «mā» is only the extra one; a relative or maṣdarī «mā» after inna does not cancel it (it is or forms its ism).",
    "jsonl": 140,
@@ -3525,8 +3548,8 @@
      "s": "أَيَحْسَبُونَ أَنَّمَا نُمِدُّهُمْ بِهِ مِنْ مَالٍ وَبَنِينَ",
      "w": "أنما",
      "re": "موصول",
-     "ok": false,
-     "got": "حرف لا محل له من الإعراب."
+     "ok": true,
+     "got": "«أن» حرف توكيد ونصب ومصدر، و«ما» اسم موصول في محل نصب اسمها إن عاد عليها ضمير من صلتها، وإلا فهي كافة لا محل لها."
     }
    ]
   },
@@ -3624,9 +3647,10 @@
    "ar": "وَيَغْلِبُ لِكَأَنَّ مَا وَجَبَ لأَنَّ، إِلا أَنَّ الْفِعْلَ بَعْدَهَا دائمًا خَبَرِيٌّ مَفْصُولٌ بقَدْ أَوْ لَمْ خَاصَّةً",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:inna-wa-akhawatuha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 303,
    "en": "Lightened kaʾan mostly follows lightened anna's rules (but its ism may appear and its khabar may be a single word); a verb after it is always declarative and separated only by qad or lam.",
    "jsonl": 145,
@@ -3635,8 +3659,8 @@
      "s": "كَأَنْ ظَبْيَةٌ تَعْطُو إِلَى وَارِقِ السَّلَمْ",
      "w": "كأن",
      "re": "مخففة",
-     "ok": false,
-     "got": "حرف لا محل له من الإعراب."
+     "ok": true,
+     "got": "«كأن» المخففة من «كأن»، حرف تشبيه ونصب، واسمه ضمير الشأن محذوف (أو مذكور منصوب)، لا محل له من الإعراب."
     }
    ]
   },
@@ -3646,9 +3670,10 @@
    "ar": "لكنْ المخففة يجب إلغاؤها؛ لزوال اختصاصها بالجمل الاسمية",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:inna-wa-akhawatuha"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 308,
    "en": "Lightened lākin must be cancelled because it loses its restriction to nominal clauses (it can then precede verbs); Yūnus and al-Akhfash's allowance of iʿmāl is unattested.",
    "jsonl": 146,
@@ -3658,8 +3683,8 @@
      "w": "ولكن",
      "re": "مخففة|استدراك",
      "not": "عطف",
-     "ok": false,
-     "got": "حرف لا محل له من الإعراب."
+     "ok": true,
+     "got": "الواو بحسب ما قبلها، و«لكن» المخففة من «لكن»، حرف استدراك مهمل، لا محل له من الإعراب."
     }
    ]
   },
@@ -3744,9 +3769,10 @@
    "ar": "«كي» شرطها أن تكون مصدرية لا تعليلية؛ وتتعين المصدرية إذا تقدمتها اللام، والتعليلية إذا تأخرت عنها أن",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:nawasib-wa-jawazim-al-mudari"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 309,
    "en": "Kay governs only when maṣdarī; it is maṣdarī when preceded by lām (li-kay), causal (a preposition, with «an» understood) when followed by an («kay an»), and ambiguous when neither.",
    "jsonl": 150,
@@ -3755,8 +3781,8 @@
      "s": "جِئْتُ كَيْ تُكْرِمَنِي",
      "w": "كي",
      "re": "مصدري|تعليل",
-     "ok": false,
-     "got": "حرف لا محل له من الإعراب."
+     "ok": true,
+     "got": "حرف مصدري ونصب واللام مقدرة قبله، أو حرف تعليل وجر و«أن» مضمرة بعده، لا محل له من الإعراب."
     }
    ]
   },
@@ -3835,10 +3861,11 @@
    "ar": "إذا سبقت «أن» بظن جاز الوجهان: الرفع على إجراء الظن مجرى العلم، والنصب على أصله، وهو الأرجح",
    "kind": "rule",
    "carried_by": [
+    "engine:AnEngine · I-1",
     "note:an-masdariyya",
     "note:nawasib-wa-jawazim-al-mudari"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 314,
    "en": "After a verb of supposition «an» allows two readings: rafʿ (supposition treated as knowledge → lightened anna) and nasb (default, preferred).",
    "jsonl": 154,
@@ -3847,11 +3874,10 @@
      "s": "أَمْ حَسِبْتُمْ أَنْ تَدْخُلُوا الْجَنَّةَ",
      "w": "تدخلوا",
      "re": "منصوب",
-     "ok": false,
-     "got": "فعل مضارع، مجزوم وعلامة جزمه حذف النون — بعامله، والواو ضمير متصل مبني في محل رفع فاعل."
+     "ok": true,
+     "got": "فعل مضارع، منصوب ب«أن» وعلامة نصبه حذف النون لأنه من الأفعال الخمسة، والواو ضمير متصل مبني في محل رفع فاعل."
     }
-   ],
-   "engine_hint": "AnEngine · I-1"
+   ]
   },
   {
    "id": "R155",
@@ -3998,9 +4024,10 @@
    "ar": "«ما تأتيني فأكرمَك»: أربعة أوجه؛ الرفع على عطف اللفظ أو على الاستئناف، والنصب على أن النفي منصب على المعطوف أو على المعطوف عليه",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:nawasib-wa-jawazim-al-mudari"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 322,
    "en": "«mā taʾtīnī fa-ukrimak» has four readings: rafʿ by joining verb to verb (both negated), rafʿ by resumption (fa-anā ukrimuk), nasb with negation on the second (coming without honouring), nasb with negation on the first (how could I honour you?).",
    "jsonl": 161,
@@ -4009,8 +4036,8 @@
      "s": "مَا تَأْتِينِي فَأُكْرِمَكَ",
      "w": "فأكرمك",
      "re": "مضمرة",
-     "ok": false,
-     "got": "فعل ماض مبني للمجهول، مبني على الفتح، وفيه ضمير هو المفعول به، ونائب الفاعل ضمير مستتر جوازا تقديره «هو»."
+     "ok": true,
+     "got": "الفاء فاء السببية، و«أكرم» فعل مضارع منصوب ب«أن» مضمرة وجوبا بعد فاء السببية وعلامة نصبه الفتحة الظاهرة، والفاعل ضمير مستتر وجوبا تقديره «أنا»، والكاف ضمير متصل"
     }
    ]
   },
@@ -4213,9 +4240,10 @@
    "ar": "كي لا تجر إلا «ما» الاستفهامية وأن المضمرة وصلتها؛ وما الاستفهامية إذا دخل عليها حرف جر حذفت ألفها وجوبًا",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line · مَا of the question after a jarr letter",
     "note:huruf-jarr"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 336,
    "en": "Kay as a preposition takes only interrogative mā (kaymah) or an implied an + clause; interrogative mā loses its alif after any preposition (wa-may be followed by hāʾ al-sakt in pause).",
    "jsonl": 173,
@@ -4224,11 +4252,10 @@
      "s": "عَمَّ يَتَسَاءَلُونَ",
      "w": "عم",
      "re": "استفهام",
-     "ok": false,
-     "got": "اسم، مبني لا يتغير آخره."
+     "ok": true,
+     "got": "«عن» حرف جر، و«م» اسم استفهام مبني على السكون المقدر في محل جر، حذفت ألفه لدخول الجار عليه."
     }
-   ],
-   "engine_hint": "Murib.line · مَا of the question after a jarr letter"
+   ]
   },
   {
    "id": "R174",
@@ -4691,9 +4718,10 @@
    "ar": "وَيَجِبُ الاسْتِغْنَاءُ عَنْ جَوَابِ الشَّرْطِ بِدَلِيلِهِ مُتَقَدِّمًا لَفْظًا … أو نيَّةً … ومِنْ ثَمَّ امْتَنَعَ في النثر «إِنْ تَقُمْ أقومُ»",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:al-majzum-wal-shart-wal-jaza"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 362,
    "en": "When a clause meeting the answer's sense precedes the conditional (or is intended as preceding, «in qumta aqūmu»), the answer is omitted and that clause is its evidence, not the answer itself (Sībawayh and majority); hence «in taqum aqūmu» is not allowed in prose.",
    "jsonl": 197,
@@ -4702,8 +4730,8 @@
      "s": "هُوَ ظَالِمٌ إِنْ فَعَلَ",
      "w": "فعل",
      "re": "محذوف",
-     "ok": false,
-     "got": "فعل ماض، مبني على الفتح، والفاعل ضمير مستتر جوازا تقديره «هو»."
+     "ok": true,
+     "got": "فعل ماض، مبني على الفتح، والفاعل ضمير مستتر جوازا تقديره «هو»، وهو فعل الشرط في محل جزم، وجواب الشرط محذوف دل عليه ما قبله."
     }
    ]
   },
@@ -4876,9 +4904,10 @@
    "ar": "وما يتعدى إلى اثنين تارة ولا يتعدى إليهما أخرى كنَقَصَ وَزادَ",
    "kind": "rule",
    "carried_by": [
+    "engine:Nahw342Engine · maful2",
     "note:mafulayn"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 367,
    "en": "Naqaṣa and zāda are intransitive in one use and doubly transitive in another («naqaṣa l-mālu» / «naqaṣtu zaydan dīnāran»).",
    "jsonl": 205,
@@ -4887,11 +4916,10 @@
      "s": "نَقَصْتُ زَيْدًا دِينَارًا",
      "w": "دينارا",
      "re": "مفعول به ثان",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول مطلق."
+     "ok": true,
+     "got": "مفعول به ثان منصوب وعلامة نصبه الفتحة الظاهرة."
     }
-   ],
-   "engine_hint": "Nahw342Engine · maful2"
+   ]
   },
   {
    "id": "R206",
@@ -4977,9 +5005,10 @@
    "ar": "وَمَا يَتَعَدَّى إلى ثَلَاثَةٍ، وَهُوَ أَعْلَمَ وَأَرَى وَمَا ضُمِّنَ مَعْنَاهُمَا مِنْ أَنْبَأَ وَنَبَّأَ وَأَخبر وخَبَّرَ وَحَدَّثَ",
    "kind": "rule",
    "carried_by": [
+    "engine:Murib.line",
     "note:mafulayn"
    ],
-   "status": "noted",
+   "status": "applied",
    "page": 367,
    "en": "Three-object verbs: aʿlama and arā, and those given their meaning: anbaʾa, nabbaʾa, akhbara, khabbara, ḥaddatha.",
    "jsonl": 210,
@@ -4988,8 +5017,8 @@
      "s": "أَعْلَمْتُ زَيْدًا عَمْرًا فَاضِلًا",
      "w": "فاضلا",
      "re": "مفعول به ثالث",
-     "ok": false,
-     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، نعت."
+     "ok": true,
+     "got": "مفعول به ثالث منصوب وعلامة نصبه الفتحة الظاهرة."
     }
    ]
   }

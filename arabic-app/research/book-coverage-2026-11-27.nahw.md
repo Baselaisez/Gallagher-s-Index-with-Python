@@ -8,7 +8,7 @@ re-proves every applied entry and pins the counts. JSON: `content/rules/coverage
 
 ## Shudhūr al-Dhahab (Ibn Hishām)
 
-Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src.txt`. Entries: 235 — applied **146**, noted **65**, not automatable **22**, open **1** (headings 1, lecture fragments 0, cited verses 0, counted apart).
+Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src.txt`. Entries: 235 — applied **182**, noted **30**, not automatable **22**, open **0** (headings 1, lecture fragments 0, cited verses 0, counted apart).
 
 | id | line | status | carried by / reason | the book |
 |---|---|---|---|---|
@@ -29,9 +29,9 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | S34 | 34 | applied | engine:SignEngine · the five nouns | الثَّالِثُ: «ذُو» بِمَعْنَى صَاحِبٍ، وَمَا أُضِيفَ لِغَيْرِ الْيَاءِ مِنْ «أَبٍ» «وَأَخٍ»  |
 | S36 | 36 | not-automatable | the better usage of الْهَنُ (declined on its last letter) — a preference among dialects | وَالْأَفْصَحُ فِي الْهَنِ النَّقْصُ. |
 | S39 | 39 | applied | engine:SignEngine · the dual | الرَّابِعُ: الْمُثَنَّى، كَالزَّيْدَانِ وَالْهِنْدَانِ، فَإِنَّهُ يُرْفَعُ بِالْأَلِفِ، وَ |
-| S41 | 41 | noted | note:al-muthanna — ⚠ the engine still misreads the example: «جَاءَ الرَّجُلَانِ كِلَاهُمَا» → اسم، وعلامته مقدرة، توكيد، والضمير مضاف إليه. | وَأُلْحِقَ بِهِ اثْنَانِ، وَاثْنَتَانِ، وَثِنْتَانِ مُطْلَقًا، وَكِلَا وَكِلْتَا مُضَافَيْ |
+| S41 | 41 | applied | engine:SignEngine · كِلَا with a pronoun, note:al-muthanna | وَأُلْحِقَ بِهِ اثْنَانِ، وَاثْنَتَانِ، وَثِنْتَانِ مُطْلَقًا، وَكِلَا وَكِلْتَا مُضَافَيْ |
 | S43 | 43 | applied | engine:SignEngine · the sound plural | الْخَامِسُ: جَمْعُ الْمُذَكَّرِ السَّالِمُ، كَالزَّيْدُونَ وَالْمُسْلِمُونَ، فَإِنَّهُ يُر |
-| S45 | 45 | noted | note:jam-mudhakkar-salim — ⚠ the engine still misreads the example: «الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ» → اسم، مجرور بالحروف، مضاف إليه. | وَأُلْحِقَ بِهِ: أُولُو، وَعَالَمُونَ، وَأَرَضُونَ، وَسِنُونَ، وَعِشْرُونَ وَبَابُهُمَا، و |
+| S45 | 45 | applied | engine:SignEngine · what is joined to it, note:jam-mudhakkar-salim | وَأُلْحِقَ بِهِ: أُولُو، وَعَالَمُونَ، وَأَرَضُونَ، وَسِنُونَ، وَعِشْرُونَ وَبَابُهُمَا، و |
 | S48 | 48 | applied | engine:Murib.fiveRaf336, note:afal-khamsa | السَّادِسُ: يَفْعَلَانِ وَتَفْعَلَانِ وَيَفْعَلُونَ وَتَفْعَلُونَ وَتَفْعَلِينَ، فَإِنَّهَ |
 | S49 | 49 | noted | note:afal-khamsa | وَأَمَّا نَحْوُ «تُحَاجُّونِي» فَالْمَحْذُوفُ نُونُ الْوِقَايَةِ، وَأَمَّا «إِلَّا أَنْ يَ |
 | S51 | 51 | applied | engine:Murib.line · T2 | السَّابِعُ: الْفِعْلُ الْمُعْتَلُّ الْآخِرِ، كَيَغْزُو، وَيَخْشَى، وَيَرْمِي، فَإِنَّهُ يُ |
@@ -43,31 +43,31 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R5 | 71 | applied | engine:DabtEngine · mafʿūl muṭlaq | فَقُولَا لَهُ قَوْلًا لَيِّنًا |
 | R6 | 73 | applied | engine:Murib.line · T3 (nūn al-tawkīd on contact) | لَيُنْبَذَنَّ ، لَتُبْلَوُنَّ ، لَتُسْمَعُنَّ |
 | R7 | 73 | applied | engine:AdadEngine · I-17 | جَاءَنِي أَحَدَ عَشَرَ ، رَأَيْتُ اثْنَيْ عَشَرَ |
-| R8 | 73 | noted | note:al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar — ⚠ the engine still misreads the example: «هُوَ يَأْتِينَا صَبَاحَ مَسَاءَ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، وهو مضاف. | هُوَ يَأْتِينَا صَبَاحَ مَسَاءَ ، صَبَاحَ مَسَاءٍ ، هَمْزَةُ بَيْنٍ بَيْنٍ ، وَلَوْلَا يَو |
-| R9 | 73 | noted | note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha — ⚠ the engine still misreads the example: «عَلَى حِينَ عَاتَبْتُ» → اسم، مجرور بالحروف. | عَلَى حِينَ عَاتَبْتُ ، هَذَا يَوْمُ يَنْفَعُ ، عَلَى حِينِ التَّوَاصُلُ غَيْرُ دَانِ |
+| R8 | 73 | applied | engine:Murib.line, note:al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar | هُوَ يَأْتِينَا صَبَاحَ مَسَاءَ ، صَبَاحَ مَسَاءٍ ، هَمْزَةُ بَيْنٍ بَيْنٍ ، وَلَوْلَا يَو |
+| R9 | 73 | applied | engine:Murib.line, note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha | عَلَى حِينَ عَاتَبْتُ ، هَذَا يَوْمُ يَنْفَعُ ، عَلَى حِينِ التَّوَاصُلُ غَيْرُ دَانِ |
 | R10 | 73 | not-automatable | a qirāʾa report (Nāfiʿ alone reads يَوْمَ; the Baṣrans reject the bināʾ) — the reading, not the letters, decides | هَذَا يَوْمُ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ |
-| R11 | 73 | noted | note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha — ⚠ the engine still misreads the example: «وَمِنْ خِزْيِ يَوْمِئِذٍ» → اسم، مضاف إليه. | وَمِنْ خِزْيِ يَوْمِئِذٍ ، وَمِنَّا دُونَ ذَلِكَ ، لَقَدْ تَقَطَّعَ بَيْنَكُمْ ، إِنَّهُ ل |
+| R11 | 73 | applied | engine:Murib.line, note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha | وَمِنْ خِزْيِ يَوْمِئِذٍ ، وَمِنَّا دُونَ ذَلِكَ ، لَقَدْ تَقَطَّعَ بَيْنَكُمْ ، إِنَّهُ ل |
 | R12 | 81 | applied | engine:Murib.line · lā al-nāfiya li-l-jins (I-10); Nahw342Engine · laDual, note:la-nafiya-lil-jins | لَا رَجُلَ فِي الدَّارِ ، لَا رِجَالَ ، لَا رَجُلَيْنِ ، لَا قَائِمِينَ ، لَا قَائِمَاتِ ، |
-| R13 | 81 | noted | note:la-nafiya-lil-jins — ⚠ the engine still misreads the example: «لَا رَجُلَ ظَرِيفًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | لَا رَجُلَ ظَرِيفًا ، لَا رَجُلَ ظَرِيفٌ ، لَا رَجُلَ ظَرِيفَ |
+| R13 | 81 | applied | engine:Murib.line, note:la-nafiya-lil-jins | لَا رَجُلَ ظَرِيفًا ، لَا رَجُلَ ظَرِيفٌ ، لَا رَجُلَ ظَرِيفَ |
 | R14 | 81 | applied | engine:Murib.line, note:la-nafiya-lil-jins | لَا حَوْلَ وَلَا قُوَّةَ ، لَا لَغْوٌ فِيهَا وَلَا تَأْثِيمَ ، لَا بَيْعٌ فِيهِ وَلَا خُلَ |
 | R15 | 85 | applied | engine:Sh336Engine · R15 (ـوَيْهِ) | سِيبَوَيْهِ ، عَمْرَوَيْهِ ، نِفْطَوَيْهِ |
 | R16 | 85 | applied | engine:Murib.line · ism fiʿl (I-20) | نَزَالِ ، دَرَاكِ ، حَذَارِ ، تَرَاكِهَا |
-| R17 | 85 | noted | note:al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab — ⚠ the engine still misreads the example: «يَا خَبَاثِ» → اسم، منادى. | يَا خَبَاثِ ، يَا فَسَاقِ ، يَا لَكَاعِ |
-| R18 | 85 | noted | note:al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab — ⚠ the engine still misreads the example: «إِذَا قَالَتْ حَذَامِ فَصَدِّقُوهَا» → اسم، مجرور وعلامة جره الكسرة الظاهرة. | إِذَا قَالَتْ حَذَامِ فَصَدِّقُوهَا ، مَتَى تَرِدَنْ يَوْمًا سَفَارِ ، هَلَكَتْ جَهْرَةً و |
+| R17 | 85 | applied | engine:Murib.line, note:al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab | يَا خَبَاثِ ، يَا فَسَاقِ ، يَا لَكَاعِ |
+| R18 | 85 | applied | engine:Murib.line, note:al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab | إِذَا قَالَتْ حَذَامِ فَصَدِّقُوهَا ، مَتَى تَرِدَنْ يَوْمًا سَفَارِ ، هَلَكَتْ جَهْرَةً و |
 | R19 | 85 | applied | engine:ZarfBinaEngine · أَمْسِ (I-12) | ذَهَبَ أَمْسِ ، ذَهَبَ أَمْسُ ، مُذْ أَمْسَا ، فَعَلْتُ ذَلِكَ أَمْسًا ، مِنْ أُمُوسِ ، كَ |
 | R20 | 88 | applied | engine:Nahw342Engine · qabl | لِلَّهِ الْأَمْرُ مِنْ قَبْلُ وَمِنْ بَعْدُ ، وَكُنْتُ قَبْلًا ، فَمَا شَرِبُوا بَعْدًا ،  |
-| R21 | 88 | noted | note:al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya — ⚠ the engine still misreads the example: «قَبَضْتُ عَشَرَةً لَيْسَ غَيْرُ» → اسم، مبني لا يتغير آخره، اسم ليس. | قَبَضْتُ عَشَرَةً لَيْسَ غَيْرُ |
+| R21 | 88 | applied | engine:ZarfBinaEngine · لَيْسَ غَيْرُ, note:al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya | قَبَضْتُ عَشَرَةً لَيْسَ غَيْرُ |
 | R22 | 88 | applied | engine:Nahw342Engine · qabl | أَتَيْتُ فَوْقَ بَنِي كُلَيْبٍ مِنْ عَلُ ، كَجُلْمُودِ صَخْرٍ حَطَّهُ السَّيْلُ مِنْ عَلِ |
-| R23 | 88 | noted | note:ism-mawsul — ⚠ the engine still misreads the example: «اضْرِبْ أَيُّهُمْ أَفْضَلُ» → اسم، والضمير مضاف إليه. | ثُمَّ لَنَنْزِعَنَّ مِنْ كُلِّ شِيعَةٍ أَيُّهُمْ أَشَدُّ ، اضْرِبْ أَيُّهُمْ أَفْضَلُ |
+| R23 | 88 | applied | engine:Murib.line, note:ism-mawsul | ثُمَّ لَنَنْزِعَنَّ مِنْ كُلِّ شِيعَةٍ أَيُّهُمْ أَشَدُّ ، اضْرِبْ أَيُّهُمْ أَفْضَلُ |
 | R24 | 92 | applied | engine:NidaEngine · the single vocative | يَا زَيْدُ ، يَا رَجُلُ ، يَا جِبَالُ أَوِّبِي مَعَهُ ، يَا زَيْدَانِ ، يَا زَيْدُونَ |
 | R25 | 92 | applied | engine:Murib.line, note:vocative-munada | يَا عَبْدَ اللهِ ، يَا رَسُولَ اللهِ ، يَا كَثِيرًا بِرُّهُ ، يَا رَجُلًا خُذْ بِيَدِي ، أ |
-| R26 | 92 | noted | note:vocative-munada — ⚠ the engine still misreads the example: «سَلَامُ اللهِ يَا مَطَرٌ عَلَيْهَا» → اسم، مبني لا يتغير آخره، منادى. | سَلَامُ اللهِ يَا مَطَرٌ عَلَيْهَا ، يَا عَدِيًّا لَقَدْ وَقَتْكَ الْأَوَاقِي ، يَا زَيْدَ |
+| R26 | 92 | applied | engine:Murib.line, note:vocative-munada | سَلَامُ اللهِ يَا مَطَرٌ عَلَيْهَا ، يَا عَدِيًّا لَقَدْ وَقَتْكَ الْأَوَاقِي ، يَا زَيْدَ |
 | R27 | 95 | applied | engine:Murib.line · the built classes (I-20) | هَلْ ، ثُمَّ ، جَيْرِ ، مُنْذُ ، صَهْ ، آمِينَ ، إِيهِ ، هَيْتَ |
-| R28 | 95 | noted | note:asma-al-ishara-wal-mawsulat — ⚠ the engine still misreads the example: «هَذَانِ» → اسم، مبتدأ. | هَذَانِ ، هَذَيْنِ ، اللَّذَيْنِ ، أَيُّكُمْ يَأْتِينِي بِعَرْشِهَا ، أَيَّ مُنْقَلَبٍ يَن |
+| R28 | 95 | applied | engine:Murib.line · هَذَانِ / أَيٌّ declined, note:asma-al-ishara-wal-mawsulat | هَذَانِ ، هَذَيْنِ ، اللَّذَيْنِ ، أَيُّكُمْ يَأْتِينِي بِعَرْشِهَا ، أَيَّ مُنْقَلَبٍ يَن |
 | R29 | 95 | not-automatable | a dictionary note (صَهْ «be silent», مَهْ «stop», إِيهِ / إِيهٍ by tanwīn) — meaning, not iʿrāb | صَهْ ، مَهْ ، إِيهِ ، إِيهٍ |
 | R30 | 95 | applied | engine:ZarfBinaEngine · حَيْثُ (I-12) | أَمَا تَرَى حَيْثُ سُهَيْلٍ طَالِعًا ، سَنَسْتَدْرِجُهُمْ مِنْ حَيْثِ لَا يَعْلَمُونَ |
 | R31 | 95 | applied | engine:ZarfBinaEngine · إِذْ (I-12) | وَاذْكُرُوا إِذْ أَنْتُمْ قَلِيلٌ ، وَإِذِ اعْتَزَلْتُمُوهُمْ ، فَبَيْنَمَا الْعُسْرُ إِذْ |
-| R32 | 98 | noted | note:huruf-jarr-nawadir — ⚠ the engine still misreads the example: «رُبَّ رَجُلٍ» → حرف جر، لا محل له من الإعراب. | الاسْمُ نَكِرَةٌ وَهُوَ مَا يَقْبَلُ رُبَّ |
+| R32 | 98 | applied | engine:Murib.line, note:huruf-jarr-nawadir | الاسْمُ نَكِرَةٌ وَهُوَ مَا يَقْبَلُ رُبَّ |
 | R33 | 98 | applied | engine:Murib.line | رُبَّهُ رَجُلًا ، رُبَّهُ فِتْيَةً دَعَوْتُ |
 | R34 | 101 | applied | engine:Nahw342Engine · demKaf | ذَلِكَ ، إِيَّاكَ |
 | R35 | 101 | not-automatable | the referent of a third-person pronoun (context, rank, order) — meaning; the engines name the pronoun, not what it returns to | إِنَّا أَنْزَلْنَاهُ ، وَإِذِ ابْتَلَى إِبْرَاهِيمَ رَبُّهُ ، فَأَوْجَسَ فِي نَفْسِهِ خِيف |
@@ -82,7 +82,7 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R44 | 123 | not-automatable | the kinds of the definite article (ʿahd, jins, istighrāq) — meaning; the note anwa-al-lam-al-tarif carries them | جَاءَ الْقَاضِي ، فِيهَا مِصْبَاحٌ الْمِصْبَاحُ ، وَخُلِقَ الْإِنْسَانُ ضَعِيفًا ، ذَلِكَ  |
 | R45 | 123 | applied | engine:Murib.line · نِعْمَ / بِئْسَ | نِعْمَ الْعَبْدُ ، بِئْسَ مَثَلُ الْقَوْمِ ، وَلَنِعْمَ دَارُ الْمُتَّقِينَ ، نِعْمَ رَجُل |
 | R46 | 123 | applied | engine:IdafaEngine · I-15 (a demonstrative is never muḍāf) | مَالِ هَذَا الْكِتَابِ ، يَا أَيُّهَا الْإِنْسَانُ ، أَلَا أَيُّهَذَا الزَّاجِرِي |
-| R47 | 123 | noted | note:vocative-munada — ⚠ the engine still misreads the example: «يَا أَللهُ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، والضمير مضاف إليه. | يَا غُلَامُ ، يَا أَللهُ ، الضَّارِبَا زَيْدٍ ، الضَّارِبُو زَيْدٍ ، الضَّارِبُ الرَّجُلِ  |
+| R47 | 123 | applied | engine:Murib.line, note:vocative-munada | يَا غُلَامُ ، يَا أَللهُ ، الضَّارِبَا زَيْدٍ ، الضَّارِبُو زَيْدٍ ، الضَّارِبُ الرَّجُلِ  |
 | R48 | 128 | not-automatable | the rank of definiteness a muḍāf inherits — a ranking of meaning, nothing in a line changes | غُلَامِي ، غُلَامُ زَيْدٍ ، غُلَامُ هَذَا ، غُلَامُ الَّذِي جَاءَكَ ، غُلَامُ الْقَاضِي |
 | R49 | 131 | applied | engine:Nahw342Engine · sababi | الْفَاعِلُ مَا قُدِّمَ الْفِعْلُ أَوْ شِبْهُهُ عَلَيْهِ وَأُسْنِدَ إِلَيْهِ عَلَى جِهَةِ ق |
 | R50 | 131 | applied | engine:Murib.line · nawāsikh | كَانَ زَيْدٌ قَائِمًا ، إِنَّ زَيْدًا قَائِمٌ ، ظَنَنْتُ زَيْدًا قَائِمًا |
@@ -107,23 +107,23 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R69 | 155 | applied | engine:MansubEngine · v332 (ẓarf as khabar) | وَلَا يَكُونُ زَمَانًا وَالْمُبْتَدَأُ اسْمُ ذَاتٍ |
 | R70 | 155 | applied | engine:Murib.line · kāna and its sisters (I-2) | مَا يَعْمَلُ هَذَا الْعَمَلَ بِلَا شَرْطٍ، وَهِيَ ثَمَانِيَةٌ: كَانَ وَلَيْسَ وَمَا بَيْنَ |
 | R71 | 155 | applied | engine:Murib.line · زَالَ يَزُولُ complete (I-2) | وَيُشْتَرَطُ فِي «زَالَ» شَرْطٌ آخَرُ، وَهُوَ أَنْ يَكُونَ مَاضِيَ يَزَالُ |
-| R72 | 162 | noted | note:kana-wa-akhawatuha — ⚠ the engine still misreads the example: «أَمَّا أَنْتَ مُنْطَلِقًا انْطَلَقْتُ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | وَيَجِبُ حَذْفُ «كَانَ» وَحْدَهَا بَعْدَ «أَمَّا» |
-| R73 | 162 | noted | note:kana-wa-akhawatuha — ⚠ the engine still misreads the example: «الْتَمِسْ وَلَوْ خَاتَمًا مِنْ حَدِيدٍ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | حَذْفُ «كَانَ» مَعَ اسْمِهَا وَإِبْقَاءُ خَبَرِهَا … أَنْ يَتَقَدَّمَهَا «إِنْ» أَوْ «لَوْ |
+| R72 | 162 | applied | engine:Murib.line, note:kana-wa-akhawatuha | وَيَجِبُ حَذْفُ «كَانَ» وَحْدَهَا بَعْدَ «أَمَّا» |
+| R73 | 162 | applied | engine:Murib.line, note:kana-wa-akhawatuha | حَذْفُ «كَانَ» مَعَ اسْمِهَا وَإِبْقَاءُ خَبَرِهَا … أَنْ يَتَقَدَّمَهَا «إِنْ» أَوْ «لَوْ |
 | R74 | 165 | applied | engine:Murib.line · T6 (لَمْ يَكُ) | حَذْفُ نُونِ «كَانَ» … أَنْ تَكُونَ بِلَفْظِ الْمُضَارِعِ … مَجْزُومًا … أَنْ لَا يَقَعَ ب |
 | R75 | 165 | applied | engine:MuqarabaEngine · I-16 | وَيَكُونُ خَبَرُهَا مُضَارِعًا |
 | R76 | 165 | applied | engine:Murib.line | وَقَدْ جَعَلْتُ إِذَا مَا قُمْتُ يُثْقِلُنِي ثَوْبِي |
-| R77 | 168 | noted | note:ma-la-mushabbaha — ⚠ the engine still misreads the example: «وَلَاتَ حِينَ مَنَاصٍ» → اسم، مجرور بالحروف، مضاف إليه، وهو مضاف. | «لَاتَ» … وَلَا تَعْمَلُ إِلَّا فِي الْحِينِ بِكَثْرَةٍ، أَوِ السَّاعَةِ أَوِ الْأَوَانِ ب |
+| R77 | 168 | applied | engine:Murib.line, note:ma-la-mushabbaha | «لَاتَ» … وَلَا تَعْمَلُ إِلَّا فِي الْحِينِ بِكَثْرَةٍ، أَوِ السَّاعَةِ أَوِ الْأَوَانِ ب |
 | R78 | 168 | applied | engine:Sh336Engine · R78 (the Ḥijāzī مَا) | شَرْطُ إِعْمَالِهِنَّ نَفْيُ الْخَبَرِ، وَتَأْخِيرُهُ، وَأَنْ لَا يَلِيَهُنَّ مَعْمُولُهُ  |
 | R79 | 168 | applied | engine:Sh336Engine · R79 (the Tamīmī مَا) | وَلَا يُعْمِلُهَا بَنُو تَمِيمٍ وَلَوِ اسْتَوْفَتِ الشُّرُوطَ الْأَرْبَعَةَ |
-| R80 | 168 | noted | note:ma-la-mushabbaha — ⚠ the engine still misreads the example: «فَلَا شَيْءٌ عَلَى الْأَرْضِ بَاقِيَا» → فعل أمر، مبني لا يتغير آخره، والألف ضمير متصل مبني في محل رف | وَأَمَّا «لَا» فَإِنَّهَا تَعْمَلُ بِالشُّرُوطِ الْمَذْكُورَةِ لِمَا … وَيُضَافُ … أَنْ يَ |
-| R81 | 168 | noted | note:ma-la-mushabbaha — ⚠ the engine still misreads the example: «إِنْ ذَلِكَ نَافِعَكَ وَلَا ضَارَّكَ» → اسم، مبتدأ، والضمير مضاف إليه. | وَأَمَّا «إِنْ» فَتَعْمَلُ بِالشُّرُوطِ الْمَذْكُورَةِ … وَتَعْمَلُ فِي اسْمِ مَعْرِفَةٍ و |
+| R80 | 168 | applied | engine:Murib.line, note:ma-la-mushabbaha | وَأَمَّا «لَا» فَإِنَّهَا تَعْمَلُ بِالشُّرُوطِ الْمَذْكُورَةِ لِمَا … وَيُضَافُ … أَنْ يَ |
+| R81 | 168 | applied | engine:Murib.line, note:ma-la-mushabbaha | وَأَمَّا «إِنْ» فَتَعْمَلُ بِالشُّرُوطِ الْمَذْكُورَةِ … وَتَعْمَلُ فِي اسْمِ مَعْرِفَةٍ و |
 | R82 | 174 | applied | engine:InnaEngine · the fronted khabar | وَلَا يَجُوزُ تَقَدُّمُهُ مُطْلَقًا، وَلَا تَوَسُّطُهُ إِلَّا إِنْ كَانَ ظَرْفًا أَوْ مَجْ |
 | R83 | 179 | noted | note:mawadi-kasr-inna — ⚠ the engine still misreads the example: «جَلَسْتُ حَيْثُ إِنَّ زَيْدًا جَالِسٌ» → حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الإعراب | وَتُكْسَرُ «إِنَّ» فِي الِابْتِدَاءِ، وَفِي أَوَّلِ الصِّلَةِ وَالصِّفَةِ وَالْجُمْلَةِ ال |
 | R84 | 179 | applied | engine:Sh336Engine · R209 (taʿlīq by the lām) | أَنْ تَقَعَ قَبْلَ اللَّامِ الْمُعَلِّقَةِ |
-| R85 | 179 | noted | note:mawadi-fath-anna — ⚠ the engine still misreads the example: «أَوَلَمْ يَكْفِهِمْ أَنَّا أَنْزَلْنَا» → ضمير منفصل، مبني على السكون. | وَيَجِبُ الْفَتْحُ فِي ثَمَانِي مَسَائِلَ |
+| R85 | 179 | applied | engine:InnaEngine · أَنَّ in a single-word seat, note:mawadi-fath-anna | وَيَجِبُ الْفَتْحُ فِي ثَمَانِي مَسَائِلَ |
 | R86 | 179 | applied | engine:Nahw342Engine · fujaa | وَيَجُوزُ الْوَجْهَانِ فِي ثَلَاثِ مَسَائِلَ |
 | R87 | 182 | applied | engine:Murib.line · lā li-l-jins | وَيَجِبُ تَنْكِيرُهُ كَالِاسْمِ، وَتَأْخِيرُهُ وَلَوْ ظَرْفًا |
-| R88 | 182 | noted | note:la-nafiya-lil-jins — ⚠ the engine still misreads the example: «لَا قُرَيْشَ بَعْدَ الْيَوْمِ» → اسم، مبتدأ، وخبره شبه الجملة «بعد اليوم» متعلق بمحذوف. | «قَضِيَّةٌ وَلَا أَبَا حَسَنٍ لَهَا» … فَمُؤَوَّلٌ بِتَقْدِيرِ «مِثْلِ» |
+| R88 | 182 | applied | engine:Murib.line, note:la-nafiya-lil-jins | «قَضِيَّةٌ وَلَا أَبَا حَسَنٍ لَهَا» … فَمُؤَوَّلٌ بِتَقْدِيرِ «مِثْلِ» |
 | R89 | 185 | applied | engine:Murib.line · lā li-l-jins | وَيَكْثُرُ حَذْفُهُ إِنْ عُلِمَ، وَتَمِيمٌ لَا تَذْكُرُهُ حِينَئِذٍ |
 | R90 | 185 | applied | engine:Murib.line · T2 (the muḍāriʿ raised) | الْمُضَارِعُ إِذَا تَجَرَّدَ مِنْ نَاصِبٍ وَجَازِمٍ |
 | R91 | 188 | applied | engine:DabtEngine · I-3, note:al-maful-bihi-wa-qismah | مَا وَقَعَ عَلَيْهِ فِعْلُ الْفَاعِلِ |
@@ -132,7 +132,7 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R94 | 188 | applied | engine:Sh336Engine · R94 (ishtighāl) | بَابُ الِاشْتِغَالِ، وَحَقِيقَتُهُ: أَنْ يَتَقَدَّمَ اسْمٌ، وَيَتَأَخَّرَ عَنْهُ فِعْلٌ أَ |
 | R95 | 195 | applied | engine:Murib.line | وَإِنَّمَا يَظْهَرُ نَصْبُهُ إِذَا كَانَ مُضَافًا أَوْ شِبْهَهُ أَوْ نَكِرَةً مَجْهُولَةً |
 | R96 | 199 | applied | engine:Sh336Engine · R96 (ikhtiṣāṣ) | وَالْمَنْصُوبُ بِأَخُصُّ بَعْدَ ضَمِيرِ مُتَكَلِّمٍ |
-| R97 | 199 | noted | note:at-tahdhir — ⚠ the engine still misreads the example: «السِّلَاحَ السِّلَاحَ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | وَالْمَنْصُوبُ بِالْزَمْ أَوْ بِاتَّقِ: إِنْ تَكَرَّرَ أَوْ عُطِفَ عَلَيْهِ، أَوْ كَانَ «إ |
+| R97 | 199 | applied | engine:Murib.line, note:at-tahdhir | وَالْمَنْصُوبُ بِالْزَمْ أَوْ بِاتَّقِ: إِنْ تَكَرَّرَ أَوْ عُطِفَ عَلَيْهِ، أَوْ كَانَ «إ |
 | R98 | 199 | not-automatable | proverbs kept as said (الْكِلَابَ عَلَى الْبَقَرِ) — knowing that a phrase is a proverb is not in the letters | وَالْمَحْذُوفُ عَامِلُهُ، وَالْوَاقِعُ فِي مَثَلٍ أَوْ شِبْهِهِ |
 | R99 | 204 | applied | engine:DabtEngine · mafʿūl muṭlaq | الْمَصْدَرُ الْفَضْلَةُ الْمُؤَكِّدُ لِعَامِلِهِ أَوِ الْمُبَيِّنُ لِنَوْعِهِ أَوْ لِعَدَد |
 | R100 | 208 | applied | engine:Murib.khabarOf | وَقَوْلِي «الْفَضْلَةُ» احْتِرَازٌ مِنْ نَحْوِ قَوْلِكَ: رُكُوعُ زَيْدٍ رُكُوعٌ حَسَنٌ … و |
@@ -141,7 +141,7 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R103 | 208 | not-automatable | whether the reason shares the time and the doer (جِئْتُكَ الْيَوْمَ لِلسَّفَرِ غَدًا) — meaning decides when the lām is needed | وَيَجِبُ فِي مُعَلَّلٍ فَقَدَ شَرْطًا أَنْ يُجَرَّ بِاللَّامِ أَوْ نَائِبِهَا |
 | R104 | 211 | applied | engine:CaseEngine · ẓarf (I-11) | مَا ذُكِرَ فَضْلَةً لِأَجْلِ أَمْرٍ وَقَعَ فِيهِ: مِنْ زَمَانٍ مُطْلَقًا، أَوْ مَكَانٍ مُب |
 | R105 | 211 | applied | engine:TaalluqEngine · في with a specific place | وَالْمَكَانِيُّ غَيْرُهُنَّ يُجَرُّ بِفِي … وَقَوْلُهُمْ: «دَخَلْتُ الدَّارَ» عَلَى التَّو |
-| R106 | 211 | noted | note:maful-fih — ⚠ the engine still misreads the example: «إِنَّا نَخَافُ مِنْ رَبِّنَا يَوْمًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، ظرف — مفعول فيه. | وَقَدْ يَكُونُ الْعَكْسُ … فَهَذِهِ الْأَنْوَاعُ لَا تُسَمَّى ظَرْفًا فِي الِاصْطِلَاحِ، ب |
+| R106 | 211 | applied | engine:Murib.line, note:maful-fih | وَقَدْ يَكُونُ الْعَكْسُ … فَهَذِهِ الْأَنْوَاعُ لَا تُسَمَّى ظَرْفًا فِي الِاصْطِلَاحِ، ب |
 | R107 | 216 | applied | engine:Murib.line | الِاسْمُ، الْفَضْلَةُ، التَّالِي وَاوَ الْمُصَاحَبَةِ، مَسْبُوقَةً بِفِعْلٍ أَوْ مَا فِيهِ |
 | R108 | 216 | not-automatable | أَجْمَعَ applies to ideas, so شُرَكَاءَكُمْ is a mafʿūl maʿahu — the verb's sense decides | وَلَكِنْ إِذَا أَمْكَنَ الْعَطْفُ فَهُوَ أَوْلَى لِأَنَّهُ الْأَصْلُ |
 | R109 | 216 | applied | engine:Murib.line · ʿaṭf | وَلَيْسَ مِنَ الْمَفْعُولِ مَعَهُ |
@@ -161,7 +161,7 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R123 | 245 | applied | engine:IstithnaEngine · مَا خَلَا, note:al-mustathna-wa-nawah-wa-nasbuh | الاسم الواقع بعد «ما خلا» و«ما عدا» منصوب؛ لأن «ما» مصدرية لا تدخل إلا على الجملة الفعلية |
 | R124 | 245 | applied | engine:IstithnaEngine · مَا عَدَانِي | «عداني»: نون الوقاية دليل على أن «عدا» فعل؛ إذ لا تجيء إلا مع الأفعال (ومع من وعن خاصة) |
 | R125 | 245 | applied | engine:IstithnaEngine · I-21, note:al-mustathna-wa-nawah-wa-nasbuh, note:istithna | المستثنى بإلا بعد كلام تام موجب واجب النصب |
-| R126 | 245 | noted | note:al-mustathna-wa-nawah-wa-nasbuh — ⚠ the engine still misreads the example: «وَمَا لِيَ إِلَّا آلَ أَحْمَدَ شِيعَةٌ» → فعل ماض، مبني على الفتح، وفاعله «شيعة». | إذا تقدم المستثنى على المستثنى منه وجب نصبه؛ لأن البدل لا يتقدم على المبدل منه |
+| R126 | 245 | applied | engine:Murib.line, note:al-mustathna-wa-nawah-wa-nasbuh | إذا تقدم المستثنى على المستثنى منه وجب نصبه؛ لأن البدل لا يتقدم على المبدل منه |
 | R127 | 245 | applied | engine:IstithnaEngine · mufarragh, note:istithna, note:istithna-mufarragh | إن كان المستثنى منه محذوفًا فلا عمل لإلا، ويسمى استثناء مفرغًا |
 | R128 | 245 | applied | engine:IstithnaEngine · badal, note:al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa, note:istithna | إن كان متصلًا جاز في المستثنى وجهان: الإبدال (وهو الراجح) والنصب على الاستثناء |
 | R129 | 245 | noted | note:al-mustathna-wa-nawah-wa-nasbuh | إن كان منقطعًا فالحجازيون يوجبون نصبه، والتميميون يجيزون الإبدال ويختارون النصب |
@@ -172,31 +172,31 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R134 | 245 | applied | engine:MuqarabaEngine · I-16 | عسى وأوشك: الغالب اقتران خبرهما بأن، وندر تجرده |
 | R135 | 245 | applied | engine:MuqarabaEngine · I-16 | كاد وكرب: يترجح تجرد خبرهما من أن، وندر اقترانه بها |
 | R136 | 245 | applied | engine:Murib.line | وَرُبَّمَا رُفِعَ السَّبَبِيُّ بِخَبَرِ عَسَى؛ ففي «وَمَاذَا عَسَى الْحَجَّاجُ يَبْلُغُ جُ |
-| R137 | 245 | open | probe «وَلَاتَ حِينَ مَنَاصٍ» → اسم، مجرور بالحروف، مضاف إليه، وهو مضاف. | ما حمل على ليس أربعة: لات، وما، ولا، وإن النافية |
-| R138 | 248 | noted | note:ma-la-mushabbaha — ⚠ the engine still misreads the example: «إِنْ هُوَ مُسْتَوْلِيًا عَلَى أَحَدٍ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | إن النافية العاملة عمل ليس لا تختص بالنكرات كما تختص بها لا |
+| R137 | 245 | applied | engine:Murib.line | ما حمل على ليس أربعة: لات، وما، ولا، وإن النافية |
+| R138 | 248 | applied | engine:Murib.line, note:ma-la-mushabbaha | إن النافية العاملة عمل ليس لا تختص بالنكرات كما تختص بها لا |
 | R139 | 248 | applied | engine:Murib.line · the kāffa مَا | وَإِنْ قُرِنَتْ بمَا الْمَزِيدَةِ أُلْغِيتْ وُجُوبًا، إِلَّا لَيْتَ فَجَوَازًا |
-| R140 | 248 | noted | note:innama-kaffa — ⚠ the engine still misreads the example: «أَيَحْسَبُونَ أَنَّمَا نُمِدُّهُمْ بِهِ مِنْ مَالٍ» → حرف لا محل له من الإعراب. | احترزت بالمزيدة من الموصولة والمصدرية |
+| R140 | 248 | applied | engine:Murib.line, note:innama-kaffa | احترزت بالمزيدة من الموصولة والمصدرية |
 | R141 | 250 | applied | engine:Sh336Engine · R141 (إِنْ) | فَتُلْغى لكِنَّ وُجُوبًا، وكَأَنَّ قِليلا، وَإِنَّ غالبًا |
 | R142 | 250 | applied | engine:Sh336Engine · R142 (the lām al-fāriqa) | وَيَغْلِبُ مَعَهَا مُهْمَلَةً اللامُ، وَكَوْنُ الْفِعْلِ التَّالي لهَا نَاسِخًا |
 | R143 | 250 | applied | engine:AnEngine · I-1 (the light أَنْ) | أنّ المخففة: وجب بقاء عملها، ووجب حذف اسمها، ووجب كون خبرها جملة |
 | R144 | 250 | applied | engine:AnEngine · I-1 | وإن كانت فعلية وجب كونها دعائية، أو كون الفعل جامدًا، أو مفصولًا بنفي أو شرط أو قد أو لو أ |
-| R145 | 250 | noted | note:inna-wa-akhawatuha — ⚠ the engine still misreads the example: «كَأَنْ ظَبْيَةٌ تَعْطُو إِلَى وَارِقِ السَّلَمْ» → حرف لا محل له من الإعراب. | وَيَغْلِبُ لِكَأَنَّ مَا وَجَبَ لأَنَّ، إِلا أَنَّ الْفِعْلَ بَعْدَهَا دائمًا خَبَرِيٌّ مَ |
-| R146 | 250 | noted | note:inna-wa-akhawatuha — ⚠ the engine still misreads the example: «وَلَكِنِ اللهُ قَتَلَهُمْ» → حرف لا محل له من الإعراب. | لكنْ المخففة يجب إلغاؤها؛ لزوال اختصاصها بالجمل الاسمية |
+| R145 | 250 | applied | engine:Murib.line, note:inna-wa-akhawatuha | وَيَغْلِبُ لِكَأَنَّ مَا وَجَبَ لأَنَّ، إِلا أَنَّ الْفِعْلَ بَعْدَهَا دائمًا خَبَرِيٌّ مَ |
+| R146 | 250 | applied | engine:Murib.line, note:inna-wa-akhawatuha | لكنْ المخففة يجب إلغاؤها؛ لزوال اختصاصها بالجمل الاسمية |
 | R147 | 250 | applied | engine:Murib.line · lā's muḍāf ism (I-19) | وَإِنَما يَظْهَرُ نَصْبُهُ إنْ كَانَ مُضَافًا أَوْ شِبْهَهُ |
 | R148 | 250 | applied | engine:Murib.line · the quasi-muḍāf | الشبيه بالمضاف ما اتصل به شيء من تمامه: مرفوع به أو منصوب به أو مخفوض بخافض متعلق به |
 | R149 | 256 | applied | engine:Murib.line · لَنْ / كَيْ, note:nawasib-wa-jawazim-al-mudari | «لَنْ» أَوْ «كَي» المَصْدَرِيَّةُ مُطْلَقًا |
-| R150 | 256 | noted | note:nawasib-wa-jawazim-al-mudari — ⚠ the engine still misreads the example: «جِئْتُ كَيْ تُكْرِمَنِي» → حرف لا محل له من الإعراب. | «كي» شرطها أن تكون مصدرية لا تعليلية؛ وتتعين المصدرية إذا تقدمتها اللام، والتعليلية إذا تأ |
+| R150 | 256 | applied | engine:Murib.line, note:nawasib-wa-jawazim-al-mudari | «كي» شرطها أن تكون مصدرية لا تعليلية؛ وتتعين المصدرية إذا تقدمتها اللام، والتعليلية إذا تأ |
 | R151 | 256 | applied | engine:Murib.line, note:nawasib-wa-jawazim-al-mudari | «إذن» تنصب بثلاثة شروط: أن تكون مصدرة، وأن يكون الفعل مستقبلًا، وأن يكون متصلًا أو منفصلًا |
 | R152 | 256 | applied | engine:AnEngine · I-1, note:an-masdariyya | «أن» تنصب بشرطين: أن تكون مصدرية لا زائدة ولا مفسرة، وألا تكون مخففة من الثقيلة |
 | R153 | 256 | applied | engine:Murib.line, note:an-masdariyya | «أن» المفسرة بثلاثة شروط: أن يتقدم عليها جملة، فيها معنى القول دون حروفه، وألا يدخل عليها  |
-| R154 | 259 | noted | note:an-masdariyya, note:nawasib-wa-jawazim-al-mudari — ⚠ the engine still misreads the example: «أَمْ حَسِبْتُمْ أَنْ تَدْخُلُوا الْجَنَّةَ» → فعل مضارع، مجزوم وعلامة جزمه حذف النون — بعامله، والواو ضمير | إذا سبقت «أن» بظن جاز الوجهان: الرفع على إجراء الظن مجرى العلم، والنصب على أصله، وهو الأرج |
+| R154 | 259 | applied | engine:AnEngine · I-1, note:an-masdariyya, note:nawasib-wa-jawazim-al-mudari | إذا سبقت «أن» بظن جاز الوجهان: الرفع على إجراء الظن مجرى العلم، والنصب على أصله، وهو الأرج |
 | R155 | 259 | applied | engine:Murib.line · I-6 (the hidden أَنْ), note:nawasib-wa-jawazim-al-mudari | حتى: يشترط لإضمار أن بعدها أن يكون الفعل مستقبلًا بالنظر إلى ما قبلها، فإن لم يكن مستقبلًا |
 | R156 | 259 | applied | engine:Murib.line · I-6, note:nawasib-wa-jawazim-al-mudari | النصب بعد حتى بأن مضمرة لا بحتى نفسها، خلافًا للكوفيين، ولا يجوز إظهار أن بعدها |
 | R157 | 259 | applied | engine:Murib.line · I-6, note:lam-taleel, note:nawasib-wa-jawazim-al-mudari | اللام أربعة: التعليلية، ولام العاقبة، والزائدة بعد فعل متعد، ولام الجحود بعد كون ماض منفي؛ |
 | R158 | 259 | applied | engine:Murib.line · I-6, note:nawasib-wa-jawazim-al-mudari | «أو» ينتصب المضارع بعدها بأن مضمرة وجوبًا إذا صح في موضعها «إلى» أو «إلا» |
 | R159 | 259 | applied | engine:Murib.line · I-6, note:nawasib-wa-jawazim-al-mudari | الفاء والواو ينتصب بعدهما المضارع بشرطين: أن تكون الفاء للسببية والواو للمعية، وأن يكونا م |
 | R160 | 259 | applied | engine:Murib.line · I-6, note:nawasib-wa-jawazim-al-mudari | الطلب يشمل الأمر والنهي والدعاء والعرض والتحضيض والتمني والاستفهام؛ فهذه سبعة مع النفي صار |
-| R161 | 259 | noted | note:nawasib-wa-jawazim-al-mudari — ⚠ the engine still misreads the example: «مَا تَأْتِينِي فَأُكْرِمَكَ» → فعل ماض مبني للمجهول، مبني على الفتح، وفيه ضمير هو المفعول ب | «ما تأتيني فأكرمَك»: أربعة أوجه؛ الرفع على عطف اللفظ أو على الاستئناف، والنصب على أن النفي |
+| R161 | 259 | applied | engine:Murib.line, note:nawasib-wa-jawazim-al-mudari | «ما تأتيني فأكرمَك»: أربعة أوجه؛ الرفع على عطف اللفظ أو على الاستئناف، والنصب على أن النفي |
 | R162 | 259 | applied | engine:Murib.line · I-6, note:nawasib-wa-jawazim-al-mudari | لو قلت «ما تأتينا إلا فتحدثنا» أو «ما تزال تأتينا فتحدثنا» وجب الرفع؛ لأن النفي انتقض بإلا |
 | R163 | 259 | noted | note:nawasib-wa-jawazim-al-mudari | شرط النصب في جواب الأمر أن يكون بصيغة الطلب وألا يكون باسم الفعل؛ فلا يجوز «حسبك حديث فينا |
 | R164 | 259 | noted | note:nawasib-wa-jawazim-al-mudari | شرط الاستفهام ألا يكون بأداة تليها جملة اسمية خبرها جامد؛ فلا يجوز النصب في «هل أخوك زيد ف |
@@ -208,7 +208,7 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R170 | 269 | not-automatable | the three kinds of jarr (letter, annexation, adjacency) and «by following» is not a fourth — a classification | المجرورات ثلاثة: المجرور بالحرف، وبالإضافة، وبالمجاورة؛ ولم يذكر المجرور بالتبعية لأن العا |
 | R171 | 269 | applied | engine:Murib.line · the jarr letters | من وإلى وعن وعلى والباء واللام وفي تجر الظاهر والمضمر؛ والكاف وحتى والواو لا تجر إلا الظاه |
 | R172 | 269 | applied | engine:Nahw342Engine · qasam | التاء لا تجر إلا اسم الله، وربّ مضافًا إلى الكعبة أو إلى الياء |
-| R173 | 269 | noted | note:huruf-jarr — ⚠ the engine still misreads the example: «عَمَّ يَتَسَاءَلُونَ» → اسم، مبني لا يتغير آخره. | كي لا تجر إلا «ما» الاستفهامية وأن المضمرة وصلتها؛ وما الاستفهامية إذا دخل عليها حرف جر حذ |
+| R173 | 269 | applied | engine:Murib.line · مَا of the question after a jarr letter, note:huruf-jarr | كي لا تجر إلا «ما» الاستفهامية وأن المضمرة وصلتها؛ وما الاستفهامية إذا دخل عليها حرف جر حذ |
 | R174 | 271 | not-automatable | مُذْ / مُنْذُ take a specific past or present time — the time's reference is meaning | مذ ومنذ لا يجران إلا اسم زمان معين ماض أو حاضر، لا مستقبلًا ولا مبهمًا |
 | R175 | 271 | applied | engine:Murib.line | ربّ إن جرت ضميرًا فلا يكون إلا ضمير غيبة مفردًا مذكرًا، ويجب تفسيره بنكرة بعده مطابقة للمع |
 | R176 | 271 | applied | engine:Nahw342Engine · rubba (offered) | وَيَجُوزُ حَذْفُها مَعَهُ، فَيَجِبُ بَقَاءُ عَمَلِهَا، وَذلِكَ بَعْدَ الْوَاوِ كَثِيرٌ، وَ |
@@ -232,7 +232,7 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R194 | 289 | applied | engine:Sh336Engine · R194 (وَإِلَّا), note:al-majzum-wal-shart-wal-jaza | حذف فعل الشرط وحده شرطه دلالة الدليل عليه وكونه واقعًا بعد «وإلا»؛ وبغير «وإلا» شاذ إلا في |
 | R195 | 289 | applied | engine:Murib.line · jawāb al-ṭalab, note:jawab-al-talab, note:nawasib-wa-jawazim-al-mudari | حذف أداة الشرط وفعله شرطه أن يتقدم عليهما طلب بلفظه ومعناه أو بمعناه فقط؛ ولا فرق بين كون  |
 | R196 | 289 | noted | note:jawab-al-talab | وَشَرْطُ ذَلكَ بَعْدَ النَّهْيِ كَوْنُ الْجَوَابِ مَحْبُوبًا |
-| R197 | 293 | noted | note:al-majzum-wal-shart-wal-jaza — ⚠ the engine still misreads the example: «هُوَ ظَالِمٌ إِنْ فَعَلَ» → فعل ماض، مبني على الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | وَيَجِبُ الاسْتِغْنَاءُ عَنْ جَوَابِ الشَّرْطِ بِدَلِيلِهِ مُتَقَدِّمًا لَفْظًا … أو نيَّة |
+| R197 | 293 | applied | engine:Murib.line, note:al-majzum-wal-shart-wal-jaza | وَيَجِبُ الاسْتِغْنَاءُ عَنْ جَوَابِ الشَّرْطِ بِدَلِيلِهِ مُتَقَدِّمًا لَفْظًا … أو نيَّة |
 | R198 | 293 | applied | engine:Murib.line · T3 (the oath's answer), note:al-majzum-wal-shart-wal-jaza | وَبِجَوَابِ ما تَقَدَّمَ مِنْ شَرْطٍ مُطْلَقًا، أوْ قَسَمٍ، إلا إِنْ سَبَقَهُ ذو خَبَرٍ، ف |
 | R199 | 295 | applied | engine:Murib.line, note:al-majzum-wal-shart-wal-jaza | وَجَزْمُ مَا بَعْدَ فَاءٍ أَوْ واوٍ مِنْ فِعْلٍ تَالٍ لِلشّرْطِ أَوِ الْجَوَابِ قَوِيٌّ، و |
 | R200 | 298 | applied | engine:Murib.line · I-2 | كلُّ الأَفْعَالِ تَرْفَعُ إمَّا الْفَاعِلَ أو نَائِبَهُ أو الْمُشَبّهَ به |
@@ -240,16 +240,16 @@ Source: `research/sources/shudhur-al-dhahab-qawaid.jsonl + shudhur-al-dhahab-src
 | R202 | 298 | applied | engine:LazimEngine · T4 | مَا لَا يَتَعَدَّى إليهِ أَصْلًا: كالدَّالِّ عَلى حُدُوثِ ذَاتٍ … أو صفةٍ حِسِّيَّةٍ … أوْ |
 | R203 | 298 | applied | engine:Nahw342Engine · maful2 | احترزت بالحسية من نحو علم وفهم وفرح |
 | R204 | 298 | applied | engine:DabtEngine valency | وما يَتعدَّى إلى واحِدٍ دائمًا بالجَارِّ … أو دائمًا بنفسِهِ … أو تارَةً وتارة … ومَا يتعد |
-| R205 | 298 | noted | note:mafulayn — ⚠ the engine still misreads the example: «نَقَصْتُ زَيْدًا دِينَارًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول مطلق. | وما يتعدى إلى اثنين تارة ولا يتعدى إليهما أخرى كنَقَصَ وَزادَ |
+| R205 | 298 | applied | engine:Nahw342Engine · maful2, note:mafulayn | وما يتعدى إلى اثنين تارة ولا يتعدى إليهما أخرى كنَقَصَ وَزادَ |
 | R206 | 298 | applied | engine:DabtEngine · two objects | أو يتعدى إليهما دائمًا: فإما ثانيهما كمفعول شكر، أو أولهما فاعل في المعنى كأعطى وكسا، أو أ |
 | R207 | 298 | not-automatable | the heart verbs take two objects only in their heart senses (ظَنَّ not «suspect») — the sense decides | ظَنَّ، لَا بِمَعْنَى اتهم، وعلم لا بمعنى عَرَفَ، وَرَأَى لَا مِنَ الرَّأْيِ، وَوَجَدَ لَا  |
 | R208 | 298 | applied | engine:Sh336Engine · R208 (ilghāʾ) | وَيَجُوزُ إِلْغَاءُ الْقَلْبِيَّةِ الْمُتَصَرِّفَةِ مُتَوَسِّطَةً أَوْ مُتَأَخِّرَةً |
 | R209 | 298 | applied | engine:Sh336Engine · R209 (taʿlīq) | وَيَجِبُ تَعْلِيقُهَا قَبْلَ لَامِ الابْتِدَاءِ أو القَسَم، أوِ اسْتِفْهَامٍ، أَوْ نَفْيٍ  |
-| R210 | 298 | noted | note:mafulayn — ⚠ the engine still misreads the example: «أَعْلَمْتُ زَيْدًا عَمْرًا فَاضِلًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، نعت. | وَمَا يَتَعَدَّى إلى ثَلَاثَةٍ، وَهُوَ أَعْلَمَ وَأَرَى وَمَا ضُمِّنَ مَعْنَاهُمَا مِنْ أَ |
+| R210 | 298 | applied | engine:Murib.line, note:mafulayn | وَمَا يَتَعَدَّى إلى ثَلَاثَةٍ، وَهُوَ أَعْلَمَ وَأَرَى وَمَا ضُمِّنَ مَعْنَاهُمَا مِنْ أَ |
 
 ## Qawāʿid al-Iʿrāb (Ibn Hishām)
 
-Source: `research/sources/qawaid-al-irab-ibn-hisham-matn.txt`. Entries: 205 — applied **64**, noted **14**, not automatable **42**, open **30** (headings 14, lecture fragments 21, cited verses 20, counted apart).
+Source: `research/sources/qawaid-al-irab-ibn-hisham-matn.txt`. Entries: 205 — applied **74**, noted **13**, not automatable **42**, open **21** (headings 14, lecture fragments 21, cited verses 20, counted apart).
 
 | id | line | status | carried by / reason | the book |
 |---|---|---|---|---|
@@ -280,8 +280,8 @@ Source: `research/sources/qawaid-al-irab-ibn-hisham-matn.txt`. Entries: 205 — 
 | Q88 | 88 | open | probe «زَيْدٌ قَامَ أَبُوهُ وَقَعَدَ أَخُوهُ» → فعل ماض، مبني على الفتح، وفاعله «أخوه». | ولو قدرت العطف على الجملةِ الاسميةِ لم يكن للمعطوفةِ محلٌ. |
 | Q90 | 90 | open | probe «زَيْدٌ قَامَ أَبُوهُ وَقَعَدَ أَخُوهُ» → فعل ماض، مبني على الفتح، وفاعله «أخوه». | ولو قدرت الواوَ واوَ الحالِ؛ كانت الجملة في محل نصبٍ، وكانت قد فيها مضمرةً. |
 | Q92 | 92 | applied | engine:JumlaMahallEngine · maqūl (the whole quote) | وإذا قلتَ: قال زيدٌ: عبد اللهِ منطلق وعمرٌو مقيمٌ، فليس من هذا القبيل، بل الَّذي محله النص |
-| Q98 | 98 | open | probe «إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ» → حرف لا محل له من الإعراب. | إحداها المبتدأةُ. |
-| Q102 | 102 | noted | note:anwa-al-jumal — ⚠ the engine still misreads the example: «إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ» → حرف لا محل له من الإعراب. | والابتدائية قد تكون في أول الكلام مطلقًا، مثل: إنا أعطيناك الكوثر، وقد تُسبق بكلامٍ سابق ل |
+| Q98 | 98 | applied | engine:Murib.line | إحداها المبتدأةُ. |
+| Q102 | 102 | applied | engine:Murib.line, note:anwa-al-jumal | والابتدائية قد تكون في أول الكلام مطلقًا، مثل: إنا أعطيناك الكوثر، وقد تُسبق بكلامٍ سابق ل |
 | Q104 | 104 | not-automatable | the clause is not the hurtful saying, so it is no maqūl — the sense of the āya decides | ولا يصح أن تكون محكيةً للقول الَّذي نُهي النبي ﷺ عن الحزن بسببه؛ لأنه ليس هو القول الَّذي  |
 | Q106 | 106 | not-automatable | «لَا يَسَّمَّعُونَ» is a fresh start, not a naʿt or ḥāl of the indefinite before it — the sense decides | ونحو: ﴿لَّا يَسَّمَّعُونَ﴾ بعد: ﴿وَحِفْظًا مِّن كُلِّ شَيْطَٰنٍ مَّارِدٍ﴾  ، وليست صفةً لل |
 | Q108 | 108 | applied | engine:Murib.line | وتقول: ما رأيته مذ يومان |
@@ -320,7 +320,7 @@ Source: `research/sources/qawaid-al-irab-ibn-hisham-matn.txt`. Entries: 205 — 
 | Q217 | 217 | applied | engine:Murib.line · I-6 (حَتَّى + the hidden أَنْ) | وعلى الاسم المؤول من (أن) مضمرةً، ومن الفعل المضارع، فتكون تارةً بمعنى (إلى) ﴿حَتَّىٰ يَرْ |
 | Q219 | 219 | not-automatable | حَتَّى may bear both senses (to / so that) — the sense decides | وقد تحتملهما |
 | Q221 | 221 | not-automatable | Ibn Hishām al-Khaḍrāwī and Ibn Mālik add حَتَّى = إِلَّا (an exception) — a reported view on one verse | وزعم ابن هشام الخضراوي، وابن مالك |
-| Q226 | 226 | open | probe «قَهَرْنَاكُمُ حَتَّى الْكُمَاةَ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | والثاني: أن تكون حرف عطف. |
+| Q226 | 226 | applied | engine:Murib.line | والثاني: أن تكون حرف عطف. |
 | Q231 | 231 | open | probe «WujuhEngine.table("وَمَا زَالَتِ الْقَتْلَى تَمُجُّ دِمَاءَه» → false | فتدخل على ثلاثة أشياء:   الفعل الماضي: نحو: ﴿حَتَّىٰ عَفَوا۟ وَّقَالُوا۟﴾  . والمضارع المر |
 | Q233 | 233 | not-automatable | «some say: with the māḍī it is jārra and أَنْ is hidden» — a reported view | وقيل: هي مع الماضي جارة، و(أن) بعدها مضمرة. وقد مضى خلاف الزجَّاج وابن درستويه فيهن. |
 | Q235 | 235 | applied | engine:WujuhEngine · كَلَّا of deterrence | السادسة (كلا)، ويقال فيها حرف ردعٍ وزجرٍ، بنحو: ﴿وَأَمَّآ إِذَا مَا ٱبْتَلَىٰهُ فَقَدَرَ ع |
@@ -355,7 +355,7 @@ Source: `research/sources/qawaid-al-irab-ibn-hisham-matn.txt`. Entries: 205 — 
 | Q318 | 318 | open | probe «WujuhEngine.table("مررتُ بِمَنْ مُعجِبٍ لك").items.some(x =>» → false | مررتُ بمن مُعْجِبٍ لك، يعني بإنسانٍ معجبٍ لك |
 | Q320 | 320 | not-automatable | al-Fārisī allows مَنْ as a complete indefinite (وَنِعْمَ مَنْ هُوَ) — a reported view | وأجاز الفارسيُّ أن تقع نكرةً تامة … حَمَلَ عليه قوله |
 | Q325 | 325 | applied | engine:WujuhEngine · أَيّ (shart, istifhām, nidāʾ) | أَي، فتقعُ شرطيةً، نحو: ﴿أَيَّمَا ٱلْأَجَلَيْنِ قَضَيْتُ فَلَا عُدْوَٰنَ عَلَىَّ﴾  .   واس |
-| Q327 | 327 | open | probe «ثُمَّ لَنَنْزِعَنَّ مِنْ كُلِّ شِيعَةٍ أَيُّهُمْ أَشَدُّ» → اسم، والضمير مضاف إليه. | أي: الذي هو أشدُّ |
+| Q327 | 327 | applied | engine:Murib.line | أي: الذي هو أشدُّ |
 | Q329 | 329 | not-automatable | «said by Sībawayh and those who follow him» — the attribution | قاله سيبويه ومن تابعه |
 | Q331 | 331 | not-automatable | those who say the relative is never built read أَيُّهُمْ as an interrogative mubtadaʾ — a reported view | وقال من رأى أن الموصولةَ لا تُبنى: هي هنا استفهاميةٌ مبتدأ، و﴿أَشَدُّ﴾: خَبَرُه. |
 | Q333 | 333 | applied | engine:WujuhEngine · لَوْ of imtināʿ | لو … أن تكون حرف شرطٍ… يقتضى امتناع ما يليه، واستلزامه لتاليه |
@@ -388,21 +388,21 @@ Source: `research/sources/qawaid-al-irab-ibn-hisham-matn.txt`. Entries: 205 — 
 | Q405 | 405 | not-automatable | the extra wāw (حَتَّى إِذَا جَاءُوهَا وَفُتِحَتْ) — whether the answer is dropped or the wāw extra is argued | وواوًا يكون دخولها في الكلامِ كخروجها، وهي الواو الزائدة. |
 | Q407 | 407 | not-automatable | «some say: joining, the answer dropped» — a reported view | وقيل: إنها عاطِفةٌ، والجواب محذوف، والتقدير: كان كيت وكيت. |
 | Q409 | 409 | not-automatable | «the wāw of eight» — named only to be rejected | وقولُ جماعةٍ: إنها واو الثمانية |
-| Q415 | 415 | open | engine to build: MaEngine · مَا maʿrifa tāmma — probe «نِعْمَ مَا صَنَعْتَ» → اسم، مبني لا يتغير آخره. | فإنها على ضربين: اسمية، وأوجهها سبعة: معرفة تامة |
+| Q415 | 415 | applied | engine:MaEngine · مَا maʿrifa tāmma | فإنها على ضربين: اسمية، وأوجهها سبعة: معرفة تامة |
 | Q417 | 417 | open | engine to build: MaEngine · مَا mawṣūla — probe «مَا عِنْدَ اللهِ خَيْرٌ» → حرف لا محل له من الإعراب. | ومعرفةٌ ناقصةٌ، وهي الموصولة … نحو: ﴿مَا عِندَ ٱللَّهِ خَيْرٌ مِّنَ ٱللَّهْوِ وَمِنَ ٱلتِّ |
 | Q419 | 419 | applied | engine:MaEngine · مَا shartiyya, note:in-shartiyya | وشرطية، نحو: ﴿وَمَا تَفْعَلُوا۟ مِنْ خَيْرٍ يَعْلَمْهُ ٱللَّهُ﴾  . واستفهامية، نحو: ﴿وَمَا |
 | Q421 | 421 | applied | engine:Sh336Engine · R42 (لِمَاذَا) | وإنما جاز نحو: لماذا فعلتَ؟، بأن ألفها صارت حشوًا في التركيب مع ذا، فأشبهت المنصوب له. |
-| Q423 | 423 | open | probe «فَنِعِمَّا هِيَ» → اسم، مبني لا يتغير آخره. | ونكرةٌ تامةٌ … وذلك في ثلاثة مواضع، في كل منها خلاف: أحدها: نحو: ﴿فَنِعِمَّا هِىَ﴾   … ونح |
+| Q423 | 423 | applied | engine:Murib.line | ونكرةٌ تامةٌ … وذلك في ثلاثة مواضع، في كل منها خلاف: أحدها: نحو: ﴿فَنِعِمَّا هِىَ﴾   … ونح |
 | Q427 | 427 | not-automatable | «إِنِّي مِمَّا أَنْ أَفْعَلَ» — the second place of the complete indefinite, a reported idiom | والثاني، مما تكون فيه (ما) نكرةً تامةً، قولهم: إني   أن أفعل. |
 | Q431 | 431 | applied | engine:Murib.line | والثالث: قولهم في التعجب: ما أحسن زيدًا!، أي: شيءٌ حسَّنَ زيدًا، هذا قول سيبويه. |
 | Q433 | 433 | applied | engine:MaEngine · مَا nakira mawṣūfa | ونكرة موصوفة |
 | Q435 | 435 | noted | note:anwa-ma | ومنه – في قولٍ –: نعم ما صنعتَ، أي: نعم شيئًا صنعتَه. وما أحسن زيدًا! أي: شيءٌ موصوفٌ بأنه |
 | Q437 | 437 | open | probe «لِأَمْرٍ مَا جَدَعَ قَصِيرٌ أَنْفَهُ» → حرف لا محل له من الإعراب. | ونكرةٌ موصوفٌ بها |
-| Q439 | 439 | open | engine to build: MaEngine · مَا maṣdariyya — probe «بِمَا نَسُوا يَوْمَ الْحِسَابِ» → حرف لا محل له من الإعراب. | وتأتي حرفيةً، وأوجهها خمسة: مصدرية غير ظرفية: نحو: ﴿بِمَا نَسُوا۟ يَوْمَ ٱلْحِسَابِ﴾  ،    |
-| Q441 | 441 | open | engine to build: MaEngine · the kāffa — probe «إِنَّمَا اللهُ إِلَهٌ وَاحِدٌ» → حرف لا محل له من الإعراب. | وكافة عن العمل: وهي ثلاثة أقسام: |
-| Q443 | 443 | open | probe «وَقَلَّمَا وِصَالٌ عَلَى طُولِ الصُّدُودِ يَدُومُ» → حرف لا محل له من الإعراب. | كافة عن عمل الرفع، كقوله: |
+| Q439 | 439 | applied | engine:MaEngine · مَا maṣdariyya | وتأتي حرفيةً، وأوجهها خمسة: مصدرية غير ظرفية: نحو: ﴿بِمَا نَسُوا۟ يَوْمَ ٱلْحِسَابِ﴾  ،    |
+| Q441 | 441 | applied | engine:MaEngine · the kāffa | وكافة عن العمل: وهي ثلاثة أقسام: |
+| Q443 | 443 | applied | engine:Murib.line | كافة عن عمل الرفع، كقوله: |
 | Q448 | 448 | applied | engine:Murib.line · the kāffa on إِنَّ | وكافةٌ عن عمل النصب والرفع، وذلك في (إن) وأخواتها، نحو: ﴿إِنَّمَا ٱللَّهُ إِلَٰهٌ وَٰحِدٌ﴾ |
-| Q453 | 453 | open | engine to build: MaEngine · مَا zāʾida — probe «فَبِمَا رَحْمَةٍ مِنَ اللهِ لِنْتَ لَهُمْ» → حرف لا محل له من الإعراب. | وزائدة: وتسمى هي وغيرها من الحروف الزائدة صلةً وتوكيدًا، نحو: ﴿فَبِمَا رَحْمَةٍ مِّنَ ٱللَ |
+| Q453 | 453 | applied | engine:MaEngine · مَا zāʾida | وزائدة: وتسمى هي وغيرها من الحروف الزائدة صلةً وتوكيدًا، نحو: ﴿فَبِمَا رَحْمَةٍ مِّنَ ٱللَ |
 
 ### Bāb 3 word by word — the matn's count of faces against `WujuhEngine.WORDS`
 
@@ -427,7 +427,7 @@ Source: `research/sources/qawaid-al-irab-ibn-hisham-matn.txt`. Entries: 205 — 
 
 ## Iẓhār al-Asrār (Birgivī)
 
-Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — applied **128**, noted **20**, not automatable **5**, open **10** (headings 0, lecture fragments 0, cited verses 0, counted apart).
+Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — applied **149**, noted **7**, not automatable **5**, open **2** (headings 0, lecture fragments 0, cited verses 0, counted apart).
 
 | id | line | status | carried by / reason | the book |
 |---|---|---|---|---|
@@ -449,7 +449,7 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-A16 | 14 | applied | engine:IstithnaEngine · خَلَا, note:al-amil-wa-aqsamuh | والمجاوزة، وعلى للاستعلاء، واللام للتعليل والتخصيص، وفي للظرف، والكاف للتشبيه، وحتى للغاية |
 | I-A17 | 14 | applied | engine:IstithnaEngine · عَدَا, note:al-amil-wa-aqsamuh | والمجاوزة، وعلى للاستعلاء، واللام للتعليل والتخصيص، وفي للظرف، والكاف للتشبيه، وحتى للغاية |
 | I-A18 | 14 | applied | engine:Murib.line, note:al-amil-wa-aqsamuh | والمجاوزة، وعلى للاستعلاء، واللام للتعليل والتخصيص، وفي للظرف، والكاف للتشبيه، وحتى للغاية |
-| I-A19 | 14 | noted | note:al-amil-wa-aqsamuh — ⚠ the engine still misreads the example: «كَيْمَهْ عَصَيْتَ» → حرف استفهام، لا محل له من الإعراب. | والمجاوزة، وعلى للاستعلاء، واللام للتعليل والتخصيص، وفي للظرف، والكاف للتشبيه، وحتى للغاية |
+| I-A19 | 14 | applied | engine:Murib.line, note:al-amil-wa-aqsamuh | والمجاوزة، وعلى للاستعلاء، واللام للتعليل والتخصيص، وفي للظرف، والكاف للتشبيه، وحتى للغاية |
 | I-A20 | 14 | noted | note:al-amil-wa-aqsamuh | والمجاوزة، وعلى للاستعلاء، واللام للتعليل والتخصيص، وفي للظرف، والكاف للتشبيه، وحتى للغاية |
 | I-A21 | 21 | applied | engine:Murib.line · inna, note:mawadi-kasr-inna | منها: إن وأن للتحقيق، وكأن للتشبيه، ولكن للاستدراك، وليت للتمني، ولعل للترجي. |
 | I-A22 | 21 | applied | engine:InnaEngine · أَنَّ, note:mawadi-kasr-inna | منها: إن وأن للتحقيق، وكأن للتشبيه، ولكن للاستدراك، وليت للتمني، ولعل للترجي. |
@@ -460,11 +460,11 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-A27 | 25 | applied | engine:Murib.line · lā li-l-jins, note:ma-la-laysa-wa-la-al-jins | والثامن لا لنفي الجنس، وشرط عملها أن يكون اسمها نكرة مضافة أو مشتبهة بها غير مفصول عنها نح |
 | I-A28 | 25 | applied | engine:AnEngine · I-1, note:ma-la-laysa-wa-la-al-jins | والثامن لا لنفي الجنس، وشرط عملها أن يكون اسمها نكرة مضافة أو مشتبهة بها غير مفصول عنها نح |
 | I-A29 | 25 | applied | engine:Sh336Engine · R78, note:ma-la-laysa-wa-la-al-jins | والقسم الثاني حرفان ما ولا المشبهتان بليس في كونهما للنفي والدخول على المبتدأ والخبر، وشرط |
-| I-A30 | 25 | noted | note:ma-la-laysa-wa-la-al-jins — ⚠ the engine still misreads the example: «لَا رَجُلٌ أَفْضَلَ مِنْكَ» → اسم، نعت. | والثامن لا لنفي الجنس، وشرط عملها أن يكون اسمها نكرة مضافة أو مشتبهة بها غير مفصول عنها نح |
+| I-A30 | 25 | applied | engine:Murib.line, note:ma-la-laysa-wa-la-al-jins | والثامن لا لنفي الجنس، وشرط عملها أن يكون اسمها نكرة مضافة أو مشتبهة بها غير مفصول عنها نح |
 | I-A31 | 26 | applied | engine:AnEngine · I-1, note:nawasib-wa-jawazim-al-mudari | أربعة أحرف: أن للمصدرية، ولن للنفي المؤكد في الاستقبال، وكي للسببية، وإذن للشرط والجزاء، و |
 | I-A32 | 26 | applied | engine:Murib.line · lan, note:nawasib-wa-jawazim-al-mudari | أربعة أحرف: أن للمصدرية، ولن للنفي المؤكد في الاستقبال، وكي للسببية، وإذن للشرط والجزاء، و |
 | I-A33 | 26 | applied | engine:Murib.line · kay, note:nawasib-wa-jawazim-al-mudari | أربعة أحرف: أن للمصدرية، ولن للنفي المؤكد في الاستقبال، وكي للسببية، وإذن للشرط والجزاء، و |
-| I-A34 | 26 | noted | note:nawasib-wa-jawazim-al-mudari — ⚠ the engine still misreads the example: «إِذَنْ أُكْرِمَكَ» → فعل ماض مبني للمجهول، مبني على الفتح، وفيه ضمير هو المفعول ب | أربعة أحرف: أن للمصدرية، ولن للنفي المؤكد في الاستقبال، وكي للسببية، وإذن للشرط والجزاء، و |
+| I-A34 | 26 | applied | engine:Murib.line, note:nawasib-wa-jawazim-al-mudari | أربعة أحرف: أن للمصدرية، ولن للنفي المؤكد في الاستقبال، وكي للسببية، وإذن للشرط والجزاء، و |
 | I-A35 | 26 | applied | engine:Murib.line · lam, note:nawasib-wa-jawazim-al-mudari | أربعة أحرف: أن للمصدرية، ولن للنفي المؤكد في الاستقبال، وكي للسببية، وإذن للشرط والجزاء، و |
 | I-A36 | 26 | applied | engine:Murib.line · lammā, note:nawasib-wa-jawazim-al-mudari | أربعة أحرف: أن للمصدرية، ولن للنفي المؤكد في الاستقبال، وكي للسببية، وإذن للشرط والجزاء، و |
 | I-A37 | 26 | applied | engine:Murib.line · lām al-amr, note:nawasib-wa-jawazim-al-mudari | أربعة أحرف: أن للمصدرية، ولن للنفي المؤكد في الاستقبال، وكي للسببية، وإذن للشرط والجزاء، و |
@@ -484,7 +484,7 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-A51 | 35 | applied | engine:Sh336Engine · R92 | والثاني اسم الفاعل، فهو يعمل عمل فعله المعلوم. |
 | I-A52 | 35 | applied | engine:Nahw342Engine · sababi | والثاني اسم الفاعل، فهو يعمل عمل فعله المعلوم. |
 | I-A53 | 37 | applied | engine:Sh336Engine · R110 | وجهه. |
-| I-A54 | 37 | noted | note:amal-ism-al-tafdil-wal-masdar, note:ism-al-tafdil-fil-kafiya — ⚠ the engine still misreads the example: «زَيْدٌ أَفْضَلُ مِنْ عَمْرٍو» → اسم، مرفوع وعلامة رفعه الضمة الظاهرة، خبر. | والخامس اسم التفضيل، وهو لا ينصب المفعول به بالاتفاق، ولا يرفع الفاعل الظاهر إلا إذا صار ب |
+| I-A54 | 37 | applied | engine:Murib.line, note:amal-ism-al-tafdil-wal-masdar, note:ism-al-tafdil-fil-kafiya | والخامس اسم التفضيل، وهو لا ينصب المفعول به بالاتفاق، ولا يرفع الفاعل الظاهر إلا إذا صار ب |
 | I-A55 | 37 | applied | engine:Murib.line, note:amal-ism-al-tafdil-wal-masdar | والسادس المصدر، وشرط عمله في الفاعل والمفعول به أن لا يكون مصغرا ولا موصوفا ولا مقترنا بال |
 | I-A56 | 40 | applied | engine:IdafaEngine, note:al-mudaf-wa-nawa-al-idafa | والسابع اسم المضاف، وهو يعمل الجر، وشرطه أن يكون اسما مجردا عن تنوينه ونائبه لأجل الإضافة، |
 | I-A57 | 43 | applied | engine:MansubEngine · v332 I-9, note:al-ism-al-mubham-al-tamm | والثامن الاسم المبهم التام، فإنه ينصب اسما نكرة على التمييز، وتمامه أي كونه على حالة يمتنع |
@@ -504,8 +504,8 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-B11 | 110 | applied | engine:DabtEngine | وأما المنصوب فثلثة عشر: الأول المفعول المطلق وهو اسم ما فعله فاعل عامل مذكور لفظا أو تقدير |
 | I-B12 | 113 | applied | engine:CaseEngine · ẓarf, note:al-maful-fih-wal-maful-lah | والثالث المفعول فيه وهو اسم ما فعل فيه مضمون عامله من زمان أو مكان، وشرط نصبه لفظا تقدير ف |
 | I-B13 | 113 | applied | engine:MansubEngine · v332 I-18, note:al-maful-fih-wal-maful-lah | والثالث المفعول فيه وهو اسم ما فعل فيه مضمون عامله من زمان أو مكان، وشرط نصبه لفظا تقدير ف |
-| I-B14 | 113 | noted | note:al-maful-fih-wal-maful-lah — ⚠ the engine still misreads the example: «جِئْتُ وَزَيْدًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول به. | والثالث المفعول فيه وهو اسم ما فعل فيه مضمون عامله من زمان أو مكان، وشرط نصبه لفظا تقدير ف |
-| I-B15 | 113 | noted | note:al-maful-maah-wal-hal — ⚠ the engine still misreads the example: «ضَرَبْتُ زَيْدًا قَائِمًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول مطلق. | والسادس الحال وهي ما يبين هيئة الفاعل أو المفعول به لفظا أو معنى مثل ضربت زيدا قائما وهذا  |
+| I-B14 | 113 | applied | engine:Murib.line, note:al-maful-fih-wal-maful-lah | والثالث المفعول فيه وهو اسم ما فعل فيه مضمون عامله من زمان أو مكان، وشرط نصبه لفظا تقدير ف |
+| I-B15 | 113 | applied | engine:MansubEngine · v332 I-4, note:al-maful-maah-wal-hal | والسادس الحال وهي ما يبين هيئة الفاعل أو المفعول به لفظا أو معنى مثل ضربت زيدا قائما وهذا  |
 | I-B16 | 116 | applied | engine:MansubEngine · v332 I-9 | والسابع التمييز وهو ما يرفع |
 | I-B17 | 119 | applied | engine:IstithnaEngine, note:al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa, note:al-mustathna-wa-nawah-wa-nasbuh | والثامن المستثنى وهو نوعان: متصل وهو المخرج عن متعدد بإلا أو إحدى أخواتها، ومنقطع وهو المذ |
 | I-B18 | 125 | applied | engine:Murib.line · kāna, note:al-mansubat-al-tasi-ila-al-thalith-ashar | والتاسع خبر باب كان وأمره كأمر خبر المبتدأ ويجوز حذف كان دون غيره عند قرينة نحو الناس مجزي |
@@ -520,7 +520,7 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-B27 | 146 | applied | engine:Murib.line · ʿaṭf, note:al-atf-bil-huruf-wa-ahkamuh, note:huruf-al-atf-fil-kafiya | والثاني العطف بحروف وهو تابع يتوسط بينه وبين متبوعه أحد الحروف العشرة وهي الواو والفاء وثم |
 | I-B28 | 146 | applied | engine:TawkidEngine | والألف واللام في اسم الفاعل والمفعول بمعنى الذي أو التي. |
 | I-B29 | 152 | applied | engine:Murib.line · badal | والرابع البدل وهو المقصود بالنسبة دونه وأقسامه أربعة: بدل الكل من الكل إن صدقا على واحد نح |
-| I-B30 | 152 | noted | note:al-badal-wa-aqsamuh-wa-atf-al-bayan, note:atf-bayan, note:kamal-al-ittisal — ⚠ the engine still misreads the example: «أَقْسَمَ بِاللهِ أَبُو حَفْصٍ عُمَرُ» → اسم، مرفوع وعلامة رفعه الضمة الظاهرة. | والخامس عطف البيان وهو تابع جيء به لإيضاح متبوعه ولا يدل على معنى فيه نحو أقسم بالله أبو ح |
+| I-B30 | 152 | applied | engine:Murib.line, note:al-badal-wa-aqsamuh-wa-atf-al-bayan, note:atf-bayan, note:kamal-al-ittisal | والخامس عطف البيان وهو تابع جيء به لإيضاح متبوعه ولا يدل على معنى فيه نحو أقسم بالله أبو ح |
 | I-C01 | 162 | applied | engine:SignEngine, note:al-irab-wa-taqsimuhu-bil-dhat-wal-mahall, note:mamnu-min-sarf, note:naqis-al-irab-bil-harakat-wal-murab-bil-huruf | فهو الاسم المفرد والجمع المكسر المنصرفان نحو جاءني رجل ورجال ورأيت رجلا ورجالا ومررت برجل  |
 | I-C02 | 162 | applied | engine:SignEngine, note:al-irab-wa-taqsimuhu-bil-dhat-wal-mahall, note:mamnu-min-sarf, note:naqis-al-irab-bil-harakat-wal-murab-bil-huruf | فهو الاسم المفرد والجمع المكسر المنصرفان نحو جاءني رجل ورجال ورأيت رجلا ورجالا ومررت برجل  |
 | I-C03 | 162 | applied | engine:SignEngine, note:al-irab-wa-taqsimuhu-bil-dhat-wal-mahall, note:mamnu-min-sarf, note:naqis-al-irab-bil-harakat-wal-murab-bil-huruf | فهو الاسم المفرد والجمع المكسر المنصرفان نحو جاءني رجل ورجال ورأيت رجلا ورجالا ومررت برجل  |
@@ -537,16 +537,16 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-21.2 | 21 | applied | engine:InnaEngine.verdict | فإن لا تغير معنى الجملة، وأن مع جملتها في حكم المصدر، ومن ثمة وجب الكسر في موضع الجمل والف |
 | I-23.2 | 23 | applied | engine:Sh336Engine · R141 | وتخفف المكسورة فيلزم اللام في خبرها، ويجوز إلغاؤها ودخولها على فعل من أفعال المبتدإ نحو قو |
 | I-23.3 | 23 | applied | engine:AnEngine · I-1 | وتخفف المفتوحة فتعمل في ضمير شأن مقدر، ويلزم أن يكون قبلها فعل من أفعال التحقيق نحو علمت أ |
-| I-24.2 | 24 | open | probe «كَأَنْ ذَا نَابٍ حَقًّا» → حرف لا محل له من الإعراب. | وتخفف كأن فتلغى على الأفصح نحو كأن ذا ناب حقا، وتخفف لكن فيجب الفاء وهما نحو ما جاءني زيد  |
+| I-24.2 | 24 | applied | engine:Murib.line | وتخفف كأن فتلغى على الأفصح نحو كأن ذا ناب حقا، وتخفف لكن فيجب الفاء وهما نحو ما جاءني زيد  |
 | I-25.1 | 25 | applied | engine:Murib.line · I-19, note:ma-la-laysa-wa-la-al-jins | والثامن لا لنفي الجنس، وشرط عملها أن يكون اسمها نكرة مضافة أو مشتبهة بها غير مفصول عنها نح |
 | I-25.2 | 25 | applied | engine:Sh336Engine · R78 (إِلَّا before the khabar), note:ma-la-laysa-wa-la-al-jins | والقسم الثاني حرفان ما ولا المشبهتان بليس في كونهما للنفي والدخول على المبتدأ والخبر، وشرط |
 | I-26.0 | 26 | applied | engine:Murib.line, note:nawasib-wa-jawazim-al-mudari | أربعة أحرف: أن للمصدرية، ولن للنفي المؤكد في الاستقبال، وكي للسببية، وإذن للشرط والجزاء، و |
-| I-26.1 | 26 | open | engine to build: Murib.line · I-6 — probe «زُرْنِي فَأُكْرِمَكَ» → فعل ماض مبني للمجهول، مبني على الفتح، وفيه ضمير هو المفعول به، ونائب ا | ويجوز إضمار أن خاصة فينتصب المضارع به نحو زرني فأكرمك. |
+| I-26.1 | 26 | applied | engine:Murib.line · I-6 | ويجوز إضمار أن خاصة فينتصب المضارع به نحو زرني فأكرمك. |
 | I-27.1 | 27 | applied | engine:Murib.line · jawāb al-ṭalab | ويجوز إضمار إن خاصة فيجزم المضارع بها نحو زرني أكرمك. |
 | I-29.0 | 29 | applied | engine:Murib.line · نِعْمَ, note:al-lazim-wal-mutaaddi | نعم للمدح وبئس للذم، وشرطهما أن يكون الفاعل معرفا باللام أو مضافا إليه أو مضمرا مميزا بنكر |
 | I-29.3 | 29 | not-automatable | dropping the object «with a context or without» — the reader cannot see what was not said | والمتعدي ما لا يتم فهمه بغير ما وقع عليه الفعل، وهو على ثلثة أضرب: الأول متعد إلى مفعول وا |
 | I-30.2 | 30 | not-automatable | a rule for the writer: what may be left out | ولا يجوز حذف مفعوليها معا أو أحدهما بدون قرينة، ومع قرينة كثر حذفهما معا وقل حذف أحدهما فق |
-| I-33.2 | 33 | open | probe «قَائِمًا كَانَ زَيْدٌ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | ويجوز تقديم أخبارها على أنفسها إلا ما في أوله ما فلا يجوز نحو قائما ما زال زيد، وكذا إن لم |
+| I-33.2 | 33 | applied | engine:Murib.line | ويجوز تقديم أخبارها على أنفسها إلا ما في أوله ما فلا يجوز نحو قائما ما زال زيد، وكذا إن لم |
 | I-34.1 | 34 | noted | note:afal-al-muqaraba | ولا يجوز تقديم أخبار أفعال المقاربة على أنفسها. |
 | I-35.2 | 35 | applied | engine:Sh336Engine · R92 (the participle with tanwīn) | وشرط عملهما في الفاعل المنفصل والمفعول به أن لا يكونا مصغرين نحو ضويرب ومضيرب، ولا موصوفين |
 | I-37.2 | 37 | applied | engine:Murib.line, note:amal-ism-al-tafdil-wal-masdar | والسادس المصدر، وشرط عمله في الفاعل والمفعول به أن لا يكون مصغرا ولا موصوفا ولا مقترنا بال |
@@ -555,8 +555,8 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-43.1 | 43 | applied | engine:IdafaEngine · v332 I-5, note:al-mudaf-wa-nawa-al-idafa | واللفظية أن يكون المضاف صفة مضافة إلى معمولها ولا تفيد إلا تخفيفا في اللفظ نحو ضارب زيد وح |
 | I-43.2 | 43 | applied | engine:MansubEngine · v332 I-9, note:al-ism-al-mubham-al-tamm | والثامن الاسم المبهم التام، فإنه ينصب اسما نكرة على التمييز، وتمامه أي كونه على حالة يمتنع |
 | I-46.0 | 46 | applied | engine:AdadEngine, note:al-ism-al-mubham-al-tamm | ماذا أراد الله بهذا مثلا، وبالتنوين إما لفظا نحو رطل زيتا أو تقديرا نحو مثقال ذهبا وأحد عش |
-| I-52.0 | 52 | open | probe «زَيْدٌ فِي الدَّارِ أَبُوهُ» → اسم، مرفوع وعلامة رفعه الواو نيابة عن الضمة لأنه من الأسماء الخمسة، مب | الظاهر إلا بشرط الاعتماد إلا ما ذكر أو الموصول نحو زيد في الدار أبوه وما في الدار أحد وجاء |
-| I-65.2 | 65 | open | probe «أَعْجَبَنِي أَنْ ضَرَبْتَ» → فعل ماض، مبني على السكون لاتصاله بضمير رفع متحرك، والتاء ضمير متصل مبن | والقسم الثالث ما كان الأصل فيه أن لا يكون معمولا لكن قد يقع موقع القسم الثاني فيكون معمولا |
+| I-52.0 | 52 | applied | engine:Murib.line | الظاهر إلا بشرط الاعتماد إلا ما ذكر أو الموصول نحو زيد في الدار أبوه وما في الدار أحد وجاء |
+| I-65.2 | 65 | applied | engine:Murib.line | والقسم الثالث ما كان الأصل فيه أن لا يكون معمولا لكن قد يقع موقع القسم الثاني فيكون معمولا |
 | I-68.2 | 68 | not-automatable | a clause meant as its own wording (زَيْدٌ قَائِمٌ جُمْلَةٌ) — the reader cannot tell a cited clause from a used one | فإن أريد بالجملة لفظها فلا بد لها من إعراب لكونها في حكم الاسم المفرد حتى يجوز وقوعها في ك |
 | I-74.0 | 74 | applied | engine:JumlaMahallEngine · khabar | أبوه فتكون مرفوعة المحل، أو لباب كان نحو كان زيد أبوه عالم أو كاد نحو كاد زيد يخرج أو مفعو |
 | I-80.0 | 80 | open | engine to build: Murib.doer — probe «مُرَّ بِزَيْدٍ» → اسم، مجرور وعلامة جره الكسرة الظاهرة. | أو ما بمعناه نحو ضرب زيد وأمضروب الزيدان، ولا يكونان إلا اسمين أو في تأويله غير أن النائب  |
@@ -569,35 +569,35 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-101.1 | 101 | applied | engine:Murib.line | والرابع خبر المبتدأ وهو المجرد عن العوامل اللفظية المسند به غير الفعل ومعناه نحو قائم في ز |
 | I-104.0 | 104 | applied | engine:JumlaMahallEngine · khabar, note:khabar-al-mubtada-wa-ahkamuh | قائم قاعد، وقد يكون جملة اسمية أو فعلية فلا بد من عائد إلى المبتدأ إن لم تكن خبرا عن ضمير  |
 | I-104.1 | 104 | applied | engine:Murib.line, note:al-fa-fi-khabar-al-mubtada | وإن كان المبتدأ بعد أما وجب دخول الفاء في خبره نحو أما زيد فمنطلق إلا لضرورة الشعر كقوله أ |
-| I-107.0 | 107 | noted | note:al-fa-fi-khabar-al-mubtada — ⚠ the engine still misreads the example: «الَّذِي يَأْتِينِي فَلَهُ دِرْهَمٌ» → اسم، مرفوع وعلامة رفعه الضمة الظاهرة، فاعل. | الفاء في خبره، وكذا إذا دخل عليه إن وأن ولكن بخلاف سائر نواسخ المبتدأ حرفا كان أو فعلا نحو |
+| I-107.0 | 107 | applied | engine:Murib.line, note:al-fa-fi-khabar-al-mubtada | الفاء في خبره، وكذا إذا دخل عليه إن وأن ولكن بخلاف سائر نواسخ المبتدأ حرفا كان أو فعلا نحو |
 | I-107.2 | 107 | applied | engine:InnaEngine · the fronted khabar | والسادس خبر باب إن وأمره كأمر خبر المبتدأ لكن لا يجوز تقديمه على اسمها إلا أن يكون ظرفا نح |
-| I-110.1 | 110 | open | probe «قَعَدْتُ جُلُوسًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | وأما المنصوب فثلثة عشر: الأول المفعول المطلق وهو اسم ما فعله فاعل عامل مذكور لفظا أو تقدير |
-| I-110.2 | 110 | noted | note:al-maful-bihi-wa-qismah — ⚠ the engine still misreads the example: «زَيْدًا ضَرَبْتُ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | والثاني المفعول به وهو اسم ما وقع عليه فعل الفاعل وهو على قسمين: عام وهو المجرور بالحرف، و |
+| I-110.1 | 110 | applied | engine:Murib.line | وأما المنصوب فثلثة عشر: الأول المفعول المطلق وهو اسم ما فعله فاعل عامل مذكور لفظا أو تقدير |
+| I-110.2 | 110 | applied | engine:DabtEngine, note:al-maful-bihi-wa-qismah | والثاني المفعول به وهو اسم ما وقع عليه فعل الفاعل وهو على قسمين: عام وهو المجرور بالحرف، و |
 | I-113.0 | 113 | applied | engine:CaseEngine · ẓarf, note:al-maful-fih-wal-maful-lah | والثالث المفعول فيه وهو اسم ما فعل فيه مضمون عامله من زمان أو مكان، وشرط نصبه لفظا تقدير ف |
 | I-113.1 | 113 | applied | engine:MansubEngine · v332 I-18, note:al-maful-fih-wal-maful-lah | والرابع المفعول له وهو اسم ما فعل لأجله مضمون عامله، وشرط نصبه لفظا تقدير اللام وقد مر شرط |
-| I-113.2 | 113 | open | probe «جِئْتُ وَزَيْدًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول به. | والخامس المفعول معه وهو المذكور بعد الواو لمصاحبة معمول عامل نحو جئت وزيدا، ولا يجوز تقديم |
-| I-113.3 | 113 | noted | note:al-maful-maah-wal-hal — ⚠ the engine still misreads the example: «ضَرَبْتُ زَيْدًا قَائِمًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول مطلق. | والسادس الحال وهي ما يبين هيئة الفاعل أو المفعول به لفظا أو معنى مثل ضربت زيدا قائما وهذا  |
+| I-113.2 | 113 | applied | engine:Murib.line | والخامس المفعول معه وهو المذكور بعد الواو لمصاحبة معمول عامل نحو جئت وزيدا، ولا يجوز تقديم |
+| I-113.3 | 113 | applied | engine:MansubEngine · v332 I-4, note:al-maful-maah-wal-hal | والسادس الحال وهي ما يبين هيئة الفاعل أو المفعول به لفظا أو معنى مثل ضربت زيدا قائما وهذا  |
 | I-116.0 | 116 | applied | engine:Murib.line, note:al-hal-jumla-wa-rabituha, note:al-maful-maah-wal-hal | أن تكون نكرة ولا تتقدم على العامل المعنوي ولا على ذي الحال المجرور فلا يقال مر بزيد جالسا، |
 | I-119.1 | 119 | applied | engine:IstithnaEngine, note:al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa, note:al-mustathna-wa-nawah-wa-nasbuh | والثامن المستثنى وهو نوعان: متصل وهو المخرج عن متعدد بإلا أو إحدى أخواتها، ومنقطع وهو المذ |
-| I-122.0 | 122 | noted | note:al-fail-al-mudmar-al-mustatir-wujuban, note:al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa, note:al-mustathna-wa-nawah-wa-nasbuh — ⚠ the engine still misreads the example: «مَا جَاءَنِي إِلَّا زَيْدًا أَحَدٌ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | نحو ما جاءني إلا زيدا أحد أو منقطعا نحو جاءني القوم إلا الحمار أو كان بعد خلا أو عدا في ال |
+| I-122.0 | 122 | applied | engine:Murib.line, note:al-fail-al-mudmar-al-mustatir-wujuban, note:al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa, note:al-mustathna-wa-nawah-wa-nasbuh | نحو ما جاءني إلا زيدا أحد أو منقطعا نحو جاءني القوم إلا الحمار أو كان بعد خلا أو عدا في ال |
 | I-125.1 | 125 | applied | engine:Murib.line, note:al-mansubat-al-tasi-ila-al-thalith-ashar | والتاسع خبر باب كان وأمره كأمر خبر المبتدأ ويجوز حذف كان دون غيره عند قرينة نحو الناس مجزي |
 | I-125.2 | 125 | noted | note:al-mansubat-al-tasi-ila-al-thalith-ashar | والعاشر اسم باب إن وهو كالمبتدأ لكن لا يجوز حذفه. |
 | I-128.0 | 128 | noted | note:al-majrur-bil-harf-wa-bil-idafa | تقديمه ولا معموله على المضاف إلا أن يكون المضاف لفظ غير فيجوز تقديم معمول المضاف إليه عليه |
 | I-128.1 | 128 | noted | note:hadhf-al-mudaf-wal-mudaf-ilayh | وقد يحذف المضاف فيعطى إعرابه للمضاف إليه وهو القياس نحو قوله تعالى واسأل القرية أي أهل الق |
-| I-131.1 | 131 | noted | note:al-majzum-wal-shart-wal-jaza — ⚠ the engine still misreads the example: «إِنْ تَضْرِبْ أَضْرِبْ» → فعل أمر، مبني على السكون، والفاعل ضمير مستتر وجوبا تقديره «أ | وأما المجزوم ففعل مضارع دخله أحد الجوازم المذكورة سابقا، فإن كانت كلم المجازاة تقتضي شرطا  |
+| I-131.1 | 131 | applied | engine:ShartEngine, note:al-majzum-wal-shart-wal-jaza | وأما المجزوم ففعل مضارع دخله أحد الجوازم المذكورة سابقا، فإن كانت كلم المجازاة تقتضي شرطا  |
 | I-134.0 | 134 | applied | engine:JumlaMahallEngine · jawāb with the fāʾ, note:al-fa-fi-jawab-al-shart | وإن كان الجزاء جملة اسمية أو ماضية غير متصرفة أو بمعناه فلا بد من قد ظاهرة أو مقدرة أو مضا |
 | I-137.1 | 137 | applied | engine:Murib.line · naʿt (I-5) | وأما المعمول بالتبعية فخمسة ولا يجوز تقديم شيء منها على متبوعها وعاملها عامل متبوعها وإعرا |
 | I-137.2 | 137 | applied | engine:JumlaMahallEngine · naʿt, note:al-tawabi-wal-sifa | الأول الصفة وهي تابع يدل على معنى في متبوعه مطلقا، ويجوز تعددها نحو جاءني الرجل العالم الف |
 | I-143.1 | 143 | applied | engine:Murib.silaOf, note:al-mawsul-wal-muarraf-bil-lam-wal-mudaf | والنوع الرابع الموصول ولا بد له من صلة جملة خبرية معلومة للسامع فيها ضمير عائد إلى الموصول |
 | I-146.3 | 146 | noted | note:al-atf-bil-huruf-wa-ahkamuh, note:huruf-al-atf-fil-kafiya | والثاني العطف بحروف وهو تابع يتوسط بينه وبين متبوعه أحد الحروف العشرة وهي الواو والفاء وثم |
 | I-149.0 | 149 | noted | note:al-atf-bil-huruf-wa-ahkamuh — ⚠ the engine still misreads the example: «ضَرَبَ زَيْدٌ عَمْرًا وَبَكْرٌ خَالِدًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | فيجب ويمتنع له، ويجوز عطف شيئين بحرف واحد على معمولي عامل واحد بالاتفاق نحو ضرب زيد عمرا و |
-| I-152.0 | 152 | open | probe «ضَرَبْتُ زَيْدًا رَأْسَهُ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، والضمير مضاف إليه. | والرابع البدل وهو المقصود بالنسبة دونه وأقسامه أربعة: بدل الكل من الكل إن صدقا على واحد نح |
+| I-152.0 | 152 | applied | engine:Murib.line | والرابع البدل وهو المقصود بالنسبة دونه وأقسامه أربعة: بدل الكل من الكل إن صدقا على واحد نح |
 | I-171.0 | 171 | applied | engine:MamnuEngine, note:ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh | وحمراء، وكل علم فيه تاء التأنيث لفظا نحو فاطمة وحمزة أو تقديرا وهو زائد على الثلاثة نحو زي |
-| I-198.1 | 198 | noted | note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha — ⚠ the engine still misreads the example: «وَمِنْ خِزْيِ يَوْمِئِذٍ» → اسم، مضاف إليه. | وأما جائز البناء فالظروف المضافة إلى الجملة وإذ فإنها يجوز بناؤها على الفتح نحو قوله تعالى |
+| I-198.1 | 198 | applied | engine:Murib.line, note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha | وأما جائز البناء فالظروف المضافة إلى الجملة وإذ فإنها يجوز بناؤها على الفتح نحو قوله تعالى |
 
 ## al-Kāfiya (Ibn al-Ḥājib)
 
-Source: `content/samples/al-kafiya (the matn on the shelf) + research/sources/kafiya-internet-digest.txt`. Entries: 131 — applied **43**, noted **59**, not automatable **20**, open **9** (headings 0, lecture fragments 0, cited verses 0, counted apart).
+Source: `content/samples/al-kafiya (the matn on the shelf) + research/sources/kafiya-internet-digest.txt`. Entries: 131 — applied **56**, noted **53**, not automatable **20**, open **2** (headings 0, lecture fragments 0, cited verses 0, counted apart).
 
 | id | line | status | carried by / reason | the book |
 |---|---|---|---|---|
@@ -614,12 +614,12 @@ Source: `content/samples/al-kafiya (the matn on the shelf) + research/sources/ka
 | K3:s6 | 3:s6 | noted | note:al-mabni-wal-mudmar | الْمُضْمَرُ مَا وُضِعَ لِمُتَكَلِّمٍ أَوْ مُخَاطَبٍ أَوْ غَائِبٍ تَقَدَّمَ ذِكْرُهُ لَفْظً |
 | K3:s13 | 3:s13 | noted | note:al-mabni-wal-mudmar | وَلَا يَجُوزُ الْمُنْفَصِلُ مَعَ إِمْكَانِ الْمُتَّصِلِ لِأَنَّ الضَّمَائِرَ وُضِعَتْ لِلِ |
 | K4:s4 | 4:s4 | applied | engine:DamirEngine · the detached second object | وَإِلَّا وَجَبَ الِانْفِصَالُ نَحْوُ أَعْطَيْتُهُ إِيَّاهُ وَأَعْطَيْتُهُ إِيَّاكَ |
-| K4:s5 | 4:s5 | noted | note:mawadi-al-munfasil-wa-damir-al-fasl-wal-shan — ⚠ the engine still misreads the example: «كُنْتُ إِيَّاهُ» → ضمير منفصل، مبني على الضم. | وَخَبَرُ بَابِ كَانَ إِذَا كَانَ ضَمِيرًا جَازَ اِتِّصَالُهُ وَالْمُخْتَارُ اِنْفِصَالُهُ  |
+| K4:s5 | 4:s5 | applied | engine:Murib.line, note:mawadi-al-munfasil-wa-damir-al-fasl-wal-shan | وَخَبَرُ بَابِ كَانَ إِذَا كَانَ ضَمِيرًا جَازَ اِتِّصَالُهُ وَالْمُخْتَارُ اِنْفِصَالُهُ  |
 | K4:s11 | 4:s11 | applied | engine:Nahw342Engine · fasl | وَشَرْطُهُ كَوْنُ الْخَبَرِ مَعْرِفَةً أَوْ أَفْعَلَ مِنْ نَحْوُ كَانَ زَيْدٌ هُوَ الْقَائ |
 | K5:s1 | 5:s1 | noted | note:asma-al-ishara-wal-mawsulat | اسْمُ الْإِشَارَةِ مَا وُضِعَ لِمُشَارٍ إِلَيْهِ |
 | K5:s9 | 5:s9 | noted | note:asma-al-ishara-wal-mawsulat | الْمَوْصُولُ مَا لَا يَتِمُّ جُزْءًا إِلَّا بِصِلَةٍ وَعَائِدٍ |
 | K6:s1 | 6:s1 | noted | note:asma-al-afal-wal-aswat-wal-murakkabat | أَسْمَاءُ الْأَفْعَالِ مَا كَانَ بِمَعْنَى الْأَمْرِ أَوِ الْمَاضِي |
-| K8:s7 | 8:s7 | noted | note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha — ⚠ the engine still misreads the example: «وَمِنْ خِزْيِ يَوْمِئِذٍ» → اسم، مضاف إليه. | وَالظَّرْفُ الْمُضَافُ إِلَى الْجُمْلَةِ أَوْ إِلَى إِذْ يَجُوزُ بِنَاؤُهُ عَلَى الْفَتْحِ |
+| K8:s7 | 8:s7 | applied | engine:Murib.line, note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha | وَالظَّرْفُ الْمُضَافُ إِلَى الْجُمْلَةِ أَوْ إِلَى إِذْ يَجُوزُ بِنَاؤُهُ عَلَى الْفَتْحِ |
 | K8:s10 | 8:s10 | not-automatable | مِثْلَ may be built or declined in these examples — both readings stand, the reading decides | فَإِنَّ مِثْلَ فِي هٰذِهِ الْأَمْثِلَةِ يَجُوزُ بِنَاؤُهُ عَلَى الْفَتْحِ وَإِعْرَابُهُ مَ |
 | K9:s1 | 9:s1 | noted | note:al-marifa-wal-nakira-fil-kafiya | الْمَعْرِفَةُ مَا وُضِعَ لِشَيْءٍ بِعَيْنِهِ |
 | K9:s3 | 9:s3 | noted | note:al-marifa-wal-nakira-fil-kafiya | الْعَلَمُ مَا وُضِعَ لِشَيْءٍ بِعَيْنِهِ غَيْرَ مُتَنَاوِلٍ غَيْرَهُ بِوَضْعٍ وَاحِدٍ نَحْ |
@@ -637,10 +637,10 @@ Source: `content/samples/al-kafiya (the matn on the shelf) + research/sources/ka
 | K15:s6 | 15:s6 | not-automatable | the maṣdar's object never precedes it, its doer is never hidden — a rule for the writer | وَلَا يَتَقَدَّمُ مَعْمُولُهُ عَلَيْهِ فَلَا يُقَالُ أَعْجَبَنِي عَمْرًا ضَرْبُ زَيْدٍ وَل |
 | K16:s1 | 16:s1 | noted | note:ism-al-fail-wal-maful-fil-kafiya | اسْمُ الْفَاعِلِ مَا اشْتُقَّ مِنْ فِعْلٍ لِمَنْ قَامَ بِهِ بِمَعْنَى الْحُدُوثِ |
 | K16:s5 | 16:s5 | not-automatable | al-Kisāʾī: the participle's annexation is allowed, not required — a school view | فَعِنْدَ الْكِسَائِيِّ الْإِضَافَةُ جَائِزَةٌ لَا وَاجِبَةٌ وَهِيَ لَفْظِيَّةٌ وَالْإِضَاف |
-| K16:s7 | 16:s7 | noted | note:ism-al-fail-wal-maful-fil-kafiya — ⚠ the engine still misreads the example: «مَرَرْتُ بِالضَّارِبِ أَبُوهُ زَيْدًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، بدل. | وَإِذَا دَخَلَتْهُ اللَّامُ عَمِلَ بِلَا شَرْطٍ نَحْوُ مَرَرْتُ بِالضَّارِبِ أَبُوهُ زَيْد |
+| K16:s7 | 16:s7 | applied | engine:Sh336Engine · R92 (the participle with al governs unconditionally), note:ism-al-fail-wal-maful-fil-kafiya | وَإِذَا دَخَلَتْهُ اللَّامُ عَمِلَ بِلَا شَرْطٍ نَحْوُ مَرَرْتُ بِالضَّارِبِ أَبُوهُ زَيْد |
 | K16:s11 | 16:s11 | not-automatable | the nūn of the dual / plural dropped for lightness from the al-participle (الْمُقِيمِي الصَّلَاةَ) — a qirāʾa | وَيَجُوزُ حَذْفُ نُونِ التَّثْنِيَةِ وَالْجَمْعِ تَخْفِيفًا مِنَ الْمُعَرَّفِ بِاللَّامِ ن |
 | K16:s12 | 16:s12 | noted | note:ism-al-fail-wal-maful-fil-kafiya | اسْمُ الْمَفْعُولِ مَا اشْتُقَّ مِنْ فِعْلٍ لِمَنْ وَقَعَ عَلَيْهِ |
-| K16:s14 | 16:s14 | open | engine to build: Nahw342Engine · sababi — probe «زَيْدٌ مُعْطًى غُلَامُهُ دِرْهَمًا» → اسم، مرفوع وعلامة رفعه الضمة الظاهرة، خبر، والضمير مضاف إليه. | وَكَذَا زَيْدٌ مُعْطًى غُلَامُهُ دِرْهَمًا وَمَعَ اللَّامِ يَعْمَلُ بِلَا شَرْطٍ زَيْدٌ ال |
+| K16:s14 | 16:s14 | applied | engine:Nahw342Engine · sababi | وَكَذَا زَيْدٌ مُعْطًى غُلَامُهُ دِرْهَمًا وَمَعَ اللَّامِ يَعْمَلُ بِلَا شَرْطٍ زَيْدٌ ال |
 | K17:s1 | 17:s1 | noted | note:al-sifa-al-mushabbaha-fil-kafiya | الصِّفَةُ الْمُشَبَّهَةُ مَا اشْتُقَّ مِنْ فِعْلٍ لَازِمٍ لِمَنْ قَامَ بِهِ بِمَعْنَى الثُ |
 | K17:s9 | 17:s9 | not-automatable | الْحَسَنُ وَجْهِهِ is forbidden — a rule for the writer | وَيَمْتَنِعُ مِنْهَا الْحَسَنُ وَجْهِهِ لِأَنَّ الْإِضَافَةَ اللَّفْظِيَّةَ لَمْ تُفِدْ تَ |
 | K19:s1 | 19:s1 | noted | note:ism-al-tafdil-fil-kafiya | اسْمُ التَّفْضِيلِ مَا اشْتُقَّ مِنْ فِعْلٍ لِمَوْصُوفٍ بِزِيَادَةٍ عَلَى غَيْرِهِ |
@@ -670,7 +670,7 @@ Source: `content/samples/al-kafiya (the matn on the shelf) + research/sources/ka
 | K27:s6 | 27:s6 | applied | engine:MaEngine · the taʿajjub (Sībawayh's parse), note:fil-al-taajjub-fil-kafiya | وَمَا فِي مَا أَفْعَلَهُ عِنْدَ سِيبَوَيْهِ نَكِرَةٌ بِمَعْنَى شَيْءٍ مُبْتَدَأٌ وَأَفْعَل |
 | K28:s2 | 28:s2 | applied | engine:Murib.line · نِعْمَ | وَشَرْطُ عَمَلِ نِعْمَ وَبِئْسَ أَحَدُ ثَلَاثَةٍ أَنْ يَكُونَ فَاعِلُهُمَا مُعَرَّفًا بِال |
 | K28:s5 | 28:s5 | not-automatable | the specified noun agrees with the doer — a rule for the writer | وَشَرْطُ الْمَخْصُوصِ مُطَابَقَتُهُ لِلْفَاعِلِ إِفْرَادًا وَتَثْنِيَةً وَجَمْعًا وَتَذْكِ |
-| K28:s10 | 28:s10 | noted | note:afal-al-madh-wal-dhamm-fil-kafiya — ⚠ the engine still misreads the example: «حَبَّذَا رَجُلًا زَيْدٌ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، حال. | وَيَجُوزُ قَبْلَ مَخْصُوصِهَا وَبَعْدَهُ تَمْيِيزٌ أَوْ حَالٌ مُوَافِقٌ لَهُ نَحْوُ حَبَّذ |
+| K28:s10 | 28:s10 | applied | engine:Murib.line, note:afal-al-madh-wal-dhamm-fil-kafiya | وَيَجُوزُ قَبْلَ مَخْصُوصِهَا وَبَعْدَهُ تَمْيِيزٌ أَوْ حَالٌ مُوَافِقٌ لَهُ نَحْوُ حَبَّذ |
 | K29:s1 | 29:s1 | noted | note:al-fil-wal-madi-wal-mudari-fil-kafiya, note:al-harf-wa-huruf-al-jarr-fil-kafiya | الْحَرْفُ مَا دَلَّ عَلَى مَعْنًى فِي غَيْرِهِ |
 | K29:s3 | 29:s3 | noted | note:al-harf-wa-huruf-al-jarr-fil-kafiya | حَرْفُ الْجَرِّ مَا وُضِعَ لِلْإِفْضَاءِ بِفِعْلٍ أَوْ مَعْنَاهُ إِلَى مَا يَلِيهِ |
 | K31:s6 | 31:s6 | applied | engine:Murib.line · the kāffa on رُبَّ, note:al-lam-wa-rubba-fil-kafiya | وَتَلْحَقُهَا مَا الْكَافَّةُ فَتَدْخُلُ عَلَى الْجُمْلَةِ نَحْوُ رُبَمَا يَوَدُّ الَّذِين |
@@ -682,11 +682,11 @@ Source: `content/samples/al-kafiya (the matn on the shelf) + research/sources/ka
 | K35:s5 | 35:s5 | applied | engine:InnaEngine · the muzaḥlaqa lām | وَيَجُوزُ دُخُولُ لَامِ الِابْتِدَاءِ مَعَ إِنَّ دُونَ أَنَّ عَلَى خَبَرِهَا نَحْوُ إِنَّ  |
 | K35:s6 | 35:s6 | applied | engine:Sh336Engine · R141 | وَتُخَفَّفُ إِنَّ فَتَبْقَى إِنْ وَيَلْزَمُ خَبَرَهَا اللَّامُ لِلْفَرْقِ بَيْنَهَا وَبَيْ |
 | K35:s9 | 35:s9 | applied | engine:AnEngine · I-1, note:an-masdariyya, note:masail-inna-wal-mukhaffafa-fil-kafiya | وَيَلْزَمُ أَنْ مَعَ الْفِعْلِ الْمُتَصَرِّفِ غَيْرِ الشَّرْطِ وَالدُّعَاءِ أَحَدُ أَرْبَع |
-| K36:s3 | 36:s3 | noted | note:kaanna-lakinna-layta-laalla-fil-kafiya — ⚠ the engine still misreads the example: «وَلَكِنِ اللهُ قَتَلَهُمْ» → حرف لا محل له من الإعراب. | وَتُخَفَّفُ لَكِنَّ فَتَبْقَى لَكِنْ وَتُهْمَلُ وَيَجُوزُ مَجِيءُ الْوَاوِ مَعَ لَكِنَّ |
+| K36:s3 | 36:s3 | applied | engine:Murib.line, note:kaanna-lakinna-layta-laalla-fil-kafiya | وَتُخَفَّفُ لَكِنَّ فَتَبْقَى لَكِنْ وَتُهْمَلُ وَيَجُوزُ مَجِيءُ الْوَاوِ مَعَ لَكِنَّ |
 | K38:s3 | 38:s3 | not-automatable | أَرَأَيْتَ زَيْدًا أَمْ عَمْرًا — Ibn al-Ḥājib forbids, Sībawayh allows — a school dispute | فَلِذَلِكَ لَا يَجُوزُ أَرَأَيْتَ زَيْدًا أَمْ عَمْرًا عِنْدَ الْمُصَنِّفِ لِأَنَّ أَحَدَ  |
 | K38:s6 | 38:s6 | noted | note:aw-imma-am-la-bal-lakin-fil-kafiya | وَإِذَا عُطِفَ بِإِمَّا لَزِمَ مَجِيءُ إِمَّا أُخْرَى قَبْلَ الْمَعْطُوفِ عَلَيْهِ نَحْوُ  |
 | K38:s9 | 38:s9 | noted | note:huruf-tanbih | حُرُوفُ التَّنْبِيهِ مَا يَقَعُ فِي صَدْرِ الْجُمْلَةِ لِتَنْبِيهِ الْمُخَاطَبِينَ أَلَا و |
-| K39:s6 | 39:s6 | noted | note:huruf-al-ziyada-fil-kafiya — ⚠ the engine still misreads the example: «أَيًّا مَا تَدْعُوا فَلَهُ الْأَسْمَاءُ الْحُسْنَى» → اسم، مبني لا يتغير آخره. | وَمَا تُزَادُ مَعَ إِذَا وَمَتَى وَأَيٍّ وَأَيْنَ وَإِنْ وَتُسْتَعْمَلُ هَذِهِ الْكَلِمَات |
+| K39:s6 | 39:s6 | applied | engine:Murib.line, note:huruf-al-ziyada-fil-kafiya | وَمَا تُزَادُ مَعَ إِذَا وَمَتَى وَأَيٍّ وَأَيْنَ وَإِنْ وَتُسْتَعْمَلُ هَذِهِ الْكَلِمَات |
 | K40:s9 | 40:s9 | noted | note:al-tahdid-wa-qad-wal-istifham-fil-kafiya | وَتُسْتَعْمَلُ الْهَمْزَةُ فِي مُقَابَلَةِ أَمِ الْمُتَّصِلَةِ نَحْوُ أَزَيْدٌ عِنْدَكَ أَ |
 | K41:s7 | 41:s7 | noted | note:huruf-al-shart-fil-kafiya | فَإِنْ كَانَ الْخَبَرُ جَامِدًا جَازَ كَوْنُهُ خَبَرًا إِذْ لَا يُمْكِنُ مَجِيءُ الْفِعْلِ |
 | K42:s1 | 42:s1 | applied | engine:Murib.line · T3 (the oath first owns the answer) | وَإِذَا تَقَدَّمَ الْقَسَمُ عَلَى الشَّرْطِ فِي صَدْرِ الْكَلَامِ لَزِمَ كَوْنُ الشَّرْطِ  |
@@ -700,29 +700,29 @@ Source: `content/samples/al-kafiya (the matn on the shelf) + research/sources/ka
 | D32 | 32 | applied | engine:MamnuEngine · the nine causes | GAYRI MUNSARIF İLLETLERİ |
 | D34 | 34 | applied | engine:MamnuEngine · al / iḍāfa restore the kasra | سلاسلا واغلالا |
 | D37 | 37 | applied | engine:TartibEngine · the doer first | نصرموسى عيسى … نصرت زيدا … زيد نصر … ما ضرب زيد الا عمروا … انما ضرب زيد عمروا |
-| D42 | 42 | open | engine to build: TartibEngine · the object first — probe «ضَرَبَ زَيْدًا غُلَامُهُ» → اسم، مرفوع وعلامة رفعه الضمة الظاهرة، والضمير مضاف إليه. | ضرب زيدا غلامه … ما ضرب عمروا الا زيد … انما ضرب عمروا زيد … ضربك زيد |
+| D42 | 42 | applied | engine:TartibEngine · the object first | ضرب زيدا غلامه … ما ضرب عمروا الا زيد … انما ضرب عمروا زيد … ضربك زيد |
 | D47 | 47 | open | probe «ضَرَبَنِي وَأَكْرَمَنِي زَيْدٌ» → اسم، مرفوع وعلامة رفعه الضمة الظاهرة، فاعل. | ضرني واكرمنى زيد … ضربتواكرمت زيدا … اكرمنى وضربت زيدا |
 | D52 | 52 | applied | engine:TartibEngine · the mubtadaʾ first | من ابوك … زيد المنطلق … افضل منك افضل منِّي … زيد قام |
 | D58 | 58 | applied | engine:Murib.line | اين زيد … فى الدار رجل … على التمرة مثلها زبدا … عندىانك قاءم |
-| D64 | 64 | open | probe «الَّذِي يَأْتِينِي فَلَهُ دِرْهَمٌ» → اسم، مرفوع وعلامة رفعه الضمة الظاهرة، فاعل. | الذى يأتينى فله درهم … الذى فى الدار فله درهم … كل رجل يأتينى فله درهم … كل رجل يأتينى فله |
+| D64 | 64 | applied | engine:Murib.line | الذى يأتينى فله درهم … الذى فى الدار فله درهم … كل رجل يأتينى فله درهم … كل رجل يأتينى فله |
 | D71 | 71 | not-automatable | the mubtadaʾ dropped («الْهِلَالُ وَاللهِ» = هَذَا الْهِلَالُ) — restored from the scene | الهلال والله اى هذا الهلال والله … الحمدلله اهلُ الحمد … اى هو |
 | D74 | 74 | applied | engine:Murib.line | خرجت فاذا السبع … اى واقف … لولا زيد لكان كذا … ضربى زيدا قاءما … اى حاصل قاءما … كل رجل و |
 | D84 | 84 | applied | engine:DabtEngine · mafʿūl muṭlaq | جلست جلوسا … جلست جِلسة … جلست جَلسة |
-| D88 | 88 | open | probe «سَقْيًا لَكَ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، وخبره شبه الجملة «لك» متعلق بمح | خير مقدم … اى قدمت قدوما خير مقدم … سقيا اى سقاك الله سقيا … رعيا اى رعاك الله رعيا … خيبة |
+| D88 | 88 | applied | engine:Murib.line | خير مقدم … اى قدمت قدوما خير مقدم … سقيا اى سقاك الله سقيا … رعيا اى رعاك الله رعيا … خيبة |
 | D100 | 100 | applied | engine:Murib.line | من اضربُ … اِضربْ زيدا … اِمْرأ ونفسه … اُترُكِ امْرأ ونفسه … يا زيدُ اى ادعو زيدا … زيدا  |
 | D108 | 108 | applied | engine:NidaEngine | يا زيدُ … يا زيدون … يا لزيدٍ … يا زيداه … يا عبدَالله … يا رجلاً … يا طالعا جبلا |
 | D113 | 113 | open | probe «يَا مَالِ» → اسم، منادى. | ترخيم المنادى … يا حارِ اى حارثُ … يا ثمو اى ثمودُ |
-| D118 | 118 | open | engine to build: CaseEngine · ẓarf — probe «صُمْتُ دَهْرًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | صمت دهرا … افطرت اليومَ … جلست خلفك … جلست فى المسجد |
+| D118 | 118 | applied | engine:CaseEngine · ẓarf | صمت دهرا … افطرت اليومَ … جلست خلفك … جلست فى المسجد |
 | D126 | 126 | applied | engine:MansubEngine · v332 I-18 | ضربتُ زيدا تأديبا … قعدت عن الحرب خُبْنًا |
 | D130 | 130 | applied | engine:Murib.line | استوى الماء والخشبةَ … ما لك وزيدا |
-| D132 | 132 | open | probe «زَيْدٌ فِي الدَّارِ قَائِمًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | ضربت زيدا قاءماً … زيد فى الدار قاءماً … هذا زيد قائماً |
+| D132 | 132 | applied | engine:Murib.line | ضربت زيدا قاءماً … زيد فى الدار قاءماً … هذا زيد قائماً |
 | D136 | 136 | applied | engine:MansubEngine · v332 I-9 | عشرون درهما … رطلٌ زيتاً … قفزان برا … طاب زيد نفسا … زيد طيِّبٌ اباً |
 | D145 | 145 | applied | engine:IstithnaEngine | جاءنى القوم الا زيداً |
 | D149 | 149 | applied | engine:Murib.line | جاءنى الا زيداً القوم … ما فى الدار احد الا حمارا … ما عدا … ما خلا … لا يكون … ما فعلوه ا |
 | D155 | 155 | applied | engine:IstithnaEngine · mufarragh | الا زيدٌ … ما ضربنى … ما جائنى من احدٍ الا زيدٌ |
 | D159 | 159 | applied | engine:Murib.line · naʿt | SIFAT KAÇ ÇEŞİTTİR? |
 | D167 | 167 | applied | engine:TawkidEngine | جائنى زيد زيد … فسجد الملائكة كلهم اجمعون |
-| D170 | 170 | open | probe «ضَرَبْتُ زَيْدًا رَأْسَهُ» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة، والضمير مضاف إليه. | جائني زيد اخوك … ضربت زيدا رأسه … سُلِبَ زيد ثوبه … رأيت زيدا حمارا |
+| D170 | 170 | applied | engine:Murib.line | جائني زيد اخوك … ضربت زيدا رأسه … سُلِبَ زيد ثوبه … رأيت زيدا حمارا |
 | D197 | 197 | applied | engine:Nahw342Engine · fasl / faslOff | زيد هو العالم … زيد هو افضل من عمروٍ |
 | D200 | 200 | applied | engine:Murib.line | قل هو الله احد … فانها لاََتَعْمَى الابصارُ |
 | D205 | 205 | applied | engine:AdadEngine | جائنى ثلاثة ُ رجالٍ … جائنى خمسةَََََََََ عشرَ رجلاً … جائنى الفان رجلٍ |

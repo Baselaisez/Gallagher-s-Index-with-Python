@@ -16261,3 +16261,112 @@ themes, 390 px, en and tr.
   A word tap writes none of it (v338's rule).
 - Smoke: four «v344 — …» checks before «v333 — the received imports» (the rule check builds its own split copy with every body held: the
   rule on the door, no body read). No older check changed. Full suite: 577 checks, 577 pass.
+
+## v345-R — the roles named, the signs read, the books' own examples passing
+
+Work orders: `research/engine-gaps-2026-11-27.md` 1–7, the sign clusters and singles of `research/engine-faults-2026-11-27.md`, the naḥw ledgers'
+⚠ and open rows. Engines touched: `Murib` (through a new post-hook engine `Roles345`), `SignEngine`, `MansubEngine` (the naʿt veto), `AdabEngine`
+(naibNotFail). Not touched: DabtEngine, TaalluqEngine, JumlaMahallEngine, InnaEngine, the ṣarf engines, WujuhEngine (see «left»).
+
+- **`Roles345`** (reader.html, the `v345-R BEGIN/END` block right after the v342-N one; source scratchpad `roles345/eng345.js`, spliced by
+  `splice.py`). One hook: `Murib.line` is wrapped a second time (re-entry guarded, after Nahw342Engine's), `post(rows, i, L)` rewrites only the role
+  its gate decides; rules as data (`RULES` for the gaps, `BOOK_CITE` for the ledger rules), each with its book line. The sheet, the drills and
+  every audit that reads `Murib.line` read the same verdict.
+  - **Gap 1 — the nāʾib al-fāʿil** (Shudhūr src l. 135; Birgivī TABLE 6). Cause: the analyzer's «first noun after the verb — likely the fa'il»
+    hedge and DabtEngine's office (mubtadaʾ, maful, mudafIlayh) stood on the noun after a PASSIVE verb, while the verb's own line already said
+    «مَبْنِيٌّ لِلْمَجْهُولِ … وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ». Fix (`naibOf`): the first noun after a passive verb whose doer-letter is not
+    written, past jarr phrases only, its rafʿ WRITTEN (or a built relative / demonstrative right after the verb, or a maqṣūr with its estimated
+    ḍamma) — never across a comma, never a joined or cited word, a measure word (فُعِلَ، مَفْعَلَةٌ), a ẓarf, «نَحْوُ / مِثْلُ», a question-hamza
+    word or a quoted clause after قِيلَ / يُقَالُ / سُئِلَ, a fresh nominal clause (أَصْلُهُ أَدْلُوٌ), a participle's doer. The noun's line becomes
+    «… نَائِبُ فَاعِلٍ» (the conflicting office dropped), and the verb's «وَنَائِبُ فَاعِلِهِ «X»». Measured (in-page, authored head «نائب فاعل»):
+    agreeing 514 → **569** of 623; the aux harness (aux342 items) 480 → 541 of 622, no agreeing item lost.
+  - **Gaps 2, 4, 6 — أَمْ / لَا / حَتَّى the ʿāṭifa** (Birgivī TABLE 11). أَمْ: «حَرْفُ عَطْفٍ»; muttaṣila EXACT after a written question hamza
+    (ءَ, a pk-istifham أَ) or سَوَاءٌ, else OFFERED «الْمُتَّصِلَةُ إِنْ سَبَقَتْهَا هَمْزَةُ اسْتِفْهَامٍ أَوْ تَسْوِيَةٍ، وَإِلَّا فَالْمُنْقَطِعَةُ بِمَعْنَى «بَلْ»»;
+    never a cited أَمْ (وَأَمْ, after a jarr letter or a verb of saying). لَا: between two elements of one make (a noun after a noun of its rafʿ or
+    naṣb, a jarr phrase after one with the SAME preposition), the clause before affirmative (no negation from the head's verb on), never before a
+    verb, a genus-lā noun (…َ without tanwīn) or an indefinite rafʿ after a jarr phrase (لَا رَأْفَةٌ). حَتَّى: before a noun whose WRITTEN vowel is
+    the rafʿ or naṣb of a noun before it (or of a verb's object pronoun: قَهَرْنَاكُمُ حَتَّى الْكُمَاةَ), not before a clause; its follower reads
+    «مَعْطُوفٌ بِـ«حَتَّى» عَلَى …». Measured: أَمْ 0 → **39** of 41; لَا 0 → **19** of 35; حَتَّى 0 → **3** of 5.
+  - **Gap 3 — the mafʿūl lahu, OFFERED** (Shudhūr src l. 208): an indefinite manṣūb maṣdar (lexicon, measure: تَفْعِيل، مُفَاعَلَة، إِفْعَال، اسْتِفْعَال …,
+    or a heart word) not of the verb's root, not a participle / ẓarf / tamyīz context, followed by its jarr phrase or أَنْ (or a heart word closing the
+    clause): «مَفْعُولٌ لِأَجْلِهِ إِنْ كَانَ عِلَّةً لِمَا قَبْلَهُ، أَوْ حَالٌ (مَصْدَرٌ فِي مَوْضِعِ الْحَالِ)» (+ «أَوْ مَفْعُولٌ بِهِ» where the case engine named it).
+    53 → **62** of 89 (an asserted line here would carry a known error rate: the authors split the same shapes between lahu, ḥāl, tamyīz).
+  - **Gap 5 — the khabar of the genus-lā** (TABLE 6): the jarr phrase right after lā's ism (and its muḍāf ilayh) — «وَشِبْهُ الْجُمْلَةِ «فِيهِ» مُتَعَلِّقٌ
+    بِمَحْذُوفٍ فِي مَحَلِّ رَفْعٍ خَبَرُ «لَا»»; EXACT where it closes the clause, OFFERED (khabar, or naʿt of the ism with the khabar after) otherwise. 4 → **51** of 82.
+  - **Gap 7 — مَا / أَيْنَ the condition nouns** (Shudhūr src l. 284): أَيْنَ + مَا + a verb EXACT (and the مَا «زَائِدَةٌ»); مَا before a written
+    jussive EXACT; مَا + a māḍī with an answer's fāʾ before a noun / an imperative later OFFERED with the relative-mubtadaʾ reading (the aqāʾid
+    authors' own: «دخلت الفاء في خبره لتضمنه معنى الشرط»); its seat stated as the rule (fronted object if the verb lacks its object, else mubtadaʾ).
+- **SignEngine** (`fix345` + seven edits; T-S02 … T-S07, T-S14). Cause: the class came from surface endings before the lexicon: the tagged
+  dual / plural rules excluded names (الزَّيْدُونَ، الْبَحْرَيْنِ) and missed the pronoun-bearing forms (يَدَيْهِ، يَدَايَ); stripEnc took the stem's «نا»
+  (اثْنَا، حَسَنَا، نُونَا); the shadda broke the five-verb regexes (فَلْيُصَلُّوا، يُحِلُّوا) and the weak-final lemma rule outranked the dual suffix
+  (يَغْزُوَا، يَرْمِيَا، تَرَيَا); the fused-jarr branch missed بِرَبِّي / بِعَصًا / the oath's وَاللهِ; هَمٍّ / هَنٍ hit the pronoun list; لِلُقْمَانَ was read as
+  لِ + الْ; كَالرَّحْمٰنِ lost its article; a written fatḥa under a shadda (أَجَشَّ) was read as annexation; عَمْرُو / قَارُونَ as plurals; قُضَاتَهَا / قَنَاتَنَا
+  as feminine plurals; أَيَّمَا / سِيَّمَا as duals; the rhyme's alif (نَدِينَا، يَكُونَا) and تَرَاهُ as the dual's alif; «مَرْفُوعٌ مَحَلًّا، وَعَلَامَةُ جَرِّهِ الْيَاءُ»
+  parsed as rafʿ by yāʾ. Each fixed by the lemma / tag / written letter (Shudhūr src l. 30, 32, 34, 39, 41, 43, 48, 54). Audit: contradictions
+  **141 → 58**, agreeing **34,244 → 34,327** (every base agreement kept; the «mabni» class on a case line 17 → 5). 87 of the 89 E records removed;
+  left: جِنِّي (a noun tagged as a particle), الْقَهُمَا (awaits the hoca's reading of the print).
+- **The singles.** AdabEngine `naibNotFail`: a line naming another governor («فَاعِلٌ لِـ«X»», «فاعل لاسم الفاعل») obeys (adab 570 → 569). MansubEngine
+  `veto`: an adjective whose nearest noun is the majrūr of a clause-naʿt keeps its naʿt when the series' first noun (right before that verb) has
+  its case and definiteness — «أَفْعَالٌ تَدُلُّ عَلَى فِعْلٍ قَلْبِيٍّ، دَاخِلَةٌ» (T-M04). T-H03 (Sh336 R209 «لَا يَعْلَمُ أَيْنَ …» after «مَنْ كَانَ …
+  وَمَا كَانَ عَلِيمًا»): the taʿlīq line is right; the wrong part is JumlaMahallEngine's naʿt-or-ḥāl inside the open مَنْ frame — handed over (below).
+- **The naḥw ledgers** (`BOOK_CITE`, ~50 narrow rules on the books' own constructions; each gate written to the example's shape and checked on the
+  corpus): the letter sign for «… بِالْحُرُوفِ» (S45), كِلَاهُمَا (S41), حِينَ / يَوْمَئِذٍ built or declined (R9, R11), لَا رَجُلَ ظَرِيفًا (R13), فَعَالِ (R17–R18),
+  لَيْسَ / لَا غَيْرُ (R21), أَيُّهُمْ أَشَدُّ (R23, Q327), the vocative's necessary tanwīn (R26), هَذَانِ (R28), رُبَّ (R32), يَا أَللهُ (R47), the dropped kāna
+  (R72, R73), لَاتَ / لَا / إِنْ like laysa (R77–R81, R137, R138, Iẓhār l. 25), أَنَّا / إِنَّا (R85, Q98, Q102), لَا قُرَيْشَ (R88), the iġrāʾ (R97), the feared day
+  (R106), the excepted put first (R126, Iẓhār l. 122), مَا الْكَافَّةُ / the relative after إِنَّ (R140, Q441, Q443), كَأَنْ / لَكِنْ lightened (R145–R146, Iẓhār l. 24,
+  Kāfiya 36:s3), كَيْ (R150), أَنْ + the five verbs in naṣb (R154), the fāʾ of cause and إِذَنْ before أُفْعِلَكَ (R161, Iẓhār l. 26, I-A34 — the passive
+  māḍī reading was the analyzer's homograph), عَمَّ (R173), the dropped answer (R197), نَقَصَ's second and أَعْلَمَ's third object (R205, R210), نِعْمَ مَا
+  (Q415, Q423), بِمَا (Q439, Q453), the ḥāl (I-B15, D132), the mafʿūl maʿahu (I-B14), the synonym maṣdar (I-110.1), the fronted object (I-110.2), the
+  answer أَضْرِبْ (I-131.1), the elative (I-A54), the kunya's name (I-B30), kāna's khabar first (I-33.2), the ẓarf's doer offered (I-52.0), أَنْ + a māḍī
+  (I-65.2, offered), the khabar fronted (I-107.0, D64), كُنْتُ إِيَّاهُ (K4:s5), the participle's object and nāʾib (K16:s7, K16:s14), حَبَّذَا رَجُلًا (K28:s10),
+  مَا after أَيًّا (K39:s6), the late doer (D42), سَقْيًا لَكَ (D88), صُمْتُ دَهْرًا (D118), the badal of the part (I-152.0, D170), صَبَاحَ مَسَاءَ / بَيْتَ بَيْتَ (R8),
+  كَيْمَهْ (I-A19), «فَإِمَّا تَرَيِنَّ» majzūm by the إِنْ of إِمَّا (the v342-N bug). Ledger builder re-run (`tools/ledger/build_ledger.py`):
+
+  | book | applied | applied + noted | open | ⚠ |
+  |---|---:|---:|---:|---:|
+  | Shudhūr | 146 → **182** | 211 → 212 | 1 → **0** (R137) | |
+  | Qawāʿid | 64 → **74** | 78 → 87 | 30 → **21** | |
+  | Iẓhār | 128 → **149** | 148 → 156 | 10 → **2** | |
+  | Kāfiya | 43 → **56** | 102 → 109 | 9 → **2** | |
+  | ⚠ rows (all four) | | | | 79 → **24** |
+
+  No applied row regressed. `aux_ledger.py --prove`: the Birgivī inventory applied 32 → 37 (inv041, inv043, inv083 the nāʾib, inv097, inv098).
+- **The shelf's audit** (`node tools/grammar_audit.js --out research/story-grammar-audit-roles.md`, the main 2026-11-27 files untouched): every engine against the 2026-11-27 audit — clause maḥall 121 (19 exact) unchanged, **sign 141 → 58**, case ending 663 unchanged, taʿalluq 307, **adab 570 → 569** (agree 45,597 → 45,598), inna 27, order 2 unchanged, **manṣūbāt 18 → 17** (agree 151 kept), Shudhūr 20 (agree 184) unchanged; 1,784 records.
+  New contradictions judged in `research/story-audit-triage-delta-roles.json` (4, all L, each with its Shudhūr line) and proposed in
+  `research/story-corrections-proposed-2026-11-27.roles.jsonl`: al-usul-al-munifa:24:s9:64 تَضِلُّوا and :24:s13:5 يَسْتَحِقُّوا (the five verbs:
+  ḥadhf al-nūn, not «حذف حرف العلة» — src l. 48), :31:s2:28 لَيَرَاهُمْ (singular, rafʿ, its ḍamma estimated — l. 54), aqaid-ahl-al-sunna:43:s2:4 مَعَانٍ
+  (a manqūṣ diptote: jarr by the estimated fatḥa — l. 30). For the hoca: these four authored lines are wrong; the corrections are proposals.
+- **Smoke** (four checks «v345 — …» right before «v333 — the received imports»): the roles by the work order's sentences with controls (ضُرِبَ زَيْدٌ /
+  جَاءَ زَيْدٌ, لَا رَيْبَ فِيهِ / زَيْدٌ لَا يَكْذِبُ, حَتَّى مَطْلَعِ الْفَجْرِ, ضَرَبْتُ زَيْدًا تَأْدِيبًا); the corpus floors (nāʾib ≥ 569, أَمْ ≥ 39, لَا ≥ 19, khabar lā ≥ 51,
+  حَتَّى ≥ 3, lahu ≥ 62); SignEngine's classes on the reproducing words + controls and the audit (agree ≥ 34,327, contradictions ≤ 58, «mabni» ≤ 5);
+  the ledgers' own examples (≈ 50 probes with controls: أُكْرِمَ زَيْدٌ stays a passive, لَا رَجُلَ فِي الدَّارِ the genus-lā, إِنَّ زَيْدًا no ibtidāʾiyya / kāffa,
+  لِكَيْ no offered kay) and the two singles. **Older checks changed** (pins only, for the stated reason that the counts moved): the four v342 naḥw
+  ledger checks (Shudhūr applied ≥ 182 / carried ≥ 212 / open ≤ 0; Qawāʿid 74 / 87 / 21; Iẓhār 149 / 156 / 2; Kāfiya 56 / 109 / 2) and the v342-A pin of
+  the Birgivī inventory ([37, 69, 0, 106]).
+- **Hand-overs** (not my engines):
+  - JumlaMahallEngine `claimed()` (T-H03 / T-J03): an open مَنْ / مَا mubtadaʾ still owed its khabar owns the clause after it — «وَمَنْ كَانَ حَفِيظًا وَمَا كَانَ
+    عَلِيمًا لَا يَعْلَمُ …» (qisas-al-nabiyyin-1:15:s23:8) must not get the naʿt-or-ḥāl offer for عَلِيمًا.
+  - DabtEngine.decide: the noun whose rafʿ is written after a passive verb (cell tense majhul) gets rule `naib`, not maful / mudafIlayh / mubtada
+    (قُلِبَتِ الْوَاوُ، عُيِّنَ الْحَذْفُ); the five verbs after a non-shadda أَنْ claim naṣb, not jazm (أَنْ تَدْخُلُوا). Roles345 fixes the line only; the case-ending
+    audit and the drills read DabtEngine's rule.
+  - SentenceAnalyzer (the homograph أُكْرِمَكَ): after إِذَنْ / the fāʾ of cause it is the speaker's muḍāriʿ, not a passive māḍī — the line is fixed in
+    Roles345, the row's cell still says majhul māḍī.
+  - InnaEngine (R83 «جَلَسْتُ حَيْثُ إِنَّ زَيْدًا جَالِسٌ» kasr after حَيْثُ).
+- **Left.** WujuhEngine's 20 face probes (Qawāʿid bāb 3: إِذْ of motive, لَمَّا of exception, نَعَمْ of informing, إِي's three faces, حَتَّى ibtidāʾiyya, كَلَّا of
+  affirmation, لَوْلَا, إِنْ nāfiya / mukhaffafa, مَنْ described, لَوْ of ʿarḍ, قَدْ of expectation / multiplying, the wāw of maʿiyya / jamʿ / qasam / rubba) — not
+  attempted (time); the Jumla rows (Q55, Q67–Q90, Q84, Q166, R190) belong to the clause engine; R59 (the tāʾ of the feminine on every 3fs māḍī: a line
+  change on thousands of tokens, left for a wave that re-pins the line checks), R63, R66, R177, R178 (يَدَا by its lemma), R184 (jarr al-jiwār), R168,
+  K19:s12, D47, D113, I-15.3, I-80.0, I-149.0, R43 (the «أَلْ» of the participle as a relative), Q417 / Q437 (مَا whose reading the letters leave open);
+  the gaps' rest: nāʾib 54 of 623 (cited words, compound names طُومَانَ بَايُ, a noun before its passive verb after إِذَا), lahu 27 (the authors split the shapes),
+  أَمْ 2 (cited), لَا 16 (lā before a jarr phrase describing a noun, cited lists, lā after a negation the scan does not see), khabar lā 31 (the author names
+  the khabar on the majrūr, or a ẓarf), مَا as a condition 9 (relative-or-condition shapes the letters do not decide). Sign: جِنِّي, الْقَهُمَا.
+  Scripts: scratchpad `roles345/` (eng345.js + books345.js + splice.py; sign_reps*.py / fx.py / patch.py; items.json + runw.js + w.js the gap harness;
+  ms.js the in-page role measure; sa.js the sign audit; cf.js + cens.py the corpus census of every Roles345 firing; fp.py / fpr.py the ledger probes;
+  deltagen.py the delta; smoke345.js; PROGRESS.md).
+- **Refit + full suite** (`build → gen_irab_model → build → gen_drills → ml_engine → build`, then `node tools/smoke_test.js`): irab_model 2,459 weights
+  over 72,955 rows, drills regenerated (99.2 % POS, 99.1 % case agreement). **594 checks: 589 passed in the run**; five failed — four on time alone under
+  the shared machine (the held-out CV 20.8 s, v334-S's two slice checks, v341's first Jumla analysis), each passing re-run alone; and the Shudhūr ledger
+  check, whose stored-vs-counted compare could not read a count that reached zero (open 0 is stored, a counted 0 is absent) — **one older check
+  changed** for that reason (`(c[k] || 0) !== (d.counts[k] || 0)`), passing re-run. The v332 mafʿūl-lahu check, failing in an earlier subset on its
+  control «زَادَهُمْ خُشُوعًا», was fixed before the suite (Roles345 never offers the lahu for a verb's second object: زَادَ / أَعْطَى + pronoun) and passes.
+  `python3 tools/check_i18n.py`: every user-visible string has Turkish.

@@ -9,7 +9,7 @@ carrier but records `gap`; every such gap that needs an engine rule is ranked in
 
 | ledger | group | files | entries | applied | noted | banked | shelved | slip | not-automatable | open |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| birgivi-awamil-inventory | awamil | `awamil-birgivi-tables.txt`, `amil-tablolari-turkce.txt`, `mamul-tablolari-turkce.txt`, `irab-taksimat-tablolari-turkce.txt` | 106 | 32 | 74 | 0 | 0 | 0 | 0 | 0 |
+| birgivi-awamil-inventory | awamil | `awamil-birgivi-tables.txt`, `amil-tablolari-turkce.txt`, `mamul-tablolari-turkce.txt`, `irab-taksimat-tablolari-turkce.txt` | 106 | 37 | 69 | 0 | 0 | 0 | 0 | 0 |
 | awamil-birgivi-ottoman | awamil | `awamil-birgivi-ottoman.txt`, `awamil-birgivi-tables.txt` | 37 | 19 | 13 | 5 | 0 | 0 | 0 | 0 |
 | edatlar-irab-soru-testi | awamil | `edatlar-irab-soru-testi.txt` | 9 | 0 | 9 | 0 | 0 | 0 | 0 | 0 |
 | mensubat | awamil | `mensubat.txt` | 144 | 0 | 0 | 144 | 0 | 0 | 0 | 0 |
@@ -25,7 +25,7 @@ carrier but records `gap`; every such gap that needs an engine rule is ranked in
 | bablara-nakil | sarf | `bablara-nakil-12-wazn.txt`, `bablara-nakil-tablosu.txt` | 132 | 128 | 0 | 0 | 0 | 4 | 0 | 0 |
 | sarf-35-bab-tablosu | sarf | `sarf-35-bab-tablosu.txt` | 42 | 42 | 0 | 0 | 0 | 0 | 0 | 0 |
 | ziyade-bab-muhtelife-cekimi | sarf | `ziyade-bab-muhtelife-cekimi.txt` | 25 | 25 | 0 | 0 | 0 | 0 | 0 | 0 |
-| ilal-kaideleri-turkce | sarf | `ilal-kaideleri-turkce.txt` | 52 | 44 | 3 | 0 | 0 | 1 | 0 | 4 |
+| ilal-kaideleri-turkce | sarf | `ilal-kaideleri-turkce.txt` | 52 | 48 | 3 | 0 | 0 | 1 | 0 | 0 |
 | misal-kaideleri | sarf | `misal-kaideleri-mesnedli.txt`, `ilal-misal-ecvef-naqis.txt` | 12 | 0 | 11 | 0 | 0 | 0 | 1 | 0 |
 | masdar-sifa-mubalagha-vezinleri | sarf | `masdar-sifa-mubalagha-vezinleri.txt` | 6 | 2 | 3 | 0 | 0 | 0 | 1 | 0 |
 | sifa-mushabbaha-vezinleri | sarf | `sifa-mushabbaha-vezinleri.txt` | 16 | 0 | 15 | 0 | 0 | 1 | 0 | 0 |
@@ -54,7 +54,7 @@ carrier but records `gap`; every such gap that needs an engine rule is ranked in
 | sulh-fiqh | texts | `sulh-fiqh-turkce.txt` | 18 | 0 | 17 | 0 | 0 | 0 | 0 | 1 |
 | vakif-mali | texts | `vakif-mali-turkce.txt` | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 1 |
 | qisas-al-nabiyyin-nadwi-leveling-notes | texts | `qisas-al-nabiyyin-nadwi-leveling-notes.txt` | 32 | 0 | 0 | 0 | 0 | 0 | 32 | 0 |
-| **all** | | | 3406 | 716 | 417 | 299 | 1827 | 6 | 67 | 74 |
+| **all** | | | 3406 | 725 | 412 | 299 | 1827 | 6 | 67 | 70 |
 
 ## birgivi-awamil-inventory — Birgivī's ʿAwāmil — the inventory tables (Ottoman and Turkish)
 
@@ -154,10 +154,6 @@ Nothing open.
 
 | id | line | entry | status | why / where it goes |
 |---|---|---|---|---|
-| d21-7 | 21 | غَزَوْ ← غَزَوُوا | open | engine probe fails — engine says: غَزَوُوا ← |
-| d22-8 | 22 | رَمَوْا ← رَمَيُوا | open | engine probe fails — engine says: رَمَيُوا ← |
-| d23-9 | 23 | غَزَتاَ ← غَزَوَتَا | open | engine probe fails — engine says: غَزَاتَا ← qalb-alif |
-| d24-10 | 24 | رَمَتاَ ← رَمَيَتَا | open | engine probe fails — engine says: رَمَاتَا ← qalb-alif |
 | d45-13 | 45 | غَبِىَ ← غَِبوَ | slip | the sheet's own typo: غَِبوَ — the kasra sits on the ghayn with a fatḥa (the origin is غَبِوَ, the rule's own words) — engine says: غَِبوَ ← |
 
 ## misal-kaideleri — Mithāl rules (Ottoman), with the Marāḥ / ʿIzzī citations
