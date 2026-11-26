@@ -1,0 +1,2802 @@
+{
+ "book": "Qawāʿid al-Iʿrāb (Ibn Hishām)",
+ "source_file": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt",
+ "built_by": "tools/ledger/build_ledger.py",
+ "counts": {
+  "applied": 64,
+  "noted": 14,
+  "not-automatable": 42,
+  "open": 30,
+  "heading": 14,
+  "fragment": 21,
+  "example": 20
+ },
+ "entries": [
+  {
+   "id": "Q28",
+   "line": 28,
+   "ar": "الباب الأول في الجملة وأحكامها: وفيه أربعُ مسائلَ.",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q30",
+   "line": 30,
+   "ar": "المسألة الأولى في شرحها:",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q32",
+   "line": 32,
+   "ar": "اعلم أن اللفظ المفيد يُسَمَّى كلامًا وجملة، ونعني بالمفيدِ ما يَحْسُنُ السكوتُ عليه، وأما الجملةُ",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the definition of kalām and jumla (what is «mufīd») — a definition the note anwa-al-jumal teaches; no line changes"
+  },
+  {
+   "id": "Q34",
+   "line": 34,
+   "ar": "ألا ترى أن نحو: قام زيدٌ من قولك: إن قام زيدٌ قام عمرٌو تسمى جملة؟، ولا تسمى كلامًا، لأنه لا يحسن السكوت عليه، وكذا القول بجملة الجواب",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "a jumla that is not kalām (the condition and its answer) — the same definition, argued"
+  },
+  {
+   "id": "Q36",
+   "line": 36,
+   "ar": "ثم الجملةُ تسمى اسمية إن بُدئت باسمٍ، كزيدٌ قائمٌ، وإن زيدًا قائمٌ، وهل زيدٌ قائمٌ؟، وما زيدٌ قائمًا، وفعليةً إن بُدئت بفعلٍ، كقام زيدٌ، وهل قام زيدٌ؟ وزيدٌ ضربته، ويا عبد الله؛ لأن التقدير ضربتُ زيدًا ضربته، وأدعو عبد الله.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the clause named ismiyya / fiʿliyya / ẓarfiyya by what opens it — a classification; the reader does not print it on a word"
+  },
+  {
+   "id": "Q38",
+   "line": 38,
+   "ar": "وإذا قيل: زيدٌ أبوه غلامه منضبطٌ",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the major and minor clause (زيدٌ أبوه غلامه منضبطٌ) — a classification of nested clauses"
+  },
+  {
+   "id": "Q42",
+   "line": 42,
+   "ar": "ومثله: ﴿لَّٰكِنَّا۠ هُوَ ٱللَّهُ رَبِّى﴾   في الأصل هو: لكن أنا هو الله ربي، وإلا لقيل: لكنه.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "لَكِنَّا = لَكِنْ أَنَا (the hamza dropped, the nūns merged) — an argued reading of one āya"
+  },
+  {
+   "id": "Q44",
+   "line": 44,
+   "ar": "المسألة الثانية: في الجمل التي لها محلٌّ من الإعراب.",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q45",
+   "line": 45,
+   "ar": "والمسألة الثالثة: في الجمل التي ليس لها محلٌّ من الإعراب.",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q47",
+   "line": 47,
+   "ar": "، وجمل لها محل من الإعراب. وهي سبعٌ إحداها الواقعة خبرًا",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · khabar"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "زَيْدٌ قَامَ أَبُوهُ",
+     "w": "قام",
+     "re": "في محل رفع خبر",
+     "ok": true,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «أبوه»، والجملة في محل رفع خبر المبتدإ «زيد»."
+    }
+   ]
+  },
+  {
+   "id": "Q49",
+   "line": 49,
+   "ar": "إحداها واقعةٌ خبرًا، وموضعها رفعٌ في بابي المبتدأ، وإن نحو: زيدٌ قام أبوه، وإن زيدًا أبوه قائمٌ، ونصبٌ، وموضعها نصبٌ في بابي كان وكاد، نحو: إنهم كانوا يظلمون، وما كادوا يفعلون.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · khabar (mubtadaʾ, inna; kāna, kāda)",
+    "note:anwa-al-jumal"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "زَيْدٌ قَامَ أَبُوهُ",
+     "w": "قام",
+     "re": "في محل رفع خبر",
+     "ok": true,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «أبوه»، والجملة في محل رفع خبر المبتدإ «زيد»."
+    },
+    {
+     "s": "إِنَّهُمْ كَانُوا يَظْلِمُونَ",
+     "w": "يظلمون",
+     "re": "في محل نصب خبر",
+     "ok": true,
+     "got": "فعل مضارع، مرفوع وعلامة رفعه ثبوت النون لأنه من الأفعال الخمسة، والواو ضمير متصل مبني في محل رفع فاعل، والجملة في محل نصب خبر «كانوا»."
+    }
+   ]
+  },
+  {
+   "id": "Q51",
+   "line": 51,
+   "ar": "ومحلهما النصب.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · ḥāl (offered)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "جَاءَ أَخُوكَ يَضْحَكُ",
+     "w": "يضحك",
+     "re": "في محل نصب حال",
+     "ok": true,
+     "got": "فعل مضارع، مرفوع وعلامة رفعه الضمة الظاهرة، والفاعل ضمير مستتر جوازا تقديره «هو»، والجملة في محل نصب حال من «أخوك»، أو مستأنفة لا محل لها."
+    }
+   ]
+  },
+  {
+   "id": "Q53",
+   "line": 53,
+   "ar": "والمفعوليةُ تقع في أربعة مواضع، محكيةً بالقول نحو: قال: إني عبد الله، وثانيةً للمفعول الأول في باب ظن نحو: ظننت زيدًا يقرأُ، وثانيةً للمفعول الثالث في باب أعلم نحو: أعلمتُ زيدًا عمروًا أبوه قائمٌ، ومعلقًا عنها العامل نحو: لنعلمُ أي الحزبين أحصى، فلينظر أيها أزكى.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · maqūl",
+    "note:anwa-al-jumal"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "قَالَ إِنِّي عَبْدُ اللهِ",
+     "w": "قال",
+     "re": "في محل نصب مقول القول",
+     "ok": true,
+     "got": "فعل ماض، مبني على الفتح، والفاعل ضمير مستتر جوازا تقديره «هو»، وجملة «إني عبد الله» في محل نصب مقول القول."
+    }
+   ]
+  },
+  {
+   "id": "Q55",
+   "line": 55,
+   "ar": "وثانيةً للمفعول الثاني في بابِ أعلمَ.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "ظَنَنْتُ زَيْدًا يَقْرَأُ",
+     "w": "يقرأ",
+     "re": "في محل نصب مفعول به ثان",
+     "ok": false,
+     "got": "فعل مضارع، مرفوع وعلامة رفعه الضمة الظاهرة، والفاعل ضمير مستتر جوازا تقديره «هو»، والجملة في محل نصب نعت ل«زيدا»، أو في محل نصب حال (النكرة غير محضة)."
+    }
+   ]
+  },
+  {
+   "id": "Q57",
+   "line": 57,
+   "ar": "والرابعة … المضاف إليها ومحلها الجر.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · muḍāf ilayh"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "حَيْثُ جَلَسَ زَيْدٌ",
+     "w": "جلس",
+     "re": "في محل جر بإضافة",
+     "ok": true,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «زيد»، والجملة في محل جر بإضافة «حيث» إليها."
+    }
+   ]
+  },
+  {
+   "id": "Q59",
+   "line": 59,
+   "ar": "وكلُ جملةٍ وقعت بعد إذ، أو إذا، أو حيثُ، أو لما الوجودية، عند من قال باسميتها، أو بينما، أو بين؛ فهي في موضع ظرفٍ بإضافتهن إليها.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · muḍāf ilayh after إِذْ، إِذَا، حَيْثُ، لَمَّا"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "إِذَا جَاءَ نَصْرُ اللهِ وَالْفَتْحُ",
+     "w": "جاء",
+     "re": "في محل جر بإضافة",
+     "ok": true,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «نصر»، والجملة في محل جر بإضافة «إذا» إليها."
+    }
+   ]
+  },
+  {
+   "id": "Q61",
+   "line": 61,
+   "ar": "والخامسةُ. الواقعة جوابًا لشرطٍ جازم.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · jawāb of a jāzim"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "مَنْ يُضْلِلِ اللهُ فَلَا هَادِيَ لَهُ",
+     "w": 3,
+     "re": "في محل جزم جواب الشرط",
+     "ok": true,
+     "got": "«لا» النافية للجنس، حرف نفي يعمل عمل «إن»، لا محل له من الإعراب، والجملة في محل جزم جواب الشرط."
+    }
+   ]
+  },
+  {
+   "id": "Q63",
+   "line": 63,
+   "ar": "محلها الجزم إذا كانت مقرونةً بالفاء، أو بـ إذا الفجائية",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · jawāb with the fāʾ; Nahw342Engine · fujaa (the surprise إِذَا)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "مَنْ يُضْلِلِ اللهُ فَلَا هَادِيَ لَهُ",
+     "w": 3,
+     "re": "في محل جزم",
+     "ok": true,
+     "got": "«لا» النافية للجنس، حرف نفي يعمل عمل «إن»، لا محل له من الإعراب، والجملة في محل جزم جواب الشرط."
+    },
+    {
+     "s": "وَإِنْ تُصِبْهُمْ سَيِّئَةٌ بِمَا قَدَّمَتْ أَيْدِيهِمْ إِذَا هُمْ يَقْنَطُونَ",
+     "w": "إذا",
+     "re": "في محل جزم جواب الشرط",
+     "ok": true,
+     "got": "«إذا» حرف مفاجأة لا محل له من الإعراب (وقيل: ظرف)، والجملة بعده في محل جزم جواب الشرط."
+    }
+   ]
+  },
+  {
+   "id": "Q65",
+   "line": 65,
+   "ar": "في الأولى … نحو: ﴿مَن يُضْلِلِ ٱللَّهُ فَلَا هَادِيَ لَهُۥ ۚ وَيَذَرُهُمْ﴾  ، ﴿وَيَذَرُهُمْ﴾، ولهذا قلنا بالجزم ويَذْرهُم عطفًا على محل الجملة. والثانية نحو: ﴿وَإِن تُصِبْهُمْ سَيِّئَةٌۢ بِمَا قَدَّمَتْ أَيْدِيهِمْ إِذَا هُمْ يَقْنَطُونَ﴾",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · jawāb with the fāʾ",
+    "note:al-fa-fi-jawab-al-shart",
+    "note:anwa-al-jumal",
+    "note:jawazim-al-mudari-wal-amr-fil-kafiya"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "مَنْ يُضْلِلِ اللهُ فَلَا هَادِيَ لَهُ",
+     "w": "هادي",
+     "re": "اسم لا",
+     "ok": true,
+     "got": "اسم، مبني على الفتح في محل نصب، اسم لا النافية للجنس."
+    }
+   ]
+  },
+  {
+   "id": "Q67",
+   "line": 67,
+   "ar": "فأما نحو: إن قام أخوك قامَ عمرٌو.",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-al-jumal"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "s": "إِنْ قَامَ أَخُوكَ قَامَ عَمْرٌو",
+     "w": 3,
+     "re": "مجزوم|محل جزم",
+     "not": "الجملة في محل جزم",
+     "ok": false,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «عمرو»، والجملة جواب الشرط لا محل لها من الإعراب (لم تقترن بالفاء ولا ب«إذا»)."
+    }
+   ],
+   "engine_hint": "JumlaMahallEngine · the answer without fāʾ has no seat"
+  },
+  {
+   "id": "Q69",
+   "line": 69,
+   "ar": "وكذلك القول في فعل الشرط.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "إِنْ قَامَ أَخُوكَ قَامَ عَمْرٌو",
+     "w": 1,
+     "re": "في محل جزم فعل الشرط",
+     "ok": false,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «أخوك»."
+    }
+   ]
+  },
+  {
+   "id": "Q71",
+   "line": 71,
+   "ar": "ونحو ذلك: إن قاما ويقعدا أخواك.",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-al-jumal"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "s": "إِنْ قَامَا وَيَقْعُدَا أَخَوَاكَ",
+     "w": "ويقعدا",
+     "re": "مجزوم",
+     "ok": false,
+     "got": "اسم، وعلامته مقدرة، مفعول به."
+    }
+   ]
+  },
+  {
+   "id": "Q73",
+   "line": 73,
+   "ar": "فإذا قلتَ إن قامَا ويقعدَا … فتجزمُ المعطوف قبل أن تكمل الجملة",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "إِنْ قَامَا وَيَقْعُدَا أَخَوَاكَ",
+     "w": "ويقعدا",
+     "re": "مجزوم",
+     "ok": false,
+     "got": "اسم، وعلامته مقدرة، مفعول به."
+    }
+   ]
+  },
+  {
+   "id": "Q75",
+   "line": 75,
+   "ar": "تنبيهٌ! إذا قلت: إن قامَ زيدٌ أقومُ.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "إِنْ قَامَ زَيْدٌ أَقُومُ",
+     "w": "أقوم",
+     "re": "مرفوع",
+     "ok": true,
+     "got": "فعل مضارع، مرفوع وعلامة رفعه الضمة الظاهرة، والفاعل ضمير مستتر وجوبا تقديره «أنا»."
+    }
+   ]
+  },
+  {
+   "id": "Q78",
+   "line": 78,
+   "ar": "وَإِنْ أَتَاهُ خَلِيلٌ يَوْمَ مَسْأَلَةٍ ... يَقُولُ: لَا غَائِبٌ مَالِي وَلَا",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q80",
+   "line": 80,
+   "ar": "فالجواب قيل.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "which is the answer in the verse (يَقُولُ, raised: the answer is «said» by an elided fāʾ, or it is the evidence of an elided answer) — the schools differ"
+  },
+  {
+   "id": "Q82",
+   "line": 82,
+   "ar": "ويظهر أثر ذلك في التابع",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "إِنْ قَامَا وَيَقْعُدَا أَخَوَاكَ",
+     "w": "ويقعدا",
+     "re": "مجزوم",
+     "ok": false,
+     "got": "اسم، وعلامته مقدرة، مفعول به."
+    }
+   ]
+  },
+  {
+   "id": "Q84",
+   "line": 84,
+   "ar": "والسادسة … التابعة لمفرد … فالجملة المنعوت بها … فهي موضع رفعٍ في نحو: ﴿مِّن قَبْلِ أَن يَأْتِيَ يَوْمٌ لَّا بَيْعٌ فِيهِ﴾  ، ونصبٍ لنحو: ﴿وَٱتَّقُواْ يَوْمًا تُرْجَعُونَ فِيهِ﴾  ، وجرٍ لنحو: ﴿لِيَوْمٍ لَّا رَيْبَ فِيهِ﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-al-jumal"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "s": "مَرَرْتُ بِرَجُلٍ يَقُومُ أَبُوهُ",
+     "w": "يقوم",
+     "re": "في محل جر نعت",
+     "ok": true,
+     "got": "فعل مضارع، مرفوع وعلامة رفعه الضمة الظاهرة، وفاعله «أبوه»، والجملة في محل جر نعت ل«رجل»."
+    },
+    {
+     "s": "مِنْ قَبْلِ أَنْ يَأْتِيَ يَوْمٌ لَا بَيْعٌ فِيهِ",
+     "w": "بيع",
+     "re": "في محل رفع نعت",
+     "ok": false,
+     "got": "اسم، مرفوع وعلامة رفعه الضمة الظاهرة."
+    }
+   ],
+   "engine_hint": "JumlaMahallEngine · naʿt"
+  },
+  {
+   "id": "Q86",
+   "line": 86,
+   "ar": "والسابعة … التابعة لجملة لها محل … نحو: زيدٌ قام أبوه وقعد أخوه.",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-al-jumal"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "s": "زَيْدٌ قَامَ أَبُوهُ وَقَعَدَ أَخُوهُ",
+     "w": "وقعد",
+     "re": "في محل رفع",
+     "ok": false,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «أخوه»."
+    }
+   ]
+  },
+  {
+   "id": "Q88",
+   "line": 88,
+   "ar": "ولو قدرت العطف على الجملةِ الاسميةِ لم يكن للمعطوفةِ محلٌ.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "زَيْدٌ قَامَ أَبُوهُ وَقَعَدَ أَخُوهُ",
+     "w": "وقعد",
+     "re": "لا محل لها",
+     "ok": false,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «أخوه»."
+    }
+   ]
+  },
+  {
+   "id": "Q90",
+   "line": 90,
+   "ar": "ولو قدرت الواوَ واوَ الحالِ؛ كانت الجملة في محل نصبٍ، وكانت قد فيها مضمرةً.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "زَيْدٌ قَامَ أَبُوهُ وَقَعَدَ أَخُوهُ",
+     "w": "وقعد",
+     "re": "حال",
+     "ok": false,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «أخوه»."
+    }
+   ]
+  },
+  {
+   "id": "Q92",
+   "line": 92,
+   "ar": "وإذا قلتَ: قال زيدٌ: عبد اللهِ منطلق وعمرٌو مقيمٌ، فليس من هذا القبيل، بل الَّذي محله النصب مجموعُ الجملتين؛ لأن المجموع هو المقول، فكلٌّ منهما جزء مقول، كان قولٌ.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · maqūl (the whole quote)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "قَالَ زَيْدٌ عَبْدُ اللهِ مُنْطَلِقٌ",
+     "w": "قال",
+     "re": "مقول القول",
+     "ok": true,
+     "got": "فعل ماض، مبني على الفتح، وفاعله «زيد»، وجملة «زيد عبد الله منطلق» في محل نصب مقول القول."
+    }
+   ]
+  },
+  {
+   "id": "Q96",
+   "line": 96,
+   "ar": "المسألة الثالثة في بيان الجمل التي لا محل لها من الإعراب وهي سبعٌ",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q98",
+   "line": 98,
+   "ar": "إحداها المبتدأةُ.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ",
+     "w": "إنا",
+     "re": "ابتدائية",
+     "ok": false,
+     "got": "حرف لا محل له من الإعراب."
+    }
+   ]
+  },
+  {
+   "id": "Q100",
+   "line": 100,
+   "ar": "وتسمى المستأنفة أيضًا.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q102",
+   "line": 102,
+   "ar": "والابتدائية قد تكون في أول الكلام مطلقًا، مثل: إنا أعطيناك الكوثر، وقد تُسبق بكلامٍ سابق لا ترتبط به ارتباطًا صناعيًا لفظيًا، كقوله تعالى: ﴿وَلَا يَحْزُنكَ قَوْلُهُمْ ۘ إِنَّ ٱلْعِزَّةَ لِلَّهِ جَمِيعًا﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-al-jumal"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "s": "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ",
+     "w": "إنا",
+     "re": "ابتدائية|مستأنفة",
+     "ok": false,
+     "got": "حرف لا محل له من الإعراب."
+    }
+   ]
+  },
+  {
+   "id": "Q104",
+   "line": 104,
+   "ar": "ولا يصح أن تكون محكيةً للقول الَّذي نُهي النبي ﷺ عن الحزن بسببه؛ لأنه ليس هو القول الَّذي يحزن.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the clause is not the hurtful saying, so it is no maqūl — the sense of the āya decides"
+  },
+  {
+   "id": "Q106",
+   "line": 106,
+   "ar": "ونحو: ﴿لَّا يَسَّمَّعُونَ﴾ بعد: ﴿وَحِفْظًا مِّن كُلِّ شَيْطَٰنٍ مَّارِدٍ﴾  ، وليست صفةً للنكرة ولا حالًا منها مقدرةً بوصفها لفساد المعنى.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«لَا يَسَّمَّعُونَ» is a fresh start, not a naʿt or ḥāl of the indefinite before it — the sense decides"
+  },
+  {
+   "id": "Q108",
+   "line": 108,
+   "ar": "وتقول: ما رأيته مذ يومان",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "مَا رَأَيْتُهُ مُذْ يَوْمَانِ",
+     "w": "يومان",
+     "re": "مبتدأ مؤخر|خبر",
+     "ok": true,
+     "got": "اسم، مرفوع وعلامة رفعه الألف لأنه مثنى، خبر."
+    }
+   ]
+  },
+  {
+   "id": "Q110",
+   "line": 110,
+   "ar": "ونقول: ما لقيته منذ يومان:",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "مَا لَقِيتُهُ مُنْذُ يَوْمَانِ",
+     "w": "يومان",
+     "re": "مبتدأ مؤخر|خبر",
+     "ok": true,
+     "got": "اسم، مرفوع وعلامة رفعه الألف لأنه مثنى، خبر."
+    }
+   ]
+  },
+  {
+   "id": "Q113",
+   "line": 113,
+   "ar": "وَمِثْلُهُمَا: قَامَ الْقَوْمُ خَلَا زَيْدًا ... وَحَاشَا عَمْرًوا وَعَدَا بَكْرًا",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q115",
+   "line": 115,
+   "ar": "إذا نصبت تكون مثل: ما لقيته مذ يومان",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q117",
+   "line": 117,
+   "ar": "ومن مثلهما.   … ومن مُثُلِها قوله:",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q118",
+   "line": 118,
+   "ar": "وَمَا زَالَتِ الْقَتْلَى تَمُجُّ دِمَاءَهَا ... بِدِجْلَةَ حَتَّى مَاءُ دِجْلَةَ أَشْكَلُ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q120",
+   "line": 120,
+   "ar": "وعن الزجَّاجِ وابن ذو السري أن الجملة بعد حتى الابتدائية في موضع جر بـ حتى.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "al-Zajjāj and Ibn Durustawayh put the clause after the ibtidāʾiyya حَتَّى in jarr — a view the matn reports and rejects"
+  },
+  {
+   "id": "Q122",
+   "line": 122,
+   "ar": "وخالفهما الجمهور … لأن حروف الجر لا تُعَلق عن العمل.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the majority: a jarr letter is never suspended — the argument against the view above"
+  },
+  {
+   "id": "Q124",
+   "line": 124,
+   "ar": "الثانيةً الواقعةَ صلةً لاسمٍ، نحو: جاء الَّذي قام أبوه، أو لحرفٍ نحو: عجبتُ مما قمتَ: أي من قيامكَ، فما وقمت: في موضع جرٍ بمن، وأما قمت وحدها: فلا محل لها.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.silaOf · ṣila",
+    "note:anwa-al-jumal"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "جَاءَ الَّذِي قَامَ أَبُوهُ",
+     "w": "الذي",
+     "re": "صلة",
+     "ok": true,
+     "got": "اسم موصول، مبني على السكون، في محل رفع فاعل، وجملة «قام أبوه» صلة الموصول لا محل لها من الإعراب، والعائد الضمير في «أبوه»."
+    }
+   ]
+  },
+  {
+   "id": "Q126",
+   "line": 126,
+   "ar": "إن صلة الموصول.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q128",
+   "line": 128,
+   "ar": "الثالثة: … المعترضة اللفظ بين شيئين، في التسديد أو في التبيين.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · muʿtariḍa"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "قَالَ اللهُ تَعَالَى إِنَّ الْعِزَّةَ لِلَّهِ",
+     "w": "تعالى",
+     "re": "معترضة",
+     "ok": true,
+     "got": "فعل ماض، مبني على الفتح المقدر على الألف للتعذر، والفاعل ضمير مستتر جوازا تقديره «هو»، والجملة معترضة لا محل لها من الإعراب."
+    }
+   ]
+  },
+  {
+   "id": "Q130",
+   "line": 130,
+   "ar": "للتسديد أو للتبيين.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q132",
+   "line": 132,
+   "ar": "ويجوز الاعتراض من أكثر من جملةٍ واحدةٍ خلافًا لأبي علي.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "more than one clause may come between (against Abū ʿAlī) — the extent of an aside is the sense"
+  },
+  {
+   "id": "Q134",
+   "line": 134,
+   "ar": "وليس منه هذه الآية، خلافًا للزمخشري، ذكره في سورة آل عمران.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the matn rejects al-Zamakhsharī's reading of one āya as an aside — an argued case"
+  },
+  {
+   "id": "Q138",
+   "line": 138,
+   "ar": "الرابعة … التفسيرية، وهي الكاشفة لحقيقة ما تليه وليست عمدةً.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "زَيْدًا ضَرَبْتُهُ",
+     "w": "ضربته",
+     "re": "تفسيرية",
+     "ok": true,
+     "got": "فعل ماض، مبني على السكون لاتصاله بضمير رفع متحرك، وفيه ضمير هو المفعول به، والتاء ضمير متصل مبني في محل رفع فاعل، وجملة «ضربته» تفسيرية لا محل لها من الإعراب (ا"
+    }
+   ]
+  },
+  {
+   "id": "Q140",
+   "line": 140,
+   "ar": "وقيل: بدلًا منها.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«and some say: a badal of it» — a reported view"
+  },
+  {
+   "id": "Q142",
+   "line": 142,
+   "ar": "ونحو: ﴿مَّسَّتْهُمُ ٱلْبَأْسَآءُ وَٱلضَّرَّآءُ﴾   فإنه تفسير لـ: ﴿مَّثَلُ ٱلَّذِينَ خَلَوْا۟﴾  ، وقيل حالهم: من الذين. انتهى.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«مَسَّتْهُمُ الْبَأْسَاءُ» explains «مَثَلُ الَّذِينَ خَلَوْا» — which clause a tafsīriyya explains is meaning"
+  },
+  {
+   "id": "Q144",
+   "line": 144,
+   "ar": "ونحو: ﴿كَمَثَلِ ءَادَمَ ۖ خَلَقَهُۥ مِن تُرَابٍ ثُمَّ قَالَ لَهُۥ كُن فَيَكُونُ﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-al-jumal"
+   ],
+   "status": "noted",
+   "reason": "«خَلَقَهُ مِنْ تُرَابٍ» explains «كَمَثَلِ آدَمَ» — meaning"
+  },
+  {
+   "id": "Q146",
+   "line": 146,
+   "ar": "ونحو: ﴿تُؤْمِنُونَ بِٱللَّهِ وَرَسُولِهِۦ﴾ بعد: ﴿هَلْ أَدُلُّكُمْ عَلَىٰ تِجَٰرَةٍ تُنجِيكُم مِّنْ عَذَابٍ أَلِيمٍ﴾  .",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«تُؤْمِنُونَ» explains «تِجَارَةٍ» — meaning"
+  },
+  {
+   "id": "Q148",
+   "line": 148,
+   "ar": "وقيل: مستأنفة، بمعنى آمنوا، بدليل: يغفر لكم بالجزم.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«and some say a fresh start meaning «believe», shown by the jazm of يَغْفِرْ» — a reported view"
+  },
+  {
+   "id": "Q150",
+   "line": 150,
+   "ar": "وعلى الأول … وعلى الأول هو",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q152",
+   "line": 152,
+   "ar": "وصح ذلك.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q154",
+   "line": 154,
+   "ar": "وخرج بقوله وليس عمدةً.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q156",
+   "line": 156,
+   "ar": "وكون الجملة المفسرة لا محل لها هو المشهور.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "زَيْدًا ضَرَبْتُهُ",
+     "w": "ضربته",
+     "re": "تفسيرية لا محل لها",
+     "ok": true,
+     "got": "فعل ماض، مبني على السكون لاتصاله بضمير رفع متحرك، وفيه ضمير هو المفعول به، والتاء ضمير متصل مبني في محل رفع فاعل، وجملة «ضربته» تفسيرية لا محل لها من الإعراب (ا"
+    }
+   ]
+  },
+  {
+   "id": "Q158",
+   "line": 158,
+   "ar": "كالتالي.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q160",
+   "line": 160,
+   "ar": "فلا محل للجملة المقدرة.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "زَيْدًا ضَرَبْتُهُ",
+     "w": "ضربته",
+     "re": "تفسيرية لا محل لها",
+     "ok": true,
+     "got": "فعل ماض، مبني على السكون لاتصاله بضمير رفع متحرك، وفيه ضمير هو المفعول به، والتاء ضمير متصل مبني في محل رفع فاعل، وجملة «ضربته» تفسيرية لا محل لها من الإعراب (ا"
+    }
+   ]
+  },
+  {
+   "id": "Q162",
+   "line": 162,
+   "ar": "والأول.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q164",
+   "line": 164,
+   "ar": "فخلقناه المذكورة مفسرةٌ لـ خلقنا المقدرة.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«فَخَلَقْنَاهُ» explains the elided «خَلَقْنَا» — an elided verb restored from meaning"
+  },
+  {
+   "id": "Q166",
+   "line": 166,
+   "ar": "ومن ذلك: زيدٌ الخبزَ يأكلَه.",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-al-jumal"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "s": "زَيْدٌ الْخُبْزَ يَأْكُلُهُ",
+     "w": "يأكله",
+     "re": "خبر",
+     "ok": false,
+     "got": "فعل مضارع، مرفوع وعلامة رفعه الضمة الظاهرة، وفيه ضمير هو المفعول به، والفاعل ضمير مستتر جوازا تقديره «هو»."
+    }
+   ]
+  },
+  {
+   "id": "Q168",
+   "line": 168,
+   "ar": "فيأكله.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q173",
+   "line": 173,
+   "ar": "الباب الثالث: في تفسير كلمات يحتاج إليها المعرب",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q176",
+   "line": 176,
+   "ar": "النوع الثالث: ما جاء على ثلاثة أوجه",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q178",
+   "line": 178,
+   "ar": "وهي سبعٌ",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q180",
+   "line": 180,
+   "ar": "إحداها (إذ) … ظرف لما مضى من الزمان.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · إِذْ ẓarf"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"وَاذْكُرُوا إِذْ كُنْتُمْ قَلِيلًا\").items.some(x => x.key === \"idh\" && x.face === \"zarf\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q182",
+   "line": 182,
+   "ar": "ويدخل على الجملتين",
+   "kind": "rule",
+   "carried_by": [
+    "engine:JumlaMahallEngine · إِذْ annexed to both clauses"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "وَاذْكُرُوا إِذْ أَنْتُمْ قَلِيلٌ",
+     "w": "أنتم",
+     "re": "في محل جر بإضافة|مبتدأ",
+     "ok": true,
+     "got": "ضمير منفصل، مبني على السكون، وهو جواب الطلب، والجملة في محل جر بإضافة «إذ» إليها، أو لا محل لها إن كانت «إذ» تعليلية."
+    }
+   ]
+  },
+  {
+   "id": "Q184",
+   "line": 184,
+   "ar": "وقد تستعمل للمستقبل.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "إِذْ for the future (يَعْلَمُونَ إِذِ الْأَغْلَالُ) — the time is the sense of the āya, the ẓarf is the same"
+  },
+  {
+   "id": "Q186",
+   "line": 186,
+   "ar": "ونحو قوله تعالى: ﴿فَسَوْفَ يَعْلَمُونَ ۝ إِذِ ٱلْأَغْلَٰلُ فِىٓ أَعْنَٰقِهِمْ وَٱلسَّلَٰسِلُ يُسْحَبُونَ﴾",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q188",
+   "line": 188,
+   "ar": "حرف مفاجأة كقوله:",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · إِذْ of surprise"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"فَبَيْنَمَا الْعُسْرُ إِذْ دَارَتْ مَيَاسِيرُ\").items.some(x => x.key === \"idh\" && x.face === \"mufajaa\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q189",
+   "line": 189,
+   "ar": "فَاسْتَقْدِرِ الله خَيْرًا وَارْضَيَنَّ بِهِ ... فَبَيْنَمَا الْعُسْرُ إِذْ دَارَتْ مَيَاسِيرُ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q191",
+   "line": 191,
+   "ar": "وتارةً حرف تعليل",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"وَلَنْ يَنْفَعَكُمُ الْيَوْمَ إِذْ ظَلَمْتُمْ\").items.some(x => x.key === \"idh\" && x.face === \"talil\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q193",
+   "line": 193,
+   "ar": "أي: لأجل ظلمكم.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q195",
+   "line": 195,
+   "ar": "الثانية: (لَمَّا): يقال فيها في نحو: لما جاء زيدٌ جاء  : حرف وجودٍ لوجود … وتختص بالماضي",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَمَّا of existence"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لما جاء زيدٌ جاء عمرٌو\").items.some(x => x.key === \"lamma\" && x.face === \"hiniyya\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q197",
+   "line": 197,
+   "ar": "وزعم الفارسي ومتابعوه أنها ظرفٌ بمعنى حينٍ",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "al-Fārisī's view that لَمَّا is a ẓarf — named beside the letter in the clause line (offered), a school view"
+  },
+  {
+   "id": "Q199",
+   "line": 199,
+   "ar": "ويقال فيها بنحو: ﴿لَّمَّا يَذُوقُوا۟ عَذَابِ﴾  : حرف جزمٍ لنفي المضارع، وقلبه ماضيًا متصلاً نفيه بالحال، متوقعًا ثبوته.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَمَّا jāzima"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لَمَّا يَذُوقُوا عَذَابِ\").items.some(x => x.key === \"lamma\" && x.face === \"jazima\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q201",
+   "line": 201,
+   "ar": "ويقال فيها: حرف استثناء، في نحو: أنشدك الله لما فعلت، أي: ما أسألك إلا فعلك. ومنه: ﴿إِن كُلُّ نَفْسٍ لَّمَّا عَلَيْهَا حَافِظٌ﴾  . في قراءة التشديد",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-ma"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"أنشدك الله لما فعلت\").items.some(x => x.key === \"lamma\" && x.face === \"istithna\")",
+     "ok": false,
+     "got": "false"
+    },
+    {
+     "js": "WujuhEngine.table(\"إِنْ كُلُّ نَفْسٍ لَمَّا عَلَيْهَا حَافِظٌ\").items.some(x => x.key === \"lamma\" && x.face === \"istithna\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q203",
+   "line": 203,
+   "ar": "ألا يُرى أن المعنى: ما كل نفسٍ إلا عليها حافظ؟ ولا التفات إلى إنكار الجوهري ذلك.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the meaning «no soul but has a keeper» proves the exceptive لَمَّا; al-Jawharī's denial is set aside — an argument"
+  },
+  {
+   "id": "Q205",
+   "line": 205,
+   "ar": "نعم: فيقال فيها حرف تصديقٍ، إذا وقعت بعد الخبر، نحو: قام زيدٌ، أو ما قام زيدٌ. وحرف إعلامٍ، إذا وقعت بعد الاستفهام، نحو: أقام زيدٌ؟ وحرف وعدٍ إذا وقعت بعد كلام الطلب، نحو: أَحْسِنْ إلى فلان.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · نَعَمْ (taṣdīq, iʿlām, waʿd)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قام زيدٌ، نعم\").items.some(x => x.key === \"naam\" && x.face === \"tasdiq\")",
+     "ok": true,
+     "got": "true"
+    },
+    {
+     "js": "WujuhEngine.table(\"أقام زيدٌ؟ نعم\").items.some(x => x.key === \"naam\" && x.face === \"ilam\")",
+     "ok": true,
+     "got": "true"
+    },
+    {
+     "js": "WujuhEngine.table(\"أَحْسِنْ إلى فلان. نعم\").items.some(x => x.key === \"naam\" && x.face === \"wad\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q207",
+   "line": 207,
+   "ar": "ومن مجيئها للإعلام: ﴿فَهَلْ وَجَدتُّم مَّا وَعَدَ رَبُّكُمْ حَقًّا ۖ قَالُوا۟ نَعَمْ﴾  .",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"فَهَلْ وَجَدْتُمْ مَا وَعَدَ رَبُّكُمْ حَقًّا قَالُوا نَعَمْ\").items.some(x => x.key === \"naam\" && x.face === \"ilam\")",
+     "ok": false,
+     "got": "false"
+    }
+   ],
+   "engine_hint": "WujuhEngine · نَعَمْ of iʿlām"
+  },
+  {
+   "id": "Q209",
+   "line": 209,
+   "ar": "وهذا المعنى لم ينبه عليه سيبويه",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«Sībawayh did not note this sense» — a remark on the history of the doctrine"
+  },
+  {
+   "id": "Q211",
+   "line": 211,
+   "ar": "الرابعة: إِيْ: بكسر الهمزة وسكون الياء، وهي بمنزلة (نعم) … تكون لتصديق المخبر، وإعلام المستخبر، ووعد الطالب. … إلا أنها تختص بالقسم، نحو: ﴿قُلْ إِى وَرَبِّىٓ إِنَّهُۥ لَحَقٌّ﴾  .",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قُلْ إِي وَرَبِّي إِنَّهُ لَحَقٌّ\").items.some(x => x.key === \"iy\" && x.face === \"qasam\")",
+     "ok": true,
+     "got": "true"
+    },
+    {
+     "js": "WujuhEngine.WORDS.iy.n === 3",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q213",
+   "line": 213,
+   "ar": "حتى …",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q215",
+   "line": 215,
+   "ar": "حتى: فأحد أوجهها أن تكون جارةً.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line · حَتَّى jārra"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "حَتَّى مَطْلَعِ الْفَجْرِ",
+     "w": "حتى",
+     "re": "حرف جر",
+     "ok": true,
+     "got": "حرف جر، لا محل له من الإعراب."
+    }
+   ]
+  },
+  {
+   "id": "Q217",
+   "line": 217,
+   "ar": "وعلى الاسم المؤول من (أن) مضمرةً، ومن الفعل المضارع، فتكون تارةً بمعنى (إلى) ﴿حَتَّىٰ يَرْجِعَ إِلَيْنَا مُوسَىٰ﴾",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line · I-6 (حَتَّى + the hidden أَنْ)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "لَنْ نَبْرَحَ عَلَيْهِ عَاكِفِينَ حَتَّى يَرْجِعَ إِلَيْنَا مُوسَى",
+     "w": "يرجع",
+     "re": "مضمرة",
+     "ok": true,
+     "got": "فعل مضارع، منصوب بأن مضمرة وجوبا بعد حتى وعلامة نصبه الفتحة الظاهرة، وفاعله «موسى»."
+    }
+   ]
+  },
+  {
+   "id": "Q219",
+   "line": 219,
+   "ar": "وقد تحتملهما",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "حَتَّى may bear both senses (to / so that) — the sense decides"
+  },
+  {
+   "id": "Q221",
+   "line": 221,
+   "ar": "وزعم ابن هشام الخضراوي، وابن مالك",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "Ibn Hishām al-Khaḍrāwī and Ibn Mālik add حَتَّى = إِلَّا (an exception) — a reported view on one verse"
+  },
+  {
+   "id": "Q222",
+   "line": 222,
+   "ar": "لَيْسَ الْعَطَاءُ مِنَ الْفُضُولِ سَمَاحَةً ... حَتَّى تَجُودَ وَمَا لَدَيْكَ قَلِيلُ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q224",
+   "line": 224,
+   "ar": "أي: إلا أن تجود، وهو استثناء منقطع.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q226",
+   "line": 226,
+   "ar": "والثاني: أن تكون حرف عطف.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "قَهَرْنَاكُمُ حَتَّى الْكُمَاةَ",
+     "w": "الكماة",
+     "re": "معطوف",
+     "ok": false,
+     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة."
+    }
+   ]
+  },
+  {
+   "id": "Q228",
+   "line": 228,
+   "ar": "وقال الشاعر:",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q229",
+   "line": 229,
+   "ar": "قَهَرْنَاكُمُ حَتَّى الْكُمَاةَ فَأَنْتُمُ ... تَهَابُونَنَا حَتَّى بَنِينَا الْأَصَاغِرَا",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q231",
+   "line": 231,
+   "ar": "فتدخل على ثلاثة أشياء:   الفعل الماضي: نحو: ﴿حَتَّىٰ عَفَوا۟ وَّقَالُوا۟﴾  . والمضارع المرفوع: نحو: ﴿حَتَّىٰ يَقُولَ ٱلرَّسُولُ﴾  . في قراءة من رفع. والجملة الاسمية: كقوله: حتى ماءُ دجلةَ أشكلُ.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"وَمَا زَالَتِ الْقَتْلَى تَمُجُّ دِمَاءَهَا بِدِجْلَةَ حَتَّى مَاءُ دِجْلَةَ أَشْكَلُ\").items.some(x => x.key === \"hatta\" && x.face === \"ibtida\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q233",
+   "line": 233,
+   "ar": "وقيل: هي مع الماضي جارة، و(أن) بعدها مضمرة. وقد مضى خلاف الزجَّاج وابن درستويه فيهن.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«some say: with the māḍī it is jārra and أَنْ is hidden» — a reported view"
+  },
+  {
+   "id": "Q235",
+   "line": 235,
+   "ar": "السادسة (كلا)، ويقال فيها حرف ردعٍ وزجرٍ، بنحو: ﴿وَأَمَّآ إِذَا مَا ٱبْتَلَىٰهُ فَقَدَرَ عَلَيْهِ رِزْقَهُۥ فَيَقُولُ رَبِّىٓ أَهَٰنَنِ ۝ كَلَّا ۖ بَل لَّا تُكْرِمُونَ ٱلْيَتِيمَ﴾  ؛ أي: انته عن هذه المقالة.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · كَلَّا of deterrence"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"كَلَّا سَوْفَ تَعْلَمُونَ\").items.some(x => x.key === \"kalla\" && x.face === \"rad\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q237",
+   "line": 237,
+   "ar": "وحرف جواب وتصديق، في نحو: ﴿كَلَّا وَٱلْقَمَرِ﴾  .   والمعنى: أي والقمر",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"كَلَّا وَالْقَمَرِ\").items.some(x => x.key === \"kalla\" && x.face === \"tasdiq\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q239",
+   "line": 239,
+   "ar": "وبمعنى (حقًّا) أو (ألا) الاستفتاحية، على خلافٍ في ذلك. نحو: ﴿كَلَّا لَا تُطِعْهُ﴾",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · كَلَّا = أَلَا"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"كَلَّا إِنَّ الْإِنْسَانَ لَيَطْغَى\").items.some(x => x.key === \"kalla\" && x.face === \"istiftah\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q241",
+   "line": 241,
+   "ar": "والصواب الثاني …   لكسر الهمزة في نحو: ﴿كَلَّآ إِنَّ ٱلْإِنسَٰنَ لَيَطْغَىٰٓ﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · كَلَّا = أَلَا (the kasra of إِنَّ after it)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"كَلَّا إِنَّ الْإِنْسَانَ لَيَطْغَى\").items.some(x => x.key === \"kalla\" && x.face === \"istiftah\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q243",
+   "line": 243,
+   "ar": "السابعة: (لا): فتكون نافيةً وناهيةً وزائدةً.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَا (nāfiya, nāhiya, zāʾida)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"تَعَزَّ فَلَا شَيْءٌ عَلَى الْأَرْضِ بَاقِيَا\").items.some(x => x.key === \"la\" && x.face === \"nafiya\")",
+     "ok": true,
+     "got": "true"
+    },
+    {
+     "js": "WujuhEngine.table(\"وَلَا تَمْنُنْ تَسْتَكْثِرُ\").items.some(x => x.key === \"la\" && x.face === \"nahiya\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q246",
+   "line": 246,
+   "ar": "تَعَزَّ فَلَا شَيْءٌ عَلَى الْأَرْضِ بَاقِيَا ... وَلَا وَزَرٌ مِمَّا قَضَى اللهُ وَاقِيَا",
+   "kind": "example",
+   "carried_by": [
+    "note:ma-la-mushabbaha"
+   ],
+   "status": "example"
+  },
+  {
+   "id": "Q250",
+   "line": 250,
+   "ar": "والناهية تجزم المضارع، نحو: ﴿وَلَا تَمْنُن تَسْتَكْثِرُ﴾  ، ﴿فَلَا يُسْرِف فِّى ٱلْقَتْلِ﴾  .   والزائدة: دخولها كخروجها، نحو: ﴿مَا مَنَعَكَ أَلَّا تَسْجُدَ﴾  . أي: أن تسجدَ، كما جاء في موضع آخر.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line · lā al-nāhiya"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "وَلَا تَمْنُنْ تَسْتَكْثِرُ",
+     "w": "تمنن",
+     "re": "مجزوم",
+     "ok": true,
+     "got": "فعل مضارع، مجزوم وعلامة جزمه السكون، والفاعل ضمير مستتر وجوبا تقديره «أنت»."
+    }
+   ]
+  },
+  {
+   "id": "Q254",
+   "line": 254,
+   "ar": "وهو أربعة … أحدها: (لولا)",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q258",
+   "line": 258,
+   "ar": "فيقال فيها تارةً: حرفٌ يقتضي امتناع جوابه لوجود شرطه.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْلَا of imtināʿ"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لَوْلَا الْمَطَرُ لَخَرَجْنَا\").items.some(x => x.key === \"lawla\" && x.face === \"imtinaWujud\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q260",
+   "line": 260,
+   "ar": "ومنه: لولاي لكان كذا، أي: لولا أنا موجودٌ.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لولاي لكان كذا\").items.some(x => x.key === \"lawla\" && x.face === \"imtinaWujud\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q262",
+   "line": 262,
+   "ar": "وتارةً … وتارةً حرف تحضيضٍ وعرضٍ، أي: طلبٌ بإزعاجٍ أو برفقٍ.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْلَا of urging"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لَوْلَا تَسْتَغْفِرُونَ اللهَ\").items.some(x => x.key === \"lawla\" && x.face === \"ard\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q264",
+   "line": 264,
+   "ar": "والظاهر أنها في الأولى للعرض، وفي الثانية للتحضيض.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "in the first āya it is ʿarḍ, in the second taḥḍīḍ — the gentleness or force of the asking is sense"
+  },
+  {
+   "id": "Q266",
+   "line": 266,
+   "ar": "وزاد معنىً آخر",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q268",
+   "line": 268,
+   "ar": "والظاهر أن المراد: فهلا.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q270",
+   "line": 270,
+   "ar": "ويؤيده … أن في حرف أُبيٍّ وعبد الله بن مسعود: «فهلا»، ويلزم من ذلك معنى النفي الذي ذكره الهروي؛ لأن اقتران التوبيخ بالفعل الماضي، يُشْعِرُ بانتفاء وقوعه.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the readings of Ubayy and Ibn Masʿūd («فَهَلَّا») support the reading — qirāʾa evidence"
+  },
+  {
+   "id": "Q272",
+   "line": 272,
+   "ar": "الثانية: (إن) المكسورة الخفيفة، فيقال فيها: شرطية، في نحو: ﴿إِن تُخْفُوا۟ مَا فِى صُدُورِكُمْ أَوْ تُبْدُوهُ يَعْلَمْهُ ٱللَّهُ﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · إِنْ shart"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"إِنْ تَجْتَهِدْ تَنْجَحْ\").items.some(x => x.key === \"in\" && x.face === \"shart\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q274",
+   "line": 274,
+   "ar": "ونافية، في نحو: ﴿إِنْ عِندَكُم مِّن سُلْطَٰنٍۭ بِهَٰذَآ﴾  .",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"إِنْ عِنْدَكُمْ مِنْ سُلْطَانٍ بِهَذَا\").items.some(x => x.key === \"in\" && x.face === \"nafiya\")",
+     "ok": false,
+     "got": "false"
+    }
+   ],
+   "engine_hint": "WujuhEngine · إِنْ nāfiya"
+  },
+  {
+   "id": "Q276",
+   "line": 276,
+   "ar": "وأهل العالية … وأهل العالية يعملونها عمل ليس، نحو قول بعضهم: إن أحدٌ خيرًا من أحدٍ إلا بالعافية. وقد اجتمعا في قوله تعالى: ﴿وَلَئِن زَالَتَآ إِنْ أَمْسَكَهُمَا مِنْ أَحَدٍ مِّنۢ بَعْدِهِۦٓ﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "note:in-shartiyya"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"إن أحدٌ خيرًا من أحدٍ إلا بالعافية\").items.some(x => x.key === \"in\" && x.face === \"nafiya\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q278",
+   "line": 278,
+   "ar": "ومخففة من الثقيلة",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q280",
+   "line": 280,
+   "ar": "ومخففة من الثقيلة في نحو: ﴿وَإِنَّ كُلًّا لَّمَّا لَيُوَفِّيَنَّهُمْ﴾   في قراءة من خفف النون.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"وَإِنْ كُلًّا لَمَّا لَيُوَفِّيَنَّهُمْ\").items.some(x => x.key === \"in\" && x.face === \"mukhaffafa\")",
+     "ok": false,
+     "got": "false"
+    }
+   ],
+   "engine_hint": "Sh336Engine · R141 (إِنْ mukhaffafa)"
+  },
+  {
+   "id": "Q282",
+   "line": 282,
+   "ar": "ويقل إعمالها عمل المشددة، كهذه القراءة.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Sh336Engine · R141 (the working mukhaffafa)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "وَإِنْ كُلًّا لَمَّا لَيُوَفِّيَنَّهُمْ",
+     "w": "وإن",
+     "re": "عاملة",
+     "ok": true,
+     "got": "الواو عاطفة (أو استئنافية)، و«إن» مخففة من الثقيلة عاملة، حرف توكيد ونصب مبني على السكون لا محل له من الإعراب، و«كلا» اسمها."
+    }
+   ]
+  },
+  {
+   "id": "Q284",
+   "line": 284,
+   "ar": "وزائدة، في نحو: ما إن زيدٌ قائمٌ، وحيث اجتمعت (ما) و(إن)، فإن تقدمت (ما) فهي نافية، و(إن) زائدة، وإن تقدمت (إن) فهي شرطية، و(ما) زائدة، نحو: ﴿وَإِمَّا تَخَافَنَّ مِن قَوْمٍ خِيَانَةً﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · إِنْ zāʾida"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"ما إن زيدٌ قائمٌ\").items.some(x => x.key === \"in\" && x.face === \"zaida\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q286",
+   "line": 286,
+   "ar": "والثالثة: (أن) المفتوحة الخفيفة، ويقال فيها: حرفٌ مصدريٌّ ينصب المضارع، نحو: ﴿يُرِيدُ ٱللَّهُ أَن يُخَفِّفَ عَنكُمْ﴾  ؛ وهي الداخلة على الماضي، في نحو: أعجبني أن صُمْتَ، لا غيرها خلافًا لابن طاهر.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:AnEngine · أَنْ maṣdariyya"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"أُرِيدُ أَنْ أَقْرَأَ\").items.some(x => x.key === \"an\" && x.face === \"masdariyya\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q288",
+   "line": 288,
+   "ar": "وزائدة، في نحو: ﴿فَلَمَّآ أَن جَآءَ ٱلْبَشِيرُ﴾  . وكذا حيث جاءت بعد (لَمَّا).",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · أَنْ zāʾida after لَمَّا"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"فَلَمَّا أَنْ جَاءَ الْبَشِيرُ\").items.some(x => x.key === \"an\" && x.face === \"zaida\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q292",
+   "line": 292,
+   "ar": "ومفسِّرَة، في نحو: ﴿فَأَوْحَيْنَآ إِلَيْهِ أَنِ ٱصْنَعِ ٱلْفُلْكَ﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · أَنْ mufassira"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"فَأَوْحَيْنَا إِلَيْهِ أَنِ اصْنَعِ الْفُلْكَ\").items.some(x => x.key === \"an\" && x.face === \"tafsiriyya\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q294",
+   "line": 294,
+   "ar": "وكذلك حيث وقعت بعد جملةٍ فيها معنى القول، دون حروفه، ولم تقترن بخافض",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · the conditions of the tafsīriyya (QAWL_SENSE)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"فَأَوْحَيْنَا إِلَيْهِ أَنِ اصْنَعِ الْفُلْكَ\").items.some(x => x.key === \"an\" && x.face === \"tafsiriyya\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q296",
+   "line": 296,
+   "ar": "فليس منها: ﴿وَءَاخِرُ دَعْوَىٰهُمْ أَنِ ٱلْحَمْدُ لِلَّهِ﴾   … لأن المقدم عليها غير جملة",
+   "kind": "rule",
+   "carried_by": [
+    "engine:AnEngine · I-1 (not tafsīriyya: no clause of saying before it)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "وَآخِرُ دَعْوَاهُمْ أَنِ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+     "w": "أن",
+     "re": "مخففة",
+     "ok": true,
+     "got": "أن مخففة من الثقيلة، حرف توكيد ونصب، واسمها ضمير الشأن محذوف، والجملة بعدها في محل رفع خبرها، وبعدها جملة اسمية، كسرت نونها لالتقاء الساكنين، لا محل لها من الإع"
+    }
+   ]
+  },
+  {
+   "id": "Q298",
+   "line": 298,
+   "ar": "ولا نحو: كتبت إليه بأن افعل",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«كَتَبْتُ إِلَيْهِ بِأَنِ افْعَلْ» — the jarr letter makes it maṣdariyya; the edition's vowelling of the example is unsure (v334-N2)"
+  },
+  {
+   "id": "Q300",
+   "line": 300,
+   "ar": "وقول بعض العلماء في قوله تعالى: ﴿مَا قُلْتُ لَهُمْ إِلَّا مَآ أَمَرْتَنِى بِهِۦٓ أَنِ ٱعْبُدُوا۟ ٱللَّهَ رَبِّى وَرَبَّكُمْ﴾  .",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the scholars' reading of «مَا قُلْتُ لَهُمْ إِلَّا مَا أَمَرْتَنِي بِهِ أَنِ اعْبُدُوا اللهَ» — an argued case"
+  },
+  {
+   "id": "Q302",
+   "line": 302,
+   "ar": "وجوز الزمخشري إن أُوِّلَ (قلتُ) بـ (أمرتُ) … وجوز مصدريتها",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "al-Zamakhsharī allows it if «قُلْتُ» is read as «أَمَرْتُ» — a reported view"
+  },
+  {
+   "id": "Q304",
+   "line": 304,
+   "ar": "على أن المصدر بيانٌ للهاء … لا بدل … لأن تقدير إسقاط الضمير، يخلي الصلة من عائد",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the maṣdar as a bayān of the hā', not a badal — an argued case"
+  },
+  {
+   "id": "Q306",
+   "line": 306,
+   "ar": "والصوابُ العكس",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q308",
+   "line": 308,
+   "ar": "والعائدُ المقدرُ الحذفِ موجودٌ لا معدوم.",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q310",
+   "line": 310,
+   "ar": "مُخَفَّفَة من الثَّقِيلَة",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q312",
+   "line": 312,
+   "ar": "في ﴿عَلِمَ أَن سَيَكُونُ﴾  ، ﴿وَحَسِبُوٓا۟ أَلَّا تَكُونَ﴾   في قراءةِ الرفعِ، وكذا حيثُ وقَعَتْ بعدَ علمٍ، أو ظنٍّ نُزِّلَ منزلةَ العلمِ.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:AnEngine · I-1 (أَنْ mukhaffafa after a verb of knowing)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "عَلِمَ أَنْ سَيَكُونُ مِنْكُمْ مَرْضَى",
+     "w": "أن",
+     "re": "مخففة",
+     "ok": true,
+     "got": "أن مخففة من الثقيلة، حرف توكيد ونصب، واسمها ضمير الشأن محذوف، والجملة بعدها في محل رفع خبرها، فصل بينها وبين الفعل بسين التنفيس، لا محل لها من الإعراب."
+    }
+   ]
+  },
+  {
+   "id": "Q314",
+   "line": 314,
+   "ar": "فتكون شرطيةً في نحو: ﴿من يعمل سوءا يجز به﴾  . وموصولةً، في نحو: ﴿وَمِنَ ٱلنَّاسِ مَن يَقُولُ ءَامَنَّا﴾  . واستفهاميةً، في نحو: ﴿مَنۢ بَعَثَنَا مِن مَّرْقَدِنَا﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · مَنْ (shart, mawṣūl, istifhām)",
+    "note:in-shartiyya"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"مَنْ يَطْلُبِ الْعِلْمَ يَجِدْهُ\").items.some(x => x.key === \"man\" && x.face === \"shart\")",
+     "ok": true,
+     "got": "true"
+    },
+    {
+     "js": "WujuhEngine.table(\"مَنْ أَنْتَ؟\").items.some(x => x.key === \"man\" && x.face === \"istifham\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q316",
+   "line": 316,
+   "ar": "ونكرةً موصوفة … في: مررتُ بِمَنْ مُعجِبٍ لك",
+   "kind": "rule",
+   "carried_by": [
+    "note:hal-ma-man"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"مررتُ بِمَنْ مُعجِبٍ لك\").items.some(x => x.key === \"man\" && x.face === \"mawsufa\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q318",
+   "line": 318,
+   "ar": "مررتُ بمن مُعْجِبٍ لك، يعني بإنسانٍ معجبٍ لك",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"مررتُ بِمَنْ مُعجِبٍ لك\").items.some(x => x.key === \"man\" && x.face === \"mawsufa\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q320",
+   "line": 320,
+   "ar": "وأجاز الفارسيُّ أن تقع نكرةً تامة … حَمَلَ عليه قوله",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "al-Fārisī allows مَنْ as a complete indefinite (وَنِعْمَ مَنْ هُوَ) — a reported view"
+  },
+  {
+   "id": "Q321",
+   "line": 321,
+   "ar": "وَنِعْمَ مَنْ هُوَ فِي سِرٍّ وَإِعْلَانِ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q323",
+   "line": 323,
+   "ar": "النوع الخامس: ما يأتي على خمسة أوجه، وهو شيئان:",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q325",
+   "line": 325,
+   "ar": "أَي، فتقعُ شرطيةً، نحو: ﴿أَيَّمَا ٱلْأَجَلَيْنِ قَضَيْتُ فَلَا عُدْوَٰنَ عَلَىَّ﴾  .   واستفهاميةً، نحو: ﴿أَيُّكُمْ زَادَتْهُ هَٰذِهِۦٓ إِيمَٰنًا﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · أَيّ (shart, istifhām, nidāʾ)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"أَيُّ الْفَرِيقَيْنِ خَيْرٌ مَقَامًا؟\").items.some(x => x.key === \"ayy\" && x.face === \"istifham\")",
+     "ok": true,
+     "got": "true"
+    },
+    {
+     "js": "WujuhEngine.table(\"يَا أَيُّهَا النَّاسُ اعْبُدُوا رَبَّكُمْ\").items.some(x => x.key === \"ayy\" && x.face === \"nida\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q327",
+   "line": 327,
+   "ar": "أي: الذي هو أشدُّ",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "ثُمَّ لَنَنْزِعَنَّ مِنْ كُلِّ شِيعَةٍ أَيُّهُمْ أَشَدُّ",
+     "w": "أيهم",
+     "re": "موصول",
+     "ok": false,
+     "got": "اسم، والضمير مضاف إليه."
+    }
+   ]
+  },
+  {
+   "id": "Q329",
+   "line": 329,
+   "ar": "قاله سيبويه ومن تابعه",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«said by Sībawayh and those who follow him» — the attribution"
+  },
+  {
+   "id": "Q331",
+   "line": 331,
+   "ar": "وقال من رأى أن الموصولةَ لا تُبنى: هي هنا استفهاميةٌ مبتدأ، و﴿أَشَدُّ﴾: خَبَرُه.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "those who say the relative is never built read أَيُّهُمْ as an interrogative mubtadaʾ — a reported view"
+  },
+  {
+   "id": "Q333",
+   "line": 333,
+   "ar": "لو … أن تكون حرف شرطٍ… يقتضى امتناع ما يليه، واستلزامه لتاليه",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْ of imtināʿ"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لَوْ جِئْتَنِي لَأَكْرَمْتُكَ\").items.some(x => x.key === \"law\" && x.face === \"imtina\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q335",
+   "line": 335,
+   "ar": "وأحدُ أوجهها: أن تكونَ حرفَ شرطٍ في الماضي فيقال فيها",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْ in the past"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لَوْ جِئْتَنِي لَأَكْرَمْتُكَ\").items.some(x => x.key === \"law\" && x.face === \"imtina\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q337",
+   "line": 337,
+   "ar": "لأنه لا يلزمُ من انتفاءِ (لم يخف) انتفاءُ (لم يعصِ).",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«لَمْ يَعْصِهِ» does not fall with «لَمْ يَخَفْ» — the logic of لَوْ, argued"
+  },
+  {
+   "id": "Q339",
+   "line": 339,
+   "ar": "أن تكونَ حرفَ شرطٍ في المستقبل.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْ of the future"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"وَلَوْ تَلْتَقِي أَصْدَاؤُنَا بَعْدَ مَوْتِنَا\").items.some(x => x.key === \"law\" && x.face === \"mustaqbal\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q341",
+   "line": 341,
+   "ar": "فيقال فيها: حرفُ شرط مرادفٌ لـ(إن)، إلا أنها لا تجزم …   كقوله تعالى: ﴿وَلْيَخْشَ ٱلَّذِينَ لَوْ تَرَكُوا۟﴾   … وقول الشاعر:",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْ of the future"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"وَلَوْ تَلْتَقِي أَصْدَاؤُنَا بَعْدَ مَوْتِنَا\").items.some(x => x.key === \"law\" && x.face === \"mustaqbal\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q342",
+   "line": 342,
+   "ar": "وَلَوْ تَلْتَقِي أَصْدَاؤُنَا بَعْدَ مَوْتِنَا ... وَمِنْ دُونِ رَمْسَيْنَا مِنَ الْأَرْضِ سَبْسَبُ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q343",
+   "line": 343,
+   "ar": "لَظَلَّ صَدَى صَوْتِي وَإِنْ كُنْتُ رِمَّةً ... لِصَوْتِ صَدَى لَيْلَى يَهَشُّ وَيَطْرَبُ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q345",
+   "line": 345,
+   "ar": "أن تكون حرفًا مصدريًا مرادفًا لـ (أَنْ)",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْ maṣdariyya"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"يَوَدُّ أَحَدُهُمْ لَوْ يُعَمَّرُ أَلْفَ سَنَةٍ\").items.some(x => x.key === \"law\" && x.face === \"masdariyya\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q347",
+   "line": 347,
+   "ar": "إلا أنها لا تنصب، وأكثر وقوعها بعد (وَدَّ)",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْ maṣdariyya after وَدَّ"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"يَوَدُّ أَحَدُهُمْ لَوْ يُعَمَّرُ أَلْفَ سَنَةٍ\").items.some(x => x.key === \"law\" && x.face === \"masdariyya\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q349",
+   "line": 349,
+   "ar": "وأكثرهم لا يُثْبِتُ هذا القسم",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«most do not accept this kind» — a report of the schools"
+  },
+  {
+   "id": "Q351",
+   "line": 351,
+   "ar": "ويُخَرِّجُ الآيةَ ونحوها على حذفِ مفعول الفعلِ قبلها، والجوابِ بعدها",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "they read the āya with the verb's object and the answer dropped — a reported view"
+  },
+  {
+   "id": "Q353",
+   "line": 353,
+   "ar": "أن تكون للتمني بمنزلة (ليت)، إلا أنها لا تنصبُ ولا ترفع، نحو: ﴿فَلَوْ أَنَّ لَنَا كَرَّةً فَنَكُونَ﴾   …   ولهذا نُصِبَ (فتكونَ) في جوابها، كما انتصب (فأفوزَ) في جوابِ (ليتَ)، في قوله تعالى: ﴿يَٰلَيْتَنِى كُنتُ مَعَهُمْ فَأَفُوزَ﴾  ، ولا دليلَ في هذا",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْ of wishing"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لو تَنْزِلُ عندنا فتُصيبَ راحةً\").items.some(x => x.key === \"law\" && x.face === \"tamanni\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q356",
+   "line": 356,
+   "ar": "وَلُبْسُ عَبَاءَةٍ وَتَقَرَّ عَيْنِي ... أَحَبُّ إِلَيَّ مِنْ لُبْسِ الشُّفُوفِ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q358",
+   "line": 358,
+   "ar": "أن تكونَ للعرض … نحو: لو تَنْزِلُ عندنا فتُصيبَ راحةً … ذكره في التسهيل.",
+   "kind": "rule",
+   "carried_by": [
+    "note:insha-wa-tamanni"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لو تَنْزِلُ عندنا فتُصيبَ راحةً\").items.some(x => x.key === \"law\" && x.face === \"ard\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q360",
+   "line": 360,
+   "ar": "وذكرَ لها ابنُ هشامٍ اللخميُّ معنىً آخر",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · لَوْ of rarity (Ibn Hishām al-Lakhmī)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"اتَّقُوا النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ\").items.some(x => x.key === \"law\" && x.face === \"taqlil\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q362",
+   "line": 362,
+   "ar": "النوعُ السادس: ما يأتي على سبعة أوجه، وهو (قد).",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q364",
+   "line": 364,
+   "ar": "تكونُ اسمًا بمعنى (حَسْبُ)، واسمَ فعلٍ بمعنى (يكفي)،",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · قَدْ ism / ism fiʿl"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قَدْنِي مِنْ نَصْرِ الْخُبَيْبَيْنِ قَدِي\").items.some(x => x.key === \"qad\" && x.face === \"ismFil\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q366",
+   "line": 366,
+   "ar": "فأحدُ أوجهها أن تكونَ اسمًا بمعنى (حَسْب)، فيقال: (قَدِي) بغيرِ نونٍ، كما يقال: حسبي.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قَدْ زَيْدٍ دِرْهَمٌ\").items.some(x => x.key === \"qad\" && x.face === \"ism\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q368",
+   "line": 368,
+   "ar": "أن تكونَ اسمَ فعلٍ بمعنى (يكفي)، فيقال: (قَدْنِي)، كما يقال: يكفيني.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · قَدْنِي"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قَدْنِي مِنْ نَصْرِ الْخُبَيْبَيْنِ قَدِي\").items.some(x => x.key === \"qad\" && x.face === \"ismFil\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q369",
+   "line": 369,
+   "ar": "قَدْنِي مِنْ نَصْرِ الْخُبَيْبَيْنِ قَدِي ... لَيْسَ الْإِمَامُ بِالشَّحِيحِ الْمُلْحِدِ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q371",
+   "line": 371,
+   "ar": "أن تكون حرفَ توَقُّع",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قد يخرُجُ زيدٌ\").items.some(x => x.key === \"qad\" && x.face === \"tawaqqu\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q373",
+   "line": 373,
+   "ar": "فتدخل عليهما أيضًا … فتقول: قد يخرُجُ زيدٌ",
+   "kind": "rule",
+   "carried_by": [
+    "note:qad-harf"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قد يخرُجُ زيدٌ\").items.some(x => x.key === \"qad\" && x.face === \"tawaqqu\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q375",
+   "line": 375,
+   "ar": "تقريب الماضي من الحال",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · قَدْ of nearness"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قَدْ قَامَتِ الصَّلَاةُ\").items.some(x => x.key === \"qad\" && x.face === \"taqrib\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q378",
+   "line": 378,
+   "ar": "حَلَفْتُ لَهَا بِاللهِ حِلْفَةَ فَاجِرٍ ... لَنَامُوا فَمَا إِنْ مِنْ حَدِيثٍ وَلَا صَالِي",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q380",
+   "line": 380,
+   "ar": "وزعم الزمخشري عندما تكلم على قوله تعالى: ﴿لَقَدْ أَرْسَلْنَا نُوحًا إِلَىٰ قَوْمِهِۦ﴾  ؛ أن (قد) للتوقع، لأن السامع يتوقع الخبر عند سماع المقسم به.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "al-Zamakhsharī on «لَقَدْ أَرْسَلْنَا نُوحًا» — a reported view"
+  },
+  {
+   "id": "Q382",
+   "line": 382,
+   "ar": "التقليل، وهو ضربان: تقليل وقوع الفعل، نحو: قد يصدُق الكذوب، وقد يجودُ البخيل، وتقليلُ متعَلَّقِه، نحو: ﴿قَدْ يَعْلَمُ مَآ أَنتُمْ عَلَيْهِ﴾",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WujuhEngine · قَدْ of rarity"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قد يصدُق الكذوب\").items.some(x => x.key === \"qad\" && x.face === \"taqlilQ\")",
+     "ok": true,
+     "got": "true"
+    },
+    {
+     "js": "WujuhEngine.table(\"قد يجودُ البخيل\").items.some(x => x.key === \"qad\" && x.face === \"taqlilQ\")",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q384",
+   "line": 384,
+   "ar": "وزعم بعضهم أنها في ذلك للتحقيق كما تقدم، وأن التقليل في المثالين الأولين لم يُستَفَد من (قد)، بل من قوله: البخيل يجود، والكذوبُ يصدق، فإنه إن لم يُحمل على أن صدور ذلك من البخيل والكذوب قليلٌ؛ كان متناقضًا؛ لأن آخر الكلام يدفع أوله.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«some say it is of certainty there» — a reported view"
+  },
+  {
+   "id": "Q386",
+   "line": 386,
+   "ar": "التكثير، قاله سيبويه في قوله:",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"قَدْ أَتْرُكُ الْقِرْنَ مُصْفَرًّا أَنَامِلُهُ\").items.some(x => x.key === \"qad\" && x.face === \"takthir\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q387",
+   "line": 387,
+   "ar": "قَدْ أَتْرُكُ الْقِرْنَ مُصْفَرًّا أَنَامِلُهُ ... كَأَنَّ أَثْوَابَهُ مُجَّتْ بِفِرْصَادِ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q389",
+   "line": 389,
+   "ar": "النوع السابع: ما يأتي على ثمانية أوجه",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q391",
+   "line": 391,
+   "ar": "وذلك أنَّ لنا واوينِ يرتفعُ ما بَعدَهُما:",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WawEngine · the two wāws of rafʿ (istiʾnāf, ḥāl)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.WORDS.waw.faces.includes('istinaf') && WujuhEngine.WORDS.waw.faces.includes('hal')",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q393",
+   "line": 393,
+   "ar": "وواوين ينتصبُ ما بعدهما؛ وهما واو المفعولِ معه، نحو: صِرتُ والنيلَ",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-al-waw"
+   ],
+   "status": "noted",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"صِرتُ والنيلَ\").items.some(x => x.key === \"waw\" && x.face === \"maiyya\")",
+     "ok": false,
+     "got": "false"
+    },
+    {
+     "s": "سِرْتُ وَالنِّيلَ",
+     "w": "والنيل",
+     "re": "مفعول معه",
+     "ok": true,
+     "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول معه، والواو واو المعية — الفعل «سرت» لازم ولا منصوب قبله يعطف عليه."
+    }
+   ]
+  },
+  {
+   "id": "Q395",
+   "line": 395,
+   "ar": "وواو الجمعِ … الداخلة على المضارع المسبوق بنفيٍ أو طلب، نحو: ﴿وَلَمَّا يَعْلَمِ ٱللَّهُ ٱلَّذِينَ جَٰهَدُوا۟ مِنكُمْ وَيَعْلَمَ ٱلصَّٰبِرِينَ﴾  .",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"لَا تَنْهَ عَنْ خُلُقٍ وَتَأْتِيَ مِثْلَهُ\").items.some(x => x.key === \"waw\" && x.face === \"jam\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q398",
+   "line": 398,
+   "ar": "لَا تَنْهَ عَنْ خُلُقٍ وَتَأْتِيَ مِثْلَهُ ... عَارٌ عَلَيْكَ إِذَا فَعَلْتَ عَظِيمُ",
+   "kind": "example",
+   "carried_by": [
+    "note:nawasib-wa-jawazim-al-mudari"
+   ],
+   "status": "example"
+  },
+  {
+   "id": "Q400",
+   "line": 400,
+   "ar": "وواوين ينجرُ ما بعدَهُما، وهما: واو القسم، نحو: ﴿وَٱلتِّينِ وَٱلزَّيْتُونِ﴾   … وواو رُبَّ، كقوله:",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "js": "WujuhEngine.table(\"وَالتِّينِ وَالزَّيْتُونِ\").items.some(x => x.key === \"waw\" && x.face === \"qasam\")",
+     "ok": false,
+     "got": "false"
+    },
+    {
+     "js": "WujuhEngine.table(\"وَبَلْدَةٍ لَيْسَ فِيهَا أَنِيسُ\").items.some(x => x.key === \"waw\" && x.face === \"rubba\")",
+     "ok": false,
+     "got": "false"
+    }
+   ]
+  },
+  {
+   "id": "Q401",
+   "line": 401,
+   "ar": "وَبَلْدَةٍ لَيْسَ فِيهَا أَنِيسُ ... إِلَّا الْيَعَافِيرُ وَإِلَّا الْعِيسُ",
+   "kind": "example",
+   "carried_by": [
+    "note:al-mustathna-wa-nawah-wa-nasbuh"
+   ],
+   "status": "example"
+  },
+  {
+   "id": "Q403",
+   "line": 403,
+   "ar": "وواوًا يكون ما بعدها على حسبِ ما قبلها، وهي واو العطف.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:WawEngine · ʿaṭf"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "جَاءَ زَيْدٌ وَعَمْرٌو",
+     "w": "وعمرو",
+     "re": "معطوف",
+     "ok": true,
+     "got": "اسم علم، مرفوع وعلامة رفعه الضمة الظاهرة، معطوف."
+    }
+   ]
+  },
+  {
+   "id": "Q405",
+   "line": 405,
+   "ar": "وواوًا يكون دخولها في الكلامِ كخروجها، وهي الواو الزائدة.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "the extra wāw (حَتَّى إِذَا جَاءُوهَا وَفُتِحَتْ) — whether the answer is dropped or the wāw extra is argued"
+  },
+  {
+   "id": "Q407",
+   "line": 407,
+   "ar": "وقيل: إنها عاطِفةٌ، والجواب محذوف، والتقدير: كان كيت وكيت.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«some say: joining, the answer dropped» — a reported view"
+  },
+  {
+   "id": "Q409",
+   "line": 409,
+   "ar": "وقولُ جماعةٍ: إنها واو الثمانية",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«the wāw of eight» — named only to be rejected"
+  },
+  {
+   "id": "Q411",
+   "line": 411,
+   "ar": "لا يرضاه نَحوِيٌّ",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q413",
+   "line": 413,
+   "ar": "النوع الثامن: ما يأتي على اثني عشر وجهًا.",
+   "kind": "heading",
+   "carried_by": [],
+   "status": "heading"
+  },
+  {
+   "id": "Q415",
+   "line": 415,
+   "ar": "فإنها على ضربين: اسمية، وأوجهها سبعة: معرفة تامة",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "نِعْمَ مَا صَنَعْتَ",
+     "w": "ما",
+     "re": "نكرة تامة",
+     "ok": false,
+     "got": "اسم، مبني لا يتغير آخره."
+    }
+   ],
+   "engine_hint": "MaEngine · مَا maʿrifa tāmma"
+  },
+  {
+   "id": "Q417",
+   "line": 417,
+   "ar": "ومعرفةٌ ناقصةٌ، وهي الموصولة … نحو: ﴿مَا عِندَ ٱللَّهِ خَيْرٌ مِّنَ ٱللَّهْوِ وَمِنَ ٱلتِّجَٰرَةِ﴾",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "مَا عِنْدَ اللهِ خَيْرٌ",
+     "w": "ما",
+     "re": "موصول",
+     "ok": false,
+     "got": "حرف لا محل له من الإعراب."
+    }
+   ],
+   "engine_hint": "MaEngine · مَا mawṣūla"
+  },
+  {
+   "id": "Q419",
+   "line": 419,
+   "ar": "وشرطية، نحو: ﴿وَمَا تَفْعَلُوا۟ مِنْ خَيْرٍ يَعْلَمْهُ ٱللَّهُ﴾  . واستفهامية، نحو: ﴿وَمَا تِلْكَ بِيَمِينِكَ يَٰمُوسَىٰ﴾  . ويجب حذف ألفها إذا كانت مجرورة، نحو: ﴿عَمَّ يَتَسَآءَلُونَ﴾  . ﴿فَنَاظِرَةٌۢ بِمَ يَرْجِعُ ٱلْمُرْسَلُونَ﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "engine:MaEngine · مَا shartiyya",
+    "note:in-shartiyya"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "وَمَا تَفْعَلُوا مِنْ خَيْرٍ يَعْلَمْهُ اللهُ",
+     "w": "وما",
+     "re": "اسم شرط",
+     "ok": true,
+     "got": "اسم شرط جازم مبني على السكون في محل نصب مفعول به مقدم ل«تفعلوا»، يجزم فعلين، وجزم «تفعلوا» ظاهر."
+    }
+   ]
+  },
+  {
+   "id": "Q421",
+   "line": 421,
+   "ar": "وإنما جاز نحو: لماذا فعلتَ؟، بأن ألفها صارت حشوًا في التركيب مع ذا، فأشبهت المنصوب له.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Sh336Engine · R42 (لِمَاذَا)"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "لِمَاذَا فَعَلْتَ",
+     "w": "لماذا",
+     "re": "في محل جر",
+     "ok": true,
+     "got": "اللام حرف جر، و«ماذا» اسم استفهام مبني على السكون في محل جر (أبقيت ألف «ما» ف«ذا» مركبة معها)."
+    }
+   ]
+  },
+  {
+   "id": "Q423",
+   "line": 423,
+   "ar": "ونكرةٌ تامةٌ … وذلك في ثلاثة مواضع، في كل منها خلاف: أحدها: نحو: ﴿فَنِعِمَّا هِىَ﴾   … ونحو: نعمَ ما صنعت.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "فَنِعِمَّا هِيَ",
+     "w": "فنعما",
+     "re": "نكرة تامة",
+     "ok": false,
+     "got": "اسم، مبني لا يتغير آخره."
+    }
+   ]
+  },
+  {
+   "id": "Q425",
+   "line": 425,
+   "ar": "التقدير: … ونعم شيئًا شيءٌ صنعته",
+   "kind": "fragment",
+   "carried_by": [],
+   "status": "fragment"
+  },
+  {
+   "id": "Q427",
+   "line": 427,
+   "ar": "والثاني، مما تكون فيه (ما) نكرةً تامةً، قولهم: إني   أن أفعل.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "not-automatable",
+   "reason": "«إِنِّي مِمَّا أَنْ أَفْعَلَ» — the second place of the complete indefinite, a reported idiom"
+  },
+  {
+   "id": "Q431",
+   "line": 431,
+   "ar": "والثالث: قولهم في التعجب: ما أحسن زيدًا!، أي: شيءٌ حسَّنَ زيدًا، هذا قول سيبويه.",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "مَا أَحْسَنَ زَيْدًا",
+     "w": "ما",
+     "re": "التعجبية",
+     "ok": true,
+     "got": "«ما» التعجبية، نكرة تامة بمعنى «شيء عظيم»، مبني على السكون في محل رفع مبتدأ، وجملة «أحسن زيدا» في محل رفع خبره."
+    }
+   ]
+  },
+  {
+   "id": "Q433",
+   "line": 433,
+   "ar": "ونكرة موصوفة",
+   "kind": "rule",
+   "carried_by": [
+    "engine:MaEngine · مَا nakira mawṣūfa"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "js": "WujuhEngine.WORDS.ma.faces.includes('mawsufa')",
+     "ok": true,
+     "got": "true"
+    }
+   ]
+  },
+  {
+   "id": "Q435",
+   "line": 435,
+   "ar": "ومنه – في قولٍ –: نعم ما صنعتَ، أي: نعم شيئًا صنعتَه. وما أحسن زيدًا! أي: شيءٌ موصوفٌ بأنه حسَّن زيدًا، عظيمٌ، بحذف الخبر.",
+   "kind": "rule",
+   "carried_by": [
+    "note:anwa-ma"
+   ],
+   "status": "noted",
+   "reason": "«نِعْمَ مَا صَنَعْتَ» = نِعْمَ شَيْئًا صَنَعْتَهُ «in one view» — a reported reading"
+  },
+  {
+   "id": "Q437",
+   "line": 437,
+   "ar": "ونكرةٌ موصوفٌ بها",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "لِأَمْرٍ مَا جَدَعَ قَصِيرٌ أَنْفَهُ",
+     "w": "ما",
+     "re": "صفة|نعت",
+     "ok": false,
+     "got": "حرف لا محل له من الإعراب."
+    }
+   ]
+  },
+  {
+   "id": "Q439",
+   "line": 439,
+   "ar": "وتأتي حرفيةً، وأوجهها خمسة: مصدرية غير ظرفية: نحو: ﴿بِمَا نَسُوا۟ يَوْمَ ٱلْحِسَابِ﴾  ،   أي: بنسيانهم … مصدرية ظرفية: نحو: ﴿مَا دُمْتُ حَيًّا﴾  ،   أي: مدة دوامي حيًّا.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "بِمَا نَسُوا يَوْمَ الْحِسَابِ",
+     "w": "بما",
+     "re": "مصدري",
+     "ok": false,
+     "got": "حرف لا محل له من الإعراب."
+    }
+   ],
+   "engine_hint": "MaEngine · مَا maṣdariyya"
+  },
+  {
+   "id": "Q441",
+   "line": 441,
+   "ar": "وكافة عن العمل: وهي ثلاثة أقسام:",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "إِنَّمَا اللهُ إِلَهٌ وَاحِدٌ",
+     "w": "إنما",
+     "re": "كاف",
+     "ok": false,
+     "got": "حرف لا محل له من الإعراب."
+    }
+   ],
+   "engine_hint": "MaEngine · the kāffa"
+  },
+  {
+   "id": "Q443",
+   "line": 443,
+   "ar": "كافة عن عمل الرفع، كقوله:",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "وَقَلَّمَا وِصَالٌ عَلَى طُولِ الصُّدُودِ يَدُومُ",
+     "w": "وقلما",
+     "re": "كاف",
+     "ok": false,
+     "got": "حرف لا محل له من الإعراب."
+    }
+   ]
+  },
+  {
+   "id": "Q444",
+   "line": 444,
+   "ar": "صَدَدْتِ فَأَطْوَلْتِ الصُّدُودَ وَقَلَّمَا ... وِصَالٌ عَلَى طُولِ الصُّدُودِ يَدُومُ",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q448",
+   "line": 448,
+   "ar": "وكافةٌ عن عمل النصب والرفع، وذلك في (إن) وأخواتها، نحو: ﴿إِنَّمَا ٱللَّهُ إِلَٰهٌ وَٰحِدٌ﴾  ، وكافةٌ عن عمل الجر، نحو: ﴿رُّبَمَا يَوَدُّ ٱلَّذِينَ كَفَرُوا۟﴾  .",
+   "kind": "rule",
+   "carried_by": [
+    "engine:Murib.line · the kāffa on إِنَّ"
+   ],
+   "status": "applied",
+   "probes": [
+    {
+     "s": "إِنَّمَا اللهُ إِلَهٌ وَاحِدٌ",
+     "w": "الله",
+     "re": "مبتدأ",
+     "ok": true,
+     "got": "اسم علم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدأ، وخبره «إله»."
+    }
+   ]
+  },
+  {
+   "id": "Q451",
+   "line": 451,
+   "ar": "كَمَا سَيْفُ عَمْرٍو لَمْ تَخُنْهُ مَضَارِبُه",
+   "kind": "example",
+   "carried_by": [],
+   "status": "example"
+  },
+  {
+   "id": "Q453",
+   "line": 453,
+   "ar": "وزائدة: وتسمى هي وغيرها من الحروف الزائدة صلةً وتوكيدًا، نحو: ﴿فَبِمَا رَحْمَةٍ مِّنَ ٱللَّهِ لِنتَ لَهُمْ﴾  . ﴿عَمَّا قَلِيلٍ لَّيُصْبِحُنَّ نَٰدِمِينَ﴾  . أي: فبرحمةٍ، وعن قليلٍ، والله أعلم.",
+   "kind": "rule",
+   "carried_by": [],
+   "status": "open",
+   "probes": [
+    {
+     "s": "فَبِمَا رَحْمَةٍ مِنَ اللهِ لِنْتَ لَهُمْ",
+     "w": "فبما",
+     "re": "زائد",
+     "ok": false,
+     "got": "حرف لا محل له من الإعراب."
+    }
+   ],
+   "engine_hint": "MaEngine · مَا zāʾida"
+  }
+ ]
+}

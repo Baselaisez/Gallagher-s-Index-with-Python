@@ -15899,3 +15899,104 @@ same folds and scores, which the check still compares), so it asserts units ≥ 
 Full suite (refit chain, then `node tools/smoke_test.js`): 559 checks, 558 pass; the one failure was that wave-189 pin, fixed
 and passing alone after. In that run: door 986 ms, first Jumla worst task 938 ms, keystroke median 5.7 ms, hub step 14 ms.
 `tools/entrance_test.js`: ready offline in 5.1 s, app from the cache in 0.57 s (the hashed slices sit in `qissa-data`, 24 files).
+
+## v342-N — the naḥw books' ledger and the rules consumed
+
+The owner's word for this wave: Shudhūr, Qawāʿid al-Iʿrāb, Iẓhār, Kāfiya «consumed COMPLETELY». First a ledger of every rule, cut by
+script and proved in the page; then the open entries consumed, most-met first.
+
+- **The ledger — `tools/ledger/`.** `build_ledger.py` cuts the entries from the sources (Shudhūr: the 210 rules of
+  `shudhur-al-dhahab-qawaid.jsonl` with their src line by page, and the 23 matn lines of part one; Qawāʿid: every statement line of the
+  matn, bāb 1 and bāb 3, headings / lecture fragments / cited verses counted apart; Iẓhār: the sixty ʿāmil, the thirty maʿmūl, the ten
+  signs, and the condition sentences of the lithograph («line.k»); Kāfiya: the shelf story's definitions «X مَا …» and rulings
+  «شَرْطُهُ / يَجِبُ / يَجُوزُ / يَمْتَنِعُ / يَلْزَمُ», plus the headings of `kafiya-internet-digest.txt` for the chapters the story skips — the
+  story has no marfūʿāt … tawābiʿ). It joins each entry with its map (`shudhur_map.py`, `qawaid_map.py`, `izhar_map.py`, `kafiya_map.py`:
+  the engine and rule, the probes = the book's own example + what the line must say, or the reason it is not automatable), proves every
+  probe in `prototype/reader.html` (`prove.js` → `probe.js`, ~15 s), detects «noted» from the notes themselves (an example whose `source`
+  names the line / jsonl rule, a `sourceStory` anchor, or ≥ 5 words of the entry verbatim in a note's Arabic), and writes
+  `content/rules/coverage_{shudhur,qawaid_al_irab,izhar,kafiya}.json` and `research/book-coverage-2026-11-27.nahw.md` (with the bāb-3
+  word table: each word's count of faces in the matn against `WujuhEngine.WORDS`, and how many of the matn's own examples read right).
+  A «noted» row whose probe still fails is marked ⚠ in the .md: the note carries the book's ruling, the engine still misreads it.
+
+  | book (entries) | applied | noted (⚠ engine still misreads) | not automatable | open |
+  |---|---:|---:|---:|---:|
+  | Shudhūr al-Dhahab (234) | 132 → **146** | 18 → **65** (45) | 22 → 22 | 62 → **1** (R137) |
+  | Qawāʿid al-Iʿrāb (150 + 55 apart) | 63 → **64** | 5 → **14** (12) | 43 → 42 | 39 → **30** |
+  | Iẓhār al-Asrār (163) | 123 → **128** | 24 → 20 (14) | 5 → 5 | 11 → **10** |
+  | al-Kāfiya (131) | 41 → **43** | 44 → **59** (8) | 20 → 20 | 26 → **9** |
+
+  The week-old triage was re-measured, not trusted: of its 99 «applied» Shudhūr rules several do not prove on the rule's own example
+  today (R20 قَبْلُ, R22 عَلُ, R34/R38 — now applied by this wave —, R85 أَنَّا read as «أَنَا», R126 آلَ read as a verb, R154 «أَنْ تَدْخُلُوا»
+  printed «مَجْزُومٌ … حَذْفُ النُّونِ», R161 / Iẓhār 26.1 «فَأُكْرِمَكَ» read as a passive māḍī, R178 «تَبَّتْ يَدَا» «وَعَلَامَتُهُ مُقَدَّرَةٌ»,
+  R184 jarr al-jiwār, R190); the ledger says so row by row.
+- **`Nahw342Engine`** (reader.html, the `v342-N BEGIN/END` block right after `class Murib`; source in the scratchpad `nahw342/eng342.js`,
+  spliced by `splice.py`): rules as data (`RULES`: certainty, the book lines, the gate), one hook — `post(rows, i, L)` wraps `Murib.line`
+  (re-entry guarded), so the sheet, the drills and every audit read the same verdict. EXACT unless marked:
+  - `fiveRaf` — «مَرْفُوعٌ بِالْحُرُوفِ» on the five verbs becomes «مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ لِأَنَّهُ مِنَ الْأَفْعَالِ الْخَمْسَةِ» (Iẓhār l. 162,
+    Shudhūr src:48). Silent on the nūn of emphasis (يَضْرِبَانِّ), on يَـ…ينَ (the niswa of a yāʾ-final verb), on a wāw-final verb in ـونَ and a
+    yāʾ-final verb in ـينَ (their 3mp/3fp and 2fs/2fp share the letters: يَعْلُونَ، تَرْمِينَ).
+  - `qasam` — وَاللهِ (the analyzer's pk «qasam») and تَاللهِ (whose «hā» the analyzer peeled): «الْوَاوُ / التَّاءُ حَرْفُ جَرٍّ وَقَسَمٍ … مُتَعَلِّقَانِ بِفِعْلِ
+    قَسَمٍ مَحْذُوفٍ» (Iẓhār l. 14; Shudhūr R171–172) — was «اسْمٌ عَلَمٌ». `rubba` OFFERED — a sentence opening with وَ + an indefinite in
+    written jarr: wāw rubba (Shudhūr R176) or a joining wāw (the muʿallaqāt split verses into sentences, and seven authors join).
+  - `qabl` — مِنْ قَبْلُ / مِنْ بَعْدُ / مِنْ عَلُ written with the ḍamma, nothing annexed: «ظَرْفُ زَمَانٍ، مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ جَرٍّ بِـ«مِنْ»»
+    (Shudhūr R20, R22).
+  - `demHa` / `demKaf` — «وَالْهَاءُ لِلتَّنْبِيهِ», «وَاللَّامُ لِلْبُعْدِ، وَالْكَافُ حَرْفُ خِطَابٍ» on the demonstratives (Shudhūr R34, R38), as the authors write.
+  - `fujaa` — إِذَا before a detached pronoun, an إِنَّ clause, or a noun no verb follows in its clause: «حَرْفُ مُفَاجَأَةٍ … (وَقِيلَ: ظَرْفٌ)»; with a
+    jāzim before it and no fāʾ, «وَالْجُمْلَةُ بَعْدَهُ فِي مَحَلِّ جَزْمٍ جَوَابُ الشَّرْطِ» (Qawāʿid m.63; Shudhūr R86, R192). A pronoun + (لَمْ …) + a verb
+    is the conditional unless the fāʾ or a condition precedes (إِذَا أَنْتَ لَمْ تُنْصِفْ). `idhaFail` — إِذَا السَّمَاءُ انْشَقَّتْ: «فَاعِلٌ لِفِعْلٍ مَحْذُوفٍ
+    وُجُوبًا يُفَسِّرُهُ الْمَذْكُورُ» (Shudhūr R57; the noun with «أَلْ», the verb a māḍī whose doer is hidden).
+  - `fasl` — a detached pronoun between kāna's / a heart verb's first noun and a definite or afʿal khabar in written naṣb: «ضَمِيرُ فَصْلٍ
+    لَا مَحَلَّ لَهُ» (Kāfiya 4:s11); `faslOff` OFFERED after a mubtadaʾ / inna's ism with a rafʿ khabar (faṣl, or a second mubtadaʾ).
+  - `shaan` — إِنَّهُ / أَنَّهُ before a verb whose doer is written and a clause with nothing that could return to the hā: «وَالْهَاءُ ضَمِيرُ الشَّأْنِ».
+  - `sababi` — a participle with tanwīn (khabar / naʿt / ḥāl) and right after it a noun in rafʿ with a pronoun: «فَاعِلٌ لِاسْمِ الْفَاعِلِ «X»» /
+    «نَائِبُ فَاعِلٍ لِاسْمِ الْمَفْعُولِ «X»» (Shudhūr R49, R51; Iẓhār l. 35; Kāfiya 16:s14) — not when the noun has a khabar of its own (اسْمُهُ جُرَيْجٌ)
+    or, after a naʿt, a jarr phrase follows (زِيَادَتُهُ أَوْ نَقْصُهُ فِي التَّكَلُّمِ).
+  - `wasf` — أَقَائِمٌ الزَّيْدَانِ / مَا قَائِمٌ الزَّيْدَانِ: «فَاعِلٌ سَدَّ مَسَدَّ الْخَبَرِ» when the waṣf is singular and the noun dual/plural (R65, R68; Iẓhār
+    l. 101); `wasfOff` OFFERED with a singular (or the delayed mubtadaʾ).
+  - `maful2` — the second accusative of a DabtEngine.TWO_OBJ / DITRANS verb: «مَفْعُولٌ بِهِ ثَانٍ» (Shudhūr R203, R206; Iẓhār l. 30);
+    `maful2Off` OFFERED for a heart verb («… إِنْ كَانَ قَلْبِيًّا، أَوْ حَالٌ إِنْ كَانَ بَصَرِيًّا», + «أَوْ نَعْتٌ» after an indefinite first object — R207);
+    gated off a time word, مِثْلَ / كُلَّ, a tawkīd, the noun after a demonstrative object, قَرَأَ.
+  - `laDual` — لَا رَجُلَيْنِ: «مَبْنِيٌّ عَلَى الْيَاءِ فِي مَحَلِّ نَصْبٍ» (Shudhūr R12).
+- **Measured over every story** (scratchpad `nahw342/m.sh` + `specs342.py` + `meas342.js`, base = the build before the wave): authored
+  lines naming the construction, agreeing before → after — the five verbs' «ثبوت النون» (742 authored) 1 → 626; the oath (wāw/tāʾ) 0 → 29;
+  قَبْلُ / بَعْدُ built 0 → 14; the demonstratives' kāf / hā 0 → 70 (the engine now names them on ~900 tokens the authors leave silent); the
+  faṣl 0 → 10; the surprise إِذَا 0 → 6; R57 1 → 5; the participle's doer 0 → 4 (+ Labīd's six «فاعل لـ«…»» agree); the second object 0 → 66
+  (the rest of the engine's «ثان» meet an author who writes «مفعول به» — the same office). Every exact line against an author was read:
+  cited forms («لفظ محكي»: Marāḥ's paradigm words, the Kāfiya's examples, the Shudhūr story), authors naming no sign (Talkhīṣ
+  «خبر كانوا», «معطوف على يغمسون»), aqaid-ahl-al-sunna:7:s3:6 وَيُعَاقَبُونَ «معطوف» (the same rafʿ) — compatible facts; the ones that were the
+  engine's (the 3fp يَعْلُونَ / تَرْمِينَ, the oath's nūn يَضْرِبَانِّ) were gated out, the rubba wāw made offered. **For the hoca: no new
+  slip** — the authored lines these rules met agree. The shelf audit regenerated as `research/story-grammar-audit-2026-11-27.md`:
+  every engine's count unchanged (clause maḥall 121 / 19 exact, sign 141, case 663, taʿalluq 307, adab 570, inna 27, order 2; manṣūbāt
+  silent 324 → 319) — the new rules add no exact contradiction to the audited engines.
+- **Notes fed (72 examples, `tools/ledger/feed_notes.py`, idempotent; the Arabic cut from the source, never typed):** Shudhūr part one's
+  definitions (src l. 4–19, 41, 45, 49 → al-kalima-wal-kalam, al-muthanna, jam-mudhakkar-salim, afal-khamsa; glossed by the shelf story's own
+  translation and anchored to it), 40 Shudhūr rules' own examples (jsonl index, gloss = the rule's rule_en / rule_tr; vocative, lā li-l-jins,
+  mā/lā/lāta/in like laysa, the dropped kāna, the light kaʾan / lākin, al-mawṣūla, rubba, the fronted mustathnā …), 15 Kāfiya definitions
+  and rulings (sourceStory al-kafiya, chapter, sentence → tarifat-daftar-al-kafiya and the Kāfiya chapter notes), and 11 plain examples of the
+  Qawāʿid matn (no āya: the file's āyāt still await the page) → anwa-al-jumal, anwa-ma, anwa-al-waw, qad-harf, in-shartiyya, hal-ma-man,
+  insha-wa-tamanni.
+- **Smoke** (six checks «v342 — …» right before «v333 — the received imports»): one per book — the ledger's stored counts match its rows,
+  every applied entry re-proved in the page, every noted entry's note exists, every not-automatable one has its reason, and floors / ceilings
+  (Shudhūr applied ≥ 146, applied + noted ≥ 211, open ≤ 1; Qawāʿid ≥ 64, ≥ 78, ≤ 30; Iẓhār ≥ 128, ≥ 148, ≤ 10; Kāfiya ≥ 43, ≥ 102, ≤ 9); the books'
+  own examples through every rule with its controls; the corpus floors (five verbs ≥ 620, oath ≥ 29, قَبْلُ ≥ 14, kāf / hā ≥ 70, faṣl ≥ 10,
+  surprise إِذَا ≥ 6, R57 ≥ 5) and at most 2 unlisted exact lines against an author. One older check changed, for a cited book line:
+  «v329 — a demonstrative is never muḍāf» anchored هَذِهِ's line on «مُضَافٌ إِلَيْهِ.» at its end; the line now closes «…، وَالْهَاءُ لِلتَّنْبِيهِ»
+  (Shudhūr R38), so the anchor admits that clause (the assertion — muḍāf ilayh, never «وَهُوَ مُضَافٌ» — is unchanged).
+- **Refit + full suite** (`build → gen_irab_model → build → gen_drills → ml_engine → build`, then `node tools/smoke_test.js`): irab_model 2,459
+  weights over 72,955 rows, drills regenerated (99.2 % POS, 99.1 % case agreement); **578 checks**: 574 passed in the run; three failed on
+  time alone under the shared machine (narration's selector, the held-out CV 16 s, v334-S's hub step 710 ms) and pass re-run alone; v329 as above.
+  `python3 tools/check_i18n.py`: every user-visible string has Turkish.
+- **Left (counts per book):** Shudhūr 1 open (R137 — the four laysa-particles as one rule: lāta / lā / in still unread) and 45 noted rows
+  whose example the engine still misreads (the laysa-like lā, بَاقِيَا as an amr (I-24), the light kaʾan / lākin, the dropped kāna after أَمَّا /
+  إِنْ / لَوْ, the ism-fiʿl and فَعَالِ names, R154 أَنْ + the five verbs printed jazm, R161 / Iẓhār 26.1 أُكْرِمَكَ as a passive māḍī, R178
+  يَدَا, R85 أَنَّا, R126 آلَ, …); Qawāʿid 30 open (bāb 1: the second object in bāb أَعْلَمَ, the condition clause's seat, the follower clause, the
+  istiʾnāf; bāb 3: إِي has 3 faces in the matn and 1 in the engine, حَتَّى 3 vs 4 (nasb is jārra + the hidden أَنْ), لَوْ lacks the ʿarḍ face, the
+  typed wāw is graded «atf» for qasam / rubba / maʿiyya / jamʿ, كَلَّا of taṣdīq, قَدْ of tawaqquʿ / takthīr, مَا's ten faces on the matn's
+  examples (WujuhEngine reads joined مَا — بِمَا، إِنَّمَا، فَنِعِمَّا — as nothing), the āyāt not yet checked); Iẓhār 10 open (the fronted object
+  «زَيْدًا ضَرَبْتُ», the light kaʾan, «زُرْنِي فَأُكْرِمَكَ», the fronted khabar of kāna, the ẓarf's doer «زَيْدٌ فِي الدَّارِ أَبُوهُ», «مُرَّ بِزَيْدٍ»,
+  «قَعَدْتُ جُلُوسًا», «جِئْتُ وَزَيْدًا», badal baʿḍ); Kāfiya 9 open (K16:s14 the maqṣūr passive participle «مُعْطًى غُلَامُهُ», and the digest's
+  sections on the fronted object, tanāzuʿ, the fāʾ in the khabar, the dropped verb of the maṣdar, tarkhīm, the ẓarf of time, the ḥāl of a
+  ẓarf, the badal kinds). Seen by the probes and not fixed: «ضَرَبْتُ زَيْدًا قَائِمًا» names قَائِمًا a mafʿūl muṭlaq; «إِنْ تَضْرِبْ أَضْرِبْ» reads
+  أَضْرِبْ as an amr; the v326 tawkīd line on «فَإِمَّا تَرَيِنَّ» (tasrif-al-izzi:10:s5:19) says rafʿ where the author (rightly) says jazm by إِنْ.
+  R2 (every applied Shudhūr rule also reachable from its note) was not extended beyond the open rows.
+  Scripts: scratchpad nahw342/ (eng342.js + splice.py; m.sh / specs342.py / meas342.js; runmap.py; smoke342.js; before/ the ledger before).

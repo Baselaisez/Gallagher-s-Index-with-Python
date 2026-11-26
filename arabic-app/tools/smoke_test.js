@@ -17970,6 +17970,78 @@ if (!CHROME) {
     if (worst > STEP_MS) throw new Error('a pool step held the thread: ' + JSON.stringify(r.per) + ' (budget ' + STEP_MS + ')');
   });
 
+  // ── v342-N — the naḥw books' ledger (content/rules/coverage_*.json, cut by tools/ledger/build_ledger.py) and the rules consumed
+  {
+    const root342 = path.resolve(__dirname, '..');
+    const probeFn342 = (() => { const s = fs.readFileSync(path.join(root342, 'tools/ledger/probe.js'), 'utf8'); return s.slice(s.indexOf('(probes)')); })();
+    const ledger342 = (book, floor) => async () => {
+      const d = JSON.parse(fs.readFileSync(path.join(root342, 'content/rules/coverage_' + book + '.json'), 'utf8'));
+      const c = {}; for (const r of d.entries) c[r.status] = (c[r.status] || 0) + 1;
+      for (const k of ['applied', 'noted', 'not-automatable', 'open']) if (c[k] !== d.counts[k]) throw new Error(book + ': the stored counts are stale (' + k + ' ' + d.counts[k] + ' vs ' + c[k] + ') — run tools/ledger/build_ledger.py');
+      if (c.applied < floor.applied || (c.applied + (c.noted || 0)) < floor.carried || (c.open || 0) > floor.open) throw new Error(book + ': ledger moved back — ' + JSON.stringify(c) + ' against ' + JSON.stringify(floor));
+      for (const r of d.entries) {
+        if (r.status === 'applied' && !(r.probes && r.probes.length && r.carried_by.some(x => /^engine:/.test(x)))) throw new Error(book + ' ' + r.id + ': applied without a probe and an engine');
+        if (r.status === 'noted') for (const x of r.carried_by.filter(x => /^note:/.test(x))) if (!fs.existsSync(path.join(root342, 'content/grammar', x.slice(5) + '.json'))) throw new Error(book + ' ' + r.id + ': the note ' + x + ' does not exist');
+        if (r.status === 'not-automatable' && !(r.reason || '').trim()) throw new Error(book + ' ' + r.id + ': not automatable without a reason');
+        if (!(r.ar || r.tr)) throw new Error(book + ' ' + r.id + ': no text cut from the source');
+      }
+      const ap = d.entries.filter(r => r.status === 'applied'); const probes = [].concat(...ap.map(r => r.probes.map(({ ok, got, own, ...p }) => p)));
+      const res = await page.evaluate(([f, ps]) => (0, eval)('(' + f + ')')(ps), [probeFn342, probes]);
+      let k = 0; const bad = [];
+      for (const r of ap) for (const p of r.probes) { if (!res[k].ok) bad.push(r.id + ' «' + (p.s || p.js).slice(0, 50) + '» → ' + res[k].got.slice(0, 80)); k++; }
+      if (bad.length) throw new Error(book + ': ' + bad.length + ' applied entries no longer prove — ' + bad.slice(0, 3).join(' | '));
+    };
+    await check('v342 — the ledger of Shudhūr al-Dhahab: all 210 extracted rules and the 23 matn lines of part one cut by script (content/rules/coverage_shudhur.json), every «applied» entry re-proved by its own example in this page (146), «noted» entries carried by a note that anchors the rule (jsonl / src line), not-automatable ones with their reason; the counts only improve (applied ≥ 146, applied + noted ≥ 211, open ≤ 1)', ledger342('shudhur', { applied: 146, carried: 211, open: 1 }));
+    await check('v342 — the ledger of Qawāʿid al-Iʿrāb: every statement of the matn (bāb 1 and bāb 3) cut by line, headings / lecture fragments / cited verses apart; applied ≥ 64 re-proved (JumlaMahallEngine, WujuhEngine, MaEngine, Nahw342Engine), applied + noted ≥ 78, open ≤ 30', ledger342('qawaid_al_irab', { applied: 64, carried: 78, open: 30 }));
+    await check('v342 — the ledger of Iẓhār al-Asrār: the sixty ʿāmil, the thirty maʿmūl, the ten signs and the conditions the matn states, each with its lithograph line; applied ≥ 128 re-proved, applied + noted ≥ 148, open ≤ 10', ledger342('izhar', { applied: 128, carried: 148, open: 10 }));
+    await check('v342 — the ledger of al-Kāfiya: the matn\'s definitions («… مَا …») and rulings («شَرْطُهُ / يَجِبُ / يَجُوزُ / يَمْتَنِعُ») on the shelf, and the digest\'s sections the story skips; applied ≥ 43 re-proved, applied + noted ≥ 102, open ≤ 9', ledger342('kafiya', { applied: 43, carried: 102, open: 9 }));
+  }
+  await check('v342 — Nahw342Engine by the books\' own examples: the five verbs raised by the nūn (Iẓhār\'s ten signs; Shudhūr src:48); وَاللهِ / تَاللهِ the letters of the oath (Iẓhār l. 14; Shudhūr R172); مِنْ قَبْلُ وَمِنْ بَعْدُ built on the ḍamma (Shudhūr R20); ذَلِكَ / هَذَا the lām of distance, the kāf of address, the hā of alerting (R34, R38); كَانَ زَيْدٌ هُوَ الْقَائِمَ a pronoun of separation (Kāfiya 4:s11), زَيْدٌ هُوَ الْعَالِمُ offered; إِذَا السَّمَاءُ انْشَقَّتْ the doer of a dropped verb (R57); فَإِذَا إِنَّ زَيْدًا … and the answer إِذَا هُمْ يَقْنَطُونَ the إِذَا of surprise (R86, R192, Qawāʿid m.63); عَمْرٌو مَضْرُوبٌ غُلَامُهُ / مُخْتَلِفٌ أَلْوَانُهُ the participle\'s doer (R49, R51); أَقَائِمٌ الزَّيْدَانِ the doer that fills the khabar (R65); لَا رَجُلَيْنِ built on the yāʾ (R12); إِنَّهُ لَا يُفْلِحُ الظَّالِمُونَ the pronoun of the matter; the second object of أَعْطَى; وَلَيْلٍ … offered (rubba or ʿaṭf); and the controls stay', async () => {
+    const r = await page.evaluate(() => { const H = x => String(x || '').normalize('NFC').replace(/[ً-ْٰـ]/g, ''); const L = (s, w) => { const rows = SentenceAnalyzer.analyze(s); const i = typeof w === 'number' ? w : rows.findIndex(x => H(x.w) === w); return i < 0 ? '(no ' + w + ')' : H((Murib.line(rows, i) || {}).ar); };
+      return { five: L('يَضْرِبُونَ', 'يضربون'), niswa: L('يَمْشِينَ', 'يمشين'), tawkid: L('يَضْرِبَانِّ', 'يضربان'), wallah: L('وَاللهِ لَأَفْعَلَنَّ', 'والله'), tallah: L('تَاللهِ تَفْتَأُ تَذْكُرُ يُوسُفَ', 'تالله'),
+        qabl: L('لِلَّهِ الْأَمْرُ مِنْ قَبْلُ وَمِنْ بَعْدُ', 'قبل'), qablM: L('مِنْ قَبْلِ الصَّلَاةِ', 'قبل'), dhalika: L('ذَلِكَ الْكِتَابُ', 'ذلك'), hadha: L('هَذَا جُحْرُ ضَبٍّ', 'هذا'),
+        fasl: L('كَانَ زَيْدٌ هُوَ الْقَائِمَ', 'هو'), faslOff: L('زَيْدٌ هُوَ الْعَالِمُ', 'هو'), sama: L('إِذَا السَّمَاءُ انْشَقَّتْ', 'السماء'), fuja: L('خَرَجْتُ فَإِذَا إِنَّ زَيْدًا بِالْبَابِ', 'فإذا'),
+        fujaJ: L('وَإِنْ تُصِبْهُمْ سَيِّئَةٌ بِمَا قَدَّمَتْ أَيْدِيهِمْ إِذَا هُمْ يَقْنَطُونَ', 'إذا'), idhaShart: L('إِذَا جَاءَ نَصْرُ اللهِ وَالْفَتْحُ', 'إذا'), idhaCond: L('إِذَا أَنْتَ لَمْ تُنْصِفْ أَخَاكَ وَجَدْتَهُ', 'إذا'),
+        madrub: L('عَمْرٌو مَضْرُوبٌ غُلَامُهُ', 'غلامه'), mukhtalif: L('يَخْرُجُ مِنْ بُطُونِهَا شَرَابٌ مُخْتَلِفٌ أَلْوَانُهُ', 'ألوانه'), jurayj: L('كَانَ فِي قَرْيَةٍ رَجُلٌ عَابِدٌ اسْمُهُ جُرَيْجٌ', 'اسمه'),
+        wasf: L('أَقَائِمٌ الزَّيْدَانِ', 'الزيدان'), wasfOff: L('أَقَائِمٌ زَيْدٌ', 'زيد'), laDual: L('لَا رَجُلَيْنِ فِي الدَّارِ', 'رجلين'), shaan: L('إِنَّهُ لَا يُفْلِحُ الظَّالِمُونَ', 'إنه'), shaanNo: L('إِنَّهُ كَانَ صِدِّيقًا نَبِيًّا', 'إنه'),
+        maful2: L('أَعْطَيْتُهُ دِينَارًا', 'دينارا'), alimtu: L('عَلِمْتُ زَيْدًا فَاضِلًا', 'فاضلا'), layl: L('وَلَيْلٍ كَمَوْجِ الْبَحْرِ أَرْخَى سُدُولَهُ', 'وليل'), rules: Object.keys(Nahw342Engine.RULES).length };
+    });
+    const J = JSON.stringify, has = (a, re) => re.test(a || '');
+    if (!has(r.five, /مرفوع وعلامة رفعه ثبوت النون لأنه من الأفعال الخمسة/) || has(r.niswa, /ثبوت النون/) || has(r.tawkid, /من الأفعال الخمسة/)) throw new Error('the five verbs: ' + J([r.five, r.niswa, r.tawkid]));
+    if (!has(r.wallah, /^الواو حرف جر وقسم، ولفظ الجلالة مقسم به مجرور/) || !has(r.tallah, /^التاء حرف جر وقسم/)) throw new Error('the oath: ' + J([r.wallah, r.tallah]));
+    if (!has(r.qabl, /مبني على الضم في محل جر ب«من»/) || has(r.qablM, /مبني على الضم/)) throw new Error('قَبْلُ: ' + J([r.qabl, r.qablM]));
+    if (!has(r.dhalika, /واللام للبعد، والكاف حرف خطاب/) || !has(r.hadha, /والهاء للتنبيه/)) throw new Error('the demonstratives: ' + J([r.dhalika, r.hadha]));
+    if (r.fasl !== 'ضمير فصل لا محل له من الإعراب.' || !has(r.faslOff, /ضمير فصل لا محل له من الإعراب، أو مبتدأ ثان/)) throw new Error('the faṣl: ' + J([r.fasl, r.faslOff]));
+    if (!has(r.sama, /^فاعل لفعل محذوف وجوبا يفسره المذكور «انشقت»/)) throw new Error('R57: ' + r.sama);
+    if (!has(r.fuja, /«إذا» حرف مفاجأة/) || !has(r.fujaJ, /حرف مفاجأة.*في محل جزم جواب الشرط/) || has(r.idhaShart, /مفاجأة/) || has(r.idhaCond, /مفاجأة/)) throw new Error('the surprise إِذَا: ' + J([r.fuja, r.fujaJ, r.idhaShart, r.idhaCond]));
+    if (!has(r.madrub, /نائب فاعل لاسم المفعول «مضروب»/) || !has(r.mukhtalif, /فاعل لاسم الفاعل «مختلف»/) || has(r.jurayj, /لاسم الفاعل/)) throw new Error('the participle\'s doer: ' + J([r.madrub, r.mukhtalif, r.jurayj]));
+    if (!has(r.wasf, /فاعل سد مسد الخبر\.$/) || !has(r.wasfOff, /سد مسد الخبر، أو مبتدأ مؤخر/)) throw new Error('the waṣf: ' + J([r.wasf, r.wasfOff]));
+    if (!has(r.laDual, /مبني على الياء في محل نصب/)) throw new Error('لَا رَجُلَيْنِ: ' + r.laDual);
+    if (!has(r.shaan, /ضمير الشأن/) || has(r.shaanNo, /ضمير الشأن/)) throw new Error('the pronoun of the matter: ' + J([r.shaan, r.shaanNo]));
+    if (!has(r.maful2, /مفعول به ثان\.?$/) || !has(r.alimtu, /مفعول به ثان ل«علمت» إن كان قلبيا، أو حال إن كان بصريا/)) throw new Error('the second object: ' + J([r.maful2, r.alimtu]));
+    if (!has(r.layl, /واو «رب».*أو الواو عاطفة/)) throw new Error('rubba: ' + r.layl);
+    if (r.rules < 17) throw new Error('RULES: ' + r.rules);
+  });
+  await check('v342 — Nahw342Engine against the authored lines (every story, measured 2026-11-27, before → after): the five verbs\' «ثبوت النون» agreeing ≥ 620 (was 1), the oath ≥ 29 (was 0), قَبْلُ / بَعْدُ built ≥ 14, the demonstratives\' kāf / hā ≥ 70, the faṣl ≥ 10, the surprise إِذَا ≥ 6, R57 ≥ 5; and no exact rule speaks against an author except where the author\'s word is a cited form (لفظ محكي) — each other one listed for the hoca in CLAUDE.md', async () => {
+    const r = await page.evaluate(() => { const S = x => stripAr(String(x || '')).replace(/[^ء-ي «»]/g, '').replace(/[أإآ]/g, 'ا');
+      const SP = [['fiveRaf', /(ون|ان|ين)(ه|ها|هم|هن|هما|ك|كم|كما|كن|ني|نا)?$/, /ثبوت النون/, /من الافعال الخمسة/], ['qasam', /^(ف|و)?(والله|تالله|وربي|وربك|ورب|وال)/, /قسم/, /وقسم/], ['qabl', /^(قبل|بعد|عل)$/, /مبني على الضم/, /مبني على الضم/],
+        ['dem', /(ذلك|تلك|هذا|هذه|هؤلاء|هولاء|اولئك|ذاك|هذان|هذين|هناك|هنالك|ذلكم|تلكم)$/, /حرف خطاب|للتنبيه|حرف تنبيه/, /حرف خطاب|للتنبيه/], ['fasl', /^(و|ف)?(هو|هي|هم|هن|هما|انت|انتم|انا|نحن)$/, /ضمير فصل|ضمير الفصل/, /^ضمير فصل لا محل له من الاعراب/],
+        ['fujaa', /^(ف|و)?اذا$/, /فجائي|مفاجا|للمفاجا/, /مفاجاة/], ['idhaFail', /^(ف|و)?ال/, /لفعل محذوف|يفسره/, /لفعل محذوف وجوبا يفسره/]];
+      const o = {}; for (const [k] of SP) o[k] = { both: 0, contra: [] };
+      for (const st of STORIES) for (const ch of (st.chapters || [])) for (const sn of (ch.sentences || [])) { const T = sn.tokens || []; let rows = null;
+        for (let i = 0; i < T.length; i++) { const wb = stripAr(String(T[i].s.full || '')).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا'); let E = null;
+          for (const [k, w, a, e] of SP) { if (!w.test(wb)) continue; if (!rows) { try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (x) { rows = []; } if (rows.length !== T.length) rows = []; } if (!rows.length) break;
+            if (E === null) { try { E = S((Murib.line(rows, i) || {}).ar).replace(/\s+$/, ''); } catch (x) { E = ''; } }
+            const A = S((T[i].irab || {}).ar); const em = e.test(E.replace(/\.$/, '')), am = a.test(A);
+            const silent = k === 'fiveRaf' ? !/مبني|مجزوم|منصوب|حذف النون/.test(A) : k === 'fasl' ? /او مبتدا ثان/.test(E) : false;   // an author who names no sign is silent; an offered faṣl names the author's reading too
+            if (em && am) o[k].both++; else if (em && A && !am && !silent && !/لفظ محكي|قصد لفظه/.test(A) && k !== 'dem') o[k].contra.push(st.id + ':' + ch.n + ':' + sn.id + ':' + (i + 1)); } } }
+      return o; });
+    const F = { fiveRaf: 620, qasam: 29, qabl: 14, dem: 70, fasl: 10, fujaa: 6, idhaFail: 5 };
+    for (const [k, f] of Object.entries(F)) if (r[k].both < f) throw new Error(k + ': agreeing ' + r[k].both + ' < ' + f);
+    const KNOWN = new Set(['aqaid-ahl-al-sunna:7:s3:6', 'marah-al-arwah:29:s6:11', 'izhar-al-asrar:20:s8:24']);   // compatible facts, each read (CLAUDE.md v342-N)
+    const extra = [].concat(...Object.values(r).map(x => x.contra)).filter(x => !KNOWN.has(x));
+    if (extra.length > 2) throw new Error('exact rules against the authors: ' + JSON.stringify(extra.slice(0, 8)));
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
@@ -18872,7 +18944,7 @@ if (!CHROME) {
       return { c, mud, mi, auth, named, list };
     });
     const c = r.c;
-    if (!/مُضَافٌ إِلَيْهِ\.$/.test(c.malik[2]) || /وَهُوَ مُضَافٌ/.test(c.malik[2]) || !/بَدَلٌ/.test(c.malik[3]) || /مُضَافٌ إِلَيْهِ/.test(c.malik[3])) throw new Error('مَلِكُ هَذِهِ الْغَابَةِ: ' + J(c.malik));
+    if (!/مُضَافٌ إِلَيْهِ(، وَالْهَاءُ لِلتَّنْبِيهِ)?\.$/.test(c.malik[2]) || /وَهُوَ مُضَافٌ/.test(c.malik[2])   /* (v342-N) the line may close on the hā of alerting — Shudhūr R38 (p. 173) */ || !/بَدَلٌ/.test(c.malik[3]) || /مُضَافٌ إِلَيْهِ/.test(c.malik[3])) throw new Error('مَلِكُ هَذِهِ الْغَابَةِ: ' + J(c.malik));
     if (/وَهُوَ مُضَافٌ/.test(c.kull[1]) || !/بَدَلٌ/.test(c.kull[2]) || /وَهُوَ مُضَافٌ/.test(c.mal[1]) || !/بَدَلٌ/.test(c.mal[2])) throw new Error('كُلُّ تِلْكَ / مَالِ هَذَا: ' + J([c.kull, c.mal]));
     if (!/وَهُوَ مُضَافٌ/.test(c.ctrl[1]) || !/مُضَافٌ إِلَيْهِ/.test(c.ctrl[2])) throw new Error('the control: ' + J(c.ctrl));
     if (r.mud > 0 || r.mi > 1 || r.named < 272) throw new Error('against the authored lines: ' + J({ mud: r.mud, mi: r.mi, auth: r.auth, named: r.named, list: r.list }));

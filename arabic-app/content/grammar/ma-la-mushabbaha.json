@@ -12,7 +12,9 @@
  "classicalSources": [
   "العوامل (البيركوي)",
   "إظهار الأسرار (البيركوي)",
-  "الكافية (ابن الحاجب)"
+  "الكافية (ابن الحاجب)",
+  "شذور الذهب لابن هشام — اسْمُ الْحُرُوفِ الْعَامِلَةِ عَمَلَ لَيْسَ، ص 221",
+  "شذور الذهب لابن هشام — خَبَرُ كَانَ وَأَخَوَاتِهَا، وَخَبَرُ كَادَ وَأَخَوَاتِهَا، وَخَبَرُ مَا حُمِلَ عَلَى لَيْسَ، ص 301"
  ],
  "plain": {
   "en": "مَا and لَا used the way لَيْسَ is used — «is not».",
@@ -45,6 +47,30 @@
    "ar": "لَا رَجُلٌ أَفْضَلَ مِنْكَ.",
    "en": "No man is better than you — the «la» that resembles laysa.",
    "tr": "Hiçbir adam senden hayırlı değildir — لَيْسَ'ye benzeyen لَا."
+  },
+  {
+   "ar": "وَلَاتَ حِينَ مَنَاصٍ",
+   "en": "لات works like ليس only with الحين (often) or الساعة/الأوان (rarely), and its two parts never both appear; usually the ism is dropped: «وَلَاتَ حِينَ مَنَاصٍ» = لَيْسَ الْحِينُ حِينَ مَنَاصٍ. The reverse (khabar dropped) is in the reading «وَلَاتَ حِينُ مَنَاصٍ».",
+   "tr": "«لات» «ليس» gibi amel eder; ancak «الحين» ile (çokça) veya «الساعة/الأوان» ile (azca). İki cüz'ü bir arada zikredilmez; ekseriya ismi mahzûftur: «وَلَاتَ حِينَ مَنَاصٍ» = «لَيْسَ الْحِينُ حِينَ مَنَاصٍ». Aksi «وَلَاتَ حِينُ مَنَاصٍ» kırâatindedir.",
+   "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:77 (ص 221)"
+  },
+  {
+   "ar": "فَلَا شَيْءٌ عَلَى الْأَرْضِ بَاقِيَا",
+   "en": "لا like ليس needs the same conditions as ما (minus the إنْ condition) plus both parts indefinite: «فَلَا شَيْءٌ عَلَى الْأَرْضِ بَاقِيَا، وَلَا وَزَرٌ مِمَّا قَضَى اللهُ وَاقِيَا». A definite ism is rare («لَا الدَّارُ دَارًا وَلَا الْجِيرَانُ جِيرَانَا»); it is Ḥijāzī; Tamīm leave it inoperative and repeat it.",
+   "tr": "Leyse'ye benzeyen «لا», «ما»nın şartlarına ek olarak isim ve haberinin nekire olmasını ister: «فَلَا شَيْءٌ عَلَى الْأَرْضِ بَاقِيَا». Ma'rife isimle amel nâdirdir («لَا الدَّارُ دَارًا»). Bu Hicaz lügatidir; Temîm onu ihmal edip tekrar eder.",
+   "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:80 (ص 225)"
+  },
+  {
+   "ar": "إِنْ ذَلِكَ نَافِعَكَ وَلَا ضَارَّكَ",
+   "en": "Negative إنْ (dialect of Ahl al-ʿĀliya) works under the same conditions, with definite or indefinite parts: «إِنِ الَّذِينَ تَدْعُونَ مِنْ دُونِ اللهِ عِبَادًا أَمْثَالَكُمْ» (Saʿīd b. Jubayr), «إِنْ أَحَدٌ خَيْرًا مِنْ أَحَدٍ إِلَّا بِالْعَافِيَةِ», «إِنْ ذَلِكَ نَافِعَكَ وَلَا ضَارَّكَ».",
+   "tr": "Nâfiye «إنْ» (Âliye halkının lügati) aynı şartlarla, ma'rife ve nekire isimlerde amel eder: «إِنْ أَحَدٌ خَيْرًا مِنْ أَحَدٍ إِلَّا بِالْعَافِيَةِ», «إِنْ ذَلِكَ نَافِعَكَ وَلَا ضَارَّكَ».",
+   "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:81 (ص 227)"
+  },
+  {
+   "ar": "إِنْ هُوَ مُسْتَوْلِيًا عَلَى أَحَدٍ",
+   "en": "Negative «in» working like laysa is not restricted to indefinites (its ism may be a pronoun), unlike lā.",
+   "tr": "Leyse gibi amel eden nâfiye «in», «lâ» gibi nekrelere mahsus değildir; ismi zamir olabilir.",
+   "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:138 (ص 301)"
   }
  ],
  "commonMistakes": [
