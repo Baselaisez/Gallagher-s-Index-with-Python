@@ -16912,7 +16912,9 @@ if (!CHROME) {
        The forward look now stops there. Three of the five older violations were this slip (al-Kāfiya 37:s6 «فَرْقَانِ فِي …», Badʾ al-Amālī 12:s60 «كَوْنٌ
        عَلَيْهَا مَرُّ …», al-Talkhīṣ 76:s4 «قَصْرٌ عَلَيْهِ تَحِيَّةٌ»), and three older frames were false pairs (Badʾ al-Amālī 7:s32, Qiṣaṣ 4 19:s1 «يُونُسُ عَلَيْهِ
        السَّلَامُ», al-Talkhīṣ 76:s4): the older shelf 2567/955/5 → 2567/952/2; al-Ḥārith adds 17 clauses and 34 isnāds and no violation: 2584/986/2. */
-    if (r.audit !== '2584/986/2') bad.push('the corpus audit moved: ' + r.audit);
+    /* (v345-T · T-O01) 2584/986/2 → 2576/986/0: eight «clauses» were a maṣdar's second object read as the verb's (… الْإِدْغَامُ بِجَعْلِ التَّاءِ ثَاءً —
+       Marāḥ 47–50), one of them the mf2 violation; the dual غَيْرَانِ is no definite (the mk2 violation) */
+    if (r.audit !== '2576/986/0') bad.push('the corpus audit moved: ' + r.audit);
     if (bad.length) throw new Error(bad.join(' | '));
   });
   await check('v334 — Pause, Kernel and Dabt: the pause hides a case only on a word declined by a vowel (ضَرَبَ، بِهِ، هُوَ، يَعْلَمُونَ، مُسْلِمُونَ — B39; Iẓhār L183), the maqṣūr\'s tanwīn is no tanwīn of naṣb and all its states are estimated (B40); the Kernel reads single verbs as verbs (قُلْ is قَالَ, built; مَدَّ, اِتَّقَى built; يَرْمِي, يَكْتُبُونَ by their class; قَاضٍ the manqūṣ — B31), does not crash on مَا أَحْسَنَ زَيْدًا (B32), sends no noun to the thirty-five doors (B33), and shows the stored lines of the typed words only (B48); Dabt writes مَا أَحْسَنَ السَّمَاءَ (B06)', async () => {
@@ -18748,6 +18750,77 @@ if (!CHROME) {
     if (bad.length) throw new Error('misread: ' + J(bad.map(k => [k, (r[k] || '').slice(0, 120)])));
     if (r.adabOk !== 'obey' || r.adabBad !== 'finding') throw new Error('naibNotFail: ' + J([r.adabOk, r.adabBad]));
   });
+  // >>> v345-T — what a phrase hangs on, the framed clause, إِنَّ and أَنَّ, the order (work order research/engine-faults-2026-11-27.md)
+  await check('v345 — taʿalluq by the books (Iẓhār l.15–16: the governor written → laghw, deleted → mustaqarr; «ويجوز تقديم ما عدا هذا على متعلقه»): the tagger\'s scale only where the written word wears it (دَخَلَ بِلَادَ الشَّامِ بَعْدَ أَيَّامٍ → دَخَلَ, not الشَّامِ), the praise formula is no governor (بَعَثَهُ اللهُ تَعَالَى إِلَى → بَعَثَهُ; «تَعَالَى عَنْ» kept), إِذَا\'s answer is its own (… الْحَاكِمُونَ إِذَا أُطِعْنَا وَنَحْنُ الْعَازِمُونَ إِذَا عُصِينَا → الْحَاكِمُونَ), لَا شَكَّ فِيهِ is lā\'s khabar, the kāf of tashbīh is mustaqarr with the found word offered, إِنَّ الْفَتَى بَعْدَ السَّفَاهَةِ يَحْلُمُ → يَحْلُمُ with the ḥāl offered; the controls stand; the audit reads a described governor and prints the offered reading as text', async () => {
+    const r = await page.evaluate(() => {
+      const T = (s, i) => { const t = TaalluqEngine.of(SentenceAnalyzer.analyze(s), i); return t ? { kind: t.kind, word: t.word || '', seat: t.seatKey || '', alt: t.alt ? String(t.alt.ar || '') : '' } : null; };
+      const A = GrammarAudit339.taalluq(), R = x => GrammarAudit339.taalluqRead(x);
+      return { cases: [
+        ['ثُمَّ إِنَّ السُّلْطَانَ دَخَلَ بِلَادَ الشَّامِ بَعْدَ أَيَّامٍ', 6, 'found', 'دَخَلَ'], ['الرَّسُولُ إِنْسَانٌ بَعَثَهُ اللهُ تَعَالَى إِلَى الْخَلْقِ', 5, 'found', 'بَعَثَهُ'],
+        ['نَزَّهَ اللهُ تَعَالَى عَنْ ذٰلِكَ', 3, 'found', 'تَعَالَى'], ['وَنَحْنُ الْحَاكِمُونَ إِذَا أُطِعْنَا وَنَحْنُ الْعَازِمُونَ إِذَا عُصِينَا', 2, 'found', 'الْحَاكِمُونَ'],
+        ['وَهٰذَا أَمْرٌ لَا شَكَّ فِيهِ', 4, 'mahdhuf', '', 'laKhabar'], ['فَهُوَ ضَرُورِيٌّ كَالْعِلْمِ بِأَنَّ الْكُلَّ أَعْظَمُ', 2, 'mahdhuf', '', null, 'ضَرُورِيٌّ'],
+        ['وَإِنَّ الْفَتَى بَعْدَ السَّفَاهَةِ يَحْلُمُ', 2, 'found', 'يَحْلُمُ', null, 'حَالٌ'], ['فَأَمَّا يَوْمَ خَشْيَتِنَا عَلَيْهِمْ فَنَصْبِرُ', 1, 'found', 'فَنَصْبِرُ'],
+        ['زَيْدٌ فِي الدَّارِ', 1, 'mahdhuf'], ['مَرَرْتُ بِزَيْدٍ', 1, 'found', 'مَرَرْتُ'], ['وَصِفَاتُهُ قَائِمَةٌ بِذَاتِهِ', 2, 'found', 'قَائِمَةٌ']].map(([s, i, k, w, seat, alt]) => ({ s, want: [k, w, seat, alt], got: T(s, i) })),
+        read: [R('جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِالْفِعْلِ قَبْلَهُ.'), R('مُتَعَلِّقٌ بِخَبَرِ كَانَ الْمُقَدَّمِ.'), R('مُتَعَلِّقٌ بِرَسُولٌ (أَوْ بِمَحْذُوفٍ حَالٌ).'), R('مُتَعَلِّقٌ بِمَا تَعَلَّقَ بِهِ «بِسِقْطِ»')],
+        audit: { agree: A.agree, contra: A.contra, exact: A.exact, objects: A.items.filter(x => /\[object Object\]/.test(x.verdict)).length, keys: A.items.map(x => x.key) } };
+    });
+    const bad = [];
+    for (const c of r.cases) { const [k, w, seat, alt] = c.want, g = c.got || {};
+      if (g.kind !== k || (w && g.word !== w) || (seat && g.seat !== seat) || (alt && !g.alt.includes(alt))) bad.push(c.s + ' → ' + JSON.stringify(g)); }
+    const [a, b, c2, d] = r.read; if (!(a && a.verbBefore) || !(b && b.md) || !(c2 && c2.alt && c2.alt.md && c2.want === 'رَسُولٌ') || !(d && d.sameAs === 'بِسِقْطِ')) bad.push('the reader: ' + JSON.stringify(r.read));
+    // measured 2026-11-27 (v345-T): agree 643 → 714, contra 307 → 228, exact 256 → 200 — floors and ceilings
+    const A = r.audit; if (A.agree < 714 || A.contra > 228 || A.exact > 200 || A.objects) bad.push('audit ' + JSON.stringify({ agree: A.agree, contra: A.contra, exact: A.exact, objects: A.objects }));
+    for (const k of ['aqaid-ahl-al-sunna:4:s1:6', 'ayn-jalut:5:s1:7', 'muallaqat-amr-ibn-kulthum:11:s6:3', 'al-bukhari-fi-baghdad:4:s1:12', 'muallaqat-zuhayr:10:s6:9', 'qisas-al-nabiyyin-1:9:s10:2', 'habil-wa-qabil:1:s1:2'])   // the work order's places, no longer contradicted
+      if (A.keys.includes(k)) bad.push('still contradicted: ' + k);
+    if (bad.length) throw new Error(bad.join(' · '));
+  });
+
+  await check('v345 — the framed clause (Qawāʿid bāb 1 m.49, m.59, m.67, m.124): inside an OPEN condition or a sentence-initial relative whose own verb is written and whose answer / khabar is still owed, the offered naʿt-or-ḥāl stays silent (وَالْعَقْلُ إِذَا لَمْ يَقْبَلْ سَفِينَةً بِلَا مَلَّاحٍ كَانَ …، مَتَى نَعْقِدْ قَرِينَتَنَا بِحَبْلٍ تَجُذَّ …، فَالَّذِي لَا يَعْرِفُ أَمْرَهُ يَحْسَبُ …); a clause tied to its head by a pronoun, written or worn as a plural doer, keeps its offer (… لِحِكْمَةٍ يَعْلَمُهَا، مِنْ أَقْوَامٍ لَيْسُوا لَكَ), and so does a clause after the answer (طَلَبَ سَفِينَةً يَرْجِعُ فِيهَا); the exact rules are unchanged and no agreeing statement is lost', async () => {
+    const r = await page.evaluate(() => {
+      const J = (s, i) => { const v = JumlaMahallEngine.of(SentenceAnalyzer.analyze(s), i); return v ? v.rule + ':' + v.seat + ':' + v.certainty : null; };
+      const a = JumlaMahallEngine.audit({ fresh: true });
+      return { silent: [J('وَالْعَقْلُ إِذَا لَمْ يَقْبَلْ سَفِينَةً بِلَا مَلَّاحٍ كَانَ أَبْعَدَ', 7), J('مَتَى نَعْقِدْ قَرِينَتَنَا بِحَبْلٍ تَجُذَّ الْحَبْلَ', 4), J('فَالَّذِي لَا يَعْرِفُ أَمْرَهُ يَحْسَبُ أَنَّهُ مَاءٌ', 4)],
+        kept: [J('وَإِذَا قَدَّرَ اللهُ لِحِكْمَةٍ يَعْلَمُهَا أَنْ يَكُونَ', 4), J('وَمَتَى أَحْسَنْتَ عِشْرَةَ النَّاسِ مِنْ أَقْوَامٍ لَيْسُوا لَكَ أَقْرِبَاءَ', 6), J('فَلَمَّا قَضَى حَاجَتَهُ طَلَبَ سَفِينَةً يَرْجِعُ فِيهَا', 5)],
+        tot: a.tot, exact: a.exactContra, naat: (a.bySeat.naat || {}).agree, khabar: (a.bySeat.khabar || {}).agree, hal: (a.bySeat.hal || {}).agree };
+    });
+    const bad = [];
+    r.silent.forEach((v, n) => { if (v && /^(naatOrHal|naatOrKhabar|halOrNaat|hal|naatOffered):/.test(v)) bad.push('offered inside its frame #' + n + ': ' + v); });
+    r.kept.forEach((v, n) => { if (!v || !/:naat:offered$/.test(v)) bad.push('the tied naʿt lost #' + n + ': ' + v); });
+    // measured 2026-11-27 (v345-T): agree 1,912 kept, contradictions 121 → 114, exact 19; naʿt 260, khabar 624, ḥāl 46 kept
+    if (r.tot.agree < 1912 || r.tot.contra > 114 || r.exact > 19 || r.naat < 260 || r.khabar < 624 || r.hal < 46) bad.push(JSON.stringify(r));
+    if (bad.length) throw new Error(bad.join(' · '));
+  });
+
+  await check('v345 — إِنَّ / أَنَّ by their seat (Shudhūr l.179 «وتُكسَرُ «إِنَّ» في الابْتِدَاءِ … وَجَوَابِ الْقسَم … وتُفْتَحُ في الباقي»): after a colon the clause is the khabar of the إِنَّ before it (فَإِنَّهَا: أَنَّكَ) or the delayed mubtadaʾ after a fronted phrase (وَمِنْهَا: أَنَّ) — fatḥa; the oath\'s wāw before it gives the oath\'s answer (وَجَدِّكَ إِنَّنِي) — kasra; a sentence-initial وَأَنَّ joins the fatḥa of the sentence before a لِأَنَّ-sentence (… أَنَّ اللهَ رَبُّهُ. لِأَنَّ اللهَ حَيٌّ. وَأَنَّ اللهَ بَاقٍ); the controls keep their kasra', async () => {
+    const r = await page.evaluate(() => {
+      const I = s => InnaEngine.table(s).inna.map(v => v.seat + ':' + v.hamza).join(' ');
+      const S = (id, n, sid) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(c => String(c.n) === String(n)); const sen = ch && ch.sentences.find(x => x.id === sid); return sen ? InnaEngine.table(sen).inna.map(v => v.seat + ':' + v.hamza).join(' ') : 'missing'; };
+      InnaEngine._audit = null; const a = InnaEngine.audit(0);
+      return { typed: [I('وَمِنْهَا: أَنَّ الْفِعْلَ يَتَقَدَّمُ'), I('فَإِنَّهَا: أَنَّكَ لَا تُؤَاخَذُ'), I('قَالَ زَيْدٌ: إِنَّ عَمْرًا قَائِمٌ'), I('وَاللهِ إِنَّ زَيْدًا قَائِمٌ')],
+        story: [S('muallaqat-tarafa', 12, 's5'), null, S('al-usul-al-munifa', 14, 's15')],
+        hit: a.hit, miss: a.miss, misses: a.misses.map(m => m.story + ':' + m.ch + ':' + m.sen + ':' + m.w), seat: a.bySeat };
+    });
+    const bad = [], want = ['mubtada:fath', 'ibtida:kasr khabarInna:fath', 'qawl:kasr', 'qasam:kasr'];
+    r.typed.forEach((v, n) => { if (v !== want[n]) bad.push('typed #' + n + ': ' + v + ' ≠ ' + want[n]); });
+    if (!/^qasam:kasr$/.test(r.story[0])) bad.push('وَجَدِّكَ إِنَّنِي: ' + r.story[0]);
+    if (/riwaya/.test(r.story[2])) bad.push('لِنَصْرِفَ عَنْهُ … إِنَّهُ is no isnād: ' + r.story[2]);
+    if (r.misses.some(k => /^qisas-al-nabiyyin-1:3:s33:|^al-kafiya:17:s2:|^al-kafiya:24:s9:/.test(k))) bad.push('still missed: ' + r.misses.join(' '));
+    // measured 2026-11-27 (v345-T): agree 1,164 → 1,179, contradictions 27 → 15; ibtida 179 → 186, atf 65 → 70, istinaf 19 (one moved to atf)
+    if (r.hit < 1179 || r.miss > 15 || (r.seat.ibtida || {}).hit < 186 || (r.seat.atf || {}).hit < 70) bad.push(JSON.stringify({ hit: r.hit, miss: r.miss, ibtida: r.seat.ibtida, atf: r.seat.atf }));
+    if (bad.length) throw new Error(bad.join(' · '));
+  });
+
+  await check('v345 — the order (Shudhūr l.131, l.147): a dual that keeps its nūn is not annexed, so «وَغَيْرَانِ الْمُكَوَّنُ» is no pair of definites (mk2 does not fire); a second object after a maṣdar in jarr is that maṣdar\'s («لَا يَجُوزُ فِي إِدْغَامِهِنَّ إِلَّا الْإِدْغَامُ بِجَعْلِ التَّاءِ مِثْلَ الْعَيْنِ» — no object of يَجُوزُ, mf2 does not fire); a jarr-phrase khabar is a phrase (لَهُ مَعْنَيَانِ → km2); no order is broken on the shelf', async () => {
+    const r = await page.evaluate(() => { const E = TartibEngine; E._audit = null; const a = E.audit(); let kept = 0, vio = 0; for (const R of Object.values(a.rules || {})) { kept += R.kept || 0; vio += R.violated || 0; }
+      return { dual: E.definite({ s: { full: 'غَيْرَانِ' }, pos: 'noun' }, { pos: 'noun' }), annexed: E.definite({ s: { full: 'كِتَابُ' }, pos: 'noun' }, { pos: 'noun' }), kept, vio, viol: (a.violations || []).map(v => v.st + ':' + v.ch + ':' + v.sen + ' ' + v.rule) }; });
+    const bad = [];
+    if (r.dual !== false || r.annexed !== true) bad.push('definite(): ' + JSON.stringify({ dual: r.dual, annexed: r.annexed }));
+    // measured 2026-11-27 (v345-T): kept 1,064 → 1,063 (the one fm3 «kept» was the contradicted clause itself), violated 2 → 0
+    if (r.vio > 0 || r.kept < 1063) bad.push(JSON.stringify(r));
+    if (bad.length) throw new Error(bad.join(' · '));
+  });
+  // <<< v345-T
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

@@ -1,0 +1,19 @@
+{
+ "tag": "taalluq",
+ "wave": "v345-T",
+ "note": "Contradictions the v345-T engine changes NEWLY create (TaalluqEngine, JumlaMahallEngine, InnaEngine, TartibEngine), each judged. Measured with GrammarAudit339 after the wave: taalluq 1 new, jumla 0, inna 0, tartib 0.",
+ "records": [
+  {
+   "engine": "taalluq",
+   "key": "talkhis-al-miftah:48:s7:10",
+   "pkg": "talkhis-al-miftah",
+   "ch": "48",
+   "sen": "s7",
+   "word": "حِينَ",
+   "verdict": "E",
+   "cluster": "T-T02",
+   "cite": { "file": "research/sources/izhar-al-asrar-matn-lithograph.txt", "line": 16, "ar": "حصل، وإن لم يكن كذلك أو لم يحذف متعلقه يسميان ظرفا لغوا نحو زيد في الدار أكل ومررت بزيد." },
+   "why": "«وَقَدْ لَاحَ فِي الصُّبْحِ الثُّرَيَّا كَمَا تَرَى • كَعُنْقُودِ مُلَّاحِيَّةٍ حِينَ نَوَّرَا»: the author hangs حِينَ on لَاحَ (right). Before v345-T the engine named «مُلَّاحِيَّةٍ» (a tagger guess the shape gate now rejects) and the old letter-for-letter reader counted it as agreeing because «ملاحية» contains «لاح»; the walk now reaches تَرَى inside the parenthetical «كَمَا تَرَى». The engine is wrong (a verb inside a كَمَا-clause is no governor of what follows it); left for the next taʿalluq pass."
+  }
+ ]
+}
