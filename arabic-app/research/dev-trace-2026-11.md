@@ -44,7 +44,7 @@ Running:
 Waiting on people:
 - the hoca's answers (this weekend); the 64 certain story-correction proposals; the al-Inṣāf and Marāḥ pp. 145–182 renderings; six typos in the uploaded sheets.
 
-## 2026-11-26 20:10 — round 2 landed with speed V and the reasons; voices merging; two agents on the new books
+## 2026-11-26 19:15 — round 2 landed with speed V and the reasons; voices merging; two agents on the new books
 
 Landed since the last entry (dev branch):
 - `ad32ec4` — four books received from the owner, verbatim and page-marked in `research/sources/`: Shaykhzāde's Sharḥ Qawāʿid al-Iʿrāb, al-Bakrī's Faṣl al-Maqāl, al-Raḍī's Sharḥ al-Shāfiya, Ibn Mālik's Sharḥ al-Kāfiya al-Shāfiya. (The archive.org item could not be reached.)
