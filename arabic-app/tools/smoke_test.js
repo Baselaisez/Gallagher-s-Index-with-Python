@@ -16575,15 +16575,15 @@ if (!CHROME) {
     }
   });
 
-  await check('v317 — the Atölye index (handoff 6): the rail and the index are drawn from one tool table; four groups hold all 37 tools (13 · 14 · 5 · 5); the search folds case, circumflexes, apostrophes, ı/i and harakāt — «ilal» finds İʿlāl, «جذر» and «kok» the Root Finder; a miss says so; a tile opens its tool and lands in «recently used»', async () => {
+  await check('v317 — the Atölye index (handoff 6): the rail and the index are drawn from one tool table; four groups hold all 38 tools (13 · 15 · 5 · 5; v339 added «الخلاف» to Naḥw); the search folds case, circumflexes, apostrophes, ı/i and harakāt — «ilal» finds İʿlāl, «جذر» and «kok» the Root Finder; a miss says so; a tile opens its tool and lands in «recently used»', async () => {
     const J = JSON.stringify;
     const keep = await page.evaluate(() => { const k = conjState.lab; try { localStorage.removeItem('qissa-lab-recent'); } catch (e) {} conjState.lab = 'home'; conjState.labQ = ''; openConjugator(); return k; });
     await page.waitForSelector('.sheet.show .lab-home', { timeout: 10000 });
     const r0 = await page.evaluate(() => ({ groups: [...document.querySelectorAll('.lab-group')].map(s => [s.dataset.group, s.querySelectorAll('.lab-tile').length]),
       rail: [...document.querySelectorAll('.labrail [data-lab]')].map(b => b.dataset.lab).filter(x => x !== 'home'), table: LAB_TOOLS.map(t => t.id),
       named: LAB_TOOLS.filter(t => !L.en[t.key] || !L.tr[t.key]).map(t => t.id) }));
-    if (J(r0.groups) !== J([['sarf', 13], ['nahw', 14], ['balagha', 5], ['fahm', 5]])) throw new Error('the groups: ' + J(r0.groups));
-    if (J(r0.rail) !== J(r0.table) || r0.table.length !== 37 || new Set(r0.table).size !== 37) throw new Error('the rail and the table disagree: ' + J([r0.rail.length, r0.table.length]));
+    if (J(r0.groups) !== J([['sarf', 13], ['nahw', 15], ['balagha', 5], ['fahm', 5]])) throw new Error('the groups: ' + J(r0.groups));
+    if (J(r0.rail) !== J(r0.table) || r0.table.length !== 38 || new Set(r0.table).size !== 38) throw new Error('the rail and the table disagree: ' + J([r0.rail.length, r0.table.length]));
     if (r0.named.length) throw new Error('tools without a name in both languages: ' + J(r0.named));
     const find = async q => { await page.fill('#labSearch', q); await page.waitForTimeout(260); return page.$$eval('#labHits .lab-tile', t => t.map(x => x.dataset.tool)); };
     const hits = { ilal: await find('ilal'), ILAL: await find("İ'LÂL"), jadhr: await find('جذر'), kok: await find('kok'), none: await find('qqqq') };
@@ -16597,7 +16597,7 @@ if (!CHROME) {
     if (J(opened) !== J(['mizan', true]) || rec[0] !== 'mizan') throw new Error('open and remember: ' + J([opened, rec]));
   });
 
-  await check('v317 — the games hub (handoff 7): every shelf heading carries its count (2 · 9 · 22 · 2 · 14 = 49, every game still a direct child of the shelf); on a phone a shelf folds to four cards behind an «All (n)» toggle that says whether it is open; on a desk nothing folds', async () => {
+  await check('v317 — the games hub (handoff 7): every shelf heading carries its count (2 · 9 · 23 · 2 · 14 = 50 since v339 added gKhilaf to Naḥw, every game still a direct child of the shelf); on a phone a shelf folds to four cards behind an «All (n)» toggle that says whether it is open; on a desk nothing folds', async () => {
     const J = JSON.stringify;
     const read = () => page.evaluate(() => ({ counts: [...document.querySelectorAll('.game-pick .game-group .g-count')].map(x => +x.textContent),
       cards: document.querySelectorAll('.game-pick > button').length, shown: [...document.querySelectorAll('.game-pick > button')].filter(b => b.getBoundingClientRect().height > 0).length,
@@ -16611,9 +16611,9 @@ if (!CHROME) {
     const opened = await read();
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.evaluate(() => closeSheet());
-    if (J(desk.counts) !== J([2, 9, 22, 2, 14]) || desk.cards !== 49 || desk.shown !== 49 || desk.toggles.length) throw new Error('the desk hub: ' + J(desk));
+    if (J(desk.counts) !== J([2, 9, 23, 2, 14]) || desk.cards !== 50 || desk.shown !== 50 || desk.toggles.length) throw new Error('the desk hub: ' + J(desk));
     if (phone.shown !== 2 + 4 + 4 + 2 + 4 || J(phone.toggles) !== J(['false', 'false', 'false'])) throw new Error('the phone hub folds: ' + J(phone));
-    if (opened.shown !== phone.shown + 18 || J(opened.toggles) !== J(['false', 'true', 'false'])) throw new Error('«All» opens its own shelf only: ' + J(opened));
+    if (opened.shown !== phone.shown + 19 || J(opened.toggles) !== J(['false', 'true', 'false'])) throw new Error('«All» opens its own shelf only: ' + J(opened));
   });
 
   await check('v318 — who governs whom (handoff 12, 13d): the Zabt lab reads «جاء أبرهة من اليمن بجيش كبير» as mebni · ←جَاءَ · mebni · ←مِنَ · attached · follower of بِجَيْشٍ from the stored lines, reads text the corpus does not hold by the DabtEngine\'s rules, outlines the governor of the tapped word; the word sheet of يَهْدِمَ outlines أَنْ and moves to it on a tap', async () => {
@@ -16706,10 +16706,10 @@ if (!CHROME) {
     if (Object.keys(low).length) throw new Error('text under its contrast floor: ' + J(low));
   });
 
-  await check('v321 — one frame for every Atölye tool (handoff 9, 11): all 37 tools open with the same head — the Arabic tile, the name, the science and the engine kind, statistical for the two learned tools only; İʿlāl names the rule of its last step and the Marāḥ bāb of the root\'s class, Zabt the app\'s own note for the chosen word, and both offer «continue» chips that open their tool or game', async () => {
+  await check('v321 — one frame for every Atölye tool (handoff 9, 11): all 38 tools open with the same head — the Arabic tile, the name, the science and the engine kind, statistical for the two learned tools only, «from the book» for the v339 khilaf table; İʿlāl names the rule of its last step and the Marāḥ bāb of the root\'s class, Zabt the app\'s own note for the chosen word, and both offer «continue» chips that open their tool or game', async () => {
     const J = JSON.stringify;
     const r = await page.evaluate(async () => { const heads = {}; const keep = conjState.lab;
-      for (const t of LAB_TOOLS) { conjState.lab = t.id; openConjugator(); await new Promise(res => setTimeout(res, 20)); const h = document.querySelector('#labBody > .tool-head'); heads[t.id] = h ? (h.querySelector('.th-eng.stat') ? 'stat' : h.querySelector('.th-eng.rule') ? 'rule' : '?') : 'missing'; }
+      for (const t of LAB_TOOLS) { conjState.lab = t.id; openConjugator(); await new Promise(res => setTimeout(res, 20)); const h = document.querySelector('#labBody > .tool-head'); heads[t.id] = h ? (h.querySelector('.th-eng.stat') ? 'stat' : h.querySelector('.th-eng.src') ? 'src' : h.querySelector('.th-eng.rule') ? 'rule' : '?') : 'missing'; }
       const keepShape = conjState.ilalShape; conjState.lab = 'ilal'; conjState.ilalRoot = 'قول'; openConjugator(); await new Promise(res => setTimeout(res, 50));
       const il = [(document.querySelector('.tool-ref .tr-src') || {}).textContent || '', [...document.querySelectorAll('.tool-next [data-next-lab]')].map(b => b.dataset.nextLab)];
       conjState.lab = 'ilal'; conjState.ilalRoot = 'وعد'; conjState.ilalShape = 'mudari'; openConjugator();   /* يَوْعِدُ → يَعِدُ */ await new Promise(res => setTimeout(res, 50));
@@ -16717,8 +16717,8 @@ if (!CHROME) {
       conjState.lab = 'dabt'; conjState.dabt = 'جاء أبرهة من اليمن بجيش كبير'; conjState.dabtPick = 1; openConjugator(); await new Promise(res => setTimeout(res, 50));
       const db = [(document.querySelector('.tool-ref [data-note]') || {}).dataset || {}].map(d => d.note)[0] || null;
       conjState.dabt = ''; conjState.dabtPick = -1; conjState.ilalShape = keepShape; conjState.lab = keep; closeSheet(); return { heads, il, il2, db }; });
-    const bad = Object.entries(r.heads).filter(([k, v]) => v !== (k === 'model' || k === 'learn' ? 'stat' : 'rule'));
-    if (Object.keys(r.heads).length !== 37 || bad.length) throw new Error('the heads: ' + J(bad));
+    const bad = Object.entries(r.heads).filter(([k, v]) => v !== (k === 'model' || k === 'learn' ? 'stat' : k === 'khilaf' ? 'src' : 'rule'));
+    if (Object.keys(r.heads).length !== 38 || bad.length) throw new Error('the heads: ' + J(bad));
     if (!/bāb 5|5\. bâb/.test(r.il[0]) || J(r.il[1]) !== J(['sarf', 'jadhr']) || !/bāb 4|4\. bâb/.test(r.il2)) throw new Error('İʿlāl reference: ' + J([r.il, r.il2]));
     if (!r.db) throw new Error('Zabt has no note for أَبْرَهَةُ');
   });
@@ -17276,6 +17276,80 @@ if (!CHROME) {
     if (r.dup < 300000 || r.seen < 50000 || r.steps < 5) throw new Error('the walk did not find the repeated strings: ' + JSON.stringify(r));   // 1.01 M repeats of 230 k strings on the v334 shelf
     if (r.longest > 300) throw new Error('a dedup slice held the thread: ' + JSON.stringify(r));
     if (!r.order) throw new Error('the dedup walk must be queued last, after the bodies parse and the walks');
+  });
+
+  await check('v339 — al-Insaf: Ibn al-Anbārī\'s masāʾil as a table cut by script from the fetched book (every `_ar` field a verbatim substring of research/sources/insaf-ibn-al-anbari-src.txt; both views or the reason why not; the tarjīḥ with the sentence that shows it), the Atölye lab «الخلاف» (opens, filters by bāb, searches, a known masʾala shows both panes, no overflow at 390 px, en and tr) and the Level-6 game gKhilaf (every answer read off the table, a masked view never names its school)', async () => {
+    const J = JSON.stringify;
+    const src = fs.readFileSync(path.resolve(__dirname, '..', 'research/sources/insaf-ibn-al-anbari-src.txt'), 'utf8').normalize('NFC');
+    const tab = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'content/rules/insaf_masail.json'), 'utf8'));
+    const M = tab.masail || [];
+    if (M.length !== 121) throw new Error('the table should hold 121 masāʾil: ' + M.length);
+    if (J(M.map(r => r.n)) !== J([...M.map(r => r.n)].sort((a, b) => a - b)) || new Set(M.map(r => r.n)).size !== M.length) throw new Error('the numbers are not one each, in order');
+    // the guard against paraphrase: every Arabic field, wherever it sits in a record, is a substring of the fetched book
+    const bad = [], arFields = (o, at) => { for (const [k, v] of Object.entries(o)) { if (typeof v === 'string' && /_ar$|^ar$/.test(k) && !src.includes(v.normalize('NFC'))) bad.push(at + '.' + k); else if (v && typeof v === 'object') arFields(v, at + '.' + k); } };
+    M.forEach(r => arFields(r, '#' + r.n));
+    if (bad.length) throw new Error('Arabic not found verbatim in the source: ' + J(bad.slice(0, 12)));
+    const babs = new Set((tab.babs || []).map(b => b.id));
+    const shape = M.filter(r => !r.title_ar || !babs.has(r.bab) || !r.page || !/^[12]:\d+$/.test(r.page.printed) || !(r.page.shamela > 0)
+      || ['kufa', 'basra'].some(s => !r[s + '_ar'] && !(r[s + '_why_en'] && r[s + '_why_tr']))
+      || !['basra', 'kufa', 'other', 'unstated'].includes(r.tarjih) || (r.tarjih !== 'unstated') !== !!r.tarjih_ar
+      || (r.tarjih !== 'unstated' && !['explicit', 'answer'].includes(r.tarjih_src))).map(r => r.n);
+    if (shape.length) throw new Error('records without both views (or the reason), a bāb, a page or a shown tarjīḥ: ' + J(shape));
+    const T0 = { basra: 0, kufa: 0, other: 0, unstated: 0 }; M.forEach(r => T0[r.tarjih]++);
+    const r = await page.evaluate(async () => {
+      const out = {}, w = ms => new Promise(res => setTimeout(res, ms));
+      out.n = INSAF.masail.length; out.tally = InsafData.tally();
+      const keepLang = state.uiLang, keepLab = conjState.lab; conjState.khilafQ = ''; conjState.khilafBab = ''; conjState.khilafOpen = null;
+      for (const lang of ['tr', 'en']) {
+        state.uiLang = lang; conjState.lab = 'khilaf'; openConjugator(); await w(80);
+        const o = out[lang] = {};
+        o.head = (document.querySelector('#labBody > .tool-head .th-eng') || {}).className || '';
+        o.tallyTxt = (document.querySelector('.kh-tally') || {}).textContent || '';
+        o.items = document.querySelectorAll('#khilafOut details.kh-item').length;
+        o.intro = (document.querySelector('#labBody .ref-intro') || {}).textContent || '';
+        o.kunye = !!document.querySelector('.kh-kunye');
+      }
+      // filter by bāb, then search, then open the lawlā masʾala
+      const sel = document.getElementById('khilafBab'); const b0 = INSAF.babs[1].id; sel.value = b0; sel.dispatchEvent(new Event('change')); await w(50);
+      out.babN = document.querySelectorAll('#khilafOut details.kh-item').length; out.babWant = INSAF.masail.filter(x => x.bab === b0).length;
+      sel.value = ''; sel.dispatchEvent(new Event('change'));
+      const q = document.getElementById('khilafQ'); q.value = 'لولا'; q.dispatchEvent(new Event('input')); await w(400);
+      out.lawla = [...document.querySelectorAll('#khilafOut details.kh-item')].map(d => +d.dataset.n);
+      const d10 = document.querySelector('#khilafOut details.kh-item[data-n="10"]'); if (d10) { d10.open = true; await w(50); }
+      out.panes = d10 ? [!!d10.querySelector('.kh-pane.kh-kufa .kh-ar'), !!d10.querySelector('.kh-pane.kh-basra .kh-ar'), (d10.querySelector('.kh-tarjih .kh-chip') || {}).className || ''] : null;
+      q.value = 'qqqqzz'; q.dispatchEvent(new Event('input')); await w(400); out.none = document.querySelectorAll('#khilafOut details.kh-item').length;
+      q.value = ''; q.dispatchEvent(new Event('input')); await w(400);
+      // the game: the pool, read off the table
+      KHILAF_ITEMS = null; const pool = khilafItems(); const bare = s => InsafData.bare(s);
+      out.pool = { a: pool.filter(x => x.kind === 'a').length, b: pool.filter(x => x.kind === 'b').length, c: pool.filter(x => x.kind === 'c').length };
+      out.leak = pool.filter(x => x.kind === 'a' && (/الكوفي|البصري|كوفي|بصري/.test(bare(x.m.lead + x.m.rest)) || !bare(x.r[x.s + '_ar']).endsWith(bare(x.m.rest).trim()))).map(x => x.r.n);
+      out.wrongB = pool.filter(x => x.kind === 'b' && !['basra', 'kufa'].includes(x.r.tarjih)).map(x => x.r.n);
+      out.near = INSAF.masail.filter(x => { const m = InsafData.maskable(x); return x.kufa_ar && x.basra_ar && !m.kufa && !m.basra; }).length;
+      startKhilaf(); await w(50);
+      const opts = [...document.querySelectorAll('.opts [data-o]')]; out.opts = opts.length;
+      if (opts[0]) { opts[0].click(); await w(50); }
+      out.card = !!document.querySelector('#qWhy .khilaf-card .kh-pane');
+      closeSheet(); state.uiLang = keepLang; conjState.lab = keepLab; return out;
+    });
+    if (process.env.SMOKE_TRACE) console.log('  ' + J(r).slice(0, 1500));
+    if (r.n !== M.length || J(r.tally) !== J({ ...T0, n: M.length })) throw new Error('the page tally is not the table\'s: ' + J([r.tally, T0]));
+    for (const lang of ['tr', 'en']) { const o = r[lang];
+      if (!/\bsrc\b/.test(o.head) || o.items !== M.length || !o.kunye || !o.tallyTxt.includes(String(T0.basra)) || !o.tallyTxt.includes(String(T0.kufa))) throw new Error('the lab in ' + lang + ': ' + J(o)); }
+    if (r.tr.intro === r.en.intro || !/Basra/.test(r.en.tallyTxt) || !/Kûfe/.test(r.tr.tallyTxt)) throw new Error('the two languages: ' + J([r.tr.tallyTxt, r.en.tallyTxt]));
+    if (r.babN !== r.babWant || !(r.babN > 0)) throw new Error('the bāb filter: ' + J([r.babN, r.babWant]));
+    if (!r.lawla.includes(10) || r.none !== 0) throw new Error('the search: ' + J([r.lawla, r.none]));
+    if (J(r.panes) !== J([true, true, 'kh-chip kh-kufa'])) throw new Error('masʾala 10 (lawlā): both panes and the Kufan tarjīḥ: ' + J(r.panes));
+    if (r.leak.length || r.wrongB.length) throw new Error('game items not read off the table, or a masked view names its school: ' + J([r.leak, r.wrongB]));
+    if (r.pool.a < 100 || r.pool.b < 80 || r.pool.c < 20) throw new Error('the game pool is thin: ' + J(r.pool));
+    if (r.opts < 2 || !r.card) throw new Error('a round and its feedback card: ' + J([r.opts, r.card]));
+    // 390 px: no horizontal overflow in the lab, a card open
+    const was = page.viewportSize(); await page.setViewportSize({ width: 390, height: 844 });
+    try {
+      const ov = await page.evaluate(async () => { conjState.lab = 'khilaf'; conjState.khilafOpen = 10; openConjugator(); await new Promise(res => setTimeout(res, 120));
+        const vw = document.documentElement.clientWidth; const wide = [...document.querySelectorAll('#labBody *')].filter(e => { const b = e.getBoundingClientRect(); return b.width && (b.right > vw + 1 || b.left < -1); }).map(e => e.className || e.tagName).slice(0, 6);
+        const out = { sw: document.documentElement.scrollWidth, vw, wide, open: !!document.querySelector('details.kh-item[open] .kh-pane.kh-basra') }; closeSheet(); return out; });
+      if (ov.sw > ov.vw || ov.wide.length || !ov.open) throw new Error('the lab overflows at 390 px: ' + J(ov));
+    } finally { await page.setViewportSize(was); }
   });
 
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {

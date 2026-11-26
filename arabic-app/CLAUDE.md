@@ -15543,3 +15543,45 @@ measured over the 78 packages (authored lines naming the construction vs the eng
   «نُطَاعِنُ مَا تَرَاخَى النَّاسُ», al-Ḥārith «وَمَا يُحِيرُ الْبُكَاءُ» (authored the question; al-Durra allows the negation), «قَبْلُ مَا قَدْ وَشَى بِنَا»;
   al-Uṣūl al-Munīfa 2:s9/s10 «ابْتُلِينَا» (fatḥa and an object نَا for a passive); whether دَهْدَى (dahda-amr) is heard; the kāna tāmma two; the heard
   plurals رِئَال، قَرَاضِبَة and ʿAmr's fifteen; the Hadhf seats the engine leaves open in both poems.
+
+## v339-I — al-Inṣāf: the Basran–Kufan disputes
+
+The owner gave Shamela book 7362 — Ibn al-Anbārī's «الإنصاف في مسائل الخلاف بين النحويين البصريين والكوفيين» with Muḥyī al-Dīn ʿAbd al-Ḥamīd's
+«الانتصاف من الإنصاف» — and asked for «a higher level game and atölye about the different methods of Basra and Kufa». Built as a received source,
+not as engine work: one table, one lab, one game, and no Arabic that the book does not print.
+- **Taken.** `research/sources/insaf-ibn-al-anbari-src.txt`: Shamela pp. 1–677 (vol. 1 printed 5–343, vol. 2 349–688) page by page, headed
+  `=== p. N (vol:page) ===`, matn then `--- hashiya ---`; pp. 678–705 (the indexes) not taken; pp. 335–337 (vol. 1's contents) kept but skipped by
+  the extraction. README entry in `research/sources/README.md`.
+- **The table.** `content/rules/insaf_masail.json` (carried into the build as `INSAF` by `load_insaf()` in `tools/build_prototype.py`): 121 masāʾil —
+  118 plus the three the editor adds «في بعض النسخ» (119–121, `extra: true`). Per record: `title_ar` (the book's heading), `kufa_ar` / `basra_ar`
+  (the «ذهب الكوفيون / وذهب البصريون» sentence, cut at the sentence's full stop or at the next «وذهب», agreement clauses «وإليه ذهب …» split off
+  into `others` with `with`), `others` (named third views, verbatim), `tarjih` + `tarjih_ar` + `tarjih_src`, `page` {printed vol:page, shamela},
+  `bab` (14 bābs, defined in the file), `links` (grammar-note ids, clear matches only), and `title/kufa/basra_en|tr` — OUR renderings, shown with
+  «çeviri · hoca onayı bekliyor». The cutting is a script (kept in the session scratch as extract.py / build_table.py); a record whose shape the
+  script cannot read says so in `shape_note` or in `*_why_en|tr`. No `intisaf_ar` was taken: the editor's objections were not extracted.
+- **Guarded.** Smoke «v339 — al-Insaf: …»: every string under a key `*_ar` or `ar` anywhere in a record is a substring of the source file (the guard
+  against paraphrase); 121 records, numbered once each; both views or the reason why not; a tarjīḥ sentence whenever a school is named; the lab
+  (head «from the book · verbatim», 121 items in tr and en, the bāb filter, search «لولا» → 10 with both panes and the Kufa chip, no overflow at
+  390 px); the game (every round-(a) item's masked text is the tail of its record's own sentence and never names a school; every (b) item's answer is
+  the record's tarjīḥ; a round's feedback carries the masʾala card). `tools/check_i18n.py` now also checks the table's en/tr.
+- **The tally (computed, never typed).** Ibn al-Anbārī follows Basra in 114, Kufa in 7 (10 lawlā, 18 khabar laysa, 26 the lām of laʿalla,
+  70 withholding tanwīn in verse, 97 lawlāya, 101 the ranks of the maʿārif, 106 the pause «البَكَرْ») — 7 by an explicit sentence («والصحيح ما ذهب
+  إليه الكوفيون», «والذي أذهب إليه …»), 114 from the answer section («وأما الجواب عن كلمات الكوفيين» = he refutes the Kufans, so he holds with Basra).
+- **The lab** «الْخِلَاف — Basra ve Kûfe» (`LAB_TOOLS` id `khilaf`, group nahw; the frame's third engine kind `src`, «Kitaptan · aynen»): intro
+  (three sentences), computed tally, search (LabIndex.fold) + bāb select, the list by bāb; each card two panes (stack under 15rem), third views,
+  «ابن الأنباري: «…»» with a chip, the page, the note chips, the künye line.
+- **The game** gKhilaf «Kimin görüşü? / Whose view?» (Naḥw shelf, Elo area `nahw`, `lvl: 6`): (a) the statement with «ذهب الكوفيون/البصريون إلى أن»
+  replaced by «ذَهَبَ … إِلَى أَنَّ» → Basra or Kufa — excluded BY RULE when the rest still names a school or the two schools' rests are near identical
+  (word Dice ≥ 0.75): 18, 44, 69 fall out by near-identity, 81's Kufan sentence by naming «من البصريين», and the split / «الكوفيين» records (34, 74, 77, 84, 104, 120) have no maskable head; (b) the two views → whom he follows (all 121 have a basra/kufa tarjīḥ);
+  (c) a view → its masʾala among three titles of its bāb. A round is 4 + 3 + 1.
+- **Older checks touched (counts only):** v317 Atölye index 37 → 38 tools, Naḥw 14 → 15; v317 games hub 49 → 50, Naḥw shelf 22 → 23 (phone «All»
+  +19); v321 one frame: 38 heads, `khilaf` expected `src`.
+- **Shapes that differed.** 34 and 74 open «اختلف مذهب الكوفيين» (the Kufan pane holds the whole split); 84 «واختلف البصريون» (the Basran pane
+  holds it); 120 «اختلف الكوفيون … وذهب أكثر البصريين»; 77 and 104 print «ذهب الكوفيين» (sic); 44 prints «لا يجوز» for BOTH schools and 65 prints
+  the Kufans' «يجب العطف» — both likely misprints, kept verbatim; 73's Basran sentence is cut at its first «؛» (it runs into the three proofs);
+  36's answer heading prints «ما الجواب» and 117's «كلما ت» — read as the answer section; 29's «والصحيح عندي هو الأول» chooses between two Basran
+  estimates, so its tarjīḥ is the answer section's.
+- **For the hoca.** (1) All 121 renderings (title + two views, en/tr), first the compressed ones: 5, 23, 34, 73, 74, 84, 86, 87, 114, 120. (2) The
+  114 tarjīḥ marked from the answer section rather than a sentence (every masʾala but 10, 18, 26, 70, 97, 101, 106). (3) 44 and 65: confirm the
+  print's wording against another edition. (4) The bāb assignment (ours, 14 bābs). (5) Whether the editor's ḥāshiya objections (`intisaf_ar`) should
+  be added — none were taken this wave.
