@@ -4,16 +4,16 @@
  "built_by": "tools/ledger/aqil_ledger.py",
  "about": "python3 tools/ledger/aqil_ledger.py            # cut, join, prove in prototype/reader.html (tools/ledger/aqil_prove.js), write\n  python3 tools/ledger/aqil_ledger.py --no-prove # reuse tools/ledger/.aqil-proof-cache.json\n\nOne entry per RULE STATEMENT of the commentary: a sentence of Ibn ʿAqīl's prose (not the naẓm, not a shāhid, not the editor's\nnotes or appendix) that states a ruling (يجب / يجوز / يمتنع / يلزم / يرفع / ينصب / … / لا تقول) and gives its example (نحو / تقول /\nكقولك). Its status, in this order:\n  joined           — the SAME rule in the Shudhūr / Qawāʿid / Iẓhār / Kāfiya ledgers (same topic — commentary_links.json — and the\n                     same example, or ≥ 3 shared content words and a Jaccard ≥ .3): it inherits that entry's status, not re-proved;\n  not-automatable  — a ruling of usage the engine does not decide: poetic licence / rarity, a school's view, a dialect, a matter of\n                     meaning (the marker is named in `reason`);\n  open (ṣarf)      — a bāb of word-form: for the ṣarf ledgers, not read by the iʿrāb probe;\n  applied          — the book's own example through SentenceAnalyzer + Murib.line names the ruling (the word the sentence names, or\n                     the bāb's construction on some word); applied-offered when the line gives it beside another reading;\n  open ⚠           — the engine misreads the book's example: its line is kept beside the book's (`got`);\n  open             — no construction the iʿrāb line names.",
  "counts": {
-  "applied": 192,
+  "applied": 191,
   "applied-offered": 7,
   "joined": 51,
   "not-automatable": 212,
   "open": 156,
-  "status:applied": 248,
+  "status:applied": 247,
   "status:not-automatable": 212,
   "status:noted": 2,
-  "status:open": 344,
-  "warn": 188
+  "status:open": 345,
+  "warn": 189
  },
  "by_bab": {
   "الكلام وما يتألف منه": {
@@ -108,10 +108,10 @@
    "warn": 1
   },
   "أعلم وأرى": {
-   "applied": 3,
+   "applied": 2,
    "entries": 5,
    "not-automatable": 1,
-   "warn": 1
+   "warn": 2
   },
   "الفاعل": {
    "applied": 15,
@@ -6046,11 +6046,12 @@
     {
      "s": "أعلمت الحق وأعطيت درهما",
      "any": "مفعول به",
-     "ok": true,
-     "got": "درهما: اسم، وعلامته مقدره، مفعول به."
+     "ok": false,
+     "got": "أعلمت: فعل ماض، مبني علي الفتح، والتاء ضمير متصل مبني في محل رفع فا | الحق: اسم، والظاهر انه فاعل. | وأعطيت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | درهما: اسم، وعلامته مقدره، و"
     }
    ],
-   "status": "applied"
+   "status": "open",
+   "warn": true
   },
   {
    "id": "A461.1",
@@ -6969,7 +6970,7 @@
      "s": "أعطي زيد درهما وأعلم زيد عمرا قائما وضرب",
      "any": "نايب فاعل|نايب عن الفاعل",
      "ok": false,
-     "got": "أعطي: فعل امر، مبني علي حذف النون. | زيد: اسم، مفعول به. | درهما: اسم، وعلامته مقدره، مفعول به. | وأعلم: اسم، معطوف. | زيد: اسم، مضاف اليه. | عمرا: اسم، وعلامته مقدره، مفعول مطلق. | قائما: اسم، وعلامت"
+     "got": "أعطي: فعل امر، مبني علي حذف النون. | زيد: اسم، مفعول به. | درهما: اسم، وعلامته مقدره، والضمير مضاف اليه. | وأعلم: اسم، معطوف. | زيد: اسم، مضاف اليه. | عمرا: اسم، وعلامته مقدره، مفعول مطلق. | قائما: اس"
     }
    ],
    "status": "open",
@@ -7574,7 +7575,7 @@
      "s": "في أعطيت زيدا درهما أعطيت",
      "any": "مفعول به|لازم|متعد",
      "ok": false,
-     "got": "في: حرف جر، لا محل له من الاعراب. | أعطيت: اسم. | زيدا: اسم، وعلامته مقدره، مضاف اليه. | درهما: اسم، وعلامته مقدره، مبتدا. | أعطيت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي"
+     "got": "في: حرف جر، لا محل له من الاعراب. | أعطيت: اسم. | زيدا: اسم، وعلامته مقدره، مضاف اليه. | درهما: اسم، وعلامته مقدره، مبتدا، والضمير مضاف اليه. | أعطيت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك،"
     }
    ],
    "status": "open",
@@ -9874,7 +9875,7 @@
      "s": "أصبت درهما لا غيره وجئت من قبل زيد",
      "any": "مضاف اليه",
      "ok": true,
-     "got": "زيد: اسم، مضاف اليه."
+     "got": "درهما: اسم، وعلامته مقدره، والضمير مضاف اليه."
     }
    ],
    "status": "applied"
@@ -10643,7 +10644,7 @@
      "s": "الحسن وجه",
      "any": "صفه مشبهه|مشبهه",
      "ok": false,
-     "got": "الحسن: اسم، مبتدا، والجمله الفعليه «وجه» في محل رفع خبره. | وجه: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو"
+     "got": "الحسن: اسم، مبتدا، وخبره «وجه». | وجه: اسم، خبر."
     }
    ],
    "status": "open",

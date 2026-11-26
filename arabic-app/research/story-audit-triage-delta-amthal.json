@@ -1,0 +1,387 @@
+{
+ "tag": "amthal",
+ "wave": "v348-A",
+ "note": "The proverbs' shelf (mathal-*): every contradiction tools/grammar_audit.js listed on the new packages (35 on the first full run) judged by the line. Two were the author's and were corrected in the scripts (listed under «corrected»): يَعْجِزُ (the head-sentence note moved to the mubtadaʾ) and قُرَاقِر (the diptote's fatha named); حَيَّاكَ and وَتَمْرًا had the maqūl seat added to the line, and the engine still reads another seat first (judged E). Second full run: 33 on the shelf, all judged. The rest: E = the engine is wrong by the books, C = both readings are allowed.",
+ "corrected": [
+  {
+   "engine": "jumla",
+   "key": "mathal-al-maru-yajizu:1:s1:2",
+   "word": "يَعْجِزُ"
+  },
+  {
+   "engine": "sign",
+   "key": "mathal-inda-al-sabah:1:s12:8",
+   "word": "قُرَاقِر"
+  }
+ ],
+ "records": [
+  {
+   "engine": "jumla",
+   "key": "mathal-asmin-kalbaka-yakulka:1:s3:17",
+   "pkg": "mathal-asmin-kalbaka-yakulka",
+   "ch": "1",
+   "sen": "s3",
+   "word": "يَغْصِبُهُمْ",
+   "verdict": "C",
+   "cluster": "A-J02",
+   "why": "the author reads «يَغْصِبُهُمْ» as a second predicate of كَانَ after «عَنِيفًا»; the engine offers a ḥāl of «مَمْلَكَتِهِ» or a fresh start. A kāna may take more than one khabar (al-Inṣāf's own gloss: «ومصيف: خبر ثان»), so both readings stand.",
+   "cite": {
+    "file": "research/sources/insaf-ibn-al-anbari-src.txt",
+    "line": 7252,
+    "ar": "فَبَتِّي: خبر المبتدأ الذي هو هذا، ومصيف: خبر ثان، ومقيظ: خبر ثالث"
+   }
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-inda-al-sabah:1:s1:3",
+   "pkg": "mathal-inda-al-sabah",
+   "ch": "1",
+   "sen": "s1",
+   "word": "يَحْمَدُ",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "«عِنْدَ الصَّبَاحِ» is a ẓarf and «يَحْمَدُ» the main verb of the proverb; there is no noun for a ḥāl or naʿt clause to describe."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-inda-al-sabah:1:s4:6",
+   "pkg": "mathal-inda-al-sabah",
+   "ch": "1",
+   "sen": "s4",
+   "word": "رَحِمَهُ",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "the author's line already says «مُعْتَرِضَةٌ لَا مَحَلَّ لَهَا» — the engine reads the line's earlier «خَبَرِيَّةٌ لَفْظًا» as a khabar seat."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-inda-al-sabah:1:s9:8",
+   "pkg": "mathal-inda-al-sabah",
+   "ch": "1",
+   "sen": "s9",
+   "word": "انْظُرُوا",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "«انْظُرُوا» opens what Rāfiʿ says after «قَالَ رَافِعٌ:» — the maqūl, not a naʿt or khabar of the speaker's name."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-inda-al-sabah:1:s12:5",
+   "pkg": "mathal-inda-al-sabah",
+   "ch": "1",
+   "sen": "s12",
+   "word": "اهْتَدَى",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "«أَنَّى» is the question noun «how» in the seat of a ḥāl (wonder); it is no mubtadaʾ or nāsikh to own «اهْتَدَى» as its khabar."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-inda-al-sabah:1:s12:6",
+   "pkg": "mathal-inda-al-sabah",
+   "ch": "1",
+   "sen": "s12",
+   "word": "فَوَّزَ",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "there is no condition in the rajaz line: «فَوَّزَ» opens a new clause after «أَنَّى اهْتَدَى»."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-kilahuma-wa-tamran:1:s6:4",
+   "pkg": "mathal-kilahuma-wa-tamran",
+   "ch": "1",
+   "sen": "s6",
+   "word": "أَطْعِمْنِي",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "«الرَّجُلُ» is the doer of «فَقَالَ»; «أَطْعِمْنِي» opens what he says (maqūl), not his khabar."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-sabaqa-al-sayf-al-adhal:1:s11:4",
+   "pkg": "mathal-sabaqa-al-sayf-al-adhal",
+   "ch": "1",
+   "sen": "s11",
+   "word": "أَرِنِي",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "«ضَبَّةُ» is the doer of «فَقَالَ»; «أَرِنِي» opens what he says (maqūl), not his khabar."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-wafaqa-shannun-tabaqah:1:s2:8",
+   "pkg": "mathal-wafaqa-shannun-tabaqah",
+   "ch": "1",
+   "sen": "s2",
+   "word": "زَعَمَ",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "after «قَوْلًا رَابِعًا:» the colon introduces what the account says; «زَعَمَ …» spells the account out (tafsīr), it does not qualify «رَابِعًا»."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-wafaqa-shannun-tabaqah:2:s2:5",
+   "pkg": "mathal-wafaqa-shannun-tabaqah",
+   "ch": "2",
+   "sen": "s2",
+   "word": "تَرَى",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "«أَحَيًّا» is the hamza and a fronted ḥāl; «تَرَى» is the verb of the question, not a naʿt or khabar of «حَيًّا»."
+  },
+  {
+   "engine": "sign",
+   "key": "mathal-bi-khuffay-hunayn:1:s1:5",
+   "pkg": "mathal-bi-khuffay-hunayn",
+   "ch": "1",
+   "sen": "s1",
+   "word": "بِخُفَّيْ",
+   "verdict": "E",
+   "cluster": "A-S01",
+   "why": "the token is «بِ» + the dual «خُفَّيْ»: the line's sign (the ya of the dual) belongs to the noun; the engine reads the jarr letter's built state."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-al-maru-yajizu:1:s3:8",
+   "pkg": "mathal-al-maru-yajizu",
+   "ch": "1",
+   "sen": "s3",
+   "word": "الْجَهَالَهْ",
+   "verdict": "E",
+   "cluster": "A-C01",
+   "why": "the rhyme word stands in pause with its tāʾ said and written as hāʾ («الْجَهَالَهْ»): the case sign is estimated, hidden by the pause — the engine wants a written vowel the verse cannot carry."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-al-maru-yajizu:1:s4:7",
+   "pkg": "mathal-al-maru-yajizu",
+   "ch": "1",
+   "sen": "s4",
+   "word": "الْمَحَالَهْ",
+   "verdict": "E",
+   "cluster": "A-C01",
+   "why": "the rhyme word stands in pause («الْمَحَالَهْ»): the raf' is estimated, hidden by the pause."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-al-maru-yajizu:1:s5:6",
+   "pkg": "mathal-al-maru-yajizu",
+   "ch": "1",
+   "sen": "s5",
+   "word": "الْمَقَالَهْ",
+   "verdict": "E",
+   "cluster": "A-C01",
+   "why": "the rhyme word stands in pause («الْمَقَالَهْ»): the raf' is estimated, hidden by the pause."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-asmin-kalbaka-yakulka:1:s5:5",
+   "pkg": "mathal-asmin-kalbaka-yakulka",
+   "ch": "1",
+   "sen": "s5",
+   "word": "أَصْوَاتَ",
+   "verdict": "E",
+   "cluster": "A-C02",
+   "why": "«أَصْوَاتَ» is a broken plural (أَفْعَال of صَوْت), its tāʾ a root letter: in nasb by the fatha, not the kasra of the sound feminine plural."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-ati-al-qaws-bariha:1:s7:4",
+   "pkg": "mathal-ati-al-qaws-bariha",
+   "ch": "1",
+   "sen": "s7",
+   "word": "لَأَرْغَبُ",
+   "verdict": "E",
+   "cluster": "A-C03",
+   "why": "the lam of «لَأَرْغَبُ» is the lām of emphasis moved to the predicate of «إِنِّي», not the lām of command; the verb stays in raf'."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-ati-al-qaws-bariha:1:s14:9",
+   "pkg": "mathal-ati-al-qaws-bariha",
+   "ch": "1",
+   "sen": "s14",
+   "word": "فَنُضَيِّعَ",
+   "verdict": "E",
+   "cluster": "A-C03",
+   "why": "«فَنُضَيِّعَ» follows the fa of consequence answering the negation «وَلَمْ تَحْمِلْنَا»: in nasb by an implied أَنْ, not jazm."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-ati-al-qaws-bariha:1:s14:11",
+   "pkg": "mathal-ati-al-qaws-bariha",
+   "ch": "1",
+   "sen": "s14",
+   "word": "وَنَبْخَسَكَ",
+   "verdict": "E",
+   "cluster": "A-C03",
+   "why": "«وَنَبْخَسَكَ» is conjoined to «فَنُضَيِّعَ» and shares its nasb."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-bi-khuffay-hunayn:1:s1:5",
+   "pkg": "mathal-bi-khuffay-hunayn",
+   "ch": "1",
+   "sen": "s1",
+   "word": "بِخُفَّيْ",
+   "verdict": "E",
+   "cluster": "A-C04",
+   "why": "«بِخُفَّيْ حُنَيْنٍ»: the dual in jarr with its nun dropped for the annexation; no helping kasra is due before a name without the article."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-bi-khuffay-hunayn:1:s7:5",
+   "pkg": "mathal-bi-khuffay-hunayn",
+   "ch": "1",
+   "sen": "s7",
+   "word": "فَيَلْبَسَ",
+   "verdict": "E",
+   "cluster": "A-C03",
+   "why": "«فَيَلْبَسَ» follows the fa of consequence answering the negation «لَمْ يُقْبَلْ»: in nasb by an implied أَنْ, not jazm."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-inda-al-sabah:1:s9:10",
+   "pkg": "mathal-inda-al-sabah",
+   "ch": "1",
+   "sen": "s9",
+   "word": "تَرَوْنَ",
+   "verdict": "E",
+   "cluster": "A-C04",
+   "why": "«تَرَوْنَ» is one of the five verbs in raf' by the kept nun after «هَلْ»; nothing puts it in jazm."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-kilahuma-wa-tamran:1:s3:7",
+   "pkg": "mathal-kilahuma-wa-tamran",
+   "ch": "1",
+   "sen": "s3",
+   "word": "يُوَلِّهِ",
+   "verdict": "E",
+   "cluster": "A-C04",
+   "why": "«فَلَمْ يُوَلِّهِ» is Form II «وَلَّى يُوَلِّي» in jazm by the dropped ya, active (the caliph is its doer), not the passive «يُوَلَّهُ»."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-sabaqa-al-sayf-al-adhal:1:s7:5",
+   "pkg": "mathal-sabaqa-al-sayf-al-adhal",
+   "ch": "1",
+   "sen": "s7",
+   "word": "بَيْنَمَا",
+   "verdict": "E",
+   "cluster": "A-C05",
+   "why": "«بَيْنَمَا» is the ẓarf بَيْنَ with the restraining مَا, built on its fatha; it is no predicate of إِنَّ and wears no tanwin."
+  },
+  {
+   "engine": "case",
+   "key": "mathal-wafaqa-shannun-tabaqah:1:s4:1",
+   "pkg": "mathal-wafaqa-shannun-tabaqah",
+   "ch": "1",
+   "sen": "s4",
+   "word": "فَبَيْنَمَا",
+   "verdict": "E",
+   "cluster": "A-C05",
+   "why": "«فَبَيْنَمَا» is the ẓarf بَيْنَ with the restraining مَا; it is no mubtadaʾ and wears no tanwin."
+  },
+  {
+   "engine": "taalluq",
+   "key": "mathal-inda-al-sabah:1:s7:15",
+   "pkg": "mathal-inda-al-sabah",
+   "ch": "1",
+   "sen": "s7",
+   "word": "لِئَلَّا",
+   "verdict": "E",
+   "cluster": "A-T01",
+   "why": "«لِئَلَّا تَرْعَى» gives the purpose of muzzling: it hangs on «كَعَمَ», not on the noun «أَفْوَاهَهَا»."
+  },
+  {
+   "engine": "taalluq",
+   "key": "mathal-kilahuma-wa-tamran:1:s5:13",
+   "pkg": "mathal-kilahuma-wa-tamran",
+   "ch": "1",
+   "sen": "s5",
+   "word": "وَبَيْنَ",
+   "verdict": "E",
+   "cluster": "A-T01",
+   "why": "«وَبَيْنَ يَدَيْ عَمْرٍو» is a fronted predicate in a ḥāl clause («وَبَيْنَ يَدَيْ عَمْرٍو زُبْدٌ»); it does not hang on «الْعَطَشُ»."
+  },
+  {
+   "engine": "taalluq",
+   "key": "mathal-sabaqa-al-sayf-al-adhal:1:s5:3",
+   "pkg": "mathal-sabaqa-al-sayf-al-adhal",
+   "ch": "1",
+   "sen": "s5",
+   "word": "كُلَّمَا",
+   "verdict": "E",
+   "cluster": "A-T01",
+   "why": "«كُلَّمَا» is a ẓarf that hangs on its answer «قَالَ»; the whole كُلَّمَا clause is the khabar of كَانَ, the ẓarf itself does not hang on an omitted khabar."
+  },
+  {
+   "engine": "taalluq",
+   "key": "mathal-sabaqa-al-sayf-al-adhal:1:s7:8",
+   "pkg": "mathal-sabaqa-al-sayf-al-adhal",
+   "ch": "1",
+   "sen": "s7",
+   "word": "وَمَعَهُ",
+   "verdict": "E",
+   "cluster": "A-T01",
+   "why": "«وَمَعَهُ الْحَارِثُ» is a ḥāl clause whose fronted khabar «مَعَهُ» hangs on an omitted «كائن» (mustaqarr), not on «يَسِيرُ»."
+  },
+  {
+   "engine": "sh336",
+   "key": "mathal-asmin-kalbaka-yakulka:1:s9:4",
+   "pkg": "mathal-asmin-kalbaka-yakulka",
+   "ch": "1",
+   "sen": "s9",
+   "word": "تَرَى",
+   "verdict": "E",
+   "cluster": "A-H01",
+   "why": "«قَدْ تَرَى مَا نَحْنُ فِيهِ»: «مَا» is the relative «what (we are in)», the object of «تَرَى»; it is no negating مَا that suspends a heart verb."
+  },
+  {
+   "engine": "inna",
+   "key": "mathal-al-maru-yajizu:1:s7:8",
+   "pkg": "mathal-al-maru-yajizu",
+   "ch": "1",
+   "sen": "s7",
+   "word": "وَأَنَّ",
+   "verdict": "E",
+   "cluster": "A-I01",
+   "why": "«وَأَنَّ ابْنَ عَمِّهِ أَرَادَ سَدَّهُ» is conjoined to «أَنَّ ابْنَ عَمٍّ …» inside «وَكَانَ مِنْ خَبَرِ هٰذَا الشِّعْرِ أَنَّ …»: it keeps the fatha."
+  },
+  {
+   "engine": "inna",
+   "key": "mathal-asmin-kalbaka-yakulka:1:s5:1",
+   "pkg": "mathal-asmin-kalbaka-yakulka",
+   "ch": "1",
+   "sen": "s5",
+   "word": "وَإِنَّ",
+   "verdict": "E",
+   "cluster": "A-I01",
+   "why": "«وَإِنَّ امْرَأَةً لَهُ سَمِعَتْ» opens a new sentence after a full stop: the hamza takes kasra; nothing governs it to be conjoined in the fatha."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-ati-al-qaws-bariha:1:s13:2",
+   "pkg": "mathal-ati-al-qaws-bariha",
+   "ch": "1",
+   "sen": "s13",
+   "word": "حَيَّاكَ",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "the line now states the maqūl seat («فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ»); the engine reads the earlier «خَبَرِيَّةٌ لَفْظًا» (a statement in form, a prayer in meaning) as a khabar seat."
+  },
+  {
+   "engine": "jumla",
+   "key": "mathal-kilahuma-wa-tamran:1:s2:12",
+   "pkg": "mathal-kilahuma-wa-tamran",
+   "ch": "1",
+   "sen": "s2",
+   "word": "وَتَمْرًا",
+   "verdict": "E",
+   "cluster": "A-J01",
+   "why": "the line states both: the clause «وَتَمْرًا» (with its implied verb) is conjoined to «كِلَاهُمَا», and «كِلَاهُمَا وَتَمْرًا» together are what is said; the engine takes the conjunction as the clause's only seat."
+  }
+ ]
+}

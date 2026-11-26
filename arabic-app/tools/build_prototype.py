@@ -357,6 +357,12 @@ def load_alfiyya():
                 d.update(en=v["en"], tr=v["tr"])
         out.append(d)
     return {"babs": babs, "v": out}
+def load_amthal():
+    """content/rules/amthal_index.json (v348-A) — every proverb of al-Bakrī's Faṣl al-maqāl cut by script (tools/sources/amthal_index.py) from
+    research/sources/fasl-al-maqal-bakri-src.txt: the mathal as the e-text prints it, its bāb, pages, the length of its tale, and the mathal-*
+    package that carries the tale where one does."""
+    p = ROOT / "content/rules/amthal_index.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
 
 def build_catalog(pkgs):
@@ -440,6 +446,7 @@ def main():
         js("ILAL", load_ilal()),
         # (v352-A) the Alfiyya's verses on the notes — the «Elfiye» cards and the «beyti bul» round read this
         js("ALFIYYA_JSON", json.dumps(load_alfiyya(), ensure_ascii=False, separators=(",", ":"))),
+        js("AMTHAL", load_amthal()),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",
              "label": {"en": "Morphology — after Emsile & Bina",

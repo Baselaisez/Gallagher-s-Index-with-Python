@@ -4956,7 +4956,14 @@ if (!CHROME) {
     });
     if (r.n < 1500) throw new Error('the audit shrank: ' + r.n + ' instances of the twenty');
     if (r.cov < 99) throw new Error('the faces leave instances undecided: ' + r.cov + '%');
-    if (r.acc < 98) throw new Error('the twenty words agree with the page below 98% — ' + r.acc + ': ' + JSON.stringify(r.misses));
+    /* (v348-A) floor 98 → 97.8, measured the v333 way: the older shelf is unchanged at 98.0 (4,730 instances, the same build with the eleven
+       mathal-* ids spliced out); the proverbs add 59 instances of which the engine reads 47, and every one of the 12 it misses was read against
+       its line — the engine is wrong in each: لَا ʿāṭifa after a clause (الْمَرْءُ يَعْجِزُ لَا الْمَحَالَةُ ×2) and لَا of answer before an oath
+       (لَا وَثِيَابِ هَاشِمٍ) read as nāfiya; لَا nāhiya before the nūn of emphasis (لَا تَشُقَّنَّ) read as nāfiya; أَيِ of tafsīr (أَيِ اسْتَعِنْ)
+       read as a question; أَنْ of tafsīr after «بَعَثَ» (أَنْ سِرْ) read as maṣdariyya; فَإِنْ رَأَيْتُمُوهَا read as negation; إِذْ of surprise
+       (إِذْ أَتَيَا, after بَيْنَمَا) read as a ẓarf; مَنْ صَاحِبُهَا (a question, after أَنْبِئْنِي) read as relative and مَنْ عَلَى هٰذَا النَّعْشِ
+       (relative) read as a question; قَدْ with the present: «قَدْ تَرَى» taḥqīq and «وَقَدْ أَتَنَاسَى» taktīr (the verse) both read as taqlīl */
+    if (r.acc < 97.8) throw new Error('the twenty words agree with the page below 97.8% — ' + r.acc + ': ' + JSON.stringify(r.misses));
     if (r.man < 400 || r.maAcc < 85) throw new Error('مَا: ' + r.maAcc + '% of ' + r.man + ' (floor 85% of 400)');
     if (r.seeds < 40 || r.bad.length) throw new Error('the book\'s seeds: ' + r.seeds + ', misses ' + JSON.stringify(r.bad));
     if (r.inShart !== 'shart' || r.laJins !== 'jins' || r.laNahy !== 'nahiya' || r.idhaMuf !== 'mufajaa' || r.manQ !== 'istifham') throw new Error('the five sample faces: ' + JSON.stringify(r));
@@ -13337,7 +13344,8 @@ if (!CHROME) {
     if (p.thalath !== 'free' || p.arba !== 'free' || p.thulath !== 'barred') throw new Error('the plain cardinal declines, the deflected ثُلَاثَ is barred: ' + JSON.stringify(p));
     if (p.shaytan !== 'free' || p.arkan !== 'free' || p.yaqzan !== 'barred') throw new Error('فَعْلَان is barred only on evidence of adjectivity: ' + JSON.stringify(p));
     if (p.filastin !== 'barred' || p.abras !== 'barred' || p.tamim !== 'unsure') throw new Error('the foreign name and the أَفْعَل adjective are barred, the rootless تَمِيم is left unsure: ' + JSON.stringify(p));
-    if (r.n < 3000 || r.dis > 8) throw new Error('the ḍabṭ engine and MamnuEngine should agree on the lexicon: ' + JSON.stringify(r));
+    // (v348-A) 8 → 9, measured the v333 way: the older shelf still gives 8 (the rows unchanged); the one new row is «الْأَغْلَب» (al-Aghlab al-ʿIjlī, mathal-inda-al-sabah / the proverbs' shelf) — an أَفْعَل proper name, barred by ʿalamiyya + wazn al-fiʿl as MamnuEngine says, the same family as الْأَخْفَش / الْأَعْرَج already listed; the ḍabṭ engine's article-borne name is the gap, not the line
+    if (r.n < 3000 || r.dis > 9) throw new Error('the ḍabṭ engine and MamnuEngine should agree on the lexicon: ' + JSON.stringify(r));
   });
   await check('wave 100 — «Luqman and His Son», the twelfth original story and the fourth at Level 2: four chapters, sixteen sentences, every token with trilingual i\'rab, free, pending review; the diptote name behind its lam, the vocative بُنَيَّ, the imperatives and prohibitions of defective and hollow verbs, إِذَا with its clause, the dual وَالِدَيْكَ, the five-noun أَبِيهِ, the lam of purpose and the ultimate plural وَصَايَا are tagged; the ḍabṭ engine re-derives its endings', async () => {
     const r = await page.evaluate(() => {
@@ -15338,7 +15346,11 @@ if (!CHROME) {
        the books leave open — ʿAmr «فَمَا وَجَدَتْ كَوَجْدِي أُمُّ سَقْبٍ» (negation; read as a relative), «نُطَاعِنُ مَا تَرَاخَى النَّاسُ عَنَّا» (maṣdariyya ẓarfiyya;
        read as a relative), al-Ḥārith «وَمَا يُحِيرُ الْبُكَاءُ» (authored the question, al-Durra allows the negation the engine reads), «قَبْلُ مَا قَدْ وَشَى بِنَا»
        (al-Zawzanī's «صِلَةٌ زَائِدَةٌ»; read as a noun) — for the hoca */
-    if (m.right < 660 || m.wrong > 49) throw new Error('the «مَا» measure fell: ' + J(m) + ' (floors: right ≥ 660, wrong ≤ 49)');
+    /* (v348-A) ceiling 49 → 53, measured: the shelf without the proverbs' shelf (mathal-*) stays at 49 wrong (866 right). Of the proverbs'
+       ten «مَا» four stay against their lines, each examined: «قَدْ تَرَى مَا نَحْنُ فِيهِ» and «وَلِكُلِّ مَا قَالَهُ مَعْنًى» are relatives (the
+       engine reads a ḥarf — the engine's), «بَكَى مَا سَارَهَا مِنْ قَبْلِهِ إِنْسٌ» is the negation (the engine reads a noun — the engine's), and
+       «مَوْضِعٍ مَا» is authored the ḥarf zāʾid of ibhām where some read a nakira ṣifa (a reading the books leave open — for the hoca) */
+    if (m.right < 660 || m.wrong > 53) throw new Error('the «مَا» measure fell: ' + J(m) + ' (floors: right ≥ 660, wrong ≤ 53)');
   });
 
   await check('wave 185 — Marāḥ al-Arwāḥ part five is on the shelf (the sixty pronouns and how they are counted; the origin of هُوَ and the mīm of هُمَا and أَنْتُمَا), its lines say what the words wear (the decade follows the sound plural, اثْنَيْنِ the dual, the imperative on a sukūn takes its kasra only before a sākin, أُدْخِلَ is the passive); the rules it called for hold with their controls (after a nāṣib «أُفْعِلَ» is the muḍāriʿ; a jarr letter alone is the letter; the muḍāriʿ of ṣāra opens kāna\'s clause; a yāʾ-form seated as kāna\'s khabar is no naʿt of the majrūr before it); and across every text a passive verb\'s line names the DEPUTY doer in all three languages, and no word is left at the bare line «اسْمٌ.»', async () => {
@@ -16218,7 +16230,10 @@ if (!CHROME) {
     if (J(r.mid.mara) !== J(['3:middle:alif:matn']) || J(r.mid.waad) !== J(['3:middle']) || J(r.mid.quran) !== J(['3:middle:alif:matn']) || J(r.mid.amana) !== J(['1:head:alif:matn']) || J(r.mid.bare) !== J(['unknown']) || r.mid.none !== 0) throw new Error('the middle hamza, the madda, the bare word: ' + J(r.mid));
     if (J(r.wrong.u) !== J(['3:middle:ya:other(strong)']) || J(r.wrong.ok) !== J(['3:middle:waw:matn']) || J(r.wrong.i) !== J(['3:middle:ya:matn'])) throw new Error('a spelling no rule gives must be called so, and the two right ones accepted: ' + J(r.wrong));
     const A = r.audit;
-    if (A.total < 15000 || A.matn + A.later + A.other + A.unknown !== A.total || A.other !== 0 || A.unknown > 40 || A.matn / A.total < 0.96 || A.later < 400 || A.pool.some(n => n < 20)) throw new Error('the shelf\'s hamzas by the five rules: ' + J(A));
+    /* (v348-A) «other» 0 → the one listed, measured the v333 way: the shelf without the proverbs' shelf still has none; the one new is «سَيِّءَ»
+       (mathal-al-maru-yajizu s6, «كَانَ سَيِّءَ الْخُلُقِ») — the received print writes the hamza on the line after the doubled yāʾ, and a received text is
+       not corrected without a witness (none found); the rules would seat it on the yāʾ (سَيِّئَ) — for the hoca. Pinned by word, so a second stays a failure. */
+    if (A.total < 15000 || A.matn + A.later + A.other + A.unknown !== A.total || A.other !== 1 || J(A.otherEx) !== J(['سَيِّءَ']) || A.unknown > 40 || A.matn / A.total < 0.96 || A.later < 400 || A.pool.some(n => n < 20)) throw new Error('the shelf\'s hamzas by the five rules: ' + J(A));
     if (r.rules.some(x => x.len < 30 || !x.hz || x.en < 30 || x.tr < 30) || J(r.rules.map(x => x.sen)) !== J(['s1', 's2', 's3', 's4', 's5'])) throw new Error('each rule must stand beside its sentence of chapter 62: ' + J(r.rules));
     if (!r.maq.startsWith('وَرِضَائِهِ|'.normalize('NFC')) || !r.maq.includes('مَعْطُوفٌ مَجْرُورٌ بِالْكَسْرَةِ'.normalize('NFC'))) throw new Error('the Maqāmāt\'s corrected word (10:s7 #3): ' + r.maq);
     if (r.ids !== r.uniq || !r.old || !r.neu || !r.oldStr[0] || !r.oldStr[1] || r.oldStr[0] === r.oldStr[1]) throw new Error('the game catalogue: every id once, gHamza (the hamza of the question) and gKursi (the seat) side by side: ' + J([r.ids, r.uniq, r.old, r.neu, r.oldStr]));
@@ -16487,13 +16502,16 @@ if (!CHROME) {
       return { q: seats('قِيلَ لَهُ أَمُؤْمِنٌ أَنْتَ.'), qc: seats('يُقَالُ لَهُ إِبْرَاهِيمُ.'), own: seats('فَيُقَالُ لَهُ قَوْلُكَ لَا أَدْرِي أَعَدْلٌ أَمْ جَوْرٌ.'),
         w: seats('يَا لَهُ رَجُلًا.'), wc: seats('يَا لَزَيْدٍ لِعَمْرٍو.'),
         pl: ['دُونَ', 'حِينَ', 'دِينَ'].map(w => cls(w, ['jam-mudhakkar-salim'])), plc: [cls('الْمُؤْمِنِينَ', ['jam-mudhakkar-salim']), cls('مُسْلِمُونَ'), cls('عِشْرُونَ')],
-        tagged, hf: [h.false, (() => { let n = h.n, k = h.hit; for (const id of ['muallaqat-antara', 'muallaqat-labid', 'muallaqat-tarafa', 'muallaqat-amr-ibn-kulthum', 'muallaqat-al-harith']) { const b = (h.byStory || {})[id]; if (b) { n -= b.n; k -= b.hit; } } return Math.round(1000 * k / n) / 10; })()], sg: [SignEngine.audit().byClass.jamMudhakkar.rate] };
+        tagged, hf: [h.false, (() => { let n = h.n, k = h.hit; for (const id of ['muallaqat-antara', 'muallaqat-labid', 'muallaqat-tarafa', 'muallaqat-amr-ibn-kulthum', 'muallaqat-al-harith', ...Object.keys(h.byStory || {}).filter(i => /^mathal-/.test(i))]) { const b = (h.byStory || {})[id]; if (b) { n -= b.n; k -= b.hit; } } return Math.round(1000 * k / n) / 10; })()], sg: [SignEngine.audit().byClass.jamMudhakkar.rate] };
     });
     if (r.q.includes('mubtadaJawab') || r.own.includes('mubtadaJawab') || !r.qc.includes('mubtadaJawab')) throw new Error('the question and the naming: ' + J([r.q, r.own, r.qc]));
     if (r.w.includes('istighatha') || !r.wc.includes('istighatha')) throw new Error('wonder and the cry for help: ' + J([r.w, r.wc]));
     if (r.pl.some(c => c === 'jamMudhakkar') || r.plc.some(c => c !== 'jamMudhakkar')) throw new Error('the sound plural: ' + J([r.pl, r.plc]));
     if (r.tagged) throw new Error(r.tagged + ' singular words still tagged as sound plurals');
     /* (v335) the Hadhf floor is held on the shelf without the v335 poems (ʿAntara, Labīd) and (v336) Ṭarafa's and (v337) ʿAmr ibn Kulthūm's and al-Ḥārith's, which are measured apart in «v334 — Faces, Inna and Unsaid» */
+    /* (v348-A) the proverbs' shelf (mathal-*, received texts) is measured apart like the Muʿallaqāt — the v333 rule: 12 seats, 6 read, no false
+       reading; the older shelf stays 1230 / 1444 = 85.2. The six left, each examined, are the proverbs' own ellipses: «كِلَيْهِمَا وَتَمْرًا» ×3
+       (the object of the unsaid «وَأَزِيدُكَ»), «نَعَامَةٌ» and «بِنْتٌ» (the khabar of an unsaid هٰذِهِ / هِيَ) and «أَسَعْدٌ» (the question's head) */
     if (r.hf[0] > 1 || r.hf[1] < 85 || r.sg[0] < 99) throw new Error('the audits: ' + J([r.hf, r.sg]));
   });
 
@@ -16916,7 +16934,9 @@ if (!CHROME) {
        السَّلَامُ», al-Talkhīṣ 76:s4): the older shelf 2567/955/5 → 2567/952/2; al-Ḥārith adds 17 clauses and 34 isnāds and no violation: 2584/986/2. */
     /* (v345-T · T-O01) 2584/986/2 → 2576/986/0: eight «clauses» were a maṣdar's second object read as the verb's (… الْإِدْغَامُ بِجَعْلِ التَّاءِ ثَاءً —
        Marāḥ 47–50), one of them the mf2 violation; the dual غَيْرَانِ is no definite (the mk2 violation) */
-    if (r.audit !== '2576/986/0') bad.push('the corpus audit moved: ' + r.audit);
+    /* (v348-A) the proverbs' shelf (mathal-*) adds 59 clauses and 14 isnāds and no violation: 2576/986/0 → 2635/1000/0 (the shelf without it still
+       2576/986/0, measured) */
+    if (r.audit !== '2635/1000/0') bad.push('the corpus audit moved: ' + r.audit);
     if (bad.length) throw new Error(bad.join(' | '));
   });
   await check('v334 — Pause, Kernel and Dabt: the pause hides a case only on a word declined by a vowel (ضَرَبَ، بِهِ، هُوَ، يَعْلَمُونَ، مُسْلِمُونَ — B39; Iẓhār L183), the maqṣūr\'s tanwīn is no tanwīn of naṣb and all its states are estimated (B40); the Kernel reads single verbs as verbs (قُلْ is قَالَ, built; مَدَّ, اِتَّقَى built; يَرْمِي, يَكْتُبُونَ by their class; قَاضٍ the manqūṣ — B31), does not crash on مَا أَحْسَنَ زَيْدًا (B32), sends no noun to the thirty-five doors (B33), and shows the stored lines of the typed words only (B48); Dabt writes مَا أَحْسَنَ السَّمَاءَ (B06)', async () => {
@@ -16955,7 +16975,7 @@ if (!CHROME) {
       return { wj: ['جَاءَ زَيْدٌ وَعَمْرٌو', 'جَاءَ زَيْدٌ وَالشَّمْسُ طَالِعَةٌ', 'وَاللهِ لَأَفْعَلَنَّ', 'سِرْتُ وَالنِّيلَ', 'أَيُّهُمْ يَقُمْ أَقُمْ مَعَهُ', 'مَا تَفْعَلْ أَفْعَلْ', 'مَنْ قَامَ', 'مَا عِنْدَكَ', 'مَنْ يَقُمْ أَقُمْ مَعَهُ'].map(WJ),
         inna: ['جِئْتُ وَإِنَّ زَيْدًا قَائِمٌ', 'علمت ان زيدا قائم', 'قلت انك قائم', 'عَلِمْتُ اَنَّ زَيْدًا قَائِمٌ'].map(IN),
         hd: ['زَيْدٌ قَائِمٌ', 'زَيْدٌ عَالِمٌ', 'بَكْرٌ قَائِمٌ', 'زَيْدٌ مُنْطَلِقٌ', 'صُمٌّ بُكْمٌ عُمْيٌ', 'أَهْلًا وَسَهْلًا', 'اللَّهُمَّ اغْفِرْ لَنَا أَيَّتُهَا الْعِصَابَةُ', 'نَحْنُ الْعَرَبَ أَقْرَى النَّاسِ لِلضَّيْفِ'].map(HD),
-        hadhfAudit: (() => { const a = HadhfEngine.audit(); let n = a.n, k = a.hit; for (const id of ['muallaqat-antara', 'muallaqat-labid', 'muallaqat-tarafa', 'muallaqat-amr-ibn-kulthum', 'muallaqat-al-harith']) { const b = (a.byStory || {})[id]; if (b) { n -= b.n; k -= b.hit; } } return (Math.round(1000 * k / n) / 10) + '/' + a.false; })(), hadhfPoems: (() => { const b = HadhfEngine.audit().byStory || {}; return ['muallaqat-antara', 'muallaqat-labid', 'muallaqat-tarafa', 'muallaqat-amr-ibn-kulthum', 'muallaqat-al-harith'].map(id => id.slice(10) + ' ' + ((b[id] || {}).hit || 0) + '/' + ((b[id] || {}).n || 0)).join(', '); })() };
+        hadhfAudit: (() => { const a = HadhfEngine.audit(); let n = a.n, k = a.hit; for (const id of ['muallaqat-antara', 'muallaqat-labid', 'muallaqat-tarafa', 'muallaqat-amr-ibn-kulthum', 'muallaqat-al-harith', ...Object.keys(a.byStory || {}).filter(i => /^mathal-/.test(i))]) { const b = (a.byStory || {})[id]; if (b) { n -= b.n; k -= b.hit; } } return (Math.round(1000 * k / n) / 10) + '/' + a.false; })(), hadhfPoems: (() => { const b = HadhfEngine.audit().byStory || {}; return ['muallaqat-antara', 'muallaqat-labid', 'muallaqat-tarafa', 'muallaqat-amr-ibn-kulthum', 'muallaqat-al-harith'].map(id => id.slice(10) + ' ' + ((b[id] || {}).hit || 0) + '/' + ((b[id] || {}).n || 0)).join(', '); })() };
     });
     const bad = [], ww = ['waw:atf', 'waw:hal', 'waw:qasam', 'waw:maiyya', 'ayy:shart', 'ma:shartiyya', 'man:istifham', 'ma:istifham', 'man:shart'];
     r.wj.forEach((x, k) => { if (x !== ww[k]) bad.push('wujuh ' + k + ': ' + x + ' ≠ ' + ww[k]); });
@@ -17829,14 +17849,19 @@ if (!CHROME) {
     const r = await page.evaluate(() => { const a = JumlaMahallEngine.audit(); const B = a.bySeat, g = k => (B[k] || {}).agree || 0; return { agree: a.tot.agree, contra: a.tot.contra, exact: a.exactContra, khabar: g('khabar'), naat: g('naat'), mutarida: g('mutarida'), mudaf: g('mudaf'), maqul: g('maqul'), jawabNo: g('jawabNo'), sentences: a.sentences }; });
     const f = [];
     if (r.agree < 1905) f.push('agree'); if (r.khabar < 615) f.push('khabar'); if (r.naat < 255) f.push('naat'); if (r.mutarida < 325) f.push('mutarida'); if (r.mudaf < 300) f.push('mudaf'); if (r.maqul < 105) f.push('maqul'); if (r.jawabNo < 40) f.push('jawabNo');
-    if (r.contra > 121) f.push('contra'); if (r.exact > 19) f.push('exact');
+    /* (v348-A) contra 121 → 133, exact 19 → 24, measured the v333 way: the shelf without the proverbs' shelf (mathal-*) still reads 1912 agree /
+       114 contra / 19 exact; the proverbs add 61 agreeing statements and 12 contradictions (5 by an exact rule), every one judged in
+       research/story-audit-triage-delta-amthal.json (11 the engine's — a maqūl after «فَقَالَ», a muʿtariḍa the line names, a question's verb —
+       and one reading the books leave open: «يَغْصِبُهُمْ» a second khabar of كَانَ, for the hoca) */
+    if (r.contra > 133) f.push('contra'); if (r.exact > 24) f.push('exact');
     if (f.length) throw new Error('floors / ceilings ' + f.join(',') + ': ' + J(r));
   });
 
   await check('v339 — the shelf\'s grammar audit is reproducible from the page (GrammarAudit339, the page half of tools/grammar_audit.js): every engine reduces to agrees / silent / contradicts with its items, and the contradictions stay under the ceilings measured on 2026-11-26 — clause maḥall exact ≤ 19, sign ≤ 141, taʿalluq exact ≤ 256, adab ≤ 570, إِنَّ / أَنَّ ≤ 27, order ≤ 2 — so a later wave that adds slips (or an engine that turns on correct lines) fails here', async () => {
     const J = JSON.stringify;
     const r = await page.evaluate(() => GrammarAudit339.run(['jumla', 'sign', 'taalluq', 'adab', 'inna', 'tartib']).map(s => ({ id: s.id, error: s.error || null, agree: s.agree, silent: s.silent, contra: s.contra, exact: s.exact, items: (s.items || []).length, shape: (s.items || []).every(x => x.key && x.certainty && 'verdict' in x) })));
-    const C = { jumla: ['exact', 19], sign: ['contra', 141], taalluq: ['exact', 256], adab: ['contra', 570], inna: ['contra', 27], tartib: ['contra', 2] };
+    // (v348-A) jumla exact 19 → 24: the proverbs' five exact-rule contradictions, each judged in research/story-audit-triage-delta-amthal.json; the older shelf still 19
+    const C = { jumla: ['exact', 24], sign: ['contra', 141], taalluq: ['exact', 256], adab: ['contra', 570], inna: ['contra', 27], tartib: ['contra', 2] };
     const F = { jumla: 1905, sign: 34000, taalluq: 600, adab: 45000, inna: 1100, tartib: 1000 };
     const f = r.filter(s => s.error || !s.shape || s[C[s.id][0]] > C[s.id][1] || s.agree < F[s.id] || !(s.items > 0 || s.contra === 0));
     if (r.length !== 6 || f.length) throw new Error('the audit: ' + J(f.length ? f : r));
@@ -18726,7 +18751,8 @@ if (!CHROME) {
     const J = JSON.stringify, want = { ithna: 'muthanna', yadayhi: 'muthanna', zaydun: 'jamMudhakkar', yaghzuwa: 'khamsaVerbs', tughzi: 'khamsaVerbs', yasulluu: 'khamsaVerbs', nadina: 'mudariSahih', tarahu: 'mudariMutall', hamm: 'sahih', amr: 'sahih', qarun: 'mamnu', rahman: 'sahih', luqman: 'mamnu', ayyama: 'sahih', qanat: 'sahih', cZaydan: 'muthanna', cMuslim: 'jamMudhakkar', cHum: 'mabni', cYarmi: 'mudariMutall' };
     const bad = Object.keys(want).filter(k => r[k] !== want[k]); if (bad.length) throw new Error('classes: ' + J(bad.map(k => [k, r[k], want[k]])));
     if (r.rabbi === 'mabni' || r.wallah === 'mabni') throw new Error('a noun behind a fused letter read as built: ' + J([r.rabbi, r.wallah]));
-    if (r.hit < 34327 || r.n - r.hit > 58 || r.mabni > 5) throw new Error('the audit: ' + J({ hit: r.hit, miss: r.n - r.hit, mabni: r.mabni }));
+    // (v348-A) miss 58 → 59, mabni 5 → 6, measured the v333 way: the shelf without the proverbs' shelf (mathal-*) passes at the old ceilings; the one new is «بِخُفَّيْ» (mathal-bi-khuffay-hunayn s1: the dual's yāʾ belongs to the noun behind the fused بِ — the engine's), judged in research/story-audit-triage-delta-amthal.json
+    if (r.hit < 34327 || r.n - r.hit > 59 || r.mabni > 6) throw new Error('the audit: ' + J({ hit: r.hit, miss: r.n - r.hit, mabni: r.mabni }));
   });
   await check('v345 — the naḥw ledgers\' own examples the notes carried and the engines misread (Shudhūr R13, R17, R21, R23, R72–R81, R85, R88, R97, R106, R126, R137–R150, R154, R161, R173, R205, R210; Qawāʿid m.98, m.415, m.439–453; Iẓhār l. 26, 33, 110, 113, 122, 131; Kāfiya 4:s5, 16:s14, 28:s10 and the digest) — and the singles: AdabEngine naibNotFail, the manṣūbāt naʿt veto', async () => {
     const r = await page.evaluate(() => { const H = x => String(x || '').normalize('NFC').replace(/[ً-ْٰـ]/g, ''); const L = (s, w) => { const rows = SentenceAnalyzer.analyze(s); const i = typeof w === 'number' ? w : rows.findIndex(x => H(x.w) === w); return i < 0 ? '(no ' + w + ')' : H((Murib.line(rows, i) || {}).ar); };
@@ -18773,7 +18799,8 @@ if (!CHROME) {
       if (g.kind !== k || (w && g.word !== w) || (seat && g.seat !== seat) || (alt && !g.alt.includes(alt))) bad.push(c.s + ' → ' + JSON.stringify(g)); }
     const [a, b, c2, d] = r.read; if (!(a && a.verbBefore) || !(b && b.md) || !(c2 && c2.alt && c2.alt.md && c2.want === 'رَسُولٌ') || !(d && d.sameAs === 'بِسِقْطِ')) bad.push('the reader: ' + JSON.stringify(r.read));
     // measured 2026-11-27 (v345-T): agree 643 → 714, contra 307 → 228, exact 256 → 200 — floors and ceilings
-    const A = r.audit; if (A.agree < 714 || A.contra > 228 || A.exact > 200 || A.objects) bad.push('audit ' + JSON.stringify({ agree: A.agree, contra: A.contra, exact: A.exact, objects: A.objects }));
+    // (v348-A) contra 228 → 232, exact 200 → 204, measured the v333 way: the shelf without the proverbs' shelf passes at the old ceilings; the four new (لِئَلَّا on كَعَمَ, «وَبَيْنَ يَدَيْ عَمْرٍو» and «وَمَعَهُ» fronted khabars of a ḥāl clause, كُلَّمَا on its answer) are the engine's, judged in research/story-audit-triage-delta-amthal.json
+    const A = r.audit; if (A.agree < 714 || A.contra > 232 || A.exact > 204 || A.objects) bad.push('audit ' + JSON.stringify({ agree: A.agree, contra: A.contra, exact: A.exact, objects: A.objects }));
     for (const k of ['aqaid-ahl-al-sunna:4:s1:6', 'ayn-jalut:5:s1:7', 'muallaqat-amr-ibn-kulthum:11:s6:3', 'al-bukhari-fi-baghdad:4:s1:12', 'muallaqat-zuhayr:10:s6:9', 'qisas-al-nabiyyin-1:9:s10:2', 'habil-wa-qabil:1:s1:2'])   // the work order's places, no longer contradicted
       if (A.keys.includes(k)) bad.push('still contradicted: ' + k);
     if (bad.length) throw new Error(bad.join(' · '));
@@ -18791,7 +18818,8 @@ if (!CHROME) {
     r.silent.forEach((v, n) => { if (v && /^(naatOrHal|naatOrKhabar|halOrNaat|hal|naatOffered):/.test(v)) bad.push('offered inside its frame #' + n + ': ' + v); });
     r.kept.forEach((v, n) => { if (!v || !/:naat:offered$/.test(v)) bad.push('the tied naʿt lost #' + n + ': ' + v); });
     // measured 2026-11-27 (v345-T): agree 1,912 kept, contradictions 121 → 114, exact 19; naʿt 260, khabar 624, ḥāl 46 kept
-    if (r.tot.agree < 1912 || r.tot.contra > 114 || r.exact > 19 || r.naat < 260 || r.khabar < 624 || r.hal < 46) bad.push(JSON.stringify(r));
+    // (v348-A) contra 114 → 126, exact 19 → 24: the proverbs' twelve clause-maḥall contradictions (five exact), each judged in research/story-audit-triage-delta-amthal.json (see v339 above); the shelf without them still 114 / 19
+    if (r.tot.agree < 1912 || r.tot.contra > 126 || r.exact > 24 || r.naat < 260 || r.khabar < 624 || r.hal < 46) bad.push(JSON.stringify(r));
     if (bad.length) throw new Error(bad.join(' · '));
   });
 
@@ -18810,7 +18838,8 @@ if (!CHROME) {
     if (/riwaya/.test(r.story[2])) bad.push('لِنَصْرِفَ عَنْهُ … إِنَّهُ is no isnād: ' + r.story[2]);
     if (r.misses.some(k => /^qisas-al-nabiyyin-1:3:s33:|^al-kafiya:17:s2:|^al-kafiya:24:s9:/.test(k))) bad.push('still missed: ' + r.misses.join(' '));
     // measured 2026-11-27 (v345-T): agree 1,164 → 1,179, contradictions 27 → 15; ibtida 179 → 186, atf 65 → 70, istinaf 19 (one moved to atf)
-    if (r.hit < 1179 || r.miss > 15 || (r.seat.ibtida || {}).hit < 186 || (r.seat.atf || {}).hit < 70) bad.push(JSON.stringify({ hit: r.hit, miss: r.miss, ibtida: r.seat.ibtida, atf: r.seat.atf }));
+    // (v348-A) miss 15 → 17, measured the v333 way: the shelf without the proverbs' shelf passes at 15; the two new — «وَأَنَّ ابْنَ عَمِّهِ» conjoined to an earlier أَنَّ (mathal-al-maru-yajizu s7) and «وَإِنَّ امْرَأَةً» opening a sentence (mathal-asmin-kalbaka-yakulka s5) — are the engine's, judged in research/story-audit-triage-delta-amthal.json
+    if (r.hit < 1179 || r.miss > 17 || (r.seat.ibtida || {}).hit < 186 || (r.seat.atf || {}).hit < 70) bad.push(JSON.stringify({ hit: r.hit, miss: r.miss, ibtida: r.seat.ibtida, atf: r.seat.atf }));
     if (bad.length) throw new Error(bad.join(' · '));
   });
 
@@ -18850,11 +18879,16 @@ if (!CHROME) {
     eq('khudh', 'خُذٍ', 'hikaya', null); eq('mashar', 'مَعْشَرٍ', 'jarr', true); eq('basari', 'بَصَرِي', 'maful', true);   /* control: the speaker's yāʾ hides the case — the object stays */
     eq('t1', 'يَذْهَبَ', 'nasbVerb'); eq('t2', 'صَلَاحُ', 'fail'); eq('t3', 'الْكَلْبَ', 'maful');   /* typed text carries no receipts: the passes stay out */
     const C = r.C, contra = C.n - C.hit;
-    if (C.hit < 87169 || contra > 303) throw new Error('corpus (2026-11-27: agree 86,893, contra 663 → agree 87,169, contra 303): ' + J({ hit: C.hit, contra, und: C.und }));
+    /* (v348-A) contra 303 → 316, measured the v333 way: the shelf without the proverbs' shelf passes at 303; the thirteen new, each judged in
+       research/story-audit-triage-delta-amthal.json, are the engine's — three pausal rhyme words in ـَهْ (al-Duʾalī's verse), the fāʾ of sababiyya after a negation (فَنُضَيِّعَ وَنَبْخَسَكَ، فَيَلْبَسَ),
+       the lām of emphasis on إِنَّ's khabar (لَأَرْغَبُ), أَصْوَاتَ a broken plural, بِخُفَّيْ, تَرَوْنَ after هَلْ, يُوَلِّهِ in jazm, (فَ)بَيْنَمَا */
+    if (C.hit < 87169 || contra > 316) throw new Error('corpus (2026-11-27: agree 86,893, contra 663 → agree 87,169, contra 303): ' + J({ hit: C.hit, contra, und: C.und }));
     const FL = { maful: 3534, mudafIlayh: 6918, nat: 2522, atf: 3932, badal: 519, tawkid: 80, fail: 3565, mubtada: 3382, khabar: 3071, jarr: 9370, raf: 5170, nasbVerb: 831, jazm: 611, shart: 165, mazi: 9231, amr: 718, hal: 736, zarf: 1612, kanaIsm: 968, naib: 560, jarrPron: 2006, mabni: 23619 };
     const low = Object.entries(FL).filter(([k, v]) => (C.hitBy[k] || 0) < v); if (low.length) throw new Error('an agreeing rule fell below its 2026-11-27 count: ' + J(low.map(([k, v]) => [k, C.hitBy[k] || 0, v])));
     const rd = f => JSON.parse(fsx.readFileSync(pathx.join(__dirname, '..', 'research', f), 'utf8'));
     const cl = {}; rd('story-audit-triage-2026-11-27.json').records.filter(x => x.engine === 'case').forEach(x => { cl[x.key] = x.cluster; });
+    // (v348-A) a wave's own delta file judges its new records, as the message says (v345 rule): read every research/story-audit-triage-delta-*.json too
+    fsx.readdirSync(pathx.join(__dirname, '..', 'research')).filter(f => /^story-audit-triage-delta-[a-z0-9-]+\.json$/.test(f)).forEach(f => { const d = rd(f); (d.records || []).filter(x => x.engine === 'case' && x.verdict).forEach(x => { if (!cl[x.key]) cl[x.key] = x.cluster || 'delta'; }); });
     const left = {}; let fresh = []; C.miss.forEach(k => { if (cl[k]) left[cl[k]] = (left[cl[k]] || 0) + 1; else fresh.push(k); });
     const CEIL = { 'T-C-tanwin': 45, 'T-C-mood': 27, 'T-C-built': 32, 'T-C-maful': 8, 'T-C-follower': 21, 'T-C-verse': 5, 'T-C-letters': 35, 'T-C-raf': 30, 'T-C-jarr': 25, 'T-C-muqaddar': 28, 'T-C-mamnu': 24, 'T-C-nasb': 13, 'T-C-hikaya': 0 };
     const over = Object.entries(CEIL).filter(([k, v]) => (left[k] || 0) > v); if (over.length) throw new Error('a cluster rose above its v345-D ceiling (106/87/65/62/57/56/37/36/35/33/31/22/22 before): ' + J(over.map(([k, v]) => [k, left[k], v])));
@@ -19788,7 +19822,10 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (bad.length) throw new Error('verbatim: ' + bad.slice(0, 6).join(' | '));
     if (JSON.stringify(Object.keys(C).sort().map(k => [k, C[k]])) !== JSON.stringify(Object.keys(led.counts).sort().map(k => [k, led.counts[k]]))) throw new Error('the counts are the rows\': ' + JSON.stringify({ C, stored: led.counts }));
     // measured 2026-11-27 (v352-A): 806 rule statements — applied (with joined-applied) ≥ 248, ⚠ ≤ 188, joined ≥ 51
-    if (E.length < 806 || C['status:applied'] < 248 || (C.warn || 0) > 188 || (C.joined || 0) < 51) throw new Error('the pins: ' + JSON.stringify(C));
+    // (merge of v348-A, the proverbs' shelf) 247 / 189: «أعلمت الحق وأعطيت درهما» (A454.2) had proved by luck — unvowelled, «درهما» was read a
+    // noun and so «مفعول به»; with 1,252 new tokens on the shelf the blind reader takes it for «درهـ + ـما» and names no object. The row
+    // is ⚠ now, which is what it always was: the engine never read «الحق» right («الظاهر أنه فاعل»). Work order: Ibn ʿAqīl's report.
+    if (E.length < 806 || C['status:applied'] < 247 || (C.warn || 0) > 189 || (C.joined || 0) < 51) throw new Error('the pins: ' + JSON.stringify(C));
     const ap = E.filter(e => e.status === 'applied' && e.probes), ps = ap.flatMap(e => e.probes.map(p => p.w ? { s: p.s, w: p.w, re: p.re } : { s: p.s, any: p.any }));
     const fsrc = fsx.readFileSync(R('tools/ledger/aqil_probe.js'), 'utf8'), fn = fsrc.slice(fsrc.indexOf('(probes)'));
     const res = await page.evaluate(([f, q]) => (0, eval)('(' + f + ')')(q), [fn, ps]), fail = res.map((r, k) => r.ok ? null : ps[k].s + ' → ' + r.got.slice(0, 80)).filter(Boolean);
@@ -19845,6 +19882,64 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
   });
   // <<< v352-A
+  // >>> v348-A — the proverbs' shelf «الأمثال» from al-Bakrī's Faṣl al-maqāl
+  await check('v348 — the proverbs\' shelf «الأمثال / Atasözleri / Proverbs»: eleven received tales from al-Bakrī\'s Faṣl al-maqāl (one package per proverb, 12 chapters), each sentence\'s letters the book\'s own once the vowels are stripped (the listed corrections applied, each named in its attribution), every verse with one «•», none called ORIGINAL, all awaiting the hoca; the whole book\'s proverbs as the AMTHAL table cut by script (744 records, each mathal the book\'s letters)', async () => {
+    const fs = require('fs'), path = require('path'), J = JSON.stringify;
+    const ROOT = path.join(__dirname, '..');
+    const IDS = { 'mathal-al-maru-yajizu': [1, 10, 97], 'mathal-arafatni-nasaaha-allah': [1, 8, 61], 'mathal-asa-al-ghuwayr-abusan': [1, 12, 89], 'mathal-asmin-kalbaka-yakulka': [1, 12, 141],
+      'mathal-ati-al-qaws-bariha': [1, 16, 106], 'mathal-bi-khuffay-hunayn': [1, 7, 69], 'mathal-inda-al-sabah': [1, 14, 162], 'mathal-istanwaqa-al-jamal': [1, 10, 88],
+      'mathal-kilahuma-wa-tamran': [1, 7, 62], 'mathal-sabaqa-al-sayf-al-adhal': [1, 16, 135], 'mathal-wafaqa-shannun-tabaqah': [2, 24, 242] };
+    // the corrections each package makes, against the witness its attribution names (was → now, in the e-text's letters)
+    const COR = { 'mathal-sabaqa-al-sayf-al-adhal': [['لوم يرجع', 'ولم يرجع', 'لوم يرجع'], ['مثقلاً', 'مثلاً', 'مثقلاً'], ['رني السيف', 'أرني السيف', 'رني']], 'mathal-asa-al-ghuwayr-abusan': [['الزبى', 'الزباء', 'الزبى']],
+      'mathal-wafaqa-shannun-tabaqah': [['وأنا ركب', 'وأنا راكب', 'وأنا ركب']], 'mathal-inda-al-sabah': [['أن صر', 'أن سر', 'أن صر'], ['" ند الصباح', '" عند الصباح', 'ند الصباح']],
+      'mathal-kilahuma-wa-tamran': [['أطمعني', 'أطعمني', 'أطمعني']], 'mathal-istanwaqa-al-jamal': [['وقيل هو الملتمس', 'وقيل هو المتلمس', 'وقيل هو الملتمس']] };   // [e-text, now, as the attribution lists it]
+    // the matn of the book: page headers and the editor's ḥāshiya removed
+    const raw = fs.readFileSync(path.join(ROOT, 'research/sources/fasl-al-maqal-bakri-src.txt'), 'utf8').normalize('NFC');
+    let matn = [], keep = false;
+    for (const l of raw.split('\n')) { if (/^=== p\. \d+ /.test(l)) { keep = true; continue; } if (l === '--- hashiya ---') { keep = false; continue; } if (keep) matn.push(l); }
+    matn = matn.join('\n');
+    // letters only: no vowels, one alif for every hamza seat on alif, ى→ي, ة→ه, the hamza seats ؤ/ئ to their letters; «art» also reads the
+    // e-text's tanwīn artefact «ظبياص» as «ظبيا»
+    const fold = (s, art) => { s = s.normalize('NFC'); if (art) s = s.replace(/اص(?=[\s،.؛:؟!"]|$)/g, 'ا');
+      return s.replace(/[ً-ْٰـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/[^ء-ي]/g, ''); };
+    const r = await page.evaluate(() => {
+      const of = id => STORIES.find(s => s.id === id);
+      const shelf = STORIES.filter(s => sourceOf(s) === 'amthal').map(s => s.id).sort();
+      const pk = {}; for (const id of shelf) { const st = of(id); const S = st.chapters.flatMap(c => c.sentences);
+        pk[id] = { n: [st.chapters.length, S.length, S.reduce((a, s) => a + s.tokens.length, 0)], level: st.level,
+          sen: S.map(s => ({ id: s.id, letters: s.tokens.map(t => (t.s || t.surface).full).join(''), dots: s.tokens.filter(t => /•/.test(t.punctAfter || '')).length })) }; }
+      const A = (typeof AMTHAL !== 'undefined' && AMTHAL) || {};
+      return { shelf, pk, labels: [ui().srcAmthal, ui().srcAmthalSub].every(Boolean), ar: (LIB_SOURCES.find(x => x.id === 'amthal') || {}).ar,
+        counts: A.counts, recs: (A.records || []).map(x => [x.n, x.mathal_ar, x.bab, x.page && x.page.shamela, x.story || null]) };
+    });
+    if (J(r.shelf) !== J(Object.keys(IDS).sort())) throw new Error('the Proverbs shelf holds exactly the eleven: ' + J(r.shelf));
+    if (!r.labels || r.ar !== 'الْأَمْثَال') throw new Error('the shelf is labelled «الْأَمْثَال» with its en/tr name and subtitle');
+    const bad = [];
+    for (const [id, want] of Object.entries(IDS)) {
+      const p = r.pk[id]; if (J(p.n) !== J(want)) bad.push(id + ' chapters/sentences/tokens ' + J(p.n) + ' ≠ ' + J(want));
+      if (![4, 5].includes(p.level)) bad.push(id + ' level ' + p.level);
+      let src = matn; const m = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/samples', id, 'manifest.json'), 'utf8')), a = m.attribution || {};
+      for (const [was, now, listed] of COR[id] || []) { if (!src.includes(was)) bad.push(id + ': the slip «' + was + '» is not in the e-text'); src = src.split(was).join(now);
+        if (!(a.en || '').includes('«' + listed + '»') || !(a.ar || '').includes('«' + listed + '»')) bad.push(id + ': the correction «' + listed + '» is not listed in the attribution'); }
+      const F = fold(src), F2 = fold(src, true);
+      for (const s of p.sen) { const L = fold(s.letters); if (!F.includes(L) && !F2.includes(L)) bad.push(id + ':' + s.id + ' — its letters are not the book\'s'); }
+      if (/\bORIGINAL\b/.test(a.en || '') || a.reviewStatus !== 'pending-scholarly-review' || !/EVERY vowel in this package is ours/.test(a.en || '') || !fs.existsSync(path.join(ROOT, 'research/sources', id + '-src.txt')))
+        bad.push(id + ': a received text, every vowel declared ours, its passage saved, awaiting review');
+    }
+    // the verses: Ṭarafa's / al-Musayyab's line, Abū al-Aswad's three, Khālid's rajaz pairs — one «•» each, and no «•» in prose
+    const VERSE = { 'mathal-istanwaqa-al-jamal': ['s7'], 'mathal-al-maru-yajizu': ['s3', 's4', 's5'], 'mathal-inda-al-sabah': ['s12', 's13', 's14'] };
+    for (const [id, p] of Object.entries(r.pk)) for (const s of p.sen) { const want = (VERSE[id] || []).includes(s.id) ? 1 : 0; if (s.dots !== want) bad.push(id + ':' + s.id + ' has ' + s.dots + ' «•», wants ' + want); }
+    if (bad.length) throw new Error(bad.slice(0, 8).join(' | '));
+    // the index table, cut by script (tools/sources/amthal_index.py)
+    const c = r.counts || {};
+    if (c.records !== 744 || c.quoted !== 655 || c.unquoted !== 89 || c.babs !== 20 || c.withStory !== 15 || r.recs.length !== 744) throw new Error('the AMTHAL table: ' + J(c));
+    const M = fold(matn), notBook = r.recs.filter(([n, ar]) => ar && !M.includes(fold(ar))).map(x => x[0]);
+    if (notBook.length) throw new Error('index records whose mathal is not the book\'s letters: ' + J(notBook.slice(0, 10)));
+    const linked = [...new Set(r.recs.map(x => x[4]).filter(Boolean))].sort();
+    if (J(linked) !== J(Object.keys(IDS).sort())) throw new Error('every proverb package is linked from its record in the table: ' + J(linked));
+    if (r.recs.some(x => !/^الباب/.test(x[2]) || !(x[3] >= 33 && x[3] <= 530))) throw new Error('every record has its bāb and a page of the book');
+    console.log('      11 packages, ' + Object.values(IDS).reduce((a, x) => a + x[1], 0) + ' sentences, ' + Object.values(IDS).reduce((a, x) => a + x[2], 0) + ' tokens, all the book\'s letters; the table: ' + c.records + ' records (' + c.quoted + ' quoted), ' + c.narrative + ' with a narrative tale');
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
@@ -19860,7 +19955,9 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     /* (v335) Labīd's أَيْمَنَ «to go towards Yemen» (يُومِنُ، مُومِن; ch. 4) is stored as heard by its author: the sixth */
     /* (v336) Ṭarafa's اِسْتَاءَ (istaa-tf, ch. 12) is stored as heard by its author: the seventh */
     /* (v337) ʿAmr ibn Kulthūm's دَهْدَى (dahda-amr, ch. 15: دَهْدَهَ with its last hāʾ turned yāʾ) is stored as heard by its author: the eighth; al-Ḥārith's Muʿallaqa stores none */
-    if (J(r.samai) !== J(['ayisa', 'dahda-amr', 'haraqa', 'istaa-tf', 'lb-aymana', 'tahayyala', 'tajazza', 'wasa'])) throw new Error('sarfAudit().samai must be exactly the eight heard paradigms: ' + J(r.samai));
+    /* (v348-A) اِسْتَنْوَقَ (istanwaqa, the proverb «قَدِ اسْتَنْوَقَ الْجَمَلُ») keeps its waw sound against the rule (which gives اسْتَنَاقَ) — the sarf books' own
+       example of shudhūdh, stored as heard by its author: the ninth (the engine was right to refuse to build it; nothing else moved) */
+    if (J(r.samai) !== J(['ayisa', 'dahda-amr', 'haraqa', 'istaa-tf', 'istanwaqa', 'lb-aymana', 'tahayyala', 'tajazza', 'wasa'])) throw new Error('sarfAudit().samai must be exactly the nine heard paradigms: ' + J(r.samai));
     const fs = require('fs'), path = require('path');
     for (const id of [...r.akhbar, ...r.shir]) { const m = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content', 'samples', id, 'manifest.json'), 'utf8')); const a = m.attribution || {};
       if (/\bORIGINAL\b/.test(a.en || '') || a.reviewStatus !== 'pending-scholarly-review') throw new Error(id + ': a received text must not be called ORIGINAL, and waits for review'); }
@@ -20477,7 +20574,8 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (!p.hamarra || p.hamarra.wazn !== 'اِفْعَلَّ' || !p.hamarra2 || p.hamarra2.wazn !== 'اِفْعَالَّ' || p.intaqala || p.ishtadda) throw new Error('the patterns and their roots: ' + J(p));
     if (!/تَمْيِيزٌ — الْفِعْلُ «طَابَ» لَازِمٌ بِشَهَادَةِ الْمُتُونِ/.test(c.taba[2].line) || !/حَالٌ/.test(c.musri[2].line)) throw new Error('the ledger\'s lāzim, and the derived noun: ' + J([c.taba, c.musri]));
     if (p.kasara || !/مَفْعُولٌ بِهِ/.test(c.kasara[2].line) || /تَمْيِيزٌ|حَالٌ/.test(c.kasara[2].line)) throw new Error('the control كَسَرَ الْوَلَدُ الْإِنَاءَ: ' + J(c.kasara));
-    if (r.agree < 6 || r.dis > 3) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis, list: r.list }));
+    // (v348-A) 3 → 5, measured: the shelf without the proverbs' shelf holds 3; the two new are «عَسَى الْغُوَيْرُ أَبْؤُسًا» ×2 (mathal-asa-al-ghuwayr-abusan), ʿasā's khabar the engine offers as a tamyīz — the engine's
+    if (r.agree < 6 || r.dis > 5) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis, list: r.list }));
   });
   await check('v327 — أَنْ is decided by what follows (Shudhūr R152, R143, R144, R154; triage I-1, AnEngine): before a manṣūb muḍāriʿ it is «حَرْفٌ مَصْدَرِيٌّ وَنَصْبٍ» with no hedge; before سَـ / قَدْ / لَنْ / لَوْ / لَمْ, a noun in rafʿ or a nominal clause it is the lightened أَنَّ, its ism the deleted pronoun of the matter; أَلَّا is أَنْ + لَا and its verb is manṣūb by the dropped nūn, not «the answer of a request»; before a māḍī the readings are named, not chosen; أَنَّ is untouched; against the authored lines ≥ 510 agree and no more than 3 differ', async () => {
     const J = JSON.stringify;
@@ -20530,7 +20628,8 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
        is offered as an object carrying its pronoun (NasikhGate's open item with the kāna tāmma) */
     // (v337) the two waves each moved this ceiling 3 → 4 for a different line — Labīd 10:s4 (v335, above) and the Uṣūl's مَرْضَاتَهُ
     // (v336-Sh, below); together 5, both examined
-    if (r.both < 335 || r.fp > 5) throw new Error('against the authored lines: ' + J({ both: r.both, auth: r.auth, fp: r.fp, list: r.list }));   // (v336-Sh) 3 → 4: al-usul-al-munifa:23:s7:34 مَرْضَاتَهُ is now «مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «طَالِبًا»» (Shudhūr R92) where the line says «خبر كان … بالكسرة» — the v329 corpus slip
+    // (v348-A) 5 → 6, measured: the shelf without the proverbs' shelf holds 5; the one new, «أَقَامَ مَكَانَهُ» (mathal-ati-al-qaws-bariha 1:s4:8), is authored a ẓarf of place — he stayed where he was — and the engine names an object (the engine's)
+    if (r.both < 335 || r.fp > 6) throw new Error('against the authored lines: ' + J({ both: r.both, auth: r.auth, fp: r.fp, list: r.list }));   // (v336-Sh) 3 → 4: al-usul-al-munifa:23:s7:34 مَرْضَاتَهُ is now «مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «طَالِبًا»» (Shudhūr R92) where the line says «خبر كان … بالكسرة» — the v329 corpus slip
   });
   await check('v327 — kāna and its sisters raise an ISM, never a doer (Shudhūr R70, R71, R200; triage I-2, NasikhGate): the concealed and the attached ism are «اسْمُهَا» (كَانَ أَبْعَدَ، فَصَارَ بَشَرًا، كُنْتُ نَائِمًا، لَا يَزَالُونَ مُخْتَلِفِينَ); دَامَ is a nāsikh only after مَا (مَا دُمْتُ حَيًّا: the tāʾ its ism, حَيًّا its khabar) and زَالَ only after a negation — زَالَ الْخَطَرُ and دَامَ الْمَطَرُ are complete, their noun the doer; a sister with nothing after it names both readings; against the authored lines ≥ 880 agree and no more than 38 differ (complete kāna by meaning, and authored slips)', async () => {
     const J = JSON.stringify;
@@ -20570,7 +20669,10 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     /* (v337) ceiling 47 → 49, measured: the older shelf is unchanged at 40, the v333/v335 imports at 7; ʿAmr ibn Kulthūm adds none; al-Ḥārith ibn Ḥilliza
        adds two, both KĀNA TĀMMA in their lines — 1:s4 «فِي شَيْءٍ كَانَ بَيْنَ بَكْرٍ وَتَغْلِبَ» (Ibn Qutayba's khabar: «وَقَعَ», بَيْنَ hangs on it) and 4:s5
        «فَلَمَّا أَصْبَحُوا أَصْبَحَتْ لَهُمْ ضَوْضَاءُ» (أَصْبَحُوا «they entered the morning») — the tāmma the gate cannot see (NasikhGate's next item) */
-    if (r.agree < 880 || r.dis > 49 || r.hid < 200) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis, hid: r.hid, hidAuth: r.hidAuth, list: r.list }));
+    /* (v348-A) ceiling 49 → 51, measured: the shelf without the proverbs' shelf holds its 49; the proverbs add two, each read — two KĀNA / ṢĀRA TĀMMA
+       the gate takes for nāqiṣa: «فَلَمَّا كَانَ فِي اللَّيْلَةِ الرَّابِعَةِ» (mathal-inda-al-sabah s9, «حَصَلَ») and the rajaz «إِذَا صَارَ بِهَا الْجَيْشُ» (s13, the
+       print's صَارَ read «سَارَ», a doer after it) — readings the books allow; for the hoca */
+    if (r.agree < 880 || r.dis > 51 || r.hid < 200) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis, hid: r.hid, hidAuth: r.hidAuth, list: r.list }));
   });
   await check('v328 — taʿalluq bi-maḥdhūf where the letters decide it (Qawāʿid al-Iʿrāb bāb 2; Shudhūr R104): a jarr phrase or ẓarf that is the khabar of a deficient kāna (وَكَانَ عِنْدَ عُمَرَ سِرَاجٌ — fronted; كَانَ ابْنُ بَطُّوطَةَ مِنْ أَهْلِ طَنْجَةَ), of لَا of the genus (لَا رَيْبَ فِيهِ), of إِنَّ (inna\'s clause is a wall: قَالُوا إِنَّا مَعَكُمْ), a ṣila (بِمَنْ مَعَهُ) or a fronted khabar (وَمَعَهُ خَادِمُهُ) hangs on an OMITTED كَائِنٌ / اسْتَقَرَّ and says which seat; after a nakira the found governor keeps its claim and the naʿt is offered beside it (wave 70), except حَدِيثٍ بَعْدَ حَدِيثٍ; the controls keep their verb; the older shelf ≥ 55.5%, the new histories ≥ 29 of 55, and no more than 42 written-word targets answered «maḥdhūf» on the older shelf', async () => {
     const J = JSON.stringify;
@@ -20582,7 +20684,7 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
         cJalasa: T('جَلَسَ زَيْدٌ فِي الدَّارِ', 2), cJaa: T('جَاءَ مِنَ الْمَدِينَةِ رَجُلٌ', 1), cAtf: T('دَخَلَ فِرْعَوْنُ وَجَيْشُهُ فِي الْبَحْرِ', 3), cMan: T('وَيُضِلُّ مَنْ يَشَاءُ', 1), cZaid: T('وَالْمَعْصِيَةُ لَيْسَتْ بِأَمْرِ اللهِ', 2) };
       const flat = x => stripAr(x || '').replace(/[^ء-ي]/g, ''); const NEW = ['sibawayh-fi-al-basra','ibn-battuta-yakhruju-min-tanja','bina-baghdad','ayn-jalut','ibn-khaldun-wa-timur'];
       /* (v333) the six received imports are no part of «the older shelf» either: measured apart, reported, no floor (their ẓarf seats are TaalluqEngine's next item) */
-      const V333 = ['muhammad-ibn-zayd-wa-al-umawi','siyar-abi-hanifa','siyar-ibn-al-mubarak','siyar-al-shaykh-al-mufid','muallaqat-zuhayr','muallaqat-imri-al-qays','muallaqat-antara','muallaqat-labid','muallaqat-tarafa','muallaqat-amr-ibn-kulthum','muallaqat-al-harith'];   /* (v337) and ʿAmr ibn Kulthūm's and al-Ḥārith's — (v335) and ʿAntara's and Labīd's, (v336) and Ṭarafa's, received like them */
+      const V333 = ['muhammad-ibn-zayd-wa-al-umawi','siyar-abi-hanifa','siyar-ibn-al-mubarak','siyar-al-shaykh-al-mufid','muallaqat-zuhayr','muallaqat-imri-al-qays','muallaqat-antara','muallaqat-labid','muallaqat-tarafa','muallaqat-amr-ibn-kulthum','muallaqat-al-harith'];   /* (v337) and ʿAmr ibn Kulthūm's and al-Ḥārith's — (v335) and ʿAntara's and Labīd's, (v336) and Ṭarafa's, received like them; (v348-A) the proverbs' shelf (mathal-*), received like them, is measured with them by its id — the older shelf back at its own numbers */
       let n = 0, ok = 0, nn = 0, nok = 0, litMd = 0, n3 = 0, ok3 = 0;
       STORIES.forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => {
         let rows; try { rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' ')); } catch (e) { return; } if (rows.length !== sen.tokens.length) return;
@@ -20591,7 +20693,7 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
           const literal = rows.some(x => { const a = flat(x.w); return w.length > 1 && (a.includes(w) || w.includes(a.replace(/^ال/, ''))); }); if (!md && !literal) return;
           const got = TaalluqEngine.of(rows, i); let hit = 0;
           if (md) hit = got && got.kind === 'mahdhuf' ? 1 : 0; else if (got && got.kind === 'found') { const a = flat(got.word); if (a.includes(w) || w.includes(a.replace(/^ال/, ''))) hit = 1; }
-          if (NEW.includes(st.id)) { nn++; nok += hit; } else if (V333.includes(st.id)) { n3++; ok3 += hit; } else { n++; ok += hit; if (!md && got && got.kind === 'mahdhuf') litMd++; } }); })));
+          if (NEW.includes(st.id)) { nn++; nok += hit; } else if (V333.includes(st.id) || /^mathal-/.test(st.id)) { n3++; ok3 += hit; } else { n++; ok += hit; if (!md && got && got.kind === 'mahdhuf') litMd++; } }); })));
       return { c, n, ok, acc: Math.round(ok / n * 1000) / 10, nn, nok, litMd, n3, ok3 };
     });
     const c = r.c, md = (x, seat) => x.kind === 'mahdhuf' && (!seat || x.seat === seat) && /مُتَعَلِّقٌ بِمَحْذُوفٍ/.test(x.text);
@@ -20728,7 +20830,8 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     /* (v335) ceiling 13 → 14, measured: the older shelf and ʿAntara hold 13; Labīd adds one, examined — 13:s6 «وَلَا يَبُورُ فَعَالُهُمْ إِذْ لَا يَمِيلُ»,
        which al-Durra parses «حَرْفُ تَعْلِيلٍ» (the WujuhEngine now reads it taʿlīl); whether the إِذْ of reason is a ḥarf or still the ẓarf is
        disputed (Mughnī, «إِذْ»), and this engine names every إِذْ the ẓarf */
-    if (r.named < 208 || r.extra > 14) throw new Error('against the authored lines: ' + J({ auth: r.auth, named: r.named, extra: r.extra, list: r.list }));
+    // (v348-A) 14 → 15, measured: the shelf without the proverbs' shelf holds 14; the one new is «بَيْنَمَا هُوَ يَسِيرُ … إِذْ أَتَيَا» (mathal-sabaqa-al-sayf-al-adhal s7), authored the ḥarf of mufājaʾa where this engine names every إِذْ the ẓarf — disputed (Mughnī), as above
+    if (r.named < 208 || r.extra > 15) throw new Error('against the authored lines: ' + J({ auth: r.auth, named: r.named, extra: r.extra, list: r.list }));
   });
   await check('v329 — a demonstrative is never muḍāf (Shudhūr R46; triage I-15, IdafaEngine.chain): أَنَا مَلِكُ هَذِهِ الْغَابَةِ — هَذِهِ «مُضَافٌ إِلَيْهِ» only, الْغَابَةِ its badal; كُلُّ تِلْكَ الْمَرَاتِبِ and مَالِ هَذَا الْكِتَابِ the same; هَذَا كِتَابُ زَيْدٍ keeps its idafa; across the corpus no demonstrative line says «وَهُوَ مُضَافٌ», no more than 1 ال noun after a demonstrative is called «مُضَافٌ إِلَيْهِ», and ≥ 272 of the authored badal / naʿt / bayān lines on that noun are named so', async () => {
     const J = JSON.stringify;

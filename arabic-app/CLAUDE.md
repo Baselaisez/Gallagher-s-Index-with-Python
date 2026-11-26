@@ -17081,3 +17081,46 @@ cache `.aqil-proof-cache.json`; `--no-prove`) → `aqil_alfiyya.py` → `tools/i
   rows for the ṣarf ledgers); only ONE new rule row consumed (tawkidPron) — the largest bābs' ⚠ rows await the next round; renderings for
   103 of the 126 noted verses; 29 of the 44 topics still without a book reason, the fāʿil's rafʿ / the mafʿūl's naṣb among them; the +4 in
   the verse count not resolved against a printed Alfiyya.
+## v348-A — the proverbs' shelf
+
+A new shelf «الأمثال / Atasözleri / Proverbs» (`LIB_SOURCES` id `amthal`, test `^mathal-`) holds eleven proverbs, each with its tale **only as
+al-Bakrī's «فصل المقال في شرح كتاب الأمثال» (on Abū ʿUbayd's «كتاب الأمثال»; ed. ʿAbbās & ʿĀbidīn 1971, Shamela 1025,
+`research/sources/fasl-al-maqal-bakri-src.txt`) tells it** — not retold, not reordered; every vowel is ours and declared in each manifest.
+
+- **Index**: `tools/sources/amthal_index.py` → `content/rules/amthal_index.json` (build: `AMTHAL`): one record per proverb quoted in an entry that
+  opens «قال أبو عبيد», al-Bakrī's comment after «ع:», the sub-bāb, a marker-count `kind` (narrative / note — a heuristic, not a reading; the chosen
+  tales were read whole and carry `kindBy: "read"` and their `story` slug). Counts: 651 entries, 744 records (655 quoted, 89 unquoted), 20 bābs,
+  15 records linked to a package.
+- **Packages** (11, 12 chapters, 136 sentences, 1,252 tokens; `tools/authoring/author_mathal_<slug>.py` is the source of truth, shared helpers in
+  `tools/authoring/amthal_common.py`; each span saved first as `research/sources/mathal-<slug>-src.txt`): sabaqa-al-sayf-al-adhal (L4),
+  ati-al-qaws-bariha (L5), bi-khuffay-hunayn (L4), asa-al-ghuwayr-abusan (L5), asmin-kalbaka-yakulka (L5), kilahuma-wa-tamran (L4),
+  istanwaqa-al-jamal (L5), arafatni-nasaaha-allah (L4), al-maru-yajizu (L5), wafaqa-shannun-tabaqah (L5, two chapters), inda-al-sabah (L5).
+  iʿrāb ar/en/tr, glossary, morphology, translations; `reviewStatus: pending-scholarly-review`. The madrib sentence only where the book states
+  the use (ati-al-qaws «أي استعن …», asa-al-ghuwayr after al-Aṣmaʿī, istanwaqa). Verses are kept as verse: hemistichs joined by «•»
+  (istanwaqa s7; al-maru s3–s5 with the pausal ـهْ; inda-al-sabah s12–s14).
+- **Corrections** (each listed in the manifest, «was» → «now», with its witness): sabaqa — لوم يرجع / مثقلاً / رني against Abū ʿUbayd's
+  al-Amthāl (Shamela 135, pp. 29–30, `research/sources/mathal-sabaqa-al-sayf-al-adhal-witness.txt`); kilahuma — أطمعني → أطعمني against Majmaʿ
+  al-Amthāl p. 3163; wafaqa — وأنا ركب → راكب against Majmaʿ p. 4439; asa-al-ghuwayr — الزبى → الزباء and istanwaqa — الملتمس → المتلمس by the
+  editor's own notes (pp. 436, 203); inda-al-sabah — أن صر → سر, ند الصباح → عند. Kept as printed: asmin «فيهما», wafaqa the editor's bracket
+  and «فأنكحها منه», al-maru «سَيِّءَ» (hamza on the line — HamzaEngine's one «other», pinned by word).
+- **Left out** (read, not shelved): الصيف ضيعت اللبن (obscene verse), لا ناقتي في هذا ولا جملي (adultery and killing), أجرأ من خاصي الأسد and
+  أجبن من صافر (obscene), هذه بتلك (adultery hinted), العود أحمد (≈350 words), شنشنة أعرفها من أخزم (a family's sword fight), عند جهينة الخبر
+  اليقين and القول ما قالت حذام (print slips, garbled span), أعيا من باقل (under 60 words and an Abū ʿUbayd slip), ما يوم حليمة بسر (slip /
+  the editor's wahm).
+- **For the hoca**: every vowel; قُرَاقِر's final vowel left unwritten in the text (inda-al-sabah); «مَوْضِعٍ مَا» ḥarf of ibhām vs nakira ṣifa;
+  kāna / ṣāra tāmma (inda-al-sabah s9, s13 — the print's صار read «سار»); إِذْ of mufājaʾa vs ẓarf (sabaqa s7); «يَغْصِبُهُمْ» a second khabar of
+  kāna (judged C); «سَيِّءَ» the print's seat; «اسْتَنْوَقَ» marked `samai` (a heard paradigm; the v333 samai list is now nine).
+- **Gate**: validators pass; `node tools/grammar_audit.js` (to a scratch --out) lists 33 contradictions on the shelf, every one judged in
+  `research/story-audit-triage-delta-amthal.json` (tag `amthal`: 32 E, 1 C with al-Inṣāf l. 7252); two were the author's and were fixed
+  (يَعْجِزُ's head note, قُرَاقِر's sign).
+- **Smoke** «v348 — the proverbs' shelf …» (before «v333 — the received imports»): ids and counts, every correction listed and applied, the
+  letters guard (each package's Arabic letters ⊂ the matn, the e-text «اص» artifact only as a variant), attribution (ORIGINAL source, pending,
+  «EVERY vowel …», the src file), «•» per verse sentence, AMTHAL counts and story links.
+- **Older checks re-measured the v333 way** (the shelf built without `mathal-*` passes every one at its old number; each new token examined, the
+  reason in the check's comment): WujuhEngine floor 98 → 97.8; wave 101 Mamnu dis 8 → 9 (الْأَغْلَب); wave 184 «مَا» wrong 49 → 53; HadhfEngine
+  rate (v316, v334 Faces) and v328's «older shelf» now measure `mathal-*` apart like the Muʿallaqāt; v334 Order pin 2576/986/0 → 2635/1000/0;
+  wave 208 hamza «other» 0 → exactly [سَيِّءَ]; v339 clause maḥall contra 121 → 133, exact 19 → 24 (GrammarAudit339 jumla 19 → 24; v345 framed
+  114 / 19 → 126 / 24); v345 Sign miss 58 → 59, mabni 5 → 6; v345 taʿalluq contra 228 → 232, exact 200 → 204; v345 إِنَّ miss 15 → 17;
+  v345-D contra 303 → 316; v326 intransitive dis 3 → 5; v327 object fp 5 → 6; v327 kāna dis 49 → 51; v329 ẓurūf extra 14 → 15; v333 samai list 8 → 9. v345-D's «never judged» test now also reads the waves' delta files (`research/story-audit-triage-delta-*.json`, as its message always said).
+- Full suite (after check_i18n and the refit chain): 610 checks, 610 pass (the first run, before the samai flag and the re-measures, had 45 failures: the istanwaqa paradigm in the sarf audits and the thresholds above; the cross-validation time passed on the second run).
+- Scripts: scratchpad `amthal348/` (`guard.py` letters guard, `spans.py`, `show.py`, `audit*`, `PROGRESS.md`).
