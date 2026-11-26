@@ -16261,3 +16261,57 @@ themes, 390 px, en and tr.
   A word tap writes none of it (v338's rule).
 - Smoke: four «v344 — …» checks before «v333 — the received imports» (the rule check builds its own split copy with every body held: the
   rule on the door, no body read). No older check changed. Full suite: 577 checks, 577 pass.
+
+## v346 — the reasons: every line explains itself
+
+The owner (a madrasa teacher) asked for the step every iʿrāb line leaves out, and gave the model himself: «ضَرَبَ زَيْدٌ عَمْرًا» —
+Zeyd is the fāʿil; the fāʿil is the doer; the fāʿil is among the marfūʿāt, so it must be rafʿ; it is a singular noun, and a singular
+noun is rafʿ by the ḍamma; the ḍamma tells us Zeyd is the doer. `Illa346` (one object, after `decisionChainHtml`, beside `GovView`)
+builds that chain for any line: **role → family and the state it requires → governor → kind of word and therefore the sign → what the
+sign tells**, each step `{kind, ar, en, tr, term, cite?}`; the en/tr sentences are templates in `ui()` (`illa*`, both languages).
+
+- **Reading the line (`Illa346.read`).** Vowels stripped, the commentary after « — » / «؛» cut, the line split at «،»; the word's OWN
+  clauses are kept: a leading proclitic clause («الْوَاوُ عَاطِفَةٌ»، «الْبَاءُ حَرْفُ جَرٍّ») hands over to the host's clause (whose first word is
+  dropped when it IS the word — «وَمَنْصُوبٌ مَعْطُوفٌ مَرْفُوعٌ»), and a clause opening «وَ…» about something else (an attached pronoun,
+  «وَالْفَاعِلُ …»، «وَالْجُمْلَةُ …») is set aside; «جَارٌّ وَمَجْرُورٌ فِي مَحَلِّ …» keeps the word's own jarr, not the phrase's place. The case
+  and sign come from `SignEngine.authored` on those clauses (or a «وَعَلَامَةُ …» stated after a long governor phrase), the place from
+  «فِي مَحَلِّ …», «مَبْنِيٌّ عَلَى …» as written, a governor the line names («مَجْزُومٌ بِلَمْ», «مَجْرُورٌ بِـ«فِي»»). Lines that cite a word
+  («لَفْظٌ مَحْكِيٌّ») get no chain.
+- **The tables and their sources.** Roles (`Illa346.roles()`, 28 + verb kinds + particle kinds): the plain definitions are OURS, one
+  sentence each in en and tr («Fâil (özne): fiili yapan», «Mef'ûlün bih (nesne): fiilin üzerine işlendiği»). Families: the Iẓhār's maʿmūl
+  tree (`BIRGIVI_TREE.mamul` — الْمَرْفُوعَاتُ / الْمَنْصُوبَاتُ / الْمَجْرُورَاتُ / الْمَجْزُومُ / بِالتَّبَعِيَّةِ); a role's membership is read from the
+  Iẓhār family notes' own titles (`al-marfuat-*`, `al-mansubat-*`: «اسم كان، خبر إن …») and otherwise from its note's `mamul` field —
+  no new list typed; the muḍāriʿ's family follows the stated case (`mudari-marfu`, «المضارع بعد الناصب», `al-majzum-*`). Kind → sign:
+  `SignEngine.CLASSES` (Shudhūr's bāb of the signs) — the class the line itself states («لِأَنَّهُ مُثَنًّى», «مُقَدَّرَةٌ عَلَى الْأَلِفِ لِلتَّعَذُّرِ»)
+  first, else `SignEngine.classify`, and only when that class's own sign for the case IS the stated sign (else the step names the sign
+  alone); niyāba and taqdīr reasons from `SignEngine.REASON`. «Singular» is said only when the word is its dictionary lemma or a
+  proper name, else «singular or broken plural». Governor: the line's named governor, the ibtidāʾ (mubtadaʾ) and tajarrud (marfūʿ
+  muḍāriʿ) per the books, else `AmilEngine.word` (lafẓī / the joined jarr letter / the followed word's governor for a tābiʿ); unknown →
+  no step. The book's own line (`cite`): an example of the role's notes from the Iẓhār (`src: izhar-al-asrar`) or a Shudhūr / Qawāʿid /
+  ʿAwāmil `cite` whose gloss names the role.
+- **Honesty.** A step only from what the line states; no guessing — the chain is shorter. Arabic in a step is the line's own words
+  (`Illa346.frag` finds the vowelled slice) or the tree's / a book's. When a role's family and the stated case disagree (304 lines, e.g. a
+  mubtadaʾ majrūr by a zāʾid letter) the family step is set aside, never bent. **Measured over every authored token (`Illa346.measure`):
+  87,818 tokens — 5 steps 24,156 · 4: 11,629 · 3: 8,788 · 2: 18,263 · 1: 18,628 (mostly particles: role only) · 0: 6,354 (cited
+  words, lines with no reading); contradictions (the chain's case or sign against `SignEngine.authored` on the whole line, or the
+  line's first case word / place) = 0**, pinned with floors in the smoke.
+- **Where it shows.** (1) Word sheet, iʿrāb tab: a «Neden? / Why?» `<details id="illa346">` directly under the line, its summary the
+  one-line chain («Fâil (özne) → merfûât → merfû → damme»), the open ladder numbered rows with term chips; it sits directly under the
+  line's own verification mark (v338) and carries the same mark as `data-vm` (a second visible «pending» would break v338's one-mark pin). Open the first time — **unless that would push «Cümlede âmili» below the 390×844 screen** (it already sits at
+  ~774 px under the tab bar on a long-gloss word; open, it went to ~1180): then the one-line summary stands for it. The learner's own tap
+  is kept in `qissa-illa346`. (2) Games: `runQuiz` reads `cfg.illa` — the role game, the case game, the duel, gTahlil, the iʿrāb shop,
+  the sign game, the ḥarakāt round and the chapter-end role question — and shows the asked token's chain under the feedback: open on a
+  wrong answer, one line («çünkü …») with «tamamını göster» on a right one. Scoring untouched. (3) Notes: a role's first note gains
+  «Neden böyle?» — definition, family and state, usual governors (`Illa346.GOVS`), the CLASSES rows for that state, the book's line —
+  from the same tables. (4) Stories: the iʿrāb sheet (the sentence's «tarkib» tool) lists each word with its one-line reason; a tap
+  opens the word sheet with the ladder open. (5) The Cümle lab: under each Murib line, the chain marked «Otomatik»; governors from
+  `GovView.forDabt` of the same words; a typed noun's lemma / properness from `RootFinder.nounFromCorpus`.
+- **Checks.** «v346 — the reasons …» (the owner's sentence typed, en + tr; one corpus token of fourteen kinds; the corpus measure) and
+  «v346 — the four surfaces …» (fit rule and kept choice, the note, the sentence list and its tap, a game's feedback for the asked
+  token, 390 px, the v320 contrast in three themes, the split door reads no body), before v333.
+- **Left.** Roles the books name but the lines word variously (the munādā, mafʿūl maʿah) have no family where no note carries one; the
+  tābiʿ's step says «the case of the word it follows» without the followed word's own chain; the 304 role/case disagreements are a
+  review list for the hoca, not fixed here; `Illa346.GOVS` (usual governors in the note) is our wording, not a book's.
+- **Suite.** 592 checks: 589 PASS in the full run; the three FAILs re-run alone: v338 (my first ladder repeated the visible mark —
+  fixed, PASS), v334-S naive-Bayes (PASS alone), v334-S «five corpus walks» (a games-hub thread-hold timing; it fails the same way on the
+  pre-v346 reader under the same load, load average ≈ 12 from the other agents — not this wave). No older check was edited.

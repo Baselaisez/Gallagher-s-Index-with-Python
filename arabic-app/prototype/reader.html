@@ -581,6 +581,35 @@
   .gov-pair { font-family: var(--ar-font); font-size: 1.25rem; margin-top: var(--s1); }
   .gov-pair .gov-g { color: color-mix(in srgb, var(--lvl2) 72%, var(--ink)); }
   .gov-rel { color: var(--ink-soft); }
+  /* (v346) the reason chain — «Neden? / Why?»: a numbered ladder, tokens only */
+  .illa { margin: var(--s2) 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); font-family: var(--ui-font); }
+  .illa > summary { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); min-height: var(--tap); padding: 0 var(--s3); cursor: pointer; font-size: var(--t-sm); }
+  .illa .illa-h { font-weight: 600; color: var(--ink); margin: 0; font-size: var(--t-sm); }
+  .illa-note .illa-h { padding: var(--s2) var(--s3) 0; }
+  .illa .illa-one { color: var(--ink-soft); font-size: var(--t-xs); flex: 1 1 8rem; min-width: 0; }
+  #illa346 > summary { flex-wrap: nowrap; }
+  #illa346 > summary .illa-one { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #illa346[open] > summary .illa-one { display: none; }
+  .illa .illa-more { color: var(--accent); font-size: var(--t-xs); }
+  .illa[open] .illa-more { display: none; }
+  .illa-steps { list-style: none; margin: 0; padding: 0 var(--s3) var(--s2); }
+  .illa-s { display: flex; align-items: baseline; gap: var(--s2); padding: var(--s1) 0; font-size: var(--t-sm); line-height: var(--lh-tight); color: var(--ink); }
+  .illa-s + .illa-s { border-top: 1px dashed var(--line); }
+  .illa-n { flex: 0 0 1.3rem; height: 1.3rem; border-radius: var(--r-full); background: var(--accent-soft); color: var(--ink); font-size: var(--t-xs); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+  .illa-t { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+  .illa-t bdi { font-family: var(--ar-font); }
+  .illa-term { display: inline-block; max-width: 100%; margin: 2px 0 0; padding: 0 .5rem; font-family: var(--ar-font); font-size: .95rem; line-height: 1.7; white-space: normal; vertical-align: middle; color: var(--irab-ink); border-color: var(--line); background: transparent; }
+  .illa-cite { display: block; margin-top: var(--s1); padding-inline-start: var(--s2); border-inline-start: 3px solid var(--accent); color: var(--ink-soft); }
+  .illa-cite [lang="ar"] { font-family: var(--ar-font); color: var(--ink); }
+  .illa-gen > li { padding: var(--s1) 0; font-size: var(--t-sm); color: var(--ink); }
+  .illa-gen > li + li { border-top: 1px dashed var(--line); }
+  .illa-tab { width: 100%; border-collapse: collapse; margin-top: var(--s1); font-size: var(--t-xs); }
+  .illa-tab td { padding: 2px var(--s1); border-bottom: 1px solid var(--line); color: var(--ink); }
+  .illa-list { list-style: none; margin: 0; padding: 0 var(--s2) var(--s2); }
+  .illa-w { display: block; width: 100%; min-height: var(--tap); padding: var(--s1) var(--s2); border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); text-align: start; font: inherit; font-size: var(--t-sm); cursor: pointer; overflow-wrap: anywhere; }
+  .illa-w b { font-family: var(--ar-font); font-size: 1.15rem; font-weight: 400; }
+  .illa-w span { color: var(--ink-soft); }
+  .illa-auto { font-size: var(--t-xs); }
   .tabs.labrail button {
     flex: 0 0 auto; scroll-snap-align: center;
     display: inline-flex; align-items: center; gap: .35rem;
@@ -4328,6 +4357,67 @@ Object.assign(L.tr, {
   changeLevelBody:"Seviyenizi istediğiniz an değiştirin — kütüphane hemen ona göre dizilir. {a}. seviye ilk kelimeler, {b}. seviye asıl klasik metinlerdir.",
   modeSwitched:"{m}: {h}"
 });
+/* (v346) the reason chain's templates — Illa346 fills them from what the line states */
+Object.assign(L.en, {
+  illaHead: "Why?", illaAuto: "Automatic", illaBecause: "because:", illaShowAll: "show all", illaEst: "estimated",
+  illaRoleT: "{t}: {d}",
+  illaFam: "{role} is among the {fam}; so it must be {state}.",
+  illaFamTabi: "{role} is a follower: it takes the case of the word it follows, {h} — here {state}.",
+  illaFamTabiN: "{role} is a follower: it takes the case of the word it follows — here {state}.",
+  illaGovAmil: "What makes it {v}: {g} ({kind}).", illaGovNamed: "What makes it {v}: {g}, as the line names it.",
+  illaGovSelf: "What makes it majrūr: the jarr letter joined to its front.",
+  illaGovTabi: "It has no governor of its own: the governor of {g}, the word it follows, governs it too.",
+  illaGovIbtida: "What raises it: the ibtidāʾ — standing first, free of any spoken governor (an abstract governor).",
+  illaGovTajarrud: "What raises it: its freedom (tajarrud) from every particle of naṣb and jazm (an abstract governor).",
+  illaGovV: { raf: "marfūʿ", nasb: "manṣūb", jarr: "majrūr", jazm: "majzūm" },
+  illaSign: "It is {k}; for such a word the sign of {state} is the {sign}",
+  illaSignOnly: "Its sign of {state}, as the line states it: {sign}",
+  illaNiyaba: " — standing in for the {o}", illaTaqdiri: " — estimated, not spoken: {why}",
+  illaBuilt: "It is built (mabnī): its ending never changes.", illaBuiltNone: "It is built (mabnī): its ending never changes, and it has no place in iʿrāb.",
+  illaBuiltM: "It is built (mabnī): its ending never changes; it is {state} by its place (maḥallan), with no sign to show.",
+  illaMahall: "Its case is in its place: it is {state} maḥallan, and the word itself shows no sign.",
+  illaTells: "The {sign} at its end tells you that {w} is the {role} in this sentence.",
+  illaTellsQ: "Though unseen, the estimated {sign} is what makes {w} the {role} in this sentence.",
+  illaTellsV: "The {sign} at its end tells you that {w} is {state} in this sentence.",
+  illaState: { raf: "marfūʿ (rafʿ)", nasb: "manṣūb (naṣb)", jarr: "majrūr (jarr)", jazm: "majzūm (jazm)" }, illaStateAny: "the case of the word it follows",
+  illaFamIn: { marfu: "marfūʿāt, the words in rafʿ", mansub: "manṣūbāt, the words in naṣb", majrur: "majrūrāt, the words in jarr", majzum: "majzūm, the verb in jazm" },
+  illaFamName: { marfu: "marfūʿāt", mansub: "manṣūbāt", majrur: "majrūrāt", majzum: "majzūm", tabai: "followers (tawābiʿ)" },
+  illaKind: { sahih: "a singular or broken-plural noun", sahih1: "a singular noun", muthanna: "a dual", jamMudhakkar: "a sound masculine plural", jamMuannath: "a sound feminine plural",
+    khamsa: "one of the five nouns", mamnu: "a diptote (a noun barred from tanwīn)", maqsur: "a noun ending in an alif (maqṣūr)", manqus: "a noun ending in a yāʾ after kasra (manqūṣ)",
+    mudafYa: "a noun annexed to the speaker's yāʾ", mudariSahih: "a muḍāriʿ with a sound last letter", mudariMutall: "a muḍāriʿ with a weak last letter", khamsaVerbs: "one of the five verbs" },
+  illaSenHead: "Why? — each word's reason", illaSenHint: "Tap a word for its whole ladder.",
+  illaNoteHead: "Why is it so?", illaNoteGov: "What usually governs it: {g}.", illaNoteTable: "Which sign shows {state}, by the kind of word:", illaCite: "In the book's own words",
+});
+Object.assign(L.tr, {
+  illaHead: "Neden?", illaAuto: "Otomatik", illaBecause: "çünkü", illaShowAll: "tamamını göster", illaEst: "takdirî",
+  illaRoleT: "{t}: {d}",
+  illaFam: "{role} {fam}; bu yüzden {state} olmalıdır.",
+  illaFamTabi: "{role} bir tâbi'dir: metbûu {h} hangi i'rabdaysa o da odur — burada {state}.",
+  illaFamTabiN: "{role} bir tâbi'dir: metbûu hangi i'rabdaysa o da odur — burada {state}.",
+  illaGovAmil: "Onu {v} kılan: {g} ({kind}).", illaGovNamed: "Onu {v} kılan: {g} — satır böyle söylüyor.",
+  illaGovSelf: "Onu mecrûr kılan: başına bitişen cer harfi.",
+  illaGovTabi: "Kendi âmili yoktur: metbûu {g} kelimesinin âmili onu da etkiler.",
+  illaGovIbtida: "Onu ref' eden ibtidâdır: başta olmak, lafzî bir âmilden boş olmak (mânevî âmil).",
+  illaGovTajarrud: "Onu ref' eden tecerrüddür: hiçbir nasb ya da cezm harfinin girmemesi (mânevî âmil).",
+  illaGovV: { raf: "merfû", nasb: "mansub", jarr: "mecrûr", jazm: "meczûm" },
+  illaSign: "Kelime {k}; bu çeşit kelimede {state} alâmeti: {sign}",
+  illaSignOnly: "Satırın söylediği {state} alâmeti: {sign}",
+  illaNiyaba: " — {o} yerine (niyâbeten)", illaTaqdiri: " — takdirî, söylenmez: {why}",
+  illaBuilt: "Mebnîdir: sonu değişmez.", illaBuiltNone: "Mebnîdir: sonu değişmez; i'rabdan mahalli yoktur.",
+  illaBuiltM: "Mebnîdir: sonu değişmez; mahallen {state}dur, gösterilecek alâmet yoktur.",
+  illaMahall: "İ'rabı mahallîdir: mahallen {state}dur; kelimenin kendisi alâmet göstermez.",
+  illaTells: "Sondaki {sign}, {w} kelimesinin bu cümlede {role} olduğunu gösterir.",
+  illaTellsQ: "Görünmese de takdirî {sign}, {w} kelimesini bu cümlede {role} yapan alâmettir.",
+  illaTellsV: "Sondaki {sign}, {w} kelimesinin bu cümlede {state} olduğunu gösterir.",
+  illaState: { raf: "merfû", nasb: "mansub", jarr: "mecrûr", jazm: "meczûm" }, illaStateAny: "metbûunun i'rabı",
+  illaFamIn: { marfu: "merfûâttandır", mansub: "mansûbâttandır", majrur: "mecrûrâttandır", majzum: "meczûmdur" },
+  illaFamName: { marfu: "merfûât", mansub: "mansûbât", majrur: "mecrûrât", majzum: "meczûm", tabai: "tevâbi'" },
+  illaKind: { sahih: "müfred ya da cem-i mükesser isim", sahih1: "müfred isim", muthanna: "tesniye (ikil)", jamMudhakkar: "cem-i müzekker sâlim", jamMuannath: "cem-i müennes sâlim",
+    khamsa: "esmâ-i hamseden biri", mamnu: "gayr-i munsarif (tenvin almayan) isim", maqsur: "ism-i maksûr (sonu elif)", manqus: "ism-i mankûs (sonu kesreli ye)",
+    mudafYa: "mütekellim yâsına muzâf isim", mudariSahih: "âhiri sahih muzâri", mudariMutall: "âhiri illetli muzâri", khamsaVerbs: "ef'âl-i hamseden biri" },
+  illaSenHead: "Neden? — her kelimenin sebebi", illaSenHint: "Merdivenin tamamı için bir kelimeye dokunun.",
+  illaNoteHead: "Neden böyle?", illaNoteGov: "Genellikle âmili: {g}.", illaNoteTable: "Kelimenin çeşidine göre {state} alâmeti:", illaCite: "Kitabın kendi sözüyle",
+});
 function ui(){ return L[state.uiLang] || L.en; }
 function T(v){ return (v && typeof v === "object") ? (v[state.uiLang] || v.en || "") : (v || ""); }
 
@@ -5870,6 +5960,7 @@ function runQuiz(cfg){
         (cfg.whyNot ? `<div class="game-wrongwhy">${cfg.whyNot(it, picked)}</div>` : "")}
        <div class="game-why">${cfg.why(it)}</div>
        ${cfg.after ? cfg.after(it) : ""}
+       ${cfg.illa && (typeof cfg.illa !== "function" || cfg.illa(it)) ? Illa346.quizHtml(it, picked.ok) : ""}
        <div class="sheet-actions">` +
       extras.map((x, k) => `<button class="btn" id="qX${k}">${x.label(it)}</button>`).join("") +
       `<button class="btn primary" id="qNext">${G.i + 1 < cfg.items.length ? ui().next : (cfg.doneLabel || ui().replay)}</button>
@@ -5968,7 +6059,8 @@ function caseSignOf(full){
 function startCaseGame(){
   const items = shuffle(caseItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
-  runQuiz({
+  runQuiz({ illa: true,   /* (v346) the feedback shows the asked word's reason chain */
+   
     title: ui().caseGame, ask: ui().caseGameAsk, items, restart: startCaseGame,
     area: "nahw", lvl: () => 3,
     question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti,
@@ -6059,7 +6151,8 @@ function roleWhyNot(it, picked){
 function startRoleGame(){
   const items = shuffle(roleItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
-  runQuiz({
+  runQuiz({ illa: true,   /* (v346) the feedback shows the asked word's reason chain */
+   
     title: ui().roleGame, ask: ui().roleGameAsk, items, restart: startRoleGame,
     area: "nahw", lvl: () => 4,
     question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti,
@@ -6225,7 +6318,8 @@ function startDuel(){
   const items = shuffle(w3.concat(right.slice(0, Math.max(0, 8 - w3.length)))).slice(0, 8);
   if (!items.length) { openGames(); return; }
   const duel = { you: 0, model: 0 };
-  runQuiz({
+  runQuiz({ illa: true,   /* (v346) the feedback shows the asked word's reason chain */
+   
     title: ui().duelGame, ask: ui().duelAsk, items, restart: startDuel,
     area: "nahw", lvl: () => 4, itemKey: it => "duel:" + it.sen.id + ":" + it.ti,
     onAnswer: (it, ok) => {
@@ -6551,7 +6645,8 @@ function startTahlil(){
   const pools = tahlilSentences(1);
   if (!pools.length) { openGames(); return; }
   const items = pools[Math.floor(Math.random() * pools.length)];
-  runQuiz({
+  runQuiz({ illa: true,   /* (v346) the feedback shows the asked word's reason chain */
+   
     title: ui().tahlil, ask: ui().tahlilAsk, items, restart: startTahlil,
     area: "nahw", lvl: () => 4,
     question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti,
@@ -17167,6 +17262,8 @@ function renderJumlaOut(){
     ? { lafzi: "lafzî", taqdiri: "takdîrî", mahalli: "mahallî" }
     : { lafzi: "lafzi", taqdiri: "taqdiri", mahalli: "mahalli" };
   h += `<ul class="vlist">`;
+  /* (v346) the reason chain under each engine line, marked «Otomatik»: the governors from the Zabt reading of the same words (GovView) */
+  let gv346 = null; try { const v = DabtEngine.vowel(rows.map(r => r.w).join(" "), "endings"); if (v && v.words.length === rows.length) gv346 = { r: GovView.forDabt(v).r, words: v.words.map(x => x.out || x.w) }; } catch (e) { gv346 = null; }
   rows.forEach((r, i) => {
     const chips = [];
     if (r.root) chips.push(`<span class="vchip ar" lang="ar">${ui().jadhrRoot} ${escapeAttr(r.root)}</span>`);
@@ -17197,7 +17294,7 @@ function renderJumlaOut(){
           ? `<span class="vseg" lang="ar" dir="rtl">${escapeAttr(r.seg.join(" + "))}</span>` : ""}</div>${
       mb ? `<div class="murib" lang="ar" dir="rtl">${mb.ar}</div>
         <div class="murib-x">${escapeAttr(mb[lang === "tr" ? "tr" : "en"])}${
-        mb.ml ? ` · <span class="vchip ml">🧠 ${RL[mb.ml.r]} %${mb.ml.pct}</span>` : ""}</div>` : ""}${
+        mb.ml ? ` · <span class="vchip ml">🧠 ${RL[mb.ml.r]} %${mb.ml.pct}</span>` : ""}</div>${Illa346.ladderHtml(null, { line: mb.ar, w: r.w, auto: true, gov: gv346 && gv346.r[i] ? { x: gv346.r[i], words: gv346.words } : null, opt: Illa346.typedOpt(r.w, mb.ar) }).replace('id="illa346"', 'data-i="' + i + '"')}` : ""}${
       r.lemma ? `<div class="vlex"><b lang="ar">${escapeAttr(r.lemma)}</b>${
         r.gloss ? " — " + T(r.gloss) : ""}</div>` : ""}${
       chips.length ? `<div class="vmeta">${chips.join("")}</div>` : ""}${
@@ -19285,6 +19382,379 @@ function decisionChainHtml(tok){
   </section>`;
 }
 
+/* ============ v346 — the reasons: every iʿrāb line explains itself (Illa346) ============
+   The owner's model, «ضَرَبَ زَيْدٌ عَمْرًا»: what the word is (plain words, the term beside them) → which family that puts it in and the
+   state the family requires → who governs it → what kind of word it is and therefore which sign → what the sign tells the reader.
+   Every step is read off what the line STATES (the authored line, or the engine's line in a lab): the role from the line's own head,
+   the case and the sign through SignEngine.authored on the line's own clauses, the governor named in the line or AmilEngine.word /
+   GovView; a fact the line does not state is not guessed — the chain is shorter. The tables: the roles' plain definitions are ours
+   (one sentence each, en and tr); the families are the Iẓhār's maʿmūl tree (BIRGIVI_TREE.mamul) with each role's membership read
+   from the family notes' own titles (المرفوعات … اسم كان، خبر إن …) or the role note's `mamul`; the kind → sign table is
+   SignEngine.CLASSES (Shudhūr's bāb of the signs). Arabic in a step is the line's own words or a book's verbatim line. */
+const Illa346 = {
+  KEY: "qissa-illa346",
+  KANA: "كان|كانت|يكون|تكون|يكن|تكن|أكون|نكون|كن|كونوا|صار|صارت|يصير|تصير|ليس|ليست|لست|أصبح|أصبحت|يصبح|أمسى|يمسي|أضحى|ظل|ظلت|يظل|بات|مازال|ما زال|زال|يزال|لا يزال|ما دام|دام|برح|فتئ|انفك",
+  INNA: "إن|أن|كأن|لكن|ليت|لعل|لأن|إنما",
+  // the roles. re: on the line's own clauses, vowels stripped. famT: the term the Iẓhār family notes' titles use. notes: the role's grammar notes.
+  ROLES: null,
+  roles(){
+    if (this.ROLES) return this.ROLES;
+    const K = this.KANA, I = this.INNA, R = (id, re, notes, famT, en, tr, x) => Object.assign({ id, re, notes, famT, en, tr }, x || {});
+    return (this.ROLES = [
+      R("naibMutlaq", /نائب عن (ال)?مفعول (ال)?مطلق/, ["maful-mutlaq"], "المفعول المطلق",
+        { t: "Stand-in for the mafʿūl muṭlaq", d: "a word that does the work of the verb's own maṣdar." }, { t: "Mef'ûl-i mutlaka nâib", d: "fiilin kendi masdarının işini gören kelime." }),
+      R("naibFail", /نائب (ال)?فاعل/, ["naib-al-fail", "al-marfuat-al-fail-wa-naibuh"], "نائب الفاعل",
+        { t: "Deputy doer (nāʾib al-fāʿil)", d: "in a passive verb, the word that takes the doer's place — the one the verb was done to." }, { t: "Nâib-i fâil", d: "meçhul fiilde fâilin yerini tutan; fiil onun üzerine yapılmıştır." }, { kw: /deputy/ }),
+      R("ismKana", new RegExp("اسم «?(" + K + ")»?(\\s|$|[،.])|اسمها|اسمه(\\s|$|[،.])"), ["kana-wa-akhawatuha", "al-marfuat-al-khamis-ila-al-tasi"], "اسم كان",
+        { t: "Subject of kāna (ism kāna)", d: "the noun that kāna or a sister says something about." }, { t: "Kâne'nin ismi", d: "kâne ya da kardeşinin hakkında haber verdiği isim." }, { kana: 1 }),
+      R("khabarKana", new RegExp("خبر «?(" + K + ")»?(\\s|$|[،.])|خبرها|خبره(\\s|$|[،.])"), ["kana-wa-akhawatuha", "al-mansubat-al-tasi-ila-al-thalith-ashar"], "خبر كان",
+        { t: "Predicate of kāna (khabar kāna)", d: "what kāna or a sister says about its subject." }, { t: "Kâne'nin haberi", d: "kâne ya da kardeşinin ismi hakkında verdiği bilgi." }, { kana: 1 }),
+      R("ismInna", new RegExp("اسم «?(" + I + ")»?(\\s|$|[،.])"), ["inna-wa-akhawatuha", "al-mansubat-al-tasi-ila-al-thalith-ashar"], "اسم إن",
+        { t: "Subject of inna (ism inna)", d: "the noun that inna or a sister stresses and says something about." }, { t: "İnne'nin ismi", d: "inne ya da kardeşinin pekiştirdiği, hakkında haber verilen isim." }),
+      R("khabarInna", new RegExp("خبر «?(" + I + ")»?(\\s|$|[،.])"), ["inna-wa-akhawatuha", "al-marfuat-al-khamis-ila-al-tasi"], "خبر إن",
+        { t: "Predicate of inna (khabar inna)", d: "what is said about inna's subject." }, { t: "İnne'nin haberi", d: "inne'nin ismi hakkında verilen bilgi." }),
+      R("ismLa", /اسم «?لا»?(\s|$|[،.])/, ["la-nafiya-lil-jins", "al-mansubat-al-tasi-ila-al-thalith-ashar"], "اسم لا",
+        { t: "Subject of the lā of the genus", d: "the noun whose whole kind is denied." }, { t: "Nefy-i cins lâ'sının ismi", d: "cinsi toptan olumsuzlanan isim." }),
+      R("khabarLa", /خبر «?لا»?(\s|$|[،.])/, ["la-nafiya-lil-jins", "al-marfuat-al-khamis-ila-al-tasi"], "خبر لا",
+        { t: "Predicate of the lā of the genus", d: "what is denied of that kind." }, { t: "Lâ'nın haberi", d: "o cinsten olumsuzlanan bilgi." }),
+      R("ismMa", /اسم «?ما»?(\s|$|[،.])/, ["ma-la-mushabbaha", "al-marfuat-al-khamis-ila-al-tasi"], "اسم ما",
+        { t: "Subject of mā (like laysa)", d: "the noun that mā, working like laysa, denies something of." }, { t: "Leyse'ye benzeyen mâ'nın ismi", d: "leyse gibi çalışan mâ'nın hakkında olumsuz haber verdiği isim." }),
+      R("khabarMa", /خبر «?ما»?(\s|$|[،.])/, ["ma-la-mushabbaha", "al-mansubat-al-tasi-ila-al-thalith-ashar"], "خبر ما",
+        { t: "Predicate of mā (like laysa)", d: "what mā denies of its subject." }, { t: "Mâ'nın haberi", d: "mâ'nın ismi hakkında olumsuzladığı bilgi." }),
+      R("mafulMutlaq", /مفعول (ال)?مطلق/, ["maful-mutlaq", "al-mansubat-al-maful-al-mutlaq"], "المفعول المطلق",
+        { t: "Absolute object (mafʿūl muṭlaq)", d: "the verb's own maṣdar: it stresses the act, or tells how or how often it was done." }, { t: "Mef'ûl-i mutlak", d: "fiilin kendi masdarı; işi pekiştirir, nasıl ya da kaç kez yapıldığını bildirir." }),
+      R("mafulLah", /مفعول (له|لأجله|من أجله)/, ["maful-lah"], "المفعول له",
+        { t: "Object of purpose (mafʿūl lahu)", d: "the word that tells why the act was done." }, { t: "Mef'ûl leh", d: "işin niçin yapıldığını bildiren." }),
+      R("mafulMaah", /مفعول معه/, ["maful-maah"], "المفعول معه",
+        { t: "Object of company (mafʿūl maʿahu)", d: "the word after the wāw of ‘with’: what the act was done together with." }, { t: "Mef'ûl maah", d: "«ile» vâvından sonra gelen: işin kiminle ya da neyle birlikte yapıldığı." }),
+      R("mafulFih", /مفعول فيه|(^|\s)ظرف (زمان|مكان)|^ظرف(\s|$|[،.])|في محل نصب ظرف/, ["maful-fih"], "المفعول فيه",
+        { t: "Adverb of time or place (mafʿūl fīhi, ẓarf)", d: "the word that tells when or where the act was done." }, { t: "Mef'ûl fîh (zarf)", d: "işin ne zaman ya da nerede yapıldığını bildiren." }),
+      R("mafulBih", /مفعول به|مفعول (أول|ثان|ثالث)/, ["maful-bihi"], "المفعول به",
+        { t: "Object (mafʿūl bihi)", d: "the one the verb is done to." }, { t: "Mef'ûlün bih (nesne)", d: "fiilin üzerine işlendiği." }, { kw: /object/ }),
+      R("tamyiz", /تمييز/, ["tamyiz", "al-tamyiz-wa-ahkamuh"], "التمييز",
+        { t: "Specifier (tamyīz)", d: "the word that clears up what a vague word or statement means." }, { t: "Temyîz", d: "kapalı bir kelimenin ya da ifadenin neyi kastettiğini açan." }),
+      R("mustathna", /مستثنى/, ["istithna"], "المستثنى",
+        { t: "The excepted (mustathnā)", d: "the word left out of what the sentence says, after illā and its sisters." }, { t: "Müstesnâ", d: "illâ ve benzerlerinden sonra, hükmün dışında tutulan." }),
+      R("munada", /منادى/, ["vocative-munada"], "المنادى",
+        { t: "The one called (munādā)", d: "the one addressed with yā or its sisters." }, { t: "Münâdâ", d: "yâ ve benzerleriyle seslenilen." }),
+      R("hal", /(^|\s)حال(\s|$|[،.])|في محل نصب حال/, ["hal"], "الحال",
+        { t: "Circumstance (ḥāl)", d: "the word that tells the state of the doer or the object while the act happens." }, { t: "Hâl", d: "iş olurken fâilin ya da mef'ûlün durumunu anlatan." }),
+      R("mubtada", /مبتدأ|مبتدإ/, ["mubtada-khabar", "al-mubtada-wa-nawah"], "المبتدأ",
+        { t: "Subject of a nominal sentence (mubtadaʾ)", d: "the word the sentence starts from and says something about." }, { t: "Mübtedâ", d: "isim cümlesinin, hakkında haber verilen başı." }),
+      R("mudafIlayh", /مضاف إليه/, ["idafa-definiteness", "al-majrur-bil-harf-wa-bil-idafa"], "المضاف إليه",
+        { t: "Second term of an annexation (muḍāf ilayh)", d: "the noun the word before it is annexed to; it defines or specifies it." }, { t: "Muzâfun ileyh", d: "kendinden önceki isim (muzâf) ona bağlanır; onu belirler ya da özelleştirir." }),
+      R("naat", /^نعت|(^|\s)نعت(\s|$|[،.ل])|(^|\s)صفة ل/, ["naat-sifa", "al-tawabi-wal-sifa"], "",
+        { t: "Adjective (naʿt)", d: "a follower that describes the noun before it." }, { t: "Na't (sıfat)", d: "önceki ismi niteleyen tâbi'." }, { tabi: 1 }),
+      R("atfBayan", /عطف بيان/, ["atf-bayan"], "",
+        { t: "Explicative (ʿaṭf bayān)", d: "a follower that makes the noun before it clear." }, { t: "Atf-ı beyân", d: "önceki ismi açıklayan tâbi'." }, { tabi: 1 }),
+      R("atf", /معطوف/, ["atf-nasaq"], "",
+        { t: "Coupled word (maʿṭūf)", d: "a follower joined to an earlier word by a conjunction." }, { t: "Ma'tûf", d: "bir atıf harfiyle önceki kelimeye bağlanan tâbi'." }, { tabi: 1 }),
+      R("badal", /^بدل|(^|\s)بدل (من|كل|بعض|اشتمال|مطابق)/, ["badal"], "",
+        { t: "Substitute (badal)", d: "a follower that stands for the word before it and names what is really meant." }, { t: "Bedel", d: "önceki kelimenin yerine geçip asıl kastedileni söyleyen tâbi'." }, { tabi: 1 }),
+      R("tawkid", /^(توكيد|تأكيد)|(^|\s)(توكيد|تأكيد) (لفظي|معنوي|ل)/, ["tawkid"], "",
+        { t: "Corroborative (tawkīd)", d: "a follower that makes the word before it firm." }, { t: "Te'kîd", d: "önceki kelimeyi pekiştiren tâbi'." }, { tabi: 1 }),
+      R("khabar", /(^|\s)خبر(\s|$|[،.ل])/, ["mubtada-khabar", "khabar-al-mubtada-wa-ahkamuh"], "الخبر",
+        { t: "Predicate (khabar)", d: "what is said about the mubtadaʾ; it completes the sentence." }, { t: "Haber", d: "mübtedâ hakkında verilen bilgi; cümleyi tamamlar." }),
+      R("fail", /(^|\s|و)فاعل(\s|$|[،.])/, ["fail", "al-marfuat-al-fail-wa-naibuh"], "الفاعل",
+        { t: "The doer (fāʿil)", d: "the one who does the verb." }, { t: "Fâil (özne)", d: "fiili yapan." }, { kw: /doer/ }),
+      R("majrur", /مجرور ب|مجرور به|اسم مجرور|^مجرور|جار ومجرور/, ["huruf-jarr", "al-majrur-bil-harf-wa-bil-idafa"], "",
+        { t: "Governed by a jarr letter (majrūr)", d: "the noun that comes after a letter of jarr." }, { t: "Harf-i cerle mecrûr", d: "bir cer harfinden sonra gelen isim." }, { fam: "majrur" }),
+    ]);
+  },
+  VERBS: {
+    mudari: { re: /فعل مضارع/, en: { t: "Present verb (muḍāriʿ)", d: "a verb of the present or the future; its ending takes iʿrāb." }, tr: { t: "Muzâri fiil", d: "şimdiki ya da gelecek zamanı anlatır; sonu i'rab alır." } },
+    madi: { re: /فعل ماض|(^|\s)ماض(\s|$|[،.])/, en: { t: "Past verb (māḍī)", d: "a verb of what has happened." }, tr: { t: "Mâzî fiil", d: "olmuş bir işi anlatır." } },
+    amr: { re: /فعل أمر/, en: { t: "Command verb (amr)", d: "a verb that asks for the act to be done." }, tr: { t: "Emir fiili", d: "bir işin yapılmasını ister." } },
+  },
+  PARTS: [
+    ["jarr", /حرف جر/, { t: "Jarr letter (ḥarf jarr)", d: "a letter that puts the noun after it in jarr." }, { t: "Cer harfi", d: "kendinden sonraki ismi cerreder." }],
+    ["inna", /مشبه بالفعل|حرف توكيد ونصب/, { t: "Inna or a sister", d: "a particle like a verb: it puts its subject in naṣb and raises its predicate." }, { t: "İnne ya da kardeşi", d: "fiile benzeyen harf: ismini nasb, haberini ref' eder." }],
+    ["nasb", /حرف (مصدري )?(ناصب|نصب)|مصدري ونصب|مصدري ناصب/, { t: "Naṣb particle", d: "a particle that puts the muḍāriʿ after it in naṣb." }, { t: "Nasb harfi", d: "kendinden sonraki muzâriyi nasbeder." }],
+    ["jazm", /جزم/, { t: "Jazm particle", d: "a particle that puts the muḍāriʿ after it in jazm." }, { t: "Cezm harfi", d: "kendinden sonraki muzâriyi cezmeder." }],
+    ["atf", /عاطفة|حرف عطف/, { t: "Conjunction (ḥarf ʿaṭf)", d: "a letter that joins a word or a sentence to the one before." }, { t: "Atıf harfi", d: "bir kelimeyi ya da cümleyi öncekine bağlar." }],
+    ["nida", /حرف نداء/, { t: "Vocative particle", d: "a letter used to call someone." }, { t: "Nidâ harfi", d: "seslenmek için kullanılır." }],
+    ["nafy", /نفي|نافية/, { t: "Negative particle", d: "a particle that denies." }, { t: "Nefy harfi", d: "olumsuzlar." }],
+    ["istifham", /استفهام/, { t: "Question particle", d: "a particle that asks." }, { t: "Soru (istifhâm) harfi", d: "soru sorar." }],
+    ["shart", /شرط/, { t: "Conditional particle", d: "a particle that ties an answer to a condition." }, { t: "Şart edatı", d: "bir cevabı bir şarta bağlar." }],
+    ["istithna", /استثناء/, { t: "Particle of exception", d: "it takes a word out of what the sentence says." }, { t: "İstisnâ edatı", d: "bir kelimeyi hükmün dışında tutar." }],
+    ["istinaf", /استئناف/, { t: "Wāw / fāʾ of resumption", d: "a letter that opens a new sentence." }, { t: "İsti'nâf harfi", d: "yeni bir cümle başlatır." }],
+    ["other", /حرف|أداة|عاطفة|للتعليل|رابطة|واقعة|حالية|للحال/, { t: "Particle (ḥarf)", d: "a word that brings a meaning only together with other words." }, { t: "Harf", d: "ancak başka kelimelerle birlikte bir mânâ bildiren kelime." }],
+  ],
+  // the four families of the governed and the followers, named as the Iẓhār's tree names them (BIRGIVI_TREE.mamul)
+  FAM: { marfu: { kase: "raf", at: [0, 0], note: "al-marfuat-al-fail-wa-naibuh" }, mansub: { kase: "nasb", at: [0, 1], note: "al-mansubat-al-maful-al-mutlaq" },
+    majrur: { kase: "jarr", at: [0, 2], note: "al-majrur-bil-harf-wa-bil-idafa" }, majzum: { kase: "jazm", at: [0, 3], note: "al-majzum-wal-shart-wal-jaza" },
+    tabai: { kase: "", at: [1], note: "al-tawabi-wal-sifa" } },
+  KASE_FAM: { raf: "marfu", nasb: "mansub", jarr: "majrur", jazm: "majzum" },
+  // the muḍāriʿ's family by the case the line states — the free muḍāriʿ is the ninth marfūʿ, «المضارع بعد الناصب» a manṣūb, «المجزوم» the one in jazm
+  VERB_FAM: { raf: "mudari-marfu", nasb: "al-mansubat-al-tasi-ila-al-thalith-ashar", jazm: "al-majzum-wal-shart-wal-jaza" },
+  famAr(k){ try { const F = this.FAM[k], M = BIRGIVI_TREE.mamul; return F.at.length === 1 ? M.kids[1].ar : M.kids[0].kids[F.at[1]].ar; } catch (e) { return ""; } },
+  S(s){ return String(s || "").normalize("NFC").replace(/[ً-ٰٟـ]/g, ""); },
+  _fam: {},
+  famOf(role){
+    if (role.tabi) return "tabai"; if (role.fam) return role.fam;
+    if (role.id in this._fam) return this._fam[role.id];
+    let f = null; const t = this.S(role.famT);
+    if (t) for (const [pre, k] of [["al-marfuat", "marfu"], ["al-mansubat", "mansub"]]) for (const id of Object.keys(GRAMMAR)) if (!f && id.startsWith(pre) && this.S(GRAMMAR[id].title.ar).includes(t)) f = { k, src: id };
+    if (!f) for (const n of role.notes) { const g = GRAMMAR[n]; if (g && g.mamul && this.FAM[g.mamul]) { f = { k: g.mamul, src: n }; break; } }
+    return (this._fam[role.id] = f);
+  },
+  // the line's own words, as written: the vowelled slice of the line whose letters are `bare`
+  frag(orig, bare){ if (!orig || !bare) return ""; const esc = [...bare].map(c => /\s/.test(c) ? "\\s+" : c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[ً-ٰٟـ]*").join("");
+    try { const m = String(orig).normalize("NFC").match(new RegExp(esc)); return m ? m[0] : ""; } catch (e) { return ""; } },
+  // ── reading one line: the word's OWN clauses (a proclitic clause and the clauses about an attached pronoun or another word set aside)
+  read(lineAr, w0){
+    const orig = String(lineAr || "").normalize("NFC"); let s = this.S(orig); if (!s) return null;
+    s = s.split(/ — |؛/)[0].trim();
+    const cl = s.split(/،/).map(x => x.trim()).filter(Boolean); if (!cl.length) return null;
+    const own = []; let i = 0, procl = null;
+    if (cl.length > 1 && /^(«?[وفبلكت]»?|الواو|الفاء|الباء|اللام|الكاف|التاء|السين|الهمزة|همزة)\s/.test(cl[0]) && !/(مرفوع|منصوب|مجرور|مجزوم|في محل)/.test(cl[0])) {
+      /* the host's clause names the host first («وَمَنْصُوبٌ مَعْطُوفٌ مَرْفُوعٌ», «وَأَلْفَاظِ مَجْرُورٌ»): that word is the word, not a statement about it */
+      const wb = this.S(w0).replace(/[^ء-ي]/g, "").replace(/^[وفبلك]/, ""), h1 = cl[1].replace(/^و\s?/, ""), f1 = (h1.match(/^«?([ء-ي]+)»?\s+(?=\S)/) || [])[1] || "";
+      procl = cl[0]; own.push(f1.length >= 2 && wb && (wb.startsWith(f1) || f1.startsWith(wb)) ? h1.replace(/^«?[ء-ي]+»?\s+/, "") : h1); i = 2; }
+    else { own.push(cl[0]); i = 1; }
+    /* a jarr phrase «جَارٌّ وَمَجْرُورٌ فِي مَحَلِّ رَفْعٍ خَبَرٌ، وَ«الْمُدَّعِي» اسْمٌ مَنْقُوصٌ مَجْرُورٌ …»: the PHRASE's place is not the word's case — the word is the majrūr */
+    const jm = /^جار ومجرور/.test(own[0]);
+    if (jm) own[0] = own[0].replace(/في محل (رفع|نصب|جر|جزم)\s*\S*/, "").trim();
+    for (; i < cl.length; i++) { const c = cl[i]; if (jm && /^و\s?«/.test(c)) { own.push(c.replace(/^و\s?«[^»]*»\s*/, "")); continue; } if (/^و/.test(c) && !/^و(هو|هي|علامة|عليه)(\s|$)/.test(c)) continue; own.push(c); }
+    const o = own.join("، ").replace(/اسم[ا]?\s*(ال)?(فاعل|مفعول|تفضيل)\S*/g, "▨");
+    if (/محكي/.test(o)) return { cited: true, own: o };
+    const out = { orig, own: o, procl };
+    // the verb's kind first (its line may name a doer of its own in a set-aside clause), then the roles, then the particles
+    const head = own[0];
+    if (/^(فعل|كان فعل|.{0,14}فعل (ماض|مضارع|أمر))/.test(head) || /^فعل الشرط|^جواب الشرط/.test(head)) {
+      for (const [k, v] of Object.entries(this.VERBS)) if (v.re.test(o)) { out.verb = k; break; } }
+    if (!out.verb) for (const r of this.roles()) if (r.re.test(o)) { out.role = r; break; }
+    if (!out.verb && !out.role && /حرف|أداة|عاطفة|للتعليل|رابطة|واقعة|حالية|للحال|استئناف/.test(head) && !/(مرفوع|منصوب|مجرور|مجزوم)/.test(o)) {
+      for (const [k, re, en, tr] of this.PARTS) if (re.test(head)) { out.part = { k, en, tr }; break; } }
+    let a = null; try { a = SignEngine.authored(o.replace(/▨/g, "اسم")); } catch (e) { a = null; }
+    if (!a) a = this.signSaid(o);
+    if (a) { out.kase = a.kase; out.sign = a.sign; out.manner = a.manner; out.why = a.why; out.niyaba = a.niyaba; out.signTxt = a.text; }
+    else { const k = o.match(/(?:^|\s)(مرفوع|منصوب|مجرور|مجزوم)(?=\s|[،.:]|$)/); if (k) out.kase = SignEngine.CASE_WORD[k[1]]; }
+    const mh = o.match(/في محل (رفع|نصب|جر|جزم)/); if (mh) { out.mahall = { "رفع": "raf", "نصب": "nasb", "جر": "jarr", "جزم": "jazm" }[mh[1]]; if (!out.kase) out.kase = out.mahall; }
+    const b = o.match(/مبني(?:ة)? على ([^،.]{1,24}?)(?=\s(?:في|لا|لاتصاله|لأنه)|[،.]|$)/); if (/مبني/.test(o)) { out.built = true; out.builtOn = b ? "مبني على " + b[1].trim() : ""; }
+    if (/لا محل له/.test(o)) out.noPlace = true;
+    // a governor the line names: «مَجْرُورٌ بِـ«فِي»», «مَنْصُوبٌ بِأَنْ», «مَجْزُومٌ بِلَمْ»
+    const SIGNW = /^(ال)?(ضمة|فتحة|كسرة|سكون|واو|ألف|ياء|حذف|ثبوت|عامله|ه|ها|التبعية|الإضافة|الابتداء|العطف)$/;
+    const nm = o.match(/(?:مرفوع|منصوب|مجرور|مجزوم)\s+بـ?«?([^\s»،.]+)»?/); if (nm && !SIGNW.test(nm[1]) && !SIGNW.test(nm[1].replace(/^ال/, ""))) out.named = nm[1];
+    if (/مجرور (به|بها)(\s|$|[،.])/.test(o) && procl) out.self = true;
+    const th = o.match(/(?:نعت|معطوف|بدل|توكيد|تأكيد)\s+(?:على|من|ل|لـ)?\s?«([^»]+)»/); if (th) out.head = th[1];
+    if (/علم|لفظ الجلالة/.test(head)) out.propn = true;
+    return out;
+  },
+  // «… وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ» stated after a long governor phrase («مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ وُجُوبًا بَعْدَ حَتَّى …») that SignEngine.authored's window passes over
+  signSaid(s){ const m = String(s || "").match(/وعلامة (رفعه|نصبه|جره|جزمه) (?:ال)?(ضمة|فتحة|كسرة|سكون|واو|ألف|ياء|ثبوت النون|حذف النون|حذف حرف العلة|حذف الياء|حذف الألف|حذف الواو)( المقدرة| مقدرة| الظاهرة| ظاهرة)?( على [^،.—]{1,24}| نيابة عن [^،.—]{1,30}| لأنه [^،.—]{1,30})?/);
+    if (!m) return null; const why = (m[4] || "").trim();
+    return { kase: { "رفعه": "raf", "نصبه": "nasb", "جره": "jarr", "جزمه": "jazm" }[m[1]], sign: SignEngine.SIGN_WORD[m[2]], manner: /مقدر/.test(m[3] || "") ? "taqdiri" : /ظاهر/.test(m[3] || "") ? "lafzi" : "", why, niyaba: /نيابة/.test(why), text: m[0] }; },
+  // which class of the sign table: first what the line states («لِأَنَّهُ مُثَنًّى», «مُقَدَّرَةٌ عَلَى الْأَلِفِ»), then SignEngine.classify — and only if
+  // the class's own sign for this case IS the sign the line states (else the step names the sign alone)
+  classOf(r, w, opt){
+    if (!r.kase || !r.sign) return null;
+    const o = r.own, verb = !!r.verb, ok = c => { if (!c) return false; const e = SignEngine.expect(c, r.kase, w); return !!e && (e.sign === r.sign || (c === "mamnu" && r.kase === "jarr" && r.sign === "fatha") || (c === "maqsur" && r.kase === "jarr" && r.sign === "fatha")); };
+    const said = /مثنى|المثنى/.test(o) ? "muthanna" : /جمع مذكر|جمع المذكر|بجمع المذكر/.test(o) ? "jamMudhakkar" : /جمع مؤنث|جمع المؤنث/.test(o) ? "jamMuannath"
+      : /الأسماء الخمسة|الأسماء الستة/.test(o) ? "khamsa" : /ممنوع من الصرف|الممنوع من الصرف|لا ينصرف/.test(o) ? "mamnu" : /الأفعال الخمسة/.test(o) ? "khamsaVerbs"
+      : /ياء المتكلم|اشتغال المحل/.test(o) ? "mudafYa" : /على الألف|للتعذر/.test(o) ? (verb ? "mudariMutall" : "maqsur") : /على الياء|على الواو|للثقل/.test(o) ? (verb ? "mudariMutall" : "manqus")
+      : /حذف حرف العلة|حذف الياء|حذف الواو|حذف الألف/.test(o) ? "mudariMutall" : /حذف النون|ثبوت النون/.test(o) ? "khamsaVerbs" : null;
+    if (said && ok(said)) return { cls: said, said: true };
+    let c = null; try { c = SignEngine.classify(w, Object.assign({ kase: r.kase, manqusHint: r.why }, opt || {})); } catch (e) { c = null; }
+    return c && c.cls !== "mabni" && ok(c.cls) ? { cls: c.cls, why: c.why } : null;
+  },
+  // a typed word: its part of speech from the engine's own line («اسْمٌ …» / «فِعْلٌ …»), its lemma and properness from the corpus' noun index
+  typedOpt(w, line){ const h = this.S(line), o = { pos: /^فعل/.test(h) ? "verb" : /^اسم/.test(h) ? "noun" : undefined };
+    if (o.pos === "noun") { try { const e = RootFinder.nounFromCorpus(SignEngine.nfc(w)); if (e) { o.lemma = e.lemma; if (/propn/.test(e.pos || "")) o.propn = true; } } catch (e) {} }
+    return o; },
+  L(){ return state.uiLang === "tr" ? "tr" : "en"; },
+  B(t){ return `«<bdi lang="ar">${escapeAttr(t || "")}</bdi>»`; },
+  // ── the chain: {kind, ar, en, tr, term, cite?} — built in both languages at once (the templates live in ui() for each)
+  chain(tok, ctx){
+    ctx = ctx || {}; const line = ctx.line || (tok && tok.irab && tok.irab.ar); if (!line) return null;
+    const r = this.read(line, (tok && tok.s && tok.s.full) || ctx.w || ""); if (!r || r.cited) return { steps: [], r, auto: !!ctx.auto };
+    const w = (tok && tok.s && tok.s.full) || ctx.w || "", steps = [], U = { en: L.en, tr: L.tr };
+    const both = f => ({ en: f(U.en, "en"), tr: f(U.tr, "tr") });
+    const add = (kind, txt, term, ar, cite) => steps.push(Object.assign({ kind, ar: ar || "", term: term || null }, txt, cite ? { cite } : {}));
+    // 1 · what it is
+    const R = r.role, V = r.verb ? this.VERBS[r.verb] : null, P = r.part;
+    const who = R || V || P;
+    if (who) { const bare = R ? (r.own.match(R.re) || [""])[0].trim() : V ? (r.own.match(V.re) || [""])[0].trim() : ((r.procl ? r.procl : r.own).match(/[^،.]+/) || [""])[0].trim();
+      const ar = this.frag(r.orig, bare.replace(/^[«\s]+|[».\s]+$/g, "")) || "";
+      add("role", both((u, l) => u.illaRoleT.replace("{t}", who[l].t).replace("{d}", who[l].d)), { ar, en: who.en.t, tr: who.tr.t }, ar, R ? this.citeOf(R) : null); }
+    // 2 · the family and the state it requires
+    const kase = r.kase, fam = R ? this.famOf(R) : (r.verb === "mudari" && kase && this.VERB_FAM[kase] ? { k: this.KASE_FAM[kase], src: this.VERB_FAM[kase] } : null);
+    if (who && kase && fam) {
+      const fk = typeof fam === "string" ? fam : fam.k, src = typeof fam === "string" ? this.FAM[fam].note : fam.src;
+      if (fk === "tabai") add("family", both((u, l) => (r.head ? u.illaFamTabi : u.illaFamTabiN).replace("{role}", who[l].t).replace("{h}", this.B(r.head)).replace("{state}", u.illaState[kase])),
+        { ar: this.famAr("tabai"), en: U.en.illaFamName.tabai, tr: U.tr.illaFamName.tabai }, this.famAr("tabai"), null);
+      else if (this.FAM[fk] && this.FAM[fk].kase === kase) add("family", both((u, l) => u.illaFam.replace("{role}", who[l].t).replace("{fam}", u.illaFamIn[fk]).replace("{state}", u.illaState[kase])),
+        { ar: this.famAr(fk), en: U.en.illaFamName[fk], tr: U.tr.illaFamName[fk] }, this.famAr(fk), null);
+      else r.famConflict = fk;
+    }
+    // 3 · who governs it
+    if (kase) {
+      const g = this.governor(r, tok, ctx);
+      if (g) add("governor", both((u, l) => u[g.t].replace("{v}", u.illaGovV[kase]).replace("{g}", g.w ? this.B(g.w) : "").replace("{kind}", g.kind ? u[g.kind] || "" : "")), g.w ? { ar: g.w, en: "", tr: "" } : null, g.w || "");
+    }
+    // 4 · what kind of word, and therefore which sign — or built, with no sign to show
+    let shown = null;
+    if (r.sign && kase) {
+      const ge = tok && ((ctx.st && ctx.st.glossary && ctx.st.glossary[tok.lex]) || (typeof GLOSSARY !== "undefined" && GLOSSARY[tok.lex])) || {};
+      const c = this.classOf(r, w, Object.assign(tok ? { pos: tok.pos, lex: tok.lex, cell: tok.cell, tags: tok.grammar, lemma: ge.lemma, plural: ge.plural } : {}, ctx.opt || {}, r.verb ? { pos: "verb" } : {}));
+      const sg = l => this.signName(r.sign, l), st = (u) => u.illaState[kase];
+      const sw = Object.keys(SignEngine.SIGN_WORD).find(k => SignEngine.SIGN_WORD[k] === r.sign && (r.signTxt || "").includes(k)) || "";
+      const sar = (sw && (this.frag(r.orig, "ال" + sw) || this.frag(r.orig, sw))) || "";
+      const extra = (u, l) => { const SI = SignEngine.SIGNS; let x = "";
+        if (r.manner === "taqdiri" || (c && SignEngine.expect(c.cls, kase, w) && SignEngine.expect(c.cls, kase, w).manner === "taqdiri" && /مقدر/.test(r.own))) { const e = c ? SignEngine.expect(c.cls, kase, w) : null; x = u.illaTaqdiri.replace("{why}", e && e.reasonInfo ? e.reasonInfo[l] : ""); }
+        else if (r.niyaba || /نيابة/.test(r.why || "") || (c && SignEngine.expect(c.cls, kase, w).reason === "niyaba")) { const orig = { raf: "damma", nasb: "fatha", jarr: "kasra", jazm: "sukun" }[kase]; if (orig !== r.sign) x = u.illaNiyaba.replace("{o}", this.signName(orig, l)); }
+        return x; };
+      if (c) { const kn = this.kindName(c.cls, w, tok, ctx, r);
+        add("sign", both((u, l) => u.illaSign.replace(/\{k\}/g, kn[l]).replace("{sign}", sg(l)).replace("{state}", st(u)) + extra(u, l) + "."), { ar: sar, en: sg("en"), tr: sg("tr") }, sar); }
+      else add("sign", both((u, l) => u.illaSignOnly.replace("{sign}", sg(l)).replace("{state}", st(u)) + extra(u, l) + "."), { ar: sar, en: sg("en"), tr: sg("tr") }, sar);
+      shown = r.sign;
+    } else if (r.mahall && !r.built) {   // «فِي مَحَلِّ رَفْعٍ» with no «مَبْنِيٌّ»: the place is stated, the building is not
+      const mar = this.frag(r.orig, "في محل " + { raf: "رفع", nasb: "نصب", jarr: "جر", jazm: "جزم" }[r.mahall]) || "";
+      add("built", both(u => u.illaMahall.replace("{state}", u.illaState[r.mahall])), { ar: mar, en: "maḥallan", tr: "mahallen" }, mar);
+    } else if (r.built) {
+      const bar = this.frag(r.orig, r.builtOn) || this.frag(r.orig, "مبني") || "";
+      const m = r.mahall;
+      add("built", both(u => (m ? u.illaBuiltM.replace("{state}", u.illaState[m]) : r.noPlace ? u.illaBuiltNone : u.illaBuilt)), { ar: bar, en: "mabnī", tr: "mebnî" }, bar);
+    }
+    // 5 · what the sign tells the reader
+    const lc = (x, l) => { x = String(x || "").replace(/^The /, ""); return x.charAt(0).toLocaleLowerCase(l === "tr" ? "tr" : "en") + x.slice(1); };
+    if (shown && R) add("tells", both((u, l) => (r.manner === "taqdiri" ? u.illaTellsQ : u.illaTells).replace("{sign}", this.signName(shown, l)).replace("{w}", this.B(w)).replace("{role}", lc(who[l].t, l))), null, "");
+    else if (shown && r.verb === "mudari") add("tells", both((u, l) => u.illaTellsV.replace("{sign}", this.signName(shown, l)).replace("{w}", this.B(w)).replace("{state}", u.illaState[kase])), null, "");
+    return { steps, r, auto: !!ctx.auto };
+  },
+  governor(r, tok, ctx){
+    const kase = r.kase;
+    if (r.named) return { t: "illaGovNamed", w: this.frag(r.orig, r.named) || r.named };
+    if (r.self) return { t: "illaGovSelf" };
+    if (r.role && r.role.id === "mubtada" && kase === "raf" && !r.mahall) return { t: "illaGovIbtida" };
+    if (r.verb === "mudari" && kase === "raf") return { t: "illaGovTajarrud" };
+    let x = null, words = null;
+    if (ctx.gov) { x = ctx.gov.x; words = ctx.gov.words; }
+    else if (ctx.sen && Number.isInteger(ctx.ti)) { try { x = AmilEngine.word(ctx.sen, ctx.ti); } catch (e) { x = null; } words = ctx.sen.tokens.map(t => t.s.full); }
+    if (!x) return null;
+    const gw = x.amil != null && words && words[x.amil] != null ? words[x.amil] : null;
+    if (x.kind === "amil" && gw) return { t: "illaGovAmil", w: gw, kind: GovView.KIND.amil };
+    if (x.kind === "self") return { t: "illaGovSelf" };
+    if (x.kind === "tabi" && gw && r.role && r.role.tabi) return { t: "illaGovTabi", w: gw };
+    if (x.kind === "manevi" && r.role && /^(mubtada|khabar)$/.test(r.role.id) && kase === "raf") return { t: "illaGovIbtida" };
+    return null;
+  },
+  SIGN_TR: { damma: "damme", fatha: "fetha", kasra: "kesre", sukun: "sükûn", waw: "vâv", alif: "elif", ya: "yâ", thubut: "nûnun sübûtu", hadhfNun: "nûnun hazfi", hadhfIlla: "illet harfinin hazfi", mahall: "mahal" },
+  signName(s, l){ if (l === "tr") return this.SIGN_TR[s] || s; const S = SignEngine.SIGNS[s]; return S ? S.en.replace(/^the /, "") : s; },
+  kindName(cls, w, tok, ctx, r){
+    const K = { en: L.en.illaKind, tr: L.tr.illaKind };
+    if (cls !== "sahih") return { en: K.en[cls] || cls, tr: K.tr[cls] || cls };
+    // the singular, said only when the word IS its dictionary form or a proper name; else «singular or broken plural»
+    let single = !!(r && r.propn) || (tok && tok.pos === "propn") || !!(ctx.opt && ctx.opt.propn);
+    if (!single) { const ge = (ctx.st && ctx.st.glossary && tok && ctx.st.glossary[tok.lex]) || (tok && typeof GLOSSARY !== "undefined" && GLOSSARY[tok.lex]) || null, lem = (ge && ge.lemma) || (ctx.opt && ctx.opt.lemma);
+      const core = x => SignEngine.bare(SignEngine.stripProclitic(SignEngine.stripEnc(SignEngine.nfc(x || "")))).replace(/^ال/, "").replace(/ة$/, "ه");
+      if (lem && core(lem) && core(lem) === core(w)) single = true; }
+    return single ? { en: K.en.sahih1, tr: K.tr.sahih1 } : { en: K.en.sahih, tr: K.tr.sahih };
+  },
+  // a book's own definition line for a role: an example of its notes fed from a book (a `cite`, or the Iẓhār's own anchor) whose gloss names the role
+  citeOf(R){
+    if (!R.kw) return null; if (!this._cite) this._cite = {}; if (R.id in this._cite) return this._cite[R.id];
+    let c = null; const BK = [[/shudhur-al-dhahab/, "شُذُورُ الذَّهَبِ"], [/qawaid-al-irab/, "قَوَاعِدُ الْإِعْرَابِ"], [/awamil-birgivi/, "الْعَوَامِلُ"]];
+    for (const n of R.notes) { const g = GRAMMAR[n]; if (!g) continue;
+      for (const x of g.examples || []) { const en = (x.gloss && x.gloss.en) || ""; if (!R.kw.test(en)) continue;
+        if (x.src === "izhar-al-asrar") { c = { ar: x.ar, book: "إِظْهَارُ الْأَسْرَارِ", note: n, gloss: x.gloss }; break; }
+        const b = x.cite && BK.find(([re]) => re.test(x.cite)); if (b) { const pg = /ص\s*(\d+)/.exec(x.cite); c = { ar: x.ar, book: b[1] + (pg ? "، ص " + pg[1] : ""), note: n, gloss: x.gloss }; break; } }
+      if (c) break; }
+    return (this._cite[R.id] = c);
+  },
+  // ── the views
+  pref(){ try { return localStorage.getItem(this.KEY); } catch (e) { return null; } },
+  open(){ const v = this.pref(); return v == null ? true : v === "1"; },
+  remember(o){ try { localStorage.setItem(this.KEY, o ? "1" : "0"); } catch (e) {} },
+  force: false,
+  stepsHtml(ch, lang){
+    return ch.steps.map((s, k) => `<li class="illa-s" data-k="${s.kind}"><span class="illa-n" aria-hidden="true">${k + 1}</span><span class="illa-t">${s[lang]}${s.term && s.term.ar ? ` <span class="chip illa-term" lang="ar" dir="rtl">${escapeAttr(s.term.ar)}</span>` : ""}${s.cite ? `<span class="illa-cite"><span lang="ar" dir="rtl">${escapeAttr(s.cite.ar)}</span> <small lang="ar">— ${escapeAttr(s.cite.book)}</small></span>` : ""}</span></li>`).join("");
+  },
+  ladderHtml(tok, ctx, mark){
+    let ch = null; try { ch = this.chain(tok, ctx); } catch (e) { ch = null; } if (!ch || !ch.steps.length) return "";
+    const lang = this.L(), u = ui(), op = this.force || this.open(); this._forced = this.force; this.force = false;
+    const vm = (/data-vm="([^"]+)"/.exec(mark || "") || [])[1] || (ch.auto ? "auto" : "");
+    return `<details class="illa" id="illa346"${op ? " open" : ""} data-n="${ch.steps.length}"${vm ? ` data-vm="${vm}"` : ""}><summary><span class="illa-h">${u.illaHead}</span><span class="illa-one">${escapeAttr(this.short(ch, lang))}</span>${ch.auto ? `<span class="vmark auto illa-auto">${u.illaAuto}</span>` : ""}</summary>
+      <ol class="illa-steps">${this.stepsHtml(ch, lang)}</ol></details>`;
+  },
+  /* the first time (no stored choice) the ladder opens — unless that would push «Cümlede âmili» off the first screen: then the one-line
+     chain in its summary stands for it until the learner opens it (and the choice is kept) */
+  bind(root){ const d = root && root.querySelector("#illa346"); if (!d) return;
+    if (d.open && !this._forced && this.pref() == null) { const g = root.querySelector(".gov-block"); if (g && g.getBoundingClientRect().top + 24 > (window.innerHeight || 844)) d.open = false; }
+    // the learner's own tap is what is kept (a click on the summary runs before the details toggles, so it keeps the state it is about to take)
+    this._forced = false; const sm = d.querySelector("summary"); if (sm) sm.addEventListener("click", () => this.remember(!d.open)); },
+  short(ch, lang){ const s = k => ch.steps.find(x => x.kind === k), r = s("role"), f = s("family"), g = s("sign"), b = s("built"), u = L[lang];
+    const bits = []; if (r && r.term) bits.push(r.term[lang]); if (f && f.term) bits.push(f.term[lang]); if (ch.r && ch.r.kase) bits.push(u.illaState[ch.r.kase]); if (g && g.term) bits.push(g.term[lang]); else if (b) bits.push(b.term[lang]);
+    return bits.join(" → "); },
+  quizHtml(it, ok){
+    const sen = it && it.sen, ti = it && it.ti, tok = sen && sen.tokens && sen.tokens[ti]; if (!tok || !tok.irab) return "";
+    let ch = null; try { ch = this.chain(tok, { sen, ti }); } catch (e) { ch = null; } if (!ch || !ch.steps.length) return "";
+    const lang = this.L(), u = ui();
+    return `<details class="illa illa-q"${ok ? "" : " open"} data-n="${ch.steps.length}"><summary><span class="illa-h">${u.illaHead}</span> <span class="illa-one">${u.illaBecause} ${escapeAttr(this.short(ch, lang))}</span> <span class="illa-more">${u.illaShowAll}</span></summary>
+      <ol class="illa-steps">${this.stepsHtml(ch, lang)}</ol></details>`;
+  },
+  senHtml(sen){
+    const lang = this.L(), u = ui(); const rows = [];
+    sen.tokens.forEach((t, ti) => { if (!t.irab) return; let ch = null; try { ch = this.chain(t, { sen, ti }); } catch (e) { ch = null; }
+      if (!ch || !ch.steps.length) return; rows.push(`<li><button class="illa-w" data-illa-ti="${ti}"><b lang="ar" dir="rtl">${t.s.full}</b> <span>— ${escapeAttr(this.short(ch, lang))}</span></button></li>`); });
+    if (!rows.length) return "";
+    return `<details class="illa illa-sen" open><summary><span class="illa-h">${u.illaSenHead}</span></summary><p class="ref-intro">${u.illaSenHint}</p><ol class="illa-list">${rows.join("")}</ol></details>`;
+  },
+  bindSen(root, sen){ root.querySelectorAll("[data-illa-ti]").forEach(b => b.addEventListener("click", () => { const ti = +b.dataset.illaTi; this.force = true; openWord(sen.tokens[ti], null, "irab", { sen, ti }); })); },
+  // the GENERAL chain of a role, for its grammar note: definition, family and state, usual governors, the kind → sign table — from the same tables
+  noteHtml(gid){
+    const rs = this.roles().filter(r => r.notes[0] === gid); if (!rs.length) return "";
+    const lang = this.L(), u = ui(), E = escapeAttr; let h = "";
+    for (const R of rs) { const f = this.famOf(R), fk = f ? (typeof f === "string" ? f : f.k) : null, kase = fk && this.FAM[fk] ? this.FAM[fk].kase : "";
+      const li = [`<li>${u.illaRoleT.replace("{t}", R[lang].t).replace("{d}", R[lang].d)}</li>`];
+      if (fk === "tabai") li.push(`<li>${u.illaFamTabiN.replace("{role}", R[lang].t).replace("{state}", u.illaStateAny)} <span class="chip illa-term" lang="ar">${E(this.famAr("tabai"))}</span></li>`);
+      else if (kase) li.push(`<li>${u.illaFam.replace("{role}", R[lang].t).replace("{fam}", u.illaFamIn[fk]).replace("{state}", u.illaState[kase])} <span class="chip illa-term" lang="ar">${E(this.famAr(fk))}</span></li>`);
+      const gv = this.GOVS[R.id]; if (gv) li.push(`<li>${u.illaNoteGov.replace("{g}", gv[lang])}</li>`);
+      if (kase) { const rows = Object.entries(SignEngine.CLASSES).filter(([k, C]) => C.part === "ism" && C.signs[kase]).map(([k, C]) => { const s = C.signs[kase]; return `<tr><td>${E(L[lang].illaKind[k === "sahih" ? "sahih" : k] || C[lang])}</td><td>${E(this.signName(s[0], lang))}${s[1] === "taqdiri" ? " · " + u.illaEst : ""}</td></tr>`; }).join("");
+        li.push(`<li>${u.illaNoteTable.replace("{state}", u.illaState[kase])}<table class="illa-tab"><tbody>${rows}</tbody></table></li>`); }
+      const c = this.citeOf(R); if (c) li.push(`<li>${u.illaCite}: <span class="illa-cite"><span lang="ar" dir="rtl">${E(c.ar)}</span> <small lang="ar">— ${E(c.book)}</small></span></li>`);
+      h += `<ol class="illa-steps illa-gen" data-role="${R.id}">${li.join("")}</ol>`; }
+    return `<section class="illa illa-note"><h4 class="illa-h">${u.illaNoteHead}</h4>${h}</section>`;
+  },
+  GOVS: {
+    fail: { en: "a verb, or a word that works like one (an active participle, a maṣdar)", tr: "fiil ya da fiil gibi amel eden (ism-i fâil, masdar)" },
+    naibFail: { en: "a passive verb, or a passive participle", tr: "meçhul fiil ya da ism-i mef'ûl" },
+    mafulBih: { en: "a transitive verb, or a word that works like one", tr: "geçişli fiil ya da onun gibi amel eden" },
+    mubtada: { en: "the ibtidāʾ — an abstract governor: standing first, free of spoken governors", tr: "ibtidâ — mânevî âmil: başta olmak, lafzî âmillerden boş olmak" },
+    khabar: { en: "the ibtidāʾ (with the mubtadaʾ)", tr: "ibtidâ (mübtedâ ile birlikte)" },
+    mudafIlayh: { en: "the muḍāf — the noun before it", tr: "muzâf — kendinden önceki isim" },
+    majrur: { en: "a letter of jarr", tr: "cer harfi" },
+    ismKana: { en: "kāna and its sisters", tr: "kâne ve kardeşleri" }, khabarKana: { en: "kāna and its sisters", tr: "kâne ve kardeşleri" },
+    ismInna: { en: "inna and its sisters", tr: "inne ve kardeşleri" }, khabarInna: { en: "inna and its sisters", tr: "inne ve kardeşleri" },
+    hal: { en: "the verb, or what has its sense", tr: "fiil ya da fiil mânâsı taşıyan" }, tamyiz: { en: "the vague word or the statement it clears up", tr: "açtığı kapalı kelime ya da cümle" },
+    mafulMutlaq: { en: "its verb, or a word of the verb's sense", tr: "fiili ya da fiil mânâsı taşıyan" }, mafulFih: { en: "the verb it tells the time or place of", tr: "zamanını ya da yerini bildirdiği fiil" },
+    mafulLah: { en: "the verb it gives the reason of", tr: "sebebini bildirdiği fiil" }, munada: { en: "the vocative particle, standing for «I call»", tr: "nidâ harfi («çağırıyorum» yerine)" },
+    naat: { en: "the governor of the word it follows", tr: "metbûunun âmili" }, atf: { en: "the governor of the word it follows", tr: "metbûunun âmili" },
+    badal: { en: "the governor of the word it follows", tr: "metbûunun âmili" }, tawkid: { en: "the governor of the word it follows", tr: "metbûunun âmili" },
+  },
+  // ── the corpus measurement: every authored token, the chain's case and sign against the line's own statement (SignEngine.authored on the whole line)
+  measure(){
+    const out = { n: 0, hist: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }, contra: 0, caseN: 0, signN: 0, famConflict: 0, bad: [], byKind: {} };
+    for (const st of STORIES) for (const ch of st.chapters || []) for (const sen of ch.sentences || []) sen.tokens.forEach((t, ti) => {
+      if (!t.irab || !t.irab.ar) return; out.n++;
+      let c = null; try { c = this.chain(t, { sen, ti, st }); } catch (e) { c = null; }
+      const n = c ? Math.min(5, c.steps.length) : 0; out.hist[n]++;
+      if (!c || !c.r) return; if (c.r.famConflict) out.famConflict++;
+      c.steps.forEach(s => out.byKind[s.kind] = (out.byKind[s.kind] || 0) + 1);
+      let a = null; try { a = SignEngine.authored(t.irab.ar) || this.signSaid(this.S(t.irab.ar).split(/ — |؛/)[0]); } catch (e) {}
+      const fam = c.steps.find(s => s.kind === "family"), sg = c.steps.find(s => s.kind === "sign");
+      const famK = fam && c.r.kase; if (famK) out.caseN++; if (sg) out.signN++;
+      // a contradiction: the chain states a case or a sign the line does not
+      const hd = this.S(t.irab.ar).split(/ — |؛/)[0], fc = hd.match(/(?:^|\s)(مرفوع|منصوب|مجرور|مجزوم)(?=\s|[،.:]|$)/);
+      const cl0 = this.S(t.irab.ar).split(/ — |؛/)[0].split(/،/), m2 = (/في محل|مرفوع|منصوب|مجرور|مجزوم/.test(cl0[0]) ? cl0[0] : cl0.slice(0, 2).join("،")).match(/في محل (رفع|نصب|جر|جزم)/);
+      const lineCase = a ? a.kase : fc && !(m2 && hd.indexOf(m2[0]) < fc.index) ? SignEngine.CASE_WORD[fc[1]] : m2 ? { "رفع": "raf", "نصب": "nasb", "جر": "jarr", "جزم": "jazm" }[m2[1]] : (c.r.mahall || null);
+      const bad = (famK && lineCase && famK !== lineCase) || (sg && a && a.sign !== c.r.sign) || (sg && !a);
+      if (bad) { out.contra++; if (out.bad.length < 20) out.bad.push({ st: st.id, sen: sen.id, ti, w: t.s.full, chain: [c.r.kase, c.r.sign], line: a && [a.kase, a.sign], ar: t.irab.ar.slice(0, 140) }); }
+    });
+    return out;
+  },
+};
+
 let wordCtx = null;
 function openWord(tok, el, tab, ctx){
   if (bodyGate341(() => openWord(tok, el, tab, ctx))) return;   /* (v341-S) the engines read the whole shelf */
@@ -19459,6 +19929,7 @@ function openWord(tok, el, tab, ctx){
     html += `<div class="irab-ar" lang="ar">${tok.irab.ar}</div>
       <p class="irab-en">${tok.irab[state.uiLang] || tok.irab.en}</p>
       <div class="vm-row">${Review344.markHtml(CUR, tok)}${CUR && wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok ? `<button class="vm-report" id="irabReport">⚑ ${ui().vmReport}</button>` : ""}</div>
+      ${(() => { const on = wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok; return Illa346.ladderHtml(tok, on ? { sen: wordCtx.sen, ti: wordCtx.ti, st: CUR } : { st: CUR }, Review344.markHtml(CUR, tok)); })()}
       ${Review344.actionsHtml(tok)}
       ${wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok ? GovView.blockHtml(wordCtx.sen, wordCtx.ti) : ""}
       ${decisionChainHtml(tok)}
@@ -19480,7 +19951,7 @@ function openWord(tok, el, tab, ctx){
     const kb = f.querySelector('[data-kind="irab"]'); if (kb) kb.click();
     rpb.closest(".vm-row").after(f);
   });
-  if (mode === "irab") Review344.bindSheet(tok, el, "irab");   // (v344) the hoca's verdicts on this line
+  if (mode === "irab") { Review344.bindSheet(tok, el, "irab"); Illa346.bind(sheetInner); }   // (v344) the hoca's verdicts on this line
   sheetInner.querySelectorAll("[data-gj]").forEach(b => b.addEventListener("click", () => {   // (v318) another word of the sentence
     const j = +b.dataset.gj, sen = wordCtx && wordCtx.sen; if (!sen || j === wordCtx.ti) return;
     const t2 = sen.tokens[j], el2 = GovView.wordEl(el, sen, wordCtx.ti, j);
@@ -19575,6 +20046,7 @@ function renderNote(gid){
       <p>${T(g.explanation)}</p>`;
   if (g.sources && g.sources.length) html += `<p class="sarf-note">${ui().sources}: <span lang="ar" style="font-family:var(--ar-font)">${g.sources.join(" · ")}</span></p>`;
   html += `</details>`;
+  html += Illa346.noteHtml(gid);   // (v346) «Neden böyle?» — the role's general chain, from the same tables as a word's
   /* (v342-S) the ṣarf books' own lines (the ledger fed every rule sentence the engines do not apply into its chapter's note) stand
      behind one tap under the note's own examples — a note keeps its few teaching examples first and its book lines whole */
   const exDiv = x => `<div class="ex"><div class="ar" lang="ar">${x.ar}</div><div class="en">${T(x.gloss)}${x.src && CUR && x.src === CUR.id ? " " + ui().fromThisStory : ""}${exCite334(x)}</div></div>`;
@@ -32538,12 +33010,14 @@ function openIrabSheet(sen){
         <tbody>${rows}</tbody>
       </table>
     </div>
+    ${Illa346.senHtml(sen)}
     ${jumalHtml}
     ${(() => { let rows = []; try { rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(" ")) || []; } catch (e) {} return bayanDoorsHtml(rows, sen) + tashbihHtml(rows, { sen }) + majazHtml(rows, { sen }) + kinayaHtml(rows, { sen }) + badiHtml(rows, { sen }) + jinasHtml(rows, {}) + sajHtml(rows, { sen }) + arudHtml({ sen }) + tripletHtml(sen); })()}
     ${tahqiqHtml(sen)}
     ${topics.length ? `<div class="ref-group">${ui().sheetTopics}</div>
       <div class="sheet-topics">${topics.map(g =>
         `<button class="btn" data-note="${escapeAttr(g)}">${arSpan(GRAMMAR[g].title.ar)}</button>`).join("")}</div>` : ""}`;
+  Illa346.bindSen(sheetInner, sen);
   sheetInner.querySelectorAll(".jump").forEach(b => b.addEventListener("click", () => {
     const ti = Number(b.dataset.ti);
     openWord(sen.tokens[ti], null, null, {sen, ti});
@@ -43207,7 +43681,8 @@ function startShop(){
   if (SHOP_CACHE) SHOP_CACHE.round = items.length < 8 ? { items, want: 8 } : null;   /* (wave 152) the live list the drip fills during the round — the runner reads its length as it grows */
   const S = IrabShopEngine, SIGNS = Object.keys(S.SIGN);
   const lang = state.uiLang === "tr" ? "tr" : "en";
-  runQuiz({
+  runQuiz({ illa: true,   /* (v346) the feedback shows the asked word's reason chain */
+   
     title: ui().shopGame, ask: ui().shopAsk, items, restart: startShop,
     area: "nahw", lvl: it => it.e.manner === "taqdiri" ? 5 : S.SIGN[it.sign].kind === "haraka" ? 3 : 4, itemKey: it => "shop:" + it.sen.id + ":" + it.ti,
     question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, t => `<mark class="ghost-slot">${t.s.full}</mark>`)}</div><p class="ref-intro">${T(it.sen.translation)}</p><p class="ref-intro"><span lang="ar">${S.CASE[it.k].ar}</span> — ${ui().shopAskSign}</p>`,
@@ -43424,7 +43899,8 @@ function startSign(){
   if (!items.length) { openGames(); return; }
   const lang = state.uiLang === "tr" ? "tr" : "en", E = escapeAttr;
   const perCase = {}; for (const C of Object.values(SignEngine.CLASSES)) for (const [k, s] of Object.entries(C.signs)) (perCase[k] = perCase[k] || new Set()).add(s[0]);
-  runQuiz({
+  runQuiz({ illa: true,   /* (v346) the feedback shows the asked word's reason chain */
+   
     title: ui().signGame, ask: ui().signAsk, items, restart: startSign,
     area: "nahw", lvl: it => /^(sahih|mudariSahih|mabni)$/.test(it.cls) ? 2 : 4, itemKey: it => "sign:" + it.sen.id + ":" + it.ti,
     question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, t => `<mark class="ghost-slot">${t.s.full}</mark>`)}</div><div class="sign-q-line"><span lang="ar" dir="rtl">${E(it.w)}</span> — <span lang="ar" dir="rtl">${E(SignEngine.CASE_AR[it.kase])}</span> <small>${E(signCaseLabel(it.kase, lang))}</small></div>`,
@@ -45587,7 +46063,8 @@ function harakatItems(need){ return HARAKAT_POOL.items(need); }
 function startHarakat(){
   const items = shuffle(harakatItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
-  runQuiz({
+  runQuiz({ illa: true,   /* (v346) the feedback shows the asked word's reason chain */
+   
     title: ui().harakat, ask: ui().chooseForm, items, restart: startHarakat,
     area: "vocab", lvl: it => (it.entry && it.entry.level) || 3,
     question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>`,
@@ -46433,7 +46910,8 @@ function startChapterCheck(st, ch){
   }
   const got = [];
   const marked = it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, t => `<b class="target">${t.s.full}</b>`)}</div>`;
-  runQuiz({
+  runQuiz({ illa: it => it.kind === "role",   /* (v346) the feedback shows the asked word's reason chain */
+   
     chq: true, title: U.chqTitle, ask: U.chqAsk, items, doneLabel: U.chqSee,
     backLabel: "← " + (CUR ? U.backToReading : U.backToLesson),
     back: () => { QUIZ_RESUME = null; LESSON = null; if (CUR) closeSheet(); else toDoor(); },
