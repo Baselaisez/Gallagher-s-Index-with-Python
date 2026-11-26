@@ -2,6 +2,7 @@
 // Usage: npm i playwright-core && node tools/smoke_test.js
 // Override the browser binary with CHROMIUM_PATH if needed.
 const fs = require('node:fs');
+const SIG350 = s => process.on(s, () => process.exit(130)); ['SIGINT', 'SIGTERM', 'SIGHUP'].forEach(SIG350);   // so 'exit' handlers (temp copies) run when a run is stopped
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright-core');
@@ -17854,6 +17855,7 @@ if (!CHROME) {
     st.url = 'http://127.0.0.1:' + srv.address().port + '/reader.html'; st.dir = dir;
     st.release = () => { st.hold = false; st.held.splice(0).forEach(f => f()); };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
       await ctx.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); } catch (e) {}
         window.__lt341 = []; try { new PerformanceObserver(l => l.getEntries().forEach(e => window.__lt341.push([e.startTime, e.duration]))).observe({ type: 'longtask', buffered: true }); } catch (e) {} });
@@ -18867,6 +18869,7 @@ if (!CHROME) {
       r.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(r); }).listen(0); srv.unref();
     const st = { url: 'http://127.0.0.1:' + srv.address().port + '/reader.html', dir };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu, opt = {}) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: opt.dpr || 1, serviceWorkers: 'block' });   /* no sw.js on this server */
       await ctx.addInitScript(hold => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '3'); } catch (e) {}
         if (hold) window.__QISSA_QUIET_OFF = true;
@@ -19318,6 +19321,154 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (css.length < 100000) throw new Error('the page\'s CSS was not found in its first 900 KB: ' + css.length);
     const bad = css.split('\n').map((l, i) => [i + 1, l]).filter(([, l]) => /(^|[\s,{}>+~])(body|html|:root)(\[[^\]]*\]|\.[\w-]+)*:has\(/.test(l.replace(/\/\*.*?\*\//g, ''))).map(([i, l]) => i + ': ' + l.trim().slice(0, 90));
     if (bad.length) throw new Error('a page-wide :has() rule: ' + JSON.stringify(bad.slice(0, 4)));
+  });
+
+  // ---------- v349 — «Uygulamanın sesi»: the app carries its own Arabic voice ----------
+  // A split copy served over http beside prototype/narration/ (as the Pages site and the shell lay them out); every request
+  // is logged, so «nothing before the first listen» is a fact, not a hope. The device is given NO Arabic voice.
+  const serve349 = async (strip) => {
+    const cp = require('child_process'), os = require('os'), fsx = require('fs'), pathx = require('path'), http = require('http');
+    const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-v349-')), narr = pathx.resolve('prototype/narration');
+    cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
+    if (strip) { const f = pathx.join(dir, 'app.js'), js = fsx.readFileSync(f, 'utf8'), a = js.indexOf('// ================= v349'), b = js.indexOf('\nclass Listen347 {', a);
+      if (a < 0 || b < 0) throw new Error('the v349 block is not in app.js'); fsx.writeFileSync(f, js.slice(0, a) + js.slice(b)); }   // the A side: the page without the voice
+    const st = { log: [], hold: false, held: [] };
+    const srv = http.createServer((q, r) => { const p = decodeURIComponent(q.url.split('?')[0]).replace(/^\/+/, '') || 'reader.html'; st.log.push(p);
+      if (st.hold && /^data\/b\d+-/.test(p)) { st.held.push(() => srv.emit('request', q, r)); st.log.pop(); return; }
+      const f = p.startsWith('narration/') ? pathx.join(narr, p.slice(10)) : pathx.join(dir, p);
+      if (!(f.startsWith(dir) || f.startsWith(narr)) || !fsx.existsSync(f) || fsx.statSync(f).isDirectory()) { r.writeHead(404); r.end(); return; }
+      const ty = /\.html$/.test(p) ? 'text/html' : /\.json$/.test(p) ? 'application/json' : /\.m4a$/.test(p) ? 'audio/mp4' : 'text/javascript';
+      r.writeHead(200, { 'content-type': ty, 'content-length': fsx.statSync(f).size, 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(r); }).listen(0); srv.unref();
+    st.url = 'http://127.0.0.1:' + srv.address().port + '/reader.html';
+    st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
+    st.voice = () => st.log.filter(p => /^narration\//.test(p));
+    st.release = () => { st.hold = false; st.held.splice(0).forEach(f => f()); };
+    return st;
+  };
+  const noVoice349 = () => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); } catch (e) {}
+    try { speechSynthesis.getVoices = () => [{ voiceURI: 'en', name: 'English', lang: 'en-US', localService: true }]; speechSynthesis.speak = () => {}; speechSynthesis.cancel = () => {}; } catch (e) {} };
+  const open349 = (p, id) => p.evaluate(async id => { for (let i = 0; i < 400 && !BODY341.ready(id); i++) await new Promise(r => setTimeout(r, 50));
+    try { closeSheet(); } catch (e) {} openStory(STORIES.find(s => s.id === id)); flushStoryRender(); await Voice347.ready(); return { status: Voice347.status, own: Voice347.own() }; }, id);
+  const heard349 = (p, from) => p.evaluate(async from => { const t0 = performance.now(); state.progress[CUR.id] = {}; startPlayAll(from);
+    for (let i = 0; i < 300; i++) { if (!narration.paused && narration.currentTime > 0.15) break; await new Promise(r => setTimeout(r, 25)); }
+    const o = { ms: Math.round(performance.now() - t0), playing: !narration.paused && narration.currentTime > 0.15, blob: /^blob:/.test(narration.src),
+      sub: (document.getElementById('ppSub') || {}).textContent || '', lit: !!document.querySelector('.sentence.playing'), at: playAllIdx };
+    stopPlayAll(); return o; }, from);
+
+  await check('v349 — the app\'s own voice: a device with NO Arabic voice still hears the story — «Uygulamanın sesi (otomatik)» plays the pre-rendered chapter through the recording path (nothing requested before the first listen; the story\'s index and the chapter\'s file then, a blob, the sentence lit), offline once heard, the size asked first on a metered line (and cancel stops it), the voice sheet offers it with its honest note, a device voice still wins under «Automatic» and the learner can pick the app\'s voice over it', async () => {
+    const fsx = require('fs');
+    const ID = 'al-asad-wa-al-far';
+    if (!fsx.existsSync('prototype/narration/' + ID + '/app/index.json')) throw new Error('no app voice for ' + ID + ' — run python3 tools/voice_app.py');
+    const srv = await serve349();
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+    try {
+      await ctx.addInitScript(noVoice349);
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      await p.goto(srv.url);
+      await p.waitForFunction(() => document.querySelectorAll('.lib-card:not(.skel)').length >= 50, null, { timeout: 120000 });
+      const o = await open349(p, ID); await p.waitForTimeout(300);
+      const before = srv.voice().length;
+      if (o.status !== 'none' || !o.own) throw new Error('no Arabic voice on the device → the app\'s own voice: ' + JSON.stringify(o));
+      const a = await heard349(p, 0);
+      const got = srv.voice();
+      if (before) throw new Error('a voice file was requested before the first listen: ' + got.join());
+      if (!a.playing || !a.blob || !a.lit || !/app's voice \(automatic\)|Uygulamanın sesi \(otomatik\)/.test(a.sub)) throw new Error('the first listen plays the app\'s voice, labelled automatic: ' + JSON.stringify(a));
+      if (!got.includes('narration/' + ID + '/app/index.json') || !got.includes('narration/' + ID + '/app/ch1.m4a')) throw new Error('the index and the chapter, nothing else first: ' + got.join());
+      console.log('      first listen ' + a.ms + ' ms (index + chapter fetched, decoded, playing); ' + got.length + ' voice requests');
+      if (a.ms > 2500) throw new Error('the first listen took ' + a.ms + ' ms (budget 2500, unthrottled, local server)');
+      // offline: a new page of the same profile, the network cut — the chapter plays from the cache
+      await ctx.setOffline(true);
+      const p2 = await ctx.newPage(); p2.on('pageerror', e => errs.push(e.message));
+      await p2.goto(srv.url).catch(() => {});
+      let off = { skipped: true };
+      if (await p2.evaluate(() => typeof STORIES !== 'undefined').catch(() => false)) {
+        await open349(p2, ID); off = await heard349(p2, 0); }
+      else { await ctx.setOffline(false); await p2.goto(srv.url); await p2.waitForFunction(() => document.querySelectorAll('.lib-card:not(.skel)').length >= 50, null, { timeout: 120000 });
+        await open349(p2, ID); await ctx.setOffline(true); const n = srv.voice().length; off = await heard349(p2, 0); off.fetched = srv.voice().length - n; }
+      await ctx.setOffline(false);
+      if (!off.playing || off.fetched) throw new Error('once heard, the chapter plays offline (from qissa-narration): ' + JSON.stringify(off));
+      // a metered line: the size first, nothing fetched until «indir»; Cancel stops and fetches nothing
+      const m = await p2.evaluate(async () => {
+        Object.defineProperty(navigator, 'connection', { configurable: true, value: { saveData: true, type: 'cellular', effectiveType: '3g' } }); Own349.consent = false;
+        const f3 = SENTENCE_FLAT.findIndex(f => f.ch.n === 3), f4 = SENTENCE_FLAT.findIndex(f => f.ch.n === 4), o = {};
+        startPlayAll(f4); for (let i = 0; i < 100 && !(Own349.line && Own349.line.k === 'ask'); i++) await new Promise(r => setTimeout(r, 20));
+        o.ask4 = (document.getElementById('ppNote') || {}).textContent; document.querySelector('[data-pp="own-x"]').click(); await new Promise(r => setTimeout(r, 100));
+        o.stopped = !Own349.line && Listen347.paused && narration.paused;
+        stopPlayAll(); Listen347.halt();
+        startPlayAll(f3); for (let i = 0; i < 100 && !(Own349.line && Own349.line.k === 'ask'); i++) await new Promise(r => setTimeout(r, 20));
+        o.ask = (document.getElementById('ppNote') || {}).textContent; o.asked = Own349.line && Own349.line.k;
+        await new Promise(r => setTimeout(r, 200)); o.mark = performance.now(); return o; });
+      const n0 = srv.voice().filter(x => /ch[34]\.m4a$/.test(x)).length;
+      if (m.asked !== 'ask' || !/Voice file 0\.\d MB — download|Ses dosyası 0\.\d MB — indir/.test(m.ask) || !m.stopped || n0) throw new Error('metered: the size first, nothing fetched, cancel stops: ' + JSON.stringify([m, n0]));
+      const m2 = await p2.evaluate(async () => { document.querySelector('[data-pp="own-get"]').click();
+        for (let i = 0; i < 200 && !(!narration.paused && narration.currentTime > 0.1); i++) await new Promise(r => setTimeout(r, 25));
+        const o = { playing: !narration.paused, line: Own349.line }; stopPlayAll(); delete navigator.connection; return o; });
+      if (!m2.playing || !srv.voice().includes('narration/' + ID + '/app/ch3.m4a') || srv.voice().includes('narration/' + ID + '/app/ch4.m4a')) throw new Error('«indir» fetches that chapter and plays it: ' + JSON.stringify([m2, srv.voice()]));
+      // the voice sheet; then a device voice: «Automatic» takes it, the app's voice is still a pick away
+      const v = await p2.evaluate(() => { const o = {}; state.uiLang = 'tr'; Voice347.openSheet();
+        const row = sheetInner.querySelector('.vs349-own'); o.row = row && row.textContent.replace(/\s+/g, ' '); o.checked = !!(row && row.querySelector('input:checked'));
+        o.noteHidden = sheetInner.querySelector('.o349-note').hidden; row.querySelector('[data-o349-why]').click(); o.note = !sheetInner.querySelector('.o349-note').hidden && sheetInner.querySelector('.o349-note').textContent;
+        o.fix = !!sheetInner.querySelector('.nv347'); closeSheet();
+        speechSynthesis.getVoices = () => [{ voiceURI: 'fake-ar', name: 'Fake Arabic', lang: 'ar-SA', localService: true }]; Voice347.settle(true);
+        o.autoOwn = Voice347.own(); o.spk = Voice347.speaker(SENTENCE_FLAT[0].sen);
+        Voice347.openSheet(); o.rows = sheetInner.querySelectorAll('.vs347-row').length; sheetInner.querySelector('input[value="own349"]').click(); closeSheet();
+        o.picked = Voice347.own(); o.spk2 = Voice347.speaker(SENTENCE_FLAT[0].sen); setVoice(''); return o; });
+      if (!/Uygulamanın sesi \(otomatik\)/.test(v.row) || !v.checked || !v.noteHidden || !/30 cümlenin 30/.test(v.note || '') || !/ظ/.test(v.note || '') || !v.fix) throw new Error('the sheet: the app\'s voice, chosen, its honest note behind «bu nedir?», the device fix beside it: ' + JSON.stringify(v));
+      if (v.autoOwn || v.spk !== 'Cihazın sesi' || v.rows !== 3 || !v.picked || v.spk2 !== 'Uygulamanın sesi (otomatik)') throw new Error('a device voice wins under Automatic; the app\'s voice can be picked: ' + JSON.stringify(v));
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+    } finally { await ctx.close(); srv.close(); }
+  });
+
+  await check('v349 — the app\'s voice costs the door nothing: A/B at 4× CPU, fresh profiles, the bodies held as in v341 — today\'s page against the same page with the v349 voice code cut out of app.js, interleaved: the door is usable within the noise of the page without it, and not one voice or narration byte is requested through the door, two idle seconds and the opening of a story; the entrance page and sw.js never precache narration/, the release gate and the Pages / Android assembly carry it, and the voice code in app.js stays small', async () => {
+    const fsx = require('fs');
+    const B = await serve349(false), A = await serve349(true), t = { A: [], B: [] }; let voice = [], errs = [];
+    try {
+      for (let i = 0; i < 8; i++) { const [k, srv] = ('BAAB'[i % 4] === 'A') ? ['A', A] : ['B', B];   // ABBA order: neither side always goes first
+        const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' });
+        try {
+          await ctx.addInitScript(noVoice349);
+          const p = await ctx.newPage(); p.on('pageerror', e => errs.push(k + ': ' + e.message));
+          const c = await ctx.newCDPSession(p); await c.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+          srv.hold = true; await p.goto(srv.url);
+          const door = await p.waitForFunction(() => document.querySelectorAll('.lib-card:not(.skel)').length >= 50 && !document.body.classList.contains('data-pending') && performance.now(), null, { timeout: 120000, polling: 25 }).then(h => h.jsonValue());
+          srv.release(); t[k].push(Math.round(door));
+          if (k === 'B' && i === 0) { await p.waitForTimeout(2000); await open349(p, 'al-asad-wa-al-far'); await p.waitForTimeout(500); voice = srv.voice(); }
+        } finally { srv.release(); await ctx.close(); } }
+    } finally { A.close(); B.close(); }
+    const med = a => a.slice().sort((x, y) => x - y)[a.length >> 1];
+    console.log('      door usable at 4× CPU, the bodies held — with the voice ' + JSON.stringify(t.B) + ' median ' + med(t.B) + ' ms (best ' + Math.min(...t.B) + '); without it ' + JSON.stringify(t.A) + ' median ' + med(t.A) + ' ms (best ' + Math.min(...t.A) + '); voice requests before the first listen: ' + voice.length);
+    if (voice.length) throw new Error('voice/narration requested before any listen: ' + voice.join());
+    if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+    // within the noise: the best run and the median of today's page against the page without the voice (a parse of ~12 KB is all it adds)
+    if (Math.min(...t.B) > Math.min(...t.A) * 1.15 + 100 || med(t.B) > med(t.A) * 1.25 + 150) throw new Error('the voice costs the door: ' + JSON.stringify(t));
+    const welcome = fsx.readFileSync('prototype/welcome.html', 'utf8'), sw = fsx.readFileSync('prototype/sw.js', 'utf8');
+    if (!/\.filter\(s => !\/\(\^\|\\\/\)narration\\\/\/\.test\(s\)\)/.test(welcome)) throw new Error('the entrance must filter narration/ out of what it precaches');
+    if (/narration\//.test((sw.match(/const ASSETS = \[[\s\S]*?\];/) || [''])[0]) || !/pathname\.includes\('\/narration\/'\)\) return;/.test(sw)) throw new Error('sw.js must neither precache narration nor answer it (the page keeps it in qissa-narration)');
+    const rel = fsx.readFileSync('tools/release.py', 'utf8'), and = fsx.readFileSync('tools/build_android.py', 'utf8');
+    if (!/voice_app\.py", "--verify"/.test(rel)) throw new Error('release.py gates the app voice sample (current for its text)');
+    if (!/QISSA_VOICE_BASE/.test(and) || !/copytree\(PROTO \/ "narration"/.test(and)) throw new Error('build_android.py carries narration and fetches the app voice from the hosted copy');
+    const wf = ['../.github/workflows/qissa-pages.yml'].find(f => fsx.existsSync(f));
+    if (wf && (!/cp -r prototype\/narration \.\.\/site\/narration/.test(fsx.readFileSync(wf, 'utf8')) || !/voice_app\.py --out \.\.\/voice-cache/.test(fsx.readFileSync(wf, 'utf8')))) throw new Error('the Pages workflow copies prototype/narration and renders the app voice into the site');
+    const page = fsx.readFileSync('prototype/reader.html', 'utf8'), a = page.indexOf('// ================= v349'), b = page.indexOf('\nclass Listen347 {', a);
+    const kb = (b - a) / 1024;
+    if (a < 0 || kb > 14) throw new Error('the v349 voice code is ' + kb.toFixed(1) + ' KB (budget 14 KB of app.js)');
+    const verify = require('child_process').spawnSync('python3', ['tools/voice_app.py', '--verify', '--package', 'content/samples/al-asad-wa-al-far'], { encoding: 'utf8' });
+    if (verify.status !== 0) throw new Error('the tracked app-voice sample is not current for its text: ' + (verify.stdout || verify.stderr).trim());
+  });
+
+  await check('v349 — a hosted copy that publishes no generated voice: a missing story voice plus a 4xx on the shelf\'s index turns the app\'s voice off for the session (not offered, no failure line per story — v347\'s behaviour stands); a network error decides nothing', async () => {
+    const r = await page.evaluate(async () => {
+      const keep = { get: Own349.get, base: window.QISSA_VOICE_BASE, say: Own349.say }; const said = []; const out = {};
+      try { window.QISSA_VOICE_BASE = 'https://voice.invalid/'; Own349.off = false; Own349._site = null; Own349.say = k => said.push(k && k.k);
+        out.before = Own349.reachable();
+        Own349.get = () => Promise.reject(new TypeError('Failed to fetch')); Own349.fail(); await new Promise(r => setTimeout(r, 30));
+        out.offline = [Own349.off, Own349.reachable(), said.slice(), Own349._site === null]; said.length = 0;
+        Own349.get = () => Promise.reject(new Error('HTTP 404')); Own349.fail(); await new Promise(r => setTimeout(r, 30));
+        out.unpublished = [Own349.off, Own349.reachable(), said.slice(), Voice347.own()];
+      } finally { Own349.get = keep.get; Own349.say = keep.say; Own349.off = false; Own349._site = null; if (keep.base === undefined) delete window.QISSA_VOICE_BASE; else window.QISSA_VOICE_BASE = keep.base; }
+      return out; });
+    if (r.before !== true || JSON.stringify(r.offline) !== JSON.stringify([false, true, ['fail'], true]) || JSON.stringify(r.unpublished) !== JSON.stringify([true, false, [null], false])) throw new Error(JSON.stringify(r));
   });
 
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {

@@ -16778,3 +16778,92 @@ for the shelf: too big) or fetched from the hosted copy on first listen — the 
 **Older checks changed:** none edited. Full suite: 600 checks, 595 pass; the two v341 speed pins failed on time under the machine's load
 (the pre-v347 reader fails the door pin the same way, ≈3 s, run alone), the three later v347 checks failed only because they began with
 the library round-trip — they now open their story directly and pass, with v344–v347 and v333 re-run in order. `check_i18n.py` clean.
+
+## v349-V — a voice inside the app
+
+The owner: «We have to put a voice within the app — not that consumers have to have it. Optimisation is still one of the most
+crucial.» Before v349 a learner whose phone had no Arabic text-to-speech voice heard nothing (v347's silent walk). Now the app
+carries its own voice, **«Uygulamanın sesi / The app's own voice»**, PRE-RENDERED at build time — no engine ships or runs on
+the phone. Evidence, options, licences quoted: `research/voice-options-2026-11-27.md`.
+
+- **The reading is the app's own** (`tools/voice_eval.py`, one place): every written vowel and case ending pronounced, also
+  before a comma and at the end of a sentence (a learner's reading «وَصْلًا» — the explicit choice; waqf is only recorded),
+  tanwīn, sukūn, shadda doubled, the article assimilated before sun letters, hamzat al-waṣl elided in connected speech (the
+  long vowel before it shortened; a helping vowel after a sukūn: مِنَ الْ…), tāʾ marbūṭa t, alif maqṣūra, madd, dagger alif,
+  الله, stress by the classical rule. `espeak_phonemes()` hands it to eSpeak NG as PHONEMES (`[[…]]`, its Arabic phoneme names),
+  so eSpeak's own letter-to-sound rules — which misread shadda+vowel and never elide the waṣl — are bypassed.
+- **The test set** `tools/voice_testset.txt`: 30 shelf sentences (three case endings, tanwīn, sukūn, shadda, sun/moon letters,
+  waṣl, tāʾ marbūṭa, alif maqṣūra, madd, dual and sound plurals, jussives, a verse line, the ṣallā formula — what SEND347 sends
+  for ﷺ, which occurs only in notes — and تَعَالَى), each with its expected phonemes and its waqf form. `voice_eval.py --score
+  ENGINE.tsv` scores an engine's IPA: endings (a word's last two phonemes), waṣl joins, phoneme error rate. Results: eSpeak
+  reading the text 17/30 (npm build) / Piper's eSpeak 25/30, joins 0/30; eSpeak fed the app's reading **30/30, joins 30/30,
+  PER 0.1 %** (ظ is said as ذ: eSpeak's Arabic has no emphatic ẓ — said in the honest note).
+- **`tools/voice_app.py`** renders: per sentence eSpeak (`tools/voice_espeak.mjs`, npm `espeak-ng` 1.0.2 pinned in
+  devDependencies, WASM, one compile per batch) → `narration_generate.wav_join` (250 ms breaths) → ffmpeg AAC-LC mono 16 kHz
+  24 kb/s `.m4a` (+faststart; plays in every browser/WebView; a formant voice has nothing above 8 kHz) →
+  `narration/<story>/app/ch<N>.m4a` + `app/index.json` {voice, chapters: {n: {file, bytes, ms, key, sentences: {id: [a, b]}}}}
+  and `narration/app-voice.json` (voice, licence note, per-story bytes, minutes). A chapter is re-rendered only when its key
+  (reading version + sent text) changes. `--check` = the test set through this exact path (eSpeak's own `--ipa` report scored;
+  prints the build RTF, 0.033 here); `--verify [--package]` = the audio is current (no engine); `--key` = the CI cache key;
+  `--out DIR`; `--stand-in DIR` = tone packs (delivery path without an engine).
+- **The render is a BUILD PRODUCT, not in git** (`.gitignore`: `arabic-app/prototype/narration/*/app/` except the smoke
+  suite's sample `al-asad-wa-al-far`, and `app-voice.json`). The **Pages workflow** renders the whole shelf at deploy time:
+  setup-node, `voice_app.py --key` → actions/cache (`voice-cache`, restore-keys so unchanged chapters are kept), `ffmpeg
+  -version` and a loud failure when the AAC encoder is missing, `npm ci --ignore-scripts`, `voice_app.py --out ../voice-cache`,
+  `--verify`, copied into `site/narration/`, `du -sh`. Measured here: the whole shelf = 83 stories, 875 chapters, 7,094 sentences, **16.3 h of audio, 210 MB** (median story 0.61 MB, largest 27.7 MB), rendered in **26 min** (3 workers, a 4-core container shared at load 10–14; the test-set RTF alone is 0.033 per process). The workflow input `app_voice` (default true) switches the whole voice off for a deploy.
+- **In the page** (`Own349`, beside `Narr347`; `Voice347.own()` is the only decision): used when the learner picks it in the voice
+  sheet (`qissa-voice` = `own349`) or automatically when the device has no Arabic voice (status `none` / no speechSynthesis), and
+  only where the files are reachable (http(s) page or a stamped base — a file:// page keeps v347's behaviour). A teacher's
+  recording (SEN_AUDIO) always wins. `speak()` → `Own349.speak` → `chapter()`: the story's `index.json`, then the chapter's file
+  — cache-first in `qissa-narration` (sw.js never deletes it and leaves `/narration/` to the page) → blob → the SAME `playSpan` as
+  a recording; «hazırlanıyor…» while it comes, a progress line with «Vazgeç», and on a metered line (`navigator.connection`
+  saveData / cellular / 2g–3g) «Ses dosyası 0.1 MB — indir» BEFORE any byte. The next chapter is fetched quietly once one plays
+  (never on a metered line). No word marks (pre-rendered audio has no alignment): the sentence highlight only (v347's rule). A
+  story whose voice cannot be fetched falls back to the device voice or the silent walk and says so («Uygulamanın sesi burada
+  alınamadı…»). Covers stored sentences only: a word's «Dinle» and a lab sentence still need the device voice.
+- **Labels**: the bar's sub-line says what speaks — «Kayıt» / «Uygulamanın sesi (otomatik)» / «Cihazın sesi» / «sessiz»; the
+  «Ses» chip «Ses · Uygulamanın sesi». The voice sheet always lists «Uygulamanın sesi (otomatik)» with «Dene» and «bu nedir?» →
+  the honest note (30/30 on the test set, robotic, ظ as ذ, a teacher's recording plays instead where there is one); with no
+  device voice it is the checked row above the v347 fix.
+- **Android**: `tools/build_android.py` stamps `window.QISSA_VOICE_BASE` (from `--voice-base`, `QISSA_VOICE_BASE`, or on a GitHub
+  runner `https://<owner>.github.io/<repo>/` from GITHUB_REPOSITORY; `none` = package) and then leaves `narration/*/app/` out of
+  the APK — GitHub Pages answers any origin, so the WebView fetches a story's voice on its first listen and keeps it offline.
+  With no base (a local build) only what is in prototype/narration is packaged (the sample, 0.23 MB).
+- **Entrance / sw**: welcome.html filters `narration/` out of what it precaches; sw.js unchanged (never precaches or answers it).
+- **Licences**: eSpeak NG is GPL-3.0-or-later and is only RUN at build time; its output ships: «The output from running a covered
+  work is covered by this License only if the output, given its content, constitutes a covered work.» (GPLv3 §2). No eSpeak code
+  or data is in the page, the site or the APK (the page names it once, in a comment). Piper `ar_JO-kareem` (lessac-derived, dataset
+  «See URL», repo gone) is NOT shippable in a paid app; sherpa-onnx (Apache-2.0, no eSpeak since 2.0) could run a licensable
+  neural voice from the same phonemes later.
+- **Speed**: «v349 — the app's voice costs the door nothing» is an in-suite A/B: today's split page against the same page with the
+  v349 block cut out of app.js, 8 fresh profiles at 4× CPU in ABBA order, the bodies held as in v341; passes when today's best run
+  ≤ the other's best × 1.15 + 100 ms and its median ≤ × 1.25 + 150 ms (two runs here: medians 1563 vs 1518, 1703 vs 1603 ms); plus
+  no voice/narration request through the door, two idle seconds and the opening of a story; the v349 code ≤ 14 KB of app.js.
+  Its profile does NOT set __QISSA_RENDER_SYNC (that alone made the door 2.8 s). A/B door at 4× CPU, base = the
+  worktree before v349: base medians 1.92 / 1.73 / 1.85 s vs v349 2.58 / 1.93 / 2.04 s (5/7/9 interleaved runs, load 7–18); an A/A run of the base against itself gave 2.25 vs 2.51 s — the gap is within the noise, and nothing of the voice runs or loads at boot (+12 KB of app.js, parse only). First listen (index + chapter fetched, decoded, playing): 286 ms (1.18 s under load 13) unthrottled on a local server,
+  pinned ≤ 2500 ms.
+- **Smoke** (before «v333»): «v349 — the app's own voice» (no device voice → the app's voice plays chapter 1 through playSpan, a
+  blob, the sentence lit, labelled; nothing requested before the first listen; offline in a new page of the same profile; metered:
+  the size first, Cancel fetches nothing, «indir» fetches that chapter only; the sheet's row, its note; a device voice wins under
+  Automatic and the app's voice can be picked over it) and «v349 — the app's voice costs the door nothing». Older checks changed:
+  none (the own row is not offered on the file:// page the v347 checks use).
+- **Heard back**: Whisper-small letter error on the test set — eSpeak (text) 64.7 %, eSpeak (the app's reading) 69.7 %, kareem via
+  eSpeak 3.4 %, kareem with the app's reading 4.8 %. The shipped voice's PHONEMES are right; its SOUND is robotic and hard to follow.
+- **Owner's decisions**: (1) the shipped voice is a formant synthesiser — correct by the test set, but robotic; listen to
+  `sample-app-voice.m4a` against `sample-neural-kareem.m4a` (the scratch folder of this session; kareem is for comparison only:
+  its licence forbids shipping). (2) For a natural voice: a commercially licensed Arabic VITS voice (drop into voice_app through
+  sherpa-onnx with the same phonemes), a paid TTS provider at build time, or the hoca's recordings (v347 studio — they always
+  play first). (3) Hosts this container could not reach: huggingface.co, dl.fbaipublicfiles.com, www.cstr.ed.ac.uk, api.github.com.
+
+### v349-V, on the merge (orchestrator): the generated voice is OFF until the owner has heard it
+- The voice says every written vowel right (30 / 30) but it is a formant synthesiser: robotic, hard to follow (a recogniser
+  misses 65–70 % of its letters against 3–5 % for a neural voice) and it says ظ as ذ — a makhraj error in an app that teaches
+  recitation-grade Arabic. So the deploy input `app_voice` defaults to **'false'** and the render steps run only on `'true'`;
+  with it off the site carries no `narration/*/app` and no `narration/app-voice.json`. Turn it on only on the owner's word
+  (two 30-second samples were sent to him on 2026-11-26).
+- A copy that publishes no voice must not nag: `Own349.site()` — when a story's voice is missing AND the shelf's index answers
+  4xx, `Own349.off` is set for the session: `reachable()` is false, the voice sheet shows no «Uygulamanın sesi» row, no failure
+  line per story, v347's behaviour stands. A network error decides nothing (offline keeps the cached voice). Check «v349 — a
+  hosted copy that publishes no generated voice».
+- The Pages workflow file that RUNS is the one on `main`; the edited copy on the dev branch takes effect only when main's copy
+  is updated — do that together with the owner's yes.

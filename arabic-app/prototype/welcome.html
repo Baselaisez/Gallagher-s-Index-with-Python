@@ -209,7 +209,9 @@
     // the shell fetches the body slices after the door — v341-S)
     const srcs = [...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m => m[1])
       .concat([...html.matchAll(/["'](data\/[\w.-]+\.js)["']/g)].map(m => m[1]))   // (v341-S) the core and the hashed body slices
-      .filter((s, i, a) => !/^(https?:)?\/\//.test(s) && a.indexOf(s) === i);
+      .filter((s, i, a) => !/^(https?:)?\/\//.test(s) && a.indexOf(s) === i)
+      .filter(s => !/(^|\/)narration\//.test(s));   // (v349) never a voice or narration file: those are fetched on a story's first listen
+
     return { files: srcs, readerBytes: html.length };
   }
   // Fetch through the page so the service worker (cache first, stores what it fetches) keeps every file for the app.

@@ -58,6 +58,11 @@ def main():
     else:
         print("\n!!! SKIPPED smoke suite (QISSA_SKIP)")
 
+    # (v349) the app's own voice is rendered for the whole shelf at DEPLOY time (the Pages workflow, tools/voice_app.py --out);
+    # the repository keeps one sample story for the smoke suite, which must match the text it reads (regenerate it with
+    # `python3 tools/voice_app.py --package content/samples/al-asad-wa-al-far`: node + `npm ci` + ffmpeg)
+    run("app voice sample current", [sys.executable, "tools/voice_app.py", "--verify", "--package", "content/samples/al-asad-wa-al-far"])
+
     # 4. text gates
     run("i18n gate", [sys.executable, "tools/check_i18n.py"])
     run("canon audit", [sys.executable, "tools/check_canon.py", "--strict"])
