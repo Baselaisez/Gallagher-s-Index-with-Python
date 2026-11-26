@@ -2,6 +2,7 @@
 // Usage: npm i playwright-core && node tools/smoke_test.js
 // Override the browser binary with CHROMIUM_PATH if needed.
 const fs = require('node:fs');
+const SIG350 = s => process.on(s, () => process.exit(130)); ['SIGINT', 'SIGTERM', 'SIGHUP'].forEach(SIG350);   // so 'exit' handlers (temp copies) run when a run is stopped
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright-core');
@@ -17854,6 +17855,7 @@ if (!CHROME) {
     st.url = 'http://127.0.0.1:' + srv.address().port + '/reader.html'; st.dir = dir;
     st.release = () => { st.hold = false; st.held.splice(0).forEach(f => f()); };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
       await ctx.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); } catch (e) {}
         window.__lt341 = []; try { new PerformanceObserver(l => l.getEntries().forEach(e => window.__lt341.push([e.startTime, e.duration]))).observe({ type: 'longtask', buffered: true }); } catch (e) {} });
@@ -18867,6 +18869,7 @@ if (!CHROME) {
       r.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(r); }).listen(0); srv.unref();
     const st = { url: 'http://127.0.0.1:' + srv.address().port + '/reader.html', dir };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu, opt = {}) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: opt.dpr || 1, serviceWorkers: 'block' });   /* no sw.js on this server */
       await ctx.addInitScript(hold => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '3'); } catch (e) {}
         if (hold) window.__QISSA_QUIET_OFF = true;
