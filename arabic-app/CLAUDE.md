@@ -15543,3 +15543,138 @@ measured over the 78 packages (authored lines naming the construction vs the eng
   «نُطَاعِنُ مَا تَرَاخَى النَّاسُ», al-Ḥārith «وَمَا يُحِيرُ الْبُكَاءُ» (authored the question; al-Durra allows the negation), «قَبْلُ مَا قَدْ وَشَى بِنَا»;
   al-Uṣūl al-Munīfa 2:s9/s10 «ابْتُلِينَا» (fatḥa and an object نَا for a passive); whether دَهْدَى (dahda-amr) is heard; the kāna tāmma two; the heard
   plurals رِئَال، قَرَاضِبَة and ʿAmr's fifteen; the Hadhf seats the engine leaves open in both poems.
+
+## v339-M — the clause-maḥall engine and the shelf's grammar audit
+
+Feeding backlog **R1** (Qawāʿid al-Iʿrāb bāb 1, `research/sources/qawaid-al-irab-ibn-hisham-matn.txt` l. 49–144, with
+`qawaid-al-irab-turkish.txt` bāb 1 II–IV) as an engine, and every engine that can contradict an authored line gathered into one audit.
+
+- **Root cause.** `Murib.line` named a clause's seat in two places only (the ṣila on the relative; «وَالْجُمْلَةُ جَوَابُ الشَّرْطِ» with no
+  maḥall) and the v334 mubtadaʾ line (B08). 5,935 authored statements of a clause's seat (one classifier, `JumlaMahallEngine.authored`, read
+  them; the backlog's 2,427 counted only lines with «في محل»/«لا محل») had nothing to meet them: before, 460 agreed (the ṣila and the
+  muḍāf ilayh after لَمَّا / إِذَا / حَيْثُ the old ẓarf lines already gave).
+- **`JumlaMahallEngine`** (reader.html, the `v339-M BEGIN/END` block just before `class Murib`): rules as data (`RULES`: seat, maḥall, the
+  book line it applies, the gate), `of(rows, i)` → `{ mahall, seat, rule, cite, certainty: 'exact'|'offered', lo, hi, anchor, show }` for the
+  clause whose head is token i, `line(rows, i)` the clause line in the books' wording, hooked in `Murib.line` as `jm339` beside the old
+  jawāb push (which it replaces where it speaks). EXACT:
+  khabar after the mubtadaʾ (m.49 «زَيْدٌ قَامَ أَبُوهُ», rafʿ — a name, a pronoun, a definite or a noun opening its clause; كَمْ + its tamyīz
+  too), after inna's ism or the pronoun it wears (rafʿ), after kāna and its working sisters (m.49 «إِنَّهُمْ كَانُوا يَظْلِمُونَ», naṣb; the ism
+  worn, concealed or written right after it); the maqūl after قَالَ and its forms, past its doer, its jarr phrase and a formula (m.53, naṣb;
+  after قِيلَ / يُقَالُ rafʿ, the nāʾib) — not where a single word is said (قُولُوا مَا شِئْتُمْ, قَالَ خَيْرًا, يَقُولُ فِيمَنْ …); the muḍāf ilayh
+  after إِذْ (not the surprise إِذْ after بَيْنَمَا), إِذَا before a verb, حَيْثُ (m.57–59, jarr); the jāzim's answer with the fāʾ or the surprise
+  إِذَا (m.61–65, jazm), without them none (m.67, «إِنْ قَامَ أَخُوكَ قَامَ عَمْرٌو» — a verb with its jazm shown, after a comma, or right after the
+  condition's doer); the answer of إِذَا، لَوْ، لَوْلَا، كُلَّمَا and of لَمَّا (the first past verb after its clause, or after a comma) none
+  (tr. III.6); the oath's answer none (the oath's lām on the verb; لَئِنْ); the naʿt after a pure indefinite with tanwīn (m.84, its case the
+  tanwīn's; a word of time only with «فِيهِ» in the clause — «وَاتَّقُوا يَوْمًا تُرْجَعُونَ فِيهِ»; see the narrowing pass below for its gates); the muʿtariḍa of praise and prayer (تَعَالَى، عَزَّ وَجَلَّ، تَبَارَكَ، صَلَّى … وَسَلَّمَ، رَضِيَ … عَنْهُ، رَحِمَهُ اللهُ)
+  between a name and what goes on after it (m.128). The ṣila stays `silaOf`'s (m.124); the khabar of kāda stays MuqarabaEngine's.
+  OFFERED (two readings, both named): the ḥāl after a pure definite closing a complete clause (m.51, tr. IV) — «… حَالٌ مِنْ «X»، أَوْ
+  مُسْتَأْنَفَةٌ لَا مَحَلَّ لَهَا»; لَمَّا / بَيْنَمَا «… عِنْدَ مَنْ قَالَ بِاسْمِيَّتِهَا، أَوْ لَا مَحَلَّ لَهَا عِنْدَ مَنْ قَالَ بِحَرْفِيَّتِهَا»
+  (m.59's own hedge); after a noun with «أَلْ»: ḥāl, or naʿt «إِنْ كَانَتْ «أَلْ» فِيهِ جِنْسِيَّةً» (tr. IV); after an indefinite that is not pure
+  (itself described, a ḥāl, kāna's khabar, a word of time): naʿt or ḥāl; after an indefinite khabar or an indefinite that opens its
+  clause (رَجُلٌ افْتَرَى …, ضَعِيفٌ يَغْلِبُهُ): naʿt or khabar. Silent: a comma after the head, a cited example (نَحْوُ / مِثْلُ / كَـ), the lām of
+  motive (لِيَنْظُرَ), a head whose muḍāf the clause may describe, an open nāsikh still owed its khabar, a heart verb's second object.
+  Not done: the nominal clause as naʿt / khabar (لَا بَيْعٌ فِيهِ, إِنَّ زَيْدًا أَبُوهُ قَائِمٌ), the follower (m.86–90), the tafsīriyya, the
+  ibtidāʾiyya / istiʾnāfiyya, the surprise إِذَا's answer (ShartEngine picks the wrong verb in «وَإِنْ تُصِبْهُمْ … إِذَا هُمْ يَقْنَطُونَ»).
+- **Two analyzer fixes met on the way.** فَلَا هَادِيَ لَهُ (m.65): the manqūṣ after لَا / فَلَا / وَلَا whose lemma ends in the dropped yāʾ's
+  tanwīn (هَادٍ) and is written ـِيَ kept a peeled «my» (`enc: "ي"` — «مَعْطُوفٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ»): an analyzer pass
+  (`__laManqus339`) gives the yāʾ back, the genus-lā rule then fires, and `Murib.line` reads its ism «مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ نَصْبٍ».
+  B08's hidden doer beside أَبُوهُ was already gone (v334); زَيْدٌ قَامَ أَبُوهُ now also carries the verb's clause line.
+- **Measured over every story (7,108 sentences), authored statement against the engine's printed line, matched on the clause's head
+  (scratchpad mahall339/m.sh: before = base.html, after = the wave):**
+
+  | seat | authored | agree before → after | contradicts after | engine names it, author silent (after) |
+  |---|---:|---:|---:|---:|
+  | khabar | 1,685 | 25 → 628 | 41 | 387 |
+  | ṣila | 928 | 196 → 196 | 9 | 258 |
+  | naʿt | 602 | 0 → 253 | 17 | 185 |
+  | muʿtariḍa | 490 | 2 → 334 | 0 | 147 |
+  | ḥāl | 467 | 1 → 40 | 17 | 58 |
+  | muḍāf ilayh | 430 | 204 → 316 | 0 | 561 |
+  | maqūl | 287 | 7 → 115 | 7 | 1,235 |
+  | jawāb, no seat | 136 | 5 → 44 | 8 | 158 |
+  | jawāb, jazm | 50 | 8 → 9 | 3 | 66 |
+  | all 17 seats | 5,935 | 460 → 1,956 | 22 → 146 | 644 → 3,121 |
+
+  The engine's own audit (`JumlaMahallEngine.audit()`, its verdicts paired with the authored statements directly), after the narrowing
+  pass below: agree 1,912, silent 3,918, contradicts 121, of which 19 by an EXACT rule (before that pass: 1,880 / 141 / 106). The large «author silent» columns are mostly right (the authors seldom name a
+  maqūl or a muḍāf ilayh); the istiʾnāf / tābiʿ / ḥikāya statements (668) stay silent by design.
+- **For the hoca**: see the narrowing pass below (four slips; the other exact contradictions name a compatible fact).
+- **The shelf's audit — `tools/grammar_audit.js`** writes `research/story-grammar-audit-2026-11-26.md` (≈ 5 min): per engine agrees /
+  silent / contradicts, then every contradiction ranked (EXACT first) with package:chapter:sentence:token, the word, the authored words,
+  the verdict and the rule with its book. Page side `GrammarAudit339` (in the v339-M block) reduces each engine's OWN audit — the clause
+  maḥall (`JumlaMahallEngine.audit`), `SignEngine.audit`, `DabtEngine.corpus('endings')`, the taʿalluq (the v328 check's comparison as a
+  walk), `AdabEngine.lint`, `InnaEngine.audit`, `TartibEngine.audit`; the manṣūbāt (`v332scan`) and the Shudhūr rules («v336-Sh — against
+  the authored lines») are cut out of `tools/smoke_test.js` with acorn and evaluated as the smoke evaluates them. Totals on 2026-11-26:
+
+  | engine | agrees | silent | contradicts (exact) |
+  |---|---:|---:|---:|
+  | clause maḥall | 1,912 | 3,918 | 121 (19) |
+  | sign | 34,244 | 0 | 141 (list capped at 80) |
+  | case ending / role | 86,893 | 262 | 663 (list capped at 400) |
+  | taʿalluq | 643 | 217 | 307 (256) |
+  | manṣūbāt (v332) | 151 | — | 18 (14) |
+  | Shudhūr (v336-Sh) | 184 | — | 20 |
+  | adab (lint) | 45,597 | 1,301 | 570 (lists capped) |
+  | إِنَّ / أَنَّ | 1,164 | 121 | 27 |
+  | order (tartīb) | 1,064 | 0 | 2 |
+
+  Earlier waves' «for the hoca» items are not separated out: the lists are the union of what the engines find today.
+- **Grammar note `anwa-al-jumal`**: the one invented example (كَأَنِّي بِكَ وَقَدْ دَخَلْتَ بَصْرَةَ) gives way to ten of the matn's own, verbatim
+  and anchored by `source` (matn l. 49, 53, 65, 67, 84, 86, 102, 124, 144); the story-anchored example stays. The edition prints no example
+  for the ḥāl, the muḍāf ilayh, the muʿtariḍa, the oath's answer or the second follower — left.
+- **Smoke** (four checks «v339 — …» right before «v333 — the received imports»): the matn's examples WITH a seat (incl. هَادِيَ, of(), the
+  offered لَمَّا and أَلْ); the clauses WITHOUT a seat (incl. the ṣila control, the lām of motive); the corpus floors / ceilings (agree ≥ 1,905,
+  khabar ≥ 615, naʿt ≥ 255, muʿtariḍa ≥ 325, muḍāf ilayh ≥ 300, maqūl ≥ 105, jawāb-none ≥ 40; contradictions ≤ 121, exact ≤ 19); the audit
+  reproducible from the page with pinned ceilings (clause exact ≤ 19, sign ≤ 141, taʿalluq exact ≤ 256, adab ≤ 570, inna ≤ 27, order ≤ 2).
+- Left: the nominal clause, the follower, the tafsīriyya, the surprise إِذَا's answer; Part 3 (the next Shudhūr triage rules; a
+  clause-seat feature in IrabModel) not attempted.
+  Scripts: scratchpad mahall339/ (eng.js spliced by splice.py; cls.js + meas.js via m.sh; t*.js probes).
+- Refit + full suite (`build → gen_irab_model → build → gen_drills → ml_engine → build`, then `node tools/smoke_test.js`): irab_model 2,459
+  weights over 72,955 rows; **559 checks, 559 pass** (the four v339 checks among them). No older check was changed.
+
+### v339-M narrowing pass (review: an asserted line must be correct)
+
+- **Rules demoted or gated** (contradicting / agreeing before → after; engine audit):
+  - `hal` → OFFERED always: «حَالٌ مِنْ «X»، أَوْ مُسْتَأْنَفَةٌ لَا مَحَلَّ لَهَا» — the position does not decide it (a nāsikh's khabar, a second
+    khabar, the naʿt of an earlier indefinite, a fresh start). Exact contradictions 12 → 0.
+  - `naat` exact only when the clause follows the pure indefinite directly AND: no frame is open earlier in the sentence that may own the
+    clause (`claimed()`: a condition, إِذَا / لَوْ / لَمَّا / إِذْ / حَيْثُ, a nāsikh or a verb of approach, قَالَ / قِيلَ, a relative, كَمْ) —
+    else `naatOffered` «… نَعْتٌ لِـ«Y» فِي الظَّاهِرِ، وَيُحْتَمَلُ غَيْرُهُ لِـ«F» قَبْلَهَا»; the head is not joined by و (a fresh start may begin);
+    a manṣūb head has its returning pronoun written (else naʿt-or-ḥāl: حُمْرًا، قُطُنًا، حَلْفَةً); a rafʿ head with an earlier rafʿ noun in its
+    clause is naʿt-or-khabar (بِلْغٌ تَشْقَى); a head after a jarr phrase that follows another indefinite is offered (which word is described,
+    the letters do not say); a word of time only with «فِيهِ» within the clause's first words; never a clause of praise or request
+    (نِعْمَ، بِئْسَ، an imperative, لَا of prohibition, a question — inshāʾ describes nothing). Exact contradictions 33 → 3.
+  - `khabarMubtada`: exact only for a mubtadaʾ shown definite (a name, a pronoun, «أَلْ», a pronoun-annexed noun) whose rafʿ shows, with no frame
+    open before it, no «مَا» between, not joined by و, its clause no request (a request as khabar is offered: «عَلَى جَوَازِ وُقُوعِ الطَّلَبِ
+    خَبَرًا، وَإِلَّا فَالْخَبَرُ مَحْذُوفٌ وَهِيَ مُفَسِّرَةٌ»); a diptote / dual / plural without «أَلْ» gives naʿt-or-khabar; a jussive with no
+    jāzim is the answer of a request (قِفِي نَسْأَلْكِ), no khabar; a lexicon name that wears tanwīn is the common noun (أَسْمَاءٌ). ~21 → 0.
+  - `khabarKana` / `khabarInna`: an indefinite ism (كَانَتْ قَرْيَةٌ آمَنَتْ, كَأَنَّ مُنَوِّرًا تَخَلَّلَ) or a «مَا» between (إِنَّ الْمَوْتَ مَا أَخْطَأَ) → offered.
+  - `maqul` / `maqulNaib`: a wāw-joined start is a ḥāl, not the maqūl (تَقُولُ وَقَدْ مَالَ …); a skipped «أَلْ» noun right before a verb may be the
+    quote's own mubtadaʾ (قَالَ تَعَالَى النَّارُ يُعْرَضُونَ) → offered; after قِيلَ / يُقَالُ the jarr pronoun is skipped (يُقَالُ لَهُ الْغَوْرِيُّ). ~10 → 2.
+  - `mudaf`: after إِذْ offered with «أَوْ لَا مَحَلَّ لَهَا إِنْ كَانَتْ «إِذْ» تَعْلِيلِيَّةً»; إِذَا / حَيْثُ stay exact. 4 → 1.
+  - `jawabNonJazim` / jawāb: the nearest tool before the answer owns it (فَأَنْتَ after إِنْ was given to an earlier إِذَا); the answer of لَمَّا
+    without a comma is offered; a wāw-joined verb or a formula is no answer; the oath's answer needs its lām. 5 → 0.
+  - `sila`: مَا (it may be an indefinite described) offered; «بِمَعْنَى الَّذِي» is a word cited.
+  - Totals (engine audit): agree 1,880 → 1,912; contradictions 141 → 121; EXACT 106 → 19, OFFERED 35 → 102.
+- **The 19 exact contradictions, each read.** Authored slips, engine right by the book (for the hoca): ashab-al-kahf:1:s3:15 قَتَلْتُكُمْ,
+  hud-wa-aad:2:s7:6 جَاءَكُمْ, talkhis-al-miftah:4:s3:12 ارْتَدَعَ — «فِي مَحَلِّ جَزْمٍ» on a jāzim's answer with no fāʾ (m.67: the verb's seat
+  is jazm, the clause has none); muallaqat-imri-al-qays:7:s1:5 غَذَاهَا — «بِصُفْرَةٍ غَذَاهَا …» named a ḥāl, but it follows a pure indefinite
+  and carries its returning pronoun: the naʿt (m.84). Compatible facts (the author names another true fact about the same words):
+  bad-al-amali:3:s11:4 تَعَالَى and siyar-abi-hanifa:6:s5:7 رَضِيَ (istiʾnāfiyya / duʿāʾiyya vs muʿtariḍa — no seat either way);
+  izhar-al-asrar:4:s8:12 لَتَنُوءُ and qisas-al-nabiyyin-2:25:s5:5 يَعْبُدُهَا (the author names the outer ṣila, the engine the inner khabar —
+  both lines say both); marah-al-arwah:9:s3:13 وَضَارِبٍ, muallaqat-amr-ibn-kulthum:13:s3:8 وَافْتُلِينَا, muallaqat-tarafa:16:s1:5 وَيُسْعَى,
+  :16:s2:7 وَشُقِّي, :7:s6:7 وَعَامَتْ, muallaqat-zuhayr:8:s8:8 وَمَنْ (the author names the joined clause as a follower; the engine names the seat of
+  the clause it follows, which the follower shares); muallaqat-imri-al-qays:4:s1:8 الْوَيْلَاتُ and siyar-abi-hanifa:2:s6:12 أَصْلُهُ (the
+  engine's maqūl is the whole quote; the author's line is on the quote's first word); muallaqat-tarafa:11:s5:11 يَنْفَدِ (the author: «مَجْزُومٌ
+  لِأَنَّهُ جَوَابُ الشَّرْطِ» — the verb's jazm; the clause no seat); qisas-al-nabiyyin-4:41:s8:5 إِلَّا لَيُؤْمِنَنَّ (the oath's answer, inside
+  the clause the author makes the khabar of the deleted mubtadaʾ); wasiyyat-abi-yusuf-L5:1:s3:3 أَكْثَرْتَ (the condition clause after إِذَا,
+  which the books also put in jarr by annexation).
+- **The two self-contradictions settled.** (1) The v334 mubtadaʾ line (`Murib.khabarOf`, the verb-clause branch) now asks the engine: where
+  the clause line offers naʿt-or-khabar it says «… فِي مَحَلِّ رَفْعٍ خَبَرُهُ، أَوْ نَعْتٌ لَهُ وَالْخَبَرُ بَعْدَهَا», where the engine names another
+  seat it asserts no khabar. (2) إِذَا: the shelf's authored lines call it a ẓarf 442 times and a letter never (9 other, 4 surprise); no check
+  pinned «حَرْفُ شَرْطٍ» on it — `Murib.term` now gives «ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ خَافِضٌ لِشَرْطِهِ مَنْصُوبٌ بِجَوَابِهِ، مَبْنِيٌّ عَلَى
+  السُّكُونِ فِي مَحَلِّ نَصْبٍ», agreeing with the clause line «بِإِضَافَةِ «إِذَا» إِلَيْهَا». Both pinned in the first v339 check.
+- Ceilings re-pinned (contradictions ≤ 121, exact ≤ 19, agree ≥ 1,905, naʿt ≥ 255); the audit file regenerated. Subset
+  `SMOKE_ONLY="v339|v334|v336|v332|jumla|Jumla|Murib|irab|i'rab|shart|Zabt|dabt"`: 110 pass, 1 fails only in the subset — «games: harakat
+  round shows i'rab explanation» clicks `#gBack`, which the preceding (unselected) «games: spot-the-error» check opens; run with it, it passes.
+  Scripts: scratchpad mahall339/ (eng_pass1.js, eng_pass2.js; t21.js lists the exact contradictions with their engine point).
