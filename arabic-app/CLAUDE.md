@@ -15806,3 +15806,96 @@ Feeding backlog **R1** (Qawāʿid al-Iʿrāb bāb 1, `research/sources/qawaid-al
   `SMOKE_ONLY="v339|v334|v336|v332|jumla|Jumla|Murib|irab|i'rab|shart|Zabt|dabt"`: 110 pass, 1 fails only in the subset — «games: harakat
   round shows i'rab explanation» clicks `#gBack`, which the preceding (unselected) «games: spot-the-error» check opens; run with it, it passes.
   Scripts: scratchpad mahall339/ (eng_pass1.js, eng_pass2.js; t21.js lists the exact contradictions with their engine point).
+
+## v341-S — speed IV: the door before the bodies, no stall on first use
+
+Test users on phones asked that the library open at once, data load on demand and nothing freeze. Measured with one probe
+(`scratchpad/speed341/m.js`: 390×844, 4× CPU via CDP, the split hosted copy over http with `no-store`, so only the service worker
+caches; times are click → next painted frame, «worst» = the longest long task in [click, paint + 700 ms]). A/B interleaved
+(`ab.sh`, base = the reader at 10af1fd, final = this wave), medians of 4 rounds (the 2-h background limit stopped the 5th), the
+1-min load 1–4 (other agents' suites shared the 4 cores; nothing could be measured under 1.5 for long). Spread in brackets.
+
+| (4× CPU, median [min–max]) | v340 | v341 |
+|---|---|---|
+| cold boot, localhost: first paint / skeleton / **library usable** | 246 / 347 / **1658 [1405–1835]** ms | 270 / 400 / **896 [841–964]** ms |
+| cold boot, localhost: every story body in | 1658 ms (= usable) | 3100 [3021–3503] ms (after the door, in slices) |
+| cold boot, «fast 4G» (20 Mbit/s, 60 ms): usable / all bodies | **32.5 s** / 32.5 s | **5.1 s** / 7.1 s |
+| warm boot through the service worker: usable | 3058 [2874–3390] ms | 762 [713–870] ms |
+| single-file copy (file the Android shell does NOT use): usable | 9.8 s | 9.8 s (unchanged path) |
+| boot longest task / long-task sum (localhost) | 150 / 499 ms | 208 / 841 ms (body slices parse after the door) |
+| Jumla lab, first analysis: total / **worst task** | 6.0 s / **5.7 s** | 5.4 s / **0.99 s** (slices; «…» meanwhile) |
+| Jumla lab, second analysis | 226 / 85 ms | 244 / 58 ms |
+| root lab first (straight from the door): total / **worst task** | 2.4 s / **2.3 s** | 5.3 s / **0.14 s** |
+| root lab second | 356 / 283 ms | 34 / 0 ms |
+| search keystroke, typed on (كتب after كت / كتاب) | 244 / 172 ms | **85 / 91 ms** |
+| search keystroke, a fresh two-letter query (كت) / new word (قال) | 312 / 220 ms | 185 / 177 ms |
+| search, the 2nd letter with the index unbuilt (sliced build, «…») | 4.3 s | 3.9 s |
+| Atölye index open / games hub open (worst task) | 338 (166) / 146 (345) ms | 224 (136) / 178 (108) ms |
+| games hub on a fresh profile, every count filled: worst task | **17.2 s** (gWaqf's pool) | 2.3 s |
+| story open L1 / L6 / word tap 1st / 9th (worst) | 197 / 258 / 93 / 1040 (396) | 183 / 322 / 78 / 720 (318) |
+| library scroll (40 × 400 px): long tasks | 0 | 0 |
+| JS heap after boot / after three stories (GC'd) | 158 / 162 MB | 161 / 162 MB |
+
+Bytes (raw / gzip): page 0.31 / 0.08 MB; app.js 5.39 / 1.55; v340 data d1–d7 68.7 / 11.5 MB (all before the door). v341: the core
+`data/d1-<hash>.js` 4.68 / 1.48 MB (catalog fields of 83 stories + GRAMMAR, models, CATECHISM…) is all the door waits for; 23 body
+slices `data/b<k>-<hash>.js` (≤ 2.5 MB each except single big texts, 1.7–7.5 MB) 64.0 / 10.0 MB follow. Total transfer the same
+(13.1 MB gzip); the entrance (welcome.html) precaches all 26 files as before. The Android APK packs the same split
+(`tools/build_android.py` runs pubsplit — the wrapper never used the single file), so it gets the on-demand door too.
+
+What changed (each kept because it won above; each returns the same answers):
+1. **The door before the bodies** (`tools/pubsplit.py`, `BODY341`, `bodyGate341`). The core slice carries every story without
+   chapters/morph/glossary; `bootWithData` runs on it. The bodies ride in hash-named slices the shell fetches after the door, three
+   at a time, the tapped story's slice first. A story tapped before its body is in shows the quiet «loading» toast and opens on
+   arrival (the last tap wins); the corpus-wide doors — search, games, Atölye, deck, progress, a word's sheet, an about card,
+   jumpTo — wait the same way for every body; `Quiet.ok()` is false until all are in, so no index, pool or count is ever built
+   from part of the shelf. A missing body read logs `__bodyMiss341` (a check asserts none). The repository reader (all bodies
+   inline) never enters the path. **Service worker**: hashed slices live in `qissa-data`, which a version bump does not delete,
+   answered cache-first without a refresh — an update re-downloads only slices whose stories changed; the page prunes names its
+   build no longer lists once every body is in (skipped in the native shell). Offline after the entrance: opens, reads, searches
+   (`offline.js`).
+2. **The first analysis without a stall** (`Warm341`). The Jumla and root labs paint «…» and drive the engines' first-use work in
+   ~24-ms slices — the bodies' parse, the bare index, both taggers, the ledger, `RootFinder.nounIndexStep341` (the noun index as a
+   generator), `lexFreqStep341` (the shelf's lemma counts), then for the Jumla lab the analyzer's and DabtEngine's first reading —
+   then run the analysis they always ran. Quiet's engine-warm job is the same steps (and the wave-148 compile warm-ups, now
+   `Warm341.W`). The Jumla lab's perceptron line: `IrabModel.fitCoreSliced341` (fitCore's Int32 loop, resumable, clock read every
+   256 examples — bit-identical averaged weights), `cvStep341` (folds and held-out ranking in slices; cvPlan units ≤ 24 sentences;
+   `internGen341`), `accuracy()` a sentence a step; both grade lines step the shared warm-up first (cvPlan had parsed every body
+   in one task). Proven in the suite: every stepped builder = its one-shot form.
+3. **The search keystroke**: the open sheet re-renders only what follows the search row (input, focus, caret and listener kept;
+   the nodes are the full render's, checked node for node); `searchCorpus` and `InText.find` narrow the last query's hits when the
+   new needle extends it (exact: a row/sentence matching the longer needle matched the shorter); a group's rank is computed once,
+   not in the sort comparator; the hits are `content-visibility: auto` (layout 40–150 → 5–30 ms a keystroke at 4×).
+4. **The games hub**: 15 pool-backed counts step their pool a unit a task (`SUPPLY_STEP334` + `stepFull148`) before reading it —
+   the same counts (gKinds' count varies run to run in v340 too: its pool is shuffle-order dependent).
+5. **Quiet** warms the derivation engine (`ishtiqaq`) before the bodies' parse: the first derived noun tapped read its lexicon and
+   inverse templates in the tap (330 ms at 1×).
+6. **Covers**: `CoverArt341` caches each cover by story, level and theme; `CoverArt341.lazy(card, st, draw)` draws a costlier
+   cover when the card comes within two screens (for the design wave's richer SVG); today's covers stay inline.
+
+Tried and dropped: `//# allFunctionsCalledOnLoad` on app.js (no gain; the first Jumla analysis got worse). A key dictionary for the
+bodies' JSON (gzip 10.03 → 9.87 MB, −1.6 %; a remap at parse would cost more than it saves). Dead code: no top-level declaration
+over 50 KB with zero references — nothing removed. A bigram index for fresh queries (~7+ MB heap for ~40 ms at 4×) — not done.
+
+Still slow, and why:
+- **DabtEngine's first reading** (in the Jumla lab's warm-up or Quiet) is one 0.5–1.5-s task at 4×: first-run code of a very
+  large engine, not data work; it cannot be sliced without splitting the engine. FahmEngine's warm-up (Quiet only) ~1.2 s at 4×.
+- The root lab straight from the door now reaches its answer later (5.3 vs 2.4 s) because it waits for the whole warm-up in
+  slices — the page stays live, no task over 170 ms.
+- Boot's longest task grew ~150 → ~210 ms (a body slice's top level executing after the door); every body in takes ~3 s at 4× on
+  localhost (was 1.7 s) — on a phone network the door wins 6×.
+- A fresh query's first two letters (corpus scan 46–84 ms, in-text walk ~40, doctrine ~30 at 4×) and the first keystroke after
+  the index arrives; the games hub's non-pool sweeps (gTawkid, gIdgham, gTasgir ≈ 0.7–1.3 s at 4×) and gWaqf's first unit;
+  the single-file copy still parses 74 MB before its library (only file:// downloads use it).
+- Story open L6 (~300 ms) and the first Atölye paint (font rasterisation) unchanged.
+
+Smoke: four checks «v341 — speed: …» before «v333 — the received imports» (the door with the bodies held + the service worker;
+the first Jumla analysis from the door + every stepped builder's equality; the keystroke's narrowing and partial render; the hub's
+pool steps). Budgets from three suite runs (load ~4): door ≤ 1.8 s at 4× (1.02/1.19/1.67), worst task on the first analysis ≤ 2.2 s
+at 4× (0.14/0.79/1.49 — median × 1.5 fell under a measured run, so 1.5 × the worst), keystroke ≤ 15 ms at 1× (6.1/7.8/9.7), hub
+pool step ≤ 170 ms at 1× (27/57/110). Older check changed: «wave 150 — SPEED VIII» pinned the loader list = every `data/dN.js`;
+it now reads the core list and the body-slice list (each body file named once, each story in one slice).
+«wave 189 — Marāḥ al-Arwāḥ part seven» pinned cvPlan's units = the chapter count; a unit is now ≤ 24 sentences (the same rows, the
+same folds and scores, which the check still compares), so it asserts units ≥ chapters.
+Full suite (refit chain, then `node tools/smoke_test.js`): 559 checks, 558 pass; the one failure was that wave-189 pin, fixed
+and passing alone after. In that run: door 986 ms, first Jumla worst task 938 ms, keystroke median 5.7 ms, hub step 14 ms.
+`tools/entrance_test.js`: ready offline in 5.1 s, app from the cache in 0.57 s (the hashed slices sit in `qissa-data`, 24 files).

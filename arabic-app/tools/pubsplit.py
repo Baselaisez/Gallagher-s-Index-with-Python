@@ -20,20 +20,29 @@ rest=seg[g+1:]; head=seg[:s]
 d=lambda o: json.dumps(o,ensure_ascii=False,separators=(",",":"))
 def jp(o):   # an object literal: Chromium parses it faster than JSON.parse("…") of the same data (wave 127 measurement)
     return d(o).replace("</","<\\/")
-files=[]; cur=[]; curb=0; LIM=13_000_000
+# (v341-S) THE DOOR BEFORE THE BODIES. d1 (the core) carries every story's catalog fields and the tables after them, and calls the
+# shell; the bodies (chapters, morph, glossary) ride in slices of about BODY_LIM bytes, a few stories each, named by a hash of
+# their content (data/b<k>-<hash>.js), so a new build re-downloads only the slices whose stories changed. The page's loader
+# inserts the core after one frame; the shell (BODY341) fetches the bodies after the door, the tapped story's slice first.
+import hashlib
+BODY_KEYS=("chapters","morph","glossary"); BODY_LIM=int(os.environ.get("QISSA_BODY_LIM","2500000"))
+def hname(prefix,text): return f"data/{prefix}-{hashlib.sha256(text.encode()).hexdigest()[:10]}.js"
+meta=[{k:v for k,v in p.items() if k not in BODY_KEYS} for p in arr]
+bodies=[]; cur=[]; curb=0
 for p in arr:
-    b=len(d(p).encode())+2
-    if cur and curb+b>LIM: files.append(cur); cur=[]; curb=0
-    cur.append(p); curb+=b
-files.append(cur)
-names=[]
-for k,chunk in enumerate(files):
-    fn=f"data/d{k+1}.js"; names.append(fn)
-    body=("const STORIES = "+jp(chunk)+";\n") if k==0 else ("STORIES.push(..."+jp(chunk)+");\n")
-    open(os.path.join(out,fn),"w",encoding="utf-8").write((head if k==0 else "")+body)
-fn=f"data/d{len(files)+1}.js"; names.append(fn)
-open(os.path.join(out,fn),"w",encoding="utf-8").write(rest)
-tags="".join(f'<script src="{n}"></script>' for n in names)
+    b={k:p[k] for k in BODY_KEYS if k in p}; n=len(d(b).encode())
+    if cur and curb+n>BODY_LIM: bodies.append(cur); cur=[]; curb=0
+    cur.append((p["id"],b)); curb+=n
+if cur: bodies.append(cur)
+body_list=[]
+for k,chunk in enumerate(bodies):
+    text="__qissaBodies341("+jp({i:b for i,b in chunk})+");\n"
+    fn=hname(f"b{k+1}",text); open(os.path.join(out,fn),"w",encoding="utf-8").write(text)
+    body_list.append([fn,[i for i,_ in chunk]])
+core_text=head+"const STORIES = "+jp(meta)+";\n"+rest
+core=hname("d1",core_text); open(os.path.join(out,core),"w",encoding="utf-8").write(core_text)
+names=[core]+[b[0] for b in body_list]
+tags="".join(f'<script src="{n}"></script>' for n in [core])
 page=t[:i]+"// data served from data/*.js for the hosted copy — the repository reader keeps it inline\n</script>"+tags+"<script>\n"+t[j:]
 # (wave 150) the CODE leaves the page too: an external classic script is compiled off the main thread as it streams in, and
 # its bytecode is kept in the browser's code cache from the second visit on, while an inline script of 3.9 MB is re-parsed
@@ -49,12 +58,14 @@ catalog=code[cat_i:cat_j+len("// __CATALOG_END__")]
 app=code[:cat_i]+code[cat_j+len("// __CATALOG_END__"):]
 open(os.path.join(out,"app.js"),"w",encoding="utf-8").write(app)
 data_names=list(names)
-loader="<script>(function(){var L="+json.dumps(data_names)+";function go(){L.forEach(function(n){var s=document.createElement('script');s.src=n;s.async=false;document.body.appendChild(s);});}if(window.requestAnimationFrame)requestAnimationFrame(function(){setTimeout(go,0);});else go();})();</script>"
+loader=("<script>(function(){var L="+json.dumps([core])+";window.__qissaSlices341={core:L,bodies:"+json.dumps(body_list,ensure_ascii=False)+"};"
+        "function go(){L.forEach(function(n){var s=document.createElement('script');s.src=n;s.async=false;document.body.appendChild(s);});}"
+        "if(window.requestAnimationFrame)requestAnimationFrame(function(){setTimeout(go,0);});else go();})();</script>")
 page=page[:cs]+"<script>\n"+catalog+"\n</script><script src=\"app.js\"></script>"+loader+page[ce+len("</script>"):]
 page=page.replace(tags,"<!-- data/*.js are loaded by the loader above: "+" ".join(data_names)+" -->")
 names.insert(0,"app.js")
 name=os.path.basename(src)
 open(os.path.join(out,name),"w",encoding="utf-8").write(page)
 for n in names: print(n, os.path.getsize(os.path.join(out,n)))
-print("page", name, os.path.getsize(os.path.join(out,name)), "packages per file", [len(c) for c in files])
+print("page", name, os.path.getsize(os.path.join(out,name)), "body slices", len(body_list), "stories per slice", [len(c) for c in bodies])
 print("files=" + json.dumps({n:n for n in names}))

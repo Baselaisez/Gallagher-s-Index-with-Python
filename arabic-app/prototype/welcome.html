@@ -205,9 +205,10 @@
     const res = await fetch("reader.html", { cache: "no-cache" });
     if (!res.ok) throw new Error("reader " + res.status);
     const html = await res.text();
-    // the code is a <script src>; the data files are named in the page's loader list (pubsplit inserts them after a frame)
+    // the code is a <script src>; the data files are named in the page's loader list (pubsplit inserts the core after a frame,
+    // the shell fetches the body slices after the door — v341-S)
     const srcs = [...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m => m[1])
-      .concat([...html.matchAll(/["'](data\/d\d+\.js)["']/g)].map(m => m[1]))
+      .concat([...html.matchAll(/["'](data\/[\w.-]+\.js)["']/g)].map(m => m[1]))   // (v341-S) the core and the hashed body slices
       .filter((s, i, a) => !/^(https?:)?\/\//.test(s) && a.indexOf(s) === i);
     return { files: srcs, readerBytes: html.length };
   }

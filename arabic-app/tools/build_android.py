@@ -46,7 +46,7 @@ def write_www():
     # the data files are classic scripts sharing one global scope with the page (pubsplit's contract); assert the
     # page really references every one of them, or a WebView would show an empty library with no error anyone can see
     page = (WWW / "index.html").read_text(encoding="utf-8")
-    data_files = sorted(p.name for p in (WWW / "data").glob("d*.js"))
+    data_files = sorted(p.name for p in (WWW / "data").glob("*.js"))   # (v341-S) the core d1-<hash>.js and the body slices b<k>-<hash>.js
     if len(data_files) < 2: sys.exit("the split wrote fewer than two data files")
     # (wave 150) the page names every data file in its loader list (not in <script> tags) and loads the code from app.js
     for name in data_files:

@@ -10754,14 +10754,19 @@ if (!CHROME) {
     const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-split-'));
     const out = cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
     const page = fsx.readFileSync(pathx.join(dir, 'reader.html'), 'utf8'); const app = fsx.readFileSync(pathx.join(dir, 'app.js'), 'utf8');
-    const files = fsx.readdirSync(pathx.join(dir, 'data')).filter(f => /^d\d+\.js$/.test(f)).sort();
+    const files = fsx.readdirSync(pathx.join(dir, 'data')).filter(f => /^d\d+-[0-9a-f]{10}\.js$/.test(f)).sort();   /* (v341-S) the core slice; the bodies ride in b<k>-<hash>.js */
     if (!/files=\{"app\.js": "app\.js"/.test(out)) throw new Error('the publish map starts with app.js: ' + out.split('\n').pop());
     if (app.length < 3e6 || page.length > 600e3) throw new Error('the code is in app.js, the page is small: ' + app.length + ' / ' + page.length);
     if (!/__CATALOG_START__/.test(page) || /__CATALOG_START__/.test(app)) throw new Error('the catalog stays inline, out of app.js');
     if (!/<script src="app\.js"><\/script>/.test(page)) throw new Error('the page loads app.js');
     if (/<script src="data\//.test(page)) throw new Error('no data <script src> tag: the loader inserts them');
-    const m = page.match(/var L=(\[[^\]]*\]);function go\(\)/); if (!m) throw new Error('the loader list is missing');
-    const L = JSON.parse(m[1]); if (JSON.stringify(L) !== JSON.stringify(files.map(f => 'data/' + f))) throw new Error('the loader lists every data file in order: ' + m[1] + ' vs ' + files.join(','));
+    const m = page.match(/var L=(\[[^\]]*\]);(?:window\.__qissaSlices341=.*?;)?function go\(\)/); if (!m) throw new Error('the loader list is missing');
+    const L = JSON.parse(m[1]); if (JSON.stringify(L) !== JSON.stringify(files.map(f => 'data/' + f))) throw new Error('the loader lists the core data file: ' + m[1] + ' vs ' + files.join(','));
+    /* (v341-S) the body slices are named in the loader's __qissaSlices341 list (the shell fetches them after the door): every one on disk, each story once */
+    const bm = page.match(/window\.__qissaSlices341=\{core:L,bodies:(\[.*?\])\};function go/); if (!bm) throw new Error('the body slice list is missing');
+    const B = JSON.parse(bm[1]), bodyFiles = fsx.readdirSync(pathx.join(dir, 'data')).filter(f => /^b\d+-[0-9a-f]{10}\.js$/.test(f)).sort();
+    if (JSON.stringify(B.map(x => x[0]).sort()) !== JSON.stringify(bodyFiles.map(f => 'data/' + f))) throw new Error('the body list names every body slice: ' + B.length + ' vs ' + bodyFiles.length);
+    const ids = B.flatMap(x => x[1]); if (new Set(ids).size !== ids.length || ids.length < 50) throw new Error('each story in one body slice: ' + ids.length);
     if (!/async=false/.test(page) || !/requestAnimationFrame/.test(page)) throw new Error('the loader keeps order and waits a frame');
     if (!/window\.__qissaDataReady === "function"\) window\.__qissaDataReady\(\)/.test(fsx.readFileSync(pathx.join(dir, 'data', files[files.length - 1]), 'utf8'))) throw new Error('the last data file hands off to the shell');
     cp.execSync(`node --check "${pathx.join(dir, 'app.js')}"`);
@@ -15543,7 +15548,7 @@ if (!CHROME) {
     if (!/َّ\/kanaKhabar$/.test(E.sara) || !/َّ\/kanaKhabar$/.test(E.yasir) || !/َّ\/kanaKhabar$/.test(E.ashadd) || !/\/mazi$/.test(E.qad) || !/َ\/(hal|mafulMutlaq)$/.test(E.obj) || !/ُ\/kanaIsm .*ًا\/kanaKhabar$/.test(E.ism) || !/ُ\/kanaIsm .*ً\/kanaKhabar$/.test(E.fem)) throw new Error('the doubled elative and kāna\'s sisters: ' + J(E));
     if (r.gauge.cited !== null || r.gauge.harf !== 'harf') throw new Error('the gauge\'s reader: ' + J(r.gauge));
     const c = r.cv;
-    if (c.after.n !== c.before.n || c.after.folds !== c.before.folds || c.after.top1 !== c.before.top1 || c.after.top2 !== c.before.top2 || c.units !== c.chaptersAll || c.prep !== c.units + 1 || c.maxPrep > 1500) throw new Error('the validation in slices: ' + J(c));
+    if (c.after.n !== c.before.n || c.after.folds !== c.before.folds || c.after.top1 !== c.before.top1 || c.after.top2 !== c.before.top2 || c.units < c.chaptersAll /* (v341-S) a unit is ≤ 24 sentences of a chapter: a long chapter is several units, the same rows */ || c.prep !== c.units + 1 || c.maxPrep > 1500) throw new Error('the validation in slices: ' + J(c));
   });
 
   await check('wave 190 — Marāḥ al-Arwāḥ part eight (the quiescent ḍād of «يَضْرِبُ», the tāʾ of the one addressed and the absent woman, the nūn of rafʿ and what «لَمْ» does; pp. 60–62) stands on the shelf with every line named; five rules the text called for — the passive of a doubled verb under a governor or stripped of its ending (لَمْ يُضَمَّ، لَنْ تُمَدَّ), «لَا» before a passive she-verb is the negation (وَلَا تُضَمُّ) while the prohibition after a vocative and before an active verb stands, «لم» written لِمَ or before a māḍī is the question «why» while لَمْ before a muḍāriʿ stays the jāzim, the maqṣūr noun keeps its lemma before a pronoun (مَعْنَاهُ، مَوْلَانَا), and the annexed dual of a noun in ة (عَلَامَتَا التَّأْنِيثِ) is a construct head in rafʿ by its alif — with نَصَرَتَا still the verb and كتابا still the tanwīn', async () => {
@@ -17831,6 +17836,138 @@ if (!CHROME) {
     const F = { jumla: 1905, sign: 34000, taalluq: 600, adab: 45000, inna: 1100, tartib: 1000 };
     const f = r.filter(s => s.error || !s.shape || s[C[s.id][0]] > C[s.id][1] || s.agree < F[s.id] || !(s.items > 0 || s.contra === 0));
     if (r.length !== 6 || f.length) throw new Error('the audit: ' + J(f.length ? f : r));
+  });
+
+  // ── v341-S — speed IV: the door before the bodies, the first analysis without a stall, the keystroke, the hub's pools ──
+  // One split copy serves both fresh-profile checks below (written once, served over http with the body slices held at will).
+  const split341 = await (async () => {
+    const cp = require('child_process'), os = require('os'), fsx = require('fs'), pathx = require('path'), http = require('http');
+    const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-v341-'));
+    cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
+    const st = { hold: false, held: [] };
+    const srv = http.createServer((q, r) => { const p = decodeURIComponent(q.url.split('?')[0]).replace(/^\/+/, '') || 'reader.html'; const f = pathx.join(dir, p);
+      if (!f.startsWith(dir) || !fsx.existsSync(f) || fsx.statSync(f).isDirectory()) { r.writeHead(404); r.end(); return; }
+      const send = () => { r.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(r); };
+      if (st.hold && /^data\/b\d+-/.test(p)) st.held.push(send); else send(); }).listen(0); srv.unref();
+    st.url = 'http://127.0.0.1:' + srv.address().port + '/reader.html'; st.dir = dir;
+    st.release = () => { st.hold = false; st.held.splice(0).forEach(f => f()); };
+    st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    st.fresh = async (cpu) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+      await ctx.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); } catch (e) {}
+        window.__lt341 = []; try { new PerformanceObserver(l => l.getEntries().forEach(e => window.__lt341.push([e.startTime, e.duration]))).observe({ type: 'longtask', buffered: true }); } catch (e) {} });
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      const c = await ctx.newCDPSession(p); await c.send('Emulation.setCPUThrottlingRate', { rate: cpu || 4 }); return { ctx, p, errs }; };
+    return st;
+  })();
+
+  await check('v341 — speed: the door before the bodies — the hosted copy ships the stories\' catalog fields and the tables in its core slice and the bodies (chapters, morph, glossary) in hashed slices the shell fetches after the door; with every body held back the shelf is whole and usable within budget, a tapped story and the corpus-wide doors wait quietly (no body read, no error, Quiet holds), and once the bodies land the last tap opens and every story is whole; the service worker keeps the hashed slices across versions', async () => {
+    const fsx = require('fs'), pathx = require('path');
+    const sw = fsx.readFileSync('prototype/sw.js', 'utf8'), welcome = fsx.readFileSync('prototype/welcome.html', 'utf8');
+    if (!/const DATA = 'qissa-data'/.test(sw) || !/k !== CACHE && k !== DATA/.test(sw) || !/HASHED\.test\(new URL\(req\.url\)\.pathname\)/.test(sw)) throw new Error('sw.js keeps the hashed data slices in their own cache across versions');
+    if (!/data\\\/\[\\w\.-\]\+\\\.js/.test(welcome)) throw new Error('the entrance precaches the hashed slices too');
+    const files = fsx.readdirSync(pathx.join(split341.dir, 'data'));
+    if (!files.every(f => /^[db]\d+-[0-9a-f]{10}\.js$/.test(f)) || files.filter(f => /^d/.test(f)).length !== 1 || files.length < 10) throw new Error('one core and the body slices, hash-named: ' + files.slice(0, 5).join(','));
+    const DOOR_MS = 1800;   // v341: door usable 1.02 / 1.19 / 1.67 s at 4× CPU in three suite runs (load ~4), the bodies held (before: the whole shelf had to parse first, 1.8–2.2 s); budget = median × 1.5
+    split341.hold = true; const { ctx, p, errs } = await split341.fresh(4);
+    try {
+      await p.goto(split341.url);
+      const door = await p.waitForFunction(() => document.querySelectorAll('.lib-card:not(.skel)').length >= 50 && !document.body.classList.contains('data-pending') && performance.now(), null, { timeout: 120000, polling: 25 }).then(h => h.jsonValue());
+      const r = await p.evaluate(async () => { const o = {}; o.missing = BODY341.missing ? BODY341.missing.size : -1; o.n = STORIES.length; o.quiet = Quiet.ok();
+        const card = document.querySelector('.lib-card:not(.skel)'); o.want = card.dataset.storyId; card.click(); o.openedEarly = !!(CUR && CUR.id);
+        document.querySelector('#tabbar [data-nav="games"]').click(); o.gamesEarly = !!document.getElementById('gMatch');
+        openSearch('كتب'); o.searchEarly = !!document.getElementById('corpusSearch');
+        document.querySelector('.lib-card:not(.skel)').click(); o.miss = (window.__bodyMiss341 || []).length; return o; });
+      if (r.missing !== r.n || r.n < 50) throw new Error('every body is still out at the door: ' + JSON.stringify(r));
+      if (r.openedEarly || r.gamesEarly || r.searchEarly || r.miss || r.quiet) throw new Error('the doors wait for the bodies (no story, no hub, no search, no body read, Quiet holds): ' + JSON.stringify(r));
+      split341.release();
+      await p.waitForFunction(() => BODY341.ready(), null, { timeout: 180000 }); await p.waitForTimeout(400);
+      const a = await p.evaluate(() => ({ cur: CUR && CUR.id, miss: (window.__bodyMiss341 || []).length,
+        whole: STORIES.every(st => Array.isArray(st.chapters) && st.chapters.length === st.stats.chapters && st.glossary && typeof st.glossary === 'object'), at: Math.round(window.__bodiesAt) }));
+      if (a.cur !== r.want || a.miss || !a.whole) throw new Error('the last tap opens once its body lands, every story whole: ' + JSON.stringify([a, r.want]));
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      console.log('      door usable ' + Math.round(door) + ' ms at 4× CPU, the bodies held; all in at ' + a.at + ' ms after release');
+      if (door > DOOR_MS) throw new Error('the door took ' + Math.round(door) + ' ms at 4× CPU (budget ' + DOOR_MS + ')');
+    } finally { split341.release(); await ctx.close(); }
+  });
+
+  await check('v341 — speed: the first Jumla analysis — straight from the door to the Atölye (Quiet held): the lab paints «…», drives the engines\' corpus work (the bodies, the bare index, the taggers, the ledger, the noun index, the lemma counts, the analyzer\'s and DabtEngine\'s first reading) in slices and then analyses — no task over budget at 4× CPU (one ~7-s task before); the root lab likewise; every stepped builder equals its one-shot form (fitCoreSliced341 = fitCore bit for bit, cvStep341 = the cvPlanStep walk, accuracy, intern, the noun index, the lemma counts)', async () => {
+    const WORST_MS = 2200;   // v341 at 4×, three suite runs: worst task 144 / 793 / 1491 ms (the analysis's slices ≤ ~25 ms; what is left is first-run code — DabtEngine's first reading — whose size swings with the compile cache and the load); before, one task of 6.9–7.3 s. Budget = 1.5 × the worst run (median × 1.5 = 1.2 s fell under a measured run)
+    const { ctx, p, errs } = await split341.fresh(4);
+    try {
+      await p.addInitScript(() => { window.__QISSA_QUIET_OFF = true; });
+      await p.goto(split341.url); await p.waitForFunction(() => window.BODY341 && BODY341.ready() && window.__qissaBootedAt, null, { timeout: 180000 });
+      const r = await p.evaluate(async () => { openAtolye(); await new Promise(res => setTimeout(res, 300)); const t0 = performance.now();
+        document.querySelector('.labrail [data-lab="jumla"]').click(); const placeholder = !!document.querySelector('#jumlaOut .warm341') || !(document.getElementById('jumlaOut') || {}).children;
+        const ok = () => { const o = document.getElementById('jumlaOut'); return o && o.children.length && !o.querySelector('.warm341'); };
+        while (!ok() && performance.now() - t0 < 240000) await new Promise(res => setTimeout(res, 50));
+        const t1 = performance.now(); const lt = window.__lt341.filter(([s]) => s >= t0 - 1 && s <= t1).map(x => Math.round(x[1]));
+        const html = document.getElementById('jumlaOut').innerHTML; window.__QISSA_RENDER_SYNC = true; renderJumlaOut(); const same = document.getElementById('jumlaOut').innerHTML === html; window.__QISSA_RENDER_SYNC = false;
+        const t2 = performance.now(); document.querySelector('.labrail [data-lab="jadhr"]').click(); const okJ = () => { const o = document.getElementById('jadhrOut'); return o && o.children.length && !o.querySelector('.warm341'); }; while (!okJ() && performance.now() - t2 < 60000) await new Promise(res => setTimeout(res, 20));
+        const lt2 = window.__lt341.filter(([s]) => s >= t2 - 1).map(x => Math.round(x[1]));
+        return { ms: Math.round(t1 - t0), worst: Math.max(0, ...lt), n: lt.length, placeholder, same, warm: Warm341.k, jadhrWorst: Math.max(0, ...lt2) }; });
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      console.log('      first Jumla analysis ' + r.ms + ' ms, worst task ' + r.worst + ' ms (' + r.n + ' long tasks) at 4× CPU; the root lab after it ' + r.jadhrWorst + ' ms');
+      if (!r.placeholder || !r.same || r.warm < 2) throw new Error('the lab paints «…», warms, and analyses exactly as the one-shot render: ' + JSON.stringify(r));
+      if (r.worst > WORST_MS || r.jadhrWorst > WORST_MS) throw new Error('a task held the thread on the first analysis: ' + JSON.stringify(r) + ' (budget ' + WORST_MS + ')');
+    } finally { await ctx.close(); split341.close(); }
+    // the stepped builders equal the one-shot ones (the main page, 1×)
+    const e = await page.evaluate(() => { const o = {};
+      const p0 = IrabModel.cvPlan(); for (let i = 0; i < p0.prep; i++) IrabModel.cvPlanStep(p0, i);
+      o.fold = [0, 7].every(k => { const held = p0.ids[k], tr = []; p0.rows.forEach((r, i) => { if (r.st !== held) tr.push(i); });
+        const A = IrabModel.fitCore(p0.it, tr), S = IrabModel.fitCoreSliced341(p0.it, tr); let n = 0; while (!S.step(3)) n++; const B = S.finish();
+        return n > 2 && A.avg.length === B.avg.length && A.avg.every((v, i) => Object.is(v, B.avg[i])) && A.touched.every((v, i) => v === B.touched[i]); });
+      const it2 = IrabModel.intern(p0.rows); o.intern = JSON.stringify([it2.F, Array.from(it2.flat.slice(0, 5000)), Array.from(it2.off.slice(-50))]) === JSON.stringify([p0.it.F, Array.from(p0.it.flat.slice(0, 5000)), Array.from(p0.it.off.slice(-50))]) && it2.flat.length === p0.it.flat.length;
+      const p1 = IrabModel.cvPlan(), n1 = IrabModel.cvPlanCount(p1); for (let i = 0; i < n1; i++) IrabModel.cvPlanStep(p1, i);
+      const p2 = IrabModel.cvPlan(); let s2 = 0, m2 = 0; for (;;) { const a = performance.now(); const d = IrabModel.cvStep341(p2, 4); m2 = Math.max(m2, performance.now() - a); s2++; if (d) break; }
+      o.cv = [p1.n, p1.ok, p1.t2, p1.ids.length].join() === [p2.n, p2.ok, p2.t2, p2.ids.length].join() && p1.n > 1000; o.cvSteps = s2; o.cvMax = Math.round(m2);
+      const acc0 = IrabModel._acc, aP = IrabModel._aP341; IrabModel._acc = null; IrabModel._aP341 = null; const a1 = JSON.stringify(IrabModel.accuracy());
+      IrabModel._acc = null; IrabModel._aP341 = null; let s3 = 0; while (!IrabModel.accuracyStep341(2)) s3++; o.acc = a1 === JSON.stringify(IrabModel._acc) && s3 > 3; IrabModel._acc = acc0 || IrabModel._acc; IrabModel._aP341 = aP;
+      const J = m => JSON.stringify([...m].map(([k, v]) => [k, v && v.lemma, v && v.root, v && v.pos, (v && v.alts || []).map(x => x.lemma)]));
+      const N0 = J(RootFinder.nounIndex()), keepN = RootFinder._nouns; RootFinder._nouns = null; RootFinder._nP341 = null; let s4 = 0; while (!RootFinder.nounIndexStep341(1)) s4++; o.noun = N0 === J(RootFinder._nouns) && s4 > 1;
+      const F0 = JSON.stringify([...RootFinder.lexFreq333()]); RootFinder._lf333 = null; RootFinder._lfP341 = null; let s5 = 0; while (!RootFinder.lexFreqStep341(1)) s5++; o.lf = F0 === JSON.stringify([...RootFinder._lf333]);
+      return o; });
+    if (!e.fold || !e.intern || !e.cv || !e.acc || !e.noun || !e.lf) throw new Error('a stepped builder differs from its one-shot form: ' + JSON.stringify(e));
+    if (e.cvMax > 250) throw new Error('a cross-validation slice held the thread: ' + JSON.stringify(e));   // ≤ ~60 ms at 1× (the first featurised unit)
+  });
+
+  await check('v341 — speed: a search keystroke — typing on narrows the last hits (the same rows in the same order as a full scan, the in-text sentences likewise), the open sheet re-renders only what follows the search row (the input keeps its focus; the hits are the full render\'s, node for node), within budget per keystroke', async () => {
+    const KEY_MS = 15;   // v341 at 1×: median typed-on keystroke (dispatch → layout) 7.8 / 6.1 / 9.7 ms in three suite runs; budget = median × 1.5 (at 4× in the A/B probe: see CLAUDE.md v341-S)
+    const r = await page.evaluate(async () => { const o = { bad: [], keys: [] };
+      while (!buildCorpusStep144(1e9)); while (!DoctrineSearch.warm144(1e9));
+      for (const s of [['كت', 'كتب', 'كتاب', 'كتا'], ['qa', 'qal', 'q', 'qa'], ['say', 'sayi'], ['ال', 'الل', 'الله', 'اللهم'], ['من', 'منه']]) { SEARCH_LAST341 = null; InText._last341 = null;
+        for (const q of s) { const a = searchCorpus(q).map(x => x.tok), it = InText.find(q, 60); const L = SEARCH_LAST341, L2 = InText._last341; SEARCH_LAST341 = null; InText._last341 = null;
+          const b = searchCorpus(q).map(x => x.tok), it2 = InText.find(q, 60); SEARCH_LAST341 = L; InText._last341 = L2;
+          if (a.length !== b.length || a.some((x, i) => x !== b[i]) || it.n !== it2.n || it.hits.map(h => h.sen.id + h.ti).join() !== it2.hits.map(h => h.sen.id + h.ti).join()) o.bad.push(q); } }
+      const after = () => { const row = sheetInner.querySelector('.ref-search-row'); let h = ''; for (let n = row.nextSibling; n; n = n.nextSibling) h += n.nodeType === 1 ? n.outerHTML : n.textContent; return h; };
+      window.__QISSA_RENDER_SYNC = false; openSearch(''); let inp = document.getElementById('corpusSearch'); inp.focus();
+      for (const q of ['ك', 'كت', 'كتب', 'كتا', 'كتاب', 'قا', 'قال']) { const t0 = performance.now(); inp.value = q; inp.dispatchEvent(new Event('input')); void sheetInner.offsetHeight; const d = performance.now() - t0;
+        if (q.length >= 3) o.keys.push(Math.round(d * 10) / 10);
+        const same = document.getElementById('corpusSearch') === inp && document.activeElement === inp, part = after(); openSearch(q); const full = after();
+        if (!same || part !== full) o.bad.push('render:' + q); inp = document.getElementById('corpusSearch'); inp.focus(); }
+      window.__QISSA_RENDER_SYNC = true; closeSheet(); return o; });
+    const med = [...r.keys].sort((a, b) => a - b)[r.keys.length >> 1];
+    console.log('      keystroke (typed on, dispatch → layout, 1×): median ' + med + ' ms of ' + JSON.stringify(r.keys));
+    if (r.bad.length) throw new Error('the narrowed search or the partial render differs from the full one: ' + r.bad.join(', '));
+    if (med > KEY_MS) throw new Error('a keystroke took ' + med + ' ms (budget ' + KEY_MS + ')');
+  });
+
+  await check('v341 — speed: the games hub\'s pool-backed counts (ṣarf, ḥarakāt, iʿrāb, roles, nidāʾ, waqf, the shop, the duel, the shart, the ghost, the baḥr, the kinds, the ʿibāra) step their pool a slice per task before they read it — the same counts as the one-shot supply, no step over budget (gWaqf\'s whole pool was one 15-s task at 4× on a fresh profile)', async () => {
+    const STEP_MS = 170;   // a step's budget is 8 ms; one pool unit (a chapter) can run past it — the slowest step 27 / 110 / 57 ms at 1× in three suite runs; budget = 1.5 × the worst run
+    const r = await page.evaluate(async () => { renderLibrary();
+      const ids = ['gSarf', 'gHarakat', 'gCase', 'gRole', 'gNida', 'gWaqf', 'gShop', 'gDuel', 'gShart', 'gGhost', 'gBahr', 'gIbaraTr'];
+      const pools = { gSarf: SARF_POOL, gHarakat: HARAKAT_POOL, gCase: CASE_POOL, gRole: ROLE_POOL, gNida: NIDA_POOL, gWaqf: WAQF_POOL, gShop: SHOPC_POOL, gDuel: DUEL_POOL, gShart: SHART_POOL, gGhost: GHOST_POOL, gBahr: BAHR_POOL, gIbaraTr: IBARA_POOL };
+      const want = {}; ids.forEach(id => { want[id] = GameFactory.get(id).supply(); });
+      const reset = () => { ids.forEach(id => { pools[id]._c = { scope: null }; const k = 'supply:__lib:' + id; Relax._mem.delete(k); try { localStorage.removeItem(Relax.key(k)); } catch (e) {} }); try { Relax._mem.delete('supply:__lib:gIbaraAr'); localStorage.removeItem(Relax.key('supply:__lib:gIbaraAr')); localStorage.removeItem(Relax.key('supply:__lib:gHizli')); Relax._mem.delete('supply:__lib:gHizli'); } catch (e) {} };
+      reset(); await new Promise(res => setTimeout(res, 0));
+      const per = {}; const orig = {}; ids.forEach(id => { const f = orig[id] = SUPPLY_STEP334[id]; SUPPLY_STEP334[id] = function (b) { const t = performance.now(); try { return f(b); } finally { per[id] = Math.max(per[id] || 0, Math.round(performance.now() - t)); } }; });
+      openGames(); const t1 = Date.now(); while (!ids.every(id => GameFactory.supplyKnown(id) !== undefined) && Date.now() - t1 < 240000) await new Promise(res => setTimeout(res, 50));
+      ids.forEach(id => { SUPPLY_STEP334[id] = orig[id]; });
+      const got = {}; ids.forEach(id => { got[id] = GameFactory.supplyKnown(id); });
+      closeSheet(); return { per, want, got, ms: Date.now() - t1 }; });
+    const diff = Object.keys(r.want).filter(id => r.want[id] !== r.got[id]);
+    if (diff.length) throw new Error('a stepped count differs from the one-shot supply: ' + diff.map(id => id + ' ' + r.got[id] + '≠' + r.want[id]).join(', '));
+    const worst = Math.max(...Object.values(r.per)); console.log('      hub counts filled in ' + r.ms + ' ms; the slowest step ' + worst + ' ms (1×) ' + JSON.stringify(r.per));
+    if (worst > STEP_MS) throw new Error('a pool step held the thread: ' + JSON.stringify(r.per) + ' (budget ' + STEP_MS + ')');
   });
 
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
