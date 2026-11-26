@@ -17352,6 +17352,57 @@ if (!CHROME) {
     } finally { await page.setViewportSize(was); }
   });
 
+  await check('v339 — clause maḥall: the seven clauses WITH a seat, by Ibn Hishām\'s own examples (Qawāʿid al-Iʿrāb bāb 1, m.49–84): زَيْدٌ قَامَ أَبُوهُ — «فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَإِ» and أَبُوهُ the doer (no hidden doer, B08); إِنَّهُمْ كَانُوا يَظْلِمُونَ / وَمَا كَادُوا يَفْعَلُونَ — naṣb, the khabar of kāna and kāda; قَالَ إِنِّي عَبْدُ اللهِ — the maqūl in naṣb; إِذَا / حَيْثُ + a clause — jarr by annexation, لَمَّا offered with the book\'s own hedge; مَنْ يُضْلِلِ اللهُ فَلَا هَادِيَ لَهُ — jazm, هَادِيَ lā\'s ism built on the fatḥa; مَرَرْتُ بِرَجُلٍ يَقُومُ أَبُوهُ, وَاتَّقُوا يَوْمًا تُرْجَعُونَ فِيهِ — the naʿt in jarr / naṣb; جَاءَ أَخُوكَ يَضْحَكُ — the ḥāl, OFFERED with the fresh start (after «al»: ḥāl or naʿt); إِذَا itself «ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ …» as the shelf\'s 442 lines name it; رَجُلٌ افْتَرَى — the mubtadaʾ line and the clause line give the same two readings', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      const o = {}; for (const [k, s] of Object.entries({ zaid: 'زَيْدٌ قَامَ أَبُوهُ', kana: 'إِنَّهُمْ كَانُوا يَظْلِمُونَ', kada: 'وَمَا كَادُوا يَفْعَلُونَ', qala: 'قَالَ إِنِّي عَبْدُ اللهِ', idha: 'إِذَا جَاءَ نَصْرُ اللهِ وَالْفَتْحُ', haythu: 'حَيْثُ جَلَسَ زَيْدٌ', lamma: 'لَمَّا جَاءَ زَيْدٌ قَامَ عَمْرٌو',
+        man: 'مَنْ يُضْلِلِ اللهُ فَلَا هَادِيَ لَهُ', iftara: 'رَجُلٌ افْتَرَى عَلَى اللهِ', rajul: 'مَرَرْتُ بِرَجُلٍ يَقُومُ أَبُوهُ', yawm: 'وَاتَّقُوا يَوْمًا تُرْجَعُونَ فِيهِ', akh: 'جَاءَ أَخُوكَ يَضْحَكُ', walad: 'جَاءَ الْوَلَدُ يَضْحَكُ' })) o[k] = L(s);
+      o.of = (() => { const rows = SentenceAnalyzer.analyze('مَرَرْتُ بِرَجُلٍ يَقُومُ أَبُوهُ'); const v = JumlaMahallEngine.of(rows, 2); return v && { mahall: v.mahall, seat: v.seat, certainty: v.certainty, cite: v.cite }; })();
+      return o; });
+    const has = (a, re) => re.test(a || '');
+    if (!has(r.zaid[1], /وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَإِ «زَيْدٌ»/) || !has(r.zaid[1], /وَفَاعِلُهُ «أَبُوهُ»/) || has(r.zaid[1], /مُسْتَتِرٌ/)) throw new Error('زَيْدٌ قَامَ أَبُوهُ: ' + J(r.zaid));
+    if (!has(r.kana[2], /فِي مَحَلِّ نَصْبٍ خَبَرُ «كَانُوا»/) || !has(r.kada[2], /فِي مَحَلِّ نَصْبٍ خَبَرُ «كَادُوا»/)) throw new Error('kāna / kāda: ' + J([r.kana, r.kada]));
+    if (!has(r.qala[0], /وَجُمْلَةُ «إِنِّي عَبْدُ اللهِ» فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ/)) throw new Error('the maqūl: ' + J(r.qala));
+    if (!has(r.idha[1], /فِي مَحَلِّ جَرٍّ بِإِضَافَةِ «إِذَا» إِلَيْهَا/) || !has(r.haythu[1], /فِي مَحَلِّ جَرٍّ بِإِضَافَةِ «حَيْثُ» إِلَيْهَا/)) throw new Error('the ẓurūf: ' + J([r.idha, r.haythu]));
+    if (!has(r.lamma[1], /عِنْدَ مَنْ قَالَ بِاسْمِيَّتِهَا، أَوْ لَا مَحَلَّ لَهَا عِنْدَ مَنْ قَالَ بِحَرْفِيَّتِهَا/) || !has(r.lamma[3], /جَوَابُ «لَمَّا» لَا مَحَلَّ لَهَا/)) throw new Error('لَمَّا: ' + J(r.lamma));
+    if (!has(r.man[3], /وَالْجُمْلَةُ فِي مَحَلِّ جَزْمٍ جَوَابُ الشَّرْطِ/) || !has(r.man[4], /مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ نَصْبٍ، اسْمُ لَا النَّافِيَةِ لِلْجِنْسِ/) || has(r.man[4], /مَعْطُوفٌ|مُضَافٌ إِلَيْهِ/)) throw new Error('مَنْ يُضْلِلِ اللهُ فَلَا هَادِيَ لَهُ: ' + J(r.man));
+    if (!has(r.rajul[2], /وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ نَعْتٌ لِـ«رَجُلٍ»/) || !has(r.yawm[2], /فِي مَحَلِّ نَصْبٍ نَعْتٌ لِـ«يَوْمًا»/)) throw new Error('the naʿt: ' + J([r.rajul, r.yawm]));
+    if (!r.of || r.of.mahall !== 'jarr' || r.of.seat !== 'naat' || r.of.certainty !== 'exact' || !/m\.84/.test(r.of.cite)) throw new Error('of(): ' + J(r.of));
+    if (!has(r.idha[0], /^ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ خَافِضٌ لِشَرْطِهِ مَنْصُوبٌ بِجَوَابِهِ/)) throw new Error('إِذَا: ' + J(r.idha[0]));
+    if (!has(r.iftara[0], /فِي مَحَلِّ رَفْعٍ خَبَرُهُ، أَوْ نَعْتٌ لَهُ وَالْخَبَرُ بَعْدَهَا/) || !has(r.iftara[1], /نَعْتٌ لِـ«رَجُلٌ»، أَوْ فِي مَحَلِّ رَفْعٍ خَبَرٌ/)) throw new Error('رَجُلٌ افْتَرَى: ' + J(r.iftara));
+    if (!has(r.akh[2], /وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ حَالٌ مِنْ «أَخُوكَ»، أَوْ مُسْتَأْنَفَةٌ لَا مَحَلَّ لَهَا/) || !has(r.walad[2], /حَالٌ مِنْ «الْوَلَدُ»، أَوْ نَعْتٌ لَهُ إِنْ كَانَتْ «أَلْ» فِيهِ جِنْسِيَّةً/)) throw new Error('the ḥāl: ' + J([r.akh, r.walad]));
+  });
+
+  await check('v339 — clause maḥall: the clauses WITHOUT a seat (Qawāʿid al-Iʿrāb m.63–67, m.124–128; tr. III): إِنْ قَامَ أَخُوكَ قَامَ عَمْرٌو — the jāzim\'s answer without fāʾ has none; لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ — nor the non-jāzim\'s; وَاللهِ لَأَفْعَلَنَّ — the oath\'s answer; قَالَ اللهُ تَعَالَى إِنَّ الْعِزَّةَ لِلَّهِ — تَعَالَى a muʿtariḍa, the maqūl after it; the control جَاءَ الَّذِي قَامَ أَبُوهُ keeps its ṣila line and gives the verb no seat; a lām of motive (لِيَنْظُرَ) makes a maṣdar, no clause in a seat', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      const o = {}; for (const [k, s] of Object.entries({ in: 'إِنْ قَامَ أَخُوكَ قَامَ عَمْرٌو', law: 'لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ', qasam: 'وَاللهِ لَأَفْعَلَنَّ', taala: 'قَالَ اللهُ تَعَالَى إِنَّ الْعِزَّةَ لِلَّهِ', sila: 'جَاءَ الَّذِي قَامَ أَبُوهُ', lam: 'جَاءَ رَجُلٌ فَقِيرٌ لِيَنْظُرَ' })) o[k] = L(s); return o; });
+    const has = (a, re) => re.test(a || '');
+    if (!has(r.in[3], /وَالْجُمْلَةُ جَوَابُ الشَّرْطِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ \(لَمْ تَقْتَرِنْ بِالْفَاءِ وَلَا بِـ«إِذَا»\)/)) throw new Error('the bare answer: ' + J(r.in));
+    if (!has(r.law[3], /جَوَابُ «لَوْ» لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ \(جَوَابُ شَرْطٍ غَيْرِ جَازِمٍ\)/) || !has(r.qasam[1], /وَالْجُمْلَةُ جَوَابُ الْقَسَمِ لَا مَحَلَّ لَهَا/)) throw new Error('لَوْ / the oath: ' + J([r.law, r.qasam]));
+    if (!has(r.taala[2], /وَالْجُمْلَةُ مُعْتَرِضَةٌ لَا مَحَلَّ لَهَا/) || !has(r.taala[0], /وَجُمْلَةُ «إِنَّ الْعِزَّةَ لِلَّهِ» فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ/)) throw new Error('تَعَالَى: ' + J(r.taala));
+    if (!has(r.sila[1], /وَجُمْلَةُ «قَامَ أَبُوهُ» صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ/) || has(r.sila[2], /مَحَلِّ|جُمْلَةُ/)) throw new Error('the ṣila control: ' + J(r.sila));
+    if (has(r.lam[3], /الْجُمْلَةُ/)) throw new Error('the lām of motive makes a maṣdar: ' + J(r.lam));
+  });
+
+  await check('v339 — clause maḥall against the authored lines (every story; JumlaMahallEngine.audit, measured 2026-11-26): agreeing statements ≥ 1905 of the corpus\'s clause-seat statements — the khabar ≥ 615, the naʿt ≥ 255, the muʿtariḍa ≥ 325, the muḍāf ilayh ≥ 300, the maqūl ≥ 105, the jawāb without a seat ≥ 40; contradictions ≤ 121, by an EXACT rule ≤ 19 (each listed in research/story-grammar-audit-2026-11-26.md for the hoca)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const a = JumlaMahallEngine.audit(); const B = a.bySeat, g = k => (B[k] || {}).agree || 0; return { agree: a.tot.agree, contra: a.tot.contra, exact: a.exactContra, khabar: g('khabar'), naat: g('naat'), mutarida: g('mutarida'), mudaf: g('mudaf'), maqul: g('maqul'), jawabNo: g('jawabNo'), sentences: a.sentences }; });
+    const f = [];
+    if (r.agree < 1905) f.push('agree'); if (r.khabar < 615) f.push('khabar'); if (r.naat < 255) f.push('naat'); if (r.mutarida < 325) f.push('mutarida'); if (r.mudaf < 300) f.push('mudaf'); if (r.maqul < 105) f.push('maqul'); if (r.jawabNo < 40) f.push('jawabNo');
+    if (r.contra > 121) f.push('contra'); if (r.exact > 19) f.push('exact');
+    if (f.length) throw new Error('floors / ceilings ' + f.join(',') + ': ' + J(r));
+  });
+
+  await check('v339 — the shelf\'s grammar audit is reproducible from the page (GrammarAudit339, the page half of tools/grammar_audit.js): every engine reduces to agrees / silent / contradicts with its items, and the contradictions stay under the ceilings measured on 2026-11-26 — clause maḥall exact ≤ 19, sign ≤ 141, taʿalluq exact ≤ 256, adab ≤ 570, إِنَّ / أَنَّ ≤ 27, order ≤ 2 — so a later wave that adds slips (or an engine that turns on correct lines) fails here', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => GrammarAudit339.run(['jumla', 'sign', 'taalluq', 'adab', 'inna', 'tartib']).map(s => ({ id: s.id, error: s.error || null, agree: s.agree, silent: s.silent, contra: s.contra, exact: s.exact, items: (s.items || []).length, shape: (s.items || []).every(x => x.key && x.certainty && 'verdict' in x) })));
+    const C = { jumla: ['exact', 19], sign: ['contra', 141], taalluq: ['exact', 256], adab: ['contra', 570], inna: ['contra', 27], tartib: ['contra', 2] };
+    const F = { jumla: 1905, sign: 34000, taalluq: 600, adab: 45000, inna: 1100, tartib: 1000 };
+    const f = r.filter(s => s.error || !s.shape || s[C[s.id][0]] > C[s.id][1] || s.agree < F[s.id] || !(s.items > 0 || s.contra === 0));
+    if (r.length !== 6 || f.length) throw new Error('the audit: ' + J(f.length ? f : r));
+  });
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
