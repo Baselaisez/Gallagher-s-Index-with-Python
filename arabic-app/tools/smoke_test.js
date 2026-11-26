@@ -17983,8 +17983,16 @@ if (!CHROME) {
     const live = await page.evaluate(() => GrammarAudit339.run(['jumla', 'sign', 'taalluq', 'adab', 'inna', 'tartib']).map(s => ({ id: s.id, error: s.error || null, contra: s.contra, items: (s.items || []).map(x => ({ key: String(x.key || ''), word: String(x.word || '') })) })));
     const b = w => String(w || '').normalize('NFC').replace(/[^ء-ي]/g, '');
     const out = [];
+    // (v345) a wave that CREATES a contradiction judges it in its own file research/story-audit-triage-delta-<tag>.json
+    // ({tag, records: [{engine, key, pkg, ch, sen, word, verdict: L|E|C|undecided, cluster, cite: {file, line, ar}, why}]} — key, pkg, ch,
+    // sen and word exactly as tools/grammar_audit.js prints the record); the main triage file is not edited by hand
+    const DELTA = fsx.readdirSync(pathx.join(__dirname, '..', 'research')).filter(n => /^story-audit-triage-delta-[a-z0-9-]+\.json$/.test(n)).sort()
+      .flatMap(n => (rd(n).records || []).map(x => Object.assign({ delta: n }, x)));
+    const dbad = DELTA.filter(x => !V.has(x.verdict) || !x.engine || !x.key || !x.why || ((x.verdict === 'L' || x.verdict === 'C') && !(x.cite && x.cite.file && x.cite.ar)));
+    if (dbad.length || DELTA.filter(x => x.verdict === 'undecided').length > 3) throw new Error('a delta record is not judged by a book line: ' + J(dbad.slice(0, 5)));
+    const TR = T.records.concat(DELTA);
     for (const s of live) {
-      const R = T.records.filter(x => x.engine === s.id);
+      const R = TR.filter(x => x.engine === s.id);
       if (s.error || s.contra > R.length) { out.push({ id: s.id, error: s.error, contra: s.contra, judged: R.length }); continue; }
       for (const it of s.items) {
         const k = it.key, ok = s.id === 'sign' ? (() => { const m = /^(.*)…:(.*)$/.exec(k); return m && R.some(x => x.pkg.startsWith(m[1]) && x.sen === m[2] && b(x.word) === b(it.word)); })()
