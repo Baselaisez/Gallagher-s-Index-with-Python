@@ -2601,6 +2601,56 @@
   .continue-card .cc-play { width: 44px; height: 44px; border-radius: 50%; background: var(--hero-ac); color: var(--hero);
     display: grid; place-items: center; flex: none; }
   .continue-card .cc-play svg { width: 24px; height: 24px; }
+  /* v338 — the day's lesson: one card, at most four steps, tokens only */
+  .today-card { display: grid; gap: var(--s2); padding: var(--s3) var(--s4); margin: 0 0 var(--s3); border: 1px solid var(--line);
+    border-radius: var(--radius); background: var(--panel); box-shadow: var(--btn-sh2); font-family: var(--ui-font); color: var(--ink); }
+  .today-card .tc-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s2); }
+  .today-card .stat-strip.mini.in-card { margin: 0; margin-inline-start: auto; gap: var(--s1); flex: none; }
+  .today-card .stat-strip.mini.in-card .st-tile { flex: none; min-width: var(--tap); padding: 0 var(--s2); }
+  .today-card .stat-strip.mini.in-card .st-l { display: none; }
+  .today-card .tc-h { font-weight: 600; font-size: var(--t-md); }
+  .today-card .tc-n { font-size: var(--t-xs); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .today-card .tc-first { margin: 0; font-size: var(--t-sm); color: var(--ink-soft); line-height: 1.4; text-wrap: pretty; }
+  .today-card .tc-steps { list-style: none; margin: 0; padding: 0; display: grid; }
+  .today-card .tc-step { width: 100%; min-width: 0; display: flex; align-items: center; gap: var(--s2); min-height: var(--tap); padding: 0;
+    background: none; border: 0; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+  .today-card .tc-step:disabled { cursor: default; opacity: .55; }
+  .today-card .tc-i { width: 24px; height: 24px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: var(--t-xs);
+    font-weight: 700; border: 1px solid var(--line); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .today-card .tc-i svg { width: 14px; height: 14px; }
+  .today-card .tc-step.next .tc-i { border-color: var(--accent); color: var(--accent); }
+  .today-card .tc-step.done .tc-i { background: var(--ok); border-color: var(--ok); color: var(--panel); }
+  .today-card .tc-t { display: grid; min-width: 0; line-height: 1.25; }
+  .today-card .tc-t b { font-weight: 600; font-size: var(--t-sm); }
+  .today-card .tc-t small { font-size: var(--t-xs); color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .today-card .tc-step.done b { color: var(--ink-soft); }
+  .today-card .tc-go { width: 100%; }
+  .today-card .tc-done { display: flex; align-items: center; gap: var(--s3); font-size: var(--t-sm); color: var(--ink-soft); }
+  .today-card .tc-done .goal-ring { width: 40px; height: 40px; }
+  .today-card .tc-done .goal-ring > span { width: 30px; height: 30px; color: var(--accent); }
+  .ch-end { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); margin: var(--s2) 0 var(--s4); font-family: var(--ui-font); }
+  .ch-end[hidden] { display: none; }
+  .ch-states { display: flex; flex-wrap: wrap; gap: var(--s1); }
+  .chs { font-size: var(--t-xs); padding: 2px var(--s2); border-radius: var(--r-full); border: 1px solid var(--line); color: var(--ink-soft); }
+  .chs.qdone { color: var(--accent); border-color: var(--accent); }
+  .chs.recalled { color: var(--ok); border-color: var(--ok); }
+  .ch-pill[data-state="read"]::after, .ch-pill[data-state="qdone"]::after { content: " ✓"; color: var(--ink-soft); }
+  .ch-pill[data-state="qdone"]::after { color: var(--accent); }
+  .ch-pill[data-state="recalled"]::after { content: " ★"; color: var(--ok); }
+  .vm-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); margin: var(--s2) 0; }
+  .vmark { display: inline-block; font-family: var(--ui-font); font-size: var(--t-xs); color: var(--ink-soft); padding: 2px var(--s2);
+    border: 1px dashed var(--line); border-radius: var(--r-full); }
+  .vmark.ok { color: var(--ok); border: 1px solid var(--ok); }
+  .vmark.auto { border-style: dotted; }
+  .vm-report { font-family: var(--ui-font); font-size: var(--t-xs); color: var(--ink-soft); background: none; border: 0; cursor: pointer;
+    min-height: var(--tap); padding: 0 var(--s2); }
+  #legendVerify { display: block; font-size: var(--t-xs); color: var(--ink-soft); }
+  .chq-ask { margin: 0 0 var(--s2); font-family: var(--ui-font); font-size: var(--t-sm); font-weight: 600; }
+  .chq-result { display: grid; gap: var(--s3); font-family: var(--ui-font); }
+  .chq-h { margin: 0; font-weight: 600; font-size: var(--t-md); }
+  .chq-lines { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s2); font-size: var(--t-sm); }
+  .chq-lines li.ok b { color: var(--ok); }
+  .chq-lines li.miss b { color: var(--ink-soft); }
   /* the hub: the day's task and the coach's pick sit above the shelves */
   .hub-task { display: flex; align-items: center; gap: var(--s3); padding: var(--s3) var(--s4); border-radius: var(--radius);
     background: var(--hero); color: var(--hero-ink); font-family: var(--ui-font); margin: 0 0 var(--s3); }
@@ -2908,6 +2958,7 @@ body.data-pending header.app::after{content:"";position:absolute;left:0;right:0;
     <span><span class="sw" style="background:var(--lvl3)"></span><span class="lvl-label" data-lvl="3">Level 3</span></span>
     <span><span class="sw" style="background:var(--lvl4)"></span><span class="lvl-label" data-lvl="4">Level 4</span></span>
     <span id="legendHelp">Tap any word for meaning, صرف conjugation, إعراب &amp; grammar · tap ▶ to hear the sentence</span>
+    <span id="legendVerify"></span>
   </div>
   <footer class="note">
     <span lang="ar" style="font-family:var(--ar-font)">الأمثلة، بناء الأفعال، العوامل، الكافية، قطر الندى، إظهار الأسرار</span>
@@ -2940,6 +2991,18 @@ const L = {
         goalRelaxed:"Relaxed", goalRegular:"Regular", goalSerious:"Serious", goalIntense:"Intense", goalPreset:"{r} reviews · {n} new words",
         playerSent:"Sentence {i} / {n}", playerListening:"Listening", playerPrev:"Previous sentence", playerNext:"Next sentence", playerStop:"Stop",
         /* wave 79 */ goalH:"Daily goal · {p}%", goalSub:"{r} reviews and {n} new words still to go today.", goalDone:"Today's goal is done — the streak is safe.",
+        /* v338 */ vmPending:"Author's analysis · awaiting the hoca's review", vmReviewed:"Reviewed by a hoca", vmAuto:"Automatic analysis", vmReport:"Report an error", vmBackup:"Back up / Restore",
+        vmLegend:"Analysis marks — «Author's analysis · awaiting the hoca's review»: the text's own iʿrāb, not yet signed off · «Reviewed by a hoca»: signed off · «Automatic analysis»: computed by the engine, as for a sentence you type.",
+        vmReportOn:"Reporting is on — tap ⚑ beside a sentence, or «Report an error» in a word's iʿrāb; your notes travel with the backup.",
+        lsH:"Today's lesson", lsStart:"Start the lesson", lsNext:"Next: {s}", lsDone:"Done for today — well studied.", lsStepDone:"Step done — the card shows the next one.",
+        lsFirst:"While you read, tap any word: its meaning, its root and its role in the sentence open below.",
+        lsRecall:"Recall", lsRecallSub:"review {n} due cards", lsRecallNone:"nothing due today", lsCollect:"Collect your first words", lsCollectSub:"save words as you read — step 1",
+        lsRead:"Read", lsReadNext:"the next chapter of {t}", lsReadSuggest:"suggested at your level: {t}", lsReadNone:"every open story is finished",
+        lsCheck:"Check yourself", lsCheckSub:"three questions on the chapter you read", lsCheckWait:"after you finish a chapter", lsStrong:"Strengthen", lsStrongSub:"{g} · one round",
+        chqOffer:"Check yourself — {n} questions", chqTitle:"Check yourself", chqAsk:"Questions from this chapter only.", chqClozeAsk:"Which word fills the gap?", chqMeanAsk:"What does the marked word mean here?",
+        chqRoleAsk:"What is the marked word doing in the sentence?", chqSee:"See the result", chqResultH:"Chapter {n} · {c} of {a} right", chqRight:"right", chqWrong:"not yet",
+        chqMeaningOf:"the meaning of {w}", chqWordIn:"the word {w} in its sentence", chqNone:"This chapter cannot feed a safe question yet.",
+        chRead:"read", chQDone:"questions done ({c} of {a})", chRecalled:"recalled", backToLesson:"Back to today's lesson", backToReading:"Back to the text",
         xpLbl:"XP", xpToday:"today", hubTask:"Today's task: {n} answers", hubTaskSub:"Reward: +{x} XP", hubTaskDone:"Done — the reward is yours.",
         hubReco:"Recommended", hubRecoDesc:"Your weakest area right now, by your own ratings — its questions are picked at about 75 % expected success.", pgStreakSub:"best {b}",
         pgShield:"Your weekly mercy is still there — one missed day will not break the chain.", pgShieldUsed:"The weekly mercy is spent — read every day till the week turns.",
@@ -3368,6 +3431,18 @@ const L = {
         goalRelaxed:"Rahat", goalRegular:"Düzenli", goalSerious:"Ciddi", goalIntense:"Yoğun", goalPreset:"{r} tekrar · {n} yeni kelime",
         playerSent:"Cümle {i} / {n}", playerListening:"Dinleniyor", playerPrev:"Önceki cümle", playerNext:"Sonraki cümle", playerStop:"Durdur",
         /* wave 79 */ goalH:"Günlük hedef · %{p}", goalSub:"Bugün {r} tekrar ve {n} yeni kelime kaldı.", goalDone:"Bugünün hedefi tamam — seri güvende.",
+        /* v338 */ vmPending:"Yazar çözümlemesi · hoca onayı bekliyor", vmReviewed:"Hoca onaylı", vmAuto:"Otomatik çözümleme", vmReport:"Hata bildir", vmBackup:"Yedekle / Geri yükle",
+        vmLegend:"Çözümleme işaretleri — «Yazar çözümlemesi · hoca onayı bekliyor»: metnin kendi i'râbı, henüz onaylanmadı · «Hoca onaylı»: onaylandı · «Otomatik çözümleme»: yazdığın bir cümlede olduğu gibi motorun hesabı.",
+        vmReportOn:"Bildirim açık — bir cümlenin yanındaki ⚑'ye ya da kelimenin i'râbındaki «Hata bildir»e dokun; notların yedekle birlikte taşınır.",
+        lsH:"Bugünün dersi", lsStart:"Derse başla", lsNext:"Sıradaki: {s}", lsDone:"Bugünlük tamam — iyi çalıştın.", lsStepDone:"Adım tamam — kart sıradakini gösteriyor.",
+        lsFirst:"Okurken herhangi bir kelimeye dokun: anlamı, kökü ve cümledeki görevi aşağıda açılır.",
+        lsRecall:"Hatırla", lsRecallSub:"vakti gelen {n} kartı tekrar et", lsRecallNone:"bugün tekrar yok", lsCollect:"İlk kelimelerini topla", lsCollectSub:"okurken kelime kaydet — 1. adım",
+        lsRead:"Oku", lsReadNext:"{t} — sıradaki bölüm", lsReadSuggest:"seviyene uygun: {t}", lsReadNone:"açık hikâyelerin hepsi bitti",
+        lsCheck:"Kendini dene", lsCheckSub:"okuduğun bölümden üç soru", lsCheckWait:"bir bölümü bitirince", lsStrong:"Pekiştir", lsStrongSub:"{g} · bir tur",
+        chqOffer:"Kendini dene — {n} soru", chqTitle:"Kendini dene", chqAsk:"Sorular yalnız bu bölümden.", chqClozeAsk:"Boşluğa hangi kelime gelir?", chqMeanAsk:"İşaretli kelime burada ne demek?",
+        chqRoleAsk:"İşaretli kelime cümlede hangi görevde?", chqSee:"Sonucu gör", chqResultH:"Bölüm {n} · {a} sorudan {c} doğru", chqRight:"doğru", chqWrong:"henüz değil",
+        chqMeaningOf:"{w} kelimesinin anlamı", chqWordIn:"{w} kelimesi cümlesinde", chqNone:"Bu bölümden henüz güvenli bir soru çıkmıyor.",
+        chRead:"okundu", chQDone:"soruları tamamlandı ({a} sorudan {c})", chRecalled:"hatırlandı", backToLesson:"Bugünün dersine dön", backToReading:"Metne dön",
         xpLbl:"XP", xpToday:"bugün", hubTask:"Günün görevi: {n} cevap", hubTaskSub:"Ödül: +{x} XP", hubTaskDone:"Tamam — ödül senin.",
         hubReco:"Önerilen", hubRecoDesc:"Kendi puanlarına göre şu an en zayıf alanın — soruları yaklaşık %75 başarı beklenen yerden seçilir.", pgStreakSub:"en iyisi {b}",
         pgShield:"Haftalık affın duruyor — bir gün kaçırırsan seri bozulmaz.", pgShieldUsed:"Haftalık af kullanıldı — hafta dönene kadar her gün oku.",
@@ -4419,6 +4494,7 @@ function renderStory(){
     tools.appendChild(tr);
     sec.appendChild(tools);
     storyEl.appendChild(sec);
+    if (si === ch.sentences.length - 1 && !storyLocked(CUR)) storyEl.appendChild(chEndEl(CUR, ch));   // (v338) the chapter's foot: its state, its three questions
   };
   const tail = () => {
     if (!storyLocked(CUR)) { storyEl.appendChild(storyEndCta(CUR)); return; }
@@ -4456,6 +4532,7 @@ function renderStory(){
       const b = document.createElement("button");
       b.className = "ch-pill";
       b.textContent = ui().chapter + " " + ch.n;
+      b.dataset.ch = ch.n; markPill(b, CUR, ch);   // (v338) read · questions done · recalled
       b.addEventListener("click", () => { flushStoryRender(); const h = storyEl.querySelector(`.chapter-head[data-ch="${ch.n}"]`); if (h) h.scrollIntoView({ block: "start" }); });
       nav.appendChild(b);
     });
@@ -4737,6 +4814,9 @@ function markRead(sen, ch){
     prog[senId] = 1;
     localStorage.setItem("qissa-progress", JSON.stringify(state.progress));
     countActivity("read");
+    // (v338) the read that finishes a chapter: counted for the Today card, and the chapter's foot offers its questions
+    const chx = ch || (typeof sen === "string" ? null : ((SENTENCE_FLAT.find(f => f.sen === sen) || {}).ch || chapterOf(CUR, sen)));
+    if (chx && chapterRead(CUR, chx)) { const t = rollDay(); t.chDone = (t.chDone || 0) + 1; lessonSave(t); refreshChapterMarks(CUR, chx); }
     // The completion moment: exactly once, on the read that finishes the story.
     const st = storyStats(CUR);
     if (st.total && st.read === st.total) {
@@ -4810,13 +4890,19 @@ function renderLibrary(){
   const dStats = deckStats();
   // design wave 79 — the package's daily-goal ring takes the top of the door; the three numbers become one quiet row
   // of chips under it (same ids, same data, same tap into the deck).
+  // v338 — «Bugünün dersi»: directly under the goal ring; a brand-new learner (nothing read, nothing saved) meets it first
+  const lsSteps = lessonSteps();
+  const lsFresh = !state.deck.length && !Object.values(state.progress || {}).some(p => p && Object.keys(p).length);
+  if (lsFresh) storyEl.insertAdjacentHTML("beforeend", todayCardHtml(lsSteps, true));
   storyEl.insertAdjacentHTML("beforeend", goalCardHtml());
   document.getElementById("goalCard").addEventListener("click", () => openDeck());
+  if (!lsFresh) storyEl.insertAdjacentHTML("beforeend", todayCardHtml(lsSteps, false));
+  bindTodayCard(lsSteps);
   const strip = document.createElement("div");
   strip.className = "stat-strip mini";
   strip.id = "statStrip";
   const tile = (k, n, lbl, ar, ic) =>
-    `<button class="st-tile" data-st="${k}"><span class="st-ar" lang="ar">${ar}</span><span class="st-i">${IconSet.svg(ic, true)}</span>` +
+    `<button class="st-tile" data-st="${k}" title="${escapeAttr(lbl)}"><span class="st-ar" lang="ar">${ar}</span><span class="st-i">${IconSet.svg(ic, true)}</span>` +
     `<span class="st-n">${n}</span><span class="st-l">${lbl}</span></button>`;
   strip.innerHTML =
     tile("streak", state.streak.days || 0, ui().statStreak, "مُوَاظَبَة", "fire") +
@@ -4824,7 +4910,9 @@ function renderLibrary(){
     tile("known", dStats.mature, ui().statKnown, "مَحْفُوظ", "checkc");
   strip.querySelectorAll("[data-st]").forEach(b2 =>
     b2.addEventListener("click", () => openDeck()));
-  storyEl.appendChild(strip);
+  // v338 — the door stays calm: with the Today card on it, the three chips fold into the card's header instead of a row of their own
+  const tcHead = document.querySelector("#todayCard .tc-head");
+  if (tcHead) { strip.classList.add("in-card"); tcHead.appendChild(strip); } else storyEl.appendChild(strip);
   const lastSt = continueStory();
   if (lastSt) {
     const { total, read } = storyStats(lastSt);
@@ -4992,6 +5080,7 @@ function openReadCtrls(){
         <button class="tbtn${state.roles ? " on" : ""}" data-rct="roleToggle">🎨 ${U.readCtrlPaint}</button>
         <button class="tbtn${state.taqdir ? " on" : ""}" data-rct="taqdirToggle"><span lang="ar">[هُوَ]</span> ${U.readCtrlTaqdir}</button>
       </div>
+      <div class="rc-group rc-toggles" id="rcHelpRow"><button class="tbtn" data-rch="report">⚑ ${U.vmReport}</button><button class="tbtn" data-rch="backup">💾 ${U.vmBackup}</button></div>
       <p class="ref-intro">${U.readCtrlHint}</p>
       <p class="ar-sample" lang="ar" dir="rtl" style="font-size:${state.arSize}rem">إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ</p>`;
     // wave 72: the sheet owns no logic — each control clicks the bar's own button and redraws
@@ -5007,6 +5096,12 @@ function openReadCtrls(){
     sheetInner.querySelectorAll("[data-rt]").forEach(b =>
       b.addEventListener("click", () => { setReadTheme(b.dataset.rt); draw(); }));
     bindThemePicks(sheetInner, draw);   // wave 79
+    // (v338) the report path that exists (ReviewNotes' ⚑ on every sentence) and the backup (wave 76), findable here
+    sheetInner.querySelectorAll("[data-rch]").forEach(b => b.addEventListener("click", () => {
+      if (b.dataset.rch === "backup") { openStats(); const bx = document.getElementById("backupBox"); if (bx) bx.scrollIntoView({ block: "start" }); return; }
+      const d = ReviewNotes.load(); if (!d.on && !REVIEW_BUILD) { d.on = true; ReviewNotes.save(d); if (CUR) renderStory(); }
+      showToast(U.vmReportOn);
+    }));
   };
   draw();
   showSheet();
@@ -5274,7 +5369,7 @@ function runQuiz(cfg){
     if (G.optsFor !== G.i) { G.opts = cfg.options(it); G.optsFor = G.i; G.answered = null; }
     const opts = G.opts;
     const done = G.answered != null;
-    sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
+    sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${cfg.backLabel || ui().back2}</button></div>
       <div class="tabs"><button class="on">${cfg.title} · ${G.i + 1}/${cfg.items.length}</button></div>
       <p class="ref-intro">${cfg.ask}</p>
       ${cfg.question(it)}
@@ -5284,7 +5379,7 @@ function runQuiz(cfg){
       <div class="game-meta"><span>${ui().score}: ${G.score}</span>${
         G.combo >= 2 ? `<span class="combo">🔥 ×${G.combo}</span>` : ""}${
         cfg.deadline ? `<span class="clock105" id="qClock">⏱ ${Math.max(0, Math.ceil((cfg.deadline - Date.now()) / 1000))} ${ui().hizliClock}</span>` : ""}</div><div id="qWhy"></div>`;
-    document.getElementById("gBack").addEventListener("click", () => { QUIZ_RESUME = null; clearInterval(G.tick105); openGames(); });
+    document.getElementById("gBack").addEventListener("click", () => { QUIZ_RESUME = null; clearInterval(G.tick105); (cfg.back || openGames)(); });
     if (cfg.deadline) {
       clearInterval(G.tick105);
       G.tick105 = setInterval(() => {
@@ -5325,12 +5420,12 @@ function runQuiz(cfg){
        ${cfg.after ? cfg.after(it) : ""}
        <div class="sheet-actions">` +
       extras.map((x, k) => `<button class="btn" id="qX${k}">${x.label(it)}</button>`).join("") +
-      `<button class="btn primary" id="qNext">${G.i + 1 < cfg.items.length ? ui().next : ui().replay}</button>
+      `<button class="btn primary" id="qNext">${G.i + 1 < cfg.items.length ? ui().next : (cfg.doneLabel || ui().replay)}</button>
        </div>`;
     extras.forEach((x, k) =>
       document.getElementById("qX" + k).addEventListener("click", () => x.run(it)));
     document.getElementById("qNext").addEventListener("click", () => {
-      if (++G.i < cfg.items.length) draw(); else if (cfg.deadline) draw(); else { QUIZ_RESUME = null; cfg.restart(); }
+      if (++G.i < cfg.items.length) draw(); else if (cfg.deadline) draw(); else { QUIZ_RESUME = null; if (lessonRoundEnd(cfg)) return; cfg.restart(); }   /* (v338) a coach round from the Today card ends its step */
     });
   }
   QUIZ_RESUME = { redraw: draw };
@@ -16346,7 +16441,7 @@ function renderJumlaOut(){
   const rows = SentenceAnalyzer.analyze(conjState.jumla);
   if (!rows.length) { out.innerHTML = `<p class="empty">${ui().jadhrBad}</p>`; return; }
   const lang = state.uiLang === "tr" ? "tr" : "en";
-  let h = "";
+  let h = verifyMarkHtml(null);   // (v338) a typed sentence is the engine's reading, and says so
   const st = sentenceType(rows);
   if (st) h += `<p class="conj-known"><span lang="ar">${SENT_TYPE_LBL[st].ar}</span> — ${SENT_TYPE_LBL[st][lang]}</p>`;
   // the SHART frame, when one stands: the adat with its doctrine, the shart
@@ -18603,18 +18698,10 @@ function openWord(tok, el, tab, ctx){
   }
   if (mode === "word") {
     html += `<p class="lemma">${entry.lemma} <button class="say" id="sayWord" aria-label="${ui().sayWord}" title="${ui().sayWord}">🔊</button></p>`;
-    if (morph) html += `<p class="bab-line">${morph.bab} — ${morph.wazn}</p>`;
-    html += `<div class="facts">`;
-    if (entry.pos) html += chip(posLabel(entry.pos));
-    if (entry.form) html += chip(ui().formChip + " " + entry.form);
-    if (entry.root) html += `<button class="root-btn" data-root="${escapeAttr(entry.root)}">` +
-      chip(ui().rootChip + " " + arSpan(entry.root), "tappable") + `</button>`;
-    if (entry.plural) html += chip(ui().pluralChip + " " + arSpan(entry.plural));
-    if (entry.level > 0) html += chip(ui().level + " " + entry.level, "level");
+    // (v338) the sheet's order: the meaning in this text first, then the word's build (wazn, root, form) — blocks moved, not rewritten
     // wave 80: the meaning leads, in the reader's language; the other language stays, small, under it
     const g1 = state.uiLang === "tr" ? "tr" : "en", g2 = g1 === "tr" ? "en" : "tr";
-    html += `</div>
-      <div class="w-head"><div class="w-gl"><p class="gloss w-g1">${entry.gloss[g1] || entry.gloss[g2] || ""}</p>
+    html += `<div class="w-head"><div class="w-gl"><p class="gloss w-g1">${entry.gloss[g1] || entry.gloss[g2] || ""}</p>
       <p class="gloss w-g2"><small>${g2.toUpperCase()}</small>${entry.gloss[g2] || ""}</p></div></div>`;
     // The form in the text, beside the dictionary form: وَاعْفُ next to عَفَا,
     // named (emir — sen) and translated as the FORM means («affet!»), so the
@@ -18630,6 +18717,15 @@ function openWord(tok, el, tab, ctx){
         <div class="it-cell"><span lang="ar">${lbl.ar}</span> — ${state.uiLang === "tr" ? lbl.tr : lbl.en}</div>
       </div>`;
     }
+    if (morph) html += `<p class="bab-line">${morph.bab} — ${morph.wazn}</p>`;
+    html += `<div class="facts">`;
+    if (entry.pos) html += chip(posLabel(entry.pos));
+    if (entry.form) html += chip(ui().formChip + " " + entry.form);
+    if (entry.root) html += `<button class="root-btn" data-root="${escapeAttr(entry.root)}">` +
+      chip(ui().rootChip + " " + arSpan(entry.root), "tappable") + `</button>`;
+    if (entry.plural) html += chip(ui().pluralChip + " " + arSpan(entry.plural));
+    if (entry.level > 0) html += chip(ui().level + " " + entry.level, "level");
+    html += `</div>`;
     // (wave 158) a derived noun shows how it was built: wazn, root, each rule, the deduced meaning
     if (!morph && !tok.segments && entry.root && !/prop|name/i.test(entry.pos || "")) { try { const dv = IshtiqaqEngine.read(tok.s.full); if (dv && dv.conf === "verb" && dv.full && IshtiqaqEngine.rootKey(entry.root) === dv.rootKey) html += ishtiqaqHtml(dv, true); } catch (e) {} }   // only where the glossary's own root agrees; the entry's gloss leads, the wazn's literal sense follows
     if (tok.segments) {
@@ -18735,6 +18831,7 @@ function openWord(tok, el, tab, ctx){
     html += `<p class="lemma">${tok.s.full}</p>
       <div class="irab-ar" lang="ar">${tok.irab.ar}</div>
       <p class="irab-en">${tok.irab[state.uiLang] || tok.irab.en}</p>
+      <div class="vm-row">${verifyMarkHtml(CUR)}${CUR && wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok ? `<button class="vm-report" id="irabReport">⚑ ${ui().vmReport}</button>` : ""}</div>
       ${wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok ? GovView.blockHtml(wordCtx.sen, wordCtx.ti) : ""}
       ${decisionChainHtml(tok)}
       <p class="sarf-note">${ui().irabNote}</p>`;
@@ -18744,6 +18841,16 @@ function openWord(tok, el, tab, ctx){
   sheetInner.innerHTML = html;
   sheetInner.querySelectorAll("[data-tab]").forEach(b =>
     b.addEventListener("click", () => openWord(tok, el, b.dataset.tab)));
+  // (v338) «Hata bildir»: the reviewers' own note form (ReviewNotes, wave 32) on this sentence, this word preselected
+  const rpb = document.getElementById("irabReport");
+  if (rpb) rpb.addEventListener("click", () => {
+    const sen = wordCtx && wordCtx.sen, ch = sen && chapterOf(CUR, sen);
+    if (!ch || sheetInner.querySelector(".rev-form")) return;
+    const f = ReviewNotes.form(sen, ch, rpb), sel = f.querySelector(".rev-ti");
+    if (sel) sel.value = String(wordCtx.ti);
+    const kb = f.querySelector('[data-kind="irab"]'); if (kb) kb.click();
+    rpb.closest(".vm-row").after(f);
+  });
   sheetInner.querySelectorAll("[data-gj]").forEach(b => b.addEventListener("click", () => {   // (v318) another word of the sentence
     const j = +b.dataset.gj, sen = wordCtx && wordCtx.sen; if (!sen || j === wordCtx.ti) return;
     const t2 = sen.tokens[j], el2 = GovView.wordEl(el, sen, wordCtx.ti, j);
@@ -35468,7 +35575,10 @@ function renderDeck(){
     b.addEventListener("click", () => {
       const c = dueCards()[0];
       if (c) { c.pick = (c.pick || 0) + 1; grade(c, b.dataset.q); }
-      reviewStep = 0; renderDeck();
+      reviewStep = 0;
+      // (v338) the Today card's recall step: five cards, then back to the door
+      if (LESSON && LESSON.step === "recall" && (--LESSON.left <= 0 || !dueCards().length)) { lessonStepEnd(); return; }
+      renderDeck();
     }));
   sheetInner.querySelectorAll("[data-del]").forEach(b =>
     b.addEventListener("click", () => { state.deck.splice(+b.dataset.del, 1); persistDeck(); renderDeck(); }));
@@ -44404,6 +44514,8 @@ function renderLegend(){
   });
   const help = document.getElementById("legendHelp");
   if (help) help.textContent = ui().legendHelp;
+  const lv338 = document.getElementById("legendVerify");
+  if (lv338) lv338.textContent = ui().vmLegend;   // (v338) the three analysis marks, explained once
   // The chrome is user-facing copy, not build metadata: no version strings and
   // no repository paths in front of a reader.
   const eyebrow = document.getElementById("eyebrow");
@@ -44750,14 +44862,19 @@ function goalCardHtml(){
     <span class="goal-xp"><b>+${Xp.today()}</b><span>${ui().xpLbl} · ${ui().xpToday}</span></span></button>`;
 }
 // the hub's two cards above the shelves: the day's task (graded answers today) and the coach's recommendation
-function hubTaskHtml(){
-  const n = Math.min(Xp.TASK_N, Xp.answersToday()), done = Xp.taskDone() || n >= Xp.TASK_N;
+// the coach's pick — the weakest area's game; one function so the hub card and the Today card (v338) can never disagree
+function hubRecoPick(){
   const RECO = { vocab: ["gCloze", "✏️"], sarf: ["gSarf", "⚙️"], nahw: ["gTahlil", "🎓"], adad: ["gAdad", "🔢"], balagha: ["gWajh", "🎭"] };
   // the weakest area first; an area whose game this scope cannot feed yields to the next-weakest
   const order = EloModel.AREAS.slice().sort((a, b) => state.elo[a] - state.elo[b]);
   const weak = order.find(a => { const n = GameFactory.supplyKnown(RECO[a][0]); return n === null || n === undefined || n >= 1; }) || order[0];
   const [gid, em] = RECO[weak] || RECO.vocab;
   const title = { gCloze: ui().clozeGame, gSarf: ui().sarfGame, gTahlil: ui().tahlil, gAdad: ui().adadGame, gWajh: ui().wajhGame }[gid];
+  return { gid, em, weak, title };
+}
+function hubTaskHtml(){
+  const n = Math.min(Xp.TASK_N, Xp.answersToday()), done = Xp.taskDone() || n >= Xp.TASK_N;
+  const { gid, em, weak, title } = hubRecoPick();
   return `<div class="hub-task${done ? " done" : ""}" id="hubTask"><span class="ht-i">${IconSet.svg(done ? "checkc" : "gift", true)}</span>
       <span class="ht-main"><span class="ht-row"><span>${ui().hubTask.replace("{n}", Xp.TASK_N)}</span><span>${n}/${Xp.TASK_N}</span></span>
       <span class="ht-bar"><span style="width:${Math.round(100 * n / Xp.TASK_N)}%"></span></span>
@@ -44769,6 +44886,216 @@ function hubTaskHtml(){
 function bindHubTask(){
   const b = document.getElementById("hubReco");
   if (b) b.addEventListener("click", () => { const g = document.getElementById(b.dataset.game); if (g && !g.disabled) g.click(); });
+}
+// ============ v338 — «Bugünün dersi / Today's lesson»: the door's existing parts, connected into one short lesson ============
+// Four steps, each one tap into a feature that already exists — the deck's review (capped at five), the reader (the
+// story in progress, or one suggested at the learner's level), the chapter's three questions, the coach's game (the
+// hub's own pick) — and each ticks itself from what the app already counts: today's reviews (qissa-today.reviewed), a
+// chapter finished today (qissa-today.chDone, the one new counter), a chapter checked today (qissa-chq's date), a coach
+// round finished from the card (qissa-today.strong). Nothing here grades, schedules or scores on its own.
+const LESSON_RECALL_N = 5;
+let LESSON = null;   // the step the card started: { step, left, a0 } — ends the step and brings the learner back to the door
+function chN(ch){ return ch ? (ch.n !== undefined ? ch.n : ch.chapter) : undefined; }
+function chqAll(){ try { return JSON.parse(localStorage.getItem("qissa-chq") || "{}") || {}; } catch (e) { return {}; } }
+function chqOf(st, ch){ return chqAll()[st.id + "|" + chN(ch)] || null; }
+function chqPut(st, ch, rec){ const m = chqAll(); m[st.id + "|" + chN(ch)] = rec; localStorage.setItem("qissa-chq", JSON.stringify(m)); }
+function chqToday(){ const k = todayKey(); return Object.values(chqAll()).some(r => r && r.date === k); }
+function chapterRead(st, ch){ const prog = state.progress[st.id] || {}; return !!(ch && ch.sentences && ch.sentences.length && ch.sentences.every(s => senRead(prog, s, ch, st))); }
+// «recalled»: a word saved FROM this chapter has since been reviewed and passed (FSRS sets reps back to 0 on «again»)
+function chapterRecalled(st, ch){
+  const ids = new Set((ch.sentences || []).map(s => s.id));
+  return state.deck.some(c => c.ctx && c.ctx.story === st.id && ids.has(c.ctx.sen) && (ensureSrs(c).srs.reps || 0) >= 1);
+}
+function lessonStory(){
+  const go = continueStory(); if (go) return { st: go, cont: true };
+  const lv = state.myLevel || 1;
+  const open = storiesSorted().filter(st => { if (storyLocked(st)) return false; const { total, read } = storyStats(st); return total && read < total; });
+  const st = open.find(s => s.level === lv) || open.find(s => s.level <= lv) || open[0];
+  return st ? { st, cont: false } : null;
+}
+// the text just read: the last chapter of the story in hand that is read through and not yet checked
+function lessonCheckTarget(){
+  const st = STORIES.find(s => s.id === state.lastRead);
+  if (!st || !storyStats(st).read || !storyParsed148(st, "chapters")) return null;   // never parses a story at the door (wave 127): the text read this session is parsed already
+  const chs = st.chapters || [];
+  for (let i = chs.length - 1; i >= 0; i--) if (chapterRead(st, chs[i]) && !chqOf(st, chs[i])) return { st, ch: chs[i] };
+  return null;
+}
+function lessonSave(t){ localStorage.setItem("qissa-today", JSON.stringify(t)); }
+function lessonSteps(){
+  const t = rollDay(), U = ui(), arT = s => `<span lang="ar">${s.title.ar}</span>`;
+  if (LESSON && LESSON.step === "strong" && !t.strong && Xp.answersToday() - (LESSON.a0 || 0) >= 4) { t.strong = 1; lessonSave(t); }
+  const rd = lessonStory();
+  const read = { id: "read", label: U.lsRead, done: (t.chDone || 0) >= 1,
+    sub: rd ? (rd.cont ? U.lsReadNext : U.lsReadSuggest).replace("{t}", arT(rd.st)) : U.lsReadNone,
+    run: rd ? () => { LESSON = { step: "read" }; openStory(rd.st, rd.cont); } : null };
+  const due = dueCards().length;
+  const recall = !state.deck.length
+    ? { id: "collect", label: U.lsCollect, sub: U.lsCollectSub, done: false, run: read.run }
+    : { id: "recall", label: U.lsRecall, done: t.reviewed >= LESSON_RECALL_N || !due,
+        sub: due ? U.lsRecallSub.replace("{n}", Math.min(LESSON_RECALL_N, due)) : U.lsRecallNone,
+        run: due ? () => { LESSON = { step: "recall", left: LESSON_RECALL_N }; openDeck(); } : null };
+  const ct = lessonCheckTarget();
+  const check = { id: "check", label: U.lsCheck, done: chqToday(), sub: ct ? U.lsCheckSub : U.lsCheckWait,
+    run: ct ? () => { LESSON = { step: "check" }; startChapterCheck(ct.st, ct.ch); } : null };
+  const rp = hubRecoPick();
+  const strong = { id: "strong", label: U.lsStrong, done: !!t.strong, sub: U.lsStrongSub.replace("{g}", rp.title || ""),
+    run: () => { LESSON = { step: "strong", a0: Xp.answersToday() }; openGames(); const b = document.getElementById("hubReco"); if (b) b.click(); } };
+  // a brand-new learner has nothing to recall: reading leads, and «collect your first words» points back at it
+  return state.deck.length ? [recall, read, check, strong] : [read, recall, check, strong];
+}
+function lessonNext(steps){ return steps.find(s => !s.done && s.run && s.id !== "collect") || steps.find(s => !s.done && s.run) || null; }
+// the primary button leads the steps, so the one tap into the text sits in a phone's upper half (wave 72's gate)
+function todayCardHtml(steps, fresh){
+  const U = ui(), nDone = steps.filter(s => s.done).length, all = nDone === steps.length, next = all ? null : lessonNext(steps);
+  return `<section class="today-card${all ? " done" : ""}" id="todayCard" aria-labelledby="tcH">
+    <div class="tc-head"><span class="tc-h" id="tcH">${U.lsH}</span><span class="tc-n">${nDone}/${steps.length}</span></div>
+    ${fresh ? `<p class="tc-first" id="tcFirst">${U.lsFirst}</p>` : ""}
+    ${all ? `<div class="tc-done"><span class="goal-ring" style="--pct:100%"><span>${IconSet.svg("check", true)}</span></span><span>${U.lsDone}</span></div>`
+      : next ? `<button class="btn primary tc-go" id="todayGo" data-ls="${next.id}">${nDone ? U.lsNext.replace("{s}", next.label) : U.lsStart}</button>` : ""}
+    <ol class="tc-steps">${steps.map((s, i) => `<li><button class="tc-step${s.done ? " done" : ""}${next === s ? " next" : ""}" data-ls="${s.id}"${s.run ? "" : " disabled"}>
+      <span class="tc-i">${s.done ? IconSet.svg("check", true) : i + 1}</span><span class="tc-t"><b>${s.label}</b><small>${s.sub}</small></span></button></li>`).join("")}</ol>
+  </section>`;
+}
+function bindTodayCard(steps){
+  const card = document.getElementById("todayCard"); if (!card) return;
+  card.querySelectorAll("[data-ls]").forEach(b => b.addEventListener("click", () => { const s = steps.find(x => x.id === b.dataset.ls); if (s && s.run) s.run(); }));
+}
+// a step that ends brings the learner back to the door, where the card shows the next one
+function lessonStepEnd(){
+  LESSON = null; showToast(ui().lsStepDone);
+  if (!CUR) toDoor(); else closeSheet();
+}
+function toDoor(){ renderLibrary(); try { window.scrollTo(0, 0); } catch (e) {} }
+// runQuiz's last «next»: a coach round started from the card ends the step instead of replaying
+function lessonRoundEnd(cfg){
+  if (cfg.chq || !LESSON || LESSON.step !== "strong") return false;
+  const t = rollDay(); t.strong = 1; lessonSave(t);
+  lessonStepEnd(); return true;
+}
+// ---- v338 · 2 — three questions at the end of a chapter, built only from that chapter's own authored data ----
+// (1) the cloze game's own item for a word of the chapter (its sentence, its lemma, the cloze pool's distractors);
+// (2) the meaning of another word of the chapter, against glosses of the same part of speech that share no word with
+// the answer; (3) the role game's item on a token of the chapter whose role has a grammar note — a token TAGGED with
+// that note first. A chapter that cannot feed one of them asks fewer; nothing is composed, every answer is a stored line.
+function chapterCheckItems(st, ch){
+  const inCh = new Set(ch.sentences), out = [];
+  const savedCur = CUR, savedFb = GAME_SCOPE_FALLBACK;
+  let cl = [];
+  try { CUR = st; GAME_SCOPE_FALLBACK = false; cl = clozeItems().filter(it => inCh.has(it.sen)); }
+  catch (e) { cl = []; } finally { CUR = savedCur; GAME_SCOPE_FALLBACK = savedFb; }
+  const cz = shuffle(cl.slice()).map(it => ({ ...it, pool: clozePool(it) })).find(it => it.pool.length >= 3);
+  if (cz) out.push({ kind: "cloze", ...cz });
+  const byPos = glossaryByPos(st), gl = e => String(T(e.gloss) || "").trim();
+  const words = g => new Set(g.toLowerCase().split(/[^a-zçğıöşüâîû]+/).filter(w => w.length >= 3));
+  const mean = [];
+  ch.sentences.forEach(sen => sen.tokens.forEach((tok, ti) => {
+    const e = st.glossary[tok.lex];
+    if (!e || !e.level || !e.lemma || !CLOZE_POS.includes(e.pos) || !gl(e) || phraseAt(sen, ti)) return;
+    if (cz && tok.lex === cz.tok.lex) return;
+    const g0 = gl(e), w0 = words(g0), seen = new Set([g0]);
+    const pool = [];
+    for (const g of shuffle((byPos[e.pos] || []).slice())) {
+      const gg = gl(g);
+      if (!gg || seen.has(gg) || g.lemma === e.lemma || (e.root && g.root === e.root) || sen.tokens.some(t => t.lex === g.lex)) continue;
+      if ([...words(gg)].some(w => w0.has(w))) continue;   // a shared word may be a second right answer
+      seen.add(gg); pool.push(g); if (pool.length >= 3) break;
+    }
+    if (pool.length >= 3) mean.push({ kind: "mean", sen, ti, tok, entry: e, pool });
+  }));
+  if (mean.length) out.push(shuffle(mean)[0]);
+  const rl = []; try { ROLE_POOL.scan({ st, ch }, rl); } catch (e) {}
+  const withNote = rl.filter(it => { const n = (ROLE_BY_KEY[it.key] || {}).note; return n && GRAMMAR[n]; });
+  const tagged = withNote.filter(it => (it.tok.grammar || []).includes(ROLE_BY_KEY[it.key].note));
+  const ro = shuffle((tagged.length ? tagged : withNote).slice())[0];
+  if (ro) out.push({ kind: "role", ...ro, note: ROLE_BY_KEY[ro.key].note });
+  return out;
+}
+function startChapterCheck(st, ch){
+  const items = chapterCheckItems(st, ch), U = ui(), tr = state.uiLang === "tr";
+  showSheet();
+  if (!items.length) {
+    sheetInner.innerHTML = `<div class="backrow"><button id="gBack">← ${CUR ? U.backToReading : U.backToLesson}</button></div><p class="empty">${U.chqNone}</p>`;
+    document.getElementById("gBack").addEventListener("click", () => { LESSON = null; closeSheet(); });
+    return;
+  }
+  const got = [];
+  const marked = it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, t => `<b class="target">${t.s.full}</b>`)}</div>`;
+  runQuiz({
+    chq: true, title: U.chqTitle, ask: U.chqAsk, items, doneLabel: U.chqSee,
+    backLabel: "← " + (CUR ? U.backToReading : U.backToLesson),
+    back: () => { QUIZ_RESUME = null; LESSON = null; if (CUR) closeSheet(); else toDoor(); },
+    area: it => it.kind === "role" ? "nahw" : "vocab",
+    lvl: it => it.kind === "role" ? 4 : (it.entry && it.entry.level) || 3,
+    itemKey: it => it.kind === "role" ? null : it.tok.lex,
+    question: it => it.kind === "cloze"
+      ? `<p class="chq-ask">${U.chqClozeAsk}</p><div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>`
+      : `<p class="chq-ask">${it.kind === "mean" ? U.chqMeanAsk : U.chqRoleAsk}</p>${marked(it)}`,
+    options: it => it.kind === "cloze"
+      ? shuffle([{ html: it.entry.lemma, ok: true, ar: true }, ...shuffle(it.pool.slice()).slice(0, 3).map(g => ({ html: g.lemma, ok: false, ar: true }))])
+      : it.kind === "mean"
+      ? shuffle([{ html: escapeAttr(T(it.entry.gloss)), ok: true }, ...it.pool.map(g => ({ html: escapeAttr(T(g.gloss)), ok: false }))])
+      : shuffle([ROLE_BY_KEY[it.key], ...shuffle(ROLE_KEYS.filter(r => r.k !== it.key)).slice(0, 3)])
+          .map(o => ({ html: `<span lang="ar">${o.ar}</span> · ${tr ? o.tr : o.en}`, ok: o.k === it.key, k: o.k })),
+    whyNot: (it, picked) => it.kind === "role" ? roleWhyNot(it, picked) : "",
+    why: it => it.kind === "role" ? irabWhy(it.tok.irab)
+      : `<span lang="ar" style="font-family:var(--ar-font);font-size:1.3em">${it.tok.s.full}</span> — ${T(it.entry.gloss)}${it.tok.irab ? "<br>" + irabWhy(it.tok.irab) : ""}`,
+    after: it => it.kind === "role" ? questionTestHtml(it.note) : "",
+    onAnswer: (it, ok) => { got.push({ it, ok }); },
+    restart: () => chapterCheckResult(st, ch, got, items.length),
+  });
+}
+function chapterCheckResult(st, ch, got, asked){
+  const U = ui(), correct = got.filter(g => g.ok).length, role = got.find(g => g.it.kind === "role");
+  chqPut(st, ch, { asked, correct, date: todayKey(), note: role ? role.it.note : null });
+  if (LESSON && LESSON.step === "check") LESSON = null;
+  // the result speaks in learning terms: the grammar note's own title, the word, the meaning — never a count of taps
+  const what = it => it.kind === "role" ? escapeAttr(T(GRAMMAR[it.note].title))
+    : (it.kind === "mean" ? U.chqMeaningOf : U.chqWordIn).replace("{w}", `<span lang="ar">${it.entry.lemma}</span>`);
+  sheetInner.innerHTML = `<div class="tabs"><button class="on">${U.chqTitle}</button></div>
+    <div class="chq-result" id="chqResult"><p class="chq-h">${U.chqResultH.replace("{n}", chN(ch)).replace("{c}", correct).replace("{a}", asked)}</p>
+    <ul class="chq-lines">${got.map(g => `<li class="${g.ok ? "ok" : "miss"}" data-kind="${g.it.kind}">${what(g.it)} — <b>${g.ok ? U.chqRight : U.chqWrong}</b></li>`).join("")}</ul>
+    <div class="ch-states">${chStateHtml(st, ch)}</div>
+    <div class="sheet-actions">${CUR === st ? `<button class="btn" id="chqText">${U.backToReading}</button>` : ""}<button class="btn primary" id="chqLesson">${U.backToLesson}</button></div></div>`;
+  refreshChapterMarks(st, ch);
+  const bt = document.getElementById("chqText"); if (bt) bt.addEventListener("click", () => closeSheet());
+  document.getElementById("chqLesson").addEventListener("click", toDoor);
+}
+// ---- v338 · 3 — the analysis says where it comes from, where the learner reads it ----
+// The story's own review field (the About sheet's source): «reviewed» only when the package says so; an engine-made
+// package or a typed sentence is «automatic»; every other authored line is the author's, awaiting the hoca.
+function verifyMark(st){
+  const U = ui();
+  if (!st || st.review === "auto-generated-unreviewed") return { k: "auto", t: U.vmAuto };
+  if (st.review === "reviewed") return { k: "ok", t: U.vmReviewed };
+  return { k: "pending", t: U.vmPending };
+}
+function verifyMarkHtml(st){ const m = verifyMark(st); return `<span class="vmark ${m.k}" data-vm="${m.k}" title="${escapeAttr(ui().vmLegend)}">${m.k === "ok" ? "✓ " : ""}${m.t}</span>`; }
+// the three states, quietly, on the chapter's foot and its pill: read · questions done (n of N) · recalled
+function chStateHtml(st, ch){
+  if (!chapterRead(st, ch)) return "";
+  const q = chqOf(st, ch), U = ui();
+  return `<span class="chs read">✓ ${U.chRead}</span>` +
+    (q ? `<span class="chs qdone">${U.chQDone.replace("{c}", q.correct).replace("{a}", q.asked)}</span>` : "") +
+    (chapterRecalled(st, ch) ? `<span class="chs recalled">★ ${U.chRecalled}</span>` : "");
+}
+function fillChEnd(d, st, ch){
+  const s = chStateHtml(st, ch);
+  d.hidden = !s;
+  d.innerHTML = s ? `<div class="ch-states">${s}</div>` + (chqOf(st, ch) ? "" : `<button class="btn primary ch-check">${ui().chqOffer.replace("{n}", 3)}</button>`) : "";
+  const b = d.querySelector(".ch-check"); if (b) b.addEventListener("click", () => startChapterCheck(st, ch));
+}
+function chEndEl(st, ch){ const d = document.createElement("div"); d.className = "ch-end"; d.dataset.ch = chN(ch); fillChEnd(d, st, ch); return d; }
+function markPill(b, st, ch){
+  const r = chapterRead(st, ch), q = r && chqOf(st, ch), rc = r && chapterRecalled(st, ch), U = ui();
+  b.dataset.state = rc ? "recalled" : q ? "qdone" : r ? "read" : "";
+  b.title = rc ? U.chRecalled : q ? U.chQDone.replace("{c}", q.correct).replace("{a}", q.asked) : r ? U.chRead : "";
+}
+function refreshChapterMarks(st, ch){
+  if (CUR !== st) return;
+  const n = chN(ch);
+  const d = storyEl.querySelector(`.ch-end[data-ch="${n}"]`); if (d) fillChEnd(d, st, ch);
+  const p = storyEl.querySelector(`.ch-pill[data-ch="${n}"]`); if (p) markPill(p, st, ch);
 }
 // the progress page's new sections, computed from state alone
 class ProgressPage {

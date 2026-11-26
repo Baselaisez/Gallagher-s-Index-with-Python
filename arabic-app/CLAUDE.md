@@ -15543,3 +15543,39 @@ measured over the 78 packages (authored lines naming the construction vs the eng
   «نُطَاعِنُ مَا تَرَاخَى النَّاسُ», al-Ḥārith «وَمَا يُحِيرُ الْبُكَاءُ» (authored the question; al-Durra allows the negation), «قَبْلُ مَا قَدْ وَشَى بِنَا»;
   al-Uṣūl al-Munīfa 2:s9/s10 «ابْتُلِينَا» (fatḥa and an object نَا for a passive); whether دَهْدَى (dahda-amr) is heard; the kāna tāmma two; the heard
   plurals رِئَال، قَرَاضِبَة and ʿAmr's fifteen; the Hadhf seats the engine leaves open in both poems.
+
+## v338 — Today's lesson, chapter questions, verification marks
+
+Test users who had never used an Arabic app asked «what do I study today?». This wave CONNECTS parts that existed; it adds no engine.
+- **«Bugünün dersi / Today's lesson»** (`lessonSteps`, `todayCardHtml`, `bindTodayCard`, under the goal ring; FIRST on a brand-new profile,
+  with one line on what a word tap does). At most four steps, each one tap into an existing feature, each ticking itself today:
+  **Hatırla** — the deck's review capped at five (`LESSON.left`, the grade handler ends the step at the door), ticked by `qissa-today.reviewed ≥ 5`
+  or nothing due; on an empty deck it is «İlk kelimelerini topla» and points at Read. **Oku** — `continueStory()`, else one unfinished,
+  never premium-locked story at `state.myLevel` from `storiesSorted()`; ticked by `qissa-today.chDone` (the one new counter: a chapter
+  finished today, counted in `markRead`). **Kendini dene** — the chapter questions on the last read, unchecked chapter of `state.lastRead`
+  (only a story already parsed: the door never parses one); ticked by a `qissa-chq` record dated today. **Pekiştir** — exactly the hub's pick
+  (`hubRecoPick()`, now shared by `hubTaskHtml`), one round: `runQuiz`'s last «next» ends it (`lessonRoundEnd`) and sets `qissa-today.strong`.
+  One primary button runs the first unticked step; all ticked → «Bugünlük tamam» on the goal ring's own done ring. With the card on the door,
+  the stat strip's three chips fold into the card's header (same ids, labels as titles).
+- **Three questions at a chapter's end** (`chapterCheckItems`, `startChapterCheck`, `chapterCheckResult`): the cloze game's own item for a
+  word of the chapter (`clozeItems()` scoped to the story, kept to the chapter, ≥ 3 distractors), the meaning of another word (glosses of the
+  same POS, no shared word with the answer, distinct, not the same root), and the role game's item (`ROLE_POOL.scan` on that chapter) whose
+  role has a grammar note — a token tagged with that note first. Fewer when the chapter cannot feed one. Through `runQuiz` (Elo + XP per
+  answer; `cfg.back`, `cfg.backLabel`, `cfg.doneLabel` added). Stored in `qissa-chq` `{ "<story>|<ch>": {asked, correct, date, note} }`
+  (Backup carries it). The result names the grammar note by its own title. States on the chapter's foot (`.ch-end`, which offers «Kendini
+  dene — 3 soru» once the chapter is read) and its pill (`data-state`): read · questions done (n of N) · recalled (a word saved from that
+  chapter has since passed a review: `srs.reps ≥ 1`).
+- **A tap is not «unknown».** A word tap runs `markRead` (the sentence is read) and `openWord` (display only): nothing writes Elo, item
+  ratings, the deck, XP answers or any lookup counter (none exists); «difficult» in the deck is lapses from review grades only.
+- **Verification marks** (`verifyMark`): the word sheet's iʿrāb block says «Yazar çözümlemesi · hoca onayı bekliyor» for a pending package,
+  «Hoca onaylı» only when `st.review === "reviewed"` (no package says so today), «Otomatik çözümleme» for an engine package and on the
+  Atölye's typed sentence (`renderJumlaOut`, whose guesses already carry «guess» chips and the model's votes as percentages — shown as
+  alternatives, not certainties). One legend entry (`#legendVerify`). «Hata bildir» in the iʿrāb block opens the reviewers' own note form
+  (`ReviewNotes`, wave 32) on that sentence with the word and kind preselected; the reading-settings sheet has «Hata bildir» (turns the ⚑
+  on) and «Yedekle / Geri yükle» (the progress page's Backup box).
+- **Word sheet order**: the meaning (and the form in this text) now lead, then wazn / root / form chips — blocks moved, not rewritten. The
+  role block (iʿrāb tab) already names the governor through `GovView.blockHtml` (v313/v318).
+- Smoke: three «v338 — …» checks before «v333 — the received imports».
+- Older checks changed, because this wave redesigns exactly what they measured: «wave 72 — the phone shows the text first» now gates the
+  door's first way into the text — the Today card's primary button on a fresh profile (it sits above the steps for this reason) — at ≤ 403 px
+  and requires the first shelf card inside the first screen; its «wave 75» clause now asks one shelf card in the first screen, not three.

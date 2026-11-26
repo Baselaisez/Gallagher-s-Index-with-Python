@@ -12457,12 +12457,15 @@ if (!CHROME) {
     await ctx.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; window.__QISSA_QUIET_OFF = true; });
     await ctx.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
     const p9 = await ctx.newPage(); await p9.goto(url); await p9.waitForSelector('.lib-card'); await p9.waitForTimeout(300);
-    const lib = await p9.evaluate(() => { const c = document.querySelector('.continue-card, .lib-card'); const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); };
-      return { top: Math.round(c.getBoundingClientRect().top), role: vis('roleToggle'), lang: vis('uiLangSeg') }; });
-    if (lib.top > LIB_MAX) throw new Error('first library card at ' + lib.top + 'px on a phone (max ' + LIB_MAX + ')');
+    // (v338) a fresh profile now meets «Bugünün dersi» first: its primary button — one tap into the text — holds the upper-half gate,
+    // and the first shelf card must still start inside the first screen
+    const lib = await p9.evaluate(() => { const c = document.getElementById('todayGo') || document.querySelector('.continue-card, .lib-card'); const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); };
+      return { top: Math.round(c.getBoundingClientRect().top), shelf: Math.round(document.querySelector('.lib-card').getBoundingClientRect().top), role: vis('roleToggle'), lang: vis('uiLangSeg') }; });
+    if (lib.top > LIB_MAX) throw new Error('the door\'s first way into the text at ' + lib.top + 'px on a phone (max ' + LIB_MAX + ')');
+    if (lib.shelf >= 844) throw new Error('the first library card must start inside the first phone screen: ' + lib.shelf);
     if (lib.role || !lib.lang) throw new Error('front door on a phone: the role toggle must hide and the language segment stay: ' + JSON.stringify(lib));
     const shelf = await p9.evaluate(() => ({ visible: [...document.querySelectorAll('.lib-card')].filter(c => c.getBoundingClientRect().top < 844).length, cover: !!document.querySelector('.lib-card .cover') && !!document.querySelector('.lib-card .cover').offsetParent, h: Math.round(document.querySelector('.lib-card').getBoundingClientRect().height) }));
-    if (shelf.visible < 3) throw new Error('wave 75: three cards should start inside the first phone screen, got ' + shelf.visible + ' (card ' + shelf.h + 'px)');
+    if (shelf.visible < 1) throw new Error('wave 75 (v338: the Today card now stands above the shelf): a card should start inside the first phone screen, got ' + shelf.visible + ' (card ' + shelf.h + 'px)');
     if (shelf.cover) throw new Error('wave 75: the arabesque strip must not render on a phone');
     await p9.locator('.lib-card').first().click(); await p9.waitForSelector('section.sentence'); await p9.waitForTimeout(300);
     const st = await p9.evaluate(() => { const s = document.querySelector('section.sentence'); const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); };
@@ -17278,6 +17281,170 @@ if (!CHROME) {
     if (!r.order) throw new Error('the dedup walk must be queued last, after the bodies parse and the walks');
   });
 
+  // ---- v338 — «Bugünün dersi»: the first-time learner is led, and progress means learning ----
+  await check('v338 — the Today card: a fresh profile meets it first with reading leading and the one-line tap hint; a profile with due cards starts on a five-card recall that ticks itself; no overflow at 390 px; both languages', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(() => {
+      const keep = { progress: state.progress, deck: state.deck, today: JSON.stringify(state.today), lang: state.uiLang, chq: localStorage.getItem('qissa-chq'), last: state.lastRead };
+      const out = {};
+      const snap = () => { const c = document.getElementById('todayCard'); const g = document.getElementById('todayGo');
+        return { first: (document.getElementById('story').firstElementChild || {}).id, steps: [...c.querySelectorAll('.tc-step')].map(b => b.dataset.ls + (b.classList.contains('done') ? '+' : '')),
+          go: g ? g.dataset.ls : null, goTxt: g ? g.textContent.trim() : null, hint: (document.getElementById('tcFirst') || {}).textContent || null, h: c.querySelector('.tc-h').textContent,
+          over: document.documentElement.scrollWidth > innerWidth || Math.round(c.getBoundingClientRect().right) > innerWidth, n: c.querySelectorAll('.tc-step').length }; };
+      try {
+        state.progress = {}; state.deck = []; state.lastRead = null; localStorage.removeItem('qissa-chq');
+        state.today = { date: todayKey(), reviewed: 0, learned: 0, read: 0 };
+        for (const lang of ['tr', 'en']) { state.uiLang = lang; renderLibrary(); out[lang] = snap(); out[lang].ui = [ui().lsH, ui().lsStart, ui().lsFirst]; }
+        // the primary button's target: the suggested story — at the learner's level, unfinished, never premium-locked
+        const ls = lessonStory(); out.sugg = ls && { id: ls.st.id, locked: storyLocked(ls.st), cont: ls.cont };
+        document.getElementById('todayGo').click();
+        out.opened = CUR && CUR.id; out.lesson = LESSON && LESSON.step;
+        // a profile with a due card: recall leads, capped at five, and grading it ends the step back at the door
+        state.uiLang = 'tr'; const st = STORIES.find(s => s.id === 'al-asad-wa-al-far'); openStory(st);
+        const sen = CHAPTERS[0].sentences[0], ti = sen.tokens.findIndex(t => (GLOSSARY[t.lex] || {}).level >= 1);
+        toggleSave(sen.tokens[ti], { sen, ti }); ensureSrs(state.deck[0]).srs.due = Date.now() - 1000;
+        renderLibrary(); out.due = snap(); out.dueSub = document.querySelector('#todayCard [data-ls="recall"] small').textContent;
+        document.getElementById('todayGo').click();
+        out.deckOpen = !!document.querySelector('.sheet.show #reviewCard') && LESSON && LESSON.step === 'recall' && LESSON.left === 5;
+        document.getElementById('reviewCard').click(); document.getElementById('reviewCard').click();
+        document.querySelector('.grade[data-q="good"]').click();
+        out.back = { sheet: document.querySelector('.sheet').classList.contains('show'), lib: document.body.classList.contains('lib-mode'), lesson: LESSON };
+        out.after = snap();
+      } finally {
+        state.progress = keep.progress; state.deck = keep.deck; state.today = JSON.parse(keep.today); state.uiLang = keep.lang; state.lastRead = keep.last;
+        localStorage.setItem('qissa-progress', JSON.stringify(state.progress)); persistDeck(); localStorage.setItem('qissa-today', keep.today);
+        if (keep.chq === null) localStorage.removeItem('qissa-chq'); else localStorage.setItem('qissa-chq', keep.chq);
+        LESSON = null; renderLibrary();
+      }
+      return out;
+    });
+    await page.setViewportSize({ width: 1280, height: 720 });
+    for (const lang of ['tr', 'en']) {
+      const x = r[lang];
+      if (x.first !== 'todayCard') throw new Error(lang + ': a fresh profile meets the card first: ' + JSON.stringify(x));
+      if (x.steps.join() !== 'read,collect,check,strong' || x.n > 4) throw new Error(lang + ': steps on a fresh profile: ' + x.steps);
+      if (x.go !== 'read' || x.goTxt !== x.ui[1] || x.h !== x.ui[0] || x.hint !== x.ui[2]) throw new Error(lang + ': the primary button / header / hint: ' + JSON.stringify(x));
+      if (x.over) throw new Error(lang + ': the card overflows 390 px');
+    }
+    if (r.tr.h === r.en.h || r.tr.hint === r.en.hint) throw new Error('the two languages must differ: ' + r.tr.h + ' / ' + r.en.h);
+    if (!r.sugg || r.sugg.locked || r.sugg.cont || r.opened !== r.sugg.id || r.lesson !== 'read') throw new Error('the read step opens the suggested, unlocked story: ' + JSON.stringify(r.sugg) + ' ' + r.opened);
+    if (r.due.steps[0] !== 'recall' || r.due.go !== 'recall' || r.due.first === 'todayCard' || !/\b1\b/.test(r.dueSub)) throw new Error('with a due card, recall leads, under the goal ring: ' + JSON.stringify(r.due) + ' ' + r.dueSub);
+    if (!r.deckOpen) throw new Error('the recall step opens the deck\'s review, capped at five');
+    if (r.back.sheet || !r.back.lib || r.back.lesson) throw new Error('the last due card ends the step back at the door: ' + JSON.stringify(r.back));
+    if (!r.after.steps.includes('recall+') || r.after.go !== 'read') throw new Error('recall ticks itself and the card shows the next step: ' + JSON.stringify(r.after));
+  });
+  await check('v338 — three questions at the end of a chapter: built from that chapter only, fewer when unsafe, run through runQuiz (Elo / XP), stored per chapter in a qissa-* key, three states on the chapter, and a tap never marks a word unknown', async () => {
+    const r = await page.evaluate(() => {
+      const keep = { progress: JSON.stringify(state.progress), deck: JSON.stringify(state.deck), chq: localStorage.getItem('qissa-chq'), elo: JSON.stringify(state.elo), today: JSON.stringify(state.today) };
+      const out = {};
+      try {
+        localStorage.removeItem('qissa-chq');
+        const st = STORIES.find(s => s.id === 'al-asad-wa-al-far'); openStory(st);
+        delete state.progress[st.id]; state.deck = state.deck.filter(c => !(c.ctx && c.ctx.story === st.id)); renderStory();
+        const ch = CHAPTERS[0];
+        out.footBefore = (storyEl.querySelector('.ch-end[data-ch="' + ch.n + '"]') || {}).hidden;
+        // a tap on a word: it opens the sheet and marks the sentence read — it never lowers a score or marks the word unknown
+        const before = { elo: JSON.stringify(state.elo), items: JSON.stringify(state.eloItems), deck: JSON.stringify(state.deck), ans: Xp.answersToday() };
+        storyEl.querySelector('section.sentence .word').click();
+        out.tap = { elo: JSON.stringify(state.elo) === before.elo, items: JSON.stringify(state.eloItems) === before.items, deck: JSON.stringify(state.deck) === before.deck, ans: Xp.answersToday() === before.ans,
+                    sheet: document.querySelector('.sheet').classList.contains('show') };
+        closeSheet();
+        const c0 = state.today.chDone || 0;
+        ch.sentences.forEach(s => markRead(s, ch));
+        out.chDone = (state.today.chDone || 0) - c0;
+        const foot = storyEl.querySelector('.ch-end[data-ch="' + ch.n + '"]');
+        out.foot = { hidden: foot.hidden, offer: !!foot.querySelector('.ch-check'), pill: (storyEl.querySelector('.ch-pill[data-ch="' + ch.n + '"]') || {}).dataset };
+        out.pill1 = out.foot.pill && out.foot.pill.state;
+        const inCh = new Set(ch.sentences);
+        const runs = []; for (let k = 0; k < 6; k++) runs.push(chapterCheckItems(st, ch));
+        out.kinds = runs.map(a => a.map(i => i.kind).join('+'));
+        out.inChapter = runs.every(a => a.every(i => inCh.has(i.sen)));
+        out.roleNote = runs.every(a => a.filter(i => i.kind === 'role').every(i => GRAMMAR[i.note] && ROLE_BY_KEY[i.key].note === i.note && i.tok.irab && i.tok.irab.ar));
+        out.meanSafe = runs.every(a => a.filter(i => i.kind === 'mean').every(i => i.pool.length === 3 && new Set([T(i.entry.gloss), ...i.pool.map(g => T(g.gloss))]).size === 4));
+        // a chapter that cannot feed three safe questions asks fewer
+        const tiny = { n: 99, sentences: [ch.sentences[0]].map(s => ({ ...s, tokens: s.tokens.slice(0, 1) })) };
+        out.tiny = chapterCheckItems(st, tiny).length;
+        // the round: the foot's offer runs runQuiz; Elo moves on the answers, never on the tap
+        const elo0 = JSON.stringify(state.elo), a0 = Xp.answersToday();
+        foot.querySelector('.ch-check').click();
+        const n = chqAll && document.querySelectorAll('.sheet.show .opts [data-o]').length;
+        out.opts = n; let asked = 0;
+        for (let k = 0; k < 3; k++) { const right = [...document.querySelectorAll('.sheet.show .opts [data-o]')]; if (!right.length) break; right[0].click(); asked++; document.getElementById('qNext').click(); }
+        out.asked = asked; out.answers = Xp.answersToday() - a0; out.eloMoved = JSON.stringify(state.elo) !== elo0;
+        const res = document.getElementById('chqResult');
+        out.res = res && res.innerText;
+        out.lines = res ? [...res.querySelectorAll('.chq-lines li')].map(li => li.dataset.kind) : [];
+        const rec = JSON.parse(localStorage.getItem('qissa-chq') || '{}')[st.id + '|' + ch.n];
+        out.rec = rec; out.noteTitle = rec && rec.note ? T(GRAMMAR[rec.note].title) : null;
+        out.backup = Backup.keys().includes('qissa-chq');
+        closeSheet(); renderStory();   // the story page re-reads what was stored
+        out.pill2 = (storyEl.querySelector('.ch-pill[data-ch="' + ch.n + '"]') || { dataset: {} }).dataset.state;
+        out.foot2 = (storyEl.querySelector('.ch-end[data-ch="' + ch.n + '"]') || {}).textContent;
+        // «recalled» only when a word saved from this chapter has since passed a review
+        const s0 = ch.sentences[0], ti = s0.tokens.findIndex(t => (GLOSSARY[t.lex] || {}).level >= 1);
+        toggleSave(s0.tokens[ti], { sen: s0, ti });
+        out.recalledSaved = chapterRecalled(st, ch);
+        const card = state.deck.find(c => c.ctx && c.ctx.story === st.id && c.ctx.sen === s0.id); ensureSrs(card).srs.reps = 1;
+        out.recalledPassed = chapterRecalled(st, ch);
+        renderStory(); out.pill3 = (storyEl.querySelector('.ch-pill[data-ch="' + ch.n + '"]') || { dataset: {} }).dataset.state;
+      } finally {
+        state.progress = JSON.parse(keep.progress); state.deck = JSON.parse(keep.deck); state.elo = JSON.parse(keep.elo); state.today = JSON.parse(keep.today);
+        localStorage.setItem('qissa-progress', keep.progress); persistDeck(); localStorage.setItem('qissa-today', keep.today);
+        if (keep.chq === null) localStorage.removeItem('qissa-chq'); else localStorage.setItem('qissa-chq', keep.chq);
+        LESSON = null; closeSheet();
+      }
+      return out;
+    });
+    await toLibrary();
+    if (r.footBefore !== true) throw new Error('an unread chapter shows no state: ' + r.footBefore);
+    if (!r.tap.elo || !r.tap.items || !r.tap.deck || !r.tap.ans || !r.tap.sheet) throw new Error('a tap alone must not touch Elo, the deck or the answers: ' + JSON.stringify(r.tap));
+    if (r.chDone !== 1) throw new Error('the read that finishes a chapter is counted once: ' + r.chDone);
+    if (r.foot.hidden || !r.foot.offer || r.pill1 !== 'read') throw new Error('a read chapter offers its questions and wears «read»: ' + JSON.stringify(r.foot));
+    if (!r.kinds.every(k => k === 'cloze+mean+role')) throw new Error('the lion and the mouse, chapter 1, feeds three questions: ' + r.kinds);
+    if (!r.inChapter || !r.roleNote || !r.meanSafe) throw new Error('every item from the chapter, the role item on a noted construction, the meaning options distinct: ' + JSON.stringify([r.inChapter, r.roleNote, r.meanSafe]));
+    if (!(r.tiny < 3)) throw new Error('a one-word chapter must ask fewer than three: ' + r.tiny);
+    if (r.opts !== 4 || r.asked !== 3 || r.answers !== 3 || !r.eloMoved) throw new Error('the round runs through runQuiz (Elo + XP per answer): ' + JSON.stringify([r.opts, r.asked, r.answers, r.eloMoved]));
+    if (!r.rec || r.rec.asked !== 3 || typeof r.rec.correct !== 'number' || !/^\d{4}-\d\d-\d\d$/.test(r.rec.date) || !r.backup) throw new Error('stored per chapter (asked, correct, date) in a key Backup carries: ' + JSON.stringify(r.rec));
+    if (!r.noteTitle || !r.res.includes(r.noteTitle) || /tap|dokun/i.test(r.res)) throw new Error('the result names the grammar note by its own title: ' + r.res);
+    if (r.lines.join() !== 'cloze,mean,role') throw new Error('one result line per question: ' + r.lines);
+    if (r.pill2 !== 'qdone' || !r.foot2.includes(r.rec.correct + '')) throw new Error('the questions-done state survives a re-render from storage: ' + r.pill2 + ' / ' + r.foot2);
+    if (r.recalledSaved || !r.recalledPassed || r.pill3 !== 'recalled') throw new Error('«recalled» only after a saved word passed a review: ' + JSON.stringify([r.recalledSaved, r.recalledPassed, r.pill3]));
+  });
+  await check('v338 — the analysis marks: the word sheet\'s iʿrāb says «awaiting the hoca» for a pending package and never «reviewed»; the Atölye\'s typed sentence says «automatic»; one legend entry; «Hata bildir» opens the reviewers\' note form; Settings finds report and backup', async () => {
+    const r = await page.evaluate(() => {
+      const out = {}, keepRev = localStorage.getItem('qissa-review');
+      try {
+        const st = STORIES.find(s => s.id === 'al-asad-wa-al-far'); openStory(st);
+        out.review = st.review;
+        const sen = CHAPTERS[0].sentences[0], ti = sen.tokens.findIndex(t => t.irab);
+        openWord(sen.tokens[ti], null, 'irab', { sen, ti });
+        out.marks = [...sheetInner.querySelectorAll('.vmark')].map(m => m.dataset.vm + ':' + m.textContent);
+        out.never = !STORIES.some(s => s.review !== 'reviewed' && verifyMark(s).k === 'ok');
+        out.auto = verifyMark(null).k + ':' + verifyMark({ review: 'auto-generated-unreviewed' }).k;
+        out.jumla = /verifyMarkHtml\(null\)/.test(renderJumlaOut.toString());
+        out.legend = (document.getElementById('legendVerify') || {}).textContent === ui().vmLegend;
+        document.getElementById('irabReport').click();
+        const f = sheetInner.querySelector('.rev-form');
+        out.form = f && { ti: f.querySelector('.rev-ti').value, kind: (f.querySelector('.rev-kinds .on') || {}).dataset.kind };
+        out.ti = String(ti);
+        closeSheet(); openReadCtrls();
+        out.rows = [...sheetInner.querySelectorAll('[data-rch]')].map(b => b.dataset.rch);
+        sheetInner.querySelector('[data-rch="backup"]').click();
+        out.backup = !!document.querySelector('.sheet.show #backupBox #bkExport');
+        state.uiLang = 'tr'; out.tr = [ui().vmPending, ui().vmReviewed, ui().vmAuto, ui().vmReport, ui().vmBackup]; state.uiLang = 'en';
+      } finally { if (keepRev === null) localStorage.removeItem('qissa-review'); else localStorage.setItem('qissa-review', keepRev); closeSheet(); }
+      return out;
+    });
+    await toLibrary();
+    if (r.review === 'reviewed') throw new Error('the check assumes a pending package');
+    if (r.marks.length !== 1 || !r.marks[0].startsWith('pending:')) throw new Error('the iʿrāb block carries one «pending» mark: ' + r.marks);
+    if (!r.never) throw new Error('«reviewed» shown for a package that is not reviewed');
+    if (r.auto !== 'auto:auto' || !r.jumla) throw new Error('a typed sentence / an engine package reads «automatic»: ' + r.auto);
+    if (!r.legend) throw new Error('one legend entry explains the marks');
+    if (!r.form || r.form.ti !== r.ti || r.form.kind !== 'irab') throw new Error('«Hata bildir» opens the note form on this word: ' + JSON.stringify(r.form));
+    if (r.rows.join() !== 'report,backup' || !r.backup) throw new Error('Settings carries report and backup, and backup lands on Backup: ' + JSON.stringify(r));
+    if (r.tr.join('|') !== 'Yazar çözümlemesi · hoca onayı bekliyor|Hoca onaylı|Otomatik çözümleme|Hata bildir|Yedekle / Geri yükle') throw new Error('Turkish marks: ' + r.tr);
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
