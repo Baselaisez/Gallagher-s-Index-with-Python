@@ -419,3 +419,42 @@ adam-wa-iblis 1:s4:4 لٰكِنَّهُ). It is in main's CLAUDE.md, sections v3
   - verb lines naming no doer: 23:s5 t11 يَخَافُ, t13 وَيَفِرُّ; 14:s2 t15 خَلَقَهُ; 26:s2 t82 وَقَالَ
 - The engine waves on main keep finding lines this branch has already corrected: main will stop reporting them only when the hoca
   approves this branch and it is merged.
+
+## The v342-T triage on main: the «certain» story corrections (67 lines) against this branch
+
+Main's audit triage (`research/story-corrections-proposed-2026-11-27.jsonl` and `.roles.jsonl`, main only) marks 67 authored
+lines as certainly wrong by a cited book line. Compared token by token with this branch (2026-11-26):
+
+- **29 already read exactly as the triage proposes** and **26 were already corrected here in fuller words** (r01–r26, o01–o06,
+  the rule classes): the sound-plural yāʾ on حِينَ / دُونَ / دِينَ, the counted nouns as tamyīz, رَحْمَةً / تَفْسِيرًا mafʿūl muṭlaq,
+  فَاعْبُدُونِ and وَأَلْزَمَهُمْ as verbs, the five verbs' nūn (تَضِلُّوا, يَسْتَحِقُّوا), فَلْيُصَلِّ. Nothing to do.
+- **1 is on a package this branch does not hold** (muʿallaqat Imriʾ al-Qays 7:s1 t5 غَذَاهَا — the clause after a pure
+  indefinite: ḥāl or naʿt). It waits on main for the hoca.
+- **11 still stood** → packet o08.
+
+### o08-triage342 (10 AI-ONAY applied, 1 AI-RET; unconfirmed)
+
+Source added to this branch so the citation rule holds: `research/sources/sharh-qawaid-al-irab-shaykhzade-src.txt`
+(Shaykhzāde's commentary on Qawāʿid al-Iʿrāb, Shamela 12024; identical to main's copy).
+
+**Applied**
+- ashab-al-kahf 1:s3 t14 قَتَلْتُكُمْ and hud-wa-aad 2:s7 t5 جَاءَكُمْ — «فَإِنْ لَمْ … قَتَلْتُكُمْ», «إِنْ لَمْ تُؤْمِنُوا جَاءَكُمْ»: the lines gave the seat
+  of jazm to the CLAUSE. Now: the verb alone is in the seat of jazm as the answer, the clause has no seat because it carries
+  no fāʾ (Shaykhzāde l.398: «إن قام أخوك قام عمرو فمحلّ الجزم محكوم للفعل وحده»). The triage's own wording dropped the verb's seat;
+  ours keeps it.
+- Iẓhār 18:s1 t10, 29:s3 t13, 42:s5 t6, 43:s4 t23 لَمْ → «حَرْفُ نَفْيٍ وَجَزْمٍ وَقَلْبٍ» (l.942); 57:s5 t29 وَلَنْ → «… وَنَصْبٍ وَاسْتِقْبَالٍ»
+  (l.1617). Not errors of grammar: the muʿrib's full wording, bāb 4.
+- Talkhīṣ 36:s3 t0 وَإِنَّ «حَرْفٌ نَاسِخٌ» → «حَرْفُ تَوْكِيدٍ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ» (l.1677); 65:s2 t3 لِأَنَّ → «حَرْفُ تَوْكِيدٍ مَصْدَرِيٌّ يَنْصِبُ
+  الِاسْمَ وَيَرْفَعُ الْخَبَرَ» (l.1679, word for word).
+- ʿAqāʾid 43:s2 t3 «إِلَى مَعَانٍ»: the sign of jarr was «الْكَسْرَةُ الْمُقَدَّرَةُ»; the line itself calls the word ṣīghat muntahā al-jumūʿ,
+  so it is «الْفَتْحَةُ الْمُقَدَّرَةُ عَلَى الْيَاءِ الْمَحْذُوفَةِ نِيَابَةً عَنِ الْكَسْرَةِ» (Shudhūr l.30). The taʿalluq clause is kept.
+
+**AI-RET (the authored line is right)**
+- Talkhīṣ 4:s3 t11 ارْتَدَعَ («مَا إِنْ تَأَمَّلَهُ ارْتَدَعَ»): «فِعْلٌ مَاضٍ فِي مَحَلِّ جَزْمٍ جَوَابُ الشَّرْطِ» gives the seat to the verb — exactly the
+  commentary's ruling. The engine's «no seat» is about the clause; main's triage should move this record from L to C.
+
+**For the hoca**
+- The en / tr of the Iẓhār and Talkhīṣ particle lines are glosses («not», «-mez»); a short term was added after the gloss.
+  Say if the gloss alone is wanted.
+- The other 586 proposals of the triage are «likely», not certain: none was applied. They need a packet of their own
+  (largest clusters first) once these are approved.
