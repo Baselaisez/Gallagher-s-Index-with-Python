@@ -289,6 +289,28 @@ def load_insaf():
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
 
+def load_ilal():
+    """(v348-F) content/rules/ilal.json — the grammarians' own reasons (taʿlīl) cut by script from three commentaries and kept by hand
+    (tools/ilal/); every `ar` is a verbatim substring of its source file. Shipped compact: the reasons, the books' names, and for each
+    grammar note the topics content/rules/commentary_links.json joined it to (only topics that have a reason)."""
+    p, q = ROOT / "content/rules/ilal.json", ROOT / "content/rules/commentary_links.json"
+    if not p.exists():
+        return None
+    d = json.loads(p.read_text(encoding="utf-8"))
+    keep = ("id", "topic", "kind", "ar", "pre", "book", "vol_page", "shamela_page", "en", "tr", "role", "cls", "case", "short", "why_at")
+    rs = [{k: r[k] for k in keep if k in r} for r in d["reasons"]]
+    have = {r["topic"] for r in rs}
+    nt = {}
+    if q.exists():
+        for x in json.loads(q.read_text(encoding="utf-8"))["links"]:
+            if x["topic"].startswith("note:"):
+                t = [t for t in x["topics"] if t in have]
+                if t:
+                    nt[x["topic"][5:]] = t
+    books = {k: {f: v[f] for f in ("ar", "short_en", "short_tr")} for k, v in d["books"].items()}
+    return {"books": books, "reasons": rs, "noteTopics": nt}
+
+
 def build_catalog(pkgs):
     """Build a catalog.json index from discovered packages.
 
@@ -365,6 +387,8 @@ def main():
         js("ISHTIQAQ_LAW", load_ishtiqaq()),
         # (v339-I) al-Inṣāf's masāʾil — the khilaf lab and the gKhilaf game read this table only
         js("INSAF", load_insaf()),
+        # (v348-F) the commentaries' reasons — the notes' «Neden böyle?», the reason chain, the rule of the day and «لِمَاذَا؟» read this
+        js("ILAL", load_ilal()),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",
              "label": {"en": "Morphology — after Emsile & Bina",
