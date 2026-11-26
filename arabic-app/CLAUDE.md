@@ -15899,3 +15899,115 @@ same folds and scores, which the check still compares), so it asserts units ≥ 
 Full suite (refit chain, then `node tools/smoke_test.js`): 559 checks, 558 pass; the one failure was that wave-189 pin, fixed
 and passing alone after. In that run: door 986 ms, first Jumla worst task 938 ms, keystroke median 5.7 ms, hub step 14 ms.
 `tools/entrance_test.js`: ready offline in 5.1 s, app from the cache in 0.57 s (the hashed slices sit in `qissa-data`, 24 files).
+
+## v343-S — speed V: what v341 left slow, and the phone shell proved
+
+The owner: «optimisation and speed are crucial». This wave took v341's «still slow» list in the order a phone user meets it.
+Measured as v341 did: the split hosted copy over http (`no-store`), 390×844, 4× CPU via CDP, base (8e0ed4d) and this wave
+ALTERNATED run by run (`scratchpad/speed343/ab.sh`), medians of five (three for the first-use sweep) with [min–max]. The
+machine was shared with two feeding agents' suites the whole time (1-min load 4–9, never under 1.5 for long), so single numbers
+swing; the A/B order is what makes the comparisons fair. Probes: `m.js` (v341's; the throttled-link modes now serve gzip, as a host
+does), `p.js` (first use: every long task labelled by the action or the Quiet job it fell in; `PROF=` adds a CPU profile split per
+task), `sc.js` (the shelf's scroll: rAF frame intervals over 2 × 50 wheel steps), `shell.js`, `heap*.js` (heap snapshots by
+constructor and by the property that holds each string).
+
+Two A/B sets, base = 8e0ed4d: «quiet» = 3 rounds at load 1–4 (this wave before its last two scheduling fixes); «loaded» = 5
+rounds at load 4–15 (the final code but for the last fix, which a third set confirmed: boot below). First use: `p.js first`, 3 A/B
+rounds — one fresh reader, the door, then each tab, the first query, a story and a word, then all 38 labs in turn.
+
+| (4× CPU, median [min–max]) | base | v343 |
+|---|---|---|
+| **first use, whole sweep: long tasks over 200 ms** | **107 / 102 / 99** | **14 / 19 / 10** |
+| first use: the worst task (where) | 6.4 / 5.8 / 4.1 s (a story opened after the games hub) | 0.63 / 1.16 / 1.18 s (Inna / Hamza / Khilāf lab, loaded) |
+| first use: Atölye first open · games first open · first word (in-tap) | 2.6 s · 1.2 s · 0.5–0.9 s tasks | ≤ 0.24 s · ≤ 0.22 s · ≤ 0.13 s |
+| first use: Jumla · model · alama/irabshop labs (worst task) | 1.0 · 1.0–1.5 · 1.0–1.5 s | 0.39–0.45 · < 0.2 · < 0.2 s |
+| root lab straight from the door: answer (quiet / loaded) | 4.7 [4.4–6.4] / 6.6 [4.8–7.3] s | **1.7 [1.4–2.2] / 3.8 [2.9–6.0] s**, worst task 66–106 ms |
+| root lab, second answer right after | 39 ms | 270–370 ms (the taggers now build after the first answer) |
+| search, a fresh two-letter query (كت): the frame's work (script + layout) | 52 [30–72] / 43 [33–137] ms | **24 [18–37] / 17 [14–58] ms** (the rest a task later) |
+| search: the same, to the next frame (`m.js` ms, includes the late half) | 237 / 291 ms | 248 / 183 ms |
+| search: a new word (قال), to the next frame | 179 / 165 ms | 137 / 108 ms |
+| search: the 2nd letter with the index unbuilt (sliced build) | 3.7 / 4.0 s | 3.2 / 3.5 s |
+| story open L6 (worst task) · word tap, 9th (quiet) | 343 (269) · 609 ms | 303 (223) · **31 ms** |
+| shelf scroll after the covers settle (`sc.js`, quiet): p95 frame · frames > 34 ms · long tasks | 50 ms · 32 [31–43] · 3 | **33 ms · 9 [6–10] · 1** |
+| boot (final code, load 6–12): usable · every body in · longest task · long-task sum | 1660 · 4716 · 258 · 1151 ms | 1299 · 4635 · 199 · 1189 ms |
+| library usable over 20 Mbit/s · 4 Mbit/s (gzip served, quiet) | 2.8 · 7.6 s | 2.9 · 7.8 s (unchanged: no bytes moved) |
+| JS heap after boot (GC'd) · after three stories | 162–164 · 163 MB | 160–165 · 164–167 MB |
+
+What changed (each returns the same answers; each kept because it won above):
+1. **The Android shell, proved.** `tools/build_android.py --no-sync --www DIR` writes the shell's web assets into a scratch folder
+   and stamps nothing (a plain `--no-sync` still stamps `android/app/build.gradle`, as before); the build now also fails when the page
+   names a data file the folder lacks (yesterday's `data/d1.js`), beside the old check the other way. The new smoke check builds that
+   copy and opens it the way Capacitor does (`androidScheme: https` → `https://localhost/`, index.html, the native bridge object, no
+   service worker), every request outside the folder refused, 4× CPU, phone viewport: the library appears, a story tapped before its
+   slice lands opens on arrival, search / games / Atölye wait then work, all 24 data files served from the folder, no error. It found
+   nothing to fix in the shell copy itself.
+2. **The games hub's count fill** (`openGames`): it went on after the hub closed, and a story opened meanwhile changed the scope —
+   gHadhf then drained the library's walk in ONE task (4.5 s at 4×, felt as «the story froze»). A count for a scope the hub no
+   longer shows is now not computed (`gone343`); no count is read before `Warm341.step` (the bodies, bare index, taggers…) is whole —
+   gWaqf's first unit trained a tagger in its task (2.6 s) and the first pool unit parsed all 83 bodies (1.1 s); gHadhf/gWujuh step
+   the library walk in any scope (a story too thin for four items reads it).
+3. **The model lab's cross-validation** ran `laterSteps` one fold per task (0.7–0.9 s each at 4×) and kept running into the next labs
+   (alama, irabshop measured it): it now walks the Jumla lab's sliced plan (`cvStep341`, ~24-ms slices; the same folds and counts).
+4. **`Early343`** — the warm-ups a first use needs, not gated on a closed sheet (Quiet waits for every body AND no sheet; a reader
+   who opens the Atölye or a story at once met the engines cold): the derivation engine's inverse templates (before the bodies — the
+   first word tap built them in the tap, 0.5–0.9 s), every body parsed, the derivation lexicon, the labs' data warm-up, then the
+   engines' first readings (only after 1.2 s without input). Each step is an idle-callback slice that yields to input; held by the
+   harness's `QUIET_OFF` like Quiet. Quiet's same jobs find the work done.
+5. **DabtEngine's first reading split** (`Warm341.W`): `decide([])` alone (its 4,374-line body compiled, ≈ 0.35 s at 4× — the
+   floor: one function's compile cannot be sliced without splitting the engine), the two glossary indexes it builds lazily
+   (`homographs194`, `plIndex`), a one-word reading, the sentence; FahmEngine's index before its first reading. Was one 0.65–1.1-s task.
+6. **The root lab answers first** (`Warm341.then(…, need)`): `RootFinder.lab` reads the parsed bodies, the bare index and the
+   lemma counts and nothing else of the warm-up (measured: the taggers, the ledger and the noun index stay unbuilt after a cold
+   answer), so its first answer waits only for those; the rest follows.
+7. **Search**: `searchCorpus` skips the raw-haystack test when the needle is untouched by the fold (it cannot add a row: the fold maps
+   letter to letter); `InText.find` walks only the sentences of the word search's hits for the same needle (a row's folded bare letters
+   open its folded haystack, so a matching row is always among them); **a fresh two-letter query paints in two frames** — the word
+   hits at once, the in-text sentences and the notes appended in the next task, exactly where and as the one-shot render puts them
+   (typing on keeps one render — no flicker). Results identical: 30 typed sequences hashed, base = new (`eqsearch.js`).
+8. **The shelf's covers as bitmaps** (`Cover343`): the library's covers are coverArt's SVG at `background-size: auto 100%`; Chrome
+   re-rendered the vector on the main thread as cards scrolled in. Each picture is drawn once in idle time into a canvas at the box's
+   height × the pixel density — after the door and every body, never within 400 ms of a touch or scroll (drawn earlier, it delayed
+   both) — and the card's background points at that bitmap (blob URL); size and position untouched, screenshots
+   identical, coverArt(st, theme) and its cache unchanged, held under QUIET_OFF (older checks read the SVG).
+9. **Memory**: the corpus index's rows share one haystack and fold set per (letters, entry) (`hay343`; every row of a common word held
+   its own ~100-byte haystack). Heap after boot and after three stories is unchanged within 1–4 MB (below).
+
+Tried and dropped / not done:
+- **Moving tables out of the core slice**: the core (1.51 MB gzip) is GRAMMAR 0.90, the catalog 0.36, CATECHISM 0.17, INSAF 0.035,
+  the models ~0.05. GRAMMAR and CATECHISM are read at the door (`pruneDeck` validates the saved deck's note and question cards against
+  them — a missing table would DELETE those cards); the small tables are read behind `typeof X !== "undefined"` guards, so a late table
+  would not fail but answer wrong (e.g. the derivation engine would build an empty inverse table, permanently). Nothing is provably
+  unread at the door, so nothing moved. The door stays app.js 1.55 + core 1.51 MB gzip: usable at 20 Mbit/s ≈ 2.8 s, at 4 Mbit/s ≈ 7.6 s (quiet A/B, gzip served).
+- **Slicing the Inna and Hamza labs' corpus audits** (`InnaEngine.audit`, `HamzaEngine.audit`, ~0.8–0.9 s at 4× on the lab's first
+  open): they are one loop inside the engines; slicing them means changing the engine (the rule of this wave), memoising `analyse`
+  around the Hamza audit still leaves ~0.35 s. Warming them in idle (tried) put a 0.9-s task under an idle reader's next tap — removed.
+- **A heap cut of 20 %**: «after boot» (160 MB) is mostly the bodies' raw JSON text waiting for its lazy parse (two-byte strings,
+  89 MB at 3 s after the door) — transient by design (wave 148); the settled heap (~163 MB at 1× after all warm-ups) is content:
+  ar/en/tr strings 34 MB (deduplicated since v334), token objects and arrays ~47 MB, compiled code ~18 MB. Caches are bounded
+  (stripAr 300k, sjMajhul 200k, foldAr 60k); shrinking them would slow the corpus walks. Done: hay343 only.
+
+Still slow, and why:
+- **The Inna and Hamza labs' first open** (their corpus audits, 0.6–1.2 s at 4× under load) and once the Khilāf lab (1.2 s, loaded):
+  one engine loop each (above).
+- **Idle-time compile and data tasks** (Early343 / Quiet, only after 300 ms – 1.2 s without input): the derivation engine's inverse
+  table steps a pattern at a time and one pattern can run 0.2–0.7 s at 4× (first-run code of synth/derive); a big body's JSON.parse
+  ~0.2 s; DabtEngine's compile ~0.35 s; the games pools' units (gWaqf: a chapter of a long text 0.2–0.4 s) — engine granularity.
+- **The Jumla lab's own analysis render** 0.39–0.45 s at 4× (DabtEngine + the ledger HTML on the sample sentence): engine work per call.
+- **The search's first query before the index exists** (slices of 0.2–0.5 s at 4× under load: a long chapter's rows in one slice).
+- **The root lab's second answer** right after the first: 0.27–0.37 s while the taggers are still unbuilt (they build in the
+  background after the first answer; before this wave the first answer waited 4.7–6.6 s for them).
+- **Download and memory**: unchanged (see «Tried and dropped»).
+
+Smoke: five checks «v343 — …» before «v333 — the received imports»: the shell copy offline (above); first use without a freeze (a
+fresh reader at 4×, Quiet and Early running: the door, every tab's first open, the first query, a story and its first word, every
+lab's first analysis — the worst long task within budget); the root lab from the library (only its own pieces built when it answers,
+the same answer as the one-shot render, within budget); a fresh two-letter query (two frames, the same nodes as the one-shot render,
+the same in-text hits, the same corpus rows, the first half within budget); the covers as bitmaps (every card, painted size). Budgets (three suite runs, load 4–9; median × 1.5): first use's worst
+task ≤ 1200 ms (818 / 790 / 562), the root lab's answer ≤ 4400 ms (2845 / 3091 / 2908), a fresh query's first half ≤ 100 ms (92 / 66 /
+63, the median of four queries per run). Older check changed: «v341 — speed: a search keystroke» compared the partial render with the
+full one right after the keystroke; the fresh query's second half now lands a task later, so it waits one task before comparing (the
+same nodes are then compared). «v334-S — a search typed before the index…» needed no change: the render after a pending build is whole.
+Full suite (refit chain, then `node tools/smoke_test.js`): 577 checks, 575 pass; the two failures were that v341 keystroke pin
+and the v334-S sliced search (the render after the index arrived had been split too) — both fixed (above). Re-run of every v334-S / v340 / v341 /
+v343 check on the final code: 18 of 19 pass; «v341 — the door» read 1811 ms against its 1800 at load 6 and passes alone (1523 ms). `tools/entrance_test.js` on the assembled final site: «✓ Ready — opens offline too» in
+6.0 s, the app from the cache in 1.17 s, no error.

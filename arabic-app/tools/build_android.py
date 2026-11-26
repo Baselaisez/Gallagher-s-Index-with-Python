@@ -4,6 +4,8 @@
     python3 tools/build_android.py            # split the reader into dist/android-www, stamp the version, cap sync
     python3 tools/build_android.py --no-sync  # only write dist/android-www (no node, no Capacitor)
     python3 tools/build_android.py --gradle   # …and then ./gradlew assembleDebug bundleRelease (needs the Android SDK)
+    python3 tools/build_android.py --no-sync --www DIR   # (v343) the same web assets into DIR, nothing stamped — the smoke suite's
+                                                          # «the shell copy opens offline» check builds and opens exactly this
 
 What it does, and why each step exists (research/APP_STORE_STRATEGY.md §2):
 1. `tools/pubsplit.py` splits the self-contained reader into reader.html + data/d1–dN.js (four files since wave 127) — the same split the
@@ -33,7 +35,7 @@ def sw_version():
     if not m: sys.exit("cannot read the cache version from prototype/sw.js")
     return int(m.group(1))
 
-def write_www():
+def write_www(WWW=WWW):
     if WWW.exists(): shutil.rmtree(WWW)
     WWW.mkdir(parents=True)
     out = subprocess.run([sys.executable, str(ROOT / "tools/pubsplit.py"), str(PROTO / "reader.html"), str(WWW)],
@@ -52,6 +54,10 @@ def write_www():
     for name in data_files:
         n = f"data/{name}"
         if f'"{n}"' not in page: sys.exit(f"split page does not load {n}")
+    # (v343-S) …and the other way: every data file the page names is in the folder (a page naming a file the split did not write —
+    # yesterday's `data/d1.js` — would open an empty shelf on the phone)
+    for n in sorted(set(re.findall(r'data/[\w.-]+\.js', page))):
+        if not (WWW / n).exists(): sys.exit(f"split page names {n}, which is not in the web assets")
     if '<script src="app.js"></script>' not in page or not (WWW / "app.js").exists(): sys.exit("split page does not load app.js")
     return WWW
 
@@ -66,7 +72,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-sync", action="store_true", help="write dist/android-www only")
     ap.add_argument("--gradle", action="store_true", help="also run ./gradlew assembleDebug bundleRelease")
+    ap.add_argument("--www", help="(v343) write the web assets into this folder instead, stamp nothing (needs --no-sync)")
     a = ap.parse_args()
+    if a.www:
+        if not a.no_sync: sys.exit("--www writes a copy for inspection: use it with --no-sync")
+        www = write_www(pathlib.Path(a.www).resolve()); print("web assets:", www, "build", sw_version(), "(nothing stamped)"); return
     v = sw_version(); www = write_www(); print("web assets:", www.relative_to(ROOT), "build", v)
     if not ANDROID.exists(): sys.exit("android/ is missing — it is committed; run `npx cap add android` only to recreate it")
     stamp_version(v)

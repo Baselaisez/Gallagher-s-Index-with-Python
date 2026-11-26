@@ -17942,6 +17942,7 @@ if (!CHROME) {
       window.__QISSA_RENDER_SYNC = false; openSearch(''); let inp = document.getElementById('corpusSearch'); inp.focus();
       for (const q of ['ك', 'كت', 'كتب', 'كتا', 'كتاب', 'قا', 'قال']) { const t0 = performance.now(); inp.value = q; inp.dispatchEvent(new Event('input')); void sheetInner.offsetHeight; const d = performance.now() - t0;
         if (q.length >= 3) o.keys.push(Math.round(d * 10) / 10);
+        await new Promise(res => requestAnimationFrame(() => setTimeout(res, 40)));   /* (v343-S) a fresh two-letter query paints in two frames: its second half lands in the next task */
         const same = document.getElementById('corpusSearch') === inp && document.activeElement === inp, part = after(); openSearch(q); const full = after();
         if (!same || part !== full) o.bad.push('render:' + q); inp = document.getElementById('corpusSearch'); inp.focus(); }
       window.__QISSA_RENDER_SYNC = true; closeSheet(); return o; });
@@ -17968,6 +17969,153 @@ if (!CHROME) {
     if (diff.length) throw new Error('a stepped count differs from the one-shot supply: ' + diff.map(id => id + ' ' + r.got[id] + '≠' + r.want[id]).join(', '));
     const worst = Math.max(...Object.values(r.per)); console.log('      hub counts filled in ' + r.ms + ' ms; the slowest step ' + worst + ' ms (1×) ' + JSON.stringify(r.per));
     if (worst > STEP_MS) throw new Error('a pool step held the thread: ' + JSON.stringify(r.per) + ' (budget ' + STEP_MS + ')');
+  });
+
+  // (v343-S) speed V: a split copy of its own (v341's server closed after its Jumla check), first use measured action by action
+  const split343 = await (async () => {
+    const cp = require('child_process'), os = require('os'), fsx = require('fs'), pathx = require('path'), http = require('http');
+    const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-v343-'));
+    cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
+    const srv = http.createServer((q, r) => { const p = decodeURIComponent(q.url.split('?')[0]).replace(/^\/+/, '') || 'reader.html'; const f = pathx.join(dir, p);
+      if (!f.startsWith(dir) || !fsx.existsSync(f) || fsx.statSync(f).isDirectory()) { r.writeHead(404); r.end(); return; }
+      r.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(r); }).listen(0); srv.unref();
+    const st = { url: 'http://127.0.0.1:' + srv.address().port + '/reader.html', dir };
+    st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    st.fresh = async (cpu, opt = {}) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: opt.dpr || 1, serviceWorkers: 'block' });   /* no sw.js on this server */
+      await ctx.addInitScript(hold => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '3'); } catch (e) {}
+        if (hold) window.__QISSA_QUIET_OFF = true;
+        window.__lt343 = []; window.__lbl343 = 'boot'; try { new PerformanceObserver(l => l.getEntries().forEach(e => window.__lt343.push([e.startTime, e.duration, window.__lbl343]))).observe({ type: 'longtask', buffered: true }); } catch (e) {}
+        /* an action: run it, wait for the next frame, then until nothing is busy («…», aria-busy, the search's wait) and no long task for 0.9 s */
+        window.__op343 = async (lbl, fn) => { window.__lbl343 = lbl; try { Quiet.note(); } catch (e) {} const t0 = performance.now(); await fn(); await new Promise(r => requestAnimationFrame(() => setTimeout(r, 0)));
+          for (;;) { await new Promise(r => setTimeout(r, 100)); const busy = document.querySelector('.warm341,[aria-busy="true"],.search-wait'); const L = window.__lt343[window.__lt343.length - 1] || [0, 0];
+            if ((!busy && performance.now() - (L[0] + L[1]) > 900) || performance.now() - t0 > 40000) break; }
+          try { Quiet.note(); } catch (e) {} return Math.round(Math.max(0, ...window.__lt343.filter(([s]) => s >= t0 - 1).map(x => x[1]))); }; }, !!opt.hold);
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      const c = await ctx.newCDPSession(p); await c.send('Emulation.setCPUThrottlingRate', { rate: cpu || 4 }); return { ctx, p, errs }; };
+    return st;
+  })();
+
+  await check('v343 — the shell copy opens offline from its own assets — tools/build_android.py --no-sync (with --www: into a scratch folder, nothing stamped) writes the Android web assets; every data file the page names is in the folder and every one in the folder is named; served as Capacitor serves them (https://localhost/, index.html, the native bridge present, no service worker) with the network OFF (every request outside the folder refused, none made) at 4× CPU on a phone viewport: the library appears, a story tapped before its slice lands opens when it does, search, games and the Atölye wait and then work, every data file came from the folder, no console error, no body read before it arrived', async () => {
+    const cp = require('child_process'), os = require('os'), fsx = require('fs'), pathx = require('path');
+    const tmp = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-v343-www-')), www = pathx.join(tmp, 'www');
+    let ctx = null;
+    try {
+      const out = cp.execSync(`python3 tools/build_android.py --no-sync --www "${www}"`, { encoding: 'utf8' });
+      if (!/nothing stamped/.test(out)) throw new Error('the scratch build stamps nothing: ' + out.slice(-200));
+      const page = fsx.readFileSync(pathx.join(www, 'index.html'), 'utf8'), named = [...new Set(page.match(/data\/[\w.-]+\.js/g) || [])], onDisk = fsx.readdirSync(pathx.join(www, 'data')).map(f => 'data/' + f);
+      const missing = named.filter(n => !fsx.existsSync(pathx.join(www, n))), unnamed = onDisk.filter(n => !named.includes(n));
+      if (missing.length || unnamed.length || onDisk.length < 10 || !fsx.existsSync(pathx.join(www, 'app.js')) || !fsx.existsSync(pathx.join(www, 'icons/icon-512.png')) || fsx.existsSync(pathx.join(www, 'sw.js')))
+        throw new Error('the web assets are whole and named: ' + JSON.stringify({ missing, unnamed, n: onDisk.length }));
+      const T = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.svg': 'image/svg+xml' };
+      ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block' }); const served = [], refused = [];
+      await ctx.route('**/*', route => { const u = new URL(route.request().url());
+        if (u.origin !== 'https://localhost') { refused.push(u.href.slice(0, 80)); return route.abort('internetdisconnected'); }
+        const p = decodeURIComponent(u.pathname).replace(/^\/+/, '') || 'index.html', f = pathx.join(www, p);
+        if (!f.startsWith(www) || !fsx.existsSync(f) || fsx.statSync(f).isDirectory()) { refused.push('404 ' + p); return route.fulfill({ status: 404, body: '' }); }
+        served.push(p); return route.fulfill({ status: 200, contentType: T[pathx.extname(f)] || 'application/octet-stream', body: fsx.readFileSync(f) }); });
+      await ctx.addInitScript(() => { window.Capacitor = { isNativePlatform: () => true, getPlatform: () => 'android', Plugins: {} }; try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); } catch (e) {} });
+      await ctx.setOffline(true);
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message)); p.on('console', m => { if (m.type() === 'error') errs.push('console: ' + m.text()); });
+      const c = await ctx.newCDPSession(p); await c.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+      await p.goto('https://localhost/');
+      await p.waitForFunction(() => document.querySelectorAll('.lib-card:not(.skel)').length >= 50 && !document.body.classList.contains('data-pending'), null, { timeout: 120000, polling: 25 });
+      const early = await p.evaluate(() => { const card = document.querySelector('.lib-card:not(.skel)'); const want = card.dataset.storyId; card.click();
+        return { want, bodiesIn: BODY341.ready(), native: NATIVE_SHELL, sw: !!(navigator.serviceWorker && navigator.serviceWorker.controller), online: navigator.onLine }; });
+      await p.waitForFunction(w => typeof CUR !== 'undefined' && CUR && CUR.id === w && document.querySelectorAll('.word').length > 5, early.want, { timeout: 120000 });
+      await p.waitForFunction(() => BODY341.ready(), null, { timeout: 180000 });
+      const r = await p.evaluate(async () => { const o = {}; document.querySelectorAll('.word')[1].click(); await new Promise(r => setTimeout(r, 300)); o.sheet = sheet.classList.contains('show'); closeSheet(); renderLibrary();
+        openSearch('كتب'); for (let i = 0; i < 600 && document.querySelector('.search-wait'); i++) await new Promise(r => setTimeout(r, 50)); o.hits = document.querySelectorAll('.hit').length; closeSheet();
+        document.querySelector('#tabbar [data-nav="games"]').click(); o.games = !!document.getElementById('gMatch'); closeSheet();
+        document.querySelector('#tabbar [data-nav="atolye"]').click(); o.atolye = !!document.querySelector('.labrail [data-lab="sarf"]'); closeSheet(); renderLibrary();
+        o.miss = (window.__bodyMiss341 || []).length; return o; });
+      const unserved = onDisk.filter(n => !served.includes(n));
+      console.log('      shell copy: ' + onDisk.length + ' data files, all served from the folder, offline; story tapped at the door opened on arrival; search ' + r.hits + ' hits');
+      if (!early.native || early.sw) throw new Error('the page runs as the shell runs it (bridge, no service worker): ' + JSON.stringify(early));
+      if (!r.sheet || r.hits < 5 || !r.games || !r.atolye || r.miss || unserved.length || refused.length || errs.length)
+        throw new Error('the shell copy works offline: ' + JSON.stringify({ r, unserved, refused: refused.slice(0, 3), errs: errs.slice(0, 3) }));
+    } finally { if (ctx) await ctx.close(); fsx.rmSync(tmp, { recursive: true, force: true }); }
+  });
+
+  await check('v343 — speed: first use without a freeze — a fresh reader at 4× CPU (Quiet and the early warm-up running as they do): the door, then the first open of every tab, the search\'s first query, a story and its first word tapped, and the first analysis of every Atölye lab, each waited out — no long task over budget anywhere (the games hub\'s count fill had drained a library walk in a story\'s task, 4.5 s; the Atölye\'s first open 3.2 s; the first word tap 0.5–0.9 s; the model lab\'s folds 0.7–0.9 s each)', async () => {
+    const WORST_MS = 1200;   // v343 at 4×, three suite runs (load 4–9): worst task of the whole sweep 818 / 790 / 562 ms (the Inna or Hamza lab's corpus audit — engine code, left); budget = median × 1.5. Before: 4486 / 3203 / 959 / 921 ms (story after the hub, Atölye, games, Jumla)
+    const { ctx, p, errs } = await split343.fresh(4);
+    try {
+      await p.goto(split343.url); await p.waitForFunction(() => window.BODY341 && BODY341.ready() && window.__qissaBootedAt, null, { timeout: 180000 }); await p.waitForTimeout(1500);
+      const r = await p.evaluate(async () => { const o = {}, op = window.__op343;
+        o.boot = Math.round(Math.max(0, ...window.__lt343.map(x => x[1])));
+        for (const t of ['games', 'deck', 'atolye', 'progress']) { o[t] = await op('tab:' + t, async () => document.querySelector(`#tabbar [data-nav="${t}"]`).click()); closeSheet(); renderLibrary(); }
+        o.search = await op('search', async () => { openSearch(''); const i = document.getElementById('corpusSearch'); i.value = 'كت'; i.dispatchEvent(new Event('input')); }); closeSheet(); renderLibrary();
+        o.story = await op('story', async () => openStory(STORIES.find(s => s.level === 3) || STORIES[3]));
+        o.word = await op('word', async () => document.querySelectorAll('.word')[2].click()); closeSheet(); renderLibrary();
+        o.atolyeIndex = await op('atolye', async () => openAtolye()); const labs = {};
+        for (const l of LAB_TOOLS.map(t => t.id)) labs[l] = await op('lab:' + l, async () => document.querySelector(`.labrail [data-lab="${l}"]`).click());
+        closeSheet(); renderLibrary(); o.labs = labs; o.labWorst = Math.max(...Object.values(labs));
+        o.worst = Math.round(Math.max(0, ...window.__lt343.map(x => x[1]))); o.worstAt = (window.__lt343.slice().sort((a, b) => b[1] - a[1])[0] || [])[2];
+        o.over200 = window.__lt343.filter(x => x[1] > 200).map(x => Math.round(x[1]) + ' ' + x[2]).slice(0, 8); return o; });
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      console.log('      first use at 4× — boot ' + r.boot + ', tabs ' + [r.games, r.deck, r.atolye, r.progress].join('/') + ', search ' + r.search + ', story ' + r.story + ', word ' + r.word + ', labs worst ' + r.labWorst + ' ms; worst of all ' + r.worst + ' (' + r.worstAt + '); over 200: ' + JSON.stringify(r.over200));
+      if (r.worst > WORST_MS) throw new Error('a task held the thread on first use: ' + JSON.stringify(r) + ' (budget ' + WORST_MS + ')');
+    } finally { await ctx.close(); }
+  });
+
+  await check('v343 — speed: the root lab answers from the library — straight from the door to the root lab (Quiet held): it waits only for what its answer reads (the bodies, the bare index, the shelf\'s lemma counts — the taggers, the ledger and the noun index still unbuilt when it answers) and answers as the one-shot render does, within budget at 4× CPU (5.3 s in v341, waiting for the whole warm-up)', async () => {
+    const ANSWER_MS = 4400;   // v343 at 4×, three suite runs: 2845 / 3091 / 2908 ms; budget = median × 1.5 (v341 5.3 s, v340 2.4 s with a 2.3-s task)
+    const { ctx, p, errs } = await split343.fresh(4, { hold: true });
+    try {
+      await p.goto(split343.url); await p.waitForFunction(() => window.BODY341 && BODY341.ready() && window.__qissaBootedAt, null, { timeout: 180000 });
+      const r = await p.evaluate(async () => { openAtolye(); await new Promise(res => setTimeout(res, 300)); const t0 = performance.now();
+        document.querySelector('.labrail [data-lab="jadhr"]').click(); const ok = () => { const o = document.getElementById('jadhrOut'); return o && o.children.length && !o.querySelector('.warm341'); };
+        while (!ok() && performance.now() - t0 < 120000) await new Promise(res => setTimeout(res, 20));
+        const t1 = performance.now(), worst = Math.round(Math.max(0, ...window.__lt343.filter(([s]) => s >= t0 - 1 && s <= t1).map(x => x[1])));
+        const unbuilt = !SarfTagger._model && !IsmTagger._model && !LazimEngine._ledger && !RootFinder._nouns;
+        const html = document.getElementById('jadhrOut').innerHTML; window.__QISSA_RENDER_SYNC = true; renderJadhrOut(); const same = document.getElementById('jadhrOut').innerHTML === html; window.__QISSA_RENDER_SYNC = false;
+        return { ms: Math.round(t1 - t0), worst, unbuilt, same }; });
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      console.log('      root lab from the door: answer in ' + r.ms + ' ms at 4× CPU, worst task ' + r.worst + ' ms');
+      if (!r.unbuilt || !r.same) throw new Error('the root lab warms only its own pieces and answers as the one-shot render: ' + JSON.stringify(r));
+      if (r.ms > ANSWER_MS) throw new Error('the root lab took ' + r.ms + ' ms (budget ' + ANSWER_MS + ')');
+    } finally { await ctx.close(); }
+  });
+
+  await check('v343 — speed: a fresh two-letter query — the keystroke that makes a two-letter query out of none paints the word hits at once and appends the in-text sentences and the notes in the next task: the sheet then holds exactly the one-shot render\'s nodes; the in-text walk visits only the sentences of the word search\'s hits and finds the same sentences; the corpus rows share one haystack per word and entry and equal the one-shot rows; the first paint\'s work within budget at 4× CPU (177–185 ms to the frame in v341)', async () => {
+    const FIRST_MS = 100;   // v343 at 4×, three suite runs: median of four queries 92 / 66 / 63 ms (script + layout of the first half); budget = median × 1.5
+    const { ctx, p, errs } = await split343.fresh(4, { hold: true });
+    try {
+      await p.goto(split343.url); await p.waitForFunction(() => window.BODY341 && BODY341.ready() && window.__qissaBootedAt, null, { timeout: 180000 });
+      const r = await p.evaluate(async () => { while (!buildCorpusStep144(1e9)); while (!DoctrineSearch.warm144(1e9)); InText.sentences(); openSearch(''); const o = { first: [], same: [] };
+        for (const q of ['كت', 'قا', 'سل', 'ki']) { const i = document.getElementById('corpusSearch'); i.value = q.slice(0, 1); i.dispatchEvent(new Event('input')); await new Promise(r => setTimeout(r, 200));
+          const t0 = performance.now(); i.value = q; i.dispatchEvent(new Event('input')); const half = !document.querySelector('#sheetInner .in-text'); void document.body.offsetHeight; o.first.push(Math.round(performance.now() - t0));
+          await new Promise(r => requestAnimationFrame(() => setTimeout(r, 120))); const html = sheetInner.innerHTML;
+          window.__QISSA_RENDER_SYNC = true; openSearch(); window.__QISSA_RENDER_SYNC = false; o.same.push(half && sheetInner.innerHTML === html); }
+        closeSheet(); return o; });
+      const e = await page.evaluate(() => { const rows = buildCorpus(), o = {};
+        const keep = SEARCH_LAST341; let eq = true; for (const q of ['كت', 'قال', 'سلم', 'الك', 'رة', 'هم', 'أن']) { searchCorpus(q); InText._last341 = null; const a = JSON.stringify(InText.find(q, 1e9).hits.map(h => [h.sen.id, h.ti]));
+          SEARCH_LAST341 = null; InText._last341 = null; const b = JSON.stringify(InText.find(q, 1e9).hits.map(h => [h.sen.id, h.ti])); eq = eq && a === b && a.length > 2; } SEARCH_LAST341 = keep; InText._last341 = null; o.inText = eq;
+        const mine = []; STORIES.forEach(st => (st.chapters || []).forEach(ch => buildCorpusChapter144(st, ch, mine)));
+        const K = ['hay', 'fhay', 'fRoot', 'fRootTight', 'fLemma', 'fBare']; o.rows = mine.length === rows.length && mine.every((r, i) => r.tok === rows[i].tok && r.st === rows[i].st && K.every(k => r[k] === rows[i][k]) && JSON.stringify(Object.keys(r)) === JSON.stringify(Object.keys(rows[i])));
+        o.shared = mine.length > 1000 && hay343(mine[0].tok.s.bare, mine[0].entry) === hay343(mine[0].tok.s.bare, mine[0].entry) && hay343(mine[0].tok.s.bare, mine[0].entry).hay === mine[0].hay; return o; });
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      console.log('      a fresh two-letter query at 4×: first half ' + r.first.join(' / ') + ' ms (script + layout), the whole sheet the one-shot render\'s');
+      if (!r.same.every(Boolean) || !e.inText || !e.rows || !e.shared) throw new Error('two frames, the same nodes; the same in-text hits; the same rows: ' + JSON.stringify([r, e]));
+      const med = r.first.slice().sort((a, b) => a - b)[Math.floor(r.first.length / 2)];
+      if (med > FIRST_MS) throw new Error('the first half took ' + med + ' ms (budget ' + FIRST_MS + ')');
+    } finally { await ctx.close(); }
+  });
+
+  await check('v343 — speed: the shelf\'s covers as bitmaps — once idle, every library card\'s cover is a bitmap of its own SVG at the box\'s height × the pixel density (the background\'s size and position untouched), so scrolling the shelf no longer re-renders vector tiles; held while the harness holds Quiet (the older checks read the SVG); coverArt\'s contract unchanged', async () => {
+    const { ctx, p, errs } = await split343.fresh(4, { dpr: 3 });
+    try {
+      await p.goto(split343.url); await p.waitForFunction(() => window.BODY341 && BODY341.ready() && window.__qissaBootedAt, null, { timeout: 180000 });
+      await p.waitForFunction(() => !Cover343.busy && !Cover343.q.length && document.querySelectorAll('#story .lib-card .cover').length > 50, null, { timeout: 120000 });
+      const r = await p.evaluate(async () => { const cs = [...document.querySelectorAll('#story .lib-card .cover')], o = { n: cs.length, blob: cs.filter(c => c.style.backgroundImage.startsWith('url("blob:')).length };
+        const c = cs[0], st = STORIES.find(s => s.id === c.closest('.lib-card').dataset.storyId); o.svg = /^data:image\/svg\+xml/.test(coverArt(st)); o.size = getComputedStyle(c).backgroundSize;
+        const img = new Image(); img.src = c.style.backgroundImage.slice(5, -2); await img.decode(); o.h = img.naturalHeight; o.want = Math.round(Math.round(c.getBoundingClientRect().height) * Math.min(3, devicePixelRatio));
+        const t0 = performance.now(); for (let i = 0; i < 30; i++) { window.scrollBy(0, 500); await new Promise(r => requestAnimationFrame(r)); } window.scrollTo(0, 0);
+        o.scrollWorst = Math.round(Math.max(0, ...window.__lt343.filter(([s]) => s >= t0).map(x => x[1]))); return o; });
+      if (errs.length) throw new Error('errors: ' + errs.slice(0, 2).join(' | '));
+      console.log('      ' + r.blob + '/' + r.n + ' covers as bitmaps (' + r.h + ' px tall at 3×); worst task while scrolling ' + r.scrollWorst + ' ms at 4×');
+      if (r.blob !== r.n || !r.svg || r.size !== 'auto 100%' || Math.abs(r.h - r.want) > 1) throw new Error('every cover a bitmap of its SVG at the painted size: ' + JSON.stringify(r));
+    } finally { await ctx.close(); split343.close(); }
   });
 
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
