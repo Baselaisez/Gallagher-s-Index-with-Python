@@ -81,6 +81,18 @@ def main():
                 if not bilingual_ok(it.get(k)):
                     missing.append(f"catechism/{f.stem}: {it.get('id')} {k} not bilingual")
 
+    # (v339-I) al-Inṣāf's masāʾil: the title and every stated view carry an English and a Turkish rendering
+    insaf = ROOT / "content/rules/insaf_masail.json"
+    if insaf.is_file():
+        d = json.loads(insaf.read_text(encoding="utf-8"))
+        for b in d.get("babs", []):
+            if not (b.get("en") and b.get("tr")):
+                missing.append(f"insaf: bab {b.get('id')} not bilingual")
+        for r in d.get("masail", []):
+            for k in ("title", "kufa", "basra"):
+                if (k == "title" or r.get(k + "_ar")) and not (r.get(k + "_en") and r.get(k + "_tr")):
+                    missing.append(f"insaf: masala {r.get('n')} {k} not bilingual")
+
     # i'rab Turkish may come from the shared translation memory instead of the
     # token, so apply the same merge the builder does before judging.
     tm_path = ROOT / "content/i18n/irab-tr.json"

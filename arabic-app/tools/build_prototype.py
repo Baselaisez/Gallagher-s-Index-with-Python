@@ -282,6 +282,13 @@ def load_catechism():
     return out
 
 
+def load_insaf():
+    """content/rules/insaf_masail.json (v339-I) — Ibn al-Anbārī's al-Inṣāf, one record per masʾala, cut by script from
+    research/sources/insaf-ibn-al-anbari-src.txt; every `_ar` field is a verbatim substring of that file."""
+    p = ROOT / "content/rules/insaf_masail.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+
+
 def build_catalog(pkgs):
     """Build a catalog.json index from discovered packages.
 
@@ -356,6 +363,8 @@ def main():
         js("CATECHISM", load_catechism()),
         # (wave 158) the derivation law table — one JSON, read by the reader's IshtiqaqEngine and by qissa_core alike
         js("ISHTIQAQ_LAW", load_ishtiqaq()),
+        # (v339-I) al-Inṣāf's masāʾil — the khilaf lab and the gKhilaf game read this table only
+        js("INSAF", load_insaf()),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",
              "label": {"en": "Morphology — after Emsile & Bina",
