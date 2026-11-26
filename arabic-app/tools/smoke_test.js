@@ -16607,7 +16607,7 @@ if (!CHROME) {
     if (J(opened) !== J(['mizan', true]) || rec[0] !== 'mizan') throw new Error('open and remember: ' + J([opened, rec]));
   });
 
-  await check('v317 — the games hub (handoff 7): every shelf heading carries its count (2 · 9 · 23 · 2 · 14 = 50 since v339 added gKhilaf to Naḥw, every game still a direct child of the shelf); on a phone a shelf folds to four cards behind an «All (n)» toggle that says whether it is open; on a desk nothing folds', async () => {
+  await check('v317 — the games hub (handoff 7): every shelf heading carries its count (2 · 9 · 24 · 2 · 14 = 51 since v339 added gKhilaf and v348-F gLimadha to Naḥw, every game still a direct child of the shelf); on a phone a shelf folds to four cards behind an «All (n)» toggle that says whether it is open; on a desk nothing folds', async () => {
     const J = JSON.stringify;
     const read = () => page.evaluate(() => ({ counts: [...document.querySelectorAll('.game-pick .game-group .g-count')].map(x => +x.textContent),
       cards: document.querySelectorAll('.game-pick > button').length, shown: [...document.querySelectorAll('.game-pick > button')].filter(b => b.getBoundingClientRect().height > 0).length,
@@ -16621,9 +16621,9 @@ if (!CHROME) {
     const opened = await read();
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.evaluate(() => closeSheet());
-    if (J(desk.counts) !== J([2, 9, 23, 2, 14]) || desk.cards !== 50 || desk.shown !== 50 || desk.toggles.length) throw new Error('the desk hub: ' + J(desk));
+    if (J(desk.counts) !== J([2, 9, 24, 2, 14]) || desk.cards !== 51 || desk.shown !== 51 || desk.toggles.length) throw new Error('the desk hub: ' + J(desk));
     if (phone.shown !== 2 + 4 + 4 + 2 + 4 || J(phone.toggles) !== J(['false', 'false', 'false'])) throw new Error('the phone hub folds: ' + J(phone));
-    if (opened.shown !== phone.shown + 19 || J(opened.toggles) !== J(['false', 'true', 'false'])) throw new Error('«All» opens its own shelf only: ' + J(opened));
+    if (opened.shown !== phone.shown + 20 || J(opened.toggles) !== J(['false', 'true', 'false'])) throw new Error('«All» opens its own shelf only: ' + J(opened));
   });
 
   await check('v318 — who governs whom (handoff 12, 13d): the Zabt lab reads «جاء أبرهة من اليمن بجيش كبير» as mebni · ←جَاءَ · mebni · ←مِنَ · attached · follower of بِجَيْشٍ from the stored lines, reads text the corpus does not hold by the DabtEngine\'s rules, outlines the governor of the tapped word; the word sheet of يَهْدِمَ outlines أَنْ and moves to it on a tap', async () => {
@@ -19318,6 +19318,98 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (css.length < 100000) throw new Error('the page\'s CSS was not found in its first 900 KB: ' + css.length);
     const bad = css.split('\n').map((l, i) => [i + 1, l]).filter(([, l]) => /(^|[\s,{}>+~])(body|html|:root)(\[[^\]]*\]|\.[\w-]+)*:has\(/.test(l.replace(/\/\*.*?\*\//g, ''))).map(([i, l]) => i + ': ' + l.trim().slice(0, 90));
     if (bad.length) throw new Error('a page-wide :has() rule: ' + JSON.stringify(bad.slice(0, 4)));
+  });
+
+  await check('v348-F — the commentaries\' reasons, by script: the three books structured (Shaykhzāde, Ibn Mālik\'s Kāfiya Shāfiya with the naẓm apart, al-Raḍī\'s Shāfiya), every ledger entry and every grammar note in the NEW join table, and every kept reason verbatim — a substring of its source file, on the page it is anchored to — classified, rendered in en and tr or not at all, and the same table in the page', async () => {
+    const fsx = require('fs'), pathx = require('path'), R = f => pathx.join(__dirname, '..', f), J = f => JSON.parse(fsx.readFileSync(R(f), 'utf8'));
+    const toc = { shaykhzade: J('content/rules/toc_shaykhzade.json'), 'ibn-malik': J('content/rules/toc_ibn-malik.json'), radi: J('content/rules/toc_radi.json') };
+    if (toc.shaykhzade.counts.text_sections < 60 || toc['ibn-malik'].counts.text_sections < 120 || toc['ibn-malik'].counts.verses < 1500 || toc.radi.counts.text_sections < 90)
+      throw new Error('the three tables of contents: ' + JSON.stringify(Object.values(toc).map(t => t.counts)));
+    const links = J('content/rules/commentary_links.json');
+    const ledN = ['qawaid_al_irab', 'shudhur', 'izhar', 'kafiya', 'marah', 'maqsud', 'izzi'].reduce((n, b) => n + J('content/rules/coverage_' + b + '.json').entries.length, 0);
+    const noteN = fsx.readdirSync(R('content/grammar')).filter(f => f.endsWith('.json')).length;
+    const led = links.links.filter(x => x.topic.startsWith('ledger:')).length, nts = links.links.filter(x => x.topic.startsWith('note:')).length;
+    if (led !== ledN || nts !== noteN) throw new Error('every ledger entry (' + ledN + ') and note (' + noteN + ') has its row: ' + led + ' / ' + nts);
+    if (links.counts.qawaid_matn_to_shaykhzade < 90 || links.counts.ledger_joined < 900 || links.counts.notes_joined < 170) throw new Error('the joins: ' + JSON.stringify(links.counts));
+    const il = J('content/rules/ilal.json'), src = {}, bad = [], KINDS = ['why-state', 'why-sign', 'why-built', 'why-form', 'why-order', 'objection'];
+    for (const r of il.reasons) {
+      const t = src[r.book] || (src[r.book] = fsx.readFileSync(R(il.books[r.book].file), 'utf8'));
+      const h = t.indexOf('=== p. ' + r.shamela_page + ' (' + r.vol_page + ') ['), e = t.indexOf('\n=== p. ', h + 5), at = t.indexOf(r.ar, h);
+      if (h < 0 || at < 0 || (e > 0 && at + r.ar.length > e)) bad.push(r.id + ' not on its page');
+      if (r.pre) { const ph = t.lastIndexOf('\n=== p. ', h - 2), body = t.slice(ph, h).split('\n--- hashiya ---\n')[0].trimEnd(); if (!body.endsWith(r.pre)) bad.push(r.id + ' pre'); }
+      if (!KINDS.includes(r.kind)) bad.push(r.id + ' kind');
+      if (!!r.en !== !!r.tr) bad.push(r.id + ' en/tr');
+      if (r.why_at != null && !(r.why_at > 0 && r.why_at < r.ar.length)) bad.push(r.id + ' why_at');
+    }
+    if (bad.length) throw new Error('verbatim and anchored: ' + bad.slice(0, 5).join(' | '));
+    const by = k => il.reasons.filter(r => r.book === k).length, kinds = new Set(il.reasons.map(r => r.kind));
+    if (il.reasons.length < 80 || by('shaykhzade') < 20 || by('ibn-malik') < 30 || by('radi') < 15 || kinds.size !== 6) throw new Error('the kept reasons: ' + JSON.stringify(il.counts));
+    const pg = await page.evaluate(() => ({ n: ILAL.reasons.length, ar: ILAL.reasons.map(r => r.id + '\u0001' + r.ar).join('\u0002'), nt: Object.keys(ILAL.noteTopics).length }));
+    if (pg.n !== il.reasons.length || pg.ar !== il.reasons.map(r => r.id + '\u0001' + r.ar).join('\u0002') || pg.nt < 100) throw new Error('ILAL in the page is the table: ' + JSON.stringify({ n: pg.n, nt: pg.nt }));
+    console.log('      ' + il.reasons.length + ' reasons (' + Object.entries(il.counts.by_book).map(([k, v]) => k + ' ' + v).join(', ') + '); ' + led + ' ledger rows, ' + nts + ' notes; every ar on its page');
+  });
+
+  await check('v348-F — the reasons where they belong: «العِلَّة» cards under a note\'s «Neden böyle?» (a role note and a note with no role), one book reason on the chain\'s «family → state» (its case the line\'s) and «kind → sign» steps with «— Şeyhzâde, s. N», the rule of the day on alternate days, and the round «لِمَاذَا؟» — 390 px, the v320 contrast in three themes', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(() => {
+      const out = { low: [] }, keepLang = state.uiLang, keepTheme = localStorage.getItem('qissa-theme'), keepDay = Ilal348.dayReason;
+      const rgba = s => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const a = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [a[0], a[1], a[2], a.length > 3 ? a[3] : 1]; };
+      const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+      const over = (t2, b) => [0, 1, 2].map(i => t2[i] * t2[3] + b[i] * (1 - t2[3])).concat(1);
+      const bgOf = el => { const stk = []; for (let e = el; e; e = e.parentElement) { const c = rgba(getComputedStyle(e).backgroundColor); if (c && c[3] > 0) { stk.push(c); if (c[3] >= 1) break; } }
+        let b = rgba(getComputedStyle(document.body).backgroundColor) || [255, 255, 255, 1]; for (let i = stk.length - 1; i >= 0; i--) b = over(stk[i], b); return b; };
+      const CON = sel => { const bad = []; document.querySelectorAll(sel).forEach(root => root.querySelectorAll('*').forEach(el => { if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return;
+        const rr = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!rr.width || !rr.height || cs.visibility === 'hidden') return;
+        const fg = rgba(cs.color), bg = bgOf(el); if (!fg || !bg) return; const c = over(fg, bg), L1 = lum(c), L2 = lum(bg), ratio = (Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05);
+        if (ratio < 4.5) bad.push((el.className || el.tagName) + ' ' + Math.round(ratio * 100) / 100); })); return bad; };
+      const wide = () => { const s = document.getElementById('sheet'); return s.scrollWidth > s.clientWidth + 1 || document.documentElement.scrollWidth > innerWidth + 1; };
+      try {
+        state.uiLang = 'tr';
+        // the note of a role, and a note that teaches no role
+        const roleNote = Illa346.roles().find(R => R.id === 'mubtada').notes[0]; openRef(roleNote);
+        const sec = document.querySelector('#sheet .illa-note'), cards = sec ? [...sec.querySelectorAll('.ilal-card')] : [];
+        out.note = { cards: cards.length, head: sec && sec.querySelector('.illa-h').textContent, ar: cards[0] && cards[0].querySelector('blockquote').textContent,
+          verb: cards.every(c => ILAL.reasons.some(x => Ilal348.text(x) === c.querySelector('blockquote').textContent)), pend: cards[0] && cards[0].querySelector('.ilal-pend').textContent,
+          src: cards[0] && cards[0].querySelector('.ilal-src').textContent, wide: wide(), first: cards[0] && cards[0].dataset.ilal };
+        out.noteRole = (ILAL.reasons.find(x => x.id === out.note.first) || {}).role;
+        const bare = Object.keys(ILAL.noteTopics).find(g => GRAMMAR[g] && !Illa346.roles().some(R => R.notes[0] === g) && Ilal348.forNote(g).length);
+        const fr = document.createRange().createContextualFragment(renderNote(bare)); out.bare = { g: bare, sec: !!fr.querySelector('.illa-note .ilal-card'), head: (fr.querySelector('.illa-note .illa-h') || {}).textContent };
+        Ilal348.compact = true; try { const h = renderNote(roleNote); out.bare.compact = /data-ilal-note/.test(h) && !/ilal-card/.test(h); } finally { Ilal348.compact = false; }   // the word sheet's stack: one row
+        // the chain: family → state (the line's case) and kind → sign
+        const a = Illa346.chain(null, { line: 'مُبْتَدَأٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ', w: 'زَيْدٌ' }), fam = a.steps.find(s => s.kind === 'family');
+        const b = Illa346.chain(null, { line: 'اسْمٌ مَجْرُورٌ بِفِي وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ', w: 'مَسَاجِدَ' }), sg = b.steps.find(s => s.kind === 'sign');
+        out.chain = { fam: fam && fam.ilal && fam.ilal.id, famHtml: /— Şeyhzâde, s\. \d+/.test(Illa346.stepsHtml(a, 'tr')), sign: sg && sg.ilal && sg.ilal.id, signHtml: /— İbn Mâlik, s\. \d+\/\d+/.test(Illa346.stepsHtml(b, 'tr')),
+          shortest: fam && fam.ilal && ILAL.reasons.filter(x => x.kind === 'why-state' && x.role === 'mubtada' && x.en && (!x.case || x.case === 'raf')).every(x => x.ar.length >= fam.ilal.ar.length),
+          caseGuard: ['raf', 'nasb', 'jarr'].every(k => Illa346.roles().every(R => { const x = Ilal348.forRole(R.id, k); return !x || !x.case || x.case === k; })),
+          fail: !(Illa346.chain(null, { line: 'فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ', w: 'زَيْدٌ' }).steps.some(s => s.ilal)) };
+        // the rule of the day: the book line stays; on alternate days the reason under it
+        const gid = Object.keys(GRAMMAR).find(g => RuleDay344.lines(GRAMMAR[g]).length && Ilal348.forNote(g).some(x => x.en));
+        const p = { id: gid, area: 'nahw', line: RuleDay344.lines(GRAMMAR[gid])[0], own: null };
+        const day = k => { const [y, m, d] = k.split('-').map(Number); return Math.round(Date.UTC(y, m - 1, d) / 864e5) % 2; }, even = day('2026-11-26') ? '2026-11-27' : '2026-11-26', odd = even === '2026-11-26' ? '2026-11-27' : '2026-11-26';
+        out.day = { even: !!keepDay.call(Ilal348, p, even), odd: !keepDay.call(Ilal348, p, odd) };
+        Ilal348.dayReason = (q) => keepDay.call(Ilal348, q, even); RuleDay344.open(p);
+        const rd = document.getElementById('ruleDay'); out.day.line = rd.querySelector('blockquote').textContent === p.line.ar; out.day.card = !!rd.querySelector('.ilal-card'); out.day.wide = wide();
+        Ilal348.dayReason = (q) => keepDay.call(Ilal348, q, odd); RuleDay344.open(p); out.day.none = !document.querySelector('#ruleDay .ilal-card');
+        Ilal348.dayReason = keepDay;
+        // the round
+        out.game = { supply: GameFactory.supplyOf('gLimadha'), lvl: null };
+        openGames(); const gb = document.getElementById('gLimadha'); out.game.card = !!gb && !gb.disabled; gb.click();
+        const q = document.querySelector('#sheet .ilal-q'), os = [...document.querySelectorAll('#sheet .opts [data-o]')];
+        out.game.q = q && q.textContent.trim().length > 5; out.game.opts = os.length;
+        out.game.verb = os.every(o => { const t = o.querySelector('.ilal-opt').textContent; return ILAL.reasons.some(x => x.ar.endsWith(t) && x.ar.slice(x.why_at) === t); });
+        os[0].click(); const w = document.querySelector('#sheet .game-why .ilal-card'); out.game.why = !!w && /Şâmile s\. \d+/.test(w.textContent); out.game.wide = wide(); QUIZ_RESUME = null;
+        for (const th of ['murekkep', 'gece', 'bahce']) { setTheme(th); openRef(roleNote); out.low.push(...CON('#sheet .ilal-cards').map(x => th + ':' + x)); }
+      } finally { Ilal348.dayReason = keepDay; state.uiLang = keepLang; if (keepTheme) setTheme(keepTheme); closeSheet(); }
+      return out;
+    });
+    console.log('      note ' + r.note.cards + ' cards (first ' + r.note.first + '), bare note ' + r.bare.g + '; chain ' + r.chain.fam + ' / ' + r.chain.sign + '; round ' + r.game.supply + ' items');
+    const n = r.note, c = r.chain, d = r.day, g = r.game;
+    if (!(n.cards >= 1 && n.head === 'Neden böyle?' && n.verb && n.pend === 'çeviri · hoca onayı bekliyor' && /Şâmile s\. \d+/.test(n.src) && !n.wide && r.noteRole === 'mubtada')) throw new Error('the note\'s cards: ' + JSON.stringify(n) + ' ' + r.noteRole);
+    if (!(r.bare.sec && r.bare.head === 'Neden böyle?' && r.bare.compact)) throw new Error('a note with no role: ' + JSON.stringify(r.bare));
+    if (!(c.fam && c.famHtml && c.sign === 'ilal-ibn-malik-176-1' && c.signHtml && c.shortest && c.caseGuard && c.fail)) throw new Error('the chain\'s book reasons: ' + JSON.stringify(c));
+    if (!(d.even && d.odd && d.line && d.card && d.none && !d.wide)) throw new Error('the rule of the day: ' + JSON.stringify(d));
+    if (!(g.supply >= 8 && g.card && g.q && g.opts === 3 && g.verb && g.why && !g.wide)) throw new Error('the round لِمَاذَا؟: ' + JSON.stringify(g));
+    if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
   });
 
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {

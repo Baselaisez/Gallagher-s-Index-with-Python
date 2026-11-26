@@ -16778,3 +16778,45 @@ for the shelf: too big) or fetched from the hosted copy on first listen — the 
 **Older checks changed:** none edited. Full suite: 600 checks, 595 pass; the two v341 speed pins failed on time under the machine's load
 (the pre-v347 reader fails the door pin the same way, ≈3 s, run alone), the three later v347 checks failed only because they began with
 the library round-trip — they now open their story directly and pass, with v344–v347 and v333 re-run in order. `check_i18n.py` clean.
+## v348-F — the commentaries' reasons
+
+The owner: «explaining the reasons behind is also important, in games and notes and stories». v346 built the reason chain from the app's
+own tables; this wave brings the grammarians' OWN reasons (taʿlīl) from three commentaries received 2026-11-26 (research/sources:
+Shaykhzāde's Sharḥ Qawāʿid al-Iʿrāb, 203 pp.; Ibn Mālik's Sharḥ al-Kāfiya al-Shāfiya, 2,235 pp.; al-Raḍī's Sharḥ al-Shāfiya, 1,542 pp.)
+to the places they belong — verbatim, unvowelled as printed, anchored by book, vol:page and Shamela page. No engine class was touched.
+- **Script chain (`tools/ilal/`, rerun in this order).** `build_toc.py` → `content/rules/toc_{shaykhzade,ibn-malik,radi}.json`
+  (sections with page spans from the page headers' `[section]`, the bāb each falls in, in-text headings; editor / index / al-Baghdādī's
+  shawāhid (al-Raḍī vol. 4) marked `part`; Ibn Mālik's naẓm verses counted apart — a run of « … ... … » lines followed by «"ش"», 2,019).
+  `concepts.py` (≈70 topics: an Arabic regex on a ledger entry / note title, a Latin one on a note id, and per book the sections whose
+  «bāb | title» name it) + `build_links.py` → `content/rules/commentary_links.json`, a NEW table (the ledgers are untouched): every entry of
+  the seven ledgers (Qawāʿid, Shudhūr, Iẓhār, Kāfiya, Marāḥ, Maqṣūd, ʿIzzī — 2,374) and every note (335) with `commentary: [{book, section,
+  page, shamela, via}]`; `via: "matn"` = a Qawāʿid entry joined to the Shaykhzāde page where its words recur (word bigrams ≥ half; 101),
+  `via: "heading"` by topic. Balāgha / badīʿ / bayān / ʿarūḍ notes are never joined (the books are naḥw and ṣarf: «الخبر والإنشاء» is not
+  «الخبر»). `cut_reasons.py` → `research/ilal/candidates.json` (984: every sentence with a taʿlīl marker, with the sentence before; a
+  «فإن قيل» runs to its «قلت / أجيب»): Shaykhzāde whole, Ibn Mālik and al-Raḍī only in the `WAVE` topics. `kept.json` is the HAND
+  reading (cid, the cut `ar`, topic, kind, role / cls / case, en, tr); `build_ilal.py` → `content/rules/ilal.json` and REFUSES any `ar`
+  not on its page (`pre` = the verbatim end of the page before, once). `coverage.py` → `research/commentary-coverage-2026-11-27.md`.
+- **What was kept: 90 reasons** (Shaykhzāde 29, Ibn Mālik 41, al-Raḍī 20; why-state 33, why-form 22, why-order 16, why-built 8,
+  why-sign 8, objection 3); 84 rendered (our en/tr, short, shown «çeviri · hoca onayı bekliyor»), 6 Arabic only. `role` is set only when
+  the reason is about THAT role's case, `case` when it states one (the chain never shows a jarr reason on a rafʿ line); `why_at` is where
+  the reason clause starts (the round shows `ar.slice(why_at)`, still verbatim).
+- **Where it shows** (`Ilal348`, beside `Illa346`; data `ILAL` from `build_prototype.load_ilal`: the reasons, the books' names,
+  `noteTopics`). (1) A note's «Neden böyle?» (`Illa346.noteHtml`) gains «العِلَّة» cards — Arabic, rendering, the pending label, the book,
+  page and Shamela page; three shown, the rest behind «Kitaplardan n gerekçe daha»; a joined note with no role now has the section with
+  cards only (127 notes show reasons). In the word sheet's stack of notes (`Ilal348.compact`, set around the grammar tab's loop)
+  a note shows ONE row «العِلَّة · kitaplardan n gerekçe →» that opens the note (the cards there pushed v334-N1's second note past its
+  4,000-character window). (2) The chain: the «family → state» step takes the shortest `why-state` of the role whose `case`
+  is the line's, the «kind → sign» step the shortest `why-sign` of the SignEngine class, rendered «<ar> — Şeyhzâde, s. 149» (Ibn Mālik /
+  al-Raḍī as «s. vol/page»); the fāʿil has none (neither book says why the fāʿil is rafʿ). (3) `RuleDay344.open`: on even UTC days a
+  rendered reason of the day's note UNDER the book line (not instead: v344's check reads the first blockquote). (4) «لِمَاذَا؟ / Neden?»
+  (`gLimadha`, nahw, Level 4 via `lvl`): our rendering's half before «because / çünkü» is the rule; three options of the same kind from
+  other topics; feedback is the reason's card. 43 items (reasons ≤ 25 words, rendered with that split, ≥ 2 rivals).
+- **Checks** (before v333): «v348-F — the commentaries' reasons, by script …» (TOC floors, a row per ledger entry and note, every `ar`
+  on its anchored page, kinds, en/tr both or none, ILAL = the table) and «v348-F — the reasons where they belong …» (role note and a
+  no-role note, chain steps with the source and the case guard, the rule of the day both parities, the round, 390 px, contrast in
+  three themes, the word sheet's one row). Older check changed: «v317 — the games hub» pins 2 · 9 · 24 · 2 · 14 = 51 (was 23 / 50)
+  and the opened Naḥw shelf +20 (was +19) — the new card. v346's «a note with no role has no Neden section» holds after the balāgha
+  exclusion. **Suite**: 611 checks, 609 PASS in the full run; the two FAILs (v317's count pin, v334-N1's window) fixed and PASS alone.
+- **Left** (research/commentary-coverage-2026-11-27.md has the lists): Ibn Mālik 96 sections / 1,213 pp. and al-Raḍī 57 / 815 pp. not
+  scanned; 44 joined topics with no reason kept (badal, istithna, mafʿūl muṭlaq/fīh/lahu, nāʾib, the pronouns, taṣghīr, nasab, waqf, …);
+  of the 984 candidates about 510 were read (Shaykhzāde 193 of 379, Ibn Mālik ≈260 of 350, al-Raḍī ≈60 of 255); the renderings await the hoca.
