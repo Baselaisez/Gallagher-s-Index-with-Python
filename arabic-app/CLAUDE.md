@@ -15899,3 +15899,64 @@ same folds and scores, which the check still compares), so it asserts units ≥ 
 Full suite (refit chain, then `node tools/smoke_test.js`): 559 checks, 558 pass; the one failure was that wave-189 pin, fixed
 and passing alone after. In that run: door 986 ms, first Jumla worst task 938 ms, keystroke median 5.7 ms, hub step 14 ms.
 `tools/entrance_test.js`: ready offline in 5.1 s, app from the cache in 0.57 s (the hashed slices sit in `qissa-data`, 24 files).
+
+## v342-T — the stories' grammar audit, triaged
+
+The v339-M audit listed where an engine contradicts an authored iʿrāb line; nobody had said which side is wrong. This wave judged every one by
+the books in `research/sources/` (Shudhūr matn, the Iẓhār matn lithograph, Qawāʿid bāb 1 matn and the Turkish bāb 4 notes), cluster by cluster. No
+engine code and no story content was changed.
+
+- **The audit uncapped** — `tools/grammar_audit.js` now writes `research/story-grammar-audit-2026-11-27.{md,json}` (`--date` to change): the three
+  list caps (sign 80, case ending 400, adab 40 per rule) are lifted in the tool's own headless page by re-making the capped methods from their
+  source with the cap removed (`UNCAP`: SignEngine.auditGen334, DabtEngine.corpus, AdabEngine.lintGen334, GrammarAudit339.sign / kase — each
+  substitution must apply or the run stops; full story ids, chapter and token kept); the Shudhūr measure's 8-per-rule list too. The JSON has one
+  record per contradiction: engine, rule id, `pkg:ch:sN:tok` (tokens from 1), the word, the sentence, the whole authored line, the verdict, the
+  rule and its book (`ENRICH`). 1,869 records (exact 1,712; offered 157) — the 1,039 + 90 of v339-M were the capped lists.
+- **Totals** (L = the line is wrong · E = the engine is wrong · C = both right):
+
+  | engine | all | L | E | C | undecided |
+  |---|---:|---:|---:|---:|---:|
+  | sign | 141 | 49 | 89 | 0 | 3 |
+  | case ending | 663 | 9 | 649 | 3 | 2 |
+  | taʿalluq | 307 | 0 | 272 | 35 | 0 |
+  | manṣūbāt | 18 | 16 | 1 | 1 | 0 |
+  | Shudhūr | 20 | 2 | 1 | 17 | 0 |
+  | إِنَّ / أَنَّ | 27 | 2 | 25 | 0 | 0 |
+  | order | 2 | 0 | 2 | 0 | 0 |
+  | adab | 570 | 568 | 1 | 1 | 0 |
+  | clause maḥall | 121 | 4 | 72 | 45 | 0 |
+  | **all** | **1,869** | **650** | **1,112** | **102** | **5** |
+
+  Listed before (an earlier «for the hoca» list or the wave-40 adab lab list): 621 — the 568 adab findings, the v332 tamyīz / maṣdar slips, the
+  v329 / v333 singular-in-ـَاة and يَكُ / نَكُ lines, the v339-M exact ones. New: 1,248.
+- **Five largest L**: T-A01 409 (adab: a verb line without its doer), T-A02 76 (a mubtadaʾ without its khabar), T-A03 67 (a relative without its
+  ṣila), **T-S01 24** (singular دُونَ / حِينَ / دِينَ / نُونَ / الْمِسْكِينَ called «جَمْعُ مُذَكَّرٍ سَالِمٌ … بِالْيَاءِ» — Shudhūr l.25, l.43; the first
+  real grammar slip on the shelf by size), T-A04 7 (لَمْ without قَلْب, «حَرْفٌ نَاسِخٌ» for إِنَّ). Then T-M01 (ẓarf for the tamyīz after أَرْبَعِينَ),
+  T-S09 (kasra / ḍamma on a dual), T-S15 (صَلَاتَهُمْ … «جَمْعُ مُؤَنَّثٍ»), T-J01 (jazm seat on a bare jāzim answer — settled by v339-M).
+- **Five largest E**: T-T02 163 (taʿalluq bound to the main verb / nearest word, not the maṣdar or participle the phrase completes), T-C-tanwin 106
+  (tanwīn on an annexed noun, on a name before ابن), T-C-mood 87 (wrong mood across a clause, لِ before a jussive read as lām kay), T-T01 77 (a
+  mustaqarr phrase — khabar of kāna / lā, naʿt — bound to a nearby word), T-J03 72 (the clause engine's OFFERED readings fire inside an open
+  frame that already owns the clause). Then T-C-built 65 (the cell rule rewrites a built māḍī's person), T-C-maful 62, T-C-follower 57, T-C-verse 56.
+- **Five largest C**: T-J04 30 (offered clause readings, the author names a third the books allow), T-T04 21 (maṣdar laghw vs its ṣifa / ḥāl),
+  T-J02 15 (v339-M's compatible facts), T-T05 14 (audit artefact: the author names the governor by description — «الْفِعْلُ قَبْلَهُ»), T-H02 13
+  (R209: the author silent on a heart verb's taʿlīq).
+- **Undecided: 5** — بِلَا with «لَا بِمَعْنَى غَيْرٍ مَجْرُورٌ» (the noun-lā reading; no shelf book decides it, 3); فَيُسَمِّيهِ after «بِأَنْ يَكُونَ … وَيُظْهِرَ»
+  (ʿaṭf or a fresh start) and «أَمُرْسَلِينَ هُمَا» (the received fiqh text). Pinned as a ceiling in the smoke.
+- **How a later wave uses the three files.** `research/story-corrections-proposed-2026-11-27.jsonl` (650 lines: 64 certain, 586 likely; 77 carry a
+  mechanical `after_ar`, the rest a `fault`; `listed_before` / `settled_by` where they apply) goes to the teacher — nothing is applied without his
+  ruling; apply only `certain` ones with `after_ar` after he signs, and the en/tr lines then need their own pass. `research/engine-faults-2026-11-27.md`
+  is the engine agents' work list, ranked: each entry has a reproducing sentence (typed, or the story sentence typed as written), the probe's
+  actual output, the correct output with its book line, the narrowest gate and the agreeing verdicts the rule must keep (e.g. SignEngine's «mabni»
+  class agrees 0 of 17 times; DabtEngine maful 3,534 hits). `research/story-audit-triage-2026-11-27.{md,json}` is the summary and the per-record
+  verdicts. After an engine fix, re-run `node tools/grammar_audit.js`, re-run the scratchpad `triage342/build.py` (its `j/*.py` judgements key on the
+  record numbers of THIS audit — a new audit renumbers; re-key by `key`) and lower the pinned counts.
+- **Case ending judged by shape** (the honest limit): of 663, every item where the line and the written vowel disagree (~100) and samples of every
+  sub-shape were read; inside the E clusters a line may still be wrong. Taʿalluq: all 307 read in one-line form.
+- **Also seen**: GrammarAudit339.taalluq prints an offered alternative as «[object Object]»; the v328 taʿalluq comparison cannot read a described
+  governor (T-T05).
+- **Smoke** «v342 — the stories' audit is triaged» (right before «v333 — the received imports»): the triage JSON judges every record of the
+  2026-11-27 audit JSON (L / E / C / undecided, undecided ≤ 5), and every item the page's own audits list today (clause maḥall, sign, taʿalluq, adab,
+  إِنَّ / أَنَّ, order) is among the judged with no engine over its judged count. `SMOKE_ONLY='^v342'`: 1 pass. The full suite was not run (no engine
+  code changed; the one new check runs after the v339 audit check, whose engine caches it reuses).
+- Scripts: scratchpad `triage342/` (`hoca_keys.py` the earlier hoca lists, `j/*.py` the clusters, `build.py`, `render.py`, `probe342.js`,
+  `probe2.js`, `PROGRESS.md`).

@@ -17970,6 +17970,33 @@ if (!CHROME) {
     if (worst > STEP_MS) throw new Error('a pool step held the thread: ' + JSON.stringify(r.per) + ' (budget ' + STEP_MS + ')');
   });
 
+  // ── v342-T — the stories' grammar audit, triaged: every contradiction judged L / E / C / undecided ──
+  await check('v342 — the stories\' audit is triaged: research/story-audit-triage-2026-11-27.json judges every contradiction research/story-grammar-audit-2026-11-27.json lists (1,869 on 2026-11-27, uncapped) as L, E, C or undecided (undecided ≤ 5, pinned), and every contradiction the page\'s own audits list today (clause maḥall, sign, taʿalluq, adab, إِنَّ / أَنَّ, order — GrammarAudit339) is among the judged, with no engine over its judged count — so a later wave that adds contradictions without judging them fails here', async () => {
+    const fsx = require('fs'), pathx = require('path'), J = JSON.stringify;
+    const rd = f => JSON.parse(fsx.readFileSync(pathx.join(__dirname, '..', 'research', f), 'utf8'));
+    const T = rd('story-audit-triage-2026-11-27.json'), Au = rd('story-grammar-audit-2026-11-27.json');
+    const V = new Set(['L', 'E', 'C', 'undecided']);
+    const bad = T.records.filter(x => !V.has(x.verdict) || !x.cluster || !T.clusters.some(c => c.id === x.cluster));
+    const judged = new Set(T.records.map(x => x.n + '|' + x.key)), unjudged = Au.records.filter(r => !judged.has(r.n + '|' + r.key));
+    const und = T.records.filter(x => x.verdict === 'undecided').length;
+    if (bad.length || unjudged.length || und > 5 || T.records.length !== Au.records.length) throw new Error('the triage file: ' + J({ bad: bad.slice(0, 5), unjudged: unjudged.slice(0, 5).map(r => r.key), undecided: und, triage: T.records.length, audit: Au.records.length }));
+    const live = await page.evaluate(() => GrammarAudit339.run(['jumla', 'sign', 'taalluq', 'adab', 'inna', 'tartib']).map(s => ({ id: s.id, error: s.error || null, contra: s.contra, items: (s.items || []).map(x => ({ key: String(x.key || ''), word: String(x.word || '') })) })));
+    const b = w => String(w || '').normalize('NFC').replace(/[^ء-ي]/g, '');
+    const out = [];
+    for (const s of live) {
+      const R = T.records.filter(x => x.engine === s.id);
+      if (s.error || s.contra > R.length) { out.push({ id: s.id, error: s.error, contra: s.contra, judged: R.length }); continue; }
+      for (const it of s.items) {
+        const k = it.key, ok = s.id === 'sign' ? (() => { const m = /^(.*)…:(.*)$/.exec(k); return m && R.some(x => x.pkg.startsWith(m[1]) && x.sen === m[2] && b(x.word) === b(it.word)); })()
+          : s.id === 'inna' ? R.some(x => k.startsWith(x.pkg + ':' + x.ch + ':' + x.sen + ':') && (b(x.word).includes(b(it.word)) || b(it.word).includes(b(x.word))))
+          : s.id === 'tartib' ? R.some(x => k === x.pkg + ':' + x.ch + ':' + x.sen)
+          : R.some(x => x.key === k);
+        if (!ok) out.push({ id: s.id, key: k, word: it.word });
+      }
+    }
+    if (live.length !== 6 || out.length) throw new Error('not judged: ' + J(out.slice(0, 12)));
+  });
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
