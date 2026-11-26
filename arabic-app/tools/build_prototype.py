@@ -255,7 +255,7 @@ def course351(stories):
     st = next((s for s in stories if s["id"] == "izhar-al-asrar"), None)
     if not p.exists() or st is None: return
     m = json.loads(p.read_text(encoding="utf-8"))
-    keep = ("id", "bab", "group", "item", "status", "pkg", "tr", "engine", "notes", "games", "examples", "pool", "ilal")
+    keep = ("id", "bab", "group", "item", "status", "pkg", "tr", "engine", "notes", "games", "examples", "pool", "ilal", "tc", "book")   # (v353-I) tc: the owner's translation; book: the book's own example
     items = []
     for x in m["items"]:
         y = {k: x[k] for k in keep if k in x}

@@ -42,7 +42,7 @@ def J(x): return f'مجرور ب«?{x}»?([ ،.]|$)'
 SPEC = {
  'I-A01': dict(a='^الباء حرف جر', e='مجرور'), 'I-A02': dict(a=J('من'), e='مجرور'), 'I-A03': dict(a=J('إلى'), e='مجرور'),
  'I-A04': dict(a=J('عن'), e='مجرور'), 'I-A05': dict(a=J('على'), e='مجرور'), 'I-A06': dict(a='^اللام حرف جر', e='مجرور'),
- 'I-A07': dict(a=J('في'), e='مجرور'), 'I-A08': dict(a='^الكاف حرف (جر|تشبيه)', e='مجرور'), 'I-A09': dict(a=J('حتى'), e='مجرور'),
+ 'I-A07': dict(a=J('في'), e='مجرور'), 'I-A08': dict(a='^الكاف حرف (جر|تشبيه)', e='مجرور'), 'I-A09': dict(a=J('حتى'), e='في محل جر|مجرور'),   # (v353-I) on the letter the engine says «فِي مَحَلِّ جَرٍّ بِهِ» of the maṣdar: the old test wanted «مجرور»
  'I-A10': dict(a=J('رب'), e='مجرور'), 'I-A11': dict(a='^الواو (حرف جر وقسم|حرف قسم|واو القسم)', e='قسم'),
  'I-A12': dict(a='^التاء (حرف جر وقسم|حرف قسم|تاء القسم)', e='قسم'), 'I-A13': dict(a=J('حاشا'), e='مجرور'),
  'I-A14': dict(a=J('مذ'), e='مجرور'), 'I-A15': dict(a=J('منذ'), e='مجرور'), 'I-A16': dict(a=J('خلا'), e='مجرور'),
@@ -71,7 +71,8 @@ SPEC = {
  'I-A58': dict(a='^اسم فعل', e='اسم فعل'), 'I-A59': dict(a='^مبتدأ مرفوع', e='مبتدأ'),
  'I-A60': dict(a='^فعل مضارع مرفوع', e='مرفوع'),
  'I-B01': dict(a='^فاعل مرفوع', e='فاعل'), 'I-B02': dict(a='^نائب (ال)?فاعل', e='نائب فاعل'), 'I-B03': dict(a='^مبتدأ', e='مبتدأ'),
- 'I-B04': dict(a='سد مسد الخبر', e='سد مسد الخبر'), 'I-B05': dict(a='^خبر (المبتدأ )?مرفوع|^خبر المبتدأ', e='خبر'),
+# (v353-I) I-B04: the line must open with the doer — «ذُلُلٌ رِكَابِي» names it only as the Kufan's aside
+ 'I-B04': dict(a='^(نائب )?فاعل[^—(]*سد مسد الخبر', e='سد مسد الخبر'), 'I-B05': dict(a='^خبر (المبتدأ )?مرفوع|^خبر المبتدأ', e='خبر'),
  'I-B06': dict(a=f'^خبر «?{INNA}»?([ ،.]|$)', e='خبر'), 'I-B07': dict(a=f'^اسم «?{KANA}»?([ ،.]|$)', e='اسم'),
  'I-B08': dict(a='^اسم «?(ما|لا)»? (العاملة|المشبهة|الحجازية)', e='اسم'), 'I-B09': dict(a='^خبر «?لا»?([ ،.]|$)', e='خبر'),
  'I-B10': dict(a='^مفعول مطلق', e='مفعول مطلق'), 'I-B11': dict(a='^مفعول به', e='مفعول به'),
@@ -100,6 +101,19 @@ TRQ = {**rng(1, 20, [9]), **rng(21, 26, [18, 19]), 'I-A27': [24], 'I-A28': [23],
        'I-B10': [65], 'I-B11': [65], 'I-B12': [66], 'I-B13': [66], 'I-B14': [66], 'I-B15': [67], 'I-B16': [68], 'I-B17': [69, 70],
        'I-B22': [25], 'I-B23': [11], 'I-B24': [41, 42], 'I-B25': [25, 73], 'I-B26': [74], 'I-B27': [79], 'I-B28': [80], 'I-B29': [81], 'I-B30': [81],
        **{f'I-C{i:02d}': [83, 85] for i in range(1, 11)}}
+# (v353-I) the book's OWN example for the cells no corpus token fills: the package token of the matn's example (the word the exercise marks),
+# the engine line that must name it for the exercise to run on it (None: shown, never exercised — the token is not the unit's reading), and why.
+BOOK = {
+ 'I-A14': ('izhar-al-asrar:5:s4:26', 'في محل جر|مجرور', 'مَا رَأَيْتُهُ مُذْ أَنَّكَ قَائِمٌ — the maṣdar of أَنَّ in jarr by مُذْ'),
+ 'I-A17': ('izhar-al-asrar:22:s10:23', None, 'جَاءَنِي الْقَوْمُ عَدَا … زَيْدًا — the book\'s عَدَا as a verb («وَيَكُونَانِ فِعْلَيْنِ وَهُوَ الْأَكْثَرُ»); not the jarr reading'),
+ 'I-A18': ('izhar-al-asrar:2:s5:9', 'مجرور', 'لَوْلَاكَ لَهَلَكَ زَيْدٌ — the pronoun in jarr by لَوْلَا'),
+ 'I-A19': ('izhar-al-asrar:2:s7:15', 'مجرور', 'كَيْمَهْ عَصَيْتَ — the interrogative mā in jarr by كَيْ'),
+ 'I-A20': ('izhar-al-asrar:2:s5:13', 'مجرور', 'لَعَلَّ زَيْدٍ قَائِمٌ — جَرٌّ in the dialect of ʿUqayl'),
+ 'I-A30': ('izhar-al-asrar:6:s4:31', 'اسم «?لا', 'وَلَا رَجُلٌ حَاضِرًا — the ism of lā like laysa'),
+ 'I-A34': ('izhar-al-asrar:7:s4:14', None, 'إِذَنْ أَظُنُّكَ كَاذِبًا — the book\'s example of إِذَنْ NOT governing (the verb is for the present)'),
+ 'I-B14': ('izhar-al-asrar:35:s1:13', 'مفعول معه', 'جِئْتُ وَزَيْدًا'),
+}
+BOOK_NONE = ['I-A13', 'I-A16', 'I-A33', 'I-A40', 'I-A41', 'I-A42', 'I-A43', 'I-A44']   # the matn names them in its lists and gives no example of use
 GAMES = {}
 for i in range(1, 21): GAMES[f'I-A{i:02d}'] = ['gCase', 'gShop']
 for i in range(21, 27): GAMES[f'I-A{i:02d}'] = ['gRole', 'gInna']
@@ -285,10 +299,13 @@ def main():
     LI = litho(); sens = package(); units = tr_units(); nby, nids = note_index()
     EN = json.load(open(P('content/rules/izhar_course_en.json'), encoding='utf-8'))['q']   # our renderings of the questions, pending review
     ilal = json.load(open(P('content/rules/ilal.json'), encoding='utf-8'))['reasons']
+    # (v353-I) the owner's own Turkish translation, joined per item by tools/ledger/izhar_tercume.py (meaning, its example, the source lines)
+    tp = P('content/rules/izhar_tercume.json')
+    TC = {u['id']: u for u in json.load(open(tp, encoding='utf-8'))['units']} if os.path.exists(tp) else {}
     toks = corpus_tokens(); C = candidates(toks)
     probe = {}
     if '--no-probe' not in sys.argv:
-        cands = [dict(id=i, k=k, e=SPEC[i]['e']) for i, v in C.items() for k in v['c']]
+        cands = [dict(id=i, k=k, e=SPEC[i]['e']) for i, v in C.items() for k in v['c']] + [dict(id='BOOK:' + i, k=b[0], e=b[1] or '^$') for i, b in BOOK.items()]
         with tempfile.TemporaryDirectory() as td:
             ip, op = os.path.join(td, 'c.json'), os.path.join(td, 'o.json')
             json.dump(cands, open(ip, 'w'), ensure_ascii=False)
@@ -321,6 +338,10 @@ def main():
             seen.add(p); exs.append(x['k'])
             if len(exs) == 3: break
         pool = [x['k'] for x in good[:12]]
+        bk = None
+        if iid in BOOK and not exs:
+            pb = probe.get(('BOOK:' + iid, BOOK[iid][0])) or {}
+            bk = dict(k=BOOK[iid][0], ok=bool(BOOK[iid][1] and pb.get('ok')), why=BOOK[iid][2], eng=pb.get('eng'))
         top = TOPIC.get(iid)
         il = [x['id'] for x in ilal if top and x.get('topic') == top][:3]
         items.append(dict(id=iid, bab=bab, group=group, item=r['item'], status=r['status'],
@@ -328,7 +349,10 @@ def main():
             pkg=dict(ch=bs['ch'], sid=bs['sid'], ar=bs['ar'], hi=bs['hi']) if bs else None,
             tr=tr, engine=engine, notes=notes, games=GAMES.get(iid, []),
             spec=dict(a=SPEC[iid]['a'], e=SPEC[iid]['e'], w=SPEC[iid].get('w')), authored=C[iid]['n'],
-            checked=sum(1 for x in ex if x), agreeing=len(good), examples=exs, pool=pool, ilal=il))
+            checked=sum(1 for x in ex if x), agreeing=len(good), examples=exs, pool=pool, ilal=il, book=bk,
+            tc=(lambda u: dict(m=u['meaning_tr'], en=u.get('en'), lines=u['meaning_lines'] + (u['example_lines'] if u.get('example') else []), ex=dict(u['example'], tr=u['example_tr']) if u.get('example') else None)
+                if u and u.get('meaning_tr') else None)(TC.get(iid)),
+            no_example=iid in BOOK_NONE and not exs))
     writer = []
     for rid, ln, ph, said in WRITER:
         sp = find_span(sens, ph)
@@ -339,12 +363,14 @@ def main():
     for b, nm, tot in ((1, 'amil', 60), (2, 'mamul', 30), (3, 'irab', 10)):
         B = [x for x in items if x['bab'] == b]
         counts[nm] = dict(total=len(B), book=tot, matn=sum(1 for x in B if x['matn']['text']), pkg=sum(1 for x in B if x['pkg']),
-                          tr=sum(1 for x in B if x['tr']), engine=sum(1 for x in B if x['engine']), notes=sum(1 for x in B if x['notes']),
+                          tr=sum(1 for x in B if x['tr'] or x['tc']), tr_sc=sum(1 for x in B if x['tr']), tercume=sum(1 for x in B if x['tc']), tercume_ex=sum(1 for x in B if x['tc'] and x['tc']['ex']), engine=sum(1 for x in B if x['engine']), notes=sum(1 for x in B if x['notes']),
                           games=sum(1 for x in B if x['games']), examples=sum(1 for x in B if x['examples']),
                           examples3=sum(1 for x in B if len(x['examples']) >= 3), ilal=sum(1 for x in B if x['ilal']),
-                          complete=sum(1 for x in B if x['matn']['text'] and x['pkg'] and x['tr'] and x['engine'] and x['notes'] and x['games'] and x['examples']))
-    missing = [dict(id=x['id'], item=x['item'], lacks=[k for k in ('pkg', 'tr', 'engine', 'notes', 'games', 'examples') if not x[k]])
-               for x in items if not (x['pkg'] and x['tr'] and x['engine'] and x['notes'] and x['games'] and x['examples'])]
+                          complete=sum(1 for x in B if x['matn']['text'] and x['pkg'] and (x['tr'] or x['tc']) and x['engine'] and x['notes'] and x['games'] and (x['examples'] or x['book'])),
+                          book_example=sum(1 for x in B if x['book']), book_ex=sum(1 for x in B if x['book'] and x['book']['ok']))
+    has = lambda x, k: x[k] or (k == 'examples' and x['book']) or (k == 'tr' and x['tc'])
+    missing = [dict(id=x['id'], item=x['item'], lacks=[k for k in ('pkg', 'tr', 'engine', 'notes', 'games', 'examples') if not has(x, k)])
+               for x in items if not all(has(x, k) for k in ('pkg', 'tr', 'engine', 'notes', 'games', 'examples'))]
     out = dict(book='Iẓhār al-Asrār (Birgivī)', built_by='tools/ledger/izhar_course_map.py', ledger='content/rules/coverage_izhar.json',
                sources=dict(matn=LITHO, tr=TAFS, package='content/samples/' + PKG, ilal='content/rules/ilal.json'),
                tr_note='the suʾāl–cevap file is a PDF extraction: its Arabic runs are mojibake and are elided as «…»; Đ/đ (the extraction’s İ/ı) restored; otherwise verbatim',
@@ -368,10 +394,18 @@ def render(out):
     for m in out['missing']:
         it = next(i for i in out['items'] if i['id'] == m['id'])
         why = []
-        if 'examples' in m['lacks']: why.append('authored lines naming it: %d; engine agreeing: %d of %d checked' % (it['authored'], it['agreeing'], it['checked']))
+        if 'examples' in m['lacks']: why.append('authored lines naming it: %d; engine agreeing: %d of %d checked' % (it['authored'], it['agreeing'], it['checked']) + ('; the matn names it in a list and gives no example of its use' if it.get('no_example') else ''))
         if 'tr' in m['lacks']: why.append('no question in the suʾāl–cevap')
         if 'engine' in m['lacks']: why.append('ledger status %s' % it['status'])
         L.append('| %s | %s | %s | %s |' % (m['id'], it['item'], ', '.join(m['lacks']), '; '.join(why)))
+    L += ['', '## v353-I — the owner\'s translation and the book\'s own examples', '',
+          'The «Anlamı / Meaning» card: the meaning in the owner\'s Turkish translation (`research/sources/izhar-tercume-full.txt`, joined by',
+          '`tools/ledger/izhar_tercume.py` → `content/rules/izhar_tercume.json`, every string verbatim from its cited lines) — ʿāmil %d / 60, maʿmūl %d / 30,' % (c['amil']['tercume'], c['mamul']['tercume']),
+          'signs %d / 10; an example is shown with it only where its broken Arabic equals a package token window as a bag of letters: %d.' % (c['irab']['tercume'], sum(c[k]['tercume_ex'] for k in c)),
+          'The suʾāl–cevap cell of B18–B21 is the translation\'s line.', '',
+          '| id | item | the book\'s own example (package token) | exercised? | why |', '|---|---|---|---|---|']
+    for i in out['items']:
+        if i.get('book'): L.append('| %s | %s | %s | %s | %s |' % (i['id'], i['item'], i['book']['k'], 'yes' if i['book']['ok'] else 'no — engine: ' + (i['book'].get('eng') or '')[:50], i['book']['why']))
     L += ['', '## Unit by unit', '', '| id | item | matn l. | story ch:s | Q | engine | notes | examples | exercise items |', '|---|---|---:|---|---|---|---:|---:|---:|']
     for i in out['items']:
         n_ex = len(set(i['examples']) | set(i['pool']))

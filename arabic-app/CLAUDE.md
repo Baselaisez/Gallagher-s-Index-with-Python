@@ -17028,3 +17028,51 @@ The owner: «Izhar is so important and you do have sufficient resource for Izhar
   44 px buttons, en + tr keys, course351 in one body slice and not in the core). No older check changed.
 - **Note for later runs.** A `SMOKE_ONLY` subset still creates the v341 / v343 split dirs in `os.tmpdir()` (they are made outside any
   check) and never removes them; run subsets with a short `TMPDIR` of your own (`/tmp/iz351`; chrome refuses a long socket path).
+## v353-I — the Iẓhār course, round 2
+
+The owner: «Izhar is so important and you do have sufficient resource for Izhar.» Round 1 read the suʾāl–cevap file (Arabic lost → «…»); this round
+puts the owner's own full Turkish translation into the units, fills the course's missing cells, and clears the taʿalluq lists of the Iẓhār story.
+
+- **The translation → `content/rules/izhar_tercume.json`** (`tools/ledger/izhar_tercume.py`; a hand-made JOIN table item → file lines of the meaning,
+  of the example's Turkish, of its broken Arabic). Sources looked at: `izhar-tercume-full.txt` (used: modern Turkish, the ʿāmil book in full, maʿmūl only
+  where a governing section names them), `izhar-full-corrected.txt` (an Ottoman-script commentary — not modern Turkish, not used),
+  `izhar-amil-mamul-irab.txt` (20 Ottoman lines — not used). Every Turkish string is cut VERBATIM: the cited lines joined, whitespace folded, the
+  Arabic-script and page-number lines dropped (only those may be skipped between cited lines). The example's Arabic is never the extraction's: the
+  broken line is NFKC'd to bare letters and compared AS A BAG with every token window of the package — **1** pairs (A54, the kuḥl sentence 13:s3);
+  the translator's other examples are his own (آمَنْتُ بِاللهِ …), so a unit shows the meaning without an example. Coverage of 100 units: a clean
+  meaning **75** (ʿāmil 53 / 60, maʿmūl 20 / 30, signs 2 / 10), the Turkish of an example 58, a paired example 1. Left out by choice (render less):
+  A28 (its section mixes Arabic into the Turkish), A31–A34 / A39 / A49 (their meanings sit in the lost Arabic column; من's «Mevsul» uncertain).
+  EN: one line per meaning (`en`), marked «translation · pending review».
+- **The card.** `Izhar351.card(x)` — «Anlamı / Meaning» — LEADS a unit (before the matn): the meaning (TR) or our line + the Turkish under it (EN), the
+  paired example, the source line. The suʾāl–cevap stays, collapsed (`details.iz-sc`) when its text has holes. Data: `build_prototype.course351` keeps
+  `tc` and `book` per item (the body slice grows by the strings).
+- **The missing cells (23 → 9).** `izhar_course_map.py`: the map reads `izhar_tercume.json` (`tc`; the suʾāl–cevap cell of B18–B21 is the translation's
+  line); `BOOK` — the book's own example where no story token carries the item (shown «kitabın misali / the book's example»; its exercise only where
+  the engine's line reads it as the book does: `book.ok`): A14 مَا رَأَيْتُهُ مُذْ أَنَّكَ قَائِمٌ, A17 جَاءَنِي الْقَوْمُ عَدَا … زَيْدًا (the verb reading — never exercised),
+  A18 لَوْلَاكَ, A19 كَيْمَهْ, A20 لَعَلَّ زَيْدٍ قَائِمٌ (**exercised**), A30 وَلَا رَجُلٌ حَاضِرًا, A34 إِذَنْ أَظُنُّكَ كَاذِبًا (the not-governing example — never exercised),
+  B14 جِئْتُ وَزَيْدًا (**exercised**); `BOOK_NONE` — A13 A16 A33 A40–A44: the matn names them in its lists with no example of use (still missing, named).
+  `quiz()` takes one item when it is the book's. The three disagreements:
+  **A09 حَتَّى** — the map's test was too strict: on the letter the engine writes «فِي مَحَلِّ جَرٍّ بِهِ» (of the maṣdar), the test wanted «مجرور»; spec e
+  → `في محل جر|مجرور`: 0 → 12 of 19 (the rest are verb tokens whose authored line names حَتَّى). **A53** — the engine: no rule read the ṣifa
+  mushabbaha's doer (وَجْهُهُ came out «مبتدأ، وخبره «زيد» مقدم»); new `Nahw342Engine` rows **sifaFail** (exact: a ṣifa by the lexicon —
+  `SifaEngine.classify`, the scale alone is no signal — with tanwīn in jarr / naṣb, then a noun in written rafʿ with a pronoun; silent before a rafʿ noun
+  or a verb, and for غير / نفس / اسم / ẓarf words) and **sifaFailOff** (the ṣifa in rafʿ: its doer, or the delayed mubtadaʾ — «طَوِيلٌ نِجَادُهُ» is the
+  muʿrib's mubtadaʾ muʾakhkhar); Iẓhār l. 28 «كُلُّ صِفَةٍ مُشَبَّهَةٍ تَرْفَعُ الْفَاعِلَ»: 0 → 3 of 6. **B04** — the engine: `wasf` waited for a stop before the
+  hamza / negation, and the book cites after «نَحْوُ» and joins with a wāw (وَأَقَائِمٌ الزَّيْدَانِ، وَمَا قَائِمٌ الزَّيْدُونَ); now «نَحْوُ» opens the clause, the
+  hamza on a participle opens it anywhere, a wāw-joined lead speaks only in the exact dual / plural branch; and the test's spec.a must open with the
+  doer (ذُلُلٌ رِكَابِي named it as the Kufan's aside): 0 → 8 of 8. Measured on the 731 corpus tokens the two rows can reach: 13 lines changed, every one
+  toward the authored line. No L proposal (no authored line found wrong): `story-corrections-proposed-2026-11-27.izhar2.jsonl` not written.
+  Map: ʿāmil complete **43 → 51**, maʿmūl **24 → 30**, signs 10; missing **23 → 9** (8 no-example + A20's engine cell, a ledger fact).
+- **Taʿalluq (T-T01 / T-T02 on the Iẓhār story).** `TaalluqEngine.label353` — the grammar books' «X لِـY» lists (وَخَلَا وَعَدَا لِلِاسْتِثْنَاءِ، وَلَا النَّهْيِ
+  لِلطَّلَبِ، نِعْمَ لِلْمَدْحِ، مَا الِاسْتِفْهَامِيَّةِ لِلتَّعْلِيلِ): a lām phrase on a closed list of MEANING NAMES is the cited word's khabar / ḥāl on the omitted
+  governor (82 of 82 on the shelf written so), unless the walk found a verb that is not itself a cited name (خَرَجَ الرَّجُلُ لِلطَّلَبِ keeps خَرَجَ). Whole shelf:
+  agree **714 → 718**, contradictions **228 → 224**, exact **200 → 196**, no item new, none lost; T-T01 46 → 44, T-T02 133 → 131; the story's 15 E
+  → 11. Measured and NOT kept: the participle of a doubled / hollow root by its written shape (مُسْتَقِلٍّ بِالْفَهْمِ، وَمُضَافًا إِلَيْهَا) — the bare shape takes
+  الْمُدَامَةِ (wine) in ʿAntara (a new exact contradiction), the tagger route fixes neither. Left (11): the governor is a maṣdar or a noun by its meaning
+  further back (تَعَلُّقُ … بِفِعْلٍ، لِاخْتِصَاصِ … بِالْفِعْلِ، جَوَازُ … إِذَا، فَعَلَهُ … بِمَعْنَاهُ، آلَةٌ لِفَهْمِ، أَسَدٌ عَلَيَّ، اللهُ فِي السَّمٰوَاتِ), the verb before
+  its doer (يَتَقَدَّمُ مَعْمُولُهُ عَلَيْهِ), a phrase before «لَا يَكُونُ». `research/story-audit-triage-delta-izhar2.json`: 0 records.
+- **Checks** (before v333): «v353-I — the Iẓhār by the owner's translation and its missing cells» (verbatim proof of every string, pairing re-proved,
+  coverage ≥ 75 / ≥ 1, map counts, book examples and their exercises in the page, the engine rows with controls), «v353-I — taʿalluq» (the lists,
+  the control, the shelf's audit as ceilings 224 / 196 and floor 718), «v353-I — the «Anlamı / Meaning» card» (A01 · A21 · B18 at 390 px in tr and en,
+  first section, collapsed suʾāl–cevap, the book's example + its exercise, contrast ≥ 4.5 in murekkep / gece / bahce). Older check changed: «v351-I —
+  the Iẓhār by its own count» — its «incomplete» test counts the translation cell and the book's example as filling (the new cells, stated).
