@@ -16214,3 +16214,50 @@ script and proved in the page; then the open entries consumed, most-met first.
   أَضْرِبْ as an amr; the v326 tawkīd line on «فَإِمَّا تَرَيِنَّ» (tasrif-al-izzi:10:s5:19) says rafʿ where the author (rightly) says jazm by إِنْ.
   R2 (every applied Shudhūr rule also reachable from its note) was not extended beyond the open rows.
   Scripts: scratchpad nahw342/ (eng342.js + splice.py; m.sh / specs342.py / meas342.js; runmap.py; smoke342.js; before/ the ledger before).
+
+## v344 — the teacher's review, khilāf links, the rule of the day, the level from reading
+
+The owner is a madrasa teacher and a second hoca sends rulings: the app needed a way for a hoca to rule on its iʿrāb inside the app, and
+testers asked that the level come from what the learner does. This wave CONNECTS parts that existed; it adds no engine. All new code sits
+beside the UI functions it extends (`Review344`, `Khilaf344`, `RuleDay344`, `LevelEv344`, after `verifyMarkHtml`); tokens only, three
+themes, 390 px, en and tr.
+- **The hoca reviews in the app** (`Review344`, key `qissa-verdicts`, which Backup carries like every `qissa-*` key). A switch in the door's
+  Settings, «Hoca incelemesi / Teacher's review», off by default; turning it on asks the reviewer's name once (inline, stored in the key).
+  In review mode the word sheet's iʿrāb block shows **Onayla / Düzelt / Şüpheli** on the line in hand (only with a word context) and «Bu
+  cümlenin bütün satırlarını onayla» (keeps a standing correction or doubt). Düzelt and Şüpheli open the reviewers' own form
+  (`ReviewNotes.form`, wave 32) with kind iʿrāb and the word preselected; Düzelt prefills the fix box with the Arabic line, Şüpheli hides it;
+  saving records the verdict too. A verdict is stored per token `package:chapter:sentence:token` → {verdict approved|corrected|doubtful,
+  by, at, hash, ar, surface, after_ar?, note?}; `hash` = FNV-1a of the iʿrāb line + the word. In review mode each chapter head shows its
+  tally («İnceleme: 3/22 onaylı · 1 düzeltme · 0 şüpheli · n değişti»).
+- **The mark follows the LOCAL verdict only** (`Review344.markHtml`, used in the iʿrāb block instead of `verifyMarkHtml(CUR)`, which it
+  falls back to): an approved line whose hash still matches reads «Hoca onaylı · <name>»; corrected «Düzeltme önerildi»; doubtful
+  «Şüpheli işaretlendi»; a line whose text changed since the review falls back to pending + «satır değişti — yeniden incelenmeli». No
+  verdict → v338's mark exactly. Imported files never change a mark. The package's `review` field keeps its meaning.
+- **Export / import** («İnceleme dosyası» sheet, from Settings): `{"reviewer","exported","app_build":"qissa-v344","verdicts":[{package,
+  where:"<chapter>:<sentence id>:<token index>", surface, verdict, before:{ar}, after_ar?, note?, line_hash, by, at}]}`, downloaded as
+  `qissa-inceleme-<name>-<date>.json`. Import keeps each file (a re-import of the same reviewer+date replaces it) and lists the lines where
+  the reviewers differ (verdict or correction), every side shown, nothing resolved or merged.
+- **Khilāf rows** (`Khilaf344`): a grammar note that al-Inṣāf's table lists in a masʾala's `links` carries, at most twice, the quiet row
+  «Bu meselede Basra–Kûfe ihtilafı var: <title_ar> →», then «+N». In `renderNote` (so the Grammar tab and the note view) and in the iʿrāb
+  tab (the token's own notes). A row opens the masʾala's `khilafCard` in the sheet with «back» to the word sheet or the note. Only `links`;
+  no claim about which view the app follows. Links added this wave (title ↔ note title/anchors): 58 (لام الابتداء) and 90 (إنْ and its
+  lām) → masail-inna-wal-mukhaffafa-fil-kafiya; 71 (بناء الآن) → al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada (its example lists
+  «والآن» among the built words). 21 → qasr was considered and left out (the note never says «المقصور عليه»).
+- **Günün kaidesi** (`RuleDay344`, key `qissa-ruleday`) is FOLDED into «Pekiştir»: a fifth row measured the first shelf card at 646 px,
+  past v340's 640 pin (four rows: 602). The step's line names the rule; its tap opens the rule first (once a day), whose «Bir tur oyna» runs
+  the step's own round; «Notu aç» opens the note. The rule: a note of the weakest area (`hubRecoPick().weak`, then by Elo) that has one —
+  groups sarf → sarf; nahw → nahw + awamil; balagha → balagha/badi/bayan (vocab and adad have none) — at or below `state.myLevel` (no level
+  or level 1 → no rule: the lowest candidate is level 2), not shown in the 14 days before today; date-seeded FNV picks the note and its line.
+  ONE book line: an example whose `cite` names one source among the files whose lines the notes carry verbatim (Shudhūr's qawāʿid jsonl,
+  Taṣrīf al-ʿIzzī, Marāḥ al-Arwāḥ, Ibn Hishām's Qawāʿid without «…»); Maqṣūd and the Shudhūr src lines are normalised in the notes and are
+  not used. Shown with the book, the page («ص N») or the line, «kitaptan, aynen», and the note's own (story) example. Ticks (✓ in the line)
+  when opened. GRAMMAR is in the core slice, so the door reads no body.
+- **The level from reading** (`LevelEv344`, keys `qissa-lvlev` — a dated log of graded answers, 30 days kept — and `qissa-lvlsug`, the
+  day's estimate). Evidence over the last 14 days: chapter questions (`qissa-chq`, at the story's level), deck reviews of a card from a story
+  (`grade()`: again = wrong, at the story's level), game answers (`runQuiz`, at `cfg.lvl(it)`, never the chapter check's — those are
+  `qissa-chq`'s). Estimate = the highest level right ≥ 75 % over ≥ 12 answers. When it differs from `state.myLevel` three days running, the
+  door's Settings and the filter sheet show «Okumana göre seviyen: 3 — Geç / Kalsın» with «son 14 gün: seviye 3 — 18 sorudan 15 doğru»;
+  «Geç» is `setMyLevel` on that tap, «Kalsın» hides that suggestion while the level stays. The progress page always shows the evidence line.
+  A word tap writes none of it (v338's rule).
+- Smoke: four «v344 — …» checks before «v333 — the received imports» (the rule check builds its own split copy with every body held: the
+  rule on the door, no body read). No older check changed. Full suite: 577 checks, 577 pass.
