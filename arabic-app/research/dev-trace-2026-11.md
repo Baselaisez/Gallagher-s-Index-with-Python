@@ -109,3 +109,29 @@ Running (scratch folder = wave tag):
 | v351-I | qissa-sarf · tmp/izhar351 | izhar351 | Iẓhār as a course (`izhar_map.json`, the course page, «söylenir mi?» round, the Iẓhār story's audit) | ledger's two open rows applied; course built; checks next |
 
 Queued (briefs in the scratchpad's V352_BRIEFS.md; start as worktrees free, at most five agents at once): v352-A Ibn ʿAqīl as feeder (qissa-feed1), v352-U al-Khaṣāʾiṣ + al-Iqtirāḥ as uṣūl feeders, v352-K readings from al-Khaṣāʾiṣ as a shelf. Sources: al-Iqtirāḥ 405 pp. and al-Khaṣāʾiṣ 1,357 pp. fetched; Ibn ʿAqīl fetching (scratchpad newsrc/dl/b9904).
+
+## 2026-11-26 22:23 UTC
+
+The container restarted at about 22:00 UTC and killed every process; the worktrees and the scratchpad survived. Three agents (guide + design, the uṣūl feeder, Iẓhār round 2) had written everything and were inside their final full-suite runs: their work is committed on their branches (`tmp/guide351` a049e2f, `tmp/usul352` d71107e, `tmp/izhar353` 25be5eb) and is merged by the orchestrator from their CLAUDE.md sections, with CI's whole-suite run on each push as the gate.
+
+Landed since the last entry (dev branch; CI's whole suite green on each up to `baada46`):
+- `02cd67d` — the suite's temporary site copies never outlive a run (180 leftovers, 13 GB, had filled the disk and crashed two full runs).
+- v350-S `92cca6c` — speed VI: door usable 1.46 → 0.95 s local and 8.9 → 7.0 s at 4 Mbit/s (4× CPU); the sentence iʿrāb sheet's first paint 3.98 → 0.32 s cold; the core slice 1.62 → 0.69 MB gzip (the grammar tables' bodies in their own slice after the door); settled heap −21 %; the ten `#story:has(.lib-card)` rules a class.
+- v349-V `b2c8dfd` — the app's own voice: the delivery path, deploy-time rendering, the endings test (30 of 30 with the app's own phoneme reading). The voice is a formant synthesiser (robotic; ظ said as ذ): **off by default** until the owner has heard the two samples sent to him. APK run 23 and Pages run 18 built from this commit.
+- v351-I `5709b65` — Iẓhār as a course: `izhar_map.json` (60 ʿāmil, 30 maʿmūl, 10 signs), the ledger's open rows 2 → 0, «İzhâr dersi» (100 units, 417 exercise items), «يقال / لا يقال».
+- v352-A `baada46` — Ibn ʿAqīl: a ledger of 806 rule statements (51 joined, 199 new-applied, 188 ⚠, 156 open, 212 not automatable), the Alfiyya's verses on 108 notes, 35 reasons (15 of the 44 unanswered topics), one rule row (tawkidPron).
+- v348-A `6e334da` — the proverbs' shelf «الأمثال»: 11 proverbs with their tales from Faṣl al-Maqāl (1,252 tokens), an index of 651 entries.
+- sources `63bc2a8` — Ibn ʿAqīl, al-Khaṣāʾiṣ, al-Iqtirāḥ.
+
+Being merged now, in this order: v351-O (the guide: a seven-step tour on the real screens, one-time hints, the «Kılavuz» page; the design pass — `--muted` defined, 44 px targets, the tarkib sheet's Arabic), v352-U (al-Khaṣāʾiṣ + al-Iqtirāḥ as feeders: the proofs, the 24 kinds of ʿilla, «İki yöntem», 31 reasons — among them why the fāʿil is rafʿ), v353-I (Iẓhār round 2: the owner's Turkish translation leads 75 of 100 units; missing cells 23 → 9; taʿalluq 228 → 224).
+
+Running:
+| wave | worktree / branch | scratch folder | job | progress |
+|---|---|---|---|---|
+| v352-K | qissa-feed2 · tmp/khasais352 | khasais352 | readings from al-Khaṣāʾiṣ as a shelf (about eight passages, L5–6) | started 22:17 |
+
+Next, in order: speed VII (owner: after all these tasks the optimisation job is done again — alone on the machine, against v350's numbers; carries the shelf-scroll question and v350's «still slow» list); the engine round from Ibn ʿAqīl's 188 ⚠ rows and the hand-over list of the 19:55 entry; renderings for the hoca.
+
+Waiting on people:
+- the owner: his ear on the two voice samples (then `app_voice` on, and main's copy of the Pages workflow updated); whether the Iẓhār course feeds Today's lesson; the archive.org item; a phone test of «Dinle»;
+- the hoca: packet o08 and the earlier packets; the proverbs' vowels and the listed doubts; the renderings (now also 35 + 31 reasons, 23 verses, the uṣūl cards, the course's English questions).

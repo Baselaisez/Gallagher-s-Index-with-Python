@@ -265,14 +265,14 @@
   .jumal-tabs { margin-top: 1.1rem; }
   .jumla-row {
     border: 1px solid var(--line); border-left: 3px solid var(--accent);
-    border-radius: 10px; padding: .55rem .7rem; margin: .45rem 0;
+    border-radius: var(--r-md); padding: .55rem .7rem; margin: .45rem 0;
   }
   .jumla-row .jt { font-family: var(--ar-font); font-size: 1.05rem; }
   .jumla-row .jr { font-family: var(--ar-font); color: var(--accent); font-size: .95rem; margin: .15rem 0; }
   .jumla-row .jg { font-family: var(--ui-font); font-size: .8rem; color: var(--ink-soft); }
   .review-nudge {
     display: block; width: 100%; text-align: left; cursor: pointer;
-    border: 1.5px dashed var(--accent); border-radius: 10px; background: transparent;
+    border: 1.5px dashed var(--accent); border-radius: var(--r-md); background: transparent;
     color: var(--accent); font-family: var(--ui-font); font-size: .82rem; font-weight: 600;
     padding: .55rem .8rem; margin: 0 0 .8rem;
   }
@@ -297,7 +297,7 @@
   @keyframes resumeflash { 0%, 60% { background: var(--accent-soft); } 100% { background: transparent; } }
   .welcome-h { font-family: var(--ui-font); margin: .2rem 0 .4rem; }
   .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin: .6rem 0 .4rem; font-family: var(--ui-font); }
-  .stat-tile { border: 1px solid var(--line); border-radius: 10px; padding: .6rem .3rem; text-align: center; background: var(--panel); }
+  .stat-tile { border: 1px solid var(--line); border-radius: var(--r-md); padding: .6rem .3rem; text-align: center; background: var(--panel); }
   .stat-tile b { display: block; font-size: 1.25rem; color: var(--accent); font-variant-numeric: tabular-nums; }
   .stat-tile span { font-size: .66rem; color: var(--ink-soft); }
   .lvl-row { display: flex; align-items: center; gap: .5rem; font-family: var(--ui-font); font-size: .76rem; margin: .35rem 0; }
@@ -545,7 +545,7 @@
   .lab-tile b { font-size: var(--t-xs); font-weight: 600; }
   .lab-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .in-text h4 { margin: var(--s4) 0 var(--s2); font-size: var(--t-sm); }
-  .txt-hit { all: unset; display: block; cursor: pointer; width: 100%; box-sizing: border-box; padding: .5rem .6rem; border-radius: 10px; border: 1px solid transparent; min-height: 44px; }
+  .txt-hit { all: unset; display: block; cursor: pointer; width: 100%; box-sizing: border-box; padding: .5rem .6rem; border-radius: var(--r-md); border: 1px solid transparent; min-height: 44px; }
   .txt-hit:hover, .txt-hit:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
   .txt-hit .h-ar { font-family: var(--ar-font); font-size: 1.15rem; direction: rtl; text-align: right; line-height: 1.9; }
   .txt-hit .h-src { font-family: var(--ui-font); font-size: .7rem; color: var(--ink-soft); margin-top: .15rem; }
@@ -572,10 +572,10 @@
   .gov-block { margin: var(--s3) 0; padding: var(--s3); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
   .gov-block h4 { margin: 0 0 var(--s2); font-size: var(--t-sm); }
   .gov-line { font-family: var(--ar-font); font-size: 1.35rem; line-height: 2.1; display: flex; flex-wrap: wrap; gap: 2px 4px; align-items: center; }
-  .gov-w { font: inherit; min-height: 44px; padding: 0 .35rem; border: 0; border-radius: 10px; background: transparent; color: var(--ink); cursor: pointer; }
+  .gov-w { font: inherit; min-height: 44px; padding: 0 .35rem; border: 0; border-radius: var(--r-md); background: transparent; color: var(--ink); cursor: pointer; }
   .gov-w.on { background: var(--accent); color: var(--accent-ink); }
   .gov-w.gov, .dabt-w.gov { outline: 2px dashed var(--lvl2); outline-offset: 2px; }
-  .gov-card { margin: var(--s2) 0; padding: var(--s2) var(--s3); border-inline-start: 3px solid var(--lvl2); background: color-mix(in srgb, var(--lvl2) 7%, var(--panel)); border-radius: 10px; }
+  .gov-card { margin: var(--s2) 0; padding: var(--s2) var(--s3); border-inline-start: 3px solid var(--lvl2); background: color-mix(in srgb, var(--lvl2) 7%, var(--panel)); border-radius: var(--r-md); }
   .gov-card p { margin: var(--s1) 0 0; font-size: var(--t-sm); }
   .gov-chip { display: inline-block; padding: 0 .5rem; border-radius: 999px; font-size: var(--t-xs); font-weight: 600; background: color-mix(in srgb, var(--lvl2) 14%, var(--panel)); color: color-mix(in srgb, var(--lvl2) 70%, var(--ink)); }
   .gov-pair { font-family: var(--ar-font); font-size: 1.25rem; margin-top: var(--s1); }
@@ -828,7 +828,7 @@
   /* the i'lal chain: asl ← result, with the rule as recited */
   .ilal {
     border: 1px solid var(--line); border-inline-start: 3px solid var(--lvl3, var(--accent));
-    border-radius: 10px; padding: .5rem .7rem; margin: .5rem 0; background: var(--panel);
+    border-radius: var(--r-md); padding: .5rem .7rem; margin: .5rem 0; background: var(--panel);
   }
   .ilal .il-head { font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft);
     text-transform: uppercase; letter-spacing: .06em; margin-bottom: .25rem; }
@@ -891,7 +891,7 @@
   .ex { border-inline-start: 3px solid var(--accent); padding: .3rem .8rem; margin: .55rem 0; background: var(--accent-soft); border-radius: 0 8px 8px 0; }
   .ex .ar { font-family: var(--ar-font); font-size: 1.35rem; direction: rtl; text-align: right; }
   .ex .en { color: var(--ink-soft); font-size: .88rem; }
-  .mistake { border: 1px solid var(--line); border-radius: 10px; padding: .6rem .8rem; margin: .6rem 0; }
+  .mistake { border: 1px solid var(--line); border-radius: var(--r-md); padding: .6rem .8rem; margin: .6rem 0; }
   .mistake .wrong { color: var(--danger); text-decoration: line-through; font-family: var(--ar-font); font-size: 1.25rem; direction: rtl; display: inline-block; }
   .mistake .right { color: var(--ok); font-family: var(--ar-font); font-size: 1.25rem; direction: rtl; display: inline-block; margin-inline-start: .8rem; }
   .mistake .why { font-size: .87rem; color: var(--ink-soft); margin-top: .3rem; }
@@ -1346,7 +1346,7 @@
   .grade-row .hard:hover  { background: color-mix(in srgb, var(--lvl3) 8%, transparent); }
   .grade-row .good:hover  { background: color-mix(in srgb, var(--ok) 8%, transparent); }
   .grade-row .easy:hover  { background: var(--accent-soft); }
-  .deck-list li { padding: .55rem .35rem; border-radius: 10px; border-bottom-color: transparent; transition: background .12s; }
+  .deck-list li { padding: .55rem .35rem; border-radius: var(--r-md); border-bottom-color: transparent; transition: background .12s; }
   .deck-list li + li { border-top: 1px solid var(--line); }
   .deck-list li:hover { background: var(--accent-soft); }
   .deck-list button {
@@ -1407,7 +1407,7 @@
   .conj-known {
     font-family: var(--ui-font); font-size: .82rem; line-height: 1.45;
     color: var(--ok); background: color-mix(in srgb, var(--ok) 9%, transparent);
-    border-radius: 10px; padding: .45rem .65rem; margin: .5rem 0;
+    border-radius: var(--r-md); padding: .45rem .65rem; margin: .5rem 0;
   }
   .conj-known b { font-family: var(--ar-font); font-size: 1.05rem; }
   .conj-known.other { color: var(--ink-soft); background: var(--accent-soft); }
@@ -1419,7 +1419,7 @@
   .adad-phrase {
     font-family: var(--ar-font); font-size: 1.35rem; text-align: center;
     color: var(--accent); background: var(--accent-soft);
-    border-radius: 10px; padding: .45rem .7rem; margin: .4rem 0 .6rem;
+    border-radius: var(--r-md); padding: .45rem .7rem; margin: .4rem 0 .6rem;
   }
   .adad-q b { font-size: 1.5em; margin-inline-end: .3rem; }
   .conj-lab input[type="number"] {
@@ -1436,7 +1436,7 @@
      cell's name and the meaning of THAT form */
   .intext {
     border: 1px solid var(--line); border-inline-start: 3px solid var(--accent);
-    border-radius: 10px; padding: .5rem .7rem; margin: .6rem 0; background: var(--panel);
+    border-radius: var(--r-md); padding: .5rem .7rem; margin: .6rem 0; background: var(--panel);
   }
   .intext .it-head { font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft);
     text-transform: uppercase; letter-spacing: .06em; margin-bottom: .2rem; }
@@ -1517,7 +1517,7 @@
      read. Token-based; keep any new i'rab surface in the same ink. */
   .irab-ar { direction: rtl; text-align: right; font-family: var(--ar-font); font-size: 1.25rem; line-height: 2;
     color: var(--irab-ink, var(--ink));
-    background: var(--accent-soft); border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0; }
+    background: var(--accent-soft); border-radius: var(--r-md); padding: .6rem .9rem; margin: .5rem 0; }
   .irab-en { font-size: .9rem; color: var(--ink-soft); }
   /* the automatic mu'rib's composed line, on the Jumla lab cards */
   .murib { direction: rtl; text-align: right; font-family: var(--ar-font);
@@ -1568,7 +1568,7 @@
   .hit-lex .hl-n { font-family: var(--ui-font); font-size: .7rem; color: var(--ink-soft);
     font-variant-numeric: tabular-nums; }
   .hit { all: unset; display: block; cursor: pointer; width: 100%; box-sizing: border-box;
-    padding: .5rem .6rem; border-radius: 10px; border: 1px solid transparent; }
+    padding: .5rem .6rem; border-radius: var(--r-md); border: 1px solid transparent; }
   .hit:hover, .hit:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
   .hit .h-ar { font-family: var(--ar-font); font-size: 1.15rem; direction: rtl; text-align: right;
     line-height: 1.9; }
@@ -1612,7 +1612,7 @@
   /* wave 32 · the reviewer's notes: a flag on the sentence row, a form under the sentence, a ledger on Progress */
   .rev-btn { width: auto; padding: 0 .5rem; font-size: .8rem; }
   .rev-btn.on { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .rev-form { margin: .4rem .3rem .2rem; padding: .6rem .7rem; border: 1px dashed var(--accent); border-radius: 10px; background: var(--panel); font-family: var(--ui-font); font-size: .85rem; }
+  .rev-form { margin: .4rem .3rem .2rem; padding: .6rem .7rem; border: 1px dashed var(--accent); border-radius: var(--r-md); background: var(--panel); font-family: var(--ui-font); font-size: .85rem; }
   .rev-form .rev-kinds { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .45rem; }
   .rev-form .rev-kinds button { border: 1px solid var(--line); background: transparent; color: var(--ink-soft); border-radius: 999px; padding: .25rem .6rem; font-size: .78rem; cursor: pointer; font-family: inherit; }
   .rev-form .rev-kinds button.on { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
@@ -1625,7 +1625,7 @@
   .rev-ledger h4 { margin: .2rem 0 .4rem; font-size: .95rem; }
   .rev-ledger .rev-row { display: flex; gap: .45rem; flex-wrap: wrap; align-items: center; margin: .35rem 0; }
   .rev-ledger input[type=text] { border: 1px solid var(--line); border-radius: 8px; padding: .35rem .5rem; font-family: inherit; font-size: .85rem; background: var(--bg, #fff); color: var(--ink); min-width: 10rem; }
-  .rev-ledger .rev-note { border: 1px solid var(--line); border-radius: 10px; padding: .45rem .6rem; margin: .35rem 0; font-size: .82rem; }
+  .rev-ledger .rev-note { border: 1px solid var(--line); border-radius: var(--r-md); padding: .45rem .6rem; margin: .35rem 0; font-size: .82rem; }
   .rev-ledger .rev-note .ar { font-family: var(--ar-font); font-size: 1.05rem; direction: rtl; display: block; margin-bottom: .15rem; }
   .rev-ledger .rev-note .meta { color: var(--ink-soft); font-size: .74rem; }
   .rev-ledger .rev-note .kind { display: inline-block; border-radius: 999px; padding: .05rem .5rem; background: var(--accent-soft); color: var(--accent); margin-inline-end: .3rem; }
@@ -1634,7 +1634,7 @@
   .rev-ledger .rev-empty { color: var(--ink-soft); font-size: .82rem; }
   .ref-search-row { margin: .6rem 0 .5rem; }
   .ref-search {
-    width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+    width: 100%; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel);
     color: var(--ink); font-family: var(--ui-font); font-size: .9rem; padding: .55rem .75rem;
   }
   .ref-search:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
@@ -1902,7 +1902,7 @@
   .game-pick .gd { color: var(--ink-soft); font-size: .8rem; margin-top: .15rem; }
   .match-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin: .6rem 0; }
   .match-grid button {
-    border: 1px solid var(--line); border-radius: 10px; background: var(--ground);
+    border: 1px solid var(--line); border-radius: var(--r-md); background: var(--ground);
     padding: .7rem .3rem; cursor: pointer; color: var(--ink); min-height: 3.2rem;
     font-family: var(--ui-font); font-size: .78rem;
   }
@@ -1911,7 +1911,7 @@
   .match-grid button.matched { opacity: .35; pointer-events: none; border-style: dashed; }
   .opts { display: grid; gap: .5rem; margin: .7rem 0; direction: rtl; }
   .opts button {
-    border: 1px solid var(--line); border-radius: 10px; background: var(--ground);
+    border: 1px solid var(--line); border-radius: var(--r-md); background: var(--ground);
     padding: .55rem .8rem; cursor: pointer; color: var(--ink);
     font-family: var(--ar-font); font-size: 1.45rem;
     transition: border-color .12s, background .12s;
@@ -1920,7 +1920,7 @@
   .opts button.right { border-color: var(--ok); background: rgba(46,125,70,.12); }
   .opts button.wrongpick { border-color: var(--danger); background: rgba(178,59,59,.12); }
   .game-q { direction: rtl; text-align: right; font-family: var(--ar-font); font-size: 1.5rem;
-    line-height: 2; background: var(--accent-soft); border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0; }
+    line-height: 2; background: var(--accent-soft); border-radius: var(--r-md); padding: .6rem .9rem; margin: .5rem 0; }
   .game-meta { font-family: var(--ui-font); font-size: .78rem; color: var(--ink-soft); display: flex; gap: 1rem; }
   .clock105 { font-variant-numeric: tabular-nums; color: var(--fire); font-weight: 700; margin-inline-start: auto; }   /* wave 105 */
   .game-over { text-align: center; padding: 1.2rem 0 .4rem; }
@@ -2259,13 +2259,13 @@
   .bd-tashtir-cut { color: var(--accent); font-size: 1.1em; line-height: 1; }
   .bd-muwazana .bd-eq { color: var(--accent); font-size: 1.3em; line-height: 1; }
   .bd-arud .arud-line { display: flex; flex-wrap: wrap; gap: var(--s2); margin: var(--s2) 0; }
-  .bd-arud .arud-foot { border: 1px solid var(--line); border-radius: 10px; padding: 4px 10px; text-align: center; min-width: 3.4rem; background: var(--bg); }
+  .bd-arud .arud-foot { border: 1px solid var(--line); border-radius: var(--r-md); padding: 4px 10px; text-align: center; min-width: 3.4rem; background: var(--bg); }
   .bd-arud .af-text { font-family: var(--ar-font); font-size: 1.1em; line-height: 1.7; }
   .bd-arud .af-name { font-family: var(--ar-font); font-size: .82em; color: var(--accent); }
   .bd-arud .af-pat { font-size: .68em; letter-spacing: .12em; color: var(--muted); font-variant-numeric: tabular-nums; }
   .bd-arud .arud-cut { text-align: center; color: var(--muted); font-size: .8em; margin: -2px 0; }
   .bd-triplet .tp-row { display: flex; gap: var(--s2); margin: var(--s2) 0; }
-  .bd-triplet .tp-cell { flex: 1 1 0; min-width: 0; border: 1px solid var(--line); border-radius: 10px; padding: var(--s2) var(--s1); text-align: center; background: var(--bg); }
+  .bd-triplet .tp-cell { flex: 1 1 0; min-width: 0; border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s2) var(--s1); text-align: center; background: var(--bg); }
   .bd-triplet .tp-case { font-size: .68em; letter-spacing: .04em; color: var(--muted); text-transform: uppercase; }
   .bd-triplet .tp-word { font-family: var(--ar-font); font-size: 1.35em; line-height: 1.8; margin: 2px 0; }
   .bd-triplet .tp-sign { font-size: .8em; color: var(--accent); }
@@ -3244,6 +3244,55 @@ body:not(.lib-mode) .door-acts { display: none; }
 .today-card .tc-first { display: flex; align-items: center; gap: var(--s3); }
 .today-card .tc-first::before { content: ""; flex: none; width: 32px; height: 32px; background: color-mix(in srgb, var(--accent) 70%, transparent);
   -webkit-mask: var(--mark340) center / contain no-repeat; mask: var(--mark340) center / contain no-repeat; }
+/* ===== v351-O — the design pass (research/design-audit-2026-11-27.md), tokens only; nothing removed, no behaviour changed ===== */
+/* (1) contrast: the İznik theme's ok / danger read at 4.3:1 on white (the Jumla lab's score and marks, the notes' common
+   mistakes); darker, same hue. The «free this week» chip printed the level-3 gold as text (3.2:1): mixed toward the ink. */
+:root[data-theme="bahce"] { --ok: #23764A; --danger: #B4432E; }
+.chip.freeweek, .vchip.ml { color: color-mix(in srgb, var(--lvl3) 68%, var(--ink)); }
+/* (2) the 44 px floor where the v320 rule had not reached: the back links of every sheet, the chapter pills, the root chip,
+   the sentence sheet's word jumps, the lab chips, the notes' «details» rows, the Settings switches. Rows that would grow
+   keep their size and get the same invisible hit area as v320's; a sheet's own rows grow. */
+.backrow button, .ch-pill, .root-btn, table.irab-sheet button.jump, #labBody button.chip, .qw-note { position: relative; }
+.backrow button::after, .ch-pill::after, .root-btn::after, table.irab-sheet button.jump::after, #labBody button.chip::after, .qw-note::after {
+  content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: var(--tap); transform: translateY(-50%); }   /* taller only: each of these is ≥ 24 px wide, and a hit area wider than its chip could widen the page at the screen's edge */
+/* the sentence sheet's word column printed the Arabic word at 0.7 rem (11 px, harakat unreadable): the reading face at a
+   readable size, at least 24 px wide */
+table.irab-sheet button.jump[lang="ar"] { display: inline-block; min-width: 1.5rem; font-family: var(--ar-font); font-size: 1.15rem; line-height: 2.3; padding: 0 .3em; box-sizing: content-box; }
+details.deep > summary, details.book-ex > summary, .set-group .rv344-sw { min-height: var(--tap); display: flex; align-items: center; }
+/* «--muted» was never defined: 50 rules that meant a quiet label printed it in full ink (no hierarchy), and the one with a
+   fallback put #666 on Gece's navy at 2.9:1. It is now the theme's soft ink. */
+:root { --muted: var(--ink-soft); }
+.set-group .rv344-sw { display: inline-flex; }
+/* (3) one sheet header: a sheet that opens with a lone «tab» (the games hub, the sentence's tarkib) is a title, as every
+   other sheet's h3 — not a pill that wraps its label onto two cramped lines */
+.sheet-inner > .tabs:first-child:has(> button:only-child) { background: none; padding: 0; margin: 0 0 var(--s3); width: auto; }
+.sheet-inner > .tabs:first-child > button.on:only-child { background: none; box-shadow: none; border: 0; padding: 0; color: var(--ink);
+  font-size: var(--t-lg); font-weight: 700; line-height: var(--lh-tight); text-align: start; justify-content: flex-start; cursor: default; }
+.sheet-inner > .tabs:first-child > button.on:only-child .ar { font-size: 1.15em; margin-inline-end: var(--s1); }
+/* (4) one type family for the interface inside a sheet: the lab head, its chips, its fields, the governor card, the
+   khilāf rows read in the UI face (the reading serif stays for the story's own lines, translations and the note titles) */
+.tool-head, .tool-head .th-main b, .gov-block, .gov-block h4, .gov-chip, .gov-card p, .kh-chip, .cat-item, .kh-filters input, .kh-filters select,
+.sheet-inner input[type="search"], .sheet-inner select { font-family: var(--ui-font); }
+.gov-line, .gov-pair, .cat-item [lang="ar"] { font-family: var(--ar-font); }
+.kh-chip { font-size: var(--t-xs); }
+/* (5) the word sheet's iʿrāb tab: one order and room to breathe — the line, its translation, its mark and «Neden?» close
+   together; then each section (the governor, how it was decided, the khilāf rows, the ṣarf note) a full step apart, its
+   head in one style */
+.ws-tabs ~ .irab-en { margin: var(--s2) 0; }
+.ws-tabs ~ .gov-block, .ws-tabs ~ .dc, .ws-tabs ~ .kh344, .ws-tabs ~ .sarf-note { margin-top: var(--s5); margin-bottom: 0; }
+.gov-block h4, .ws-tabs ~ .dc .dc-head { font-size: var(--t-sm); font-weight: 600; color: var(--ink); letter-spacing: 0; text-transform: none; }
+/* (6) radii that had drifted from the tokens (10 px cards and chips beside 12 px ones): the governor's cards and words */
+.gov-card, .gov-w { border-radius: var(--r-md); }
+.tool-head .th-tile { border-radius: var(--r-md); }
+.tool-head .th-chips { gap: var(--s1); }
+/* (7) a wrapping segmented row keeps a card's corners, not a pill's (the ṣarf lab's bāb numerals and verbs) */
+.seg.conj-seg { border-radius: var(--r-md); }
+.seg.conj-seg > button { border-radius: var(--r-sm); }
+/* (8) the door's title at 360 px ran 6 px under the search button («Kütüphane» is 162 px at 2.1 rem) */
+.lib-mode header.app > h1.story-title { font-size: min(2.1rem, 8.9vw); }
+/* (9) the Guide's «?» beside the shelf's filter */
+.lib-filter .door-help { flex: none; font-weight: 700; font-size: var(--t-md); }
+
 </style>
 
 <div class="readbar" id="readbar" aria-hidden="true"><div></div></div>
@@ -4085,7 +4134,7 @@ const L = {
         alaqaHaqiqi:"Hakiki manası:", alaqaMajazi:"Kastedilen:", alaqaQarina:"Hakiki manayı engelleyen karîne:",
         alaqaIstiara:"Yalnız bu alâka mecazı MÜRSEL değil İSTİÂRE yapar.",
         alaqaPanel:"Mecâz-ı mürselin alâkaları", alaqaNamed:"Kitapların adını sayıp burada örneklendirilmeyenler:",
-        gAll:"Hepsi ({n})", gLess:"Daha az", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat", gGroupIbara:"Tercüme",
+        gAll:"Hepsi ({n})", gLess:"Daha az", gGroupVocab:"Kelimeler", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat", gGroupIbara:"Tercüme",
         tagScore:"🔤 Külliyattan değil KAİDELERDEN eğitilen iki motor; ikisi de hiç görmedikleri kökler üzerinde beş katlı ölçüldü. FİİL etiketleyicisi, çekimli bir sîgayı kendi hânesine geri okur — ilk tahminde %{v}, ilk iki tahminde %{v2}; {vr} kökten çekim motorunun kendi ürettiği {vn} örnek üzerinde. İSİM etiketleyicisi, türemiş bir ismi kendi veznine geri okur — ilk tahminde %{i}, ilk iki tahminde %{i2}; {ir} kök ve {is} kalıptan {in} örnek üzerinde. İddiası yalnız vezindir: o veznin hangi vazîfede olduğu ayrı bir sorudur, onu da cümle söyler.",
         mlScore:"🧠 Dışarıda bırakıp yeniden sınama: model, bir hikâye hariç bütün hikâyelerle eğitilip hiç görmediği o hikâyeden sorulur — {k} kez, toplam {n} etiketli kelime üzerinde. İlk tahminde %{a}, ilk iki tahmin içinde %{b} isabet eder. Ezberlediği külliyat üzerinde ölçülseydi %{r} iddia ederdi; gösterilen sayının dürüst olanı seçilmesinin sebebi bu farktır.",
         stStreak:"günlük seri", stDue:"tekrar zamanı", stKnown:"tutulan kelime",
@@ -5634,13 +5683,15 @@ function levelPills340(){
   const pill = (v, lbl) => `<button class="lv-pill${cur === v ? " on" : ""}" data-lvf="${v}" aria-pressed="${cur === v}">${lbl}</button>`;
   row.innerHTML = `<div class="lv-pills" role="group" aria-label="${escapeAttr(U.level)}">${pill("", U.lvAll340)}${[1, 2, 3, 4].filter(b => have.has(b)).map(b =>
       pill(String(b), b === 4 && top > 4 ? `4–${top}` : `${b} · ${escapeAttr(levelLabel(levelNameOf(b)))}`)).join("")}</div>
-    <button class="lib-filter-b" id="libFilter" aria-haspopup="dialog">${IconSet.svg("chev")}<span>${U.filter340}</span></button>`;
+    <button class="lib-filter-b" id="libFilter" aria-haspopup="dialog">${IconSet.svg("chev")}<span>${U.filter340}</span></button>
+    <button class="door-b door-help" id="doorGuide" title="${escapeAttr(U.g351Help)}" aria-label="${escapeAttr(U.g351Help)}" aria-haspopup="dialog"><span aria-hidden="true">?</span></button>`;   /* (v351) the Guide, beside the shelf's filter: the header's row has no room for a fourth round button */
   row.querySelectorAll("[data-lvf]").forEach(b => b.addEventListener("click", () => {
     const v = b.dataset.lvf; try { if (v) localStorage.setItem("qissa-liblevel", v); else localStorage.removeItem("qissa-liblevel"); } catch (e) {}
     storyEl.dataset.lvf = v;
     row.querySelectorAll("[data-lvf]").forEach(x => { const on = x.dataset.lvf === v; x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on)); });
   }));
   row.querySelector("#libFilter").addEventListener("click", openLibFilter340);
+  row.querySelector("#doorGuide").addEventListener("click", () => Guide351.openPage());   // (v351)
   return row;
 }
 // on a phone the sort bar (sort, your level, the newest chip, the sources) opens here — the same element with the same ids
@@ -5660,7 +5711,7 @@ function openDoorSettings340(){
           <button data-set-ui="en" class="${state.uiLang === "en" ? "on" : ""}">English</button>
           <button data-set-ui="tr" class="${state.uiLang === "tr" ? "on" : ""}">Türkçe</button></div></div>
       <div class="set-group"><span class="ls-lbl">${U.setTheme340}</span>${themeCardsHtml()}</div>
-      ${LevelEv344.html()}${Review344.settingsHtml()}${Listen347.settingsHtml()}${Studio347.settingsHtml()}`;
+      ${LevelEv344.html()}${Review344.settingsHtml()}${Listen347.settingsHtml()}${Studio347.settingsHtml()}${Guide351.settingsHtml()}`;
     sheetInner.querySelectorAll("[data-set-ui]").forEach(b => b.addEventListener("click", () => {
       const t = document.querySelector(`#uiLangSeg [data-ui="${b.dataset.setUi}"]`); if (t) t.click();
       openDoorSettings340();
@@ -5668,6 +5719,7 @@ function openDoorSettings340(){
     bindThemePicks(sheetInner, draw);
     LevelEv344.bind(draw); Review344.bindSettings(draw);   // (v344)
     Studio347.bindSettings(draw);   // (v347) the voice sheet and the narration studio
+    Guide351.bindSettings();   // (v351) the Guide page
   };
   draw();
   showSheet();
@@ -7052,7 +7104,376 @@ class Onboarding {
     state.goal = { reviews: r, newWords: n };
     localStorage.setItem("qissa-goal", JSON.stringify(state.goal));
     setMyLevel(this.level || levelChoices()[0][0]);   // persists the level, selects «For you», re-renders and closes
+    Guide351.afterOnboarding();   // (v351) the guided tour, once
   }
+}
+// ================= v351 — «Qissa'yı tanı / Get to know Qissa»: the guided tour, one-time hints, the Guide page =================
+// Three small classes beside Onboarding. Nothing here runs before the door is usable except Guide351.boot()'s ONE key read
+// (and two labels for the door's «?» and Settings). The tour, the hints and the Guide page add their CSS and their strings
+// the first time one of them is needed (Guide351.css(), Guide351.words()), so a returning learner matches no tour CSS.
+// Keys (Backup carries every qissa-* key): qissa-guide351 — the tour was offered («1» started, «done», «skip:<step id>»);
+// qissa-hints351 — the hint ids already shown.
+Object.assign(L.en, { g351Help: "Guide — get to know Qissa", g351Guide: "Guide" });
+Object.assign(L.tr, { g351Help: "Kılavuz — Qissa'yı tanı", g351Guide: "Kılavuz" });
+class Guide351 {
+  static KEY = "qissa-guide351";
+  static words(){
+    if (this._w) return; this._w = 1;
+    Object.assign(L.en, {
+      g351Title: "Get to know Qissa", g351Next: "Next", g351Skip: "Skip", g351Done: "Done", g351Of: "{a} of {b}", g351Wait: "Tap a word in the line…",
+      g351Open: "Open it",
+      g351s1T: "The shelf and the levels", g351s1B: "Stories sit on the shelf. Each card's colour and its «Level» chip say how hard it is; the pills above filter the shelf by level. Open this story to begin.",
+      g351s2T: "Tap a word", g351s2B: "Every word in the text opens: its meaning, its root and pattern, its job in the sentence. Tap any word in this line now.",
+      g351s3T: "The word sheet's tabs", g351s3B: "Meaning — the dictionary and the form here · Sarf — the root and how it is built · Iʿrab — its job in the sentence · Grammar — the rule's own note.",
+      g351s4T: "«Why?» — every line explains itself", g351s4B: "Under the iʿrāb line is its reason, step by step from the job to the vowel: doer (fāʿil) → the rafʿ family → marfūʿ → ḍamma. Open or close it; your choice is kept.",
+      g351s5T: "Sentence tools and «Listen»", g351s5B: "▶ reads this sentence aloud; تركيب lists every word of the sentence with its iʿrāb. «▶ Listen» at the top reads the chapter through, with speed and repeat.",
+      g351s6T: "Today's lesson", g351s6B: "At the top of the library: up to four small steps a day — recall, read, test yourself, strengthen. One button opens the next one.",
+      g351s7T: "Games and the Atölye", g351s7B: "Games strengthen what you read; in the Atölye (the workshop) you type your own word or sentence and see how it is built and parsed. Replay this tour from «Guide» in Settings.",
+      g351PageIntro: "What each place is for, in plain words first and the term beside them. «Show» takes you there and plays that step.",
+      g351Play: "Play the tour", g351Show: "Show", g351Steps: "The tour, step by step",
+      g351Marks: "What the marks mean", g351Listen: "Listening", g351Teacher: "For the teacher", g351Order: "The madrasa order",
+      g351mUnder: "The colour under a word — that word's level:", g351mRole: "Colours by job (🎨 in the reading controls) — paints each word by its role in the sentence (iʿrāb).",
+      g351mTaqdir: "A word in brackets such as [هُوَ] — a hidden word the grammar assumes (taqdīr); the [هُوَ] button shows or hides them.",
+      g351mPending: "the text's own parsing, written by the author; no teacher has approved it yet.",
+      g351mReviewed: "a teacher approved this line in the app's review.", g351mAuto: "worked out by the engine (as on a sentence you type in the Atölye) — read it as a strong guess.",
+      g351mIlal: "a reason quoted from a book, in a translation no teacher has checked yet.",
+      g351mGuess: "Percentages and «guess» chips in the Atölye — the engine's alternatives, not certainties.",
+      g351lA: "▶ beside a sentence reads that sentence. «▶ Listen» at the top reads on from the first unread sentence, lights the sentence being read, and stops at the chapter's end (or goes on, if you choose).",
+      g351lB: "Speed (0.6×–1.2×) and «repeat this sentence» are in the player bar. A sentence counts as read only when it was on screen as it ended.",
+      g351lC: "The voice is the device's Arabic voice, or a teacher's recording where one exists («recording» shows). A device with no Arabic voice walks the text at reading pace without sound, and Settings says how to add one.",
+      g351tA: "Settings → «Teacher's review»: turn it on, and the word sheet's Iʿrab tab shows Approve / Correct / Doubtful on each line. Verdicts stay on this device; «Review file» exports them as one file to send.",
+      g351tB: "Settings → «Narration studio»: read a chapter aloud a sentence at a time; the takes play in «Listen» on this device, and a narration pack can be exported for everyone.",
+      g351oA: "The shelf rises by level: short graded stories first, then the lives (siyar) and the classical texts, the Muʿallaqāt at the top. Your level (Settings, or the filter) puts the right ones first.",
+      g351oB: "The grammar notes and the iʿrāb labs are drawn from the naḥw books read in the madrasa — al-ʿAwāmil, Iẓhār al-Asrār, al-Kāfiya, Qaṭr al-Nadā and Shudhūr al-Dhahab — governor (ʿāmil), governed (maʿmūl), then the signs (iʿrāb).",
+      g351oC: "The ṣarf labs and the conjugation tables follow the ṣarf books — al-Amthila, al-Bināʾ, al-Maqṣūd, Taṣrīf al-ʿIzzī and Marāḥ al-Arwāḥ. Read the chapter in the book, then find the same rule in a story: the word sheet's Grammar tab names the note, and the note quotes the book's line.",
+      h351Lab: "Atölye: each tool takes a word or a sentence of your own and shows how it is built or parsed — the example chips are a quick start.",
+      h351Games: "Games: short rounds drawn from what you have read. The card at the top picks the one you need most today.",
+      h351Irab: "Tarkib: the whole sentence, word by word, with each word's job in one line. Tap a word for its full sheet and its «Why?».",
+      h351Review: "Teacher's review: approve, correct or flag the iʿrāb lines while you read; the file below carries your verdicts to the developer.",
+      h351Studio: "Narration studio: record the chapter one sentence at a time in your own voice; learners on this device hear it in «Listen».",
+      h351Khilaf: "Basra and Kūfa: where the two schools disagree on this rule — each side's view and proof, and Ibn al-Anbārī's preference.",
+      h351Ok: "Got it",
+    });
+    Object.assign(L.tr, {
+      g351Title: "Qissa'yı tanı", g351Next: "İleri", g351Skip: "Geç", g351Done: "Bitir", g351Of: "{a} / {b}", g351Wait: "Satırdaki bir kelimeye dokun…",
+      g351Open: "Aç",
+      g351s1T: "Raf ve seviyeler", g351s1B: "Hikâyeler rafta durur. Her kartın rengi ve «Seviye» çipi ne kadar zor olduğunu söyler; üstteki haplar rafı seviyeye göre süzer. Başlamak için bu hikâyeyi aç.",
+      g351s2T: "Bir kelimeye dokun", g351s2B: "Metindeki her kelime açılır: anlamı, kökü ve kalıbı, cümledeki görevi. Şimdi bu satırdan herhangi bir kelimeye dokun.",
+      g351s3T: "Kelime kartının sekmeleri", g351s3B: "Anlam — sözlük ve buradaki hâli · Sarf — kökü ve nasıl kurulduğu · İ'rab — cümledeki görevi · Gramer — kaidenin kendi notu.",
+      g351s4T: "«Neden?» — her satır kendini açıklar", g351s4B: "İ'rab satırının altında gerekçesi var, görevden harekeye adım adım: yapan (fâil) → merfûlar → merfû → damme. Açıp kapatabilirsin; tercihin hatırlanır.",
+      g351s5T: "Cümle araçları ve «Dinle»", g351s5B: "▶ bu cümleyi sesli okur; تركيب cümlenin bütün kelimelerini i'rabıyla sıralar. Üstteki «▶ Dinle» bölümü baştan okur; hız ve tekrar oradadır.",
+      g351s6T: "Bugünün dersi", g351s6B: "Kütüphanenin başında: günde en çok dört küçük adım — hatırla, oku, kendini dene, pekiştir. Tek düğme sıradakini açar.",
+      g351s7T: "Oyunlar ve Atölye", g351s7B: "Oyunlar okuduğunu pekiştirir; Atölye'de kendi kelimeni ya da cümleni yazar, nasıl kurulduğunu ve i'rabını görürsün. Bu turu Ayarlar'daki «Kılavuz»dan yeniden oynatabilirsin.",
+      g351PageIntro: "Her yer ne işe yarar — önce sade sözle, terimi yanında. «Göster» seni oraya götürür ve o adımı oynatır.",
+      g351Play: "Turu oynat", g351Show: "Göster", g351Steps: "Tur, adım adım",
+      g351Marks: "İşaretlerin anlamı", g351Listen: "Dinlemek", g351Teacher: "Hoca için", g351Order: "Medrese sırası",
+      g351mUnder: "Kelimenin altındaki renk — o kelimenin seviyesi:", g351mRole: "Görev renkleri (okuma düğmelerinde 🎨) — her kelimeyi cümledeki görevine (i'rab) göre boyar.",
+      g351mTaqdir: "[هُوَ] gibi köşeli parantezdeki kelime — gramerin var saydığı gizli kelime (takdîr); [هُوَ] düğmesi gösterir ya da gizler.",
+      g351mPending: "metnin yazarın yazdığı kendi çözümlemesi; henüz bir hoca onaylamadı.",
+      g351mReviewed: "bir hoca bu satırı uygulamadaki incelemede onayladı.", g351mAuto: "motorun hesabı (Atölye'de yazdığın cümlede olduğu gibi) — güçlü bir tahmin olarak oku.",
+      g351mIlal: "bir kitaptan alınmış gerekçe, henüz bir hocanın bakmadığı bir çeviriyle.",
+      g351mGuess: "Atölye'deki yüzdeler ve «tahmin» çipleri — motorun seçenekleri, kesin değil.",
+      g351lA: "Cümlenin yanındaki ▶ o cümleyi okur. Üstteki «▶ Dinle» ilk okunmamış cümleden başlar, okunan cümleyi vurgular ve bölüm sonunda durur (istersen sonrakine geçer).",
+      g351lB: "Hız (0.6×–1.2×) ve «bu cümleyi tekrarla» çalma çubuğundadır. Bir cümle, bittiği anda ekranda idiyse okunmuş sayılır.",
+      g351lC: "Ses, cihazın Arapça sesi ya da varsa bir hocanın kaydıdır («kayıt» yazar). Arapça sesi olmayan cihazda metin okuma hızında sessiz yürür; Ayarlar nasıl ekleneceğini söyler.",
+      g351tA: "Ayarlar → «Hoca incelemesi»: açınca kelime kartının İ'rab sekmesinde her satırda Onayla / Düzelt / Şüpheli belirir. Kararlar bu cihazda kalır; «İnceleme dosyası» hepsini tek dosya olarak dışa aktarır.",
+      g351tB: "Ayarlar → «Seslendirme stüdyosu»: bir bölümü cümle cümle sesli okuyun; kayıtlar bu cihazda «Dinle»de çalar, bir seslendirme paketi herkes için dışa aktarılabilir.",
+      g351oA: "Raf seviyeyle yükselir: önce kısa, kademeli hikâyeler, sonra siyer ve klasik metinler, en üstte Muallakalar. Seviyen (Ayarlar ya da süzgeç) uygun olanları öne alır.",
+      g351oB: "Gramer notları ve i'rab atölyeleri medresede okunan nahiv kitaplarından alınır — Avâmil, İzhâru'l-Esrâr, Kâfiye, Katru'n-Nedâ ve Şüzûru'z-Zeheb — âmil, mamûl, sonra i'rab alametleri.",
+      g351oC: "Sarf atölyeleri ve çekim tabloları sarf kitaplarını izler — Emsile, Bina, Maksûd, Tasrîfu'l-İzzî ve Merâhu'l-Ervâh. Bölümü kitaptan oku, sonra aynı kaideyi bir hikâyede bul: kelime kartının Gramer sekmesi notu söyler, not da kitabın satırını aynen verir.",
+      h351Lab: "Atölye: her araç senin yazdığın bir kelimeyi ya da cümleyi alır, nasıl kurulduğunu ya da i'rabını gösterir — örnek çipleri hızlı bir başlangıçtır.",
+      h351Games: "Oyunlar: okuduklarından çekilen kısa turlar. Üstteki kart bugün en çok ihtiyacın olanı seçer.",
+      h351Irab: "Terkip: cümlenin tamamı, kelime kelime, her kelimenin görevi tek satırda. Tam kartı ve «Neden?»i için bir kelimeye dokun.",
+      h351Review: "Hoca incelemesi: okurken i'rab satırlarını onaylayın, düzeltin ya da şüpheli işaretleyin; aşağıdaki dosya kararlarınızı geliştiriciye taşır.",
+      h351Studio: "Seslendirme stüdyosu: bölümü cümle cümle kendi sesinizle kaydedin; bu cihazdaki öğrenciler onu «Dinle»de duyar.",
+      h351Khilaf: "Basra ve Kûfe: iki mektebin bu kaidede ayrıldığı yer — her tarafın görüşü ve delili, İbnü'l-Enbârî'nin tercihi.",
+      h351Ok: "Tamam",
+    });
+  }
+  static css(){
+    if (document.getElementById("g351css")) return;
+    const s = document.createElement("style"); s.id = "g351css";
+    s.textContent = `
+#tour351 { position: fixed; inset: 0; z-index: 44; pointer-events: none; }
+#tour351 .t351-ring { position: fixed; border-radius: var(--r-md); box-shadow: 0 0 0 3px var(--accent); }
+#tour351 .t351-dim { position: fixed; background: var(--scrim); }
+#tour351.no-target .t351-ring { display: none; }
+#tour351 .t351-card { position: fixed; pointer-events: auto; box-sizing: border-box; width: min(26rem, calc(100vw - 2 * var(--s4)));
+  background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--e2);
+  padding: var(--s4); font-family: var(--ui-font); z-index: 1; }
+#tour351 .t351-h:focus { outline: none; }
+#tour351 .t351-arrow { position: absolute; width: 14px; height: 14px; background: var(--panel); border: 1px solid var(--line); transform: rotate(45deg); }
+#tour351 .t351-card[data-arrow="up"] .t351-arrow { top: -8px; border-right: 0; border-bottom: 0; }
+#tour351 .t351-card[data-arrow="down"] .t351-arrow { bottom: -8px; border-left: 0; border-top: 0; }
+#tour351 .t351-card[data-arrow="none"] .t351-arrow { display: none; }
+#tour351 .t351-n { font-size: var(--t-xs); color: var(--ink-soft); letter-spacing: var(--track-caps); text-transform: uppercase; }
+#tour351 .t351-h { margin: var(--s1) 0 var(--s2); font-size: var(--t-lg); line-height: var(--lh-tight); outline: none; }
+#tour351 .t351-b { margin: 0; font-size: var(--t-sm); line-height: var(--lh-body); color: var(--ink); }
+#tour351 .t351-b [lang="ar"] { font-family: var(--ar-font); font-size: 1.1em; line-height: 1.9; }
+#tour351 .t351-acts { display: flex; align-items: center; gap: var(--s2); margin-top: var(--s3); }
+#tour351 .t351-acts .t351-sp { flex: 1; }
+#tour351 .t351-acts button { min-height: var(--tap); min-width: var(--tap); padding: 0 var(--s3); border-radius: var(--r-full); font: inherit; font-size: var(--t-sm); cursor: pointer; }
+#tour351 .t351-skip { background: none; border: 0; color: var(--ink-soft); }
+#tour351 .t351-next { background: var(--accent); color: var(--accent-ink); border: 0; font-weight: 600; }
+#tour351 .t351-wait { font-size: var(--t-sm); color: var(--accent); font-weight: 600; }
+.h351 { display: flex; align-items: flex-start; gap: var(--s2); margin: 0 0 var(--s3); padding: var(--s2) var(--s2) var(--s2) var(--s3);
+  background: var(--accent-soft); color: var(--ink); border-radius: var(--r-md); font-family: var(--ui-font); font-size: var(--t-sm); line-height: var(--lh-body); }
+.h351 p { margin: 0; flex: 1; padding-block: var(--s1); }
+.h351 button { flex: none; min-height: var(--tap); min-width: var(--tap); padding: 0 var(--s3); border: 0; border-radius: var(--r-full); background: var(--panel); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; }
+.g351 { font-family: var(--ui-font); }
+.g351 h4 { margin: var(--s5) 0 var(--s2); font-size: var(--t-md); }
+.g351 .g351-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.g351 .g351-steps li { display: grid; grid-template-columns: 1fr auto; gap: var(--s1) var(--s3); align-items: center; padding: var(--s3); border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel); }
+.g351 .g351-steps b { font-size: var(--t-sm); }
+.g351 .g351-steps p { grid-column: 1; margin: 0; font-size: var(--t-sm); color: var(--ink-soft); line-height: var(--lh-body); }
+.g351 .g351-steps button { grid-column: 2; grid-row: 1 / span 2; min-height: var(--tap); }
+.g351 .g351-play { min-height: var(--tap); margin-top: var(--s2); }
+.g351 .g351-p { margin: 0 0 var(--s2); font-size: var(--t-sm); line-height: var(--lh-body); }
+.g351 .g351-marks { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s2); font-size: var(--t-sm); line-height: var(--lh-body); }
+.g351 .g351-marks .vm { font-weight: 600; }
+.g351 .g351-lv { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); margin-top: var(--s1); }
+.g351 .g351-lv span { display: inline-flex; align-items: center; gap: var(--s1); }
+.g351 .g351-lv i { display: inline-block; width: 1.4em; height: 3px; border-radius: 2px; }
+.g351 [lang="ar"] { font-family: var(--ar-font); line-height: 1.9; }
+`;
+    document.head.appendChild(s);
+  }
+  // the one thing boot does: for a learner who has met the guide (the first run since v351, or the tour / the Guide page
+  // opened once), arm the hints after the door while any is unseen — two key reads
+  static boot(){ try { if (this.offered() && !Hint351.allSeen()) setTimeout(() => { try { Hint351.arm(); } catch (e) {} }, 2000); } catch (e) {} }
+  static offered(){ try { return !!localStorage.getItem(this.KEY); } catch (e) { return false; } }
+  // first run: Onboarding.finish → here; the tour starts once the library has drawn and the sheet has slid away
+  static afterOnboarding(){ if (this.offered()) return; try { localStorage.setItem(this.KEY, "1"); } catch (e) {} setTimeout(() => Tour351.start(0), 450); }
+  static settingsHtml(){ const U = ui(), E = escapeAttr;
+    return `<div class="set-group" id="g351Set"><span class="ls-lbl">${E(U.g351Guide)}</span><button class="btn" id="g351Open" type="button">${E(U.g351Help)}</button></div>`; }
+  static bindSettings(){ const b = document.getElementById("g351Open"); if (b) b.addEventListener("click", () => this.openPage()); }
+  static openPage(){
+    this.words(); this.css(); Tour351.end(null);
+    if (!this.offered()) { try { localStorage.setItem(this.KEY, "page"); } catch (e) {} }
+    setTimeout(() => { try { Hint351.arm(); } catch (e) {} }, 0);
+    const U = ui(), E = escapeAttr, steps = Tour351.steps();
+    const lv = levelChoices().map(([n, en]) => `<span><i style="background:var(--lvl${Math.min(4, Math.max(1, n))})"></i>${E(U.level)} ${n} · ${E(levelLabel(en))}</span>`).join("");
+    sheetInner.innerHTML = `<div class="g351" id="g351Page"><h3 class="welcome-h">${E(U.g351Help)}</h3>
+      <p class="ref-intro">${E(U.g351PageIntro)}</p>
+      <button class="btn primary g351-play" id="g351Play" type="button">${E(U.g351Play)}</button>
+      <h4>${E(U.g351Steps)}</h4>
+      <ol class="g351-steps">${steps.map((s, i) => `<li><b>${i + 1}. ${E(U[s.t])}</b><p>${E(U[s.b])}</p><button class="btn" type="button" data-g351-show="${i}" aria-label="${E(U.g351Show + ": " + U[s.t])}">${E(U.g351Show)}</button></li>`).join("")}</ol>
+      <h4>${E(U.g351Marks)}</h4>
+      <ul class="g351-marks">
+        <li>${E(U.g351mUnder)}<div class="g351-lv">${lv}</div></li>
+        <li>${E(U.g351mRole)}</li>
+        <li>${E(U.g351mTaqdir)}</li>
+        <li><span class="vm">«${E(U.vmPending)}»</span> — ${E(U.g351mPending)}</li>
+        <li><span class="vm">«${E(U.vmReviewed)}»</span> — ${E(U.g351mReviewed)}</li>
+        <li><span class="vm">«${E(U.vmAuto)}»</span> — ${E(U.g351mAuto)}</li>
+        <li><span class="vm">«${E(U.ilalPending || "")}»</span> — ${E(U.g351mIlal)}</li>
+        <li>${E(U.g351mGuess)}</li>
+      </ul>
+      <h4>${E(U.g351Listen)}</h4><p class="g351-p">${E(U.g351lA)}</p><p class="g351-p">${E(U.g351lB)}</p><p class="g351-p">${E(U.g351lC)}</p>
+      <h4>${E(U.g351Teacher)}</h4><p class="g351-p">${E(U.g351tA)}</p><p class="g351-p">${E(U.g351tB)}</p>
+      <h4>${E(U.g351Order)}</h4><p class="g351-p">${E(U.g351oA)}</p><p class="g351-p">${E(U.g351oB)}</p><p class="g351-p">${E(U.g351oC)}</p></div>`;
+    sheetInner.querySelector("#g351Play").addEventListener("click", () => { closeSheet(); Tour351.start(0); });
+    sheetInner.querySelectorAll("[data-g351-show]").forEach(b => b.addEventListener("click", () => { closeSheet(); Tour351.start(+b.dataset.g351Show, true); }));
+    showSheet();
+  }
+}
+// the tour itself: a dimmed page with one ring around the real target and a small non-modal card beside it
+class Tour351 {
+  static on = false; static i = 0; static single = false; static sid = ""; static tm = 0; static prepAt = 0; static tries = 0; static root = null;
+  static steps(){
+    const lib = () => document.body.classList.contains("lib-mode");
+    const vis = el => el && el.getClientRects().length ? el : null;
+    const sheetOn = () => sheet.classList.contains("show");
+    return [
+      { id: "shelf", t: "g351s1T", b: "g351s1B", next: "g351Open",
+        prep: () => { if (sheetOn()) closeSheet(); if (!lib()) renderLibrary(); },
+        target: () => this.sampleCard(), done: () => !lib() && !!CUR,
+        go: () => { const st = this.sampleStory(); if (st) openStory(st); } },
+      { id: "tap", t: "g351s2T", b: "g351s2B", wait: true,
+        prep: () => { if (sheetOn() && !sheetInner.querySelector(".ws-head")) closeSheet(); this.ensureStory(); },
+        target: () => vis(document.querySelector("#story .sentence .ar-line")), done: () => sheetOn() && !!sheetInner.querySelector(".ws-head"),
+        focus: el => el.querySelector(".word") },
+      { id: "tabs", t: "g351s3T", b: "g351s3B", prep: () => this.ensureWord(), target: () => sheetOn() ? vis(sheetInner.querySelector(".ws-tabs")) : null },
+      { id: "why", t: "g351s4T", b: "g351s4B",
+        prep: () => { this.ensureWord(true); const b = sheetInner.querySelector('.ws-tabs [data-tab="irab"]'); if (b && !b.classList.contains("on")) b.click(); },
+        target: () => sheetOn() ? vis(sheetInner.querySelector("#illa346")) : null },
+      { id: "tools", t: "g351s5T", b: "g351s5B", prep: () => { if (sheetOn()) closeSheet(); this.ensureStory(); },
+        target: () => lib() ? null : vis(document.querySelector("#story .sentence .sent-tools")) },
+      { id: "today", t: "g351s6T", b: "g351s6B", prep: () => { if (sheetOn()) closeSheet(); if (!lib()) renderLibrary(); },
+        target: () => vis(document.getElementById("todayCard")) },
+      { id: "more", t: "g351s7T", b: "g351s7B", prep: () => { if (sheetOn()) closeSheet(); },
+        target: () => { const a = [document.getElementById("navGames"), document.getElementById("navAtolye")].filter(vis);
+          if (a.length === 2) return a; const b = [document.getElementById("gamesOpen"), document.getElementById("conjOpen")].filter(vis); return b.length ? b : null; } },
+    ];
+  }
+  static sampleStory(){
+    const ok = st => st && !storyLocked(st);
+    let st = STORIES.find(s => s.id === this.sid);
+    if (!ok(st)) { const c = [...document.querySelectorAll("#story .lib-card:not(.skel)")].find(c => c.getClientRects().length && ok(STORIES.find(s => s.id === c.dataset.storyId)));
+      st = c ? STORIES.find(s => s.id === c.dataset.storyId) : storiesSorted().find(ok); }
+    if (st) this.sid = st.id;
+    return st || null;
+  }
+  static sampleCard(){ const st = this.sampleStory(); return st ? [...document.querySelectorAll("#story .lib-card")].find(c => c.dataset.storyId === st.id && c.getClientRects().length) || null : null; }
+  static ensureStory(){ if (document.body.classList.contains("lib-mode") || !CUR) { const st = this.sampleStory(); if (st) openStory(st); } }
+  static ensureWord(needRole){
+    this.ensureStory();
+    const has = sheet.classList.contains("show") && sheetInner.querySelector(".ws-head");
+    if (has && (!needRole || sheetInner.querySelector('.ws-tabs [data-tab="irab"]'))) return;
+    const w = document.querySelector('#story .sentence .word[data-role="fail"]') || document.querySelector("#story .sentence .word[data-role]") || document.querySelector("#story .sentence .word");
+    if (w) w.click();
+  }
+  static start(i, single){
+    Guide351.words(); Guide351.css(); Hint351.dismiss();
+    this.end(null);
+    this.on = true; this.single = !!single; this.i = Math.max(0, Math.min(i | 0, this.steps().length - 1));
+    const root = this.root = document.createElement("div");
+    root.id = "tour351"; root.className = "no-target";
+    root.innerHTML = `<div class="t351-dim" aria-hidden="true"></div><div class="t351-dim" aria-hidden="true"></div><div class="t351-dim" aria-hidden="true"></div><div class="t351-dim" aria-hidden="true"></div><div class="t351-ring" aria-hidden="true"></div><div class="t351-card" role="dialog" aria-modal="false" aria-labelledby="t351H" aria-describedby="t351B">
+      <span class="t351-arrow" aria-hidden="true"></span><div class="t351-n" id="t351N"></div><h2 class="t351-h" id="t351H" tabindex="-1"></h2>
+      <p class="t351-b" id="t351B" aria-live="polite"></p>
+      <div class="t351-acts"><button type="button" class="t351-skip" id="t351Skip"></button><span class="t351-sp"></span><span class="t351-wait" id="t351Wait" hidden></span><button type="button" class="t351-next" id="t351Next"></button></div></div>`;
+    document.body.appendChild(root);
+    root.querySelector("#t351Skip").addEventListener("click", () => this.end("skip"));
+    root.querySelector("#t351Next").addEventListener("click", () => this.next(true));
+    this._key = e => { if (this.on && e.key === "Escape") { e.stopPropagation(); e.preventDefault(); this.end("skip"); } };
+    this._pos = () => { if (!this._raf) this._raf = requestAnimationFrame(() => { this._raf = 0; this.place(); }); };
+    document.addEventListener("keydown", this._key, true);
+    window.addEventListener("resize", this._pos); window.addEventListener("scroll", this._pos, true);
+    this.tm = setInterval(() => this.tick(), 200);
+    this.show();
+  }
+  static show(){
+    const s = this.steps()[this.i], U = ui(), n = this.steps().length, root = this.root;
+    if (!s || !root) return;
+    this.tries = 0; this.prepAt = performance.now(); this.focused = false; this.scrolled = false;
+    try { s.prep && s.prep(); } catch (e) {}
+    root.dataset.step = s.id;
+    root.querySelector("#t351N").textContent = this.single ? U.g351Title : U.g351Of.replace("{a}", this.i + 1).replace("{b}", n);
+    root.querySelector("#t351H").textContent = U[s.t];
+    root.querySelector("#t351B").textContent = U[s.b];
+    const skip = root.querySelector("#t351Skip"), next = root.querySelector("#t351Next"), wait = root.querySelector("#t351Wait");
+    skip.textContent = U.g351Skip; skip.hidden = this.single;
+    const last = this.single || this.i === n - 1;
+    next.textContent = last ? U.g351Done : s.next ? U[s.next] : U.g351Next;
+    next.hidden = !!s.wait && !this.single; wait.hidden = !next.hidden; wait.textContent = U.g351Wait;
+    this.place(); this.tick();
+  }
+  static target(){ const s = this.steps()[this.i]; try { return s && s.target ? s.target() : null; } catch (e) { return null; } }
+  static tick(){
+    if (!this.on) return;
+    const s = this.steps()[this.i];
+    if (!s) return this.end("done");
+    if (s.done && !this.single) { let d = false; try { d = s.done(); } catch (e) {} if (d) { this.i++; return this.i >= this.steps().length ? this.end("done") : this.show(); } }
+    const t = this.target();
+    if (!t && s.prep && this.tries < 6 && performance.now() - this.prepAt > 700) { this.tries++; this.prepAt = performance.now(); try { s.prep(); } catch (e) {} }
+    this.place();
+  }
+  static next(byButton){
+    const s = this.steps()[this.i];
+    if (this.single) return this.end("done");
+    if (byButton && s && s.go) { try { s.go(); } catch (e) {} return; }   // the step's own action (opening the story); done() then advances
+    this.i++;
+    if (this.i >= this.steps().length) return this.end("done");
+    this.show();
+  }
+  static rectOf(t){
+    const els = Array.isArray(t) ? t : [t]; let l = Infinity, tp = Infinity, r = -Infinity, b = -Infinity;
+    els.forEach(el => { const q = el.getBoundingClientRect(); l = Math.min(l, q.left); tp = Math.min(tp, q.top); r = Math.max(r, q.right); b = Math.max(b, q.bottom); });
+    return { left: l, top: tp, right: r, bottom: b, width: r - l, height: b - tp };
+  }
+  static place(){
+    const root = this.root; if (!root) return;
+    const card = root.querySelector(".t351-card"), ring = root.querySelector(".t351-ring"), arrow = root.querySelector(".t351-arrow");
+    const vw = document.documentElement.clientWidth, vh = window.innerHeight, pad = 6, gap = 14, m = 16;
+    const t = this.target(), dims = root.querySelectorAll(".t351-dim");
+    const dim = (k, l, tp, w, h) => Object.assign(dims[k].style, { left: l + "px", top: tp + "px", width: Math.max(0, w) + "px", height: Math.max(0, h) + "px" });
+    const cw = card.offsetWidth, chh = card.offsetHeight;
+    let left = Math.max(m, (vw - cw) / 2), top, dir = "none";
+    if (t) {
+      let r = this.rectOf(t);
+      // the usable screen: above the thumb bar when it shows (the bar sits over the page's foot)
+      const tb = document.getElementById("tabbar"), tbTop = tb && tb.getClientRects().length && !(Array.isArray(t) && t.some(el => tb.contains(el))) ? tb.getBoundingClientRect().top : vh;
+      if (!this.scrolled && !Array.isArray(t) && (r.top < 0 || r.bottom > tbTop) && r.height < tbTop) { this.scrolled = true;
+        try { const sc = t.closest(".sheet") ? sheet : null; if (sc) t.scrollIntoView({ block: "nearest" }); else window.scrollBy(0, r.top - Math.max(m, (tbTop - r.height) / 2)); } catch (e) {} r = this.rectOf(t); }
+      const x0 = Math.max(2, r.left - pad), y0 = Math.max(2, r.top - pad), x1 = Math.min(vw - 2, r.right + pad), y1 = Math.min(vh - 2, r.bottom + pad);
+      Object.assign(ring.style, { left: x0 + "px", top: y0 + "px", width: Math.max(0, x1 - x0) + "px", height: Math.max(0, y1 - y0) + "px" });
+      dim(0, 0, 0, vw, y0); dim(1, 0, y1, vw, vh - y1); dim(2, 0, y0, x0, y1 - y0); dim(3, x1, y0, vw - x1, y1 - y0);
+      root.classList.remove("no-target");
+      const below = vh - y1, above = y0;
+      if (below >= chh + gap + m) { top = y1 + gap; dir = "up"; }
+      else if (above >= chh + gap + m) { top = y0 - gap - chh; dir = "down"; }
+      else { top = (y0 + y1) / 2 > vh / 2 ? m : vh - chh - m; }
+      const cx = (x0 + x1) / 2;
+      left = Math.max(m, Math.min(vw - cw - m, cx - cw / 2));
+      arrow.style.left = Math.max(18, Math.min(cw - 32, cx - left - 7)) + "px";
+      if (!this.focused) { this.focused = true; const s = this.steps()[this.i], el = Array.isArray(t) ? t[0] : t, f = s && s.focus ? s.focus(el) : null;
+        try { (f || root.querySelector("#t351H")).focus({ preventScroll: true }); } catch (e) {} }
+    } else {
+      root.classList.add("no-target"); top = Math.max(m, (vh - chh) / 2); dim(0, 0, 0, vw, vh); dim(1, 0, 0, 0, 0); dim(2, 0, 0, 0, 0); dim(3, 0, 0, 0, 0);
+      if (!this.focused && performance.now() - this.prepAt > 1500) { this.focused = true; try { root.querySelector("#t351H").focus({ preventScroll: true }); } catch (e) {} }
+    }
+    card.dataset.arrow = dir;
+    card.style.left = left + "px"; card.style.top = Math.max(m, top) + "px";
+  }
+  static end(how){
+    if (!this.on) return;
+    this.on = false; clearInterval(this.tm); this.scrolled = false;
+    document.removeEventListener("keydown", this._key, true);
+    window.removeEventListener("resize", this._pos); window.removeEventListener("scroll", this._pos, true);
+    if (this.root) this.root.remove(); this.root = null;
+    if (how && !this.single) { const s = this.steps()[Math.min(this.i, this.steps().length - 1)]; try { localStorage.setItem(Guide351.KEY, how === "done" ? "done" : "skip:" + (s ? s.id : "")); } catch (e) {} }
+    else if (how && !Guide351.offered()) try { localStorage.setItem(Guide351.KEY, "page"); } catch (e) {}
+    if (how) setTimeout(() => { try { Hint351.arm(); } catch (e) {} }, 0);   // the hints start once the tour is over
+  }
+}
+// one-time hints: a quiet dismissible chip the first time a learner reaches a place; at most one per sheet visit, never
+// during the tour. The registry is data (id → where it goes, the ui() key of its sentence, when it applies).
+const HINTS351 = [
+  { id: "lab", sel: "#labBody", key: "h351Lab", when: () => typeof conjState !== "undefined" && conjState.lab && conjState.lab !== "home" },
+  { id: "games", sel: "#hubTask", key: "h351Games" },
+  { id: "irab", sel: ".sheet-line", key: "h351Irab" },
+  { id: "review", sel: ".rv344-who", key: "h351Review" },
+  { id: "studio", sel: ".st347", key: "h351Studio" },
+  { id: "khilaf", sel: ".khilaf-card", key: "h351Khilaf" },
+];
+class Hint351 {
+  static KEY = "qissa-hints351"; static mo = null; static visit = null; static busy = false;
+  static seen(){ try { return JSON.parse(localStorage.getItem(this.KEY) || "[]") || []; } catch (e) { return []; } }
+  static allSeen(){ const s = this.seen(); return HINTS351.every(h => s.includes(h.id)); }
+  static arm(){
+    if (this.mo || this.allSeen() || typeof MutationObserver === "undefined") return;
+    this.mo = new MutationObserver(() => { if (!this.busy) { this.busy = true; queueMicrotask(() => { this.busy = false; this.check(); }); } });
+    this.mo.observe(sheetInner, { childList: true, subtree: true });
+    this.check();
+  }
+  static check(){
+    if (Tour351.on || !sheet.classList.contains("show")) return;
+    const first = sheetInner.firstElementChild;
+    if (this.visit && this.visit === first && first.isConnected) return;   // one hint per visit
+    if (sheetInner.querySelector(".h351")) return;
+    const seen = this.seen();
+    for (const h of HINTS351) {
+      if (seen.includes(h.id)) continue;
+      const el = sheetInner.querySelector(h.sel);
+      if (!el) continue;
+      let ok = true; try { ok = !h.when || h.when(); } catch (e) { ok = false; }
+      if (!ok) continue;
+      this.show(h, el); return;
+    }
+  }
+  static show(h, el){
+    Guide351.words(); Guide351.css();
+    const U = ui(), box = document.createElement("div");
+    box.className = "h351"; box.setAttribute("role", "note"); box.dataset.hint = h.id;
+    box.innerHTML = `<p>${escapeAttr(U[h.key])}</p><button type="button">${escapeAttr(U.h351Ok)}</button>`;
+    box.querySelector("button").addEventListener("click", () => box.remove());
+    el.parentNode.insertBefore(box, el);
+    this.visit = sheetInner.firstElementChild;
+    const s = this.seen(); s.push(h.id); try { localStorage.setItem(this.KEY, JSON.stringify(s)); } catch (e) {}
+    if (this.allSeen() && this.mo) { this.mo.disconnect(); this.mo = null; }
+  }
+  static dismiss(){ document.querySelectorAll(".h351").forEach(x => x.remove()); }
 }
 // the pill that floats over the story while it is read aloud
 const PlayerPill = {
@@ -49504,6 +49925,7 @@ function bootWithData(){
     localStorage.setItem("qissa-welcomed", "1");
     Onboarding.open();   // wave 80: level → daily goal → look
   }
+  Guide351.boot();   // (v351) one key read: arms the one-time hints after the door
   if (pruneDeck()) persistDeck(); else updateDeckCount();
   try { Relax.sweep(); } catch (e) {}   /* (wave 32p) */
   openFromHash();
