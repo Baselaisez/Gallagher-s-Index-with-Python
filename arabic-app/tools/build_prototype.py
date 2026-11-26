@@ -311,6 +311,36 @@ def load_ilal():
     return {"books": books, "reasons": rs, "noteTopics": nt}
 
 
+def load_alfiyya():
+    """(v352-A) content/rules/alfiyya.json — the Alfiyya's verses cut by script from Ibn ʿAqīl's Sharḥ (tools/ledger/aqil_alfiyya.py).
+    Shipped compact: the verses joined to a grammar note (the «Elfiye» cards, the «beyti bul» round's items) and, for the round's
+    choices, the two nearest other verses of the bāb; every `ar` / `r` a verbatim substring of the source. Shipped as ONE JSON string,
+    parsed on the first note that asks (`Alfiyya352.data()`): nothing is read on the door's path."""
+    p = ROOT / "content/rules/alfiyya.json"
+    if not p.exists():
+        return None
+    vs = json.loads(p.read_text(encoding="utf-8"))
+    babs, keep = [], {}
+    for v in vs:
+        if v["notes"]:
+            sib = [x for x in vs if x["bab"] == v["bab"] and not x["notes"] and x.get("rule_ar") != v.get("rule_ar")]
+            sib.sort(key=lambda x: abs(x["n"] - v["n"]))
+            for x in [v] + sib[:2]:
+                keep[x["n"]] = x
+    out = []
+    for n in sorted(keep):
+        v = keep[n]
+        if v["bab"] not in babs:
+            babs.append(v["bab"])
+        d = {"n": n, "b": babs.index(v["bab"]), "ar": v["ar"], "p": v["page"], "sp": v["sp"]}
+        if v["notes"]:
+            d.update(notes=v["notes"], r=v.get("rule_ar"), rp=v.get("rule_page"), rs=v.get("rule_sp"))
+            if v.get("en"):
+                d.update(en=v["en"], tr=v["tr"])
+        out.append(d)
+    return {"babs": babs, "v": out}
+
+
 def build_catalog(pkgs):
     """Build a catalog.json index from discovered packages.
 
@@ -389,6 +419,8 @@ def main():
         js("INSAF", load_insaf()),
         # (v348-F) the commentaries' reasons — the notes' «Neden böyle?», the reason chain, the rule of the day and «لِمَاذَا؟» read this
         js("ILAL", load_ilal()),
+        # (v352-A) the Alfiyya's verses on the notes — the «Elfiye» cards and the «beyti bul» round read this
+        js("ALFIYYA_JSON", json.dumps(load_alfiyya(), ensure_ascii=False, separators=(",", ":"))),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",
              "label": {"en": "Morphology — after Emsile & Bina",

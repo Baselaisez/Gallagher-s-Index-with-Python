@@ -16820,3 +16820,57 @@ to the places they belong — verbatim, unvowelled as printed, anchored by book,
 - **Left** (research/commentary-coverage-2026-11-27.md has the lists): Ibn Mālik 96 sections / 1,213 pp. and al-Raḍī 57 / 815 pp. not
   scanned; 44 joined topics with no reason kept (badal, istithna, mafʿūl muṭlaq/fīh/lahu, nāʾib, the pronouns, taṣghīr, nasab, waqf, …);
   of the 984 candidates about 510 were read (Shaykhzāde 193 of 379, Ibn Mālik ≈260 of 350, al-Raḍī ≈60 of 255); the renderings await the hoca.
+
+## v352-A — Ibn ʿAqīl
+
+Ibn ʿAqīl's Sharḥ on the Alfiyya (`research/sources/sharh-ibn-aqil-src.txt`, Shamela 9904, 1,329 pp.; the notes of vols 1–2 are the
+editor Muḥyī al-Dīn ʿAbd al-Ḥamīd's «منحة الجليل», cited as his; his appendix «تكملة في تصريف الأفعال» kept out) as a naḥw feeder, by
+script. Chain (rerun in this order): `tools/ledger/aqil_toc.py` → `aqil_ledger.py` (proves in the page: `aqil_prove.js` + `aqil_probe.js`,
+cache `.aqil-proof-cache.json`; `--no-prove`) → `aqil_alfiyya.py` → `tools/ilal/aqil_cut.py` (candidates) → `tools/ilal/aqil_ilal.py`
+(APPENDS the hand reading `tools/ilal/aqil_kept.json` to `ilal.json`; run it again after `build_ilal.py`, which rewrites the file) →
+`tools/ledger/aqil_report.py`. Shared reading in `aqil_common.py`, the bāb → topic / construction map in `aqil_map.py`.
+- **Structure** (`content/rules/toc_ibn_aqil.json`): 76 bābs with page spans (the khuṭba apart as «مقدمة الناظم»; a volume's title page
+  folded into the next bāb); the naẓm told from the prose by script — a « … ... … » line (or a hemistich + a line opening «... »), a shāhid
+  when numbered by the edition (on the line or the one before), when it follows a shāhid and its hemistichs do not rhyme (the Alfiyya is
+  rajaz muzdawij), or when the prose before ends «:» (but «المراد / أشار بقوله:» bring the Alfiyya's own verse); six verses read by hand
+  (`SHAHID_BY_HAND`). **1,006 verse lines against the received 1,002 (+4, named in `gap_note`)**; 675 commentary units; 361 shāhid lines
+  (292 numbers); 1,122 examples «نحو …». Every `ar` verbatim.
+- **The ledger** (`content/rules/coverage_ibn_aqil.json`): 806 rule statements (a prose sentence with a ruling marker AND its example
+  «نحو / تقول / كقولك»; the example cut where the commentary resumes). Joined 51 (Iẓhār 25, Shudhūr 18, Qawāʿid 5, Kāfiya 3: same topic
+  and same example, or ≥ 3 shared content words — Ibn ʿAqīl restates the matns in his own words, so most rows stand as his own);
+  applied 199 (7 offered); **⚠ 188** (the engine misreads the book's example — line kept); open 156 (ṣarf bābs 131, a single word cited 20,
+  no construction 5); not automatable 212 (a school's view 113, a matter of meaning 46, rarity / poetic licence 38, a dialect 15 — the
+  marker in `reason`).
+  The probe reads the book's example AS PRINTED (unvowelled): the role named on the word the sentence names («فزيد مبتدأ»), else the
+  bāb's construction on some word — so the passive (النائب, 11 ⚠) and the case-only rulings are where unvowelled text, not the rule,
+  fails. `research/book-coverage-2026-11-27.ibn-aqil.md`: the table by bāb and every ⚠ with its example, the book's ruling, the engine's
+  line and the narrowest gate per bāb.
+- **One rule row** (`Nahw342Engine.tawkidPron`, inside the v342-N block, RULES + the post list): قُمْتَ أَنْتَ / أَكْرَمْتَنِي أَنَا / اسْكُنْ
+  أَنْتَ → «…، فِي مَحَلِّ رَفْعٍ تَوْكِيدٌ لِلضَّمِيرِ الْمُتَّصِلِ / الْمُسْتَتِرِ» (Ibn ʿAqīl p. 891). EXACT only on a bare detached pronoun right
+  after the verb whose own suffix is that person (hidden: 1st / 2nd person only); silent after a verb of saying, kāna and its sisters, a
+  heart / two-object verb, a cited estimate («وَالتَّقْدِيرُ أَحْسِنْ أَنْتَ بِزَيْدٍ», al-Akhfash's doer), and before a word that could open a
+  new clause. Corpus: authored «توكيد» on these pronouns agreeing 20 → 28, engine 47 → 55, exact lines against an author 27 → 27 (the one
+  new one the first cut made was the engine's — gated). `research/story-audit-triage-delta-aqil.json` (no record left).
+- **The Alfiyya on the notes** (`content/rules/alfiyya.json`, all 1,006 verses `{n, bab, ar, page, sp, notes, rule, rule_ar, rule_page,
+  rule_sp, en?, tr?}`): 126 verses on 108 naḥw notes (the note's topics are the bāb's and 2 × the verse's shared content words + the
+  ruling's ≥ 4); `rule_ar` = the first whole sentence of the unit that states a ruling (hamza-less editor's lines that leak into the
+  matn refused). `Alfiyya352` (after `startLimadha`): the «Elfiye» card under «Neden böyle?» in `renderNote` — the bayt (footnote marks
+  dropped), bāb, verse n, Ibn ʿAqīl's ruling, our rendering (23, `tools/ledger/aqil_alfiyya_renderings.json`) or «Arabic as printed», the
+  page; nothing in the word sheet's stack (`Ilal348.compact`). Shipped as ONE string `ALFIYYA_JSON` (130 KB: the noted verses + two
+  nearest of the same bāb), parsed on first use. «Beyti bul» (`startBeyt352`, runQuiz, `lvl: 4`, button on the cards at Level ≥ 4; no
+  hub card, so v317's pins stay): the ruling → its verse among three of the same bāb (never one sharing the ruling); 115 items.
+- **Reasons** (`ilal.json` 90 → 125): 35 kept of 182 candidates (Ibn ʿAqīl 30, the editor 5; why-form 17, why-state 9, why-order 6,
+  why-built 2, why-sign 1 — book keys `ibn-aqil`, `ibn-aqil-editor`). **15 of v348-F's 44 topics now answered**: mudmar, asma-afal, alam,
+  muqaraba, naib-fail, ishtighal, tanazu, maful-mutlaq, maful-fih, istithna, sifa-mushabbaha, tajjub, nida, tasghir, zawaid. Why the fāʿil
+  is rafʿ and the mafʿūl naṣb: neither Ibn ʿAqīl nor his editor states it — still open (the fāʿil gains a why-order: «لأنه كالجزء منه»).
+- **Smoke** (three «v352-A — …» checks before «v333 — the received imports»): the toc (1,006, gap +4), every verse / shāhid / example /
+  ruling / ledger sentence verbatim, the ledger's counts = its rows and pinned (≥ 806 entries, applied ≥ 248 with joined, ⚠ ≤ 188, joined
+  ≥ 51), every applied probe re-proved in the page; tawkidPron's book examples and six controls; the Elfiye cards on tamyiz / al-muthanna /
+  kana-wa-akhawatuha at 390 px in tr, contrast in three themes (read after the sheet's colour transition), none in the compact stack, the
+  round's items well-formed and played. No older check changed.
+- **Refit + full suite**: irab_model 2,459 weights over 72,955 rows (case 99.1 %); `check_i18n.py` clean; **620 checks, 618 PASS**; the two
+  FAILs were time alone on the shared machine (the held-out CV 14.9 s; v341's door 1,978 ms at 4× CPU, budget 1,800) and PASS re-run alone.
+- **Left**: 188 ⚠ (work order in the .md; the largest: النائب 11 — unvowelled passive, الابتداء 9, كان 6, إن 6, المعرب 6); 156 open (131 ṣarf
+  rows for the ṣarf ledgers); only ONE new rule row consumed (tawkidPron) — the largest bābs' ⚠ rows await the next round; renderings for
+  103 of the 126 noted verses; 29 of the 44 topics still without a book reason, the fāʿil's rafʿ / the mafʿūl's naṣb among them; the +4 in
+  the verse count not resolved against a printed Alfiyya.

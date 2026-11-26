@@ -2,6 +2,7 @@
 // Usage: npm i playwright-core && node tools/smoke_test.js
 // Override the browser binary with CHROMIUM_PATH if needed.
 const fs = require('node:fs');
+const SIG350 = s => process.on(s, () => process.exit(130)); ['SIGINT', 'SIGTERM', 'SIGHUP'].forEach(SIG350);   // so 'exit' handlers (temp copies) run when a run is stopped
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright-core');
@@ -17854,6 +17855,7 @@ if (!CHROME) {
     st.url = 'http://127.0.0.1:' + srv.address().port + '/reader.html'; st.dir = dir;
     st.release = () => { st.hold = false; st.held.splice(0).forEach(f => f()); };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
       await ctx.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); } catch (e) {}
         window.__lt341 = []; try { new PerformanceObserver(l => l.getEntries().forEach(e => window.__lt341.push([e.startTime, e.duration]))).observe({ type: 'longtask', buffered: true }); } catch (e) {} });
@@ -18867,6 +18869,7 @@ if (!CHROME) {
       r.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(r); }).listen(0); srv.unref();
     const st = { url: 'http://127.0.0.1:' + srv.address().port + '/reader.html', dir };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu, opt = {}) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: opt.dpr || 1, serviceWorkers: 'block' });   /* no sw.js on this server */
       await ctx.addInitScript(hold => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '3'); } catch (e) {}
         if (hold) window.__QISSA_QUIET_OFF = true;
@@ -19412,6 +19415,81 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
   });
 
+  // >>> v352-A — Ibn ʿAqīl on the Alfiyya: the naḥw feeder
+  await check('v352-A — Ibn ʿAqīl structured by script and ledgered: the toc\'s verses of the Alfiyya (1,006 lines against the received 1,002, the gap named), every verse / shāhid / example / ruling / ledger sentence verbatim in the source, the ledger\'s counts its rows\' and pinned (they may only improve), every applied entry re-proved in the page by the book\'s own example', async () => {
+    const fsx = require('fs'), pathx = require('path'), R = f => pathx.join(__dirname, '..', f), J = f => JSON.parse(fsx.readFileSync(R(f), 'utf8'));
+    const src = fsx.readFileSync(R('research/sources/sharh-ibn-aqil-src.txt'), 'utf8'), bad = [];
+    const toc = J('content/rules/toc_ibn_aqil.json'), V = toc.babs.flatMap(b => b.verses);
+    if (V.length !== 1006 || toc.counts.verses !== 1006 || toc.counts.gap !== 4 || !/1,002/.test(toc.gap_note) || V.some((v, k) => v.n !== k + 1)) throw new Error('the verses: ' + JSON.stringify(toc.counts));
+    if (toc.counts.shawahid < 350 || toc.counts.shawahid_numbered < 290 || toc.counts.examples < 1100 || toc.babs.length < 70) throw new Error('the toc: ' + JSON.stringify(toc.counts));
+    for (const b of toc.babs) for (const x of [...b.verses, ...b.shawahid, ...b.examples]) if (!src.includes(x.ar)) bad.push(b.bab + ': ' + x.ar.slice(0, 30));
+    const alf = J('content/rules/alfiyya.json');
+    if (alf.length !== 1006) throw new Error('alfiyya.json is the toc\'s verses: ' + alf.length);
+    for (const v of alf) { if (v.ar !== V[v.n - 1].ar) bad.push('alfiyya ' + v.n); if (v.rule_ar && !src.includes(v.rule_ar)) bad.push('ruling ' + v.n); if (!!v.en !== !!v.tr) bad.push('en/tr ' + v.n); }
+    const led = J('content/rules/coverage_ibn_aqil.json'), E = led.entries, C = {};
+    for (const e of E) { if (!src.includes(e.ar)) bad.push(e.id + ' ar'); for (const x of e.ex) if (!e.ar.includes(x)) bad.push(e.id + ' ex');
+      const k = 'joined' in e ? 'joined' : e.warn ? 'warn' : e.status + (e.offered ? '-offered' : ''); C[k] = (C[k] || 0) + 1; C['status:' + e.status] = (C['status:' + e.status] || 0) + 1;
+      if (e.status === 'not-automatable' && !e.reason) bad.push(e.id + ' reason'); }
+    if (bad.length) throw new Error('verbatim: ' + bad.slice(0, 6).join(' | '));
+    if (JSON.stringify(Object.keys(C).sort().map(k => [k, C[k]])) !== JSON.stringify(Object.keys(led.counts).sort().map(k => [k, led.counts[k]]))) throw new Error('the counts are the rows\': ' + JSON.stringify({ C, stored: led.counts }));
+    // measured 2026-11-27 (v352-A): 806 rule statements — applied (with joined-applied) ≥ 248, ⚠ ≤ 188, joined ≥ 51
+    if (E.length < 806 || C['status:applied'] < 248 || (C.warn || 0) > 188 || (C.joined || 0) < 51) throw new Error('the pins: ' + JSON.stringify(C));
+    const ap = E.filter(e => e.status === 'applied' && e.probes), ps = ap.flatMap(e => e.probes.map(p => p.w ? { s: p.s, w: p.w, re: p.re } : { s: p.s, any: p.any }));
+    const fsrc = fsx.readFileSync(R('tools/ledger/aqil_probe.js'), 'utf8'), fn = fsrc.slice(fsrc.indexOf('(probes)'));
+    const res = await page.evaluate(([f, q]) => (0, eval)('(' + f + ')')(q), [fn, ps]), fail = res.map((r, k) => r.ok ? null : ps[k].s + ' → ' + r.got.slice(0, 80)).filter(Boolean);
+    if (fail.length) throw new Error(fail.length + ' applied entries no longer prove: ' + fail.slice(0, 4).join(' | '));
+    console.log('      ' + V.length + ' verses (gap +4), ' + E.length + ' rule statements: ' + JSON.stringify(led.counts) + '; ' + ps.length + ' probes re-proved');
+  });
+  await check('v352-A — Nahw342Engine.tawkidPron (Ibn ʿAqīl p. 891 «ومضمر الرفع الذي قد انفصل ... أكد به كل ضمير اتصل»): the book\'s own examples read «توكيد» for the attached / hidden pronoun, and silent where the letters do not decide (a verb of saying, kāna, a heart verb, a cited estimate, a wāw, a new clause)', async () => {
+    const r = await page.evaluate(() => { const H = s => String(s || '').replace(/[ً-ْٰ]/g, ''); const L = (s, w) => { const rows = SentenceAnalyzer.analyze(s); const i = rows.findIndex(x => H(x.w) === w); return i < 0 ? 'NO ' + w : H((Murib.line(rows, i) || {}).ar); };
+      return { a: L('قمت أنت', 'أنت'), b: L('أكرمتني أنا', 'أنا'), c: L('اسْكُنْ أَنْتَ وَزَوْجُكَ الْجَنَّةَ', 'أنت'), d: L('ذَهَبُوا هُمْ', 'هم'),
+        x1: L('قُلْتُ أَنْتَ مُخْطِئٌ', 'أنت'), x2: L('كُنْتَ أَنْتَ الرَّقِيبَ', 'أنت'), x3: L('وَالتَّقْدِيرُ أَحْسِنْ أَنْتَ بِزَيْدٍ', 'أنت'), x4: L('ظَنَنْتُ أَنَا', 'أنا'), x5: L('جَاءَ زَيْدٌ وَأَنْتَ', 'وأنت'), x6: L('قُمْتُ أَنَا أَكْتُبُ', 'أنا'),
+        rule: !!Nahw342Engine.RULES.tawkidPron && /891/.test(Nahw342Engine.RULES.tawkidPron.cite[0]) }; });
+    const T = /في محل رفع توكيد للضمير المتصل/, S = /في محل رفع توكيد للضمير المستتر/;
+    if (!(T.test(r.a) && T.test(r.b) && S.test(r.c) && T.test(r.d) && r.rule)) throw new Error('the book\'s examples: ' + JSON.stringify(r));
+    const loud = ['x1', 'x2', 'x3', 'x4', 'x5', 'x6'].filter(k => /توكيد للضمير/.test(r[k]));
+    if (loud.length) throw new Error('the controls speak: ' + loud.map(k => k + ' ' + r[k]).join(' | '));
+  });
+  await check('v352-A — the Alfiyya on the notes: an «Elfiye» card (the bayt as printed, its bāb and number, Ibn ʿAqīl\'s ruling verbatim, the rendering or «Arabic as printed», the page) on three notes at 390 px, readable in three themes, nothing on the word sheet\'s stack; «beyti bul» at Level 4: the ruling → its verse among three of the same bāb, every item well-formed', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(async () => {
+      const out = { notes: [], low: [] }, keepLang = state.uiLang, keepLvl = state.myLevel, keepTheme = localStorage.getItem('qissa-theme'), A = Alfiyya352;
+      const rgba = s => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const a = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [a[0], a[1], a[2], a.length > 3 ? a[3] : 1]; };
+      const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+      const over = (t2, b) => [0, 1, 2].map(i => t2[i] * t2[3] + b[i] * (1 - t2[3])).concat(1);
+      const bgOf = el => { const stk = []; for (let e = el; e; e = e.parentElement) { const c = rgba(getComputedStyle(e).backgroundColor); if (c && c[3] > 0) { stk.push(c); if (c[3] >= 1) break; } }
+        let b = rgba(getComputedStyle(document.body).backgroundColor) || [255, 255, 255, 1]; for (let i = stk.length - 1; i >= 0; i--) b = over(stk[i], b); return b; };
+      const CON = sel => { const bad = []; document.querySelectorAll(sel).forEach(root => root.querySelectorAll('*').forEach(el => { if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return;
+        const rr = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!rr.width || !rr.height || cs.visibility === 'hidden') return;
+        const fg = rgba(cs.color), bg = bgOf(el); if (!fg || !bg) return; const c = over(fg, bg), L1 = lum(c), L2 = lum(bg), ratio = (Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05);
+        if (ratio < 4.5) bad.push((el.className || el.tagName) + ' ' + Math.round(ratio * 100) / 100); })); return bad; };
+      const wide = () => { const s = document.getElementById('sheet'); return s.scrollWidth > s.clientWidth + 1 || document.documentElement.scrollWidth > innerWidth + 1; };
+      try {
+        state.uiLang = 'tr'; state.myLevel = 4;
+        for (const g of ['tamyiz', 'al-muthanna', 'kana-wa-akhawatuha']) { openRef(g); const cs = [...document.querySelectorAll('#sheet .alf-card')], vs = A.forNote(g);
+          out.notes.push({ g, n: cs.length, want: vs.length, bayt: cs.every((c, k) => c.querySelector('.alf-bayt').textContent === A.bayt(vs[k]) && !/\([٠-٩]+\)/.test(c.querySelector('.alf-bayt').textContent)),
+            rule: cs.every((c, k) => !vs[k].r || c.querySelector('.alf-rule').textContent === A.clean(vs[k].r)), head: cs[0] && cs[0].querySelector('figcaption').textContent,
+            pend: cs.every((c, k) => c.querySelector('.alf-pend').textContent === (vs[k].tr ? 'çeviri · hoca onayı bekliyor' : ui().ilalUnrendered)), src: cs[0] && cs[0].querySelector('.alf-src').textContent,
+            play: !!document.querySelector('#sheet [data-alf-play]'), wide: wide() }); }
+        Ilal348.compact = true; try { out.compact = !/alf-card/.test(renderNote('tamyiz')); } finally { Ilal348.compact = false; }
+        const it = A.items(); out.items = { n: it.length, ok: it.every(v => v.r && A.rivals(v).length >= 2 && A.rivals(v).every(x => x.b === v.b && x.r !== v.r && x.n !== v.n)) };
+        document.querySelector('#sheet [data-alf-play]').click();
+        const q = document.querySelector('#sheet .game-q.alf-rule'), os = [...document.querySelectorAll('#sheet .opts [data-o]')];
+        out.round = { q: !!q && it.some(v => A.clean(v.r) === q.textContent), opts: os.length, verses: os.every(o => it.length && A.data().v.some(v => A.bayt(v) === o.querySelector('.alf-opt').textContent)) };
+        os[0].click(); out.round.why = !!document.querySelector('#sheet .game-why .alf-card'); out.round.wide = wide(); QUIZ_RESUME = null;
+        state.myLevel = 2; openRef('tamyiz'); out.lowLevel = !document.querySelector('#sheet [data-alf-play]') && !!document.querySelector('#sheet .alf-card');
+        // the sheet's colours ease into a theme: read them once the transition has run
+        for (const th of ['murekkep', 'gece', 'bahce']) { setTheme(th); openRef('tamyiz'); await new Promise(res => setTimeout(res, 900)); out.low.push(...CON('#sheet .alf-cards').map(x => th + ':' + x)); }
+      } finally { state.uiLang = keepLang; state.myLevel = keepLvl; if (keepTheme) setTheme(keepTheme); closeSheet(); }
+      return out;
+    });
+    console.log('      notes ' + r.notes.map(n => n.g + ' ' + n.n).join(', ') + '; round ' + r.items.n + ' items');
+    const badN = r.notes.filter(n => !(n.n >= 1 && n.n === n.want && n.bayt && n.rule && /^Elfiye · .+ · beyit \d+$/.test(n.head) && n.pend && /İbn Akîl, Şerhu'l-Elfiyye · s\. \d+\/\d+ · Şâmile s\. \d+/.test(n.src) && n.play && !n.wide));
+    if (badN.length || !r.compact || !r.lowLevel) throw new Error('the cards: ' + JSON.stringify({ badN, compact: r.compact, lowLevel: r.lowLevel }));
+    if (!(r.items.n >= 20 && r.items.ok && r.round.q && r.round.opts === 3 && r.round.verses && r.round.why && !r.round.wide)) throw new Error('beyti bul: ' + JSON.stringify(r.items) + ' ' + JSON.stringify(r.round));
+    if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
+  });
+  // <<< v352-A
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
