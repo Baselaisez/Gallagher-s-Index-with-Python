@@ -18821,6 +18821,41 @@ if (!CHROME) {
   });
   // <<< v345-T
 
+  await check('v345-D — the vowelling engine\'s case endings repaired by the page\'s own marks: the annexed head keeps no tanwīn (صَلَاحُ الدِّينِ، فِي سَنَةِ اثْنَتَيْنِ، قَيْسُ بْنُ أَسْلَمَ; Shudhūr l.274), the written mood stands where a governor licenses it (وَلَنْ تَجِدَ، وَلَمْ يُحَوَّلْ، لِيَضْرِبْ، أَنْ يَكُفَّ، فَيَقُولُ; l.185, l.256, l.284) and the unseen governor leaves the seat silent (يُخْبِرْكِ), the built word keeps its written person (نَزَلْتِ، أَخَافُ; l.71), the poem\'s licence is yielded to, the object\'s seat gives way to the written majrūr / marfūʿ, the follower finds the head of its own case, the cited form is no case; typed text untouched; corpus floors and ceilings', async () => {
+    const fsx = require('fs'), pathx = require('path'), J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const sen = k => { const [p, c, s] = k.split(':'); const st = STORIES.find(x => x.id === p); const ch = st && st.chapters.find(x => String(x.n) === c); return ch && ch.sentences.find(x => x.id === s); };
+      const at = k => { const t = +k.split(':')[3]; const g = DabtEngine.grade(sen(k), 'endings'); const x = (g.words || [])[t - 1] || {}; return [x.out, x.rule, x.ok]; };
+      const K = { salah: 'salah-al-din-wa-al-quds:2:s1:8', din: 'salah-al-din-wa-al-quds:2:s1:9', sana: 'marj-dabiq:2:s2:4', qays: 'al-usul-al-munifa:27:s7:2', ibnNat: 'al-usul-al-munifa:27:s7:7',
+        lan: 'al-maqamat-birgivi:4:s5:24', lam: 'al-usul-al-munifa:16:s3:10', liAmr: 'tasrif-al-izzi:7:s10:2', yakuff: 'al-usul-al-munifa:2:s10:28', fa: 'al-usul-al-munifa:29:s2:24', silent: 'muallaqat-antara:8:s6:1',
+        nazalti: 'muallaqat-antara:2:s8:2', akhafu: 'al-usul-al-munifa:23:s6:16', verse: 'muallaqat-antara:5:s1:8', rajul: 'al-bukhari-fi-baghdad:2:s2:5', siyam: 'al-usul-al-munifa:19:s5:11',
+        khudh: 'tasrif-al-izzi:17:s4:4', mashar: 'muallaqat-labid:13:s5:2', basari: 'al-abras-wa-al-aqra-wa-al-ama:1:s7:11' };
+      const o = {}; for (const [n, k] of Object.entries(K)) { try { o[n] = at(k); } catch (e) { o[n] = 'ERR ' + e.message; } }
+      const ty = (t, i) => { const v = DabtEngine.vowel(t, 'endings'); const x = v.words[i] || {}; return [x.out, x.rule]; };
+      o.t1 = ty('لَنْ يَذْهَبَ زَيْدٌ', 1); o.t2 = ty('جَاءَ صَلَاحُ الدِّينِ', 1); o.t3 = ty('ضَرَبَ رَجُلٌ الْكَلْبَ', 2);
+      const C = { n: 0, hit: 0, und: 0, hitBy: {}, miss: [] };
+      STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); if (!g.aligned) return; C.n += g.n; C.hit += g.hit; C.und += g.undecided;
+        (g.words || []).forEach(x => { if (x.ok === true) { const R = x.rule || x.src || '?'; C.hitBy[R] = (C.hitBy[R] || 0) + 1; } });
+        g.miss.forEach(m => C.miss.push(st.id + ':' + ch.n + ':' + sn.id + ':' + (m.i + 1))); })));
+      o.C = C; return o;
+    });
+    const eq = (n, out, rule, ok) => { const x = r[n]; if (!Array.isArray(x) || String(x[0] || '').normalize('NFC') !== out.normalize('NFC') || (rule && x[1] !== rule) || (ok !== undefined && x[2] !== ok)) throw new Error(n + ': ' + J(x) + ' wanted ' + J([out, rule, ok])); };
+    eq('salah', 'صَلَاحُ', 'fail', true); eq('din', 'الدِّينِ', 'mudafIlayh', true); eq('sana', 'سَنَةِ', null, true); eq('qays', 'قَيْسُ', 'fail', true); eq('ibnNat', 'بْنِ', 'nat', true);
+    eq('lan', 'تَجِدَ', 'nasbVerb', true); eq('lam', 'يُحَوَّلْ', 'jazm', true); eq('liAmr', 'لِيَضْرِبْ', 'jazm', true); eq('yakuff', 'يَكُفَّ', 'nasbVerb', true); eq('fa', 'فَيَقُولُ', 'raf', true); eq('silent', 'يُخْبِرْكِ', 'mood-unseen', null);
+    eq('nazalti', 'نَزَلْتِ', 'mazi', true); eq('akhafu', 'أَخَافُ', 'raf', true); eq('verse', 'مُصَرَّمِ', null, null); eq('rajul', 'رَجُلٌ', 'fail', true); eq('siyam', 'وَالصِّيَامَ', 'atf', true);
+    eq('khudh', 'خُذٍ', 'hikaya', null); eq('mashar', 'مَعْشَرٍ', 'jarr', true); eq('basari', 'بَصَرِي', 'maful', true);   /* control: the speaker's yāʾ hides the case — the object stays */
+    eq('t1', 'يَذْهَبَ', 'nasbVerb'); eq('t2', 'صَلَاحُ', 'fail'); eq('t3', 'الْكَلْبَ', 'maful');   /* typed text carries no receipts: the passes stay out */
+    const C = r.C, contra = C.n - C.hit;
+    if (C.hit < 87169 || contra > 303) throw new Error('corpus (2026-11-27: agree 86,893, contra 663 → agree 87,169, contra 303): ' + J({ hit: C.hit, contra, und: C.und }));
+    const FL = { maful: 3534, mudafIlayh: 6918, nat: 2522, atf: 3932, badal: 519, tawkid: 80, fail: 3565, mubtada: 3382, khabar: 3071, jarr: 9370, raf: 5170, nasbVerb: 831, jazm: 611, shart: 165, mazi: 9231, amr: 718, hal: 736, zarf: 1612, kanaIsm: 968, naib: 560, jarrPron: 2006, mabni: 23619 };
+    const low = Object.entries(FL).filter(([k, v]) => (C.hitBy[k] || 0) < v); if (low.length) throw new Error('an agreeing rule fell below its 2026-11-27 count: ' + J(low.map(([k, v]) => [k, C.hitBy[k] || 0, v])));
+    const rd = f => JSON.parse(fsx.readFileSync(pathx.join(__dirname, '..', 'research', f), 'utf8'));
+    const cl = {}; rd('story-audit-triage-2026-11-27.json').records.filter(x => x.engine === 'case').forEach(x => { cl[x.key] = x.cluster; });
+    const left = {}; let fresh = []; C.miss.forEach(k => { if (cl[k]) left[cl[k]] = (left[cl[k]] || 0) + 1; else fresh.push(k); });
+    const CEIL = { 'T-C-tanwin': 45, 'T-C-mood': 27, 'T-C-built': 32, 'T-C-maful': 8, 'T-C-follower': 21, 'T-C-verse': 5, 'T-C-letters': 35, 'T-C-raf': 30, 'T-C-jarr': 25, 'T-C-muqaddar': 28, 'T-C-mamnu': 24, 'T-C-nasb': 13, 'T-C-hikaya': 0 };
+    const over = Object.entries(CEIL).filter(([k, v]) => (left[k] || 0) > v); if (over.length) throw new Error('a cluster rose above its v345-D ceiling (106/87/65/62/57/56/37/36/35/33/31/22/22 before): ' + J(over.map(([k, v]) => [k, left[k], v])));
+    if (fresh.length) throw new Error('a case-ending contradiction the 2026-11-27 triage never judged (judge it in a delta file): ' + J(fresh.slice(0, 8)));
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
