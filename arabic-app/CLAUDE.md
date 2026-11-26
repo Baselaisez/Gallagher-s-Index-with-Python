@@ -15899,3 +15899,92 @@ same folds and scores, which the check still compares), so it asserts units ≥ 
 Full suite (refit chain, then `node tools/smoke_test.js`): 559 checks, 558 pass; the one failure was that wave-189 pin, fixed
 and passing alone after. In that run: door 986 ms, first Jumla worst task 938 ms, keystroke median 5.7 ms, hub step 14 ms.
 `tools/entrance_test.js`: ready offline in 5.1 s, app from the cache in 0.57 s (the hashed slices sit in `qissa-data`, 24 files).
+
+## v342-S — the ṣarf books' ledger and the rules consumed
+
+The owner's word for this wave: the books are to be consumed COMPLETELY — every rule applied by an engine, carried by a note that quotes
+it, or marked not automatable with the reason — and the account is a table a test keeps true. Worktree `qissa-feed2` (tmp/sarf342).
+
+**The ledger.** `tools/ledger/sarf_ledger.py` cuts each book BY SCRIPT from `research/sources` — one entry per src line (Marāḥ to p. 144,
+the ʿIzzī), per sentence of the raw matn pp. 145–182 (split at the book's own heads «الأمر:», «الفاعل:» …, «X أبدلت»; a page-break
+fragment joins the next unit), per paragraph of the Maqṣūd (lines joined to a sentence end; a vowelled table line and Ottoman prose never
+share a unit) — and writes `content/rules/coverage_{marah,maqsud,izzi}.json` ({book, title, source, counts, kinds, entries: [{id, line,
+ar (verbatim), kind, section, page, carried_by, status, why?}]}) and `research/book-coverage-2026-11-27.sarf.md`. Carriers are FOUND,
+never typed: the code's book-line cites (top-level owner name), the notes' `classicalSources` «file، س N» and example `source`
+«file:N [part] (ص P)», the catechism items' `src` lines, and the PROBES. Hand data is only `content/rules/sarf_ledger_plan.json`
+(a kind the regexes miss: ʿIzzī l. 4 is the khutba) and `tools/ledger/probes_failed_read.json` (why each failing probe fails).
+- **Probes** (`content/rules/sarf_ledger_probes.json`, 3,916; `tools/ledger/sarf_probe_run.js` writes them, `sarf_probe_eval.js` runs one
+  in the page — the smoke check and the runner share that file): the book's own word through an engine — `cells` (a sarfDerive cell of
+  that root/form/bāb, with the passive by sjMajhul and the emphatic by TawkidEngine; 2,949), `isht` (IshtiqaqEngine.read0 rebuilds it on
+  that root and pattern; 599), `mq` (a MaqsudEngine cell of the model the table line belongs to; 313), `ilal` («X أَصْلُهُ Y»:
+  IlalEngine.derive(Y) spells X; 37), `meaning` (Bab35Engine.meanings offers the meaning the Maqṣūd line names; 18). Only a PASSING probe
+  is stored, with root/form/bāb fixed. Guards learnt on the way: running text counts only on the books' model roots (a narrative قَالَ is no
+  example), a quoted «…» (Marāḥ) or a vowelled word inside the Maqṣūd's bare Ottoman is an example on any root the shelf attests
+  (`RootFinder.find(...).via === 'corpus'` — كُلِنَّ is no root «ك ل ن»), a derived noun of running text counts only bare and never on ف ع ل
+  (الْفَاعِلُ is a term), a raw unvowelled aṣl is no test of a vowel rule, a ḥadīth's words prove nothing.
+- **Statuses:** applied = a probe passes (re-run by the check); noted = a note or a bank carries the line; not-automatable = discourse
+  (preface, ḥadīth, the teacher's advice, a citation line) with its reason; open.
+
+| book | entries | applied | noted | not automatable | open |
+|---|---|---|---|---|---|
+| Marāḥ al-Arwāḥ (src + matn pp. 145–182) | 671 → 669 | 266 → **316** | 74 → **348** | 5 → 5 | 326 → **0** |
+| al-Maqṣūd | 651 → 693 | 300 → **411** | 26 → 11 | 54 → 67 | 271 → **204** |
+| Taṣrīf al-ʿIzzī | 278 | 167 → **175** | 27 → **102** | 0 → 1 | 84 → **0** |
+
+(«before» = the first full cut of the wave, before any rule or note; the cut was refined since, hence the entry counts.)
+
+**ENGINE RULES (EXACT unless said), `IlalEngine` — the typed-origin road of the Iʿlāl lab and of IshtiqaqEngine.** Found by the probes:
+the book's «X أَصْلُهُ Y» the runner did not reproduce. Each rule's `ar` is the book's line cut by script (`patch_ilal.py` read the src).
+Ranked by corpus weight (verb tokens of the shape, all 83 texts):
+1. **The plural's wāw after a weak lām** (ʿIzzī L225, Marāḥ matn [ص 156]; 95 tokens: رَمَوْا، تَرْضَوْنَ، خَلَوْا): the gate «sakinan» (L813) no
+   longer reads the pronoun's wāw as the word's own madd (`IlalEngine.pronMadd`); `hadhf-sakinayn` drops the turned ALIF, not the wāw, and
+   leaves the wāw quiescent — رَمَيُوا → رَمَوْا، يَخْشَيُونَ → يَخْشَوْنَ، مُصْطَفَيُونَ → مُصْطَفَوْنَ (they came out رَمَا / يَخْشِانَ).
+2. **The feminine tāʾ after a weak lām** (50 tokens: رَمَتْ، دَعَتْ، بَكَتْ): `harmoniya` gave the māḍī's «evidence vowel» to a fallen LĀM —
+   دَعَوَتْ came out دَعُتْ; it now skips a suffix (`femTa`, `pronMadd`): «أُبْقِيَ عَلَى الْفَتْحَةِ» (ʿIzzī L225).
+3. **`ibdal-ta` — the iftiʿāl of a wāw / yāʾ fāʾ** (Marāḥ L567–L569; 45 tokens: اتَّقَى، يَتَّصِلُ، اتَّفَقُوا): اِوْتَقَدَ → اِتَّقَدَ, يَوْتَقِدُ → يَتَّقِدُ,
+   مُوْتَقِدٌ → مُتَّقِدٌ (was اِيتَقَدَ). Gate **`ghayr-lazima`** (L569 «لِأَنَّ الْيَاءَ لَيْسَتْ بِلَازِمَةٍ»): the shelf decides — a hamza root alone
+   (أَكَلَ) keeps اِيتَكَلَ (blocked); a weak root and a hamza root both on the shelf (يَسَرَ / أَسَرَ) → the book's اِتَّسَرَ with the other reading
+   named (`open`, OFFERED). `wasl-drop` keeps the waṣl alif before a doubled letter.
+4. **`qalb-waw-rabia`** (Marāḥ L748 «أَغْزَيْتُ … تَبَعًا لِيُغْزِي»; 14 tokens: أَعْطَيْتُ، أَلْفَيْتَ): a quiescent wāw lām, fourth letter or later,
+   before the speaker's / the addressed pronoun → yāʾ (أَعْطَيْتُ، اِسْتَدْعَيْتُ); دَعَوْتُ keeps it; a nūn alone is not the trigger (يَخْشَوْنَ).
+5. **`hadhf-alif-ta`** (Marāḥ L114 «يَسْقُطُ الْأَلِفُ فِي «رَمَتَا» لِكَوْنِ التَّحْرِيكِ عَارِضًا»; 8 tokens): غَزَوَتَا → غَزَتَا (was غَزَاتَى).
+- `spell()` no longer writes the dual's / a pronoun's final alif as ى after ت / و / م / ن without the article (غَزَتَا، أَغْزَيْتُمَا).
+- **Measured** (scratch `measure.js`, before → after): `sarfAudit()` identical (0 bad, 180 x-paradigms, the eight samāʿī); the derived-noun
+  sweep 17,695 surfaces → 8,184 read, 455 through a gate, **0 outputs changed**; every probe passes. Nothing to list for the hoca from these rules:
+  they reach the lab's chains, not an authored line.
+- **Read and left** (`tools/ledger/probes_failed_read.json`, in the md): مِخْيَط is SHORTENED from مِخْيَاط (L117, no iʿlāl); عَمْبَر is ibdāl (L145);
+  يُهَرِيقُ and نَاسٌ are heard (L273, L629); اِثَّاقَلَ beside تَثَاقَلَ is PERMITTED (L587) — both right, the runner erases neither; one OPEN gap: the
+  runner keeps the mithāl's wāw in a typed amr (اِوْعِدْ → اِيعِدْ; the books build عِدْ، قِ from the muḍāriʿ — sarfDerive does).
+
+**NOTES — the books' own words.** `tools/ledger/add_ledger_examples.py` puts every OPEN rule sentence of the Marāḥ and the ʿIzzī into the
+note of its chapter (a chapter → note map in the script) as an example: `ar` = the src line verbatim (the src's «[print: …]» editorial
+note dropped), en / tr = the STORY's own translation of that line (the stories `marah-al-arwah` / `tasrif-al-izzi` are the src cut into
+sentences; 590/592 and 278/278 lines align by bare letters), `source` = «file:line (ص page)», `sourceStory` / `chapter` / `sentence`.
+The raw matn's units carry our renderings (`tools/ledger/matn_renderings.json`, every Arabic word in them checked against the matn) marked
+«[rendering awaiting review]» / «[tercüme inceleme bekliyor]». 381 examples added (the notes now hold 460 book lines, in 36 notes). **Three new notes** (335 notes): `mahmuz-verbs`
+(«الْمَهْمُوزُ», Marāḥ ch. 52 heading), `lafif-verbs` («اللَّفِيفُ», ʿIzzī ch. 16 heading), `ibdal` («الْإِبْدَالُ», ʿIzzī l. 138) — titles
+cut from the books, the commonMistakes' forms the books' own (اِوْتَقَدَ / اِتَّقَدَ L567; قِ / قِهْ ʿIzzī L279) or the app's recorded error
+(اُأْمُلْ, backlog F2). **The reader:** a note's book lines (`cite` naming one of the three books) stand behind one tap under its own
+examples — `<details class="book-ex">` «The books' own words — N lines, each with its place» (`ui().bookLines342`); `CITE_BOOKS334` names
+the three books, so each line shows «مَرَاحُ الْأَرْوَاحِ، ص N».
+
+**Smoke** (before «v333 — the received imports»): «v342 — the ṣarf ledger of Marāḥ al-Arwāḥ / al-Maqṣūd / Taṣrīf al-ʿIzzī» (every entry
+verbatim at its line; every applied entry has a probe, every noted a carrier, every not-automatable a reason; the counts pinned —
+applied ≥, applied+noted ≥, open ≤ — and EVERY probe of the book re-run in the page), «v342 — iʿlāl by the books' own words» (the five
+rules on the books' words, the gate's line and the rules' Arabic verbatim, 16 controls, sarfAudit 0 bad), «v342 — the books' lines in the
+notes» (every book-cited example verbatim, matn renderings marked, the three notes render their book lines). No older check changed.
+
+**For the hoca:** (1) the 35 renderings of Marāḥ pp. 145–182 (the ibdāl chapter above all: its examples are dialect words and verses the
+raw print gives unvowelled — «لاَهُمَّ إن كنت قبلتَ حَجَّتِجْ», «امْبِرِّ امصْيَامُ»); (2) Marāḥ L568: is اِيتَسَرَ only of ي س ر? The shelf has
+أَسَرَ too, so the engine offers both; (3) the code cites the ʿIzzī's «قِهْ» at L278 (v334-N3); the src has it at l. 279. No authored corpus line
+was found to contradict a book this wave.
+
+**Left open, and why:** the Maqṣūd's 204 Ottoman prose units (derivations 65, the sound bābs 45, meanings 25, iʿlāl 25, divisions 17, mahmūz
+11, mithāl 8, muḍāʿaf 5, tables 3 — listed by line in the md): a note can quote them only beside a modern-Turkish rendering, not written this wave; the ledger
+lists them by part, nearest the engines first. No new catechism items: the raw matn pp. 145–182 holds no «فَإِنْ قِيلَ … قُلْنَا» pair, and
+the Maqṣūd's six س / ج pairs were banked in v334-N2. Not built: the analyzer's two-tāʾ muḍāriʿ (F8, an iʿrāb engine's), the Sībawayh /
+Akhfash chains of مَقُول / مَبِيع as two step lists (L3 — the matn's lines are quoted in hollow-verbs), the typed amr of the mithāl.
+Rebuild the ledger after any engine or note change: `python3 tools/ledger/sarf_ledger.py --candidates <scratch>/cand.json && node
+tools/ledger/sarf_probe_run.js <scratch>/cand.json content/rules/sarf_ledger_probes.json && python3 tools/ledger/sarf_ledger.py`.
+Full suite (refit chain, then `node tools/smoke_test.js`): 577 checks, 576 pass; the one failure was «v341 — speed: the door before the
+bodies» at 1834 ms against 1800 at 4× CPU, with two other agents loading the 4-core machine (load 5.2) — run alone after, it passed twice.
