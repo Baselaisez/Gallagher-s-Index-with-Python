@@ -2928,6 +2928,15 @@
   .vs347-sample { display: grid; gap: var(--s1); margin-top: var(--s3); font-family: var(--ui-font); }
   .vs347-sample small { font-size: var(--t-xs); color: var(--ink-soft); }
   .vs347-sample span { font-family: var(--ar-font); font-size: 1.25rem; line-height: var(--lh-body); }
+  /* v349 — the app's own voice: the status line under a single sentence's ▶ (the bar uses its own note), the honest note */
+  .own349 { position: fixed; inset-inline: var(--s3); bottom: calc(var(--tap) + var(--s4) + env(safe-area-inset-bottom, 0)); z-index: 40; display: flex; flex-wrap: wrap;
+    align-items: center; gap: var(--s2); padding: var(--s2) var(--s3); border-radius: var(--r-md); background: var(--accent-soft); color: var(--ink);
+    border: 1px solid var(--accent); font-family: var(--ui-font); font-size: var(--t-sm); box-shadow: var(--btn-sh); }
+  .own349[hidden] { display: none; }
+  .own349 span { flex: 1 1 12rem; }
+  .own349 .btn, .player-pill .pp-note .btn.o349 { width: auto; min-height: var(--tap); padding: 0 var(--s3); border-radius: var(--r-md); border: 1px solid var(--accent); color: var(--accent); background: transparent; }
+  .vs347-row .o349-why { font-size: var(--t-xs); color: var(--accent); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+  .o349-note { font-size: var(--t-xs); color: var(--ink-soft); margin: var(--s1) 0 0; }
   .nv347 { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: var(--r-md); padding: var(--s3); font-family: var(--ui-font); margin: var(--s2) 0; }
   .nv347-h { margin: 0; font-weight: 700; font-size: var(--t-md); }
   .nv347-b { margin: var(--s1) 0 var(--s2); font-size: var(--t-sm); }
@@ -6904,9 +6913,13 @@ function speak(sen, sec, onDone){
     });
     return;
   }
-  if (Voice347.path() === "none") { setTimeout(finish, 0); return; }
+  // (v349) the app's own voice: chosen in the sheet, or automatic when the device has no Arabic voice (Voice347.own decides)
+  const fail349 = () => { if (gen !== speakGen) return; sec.classList.remove("playing"); clearSpokenWord(); if (playAllActive) Listen347.failed(); };
+  if (Voice347.own()) { Voice347.stop(); Own349.speak(sen, sec, gen, finish, fail349); return; }
   // (v347) the first second of a page: the voices are not listed yet — wait for the answer rather than guess
-  if (!arVoice && Voice347.status === "pending") { Voice347.ready().then(() => { if (gen === speakGen) speakTts347(sen, sec, gen, finish); }); return; }
+  if (!arVoice && Voice347.status === "pending") { Voice347.ready().then(() => { if (gen !== speakGen) return;
+    if (Voice347.own()) Own349.speak(sen, sec, gen, finish, fail349); else speakTts347(sen, sec, gen, finish); }); return; }
+  if (Voice347.path() === "none") { setTimeout(finish, 0); return; }
   speakTts347(sen, sec, gen, finish);
 }
 function speakTts347(sen, sec, gen, finish){
@@ -7188,6 +7201,14 @@ class Voice347 {
   static plugin(){ const C = window.Capacitor; const P = C && C.Plugins && C.Plugins.TextToSpeech;
     if (!P) return null; if (typeof C.isPluginAvailable === "function" && !C.isPluginAvailable("TextToSpeech")) return null; return P; }
   static path(){ return this.plugin() ? "native" : ("speechSynthesis" in window ? "web" : "none"); }
+  // (v349) the third path, «Uygulamanın sesi»: the learner picked it, or the device has no Arabic voice (once that is known);
+  // a story whose app voice could not be fetched falls back to the v347 behaviour (the device voice, or the silent walk)
+  static own(){ const pick = localStorage.getItem("qissa-voice") || "";
+    if (!Own349.reachable() || (CUR && Own349.failed.has(CUR.id))) return false;
+    if (pick === OWN349) return true;
+    return !arVoice && (this.status === "none" || this.path() === "none"); }
+  // what is speaking, said in the bar and the sheet: «Kayıt», «Uygulamanın sesi (otomatik)», «Cihazın sesi», or silence
+  static speaker(sen){ const U = ui(); if (sen && SEN_AUDIO.get(sen.id)) return U.o349Rec; if (this.own()) return U.o349Auto; return arVoice ? U.o349Device : ""; }
   static clean(s){ let t = String(s || ""); for (const [, re, to] of SEND347) t = t.replace(re, to); return t.replace(/\s{2,}/g, " "); }
   // the sendable sentence and each token's character range in it, so a boundary event finds its word
   static sentence(sen){ const offsets = []; let text = "";
@@ -7253,18 +7274,25 @@ class Voice347 {
   static openSheet(){ this.drawSheet(); showSheet(); }
   static drawSheet(){ const U = ui(), E = escapeAttr, vs = this.list(), want = localStorage.getItem("qissa-voice") || "";
     let body;
+    // (v349) the app's own voice is always a choice — the only one, with the device's fix beside it, when the device has none
+    const own = !Own349.reachable() ? "" : `<div class="vs347-row vs349-own"><label><input type="radio" name="vs347" value="${OWN349}"${want === OWN349 || (!vs.length && this.status !== "pending") ? " checked" : ""}>
+        <span class="vs347-n">${E(U.o349Auto)}<small>${E(U.o349Sub)} · <button type="button" class="o349-why" data-o349-why>${E(U.o349Why)}</button></small></span></label>
+        <button type="button" class="btn vs347-try" data-vs-try="${OWN349}">${E(U.l347Try)}</button></div><p class="o349-note" hidden>${E(U.o349Note)}</p>`;
     if (this.status === "pending" && !vs.length) body = `<p class="ref-intro">${E(U.l347Looking)}</p>`;
-    else if (!vs.length) body = this.noneHtml();
-    else body = `<div class="vs347-list" role="radiogroup" aria-label="${E(U.l347Sheet)}">${[{ voiceURI: "", name: U.l347Auto, auto: true }].concat(vs).map(v => `
+    else if (!vs.length) body = (own ? `<p class="ref-intro">${E(U.o349Own)}</p><div class="vs347-list" role="radiogroup" aria-label="${E(U.l347Sheet)}">${own}</div>` : "") + this.noneHtml();
+    else body = `<div class="vs347-list" role="radiogroup" aria-label="${E(U.l347Sheet)}">${own}${[{ voiceURI: "", name: U.l347Auto, auto: true }].concat(vs).map(v => `
       <div class="vs347-row"><label><input type="radio" name="vs347" value="${E(v.voiceURI)}"${(v.voiceURI || "") === want ? " checked" : ""}>
         <span class="vs347-n">${E(v.name)}<small>${v.auto ? E(U.l347AutoSub) : E(v.lang) + " · " + E(v.localService === false ? U.l347Remote : U.l347Local)}</small></span></label>
         <button type="button" class="btn vs347-try" data-vs-try="${E(v.voiceURI)}">${E(U.l347Try)}</button></div>`).join("")}</div>
       <p class="ref-intro">${E(U.l347Order)}</p>`;
-    sheetInner.innerHTML = `<div class="vs347"><h3 class="welcome-h">${E(U.l347Sheet)}</h3><p class="vs347-path">${E(this.path() === "native" ? U.l347PathNative : U.l347PathWeb)}</p>${body}
+    sheetInner.innerHTML = `<div class="vs347"><h3 class="welcome-h">${E(U.l347Sheet)}</h3><p class="vs347-path">${E(this.own() ? U.o349Auto + " — " + U.o349Sub : this.path() === "native" ? U.l347PathNative : U.l347PathWeb)}</p>${body}
       <p class="vs347-sample"><small>${E(U.l347Sample)}</small><span lang="ar" dir="rtl">${E(this.sample())}</span></p></div>`;
-    sheetInner.querySelectorAll('input[name="vs347"]').forEach(r => r.addEventListener("change", () => { setVoice(r.value); }));
+    sheetInner.querySelectorAll('input[name="vs347"]').forEach(r => r.addEventListener("change", () => { setVoice(r.value); try { Listen347.render(); } catch (e) {} }));
+    sheetInner.querySelectorAll("[data-o349-why]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); const n = sheetInner.querySelector(".o349-note"); if (n) n.hidden = !n.hidden; }));
     sheetInner.querySelectorAll("[data-vs-try]").forEach(b => b.addEventListener("click", () => {
       if (playAllActive) Listen347.pause(); else { speakGen++; stopNarration(); }
+      if (b.dataset.vsTry === OWN349) { const f = SENTENCE_FLAT[playAllIdx >= 0 ? playAllIdx : 0]; if (!f) return;
+        const g = ++speakGen; Own349.speak(f.sen, f.sec, g, () => {}, () => {}); return; }
       const keep = arVoice, uri = b.dataset.vsTry; arVoice = (uri && vs.find(v => v.voiceURI === uri)) || vs[0] || null;
       this.say(this.sample(), {}); arVoice = keep; })); }
 }
@@ -7282,6 +7310,107 @@ class Narr347 {
       .then(xs => xs.reduce((a, b) => a + b, 0)); }
 }
 
+// ================= v349 — «Uygulamanın sesi»: the app carries its own Arabic voice =================
+// A learner whose device has no Arabic voice still hears every story. The voice is PRE-RENDERED at build time
+// (tools/voice_app.py: the app's own reading of every written vowel, handed to eSpeak NG as phonemes) and shipped per
+// story as narration/<story>/app/index.json + ch<N>.m4a beside the page — no engine ships or runs here. It is LAZY:
+// nothing is requested before the first listen; then the story's small index and the chapter's file are fetched (the size
+// said first on a metered connection), kept in qissa-narration (sw.js never deletes it) and played from a blob — offline
+// from then on. Voice347.own() is the only place that decides it is used; a teacher's recording always wins over it.
+Object.assign(L.en, {
+  o349Name: "The app's own voice", o349Auto: "The app's voice (automatic)", o349Device: "The device's voice", o349Rec: "Recording",
+  o349Sub: "Qissa's own reading of every vowel — a machine voice, not a teacher's recitation · fetched on first listen, then offline",
+  o349Note: "An automatic voice: it says every written vowel and case ending (the test set: 30 of 30 sentences), but it sounds robotic and says ظ like ذ. A teacher's recording, where there is one, always plays instead.",
+  o349Why: "what is this?", o349Prep: "preparing…", o349Get: "Fetching the app's voice… {p}", o349Ask: "Voice file {mb} MB — download", o349Cancel: "Cancel",
+  o349Fail: "The app's voice could not be fetched here (offline, or not published for this story).", o349Own: "This device has no Arabic voice — Qissa reads with its own.",
+});
+Object.assign(L.tr, {
+  o349Name: "Uygulamanın sesi", o349Auto: "Uygulamanın sesi (otomatik)", o349Device: "Cihazın sesi", o349Rec: "Kayıt",
+  o349Sub: "Qissa'nın her harekeyi okuyan kendi sesi — makine sesi, hoca kıraati değil · ilk dinleyişte indirilir, sonra internetsiz çalışır",
+  o349Note: "Otomatik bir ses: yazılan her harekeyi ve i'râb sonunu söyler (deneme: 30 cümlenin 30'u), ama mekanik çıkar ve ظ'yi ذ gibi söyler. Bir hocanın kaydı varsa her zaman o çalar.",
+  o349Why: "bu nedir?", o349Prep: "hazırlanıyor…", o349Get: "Uygulamanın sesi indiriliyor… {p}", o349Ask: "Ses dosyası {mb} MB — indir", o349Cancel: "Vazgeç",
+  o349Fail: "Uygulamanın sesi burada alınamadı (internet yok ya da bu hikâye için yayımlanmamış).", o349Own: "Bu cihazda Arapça ses yok — Qissa kendi sesiyle okur.",
+});
+const OWN349 = "own349";   // the voice sheet's value for «Uygulamanın sesi» (stored in qissa-voice like a device voice)
+class Own349 {
+  static idx = new Map(); static blobs = new Map(); static line = null; static ctl = null; static consent = false; static failed = new Set();
+  // the address the files come from: beside the page (hosted copy), or the hosted copy itself inside the Android shell
+  // (tools/build_android.py stamps window.QISSA_VOICE_BASE when the APK does not carry the files)
+  static base(){ return String(window.QISSA_VOICE_BASE || ""); }
+  static url(st, f){ return this.base() + "narration/" + st.id + "/app/" + f; }
+  // the files can be reached: a page served over http(s) (the hosted copy, the shell's https://localhost) or a stamped base —
+  // a page opened from a file:// path cannot fetch beside itself, and keeps v347's behaviour
+  static reachable(){ return !this.off && (!!this.base() || /^https?:$/.test(location.protocol)); }
+  // the hosted copy may publish NO generated voice (the deploy's app_voice input — off until the owner has heard the voice and
+  // said yes): found once, when a story's voice is missing AND the shelf's own index answers 4xx. From then on the app's voice is
+  // not offered and v347's behaviour stands, without a failure line per story. A network error (offline) decides nothing.
+  static off = false; static _site = null;
+  static site(){ return this._site || (this._site = this.get(this.base() + "narration/app-voice.json").then(() => true, e => {
+    if (/^HTTP 4\d\d/.test(String(e && e.message || ""))) { this.off = true; this.say(null); } else this._site = null; return false; })); }
+  static fail(){ this.site().then(() => { if (!this.off) this.say({ k: "fail" }); }); }
+  static metered(){ const c = navigator.connection; return !!(c && (c.saveData || /cellular/.test(c.type || "") || /(^|-)[23]g$/.test(c.effectiveType || ""))); }
+  static async cache(){ try { if (window.caches && /^https?:$/.test(location.protocol)) return await caches.open("qissa-narration"); } catch (e) {} return null; }
+  static async get(url, onProg, signal){
+    const c = await this.cache(); const hit = c && await c.match(url).catch(() => null);
+    if (hit) return hit.blob();
+    const r = await fetch(url, { signal }); if (!r.ok) throw new Error("HTTP " + r.status);
+    const total = +r.headers.get("content-length") || 0, parts = []; let got = 0;
+    if (r.body && r.body.getReader && onProg) { const rd = r.body.getReader();
+      for (;;) { const { done, value } = await rd.read(); if (done) break; parts.push(value); got += value.length; onProg(got, total); } }
+    else parts.push(new Uint8Array(await r.arrayBuffer()));
+    const blob = new Blob(parts, { type: r.headers.get("content-type") || (/\.json$/.test(url) ? "application/json" : "audio/mp4") });
+    if (c) { try { await c.put(url, new Response(blob, { headers: { "content-type": blob.type, "content-length": String(blob.size) } })); } catch (e) {} }
+    return blob; }
+  static index(st){ if (!this.idx.has(st.id)) this.idx.set(st.id, this.get(this.url(st, "index.json")).then(b => b.text()).then(t => JSON.parse(t)).catch(() => { this.idx.delete(st.id); return null; }));
+    return this.idx.get(st.id); }
+  static say(k){ this.line = k; try { Listen347.render(); } catch (e) {} this.paint(); }
+  // the status line when the bar is not up (a single sentence's ▶); inside the bar it is the bar's own note
+  static paint(){ let el = document.getElementById("own349");
+    const show = this.line && !(playAllActive || Listen347.ended);
+    if (!show) { if (el) el.hidden = true; return; }
+    if (!el) { el = document.createElement("div"); el.id = "own349"; el.className = "own349"; el.setAttribute("role", "status"); document.body.appendChild(el);
+      el.addEventListener("click", e => { const b = e.target.closest("[data-pp]"); if (b) this.act(b.dataset.pp); }); }
+    el.innerHTML = this.noteHtml(); el.hidden = false; }
+  static noteHtml(){ const U = ui(), E = escapeAttr, l = this.line; if (!l) return "";
+    if (l.k === "ask") return `<span>${E(U.o349Ask.replace("{mb}", (l.bytes / 1e6).toFixed(1)))}</span><button class="btn" data-pp="own-get" type="button">↓</button><button class="btn" data-pp="own-x" type="button">${E(U.o349Cancel)}</button>`;
+    if (l.k === "get") return `<span>${E(U.o349Get.replace("{p}", l.total ? Math.round(100 * l.got / l.total) + " %" : (l.got / 1e6).toFixed(1) + " MB"))}</span><button class="btn" data-pp="own-x" type="button">${E(U.o349Cancel)}</button>`;
+    if (l.k === "prep") return `<span>${E(U.o349Auto)} · ${E(U.o349Prep)}</span>`;
+    if (l.k === "fail") return `<span>${E(U.o349Fail)}</span>`;
+    return ""; }
+  static act(a){ if (a === "own-get") { this.consent = true; const w = this.wait; this.wait = null; if (w) w(true); }
+    else if (a === "own-x") { const w = this.wait; this.wait = null; if (w) w(false); if (this.ctl) this.ctl.abort(); this.say(null);
+      if (playAllActive) Listen347.pause(); else { speakGen++; document.querySelectorAll(".sentence.playing").forEach(s => s.classList.remove("playing")); } } }
+  // the chapter's audio as a blob URL and its spans — fetched once, then from the cache (offline); null = not available
+  static async chapter(st, ch){ const key = st.id + "/" + ch.n;
+    if (this.blobs.has(key)) return this.blobs.get(key);
+    const ix = await this.index(st), e = ix && ix.chapters && ix.chapters[String(ch.n)];
+    if (!e) return null;
+    const url = this.url(st, e.file), c = await this.cache(), cached = c && await c.match(url).catch(() => null);
+    if (!cached && this.metered() && !this.consent) {
+      this.say({ k: "ask", bytes: e.bytes });
+      const yes = await new Promise(r => { this.wait = r; });
+      if (!yes) return null;
+    }
+    this.ctl = new AbortController();
+    if (!cached) this.say({ k: "get", got: 0, total: e.bytes });
+    const blob = await this.get(url, (got, total) => this.say({ k: "get", got, total: total || e.bytes }), this.ctl.signal);
+    const v = { src: URL.createObjectURL(blob), spans: e.sentences };
+    this.blobs.set(key, v); this.say(null); return v; }
+  // speak() hands a sentence here when Voice347.own() says so; the same playSpan as a teacher's recording
+  static speak(sen, sec, gen, finish, fail){ const f = SENTENCE_FLAT.find(x => x.sen === sen), st = CUR;
+    if (!f || !st) { finish(); return; }
+    if (!this.blobs.has(st.id + "/" + f.ch.n)) this.say({ k: "prep" });
+    this.chapter(st, f.ch).then(v => {
+      if (gen !== speakGen) return;
+      const span = v && v.spans[sen.id];
+      if (!span) { this.failed.add(st.id); if (v === null && this.line && this.line.k === "ask") this.say(null); else this.fail(); speakTts347(sen, sec, gen, finish); return; }
+      this.failed.delete(st.id); playSpan(v.src, span, gen, finish, fail);
+      const nx = CHAPTERS.find(c => c.n === f.ch.n + 1);   // the next chapter, quietly, once this one plays (never on a metered line)
+      if (nx && !this.metered()) setTimeout(() => { this.index(st).then(ix => { const e = ix && ix.chapters[String(nx.n)];
+        if (e && !this.blobs.has(st.id + "/" + nx.n)) this.get(this.url(st, e.file)).then(b => { if (!this.blobs.has(st.id + "/" + nx.n)) this.blobs.set(st.id + "/" + nx.n, { src: URL.createObjectURL(b), spans: e.sentences }); }).catch(() => {}); }); }, 1500);
+    }, () => { if (gen !== speakGen) return; this.failed.add(st.id); this.fail(); speakTts347(sen, sec, gen, finish); }); }
+}
+
 class Listen347 {
   static RATES = [0.6, 0.8, 1, 1.2]; static REPS = [1, 3, 0];   // 0 = ∞ (shadowing)
   static paused = false; static ended = null; static failedAt = -1; static repDone = 0; static follow = true; static built = false;
@@ -7291,7 +7420,7 @@ class Listen347 {
   static setRate(r){ state.rate = r; localStorage.setItem("qissa-rate", r);
     document.querySelectorAll("#speedSeg [data-rate]").forEach(x => x.classList.toggle("on", parseFloat(x.dataset.rate) === r));
     try { narration.playbackRate = r; } catch (e) {}
-    if (playAllActive && !this.paused && !SEN_AUDIO.get(((SENTENCE_FLAT[playAllIdx] || {}).sen || {}).id)) playAllStep(playAllIdx, true);   // a voice takes a new rate only on a new utterance
+    if (playAllActive && !this.paused && !Voice347.own() && !SEN_AUDIO.get(((SENTENCE_FLAT[playAllIdx] || {}).sen || {}).id)) playAllStep(playAllIdx, true);   // a voice takes a new rate only on a new utterance
     this.render(); }
   // a sentence finished: credit the reading, then repeat, advance, or stop at the chapter's end
   static after(idx){ if (!playAllActive) return; const f = SENTENCE_FLAT[idx]; if (!f) return;
@@ -7339,7 +7468,7 @@ class Listen347 {
     on("ppScope", () => this.setOpts({ cross: !this.opts().cross }));
     on("ppVoice", () => Voice347.openSheet());
     el.addEventListener("click", e => { const b = e.target.closest("[data-pp]"); if (!b) return;
-      if (b.dataset.pp === "fix") Voice347.openSheet(); else if (b.dataset.pp === "next") this.resume(); });
+      if (b.dataset.pp === "fix") Voice347.openSheet(); else if (b.dataset.pp === "next") this.resume(); else if (/^own-/.test(b.dataset.pp)) Own349.act(b.dataset.pp); });
     el.dataset.built = "1"; }
   static render(){ const el = document.getElementById("playerPill"); if (!el) return;
     const show = (playAllActive && playAllIdx >= 0 && SENTENCE_FLAT.length) || !!this.ended;
@@ -7347,11 +7476,11 @@ class Listen347 {
     if (!show) { el.hidden = true; this.media(); return; }
     if (!el.dataset.built || el.dataset.lang !== state.uiLang) { this.build(el); el.dataset.lang = state.uiLang; }
     const U = ui(), E = escapeAttr, n = SENTENCE_FLAT.length, idx = this.ended ? Math.max(0, (this.ended.next == null ? n : this.ended.next) - 1) : playAllIdx;
-    const f = SENTENCE_FLAT[idx] || {}, o = this.opts(), rec = !!(f.sen && SEN_AUDIO.get(f.sen.id)), silent = !rec && !arVoice && Voice347.status === "none";
+    const f = SENTENCE_FLAT[idx] || {}, o = this.opts(), rec = !!(f.sen && SEN_AUDIO.get(f.sen.id)), own = !rec && Voice347.own(), silent = !rec && !own && !arVoice && Voice347.status === "none";
     const playing = playAllActive && !this.paused && this.failedAt < 0;
     el.querySelector("#ppLbl").textContent = U.l347Sent.replace("{i}", idx + 1).replace("{n}", n);
     el.querySelector("#ppSub").textContent = !this.follow && playAllActive ? U.l347Back
-      : [f.ch ? U.l347Ch.replace("{n}", f.ch.n) : "", playing ? U.l347Playing : U.l347Paused, rec ? U.l347Recorded : silent ? U.l347Silent : ""].filter(Boolean).join(" · ");
+      : [f.ch ? U.l347Ch.replace("{n}", f.ch.n) : "", playing ? U.l347Playing : U.l347Paused, silent ? U.l347Silent : Voice347.speaker(f.sen)].filter(Boolean).join(" · ");
     const pb = el.querySelector("#ppPlay"); pb.innerHTML = IconSet.svg(playing ? "pause" : "play", true);
     pb.setAttribute("aria-label", playing ? U.l347Pause : U.l347Play); pb.setAttribute("aria-pressed", String(playing));
     el.querySelector("#ppPrev").setAttribute("aria-label", U.playerPrev); el.querySelector("#ppNext").setAttribute("aria-label", U.playerNext);
@@ -7359,9 +7488,10 @@ class Listen347 {
     const rb = el.querySelector("#ppRate"); rb.textContent = (state.rate || 1) + "×"; rb.setAttribute("aria-label", U.l347Rate + " " + (state.rate || 1) + "×");
     const pr = el.querySelector("#ppRep"); pr.textContent = "↻ " + (o.rep === 0 ? U.l347RepInf : "×" + o.rep); pr.setAttribute("aria-label", U.l347Rep); pr.classList.toggle("on", o.rep !== 1);
     const sc = el.querySelector("#ppScope"); sc.textContent = o.cross ? U.l347ScopeAll : U.l347ScopeCh; sc.setAttribute("aria-pressed", String(o.cross)); sc.classList.toggle("on", o.cross);
-    const vb = el.querySelector("#ppVoice"); vb.textContent = U.l347Voice + (arVoice ? " · " + String(arVoice.lang || "ar") : ""); vb.setAttribute("aria-haspopup", "dialog");
+    const vb = el.querySelector("#ppVoice"); vb.textContent = U.l347Voice + (own ? " · " + U.o349Name : arVoice ? " · " + String(arVoice.lang || "ar") : ""); vb.setAttribute("aria-haspopup", "dialog");
     const note = el.querySelector("#ppNote"); let nh = "";
     if (this.ended) nh = `<span>${E(this.ended.next == null ? U.l347StoryDone : U.l347ChDone.replace("{n}", this.ended.n))}</span>${this.ended.next != null ? `<button class="btn" data-pp="next" type="button">${E(U.l347NextCh)}</button>` : ""}`;
+    else if (Own349.line) nh = Own349.noteHtml();
     else if (this.failedAt >= 0) nh = `<span>${E(U.l347Err)}</span>`;
     else if (silent) nh = `<span>${E(U.l347SilentNote)}</span><button class="btn" data-pp="fix" type="button">${E(U.l347Fix)}</button>`;
     note.innerHTML = nh; note.hidden = !nh;

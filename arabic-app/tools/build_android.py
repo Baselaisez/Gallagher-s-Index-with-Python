@@ -26,7 +26,7 @@ What it does, and why each step exists (research/APP_STORE_STRATEGY.md §2):
 The CI workflow .github/workflows/qissa-android.yml runs steps 1–5 on demand (workflow_dispatch) and uploads the
 APK/AAB as artifacts — the Android SDK is not installable in every container, but it is on every GitHub runner.
 """
-import argparse, json, pathlib, re, shutil, subprocess, sys
+import argparse, json, os, pathlib, re, shutil, subprocess, sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 PROTO = ROOT / "prototype"; WWW = ROOT / "dist/android-www"; ANDROID = ROOT / "android"
 
@@ -34,6 +34,18 @@ def sw_version():
     m = re.search(r"const CACHE = 'qissa-v(\d+)';", (PROTO / "sw.js").read_text(encoding="utf-8"))
     if not m: sys.exit("cannot read the cache version from prototype/sw.js")
     return int(m.group(1))
+
+def voice_base():
+    """(v349) where the shell fetches the app's voice: --voice-base / QISSA_VOICE_BASE, else the project's Pages site
+    derived from GITHUB_REPOSITORY (owner/repo → https://owner.github.io/repo/) on a GitHub runner; '' = package it."""
+    b = os.environ.get("QISSA_VOICE_BASE", "").strip()
+    if not b and os.environ.get("GITHUB_REPOSITORY", "").count("/") == 1:
+        owner, repo = os.environ["GITHUB_REPOSITORY"].split("/")
+        b = f"https://{owner.lower()}.github.io/{repo}/"
+    if b == "none":
+        return ""
+    return b if not b or b.endswith("/") else b + "/"
+
 
 def write_www(WWW=WWW):
     if WWW.exists(): shutil.rmtree(WWW)
@@ -47,7 +59,21 @@ def write_www(WWW=WWW):
     if (PROTO / "privacy.html").exists(): shutil.copy(PROTO / "privacy.html", WWW / "privacy.html")   # the privacy page travels with the shell (wave 71)
     # (v347) shipped narration (tools/narration_pack.py mirrors it to prototype/narration/<story>/audio/…): plain files beside
     # the page, fetched only when a chapter is played — never part of the data slices the WebView parses at boot
-    if (PROTO / "narration").is_dir(): shutil.copytree(PROTO / "narration", WWW / "narration")
+    # (v349) the app's own voice (narration/<story>/app/, tools/voice_app.py) is ~100 MB for the shelf: the APK does not carry
+    # it when the hosted copy can serve it — the page then fetches a story's files from QISSA_VOICE_BASE on its first listen
+    # (GitHub Pages answers any origin, so the WebView's https://localhost may fetch them) and keeps them offline. With no
+    # base known (a local build), the files are packaged and the APK grows by their size (printed below).
+    base = voice_base()
+    if (PROTO / "narration").is_dir():
+        shutil.copytree(PROTO / "narration", WWW / "narration", ignore=(lambda d, names: [n for n in names if n == "app" or n == "app-voice.json"]) if base else None)
+    page_html = (WWW / "index.html").read_text(encoding="utf-8")
+    if base:
+        page_html = page_html.replace('<script src="app.js"></script>', f'<script>window.QISSA_VOICE_BASE={json.dumps(base)};</script><script src="app.js"></script>', 1)
+        (WWW / "index.html").write_text(page_html, encoding="utf-8")
+        print(f"app voice: fetched from {base} on first listen (not in the APK)")
+    else:
+        vb = sum(f.stat().st_size for f in (WWW / "narration").glob("*/app/*") if f.is_file()) if (WWW / "narration").is_dir() else 0
+        print(f"app voice: packaged in the APK ({vb / 1e6:.1f} MB) — set QISSA_VOICE_BASE (or build on GitHub Actions) to fetch it from the hosted copy instead")
     # the data files are classic scripts sharing one global scope with the page (pubsplit's contract); assert the
     # page really references every one of them, or a WebView would show an empty library with no error anyone can see
     page = (WWW / "index.html").read_text(encoding="utf-8")
@@ -76,7 +102,9 @@ def main():
     ap.add_argument("--no-sync", action="store_true", help="write dist/android-www only")
     ap.add_argument("--gradle", action="store_true", help="also run ./gradlew assembleDebug bundleRelease")
     ap.add_argument("--www", help="(v343) write the web assets into this folder instead, stamp nothing (needs --no-sync)")
+    ap.add_argument("--voice-base", help="(v349) the hosted copy the app's voice is fetched from ('none' = package it in the APK)")
     a = ap.parse_args()
+    if a.voice_base: os.environ["QISSA_VOICE_BASE"] = a.voice_base
     if a.www:
         if not a.no_sync: sys.exit("--www writes a copy for inspection: use it with --no-sync")
         www = write_www(pathlib.Path(a.www).resolve()); print("web assets:", www, "build", sw_version(), "(nothing stamped)"); return
