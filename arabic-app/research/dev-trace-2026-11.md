@@ -24,7 +24,7 @@ Waiting on people:
 - the hoca's answers (to be uploaded this weekend);
 - for the hoca: four authored clause-seat slips (v339-M), the al-Inṣāf renderings, masāʾil 44 and 65 against another edition.
 
-## 2026-11-26 16:45 — round 1 (v342, v344) landed; round 2 (v345) started
+## 2026-11-26 16:25 — round 1 (v342, v344) landed; round 2 (v345) started
 
 Landed since the last entry (dev branch):
 - v342-T `cef0400` — the stories' audit triaged: 1,869 engine-versus-story contradictions judged (line wrong 650, engine wrong 1,112 in 30 clusters, both right 102, undecided 5); proposals and an engine work order in `research/`.
