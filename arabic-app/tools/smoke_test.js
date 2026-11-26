@@ -18466,6 +18466,121 @@ if (!CHROME) {
     if (r.kept !== null || r.went !== 3) throw new Error('«kalsın» hides it, «geç» applies it on the tap: ' + J([r.kept, r.went]));
     if (r.en[0] === 'Okumana göre seviyen: {l}') throw new Error('en strings');
   });
+  await check('v346 — the reasons: every iʿrāb line explains itself — the owner\'s own «ضَرَبَ زَيْدٌ عَمْرًا» typed in the Cümle lab and a corpus token of each main kind (singular fāʿil, dual, sound masculine plural, the five nouns, a diptote in jarr, maqṣūr, a built pronoun as fāʿil, mafʿūl bih, muḍāf ilayh, a marfūʿ / manṣūb / majzūm muḍāriʿ, one of the five verbs, a weak-ended one) give the expected steps in en and tr; over EVERY authored token the chain never contradicts its line (0) and the step-count histogram stays above its floors', async () => {
+    const r = await page.evaluate(() => {
+      const out = { typed: {}, kinds: {}, miss: [] }, keep = state.uiLang, txt = (c, l) => c.steps.map(s => s.kind + ':' + s[l].replace(/<[^>]+>/g, '')).join(' | ');
+      try {
+        // the lab: the engine's own line, the chain marked «Otomatik»
+        conjState.jumla = 'ضَرَبَ زَيْدٌ عَمْرًا'; const host = document.createElement('div'); host.id = 'jumlaOut'; document.body.appendChild(host);
+        state.uiLang = 'tr'; renderJumlaOut(); out.typed.tr = [...host.querySelectorAll('.illa')].map(x => ({ n: +x.dataset.n, auto: !!x.querySelector('.illa-auto') && x.querySelector('.illa-auto').textContent, t: [...x.querySelectorAll('.illa-s')].map(s => s.dataset.k + ':' + s.querySelector('.illa-t').textContent).join(' | ') }));
+        state.uiLang = 'en'; renderJumlaOut(); out.typed.en = [...host.querySelectorAll('.illa')].map(x => ({ n: +x.dataset.n, auto: x.querySelector('.illa-auto') && x.querySelector('.illa-auto').textContent, t: [...x.querySelectorAll('.illa-s')].map(s => s.dataset.k + ':' + s.querySelector('.illa-t').textContent).join(' | ') }));
+        host.remove();
+        const want = { failSing: l => /^فاعل مرفوع وعلامة رفعه الضمة/.test(l), dual: l => /مثنى/.test(l) && /^(فاعل|خبر|مبتدأ)[^،]*مرفوع/.test(l), jms: l => /جمع مذكر سالم/.test(l) && /^فاعل/.test(l), khamsa: l => /الأسماء الخمسة/.test(l) && /^فاعل/.test(l),
+          mamnu: l => /ممنوع من الصرف/.test(l) && /^مضاف إليه مجرور بالفتحة/.test(l), maqsur: l => /مقدرة على الألف/.test(l) && /^(مبتدأ|فاعل|خبر|مفعول)/.test(l), pron: l => /^ضمير[^،]*في محل رفع فاعل/.test(l),
+          mafulBih: l => /^مفعول به منصوب وعلامة نصبه الفتحة/.test(l), mudafIlayh: l => /^مضاف إليه مجرور وعلامة جره الكسرة/.test(l), mudRaf: l => /^فعل مضارع مرفوع وعلامة رفعه الضمة/.test(l),
+          mudNasb: l => /^فعل مضارع منصوب ب/.test(l) && /الفتحة/.test(l), mudJazm: l => /^فعل مضارع مجزوم ب/.test(l) && /السكون/.test(l), five: l => /^فعل مضارع/.test(l) && /الأفعال الخمسة/.test(l) && /حذف النون/.test(l), weak: l => /^فعل مضارع مجزوم/.test(l) && /حذف حرف العلة/.test(l) };
+        const got = {};
+        for (const st of STORIES) for (const ch of st.chapters || []) for (const sen of ch.sentences || []) sen.tokens.forEach((t, ti) => { if (!t.irab) return; const l = Illa346.S(t.irab.ar); for (const k in want) if (!got[k] && want[k](l)) got[k] = { t, sen, ti, st }; });
+        for (const k in want) { const g = got[k]; if (!g) { out.miss.push(k); continue; } const c = Illa346.chain(g.t, { sen: g.sen, ti: g.ti, st: g.st }); out.kinds[k] = { w: g.t.s.full, k: c.steps.map(s => s.kind).join(','), tr: txt(c, 'tr'), en: txt(c, 'en') }; }
+        const t0 = performance.now(); out.m = Illa346.measure(); out.ms = Math.round(performance.now() - t0);
+        state.uiLang = 'tr'; out.trStr = [ui().illaHead, ui().illaNoteHead]; state.uiLang = 'en'; out.enStr = [ui().illaHead, ui().illaNoteHead];
+      } finally { state.uiLang = keep; }
+      return out;
+    });
+    const J = JSON.stringify, K = r.kinds;
+    const [v, z, a] = r.typed.tr, [ve, ze, ae] = r.typed.en;
+    if (!z || z.n !== 5 || !/Otomatik/.test(z.auto) || !/^role:Fâil \(özne\): fiili yapan/.test(z.t) || !/family:Fâil \(özne\) merfûâttandır; bu yüzden merfû olmalıdır/.test(z.t) || !/governor:Onu merfû kılan: «ضَرَبَ»/.test(z.t) || !/sign:Kelime müfred isim;[^|]*damme/.test(z.t) || !/tells:Sondaki damme, «زَيْدٌ» kelimesinin bu cümlede fâil/.test(z.t)) throw new Error('the owner\'s زَيْدٌ (tr): ' + J(z));
+    if (!a || a.n !== 5 || !/nesne\): fiilin üzerine işlendiği/.test(a.t) || !/mansûbâttandır/.test(a.t) || !/fetha/.test(a.t)) throw new Error('the owner\'s عَمْرًا (tr): ' + J(a));
+    if (!v || !/role:Mâzî fiil/.test(v.t) || !/built:Mebnîdir/.test(v.t)) throw new Error('the owner\'s ضَرَبَ (tr): ' + J(v));
+    if (!ze || !/Automatic/.test(ze.auto) || !/The doer \(fāʿil\): the one who does the verb/.test(ze.t) || !/among the marfūʿāt/.test(ze.t) || !/a singular noun; for such a word the sign of marfūʿ \(rafʿ\) is the ḍamma/.test(ze.t) || !/the doer \(fāʿil\) in this sentence/.test(ze.t) || !/the one the verb is done to/.test(ae.t)) throw new Error('the owner\'s sentence (en): ' + J(ze));
+    if (r.miss.length) throw new Error('no corpus token of kind ' + r.miss.join());
+    const W = { failSing: [/role,family,.*sign,tells/, /müfred isim|müfred ya da/, /damme/, /singular/],
+      dual: [/sign/, /tesniye/, /elif/, /dual/], jms: [/sign/, /cem-i müzekker sâlim/, /vâv/, /sound masculine plural/], khamsa: [/sign/, /esmâ-i hamse/, /vâv/, /five nouns/],
+      mamnu: [/family.*sign/, /gayr-i munsarif[^|]*fetha — kesre yerine/, /mecrûrâttandır/, /diptote[^|]*fatḥa — standing in for the kasra/], maqsur: [/sign/, /ism-i maksûr[^|]*takdirî/, /teazzür/, /estimated, not spoken/],
+      pron: [/built/, /mahallen merfû/, /Fâil/, /maḥallan/], mafulBih: [/role,family,.*sign,tells/, /nesne/, /mansûbâttandır/, /object/],
+      mudafIlayh: [/role,family,.*sign,tells/, /mecrûrâttandır/, /kesre/, /majrūrāt/], mudRaf: [/governor/, /tecerrüd/, /âhiri sahih muzâri/, /tajarrud/],
+      mudNasb: [/family/, /mansûbâttandır/, /fetha/, /manṣūb/], mudJazm: [/family/, /meczûm/, /sükûn/, /sukūn/], five: [/sign/, /ef'âl-i hamse/, /nûnun hazfi/, /five verbs/], weak: [/sign/, /âhiri illetli muzâri/, /illet harfinin hazfi/, /weak last letter/] };
+    for (const k in W) { const x = K[k], [ks, a1, a2, e1] = W[k]; if (!x || !ks.test(x.k) || !a1.test(x.tr) || !a2.test(x.tr) || !e1.test(x.en)) throw new Error(k + ': ' + J(x)); }
+    const m = r.m, h = m.hist, ge = n => [5, 4, 3, 2, 1].filter(k => k >= n).reduce((s, k) => s + h[k], 0);
+    console.log('      v346 corpus: ' + m.n + ' authored tokens — steps 5: ' + h[5] + ', 4: ' + h[4] + ', 3: ' + h[3] + ', 2: ' + h[2] + ', 1: ' + h[1] + ', 0: ' + h[0] + '; contradictions ' + m.contra + '; family set aside (role vs stated case) ' + m.famConflict + '; ' + r.ms + ' ms');
+    if (m.contra !== 0) throw new Error('the chain contradicts its line: ' + J(m.bad.slice(0, 3)));
+    if (m.n < 87000 || h[5] < 24000 || ge(4) < 35500 || ge(3) < 44000 || h[0] > 6600) throw new Error('the histogram under its floors: ' + J(h));
+    if (r.trStr.join() === r.enStr.join() || r.trStr[0] !== 'Neden?' || r.trStr[1] !== 'Neden böyle?') throw new Error('en / tr: ' + J([r.trStr, r.enStr]));
+  });
+
+  await check('v346 — the four surfaces: the word sheet\'s «Neden?» ladder under the line (open the first time unless it would push «Cümlede âmili» off a 390×844 screen; the choice kept in qissa-illa346), a role\'s note «Neden böyle?» from the same tables with the book\'s own line, the iʿrāb sheet\'s per-word «Neden?» list whose tap opens the full ladder, the asked token\'s chain in a game\'s feedback (open on a wrong answer, one line on a right one); no overflow at 390 px; the v320 contrast in three themes; the split door reads no story body', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(() => {
+      const out = { low: {} }, keepTheme = localStorage.getItem('qissa-theme'), keepLang = state.uiLang, keepPref = localStorage.getItem('qissa-illa346');
+      const st0 = document.createElement('style'); st0.id = 'v346NoAnim'; st0.textContent = '*, *::before, *::after { transition: none !important; animation: none !important; }'; document.head.appendChild(st0);
+      const rgba = s => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const a = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [a[0], a[1], a[2], a.length > 3 ? a[3] : 1]; };
+      const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+      const over = (t2, b) => [0, 1, 2].map(i => t2[i] * t2[3] + b[i] * (1 - t2[3])).concat(1);
+      const bgOf = el => { const stk = []; for (let e = el; e; e = e.parentElement) { const c = rgba(getComputedStyle(e).backgroundColor); if (c && c[3] > 0) { stk.push(c); if (c[3] >= 1) break; } }
+        let b = rgba(getComputedStyle(document.body).backgroundColor) || [255, 255, 255, 1]; for (let i = stk.length - 1; i >= 0; i--) b = over(stk[i], b); return b; };
+      const CON = sel => { const bad = []; document.querySelectorAll(sel).forEach(root => root.querySelectorAll('*').forEach(el => { if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return;
+        const rr = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!rr.width || !rr.height || cs.visibility === 'hidden') return;
+        const fg = rgba(cs.color), bg = bgOf(el); if (!fg || !bg) return; const c = over(fg, bg), L1 = lum(c), L2 = lum(bg), ratio = (Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05);
+        if (ratio < 4.5) bad.push((el.className || el.tagName) + ' ' + Math.round(ratio * 100) / 100 + ' «' + el.textContent.trim().slice(0, 14) + '»'); })); return bad; };
+      const wide = () => { const s = document.getElementById('sheet'); return s.scrollWidth > s.clientWidth + 1 || document.documentElement.scrollWidth > innerWidth + 1; };
+      try {
+        state.uiLang = 'tr';
+        let at = null; for (const st of STORIES) { if (at) break; for (const ch of st.chapters || []) { if (at) break; for (const sen of ch.sentences) { const ti = sen.tokens.findIndex(t => t.irab && /^فاعل مرفوع وعلامة رفعه الضمة/.test(Illa346.S(t.irab.ar))); if (ti >= 0) { at = { st, sen, ti }; break; } } } }
+        CUR = at.st; localStorage.removeItem('qissa-illa346');
+        const ow = () => { openWord(at.sen.tokens[at.ti], null, 'irab', { sen: at.sen, ti: at.ti }); return document.querySelector('#sheet #illa346'); };
+        let d = ow(); const g = document.querySelector('#sheet .gov-block'), irab = document.querySelector('#sheet .irab-en');
+        out.sheet = { n: +d.dataset.n, open: d.open, govTop: g && g.getBoundingClientRect().top, under: !!irab && !!(irab.compareDocumentPosition(d) & Node.DOCUMENT_POSITION_FOLLOWING) && !!(d.compareDocumentPosition(g) & Node.DOCUMENT_POSITION_FOLLOWING), one: (d.querySelector('.illa-one') || {}).textContent, wide: wide() };
+        out.sheet.fits = d.open ? g.getBoundingClientRect().top + 24 <= innerHeight : g.getBoundingClientRect().top <= innerHeight;
+        d.querySelector('summary').click(); out.pref1 = localStorage.getItem('qissa-illa346'); d = ow(); out.kept = d.open === (out.pref1 === '1');
+        if (!d.open) d.querySelector('summary').click(); out.pref2 = localStorage.getItem('qissa-illa346');
+        // the note
+        openRef('fail'); const nt = document.querySelector('#sheet .illa-note'); out.note = nt && { h: nt.querySelector('.illa-h').textContent, rows: nt.querySelectorAll('.illa-tab tr').length, cite: !!nt.querySelector('.illa-cite'), fam: /merfûâttandır/.test(nt.textContent), wide: wide() };
+        out.noteNone = !document.createRange().createContextualFragment(renderNote('khabar-insha')).querySelector('.illa-note');
+        // the sentence list, and a tap to the full ladder
+        openIrabSheet(at.sen); const ls = document.querySelector('#sheet .illa-sen'); out.sen = ls && { rows: ls.querySelectorAll('[data-illa-ti]').length, want: at.sen.tokens.filter((t, ti) => { const c = Illa346.chain(t, { sen: at.sen, ti }); return t.irab && c && c.steps.length; }).length, wide: wide() };
+        localStorage.setItem('qissa-illa346', '0'); ls.querySelector('[data-illa-ti="' + at.ti + '"]').click(); const d2 = document.querySelector('#sheet #illa346'); out.tapOpen = !!d2 && d2.open && +d2.dataset.n === 5;
+        // a game: the asked token's chain, open on a wrong answer, one line on a right one
+        const orig = Illa346.quizHtml, seen = []; Illa346.quizHtml = function (it, ok) { seen.push({ it, ok }); return orig.call(this, it, ok); };
+        try { for (let k = 0; k < 40 && !(out.gWrong && out.gRight); k++) { openGames(); startRoleGame(); const o = [...document.querySelectorAll('#sheet .opts [data-o]')], pick = o[(k * 7 + 3) % o.length]; pick.click();
+            const q = document.querySelector('#sheet .illa-q'), s = seen[seen.length - 1]; if (!q || !s) continue; const c = Illa346.chain(s.it.sen.tokens[s.it.ti], { sen: s.it.sen, ti: s.it.ti });
+            const rec = { open: q.open, n: +q.dataset.n, same: +q.dataset.n === c.steps.length && (() => { const h = document.createElement('div'); h.innerHTML = orig.call(Illa346, s.it, s.ok); return h.querySelector('.illa-q').innerHTML === q.innerHTML; })(), one: (q.querySelector('.illa-one') || {}).textContent };
+            if (s.ok) out.gRight = rec; else out.gWrong = rec; QUIZ_RESUME = null; } } finally { Illa346.quizHtml = orig; }
+        // three themes, the v320 measure
+        for (const th of ['murekkep', 'gece', 'bahce']) { setTheme(th); const lo = [];
+          Illa346.force = true; ow(); lo.push(...CON('#sheet #illa346')); openRef('maful-bihi'); lo.push(...CON('#sheet .illa-note')); openIrabSheet(at.sen); lo.push(...CON('#sheet .illa-sen'));
+          openGames(); startRoleGame(); document.querySelector('#sheet .opts [data-o]').click(); const q = document.querySelector('#sheet .illa-q'); if (q) q.open = true; lo.push(...CON('#sheet .illa-q')); QUIZ_RESUME = null;
+          if (lo.length) out.low[th] = lo.slice(0, 6); }
+      } finally { st0.remove(); QUIZ_RESUME = null; closeSheet(); state.uiLang = keepLang; if (keepPref == null) localStorage.removeItem('qissa-illa346'); else localStorage.setItem('qissa-illa346', keepPref); if (keepTheme) setTheme(keepTheme); else { localStorage.removeItem('qissa-theme'); setTheme(''); } }
+      return out;
+    });
+    await toLibrary();
+    const J = JSON.stringify;
+    if (!r.sheet || r.sheet.n !== 5 || !r.sheet.under || !r.sheet.fits || r.sheet.wide || !/Fâil \(özne\) → merfûât → merfû → damme/.test(r.sheet.one || '')) throw new Error('the word sheet: ' + J(r.sheet));
+    if (!/^[01]$/.test(r.pref1 || '') || !r.kept || r.pref2 !== '1') throw new Error('the choice is kept: ' + J([r.pref1, r.kept, r.pref2]));
+    if (!r.note || r.note.h !== 'Neden böyle?' || r.note.rows < 8 || !r.note.cite || !r.note.fam || r.note.wide || !r.noteNone) throw new Error('the note: ' + J([r.note, r.noteNone]));
+    if (!r.sen || r.sen.rows !== r.sen.want || r.sen.rows < 3 || r.sen.wide || !r.tapOpen) throw new Error('the sentence list: ' + J([r.sen, r.tapOpen]));
+    if (!r.gWrong || !r.gWrong.open || !r.gWrong.same || !r.gRight || r.gRight.open || !r.gRight.same || !/^çünkü /.test(r.gRight.one || '')) throw new Error('the game feedback: ' + J([r.gWrong, r.gRight]));
+    if (Object.keys(r.low).length) throw new Error('contrast: ' + J(r.low));
+    // the split copy: the door paints with every body held, and a note's «Neden böyle?» reads the grammar tables alone
+    const fsx = require('fs'), pathx = require('path'), cp = require('child_process'), os = require('os'), http = require('http');
+    const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-v346-')); cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
+    const held = []; let hold = true;
+    const srv = http.createServer((q, s) => { const p = decodeURIComponent(q.url.split('?')[0]).replace(/^\/+/, '') || 'reader.html', f = pathx.join(dir, p);
+      if (!f.startsWith(dir) || !fsx.existsSync(f) || fsx.statSync(f).isDirectory()) { s.writeHead(404); s.end(); return; }
+      const send = () => { s.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(s); };
+      if (hold && /^data\/b\d+-/.test(p)) held.push(send); else send(); }).listen(0);
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    try {
+      await ctx.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-lang', 'tr'); } catch (e) {} });
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      await p.goto('http://127.0.0.1:' + srv.address().port + '/reader.html');
+      await p.waitForFunction(() => document.querySelectorAll('.lib-card:not(.skel)').length >= 50 && !document.body.classList.contains('data-pending'), null, { timeout: 120000 });
+      const s = await p.evaluate(() => { const o = { missing: BODY341.missing ? BODY341.missing.size : -1, n: STORIES.length, miss0: (window.__bodyMiss341 || []).length, fam: Object.keys(Illa346._fam).length };
+        const h = document.createElement('div'); h.innerHTML = Illa346.noteHtml('fail'); o.note = !!h.querySelector('.illa-tab'); o.miss = (window.__bodyMiss341 || []).length; return o; });
+      if (s.missing !== s.n || s.miss0 || s.fam || !s.note || s.miss || errs.length) throw new Error('the split door: ' + J(s) + ' ' + errs.slice(0, 2).join(' | '));
+    } finally { hold = false; held.splice(0).forEach(f => f()); await ctx.close(); srv.close(); fsx.rmSync(dir, { recursive: true, force: true }); }
+  });
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

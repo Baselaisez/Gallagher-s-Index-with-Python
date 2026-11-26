@@ -13,7 +13,7 @@
  * and the network copy, when it arrives, is stored for the NEXT launch; a new deploy is therefore one launch late, which
  * the CACHE bump turns into a clean install. A reader who has nothing cached still gets the network.
  */
-const CACHE = 'qissa-v445';
+const CACHE = 'qissa-v446';
 // (v341-S) the hosted copy's data slices are named by a hash of their content (data/d1-…js, data/b<k>-…js): one name, one
 // content, forever. They live in their own cache that a version bump does not delete, and are answered from it without a
 // refresh — so an update re-downloads only the slices whose stories changed. The page prunes the names its build no longer
