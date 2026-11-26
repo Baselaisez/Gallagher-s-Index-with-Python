@@ -1,0 +1,390 @@
+{
+ "built_by": "tools/usul/kinds.py (v352-U)",
+ "about": "The kinds of ʿilla as al-Suyūṭī's al-Iqtirāḥ reports them (al-Dīnawarī al-Jalīs, «ثمار الصناعة»: twenty-four, «the famous ones»; the examples are Ibn Maktūm's from his Tadhkira, «التحليل» Ibn al-Ṣāʾigh's), verbatim with the Shamela page; and the reasons of content/rules/ilal.json tagged with a kind only where their own words decide it (the marker, in letters-only form). The renderings are ours, pending the hoca.",
+ "source": {
+  "book": "iqtirah",
+  "file": "research/sources/al-iqtirah-suyuti-src.txt",
+  "list": {
+   "ar": "إلا أن مدار المشهورة منها على أربعة وعشرين نوعا",
+   "shamela": 205,
+   "page": "1:227"
+  },
+  "classes": {
+   "ar": "اعتلالات النحويين صنفان",
+   "shamela": 205
+  },
+  "illat_al_illa": {
+   "ar": "وضرب يسمى علة العلة مثل أن يقولوا:",
+   "shamela": 216
+  }
+ },
+ "kinds": [
+  {
+   "id": "sama",
+   "name_ar": "علة سماع",
+   "n": 1,
+   "list_shamela": 205,
+   "ex_ar": "قوله: علة سماع: مثل قولهم: امرأة ثدياء، ولا يقال: رجل أثدي، وليس لذلك علة سوى السماع.",
+   "shamela": 208,
+   "page": "1:230",
+   "by": "ابن مكتوم",
+   "en": "Hearing: they say «imraʾa thadyāʾ» but not «rajul athdā» — there is no reason for it but that it was heard.",
+   "tr": "Semâ': «imraetün sedyâ» denir, «racülün esdâ» denmez — bunun duyulmaktan başka sebebi yoktur."
+  },
+  {
+   "id": "tashbih",
+   "name_ar": "علة تشبيه",
+   "n": 2,
+   "list_shamela": 205,
+   "ex_ar": "وعلة تشبيه مثل إعراب المضارع لمشابهته الاسم وبناء بعض الأسماء لمشابهتها الحروف.",
+   "shamela": 208,
+   "page": "1:230",
+   "by": "ابن مكتوم",
+   "en": "Likeness: the muḍāriʿ is declined because it resembles the noun; some nouns are built because they resemble particles.",
+   "tr": "Benzetme: muzâri' isme benzediği için mu'rebdir; bazı isimler harflere benzedikleri için mebnîdir."
+  },
+  {
+   "id": "istighna",
+   "name_ar": "علة استغناء",
+   "n": 3,
+   "list_shamela": 205,
+   "ex_ar": "وعلة استغناء كاستغنائهم بـ ترك عن ودع",
+   "shamela": 208,
+   "page": "1:230",
+   "by": "ابن مكتوم",
+   "en": "Dispensing: they make do with «taraka» instead of «wadaʿa».",
+   "tr": "İstiğnâ: «vede'a» yerine «terake» ile yetinmeleri."
+  },
+  {
+   "id": "istithqal",
+   "name_ar": "علة استثقال",
+   "n": 4,
+   "list_shamela": 208,
+   "ex_ar": "وعلة استثقال كاستثقالهم الواو في يعد لوقوعها بين ياء وكسرة",
+   "shamela": 208,
+   "page": "1:230",
+   "by": "ابن مكتوم",
+   "en": "Heaviness: they find the wāw of «yaʿidu» heavy, standing between a yāʾ and a kasra.",
+   "tr": "Ağırlık: «ya'idu»daki vâvı, yâ ile kesre arasında kaldığı için ağır bulmaları."
+  },
+  {
+   "id": "farq",
+   "name_ar": "علة فرق",
+   "n": 5,
+   "list_shamela": 206,
+   "ex_ar": "وعلة فرق وذلك فيما ذهبوا إليه من رفع الفاعل ونصب المفعول وفتح نون الجمع وكسر نون المثنى.",
+   "shamela": 209,
+   "page": "1:231",
+   "by": "ابن مكتوم",
+   "en": "Distinction: the fāʿil is rafʿ and the mafʿūl naṣb, the plural's nūn has fatḥa and the dual's kasra — to tell them apart.",
+   "tr": "Ayırma: fâil merfû, mef'ûl mansûb; cemi nûnu fethalı, tesniye nûnu kesreli — ayırt etmek için."
+  },
+  {
+   "id": "tawkid",
+   "name_ar": "علة توكيد",
+   "n": 6,
+   "list_shamela": 206,
+   "ex_ar": "وعلة توكيد مثل إدخالهم النون الخفيفة والثقيلة في فعل الأمر لتأكيد إيقاعه.",
+   "shamela": 209,
+   "page": "1:231",
+   "by": "ابن مكتوم",
+   "en": "Emphasis: they add the light and the heavy nūn to the imperative to stress that it be done.",
+   "tr": "Te'kîd: emir fiiline hafif ve sakil nûnu, yapılmasını pekiştirmek için katmaları."
+  },
+  {
+   "id": "tawid",
+   "name_ar": "علة تعويض",
+   "n": 7,
+   "list_shamela": 206,
+   "ex_ar": "وعلة تعويض مثل تعويضهم الميم في اللهم من حرف النداء.",
+   "shamela": 209,
+   "page": "1:231",
+   "by": "ابن مكتوم",
+   "en": "Compensation: the mīm of «allāhumma» stands in for the vocative particle.",
+   "tr": "Ivaz: «Allâhümme»deki mîm, nidâ harfinin yerine gelmiştir."
+  },
+  {
+   "id": "nazir",
+   "name_ar": "علة نظير",
+   "n": 8,
+   "list_shamela": 206,
+   "ex_ar": "وعلة نظير مثل كسرهم أحد الساكنين إذا التقيا في الجزم حملا على الجر إذ هو نظيره.",
+   "shamela": 209,
+   "page": "1:231",
+   "by": "ابن مكتوم",
+   "en": "Counterpart: when two sukūns meet in the jazm they give one a kasra, carrying it over to the jarr, its counterpart.",
+   "tr": "Nazîr: cezimde iki sâkin buluşunca birini kesrelemeleri — nazîri olan cerre hamlederek."
+  },
+  {
+   "id": "naqid",
+   "name_ar": "علة نقيض",
+   "n": 9,
+   "list_shamela": 206,
+   "ex_ar": "وعلة نقيض مثل نصبهم النكرة بـ لا حملا على نقيضها إن.",
+   "shamela": 209,
+   "page": "1:231",
+   "by": "ابن مكتوم",
+   "en": "Opposite: the indefinite after «lā» is naṣb, carried over to its opposite «inna».",
+   "tr": "Nakîz: «lâ»dan sonraki nekrenin, zıddı olan «inne»ye hamlen mansûb olması."
+  },
+  {
+   "id": "haml_mana",
+   "name_ar": "علة حمل على المعنى",
+   "n": 10,
+   "list_shamela": 206,
+   "ex_ar": "وعلة حمل على المعنى مثل (فمن جاءه موعظة) ذكر فعل الموعظة وهي مؤنثة حملا لها على المعنى وهو الوعظ",
+   "shamela": 209,
+   "page": "1:231",
+   "by": "ابن مكتوم",
+   "en": "Carrying on the meaning: «fa-man jāʾahu mawʿiẓa» — the verb is masculine though «mawʿiẓa» is feminine, carried on its meaning, «waʿẓ».",
+   "tr": "Mânâya hamil: «fe-men câehû mev'ızatün» — mev'ıza müennes iken fiil müzekker; mânâsı olan «va'z»a hamledilmiştir."
+  },
+  {
+   "id": "mushakala",
+   "name_ar": "علة مشاكلة",
+   "n": 11,
+   "list_shamela": 210,
+   "ex_ar": "وعلة مشاكلة مثل قوله (سلاسلا وأغلالا)",
+   "shamela": 210,
+   "page": "1:232",
+   "by": "ابن مكتوم",
+   "en": "Matching: «salāsilan wa-aghlālan» (sic: the diptote given tanwīn to match its neighbour).",
+   "tr": "Müşâkele: «selâsilen ve ağlâlen» (gayr-i munsarif, yanındakine uysun diye tenvinli)."
+  },
+  {
+   "id": "muadala",
+   "name_ar": "علة معادلة",
+   "n": 12,
+   "list_shamela": 207,
+   "ex_ar": "وعلة معادلة مثل جرهم ما لا ينصرف بالفتح حملا على النصب ثم عادلوا بينهما فحملوا النصب على الجر في جمع المؤنث السالم.",
+   "shamela": 210,
+   "page": "1:232",
+   "by": "ابن مكتوم",
+   "en": "Balancing: the diptote's jarr is a fatḥa, carried on the naṣb; then they balanced it — the sound feminine plural's naṣb is carried on the jarr.",
+   "tr": "Muâdele: gayr-i munsarifin cerri fethadır, nasba hamlen; sonra denkleştirdiler — cem-i müennes-i sâlimin nasbı cerre hamledildi."
+  },
+  {
+   "id": "mujawara",
+   "name_ar": "علة قرب ومجاورة",
+   "n": 13,
+   "list_shamela": 207,
+   "ex_ar": "وعلة مجاورة مثل الجر بالمجاورة في قولهم جحر ضب خرب وضم لام (الله) في (الحمد لله)",
+   "shamela": 210,
+   "page": "1:232",
+   "by": "ابن مكتوم",
+   "en": "Neighbourhood: the jarr by neighbourhood in «juḥru ḍabbin kharibin», and the ḍamma on the lām of «lillāh» in «al-ḥamdu lillāh» (beside the dāl).",
+   "tr": "Komşuluk: «cuhru dabbin haribin»deki komşuluk cerri ve «el-hamdu lillâh»da lâmın (dâle komşu olduğu için) zammesi."
+  },
+  {
+   "id": "wujub",
+   "name_ar": "علة وجوب",
+   "n": 14,
+   "list_shamela": 207,
+   "ex_ar": "وعلة وجوب وذلك تعليلهم رفع الفاعل ونحوه.",
+   "shamela": 212,
+   "page": "1:234",
+   "by": "ابن مكتوم",
+   "en": "Necessity: as when they give the reason why the fāʿil MUST be rafʿ, and the like.",
+   "tr": "Vücûb: fâilin merfû olmasının (ve benzerlerinin) gerekçesini vermeleri gibi."
+  },
+  {
+   "id": "jawaz",
+   "name_ar": "علة جواز",
+   "n": 15,
+   "list_shamela": 207,
+   "ex_ar": "وعلة جواز وذلك ما ذكروه في تعليل الإمالة من الأسباب المعروفة فإن ذلك علة لجواز الإمالة فيما أميل لا لوجوبها.",
+   "shamela": 212,
+   "page": "1:234",
+   "by": "ابن مكتوم",
+   "en": "Permission: the known causes of imāla — they let a word be pronounced with imāla, they do not require it.",
+   "tr": "Cevaz: imâlenin bilinen sebepleri — imâleyi câiz kılar, vâcip kılmaz."
+  },
+  {
+   "id": "taghlib",
+   "name_ar": "علة تغليب",
+   "n": 16,
+   "list_shamela": 207,
+   "ex_ar": "وعلة تغليب مثل (وكانت من القانتين)",
+   "shamela": 212,
+   "page": "1:234",
+   "by": "ابن مكتوم",
+   "en": "Predominance: «wa-kānat mina l-qānitīn» (a woman counted among the masculine «qānitīn»).",
+   "tr": "Tağlîb: «ve kânet mine'l-kânitîn» (bir kadın müzekker «kânitîn» içinde sayılır)."
+  },
+  {
+   "id": "ikhtisar",
+   "name_ar": "علة اختصار",
+   "n": 17,
+   "list_shamela": 207,
+   "ex_ar": "وعلة اختصار مثل باب الترخيم و (لم يك)",
+   "shamela": 212,
+   "page": "1:234",
+   "by": "ابن مكتوم",
+   "en": "Brevity: the chapter of tarkhīm, and «lam yaku».",
+   "tr": "İhtisâr: terhîm bâbı ve «lem yek»."
+  },
+  {
+   "id": "takhfif",
+   "name_ar": "علة تخفيف",
+   "n": 18,
+   "list_shamela": 207,
+   "ex_ar": "وعلة تخفيف كالإدغام.",
+   "shamela": 213,
+   "page": "1:235",
+   "by": "ابن مكتوم",
+   "en": "Lightening: as with idghām.",
+   "tr": "Tahfîf: idğam gibi."
+  },
+  {
+   "id": "dalalat_hal",
+   "name_ar": "علة دلالة حال",
+   "n": 19,
+   "list_shamela": 207,
+   "ex_ar": "وعلة دلالة حال كقول المستهل الهلال أي هذا الهلال فحذف لدلالة الحال عليه.",
+   "shamela": 214,
+   "page": "1:236",
+   "by": "ابن مكتوم",
+   "en": "The situation's pointing: one who sights the new moon says «al-hilāl», i.e. «this is the new moon» — left out because the situation shows it.",
+   "tr": "Hâlin delâleti: hilâli gören «el-hilâl» der, yani «bu hilâldir» — hâl gösterdiği için hazfedilmiştir."
+  },
+  {
+   "id": "asl",
+   "name_ar": "علة أصل",
+   "n": 20,
+   "list_shamela": 207,
+   "ex_ar": "وعلة أصل كـ استحوذ ويؤكرم وصرف",
+   "shamela": 213,
+   "page": "1:235",
+   "by": "ابن مكتوم",
+   "en": "The origin: as in «istaḥwadha», «yuʾakrimu» and giving tanwīn to (a diptote) — the original form showing.",
+   "tr": "Asıl: «istahveze», «yu'ekrimu» ve (gayr-i munsarifin) sarfı gibi — aslın görünmesi."
+  },
+  {
+   "id": "tahlil",
+   "name_ar": "علة تحليل",
+   "n": 21,
+   "list_shamela": 207,
+   "ex_ar": "في نحو الاستدلال على اسمية كيف بنفي حرفيتها لأنها مع الاسم كلام ونفي فعليتها لمجاورتها الفعل بلا فاصل",
+   "shamela": 216,
+   "page": "1:238",
+   "by": "ابن الصائغ",
+   "en": "Analysis (Ibn al-Ṣāʾigh's explanation): proving «kayfa» a noun by ruling out the particle (with a noun it makes speech) and the verb (it stands next to a verb).",
+   "tr": "Tahlîl (İbnü's-Sâiğ'in açıklaması): «keyfe»nin isim olduğunu, harf (isimle kelâm olur) ve fiil (fiile bitişik gelir) olmadığını göstererek ispat."
+  },
+  {
+   "id": "ishar",
+   "name_ar": "علة إشعار",
+   "n": 22,
+   "list_shamela": 207,
+   "ex_ar": "وعلة إشعار كقولهم في جمع موسى موسون بفتح ما قبل الواو إشعار بأن المحذوف ألف.",
+   "shamela": 214,
+   "page": "1:236",
+   "by": "ابن مكتوم",
+   "en": "Signalling: the plural of «Mūsā» is «Mūsawn», with a fatḥa before the wāw to signal that what dropped was an alif.",
+   "tr": "İş'âr: «Mûsâ»nın cemi «Mûsevn» — vâvdan önceki fetha, düşenin elif olduğunu bildirir."
+  },
+  {
+   "id": "tadadd",
+   "name_ar": "علة تضاد",
+   "n": 23,
+   "list_shamela": 207,
+   "ex_ar": "وعلة تضاد مثل قولهم في الأفعال التي يجوز إلغاؤها متى تقدمت وأكدت بالمصدر أو بضميره لم تلغ أصلا لما بين",
+   "shamela": 214,
+   "page": "1:236",
+   "by": "ابن مكتوم",
+   "en": "Contrariety: the verbs that may be left ungoverning are never left so when they come first and are stressed by their maṣdar — stress and cancelling are contraries.",
+   "tr": "Tezâd: ilgâsı câiz fiiller öne geçip masdarla te'kîd edilince asla ilgâ edilmez — te'kîd ile ilgâ zıttır."
+  },
+  {
+   "id": "awla",
+   "name_ar": "علة أولى",
+   "n": 24,
+   "list_shamela": 207,
+   "ex_ar": "وعلة أولى كقولهم: إن الفاعل أولى برتبة التقديم من المفعول",
+   "shamela": 214,
+   "page": "1:236",
+   "by": "ابن مكتوم",
+   "en": "Priority: as they say, the fāʿil has the better claim to the front than the mafʿūl.",
+   "tr": "Evleviyet: fâil öne geçmeye mef'ûlden daha lâyıktır demeleri gibi."
+  }
+ ],
+ "counts": {
+  "kinds": 24,
+  "reasons": 121,
+  "tagged": 18
+ },
+ "tags": {
+  "ilal-shaykhzade-162-1": {
+   "kind": "tawid",
+   "marker": "عوضا"
+  },
+  "ilal-shaykhzade-191-2": {
+   "kind": "farq",
+   "marker": "فرقا بين"
+  },
+  "ilal-shaykhzade-191-5": {
+   "kind": "tashbih",
+   "marker": "حملا علي"
+  },
+  "ilal-shaykhzade-192-1": {
+   "kind": "tashbih",
+   "marker": "حملا علي"
+  },
+  "ilal-shaykhzade-178-3": {
+   "kind": "takhfif",
+   "marker": "تخفيفا"
+  },
+  "ilal-ibn-malik-173-3": {
+   "kind": "tashbih",
+   "marker": "حملا علي"
+  },
+  "ilal-ibn-malik-191-1": {
+   "kind": "tashbih",
+   "marker": "لشبهه"
+  },
+  "ilal-ibn-malik-1487-1": {
+   "kind": "takhfif",
+   "marker": "اراده التخفيف"
+  },
+  "ilal-radi-760-1": {
+   "kind": "takhfif",
+   "marker": "للتخفيف"
+  },
+  "ilal-radi-747-1": {
+   "kind": "istithqal",
+   "marker": "الثقل"
+  },
+  "ilal-radi-860-2": {
+   "kind": "istithqal",
+   "marker": "لاستثقال"
+  },
+  "ilal-radi-965-1": {
+   "kind": "istithqal",
+   "marker": "لاستثقال"
+  },
+  "ilal-radi-759-1": {
+   "kind": "istithqal",
+   "marker": "الاستثقال"
+  },
+  "ilal-khasais-51-1": {
+   "kind": "farq",
+   "marker": "للفرق"
+  },
+  "ilal-khasais-778-1": {
+   "kind": "tashbih",
+   "marker": "لمشابهته"
+  },
+  "ilal-khasais-300-1": {
+   "kind": "tadadd",
+   "marker": "لتدافع"
+  },
+  "ilal-khasais-746-1": {
+   "kind": "istithqal",
+   "marker": "استثقالا"
+  },
+  "ilal-khasais-409-1": {
+   "kind": "farq",
+   "marker": "فرقا بين"
+  }
+ }
+}

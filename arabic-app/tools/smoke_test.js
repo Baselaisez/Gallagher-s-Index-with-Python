@@ -19386,6 +19386,7 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
         out.chain = { fam: fam && fam.ilal && fam.ilal.id, famHtml: /— Şeyhzâde, s\. \d+/.test(Illa346.stepsHtml(a, 'tr')), sign: sg && sg.ilal && sg.ilal.id, signHtml: /— İbn Mâlik, s\. \d+\/\d+/.test(Illa346.stepsHtml(b, 'tr')),
           shortest: fam && fam.ilal && ILAL.reasons.filter(x => x.kind === 'why-state' && x.role === 'mubtada' && x.en && (!x.case || x.case === 'raf')).every(x => x.ar.length >= fam.ilal.ar.length),
           caseGuard: ['raf', 'nasb', 'jarr'].every(k => Illa346.roles().every(R => { const x = Ilal348.forRole(R.id, k); return !x || !x.case || x.case === k; })),
+          /* (v352-U) the fāʿil now HAS a book reason — al-Khaṣāʾiṣ: «ارتفع الفاعل بإسناد الفعل إليه» (was: none in the three commentaries) */
           fail: !(Illa346.chain(null, { line: 'فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ', w: 'زَيْدٌ' }).steps.some(s => s.ilal)) };
         // the rule of the day: the book line stays; on alternate days the reason under it
         const gid = Object.keys(GRAMMAR).find(g => RuleDay344.lines(GRAMMAR[g]).length && Ilal348.forNote(g).some(x => x.en));
@@ -19411,7 +19412,7 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     const n = r.note, c = r.chain, d = r.day, g = r.game;
     if (!(n.cards >= 1 && n.head === 'Neden böyle?' && n.verb && n.pend === 'çeviri · hoca onayı bekliyor' && /Şâmile s\. \d+/.test(n.src) && !n.wide && r.noteRole === 'mubtada')) throw new Error('the note\'s cards: ' + JSON.stringify(n) + ' ' + r.noteRole);
     if (!(r.bare.sec && r.bare.head === 'Neden böyle?' && r.bare.compact)) throw new Error('a note with no role: ' + JSON.stringify(r.bare));
-    if (!(c.fam && c.famHtml && c.sign === 'ilal-ibn-malik-176-1' && c.signHtml && c.shortest && c.caseGuard && c.fail)) throw new Error('the chain\'s book reasons: ' + JSON.stringify(c));
+    if (!(c.fam && c.famHtml && c.sign === 'ilal-ibn-malik-176-1' && c.signHtml && c.shortest && c.caseGuard && !c.fail)) throw new Error('the chain\'s book reasons: ' + JSON.stringify(c));
     if (!(d.even && d.odd && d.line && d.card && d.none && !d.wide)) throw new Error('the rule of the day: ' + JSON.stringify(d));
     if (!(g.supply >= 8 && g.card && g.q && g.opts === 3 && g.verb && g.why && !g.wide)) throw new Error('the round لِمَاذَا؟: ' + JSON.stringify(g));
     if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
@@ -19550,6 +19551,93 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
       const g = await p.evaluate(() => { renderLibrary(); const a = getComputedStyle(storyEl); const lib = [a.display, a.maxWidth]; openStory(STORIES[0]); const b = getComputedStyle(storyEl); return { lib, story: [b.display, b.maxWidth] }; });
       if (g.lib[0] !== 'grid' || g.lib[1] !== 'none' || g.story[0] === 'grid' || g.story[1] === 'none') throw new Error('the layout keyed on the class: ' + JSON.stringify(g));
     } finally { await ctx.close(); }
+  });
+
+  /* ---------------- v352-U — uṣūl al-naḥw: al-Khaṣāʾiṣ and al-Iqtirāḥ as feeders ---------------- */
+  await check('v352-U — uṣūl al-naḥw by script: both books indexed (al-Khaṣāʾiṣ 160 abwāb with span, size and key terms; al-Iqtirāḥ by kitāb / faṣl / masʾala), the proofs map (al-Suyūṭī\'s defining sentences, the four pillars, his Ibn Jinnī citations found in al-Khaṣāʾiṣ), the 24 kinds of ʿilla as the book lists them with their examples, the {reason → kind} side table, al-Khaṣāʾiṣ\'s reasons appended to ilal.json, the «İki yöntem» cards — every Arabic a substring of its source page\'s MATN (never al-Iqtirāḥ\'s editor\'s hashiya); USUL in the page is the tables', async () => {
+    const fsx = require('fs'), pathx = require('path'), R = f => pathx.join(__dirname, '..', f), J = f => JSON.parse(fsx.readFileSync(R(f), 'utf8'));
+    const SRC = { khasais: fsx.readFileSync(R('research/sources/al-khasais-ibn-jinni-src.txt'), 'utf8'), iqtirah: fsx.readFileSync(R('research/sources/al-iqtirah-suyuti-src.txt'), 'utf8') };
+    const matn = (book, sp) => { const t = SRC[book], h = t.indexOf('\n=== p. ' + sp + ' ('); if (h < 0) return null; const e = t.indexOf('\n=== p. ', h + 5), body = t.slice(h, e < 0 ? t.length : e); return body.split('\n--- hashiya ---\n')[0]; };
+    const bad = [], on = (book, sp, ar, tag) => { const m = matn(book, sp); if (!ar || !m || !m.includes(ar)) bad.push(tag + ' p.' + sp); };
+    const tk = J('content/rules/toc_khasais.json'), ti = J('content/rules/toc_iqtirah.json');
+    if (tk.counts.babs !== 160 || tk.counts.vol1 !== 52 || tk.counts.vol2 !== 55 || tk.counts.vol3 !== 53) throw new Error('al-Khaṣāʾiṣ abwāb: ' + JSON.stringify(tk.counts));
+    const nums = tk.babs.filter(b => b.vol > 1).map(b => b.n).sort((a, b) => a - b); if (nums.some((n, i) => n !== 55 + i)) throw new Error('the printed index 55–162, each once');
+    for (const b of tk.babs) { if (!(b.from.shamela <= b.to.shamela && b.pages >= 1 && b.chars > 0 && Array.isArray(b.key_terms))) bad.push('bāb ' + b.n + ' span');
+      const at = b.heading_src === 'index' ? b.index.shamela : b.from.shamela; if (!(matn('khasais', at) || '').includes(b.ar)) bad.push('bāb ' + b.n + ' heading'); }
+    if (ti.counts.level1 !== 8 || ti.counts.headings < 110) throw new Error('al-Iqtirāḥ headings: ' + JSON.stringify(ti.counts));
+    for (const h of ti.headings) on('iqtirah', h.shamela, h.ar, 'iqtirah heading');
+    const un = J('content/rules/usul_nahw.json'), ids = un.proofs.map(p => p.id).join(' ');
+    if (ids !== 'usul sama ijma qiyas istishab shatta taarud mustanbit') throw new Error('al-Iqtirāḥ\'s plan: ' + ids);
+    const q = un.proofs.find(p => p.id === 'qiyas'); if ((q.pillars || []).map(p => p.id).join(' ') !== 'asl far hukm illa') throw new Error('the four pillars');
+    let cites = 0, found = 0;
+    const walk = p => { if (p.def) { on('iqtirah', p.def.shamela, p.def.ar, p.id + ' def'); if (!p.en || !p.tr) bad.push(p.id + ' en/tr'); }
+      (p.also || []).forEach(a => on('iqtirah', a.shamela, a.ar, p.id + ' also')); (p.subs || []).forEach(s => s.first && on('iqtirah', s.first.shamela, s.first.ar, p.id + ' sub'));
+      (p.khasais || []).forEach(c => { cites++; on('iqtirah', c.iqtirah.shamela, c.iqtirah.ar, 'citation'); if (c.khasais) { found++; on('khasais', c.khasais.shamela, c.khasais.ar, 'khasais passage'); } });
+      (p.pillars || []).forEach(walk); };
+    un.proofs.forEach(walk);
+    if (cites !== 58 || found < 40) throw new Error('Ibn Jinnī citations / found in al-Khaṣāʾiṣ: ' + cites + ' / ' + found);
+    const kd = J('content/rules/ilal_kinds.json'), il = J('content/rules/ilal.json');
+    const ORDER = 'sama tashbih istighna istithqal farq tawkid tawid nazir naqid haml_mana mushakala muadala mujawara wujub jawaz taghlib ikhtisar takhfif dalalat_hal asl tahlil ishar tadadd awla';
+    if (kd.kinds.map(k => k.id).join(' ') !== ORDER) throw new Error('the 24 kinds, in the list\'s order');
+    on('iqtirah', kd.source.list.shamela, kd.source.list.ar, 'the list sentence');
+    kd.kinds.forEach(k => { on('iqtirah', k.shamela, k.ex_ar, k.id + ' example'); on('iqtirah', k.list_shamela, k.name_ar, k.id + ' name'); if (!k.en || !k.tr || !/^ابن (مكتوم|الصائغ)$/.test(k.by)) bad.push(k.id + ' en/tr/by'); });
+    const byId = Object.fromEntries(il.reasons.map(r => [r.id, r])), kids = new Set(kd.kinds.map(k => k.id));
+    const fold = s => String(s).replace(/[ً-ٰٟـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي');
+    for (const [id, t] of Object.entries(kd.tags)) { const r = byId[id]; if (!r || !kids.has(t.kind) || !fold(r.ar).includes(t.marker)) bad.push('tag ' + id); }
+    const kh = il.reasons.filter(r => r.book === 'khasais'), firstKh = il.reasons.findIndex(r => r.book === 'khasais');
+    if (kh.length !== 31 || kh.some(r => !r.id.startsWith('ilal-khasais-')) || firstKh < 90 || !il.books.khasais || il.books.khasais.file !== 'research/sources/al-khasais-ibn-jinni-src.txt') throw new Error('al-Khaṣāʾiṣ reasons appended at the end: ' + kh.length + ' from ' + firstKh);
+    kh.forEach(r => { on('khasais', r.shamela_page, r.ar, r.id); if (!r.en || !r.tr || !r.vol_page || !r.section) bad.push(r.id + ' shape'); });
+    const kTopics = new Set(kh.map(r => r.topic)), was44 = 'abniya alam asma-afal badal five-verbs hadhf hikaya imala ishara ishtighal ism-fail-amal istithna law maani-abwab madh maful-fih maful-lah maful-mutlaq maqsur-mamdud masdar masdar-amal muarraf mudari-abwab mudmar muqaraba mushtaqqat naib-fail nasab nida nun-tawkid sakinayn sifa-mushabbaha tafdil tajjub taksir tanazu tanith tasghir tathniya tawkid waqf zaid zann zawaid'.split(' ');
+    const answered = was44.filter(t => kTopics.has(t));
+    if (answered.length !== 12) throw new Error('of the 44 topics without a reason, al-Khaṣāʾiṣ answers: ' + answered.join(' '));
+    const um = J('content/rules/usul_methods.json'), M = J('content/rules/insaf_masail.json').masail;
+    if (um.cards.length !== 4 || um.counts.quotes !== 11) throw new Error('«İki yöntem»: ' + JSON.stringify(um.counts));
+    um.cards.forEach(c => { c.quotes.forEach(x => { on(x.book, x.shamela, x.ar, 'method ' + c.id); if (!x.en || !x.tr) bad.push('method ' + c.id + ' en/tr'); });
+      c.masail.forEach(n => { const r = M.find(x => x.n === n); const t = r && fold([r.title_ar, r.kufa_ar, r.basra_ar, r.tarjih_ar, ...(r.others || []).map(o => o.ar)].join(' ')); if (!t || !new RegExp(fold(c.join)).test(t)) bad.push('link ' + c.id + ' ' + n); }); });
+    if (bad.length) throw new Error('verbatim / shape: ' + bad.slice(0, 6).join(' | ') + ' (' + bad.length + ')');
+    const pg = await page.evaluate(() => JSON.stringify(USUL));
+    const want = { kinds: kd.kinds.map(k => ({ id: k.id, name_ar: k.name_ar, ex_ar: k.ex_ar, page: k.page, shamela: k.shamela, by: k.by, en: k.en, tr: k.tr })), tags: Object.fromEntries(Object.entries(kd.tags).map(([i, v]) => [i, v.kind])), methods: um.cards };
+    if (pg !== JSON.stringify(want)) throw new Error('USUL in the page is not the tables');
+    console.log('      al-Khaṣāʾiṣ ' + tk.counts.babs + ' abwāb, al-Iqtirāḥ ' + ti.counts.headings + ' headings; ' + cites + ' citations (' + found + ' found); 24 kinds, ' + Object.keys(kd.tags).length + ' reasons tagged; ' + kh.length + ' Khaṣāʾiṣ reasons (' + answered.length + ' of 44 topics answered); USUL ' + pg.length + ' chars');
+  });
+
+  await check('v352-U — the kind of ʿilla where the reasons show (a chip on the «العِلَّة» card, the book\'s example on touch; the fāʿil\'s chain step now from al-Khaṣāʾiṣ), «لِمَاذَا؟» asking the kind at Level 5+ (three kinds from the table, one right), and «المنهجان / İki yöntem» atop the khilaf lab — four cards, live links that open their masʾala — at 390 px, in tr and en', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(async () => {
+      const w = ms => new Promise(res => setTimeout(res, ms)), out = {}, keepLang = state.uiLang, keepLvl = state.myLevel, keepLab = conjState.lab;
+      try {
+        state.uiLang = 'tr';
+        const r0 = ILAL.reasons.find(x => x.id === 'ilal-khasais-51-1'), host = document.createElement('div'); host.innerHTML = Ilal348.cardHtml(r0); document.body.appendChild(host);
+        const kd = host.querySelector('.usul-kd'); out.chip = kd ? kd.querySelector('.usul-chip').textContent : null; out.first = host.querySelector('figure > blockquote').textContent === Ilal348.text(r0);
+        out.closed = kd && !kd.open; if (kd) kd.open = true; out.ex = kd && kd.querySelector('.usul-ex').textContent; out.sumH = kd && kd.querySelector('summary').getBoundingClientRect().height; host.remove();
+        const un = ILAL.reasons.find(x => !USUL.tags[x.id]); out.untagged = !Ilal348.cardHtml(un).includes('usul-kd');
+        const st = Illa346.chain(null, { line: 'فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ', w: 'زَيْدٌ' }).steps.find(s => s.ilal); out.fail = st && st.ilal.id;
+        out.failHtml = /— İbn Cinnî, s\. 1\/197/.test(Illa346.stepsHtml(Illa346.chain(null, { line: 'فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ', w: 'زَيْدٌ' }), 'tr'));
+        const pool = Ilal348.gameItems().slice(0, 8);
+        state.myLevel = 4; out.l4 = Usul352.mixKind(pool).filter(x => x._kq).length;
+        state.myLevel = 5; const mx = Usul352.mixKind(pool), kq = mx.filter(x => x._kq); out.l5 = kq.length; out.len = mx.length;
+        out.opts = kq.map(it => { const o = Usul352.kqOptions(it); return o.length === 3 && o.filter(x => x.ok).length === 1 && o.find(x => x.ok).id === USUL.tags[it.id] && o.every(x => USUL.kinds.some(k => k.id === x.id && x.html.includes(k.name_ar))); });
+        out.qVerb = kq.every(it => { const h = document.createElement('div'); h.innerHTML = Usul352.kqQuestion(it); return it.ar.endsWith(h.querySelector('.usul-kq').textContent); });
+        for (const lang of ['tr', 'en']) {
+          state.uiLang = lang; conjState.khilafQ = ''; conjState.khilafBab = ''; conjState.khilafOpen = null; conjState.lab = 'khilaf'; openConjugator(); await w(120);
+          const m = document.querySelector('#labBody .usul-methods'), o = out[lang] = {};
+          o.cards = m ? m.querySelectorAll('.usul-mc').length : 0; o.quotes = m ? m.querySelectorAll('.usul-q blockquote').length : 0;
+          o.verb = m && [...m.querySelectorAll('.usul-q blockquote')].every(b => USUL.methods.some(c => c.quotes.some(x => x.ar === b.textContent)));
+          o.head = m && m.querySelector('summary').textContent.trim(); o.before = !!(m && (m.compareDocumentPosition(document.getElementById("khilafOut")) & 4));
+          o.links = [...document.querySelectorAll('.usul-ml')].map(b => +b.dataset.khOpen); o.wide = document.documentElement.scrollWidth > 390;
+          o.small = [...document.querySelectorAll('.usul-ml, .usul-methods > summary')].filter(b => b.getBoundingClientRect().height < 44).length;
+          const b = document.querySelector('.usul-ml[data-kh-open="109"]'); b.click(); await w(150);
+          const d = document.querySelector('#khilafOut details.kh-item[data-n="109"]'); o.opened = !!(d && d.open && d.querySelector('.kh-pane'));
+        }
+      } finally { state.uiLang = keepLang; state.myLevel = keepLvl; conjState.lab = keepLab; closeSheet(); }
+      return out;
+    });
+    console.log('      chip ' + r.chip + '; fāʿil ← ' + r.fail + '; round L5 ' + r.l5 + ' kind items; lab ' + r.tr.cards + ' cards, links ' + r.tr.links.join(','));
+    if (!(r.chip === 'علة فرق' && r.first && r.closed && r.ex && r.ex.startsWith('وعلة فرق') && r.sumH >= 44 && r.untagged)) throw new Error('the chip: ' + JSON.stringify(r));
+    if (!(r.fail === 'ilal-khasais-204-1' && r.failHtml)) throw new Error('the fāʿil\'s chain step: ' + JSON.stringify([r.fail, r.failHtml]));
+    if (!(r.l4 === 0 && r.l5 === 2 && r.len === 8 && r.opts.every(Boolean) && r.qVerb)) throw new Error('the round\'s kind items: ' + JSON.stringify(r));
+    for (const lang of ['tr', 'en']) { const o = r[lang];
+      if (!(o.cards === 4 && o.quotes === 11 && o.verb && o.before && o.head === 'المَنْهَجَان · ' + (lang === 'tr' ? 'İki yöntem' : 'Two methods') && o.links.join(',') === '70,70,109' && !o.wide && !o.small && o.opened)) throw new Error('«İki yöntem» (' + lang + '): ' + JSON.stringify(o)); }
   });
 
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
