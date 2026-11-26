@@ -16261,3 +16261,67 @@ themes, 390 px, en and tr.
   A word tap writes none of it (v338's rule).
 - Smoke: four «v344 — …» checks before «v333 — the received imports» (the rule check builds its own split copy with every body held: the
   rule on the door, no body read). No older check changed. Full suite: 577 checks, 577 pass.
+
+## v345-T — what a phrase hangs on, the framed clause, إِنَّ and أَنَّ
+
+Round 2 of the work order `research/engine-faults-2026-11-27.md`, four engines only: `TaalluqEngine`, `JumlaMahallEngine` (with the taʿalluq reader
+of `GrammarAudit339`), `InnaEngine`, `TartibEngine`. Every change was measured with the engine's own audit on the whole shelf before and after
+(scratchpad `taalluq345/`: `meas.js` runs GrammarAudit339 for the four, `cmp.py` diffs the item lists against the v342 triage, `tdump.js` /
+`hitcmp.py` list every authored taʿalluq claim with the walk's candidates and per-item hits, `jdump.js` the offered clause verdicts with their frame).
+
+| engine | agree | contradictions | exact |
+|---|---:|---:|---:|
+| taʿalluq | 643 → 714 (22 of them through the offered reading) | 307 → 228 | 256 → 200 |
+| clause maḥall | 1,912 → 1,912 | 121 → 114 | 19 → 19 |
+| إِنَّ / أَنَّ | 1,164 → 1,179 | 27 → 15 | 27 → 15 |
+| order | 1,064 → 1,063 | 2 → 0 | 2 → 0 |
+
+Clusters (v342 triage records still contradicted): T-T05 14 → 0, T-T01 77 → 46, T-T02 163 → 132, T-T03 32 → 28, T-J03 72 → 66, T-I01 21 → 12,
+T-I02 4 → 1, T-O01 2 → 0 (and T-J04 30 → 29 by the way). New contradictions: one, judged E in `research/story-audit-triage-delta-taalluq.json`.
+
+- **The audit's reader (T-T05, the «[object Object]»).** `GrammarAudit339.taalluqRead` reads the authored claim instead of matching letters:
+  «بِالْفِعْلِ قَبْلَهُ» = the nearest verb before; «بِحَالٍ…»، «بِخَبَرِ كَانَ الْمُقَدَّمِ»، «بِالْخَبَرِ الْمُقَدَّمِ» = the deleted governor; «بِمَا تَعَلَّقَ بِهِ «X»» = the
+  governor the engine gives X; a parenthesis «(أَوْ بِمَحْذُوفٍ حَالٌ)» is the author's second reading; a bare «بِخَبَرِ «لَيْسَ»» / «بِالْخَبَرِ» (written or
+  deleted?) counts only as it did before. An OFFERED verdict agrees when one of its two readings is the author's — as `JumlaMahallEngine.audit` has
+  always counted its offered seats; the result carries `viaOffered`. The alternative prints as its Arabic. Reader alone: 643 → 676, 307 → 269.
+- **T-T02 — the walk took a word that governs nothing.** Causes and gates: (1) the learned tagger's scale was taken on any noun (الشَّامِ، النَّاسِ، الْحَالِ
+  as فَاعِل; إِبْلِيسُ، مُحَمَّدٍ، أَنْتُمْ): `governs()` now takes a model guess only where the vowelled word wears that scale letter for letter
+  (`fitsWazn345`; `assim345` for مُتَّصِل / أَقَلّ) and never for a name or a pronoun (`nameish345`) — model verdicts were 11 right / 40 wrong;
+  (2) تَعَالَى / سُبْحَانَهُ / عَزَّ وَجَلَّ after the Name is the muʿtariḍa (`formula345`), except «تَعَالَى عَنْ»; (3) إِذَا / لَمَّا hung on an «answer» past another
+  condition, a nāsikh, a colon, «نَحْوُ», a قَالَ, or a wāw-joined / governed verb (`jawabOk345`); (4) a detached pronoun opening a nominal clause is a
+  wall (`pronWall345`): the phrase completes the khabar written after it (وَأَنَا لَكُمْ نَاصِحٌ) or is that khabar; (5) a phrase between a clause-opening
+  mubtadaʾ and its participle khabar completes the khabar, the ḥāl offered (وَالْعَالَمُ بِجَمِيعِ أَجْزَائِهِ مُحْدَثٌ). T-T02's agreeing verdicts: none lost
+  (per-item hits 643 → 679 under the old reader; the one loss was a substring «agreement», حِينَ in «مُلَّاحِيَّةٍ» ⊃ «لاح» — the delta's E).
+- **T-T01 — a mustaqarr phrase hung on a nearby word.** لَا شَكَّ فِيهِ (the tagger reads شَكَّ as a verb) → lā's khabar; the kāf of tashbīh → mahdhuf
+  (naʿt after an indefinite, else khabar) with the found word OFFERED — kāf phrases on a found word were 0 right / 5 wrong; the pronoun wall above.
+- **T-T03 — a mustaqarr seat asserted where the governor is written.** kāna: the manṣūb khabar written after the phrase, or past the delayed ism,
+  takes it (وَكَانُوا لَنَا خَاشِعِينَ، يَكُونُ بِهِ الزَّمَانُ بَخِيلَا); inna: the verb written after the ism and the phrase takes it (إِنَّ الْفَتَى بَعْدَ السَّفَاهَةِ يَحْلُمُ),
+  with «أَوْ بِمَحْذُوفٍ حَالٌ مِنْ «الْفَتَى»» OFFERED (the author reads the same frame both ways — وَإِنَّ الضِّغْنَ بَعْدَ الضِّغْنِ يَبْدُو is his naʿt); a manṣūb ẓarf of
+  time nothing before it governs hangs on the verb after it (not a nāsikh). Measured and NOT applied: «prefer the noun before the phrase when it may
+  be a maṣdar» — `MansubEngine.masdar` splits it 8 author / 9 control / 10 wrong, no signal; skipping wazn فَعِيل / nisba governors — a wash (+6 / −8).
+- **T-J03 — offered naʿt / ḥāl inside a frame that owns the clause.** The blanket gate the work order names (`claimed()` on the offered rules) was
+  measured first: naʿt agreeing 260 → 155 — `claimed()` sees any condition / relative / قَالَ / nāsikh earlier in the sentence (and «مِنْ» as «مَنْ»).
+  Applied instead: `JumlaMahallEngine.owns345` in `all()` — an OPEN condition (its tool opens the clause, its verb written, no other verb before the
+  clause, no pronoun — written or a plural doer — tying the clause to the word before, or a comma closes that word) or a sentence-initial relative
+  with its ṣila's verb and no other: the offered naʿt-or-ḥāl is silent. `owed()` as a third gate cost two agreeing naʿts for one — dropped.
+  72 → 66; every seat's agreeing count kept. What is left of T-J03 is mostly the khabar of an indefinite mubtadaʾ with its musawwigh (شَيْخٌ مِنْ أَهْلِ
+  الْعِلْمِ يَخْرُجُ) and clauses after a colon the audit cannot see (it analyses the tokens without their punctuation).
+- **T-I01 / T-I02 — إِنَّ / أَنَّ.** Before a colon: an إِنَّ wearing its ism (فَإِنَّهَا: أَنَّكَ) → khabarInna; a clause that is only a fronted jarr phrase
+  (وَمِنْهَا: أَنَّ) → the delayed mubtadaʾ; a mubtadaʾ still waiting (وَالْفَرْقُ بَيْنَهَا وَبَيْنَ اسْمِ الْفَاعِلِ: أَنَّ) → khabarMasdar — fatḥa; «خَبَرٌ مُقَدَّمٌ» right before
+  (وَحَقٌّ أَنَّكَ) → mubtada; a وَأَنَّ joined to an earlier أَنَّ no seat decided → «both» (no istiʾnāf asserted); the audit's tail crosses ONE sentence whose
+  only إِنَّ-word is letter-governed (… أَنَّ اللهَ رَبُّهُ. لِأَنَّ اللهَ حَيٌّ. وَأَنَّ اللهَ بَاقٍ). T-I02: the oath's wāw on the word before (حَرْفُ قَسَمٍ) → qasam before the
+  isnād walk; an «عَنْ» that completes the verb right before it is no isnād; a knowing verb with its object written (the line says «مَفْعُولٌ بِهِ»)
+  and a comma → the إِنَّ after the comma opens (typed text; the story's «أَرَادَ غَيْرَ ذٰلِكَ، إِنَّ» stays a miss: the isnād walk reaches أَرَادَ first,
+  and a comma-stop there only moves it to «jarr» — `JARR` lists «ذلك» — so it was not kept); the muḍāf-ilayh khabarMana rule skips a DELAYED mubtadaʾ (read without vowels: NFC puts the fatḥa before the shadda of «مُؤَخَّرٌ»).
+  Measured and rejected: carrying the tail across sentences with no إِنَّ (two sentence-initial وَإِنَّ turned fatḥa), a letter-governed أَنَّ as a fatḥa tail.
+  Left (15): «فَإِنَّهَا: أَنَّكَ» in the story (its authored line does not name the ism), the أَرَادَ … ، إِنَّ above, the four mid-sentence وَأَنَّ joined to a noun object (وَأَرَاهُ آيَاتٍ … وَأَنَّهُ) — the surface does not separate them from وَإِنَّهَا of the ḥāl.
+- **T-O01 — the order.** `definite()`: a dual that keeps its nūn is not annexed (وَغَيْرَانِ الْمُكَوَّنُ); `clausesOf`: a «مفعول به ثان» with no first object,
+  after a maṣdar in jarr, is that maṣdar's (… الْإِدْغَامُ بِجَعْلِ التَّاءِ مِثْلَ الْعَيْنِ); `isnadsOf`: a jarr phrase the line calls the khabar is a phrase
+  khabar (لَهُ مَعْنَيَانِ → km2). Eight such maṣdar «clauses» left the corpus count: the v334 order pin 2584/986/2 → 2576/986/0 (stated in the check).
+- **Smoke**: four «v345 — …» checks before «v333 — the received imports» (taʿalluq, the framed clause, إِنَّ / أَنَّ, the order): the reproducing sentences
+  with their controls, the reader, the work order's places no longer contradicted, and the measured numbers as floors and ceilings. Older check
+  changed: «v334 — Order (Tartīb) lab» (the corpus pin, above).
+- **Full suite** (after the refit chain): 594 checks, 593 pass; the one failure was timing only («the model is graded held-out» — cross-validation 14.7 s
+  under the machine's load), which passes alone.
+- **Hand-overs**: none needed in other engines. Not done (budget): Qawāʿid bāb 1's open ledger rows and bāb 2's four rulings (the brief's «if budget
+  remains»); the ledgers were not rebuilt (no ledger example was targeted).
