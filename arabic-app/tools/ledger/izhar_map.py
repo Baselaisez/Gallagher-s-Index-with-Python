@@ -123,7 +123,9 @@ E = [
  ('C09', 162, 'حَذْفُ الْآخِرِ', 'irab', dict(eng='SignEngine · T2', probes=[P('لَمْ يَدْعُ الرَّجُلُ رَبَّهُ', 'يدع', 'حذف حرف العلة')])),
  ('C10', 162, 'حَذْفُ النُّونِ', 'irab', dict(eng='SignEngine', probes=[P('لَمْ يَضْرِبُوا', 'يضربوا', 'حذف النون')])),
  # ── the conditions the matn states (sentence keys «line.k»)
- ('15.3', 15, 'وَيَجُوزُ تَقْدِيمُ مَا عَدَا هَذَا عَلَى مُتَعَلَّقِهِ', 'cond', dict(eng='TaalluqEngine', probes=[P('بِزَيْدٍ مَرَرْتُ', 'بزيد', 'متعلق', own=True)])),
+ ('15.3', 15, 'وَيَجُوزُ تَقْدِيمُ مَا عَدَا هَذَا عَلَى مُتَعَلَّقِهِ', 'cond', dict(eng='TaalluqEngine · the fronted phrase (v351-I)', probes=[  # (v351-I) the taʿalluq is TaalluqEngine's, not the Murib line's: the fronted phrase hangs on the verb AFTER it
+     {'js': "(() => { const r = SentenceAnalyzer.analyze('بِزَيْدٍ مَرَرْتُ'); const t = TaalluqEngine.of(r, 0) || {}; return t.kind === 'found' && t.at === 1 && !!t.ahead; })()", 'own': True},
+     {'js': "(() => { const r = SentenceAnalyzer.analyze('مَرَرْتُ بِزَيْدٍ'); const t = TaalluqEngine.of(r, 1) || {}; return t.kind === 'found' && t.at === 0; })()"}])),
  ('17.2', 17, 'لَا يَجُوزُ حَذْفُ فِي مَعَ الْمَكَانِ الْمَحْدُودِ', 'cond', dict(eng='TaalluqEngine', probes=[P('صَلَّيْتُ فِي دَارٍ', 'دار', 'مجرور', own=True)])),
  ('19.2', 19, 'لَا يَتَعَلَّقُ جَارَّانِ بِمَعْنًى وَاحِدٍ بِفِعْلٍ وَاحِدٍ', 'cond', dict(na='a rule for the writer (مَرَرْتُ بِزَيْدٍ بِعَمْرٍو is not said); the reader never meets the forbidden form')),
  ('21.2', 21, 'وَجَبَ الْكَسْرُ فِي مَوْضِعِ الْجُمَلِ وَالْفَتْحُ فِي مَوْضِعِ الْمُفْرَدِ', 'cond', dict(eng='InnaEngine.verdict', probes=[P('وَاللهِ إِنَّ زَيْدًا قَائِمٌ', 'إن', 'حرف توكيد', own=True)])),
@@ -151,7 +153,9 @@ E = [
  ('65.2', 65, 'الْمَاضِي بَعْدَ أَنِ الْمَصْدَرِيَّةِ مَحَلُّهُ النَّصْبُ', 'cond', dict(probes=[P('أَعْجَبَنِي أَنْ ضَرَبْتَ', 'ضربت', 'في محل نصب')])),
  ('68.2', 68, 'الْجُمْلَةُ الْمُرَادُ بِهَا لَفْظُهَا لَهَا إِعْرَابٌ', 'cond', dict(na='a clause meant as its own wording (زَيْدٌ قَائِمٌ جُمْلَةٌ) — the reader cannot tell a cited clause from a used one')),
  ('74.0', 74, 'الْجُمْلَةُ الْوَاقِعَةُ خَبَرًا … أَوْ مَفْعُولًا ثَانِيًا لِبَابِ عَلِمَ', 'cond', dict(eng='JumlaMahallEngine · khabar', probes=[P('زَيْدٌ قَامَ أَبُوهُ', 'قام', 'في محل رفع خبر', own=True)])),
- ('80.0', 80, 'فَيَجِبُ إِفْرَادُ عَامِلِهِمَا وَتَذْكِيرُهُ … وَلَا يَجُوزُ تَقْدِيمُهُمَا', 'cond', dict(eng='Murib.doer', probes=[P('مُرَّ بِزَيْدٍ', 'بزيد', 'نائب فاعل|في محل رفع', own=True)])),
+ ('80.0', 80, 'فَيَجِبُ إِفْرَادُ عَامِلِهِمَا وَتَذْكِيرُهُ … وَلَا يَجُوزُ تَقْدِيمُهُمَا', 'cond', dict(eng='Murib.doer · the jarr phrase as nāʾib; Nahw342Engine · wasf / wasfHead (v351-I)', probes=[  # (v351-I) the verb's line names the phrase
+     P('مُرَّ بِزَيْدٍ', 'مر', 'نائب الفاعل شبه الجملة «بزيد» في محل رفع', own=True),
+     P('أَمَضْرُوبٌ الزَّيْدَانِ', 'الزيدان', 'نائب فاعل سد مسد الخبر', own=True), P('أَمَضْرُوبٌ الزَّيْدَانِ', 'أمضروب', 'مبتدأ', nt='خبره', own=True)])),
  ('80.1', 80, 'الْمُسْتَتِرُ وَاجِبُ الِاسْتِتَارِ وَجَائِزُهُ', 'cond', dict(eng='Murib.doer', probes=[P('اضْرِبْ', 'اضرب', 'مستتر وجوبا')])),
  ('89.1', 89, 'إِذَا أُسْنِدَ إِلَى الظَّاهِرِ يَجِبُ إِفْرَادُ الْعَامِلِ … وَتَأْنِيثُهُ', 'cond', dict(eng='Murib.doer', probes=[P('ضَرَبَ الزَّيْدَانِ', 'الزيدان', 'فاعل', own=True)])),
  ('92.0', 92, 'وَيَجُوزُ تَأْنِيثُ عَامِلِهِ وَتَذْكِيرُهُ', 'cond', dict(eng='Murib.doer', probes=[P('طَلَعَ الشَّمْسُ', 'الشمس', 'فاعل', own=True)])),

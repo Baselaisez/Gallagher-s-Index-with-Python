@@ -5142,7 +5142,7 @@ function hydrateStories148(){ try { STORIES.forEach(hydrateStory148); } catch (e
    enter this path (missing stays null). A slice that fails (offline before it was cached) is retried when the network
    returns, still quietly. */
 const BODY341 = {
-  missing: null, slices: null, of: null, state: [], waiters: new Map(), inflight: 0, KEYS: ["chapters", "morph", "glossary"],
+  missing: null, slices: null, of: null, state: [], waiters: new Map(), inflight: 0, KEYS: ["chapters", "morph", "glossary", "course351"],   /* (v351-I) course351: the Iẓhār course, on its story only */
   /* (v350-S) g350: the grammar tables' bodies (GRAMMAR's texts and examples, CATECHISM's questions — pubsplit keeps only what the door reads
      in the core) — fetched before any story slice, merged into the same objects in their original key order; until then nothing is ready */
   g350: null, gst350: 0,
@@ -18846,6 +18846,7 @@ function renderLabBody0(){
     return;
   }
   if (conjState.lab === "khilaf") { renderKhilafLab(body); return; }   // v339-I
+  if (conjState.lab === "izhar") { Izhar351.lab(body); return; }   // v351-I: the Iẓhār course
   if (conjState.lab === "tawkid") {
     body.innerHTML = `<p class="ref-intro">${ui().tawkidIntro}</p>
       <div class="conj-lab">
@@ -20587,6 +20588,184 @@ const Ilal348 = {
   ready(){ return this.all().filter(r => r.short && r.why_at != null && this.split(r, "en") && this.split(r, "tr")); },
   gameItems(){ const all = this.ready(); return all.filter(r => all.filter(x => x.kind === r.kind && x.topic !== r.topic).length >= 2); },
 };
+// ── v351-I BEGIN · the Iẓhār course — Birgivī's Iẓhār al-Asrār as a path, in the book's order (bāb 1 the ʿāmil → bāb 2 the maʿmūl →
+// bāb 3 the iʿrāb). ONE renderer over content/rules/izhar_map.json (tools/ledger/izhar_course_map.py), which the build hangs on the
+// Iẓhār story's BODY as «course351» (a JSON string): the hosted copy loads it with that story's body slice, never at the door; it is
+// parsed on the course's first open. Arabic shown is the package's vowelled matn, corpus tokens and their authored lines, and the
+// book's own said / not-said examples; the reason is Illa346's chain; exercises run through runQuiz (no new scoring).
+const Izhar351 = {
+  KEY: "qissa-izhar351", SID: "izhar-al-asrar", _d: null, unitId: null,
+  RANGES: { 1: [[1, 20], [21, 26], [27, 30], [31, 34], [35, 49], [50, 58], [59, 60]], 2: [[1, 9], [10, 22], [23, 24], [25, 25], [26, 30]], 3: [[1, 10]] },
+  GAMES: { gCase: ["startCaseGame", "caseGame"], gRole: ["startRoleGame", "roleGame"], gShart: ["startShart", "shartGame"], gInna: ["startInna", "innaGame"],
+    gSign: ["startSign", "signGame"], gShop: ["startShop", "shopGame"], gTahlil: ["startTahlil", "tahlil"], gDuel: ["startDuel", "duelGame"], gHarakat: ["startHarakat", "harakat"] },
+  L(){ return state.uiLang === "tr" ? "tr" : "en"; },
+  E(s){ return escapeAttr(s == null ? "" : String(s)); },
+  data(){ if (this._d) return this._d; const st = STORIES.find(s => s.id === this.SID); if (!st || !storyParsed148(st, "course351") && !BODY341.ready(this.SID)) return null;
+    const raw = st.course351; let d = null; try { d = typeof raw === "string" ? JSON.parse(raw) : raw && raw.items ? raw : null; } catch (e) { d = null; }
+    if (d) { d.byId = new Map(d.items.map(x => [x.id, x])); this._d = d; } return d; },
+  load(){ try { const d = JSON.parse(localStorage.getItem(this.KEY) || "{}") || {}; return { done: d.done || {}, best: d.best || {}, cur: d.cur || null, writer: d.writer || 0 }; } catch (e) { return { done: {}, best: {}, cur: null, writer: 0 }; } },
+  save(p){ try { localStorage.setItem(this.KEY, JSON.stringify(p)); } catch (e) {} },
+  tok(key){ const [pkg, ch, sid, ti1] = String(key).split(":"); const st = STORIES.find(s => s.id === pkg); if (!st) return null;
+    const C = (st.chapters || []).find(x => String(x.n) === ch); const sen = C && C.sentences.find(s => s.id === sid); const ti = +ti1 - 1;
+    return sen && sen.tokens[ti] ? { st, ch: C.n, sen, ti, tok: sen.tokens[ti], key } : null; },
+  senHtml(sen, ti){ return sen.tokens.map((t, k) => (k === ti ? `<mark class="iz-hl">${t.s.full}</mark>` : t.s.full) + (t.punctAfter || "")).join(" "); },
+  css(){ if (document.getElementById("iz351css")) return; const s = document.createElement("style"); s.id = "iz351css";
+    s.textContent = `.iz351 { display: grid; gap: var(--s3); }
+.iz351 h3 { margin: 0; font-size: var(--t-lg); } .iz351 h4 { margin: 0 0 var(--s1); font-size: var(--t-sm); color: var(--ink-soft); letter-spacing: var(--track-caps); }
+.iz351 section { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: var(--s3); }
+.iz351 .iz-ar { font-family: var(--ar-font); font-size: var(--t-md); line-height: 2; direction: rtl; text-align: right; margin: 0; }
+.iz351 .iz-hl { background: var(--accent-soft); color: var(--ink); border-radius: var(--r-md); padding: 0 2px; }
+.iz351 .iz-cite, .iz351 .iz-tl { font-size: var(--t-xs); color: var(--ink-soft); margin: var(--s1) 0 0; }
+.iz351 .iz-irab { font-family: var(--ar-font); color: var(--irab-ink); direction: rtl; text-align: right; margin: var(--s1) 0; }
+.iz351 .iz-units { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: var(--s2); list-style: none; padding: 0; margin: var(--s2) 0; }
+.iz351 .iz-units button { width: 100%; min-height: var(--tap); padding: var(--s1) var(--s2); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); color: var(--ink); display: grid; gap: 2px; justify-items: center; }
+.iz351 .iz-units button[data-done="1"] { border-color: var(--ok); }
+.iz351 .iz-units button small { font-size: var(--t-xs); color: var(--ink-soft); }
+.iz351 .iz-units button .iz-u-ar { font-family: var(--ar-font); font-size: var(--t-md); }
+.iz351 details.iz-bab > summary { min-height: var(--tap); display: flex; align-items: center; gap: var(--s2); font-weight: 600; cursor: pointer; }
+.iz351 .iz-row { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s2); }
+.iz351 .iz-row .chip, .iz351 .iz-row .btn { min-height: var(--tap); }
+.iz351 .iz-x + .iz-x { border-top: 1px dashed var(--line); margin-top: var(--s2); padding-top: var(--s2); }
+.iz351 .iz-pend { font-size: var(--t-xs); color: var(--ink-soft); border: 1px dashed var(--line); border-radius: var(--r-full); padding: 0 var(--s2); }
+.iz351 .iz-prog .q-bar { margin-top: var(--s1); }`;
+    document.head.appendChild(s); },
+  nameOf(x){ return `<span lang="ar" dir="rtl">${this.E(x.item)}</span>`; },
+  babTitle(b){ return ui()["iz351Bab" + b]; },
+  // ── the course page
+  home(body){
+    const d = this.data(), u = ui(), p = this.load(); if (!d) { body.innerHTML = `<p class="ref-intro">${u.loadingStory}</p>`; return; }
+    const n = d.items.length, done = d.items.filter(x => p.done[x.id]).length;
+    const unitBtn = x => `<li><button type="button" data-iz="${x.id}" data-done="${p.done[x.id] ? 1 : 0}"${p.cur === x.id ? ' aria-current="step"' : ""}><span class="iz-u-ar" lang="ar" dir="rtl">${this.E(x.item)}</span><small>${p.done[x.id] ? "✓ " + u.iz351Passed : x.id.slice(2)}</small></button></li>`;
+    const bab = b => { const xs = d.items.filter(x => x.bab === b), dn = xs.filter(x => p.done[x.id]).length;
+      const groups = b === 1 ? ["samai", "qiyasi", "manawi"].map(g => `<h4>${u["iz351Grp_" + g]}</h4><ul class="iz-units">${xs.filter(x => x.group === g).map(unitBtn).join("")}</ul>`).join("")
+        : `<ul class="iz-units">${xs.map(unitBtn).join("")}</ul>`;
+      return `<details class="iz-bab" data-bab="${b}"${b === 1 || xs.some(x => x.id === p.cur) ? " open" : ""}><summary>${this.babTitle(b)} <small>${dn} / ${xs.length}</small></summary>${groups}</details>`; };
+    body.innerHTML = `<div class="iz351" id="iz351">
+      <p class="ref-intro">${u.iz351Intro}</p>
+      <div class="iz-prog"><b>${u.iz351Prog.replace("{d}", done).replace("{n}", n)}</b><div class="q-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${done}" aria-label="${this.E(u.iz351Prog.replace("{d}", done).replace("{n}", n))}"><i style="width:${Math.round(100 * done / Math.max(1, n))}%"></i></div></div>
+      ${p.cur && d.byId.get(p.cur) ? `<div class="iz-row"><button class="btn primary" type="button" data-iz="${p.cur}">${u.iz351Resume} · <span lang="ar" dir="rtl">${this.E(d.byId.get(p.cur).item)}</span></button></div>` : ""}
+      ${[1, 2, 3].map(bab).join("")}
+      <section class="iz-writer"><h4>${u.iz351Writer}</h4><p class="iz-tl">${u.iz351WriterIntro}</p><div class="iz-row"><button class="btn" type="button" id="iz351Writer">${u.iz351WriterGo.replace("{n}", d.writer.length)}${p.writer ? ` · ${p.writer} / ${d.writer.length}` : ""}</button></div></section>
+    </div>`;
+    body.querySelectorAll("[data-iz]").forEach(b => b.addEventListener("click", () => { this.unitId = b.dataset.iz; renderLabBody(); }));
+    const w = body.querySelector("#iz351Writer"); if (w) w.addEventListener("click", () => this.writerRound());
+  },
+  // ── one unit
+  unit(body, id){
+    const d = this.data(), u = ui(), l = this.L(), x = d && d.byId.get(id); if (!x) { this.unitId = null; return this.home(body); }
+    const p = this.load(); p.cur = id; this.save(p);
+    const pk = x.pkg, mt = pk ? (() => { const r = this.tok(this.SID + ":" + pk.ch + ":" + pk.sid + ":" + ((pk.hi == null ? 0 : pk.hi) + 1)); return r ? this.senHtml(r.sen, pk.hi == null ? -1 : pk.hi) : this.E(pk.ar); })() : "";
+    const trs = (x.tr || []).map(t => l === "tr"
+      ? `<p><b>${u.iz351TrQ.replace("{q}", t.q)}</b> ${this.E(t.ask)}</p><p>${this.E(t.ans)}</p>${/…/.test(t.ask + t.ans) ? `<p class="iz-tl">${u.iz351Holes}</p>` : ""}`
+      : `<p><b>${u.iz351TrQ.replace("{q}", t.q)}</b> ${this.E(t.en || "")} <span class="iz-pend">${u.iz351Pending}</span></p><details><summary>${u.iz351TrSrc}</summary><p lang="tr">${this.E(t.ask)}</p><p lang="tr">${this.E(t.ans)}</p></details><p class="iz-tl">${u.iz351TrNoEn}</p>${/…/.test(t.ask + t.ans) ? `<p class="iz-tl">${u.iz351Holes}</p>` : ""}`).join("");
+    const exs = (x.examples || []).map(k => this.tok(k)).filter(Boolean);
+    let why = "";
+    for (const r of exs) { let ch = null; try { ch = Illa346.chain(r.tok); } catch (e) { ch = null; } if (ch && ch.steps && ch.steps.length) {
+      why = `<details class="illa" open><summary><span class="illa-h">${u.iz351Why}</span> <span lang="ar" dir="rtl">${r.tok.s.full}</span></summary><ol class="illa-steps">${Illa346.stepsHtml(ch, l)}</ol></details>`; break; } }
+    const exHtml = exs.map((r, k) => `<div class="iz-x"><p class="iz-ar" lang="ar">${this.senHtml(r.sen, r.ti)}</p>${r.sen.translation ? `<p class="iz-tl">${this.E(T(r.sen.translation))}</p>` : ""}
+      <p class="iz-irab" lang="ar">${this.E((r.tok.irab || {}).ar || "")}</p><p class="iz-cite">${this.E(T(r.st.title))} · ${u.chapter} ${r.ch}</p>
+      <div class="iz-row"><button class="chip" type="button" data-iz-open="${k}">${u.iz351Open}</button><button class="chip" type="button" data-iz-eng="${k}">${u.iz351Engine}</button></div></div>`).join("");
+    const items = this.items(x);
+    const notes = (x.notes || []).filter(g => GRAMMAR[g]).slice(0, 4), games = (x.games || []).filter(g => this.GAMES[g] && typeof window[this.GAMES[g][0]] === "function");
+    body.innerHTML = `<div class="iz351 iz-unit" id="iz351" data-unit="${x.id}">
+      <div class="iz-row"><button class="chip" type="button" id="iz351Home">${u.iz351Back}</button></div>
+      <h3>${this.nameOf(x)} <small>${this.babTitle(x.bab)}${x.group ? " · " + u["iz351Grp_" + x.group] : ""}</small></h3>
+      <section class="iz-matn"><h4>${u.iz351Matn}</h4>${mt ? `<p class="iz-ar" lang="ar">${mt}</p>` : ""}<p class="iz-cite">${u.iz351Cite.replace("{l}", x.line).replace("{c}", pk ? pk.ch : "—")}</p></section>
+      <section class="iz-tr"><h4>${u.iz351Tr}</h4>${trs || `<p class="iz-tl">${u.iz351NoTr}</p>`}</section>
+      ${why ? `<section class="iz-why">${why}</section>` : ""}
+      <section class="iz-ex"><h4>${u.iz351Ex}</h4>${exHtml || `<p class="iz-tl">${u.iz351NoEx}</p>`}</section>
+      <div class="iz-row">${items.length >= 2 ? `<button class="btn primary" type="button" id="iz351Quiz">${u.iz351Exercise.replace("{n}", items.length)}</button>` : ""}
+        ${notes.map(g => `<button class="chip" type="button" data-note="${this.E(g)}">📖 ${this.E(T(GRAMMAR[g].title))}</button>`).join("")}
+        ${games.map(g => `<button class="chip" type="button" data-iz-game="${g}">${this.E(u.toolGame)}: ${this.E(u[this.GAMES[g][1]] || g)}</button>`).join("")}</div>
+    </div>`;
+    body.querySelector("#iz351Home").addEventListener("click", () => { this.unitId = null; renderLabBody(); });
+    body.querySelectorAll("[data-iz-open]").forEach(b => b.addEventListener("click", () => { const r = exs[+b.dataset.izOpen]; jumpTo(r.st.id, r.sen.id, r.ti, r.ch); }));
+    body.querySelectorAll("[data-iz-eng]").forEach(b => b.addEventListener("click", () => { const r = exs[+b.dataset.izEng];
+      conjState.jumla = r.sen.tokens.map(t => t.s.full).join(" "); conjState.lab = "jumla"; LabIndex.use("jumla"); openConjugator(); }));
+    body.querySelectorAll("[data-note]").forEach(b => b.addEventListener("click", () => openRef(b.dataset.note)));
+    body.querySelectorAll("[data-iz-game]").forEach(b => b.addEventListener("click", () => { const f = window[this.GAMES[b.dataset.izGame][0]]; if (typeof f === "function") f(); }));
+    const q = body.querySelector("#iz351Quiz"); if (q) q.addEventListener("click", () => this.quiz(x));
+  },
+  // ── the exercise items: the unit's corpus tokens (examples first, then the pool), each with its sentence
+  items(x){ const seen = new Set(), out = []; for (const k of [].concat(x.examples || [], x.pool || [])) { if (seen.has(k)) continue; seen.add(k); const r = this.tok(k); if (r && r.tok.irab) out.push(r); } return out.slice(0, 6); },
+  others(x){ const d = this.data(), n = +x.id.slice(3), same = d.items.filter(y => y.bab === x.bab && y.id !== x.id && y.item !== x.item);
+    const rg = (this.RANGES[x.bab] || []).find(([a, b]) => n >= a && n <= b) || [0, 0], near = same.filter(y => { const m = +y.id.slice(3); return m >= rg[0] && m <= rg[1]; });
+    const pick = shuffle(near.slice()).slice(0, 3); if (pick.length < 3) pick.push(...shuffle(same.filter(y => !pick.includes(y))).slice(0, 3 - pick.length)); return pick; },
+  quiz(x){
+    const u = ui(), items = shuffle(this.items(x)).map(r => Object.assign({ unit: x }, r)); if (items.length < 2) return;
+    let right = 0; const back = () => { conjState.lab = "izhar"; this.unitId = x.id; openConjugator(); };
+    const ask = x.bab === 1 ? u.iz351AskAmil : x.bab === 2 ? u.iz351AskMamul : u.iz351AskSign;
+    const opts = shuffle([x].concat(this.others(x)));
+    runQuiz({ illa: true,   /* (v346) the asked word's reason chain under the feedback */
+      title: `${u.izharTab} · <span lang="ar" dir="rtl">${this.E(x.item)}</span>`, ask, items, area: "nahw", lvl: () => 4, backLabel: u.iz351Back, back,
+      itemKey: it => "iz351:" + it.key,
+      restart: () => { const p = this.load(); p.best[x.id] = Math.max(p.best[x.id] || 0, right); if (right >= Math.ceil(items.length * 0.6)) p.done[x.id] = 1; this.save(p); back(); },
+      onAnswer: (it, ok) => { if (ok) right++; },
+      question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, t => `<b class="target">${t.s.full}</b>`)}</div>`,
+      options: () => opts.map(y => ({ html: `<span lang="ar" dir="rtl">${this.E(y.item)}</span>`, ar: true, ok: y.id === x.id })),
+      why: it => `${irabWhy(it.tok.irab)}<p class="iz-cite" style="font-size:var(--t-xs);color:var(--ink-soft)">${u.iz351Cite.replace("{l}", x.line).replace("{c}", x.pkg ? x.pkg.ch : "—")}</p>`,
+      extras: [{ label: () => u.iz351Open, run: it => jumpTo(it.st.id, it.sen.id, it.ti, it.ch) }],
+    });
+  },
+  // ── «يُقَالُ / لَا يُقَالُ — söylenir mi?»: the book's own allowed and forbidden examples, the feedback quoting the matn
+  writerRound(){
+    const d = this.data(), u = ui(); if (!d || !d.writer.length) return; let right = 0;
+    const items = shuffle(d.writer.slice()); const back = () => { conjState.lab = "izhar"; this.unitId = null; openConjugator(); };
+    runQuiz({ title: u.iz351Writer, ask: u.iz351WriterAsk, items, area: "nahw", lvl: () => 4, backLabel: u.iz351Back, back,
+      itemKey: it => "iz351w:" + it.rule + ":" + it.ar,
+      restart: () => { const p = this.load(); p.writer = Math.max(p.writer || 0, right); this.save(p); back(); },
+      onAnswer: (it, ok) => { if (ok) right++; },
+      question: it => `<div class="game-q" lang="ar" dir="rtl">${this.E(it.ar)}</div>`,
+      options: it => [{ html: `<span lang="ar" dir="rtl">يُقَالُ</span> · ${u.iz351Said}`, ok: it.said }, { html: `<span lang="ar" dir="rtl">لَا يُقَالُ</span> · ${u.iz351NotSaid}`, ok: !it.said }],
+      why: it => { const r = it.at ? (STORIES.find(s => s.id === this.SID).chapters.find(c => c.n === it.at.ch) || { sentences: [] }).sentences.find(s => s.id === it.at.sid) : null;
+        return `<p>${u.iz351WriterWhy.replace("{l}", it.line)}</p>${r ? `<p class="iz-ar" lang="ar" dir="rtl" style="font-family:var(--ar-font);line-height:2">${r.tokens.map(t => t.s.full + (t.punctAfter || "")).join(" ")}</p>${r.translation ? `<p style="font-size:var(--t-xs);color:var(--ink-soft)">${this.E(T(r.translation))}</p>` : ""}` : ""}`; },
+      extras: [{ label: () => u.iz351OpenMatn, show: it => !!it.at, run: it => jumpTo(this.SID, it.at.sid, 0, it.at.ch) }],
+    });
+  },
+  lab(body){
+    if (bodyGate341(() => { if (conjState.lab === "izhar") renderLabBody(); })) { body.innerHTML = `<p class="ref-intro">${ui().loadingStory}</p>`; return; }
+    this.css(); if (!this.data()) { body.innerHTML = `<p class="ref-intro">${ui().iz351None}</p>`; return; }
+    if (this.unitId) this.unit(body, this.unitId); else this.home(body);
+  },
+  open(unitId){ this.unitId = unitId || null; conjState.lab = "izhar"; LabIndex.use("izhar"); if (bodyGate341(() => this.open(unitId))) return; openConjugator(); },
+  // the Iẓhār story's header carries the way in
+  headerChip(){ if (!CUR || CUR.id !== this.SID) return; const row = document.getElementById("metaRow"); if (!row || row.querySelector(".iz351-go")) return;
+    const b = document.createElement("button"); b.type = "button"; b.className = "chip iz351-go"; b.textContent = ui().izharTab; b.addEventListener("click", () => this.open()); row.appendChild(b); },
+};
+LAB_TOOLS.push({ id: "izhar", ar: "إِظْهَار", key: "izharTab", group: "nahw" });
+LabFrame.SRC.add("izhar");
+{ const H0 = setHeader; setHeader = function (a, b, c) { H0.call(this, a, b, c); try { Izhar351.headerChip(); } catch (e) {} }; }
+Object.assign(L.en, {
+  izharTab: "Iẓhār course", iz351Intro: "Birgivī's Iẓhār al-Asrār as a path, in the book's order: bāb 1 the governor (the sixty ʿāmil), bāb 2 the governed (the thirty maʿmūl), bāb 3 the iʿrāb (its ten signs). Each unit: the matn's line, the suʾāl–cevap's explanation, the reason, examples from the stories and a short exercise.",
+  iz351Bab1: "Bāb 1 · the governor (ʿāmil)", iz351Bab2: "Bāb 2 · the governed (maʿmūl)", iz351Bab3: "Bāb 3 · the iʿrāb: its signs",
+  iz351Grp_samai: "samāʿī — heard · 49", iz351Grp_qiyasi: "qiyāsī — by rule · 9", iz351Grp_manawi: "maʿnawī — abstract · 2",
+  iz351Prog: "{d} of {n} units passed", iz351Passed: "passed", iz351Resume: "Continue", iz351Back: "← Iẓhār course",
+  iz351Matn: "The matn", iz351Cite: "Iẓhār, lithograph line {l} · the Iẓhār story, chapter {c}", iz351Tr: "The suʾāl–cevap (Tafsîlâtlı İzhâr Sual ve Cevapları)",
+  iz351TrQ: "Q {q}.", iz351Pending: "translation · pending review", iz351TrSrc: "The source's Turkish", iz351TrNoEn: "The answer is the source's Turkish; its English rendering is not written yet.",
+  iz351NoTr: "The suʾāl–cevap has no question on this one.", iz351Holes: "«…» marks Arabic the source file lost; the words are in the matn line above.", iz351Why: "Why?", iz351Ex: "From the stories",
+  iz351NoEx: "No story word yet whose authored line and the engine both name this — it is the next work.",
+  iz351Open: "Open in the story", iz351Engine: "See it in the engine", iz351Exercise: "Exercise ({n})",
+  iz351AskAmil: "Which ʿāmil governs the marked word?", iz351AskMamul: "Which of the thirty maʿmūl is the marked word?", iz351AskSign: "Which sign of iʿrāb does the marked word carry?",
+  iz351Writer: "<bdi lang=\"ar\" dir=\"rtl\">«يُقَالُ / لَا يُقَالُ»</bdi> — is it said?", iz351WriterIntro: "Rules for the writer: what the book says is said and what it says is not. The engine cannot meet them in a text — you can.",
+  iz351WriterGo: "The book's examples ({n})", iz351WriterAsk: "The book's own example: is it said?", iz351Said: "it is said", iz351NotSaid: "it is not said",
+  iz351WriterWhy: "The matn (lithograph line {l}), as the Iẓhār story carries it:", iz351OpenMatn: "Open the matn", iz351None: "The course's table is not in this build.",
+});
+Object.assign(L.tr, {
+  izharTab: "İzhâr dersi", iz351Intro: "Birgivî'nin İzhârü'l-Esrâr'ı bir yol olarak, kitabın sırasıyla: 1. bab âmil (altmış âmil), 2. bab ma'mûl (otuz ma'mûl), 3. bab i'râb (on alâmeti). Her ünitede: matnın satırı, sual-cevabın izahı, sebebi, hikâyelerden misaller ve kısa bir alıştırma.",
+  iz351Bab1: "1. Bab · Âmil", iz351Bab2: "2. Bab · Ma'mûl", iz351Bab3: "3. Bab · İ'râb: alâmetleri",
+  iz351Grp_samai: "semâî · 49", iz351Grp_qiyasi: "kıyâsî · 9", iz351Grp_manawi: "ma'nevî · 2",
+  iz351Prog: "{n} üniteden {d} tanesi geçildi", iz351Passed: "geçildi", iz351Resume: "Devam et", iz351Back: "← İzhâr dersi",
+  iz351Matn: "Matn", iz351Cite: "İzhâr, taş baskı satır {l} · İzhâr hikâyesi, {c}. bölüm", iz351Tr: "Sual-cevap (Tafsîlâtlı İzhâr Sual ve Cevapları)",
+  iz351TrQ: "Soru {q}.", iz351Pending: "çeviri · gözden geçirilecek", iz351TrSrc: "Kaynağın Türkçesi", iz351TrNoEn: "Cevap kaynağın Türkçesidir.",
+  iz351NoTr: "Sual-cevapta bunun sorusu yok.", iz351Holes: "«…» işareti, kaynak dosyada okunamayan Arapçanın yeridir; kelimeler yukarıdaki matn satırındadır.", iz351Why: "Neden?", iz351Ex: "Hikâyelerden",
+  iz351NoEx: "Henüz yazarın satırının ve motorun ikisinin de bunu söylediği bir kelime yok — sıradaki iş bu.",
+  iz351Open: "Hikâyede aç", iz351Engine: "Motorda gör", iz351Exercise: "Alıştırma ({n})",
+  iz351AskAmil: "İşaretli kelimeyi hangi âmil amel ediyor?", iz351AskMamul: "İşaretli kelime otuz ma'mûlün hangisi?", iz351AskSign: "İşaretli kelimenin i'râb alâmeti hangisi?",
+  iz351Writer: "<bdi lang=\"ar\" dir=\"rtl\">«يُقَالُ / لَا يُقَالُ»</bdi> — söylenir mi?", iz351WriterIntro: "Yazana kurallar: kitabın «söylenir» ve «söylenmez» dedikleri. Motor bunları metinde göremez — sen görebilirsin.",
+  iz351WriterGo: "Kitabın misalleri ({n})", iz351WriterAsk: "Kitabın kendi misali: böyle söylenir mi?", iz351Said: "söylenir", iz351NotSaid: "söylenmez",
+  iz351WriterWhy: "Matn (taş baskı satır {l}), İzhâr hikâyesindeki hâliyle:", iz351OpenMatn: "Matnı aç", iz351None: "Dersin tablosu bu sürümde yok.",
+});
+// ── v351-I END
 let ILAL_ITEMS = null;
 function limadhaItems(){ return ILAL_ITEMS || (ILAL_ITEMS = Ilal348.gameItems()); }
 function startLimadha(){
@@ -24751,6 +24930,7 @@ class Nahw342Engine {
     sababi:   { cert: "exact", cite: ["Shudhūr R49 (p. 189) «مُخْتَلِفٌ أَلْوَانُهُ»", "Shudhūr R51 «عَمْرٌو مَضْرُوبٌ غُلَامُهُ»", "Iẓhār l. 35", "Kāfiya 16:s14"], gate: "a participle with tanwīn (a khabar or a naʿt) and right after it a noun in written rafʿ carrying a pronoun" },
     wasf:     { cert: "exact", cite: ["Shudhūr R65, R68 (p. 210–213) «أَقَائِمٌ الزَّيْدَانِ»", "Iẓhār l. 101 «الصِّفَةُ الْوَاقِعَةُ بَعْدَ … الِاسْتِفْهَامِ أَوِ النَّفْيِ رَافِعَةً لِظَاهِرٍ»"], gate: "a singular waṣf after the question or the negation and then a dual / plural in rafʿ" },
     wasfOff:  { cert: "offered", cite: ["Shudhūr R65"], gate: "the same with a singular after it: the doer that fills the khabar, or the delayed mubtadaʾ" },
+    wasfHead: { cert: "exact", cite: ["Iẓhār l. 101 «وَلَيْسَ … مُبْتَدَأً … بَلْ فَاعِلُهُ سَادٌّ مَسَدَّ الْخَبَرِ»", "Iẓhār l. 80 «أَمَضْرُوبٌ الزَّيْدَانِ»"], gate: "(v351-I) the waṣf whose dual / plural after it the wasf rule names «سَدَّ مَسَدَّ الْخَبَرِ»: its own line drops «وَخَبَرُهُ «…»» — the waṣf has no khabar" },
     maful2Off:{ cert: "offered", cite: ["Shudhūr R207 (the heart verbs take two objects only in their heart senses)"], gate: "the second accusative of a heart verb (رَأَى، وَجَدَ، عَلِمَ …): its second object, or a ḥāl when the verb means seeing" },
     maful2:   { cert: "exact", cite: ["Shudhūr R203, R206 (p. 367–369)", "Iẓhār l. 30 «الْقِسْمُ الْأَوَّلُ مَا كَانَ مَفْعُولُهُ الثَّانِي مُبَايِنًا لِلْأَوَّلِ»", "Kāfiya 24:s7"], gate: "the second accusative of a verb of the two-object classes (DabtEngine.TWO_OBJ / DITRANS / the heart verbs)" },
   };
@@ -24773,7 +24953,7 @@ class Nahw342Engine {
     const r = rows[i]; if (!r) return null;
     this._busy = true;
     try {
-      for (const f of [this.laDual, this.fiveRaf, this.qasam, this.rubba, this.qabl, this.fujaa, this.idhaFail, this.dem, this.fasl, this.shaan, this.sababi, this.wasf, this.maful2]) {
+      for (const f of [this.laDual, this.fiveRaf, this.qasam, this.rubba, this.qabl, this.fujaa, this.idhaFail, this.dem, this.fasl, this.shaan, this.sababi, this.wasf, this.wasfHead, this.maful2]) {
         const v = f.call(this, rows, i, L, r); if (v) return v;
       }
       return null;
@@ -24923,6 +25103,13 @@ class Nahw342Engine {
     const off = kind === "act" ? "فَاعِلٌ لِاسْمِ الْفَاعِلِ «" + this.nf(p) + "»" : "نَائِبُ فَاعِلٍ لِاسْمِ الْمَفْعُولِ «" + this.nf(p) + "»";
     return this.out(L, { rule: "sababi", ar: "اسْمٌ، مَرْفُوعٌ " + sign + "، " + off + "، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ",
       en: "raised — the " + (kind === "act" ? "doer of the active participle" : "deputy doer of the passive participle") + " «" + this.nf(p) + "», which leans on what it describes", tr: "merfû — «" + this.nf(p) + "» " + (kind === "act" ? "ism-i fâilinin fâili" : "ism-i mef'ûlünün nâib-i fâili") });
+  }
+  // ── wasfHead (v351-I) · أَمَضْرُوبٌ الزَّيْدَانِ: the waṣf is the mubtadaʾ with no khabar — its doer fills the khabar's place (Iẓhār l. 101)
+  static wasfHead(rows, i, L, r){
+    if (!this.isNoun(r) || !/، وَخَبَرُهُ «[^»]+»/.test(L.ar) || !rows[i + 1]) return null;
+    let v = null; try { v = this.wasf(rows, i + 1, { ar: "" }, rows[i + 1]); } catch (e) { v = null; }
+    if (!v || v.n342 !== "wasf") return null;
+    return Object.assign({}, L, { ar: L.ar.replace(/، وَخَبَرُهُ «[^»]+»/, ""), en: String(L.en || "").replace(/ — and its khabar is «[^»]+»/, ""), tr: String(L.tr || "").replace(/ — ve haberi «[^»]+»/, ""), n342: "wasfHead" });
   }
   // ── wasf · أَقَائِمٌ الزَّيْدَانِ
   static wasf(rows, i, L, r){

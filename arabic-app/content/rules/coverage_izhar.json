@@ -3,10 +3,10 @@
  "source_file": "research/sources/izhar-al-asrar-matn-lithograph.txt",
  "built_by": "tools/ledger/build_ledger.py",
  "counts": {
-  "applied": 149,
+  "applied": 151,
   "noted": 7,
   "not-automatable": 5,
-  "open": 2,
+  "open": 0,
   "heading": 0,
   "fragment": 0,
   "example": 0
@@ -1348,7 +1348,7 @@
      "re": "مبتدأ",
      "own": true,
      "ok": true,
-     "got": "اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدأ، وخبره «الزيدان»."
+     "got": "اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدأ."
     }
    ]
   },
@@ -2140,20 +2140,25 @@
    "line": 15,
    "ar": "ويجوز تقديم ما عدا هذا على متعلقه نحو بزيد مررت.",
    "kind": "cond",
-   "carried_by": [],
-   "status": "open",
+   "carried_by": [
+    "engine:TaalluqEngine · the fronted phrase (v351-I)",
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
+   ],
+   "status": "applied",
    "item": "وَيَجُوزُ تَقْدِيمُ مَا عَدَا هَذَا عَلَى مُتَعَلَّقِهِ",
    "probes": [
     {
-     "s": "بِزَيْدٍ مَرَرْتُ",
-     "w": "بزيد",
-     "re": "متعلق",
+     "js": "(() => { const r = SentenceAnalyzer.analyze('بِزَيْدٍ مَرَرْتُ'); const t = TaalluqEngine.of(r, 0) || {}; return t.kind === 'found' && t.at === 1 && !!t.ahead; })()",
      "own": true,
-     "ok": false,
-     "got": "اسم، مجرور وعلامة جره الكسرة الظاهرة."
+     "ok": true,
+     "got": "true"
+    },
+    {
+     "js": "(() => { const r = SentenceAnalyzer.analyze('مَرَرْتُ بِزَيْدٍ'); const t = TaalluqEngine.of(r, 1) || {}; return t.kind === 'found' && t.at === 0; })()",
+     "ok": true,
+     "got": "true"
     }
-   ],
-   "engine_hint": "TaalluqEngine"
+   ]
   },
   {
    "id": "I-17.2",
@@ -2162,7 +2167,8 @@
    "kind": "cond",
    "carried_by": [
     "engine:TaalluqEngine",
-    "note:hadhf-al-jarr"
+    "note:hadhf-al-jarr",
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
    ],
    "status": "applied",
    "item": "لَا يَجُوزُ حَذْفُ فِي مَعَ الْمَكَانِ الْمَحْدُودِ",
@@ -2182,7 +2188,9 @@
    "line": 19,
    "ar": "ولا يجوز تعلق الجارين بمعنى واحد بدون العطف بفعل واحد، فلا يقال مررت بزيد بعمرو ولا ضربت يوم الجمعة يوم السبت، بخلاف ضربت يوم الجمعة أمام المسجد وأكلت من ثمره من تفاحه.",
    "kind": "cond",
-   "carried_by": [],
+   "carried_by": [
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
+   ],
    "status": "not-automatable",
    "item": "لَا يَتَعَلَّقُ جَارَّانِ بِمَعْنًى وَاحِدٍ بِفِعْلٍ وَاحِدٍ",
    "reason": "a rule for the writer (مَرَرْتُ بِزَيْدٍ بِعَمْرٍو is not said); the reader never meets the forbidden form"
@@ -2426,7 +2434,8 @@
    "ar": "ويجوز تقديم أخبارها على أنفسها إلا ما في أوله ما فلا يجوز نحو قائما ما زال زيد، وكذا إن لم يدل ما بأن النافية، وأما إذا دل لم يمتنع التقديم نحو قائما لم يزل زيد.",
    "kind": "cond",
    "carried_by": [
-    "engine:Murib.line"
+    "engine:Murib.line",
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
    ],
    "status": "applied",
    "item": "وَيَجُوزُ تَقْدِيمُ أَخْبَارِهَا … إِلَّا مَا فِي أَوَّلِهِ مَا",
@@ -2679,20 +2688,39 @@
    "line": 80,
    "ar": "أو ما بمعناه نحو ضرب زيد وأمضروب الزيدان، ولا يكونان إلا اسمين أو في تأويله غير أن النائب قد يكون جارا ومجرورا نحو مر بزيد، فيجب إفراد عاملهما وتذكيره ولا يجوز تقديمهما على عاملهما ولا حذفهما معا إلا من المصدر وقد مر.",
    "kind": "cond",
-   "carried_by": [],
-   "status": "open",
+   "carried_by": [
+    "engine:Murib.doer · the jarr phrase as nāʾib; Nahw342Engine · wasf / wasfHead (v351-I)",
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
+   ],
+   "status": "applied",
    "item": "فَيَجِبُ إِفْرَادُ عَامِلِهِمَا وَتَذْكِيرُهُ … وَلَا يَجُوزُ تَقْدِيمُهُمَا",
    "probes": [
     {
      "s": "مُرَّ بِزَيْدٍ",
-     "w": "بزيد",
-     "re": "نائب فاعل|في محل رفع",
+     "w": "مر",
+     "re": "نائب الفاعل شبه الجملة «بزيد» في محل رفع",
      "own": true,
-     "ok": false,
-     "got": "اسم، مجرور وعلامة جره الكسرة الظاهرة."
+     "ok": true,
+     "got": "فعل ماض مبني للمجهول، مبني على الفتح، ونائب الفاعل شبه الجملة «بزيد» في محل رفع، أو ضمير مستتر إن تقدم ما يعود عليه."
+    },
+    {
+     "s": "أَمَضْرُوبٌ الزَّيْدَانِ",
+     "w": "الزيدان",
+     "re": "نائب فاعل سد مسد الخبر",
+     "own": true,
+     "ok": true,
+     "got": "اسم، مرفوع وعلامة رفعه الألف لأنه مثنى، نائب فاعل سد مسد الخبر."
+    },
+    {
+     "s": "أَمَضْرُوبٌ الزَّيْدَانِ",
+     "w": "أمضروب",
+     "re": "مبتدأ",
+     "not": "خبره",
+     "own": true,
+     "ok": true,
+     "got": "اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدأ."
     }
-   ],
-   "engine_hint": "Murib.doer"
+   ]
   },
   {
    "id": "I-80.1",
@@ -2764,7 +2792,9 @@
    "line": 98,
    "ar": "وأما جمع المذكر السالم فيجب تذكير عامله فتقول جاء المسلمون أو رجل قاعد ناصروه، وإذا أسند إلى ضميره يجب كونه جمعا مذكرا نحو المسلمون جاؤوا أو يجيئون أو جاؤون.",
    "kind": "cond",
-   "carried_by": [],
+   "carried_by": [
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
+   ],
    "status": "not-automatable",
    "item": "جَمْعُ الْمُذَكَّرِ السَّالِمِ يَجِبُ تَذْكِيرُ عَامِلِهِ",
    "reason": "agreement the writer must keep; the reader's line is the same either way"
@@ -2906,7 +2936,8 @@
    "ar": "والسادس خبر باب إن وأمره كأمر خبر المبتدأ لكن لا يجوز تقديمه على اسمها إلا أن يكون ظرفا نحو إن في الدار رجلا.",
    "kind": "cond",
    "carried_by": [
-    "engine:InnaEngine · the fronted khabar"
+    "engine:InnaEngine · the fronted khabar",
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
    ],
    "status": "applied",
    "item": "لَا يَجُوزُ تَقْدِيمُ خَبَرِ إِنَّ عَلَى اسْمِهَا إِلَّا أَنْ يَكُونَ ظَرْفًا",
@@ -3159,7 +3190,8 @@
    "ar": "تقديمه ولا معموله على المضاف إلا أن يكون المضاف لفظ غير فيجوز تقديم معمول المضاف إليه عليه نحو أنا زيد غير ضارب لكونه بمعنى لا أضرب، ولا الفصل بينهما بشيء في السعة غير ما سمع ولا يقاس عليه ولا في الضرورة إلا بالظرف.",
    "kind": "cond",
    "carried_by": [
-    "note:al-majrur-bil-harf-wa-bil-idafa"
+    "note:al-majrur-bil-harf-wa-bil-idafa",
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
    ],
    "status": "noted",
    "item": "وَلَا يَجُوزُ تَقْدِيمُ الْمُضَافِ إِلَيْهِ … إِلَّا أَنْ يَكُونَ الْمُضَافُ لَفْظَ غَيْرٍ",
@@ -3184,7 +3216,8 @@
    "kind": "cond",
    "carried_by": [
     "engine:ShartEngine",
-    "note:al-majzum-wal-shart-wal-jaza"
+    "note:al-majzum-wal-shart-wal-jaza",
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
    ],
    "status": "applied",
    "item": "فَالْجَزْمُ فِي الْمُضَارِعِ وَاجِبٌ … وَإِنْ كَانَ الْأَوَّلُ مَاضِيًا جَازَ",
@@ -3290,7 +3323,8 @@
    "kind": "cond",
    "carried_by": [
     "note:al-atf-bil-huruf-wa-ahkamuh",
-    "note:huruf-al-atf-fil-kafiya"
+    "note:huruf-al-atf-fil-kafiya",
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
    ],
    "status": "noted",
    "item": "وَإِذَا عُطِفَ عَلَى الضَّمِيرِ الْمَرْفُوعِ الْمُتَّصِلِ يَجِبُ تَأْكِيدُهُ",
@@ -3302,7 +3336,8 @@
    "ar": "فيجب ويمتنع له، ويجوز عطف شيئين بحرف واحد على معمولي عامل واحد بالاتفاق نحو ضرب زيد عمرا وبكر خالدا، ولا يجوز على معمولي عاملين إلا عند تقديم الجار على رأي نحو في الدار زيد والحجرة عمرو.",
    "kind": "cond",
    "carried_by": [
-    "note:al-atf-bil-huruf-wa-ahkamuh"
+    "note:al-atf-bil-huruf-wa-ahkamuh",
+    "course:izhar351 · يُقَالُ / لَا يُقَالُ"
    ],
    "status": "noted",
    "item": "وَيَجُوزُ عَطْفُ شَيْئَيْنِ بِحَرْفٍ وَاحِدٍ عَلَى مَعْمُولَيْ عَامِلٍ وَاحِدٍ",
