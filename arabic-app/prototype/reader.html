@@ -2885,6 +2885,193 @@ body.data-pending header.app::after{content:"";position:absolute;left:0;right:0;
      403px phone budget (wave 72). The sort row's own bottom margin gives back the slack. */
   #story > .lib-sort { margin-bottom: .5rem; }
 }
+
+/* ================= v340 — a calmer door, better sheets, real covers =================
+   Tokens only. 1) THE SHEET FRAME: one frame for every sheet — a grabber, a round 44 px close at the top end that stays
+   while the content scrolls, an even scrim, never taller than the screen below the status area, a 200 ms slide that
+   reduced motion turns off (the old .34 s spring sat later in the source than the reduced-motion rule and beat it). */
+:root { --scrim: rgba(10,16,20,.5); }
+.scrim { background: var(--scrim); transition: opacity var(--dur-base) var(--ease); }
+.sheet { transition: transform var(--dur-base) var(--ease); max-height: min(88dvh, calc(100dvh - var(--s7) - env(safe-area-inset-top, 0px))); }
+.sheet:focus { outline: none; }
+.sheet-top { position: sticky; top: 0; z-index: 3; height: var(--s5); background: var(--panel); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.sheet-top { padding-top: var(--s2); box-sizing: border-box; }
+.sheet-top .grab { margin: 0 auto; width: 2.6rem; height: 4px; opacity: 1; background: var(--line); }
+.sheet-x { position: absolute; inset-inline-end: var(--s3); top: var(--s2); width: var(--tap); height: var(--tap); border-radius: 50%;
+  border: 0; background: var(--sf2); color: var(--ink); display: grid; place-items: center; cursor: pointer; padding: 0;
+  transition: background var(--dur-fast) var(--ease); }
+.sheet-x:hover { background: var(--accent-soft); }
+.sheet-x:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sheet-x svg { width: 20px; height: 20px; }
+.sheet-inner { padding-top: var(--s2); padding-inline: var(--s4); }
+#sheet::before { display: none; }   /* the older drawn grabber: the frame carries one */
+.sheet-inner > :first-child { max-width: calc(100% - var(--tap) - var(--s2)); }   /* room for the close; max-width, never a margin, so a width:100% row cannot overflow */
+@media (prefers-reduced-motion: reduce) { .sheet, .scrim, .sheet-x, #toast { transition: none !important; } }
+
+/* 2) THE WORD SHEET: the header of the design (part of speech · meaning | word · dictionary form · Listen | Add), then ONE
+   segmented row of short tabs that fits 390 px in both languages */
+.ws-head { display: grid; gap: var(--s3); margin-bottom: var(--s3); font-family: var(--ui-font); }
+.ws-top { display: flex; align-items: center; gap: var(--s2); min-height: var(--tap); }
+.ws-pos { font-weight: 600; }
+.ws-main { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s3); }
+.ws-head .w-head { margin: 0; flex: 1; min-width: 0; align-items: flex-start; }
+.ws-head .w-g1 { font-family: var(--body-font); font-size: var(--t-2xl); font-weight: 700; line-height: var(--lh-tight); margin: 0; }
+.ws-head .w-g2 { margin: 0; }
+.ws-dict { margin: var(--s1) 0 0; font-size: var(--t-sm); color: var(--ink-soft); }
+.ws-dict [lang="ar"] { font-family: var(--ar-font); font-size: 1.15rem; color: var(--ink); font-weight: 700; }
+.ws-head .lemma.ws-ar { flex: none; max-width: 55%; margin: 0; padding: 0; background: none; font-size: 2.6rem; line-height: 1.35;
+  color: var(--accent); font-weight: 700; overflow-wrap: anywhere; }
+.ws-acts { display: grid; grid-template-columns: 1fr 1.4fr; gap: var(--s2); }
+.ws-acts .btn { min-height: 48px; font-size: var(--t-md); }
+.ws-acts .btn svg { width: 20px; height: 20px; }
+.tabs.ws-tabs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); width: 100%; flex-wrap: nowrap;
+  gap: 2px; padding: 3px; border-radius: var(--r-md); background: var(--sf2); margin: 0 0 var(--s3); }
+.tabs.ws-tabs button { min-width: 0; min-height: var(--tap); padding: 0 var(--s1); border-radius: calc(var(--r-md) - 3px);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: var(--t-sm); color: var(--ink-soft); }
+.tabs.ws-tabs button.on { background: var(--panel); color: var(--ink); box-shadow: var(--e1); }
+
+/* 3) THE QUIZ: a title, a quiet count and a progress bar instead of a pill; answers say right / wrong in a word and a
+   mark, never by colour alone; the score line steps back */
+.q-head { display: grid; gap: var(--s2); margin: 0 0 var(--s2); }
+.tabs.q-title { background: none; padding: 0; width: auto; margin: 0; }
+.tabs.q-title .on { font: 700 var(--t-md) var(--ui-font); color: var(--ink); }
+.tabs.q-title .q-count { font-weight: 500; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.q-bar { height: 6px; border-radius: var(--r-full); background: var(--sf2); overflow: hidden; }
+.q-bar i { display: block; height: 100%; border-radius: inherit; background: var(--accent); transition: width var(--dur-base) var(--ease); }
+.opts button { position: relative; min-height: var(--tap); }
+@media (prefers-reduced-motion: no-preference) { .opts button:active:not(:disabled) { transform: scale(.98); } }
+.opts button:active:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.opts button.right { border-width: 2px; border-color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, var(--panel)); }
+.opts button.wrongpick { border-width: 2px; border-style: dashed; border-color: var(--danger); background: color-mix(in srgb, var(--danger) 10%, var(--panel)); }
+.opts button[data-mark]::after { content: attr(data-mark); display: inline-block; margin-inline-start: var(--s2); vertical-align: middle;
+  padding: 2px var(--s2); border-radius: var(--r-full); font: 700 var(--t-xs) var(--ui-font); direction: ltr; }
+.opts button.right[data-mark]::after { background: var(--ok); color: var(--panel); }
+.opts button.wrongpick[data-mark]::after { background: var(--danger); color: var(--panel); }
+.game-meta { font-size: var(--t-xs); opacity: .85; gap: var(--s3); margin-top: var(--s1); }
+
+/* 4) TOASTS: one style — a dark card above the thumb bar, a status the screen reader hears */
+#toast { background: var(--hero); color: var(--hero-ink); border-radius: var(--r-md); padding: var(--s3) var(--s4); font-size: var(--t-sm);
+  box-shadow: var(--shadow); transition: transform var(--dur-base) var(--ease); }
+
+/* 5) COVERS: the generated art (coverArt) under the Arabic title, on the level's tint, the same at every width; the title sits on
+   the calm end of the field, the medallion and the level seal on the other */
+.lib-card[data-lvlc="1"], .cov[data-lvlc="1"] { --lvlc: var(--lvl1); }
+.lib-card[data-lvlc="2"], .cov[data-lvlc="2"] { --lvlc: var(--lvl2); }
+.lib-card[data-lvlc="3"], .cov[data-lvlc="3"] { --lvlc: var(--lvl3); }
+.lib-card[data-lvlc="4"], .cov[data-lvlc="4"] { --lvlc: var(--lvl4); }
+#story .lib-card, #story:has(.lib-card) .lib-card { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; }
+#story .lib-card::before { z-index: 2; }
+#story .lib-card .cover, #story .lib-card .t { grid-area: 1 / 1; margin: calc(-1 * var(--s4)) calc(-1 * var(--s4)) var(--s2) calc(-1 * (var(--s4) + var(--s1))); }
+#story .lib-card .cover { display: block; height: auto; min-height: 104px; border-radius: 0; background-repeat: no-repeat; background-size: auto 100%;
+  background-position: left center; background-color: color-mix(in srgb, var(--lvlc, var(--accent)) 11%, var(--panel)); border-bottom: 1px solid var(--line); }
+#story .lib-card .t { z-index: 1; display: flex; align-items: center; justify-content: flex-start; min-height: 104px; background: none; border-bottom: 0;
+  text-align: right; padding: var(--s3) var(--s4); padding-inline-end: 40%; font-size: 1.6rem; line-height: 1.5; color: var(--ink); }
+#story .lib-card .t::after { content: none; }
+@media (min-width: 720px) { #story:has(.lib-card) .lib-card { grid-template-rows: auto auto 1fr auto; } #story:has(.lib-card) .lib-card .progress { align-self: end; } }
+@media (max-width: 860px) {
+  #story .lib-card .cover, #story .lib-card .t { margin: calc(-1 * var(--s3)) calc(-1 * var(--s3)) var(--s2); }
+  #story .lib-card .cover, #story .lib-card .t { min-height: 84px; }
+  #story .lib-card .t { font-size: 1.4rem; padding-inline-end: 38%; }
+}
+header.app[data-lvlc="1"] { --lvlc: var(--lvl1); } header.app[data-lvlc="2"] { --lvlc: var(--lvl2); }
+header.app[data-lvlc="3"] { --lvlc: var(--lvl3); } header.app[data-lvlc="4"] { --lvlc: var(--lvl4); }
+body:not(.lib-mode) header.app { position: relative; isolation: isolate; }
+/* the header is now a containing block, so the loading sweep (body.data-pending header.app::after, translateX to +100%) would push
+   the page sideways for a moment: the header clips sideways only (the 44 px hit areas above and below its chips stay) */
+header.app { position: relative; overflow-x: clip; }
+body:not(.lib-mode) header.app::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; border-radius: inherit;
+  background: var(--cover-img, none) no-repeat left center / auto 100%; opacity: .38; }
+/* the cover on the hero card of the story's end and the chapter's end: a framed tile of the art on the level's tint */
+.ce-cover { display: block; width: 100%; max-width: 15rem; height: 84px; border-radius: var(--r-md); position: relative;
+  background-color: color-mix(in srgb, var(--lvlc, var(--accent)) 14%, var(--panel)); background-repeat: no-repeat; background-size: auto 100%;
+  background-position: left center; border: 1px solid var(--hero-soft); }
+
+/* 6) THE DOOR: one header (date · title · search, streak, settings), one card, the continue hero, one filter row */
+.lib-mode header.app { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s3); align-items: end;
+  border-bottom: 0; padding-bottom: var(--s2); }
+.lib-mode header.app > .eyebrow { grid-column: 1; grid-row: 1; color: var(--ink-soft); font-size: var(--t-xs); letter-spacing: var(--track-caps); }
+.lib-mode header.app > h1.story-title { grid-column: 1; grid-row: 2; font-family: var(--body-font); direction: ltr; text-align: start;
+  font-size: 2.1rem; line-height: 1.15; margin: var(--s1) 0 0; font-weight: 700; letter-spacing: -.01em; }
+.lib-mode header.app > .story-sub { display: none; }
+.lib-mode header.app > .meta-row { grid-column: 1 / -1; grid-row: 3; margin-top: var(--s2); }
+.lib-mode header.app > .meta-row:empty { display: none; }
+.door-acts { grid-column: 2; grid-row: 1 / 3; align-self: center; display: flex; gap: var(--s2); }
+body:not(.lib-mode) .door-acts { display: none; }
+.door-b { min-width: var(--tap); height: var(--tap); border-radius: var(--r-full); border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s1); padding: 0 var(--s2); cursor: pointer; font: 700 var(--t-md) var(--ui-font); box-shadow: var(--btn-sh2); }
+.door-b svg { width: 20px; height: 20px; flex: none; }
+.door-b.door-streak svg { color: var(--fire); }
+.door-b.door-me { background: var(--sf2); border-color: var(--sf2); }
+.door-b:focus-visible, .lv-pill:focus-visible, .lib-filter-b:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (min-width: 861px) { .door-acts { display: none; } .lib-filter-b { display: none; } }
+@media (max-width: 860px) {
+  .lib-mode nav.controls { display: none; }
+  .lib-mode.lang-unset nav.controls { display: flex; }
+  .lib-mode.lang-unset nav.controls > :not(#uiLangSeg) { display: none !important; }
+  #story > .lib-sort { display: none; }
+}
+.sheet .lib-sort { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
+.sheet .lib-sort #srcPick { display: inline-flex; }
+.set-group { display: grid; gap: var(--s2); margin: var(--s3) 0; font-family: var(--ui-font); }
+.set-group .seg button { min-height: var(--tap); }
+/* the one card */
+.today-card .tc-head .stat-strip.mini.in-card { gap: 2px; }
+.today-card .tc-head .stat-strip.mini.in-card .st-tile { min-width: var(--tap); padding: 0 var(--s1); }
+.today-card .tc-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "ring h h" "ring goal chips";
+  align-items: center; column-gap: var(--s3); row-gap: 2px; }
+.today-card .tc-head .goal-card { grid-area: ring; border: 0; padding: 0; background: none; box-shadow: none; cursor: pointer; border-radius: 50%; margin: 0; }
+.today-card .tc-head .goal-ring { width: 52px; height: 52px; }
+.today-card .tc-head .goal-ring > span { width: 40px; height: 40px; font-size: var(--t-xs); font-weight: 700; }
+.today-card .tc-hl { grid-area: h; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.today-card .tc-goal { grid-area: goal; font-size: var(--t-xs); color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.today-card .tc-goal .tc-xp { color: color-mix(in srgb, var(--accent) 72%, var(--ink)); font-weight: 700; }
+.today-card .tc-head .stat-strip.mini.in-card { grid-area: chips; margin: 0; }
+/* the continue hero */
+.door-h { margin: var(--s4) 0 var(--s2); font: 600 var(--t-xs) var(--ui-font); letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--ink-soft); }
+.continue-card.cc340 { display: grid; gap: var(--s2); width: 100%; text-align: start; padding: var(--s4); margin: 0 0 var(--s3); border-radius: var(--radius);
+  background: var(--hero); color: var(--hero-ink); border: 0; position: relative; overflow: hidden; isolation: isolate; cursor: pointer; font-family: var(--ui-font); }
+.continue-card.cc340::before, .continue-card.cc340::after { content: none; }
+.cc340 .cc-art { position: absolute; z-index: -1; top: 0; bottom: 0; left: 0; width: 75%; background-repeat: no-repeat; background-size: auto 100%;
+  background-position: left center; opacity: .3; pointer-events: none; }
+.cc340 .cc-chip { justify-self: start; padding: 4px var(--s3); border-radius: var(--r-full); background: var(--hero-soft); color: var(--hero-ink);
+  font-size: var(--t-xs); font-weight: 700; letter-spacing: var(--track-caps); text-transform: uppercase; }
+.cc340 .cc-title { font-family: var(--ar-font); font-size: 2.2rem; line-height: 1.5; direction: rtl; text-align: right; color: var(--hero-ink); font-weight: 700; margin: 0; }
+.cc340 .cc-foot { display: flex; align-items: flex-end; gap: var(--s3); }
+.cc340 .cc-main { flex: 1; min-width: 0; display: grid; gap: var(--s2); }
+.cc340 .cc-row { display: flex; justify-content: space-between; gap: var(--s2); font-size: var(--t-sm); }
+.cc340 .cc-sub { color: var(--hero-ink); opacity: 1; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: var(--t-sm); }
+.cc340 .cc-count { flex: none; color: var(--hero-ink); opacity: .85; font-variant-numeric: tabular-nums; }
+.cc340 .cc-bar { display: block; margin: 0; height: 6px; border-radius: var(--r-full); background: var(--hero-soft); }
+.cc340 .cc-bar > span { display: block; height: 100%; border-radius: inherit; background: var(--hero-ac); }
+.cc340 .cc-play { width: 52px; height: 52px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--hero-ac); color: var(--hero); }
+.cc340 .cc-play svg { width: 24px; height: 24px; }
+/* the filter row */
+.lib-filter { display: flex; align-items: center; gap: var(--s2); margin: var(--s4) 0 var(--s2); font-family: var(--ui-font); }
+.lv-pills { flex: 1; min-width: 0; display: flex; gap: var(--s2); overflow-x: auto; scrollbar-width: none; padding: 2px; overscroll-behavior-x: contain;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.25rem), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 1.25rem), transparent); }
+.lv-pills::-webkit-scrollbar { display: none; }
+.lv-pill { flex: none; min-height: var(--tap); padding: 0 var(--s4); border-radius: var(--r-full); border: 1px solid var(--line); background: var(--panel);
+  color: var(--ink); font: 600 var(--t-sm) var(--ui-font); cursor: pointer; white-space: nowrap; }
+.lv-pill.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.lib-filter-b { flex: none; min-height: var(--tap); display: inline-flex; align-items: center; gap: var(--s1); padding: 0 var(--s3); border-radius: var(--r-full);
+  border: 1px solid var(--line); background: var(--sf2); color: var(--ink); font: 600 var(--t-sm) var(--ui-font); cursor: pointer; }
+.lib-filter-b svg { width: 16px; height: 16px; transform: rotate(90deg); }
+#story[data-lvf="1"] > .lib-card:not([data-lvlc="1"]), #story[data-lvf="2"] > .lib-card:not([data-lvlc="2"]),
+#story[data-lvf="3"] > .lib-card:not([data-lvlc="3"]), #story[data-lvf="4"] > .lib-card:not([data-lvlc="4"]) { display: none; }
+.free-line { margin: var(--s1) 0 var(--s3); font: var(--t-xs)/1.45 var(--ui-font); color: var(--ink-soft); }
+/* collection tiles, as the design: the Arabic in the accent, the name, one line for the count */
+.src-card small { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* 7) EMPTY STATES: a small generated mark of the covers' family (the khātam star, drawn as a mask so its colour is the
+   accent token), one sentence, one action */
+:root { --mark340: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M24 4l5.7 10.3L41 9.9l-3.4 11.4L44 24l-6.4 4.7L41 38.1l-11.3-4.4L24 44l-5.7-10.3L7 38.1l3.4-9.4L4 24l6.4-4.7L7 9.9l11.3 4.4z'/%3E%3Ccircle cx='24' cy='24' r='7'/%3E%3C/g%3E%3C/svg%3E"); }
+.e340::before { content: ""; display: block; position: static; transform: none; inset: auto; opacity: 1; width: 44px; height: 44px; margin: 0 auto var(--s3);
+  background: color-mix(in srgb, var(--accent) 70%, transparent); -webkit-mask: var(--mark340) center / contain no-repeat; mask: var(--mark340) center / contain no-repeat; }
+.empty-box { display: grid; justify-items: center; gap: var(--s3); padding: var(--s4) 0; text-align: center; }
+.empty-box .empty, .e340 { padding: var(--s3) var(--s4) 0; margin: 0; }
+.today-card .tc-first { display: flex; align-items: center; gap: var(--s3); }
+.today-card .tc-first::before { content: ""; flex: none; width: 32px; height: 32px; background: color-mix(in srgb, var(--accent) 70%, transparent);
+  -webkit-mask: var(--mark340) center / contain no-repeat; mask: var(--mark340) center / contain no-repeat; }
 </style>
 
 <div class="readbar" id="readbar" aria-hidden="true"><div></div></div>
@@ -2968,8 +3155,8 @@ body.data-pending header.app::after{content:"";position:absolute;left:0;right:0;
 
 <button class="scrim" id="scrim" aria-label="Close panel"></button>
 
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Details">
-  <div class="grab"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Details" tabindex="-1">
+  <div class="sheet-top"><div class="grab"></div><button class="sheet-x" id="sheetClose" type="button" aria-label="Close" title="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6 6 18"/></svg></button></div>
   <div class="sheet-inner" id="sheetInner"></div>
 </div>
 
@@ -2994,6 +3181,13 @@ const L = {
         /* v338 */ vmPending:"Author's analysis · awaiting the hoca's review", vmReviewed:"Reviewed by a hoca", vmAuto:"Automatic analysis", vmReport:"Report an error", vmBackup:"Back up / Restore",
         vmLegend:"Analysis marks — «Author's analysis · awaiting the hoca's review»: the text's own iʿrāb, not yet signed off · «Reviewed by a hoca»: signed off · «Automatic analysis»: computed by the engine, as for a sentence you type.",
         vmReportOn:"Reporting is on — tap ⚑ beside a sentence, or «Report an error» in a word's iʿrāb; your notes travel with the backup.",
+        /* v340 */ close340:"Close", wsMeaning340:"Meaning", wsSarf340:"Sarf", wsIrab340:"Iʿrab", wsGrammar340:"Grammar", wsDict340:"Dictionary form", wsListen340:"Listen", wsAdd340:"＋ Add to deck",
+        qRight340:"Right", qWrong340:"Wrong", qProg340:"Question {i} of {n}",
+        ceDone340:"Chapter {n} complete", ceLead340:"You read «{t}» from start to finish.", ceSent340:"Sentences", ceWords340:"Words", ceXp340:"XP from reading", ceWordsH340:"This chapter's words", ceHint340:"Tap a word to add it to your deck or take it out; added words come back tomorrow as review cards.", ceOpen340:"Chapter summary", ceLater340:"Back to the text",
+        doorSettings340:"Settings", setLang340:"Language", setTheme340:"Theme", filter340:"Filter", filterTitle340:"Sort and sources", lvAll340:"All",
+        lsReadCont340:"continue — the card below", heroCh340:"Chapter {n}", heroLv340:"Level {n}", heroSent340:"sentences",
+        freeLine340:"{n} locked stories are free this week · {d} days left; the rest open with Premium.",
+        emptyGo340:"Open a story to collect words", searchClear340:"Clear the search",
         lsH:"Today's lesson", lsStart:"Start the lesson", lsNext:"Next: {s}", lsDone:"Done for today — well studied.", lsStepDone:"Step done — the card shows the next one.",
         lsFirst:"While you read, tap any word: its meaning, its root and its role in the sentence open below.",
         lsRecall:"Recall", lsRecallSub:"review {n} due cards", lsRecallNone:"nothing due today", lsCollect:"Collect your first words", lsCollectSub:"save words as you read — step 1",
@@ -3434,6 +3628,13 @@ const L = {
         /* v338 */ vmPending:"Yazar çözümlemesi · hoca onayı bekliyor", vmReviewed:"Hoca onaylı", vmAuto:"Otomatik çözümleme", vmReport:"Hata bildir", vmBackup:"Yedekle / Geri yükle",
         vmLegend:"Çözümleme işaretleri — «Yazar çözümlemesi · hoca onayı bekliyor»: metnin kendi i'râbı, henüz onaylanmadı · «Hoca onaylı»: onaylandı · «Otomatik çözümleme»: yazdığın bir cümlede olduğu gibi motorun hesabı.",
         vmReportOn:"Bildirim açık — bir cümlenin yanındaki ⚑'ye ya da kelimenin i'râbındaki «Hata bildir»e dokun; notların yedekle birlikte taşınır.",
+        /* v340 */ close340:"Kapat", wsMeaning340:"Anlam", wsSarf340:"Sarf", wsIrab340:"İ'rab", wsGrammar340:"Gramer", wsDict340:"Sözlük hâli", wsListen340:"Dinle", wsAdd340:"＋ Desteye ekle",
+        qRight340:"Doğru", qWrong340:"Yanlış", qProg340:"Soru {i} / {n}",
+        ceDone340:"Bölüm {n} tamamlandı", ceLead340:"«{t}» bölümünü baştan sona okudun.", ceSent340:"Cümle", ceWords340:"Kelime", ceXp340:"Okuma XP'si", ceWordsH340:"Bu bölümün kelimeleri", ceHint340:"Dokunarak desteye ekle ya da çıkar; eklediklerin yarın tekrar kartı olarak gelir.", ceOpen340:"Bölüm özeti", ceLater340:"Metne dön",
+        doorSettings340:"Ayarlar", setLang340:"Dil", setTheme340:"Tema", filter340:"Filtrele", filterTitle340:"Sırala ve kaynaklar", lvAll340:"Tümü",
+        lsReadCont340:"devam et — aşağıdaki kart", heroCh340:"Bölüm {n}", heroLv340:"Seviye {n}", heroSent340:"cümle",
+        freeLine340:"Bu hafta {n} kilitli hikâye ücretsiz · {d} gün kaldı; diğerleri Premium ile açılır.",
+        emptyGo340:"Kelime toplamak için bir hikâye aç", searchClear340:"Aramayı temizle",
         lsH:"Bugünün dersi", lsStart:"Derse başla", lsNext:"Sıradaki: {s}", lsDone:"Bugünlük tamam — iyi çalıştın.", lsStepDone:"Adım tamam — kart sıradakini gösteriyor.",
         lsFirst:"Okurken herhangi bir kelimeye dokun: anlamı, kökü ve cümledeki görevi aşağıda açılır.",
         lsRecall:"Hatırla", lsRecallSub:"vakti gelen {n} kartı tekrar et", lsRecallNone:"bugün tekrar yok", lsCollect:"İlk kelimelerini topla", lsCollectSub:"okurken kelime kaydet — 1. adım",
@@ -4713,7 +4914,7 @@ function openStoryEnd(st){
   sheetInner.innerHTML = `
   <section class="story-end" aria-labelledby="seTitle">
     <div class="se-hero">
-      <span class="se-badge" aria-hidden="true">۞</span>
+      <span class="ce-cover cov" data-lvlc="${Math.min(4, Math.max(1, st.level))}" style="background-image:url('${coverArt(st)}')" aria-hidden="true"></span>
       <p class="se-eyebrow">${ui().seEyebrow}</p>
       <h2 class="se-title" id="seTitle" lang="ar" dir="rtl">${st.title.ar}</h2>
       <p class="se-lead">${T(st.title)} — ${ui().seLead}</p>
@@ -4750,6 +4951,56 @@ function openStoryEnd(st){
   });
   sheetInner.querySelector("[data-se-study]").addEventListener("click", () => { closeSheet(); openDeck(); });
   sheetInner.querySelector("[data-se-back]").addEventListener("click", () => { closeSheet(); renderLibrary(); });
+  showSheet();
+}
+
+// (v340) the chapter's own end, as the design draws it: the story's cover and the chapter's Arabic title, «Chapter N complete»,
+// three tiles (sentences · words · the XP its reading earned: Xp.READ a sentence), the chapter's words as chips that add to or
+// take from the deck, «Add all», then the v338 questions as the one primary action. Opened from the chapter's foot.
+function chapterEndWords(st, ch){
+  const seen = new Map(), gl = st.glossary || GLOSSARY;
+  ch.sentences.forEach(sen => sen.tokens.forEach((tok, ti) => { const e = gl[tok.lex]; if (e && e.level >= 1 && !seen.has(tok.lex)) seen.set(tok.lex, { tok, sen, ti, e }); }));
+  return [...seen.values()];
+}
+function openChapterEnd(st, ch){
+  if (!st || !ch) return;
+  const U = ui(), all = chapterEndWords(st, ch), words = all.slice(0, 14), n = ch.sentences.length, q = chqOf(st, ch);
+  const allIn = words.length > 0 && words.every(w => cardSaved("word:" + w.tok.lex));
+  const tAr = ch.title && ch.title.ar ? ch.title.ar : st.title.ar, tLoc = T(ch.title || {}) || T(st.title);
+  sheetInner.innerHTML = `
+  <section class="story-end ch-done" id="chapterEnd" data-ch="${chN(ch)}" aria-labelledby="ceTitle">
+    <div class="se-hero ce-hero">
+      <span class="ce-cover cov" data-lvlc="${Math.min(4, Math.max(1, st.level))}" style="background-image:url('${coverArt(st)}')" aria-hidden="true"></span>
+      <p class="se-eyebrow">${U.ceDone340.replace("{n}", chN(ch))}</p>
+      <h2 class="se-title" id="ceTitle" lang="ar" dir="rtl">${tAr}</h2>
+      <p class="se-lead">${U.ceLead340.replace("{t}", escapeAttr(tLoc))}</p>
+    </div>
+    <div class="se-stats">
+      <div><b>${n}</b><span>${U.ceSent340}</span></div>
+      <div><b>${all.length}</b><span>${U.ceWords340}</span></div>
+      <div><b class="se-ac">+${n * Xp.READ}</b><span>${U.ceXp340}</span></div>
+    </div>
+    ${words.length ? `<div class="se-head"><span>${U.ceWordsH340}</span>
+      <button class="se-all" data-ce-all>${allIn ? U.seRemoveAll : U.seAddAll}</button></div>
+    <div class="se-chips">
+      ${words.map((w, i) => { const on = cardSaved("word:" + w.tok.lex);
+        return `<button class="se-chip${on ? " on" : ""}" data-ce-i="${i}" aria-pressed="${on}"><span class="ar" lang="ar">${w.e.lemma}</span><span>${escapeAttr(T(w.e.gloss).split(/[,(;]/)[0])}</span><span class="se-mark" aria-hidden="true">${on ? "✓" : "+"}</span></button>`; }).join("")}
+    </div>
+    <p class="se-hint">${U.ceHint340}</p>` : ""}
+    <div class="se-actions">
+      ${q ? "" : `<button class="btn primary" data-ce-check>${U.chqOffer.replace("{n}", 3)}</button>`}
+      <button class="btn${q ? " primary" : ""}" data-ce-back>${U.ceLater340}</button>
+    </div>
+  </section>`;
+  sheetInner.querySelectorAll("[data-ce-i]").forEach(b => b.addEventListener("click", () => {
+    const w = words[+b.dataset.ceI];
+    if (toggleSave(w.tok, { sen: w.sen, ti: w.ti }) === false) showToast(U.seDeckFull);
+    openChapterEnd(st, ch);
+  }));
+  const aa = sheetInner.querySelector("[data-ce-all]");
+  if (aa) aa.addEventListener("click", () => { words.forEach(w => { if (cardSaved("word:" + w.tok.lex) === allIn) toggleSave(w.tok, { sen: w.sen, ti: w.ti }); }); openChapterEnd(st, ch); });
+  const ck = sheetInner.querySelector("[data-ce-check]"); if (ck) ck.addEventListener("click", () => startChapterCheck(st, ch));
+  sheetInner.querySelector("[data-ce-back]").addEventListener("click", () => closeSheet());
   showSheet();
 }
 
@@ -4796,7 +5047,7 @@ function showToast(msg){
   let t = document.getElementById("toast");
   if (!t) {
     t = document.createElement("div");
-    t.id = "toast";
+    t.id = "toast"; t.setAttribute("role", "status"); t.setAttribute("aria-live", "polite");
     document.body.appendChild(t);
   }
   t.textContent = msg;
@@ -4837,30 +5088,64 @@ function setHeader(titleAr, sub, chipsHtml){
   const app = document.querySelector("header.app");
   if (CUR) app.dataset.lvlc = Math.min(4, Math.max(1, CUR.level));
   else delete app.dataset.lvlc;
+  // (v340) the story page wears its own cover behind the title
+  if (CUR) app.style.setProperty("--cover-img", `url("${coverArt(CUR)}")`); else app.style.removeProperty("--cover-img");
 }
 // ---------- generated cover art ----------
-// Every story wears a woven geometric band — an eight-point star lattice in
-// its level's muted colour, parameterised by a hash of the story id so no two
-// covers repeat and none is an asset. Deterministic: the same story always
-// weaves the same cloth.
-function coverArt(st){
-  let h = 0;
-  for (const c of st.id) h = (h * 31 + c.charCodeAt(0)) >>> 0;
-  const cols = { 1: "#5a9e6f", 2: "#6b93c4", 3: "#cf9f5d", 4: "#9a7fb8" };
-  const col = cols[Math.min(4, Math.max(1, st.level))];
-  const rot = h % 45, r = 9 + (h % 9), r2 = 14 + ((h >> 4) % 12);
-  const op = (0.3 + (h % 18) / 100).toFixed(2);
-  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72'>` +
-    `<g fill='none' stroke='${col}' stroke-width='1' opacity='${op}'>` +
-    `<rect x='18' y='18' width='36' height='36' transform='rotate(${rot} 36 36)'/>` +
-    `<rect x='18' y='18' width='36' height='36' transform='rotate(${rot + 45} 36 36)'/>` +
-    `<circle cx='36' cy='36' r='${r}'/>` +
-    `<circle cx='0' cy='0' r='${r2}'/><circle cx='72' cy='0' r='${r2}'/>` +
-    `<circle cx='0' cy='72' r='${r2}'/><circle cx='72' cy='72' r='${r2}'/>` +
-    `</g></svg>`;
-  // encodeURIComponent leaves apostrophes alone, and the style attribute wraps
-  // the URI in url('…') — so the SVG's quote marks must become %27 by hand.
-  return "data:image/svg+xml," + encodeURIComponent(svg).replace(/'/g, "%27");
+// (v340) Every story wears a cover that is ITS OWN and still an honest placeholder: no picture of anyone, only a geometric
+// composition seeded by the story id. The PATTERN FAMILY is the shelf's (stories: the eight-point khātam lattice; reports and
+// history: the six-point star; poetry: woven circles; mutūn: the square-Kufic weave; counsels and fiqh: the twelve-point
+// rosette; tales and maqāmāt: the chevron; practice: the dot grid); the seed sets the scale, the turn, the weight and a
+// medallion of 6–16 points, so two stories of one shelf still differ. The colour is the level's token, read from the live
+// theme (the theme is part of the cache key); the seal carries the level's number. The SVG is transparent — the field
+// under it is CSS (the level's tint on the panel), so the title sits on a calm ground that follows the theme. Deterministic,
+// built once per story and theme.
+var COVER_CACHE340 = new Map();
+function coverTheme340(){
+  const t = document.documentElement.dataset.theme || "";
+  return t || (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "auto-dark" : "auto");
+}
+function coverArt(st, theme = coverTheme340()){
+  const b = Math.min(4, Math.max(1, st.level || 1)), key = st.id + "|" + b + "|" + (st.level || 1) + "|" + theme;
+  const hit = COVER_CACHE340.get(key); if (hit) return hit;
+  let h = 2166136261;
+  for (const c of st.id) h = Math.imul(h ^ c.charCodeAt(0), 16777619) >>> 0;
+  const rnd = () => { h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0; h = Math.imul(h ^ (h >>> 13), 3266489909) >>> 0; return ((h ^= h >>> 16) >>> 0) / 4294967296; };
+  const css = getComputedStyle(document.documentElement);
+  const col = (css.getPropertyValue("--lvl" + b) || "").trim() || "currentColor", pan = (css.getPropertyValue("--panel") || "").trim() || "none";
+  const fam = ({ qisas: "khatam", akhbar: "hex", tarikh: "hex", shir: "circles", mutun: "kufic", wasaya: "rosette", fiqh: "rosette",
+    hikaya: "chevron", maqamat: "chevron", practice: "dots" })[sourceOf(st)] || "khatam";
+  const S = Math.round(24 + rnd() * 16), rot = [0, 15, 30, 45][Math.floor(rnd() * 4)] + Math.round(rnd() * 6), sw = (0.8 + rnd() * 0.8).toFixed(2);
+  const op = (0.42 + rnd() * 0.2).toFixed(2), ox = Math.round(rnd() * S), oy = Math.round(rnd() * S);
+  const f = n => +n.toFixed(1), c = S / 2;
+  const star = (cx, cy, n, R, r, a0 = 0) => { let d = ""; for (let i = 0; i < 2 * n; i++) { const a = a0 + Math.PI * i / n, rr = i % 2 ? r : R; d += (i ? "L" : "M") + f(cx + rr * Math.sin(a)) + " " + f(cy - rr * Math.cos(a)); } return d + "Z"; };
+  const tile = {
+    khatam:  `<path d='${star(c, c, 8, S * 0.42, S * 0.3)}'/><circle cx='${c}' cy='${c}' r='${f(S * 0.12)}'/><path d='M0 0L${f(S * 0.16)} ${f(S * 0.16)}M${S} 0L${f(S * 0.84)} ${f(S * 0.16)}M0 ${S}L${f(S * 0.16)} ${f(S * 0.84)}M${S} ${S}L${f(S * 0.84)} ${f(S * 0.84)}'/>`,
+    hex:     `<path d='${star(c, c, 6, S * 0.46, S * 0.27)}'/><path d='${star(c, c, 6, S * 0.2, S * 0.2, Math.PI / 6)}'/>`,
+    circles: `<circle cx='0' cy='0' r='${c}'/><circle cx='${S}' cy='0' r='${c}'/><circle cx='0' cy='${S}' r='${c}'/><circle cx='${S}' cy='${S}' r='${c}'/><circle cx='${c}' cy='${c}' r='${c}'/>`,
+    kufic:   `<path d='M0 ${f(S * 0.25)}H${f(S * 0.75)}V${S}M${f(S * 0.25)} 0V${f(S * 0.75)}H${S}'/><rect x='${f(S * 0.42)}' y='${f(S * 0.42)}' width='${f(S * 0.16)}' height='${f(S * 0.16)}'/>`,
+    rosette: `<path d='${star(c, c, 12, S * 0.45, S * 0.3)}'/><circle cx='${c}' cy='${c}' r='${f(S * 0.16)}'/>`,
+    chevron: `<path d='M0 ${f(S * 0.35)}L${c} ${f(S * 0.1)}L${S} ${f(S * 0.35)}M0 ${f(S * 0.85)}L${c} ${f(S * 0.6)}L${S} ${f(S * 0.85)}'/>`,
+    dots:    `<circle cx='${c}' cy='${c}' r='${f(S * 0.12)}'/><circle cx='0' cy='0' r='${f(S * 0.06)}'/>`,
+  }[fam];
+  const N = [6, 8, 10, 12, 16][Math.floor(rnd() * 5)], mx = Math.round(52 + rnd() * 40), my = Math.round(42 + rnd() * 12), R = Math.round(27 + rnd() * 8);
+  const lv = Math.max(1, st.level || 1);
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 96' preserveAspectRatio='xMinYMid meet'>` +
+    `<defs><pattern id='p' width='${S}' height='${S}' patternUnits='userSpaceOnUse' patternTransform='translate(${ox} ${oy}) rotate(${rot})'>` +
+    `<g fill='none' stroke='${col}' stroke-width='${sw}'>${tile}</g></pattern>` +
+    `<linearGradient id='g'><stop offset='0' stop-color='white'/><stop offset='.38' stop-color='white' stop-opacity='.85'/><stop offset='.62' stop-color='white' stop-opacity='0'/></linearGradient>` +
+    `<mask id='m'><rect width='320' height='96' fill='url(%23g)'/></mask></defs>` +
+    `<rect width='320' height='96' fill='url(%23p)' opacity='${op}' mask='url(%23m)'/>` +
+    `<g fill='none' stroke='${col}'><circle cx='${mx}' cy='${my}' r='${R + 6}' stroke-width='1.2' fill='${pan}' fill-opacity='.7'/>` +
+    `<path d='${star(mx, my, N, R, R * 0.62)}' stroke-width='1.4'/><path d='${star(mx, my, N, R * 0.55, R * 0.4, Math.PI / N)}' stroke-width='1'/>` +
+    `<circle cx='${mx}' cy='${my}' r='${f(R * 0.22)}' fill='${col}' fill-opacity='.25'/></g>` +
+    `<g transform='translate(${f(mx + R * 0.8)} ${f(my + R * 0.55)})'><path d='${star(0, 0, 8, 13, 10.5)}' fill='${col}'/>` +
+    `<text x='0' y='4.5' text-anchor='middle' font-family='sans-serif' font-size='12' font-weight='700' fill='${pan}'>${lv}</text></g></svg>`;
+  // encodeURIComponent leaves apostrophes alone, and the style attribute wraps the URI in url('…') — so the SVG's quote
+  // marks must become %27 by hand; the pattern references were written %23 already, so only the rest is encoded
+  const uri = "data:image/svg+xml," + encodeURIComponent(svg).replace(/%2523/g, "%23").replace(/'/g, "%27");
+  COVER_CACHE340.set(key, uri);
+  return uri;
 }
 
 function renderLibrary(){
@@ -4869,37 +5154,28 @@ function renderLibrary(){
   CUR = null; GLOSSARY = {}; MORPH = {}; CHAPTERS = [];
   document.body.classList.add("lib-mode");
   document.getElementById("backLib").hidden = true;
-  setHeader("\u0642\u0650\u0635\u0651\u064e\u0629", ui().libSub,
-    `<span class="chip level">${STORIES.length} ${ui().stories}</span>` +
-    (state.premium ? `<button class="chip sib" id="premiumReset">${ui().premiumActive}</button>`
-      : (premiumIds().length ? `<span class="chip freeweek" title="${escapeAttr(ui().rotationNote)}">${
-          ui().rotationChip.replace("{n}", Math.min(FREE_ROTATION, premiumIds().length))
-                           .replace("{d}", daysLeftInRotation())}</span>` : "")));
+  // (v340) ONE clear top, as the design draws it: a date eyebrow, the page's title, and three round buttons — search, the
+  // streak, settings. Language and theme live one tap deep in the settings sheet (the language switch stays in sight on a
+  // first run, until the learner has chosen once); the slogan and the two count chips are gone (the free-this-week notice
+  // is one quiet line above the shelf). Only the demo-premium reset chip, when on, stays in the meta row.
+  setHeader(ui().library, ui().libSub,
+    state.premium ? `<button class="chip sib" id="premiumReset">${ui().premiumActive}</button>` : "");
   const pr = document.getElementById("premiumReset");
   if (pr) pr.addEventListener("click", () => { setPremium(false); renderLibrary(); });
+  doorHeader340();
   storyEl.innerHTML = "";
-  // The shelf remembers the reader: the last story they opened, resumable in
-  // one tap, as long as it is unfinished. A finished story retires the card —
-  // its ✓ chip records the achievement and the sorts suggest what is next.
-  // ============ design wave 9: the front door states where you are ========
-  // DESIGN.md's third borrowed principle — progress visible without being
-  // asked for. Three tiles, no more: the streak, what is due, what is known.
-  // Every number is read live from the same primitives the deck and the
-  // progress page use, so the strip can never disagree with them. The whole
-  // row is one tap into the deck, and it is built only from tokens.
+  { const old = sheetInner.querySelector(".lib-sort"); if (old) old.remove(); }   // a sort bar the filter sheet borrowed is rebuilt below
+  // design wave 9 / 79 / v338, joined in v340: ONE card — the goal ring at the head with the goal line and today's XP, the
+  // three stat chips (same ids, same data, one tap into the deck) folded into that head, the lesson's steps under it and one
+  // primary button. Every number is read live from deckStats() / state.streak, so the card cannot disagree with the deck.
   const dStats = deckStats();
-  // design wave 79 — the package's daily-goal ring takes the top of the door; the three numbers become one quiet row
-  // of chips under it (same ids, same data, same tap into the deck).
-  // v338 — «Bugünün dersi»: directly under the goal ring; a brand-new learner (nothing read, nothing saved) meets it first
   const lsSteps = lessonSteps();
   const lsFresh = !state.deck.length && !Object.values(state.progress || {}).some(p => p && Object.keys(p).length);
-  if (lsFresh) storyEl.insertAdjacentHTML("beforeend", todayCardHtml(lsSteps, true));
-  storyEl.insertAdjacentHTML("beforeend", goalCardHtml());
+  storyEl.insertAdjacentHTML("beforeend", todayCardHtml(lsSteps, lsFresh));
   document.getElementById("goalCard").addEventListener("click", () => openDeck());
-  if (!lsFresh) storyEl.insertAdjacentHTML("beforeend", todayCardHtml(lsSteps, false));
   bindTodayCard(lsSteps);
   const strip = document.createElement("div");
-  strip.className = "stat-strip mini";
+  strip.className = "stat-strip mini in-card";
   strip.id = "statStrip";
   const tile = (k, n, lbl, ar, ic) =>
     `<button class="st-tile" data-st="${k}" title="${escapeAttr(lbl)}"><span class="st-ar" lang="ar">${ar}</span><span class="st-i">${IconSet.svg(ic, true)}</span>` +
@@ -4910,28 +5186,29 @@ function renderLibrary(){
     tile("known", dStats.mature, ui().statKnown, "مَحْفُوظ", "checkc");
   strip.querySelectorAll("[data-st]").forEach(b2 =>
     b2.addEventListener("click", () => openDeck()));
-  // v338 — the door stays calm: with the Today card on it, the three chips fold into the card's header instead of a row of their own
-  const tcHead = document.querySelector("#todayCard .tc-head");
-  if (tcHead) { strip.classList.add("in-card"); tcHead.appendChild(strip); } else storyEl.appendChild(strip);
+  document.querySelector("#todayCard .tc-head").appendChild(strip);
+  // «Continue reading»: the dark hero of the design — the chapter and level, the Arabic title large, the translated title,
+  // the sentences read as a bar, a round play button; it is the Read step's target, so the step itself just says «continue».
   const lastSt = continueStory();
   if (lastSt) {
     const { total, read } = storyStats(lastSt);
     const hero = document.createElement("button");
-    hero.className = "continue-card";
+    hero.className = "continue-card cc340";
     hero.dataset.storyId = lastSt.id;
+    hero.dataset.lvlc = Math.min(4, Math.max(1, lastSt.level));
     const pct = total ? Math.round(100 * read / total) : 0;
-    const C = (2 * Math.PI * 19).toFixed(1);
-    hero.innerHTML = `<div class="cc-flex"><div class="cc-main">
-      <span class="cc-lbl">${ui().continueReading}</span>
+    const chs = Object.keys(state.progress[lastSt.id] || {}).map(k => parseInt(k, 10)).filter(n => n >= 0);
+    const chAt = chs.length ? Math.max(...chs) : 1, U = ui();
+    hero.setAttribute("aria-label", `${U.continueReading}: ${T(lastSt.title) || lastSt.title.ar} — ${read}/${total} ${U.heroSent340}`);
+    hero.innerHTML = `<span class="cc-art" style="background-image:url('${coverArt(lastSt)}')" aria-hidden="true"></span>
+      <span class="cc-chip">${U.heroCh340.replace("{n}", chAt)} · ${U.heroLv340.replace("{n}", lastSt.level)}</span>
       <span class="cc-title" lang="ar">${lastSt.title.ar}</span>
-      <span class="cc-sub">${T(lastSt.subtitle) || T(lastSt.title) || ""} · ${read}/${total} ${ui().readLbl}</span>
-      <div class="progress"><div style="width:${pct}%"></div></div></div>
-      <div class="cc-ring" aria-hidden="true"><svg viewBox="0 0 44 44">
-        <circle class="rbg" cx="22" cy="22" r="19"></circle>
-        <circle class="rfg" cx="22" cy="22" r="19" style="stroke-dasharray:${C};stroke-dashoffset:${
-          (2 * Math.PI * 19 * (1 - pct / 100)).toFixed(1)}"></circle>
-      </svg><span class="cc-pct">${pct}%</span></div><span class="cc-play" aria-hidden="true">${IconSet.svg("play", true)}</span></div>`;
+      <span class="cc-foot"><span class="cc-main"><span class="cc-row"><span class="cc-sub">${T(lastSt.title) || T(lastSt.subtitle) || ""}</span>
+        <span class="cc-count">${read}/${total} ${U.heroSent340}</span></span>
+        <span class="progress cc-bar"><span style="width:${pct}%"></span></span></span>
+        <span class="cc-play" aria-hidden="true">${IconSet.svg("play", true)}</span></span>`;
     hero.addEventListener("click", () => openStory(lastSt, true));
+    storyEl.insertAdjacentHTML("beforeend", `<h2 class="door-h" id="contH">${ui().continueReading}</h2>`);
     storyEl.appendChild(hero);
   }
   // Cards waiting for review are surfaced where the reader already is, instead
@@ -4944,6 +5221,9 @@ function renderLibrary(){
     nudge.addEventListener("click", openDeck);
     storyEl.appendChild(nudge);
   }
+  // (v340) the filter row: level pills that scroll sideways, and — on a phone — one «Filter» button; sort, your level, the
+  // newest chip and the sources live in the sort bar, which a phone shows in that button's sheet (same element, same ids)
+  storyEl.appendChild(levelPills340());
   const sortBar = document.createElement("div");
   sortBar.className = "lib-sort";
   const fresh = STORIES.filter(isNewStory).length;
@@ -4964,6 +5244,8 @@ function renderLibrary(){
   if (mlc) mlc.addEventListener("click", () => openLevelPicker());
   storyEl.appendChild(sortBar);
   storyEl.appendChild(renderSourceShelf());
+  if (!state.premium && premiumIds().length) storyEl.insertAdjacentHTML("beforeend", `<p class="free-line" id="freeLine">${escapeAttr(ui().freeLine340
+    .replace("{n}", Math.min(FREE_ROTATION, premiumIds().length)).replace("{d}", daysLeftInRotation()))}</p>`);
   const have = new Set(state.deck.filter(d => d.type === "word").map(d => d.lex));
   storiesSorted().filter(st => { const a = activeLibSource(); return !a || sourceOf(st) === a; }).forEach(st => {
     const {total, read} = storyStats(st);
@@ -4993,6 +5275,69 @@ function renderLibrary(){
     storyEl.appendChild(card);
   });
   closeSheet();
+}
+// ---------- v340: the door's header, level pills, filter and settings sheets ----------
+function doorHeader340(){
+  const U = ui(), app = document.querySelector("header.app");
+  const eb = document.getElementById("eyebrow");
+  if (eb) { let d = ""; try { const lc = state.uiLang === "tr" ? "tr-TR" : "en-GB", now = new Date(); d = now.toLocaleDateString(lc, { weekday: "long" }) + " · " + now.toLocaleDateString(lc, { day: "numeric", month: "long" }); } catch (e) {} eb.textContent = d || U.tagline; }
+  let acts = document.getElementById("doorActs");
+  if (!acts) { acts = document.createElement("div"); acts.className = "door-acts"; acts.id = "doorActs"; app.appendChild(acts); }
+  const days = state.streak.days || 0;
+  acts.innerHTML = `<button class="door-b" id="doorSearch" title="${escapeAttr(U.searchBtn)}" aria-label="${escapeAttr(U.searchBtn)}">${IconSet.svg("search")}</button>
+    <button class="door-b door-streak" id="doorStreak" title="${escapeAttr(days + " " + U.dayStreak)}" aria-label="${escapeAttr(days + " " + U.dayStreak)}">${IconSet.svg("fire", true)}<span>${days}</span></button>
+    <button class="door-b door-me" id="doorSettings" title="${escapeAttr(U.doorSettings340)}" aria-label="${escapeAttr(U.doorSettings340)}" aria-haspopup="dialog">${IconSet.svg("sparkle")}</button>`;
+  acts.querySelector("#doorSearch").addEventListener("click", () => document.getElementById("searchOpen").click());
+  acts.querySelector("#doorStreak").addEventListener("click", () => openStats());
+  acts.querySelector("#doorSettings").addEventListener("click", () => openDoorSettings340());
+  let lang = null; try { lang = localStorage.getItem("qissa-lang"); } catch (e) {}
+  document.body.classList.toggle("lang-unset", !lang);
+}
+// the shelf's level pills: All · 1 · 2 · 3 · 4+ — the four level colours the cards' spines already speak (L5 and L6 share the
+// top one, as everywhere in the app); a pill hides the other levels' cards by CSS, so the cards and their order are untouched
+function libLevel340(){ let v = ""; try { v = localStorage.getItem("qissa-liblevel") || ""; } catch (e) {} return /^[1-4]$/.test(v) ? v : ""; }
+function levelPills340(){
+  const U = ui(), cur = libLevel340(), have = new Set(STORIES.map(st => Math.min(4, Math.max(1, st.level || 1))));
+  const top = Math.max(...STORIES.map(st => st.level || 1));
+  storyEl.dataset.lvf = cur;
+  const row = document.createElement("div");
+  row.className = "lib-filter"; row.id = "libFilterRow";
+  const pill = (v, lbl) => `<button class="lv-pill${cur === v ? " on" : ""}" data-lvf="${v}" aria-pressed="${cur === v}">${lbl}</button>`;
+  row.innerHTML = `<div class="lv-pills" role="group" aria-label="${escapeAttr(U.level)}">${pill("", U.lvAll340)}${[1, 2, 3, 4].filter(b => have.has(b)).map(b =>
+      pill(String(b), b === 4 && top > 4 ? `4–${top}` : `${b} · ${escapeAttr(levelLabel(levelNameOf(b)))}`)).join("")}</div>
+    <button class="lib-filter-b" id="libFilter" aria-haspopup="dialog">${IconSet.svg("chev")}<span>${U.filter340}</span></button>`;
+  row.querySelectorAll("[data-lvf]").forEach(b => b.addEventListener("click", () => {
+    const v = b.dataset.lvf; try { if (v) localStorage.setItem("qissa-liblevel", v); else localStorage.removeItem("qissa-liblevel"); } catch (e) {}
+    storyEl.dataset.lvf = v;
+    row.querySelectorAll("[data-lvf]").forEach(x => { const on = x.dataset.lvf === v; x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on)); });
+  }));
+  row.querySelector("#libFilter").addEventListener("click", openLibFilter340);
+  return row;
+}
+// on a phone the sort bar (sort, your level, the newest chip, the sources) opens here — the same element with the same ids
+function openLibFilter340(){
+  const bar = document.querySelector(".lib-sort"); if (!bar) return;
+  sheetInner.innerHTML = `<h3 class="welcome-h">${ui().filterTitle340}</h3>`;
+  sheetInner.appendChild(bar);
+  showSheet();
+}
+function openDoorSettings340(){
+  const U = ui();
+  const draw = () => {
+    sheetInner.innerHTML = `<h3 class="welcome-h">${U.doorSettings340}</h3>
+      <div class="set-group"><span class="ls-lbl">${U.setLang340}</span>
+        <div class="seg" role="group" aria-label="${escapeAttr(U.setLang340)}" id="setLangSeg">
+          <button data-set-ui="en" class="${state.uiLang === "en" ? "on" : ""}">English</button>
+          <button data-set-ui="tr" class="${state.uiLang === "tr" ? "on" : ""}">Türkçe</button></div></div>
+      <div class="set-group"><span class="ls-lbl">${U.setTheme340}</span>${themeCardsHtml()}</div>`;
+    sheetInner.querySelectorAll("[data-set-ui]").forEach(b => b.addEventListener("click", () => {
+      const t = document.querySelector(`#uiLangSeg [data-ui="${b.dataset.setUi}"]`); if (t) t.click();
+      openDoorSettings340();
+    }));
+    bindThemePicks(sheetInner, draw);
+  };
+  draw();
+  showSheet();
 }
 // ---------- first-run level picker ----------
 // The levels on offer come from the shelf itself, not a hardcoded list: a
@@ -5370,12 +5715,14 @@ function runQuiz(cfg){
     const opts = G.opts;
     const done = G.answered != null;
     sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${cfg.backLabel || ui().back2}</button></div>
-      <div class="tabs"><button class="on">${cfg.title} · ${G.i + 1}/${cfg.items.length}</button></div>
+      <div class="q-head"><div class="tabs q-title"><span class="on">${cfg.title}<span class="q-count"> · ${G.i + 1}/${cfg.items.length}</span></span></div>
+        <div class="q-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${cfg.items.length}" aria-valuenow="${G.i + (done ? 1 : 0)}" aria-label="${escapeAttr(ui().qProg340.replace("{i}", G.i + 1).replace("{n}", cfg.items.length))}"><i style="width:${Math.round(100 * (G.i + (done ? 1 : 0)) / Math.max(1, cfg.items.length))}%"></i></div></div>
       <p class="ref-intro">${cfg.ask}</p>
       ${cfg.question(it)}
       <div class="opts">` + opts.map((o, oi) =>
         `<button data-o="${oi}"${o.ar ? ' lang="ar"' : ""}${done ? " disabled" : ""} class="${
-          done && o.ok ? "right" : (done && oi === G.answered ? "wrongpick" : "")}">${o.html}</button>`).join("") + `</div>
+          done && o.ok ? "right" : (done && oi === G.answered ? "wrongpick" : "")}"${
+          done && o.ok ? ` data-mark="✓ ${escapeAttr(ui().qRight340)}"` : done && oi === G.answered ? ` data-mark="✗ ${escapeAttr(ui().qWrong340)}"` : ""}>${o.html}</button>`).join("") + `</div>
       <div class="game-meta"><span>${ui().score}: ${G.score}</span>${
         G.combo >= 2 ? `<span class="combo">🔥 ×${G.combo}</span>` : ""}${
         cfg.deadline ? `<span class="clock105" id="qClock">⏱ ${Math.max(0, Math.ceil((cfg.deadline - Date.now()) / 1000))} ${ui().hizliClock}</span>` : ""}</div><div id="qWhy"></div>`;
@@ -6438,9 +6785,21 @@ const sheet = document.getElementById("sheet");
 const scrim = document.getElementById("scrim");
 const sheetInner = document.getElementById("sheetInner");
 let activeWordEl = null;
-function showSheet(){ sheet.classList.add("show"); scrim.classList.add("show"); }
+// (v340) the shared frame: focus moves into the sheet when it opens (unless the content already placed it, or the reader
+// is typing in a field outside it) and returns to the control that opened it when it closes
+var SHEET_OPENER = null;
+function showSheet(){
+  const ae = document.activeElement;
+  if (!sheet.classList.contains("show")) SHEET_OPENER = ae && ae !== document.body && !sheet.contains(ae) ? ae : null;
+  sheet.classList.add("show"); scrim.classList.add("show");
+  const x = document.getElementById("sheetClose"); if (x) { const c = ui().close340 || "Close"; x.setAttribute("aria-label", c); x.title = c; }
+  if (!sheet.contains(ae) && !(ae && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName))) { try { sheet.focus({ preventScroll: true }); } catch (e) {} }
+}
 function closeSheet(){
+  const wasOpen = sheet.classList.contains("show"), ae = document.activeElement;
   sheet.classList.remove("show"); scrim.classList.remove("show");
+  if (wasOpen && SHEET_OPENER && SHEET_OPENER.isConnected && (sheet.contains(ae) || ae === document.body || !ae)) { try { SHEET_OPENER.focus({ preventScroll: true }); } catch (e) {} }
+  if (wasOpen) SHEET_OPENER = null;
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   refQuery = ""; refLevel = "all"; // don't over-engineer persistence — reset on close
   wordCtx = null;                 // the idiom banner belongs to one tap, not the next
@@ -6457,6 +6816,7 @@ function bindQuizReturn(){
   if (b) b.addEventListener("click", () => QUIZ_RESUME.redraw());
 }
 scrim.addEventListener("click", closeSheet);
+document.getElementById("sheetClose").addEventListener("click", () => closeSheet());
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
 // One listener for every "review this note" button, wherever renderNote landed:
 // the word sheet's Grammar tab, the reference browser, the sentence i'rab sheet.
@@ -16289,7 +16649,7 @@ function labFrame(outId, text, one){
   const out = document.getElementById(outId); if (!out) return;
   let h = "";
   try { const ws = labWords(text);
-    if (!ws.length) h = `<p class="empty">${ui().labEmpty}</p>`;
+    if (!ws.length) h = `<p class="empty e340">${ui().labEmpty}</p>`;
     else if (ws.length === 1) h = one(ws[0]);
     else h = ws.map(x => { let b = ""; try { b = one(x); } catch (e) { b = `<p class="empty">${ui().jadhrNone}</p>`; } return `<div class="lab-word"><p class="bab-line" lang="ar" dir="rtl"><b>${escapeAttr(x)}</b></p>${b}</div>`; }).join("");
   } catch (e) { h = `<p class="empty">${ui().jadhrNone}</p>`; }
@@ -18200,7 +18560,7 @@ function renderFahmOut(){
   const out = document.getElementById("fahmOut"); if (!out) return;
   const txt = (conjState.fahm || "").trim(); const lang = state.uiLang === "tr" ? "tr" : "en", u = ui(), E = escapeAttr;
   const seeds = `<div class="dabt-seeds qw-seeds"><div class="qw-head">${u.fahmSeeds}</div><ul>${FAHM_SEEDS.map(s0 => `<li><button class="qw-seed" data-seed="${E(s0)}" lang="ar" dir="rtl">${E(s0)}</button></li>`).join("")}</ul></div>`;
-  if (!txt) { out.innerHTML = `<p class="empty">${u.fahmEmpty}</p>` + seeds; }
+  if (!txt) { out.innerHTML = `<p class="empty e340">${u.fahmEmpty}</p>` + seeds; }
   else {
     const a = FahmEngine.analyze(txt, lang);
     if (!a) out.innerHTML = `<p class="empty">${u.jadhrBad}</p>` + seeds;
@@ -18236,7 +18596,7 @@ function renderDabtOut(){
   const seeds = `<div class="dabt-seeds qw-seeds"><div class="qw-head">${u.dabtSeeds}</div><ul>${DABT_SEEDS.map(s0 =>
     `<li><button class="qw-seed" data-seed="${E(s0)}" lang="ar" dir="rtl">${E(s0)}</button></li>`).join("")}</ul></div>`;
   const tools = `<div class="dabt-tools"><button id="dabtGrade">${u.dabtGrade}</button><div id="dabtScore" class="dabt-score"></div></div>`;
-  if (!txt) { out.innerHTML = `<p class="empty">${u.dabtEmpty}</p>` + seeds + tools; }
+  if (!txt) { out.innerHTML = `<p class="empty e340">${u.dabtEmpty}</p>` + seeds + tools; }
   else {
     let v = null; try { v = DabtEngine.vowel(txt, mode); } catch (e) { v = null; }
     if (!v || !v.words.length) { out.innerHTML = `<p class="empty">${u.jadhrBad}</p>` + seeds + tools; }
@@ -18677,12 +19037,31 @@ function openWord(tok, el, tab, ctx){
   const hasGrammar = tok.grammar && tok.grammar.length;
   const mode = tab || "word";
   let html = "";
-  html += `<div class="tabs" role="tablist">
-    <button class="${mode==="word"?"on":""}" data-tab="word">${ui().word}</button>
-    ${morph ? `<button class="${mode==="sarf"?"on":""}" data-tab="sarf">${arSpan("صَرْف")} ${ui().sarf}</button>` : ""}
-    ${tok.irab ? `<button class="${mode==="irab"?"on":""}" data-tab="irab">${arSpan("إِعْرَاب")} ${ui().irab}</button>` : ""}
-    ${hasGrammar ? `<button class="${mode==="grammar"?"on":""}" data-tab="grammar">${ui().grammar}</button>` : ""}
-  </div>`;
+  // (v340) one header for every tab, as the design draws it: the part of speech, the meaning large at the start and the word
+  // large at the end, the dictionary form under the meaning, then Listen · Add to deck in one row; the tabs below are ONE
+  // segmented row with short labels (the Arabic names ride in the title and the accessible name, not inline)
+  {
+    const U = ui(), g1 = state.uiLang === "tr" ? "tr" : "en", g2 = g1 === "tr" ? "en" : "tr";
+    const saved = cardSaved("word:" + tok.lex), full = !saved && deckFull();
+    const tabB = (k, lbl, ar, full2) => `<button role="tab" aria-selected="${mode === k}" class="${mode === k ? "on" : ""}" data-tab="${k}" title="${escapeAttr(ar + " · " + full2)}" aria-label="${escapeAttr(lbl + " — " + ar)}">${lbl}</button>`;
+    html += `<header class="ws-head">
+      <div class="ws-top">${entry.pos ? `<span class="chip ws-pos">${posLabel(entry.pos)}</span>` : ""}</div>
+      <div class="ws-main">
+        <div class="w-head ws-gl"><div class="w-gl"><p class="gloss w-g1">${entry.gloss[g1] || entry.gloss[g2] || ""}</p>
+          <p class="gloss w-g2"><small>${g2.toUpperCase()}</small>${entry.gloss[g2] || ""}</p>
+          ${entry.lemma && entry.lemma !== tok.s.full ? `<p class="ws-dict">${U.wsDict340} <span lang="ar">${entry.lemma}</span></p>` : ""}</div></div>
+        <p class="lemma ws-ar" lang="ar">${tok.s.full}</p>
+      </div>
+      <div class="ws-acts"><button class="btn" id="sayWord" title="${U.sayWord}">${IconSet.svg("volume")} ${U.wsListen340}</button>
+        <button class="btn ${saved ? "saved" : "primary"}" id="saveBtn" ${full ? "disabled" : ""}>${saved ? U.saved : full ? U.deckFull : U.wsAdd340}</button></div>
+    </header>
+    <div class="tabs ws-tabs" role="tablist">
+      ${tabB("word", U.wsMeaning340, "كَلِمَة", U.word)}
+      ${morph ? tabB("sarf", U.wsSarf340, "صَرْف", U.sarf) : ""}
+      ${tok.irab ? tabB("irab", U.wsIrab340, "إِعْرَاب", U.irab) : ""}
+      ${hasGrammar ? tabB("grammar", U.wsGrammar340, "نَحْو", U.grammar) : ""}
+    </div>`;
+  }
 
   // The idiom, when the tapped word is part of one — shown for every tab, since
   // it governs how the whole span is read.
@@ -18697,12 +19076,8 @@ function openWord(tok, el, tab, ctx){
     </div>`;
   }
   if (mode === "word") {
-    html += `<p class="lemma">${entry.lemma} <button class="say" id="sayWord" aria-label="${ui().sayWord}" title="${ui().sayWord}">🔊</button></p>`;
     // (v338) the sheet's order: the meaning in this text first, then the word's build (wazn, root, form) — blocks moved, not rewritten
-    // wave 80: the meaning leads, in the reader's language; the other language stays, small, under it
-    const g1 = state.uiLang === "tr" ? "tr" : "en", g2 = g1 === "tr" ? "en" : "tr";
-    html += `<div class="w-head"><div class="w-gl"><p class="gloss w-g1">${entry.gloss[g1] || entry.gloss[g2] || ""}</p>
-      <p class="gloss w-g2"><small>${g2.toUpperCase()}</small>${entry.gloss[g2] || ""}</p></div></div>`;
+    // (v340) the meaning (wave 80: the reader's language leads), the word and Listen moved into the sheet's header above the tabs
     // The form in the text, beside the dictionary form: وَاعْفُ next to عَفَا,
     // named (emir — sen) and translated as the FORM means («affet!»), so the
     // reader never has to bridge lemma and text alone.
@@ -18719,7 +19094,6 @@ function openWord(tok, el, tab, ctx){
     }
     if (morph) html += `<p class="bab-line">${morph.bab} — ${morph.wazn}</p>`;
     html += `<div class="facts">`;
-    if (entry.pos) html += chip(posLabel(entry.pos));
     if (entry.form) html += chip(ui().formChip + " " + entry.form);
     if (entry.root) html += `<button class="root-btn" data-root="${escapeAttr(entry.root)}">` +
       chip(ui().rootChip + " " + arSpan(entry.root), "tappable") + `</button>`;
@@ -18734,13 +19108,7 @@ function openWord(tok, el, tab, ctx){
         return `<span class="seg-item">${sg.form}<small>${e ? T(e.gloss) : ""}</small></span>`;
       }).join("") + `</div>`;
     }
-    const saved = cardSaved("word:" + tok.lex);
-    const full = !saved && deckFull();
-    html += `<div class="sheet-actions">
-      <button class="btn ${saved ? "saved" : "primary"}" id="saveBtn" ${full ? "disabled" : ""}>${
-        saved ? ui().saved : full ? ui().deckFull : ui().save}</button>
-      ${hasGrammar ? `<button class="btn" id="toGrammar">${ui().gnote}</button>` : ""}
-    </div>`;
+    if (hasGrammar) html += `<div class="sheet-actions"><button class="btn" id="toGrammar">${ui().gnote}</button></div>`;
   } else if (mode === "sarf" && morph) {
     // A jamid verb does not conjugate fully — the data carries exactly the
     // tenses that exist (لَيْسَ: mazi only; مَا زَالَ: mazi + mudari, no amr),
@@ -18828,8 +19196,7 @@ function openWord(tok, el, tab, ctx){
         savedV ? ui().savedConj : fullV ? ui().deckFull : ui().saveConj}</button></div>`;
     }
   } else if (mode === "irab" && tok.irab) {
-    html += `<p class="lemma">${tok.s.full}</p>
-      <div class="irab-ar" lang="ar">${tok.irab.ar}</div>
+    html += `<div class="irab-ar" lang="ar">${tok.irab.ar}</div>
       <p class="irab-en">${tok.irab[state.uiLang] || tok.irab.en}</p>
       <div class="vm-row">${verifyMarkHtml(CUR)}${CUR && wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok ? `<button class="vm-report" id="irabReport">⚑ ${ui().vmReport}</button>` : ""}</div>
       ${wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok ? GovView.blockHtml(wordCtx.sen, wordCtx.ti) : ""}
@@ -18881,7 +19248,7 @@ function openWord(tok, el, tab, ctx){
     // The page's copies of this word flip their in-deck marking live.
     document.querySelectorAll(`.word[data-lex="${CSS.escape(tok.lex)}"]`).forEach(x =>
       x.classList.toggle("in-deck", cardSaved("word:" + tok.lex)));
-    openWord(tok, el, "word");
+    openWord(tok, el, mode);   // (v340) the button lives in the header now: the open tab stays open
   });
   const tg = document.getElementById("toGrammar");
   if (tg) tg.addEventListener("click", () => openWord(tok, el, "grammar"));
@@ -19270,7 +19637,7 @@ function openSearch(q){
   } else if (pending) {
     body = `<p class="ref-intro search-wait">…</p>`;   /* (v334-S) the index is being built; the hits follow */
   } else if (!groups.length) {
-    body = `<p class="ref-intro">${ui().searchNone}</p>`;
+    body = `<div class="empty-box"><p class="ref-intro empty e340">${ui().searchNone}</p><button class="btn" id="searchClear340">${ui().searchClear340}</button></div>`;   // (v340)
   } else {
     body = `<p class="ref-intro">${ui().searchFound
       .replace("{n}", hits.length).replace("{w}", byLex.size)}</p>`;
@@ -19306,6 +19673,8 @@ function openSearch(q){
     b.addEventListener("click", () => jumpTo(b.dataset.sid, b.dataset.sen, Number(b.dataset.ti), Number(b.dataset.ch))));
   const ita = document.getElementById("inTextAll");
   if (ita) ita.addEventListener("click", () => { searchAllInText = true; openSearch(); });
+  const sc340 = document.getElementById("searchClear340");
+  if (sc340) sc340.addEventListener("click", () => { searchQuery = ""; searchAllInText = false; openSearch(); const i2 = document.getElementById("corpusSearch"); if (i2) i2.focus(); });
   input.addEventListener("input", () => {
     searchQuery = input.value; searchAllInText = false;
     const at = input.selectionStart;
@@ -31077,7 +31446,7 @@ function renderArudOut(){
   const txt = (conjState.arud || "").trim();
   const SEEDS = ["قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلِ* بِسِقْطِ اللِّوَى بَيْنَ الدَّخُولِ فَحَوْمَلِ", "إِذَا لَمْ تَسْتَطِعْ أَمْرًا فَدَعْهُ* وَجَاوِزْهُ إِلَى مَا تَسْتَطِيعُ", "مَا نَوَالُ الْغَمَامِ وَقْتَ رَبِيعٍ* كَنَوَالِ الْأَمِيرِ يَوْمَ سَخَاءِ", "إِنَّ الشَّبَابَ وَالْفَرَاغَ وَالْجِدَةَ* مَفْسَدَةٌ لِلْمَرْءِ أَيُّ مَفْسَدَةْ", "يَا لَيْلُ الصَّبُّ مَتَى غَدُهُ* أَقِيَامُ السَّاعَةِ مَوْعِدُهُ"];
   const seeds = `<div class="ref-group">${E(u.arudSeeds)}</div><div class="seed-row">${SEEDS.map(x => `<button class="seed" data-seed="${E(x)}" lang="ar" dir="rtl">${E(x.replace("*", " ✽ "))}</button>`).join("")}</div>`;
-  if (!txt) { out.innerHTML = `<p class="empty">${E(u.arudEmpty)}</p>` + seeds; }
+  if (!txt) { out.innerHTML = `<p class="empty e340">${E(u.arudEmpty)}</p>` + seeds; }
   else { const html = arudHtml({ text: txt.replace(/✽/g, "*") }); out.innerHTML = (html || `<p class="empty">${E(u.arudNoStar)}</p>`) + seeds; }
   out.querySelectorAll("[data-seed]").forEach(b => b.addEventListener("click", () => { conjState.arud = b.dataset.seed; const inp = document.getElementById("arudIn"); if (inp) inp.value = b.dataset.seed; renderArudOut(); }));
 }
@@ -31090,7 +31459,7 @@ function renderBadiOut(){
     <div class="qw-seeds"><div class="qw-head"><span lang="ar" class="ar">الْجِنَاسُ</span> ${u.badiSeedsJinas}</div><ul>${JinasEngine.SEEDS.map(seedBtn).join("")}</ul></div>
     <div class="qw-seeds"><div class="qw-head"><span lang="ar" class="ar">السَّجْعُ</span> ${u.badiSeedsSaj}</div><ul>${SajEngine.SEEDS.map(seedBtn).join("")}</ul></div>
     ${corpusSeeds.length ? `<div class="qw-seeds kn-corpus"><div class="qw-head"><span lang="ar" class="ar">مِنَ الْمَتْنِ</span> ${u.kinayaCorpus}</div><ul>${corpusSeeds.map(seedBtn).join("")}</ul></div>` : ""}`;
-  if (!txt) { out.innerHTML = `<p class="empty">${u.dabtEmpty}</p>` + seeds; }
+  if (!txt) { out.innerHTML = `<p class="empty e340">${u.dabtEmpty}</p>` + seeds; }
   else { const r = BadiEngine.readText(txt); const sen = r.sen;
     out.innerHTML = (r.rows.length ? FigurePredictor.badge(r.rows) + bayanDoorsHtml(r.rows, sen) + badiHtml(r.rows, { always: true, sen }) + jinasHtml(r.rows, { always: true, sen }) + sajHtml(r.rows, { always: true }) : `<p class="empty">${u.jadhrBad}</p>`) + seeds; }
   out.querySelectorAll("[data-note]").forEach(b => b.addEventListener("click", () => openRef(b.dataset.note)));
@@ -31139,7 +31508,7 @@ function renderKinayaOut(){
   const seeds = `<div class="qw-seeds"><div class="qw-head">${u.dabtSeeds}</div><ul>${KinayaEngine.SEEDS.map(seedBtn).join("")}</ul></div>
     <div class="qw-seeds"><div class="qw-head"><span lang="ar" class="ar">الطِّبَاقُ</span> ${u.kinayaTibaq}</div><ul>${BadiEngine.SEEDS.map(seedBtn).join("")}</ul></div>
     ${corpusSeeds.length ? `<div class="qw-seeds kn-corpus"><div class="qw-head"><span lang="ar" class="ar">مِنَ الْمَتْنِ</span> ${u.kinayaCorpus}</div><ul>${corpusSeeds.map(seedBtn).join("")}</ul></div>` : ""}`;
-  if (!txt) { out.innerHTML = `<p class="empty">${u.dabtEmpty}</p>` + seeds; }
+  if (!txt) { out.innerHTML = `<p class="empty e340">${u.dabtEmpty}</p>` + seeds; }
   else { const r = KinayaEngine.readText(txt); const sen = KinayaEngine.corpusFrame(txt);
     out.innerHTML = (r.rows.length ? kinayaHtml(r.rows, { always: true, sen }) + badiHtml(r.rows, { always: true, sen }) : `<p class="empty">${u.jadhrBad}</p>`) + seeds; }
   out.querySelectorAll("[data-note]").forEach(b => b.addEventListener("click", () => openRef(b.dataset.note)));
@@ -31164,7 +31533,7 @@ function renderMajazOut(){
     <p class="ref-intro">${u.majazSixHint}</p>
     <div class="mj-six-grid">${SIX.map((c, n) => `<button class="mj-six-cell qw-seed" data-seed="${E(c.ar)}" lang="ar" dir="rtl">
       <span class="mj-six-n">${n + 1}</span><span class="mj-six-k">${c.k.map(k => (L[k + "K"] || {}).ar || k).join(" · ")}</span><span class="mj-six-w">${E(c.w)}</span><span class="mj-six-ar">${E(c.ar)}</span></button>`).join("")}</div></div>`;
-  if (!txt) { out.innerHTML = `<p class="empty">${u.dabtEmpty}</p>` + seeds + grid; }
+  if (!txt) { out.innerHTML = `<p class="empty e340">${u.dabtEmpty}</p>` + seeds + grid; }
   else { const r = MajazEngine.readText(txt); out.innerHTML = (r.rows.length ? majazHtml(r.rows, { always: true }) : `<p class="empty">${u.jadhrBad}</p>`) + seeds + grid; }
   out.querySelectorAll("[data-note]").forEach(b => b.addEventListener("click", () => openRef(b.dataset.note)));
   out.querySelectorAll("[data-seed]").forEach(b => b.addEventListener("click", () => {
@@ -31176,7 +31545,7 @@ function renderTashbihOut(){
   if (!out) return;
   const txt = (conjState.tashbih || "").trim(), u = ui(), E = escapeAttr;
   const seeds = `<div class="qw-seeds"><div class="qw-head">${u.dabtSeeds}</div><ul>${TashbihEngine.SEEDS.map(s0 => `<li><button class="qw-seed" data-seed="${E(s0)}" lang="ar" dir="rtl">${E(s0)}</button></li>`).join("")}</ul></div>`;
-  if (!txt) { out.innerHTML = `<p class="empty">${u.dabtEmpty}</p>` + seeds; }
+  if (!txt) { out.innerHTML = `<p class="empty e340">${u.dabtEmpty}</p>` + seeds; }
   else { const r = TashbihEngine.readText(txt); out.innerHTML = (r.rows.length ? tashbihHtml(r.rows, { always: true }) : `<p class="empty">${u.jadhrBad}</p>`) + seeds; }
   out.querySelectorAll("[data-note]").forEach(b => b.addEventListener("click", () => openRef(b.dataset.note)));
   out.querySelectorAll("[data-seed]").forEach(b => b.addEventListener("click", () => {
@@ -35457,7 +35826,7 @@ function renderDeck(){
         `<button data-ret="${r}" class="${Math.abs(state.retention - r) < 0.001 ? "on" : ""}">${Math.round(r * 100)}%</button>`).join("")}
     </div>`;
   if (!state.deck.length) {
-    html += `<p class="empty">${ui().empty}</p>`;
+    html += `<div class="empty-box"><p class="empty e340">${ui().empty}</p><button class="btn primary" id="deckEmptyGo">${ui().emptyGo340}</button></div>`;   // (v340) one sentence, one action
   } else if (!queue.length) {
     const next = state.deck.slice().sort((x, y) => ensureSrs(x).srs.due - ensureSrs(y).srs.due)[0];
     html += `<p class="empty">${ui().allDone} ${ui().nextReview}: ${fmtDue(next)}</p>`;
@@ -35536,6 +35905,7 @@ function renderDeck(){
   if (state.deck.length && !shown.length)
     html += `<p class="empty">${ui().dfNone}</p>`;
   sheetInner.innerHTML = html;
+  { const eg = document.getElementById("deckEmptyGo"); if (eg) eg.addEventListener("click", () => { const ls = lessonStory(); closeSheet(); if (ls) openStory(ls.st, ls.cont); else toDoor(); }); }   // (v340) the empty deck's one action
   const rc = document.getElementById("reviewCard");
   if (rc) rc.addEventListener("click", () => { if (reviewStep < 2) { reviewStep++; renderDeck(); } });
   // The snapshot is a door: tap the birth-sentence to stand in it again.
@@ -44927,7 +45297,7 @@ function lessonSteps(){
   if (LESSON && LESSON.step === "strong" && !t.strong && Xp.answersToday() - (LESSON.a0 || 0) >= 4) { t.strong = 1; lessonSave(t); }
   const rd = lessonStory();
   const read = { id: "read", label: U.lsRead, done: (t.chDone || 0) >= 1,
-    sub: rd ? (rd.cont ? U.lsReadNext : U.lsReadSuggest).replace("{t}", arT(rd.st)) : U.lsReadNone,
+    sub: rd ? (rd.cont ? U.lsReadCont340 : U.lsReadSuggest).replace("{t}", arT(rd.st)) : U.lsReadNone,   /* (v340) the continue hero names the story; the step says «continue» */
     run: rd ? () => { LESSON = { step: "read" }; openStory(rd.st, rd.cont); } : null };
   const due = dueCards().length;
   const recall = !state.deck.length
@@ -44948,8 +45318,17 @@ function lessonNext(steps){ return steps.find(s => !s.done && s.run && s.id !== 
 // the primary button leads the steps, so the one tap into the text sits in a phone's upper half (wave 72's gate)
 function todayCardHtml(steps, fresh){
   const U = ui(), nDone = steps.filter(s => s.done).length, all = nDone === steps.length, next = all ? null : lessonNext(steps);
+  // (v340) the goal ring opens the card's head (it was a card of its own): the ring is the goal's button (one tap into the deck),
+  // the goal line and today's XP sit beside it, and renderLibrary folds the three stat chips into the same head
+  const t = rollDay(), pct = goalPct();
+  const r = Math.max(0, state.goal.reviews - t.reviewed), n = Math.max(0, state.goal.newWords - t.learned);
+  const gsub = pct >= 100 ? U.goalDone : U.goalSub.replace("{r}", r).replace("{n}", n);
   return `<section class="today-card${all ? " done" : ""}" id="todayCard" aria-labelledby="tcH">
-    <div class="tc-head"><span class="tc-h" id="tcH">${U.lsH}</span><span class="tc-n">${nDone}/${steps.length}</span></div>
+    <div class="tc-head">
+      <button class="goal-card" id="goalCard" title="${escapeAttr(gsub)}" aria-label="${escapeAttr(U.goalH.replace("{p}", pct) + " — " + gsub)}"><span class="goal-ring" style="--pct:${pct}%"><span>${pct}%</span></span></button>
+      <span class="tc-hl"><span class="tc-h" id="tcH">${U.lsH}</span> <span class="tc-n">${nDone}/${steps.length}</span></span>
+      <span class="tc-goal"><span class="tc-gh">${U.goalH.replace("{p}", pct)}</span> · <b class="tc-xp">+${Xp.today()} ${U.xpLbl}</b></span>
+    </div>
     ${fresh ? `<p class="tc-first" id="tcFirst">${U.lsFirst}</p>` : ""}
     ${all ? `<div class="tc-done"><span class="goal-ring" style="--pct:100%"><span>${IconSet.svg("check", true)}</span></span><span>${U.lsDone}</span></div>`
       : next ? `<button class="btn primary tc-go" id="todayGo" data-ls="${next.id}">${nDone ? U.lsNext.replace("{s}", next.label) : U.lsStart}</button>` : ""}
@@ -45082,8 +45461,10 @@ function chStateHtml(st, ch){
 function fillChEnd(d, st, ch){
   const s = chStateHtml(st, ch);
   d.hidden = !s;
-  d.innerHTML = s ? `<div class="ch-states">${s}</div>` + (chqOf(st, ch) ? "" : `<button class="btn primary ch-check">${ui().chqOffer.replace("{n}", 3)}</button>`) : "";
+  d.innerHTML = s ? `<div class="ch-states">${s}</div>` + (chqOf(st, ch) ? "" : `<button class="btn primary ch-check">${ui().chqOffer.replace("{n}", 3)}</button>`)
+    + `<button class="btn ch-sum">${ui().ceOpen340}</button>` : "";   // (v340) the chapter-end sheet
   const b = d.querySelector(".ch-check"); if (b) b.addEventListener("click", () => startChapterCheck(st, ch));
+  const sm = d.querySelector(".ch-sum"); if (sm) sm.addEventListener("click", () => openChapterEnd(st, ch));
 }
 function chEndEl(st, ch){ const d = document.createElement("div"); d.className = "ch-end"; d.dataset.ch = chN(ch); fillChEnd(d, st, ch); return d; }
 function markPill(b, st, ch){

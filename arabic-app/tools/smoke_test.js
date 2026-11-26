@@ -140,7 +140,7 @@ if (!CHROME) {
   });
 
   await check('sarf tab shows conjugation table', async () => {
-    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('.sheet .tabs button[data-tab="sarf"]').click();
     await page.waitForSelector('table.conj', { timeout: 10000 });
     await page.locator('.tense-seg button', { hasText: 'الأمر' }).click();
     await page.waitForSelector('td.hl', { timeout: 10000 });
@@ -152,7 +152,7 @@ if (!CHROME) {
   });
 
   await check('save to flashcards updates deck badge', async () => {
-    await page.locator('.sheet .tabs button', { hasText: 'Word' }).click();
+    await page.locator('.sheet .tabs button[data-tab="word"]').click();
     await page.locator('#saveBtn').click();
     const badge = await page.locator('#deckCount').textContent();
     if (badge !== '1') throw new Error('badge=' + badge);
@@ -463,7 +463,7 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('.word', { hasText: 'تُجَادِلْ' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 10000 });
-    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('.sheet .tabs button[data-tab="sarf"]').click();
     // sarfTense persists from the earlier amr check — select mazi explicitly.
     await page.waitForSelector('table.conj', { timeout: 10000 });
     await page.locator('.tense-seg button', { hasText: 'الماضي' }).click();
@@ -493,14 +493,14 @@ if (!CHROME) {
     // وَقَفَ is a mithal verb — its amr paradigm must show the waw-dropping قِفْ.
     await page.locator('.word', { hasText: 'وَقَفَ' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 10000 });
-    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('.sheet .tabs button[data-tab="sarf"]').click();
     await page.waitForSelector('table.conj', { timeout: 10000 });
     await page.locator('.tense-seg button', { hasText: 'الأمر' }).click();
     await page.waitForSelector('table.conj', { timeout: 10000 });
     const cells = await page.locator('table.conj td').allTextContents();
     if (!cells.some(c => c.trim() === 'قِفْ')) throw new Error('mithal amr قِفْ missing');
     // The Word tab has the 🔊 pronounce button; clicking must not throw.
-    await page.locator('.sheet .tabs button', { hasText: 'Word' }).click();
+    await page.locator('.sheet .tabs button[data-tab="word"]').click();
     await page.waitForSelector('#sayWord', { timeout: 10000 });
     await page.evaluate(() => { speechSynthesis.speak = () => {}; speechSynthesis.cancel = () => {}; });
     await page.locator('#sayWord').click();
@@ -626,7 +626,7 @@ if (!CHROME) {
     await openStoryCard('wasiyyat-abi-hanifa-L2');
     await page.locator('.word', { hasText: 'أَرَادَ' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 10000 });
-    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('.sheet .tabs button[data-tab="sarf"]').click();
     await page.locator('.tense-seg button', { hasText: 'المُخْتَلِفَة' }).click();
     await page.waitForSelector('table.conj.muhtelife', { timeout: 10000 });
     const forms = await page.locator('table.conj.muhtelife tr:not(.majhul):not(.ext) td').allTextContents();
@@ -661,7 +661,7 @@ if (!CHROME) {
     await openStoryCard('wasiyyat-abi-hanifa-L2');
     await page.locator('.word', { hasText: 'قَالَ' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 10000 });
-    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('.sheet .tabs button[data-tab="sarf"]').click();
     await page.locator('.tense-seg button', { hasText: 'المُخْتَلِفَة' }).click();
     await page.waitForSelector('table.conj.muhtelife', { timeout: 10000 });
     const maj = await page.locator('table.conj.muhtelife tr.majhul td').allTextContents();
@@ -685,7 +685,7 @@ if (!CHROME) {
     // Saving a verb creates a conjugation card, distinct from a meaning card.
     await page.locator('.word', { hasText: 'أَرَادَ' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 10000 });
-    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('.sheet .tabs button[data-tab="sarf"]').click();
     await page.locator('#saveConjBtn').click();
     const verbCards = await page.evaluate(() => state.deck.filter(c => c.type === 'verb').length);
     if (verbCards !== 1) throw new Error('expected 1 verb card, got ' + verbCards);
@@ -3366,7 +3366,7 @@ if (!CHROME) {
     if (tr.mazi2 !== 'yerine getirdin') throw new Error('TR past 2sg wrong: ' + tr.mazi2);
     if (tr.maziPl !== 'unuttular') throw new Error('TR past 3pl harmony wrong: ' + tr.maziPl);
     // The sarf tab lands on the amr table with the cell lit through the waw.
-    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('.sheet .tabs button[data-tab="sarf"]').click();
     await page.waitForSelector('.tense-seg button[data-tense="amr"].on', { timeout: 10000 });
     if (!(await page.locator('table.conj td.hl').count()))
       throw new Error('amr cell not highlighted through the clitic waw');
@@ -7862,8 +7862,8 @@ if (!CHROME) {
       // the continue-card ring
       localStorage.setItem('qissa-lastread', st0.id); state.lastRead = st0.id;
       CUR = null; renderLibrary();
-      const ring = !!document.querySelector('.continue-card .cc-ring .rfg');
-      const pctEl = document.querySelector('.continue-card .cc-pct');
+      const ring = !!document.querySelector('.continue-card .cc-bar > span');   // (v340) the hero's bar replaced the ring
+      const pctEl = document.querySelector('.continue-card .cc-count');
       return {
         chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
         note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
@@ -7875,7 +7875,7 @@ if (!CHROME) {
         docN: Object.keys(QasrEngine.DOC).length,
         maHouse: maHouse && maHouse.kind,
         maManar: maManar && maManar.kind,
-        fsBig, fsDef, bgSepia, aa, ring, pct: pctEl && /%$/.test(pctEl.textContent),
+        fsBig, fsDef, bgSepia, aa, ring, pct: pctEl && /\d+\/\d+/.test(pctEl.textContent),
       };
     });
     if (r.missing) throw new Error('chapter 21 did not load');
@@ -7906,7 +7906,7 @@ if (!CHROME) {
     if (!/245, 237, 218/.test(r.bgSepia || ''))
       throw new Error('the sepia tint paints the story column: ' + r.bgSepia);
     if (!r.aa) throw new Error('the Aa chip stands in the story header');
-    if (!r.ring || !r.pct) throw new Error('the continue card wears its progress ring');
+    if (!r.ring || !r.pct) throw new Error('the continue card wears its progress bar and its count (v340)');
   });
 
   await check('talkhis ch22: the routes compared — the negating in, the alerting ala, and the five-nouns host', async () => {
@@ -12464,9 +12464,9 @@ if (!CHROME) {
     if (lib.top > LIB_MAX) throw new Error('the door\'s first way into the text at ' + lib.top + 'px on a phone (max ' + LIB_MAX + ')');
     if (lib.shelf >= 844) throw new Error('the first library card must start inside the first phone screen: ' + lib.shelf);
     if (lib.role || !lib.lang) throw new Error('front door on a phone: the role toggle must hide and the language segment stay: ' + JSON.stringify(lib));
-    const shelf = await p9.evaluate(() => ({ visible: [...document.querySelectorAll('.lib-card')].filter(c => c.getBoundingClientRect().top < 844).length, cover: !!document.querySelector('.lib-card .cover') && !!document.querySelector('.lib-card .cover').offsetParent, h: Math.round(document.querySelector('.lib-card').getBoundingClientRect().height) }));
+    const shelf = await p9.evaluate(() => ({ visible: [...document.querySelectorAll('.lib-card')].filter(c => c.getBoundingClientRect().top < 844).length, cover: (() => { const cv = document.querySelector('.lib-card .cover'), t = document.querySelector('.lib-card .t'); if (!cv || !cv.offsetParent) return false; const a = cv.getBoundingClientRect(), b = t.getBoundingClientRect(); return Math.abs(a.top - b.top) > 1 || Math.abs(a.height - b.height) > 1; })(), h: Math.round(document.querySelector('.lib-card').getBoundingClientRect().height) }));
     if (shelf.visible < 1) throw new Error('wave 75 (v338: the Today card now stands above the shelf): a card should start inside the first phone screen, got ' + shelf.visible + ' (card ' + shelf.h + 'px)');
-    if (shelf.cover) throw new Error('wave 75: the arabesque strip must not render on a phone');
+    if (shelf.cover) throw new Error('wave 75 (v340: the generated cover is the title\'s own field): the cover must not render as a strip of its own on a phone');
     await p9.locator('.lib-card').first().click(); await p9.waitForSelector('section.sentence'); await p9.waitForTimeout(300);
     const st = await p9.evaluate(() => { const s = document.querySelector('section.sentence'); const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); };
       return { top: Math.round(s.getBoundingClientRect().top), speed: vis('speedSeg'), ul: vis('ulToggle'), aa: vis('readCtrlBtn'), mode: vis('modeSeg'), play: vis('playAll'), eyebrow: !!document.getElementById('eyebrow').offsetParent }; });
@@ -16539,7 +16539,9 @@ if (!CHROME) {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.evaluate(() => renderLibrary());
     const ph = await page.evaluate(() => [getComputedStyle(document.querySelector('#story > .src-shelf')).display, getComputedStyle(document.getElementById('srcPick')).display]);
-    await page.locator('#srcPick').click(); await page.waitForSelector('.sheet.show .src-card', { timeout: 10000 });
+    // (v340) on a phone the sort bar — #srcPick with it — lives behind the filter row's «Filter» button
+    await page.locator('#libFilter').click(); await page.waitForSelector('.sheet.show #srcPick', { timeout: 10000 });
+    await page.locator('.sheet.show #srcPick').click(); await page.waitForSelector('.sheet.show .src-card', { timeout: 10000 });
     await page.locator('.sheet.show .src-card[data-src="fiqh"]').click(); await page.waitForTimeout(300);
     const pf = await page.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, document.getElementById('srcPick').getAttribute('aria-pressed'), !!document.querySelector('.sheet.show')]);
     await page.evaluate(() => { state.libSource = ''; try { localStorage.removeItem('qissa-libsource'); } catch (e) {} renderLibrary(); });
@@ -17328,7 +17330,7 @@ if (!CHROME) {
     }
     if (r.tr.h === r.en.h || r.tr.hint === r.en.hint) throw new Error('the two languages must differ: ' + r.tr.h + ' / ' + r.en.h);
     if (!r.sugg || r.sugg.locked || r.sugg.cont || r.opened !== r.sugg.id || r.lesson !== 'read') throw new Error('the read step opens the suggested, unlocked story: ' + JSON.stringify(r.sugg) + ' ' + r.opened);
-    if (r.due.steps[0] !== 'recall' || r.due.go !== 'recall' || r.due.first === 'todayCard' || !/\b1\b/.test(r.dueSub)) throw new Error('with a due card, recall leads, under the goal ring: ' + JSON.stringify(r.due) + ' ' + r.dueSub);
+    if (r.due.steps[0] !== 'recall' || r.due.go !== 'recall' || r.due.first !== 'todayCard' || !/\b1\b/.test(r.dueSub)) throw new Error('with a due card, recall leads, in the one card that carries the goal ring (v340): ' + JSON.stringify(r.due) + ' ' + r.dueSub);
     if (!r.deckOpen) throw new Error('the recall step opens the deck\'s review, capped at five');
     if (r.back.sheet || !r.back.lib || r.back.lesson) throw new Error('the last due card ends the step back at the door: ' + JSON.stringify(r.back));
     if (!r.after.steps.includes('recall+') || r.after.go !== 'read') throw new Error('recall ticks itself and the card shows the next step: ' + JSON.stringify(r.after));
@@ -17444,6 +17446,267 @@ if (!CHROME) {
     if (!r.form || r.form.ti !== r.ti || r.form.kind !== 'irab') throw new Error('«Hata bildir» opens the note form on this word: ' + JSON.stringify(r.form));
     if (r.rows.join() !== 'report,backup' || !r.backup) throw new Error('Settings carries report and backup, and backup lands on Backup: ' + JSON.stringify(r));
     if (r.tr.join('|') !== 'Yazar çözümlemesi · hoca onayı bekliyor|Hoca onaylı|Otomatik çözümleme|Hata bildir|Yedekle / Geri yükle') throw new Error('Turkish marks: ' + r.tr);
+  });
+  // ---------------- v340 — a calmer door, better sheets, real covers ----------------
+  await check('v340 — the door at 390×844 in both languages: one header (a date eyebrow, the title, three round 44 px buttons: search, streak, settings), no slogan or count chips, ONE card that carries the goal ring and the three stat chips, a filter row of level pills and «Filter»; the first shelf card stands higher than in v338 (pinned) and nothing overflows; language and theme are reachable from the settings sheet, sort and sources from the filter sheet', async () => {
+    const J = JSON.stringify;
+    await page.setViewportSize({ width: 390, height: 844 });
+    let r;
+    try {
+      r = await page.evaluate(async () => {
+        const keep = { progress: JSON.stringify(state.progress), deck: JSON.stringify(state.deck), lang: state.uiLang, last: state.lastRead, theme: localStorage.getItem('qissa-theme') || '', lvf: localStorage.getItem('qissa-liblevel'), ls: localStorage.getItem('qissa-lang') };
+        const out = {};
+        const box = el => { const b = el.getBoundingClientRect(); return [Math.round(b.width), Math.round(b.height)]; };
+        try {
+          localStorage.setItem('qissa-lang', 'tr');
+          for (const lang of ['tr', 'en']) {
+            state.uiLang = lang; localStorage.setItem('qissa-lang', lang);
+            state.progress = {}; state.deck = []; state.lastRead = null; closeSheet(); renderLibrary(); window.scrollTo(0, 0);
+            await new Promise(res => setTimeout(res, 60));
+            const story = document.getElementById('story');
+            out[lang] = {
+              eyebrow: document.getElementById('eyebrow').textContent, tagline: ui().tagline,
+              title: document.getElementById('storyTitle').textContent, lib: ui().library,
+              meta: document.getElementById('metaRow').textContent.trim(),
+              acts: [...document.querySelectorAll('#doorActs > button')].map(b => b.id + ':' + box(b).join('x')),
+              first: (story.firstElementChild || {}).id, goalIn: !!document.querySelector('#todayCard #goalCard .goal-ring'), goalOut: document.querySelectorAll('#goalCard').length,
+              chips: document.querySelectorAll('#todayCard .tc-head #statStrip .st-tile').length,
+              cards: [...story.children].filter(c => /card/.test(c.className) && !c.classList.contains('lib-card')).map(c => c.id || c.className),
+              pills: document.querySelectorAll('#libFilterRow .lv-pill').length, filterBtn: !!document.querySelector('#libFilter') && !!document.querySelector('#libFilter').offsetParent,
+              sortHidden: getComputedStyle(document.querySelector('#story > .lib-sort')).display === 'none',
+              card: Math.round(document.querySelector('.lib-card').getBoundingClientRect().top),
+              over: document.documentElement.scrollWidth > innerWidth,
+              navHidden: getComputedStyle(document.querySelector('nav.controls')).display === 'none',
+            };
+          }
+          // the settings sheet: language and theme, one tap deep
+          state.uiLang = 'en'; renderLibrary();
+          document.getElementById('doorSettings').click();
+          out.set = { open: !!document.querySelector('.sheet.show [data-set-ui="tr"]'), themes: document.querySelectorAll('.sheet.show .theme-card').length };
+          document.querySelector('.sheet.show [data-set-ui="tr"]').click();
+          out.set.lang = state.uiLang; out.set.still = !!document.querySelector('.sheet.show [data-set-ui]');
+          document.querySelector('.sheet.show .theme-card[data-theme-pick="gece"]').click();
+          out.set.theme = document.documentElement.dataset.theme;
+          closeSheet();
+          // the filter sheet: the sort bar itself (same ids) moves in; a level pill hides the other levels' cards
+          document.getElementById('libFilter').click();
+          out.filt = { srcPick: !!document.querySelector('.sheet.show .lib-sort #srcPick'), sort: document.querySelectorAll('.sheet.show [data-sort]').length, lvl: !!document.querySelector('.sheet.show #myLevelChip') };
+          closeSheet(); renderLibrary();
+          out.filt.dup = document.querySelectorAll('#srcPick').length;
+          document.querySelector('#libFilterRow [data-lvf="2"]').click();
+          const shown = [...document.querySelectorAll('#story > .lib-card')].filter(c => c.offsetParent);
+          out.lvf = { shown: shown.length, all2: shown.every(c => c.dataset.lvlc === '2'), want: STORIES.filter(s => Math.min(4, s.level) === 2).length, dom: document.querySelectorAll('.lib-card').length };
+          document.querySelector('#libFilterRow [data-lvf=""]').click();
+          out.lvf.back = [...document.querySelectorAll('#story > .lib-card')].filter(c => c.offsetParent).length;
+          // first run: until a language is chosen the switch stays in sight
+          localStorage.removeItem('qissa-lang'); renderLibrary();
+          out.firstRun = !!document.getElementById('uiLangSeg').offsetParent;
+        } finally {
+          state.progress = JSON.parse(keep.progress); state.deck = JSON.parse(keep.deck); state.uiLang = keep.lang; state.lastRead = keep.last;
+          if (keep.ls === null) localStorage.removeItem('qissa-lang'); else localStorage.setItem('qissa-lang', keep.ls);
+          if (keep.lvf === null) localStorage.removeItem('qissa-liblevel'); else localStorage.setItem('qissa-liblevel', keep.lvf);
+          if (keep.theme) setTheme(keep.theme); else { localStorage.removeItem('qissa-theme'); setTheme(''); }
+          closeSheet(); renderLibrary();
+        }
+        return out;
+      });
+    } finally { await page.setViewportSize({ width: 1280, height: 720 }); }
+    // v338 at 390×844, a returning reader's fresh profile (a language chosen): the first shelf card at 730 px (tr) / 699 px (en)
+    const PIN = { tr: 640, en: 640 };
+    for (const lang of ['tr', 'en']) {
+      const x = r[lang];
+      if (x.eyebrow === x.tagline || !/\d/.test(x.eyebrow) || x.title !== x.lib) throw new Error(lang + ': the header is a date eyebrow and the title: ' + J(x));
+      if (x.meta) throw new Error(lang + ': no count or free-week chips under the title: ' + x.meta);
+      if (x.acts.length !== 3 || x.acts.some(a => { const [w, h] = a.split(':')[1].split('x').map(Number); return w < 44 || h < 44; }) || !/doorSearch.*doorStreak.*doorSettings/.test(x.acts.join())) throw new Error(lang + ': three round buttons of 44 px: ' + J(x.acts));
+      if (x.first !== 'todayCard' || !x.goalIn || x.goalOut !== 1 || x.chips !== 3 || x.cards.length !== 1) throw new Error(lang + ': ONE card with the ring and the chips: ' + J(x));
+      if (!x.pills || !x.filterBtn || !x.sortHidden || !x.navHidden) throw new Error(lang + ': one filter row; the sort bar and the toolbar step aside on a phone: ' + J(x));
+      if (x.card > PIN[lang]) throw new Error(lang + ': the first shelf card at ' + x.card + ' px (v338: 730 / 699; pinned at ' + PIN[lang] + ')');
+      if (x.over) throw new Error(lang + ': the door overflows 390 px');
+    }
+    if (!r.set.open || r.set.themes < 4 || r.set.lang !== 'tr' || !r.set.still || r.set.theme !== 'gece') throw new Error('settings: language and theme one tap deep: ' + J(r.set));
+    if (!r.filt.srcPick || r.filt.sort !== 3 || !r.filt.lvl || r.filt.dup !== 1) throw new Error('the filter sheet carries the sort bar (same ids, never twice): ' + J(r.filt));
+    if (r.lvf.shown !== r.lvf.want || !r.lvf.all2 || r.lvf.dom !== r.lvf.back) throw new Error('the level pill filters by CSS, every card stays in the DOM: ' + J(r.lvf));
+    if (!r.firstRun) throw new Error('on a first run the language switch stays in sight');
+  });
+  await check('v340 — the continue hero: chapter and level, the Arabic title large, the translated title, «n/N sentences» on a bar, a round play button and the story\'s cover; it is the Read step\'s target, so the step says «continue» and the story is not named twice', async () => {
+    const r = await page.evaluate(() => {
+      const keep = { progress: JSON.stringify(state.progress), last: state.lastRead, lang: state.uiLang }; const out = {};
+      try {
+        state.uiLang = 'tr';
+        const st = STORIES.find(s => s.id === 'ashab-al-fil'); openStory(st);
+        delete state.progress[st.id]; const ch = CHAPTERS[0]; ch.sentences.slice(0, 4).forEach(s => markRead(s, ch));
+        toDoor();
+        const h = document.querySelector('.continue-card.cc340');
+        out.h = h && { id: h.dataset.storyId, chip: h.querySelector('.cc-chip').textContent, title: h.querySelector('.cc-title').textContent, sub: h.querySelector('.cc-sub').textContent,
+          count: h.querySelector('.cc-count').textContent, bar: parseFloat(h.querySelector('.cc-bar > span').style.width), play: !!h.querySelector('.cc-play svg'),
+          art: /data:image\/svg\+xml/.test(getComputedStyle(h.querySelector('.cc-art')).backgroundImage) };
+        out.want = { ar: st.title.ar, tr: T(st.title) };
+        out.step = document.querySelector('#todayCard [data-ls="read"] small').textContent; out.cont = ui().lsReadCont340;
+        out.twice = document.getElementById('todayCard').textContent.includes(st.title.ar);
+        h.click(); out.opened = CUR && CUR.id;
+      } finally { state.progress = JSON.parse(keep.progress); state.lastRead = keep.last; state.uiLang = keep.lang; localStorage.setItem('qissa-progress', keep.progress); toDoor(); }
+      return out;
+    });
+    const h = r.h;
+    if (!h || h.id !== 'ashab-al-fil' || !/Bölüm 1/.test(h.chip) || !/Seviye 1/.test(h.chip) || h.title !== r.want.ar || h.sub !== r.want.tr) throw new Error('the hero: ' + JSON.stringify(r));
+    if (!/^4\/9 /.test(h.count) || Math.round(h.bar) !== 44 || !h.play || !h.art) throw new Error('the bar, the count, the play button, the cover: ' + JSON.stringify(h));
+    if (r.step !== r.cont || r.twice) throw new Error('the Read step says «continue» and does not name the story again: ' + JSON.stringify([r.step, r.twice]));
+    if (r.opened !== 'ashab-al-fil') throw new Error('the hero opens the story: ' + r.opened);
+  });
+  await check('v340 — covers: every story\'s generated SVG is deterministic (the same story twice is identical) and its own (83 stories, 83 covers; the shelf\'s pattern family differs), coloured by the live theme\'s level token, built once and cached, and used on the shelf card (as the title\'s field), the story page\'s header, the continue hero and the chapter-end sheet', async () => {
+    const r = await page.evaluate(() => {
+      const out = {}, dec = u => decodeURIComponent(u.slice(u.indexOf(',') + 1));
+      COVER_CACHE340.clear();
+      let t0 = performance.now(); const all = STORIES.map(st => coverArt(st)); out.cold = performance.now() - t0;
+      t0 = performance.now(); const again = STORIES.map(st => coverArt(st)); out.warm = performance.now() - t0;
+      out.n = STORIES.length; out.distinct = new Set(all).size; out.same = all.every((u, i) => u === again[i]);
+      COVER_CACHE340.clear(); out.rebuilt = STORIES.every((st, i) => coverArt(st) === all[i]);   // deterministic, not merely cached
+      const fam = id => { const s = dec(coverArt(STORIES.find(x => x.id === id))); return s.slice(s.indexOf('<pattern'), s.indexOf('</pattern>')).replace(/[\d.]+/g, '#'); };
+      out.fam = [fam('ashab-al-fil') !== fam('muallaqat-imri-al-qays'), fam('ashab-al-fil') !== fam('al-kafiya')];
+      const k = localStorage.getItem('qissa-theme') || '';
+      setTheme('murekkep'); const a = coverArt(STORIES[0]); setTheme('gece'); const b = coverArt(STORIES[0]);
+      out.themed = a !== b && dec(a).includes(getComputedStyle(document.documentElement).getPropertyValue('--lvl' + Math.min(4, STORIES[0].level)).trim()) === false && dec(b).includes(getComputedStyle(document.documentElement).getPropertyValue('--lvl' + Math.min(4, STORIES[0].level)).trim());
+      if (k) setTheme(k); else { localStorage.removeItem('qissa-theme'); setTheme(''); }
+      renderLibrary();
+      const card = document.querySelector('.lib-card'); const cv = card.querySelector('.cover');
+      out.card = /data:image\/svg\+xml/.test(cv.style.backgroundImage) && getComputedStyle(cv).display !== 'none';
+      const st = STORIES.find(s => s.id === 'ashab-al-fil'); openStory(st);
+      out.header = /data:image\/svg\+xml/.test(document.querySelector('header.app').style.getPropertyValue('--cover-img'));
+      openChapterEnd(st, CHAPTERS[0]); out.chEnd = !!document.querySelector('.sheet.show #chapterEnd .ce-cover') && /data:image/.test(document.querySelector('#chapterEnd .ce-cover').style.backgroundImage);
+      closeSheet(); toDoor();
+      return out;
+    });
+    if (r.distinct !== r.n || !r.same || !r.rebuilt) throw new Error('deterministic and distinct: ' + JSON.stringify(r));
+    if (!r.fam.every(Boolean)) throw new Error('each shelf has its own pattern family: ' + JSON.stringify(r.fam));
+    if (!r.themed) throw new Error('the cover takes its colour from the live theme\'s level token');
+    if (!r.card || !r.header || !r.chEnd) throw new Error('used on the card, the header and the chapter end: ' + JSON.stringify(r));
+    if (r.cold > 400 || r.warm > 20) throw new Error('covers are cheap: ' + r.cold.toFixed(1) + ' ms for all, ' + r.warm.toFixed(1) + ' ms cached');
+    console.log('    v340 covers: ' + r.n + ' built in ' + r.cold.toFixed(1) + ' ms, cached ' + r.warm.toFixed(2) + ' ms');
+  });
+  await check('v340 — the word sheet: a header with the part of speech, the meaning large and the word large, the dictionary form, Listen · Add to deck in one row; the four tabs ONE segmented row on one line at 390 px in en and tr, their Arabic names in the accessible name; the chapter-end sheet (cover, «Chapter N complete», three tiles, the words as chips, «Add all», the questions as the primary)', async () => {
+    const J = JSON.stringify;
+    await page.setViewportSize({ width: 390, height: 844 });
+    let r;
+    try {
+      r = await page.evaluate(async () => {
+        const keep = { lang: state.uiLang, deck: JSON.stringify(state.deck), chq: localStorage.getItem('qissa-chq'), progress: JSON.stringify(state.progress) }; const out = {};
+        try {
+          const st = STORIES.find(s => s.id === 'al-asad-wa-al-far'); openStory(st);
+          let at = null;
+          for (const ch of CHAPTERS) for (const sen of ch.sentences) sen.tokens.forEach((t, ti) => { if (!at && MORPH[t.lex] && t.irab && t.grammar && t.grammar.length && GLOSSARY[t.lex] && GLOSSARY[t.lex].pos) at = { sen, ti, t }; });
+          for (const lang of ['tr', 'en']) {
+            state.uiLang = lang; openWord(at.t, null, 'irab', { sen: at.sen, ti: at.ti });
+            await new Promise(res => setTimeout(res, 300));
+            const tabs = [...document.querySelectorAll('.sheet.show .ws-tabs [data-tab]')];
+            const tops = new Set(tabs.map(b => Math.round(b.getBoundingClientRect().top)));
+            const row = document.querySelector('.sheet.show .ws-tabs').getBoundingClientRect();
+            const acts = [...document.querySelectorAll('.sheet.show .ws-acts > .btn')];
+            out[lang] = { n: tabs.length, lines: tops.size, h: Math.round(row.height), right: Math.round(row.right), clipped: tabs.filter(b => b.scrollWidth > b.clientWidth + 1).map(b => b.textContent),
+              aria: tabs.every(b => /[؀-ۿ]/.test(b.getAttribute('aria-label') || '') && !/[؀-ۿ]/.test(b.textContent)),
+              head: [!!document.querySelector('.ws-head .ws-pos'), !!document.querySelector('.ws-head .w-g1'), (document.querySelector('.ws-head .lemma.ws-ar') || {}).textContent === at.t.s.full],
+              acts: acts.map(b => b.id), actsRow: new Set(acts.map(b => Math.round(b.getBoundingClientRect().top))).size, on: (tabs.find(b => b.classList.contains('on')) || {}).dataset.tab };
+          }
+          closeSheet();
+          // the chapter-end sheet
+          state.uiLang = 'tr'; const ch = CHAPTERS[0]; delete state.progress[st.id]; ch.sentences.forEach(s => markRead(s, ch)); localStorage.removeItem('qissa-chq');
+          await new Promise(res => setTimeout(res, 800)); closeSheet();
+          const foot = storyEl.querySelector('.ch-end[data-ch="' + chN(ch) + '"] .ch-sum'); foot.click();
+          const ce = document.querySelector('.sheet.show #chapterEnd');
+          out.ce = ce && { cover: !!ce.querySelector('.ce-cover'), eyebrow: ce.querySelector('.se-eyebrow').textContent, want: ui().ceDone340.replace('{n}', chN(ch)), title: ce.querySelector('.se-title').textContent === ch.title.ar,
+            tiles: [...ce.querySelectorAll('.se-stats b')].map(b => b.textContent), sents: ch.sentences.length, chips: ce.querySelectorAll('.se-chip').length, all: !!ce.querySelector('[data-ce-all]'),
+            primary: (ce.querySelector('.se-actions .btn.primary') || {}).textContent, offer: ui().chqOffer.replace('{n}', 3) };
+          const d0 = state.deck.length; ce.querySelector('[data-ce-all]').click(); out.added = state.deck.length - d0;
+          document.querySelector('.sheet.show [data-ce-check]').click(); out.quiz = !!document.querySelector('.sheet.show .q-bar[role="progressbar"]');
+        } finally {
+          state.uiLang = keep.lang; state.deck = JSON.parse(keep.deck); persistDeck(); state.progress = JSON.parse(keep.progress); localStorage.setItem('qissa-progress', keep.progress);
+          if (keep.chq === null) localStorage.removeItem('qissa-chq'); else localStorage.setItem('qissa-chq', keep.chq);
+          QUIZ_RESUME = null; LESSON = null; closeSheet(); toDoor();
+        }
+        return out;
+      });
+    } finally { await page.setViewportSize({ width: 1280, height: 720 }); }
+    for (const lang of ['tr', 'en']) {
+      const x = r[lang];
+      if (x.n !== 4 || x.lines !== 1 || x.h > 56 || x.right > 390 || x.clipped.length || !x.aria) throw new Error(lang + ': the tabs on one line, whole, Arabic in the name: ' + J(x));
+      if (!x.head.every(Boolean) || J(x.acts) !== J(['sayWord', 'saveBtn']) || x.actsRow !== 1 || x.on !== 'irab') throw new Error(lang + ': the header and its two actions: ' + J(x));
+    }
+    const c = r.ce;
+    if (!c || !c.cover || c.eyebrow !== c.want || !c.title || c.tiles.length !== 3 || +c.tiles[0] !== c.sents || !/^\+\d+$/.test(c.tiles[2]) || c.chips < 3 || !c.all || c.primary.trim() !== c.offer) throw new Error('the chapter-end sheet: ' + J(c));
+    if (!(r.added > 0) || !r.quiz) throw new Error('«Add all» adds the chapter\'s words; the primary starts the questions with a progress bar: ' + J([r.added, r.quiz]));
+  });
+  await check('v340 — the sheet frame and its parts: a 44 px round close at the top end that closes, a sheet no taller than the screen below the status area, the content scrolling inside, a 200 ms slide that reduced motion turns off, focus moved in and returned to the opener, Escape closes; a quiz round shows a progress bar and says right / wrong in a word, not by colour alone; a toast is a status; new text holds 4.5:1 in Mürekkep, Gece and İznik', async () => {
+    const J = JSON.stringify;
+    await page.setViewportSize({ width: 390, height: 844 });
+    let r;
+    try {
+      r = await page.evaluate(async () => {
+        const out = {}; const keepTheme = localStorage.getItem('qissa-theme') || '';
+        const st0 = document.createElement('style'); st0.id = 'v340NoAnim'; st0.textContent = '*, *::before, *::after { transition-property: none !important; animation: none !important; }';
+        try {
+          closeSheet(); renderLibrary();
+          out.dur = getComputedStyle(document.getElementById('sheet')).transitionDuration;
+          const opener = document.getElementById('doorSettings'); opener.focus(); opener.click();
+          await new Promise(res => setTimeout(res, 350));
+          const x = document.getElementById('sheetClose'), xb = x.getBoundingClientRect(), sh = document.getElementById('sheet').getBoundingClientRect();
+          out.x = [Math.round(xb.width), Math.round(xb.height), getComputedStyle(x).borderRadius, Math.round(xb.right) <= innerWidth, x.getAttribute('aria-label')];
+          out.focusIn = document.getElementById('sheet').contains(document.activeElement);
+          out.h = [Math.round(sh.height), innerHeight, getComputedStyle(document.getElementById('sheet')).overflowY];
+          x.click(); out.closed = !document.getElementById('sheet').classList.contains('show'); out.back = document.activeElement === opener;
+          openDeck(); document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })); out.esc = !document.getElementById('sheet').classList.contains('show');
+          // a quiz round: a progress bar, right / wrong said in words
+          const st = STORIES.find(s => s.id === 'al-asad-wa-al-far'); openStory(st);
+          startChapterCheck(st, CHAPTERS[0]);
+          const bar = document.querySelector('.sheet.show .q-bar');
+          out.q = { bar: !!bar && bar.getAttribute('role') === 'progressbar', w0: bar && bar.firstElementChild.style.width };
+          const opts = [...document.querySelectorAll('.sheet.show .opts [data-o]')]; opts[0].click();
+          const right = document.querySelector('.sheet.show .opts .right'), wrong = document.querySelector('.sheet.show .opts .wrongpick');
+          out.q.right = right && right.dataset.mark; out.q.wrong = wrong ? wrong.dataset.mark : null; out.q.after = getComputedStyle(right, '::after').content;
+          out.q.w1 = document.querySelector('.sheet.show .q-bar i').style.width;
+          QUIZ_RESUME = null; LESSON = null; closeSheet();
+          showToast('v340'); const t = document.getElementById('toast'); out.toast = [t.getAttribute('role'), t.getAttribute('aria-live')];
+          // contrast of the new surfaces, the v320 measure, three themes
+          document.head.appendChild(st0);
+          const rgba = s => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const a = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [a[0], a[1], a[2], a.length > 3 ? a[3] : 1]; };
+          const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+          const over = (t2, b) => [0, 1, 2].map(i => t2[i] * t2[3] + b[i] * (1 - t2[3])).concat(1);
+          const bgOf = el => { const stk = []; for (let e = el; e; e = e.parentElement) { const cs = getComputedStyle(e); if (cs.backgroundImage !== 'none' && /url|gradient/.test(cs.backgroundImage) && !/gradient\(transparent/.test(cs.backgroundImage)) return null; const c = rgba(cs.backgroundColor); if (c && c[3] > 0) { stk.push(c); if (c[3] >= 1) break; } }
+            let b = rgba(getComputedStyle(document.body).backgroundColor) || [255, 255, 255, 1]; for (let i = stk.length - 1; i >= 0; i--) b = over(stk[i], b); return b; };
+          const CON = sel => { const bad = []; document.querySelectorAll(sel).forEach(root => root.querySelectorAll('*').forEach(el => { if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return;
+            const rr = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!rr.width || !rr.height || rr.bottom < 0 || rr.top > innerHeight || cs.visibility === 'hidden') return;
+            let op = 1; for (let e = el; e; e = e.parentElement) op *= +getComputedStyle(e).opacity; if (op < .99) return;
+            const fg = rgba(cs.color), bg = bgOf(el); if (!fg || !bg) return; const c = over(fg, bg), L1 = lum(c), L2 = lum(bg), ratio = (Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05);
+            const big = parseFloat(cs.fontSize) >= 24 || (parseFloat(cs.fontSize) >= 18.66 && +cs.fontWeight >= 700);
+            if (ratio < (big ? 3 : 4.5)) bad.push((el.className || el.tagName) + ' ' + Math.round(ratio * 100) / 100 + ' «' + el.textContent.trim().slice(0, 14) + '»'); })); return bad; };
+          out.low = {};
+          for (const th of ['murekkep', 'gece', 'bahce']) {
+            setTheme(th); const lo = [];
+            state.lastRead = 'ashab-al-fil'; toDoor(); lo.push(...CON('header.app, #todayCard, .continue-card, #libFilterRow, .free-line'));
+            openStory(st); let at = null; CHAPTERS[0].sentences.forEach(sen => sen.tokens.forEach((t2, ti) => { if (!at && t2.irab && MORPH[t2.lex]) at = { sen, ti, t2 }; }));
+            openWord(at.t2, null, 'word', { sen: at.sen, ti: at.ti }); lo.push(...CON('#sheet'));
+            openChapterEnd(st, CHAPTERS[0]); lo.push(...CON('#sheet'));
+            startChapterCheck(st, CHAPTERS[0]); document.querySelector('.sheet.show .opts [data-o]').click(); lo.push(...CON('#sheet'));
+            QUIZ_RESUME = null; LESSON = null; openDoorSettings340(); lo.push(...CON('#sheet'));
+            closeSheet(); if (lo.length) out.low[th] = lo.slice(0, 6);
+          }
+        } finally {
+          const s2 = document.getElementById('v340NoAnim'); if (s2) s2.remove();
+          QUIZ_RESUME = null; LESSON = null; closeSheet(); if (keepTheme) setTheme(keepTheme); else { localStorage.removeItem('qissa-theme'); setTheme(''); } toDoor();
+        }
+        return out;
+      });
+      // reduced motion turns the slide off
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      r.reduced = await page.evaluate(() => getComputedStyle(document.getElementById('sheet')).transitionDuration);
+      await page.emulateMedia({ reducedMotion: 'no-preference' });
+    } finally { await page.setViewportSize({ width: 1280, height: 720 }); }
+    const secs = s => Math.max(...s.split(',').map(v => parseFloat(v) * (/ms/.test(v) ? 0.001 : 1)));
+    if (secs(r.dur) > 0.2 || secs(r.reduced) !== 0) throw new Error('the slide is ≤ 200 ms and off under reduced motion: ' + r.dur + ' / ' + r.reduced);
+    if (r.x[0] < 44 || r.x[1] < 44 || r.x[2] !== '50%' || !r.x[3] || !r.x[4]) throw new Error('the round 44 px close: ' + J(r.x));
+    if (!r.focusIn || !r.closed || !r.back || !r.esc) throw new Error('focus in and back, close and Escape: ' + J(r));
+    if (r.h[0] > r.h[1] - 48 || !/auto|scroll/.test(r.h[2])) throw new Error('the sheet stays below the status area and scrolls inside: ' + J(r.h));
+    if (!r.q.bar || r.q.w0 !== '0%' || !/^✓ /.test(r.q.right || '') || (r.q.wrong !== null && !/^✗ /.test(r.q.wrong)) || !/✓/.test(r.q.after) || r.q.w1 === '0%') throw new Error('the quiz round: ' + J(r.q));
+    if (r.toast[0] !== 'status') throw new Error('the toast is a status: ' + J(r.toast));
+    if (Object.keys(r.low).length) throw new Error('new text under its contrast floor: ' + J(r.low));
   });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);

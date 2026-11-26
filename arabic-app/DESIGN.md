@@ -131,9 +131,16 @@ thumb hits takes the floor.
 `padding: var(--s4)`, `--e1` on hover only. Cards never nest more than two
 deep; a third level means the content wants its own sheet.
 
-**Sheet** — the app's one modal surface. `--radius-lg`, `--shadow`, a scrim,
-and a `.tabs` row at the top when it has more than one view. Everything that
-is not reading happens here.
+**Sheet** — the app's one modal surface. `--radius-lg`, `--shadow`, a scrim
+(`--scrim`), and a `.tabs` row at the top when it has more than one view.
+Everything that is not reading happens here. **The frame (v340) is shared and
+not per sheet:** a sticky top with the grabber and a round 44px close
+(`#sheetClose`) at the inline end, the first row of every sheet leaving room
+for it; never taller than the screen below the status area; the content
+scrolls inside the sheet; a `--dur-base` slide that reduced motion turns off;
+focus moves into the sheet when it opens (unless the content placed it, or the
+reader types in a field outside it) and returns to the opener when it closes;
+Escape, the scrim and the close button all close it.
 
 **Verdict block** — an engine's answer: the form large and centred, then
 labelled rows underneath (`.nida-verdict`, `.ilal-flow`). Arabic first at
@@ -149,7 +156,7 @@ label in the label voice, and a hairline rule filling the row. Used to break
 a long grid into disciplines.
 
 **Stat strip** — `.stat-strip` + `.st-tile`: three tiles at the front door,
-never more. An Arabic word in `--accent`, the number at `--t-xl` in tabular
+never more (since v338/v340 they fold into the Today card's head as chips). An Arabic word in `--accent`, the number at `--t-xl` in tabular
 figures, the label in the label voice. Every number is read live from
 `deckStats()` / `state.streak`, so the strip cannot disagree with the deck —
 the smoke suite compares the two. The whole row is one tap into the deck.
@@ -1239,3 +1246,40 @@ weekly XP bars, a level path, eight badges that light from state. **The walk.** 
 and one primary button; the level buttons are the picker's own. **The player pill.** Fixed above the thumb bar while Listen
 runs: count, previous, stop (accent circle), next. Measured at 390×844: the first library card sits at 366px (gate 403),
 the first sentence at 293px (gate 338).
+
+## v340 — a calmer door, better sheets, real covers
+
+**The door has one top.** A date eyebrow, the page's title, and three round 44px buttons at the end: search, the streak,
+settings. Language and theme live one tap deep in the settings sheet; the language switch stays in sight on a first run
+until the learner has chosen once (`body.lang-unset`). No slogan, no count chips; the free-this-week notice is one quiet
+line (`.free-line`) above the shelf. Then ONE card (`#todayCard`): the goal ring is the head's button (into the deck), the
+goal line and today's XP beside it, the three stat chips folded into the head, one primary button, the steps. Then the
+continue hero (`.cc340`, the ink ground, the chapter · level chip, the Arabic title at display size, the translated
+title, «n/N» over a bar, a round play button) — the Read step's target, so the step says only «continue». Then ONE filter
+row: level pills that scroll sideways (the third row allowed to, after the lab rail and the source row, and it fades at its end
+the same way; All · 1 · 2 · 3 · 4+, the four level colours; a pill hides the other cards by CSS)
+and «Filter», whose sheet carries the sort bar itself (same element, same ids). Desktop keeps the toolbar and the sort
+bar inline. Measured at 390×844, a fresh profile's first shelf card: 730 px (v338) → ≤ 640 px (gated).
+
+**Covers are generated, never pictures.** `coverArt(st)` composes an SVG from the story id: the pattern family is the
+shelf's (khātam lattice for stories, six-point star for reports and history, woven circles for poetry, square Kufic for
+mutūn, the twelve-point rosette for counsels and fiqh, the chevron for tales and maqāmāt, dots for practice), the seed
+sets scale, turn, weight and a 6–16-point medallion, the level seal carries the number, the colour is the live theme's
+level token (the theme is in the cache key). The SVG is transparent: the field under it is CSS — the level's tint on the
+panel — so the title sits on a ground that follows the theme. One cover per story, used on the shelf card (as the
+title's own field, the same box), the story page's header, the continue hero and the story/chapter-end sheets. Nothing
+in a cover depicts a person or an animal.
+
+**The word sheet's head.** The part of speech, the meaning large at the start, the word large at the end, the dictionary
+form under the meaning, Listen · Add to deck in one row — on every tab. The tabs are one segmented row of short labels
+(Meaning · Sarf · Iʿrab · Grammar / Anlam · Sarf · İ'rab · Gramer); the Arabic names ride in the accessible name and the
+title, never inline, so the row fits 390 px in both languages.
+
+**A round says right and wrong in words.** `runQuiz` shows the title, a quiet count and a progress bar (`.q-bar`,
+`role=progressbar`); the right answer wears «✓ Right», the wrong pick «✗ Wrong» (dashed border too) — colour is never the
+only signal. The score line steps back. The chapter's end is its own sheet (cover, «Chapter N complete», sentences ·
+words · the XP its reading earned, the words as chips, «Add all», the three questions as the primary). Toasts are one
+dark card above the thumb bar with `role=status`.
+
+**Empty states** get the covers' mark (the khātam star as a CSS mask in `--accent`, `.e340`), one sentence and one action
+(the empty deck opens a story; a search with no hit clears itself; a lab before input keeps its example chips).

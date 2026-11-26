@@ -15579,3 +15579,55 @@ Test users who had never used an Arabic app asked «what do I study today?». Th
 - Older checks changed, because this wave redesigns exactly what they measured: «wave 72 — the phone shows the text first» now gates the
   door's first way into the text — the Today card's primary button on a fresh profile (it sits above the steps for this reason) — at ≤ 403 px
   and requires the first shelf card inside the first screen; its «wave 75» clause now asks one shelf card in the first screen, not three.
+
+## v340 — a calmer door, better sheets, real covers
+
+The owner asked for «better pop-ups and place-holder images»; test users found the first screen busy. Built against the
+design mockups (70_lib_m, 74_word_i, 82_done), tokens only, three themes, 390 px, en and tr. Order of work: sheets, covers,
+door, empty states. DESIGN.md «v340» holds the rules; what changed, where:
+- **The sheet frame** (shared by every sheet): `.sheet-top` (sticky grabber + `#sheetClose`, a round 44 px close at the
+  inline end; the old `#sheet::before` grabber is off), `.sheet-inner > :first-child` leaves room for it by `max-width` (a
+  margin made `width:100%` rows overflow sideways — two balāgha phone checks caught it), max-height = the screen minus the
+  status area, `--dur-base` slide (the .34 s spring had been winning over the reduced-motion rule by source order; now off
+  under reduced motion), `--scrim`, focus moved in by `showSheet` (unless already placed or typing outside) and returned
+  to the opener by `closeSheet` (`SHEET_OPENER`, a `var`: closeSheet runs at boot).
+- **Word sheet**: one `.ws-head` on every tab (part of speech chip, meaning `.w-g1` large, the word `.lemma.ws-ar` large,
+  «Sözlük hâli» + lemma, `#sayWord` «Dinle» and `#saveBtn` «＋ Desteye ekle» in one row; saving keeps the open tab), then
+  `.ws-tabs`: one segmented row, short labels `wsMeaning340…wsGrammar340`, the Arabic names in `aria-label`/`title`. The
+  pos chip left `.facts`; the iʿrāb tab's duplicate `.lemma` is gone (the head's is first). v338's block order and marks stay.
+- **Chapter-end sheet** `openChapterEnd(st, ch)` (from the chapter foot's new «Bölüm özeti» `.ch-sum`; `.ch-check` still
+  starts the questions directly): cover, «Bölüm N tamamlandı», tiles sentences · words · `+n×Xp.READ`, the chapter's words
+  as chips, «Hepsini ekle», «Kendini dene — 3 soru» primary. It does not open by itself (a chapter ends far more often than
+  a story; an automatic sheet would land on whatever the reader opened). The story-end sheet wears the cover too.
+- **Quiz** (`runQuiz`, so v338's questions and every game round): `.q-head` = title, a quiet `.q-count` (the `.tabs .on`
+  text the older checks read is unchanged), a `.q-bar` progressbar; answered options carry `data-mark` «✓ Doğru» / «✗
+  Yanlış» shown by CSS, the wrong pick also dashed; `.game-meta` quieter. **Toasts**: one dark card, `role=status`.
+  Native `confirm` (two calls, review-notes clear and backup import) is left: neither is a one-line change.
+- **Covers**: `coverArt(st, theme = coverTheme340())` — same name, same data-URI return, a defaulted theme argument that is
+  part of `COVER_CACHE340`'s key (a cache placed around it must key on the theme too: the colour is the live `--lvlN`).
+  Pattern family by `sourceOf(st)`, seed (FNV of the id) → scale, turn, weight, a 6–16-point medallion, the level seal.
+  The SVG is transparent; the field is CSS. The shelf card's `.cover` and `.t` share grid cell 1/1 at every width (the
+  story loop is untouched); `header.app::before` carries `--cover-img` (set in `setHeader`); `.cc-art` in the hero; `.ce-cover`.
+  83 covers build in 12 ms (cached 0.5 ms).
+- **The door** (`renderLibrary`'s top only, `doorHeader340`, `todayCardHtml`, `levelPills340`, `openLibFilter340`,
+  `openDoorSettings340`): date eyebrow + «Kütüphane» + `#doorSearch` / `#doorStreak` / `#doorSettings`; at ≤ 860 px the
+  toolbar steps aside in the library (`#uiLangSeg` stays while `qissa-lang` is unset, `body.lang-unset`); no count / free
+  chips (`#freeLine` instead); ONE `#todayCard` whose head holds `#goalCard` (the ring, a button into the deck), the goal
+  line + XP and `#statStrip`; the `.continue-card.cc340` hero (the Read step's sub becomes `lsReadCont340`); the filter row
+  `#libFilterRow` (level pills → `#story[data-lvf]`, CSS-only, `qissa-liblevel`) + `#libFilter`, whose sheet borrows the
+  `.lib-sort` element itself (ids kept; renderLibrary drops a borrowed one so ids never double). Desktop keeps the bar inline.
+  First shelf card at 390×844, fresh profile: v338 730 px (tr) / 699 (en) → ~593 / ≤ 640 gated; mid-story door 836/805 → ~751.
+- **A header that became a containing block** (`position: relative` for the cover's `::before`) made the loading sweep
+  (`body.data-pending header.app::after`, translateX to +100 %) push the page sideways for a moment: four «overflows a phone»
+  checks failed at random in full runs, never alone. Found by hiding elements one by one at the failing moment; `header.app`
+  now clips sideways only (`overflow-x: clip`, the chips' 44 px hit areas above and below stay).
+- **Empty states**: `.e340` (the khātam mark as a CSS mask in `--accent`) on the empty deck (+ «open a story» action),
+  search without a hit (+ «clear the search»), the labs before input (their example chips are the action); `.tc-first`.
+- Smoke: five «v340 — …» checks before «v333 — the received imports». Older checks changed because they measured exactly
+  what this wave redesigns: nine word-sheet tab clicks by text «Word» / «Conjugation» → `[data-tab="word"|"sarf"]`; the
+  continue card's ring → its bar and count (l. ~7862); v338 Today — with due cards the card is now first, the ring inside it;
+  wave 72's «wave 75» clause — the cover may render on a phone, as the title's own field, never a strip; v317 sources — on a
+  phone `#srcPick` is reached through `#libFilter`.
+- Speed (4× CPU, 390 px, a loaded shared machine, so noisy): wave 69 startup 9.5–11.1 s to 83 cards over three runs (budget
+  passes; v338 by the same probe 9.9–11.5 s); renderLibrary median 117–143 ms (v338 76–154); scroll frames p95 47–51 ms (v338 35–46).
+- Full suite (the reader as built, `node tools/smoke_test.js`): 563 checks, 563 pass.
