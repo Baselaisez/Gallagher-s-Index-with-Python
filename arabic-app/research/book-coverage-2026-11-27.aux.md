@@ -9,7 +9,7 @@ carrier but records `gap`; every such gap that needs an engine rule is ranked in
 
 | ledger | group | files | entries | applied | noted | banked | shelved | slip | not-automatable | open |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| birgivi-awamil-inventory | awamil | `awamil-birgivi-tables.txt`, `amil-tablolari-turkce.txt`, `mamul-tablolari-turkce.txt`, `irab-taksimat-tablolari-turkce.txt` | 106 | 32 | 74 | 0 | 0 | 0 | 0 | 0 |
+| birgivi-awamil-inventory | awamil | `awamil-birgivi-tables.txt`, `amil-tablolari-turkce.txt`, `mamul-tablolari-turkce.txt`, `irab-taksimat-tablolari-turkce.txt` | 106 | 37 | 69 | 0 | 0 | 0 | 0 | 0 |
 | awamil-birgivi-ottoman | awamil | `awamil-birgivi-ottoman.txt`, `awamil-birgivi-tables.txt` | 37 | 19 | 13 | 5 | 0 | 0 | 0 | 0 |
 | edatlar-irab-soru-testi | awamil | `edatlar-irab-soru-testi.txt` | 9 | 0 | 9 | 0 | 0 | 0 | 0 | 0 |
 | mensubat | awamil | `mensubat.txt` | 144 | 0 | 0 | 144 | 0 | 0 | 0 | 0 |
@@ -54,7 +54,7 @@ carrier but records `gap`; every such gap that needs an engine rule is ranked in
 | sulh-fiqh | texts | `sulh-fiqh-turkce.txt` | 18 | 0 | 17 | 0 | 0 | 0 | 0 | 1 |
 | vakif-mali | texts | `vakif-mali-turkce.txt` | 2 | 0 | 1 | 0 | 0 | 0 | 0 | 1 |
 | qisas-al-nabiyyin-nadwi-leveling-notes | texts | `qisas-al-nabiyyin-nadwi-leveling-notes.txt` | 32 | 0 | 0 | 0 | 0 | 0 | 32 | 0 |
-| **all** | | | 3406 | 732 | 409 | 299 | 1827 | 6 | 67 | 66 |
+| **all** | | | 3406 | 737 | 404 | 299 | 1827 | 6 | 67 | 66 |
 
 ## birgivi-awamil-inventory — Birgivī's ʿAwāmil — the inventory tables (Ottoman and Turkish)
 
