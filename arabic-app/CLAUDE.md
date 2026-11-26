@@ -16820,3 +16820,53 @@ to the places they belong — verbatim, unvowelled as printed, anchored by book,
 - **Left** (research/commentary-coverage-2026-11-27.md has the lists): Ibn Mālik 96 sections / 1,213 pp. and al-Raḍī 57 / 815 pp. not
   scanned; 44 joined topics with no reason kept (badal, istithna, mafʿūl muṭlaq/fīh/lahu, nāʾib, the pronouns, taṣghīr, nasab, waqf, …);
   of the 984 candidates about 510 were read (Shaykhzāde 193 of 379, Ibn Mālik ≈260 of 350, al-Raḍī ≈60 of 255); the renderings await the hoca.
+
+## v351-I — Iẓhār as a course
+
+The owner: «Izhar is so important and you do have sufficient resource for Izhar» — the book consumed completely, as a path a student walks.
+
+- **The map — `content/rules/izhar_map.json`** (`tools/ledger/izhar_course_map.py`, ~50 s; its page probe `tools/ledger/izhar_course_probe.js`).
+  The skeleton is the ledger's (`coverage_izhar.json`): 60 ʿāmil (A01–A49 samāʿī, A50–A58 qiyāsī, A59–A60 maʿnawī), 30 maʿmūl (B01–B30),
+  the 10 signs by essence (C01–C10, the suʾāl–cevap's Q83 count: 3 ḥarakāt + 4 letters + 3 omissions). Per item: the lithograph line
+  (verbatim, file + line); the package sentence that carries it (chapter, sentence, verbatim tokens, the item's token; `ANCHOR` where the
+  ledger line's best overlap is not the item's own sentence); the suʾāl–cevap unit(s) from `izhar-sual-cevap-tafsilatli.txt` (`TRQ`: item →
+  question number; the PDF's Arabic is mojibake and is elided «…», Đ/đ restored to İ/ı); the ledger's engine rule(s); notes (ledger +
+  the notes whose Iẓhār examples cite that sentence + `NOTE_MORE`); games (hub ids); corpus examples = tokens whose AUTHORED line matches
+  the item's `SPEC.a` and whose ENGINE line (`Murib.line` over `SentenceAnalyzer`) matches `SPEC.e` (≤ 3, distinct stories; pool ≤ 12);
+  `ilal.json` reasons by topic. Counts: ʿāmil complete **43 / 60**, maʿmūl **24 / 30**, signs **10 / 10**; 23 cells missing, each named in
+  `missing` and in `research/izhar-course-2026-11-27.md` (examples: A09 حَتَّى — 19 authored, engine 0; A53 — 6, 0; B04 — 9, 0; A13 A14 A16
+  A17 A18 A19 A20 A30 A33 A34 A40–A44 B14 — no authored token in the corpus; suʾāl–cevap: B18–B21 have no question).
+- **The ledger to the end.** I-15.3 «بِزَيْدٍ مَرَرْتُ» was already met by `TaalluqEngine.of` (the fronted phrase hangs on the verb after it,
+  `ahead`) — the probe had asked the Murib line for «متعلق»; moved to a js probe. I-80.0: the verb's line names «نَائِبُ الْفَاعِلِ شِبْهُ
+  الْجُمْلَةِ «بِزَيْدٍ»», and a new `Nahw342Engine` rule row **`wasfHead`** (Iẓhār l. 101 «بَلْ فَاعِلُهُ سَادٌّ مَسَدَّ الْخَبَرِ») drops
+  «، وَخَبَرُهُ «…»» from the waṣf's line when the wasf rule names the dual / plural after it «سَدَّ مَسَدَّ الْخَبَرِ» (removal only; زَيْدٌ قَائِمٌ
+  keeps its khabar). Ledger Iẓhār 149 / 7 / 5 / 2 → **151 / 7 / 5 / 0** (applied / noted / n-a / open); the other three books unchanged.
+  `build_ledger.py` adds the carrier «course:izhar351 · يُقَالُ / لَا يُقَالُ» to the writer's-rule rows the course puts to the learner.
+- **The course — `Izhar351`** (reader.html, `v351-I BEGIN/END` before `let ILAL_ITEMS`). Lab tool «izhar» (`LAB_TOOLS.push`, one line in
+  `renderLabBody0`, `LabFrame.SRC`), a chip in the Iẓhār story's header (`setHeader` wrapped). Course page: the three bābs (bāb 1 split
+  samāʿī / qiyāsī / maʿnawī), 100 unit buttons with ✓, progress in `qissa-izhar351`. A unit: the package's vowelled sentence with the item
+  marked + «lithograph line N · story chapter C»; the suʾāl–cevap (TR: the source's text; EN: our rendering of the QUESTION from
+  `content/rules/izhar_course_en.json` marked «translation · pending review», the Turkish answer folded as the source's); «Neden?» =
+  `Illa346.chain` + `stepsHtml` on the first example; up to 3 corpus examples (sentence, translation, authored line) with «Hikâyede aç»
+  (`jumpTo`) and «Motorda gör» (the Jumla lab on the sentence); notes and games chips; «Alıştırma» through `runQuiz` (illa on, Elo area nahw,
+  no new scoring): bāb 1 «which ʿāmil governs the marked word?», bāb 2 «which of the thirty maʿmūl?», bāb 3 «which sign?» — options the
+  unit and three of its neighbours in the book's list; passed at ≥ 60 %. Exercises: bāb 1 39 units / 205 items, bāb 2 26 / 152, bāb 3 10 / 60.
+  **«يُقَالُ / لَا يُقَالُ — söylenir mi?»**: 17 of the book's own examples (12 said, 5 not said: مَرَرْتُ بِزَيْدٍ بِعَمْرٍو، ضَرَبْتُ يَوْمَ الْجُمُعَةِ
+  يَوْمَ السَّبْتِ، صَلَّيْتُ دَارًا، كُنْتُ جَانِبَ الدَّارِ، قَائِمًا مَا زَالَ زَيْدٌ), each the package's vowelled tokens; the feedback quotes the package
+  sentence that carries the matn line. Today's lesson (v338) and the rule of the day (v344) have no hook for an outside unit (the Today card's
+  rows are pinned by v340) — left as they are.
+- **Lazy.** The course data rides in the Iẓhār story's BODY: `build_prototype.course351()` hangs the cut map on that story as a JSON string
+  (key `course351`, ~157 KB), `tools/pubsplit.py` `BODY_KEYS` and `BODY341.KEYS` carry it, so the hosted copy loads it with that story's
+  body slice; the core `d1` is byte-identical (same hash) to the starting page's; `app.js` +22.8 KB (the renderer, compiled lazily; CSS is
+  injected on first open). Door A/B at 4× CPU, bodies held, 5 runs each (load ≈ 8): start 1728 ms median, after 1690 ms.
+- **The Iẓhār story audited** (`tools/grammar_audit.js`, uncapped): 86 records on izhar-al-asrar (the triage file's run had 96 — the drop is
+  other waves' fixes), every one already triaged; the shelf's 1,324 records: **0 new**. Left E: taʿalluq 15 (clusters T-T02 / T-T01 — the
+  nearest-noun choice and the matn's «X لِـY» lists; an engine change, not a rule row), case 2, jumla 1. L: 61, all already proposed — copied
+  to `research/story-corrections-proposed-2026-11-27.izhar.jsonl`. `research/story-audit-triage-delta-izhar.json` has no record (nothing
+  created). Nothing in the story was changed.
+- **Checks** (before v333): «v351-I — the Iẓhār by its own count, proved» (60 / 30 / 10 and 49 + 9 + 2, every cell from its source, ~800
+  example tokens re-proved in the page, floors, missing ≤ 23 and named, I-15.3 / I-80.0 and the wasfHead gate) and «v351-I — the Iẓhār
+  course» (entries, 100 units, a unit's sections, the exercise's answer is the unit, the söylenir-mi round, story tap, Jumla lab, 390 px,
+  44 px buttons, en + tr keys, course351 in one body slice and not in the core). No older check changed.
+- **Note for later runs.** A `SMOKE_ONLY` subset still creates the v341 / v343 split dirs in `os.tmpdir()` (they are made outside any
+  check) and never removes them; run subsets with a short `TMPDIR` of your own (`/tmp/iz351`; chrome refuses a long socket path).

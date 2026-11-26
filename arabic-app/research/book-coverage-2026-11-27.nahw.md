@@ -427,7 +427,7 @@ Source: `research/sources/qawaid-al-irab-ibn-hisham-matn.txt`. Entries: 205 — 
 
 ## Iẓhār al-Asrār (Birgivī)
 
-Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — applied **149**, noted **7**, not automatable **5**, open **2** (headings 0, lecture fragments 0, cited verses 0, counted apart).
+Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — applied **151**, noted **7**, not automatable **5**, open **0** (headings 0, lecture fragments 0, cited verses 0, counted apart).
 
 | id | line | status | carried by / reason | the book |
 |---|---|---|---|---|
@@ -531,9 +531,9 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-C08 | 162 | applied | engine:SignEngine, note:al-irab-wa-taqsimuhu-bil-dhat-wal-mahall, note:mamnu-min-sarf, note:naqis-al-irab-bil-harakat-wal-murab-bil-huruf | فهو الاسم المفرد والجمع المكسر المنصرفان نحو جاءني رجل ورجال ورأيت رجلا ورجالا ومررت برجل  |
 | I-C09 | 162 | applied | engine:SignEngine · T2, note:al-irab-wa-taqsimuhu-bil-dhat-wal-mahall, note:mamnu-min-sarf, note:naqis-al-irab-bil-harakat-wal-murab-bil-huruf | فهو الاسم المفرد والجمع المكسر المنصرفان نحو جاءني رجل ورجال ورأيت رجلا ورجالا ومررت برجل  |
 | I-C10 | 162 | applied | engine:SignEngine, note:al-irab-wa-taqsimuhu-bil-dhat-wal-mahall, note:mamnu-min-sarf, note:naqis-al-irab-bil-harakat-wal-murab-bil-huruf | فهو الاسم المفرد والجمع المكسر المنصرفان نحو جاءني رجل ورجال ورأيت رجلا ورجالا ومررت برجل  |
-| I-15.3 | 15 | open | engine to build: TaalluqEngine — probe «بِزَيْدٍ مَرَرْتُ» → اسم، مجرور وعلامة جره الكسرة الظاهرة. | ويجوز تقديم ما عدا هذا على متعلقه نحو بزيد مررت. |
-| I-17.2 | 17 | applied | engine:TaalluqEngine, note:hadhf-al-jarr | وإن كان ظرف مكان محدودا، وهو ما ثبت له اسم بسبب أمر داخل في مسماه كالدار والبيت، نحو دار،  |
-| I-19.2 | 19 | not-automatable | a rule for the writer (مَرَرْتُ بِزَيْدٍ بِعَمْرٍو is not said); the reader never meets the forbidden form | ولا يجوز تعلق الجارين بمعنى واحد بدون العطف بفعل واحد، فلا يقال مررت بزيد بعمرو ولا ضربت ي |
+| I-15.3 | 15 | applied | engine:TaalluqEngine · the fronted phrase (v351-I), course:izhar351 · يُقَالُ / لَا يُقَالُ | ويجوز تقديم ما عدا هذا على متعلقه نحو بزيد مررت. |
+| I-17.2 | 17 | applied | engine:TaalluqEngine, note:hadhf-al-jarr, course:izhar351 · يُقَالُ / لَا يُقَالُ | وإن كان ظرف مكان محدودا، وهو ما ثبت له اسم بسبب أمر داخل في مسماه كالدار والبيت، نحو دار،  |
+| I-19.2 | 19 | not-automatable | course:izhar351 · يُقَالُ / لَا يُقَالُ | ولا يجوز تعلق الجارين بمعنى واحد بدون العطف بفعل واحد، فلا يقال مررت بزيد بعمرو ولا ضربت ي |
 | I-21.2 | 21 | applied | engine:InnaEngine.verdict | فإن لا تغير معنى الجملة، وأن مع جملتها في حكم المصدر، ومن ثمة وجب الكسر في موضع الجمل والف |
 | I-23.2 | 23 | applied | engine:Sh336Engine · R141 | وتخفف المكسورة فيلزم اللام في خبرها، ويجوز إلغاؤها ودخولها على فعل من أفعال المبتدإ نحو قو |
 | I-23.3 | 23 | applied | engine:AnEngine · I-1 | وتخفف المفتوحة فتعمل في ضمير شأن مقدر، ويلزم أن يكون قبلها فعل من أفعال التحقيق نحو علمت أ |
@@ -546,7 +546,7 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-29.0 | 29 | applied | engine:Murib.line · نِعْمَ, note:al-lazim-wal-mutaaddi | نعم للمدح وبئس للذم، وشرطهما أن يكون الفاعل معرفا باللام أو مضافا إليه أو مضمرا مميزا بنكر |
 | I-29.3 | 29 | not-automatable | dropping the object «with a context or without» — the reader cannot see what was not said | والمتعدي ما لا يتم فهمه بغير ما وقع عليه الفعل، وهو على ثلثة أضرب: الأول متعد إلى مفعول وا |
 | I-30.2 | 30 | not-automatable | a rule for the writer: what may be left out | ولا يجوز حذف مفعوليها معا أو أحدهما بدون قرينة، ومع قرينة كثر حذفهما معا وقل حذف أحدهما فق |
-| I-33.2 | 33 | applied | engine:Murib.line | ويجوز تقديم أخبارها على أنفسها إلا ما في أوله ما فلا يجوز نحو قائما ما زال زيد، وكذا إن لم |
+| I-33.2 | 33 | applied | engine:Murib.line, course:izhar351 · يُقَالُ / لَا يُقَالُ | ويجوز تقديم أخبارها على أنفسها إلا ما في أوله ما فلا يجوز نحو قائما ما زال زيد، وكذا إن لم |
 | I-34.1 | 34 | noted | note:afal-al-muqaraba | ولا يجوز تقديم أخبار أفعال المقاربة على أنفسها. |
 | I-35.2 | 35 | applied | engine:Sh336Engine · R92 (the participle with tanwīn) | وشرط عملهما في الفاعل المنفصل والمفعول به أن لا يكونا مصغرين نحو ضويرب ومضيرب، ولا موصوفين |
 | I-37.2 | 37 | applied | engine:Murib.line, note:amal-ism-al-tafdil-wal-masdar | والسادس المصدر، وشرط عمله في الفاعل والمفعول به أن لا يكون مصغرا ولا موصوفا ولا مقترنا بال |
@@ -559,18 +559,18 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-65.2 | 65 | applied | engine:Murib.line | والقسم الثالث ما كان الأصل فيه أن لا يكون معمولا لكن قد يقع موقع القسم الثاني فيكون معمولا |
 | I-68.2 | 68 | not-automatable | a clause meant as its own wording (زَيْدٌ قَائِمٌ جُمْلَةٌ) — the reader cannot tell a cited clause from a used one | فإن أريد بالجملة لفظها فلا بد لها من إعراب لكونها في حكم الاسم المفرد حتى يجوز وقوعها في ك |
 | I-74.0 | 74 | applied | engine:JumlaMahallEngine · khabar | أبوه فتكون مرفوعة المحل، أو لباب كان نحو كان زيد أبوه عالم أو كاد نحو كاد زيد يخرج أو مفعو |
-| I-80.0 | 80 | open | engine to build: Murib.doer — probe «مُرَّ بِزَيْدٍ» → اسم، مجرور وعلامة جره الكسرة الظاهرة. | أو ما بمعناه نحو ضرب زيد وأمضروب الزيدان، ولا يكونان إلا اسمين أو في تأويله غير أن النائب  |
+| I-80.0 | 80 | applied | engine:Murib.doer · the jarr phrase as nāʾib; Nahw342Engine · wasf / wasfHead (v351-I), course:izhar351 · يُقَالُ / لَا يُقَالُ | أو ما بمعناه نحو ضرب زيد وأمضروب الزيدان، ولا يكونان إلا اسمين أو في تأويله غير أن النائب  |
 | I-80.1 | 80 | applied | engine:Murib.doer, note:al-fail-al-mudmar-al-mustatir-wujuban | كل منهما قسمان مضمر ومظهر، فالمضمر أيضا على قسمين مستتر وبارز، فالمستتر أيضا قسمان: واجب ا |
 | I-89.1 | 89 | applied | engine:Murib.doer, note:al-fail-al-muzhar-wa-tanith-amilih | وأما المظهر فظاهر، وإذا أسند إليه العامل يجب إفراده وغيبته ولو كان مثنى أو مجموعا نحو ضرب  |
 | I-92.0 | 92 | applied | engine:Murib.doer, note:al-fail-al-muzhar-wa-tanith-amilih | أو طالعة، وفي غيرهما يجوز تأنيث عامله وتذكيره إن كان مؤنثا نحو طلعت الشمس أو طلع الشمس ونح |
-| I-98.1 | 98 | not-automatable | agreement the writer must keep; the reader's line is the same either way | وأما جمع المذكر السالم فيجب تذكير عامله فتقول جاء المسلمون أو رجل قاعد ناصروه، وإذا أسند إ |
+| I-98.1 | 98 | not-automatable | course:izhar351 · يُقَالُ / لَا يُقَالُ | وأما جمع المذكر السالم فيجب تذكير عامله فتقول جاء المسلمون أو رجل قاعد ناصروه، وإذا أسند إ |
 | I-98.2 | 98 | applied | engine:Murib.doer, note:al-jumu-wa-tanith-amiliha | وأما جمع المذكر المكسر العاقل إذا أسند إلى ضميره فيجب أن يكون عامله مفردا مؤنثا أو جمعا مذ |
 | I-101.0 | 101 | applied | engine:Nahw342Engine · wasf, note:al-mubtada-wa-nawah | به المسند إليه المجرد عن العوامل اللفظية نحو زيد قائم وحق أنك قائم ولا بد له من خبر، والثا |
 | I-101.1 | 101 | applied | engine:Murib.line | والرابع خبر المبتدأ وهو المجرد عن العوامل اللفظية المسند به غير الفعل ومعناه نحو قائم في ز |
 | I-104.0 | 104 | applied | engine:JumlaMahallEngine · khabar, note:khabar-al-mubtada-wa-ahkamuh | قائم قاعد، وقد يكون جملة اسمية أو فعلية فلا بد من عائد إلى المبتدأ إن لم تكن خبرا عن ضمير  |
 | I-104.1 | 104 | applied | engine:Murib.line, note:al-fa-fi-khabar-al-mubtada | وإن كان المبتدأ بعد أما وجب دخول الفاء في خبره نحو أما زيد فمنطلق إلا لضرورة الشعر كقوله أ |
 | I-107.0 | 107 | applied | engine:Murib.line, note:al-fa-fi-khabar-al-mubtada | الفاء في خبره، وكذا إذا دخل عليه إن وأن ولكن بخلاف سائر نواسخ المبتدأ حرفا كان أو فعلا نحو |
-| I-107.2 | 107 | applied | engine:InnaEngine · the fronted khabar | والسادس خبر باب إن وأمره كأمر خبر المبتدأ لكن لا يجوز تقديمه على اسمها إلا أن يكون ظرفا نح |
+| I-107.2 | 107 | applied | engine:InnaEngine · the fronted khabar, course:izhar351 · يُقَالُ / لَا يُقَالُ | والسادس خبر باب إن وأمره كأمر خبر المبتدأ لكن لا يجوز تقديمه على اسمها إلا أن يكون ظرفا نح |
 | I-110.1 | 110 | applied | engine:Murib.line | وأما المنصوب فثلثة عشر: الأول المفعول المطلق وهو اسم ما فعله فاعل عامل مذكور لفظا أو تقدير |
 | I-110.2 | 110 | applied | engine:DabtEngine, note:al-maful-bihi-wa-qismah | والثاني المفعول به وهو اسم ما وقع عليه فعل الفاعل وهو على قسمين: عام وهو المجرور بالحرف، و |
 | I-113.0 | 113 | applied | engine:CaseEngine · ẓarf, note:al-maful-fih-wal-maful-lah | والثالث المفعول فيه وهو اسم ما فعل فيه مضمون عامله من زمان أو مكان، وشرط نصبه لفظا تقدير ف |
@@ -582,15 +582,15 @@ Source: `research/sources/izhar-al-asrar-matn-lithograph.txt`. Entries: 163 — 
 | I-122.0 | 122 | applied | engine:Murib.line, note:al-fail-al-mudmar-al-mustatir-wujuban, note:al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa, note:al-mustathna-wa-nawah-wa-nasbuh | نحو ما جاءني إلا زيدا أحد أو منقطعا نحو جاءني القوم إلا الحمار أو كان بعد خلا أو عدا في ال |
 | I-125.1 | 125 | applied | engine:Murib.line, note:al-mansubat-al-tasi-ila-al-thalith-ashar | والتاسع خبر باب كان وأمره كأمر خبر المبتدأ ويجوز حذف كان دون غيره عند قرينة نحو الناس مجزي |
 | I-125.2 | 125 | noted | note:al-mansubat-al-tasi-ila-al-thalith-ashar | والعاشر اسم باب إن وهو كالمبتدأ لكن لا يجوز حذفه. |
-| I-128.0 | 128 | noted | note:al-majrur-bil-harf-wa-bil-idafa | تقديمه ولا معموله على المضاف إلا أن يكون المضاف لفظ غير فيجوز تقديم معمول المضاف إليه عليه |
+| I-128.0 | 128 | noted | note:al-majrur-bil-harf-wa-bil-idafa, course:izhar351 · يُقَالُ / لَا يُقَالُ | تقديمه ولا معموله على المضاف إلا أن يكون المضاف لفظ غير فيجوز تقديم معمول المضاف إليه عليه |
 | I-128.1 | 128 | noted | note:hadhf-al-mudaf-wal-mudaf-ilayh | وقد يحذف المضاف فيعطى إعرابه للمضاف إليه وهو القياس نحو قوله تعالى واسأل القرية أي أهل الق |
-| I-131.1 | 131 | applied | engine:ShartEngine, note:al-majzum-wal-shart-wal-jaza | وأما المجزوم ففعل مضارع دخله أحد الجوازم المذكورة سابقا، فإن كانت كلم المجازاة تقتضي شرطا  |
+| I-131.1 | 131 | applied | engine:ShartEngine, note:al-majzum-wal-shart-wal-jaza, course:izhar351 · يُقَالُ / لَا يُقَالُ | وأما المجزوم ففعل مضارع دخله أحد الجوازم المذكورة سابقا، فإن كانت كلم المجازاة تقتضي شرطا  |
 | I-134.0 | 134 | applied | engine:JumlaMahallEngine · jawāb with the fāʾ, note:al-fa-fi-jawab-al-shart | وإن كان الجزاء جملة اسمية أو ماضية غير متصرفة أو بمعناه فلا بد من قد ظاهرة أو مقدرة أو مضا |
 | I-137.1 | 137 | applied | engine:Murib.line · naʿt (I-5) | وأما المعمول بالتبعية فخمسة ولا يجوز تقديم شيء منها على متبوعها وعاملها عامل متبوعها وإعرا |
 | I-137.2 | 137 | applied | engine:JumlaMahallEngine · naʿt, note:al-tawabi-wal-sifa | الأول الصفة وهي تابع يدل على معنى في متبوعه مطلقا، ويجوز تعددها نحو جاءني الرجل العالم الف |
 | I-143.1 | 143 | applied | engine:Murib.silaOf, note:al-mawsul-wal-muarraf-bil-lam-wal-mudaf | والنوع الرابع الموصول ولا بد له من صلة جملة خبرية معلومة للسامع فيها ضمير عائد إلى الموصول |
-| I-146.3 | 146 | noted | note:al-atf-bil-huruf-wa-ahkamuh, note:huruf-al-atf-fil-kafiya | والثاني العطف بحروف وهو تابع يتوسط بينه وبين متبوعه أحد الحروف العشرة وهي الواو والفاء وثم |
-| I-149.0 | 149 | noted | note:al-atf-bil-huruf-wa-ahkamuh — ⚠ the engine still misreads the example: «ضَرَبَ زَيْدٌ عَمْرًا وَبَكْرٌ خَالِدًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | فيجب ويمتنع له، ويجوز عطف شيئين بحرف واحد على معمولي عامل واحد بالاتفاق نحو ضرب زيد عمرا و |
+| I-146.3 | 146 | noted | note:al-atf-bil-huruf-wa-ahkamuh, note:huruf-al-atf-fil-kafiya, course:izhar351 · يُقَالُ / لَا يُقَالُ | والثاني العطف بحروف وهو تابع يتوسط بينه وبين متبوعه أحد الحروف العشرة وهي الواو والفاء وثم |
+| I-149.0 | 149 | noted | note:al-atf-bil-huruf-wa-ahkamuh, course:izhar351 · يُقَالُ / لَا يُقَالُ — ⚠ the engine still misreads the example: «ضَرَبَ زَيْدٌ عَمْرًا وَبَكْرٌ خَالِدًا» → اسم، منصوب وعلامة نصبه الفتحة الظاهرة. | فيجب ويمتنع له، ويجوز عطف شيئين بحرف واحد على معمولي عامل واحد بالاتفاق نحو ضرب زيد عمرا و |
 | I-152.0 | 152 | applied | engine:Murib.line | والرابع البدل وهو المقصود بالنسبة دونه وأقسامه أربعة: بدل الكل من الكل إن صدقا على واحد نح |
 | I-171.0 | 171 | applied | engine:MamnuEngine, note:ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh | وحمراء، وكل علم فيه تاء التأنيث لفظا نحو فاطمة وحمزة أو تقديرا وهو زائد على الثلاثة نحو زي |
 | I-198.1 | 198 | applied | engine:Murib.line, note:jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha | وأما جائز البناء فالظروف المضافة إلى الجملة وإذ فإنها يجوز بناؤها على الفتح نحو قوله تعالى |

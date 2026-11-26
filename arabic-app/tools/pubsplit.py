@@ -25,7 +25,7 @@ def jp(o):   # an object literal: Chromium parses it faster than JSON.parse("…
 # their content (data/b<k>-<hash>.js), so a new build re-downloads only the slices whose stories changed. The page's loader
 # inserts the core after one frame; the shell (BODY341) fetches the bodies after the door, the tapped story's slice first.
 import hashlib
-BODY_KEYS=("chapters","morph","glossary"); BODY_LIM=int(os.environ.get("QISSA_BODY_LIM","2500000"))
+BODY_KEYS=("chapters","morph","glossary","course351"); BODY_LIM=int(os.environ.get("QISSA_BODY_LIM","2500000"))   # (v351-I) course351: the Iẓhār course rides in its story's body
 def hname(prefix,text): return f"data/{prefix}-{hashlib.sha256(text.encode()).hexdigest()[:10]}.js"
 meta=[{k:v for k,v in p.items() if k not in BODY_KEYS} for p in arr]
 bodies=[]; cur=[]; curb=0

@@ -140,6 +140,11 @@ def mapkey(book, e):
     if book == 'izhar': return e['id'][2:]
     return e['id'][1:] if e['id'].startswith('K') else e['id']
 
+# (v351-I) the writer's rules the Iẓhār course puts to the learner (content/rules/izhar_map.json «writer»): the reader's engine cannot meet a
+# rule about what is NOT said, the learner can — the row keeps its status and names the course as a carrier
+try: COURSE351 = {w['rule'] for w in json.load(open(os.path.join(ROOT, 'content', 'rules', 'izhar_map.json'), encoding='utf-8')).get('writer', [])}
+except Exception: COURSE351 = set()
+
 def main():
     prove = '--no-prove' not in sys.argv
     books = []
@@ -165,6 +170,7 @@ def main():
             carried = []
             if ps and all(p['ok'] for p in ps): carried.append('engine:' + m.get('eng', 'Murib.line'))
             carried += ['note:' + n for n in notes]
+            if key == 'izhar' and e['id'] in COURSE351: carried.append('course:izhar351 · يُقَالُ / لَا يُقَالُ')   # (v351-I) the learner judges the book's examples
             kind = m.get('kind', e['kind'])
             if kind in APART: status = kind
             elif ps and all(p['ok'] for p in ps): status = 'applied'

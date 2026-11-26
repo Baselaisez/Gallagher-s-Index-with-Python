@@ -2,6 +2,7 @@
 // Usage: npm i playwright-core && node tools/smoke_test.js
 // Override the browser binary with CHROMIUM_PATH if needed.
 const fs = require('node:fs');
+const SIG350 = s => process.on(s, () => process.exit(130)); ['SIGINT', 'SIGTERM', 'SIGHUP'].forEach(SIG350);   // so 'exit' handlers (temp copies) run when a run is stopped
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 const { chromium } = require('playwright-core');
@@ -16585,15 +16586,15 @@ if (!CHROME) {
     }
   });
 
-  await check('v317 — the Atölye index (handoff 6): the rail and the index are drawn from one tool table; four groups hold all 38 tools (13 · 15 · 5 · 5; v339 added «الخلاف» to Naḥw); the search folds case, circumflexes, apostrophes, ı/i and harakāt — «ilal» finds İʿlāl, «جذر» and «kok» the Root Finder; a miss says so; a tile opens its tool and lands in «recently used»', async () => {
+  await check('v317 — the Atölye index (handoff 6): the rail and the index are drawn from one tool table; four groups hold all 39 tools (13 · 16 · 5 · 5; v339 added «الخلاف» to Naḥw, v351-I «إِظْهَار»); the search folds case, circumflexes, apostrophes, ı/i and harakāt — «ilal» finds İʿlāl, «جذر» and «kok» the Root Finder; a miss says so; a tile opens its tool and lands in «recently used»', async () => {
     const J = JSON.stringify;
     const keep = await page.evaluate(() => { const k = conjState.lab; try { localStorage.removeItem('qissa-lab-recent'); } catch (e) {} conjState.lab = 'home'; conjState.labQ = ''; openConjugator(); return k; });
     await page.waitForSelector('.sheet.show .lab-home', { timeout: 10000 });
     const r0 = await page.evaluate(() => ({ groups: [...document.querySelectorAll('.lab-group')].map(s => [s.dataset.group, s.querySelectorAll('.lab-tile').length]),
       rail: [...document.querySelectorAll('.labrail [data-lab]')].map(b => b.dataset.lab).filter(x => x !== 'home'), table: LAB_TOOLS.map(t => t.id),
       named: LAB_TOOLS.filter(t => !L.en[t.key] || !L.tr[t.key]).map(t => t.id) }));
-    if (J(r0.groups) !== J([['sarf', 13], ['nahw', 15], ['balagha', 5], ['fahm', 5]])) throw new Error('the groups: ' + J(r0.groups));
-    if (J(r0.rail) !== J(r0.table) || r0.table.length !== 38 || new Set(r0.table).size !== 38) throw new Error('the rail and the table disagree: ' + J([r0.rail.length, r0.table.length]));
+    if (J(r0.groups) !== J([['sarf', 13], ['nahw', 16], ['balagha', 5], ['fahm', 5]])) throw new Error('the groups: ' + J(r0.groups));
+    if (J(r0.rail) !== J(r0.table) || r0.table.length !== 39 || new Set(r0.table).size !== 39) throw new Error('the rail and the table disagree: ' + J([r0.rail.length, r0.table.length]));
     if (r0.named.length) throw new Error('tools without a name in both languages: ' + J(r0.named));
     const find = async q => { await page.fill('#labSearch', q); await page.waitForTimeout(260); return page.$$eval('#labHits .lab-tile', t => t.map(x => x.dataset.tool)); };
     const hits = { ilal: await find('ilal'), ILAL: await find("İ'LÂL"), jadhr: await find('جذر'), kok: await find('kok'), none: await find('qqqq') };
@@ -16716,7 +16717,7 @@ if (!CHROME) {
     if (Object.keys(low).length) throw new Error('text under its contrast floor: ' + J(low));
   });
 
-  await check('v321 — one frame for every Atölye tool (handoff 9, 11): all 38 tools open with the same head — the Arabic tile, the name, the science and the engine kind, statistical for the two learned tools only, «from the book» for the v339 khilaf table; İʿlāl names the rule of its last step and the Marāḥ bāb of the root\'s class, Zabt the app\'s own note for the chosen word, and both offer «continue» chips that open their tool or game', async () => {
+  await check('v321 — one frame for every Atölye tool (handoff 9, 11): all 39 tools open with the same head — the Arabic tile, the name, the science and the engine kind, statistical for the two learned tools only, «from the book» for the v339 khilaf table and the v351-I Iẓhār course; İʿlāl names the rule of its last step and the Marāḥ bāb of the root\'s class, Zabt the app\'s own note for the chosen word, and both offer «continue» chips that open their tool or game', async () => {
     const J = JSON.stringify;
     const r = await page.evaluate(async () => { const heads = {}; const keep = conjState.lab;
       for (const t of LAB_TOOLS) { conjState.lab = t.id; openConjugator(); await new Promise(res => setTimeout(res, 20)); const h = document.querySelector('#labBody > .tool-head'); heads[t.id] = h ? (h.querySelector('.th-eng.stat') ? 'stat' : h.querySelector('.th-eng.src') ? 'src' : h.querySelector('.th-eng.rule') ? 'rule' : '?') : 'missing'; }
@@ -16727,8 +16728,8 @@ if (!CHROME) {
       conjState.lab = 'dabt'; conjState.dabt = 'جاء أبرهة من اليمن بجيش كبير'; conjState.dabtPick = 1; openConjugator(); await new Promise(res => setTimeout(res, 50));
       const db = [(document.querySelector('.tool-ref [data-note]') || {}).dataset || {}].map(d => d.note)[0] || null;
       conjState.dabt = ''; conjState.dabtPick = -1; conjState.ilalShape = keepShape; conjState.lab = keep; closeSheet(); return { heads, il, il2, db }; });
-    const bad = Object.entries(r.heads).filter(([k, v]) => v !== (k === 'model' || k === 'learn' ? 'stat' : k === 'khilaf' ? 'src' : 'rule'));
-    if (Object.keys(r.heads).length !== 38 || bad.length) throw new Error('the heads: ' + J(bad));
+    const bad = Object.entries(r.heads).filter(([k, v]) => v !== (k === 'model' || k === 'learn' ? 'stat' : k === 'khilaf' || k === 'izhar' ? 'src' : 'rule'));   /* (v351-I) the Iẓhār course is read from the book */
+    if (Object.keys(r.heads).length !== 39 || bad.length) throw new Error('the heads: ' + J(bad));
     if (!/bāb 5|5\. bâb/.test(r.il[0]) || J(r.il[1]) !== J(['sarf', 'jadhr']) || !/bāb 4|4\. bâb/.test(r.il2)) throw new Error('İʿlāl reference: ' + J([r.il, r.il2]));
     if (!r.db) throw new Error('Zabt has no note for أَبْرَهَةُ');
   });
@@ -17854,6 +17855,7 @@ if (!CHROME) {
     st.url = 'http://127.0.0.1:' + srv.address().port + '/reader.html'; st.dir = dir;
     st.release = () => { st.hold = false; st.held.splice(0).forEach(f => f()); };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
       await ctx.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); } catch (e) {}
         window.__lt341 = []; try { new PerformanceObserver(l => l.getEntries().forEach(e => window.__lt341.push([e.startTime, e.duration]))).observe({ type: 'longtask', buffered: true }); } catch (e) {} });
@@ -18867,6 +18869,7 @@ if (!CHROME) {
       r.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(r); }).listen(0); srv.unref();
     const st = { url: 'http://127.0.0.1:' + srv.address().port + '/reader.html', dir };
     st.close = () => { try { srv.close(); } catch (e) {} try { fsx.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
+    process.on('exit', st.close);   // (v350) the copy never outlives the run: 180 leftover copies (13 GB) once filled the disk and crashed the page
     st.fresh = async (cpu, opt = {}) => { const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: opt.dpr || 1, serviceWorkers: 'block' });   /* no sw.js on this server */
       await ctx.addInitScript(hold => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '3'); } catch (e) {}
         if (hold) window.__QISSA_QUIET_OFF = true;
@@ -19412,6 +19415,76 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (r.low.length) throw new Error('contrast under 4.5: ' + r.low.slice(0, 4).join(' | '));
   });
 
+  await check('v351-I — the Iẓhār by its own count, proved: content/rules/izhar_map.json (tools/ledger/izhar_course_map.py) holds the sixty ʿāmil (49 samāʿī, 9 qiyāsī, 2 maʿnawī), the thirty maʿmūl and the ten signs, each with its lithograph line verbatim, the package sentence that carries it (verbatim tokens), the suʾāl–cevap unit (its question found in the source file), the engine rule, a note, the games; every corpus example re-proved in the page (the authored line names the item AND the engine\'s line does); the counts pinned and every missing cell named; the ledger\'s two open rows applied (I-15.3 the fronted jarr phrase, I-80.0 the jarr phrase as nāʾib and the waṣf with no khabar)', async () => {
+    const fsx = require('fs'), pathx = require('path'), R = f => pathx.join(__dirname, '..', f), J = f => JSON.parse(fsx.readFileSync(R(f), 'utf8'));
+    const m = J('content/rules/izhar_map.json'), LI = fsx.readFileSync(R(m.sources.matn), 'utf8').split('\n'), TS = fsx.readFileSync(R(m.sources.tr), 'utf8').replace(/Đ/g, 'İ').replace(/đ/g, 'ı');
+    const by = b => m.items.filter(x => x.bab === b), g = k => by(1).filter(x => x.group === k).length;
+    if (by(1).length !== 60 || by(2).length !== 30 || by(3).length !== 10 || g('samai') !== 49 || g('qiyasi') !== 9 || g('manawi') !== 2) throw new Error('60 / 30 / 10 (49 + 9 + 2): ' + JSON.stringify(m.counts));
+    const bad = [], H = s => String(s || '').normalize('NFC').replace(/[ً-ْٰـ]/g, '');
+    const chs = {}; const sen = (c, sid) => { const d = chs[c] || (chs[c] = J('content/samples/izhar-al-asrar/chapters/' + c + '.json')); return d.sentences.find(s => s.id === sid); };
+    for (const x of m.items) {
+      if (x.matn.text !== LI[x.matn.line - 1].trim()) bad.push(x.id + ' matn line');
+      const s = x.pkg && sen(x.pkg.ch, x.pkg.sid); if (!s || s.tokens.map(t => t.surface.full).join(' ') !== x.pkg.ar) bad.push(x.id + ' package sentence');
+      for (const t of x.tr) { const head = t.ask.split('…')[0].trim().slice(0, 24); if (head.length > 8 && !TS.includes(head)) bad.push(x.id + ' Q' + t.q); }
+      if (x.bab && !x.games.length) bad.push(x.id + ' games');
+      if (!x.notes.length) bad.push(x.id + ' notes');
+    }
+    for (const w of m.writer) { const s = w.at && sen(w.at.ch, w.at.sid); if (!s || !s.tokens.map(t => t.surface.full).join(' ').includes(w.ar)) bad.push('writer ' + w.phrase); const ws = w.phrase.split(' '); if (ws.filter(x => LI[w.line - 1].includes(x.slice(0, 3))).length * 2 < ws.length) bad.push('writer line ' + w.phrase); }
+    if (bad.length) throw new Error('every cell from its source: ' + bad.slice(0, 6).join(' | '));
+    const c = m.counts; const ok = (b, k, n) => c[b][k] >= n;
+    if (!(ok('amil', 'examples', 43) && ok('amil', 'complete', 43) && ok('mamul', 'examples', 28) && ok('mamul', 'complete', 24) && ok('irab', 'complete', 10) && ok('amil', 'tr', 60) && ok('mamul', 'tr', 26) && m.writer.length >= 17))
+      throw new Error('the floors (ʿāmil examples ≥ 43 / complete ≥ 43, maʿmūl ≥ 28 / ≥ 24, signs 10 / 10, writer ≥ 17): ' + JSON.stringify(c));
+    const named = new Set(m.missing.map(x => x.id)), incomplete = m.items.filter(x => !(x.pkg && x.tr.length && x.engine.length && x.notes.length && x.games.length && x.examples.length)).map(x => x.id);
+    if (incomplete.some(id => !named.has(id)) || m.missing.length > 23) throw new Error('every missing cell named, ≤ 23: ' + m.missing.length);
+    const ks = m.items.flatMap(x => [...new Set([].concat(x.examples, x.pool))].map(k => ({ k, a: x.spec.a, e: x.spec.e, w: x.spec.w || null })));
+    const r = await page.evaluate(KS => { const H = s => String(s || '').normalize('NFC').replace(/[ً-ْٰـ]/g, ''), fails = [], memo = new Map();
+      for (const q of KS) { const [pkg, ch, sid, ti1] = q.k.split(':'), ti = +ti1 - 1; const st = STORIES.find(s => s.id === pkg); const C = st && st.chapters.find(x => String(x.n) === ch); const sn = C && C.sentences.find(s => s.id === sid);
+        if (!sn) { fails.push(q.k + ' gone'); continue; } const T = sn.tokens; if (!new RegExp(q.a).test(H((T[ti].irab || {}).ar))) { fails.push(q.k + ' authored'); continue; }
+        let rows = memo.get(pkg + ch + sid); if (!rows) { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); memo.set(pkg + ch + sid, rows); }
+        if (rows.length !== T.length || !new RegExp(q.e).test(H((Murib.line(rows, ti) || {}).ar))) fails.push(q.k + ' engine'); }
+      const t = TaalluqEngine.of(SentenceAnalyzer.analyze('بِزَيْدٍ مَرَرْتُ'), 0) || {}; const w = SentenceAnalyzer.analyze('أَمَضْرُوبٌ الزَّيْدَانِ'), z = SentenceAnalyzer.analyze('زَيْدٌ قَائِمٌ'), mr = SentenceAnalyzer.analyze('مُرَّ بِزَيْدٍ');
+      return { n: KS.length, fails, fronted: t.kind === 'found' && t.at === 1 && !!t.ahead, wasf: H(Murib.line(w, 0).ar), wasf1: H(Murib.line(w, 1).ar), plain: H(Murib.line(z, 0).ar), naib: H(Murib.line(mr, 0).ar) }; }, ks);
+    if (r.n < 250 || r.fails.length) throw new Error('every example re-proved (' + r.n + '): ' + r.fails.slice(0, 5).join(' | '));
+    if (!r.fronted || /خبره/.test(r.wasf) || !/مبتدأ/.test(r.wasf) || !/نائب فاعل سد مسد الخبر/.test(r.wasf1) || !/وخبره «قائم»/.test(r.plain) || !/نائب الفاعل شبه الجملة «بزيد» في محل رفع/.test(r.naib))
+      throw new Error('I-15.3 / I-80.0 and the gate (زَيْدٌ قَائِمٌ keeps its khabar): ' + JSON.stringify(r).slice(0, 400));
+    const led = J('content/rules/coverage_izhar.json'), st = id => (led.entries.find(e => e.id === id) || {}).status;
+    if (st('I-15.3') !== 'applied' || st('I-80.0') !== 'applied' || led.counts.open !== 0 || led.counts.applied < 151) throw new Error('the ledger to the end: ' + JSON.stringify(led.counts));
+    if (!led.entries.filter(e => (e.carried_by || []).some(c => c.startsWith('course:izhar351'))).length) throw new Error('the writer\'s rules carried by the course');
+    console.log('      ' + JSON.stringify({ amil: c.amil.complete, mamul: c.mamul.complete, irab: c.irab.complete, missing: m.missing.length, examples: r.n, writer: m.writer.length }));
+  });
+  await check('v351-I — the Iẓhār course: from the labs hub and the Iẓhār story\'s header, the three bābs and their 100 units with progress; a unit shows the package\'s vowelled matn line, the suʾāl–cevap (TR: the source\'s; EN: our rendering marked «pending review»), «Neden?» through Illa346, corpus examples that open the story at the sentence and the Jumla lab on it, and an exercise through runQuiz whose answer is the unit; the «يُقَالُ / لَا يُقَالُ» round on the book\'s examples quotes the matn; 390 px, no overflow; the data rides in the Iẓhār story\'s body slice, never in the door\'s core', async () => {
+    const fsx = require('fs'), pathx = require('path'), os = require('os'), cp = require('child_process');
+    const r = await page.evaluate(async () => { const o = {}; const prevLang = state.uiLang;
+      o.tool = LAB_TOOLS.some(t => t.id === 'izhar'); Izhar351.open(); await new Promise(f => setTimeout(f, 50));
+      const root = document.getElementById('iz351'); o.units = root ? root.querySelectorAll('[data-iz]').length : 0; o.babs = root ? root.querySelectorAll('details.iz-bab').length : 0;
+      o.wide = document.getElementById('sheetInner').scrollWidth > document.getElementById('sheetInner').clientWidth + 1;
+      root.querySelector('[data-iz="I-A07"]').click(); await new Promise(f => setTimeout(f, 50));
+      const u = document.getElementById('iz351'); o.unit = u && u.dataset.unit; o.mark = !!u.querySelector('.iz-matn mark.iz-hl'); o.why = u.querySelectorAll('.iz-why .illa-s').length; o.ex = u.querySelectorAll('.iz-x').length;
+      o.trTxt = (u.querySelector('.iz-tr') || {}).textContent || ''; o.wide2 = document.getElementById('sheetInner').scrollWidth > document.getElementById('sheetInner').clientWidth + 1;
+      o.small = [...u.querySelectorAll('button')].filter(b => b.offsetParent && b.getBoundingClientRect().height < 43).map(b => b.textContent.trim().slice(0, 20));
+      u.querySelector('[data-iz-eng="0"]').click(); o.jumla = conjState.lab === 'jumla' && !!conjState.jumla;
+      Izhar351.open('I-A07'); await new Promise(f => setTimeout(f, 50)); document.getElementById('iz351Quiz').click();
+      const opts = [...document.querySelectorAll('#sheetInner .opts [data-o]')]; o.opts = opts.length; o.target = !!document.querySelector('#sheetInner .game-q b.target');
+      const right = opts.findIndex(b => b.textContent.trim() === 'فِي'); o.right = right >= 0; if (right >= 0) opts[right].click(); o.score = /: 1/.test(document.querySelector('#sheetInner .game-meta').textContent); o.illa = !!document.querySelector('#qWhy .illa, #qWhy [class*="illa"]');
+      Izhar351.open(); await new Promise(f => setTimeout(f, 50)); document.getElementById('iz351Writer').click();
+      o.wq = (document.querySelector('#sheetInner .q-count') || {}).textContent; const wo = document.querySelectorAll('#sheetInner .opts [data-o]'); o.wopts = wo.length; wo[0].click();
+      o.wwhy = !!document.querySelector('#qWhy .game-why [lang="ar"]');
+      Izhar351.open('I-B01'); await new Promise(f => setTimeout(f, 50)); o.b1 = (document.getElementById('iz351') || {}).dataset.unit;
+      closeSheet(); const st = STORIES.find(s => s.id === 'izhar-al-asrar'); openStory(st); await new Promise(f => setTimeout(f, 300)); o.chip = !!document.querySelector('#metaRow .iz351-go');
+      Izhar351.open('I-A07'); await new Promise(f => setTimeout(f, 50)); const ob = document.querySelector('[data-iz-open="0"]'); ob.click(); await new Promise(f => setTimeout(f, 300));
+      const ex = Izhar351.data().byId.get('I-A07').examples[0].split(':'); o.jump = CUR && CUR.id === ex[0];
+      o.keys = Object.keys(L.en).filter(k => /^iz351|^izharTab$/.test(k)).filter(k => !L.tr[k]); closeSheet(); renderLibrary(); o.data = Izhar351.data().items.length; return o; });
+    if (!(r.tool && r.units >= 100 && r.units <= 101 && r.babs === 3 && !r.wide && !r.wide2)) throw new Error('the course page (100 units + continue, three bābs, 390 px): ' + JSON.stringify(r));
+    if (!(r.unit === 'I-A07' && r.mark && r.why >= 3 && r.ex >= 2 && /9/.test(r.trTxt) && r.jumla && !r.small.length)) throw new Error('a unit: ' + JSON.stringify(r));
+    if (!(r.opts === 4 && r.target && r.right && r.score && r.illa)) throw new Error('the exercise through runQuiz: ' + JSON.stringify(r));
+    if (!(/\/\s*17$/.test(String(r.wq).trim()) || /17/.test(r.wq)) || r.wopts !== 2 || !r.wwhy) throw new Error('the söylenir mi? round: ' + JSON.stringify(r));
+    if (!(r.b1 === 'I-B01' && r.chip && r.jump && !r.keys.length && r.data === 100)) throw new Error('entries, the story tap, en + tr: ' + JSON.stringify(r));
+    const src = fsx.readFileSync(pathx.join(__dirname, 'pubsplit.py'), 'utf8'); if (!/BODY_KEYS=\([^)]*"course351"/.test(src)) throw new Error('pubsplit moves course351 into the bodies');
+    const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-v351-')); try { cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
+      const fs2 = fsx.readdirSync(pathx.join(dir, 'data')), d1 = fs2.filter(f => /^d/.test(f)).map(f => fsx.readFileSync(pathx.join(dir, 'data', f), 'utf8')).join(''), bs = fs2.filter(f => /^b/.test(f) && fsx.readFileSync(pathx.join(dir, 'data', f), 'utf8').includes('"course351"'));
+      if (d1.includes('course351') || bs.length !== 1) throw new Error('the course in one body slice, not in the core: ' + bs.length);
+    } finally { fsx.rmSync(dir, { recursive: true, force: true }); }
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
