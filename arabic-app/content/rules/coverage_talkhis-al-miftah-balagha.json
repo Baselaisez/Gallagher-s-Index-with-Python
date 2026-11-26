@@ -9,9 +9,8 @@
  "group": "balagha",
  "note": "",
  "counts": {
-  "noted": 49,
-  "shelved": 118,
-  "open": 2
+  "noted": 51,
+  "shelved": 118
  },
  "entries": [
   {
@@ -5901,8 +5900,13 @@
      "how": "names"
     },
     {
+     "type": "note",
+     "ref": "al-hal-jumla-wa-rabituha",
+     "how": "names"
+    },
+    {
      "type": "topics",
-     "ref": "khabar"
+     "ref": "khabar,hal-jumla"
     }
    ],
    "status": "noted"
@@ -5912,9 +5916,18 @@
    "line": 2540,
    "ar": "صحيفه:٨٨ مثبت مضارعده بويلدر. يعنى مفرد اولان حالده بولونان ايكى شى مثبت مضارعده ده بولونور مثبت مضارعك غير ثابت صفتك حص",
    "kind": "page",
-   "carried_by": [],
-   "reason": "no matn run on the shelf and no balāgha topic named",
-   "status": "open"
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-hal-jumla-wa-rabituha",
+     "how": "names"
+    },
+    {
+     "type": "topics",
+     "ref": "hal-jumla"
+    }
+   ],
+   "status": "noted"
   },
   {
    "id": "page90",
@@ -5938,8 +5951,13 @@
      "how": "names"
     },
     {
+     "type": "note",
+     "ref": "al-hal-jumla-wa-rabituha",
+     "how": "names"
+    },
+    {
      "type": "topics",
-     "ref": "qasr"
+     "ref": "qasr,hal-jumla"
     }
    ],
    "status": "noted"
@@ -5949,9 +5967,18 @@
    "line": 2592,
    "ar": "صحيفه:٩۰ بو كلامك تحقيقى شويله در. عدمك دوام ايتمه سى بر فاعله محتاج دگلدر. وجودك دوامى ايسه ؛ فاعله محتاجدر. منفى ماضى ",
    "kind": "page",
-   "carried_by": [],
-   "reason": "no matn run on the shelf and no balāgha topic named",
-   "status": "open"
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-hal-jumla-wa-rabituha",
+     "how": "names"
+    },
+    {
+     "type": "topics",
+     "ref": "hal-jumla"
+    }
+   ],
+   "status": "noted"
   },
   {
    "id": "page92",
@@ -6021,6 +6048,11 @@
     },
     {
      "type": "note",
+     "ref": "al-hal-jumla-wa-rabituha",
+     "how": "names"
+    },
+    {
+     "type": "note",
      "ref": "ilm-al-badi",
      "how": "names"
     },
@@ -6041,7 +6073,7 @@
     },
     {
      "type": "topics",
-     "ref": "fasaha,khabar,ijaz,badi"
+     "ref": "fasaha,khabar,ijaz,hal-jumla,badi"
     }
    ],
    "status": "noted"

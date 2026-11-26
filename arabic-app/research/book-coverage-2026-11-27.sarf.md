@@ -10,7 +10,7 @@ entry passes and the smoke check «v342 — the ṣarf ledger of …» re-runs e
 | book | entries | applied | noted | not automatable | open |
 |---|---|---|---|---|---|
 | مَرَاحُ الْأَرْوَاحِ | 671 → 669 | 266 → **316** | 74 → **348** | 5 → **5** | 326 → **0** |
-| الْمَقْصُودُ | 651 → 693 | 300 → **411** | 26 → **11** | 54 → **67** | 271 → **204** |
+| الْمَقْصُودُ | 651 → 693 | 300 → **525** | 26 → **89** | 54 → **79** | 271 → **0** |
 | تَصْرِيفُ الْعِزِّيِّ | 278 → 278 | 167 → **175** | 27 → **102** | 0 → **1** | 84 → **0** |
 
 «before» is the first cut of this wave; the cut itself was refined since (the raw matn's page-break fragments joined, the Maqṣūd's
@@ -105,30 +105,17 @@ paragraphs split where a vowelled table line meets Ottoman prose), so the entry 
 | section | entries | applied | noted | n/a | open |
 |---|---|---|---|---|---|
 | preface | 58 | 0 | 3 | 55 | 0 |
-| divisions | 37 | 14 | 3 | 3 | 17 |
-| derivations | 130 | 61 | 0 | 4 | 65 |
-| sahih-babs | 87 | 37 | 3 | 2 | 45 |
-| meanings | 58 | 32 | 1 | 0 | 25 |
-| ilal | 84 | 59 | 0 | 0 | 25 |
-| mithal | 26 | 18 | 0 | 0 | 8 |
-| mudaaf | 18 | 13 | 0 | 0 | 5 |
-| mahmuz | 31 | 17 | 0 | 3 | 11 |
-| tables | 164 | 160 | 1 | 0 | 3 |
+| divisions | 37 | 14 | 20 | 3 | 0 |
+| derivations | 130 | 90 | 33 | 7 | 0 |
+| sahih-babs | 87 | 72 | 8 | 7 | 0 |
+| meanings | 58 | 39 | 17 | 2 | 0 |
+| ilal | 84 | 83 | 0 | 1 | 0 |
+| mithal | 26 | 25 | 1 | 0 | 0 |
+| mudaaf | 18 | 17 | 1 | 0 | 0 |
+| mahmuz | 31 | 25 | 2 | 4 | 0 |
+| tables | 164 | 160 | 4 | 0 | 0 |
 
-**Open (204)** — the Maqṣūd's Ottoman prose: a note can quote it only beside a modern-Turkish rendering, which this wave did not write;
-ranked by part (the parts nearest the engines first):
-
-- ilal (25): lines 560, 561, 573, 579, 584, 590, 593, 595, 600, 608, 610, 613, 618, 621, 630, 633, 646, 653, 674, 683, 687, 689, 691, 692, 698
-- mahmuz (11): lines 771, 776, 777, 784, 793, 795, 799, 801, 803, 805, 809
-- mithal (8): lines 702, 703, 709, 710, 711, 712, 717, 745
-- mudaaf (5): lines 762, 763, 764, 765, 766
-- meanings (25): lines 461, 467, 468, 469, 472, 475, 479, 483, 485, 489, 490, 491, 494, 495, 498, 500, 504, 505, 507, 537, 541, 542, 543, 544, 559
-- sahih-babs (45): lines 310, 312, 315, 317, 319, 321, 324, 327, 328, 329, 338, 339, 342, 343, 345, 349, 350, 351, 352, 354, 355, 356, 366, 370, 379, 381, 383, 386, 395, 400, 403, 411, 414, 420, 423, 424, 437, 438, 441, 442, 449, 450, 452, 453, 454
-- derivations (65): lines 127, 129, 130, 131, 139, 141, 143, 144, 148, 150, 151, 162, 167, 169, 174, 179, 181, 183, 186, 188, 194, 199, 201, 202, 203, 204, 205, 206, 207, 209, 211, 218, 221, 226, 230, 234, 235, 241, 244, 246, 249, 250, 251, 252, 253, 254, 255, 256, 258, 259, 260, 261, 264, 266, 268, 269, 271, 276, 285, 286, 288, 289, 302, 303, 305
-- divisions (17): lines 79, 80, 82, 90, 91, 93, 105, 106, 108, 111, 112, 113, 116, 118, 119, 124, 126
-- tables (3): lines 857, 858, 897
-
-**Not automatable (67):** not a rule: the preface, a prayer, a ḥadīth or the author's life — the story / the bank carries the text (67)
+**Not automatable (79):** not a rule: the preface, a prayer, a ḥadīth or the author's life — the story / the bank carries the text (67); a heading of the commentary («فعل مضارع») — no sentence to apply or carry (1); a heading of the commentary («امر حاضر») — no sentence to apply or carry (1); a heading of the commentary («اسم فاعل») — no sentence to apply or carry (1); the teacher's Turkish meaning of a ḥadīth (Muslim) quoted as an example — not a rule of ṣarf (2); a word-gloss (غرّة، محجّل) of the ḥadīth above — not a rule of ṣarf (1); the teacher's advice to the students — not a rule of ṣarf (1); a word-gloss of the teacher's advice — not a rule of ṣarf (1); the Turkish meaning of the istirjāʿ (إِنَّا لِلّٰهِ …) quoted for the meaning taslīm of istafʿala — not a rule of ṣarf (1); a transition («we shall explain these six parts briefly») — no rule (1); a heading of the commentary (the chapter of the weak, doubled and hamzated verbs) — no sentence to apply or carry (1); a word-gloss of the teacher's advice (Mektûbât) — not a rule of ṣarf (1)
 
 ## تَصْرِيفُ الْعِزِّيِّ — section by section
 

@@ -18010,7 +18010,7 @@ if (!CHROME) {
     const LEDGER342 = {   // measured 2026-11-26 (v342-S): a count may only move the right way — applied and noted up, open down
       marah: { n: 669, applied: 316, carried: 664, open: 0, na: 5 },
       izzi: { n: 278, applied: 175, carried: 277, open: 0, na: 1 },
-      maqsud: { n: 693, applied: 411, carried: 422, open: 204, na: 67 } };
+      maqsud: { n: 693, applied: 525, carried: 614, open: 0, na: 79 } };   // v345-Q: the 204 open units applied by probe (114) or carried in their notes (78); 12 headings / ḥadīth meanings / the teacher's advice not automatable, each with its reason
     const TITLE342 = { marah: 'Marāḥ al-Arwāḥ', izzi: 'Taṣrīf al-ʿIzzī', maqsud: 'al-Maqṣūd' };
     for (const book of ['marah', 'maqsud', 'izzi']) {
       await check(`v342 — the ṣarf ledger of ${TITLE342[book]}: every rule sentence cut by script from its source with its line, each one applied (a probe runs the book's own words through an engine and passes), noted (a note or a bank quotes or anchors it), not automatable (with the reason) or open — the counts may only improve, and every «applied» is re-proved here`, async () => {
@@ -18093,8 +18093,8 @@ if (!CHROME) {
 
   await check('v342 — the other resources\' ledger (v342-A): every file of research/sources/ the two book ledgers do not hold is accounted for by script (content/rules/coverage_*.json with ledger «aux», 45 ledgers) — its counts pinned so they can only improve (applied ≥, applied + noted/banked/shelved ≥, open ≤, the entry count fixed), every «applied» entry re-proved on the page by its own probe (tools/ledger/aux_probe.js: the source\'s own example through SentenceAnalyzer + Murib.line, an IlalEngine.derive of the sheet\'s origin, a nakil / Bab35 / muhtelife / AdadEngine cell, or the shortest story sentences where the source gives none), and every note / bank carrier named exists', async () => {
     const J = JSON.stringify;
-    // [applied, noted+banked+shelved, open, entries] measured 2026-11-27 (tools/ledger/aux_ledger.py --prove)
-    const PIN = {"alaka-ilm-bayan":[9,184,2,200],"alaka-suallar":[0,70,0,70],"aqaid-nasafi":[0,150,0,150],"avamil-curcani-slides":[1,3,0,6],"avamil-dersi-servet-hayma-2023":[43,1,0,44],"awamil-birgivi-ottoman":[19,18,0,37],"bablara-nakil":[128,0,0,132],"birgivi-awamil-inventory":[32,74,0,106],"buyu-tarifler":[0,14,64,78],"edatlar-irab-soru-testi":[0,9,0,9],"emali-qasida":[0,67,0,68],"esmai-aded-worksheets":[89,0,0,89],"ilal-kaideleri-turkce":[44,3,4,52],"insaf-ibn-al-anbari":[0,121,0,121],"irab-taksimat-turkish":[11,0,0,14],"izzi-sarf-grafikleri":[39,1,0,48],"keffaretler":[0,4,0,4],"maqamat-birgivi":[0,150,0,150],"masdar-sifa-mubalagha-vezinleri":[2,3,0,6],"mensubat":[0,144,0,144],"misal-kaideleri":[0,11,0,12],"molla-cami-sual-cevap":[0,80,0,80],"muallaqat-al-harith":[0,88,0,90],"muallaqat-amr-ibn-kulthum":[0,111,0,114],"muallaqat-antara":[0,83,0,84],"muallaqat-imri-al-qays":[0,89,0,90],"muallaqat-labid":[0,95,0,98],"muallaqat-tarafa":[0,111,0,114],"muallaqat-zuhayr":[0,70,0,71],"muhammad-ibn-zayd-wa-al-umawi":[0,48,0,48],"nahiv-kafiye-ozeti-turkce":[100,10,0,110],"qatr-al-nada-turkish-cicek":[37,4,0,41],"qisas-al-nabiyyin-nadwi-leveling-notes":[0,0,0,32],"sarf-35-bab-tablosu":[42,0,0,42],"serhul-mugni-ders-notlari-kisa-1":[95,1,0,96],"sifa-mushabbaha-vezinleri":[0,15,0,16],"siyar-abi-hanifa":[0,36,0,36],"siyar-al-shaykh-al-mufid":[0,19,0,19],"siyar-ibn-al-mubarak":[0,38,0,38],"sulh-fiqh":[0,17,1,18],"talkhis-al-miftah-balagha":[0,167,2,169],"usul-al-munifa":[0,351,0,351],"vakif-mali":[0,1,1,2],"wasiyya-samti":[0,82,0,82],"ziyade-bab-muhtelife-cekimi":[25,0,0,25]};
+    // [applied, noted+banked+shelved, open, entries] measured 2026-11-27 (tools/ledger/aux_ledger.py --prove); v345-Q moved alaka-ilm-bayan, ilal-kaideleri-turkce, misal-kaideleri and talkhis-al-miftah-balagha (the typed iʿlāl road, the six ʿalāqas, the ḥāl clause topic)
+    const PIN = {"alaka-ilm-bayan":[20,175,0,200],"alaka-suallar":[0,70,0,70],"aqaid-nasafi":[0,150,0,150],"avamil-curcani-slides":[1,3,0,6],"avamil-dersi-servet-hayma-2023":[43,1,0,44],"awamil-birgivi-ottoman":[19,18,0,37],"bablara-nakil":[128,0,0,132],"birgivi-awamil-inventory":[32,74,0,106],"buyu-tarifler":[0,14,64,78],"edatlar-irab-soru-testi":[0,9,0,9],"emali-qasida":[0,67,0,68],"esmai-aded-worksheets":[89,0,0,89],"ilal-kaideleri-turkce":[48,3,0,52],"insaf-ibn-al-anbari":[0,121,0,121],"irab-taksimat-turkish":[11,0,0,14],"izzi-sarf-grafikleri":[39,1,0,48],"keffaretler":[0,4,0,4],"maqamat-birgivi":[0,150,0,150],"masdar-sifa-mubalagha-vezinleri":[2,3,0,6],"mensubat":[0,144,0,144],"misal-kaideleri":[1,10,0,12],"molla-cami-sual-cevap":[0,80,0,80],"muallaqat-al-harith":[0,88,0,90],"muallaqat-amr-ibn-kulthum":[0,111,0,114],"muallaqat-antara":[0,83,0,84],"muallaqat-imri-al-qays":[0,89,0,90],"muallaqat-labid":[0,95,0,98],"muallaqat-tarafa":[0,111,0,114],"muallaqat-zuhayr":[0,70,0,71],"muhammad-ibn-zayd-wa-al-umawi":[0,48,0,48],"nahiv-kafiye-ozeti-turkce":[100,10,0,110],"qatr-al-nada-turkish-cicek":[37,4,0,41],"qisas-al-nabiyyin-nadwi-leveling-notes":[0,0,0,32],"sarf-35-bab-tablosu":[42,0,0,42],"serhul-mugni-ders-notlari-kisa-1":[95,1,0,96],"sifa-mushabbaha-vezinleri":[0,15,0,16],"siyar-abi-hanifa":[0,36,0,36],"siyar-al-shaykh-al-mufid":[0,19,0,19],"siyar-ibn-al-mubarak":[0,38,0,38],"sulh-fiqh":[0,17,1,18],"talkhis-al-miftah-balagha":[0,169,0,169],"usul-al-munifa":[0,351,0,351],"vakif-mali":[0,1,1,2],"wasiyya-samti":[0,82,0,82],"ziyade-bab-muhtelife-cekimi":[25,0,0,25]};
     const dir = path.join(__dirname, '..', 'content', 'rules');
     const docs = fs.readdirSync(dir).filter(f => /^coverage_.*\.json$/.test(f)).map(f => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))).filter(d => d.ledger === 'aux');
     const f = [];
@@ -18466,6 +18466,97 @@ if (!CHROME) {
     if (r.kept !== null || r.went !== 3) throw new Error('«kalsın» hides it, «geç» applies it on the tap: ' + J([r.kept, r.went]));
     if (r.en[0] === 'Okumana göre seviyen: {l}') throw new Error('en strings');
   });
+  // >>> v345-Q — al-Maqṣūd's prose carried, the typed iʿlāl road, the ʿalāqas
+  await check('v345-Q — al-Maqṣūd consumed: every open unit is applied by an engine on the book\'s own word (MaqsudEngine.recite: the Emsile row, the amr / nahy blocks active and passive, the two nūns; the permitted idghām of tafaʿʿul / tafāʿul as a variant) or carried in its chapter\'s note — the Ottoman sentence verbatim with its line, its vowelled Arabic verbatim, our Turkish and English marked as awaiting the hoca — or not automatable with its reason; the ledger holds no open unit', async () => {
+    const root = path.resolve(__dirname, '..'), bad = [], J = JSON.stringify;
+    const SRC = fs.readFileSync(path.join(root, 'research', 'sources', 'maqsud-sarf.txt'), 'utf8').split('\n');
+    const cov = JSON.parse(fs.readFileSync(path.join(root, 'content', 'rules', 'coverage_maqsud.json'), 'utf8'));
+    const C = {}; cov.entries.forEach(e => { C[e.status] = (C[e.status] || 0) + 1; });
+    if (C.open || (C.applied || 0) < 525 || (C.noted || 0) < 89) bad.push('ledger counts ' + J(C));
+    // the hand probes: each word on its cited line, verbatim (NFC — the print orders shadda and vowel either way)
+    const H = JSON.parse(fs.readFileSync(path.join(__dirname, 'ledger', 'maqsud_hand_probes.json'), 'utf8'));
+    const P = JSON.parse(fs.readFileSync(path.join(root, 'content', 'rules', 'sarf_ledger_probes.json'), 'utf8')).probes;
+    const pid = new Set(P.map(p => p.id));
+    for (const h of H) { const m = /^Maqṣūd L(\d+)(?:–L(\d+))?$/.exec(h.src || ''); if (!m) { bad.push('no src ' + h.id); continue; }
+      const text = SRC.slice(+m[1] - 1, +(m[2] || m[1])).join('\n').normalize('NFC');
+      for (const w of [h.w, h.aslBy ? null : h.asl].filter(Boolean)) if (!text.includes(w.normalize('NFC'))) bad.push(h.id + ' «' + w + '» not on ' + h.src);
+      if (!pid.has(h.id)) bad.push(h.id + ' not among the stored probes'); }
+    if (H.length < 340) bad.push('hand probes ' + H.length);
+    // the notes: every Maqṣūd unit carried verbatim, marked, with its matn words
+    const G = path.join(root, 'content', 'grammar'); let n = 0;
+    for (const f of fs.readdirSync(G).filter(x => x.endsWith('.json'))) { const note = JSON.parse(fs.readFileSync(path.join(G, f), 'utf8'));
+      for (const x of note.examples || []) { const m = /^maqsud-sarf\.txt:(\d+)(?:–(\d+))?$/.exec(x.source || ''); if (!m || !/hoca/.test(x.en || '')) continue; n++;
+        const text = SRC.slice(+m[1] - 1, +(m[2] || m[1])).map(l => l.trim()).join('\n');
+        if (text !== x.ar) bad.push(f + ' ' + x.source + ' not verbatim');
+        if (!/\[translation · awaiting the hoca's review\]$/.test(x.en) || !/\[çeviri · hoca onayı bekliyor\]$/.test(x.tr)) bad.push(f + ' ' + x.source + ' not marked');
+        for (const w of x.matn || []) if (!x.ar.includes(w)) bad.push(f + ' ' + x.source + ' matn ' + w); } }
+    if (n < 78) bad.push('carried units ' + n);
+    for (const e of cov.entries) if (e.status === 'not-automatable' && !e.why) bad.push(e.id + ' without a reason');
+    // the engine, on the book's words: the recitation and its controls
+    const r = await page.evaluate(() => { const S = (L, k, o) => MaqsudEngine.reciteCells(L.split(' '), k, o), N = s => s.normalize('NFC'), out = {};
+      const nasr = S('ن ص ر', 'I1'); out.nasr = ['لِيَنْصُرْ', 'لِيَنْصُرْنَ', 'لَايَنْصُرْ', 'لِيُنْصَرْنَ', 'لِنُنْصَرْ', 'لِيَنْصُرَنَّ', 'لِيَنْصُرُنْ', 'لَاتَنْصُرِي'].filter(w => !nasr.has(N(w)));
+      const gz = S('غ ز و', 'I1'); out.gz = ['لِيُغْزَ', 'لِيُغْزَيَا', 'لِيُغْزَوْا', 'لِيُغْزَيْنَ', 'لِتُغْزَوْا'].filter(w => !gz.has(N(w)));
+      const v = S('د ث ر', 'V', { variant: 'idgham-ta' }), v0 = S('د ث ر', 'V'); out.var = ['اِدَّثَّرَ', 'يَدَّثَّرُ', 'اِدَّثُّرًا', 'مُدَّثَّرٌ'].filter(w => !v.has(N(w)));
+      out.noVarInDoor = v0.has(N('اِدَّثَّرَ')); out.kataba = MaqsudEngine.recite(['ك', 'ت', 'ب'], 'V', { variant: 'idgham-ta' });
+      const sh = S('س ح ك', 'R16'), sl = S('س ل ق', 'R17'), xi = S('ش ه ب', 'XI'); out.rare = [[sh, 'اِسْحَنْكَكَ'], [sl, 'اِسْلَنْقَى'], [xi, 'اِشْهِيبَابًا']].filter(([s, w]) => !s.has(N(w))).map(x => x[1]);
+      return out; });
+    if (r.nasr.length || r.gz.length || r.var.length || r.rare.length) bad.push('recitation misses ' + J(r));
+    if (r.noVarInDoor || r.kataba !== null) bad.push('the idghām of the tāʾ is a variant, of the eleven letters only: ' + J({ inDoor: r.noVarInDoor, kataba: !!r.kataba }));
+    if (bad.length) throw new Error(bad.length + ': ' + bad.slice(0, 8).join(' · '));
+  });
+
+  await check('v345-Q — the typed iʿlāl road agrees with sarfDerive (engine gap 8): غَزَوُوا → غَزَوْا, رَمَيُوا → رَمَوْا, غَزَوَتَا → غَزَتَا, رَمَيَتَا → رَمَتَا, يَوْهِبُ → يَهَبُ (Maqṣūd L714), اِوْعِدْ → عِدْ (L711–L713), خَوِفْتُ → خِفْتُ, مَدَدَ → مَدَّ, اُغْزُوْ → اُغْزُ (L698), the lafīf\'s ʿayn sound (L717); every form of the Maqṣūd\'s eighteen models, typed as its sound-template aṣl, comes out as sarfDerive builds it — the samāʿī left out by line, two homographs of the feminine addressee named; sarfAudit and the Maqṣūd audit unchanged; the Iʿlāl lab shows مَقُولٌ / مَبِيعٌ two ways, Sībawayh\'s and al-Akhfash\'s, each attributed (ʿIzzī L212)', async () => {
+    const r = await page.evaluate(() => {
+      const E = IlalEngine, N = s => String(s || '').normalize('NFC'), bad = [];
+      const D = a => { const d = E.derive(a); return { out: N(E.spell(d.out, d.asl)), steps: d.steps.map(s => s.id), gates: d.gates.map(g => g.verdict + ':' + g.id) }; };
+      const BOOK = [['غَزَوُوا', 'غَزَوْا'], ['رَمَيُوا', 'رَمَوْا'], ['غَزَوَتَا', 'غَزَتَا'], ['رَمَيَتَا', 'رَمَتَا'], ['يَوْهِبُ', 'يَهَبُ', 'fath-halq'], ['اِوْعِدْ', 'عِدْ', 'hadhf-waw-mithal'], ['اِوْهَبْ', 'هَبْ'],
+        ['يَوْعِدُ', 'يَعِدُ'], ['خَوِفْتُ', 'خِفْتُ', 'harmoniya'], ['طَوُلْتُ', 'طُلْتُ'], ['يَخْوَفْنَ', 'يَخَفْنَ'], ['اِخْوَفْ', 'خَفْ'], ['مَدَدَ', 'مَدَّ', 'idgham-mithlayn'], ['يَمْدُدُ', 'يَمُدُّ'], ['اُمْدُدَا', 'مُدَّا'],
+        ['مَادِدٌ', 'مَادٌّ'], ['اُغْزُوْ', 'اُغْزُ', 'hadhf-jazm'], ['يَرْمِيْ', 'يَرْمِ'], ['يَرْوَيْ', 'يَرْوَ'], ['اُغْزُوِي', 'اُغْزِي'], ['تَغْزُوِينَ', 'تَغْزِينَ'], ['اِرْوَيِي', 'اِرْوَيْ'],
+        ['رَوَيَتْ', 'رَوَتْ'], ['يَرْوِيُونَ', 'يَرْوُونَ'], ['يَرْوِيْنَ', 'يَرْوِينَ'], ['مَرْوُويٌ', 'مَرْوِيٌّ'], ['رَاوِيٌ', 'رَاوٍ'], ['اِوْقِيْ', 'قِ'], ['وَعَدَا', 'وَعَدَا']];
+      for (const [a, w, id] of BOOK) { const d = D(a); if (d.out !== N(w) || (id && !d.steps.includes(id))) bad.push(a + ' → ' + d.out + ' [' + d.steps + '] ≠ ' + w); }
+      // controls: what must not move
+      for (const [a, w] of [['يَوْجَلُ', 'يَوْجَلُ'], ['اِوْجَلْ', 'اِيجَلْ'], ['يُوعَدُ', 'يُوعَدُ'], ['اِرْمِيِيْ', 'اِرْمِيْ'], ['رَمَيُوْا', 'رَمَوْا'], ['اِرْضَيْ', 'اِرْضَيْ'], ['تَرْوَيْ', 'تَرْوَيْ'], ['يَدْعُو', 'يَدْعُو'],
+        ['سَكَتَتَا', 'سَكَتَتَا'], ['اِسْتَتَرَ', 'اِسْتَتَرَ'], ['اِقْتَتَلَ', 'اِقْتَتَلَ'], ['شَابَهَهُ', 'شَابَهَهُ'], ['كَرِهَهُ', 'كَرِهَهُ'], ['أَتَتَا', 'أَتَتَا'], ['مَدَدْتُ', 'مَدَدْتُ'], ['اُمْدُدْ', 'اُمْدُدْ'],
+        ['تَصْوِيتٌ', 'تَصْوِيتٌ'], ['قَوَلْتُ', 'قُلْتُ'], ['بَيَعْتُ', 'بِعْتُ'], ['مَقْوُولٌ', 'مَقُولٌ'], ['مَبْيُوعٌ', 'مَبِيعٌ'], ['يَرْمِيِينَ', 'يَرْمِينَ']]) { const d = D(a); if (d.out !== N(w)) bad.push('control ' + a + ' → ' + d.out + ' ≠ ' + w); }
+      for (const [a, g] of [['طَوَى', 'ilalan'], ['طَوَيَا', 'ilalan'], ['حَيِيَ', 'damm-mudari'], ['رَوَيَتْ', 'ilalan']]) if (!D(a).gates.includes('blocked:' + g)) bad.push(a + ' gate ' + g + ': ' + D(a).gates);
+      // the two roads over the Maqṣūd's eighteen models
+      const F = x => MaqsudEngine.fold(N(x)).replace(/[ًٌٍ]/g, '').replace(/ى$/, 'ي').normalize('NFC');
+      const SAMAI = { 'ء ك ل': { amr: 1 }, 'ر ء ي': { mudari: 1, amr: 1, mansub: 1, majzum: 1, majzum2: 1 } };   // ʿIzzī L293 «وَحُذِفَتِ الْهَمْزَةُ فِي خُذْ وَكُلْ وَمُرْ عَلَى غَيْرِ الْقِيَاسِ», L313 «قَدِ اجْتَمَعَتْ عَلَى حَذْفِ الْهَمْزَةِ مِنْ مُضَارِعِهِ»
+      let tot = 0, ok = 0, left = 0; const miss = [];
+      for (const m of MaqsudEngine.MODELS) { const rs = m.root.split(' ').map(x => x === 'ى' ? 'ي' : x).map(x => /[أإؤئآ]/.test(x) ? 'ء' : x), rk = rs.join(' ');
+        const d = MaqsudEngine.formI(m), t = sarfDerive({ rs, type: 'sound' }, 'I', m.bab); if (!d || !t || !t.ok) { miss.push(m.key + ' underived'); continue; }
+        for (const k of ['mazi', 'mudari', 'amr', 'mansub', 'majzum', 'majzum2', 'fail', 'maful']) [].concat(t[k] || []).forEach((a0, i) => { const want = [].concat(d[k] || [])[i]; if (!a0 || !want) return;
+          if (SAMAI[rk] && SAMAI[rk][k]) { left++; return; } tot++;
+          const asl = (k === 'fail' || k === 'maful') && !/[ًٌٍ]$/.test(N(a0)) ? N(a0) + 'ٌ' : N(a0), dd = E.derive(asl), got = F(MaqsudEngine.seat(E.spell(dd.out, dd.asl)));
+          const alts = [want].concat(k === 'amr' && i === 0 ? (d.amrIdghamAlt || []) : [], k === 'majzum' ? (d.majzumAlt || []) : [], k === 'majzum2' ? (d.majzumAlt || []).map(x => N(x).replace(/^ي/, 'ت')) : []);
+          if (alts.some(x => F(x) === got || F(x).replace(/هْ$/, '') === got)) ok++; else miss.push(m.key + ' ' + k + i + ': ' + asl + ' → ' + got + ' ≠ ' + want); }); }
+      const A = sarfAudit(), M = MaqsudEngine.audit();
+      // the hollow mafʿūl two ways (ʿIzzī L212): Sībawayh drops the wāw of mafʿūl, al-Akhfash the ʿayn — both attributed, both ending on the book's word
+      const kh = w => { const k = E.mafulKhilaf(w); return k ? [k.out, k.roads.map(r => r.who.en + ':' + r.drops.en + ':' + r.steps.map(s => s.after).join('>'))] : null; };
+      const KH = { qawl: kh('مَقْوُولٌ'), bay: kh('مَبْيُوعٌ'), none: kh('مَكْتُوبٌ'), book: E.KHILAF_SRC.book };
+      return { bad, tot, ok, left, miss, audit: { checked: A.checked, bad: A.bad.length, x: A.x }, mq: M.strict, KH };
+    });
+    const HOMOGRAPH = ['رَوِىَ amr0', 'رَوِىَ majzum20'];   // اِرْوَيْ / تَرْوَيْ are also the feminine addressee's amr and jussive: the typed road keeps them (one cannot tell)
+    const other = r.miss.filter(x => !HOMOGRAPH.some(h => x.startsWith(h)));
+    if (r.bad.length || other.length || r.ok < 671 || r.tot !== 673 || r.left !== 29) throw new Error(JSON.stringify({ bad: r.bad, other, ok: r.ok, tot: r.tot, left: r.left }));
+    if (r.audit.bad !== 0 || r.audit.checked < 1892 || r.mq < 1698) throw new Error('audits moved: ' + JSON.stringify(r.audit) + ' maqsud strict ' + r.mq);
+    const K = r.KH, IZ = fs.readFileSync(path.resolve(__dirname, '..', 'research/sources/tasrif-al-izzi-src.txt'), 'utf8').split('\n');
+    if (!K.qawl || K.qawl[0] !== 'مَقُولٌ' || !K.bay || K.bay[0] !== 'مَبِيعٌ' || K.none !== null || K.bay[1].length !== 2 || !/^Sībawayh:the wāw of mafʿūl:/.test(K.bay[1][0]) || !/^Abū al-Ḥasan al-Akhfash:the ʿayn of the verb:.*مَبُوعٌ>مَبِوْعٌ>مَبِيعٌ$/.test(K.bay[1][1]) || K.book !== IZ[211])
+      throw new Error('the two roads of مَبِيعٌ: ' + JSON.stringify(K));
+  });
+
+  await check('v345-Q — the six ʿalāqas MajazEngine did not name (engine gap 10): مصدريت، مظهريت، كون سابق، كون لاحق، اطلاق، تقييد (alaka-ilm-bayan.txt l. 293–296) are named, each read to its definition (ALAQAT); «بِاعْتِبَارِ مَا كَانَ / مَا يَكُونُ» names the two kawns; the bayān notes\' and the Talkhīṣ notebook\'s open rows are carried', async () => {
+    const r = await page.evaluate(() => { const v = Object.values(MajazEngine.ALAQA_NAMES), K = ['masdariyya', 'mazhariyya', 'ma-kana', 'ma-yaul', 'itlaq', 'taqyid'];
+      const fr = s => (MajazEngine.readText(s).frames || []).map(f => f.alaqa);
+      return { named: K.filter(k => !v.includes(k)), docs: K.filter(k => !MajazEngine.alaqaDoc(k)).concat(MajazEngine.alaqaDoc('ma-yaul') && MajazEngine.alaqaDoc('ma-yaul').k !== 'kawn-lahiq' ? ['alias'] : []),
+        masdar: fr('وَيُسَمَّى بِاسْمِ مَصْدَرِهِ كَالْيَدِ فِي النِّعْمَةِ'), khamr: fr('إِنِّي أَرَانِي أَعْصِرُ خَمْرًا'), yatama: fr('وَآتُوا الْيَتَامَى أَمْوَالَهُمْ') }; });
+    if (r.named.length || r.docs.length || !r.masdar.includes('masdariyya') || !r.khamr.includes('ma-yaul') || !r.yatama.includes('ma-kana')) throw new Error(JSON.stringify(r));
+    const root = path.resolve(__dirname, '..'), open = {};
+    for (const b of ['alaka-ilm-bayan', 'talkhis-al-miftah-balagha', 'ilal-kaideleri-turkce']) { const d = JSON.parse(fs.readFileSync(path.join(root, 'content', 'rules', 'coverage_' + b + '.json'), 'utf8')); open[b] = d.entries.filter(e => e.status === 'open').length; }
+    if (Object.values(open).some(Boolean)) throw new Error('open rows: ' + JSON.stringify(open));
+  });
+  // <<< v345-Q
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

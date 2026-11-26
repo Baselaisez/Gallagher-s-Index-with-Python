@@ -33,7 +33,7 @@ module.exports = `(() => {
   const rootsOf = w => { const out = []; try { const r = RootFinder.find(NFC(w)); if (r && r.root && r.via === 'corpus') out.push(String(r.root).split('').filter(x => x.trim()).join(' ')); } catch (e) {} return out; };
   // the print's spelling, read as the engine writes: ى bearing a vowel is a yāʾ (the Maqṣūd's print), a fatḥa written after an alif belongs before it
   const IN = s => NFC(s).replace(/ى(?=[\\u064b-\\u0652])/g, 'ي').replace(/([ء-ي])ا َ/g, '$1َا').replace(/([ء-ي])اَ/g, '$1َا').replace(/^اَ/, 'أَ').replace(/^اُ(?=[ء-ي]ْ)/, 'اُ');
-  const spell = d => { try { return IlalEngine.spell(d.out); } catch (e) { return d && d.out; } };
+  const spell = d => { try { return IlalEngine.spell(d.out, d.asl); } catch (e) { return d && d.out; } };
   // the 35-door table's templates and model verbs (Bab35Engine.DOORS ar / model, Bab35Engine.MODELS) — a bāb the book names
   let babSet = null; const babs = () => { if (babSet) return babSet; babSet = new Set();
     const add = t => String(t || '').split(/[\s،·]+/).forEach(x => x && babSet.add(W(x)));
@@ -45,12 +45,18 @@ module.exports = `(() => {
       for (const r of m.babs || []) { try { strs(MaqsudEngine.babRow(m, r.form), all); } catch (e) {} }
       all.forEach(x => String(x).split(/\s+|،/).forEach(y => y && set.add(NFC(y)))); }
     mqMemo.set(key, set); return set; };
+  // (v345-Q) the Maqṣūd's recitation of ANY bāb — MaqsudEngine.recite: the Emsile row, the amr ghāʾib / nahy blocks active and passive, the nūns
+  //   mqr {root, key, variant?, w}   key = a Bab35Engine door (I1…I6, II…XIII, R1…R17); variant 'idgham-ta' = the permitted idghām of tafaʿʿul / tafāʿul
+  const mqrMemo = new Map();
+  const mqrCells = (root, key, variant) => { const k = root + '|' + key + '|' + (variant || ''); if (mqrMemo.has(k)) return mqrMemo.get(k);
+    let set = new Set(); try { set = MaqsudEngine.reciteCells(String(root).split(/\\s+/), key, variant ? { variant } : {}); } catch (e) {} mqrMemo.set(k, set); return set; };
   const mqModelAt = line => { let best = null; for (const m of MaqsudEngine.MODELS) if (m.line <= line && (!best || m.line > best.line)) best = m; return best; };
   const run = p => { try {
     if (p.t === 'meaning') { const sh = Bab35Engine.meanings(p.form, { root: p.root }) || []; const list = Array.isArray(sh) ? sh : (sh.list || sh.items || []);
       const ok = list.some(m => (m.id || m) === p.id); return { ok, got: list.map(m => m.id || m).join(',') }; }
     if (p.t === 'bab') { const ok = babs().has(W(p.w)); return { ok, got: ok ? W(p.w) : null }; }
     if (p.t === 'mq') { const c = has(mqCells(p.key), p.w); return { ok: !!c, got: c }; }
+    if (p.t === 'mqr') { const c = has(mqrCells(p.root, p.key, p.variant), IN(p.w), p.raw); return { ok: !!c, got: c }; }
     if (p.t === 'cells') { const c = has(cells(p.root, p.form, p.bab || 1), p.w, p.raw); return { ok: !!c, got: c }; }
     if (p.t === 'ilal') { const d = IlalEngine.derive(IN(p.asl)); const o = spell(d); return { ok: (p.raw ? B(o) === B(p.w) : W(o) === W(p.w)), got: o }; }
     if (p.t === 'kept') { const d = (ilalAslRead(NFC(p.asl)) || [])[0]; if (!d) return { ok: false, got: null };
@@ -59,5 +65,5 @@ module.exports = `(() => {
     if (p.t === 'js') { const v = String((0, eval)(p.expr)); return { ok: v === p.want, got: v }; }
     return { ok: false, got: 'unknown probe ' + p.t };
   } catch (e) { return { ok: false, got: 'ERR ' + e.message }; } };
-  return { W, B, IN, babs, mqCells, mqModelAt, cells, has, find, rootsOf, run, FORMS };
+  return { W, B, IN, babs, mqCells, mqrCells, mqModelAt, cells, has, find, rootsOf, run, FORMS };
 })()`;
