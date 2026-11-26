@@ -21,8 +21,9 @@ const { chromium } = require('playwright-core');
 
 const ROOT = path.resolve(__dirname, '..');
 const arg = k => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : null; };
-const DATE = '2026-11-26';
+const DATE = arg('--date') || '2026-11-27';   // (v342-T) the uncapped audit + JSON; the 2026-11-26 file is the v339-M one
 const OUT = path.resolve(arg('--out') || path.join(ROOT, 'research', `story-grammar-audit-${DATE}.md`));
+const JOUT = OUT.replace(/\.md$/, '') + '.json';   // (v342-T) one record per contradiction, beside the markdown
 const ONLY = arg('--only') ? arg('--only').split(',') : null;
 const CHROME = [process.env.CHROMIUM_PATH, '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(c => c && fs.existsSync(c));
 if (!CHROME) { console.error('no Chrome/Chromium: set CHROMIUM_PATH'); process.exit(1); }
@@ -39,6 +40,8 @@ function smokeMeasures() {
     if (n.type === 'VariableDeclarator' && n.id.name === 'v332scan') out.mansub = evalArg(n.init);
     if (n.type === 'CallExpression' && n.callee.name === 'check' && n.arguments[0] && /^v336-Sh — against the authored lines/.test(String(n.arguments[0].value || ''))) out.sh336 = evalArg(n.arguments[1]);
   });
+  if (out.sh336) { const c = out.sh336.replace('if (o.L.length < 8) o.L.push(', 'o.L.push(');   // (v342-T) the audit lists every contradiction; the smoke check keeps its 8
+    out.sh336Capped = c === out.sh336; out.sh336 = c; }
   return out;
 }
 
@@ -65,6 +68,48 @@ function render(secs, meta) {
   return L.join('\n') + '\n';
 }
 
+// (v342-T) the three list caps lifted for the audit only — sign 80, case ending 400, adab 40 per rule. The page's engine code is not
+// edited: the capped methods are re-made in the headless page from their own source with the cap removed (and the full story id, the
+// chapter and the token kept, so every item gets its full place); each substitution must apply or the run stops.
+const UNCAP = `(() => {
+  const remake = (obj, name, pairs) => { let s = obj[name].toString(); for (const [a, b] of pairs) { if (!s.includes(a)) throw new Error('uncap ' + name + ': not found ' + a); s = s.split(a).join(b); }
+    s = s.replace(/^static\\s+/, ''); obj[name] = (0, eval)('({' + s + '})')[name]; };
+  remake(SignEngine, 'auditGen334', [['else if (out.misses.length < 80) out.misses.push({ st: st.id.slice(0, 10), sen: sen.id,', 'else out.misses.push({ st: st.id, ch: ch.n || ch.chapter, i, sen: sen.id,']]);
+  remake(GrammarAudit339, 'sign', [['key: m.st + "…:" + m.sen', 'key: this.key(m.st, m.ch, m.sen, m.i)'], ['capped: (a.misses || []).length >= 80', 'capped: false']]);
+  remake(DabtEngine, 'corpus', [['if (tot.miss.length < 400) tot.miss.push({ st: st.id.slice(0, 8),', 'tot.miss.push({ st: st.id,']]);
+  remake(GrammarAudit339, 'kase', [['key: m.st + "…:" + m.ch + ":" + m.s + ":" + (m.i + 1)', 'key: this.key(m.st, m.ch, m.s, m.i)'], ['capped: (a.miss || []).length >= 400', 'capped: false']]);
+  remake(AdabEngine, 'lintGen334', [['R.ex.length < 40', 'true']]);
+  for (const E of [SignEngine, AdabEngine]) { E._audit = null; E._lint = null; E._g334 = null; }
+  return 'uncapped';
+})()`;
+// (v342-T) every item given its full place, the sentence, the whole authored line and (for the two smoke measures) the engine's line
+const ENRICH = items => {
+  const S = x => String(x == null ? '' : x).normalize('NFC'), bare = x => stripAr(S(x)).replace(/[^ء-ي]/g, '');
+  const idx = new Map(); for (const st of STORIES) for (const ch of st.chapters || []) for (const sn of ch.sentences || []) idx.set(st.id + ':' + (ch.n || ch.chapter) + ':' + sn.id, { st, ch, sn });
+  return items.map(it => {
+    const m = /^([^:]+):([^:]+):([^:]+)(?::(.*))?$/.exec(it.key || ''); const o = { pkg: null, ch: null, sen: null, tok: null, sentence: '', authoredFull: '', engineLine: '' };
+    if (!m) return o; const hit = idx.get(m[1] + ':' + m[2] + ':' + m[3]); if (!hit) return o;
+    o.pkg = m[1]; o.ch = m[2]; o.sen = m[3]; const T = hit.sn.tokens || []; o.sentence = T.map(t => t.s.full + (t.punctAfter || '')).join(' ');
+    let i = m[4] && /^\d+$/.test(m[4]) ? +m[4] - 1 : -1;
+    if (i < 0) { const w = bare(String(m[4] || '').replace(/[«»]/g, '') || it.word); i = T.findIndex(t => bare(t.s.full) === w); if (i < 0 && w) i = T.findIndex(t => bare(t.s.full).includes(w)); }
+    if (i < 0 || !T[i]) return o; o.tok = i + 1; o.word = T[i].s.full; o.authoredFull = S((T[i].irab || {}).ar);
+    if (it.engine === 'mansub' || it.engine === 'sh336') { try { const rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); if (rows.length === T.length) o.engineLine = S((Murib.line(rows, i) || {}).ar); } catch (e) {} }
+    return o; });
+};
+const ruleIdOf = x => {
+  const r = String(x.rule || ''), v = String(x.verdict || '');
+  switch (x.engine) {
+    case 'jumla': return 'jumla:' + (r.split(' ')[0] || '?');
+    case 'sign': { const a = /authored sign «([^»]*)» for (\S+)/.exec(r) || [], b = /sign «([^»]*)» \(([^;)]*)/.exec(v) || []; return 'sign:' + (b[2] || '?') + ':' + (a[2] || '?') + ':' + (a[1] || '?') + '>' + (b[1] || '?'); }
+    case 'case': return 'case:' + (r.split(' · ')[0] || '?');
+    case 'taalluq': return 'taalluq';
+    case 'adab': return 'adab:' + (v.split('etiquette: ')[1] || '?');
+    case 'inna': return 'inna:' + r.replace(/^seat /, '');
+    case 'tartib': return 'tartib:' + (v.split(' breaks ')[1] || '?');
+    case 'mansub': return 'mansub:' + r.split(':')[0].split(' (')[0];
+    case 'sh336': return 'sh336:' + r.split(' ')[0];
+  } return x.engine; };
+
 // the two smoke measures, reduced to the audit's shape
 function fromMansub(R) {
   const L = R.list || {}, mk = (arr, certainty, rule) => (arr || []).map(k => ({ certainty, key: k, word: '', authored: '(see the line)', verdict: rule, rule }));
@@ -89,6 +134,7 @@ function fromSh336(R) {
   await page.waitForFunction(() => typeof STORIES !== 'undefined' && STORIES.length > 10 && typeof GrammarAudit339 !== 'undefined', null, { timeout: 600000, polling: 1000 });
   page.setDefaultTimeout(0);
   const meta = await page.evaluate(() => { let s = 0, t = 0; for (const st of STORIES) for (const ch of st.chapters || []) for (const sn of ch.sentences || []) { s++; t += (sn.tokens || []).length; } return { stories: STORIES.length, sentences: s, tokens: t }; });
+  console.log(await page.evaluate(UNCAP));
   const pageIds = ONLY ? ONLY.filter(x => ['jumla', 'sign', 'kase', 'taalluq', 'adab', 'inna', 'tartib'].includes(x)) : null;
   const secs = [];
   for (const k of (pageIds || ['jumla', 'sign', 'kase', 'taalluq', 'adab', 'inna', 'tartib'])) {
@@ -99,6 +145,14 @@ function fromSh336(R) {
   if (sm.mansub && (!ONLY || ONLY.includes('mansub'))) { const t = Date.now(); const R = await page.evaluate(`(${sm.mansub})()`); const s = fromMansub(R); secs.splice(4, 0, s); console.log('mansub', Math.round((Date.now() - t) / 1000) + 's', `agree ${s.agree} contra ${s.contra}`); }
   if (sm.sh336 && (!ONLY || ONLY.includes('sh336'))) { const t = Date.now(); const R = await page.evaluate(`(${sm.sh336})()`); const s = fromSh336(R && R.R ? R.R : R); secs.splice(5, 0, s); console.log('sh336', Math.round((Date.now() - t) / 1000) + 's', `agree ${s.agree} contra ${s.contra}`); }
   fs.writeFileSync(OUT, render(secs, meta));
+  // (v342-T) the JSON beside it: one record per contradiction (exact and offered), with its full place
+  const all = []; for (const s of secs) for (const it of (s.items || [])) all.push(Object.assign({ engine: s.id === 'case' ? 'case' : s.id, book: s.book }, it));
+  const ex = await page.evaluate(`(${ENRICH.toString()})(${JSON.stringify(all.map(x => ({ engine: x.engine, key: x.key, word: x.word })))})`);
+  const recs = all.map((x, n) => { const e = ex[n] || {}; return { n: n + 1, engine: x.engine, ruleId: ruleIdOf(x), certainty: x.certainty, key: e.pkg ? [e.pkg, e.ch, e.sen, e.tok].join(':') : x.key, pkg: e.pkg, ch: e.ch, sen: e.sen, tok: e.tok,
+    word: e.word || x.word, sentence: e.sentence, authored: e.authoredFull || x.authored, verdict: x.engine === 'mansub' || x.engine === 'sh336' ? (e.engineLine || x.verdict) : x.verdict, rule: x.rule, book: x.book }; });
+  const totals = secs.map(s => s.error ? { id: s.id, error: s.error } : { id: s.id, name: s.name, agree: s.agree, silent: s.silent, contra: s.contra, exact: s.exact, listed: (s.items || []).length, capped: !!s.capped });
+  fs.writeFileSync(JOUT, JSON.stringify({ date: DATE, meta, sh336Capped: !!sm.sh336Capped, totals, records: recs }, null, 1));
+  console.log('wrote', path.relative(ROOT, JOUT), recs.length, 'records', recs.filter(r => !r.pkg || !r.tok).length, 'without a full place');
   console.log('wrote', path.relative(ROOT, OUT), 'in', Math.round((Date.now() - t0) / 1000) + 's');
   await browser.close();
 })().catch(e => { console.error(e); process.exit(1); });
