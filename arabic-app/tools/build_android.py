@@ -73,7 +73,10 @@ def main():
     if a.no_sync: return
     subprocess.run(["npx", "cap", "sync", "android"], cwd=ROOT, check=True)
     pub = ANDROID / "app/src/main/assets/public"
-    for n in ("index.html", "data/d1.js", "data/d2.js", "icons/icon-512.png"):
+    # (v341-S) the data files are named by content hash: every one the split wrote must have reached the shell
+    need = ["index.html", "icons/icon-512.png"] + ["data/" + p.name for p in sorted((www / "data").glob("*.js"))]
+    if len(need) < 4: sys.exit("the split wrote fewer than two data files")
+    for n in need:
         if not (pub / n).exists(): sys.exit(f"cap sync did not deliver {n}")
     print("assets:", sum(p.stat().st_size for p in pub.rglob("*") if p.is_file()) // 1_000_000, "MB in", pub.relative_to(ROOT))
     if a.gradle:
