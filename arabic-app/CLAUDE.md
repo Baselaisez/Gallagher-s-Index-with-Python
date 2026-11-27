@@ -17572,3 +17572,59 @@ the cause. Scratchpad `aqiln2/` (PROGRESS.md, `edits/` = every code edit as a sc
   the 20 WujuhEngine face probes of the Qawāʿid ledger not reached. Hand-overs to v355-N1 (Murib / SentenceAnalyzer): the state that changes a
   vowelled re-reading; تَسَفَّهَتِ read as a muḍāriʿ; «أنتم … جواب الطلب» after an imperative; Murib's role guesses on a dual after a dual
   (بدل / مبتدأ where the authors write نعت / خبر); «زيدٌ الأفضلُ» khabar read as naʿt.
+
+## v358-A — the Alfiyya as a course
+
+The owner, 2026-11-27: «Learning feeding from the Alfiyya of Ibn Mālik and its sharḥ is also a resource. Applying, learning, checks,
+optimisation are important.» The book fed the engines (v352-A, v355-N1/N2); now a student can walk it, see it applied and be checked on it.
+- **Built by script, nothing typed that a file holds.** `tools/alfiyya_course.py` (`--no-prove` reuses `tools/.alfcourse-cache.json`) reads
+  `toc_ibn_aqil.json`, `alfiyya.json`, `coverage_ibn_aqil.json`, `commentary_links.json` and the source's editor notes; its page half
+  `tools/alfiyya_course_probe.js` (build time only) reads the book's printed examples through SentenceAnalyzer + Murib.line + `Illa346.read`
+  and scans the shelf. Out: `content/rules/alfiyya_course.json` (with `skipped`: every row not used and why). **72 units** (75 bābs with
+  verses in the book's order; a bāb of < 6 verses takes the next small ones, المعرب والمبني / الإضافة / جمع التكسير / الإبدال are two units cut at a
+  commentary unit), **1,006 verses** (each once), **806 rulings** (each ledger row once, its own sentence), 51 shāhid iʿrābs of the editor.
+- **A unit** (`Alfiyya358`, reader.html `v358-A BEGIN/END` after `v351-I END`; lab tool «alfiyya» beside «izhar», `LabFrame.SRC`, one line in
+  `renderLabBody0`): (a) the verses grouped by commentary unit, the rendering only where alfiyya.json has one (50 verses; «pending review»),
+  else the Arabic + Ibn ʿAqīl's own explaining sentence (alfiyya.json `rule_ar`, «not yet translated»); (b) «what the bāb rules» — the ledger's
+  sentences (✓ where the engine reads the book's example so), ≤ 4 grammar-note chips (the notes an Elfiye card of the unit already sits on, then
+  the commentary-link topic join); (c) the book's examples — **only printed probes that name the word** (`w`), shown with the ENGINE's own
+  words for the role (`t`, e.g. «مُبْتَدَأٌ») and the role's name: the rest of a line on unvowelled letters (the part of speech, an estimated sign)
+  is a guess that moves with the page's state (the smoke saw «فِعْلٌ، مُبْتَدَأٌ» for زيد after other checks) — never shown; a construction probe
+  (`any`, the book names no word) is never shown: the engine's word may not be the book's («لزيد قائم» → قائم مبتدأ); the editor's «الاعراب:» of
+  a shāhid (≤ 2 per unit, collapsed, cited as his); (d) «applied in the stories» — ≤ 3 tokens whose AUTHORED and ENGINE lines both carry the
+  ruling's words on the word's own clauses (whole words; a role-like ruling only when it IS the line's role — «خبر» in «خبر كان» is not the
+  khabar; the role's notes must meet the unit's; bare generic words — ناقص, مبني على الفتح, شرط, الالف, متعلق, اشتغال (of «اشتغال المحل») … —
+  never; a kind is claimed by the first unit that finds it, no token twice): 79 links in 28 units, **44 units say nothing** (the 14 ṣarf units
+  among them); tap → `jumpTo` the story at that sentence; (e) the check.
+- **The check** (runQuiz, five questions; `qissa-alfiyya358` `{u: {seen, asked, right, at, best}, miss: {qid: date}, done, cur}`; learned at
+  ≥ 80 % = 4 of 5; missed questions first, oldest miss first, then one of each proved kind, then hemistichs). Bank: **r 14** «which role does
+  the engine name?» (printed `w` probes of applied rows; key = `Illa346.read` role, the ruling's own words must name it; three siblings of the
+  role's family, rotated by id, none of whose patterns is anywhere on the line; never a line offering a second reading, a vowelled-only proof,
+  a bare case); **h 1,006** «complete the verse» (three other second hemistichs of the unit, all different); **v 42** «which verse rules this
+  example?» (the page in exactly ONE commentary unit and that unit has ONE verse; three verses of the bāb with another ruling); **s 28**
+  «söylenir mi?» (25 «لا تقول X» from the forbidden-form rows — a form bound by «على أن / تريد» left out, the editor's leaked A284.1 / A285.1 out,
+  a cut ending in commentary («وإنما», «بقطع») out; 3 said: «يجوز … فتقول X» of applied rows), the Iẓhār round's يُقَالُ / لَا يُقَالُ. After an
+  answer: the role's words + the Illa346 chain built from those words only (no sign step on unvowelled text), the ruling sentence (s), the verse.
+  Skipped (probes): 196 construction probes, 133 vowelled-only, 344 rows not tied to one verse (v), 13 + 8 + 4 + 2 + 2 + 2 + 1 role reasons.
+- **Elsewhere, one quiet link each**: a grammar note with an Elfiye card gains «Bu konuyu Elfiye dersinde çalış → <bāb>» (`Alfiyya352.noteHtml`
+  wrapped in the Today block — Alfiyya352 is declared AFTER the course block; wrapping it there threw at top level and stopped the app);
+  Today's lesson: `AlfToday358` wraps `IzToday355.fold` — the course shown LAST (`qissa-alftoday.last`, set by each course's `lab()`) supplies
+  the one row (`alfiyya` / `izhar`), never two; built from stored strings; a unit newly learned from the card → `countActivity("alfiyya")`.
+  The word sheet's «Neden?» (Illa346) is not touched.
+- **Lazy and measured.** `ALFCOURSE358` is ONE string (`build_prototype.load_alfcourse`, ~792 KB raw / **~204 KB gzip**, under the 250 KB
+  target — not split by quarter); `tools/pubsplit.py` APPENDS it to the late tables (`var` in the last body slice): the core d1 unchanged
+  (481 KB gz). Code +24 KB raw (app.js), CSS injected on first open. First open at 4× CPU, 390×844, hosted copy, five fresh parses: course page
+  **88 ms**, unit U10 **83 ms** (medians, load ≈ 2.5); budgets 132 / 125 ms.
+- **Checks** (before v333): «v358 — the Alfiyya course, proved» (order, every verse / ruling / example / shāhid / question against its source,
+  floors r ≥ 14 · h ≥ 1000 · v ≥ 40 · s ≥ 25 · ≥ 25 units with stories; in the page every role key, every example's role and words, every
+  distractor NOT on the line, every story link and its engine line; ALFCOURSE358 = the file), «v358 — the Alfiyya course page» (entry, map 72 / 4
+  parts / levels, unit order, 390 px tr + en, 44 px, every question's single right option is its key, learned 5/5, missed back first, story tap,
+  note link, Today's single row both ways, contrast in three themes), «v358 — speed: the Alfiyya course» (its own hosted copy via `split354` — split343's copy is removed by the check that used it last, which my first version tripped on; last slice, not core; medians ≤ budgets).
+  **Older checks changed**: v317 (39 → 40 tools, Naḥw 16 → 17) and v321 (40 heads; «alfiyya» reads «from the book» like khilaf / izhar) — the
+  new tool, nothing else.
+- **For the hoca**: the 50 verse renderings shown (alfiyya.json, pending review); the role names used as options are the app's own
+  (`Illa346.roles()` en / tr titles); the 25 forbidden forms as cut (e.g. «زيد قائما قاعدا أحسن منه», «ما أسوده», «جلس في دار»).
+- **Left**: role questions are few (14) — the ledger's printed probes rarely name the word; a vowelled example could be asked only where the BOOK
+  prints the vowels (none found); 44 units without a story link; the corpus scan reads only the first 40 candidates per unit (build time).
+- **Finish**: `check_i18n.py` clean; refit chain exit 0 (the course file rebuilt after it: unchanged); the named subset: 44 PASS, 1 FAIL — the
+  speed check read split343's directory after it was removed (my bug, not time) → moved to `split354`, PASS alone (page 100 ms, unit 89 ms).

@@ -42,7 +42,7 @@ if cur: bodies.append(cur)
 # off the core; QISSA_NO_LATE354=1 keeps them in the core
 late=""
 if os.environ.get("QISSA_NO_LATE354") != "1":
-    for nm in ("ALFIYYA_JSON","AMTHAL"):
+    for nm in ("ALFIYYA_JSON","AMTHAL","ALFCOURSE358"):   # (v358-A) ALFCOURSE358: the Alfiyya course (~0.8 MB raw / ~0.2 MB gz), read only by Alfiyya358
         k=rest.find("\nconst "+nm+" = ")
         if k<0: continue
         e=rest.find("\n",k+1); line=rest[k+1:e if e>=0 else len(rest)]
