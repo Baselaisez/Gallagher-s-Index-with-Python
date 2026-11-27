@@ -262,6 +262,8 @@
     border-radius: 999px; padding: .25rem .7rem; font-size: .76rem; cursor: pointer;
   }
   .ch-pill:hover { color: var(--accent); border-color: var(--accent); }
+  .ch-nav.ch-nav-row { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; padding: .2rem 0 .4rem; }   /* (v362-S) */
+  .ch-nav.ch-nav-row .ch-pill { flex: 0 0 auto; }
   .jumal-tabs { margin-top: 1.1rem; }
   .jumla-row {
     border: 1px solid var(--line); border-left: 3px solid var(--accent);
@@ -4965,6 +4967,31 @@ let RENDER_GEN = 0, STORY_RENDER_FLUSH = null;
 const RENDER_SYNC_MAX = 80, RENDER_FIRST = 40, RENDER_BATCH = 30, RENDER_MIN144 = 6, RENDER_MS144 = 10;
 function flushStoryRender(){ if (STORY_RENDER_FLUSH) STORY_RENDER_FLUSH(); }
 window.flushStoryRender = flushStoryRender;
+/* (v362-S) the windowed chapter render. A text of more than RENDER_SYNC_MAX sentences in more than one chapter draws every chapter's
+   HEAD at once, the opened chapter's body (with whole chapters after it until RENDER_FIRST sentences, batched as before), and the other
+   bodies ON DEMAND: a head nearing the viewport (IntersectionObserver), a chapter pill, a deep link (jumpTo), «continue reading»
+   (resumeScroll), a review note (ReviewNotes.goto). flushStoryRender() still renders the whole text («Dinle» / startPlayAll, the
+   harness). A chapter is drawn by the SAME renderOne into its place (before the next head), so the opened chapter is node-for-node the
+   full render's and the flushed page equals it (smoke «v362 — speed: the windowed chapter render»). The test harness's
+   __QISSA_RENDER_SYNC (and __QISSA_WIN362 === false) keep the full render. */
+const WIN362 = { on: false, settled: true, io: null, ensure: null, at: null, story: null,
+  reset(){ if (this.io) { try { this.io.disconnect(); } catch (e) {} } this.io = null; this.on = false; this.settled = true; this.ensure = null; } };
+const WIN362_CH = 10;   // (v362-S) a text is windowed above RENDER_SYNC_MAX sentences, or from this many chapters (the Sīra: 12 today, ~150 whole)
+let STORY_JOBS362 = [];   // [{sen, ch, si}] of the text being read, in reading order — SENTENCE_FLAT's order once everything is in
+function ensureChapter362(n){ if (WIN362.on && WIN362.ensure) WIN362.ensure(n); }
+window.ensureChapter362 = ensureChapter362;
+/* (v362-S) the chapter a «continue reading» lands in: the first unread sentence's (the same walk resumeScroll makes) */
+function resumeCh362(st){ const prog = state.progress[st.id] || {}; for (const ch of st.chapters || []) for (const s of ch.sentences || []) if (!senRead(prog, s, ch, st)) return ch.n; return null; }
+/* (v362-S) a chapter's DISPLAY ordinal — the one label the chapter pills, the chapter heads, the player, search hits, review notes (and the
+   courses' cites, the recording studio) print. A story numbered past the reserved preface (al-Nadwī's Sīra: chapters from 101; 1–100 are
+   kept for the unauthored preface and Faṣl 1) shows its place in the published run, «Bölüm 1 … n»; every other story shows ch.n as
+   before. `ch.n` and every stored key are unchanged. Without the chapters at hand (a catalog stub) the Sīra's no-gap numbering gives n − 100. */
+const CH_RESERVED362 = 100;
+function chOrd362(st, ch){ const n = ch && typeof ch === "object" ? ch.n : ch; const chs = st && Array.isArray(st.chapters) ? st.chapters : null;
+  if (chs && chs.length && chs[0] && typeof chs[0] === "object") { if (!(Number(chs[0].n) > CH_RESERVED362)) return n;
+    const i = chs.findIndex(c => String(c.n) === String(n)); return i >= 0 ? i + 1 : n; }
+  const num = Number(n); return Number.isFinite(num) && num > CH_RESERVED362 ? num - CH_RESERVED362 : n; }
+window.chOrd362 = chOrd362;
 let SENTENCE_FLAT = []; // [{sen, sec, ch}] in reading order, rebuilt by renderStory() — the
                          // "Play all" queue walks this list.
 
@@ -5040,13 +5067,13 @@ const ReviewNotes = {
     const d = this.load(); const seen = new Set(d.imported.map(n => n.story + "/" + n.ch + ":" + n.sid + "|" + (n.by || "") + "|" + (n.at || "")));
     let n = 0; j.notes.forEach(x => { const k = x.story + "/" + x.ch + ":" + x.sid + "|" + (x.by || j.by || "") + "|" + (x.at || ""); if (seen.has(k)) return; seen.add(k); d.imported.push({ ...x, by: x.by || j.by || "" }); n++; });
     this.save(d); return { n, by: j.by || "?" }; },
-  goto(n){ const st = STORIES.find(x => x.id === n.story); if (!st) return; if (!CUR || CUR.id !== st.id) openStory(st); closeSheet();
+  goto(n){ const st = STORIES.find(x => x.id === n.story); if (!st) return; if (!CUR || CUR.id !== st.id) { WIN362.at = n.ch; openStory(st); } closeSheet(); ensureChapter362(n.ch);   /* (v362-S) */
     const sec = [...document.querySelectorAll("#story .chapter-head")].filter(h => String(h.dataset.ch) === String(n.ch)).map(h => { let e = h.nextElementSibling; while (e && !e.classList.contains("chapter-head")) { if (e.classList.contains("sentence") && e.dataset.id === n.sid) return e; e = e.nextElementSibling; } return null; })[0];
     if (sec) { sec.scrollIntoView({ behavior: "smooth", block: "center" }); const b = sec.querySelector(".rev-btn"); if (b && !sec.querySelector(".rev-form")) b.click(); } },
   // the Progress section
   statsHtml(){ const E = escapeAttr, d = this.load(), notes = this.all();
     const row = n => `<div class="rev-note"><span class="ar" lang="ar">${E(n.ar || "")}</span><span class="kind ${n.kind === "ok" ? "ok" : ""}">${E(this.kindLbl(n.kind))}</span>${n.word ? `<b lang="ar">${E(n.word)}</b> ` : ""}${n.problem ? E(n.problem) : ""}${n.fix ? ` → <i>${E(n.fix)}</i>` : ""}
-      <div class="meta">${E(n.storyTitle || n.story)} · ${E(ui().chapter)} ${E(String(n.ch))} · ${n.mine ? E(ui().revMine) : E(ui().revTheirs) + (n.by ? " · " + E(n.by) : "")}</div>
+      <div class="meta">${E(n.storyTitle || n.story)} · ${E(ui().chapter)} ${E(String(chOrd362(STORIES.find(s => s.id === n.story), n.ch)))} · ${n.mine ? E(ui().revMine) : E(ui().revTheirs) + (n.by ? " · " + E(n.by) : "")}</div>
       <div><button type="button" data-rev-go="${E(n.story)}|${E(String(n.ch))}|${E(n.sid)}">${E(ui().revOpen)}</button>${n.mine ? `<button type="button" data-rev-del="${E(n.story)}|${E(String(n.ch))}|${E(n.sid)}">${E(ui().revDelete)}</button>` : ""}</div></div>`;
     return `<div class="rev-ledger" id="revLedger"><h4>⚑ ${E(ui().revTitle)} <small>${E(ui().revCount.replace("{n}", notes.length))}</small></h4><p class="ref-intro">${E(ui().revIntro)}</p>
       <div class="rev-row">${REVIEW_BUILD ? "" : `<button type="button" class="rev-act ${d.on ? "" : "soft"}" id="revToggle">${E(d.on ? ui().revOn : ui().revOff)}</button>`}<input type="text" id="revName" placeholder="${E(ui().revName)}" value="${E(d.by)}" aria-label="${E(ui().revName)}"></div>
@@ -5063,9 +5090,14 @@ const ReviewNotes = {
     root.querySelectorAll("[data-rev-go]").forEach(b => b.addEventListener("click", () => { const [story, ch, sid] = b.dataset.revGo.split("|"); self.goto({ story, ch, sid }); }));
     root.querySelectorAll("[data-rev-del]").forEach(b => b.addEventListener("click", () => { const [story, ch, sid] = b.dataset.revDel.split("|"); const d = self.load(); delete d.notes[story + "/" + ch + ":" + sid]; self.save(d); openStats(); if (CUR) renderStory(); })); }
 };
-function renderStory(){
+function renderStory(open362){
   if (!CUR) return;
   if (playAllActive) stopPlayAll(); // section elements are about to be replaced
+  /* (v362-S) the window starts at the chapter asked for (openStory: a deep link's / «continue reading»'s), else — a re-render of the
+     text being read (font size, mode, review toggle) — at the chapter whose head is at the top of the viewport, kept where it was */
+  let keep362 = null; const at362 = open362 && open362.at != null ? open362.at : null;
+  if (!open362 && WIN362.story === CUR.id) { let best = null; storyEl.querySelectorAll(".chapter-head").forEach(h => { const t = h.getBoundingClientRect().top; if (t <= 80) best = { n: h.dataset.ch, top: t }; }); keep362 = best; }
+  WIN362.reset(); WIN362.story = null;
   storyEl.innerHTML = ""; shelf350();
   storyEl.classList.toggle("underlines", state.underlines);
   SENTENCE_FLAT = [];
@@ -5089,12 +5121,13 @@ function renderStory(){
     const head = document.createElement("div");
     head.className = "chapter-head";
     head.dataset.ch = ch.n;   // the chapter pills scroll to this
-    const cnum = document.createElement("span"); cnum.textContent = ui().chapter + " " + ch.n;
+    const cnum = document.createElement("span"); cnum.textContent = ui().chapter + " " + chOrd362(CUR, ch);   // (v362-S) the display ordinal
     const ctit = document.createElement("span"); ctit.className = "chapter-title-ar"; ctit.lang = "ar"; ctit.textContent = ch.title.ar;
     head.appendChild(cnum); head.appendChild(ctit);
     if (Review344.on()) head.appendChild(Review344.tallyEl(ch));   // (v344) the chapter's review tally
     storyEl.appendChild(head);
   };
+  let at362w = null;   // (v362-S) where renderOne puts its nodes: null = the end (insertBefore(x, null) is appendChild)
   const renderOne = (ch, sen, si) => {
     const sec = document.createElement("section");
     sec.className = "sentence"; sec.dataset.id = sen.id;
@@ -5210,8 +5243,8 @@ function renderStory(){
     tr.hidden = state.mode !== "easy";
     tools.appendChild(tr);
     sec.appendChild(tools);
-    storyEl.appendChild(sec);
-    if (si === ch.sentences.length - 1 && !storyLocked(CUR)) storyEl.appendChild(chEndEl(CUR, ch));   // (v338) the chapter's foot: its state, its three questions
+    storyEl.insertBefore(sec, at362w);
+    if (si === ch.sentences.length - 1 && !storyLocked(CUR)) storyEl.insertBefore(chEndEl(CUR, ch), at362w);   // (v338) the chapter's foot: its state, its three questions
   };
   const tail = () => {
     if (!storyLocked(CUR)) { storyEl.appendChild(storyEndCta(CUR)); return; }
@@ -5228,8 +5261,50 @@ function renderStory(){
   // the batches: a short text (or a locked preview) renders in one go, as before; a long text paints its first
   // RENDER_FIRST sentences now and the rest frame by frame — the flush finishes it on demand
   const gen = ++RENDER_GEN; let k = 0;
+  STORY_JOBS362 = jobs;
+  const win362 = CHAPTERS.length > 1 && (jobs.length > RENDER_SYNC_MAX || CHAPTERS.length >= WIN362_CH) && !storyLocked(CUR) && window.__QISSA_RENDER_SYNC !== true && window.__QISSA_WIN362 !== false;
   const step = n => { const end = Math.min(jobs.length, k + n); for (; k < end; k++) { const jb = jobs[k]; if (jb.head) renderHead(jb.ch); renderOne(jb.ch, jb.sen, jb.si); } };
   const done = () => { tail(); STORY_RENDER_FLUSH = null; storyEl.classList.remove("rendering"); };
+  if (win362) {
+    const range = new Map(), heads = new Map(), order = [];
+    jobs.forEach((jb, i) => { const r = range.get(jb.ch); if (r) r[1] = i + 1; else { range.set(jb.ch, [i, i + 1]); order.push(jb.ch); } });
+    order.forEach(ch => { renderHead(ch); heads.set(ch, storyEl.lastChild); });
+    tail(); const tailEl = storyEl.lastChild;
+    const next = new Map(); order.forEach((ch, j) => next.set(ch, j + 1 < order.length ? heads.get(order[j + 1]) : tailEl));
+    const idx = new Map(); jobs.forEach((jb, i) => idx.set(jb.sen, i));
+    const did = new Uint8Array(jobs.length); let hi = -1, unsorted = false;
+    const one = i => { if (did[i]) return; did[i] = 1; const jb = jobs[i]; at362w = next.get(jb.ch); try { renderOne(jb.ch, jb.sen, jb.si); } finally { at362w = null; } if (i < hi) unsorted = true; else hi = i; };
+    const sortFlat = () => { if (unsorted) { SENTENCE_FLAT.sort((x, y) => idx.get(x.sen) - idx.get(y.sen)); unsorted = false; } };
+    const chIn = ch => { const r = range.get(ch); for (let i = r[0]; i < r[1]; i++) if (!did[i]) return false; return true; };
+    const renderCh = ch => { const r = range.get(ch); if (!r) return; for (let i = r[0]; i < r[1]; i++) one(i); sortFlat(); if (WIN362.io) WIN362.io.unobserve(heads.get(ch)); };
+    const want = at362 != null ? at362 : keep362 ? keep362.n : null;
+    let c0 = want == null ? -1 : order.findIndex(ch => String(ch.n) === String(want)); if (c0 < 0) c0 = 0;
+    const win = []; let cnt = 0;
+    for (let j = c0; j < order.length && (j === c0 || cnt < RENDER_FIRST); j++) { const r = range.get(order[j]); for (let i = r[0]; i < r[1]; i++) win.push(i); cnt += r[1] - r[0]; }
+    let w = 0;
+    WIN362.on = true; WIN362.settled = false; WIN362.story = CUR.id;
+    WIN362.ensure = n => { if (gen !== RENDER_GEN) return; const ch = order.find(c => String(c.n) === String(n)); if (ch) renderCh(ch); };
+    STORY_RENDER_FLUSH = () => { if (gen !== RENDER_GEN) { STORY_RENDER_FLUSH = null; return; } for (let i = 0; i < jobs.length; i++) one(i); sortFlat(); STORY_RENDER_FLUSH = null; WIN362.reset(); storyEl.classList.remove("rendering"); };
+    const settle = () => { if (gen !== RENDER_GEN || !WIN362.on) return; WIN362.settled = true; storyEl.classList.remove("rendering");
+      /* the heads near the viewport queue their chapters; a frame draws whole chapters until RENDER_MS144 is spent (one at least), the rest
+         wait for the next frame — a jump that brings ten small chapters into the margin no longer draws them in one task */
+      const want = []; let pumping = false;
+      const pump = () => { pumping = false; if (gen !== RENDER_GEN || !WIN362.on) return; const t0 = performance.now(); let n = 0;
+        while (want.length && (n === 0 || performance.now() - t0 < RENDER_MS144)) { const ch = want.shift(); if (!chIn(ch)) { renderCh(ch); n++; } }
+        if (want.length) { pumping = true; requestAnimationFrame(pump); } };
+      if (typeof IntersectionObserver === "function") { const io = WIN362.io = new IntersectionObserver(es => { if (gen !== RENDER_GEN) return;
+          es.forEach(e => { if (!e.isIntersecting) return; const ch = order.find(c => heads.get(c) === e.target); if (ch && !chIn(ch)) { if (!want.includes(ch)) want.push(ch); } else io.unobserve(e.target); });
+          if (want.length && !pumping) { pumping = true; requestAnimationFrame(pump); } }, { rootMargin: "1200px 0px" });
+        order.forEach(ch => { if (!chIn(ch)) io.observe(heads.get(ch)); }); } };
+    storyEl.classList.add("rendering");
+    for (const end = Math.min(win.length, RENDER_FIRST); w < end; w++) one(win[w]); sortFlat();
+    if (keep362) { const h = heads.get(order[c0]); if (h) window.scrollBy(0, h.getBoundingClientRect().top - keep362.top); }
+    if (w >= win.length) settle();
+    else { const more = () => { if (gen !== RENDER_GEN || !STORY_RENDER_FLUSH) return; const t0 = performance.now(); let n = 0;
+        while (w < win.length && (n < RENDER_MIN144 || (n < RENDER_BATCH && performance.now() - t0 < RENDER_MS144))) { one(win[w++]); n++; } sortFlat();
+        if (w < win.length) requestAnimationFrame(more); else settle(); };
+      requestAnimationFrame(more); }
+  } else
   // window.__QISSA_RENDER_SYNC is the test harness's switch: the smoke checks read a whole text right after opening it
   if (jobs.length <= RENDER_SYNC_MAX || storyLocked(CUR) || window.__QISSA_RENDER_SYNC === true) { step(jobs.length); done(); }
   else {
@@ -5248,14 +5323,16 @@ function renderStory(){
     pillChapters.forEach(ch => {
       const b = document.createElement("button");
       b.className = "ch-pill";
-      b.textContent = ui().chapter + " " + ch.n;
+      b.textContent = ui().chapter + " " + chOrd362(CUR, ch);   // (v362-S) the display ordinal
       b.dataset.ch = ch.n; markPill(b, CUR, ch);   // (v338) read · questions done · recalled
-      b.addEventListener("click", () => { flushStoryRender(); const h = storyEl.querySelector(`.chapter-head[data-ch="${ch.n}"]`); if (h) h.scrollIntoView({ block: "start" }); });
+      b.addEventListener("click", () => { if (WIN362.on) ensureChapter362(ch.n); else flushStoryRender(); const h = storyEl.querySelector(`.chapter-head[data-ch="${ch.n}"]`); if (h) h.scrollIntoView({ block: "start" }); });
       nav.appendChild(b);
     });
+    if (pillChapters.length > CH_ROW362) nav.classList.add("ch-nav-row");   // (v362-S) a long run is one scrollable row
     storyEl.insertBefore(nav, storyEl.firstChild);
   }
 }
+const CH_ROW362 = 80;   // (v362-S) above this many chapters the pills scroll in one row (no story today has more than 76)
 
 
 // ---------- library / story shell ----------
@@ -5730,7 +5807,7 @@ function coverArt(st, theme = coverTheme340()){
 
 function renderLibrary(){
   stopPlayAll();
-  RENDER_GEN++; STORY_RENDER_FLUSH = null;
+  RENDER_GEN++; STORY_RENDER_FLUSH = null; WIN362.reset(); WIN362.story = null;
   CUR = null; GLOSSARY = {}; MORPH = {}; CHAPTERS = [];
   document.body.classList.add("lib-mode");
   document.getElementById("backLib").hidden = true;
@@ -6101,8 +6178,8 @@ function continueStory(){
 // Land the returning reader on the first sentence they have not read, not at
 // the top of a text they have already worked through.
 function resumeScroll(){
-  flushStoryRender();
   const prog = state.progress[CUR ? CUR.id : ""] || {};
+  if (WIN362.on) { const t = STORY_JOBS362.find(({ sen, ch }) => !senRead(prog, sen, ch)); if (t) ensureChapter362(t.ch.n); } else flushStoryRender();   // (v362-S) its chapter, not the whole text
   const hit = SENTENCE_FLAT.find(({ sen, ch }) => !senRead(prog, sen, ch));
   if (!hit) return;
   hit.sec.scrollIntoView({ block: "center" });
@@ -6157,7 +6234,8 @@ function openStory(st, resume){
   const ab = document.getElementById("aboutChip");
   if (ab) ab.addEventListener("click", () => openAbout(st));
   closeSheet();
-  renderStory();
+  const at362 = WIN362.at != null ? WIN362.at : resume ? resumeCh362(st) : null; WIN362.at = null;
+  renderStory({ at: at362 });   // (v362-S) the window opens at the chapter read next (or the deep link's)
   window.scrollTo(0, 0);
   if (resume) resumeScroll();
 }
@@ -8137,7 +8215,7 @@ class Listen347 {
     const playing = playAllActive && !this.paused && this.failedAt < 0;
     el.querySelector("#ppLbl").textContent = U.l347Sent.replace("{i}", idx + 1).replace("{n}", n);
     el.querySelector("#ppSub").textContent = !this.follow && playAllActive ? U.l347Back
-      : [f.ch ? U.l347Ch.replace("{n}", f.ch.n) : "", playing ? U.l347Playing : U.l347Paused, silent ? U.l347Silent : Voice347.speaker(f.sen)].filter(Boolean).join(" · ");
+      : [f.ch ? U.l347Ch.replace("{n}", chOrd362(CUR, f.ch)) : "", playing ? U.l347Playing : U.l347Paused, silent ? U.l347Silent : Voice347.speaker(f.sen)].filter(Boolean).join(" · ");
     const pb = el.querySelector("#ppPlay"); pb.innerHTML = IconSet.svg(playing ? "pause" : "play", true);
     pb.setAttribute("aria-label", playing ? U.l347Pause : U.l347Play); pb.setAttribute("aria-pressed", String(playing));
     el.querySelector("#ppPrev").setAttribute("aria-label", U.playerPrev); el.querySelector("#ppNext").setAttribute("aria-label", U.playerNext);
@@ -8147,7 +8225,7 @@ class Listen347 {
     const sc = el.querySelector("#ppScope"); sc.textContent = o.cross ? U.l347ScopeAll : U.l347ScopeCh; sc.setAttribute("aria-pressed", String(o.cross)); sc.classList.toggle("on", o.cross);
     const vb = el.querySelector("#ppVoice"); vb.textContent = U.l347Voice + (own ? " · " + U.o349Name : arVoice ? " · " + String(arVoice.lang || "ar") : ""); vb.setAttribute("aria-haspopup", "dialog");
     const note = el.querySelector("#ppNote"); let nh = "";
-    if (this.ended) nh = `<span>${E(this.ended.next == null ? U.l347StoryDone : U.l347ChDone.replace("{n}", this.ended.n))}</span>${this.ended.next != null ? `<button class="btn" data-pp="next" type="button">${E(U.l347NextCh)}</button>` : ""}`;
+    if (this.ended) nh = `<span>${E(this.ended.next == null ? U.l347StoryDone : U.l347ChDone.replace("{n}", chOrd362(CUR, this.ended.n)))}</span>${this.ended.next != null ? `<button class="btn" data-pp="next" type="button">${E(U.l347NextCh)}</button>` : ""}`;
     else if (Own349.line) nh = Own349.noteHtml();
     else if (this.failedAt >= 0) nh = `<span>${E(U.l347Err)}</span>`;
     else if (silent) nh = `<span>${E(U.l347SilentNote)}</span><button class="btn" data-pp="fix" type="button">${E(U.l347Fix)}</button>`;
@@ -8274,7 +8352,7 @@ class Studio347 {
     const sen = ch.sentences[this.i], d = this.load(), has = s => !!d.takes[this.key(CUR, ch, s.id)];
     const done = ch.sentences.filter(has).length, rec = !!this.mr, mine = has(sen), codec = this.mime() || "—";
     sheetInner.innerHTML = `<div class="st347"><h3 class="welcome-h">${E(U.st347Title)}</h3>
-      <div class="st347-pick"><label class="ls-lbl">${E(U.st347Chapter)} <select id="st347Ch">${CHAPTERS.map((c, k) => `<option value="${k}"${k === this.ch ? " selected" : ""}>${c.n} · ${E(c.title.ar)}</option>`).join("")}</select></label>
+      <div class="st347-pick"><label class="ls-lbl">${E(U.st347Chapter)} <select id="st347Ch">${CHAPTERS.map((c, k) => `<option value="${k}"${k === this.ch ? " selected" : ""}>${chOrd362(CUR, c)} · ${E(c.title.ar)}</option>`).join("")}</select></label>
         <span class="st347-count">${E(U.st347Count.replace("{a}", done).replace("{n}", ch.sentences.length))}</span></div>
       <div class="st347-dots" aria-hidden="true">${ch.sentences.map((s, k) => `<i class="${has(s) ? "on" : ""}${k === this.i ? " cur" : ""}"></i>`).join("")}</div>
       <div class="st347-card"><span class="k">${E(U.l347Sent.replace("{i}", this.i + 1).replace("{n}", ch.sentences.length))} · ${E(mine ? U.st347Taken : U.st347Empty)}</span>
@@ -21845,7 +21923,7 @@ const Izhar351 = {
     for (const r of exs) { let ch = null; try { ch = Illa346.chain(r.tok); } catch (e) { ch = null; } if (ch && ch.steps && ch.steps.length) {
       why = `<details class="illa" open><summary><span class="illa-h">${u.iz351Why}</span> <span lang="ar" dir="rtl">${r.tok.s.full}</span></summary><ol class="illa-steps">${Illa346.stepsHtml(ch, l)}</ol></details>`; break; } }
     const exHtml = exs.map((r, k) => `<div class="iz-x">${r.book ? `<p class="iz-book"><span class="iz-pend">${u.iz353Book}</span>${x.book.ok ? "" : ` <small>${u.iz353BookNoEx}</small>`}</p>` : ""}<p class="iz-ar" lang="ar">${this.senHtml(r.sen, r.ti)}</p>${r.sen.translation ? `<p class="iz-tl">${this.E(T(r.sen.translation))}</p>` : ""}
-      <p class="iz-irab" lang="ar">${this.E((r.tok.irab || {}).ar || "")}</p><p class="iz-cite">${this.E(T(r.st.title))} · ${u.chapter} ${r.ch}</p>
+      <p class="iz-irab" lang="ar">${this.E((r.tok.irab || {}).ar || "")}</p><p class="iz-cite">${this.E(T(r.st.title))} · ${u.chapter} ${chOrd362(r.st, r.ch)}</p>
       <div class="iz-row"><button class="chip" type="button" data-iz-open="${k}">${u.iz351Open}</button><button class="chip" type="button" data-iz-eng="${k}">${u.iz351Engine}</button></div></div>`).join("");
     const items = this.items(x);
     const notes = (x.notes || []).filter(g => GRAMMAR[g]).slice(0, 4), games = (x.games || []).filter(g => this.GAMES[g] && typeof window[this.GAMES[g][0]] === "function");
@@ -22023,7 +22101,7 @@ const Alfiyya358 = {
     const ex = x.ex.map(e => `<div class="iz-x"><p class="iz-ar" lang="ar">${this.mark(e.s, e.w)}</p><p class="iz-irab"><span lang="ar" dir="rtl">${this.E(e.t)}</span> · ${this.E(this.roleName(e.role))}</p><p class="iz-cite">${u.alf358Engine}</p></div>`).join("")
       + (x.sh || []).map(s => `<div class="iz-x"><p class="alf-v" lang="ar" dir="rtl">${this.E(this.clean(s.ar).replace(/\s*\.\.\.\s+/, "\n"))}</p><details><summary>${u.alf358Editor}</summary><p class="alf-r" lang="ar" dir="rtl">${this.E(s.irab)}</p></details></div>`).join("");
     const corp = x.corpus.map((c, k) => { const [sid, ch] = c.k.split(":"), st = STORIES.find(s0 => s0.id === sid);
-      return `<div class="iz-x"><p class="iz-ar" lang="ar">${this.mark(c.ar, c.w, +c.k.split(":")[3] - 1)}</p><p class="iz-irab" lang="ar">${this.E(c.a)}</p><p class="iz-cite">${st ? this.E(T(st.title)) + " · " : ""}${u.chapter} ${this.E(ch)} · ${u.alf358Agree}</p>
+      return `<div class="iz-x"><p class="iz-ar" lang="ar">${this.mark(c.ar, c.w, +c.k.split(":")[3] - 1)}</p><p class="iz-irab" lang="ar">${this.E(c.a)}</p><p class="iz-cite">${st ? this.E(T(st.title)) + " · " : ""}${u.chapter} ${this.E(chOrd362(st, ch))} · ${u.alf358Agree}</p>
         <div class="iz-row"><button class="chip" type="button" data-alf-open="${k}">${u.iz351Open}</button></div></div>`; }).join("");
     const nq = Math.min(5, x.q.length);
     body.innerHTML = `<div class="iz351 alf358 iz-unit" id="alf358" data-unit="${x.id}">
@@ -22881,7 +22959,7 @@ function openSearch(q){
         body += `<button class="hit" data-sid="${escapeAttr(r.st.id)}" data-ch="${r.ch.n}"
             data-sen="${escapeAttr(r.sen.id)}" data-ti="${r.ti}">
           <div class="h-ar" lang="ar" dir="rtl">${line}</div>
-          <div class="h-src">${r.st.title.ar} · ${ui().chapter} ${r.ch.n}</div>
+          <div class="h-src">${r.st.title.ar} · ${ui().chapter} ${chOrd362(r.st, r.ch)}</div>
         </button>`;
       });
       if (rows.length > 4)
@@ -22964,10 +23042,11 @@ function jumpTo(storyId, senId, ti, chN){
   if (bodyGate341(() => jumpTo(storyId, senId, ti, chN))) return;   /* (v341-S) */
   const st = STORIES.find(s => s.id === storyId);
   if (!st) return;
-  if (!CUR || CUR.id !== st.id) openStory(st);
-  closeSheet();
   const wantCh = chN === undefined || chN === null || Number.isNaN(chN) ? null : Number(chN);
-  flushStoryRender();
+  const tc362 = (st.chapters || []).find(c => (wantCh === null || c.n === wantCh) && (c.sentences || []).some(s => s.id === senId));   // (v362-S)
+  if (!CUR || CUR.id !== st.id) { WIN362.at = tc362 ? tc362.n : null; openStory(st); }
+  closeSheet();
+  if (WIN362.on) { if (tc362) ensureChapter362(tc362.n); } else flushStoryRender();
   const found = SENTENCE_FLAT.find(({ sen, ch }) => sen.id === senId && (wantCh === null || ch.n === wantCh));
   if (!found) {                       // behind the paywall — say so instead of failing silently
     setTimeout(() => { openSearch(); }, 0);
@@ -27952,6 +28031,18 @@ class Determ361 {
   static lineOf(rows, j){ try { return String((Murib.line(rows, j) || {}).ar || ""); } catch (e) { return ""; } }
   static lineOf0(rows, j){ return this.lineOf(rows, j); }
 }
+/* (v362-S) the post rows' letter helpers, remembered. Every Murib.line runs Nahw342Engine's ~70 rows, Roles345's and Determ361's, and each
+   row's gate first folds the word's (or the line's) letters again — H / bare / flat / nf / hf / V355 / fv: 1.9 s of the post rows' 2.8 s
+   over a fifth of the corpus (scratchpad speed362/mlprof.js). Each is a pure function of ONE string (the word's r.w, or the text given), so
+   its answer is kept by that string (a bounded Map, cleared past 4,000 entries) — the same answers by construction, and proved over every
+   story sentence and the ledgers' probes (smoke «v362 — speed: the post rows' letter helpers remembered»). __QISSA_MEMO362 === false
+   (set before the page loads) keeps the plain functions. */
+if (window.__QISSA_MEMO362 !== false) { const keep = (cls, name, key) => { const f = cls[name]; if (typeof f !== "function") return; const M = new Map();
+    cls[name] = function (x) { const k = key(x); let v = M.get(k); if (v === undefined) { if (M.size > 4000) M.clear(); v = f.call(this, x); M.set(k, v); } return v; }; cls[name].plain362 = f; };
+  const byText = x => String(x || ""), byWord = r => String((r || {}).w || "");
+  for (const n of ["H", "hf"]) keep(Nahw342Engine, n, byText);
+  for (const n of ["bare", "flat", "nf", "V355", "fv"]) keep(Nahw342Engine, n, byWord);
+  keep(Roles345, "H", byText); for (const n of ["bare", "flat", "nf"]) keep(Roles345, n, byWord); }
 { const L2 = Murib.line; Murib.line = function (rows, i) { const L = L2.call(this, rows, i); if (Determ361._busy) return L; let v = null; try { v = Determ361.post(rows, i, L); } catch (e) { v = null; } return v || L; }; }
 // ── v361-D END (rows)
 // ---------- the QAWAID engine (مُصَحِّحُ الْقَوَاعِدِ): rules as a LEDGER ------
@@ -40864,10 +40955,10 @@ function updateStreakChip(){
 // deck yet — so "learn N new today" is a button and not a chore.
 function newWordsHere(limit){
   if (!CUR) return [];
-  flushStoryRender();
+  const flat362 = WIN362.on ? STORY_JOBS362 : (flushStoryRender(), SENTENCE_FLAT);   // (v362-S) the same sentences in the same order, without drawing them
   const have = new Set(state.deck.filter(d => d.type === "word").map(d => d.lex));
   const out = [], seen = new Set();
-  SENTENCE_FLAT.forEach(({ sen }) => sen.tokens.forEach(tok => {
+  flat362.forEach(({ sen }) => sen.tokens.forEach(tok => {
     const e = GLOSSARY[tok.lex];
     if (!e || !e.level || e.level < 1) return;      // skip proper nouns
     if (have.has(tok.lex) || seen.has(tok.lex)) return;
@@ -52144,7 +52235,7 @@ const Quiet = {
   ok(){ try { if (window.__QISSA_QUIET_OFF === true) return false;   /* the test harness holds the jobs so its own timings stay clean */
     if (!BODY341.ready()) return false;   /* (v341-S) no job reads part of the shelf */
     return document.visibilityState !== "hidden" && !(typeof sheet !== "undefined" && sheet && sheet.classList.contains("show")) &&
-    (performance.now() - Quiet.last) > 1200 && !(typeof STORY_RENDER_FLUSH !== "undefined" && STORY_RENDER_FLUSH); } catch (e) { return false; } },
+    (performance.now() - Quiet.last) > 1200 && !(typeof STORY_RENDER_FLUSH !== "undefined" && STORY_RENDER_FLUSH && !(WIN362.on && WIN362.settled)); } catch (e) { return false; } },
   add(name, fn){ if (this.jobs.some(j => j.name === name)) return; this.jobs.push({ name, fn }); this.kick(); },
   kick(delay){ if (this._t) return; this._t = setTimeout(() => { this._t = null; this.tick(); }, delay || 300); },
   tick(){ if (!this.jobs.length) return; if (!this.ok()) { this.kick(600); return; }

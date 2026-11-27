@@ -18128,3 +18128,102 @@ holds no copyright.» That statement is recorded, dated and in his words, in all
   unchanged. The windowed chapter render is the orchestrator's final pass (story render path untouched here).
 - Subset (the brief's): 73 pass, 4 fail before the re-measures (the four above); after them all pass (v359 and the four re-run alone).
   Scripts: scratchpad `sira359/` (`bin/matn.py`, `bin/lk.py`, `bin/kc.py`, `speed359.js`, `smoke359.js`, `audit*`, `PROGRESS.md`).
+
+## v362-S — speed VIII: the closing optimisation pass, alone on the machine
+
+The owner, 2026-11-27: «After all those current works are done you can stop and do optimisation.» Nothing new built: what exists is
+measured, made faster and proved unchanged. Worktree `arabic-app`, scratch `speed362/` (PROGRESS.md, baseline.md; tools copied from
+speed354 + `p.js` mode `win` (the Sīra and a synthetic 150-chapter copy), `x.js` new += the Alfiyya course / Amthila notes, `m.js` mode
+`settled`, `base.sh` (one build), `mldump.js` (every story sentence + 909 ledger probes through SentenceAnalyzer + Murib.line, hashed),
+`mlprof.js` (Murib.line's layers by rule), `dcount.js` / `idem.js` (DabtEngine.decide's calls and fixpoint)). Measured as v354: split
+hosted copy over http no-store, 390×844, 4× CPU (6× where said), old / new ALTERNATED, 5 rounds (3 at 6×), alone, 1-min load < 1.5.
+
+**Baseline against v354's own table** (`baseline.md`; median [min–max]):
+- worse than v354, all by BYTES, none by a slower function: the door at 4 Mbit/s 5492 → **5785 [5759–6482] ms** (+293; 20 Mbit/s 1780 → 1813,
+  local 707 → 724): app.js 1.739 → 1.822 MB gz (+83 KB: the code of v355-N1/N2, v357-N, v358-A, v359-E, v360-Sh, v361-N/D) and the core
+  slice 0.485 → 0.501 MB gz (+16 KB: v359-E's 19 level-one note stubs — title, sources, ONE book-line example, related; their bodies are in
+  g1 — the v358-T / v359-S catalog rows, ILAL's 170 reasons); all bodies in at 20 · 4 Mbit/s 3854 → 4125 · 7622 → 8007 ms (bodies 11.95 →
+  12.50 MB gz: ALFCOURSE358 in the last slice b27 — 3.05 MB / 0.601 gz —, v358-T's 9 packages, the Sīra, v360-Sh).
+- a grammar note's open (mubtada-khabar with «Neden böyle?», 12 ʿilla cards, the Elfiye card): worst task 67 → 111 [0–121] in base1, 80
+  [0–113] / 56 [50–124] in the A/B — within its spread, under 200; not pursued.
+- equal within the spread (or better): the boot's longest task (174), style recalc (330 ms, 4.8k nodes), stories L3 / L6 (84 / 155),
+  word taps (69/59 · 25/66 ms), «Neden?» (44 — v357/v361's ladders cost nothing visible), the sentence sheet (paint 332, worst 239), game
+  feedback (47), Jumla first open (worst 317), Khilāf (174 → 108), Iẓhār page / unit (106 / 70), search (frame 12, first كت 2201), the
+  scroll (p95 17, 0 long tasks), the first-use sweep (3 tasks > 200, story 98), heap 177 at boot / 147 settled / 150 after three stories.
+  New: the Alfiyya course page 48 ms (worst 0–58), a unit 24; the Amthila note 47, the pronoun map 46 (worst 0).
+- `Murib.line` over the whole corpus at 1× (mldump, 95,333 lines): 131 s, of it `DabtEngine.decide` 74 %, the post rows (Nahw342Engine ~70
+  rows incl. v360-Sh's 46, Roles345, Determ361) ≈ 14 %, the rest the base line; per sentence decide runs THREE times on the same rows
+  (Murib._decide; MajazEngine.read and TashbihEngine.read under TaqdirEngine.ghosts' search for an omitted muḍāf). v361-D's save / reset /
+  restore around decide: 23 fields copied twice per call — microseconds against decide's ~10 ms; nothing to make cheaper.
+
+**What changed** (same answers, same screens, same strings; each proved by a check):
+1. **The windowed chapter render** (`WIN362`, reader.html renderStory). A text of more than 80 sentences (RENDER_SYNC_MAX) or of 10
+   chapters or more (`WIN362_CH`; 22 stories today, the Sīra among them) draws every chapter's HEAD, the opened chapter (with whole chapters
+   after it up to 40 sentences, batched as before) and the other bodies on demand: a head within 1,200 px of the viewport
+   (IntersectionObserver; queued, whole chapters per frame until 10 ms), a pill (`ensureChapter362`), a deep link (`jumpTo` opens AT the
+   target's chapter — search hits, the sentence sheet, the courses' corpus links, the deck's context), «continue reading» / Today's lesson
+   (`resumeCh362`: the window opens at the first unread sentence's chapter), a review note (`ReviewNotes.goto`), a re-render (font size,
+   mode, review toggle: the window reopens at the chapter whose head is at the top of the viewport, scrolled back to where it was).
+   `flushStoryRender()` still draws the whole text («Dinle» / `startPlayAll`, the harness). Each chapter is drawn by the same `renderOne`
+   into its place (before the next head), so the flushed page IS the full render; `SENTENCE_FLAT` is kept in reading order;
+   `newWordsHere` reads the text's sentences (`STORY_JOBS362`), not the DOM; Quiet is held only while a render is in progress, not by the
+   chapters kept for later. The harness switch `__QISSA_RENDER_SYNC` (and `__QISSA_WIN362 === false`) keep the full render.
+   Above 80 chapters (`CH_ROW362`; none today) the pills scroll in one row (`.ch-nav-row`: layout only, the 44-px hit area unchanged).
+2. **A chapter's display ordinal** (`chOrd362(st, ch)`): the pills, the chapter heads, the player (`l347Ch`, `l347ChDone`), search hits,
+   review notes — and the courses' cites and the recording studio — print it. A story numbered past the reserved preface (the Sīra,
+   101 …) shows «Bölüm 1 … 12»; every other story returns `ch.n`. `ch.n`, `data-ch`, progress keys, review keys: unchanged.
+3. **The post rows' letter helpers remembered**: Nahw342Engine's `H` / `hf` (by the text) and `bare` / `flat` / `nf` / `V355` / `fv` (by the
+   word's letters), Roles345's `H` / `bare` / `flat` / `nf` — pure functions of one string — answer from a bounded Map (block before the
+   Determ361 wrapper; `.plain362` keeps each plain function; `__QISSA_MEMO362 === false` before load keeps them plain).
+   Over the whole corpus (8,356 sentences = 7,447 story + 909 probes of Ibn ʿAqīl, Shudhūr ×2, Qawāʿid, Iẓhār, Kāfiya; 95,333 lines):
+   every row and every line identical (mldump hashes, 0 differences); Murib.line 131 → 125 s at 1× (−4.5 %), the post rows −28 %.
+
+**Before / after** (A = this wave's base, B = this wave; alternated, alone, load 0.9–1.5; median [min–max]; ab1.jsonl, ab4.jsonl, ab6.jsonl):
+| 4× CPU | base | v362 |
+|---|---|---|
+| the Sīra opens (12 ch / 71 sentences): paint · worst · nodes | 349 [331–400] · 229 [216–283] · 1,908 | **241 [235–323] · 163 [157–217] · 1,180** |
+| its last chapter by the pill: paint · worst | 47 · 0 (already drawn) | 59 · 65 (draws it, then its neighbours a frame at a time) |
+| 150 chapters (888 sentences, synthetic copy in the page): open paint · worst · nodes settled | 287 [261–320] · 166 · 21,944 | 329 [294–399] · 201 · **1,733** (the 150 heads + pills: +40 ms) |
+| … the last chapter's pill: paint · worst · nodes | 140 [126–2207] · 135 · 21,944 | 78 · 83 · 4,226 |
+| … a deep link to its last sentence: paint · worst · nodes | **2,818 [2739–3340] · 2,475** · 21,986 | **196 [185–223] · 142** · 965 |
+| … «Dinle» (the whole text drawn): paint · worst | 2,870 · 1,860 | 2,666 · 1,724 (same work) |
+| door (local · 4 Mbit/s), word taps, «Neden?», sentence sheet, game, Iẓhār / Alfiyya / Amthila pages, heap | equal within the spread (ab1 + ab4: sheet 398 / 251 vs 357 / 256; heap after three stories 159 / 157) | |
+| 6×, 3 rounds: door at 4 Mbit/s · local · boot's longest | 6,419 · 1,306 · 314 | 6,437 · 1,367 [1334–1411] · 367 [324–414] (overlapping spreads; at 4× B was 704 vs 748) |
+| 6×: first-use sweep tasks > 200 · the Jumla lab's first analysis | 14 · ~1.1 s | 17 · ~1.1 s — the same task in both (profiled: Warm341's tick → renderJumlaOut → DabtEngine.vowel / decide); the sweep's 314 vs 1,314 is where it lands against the probe's settle window |
+
+**Tried and dropped**: a fixpoint memo of `DabtEngine.decide` (decide is NOT idempotent on the rows it writes — 51 of 1,490 sentences
+answer otherwise on a 2nd call — but a 3rd call equals the 2nd, 0 of 1,490; a memo keyed on a full serialization of the rows) — 0 hits in
+the Murib.line flow: TashbihEngine writes `__next` and other engines annotate the rows between the three calls, and decide reads `__…`
+fields (`__next` among them), so no narrower key is provable. Reverted. Pre-tests per post row: the rows' own first lines already ARE
+cheap gates (`isNoun` / a regex on L.ar); what they paid was the letter folding, now remembered. Skipping `MajazEngine.read` under
+TaqdirEngine.ghosts when no ASK / جاء verb is present: Majaz / Tashbih write to the rows (decide's 2nd and 3rd calls, `__next`), so the
+skip would change what later lines read — not attempted.
+
+**Smoke** (four checks just before «no JS errors on page», between `>>> v362-S` / `<<< v362-S`): «v362 — speed: the windowed chapter render» (all 22 windowed
+stories: heads / pills, the opened chapter = the full render's, the flushed page and SENTENCE_FLAT = the full render's, a pill, a deep link
+and «continue reading» each = the same action under the full render, a review note, newWordsHere, «Dinle», a late word's sheet, a head near
+the viewport drawn, Quiet not held), «v362 — a chapter's display ordinal» (every chapter of every story; the Sīra's heads / pills «Chapter
+1 … 12», data-ch 101 …; the sites call chOrd362), «v362 — speed: the post rows' letter helpers remembered» (28,629 words + 5,888 line
+texts = the plain functions; 339 sentences = with the plain helpers put back), «v362 — speed: the windowed chapter render within budget
+at 4× CPU» (OPEN 83, JUMP 65, 150-ch OPEN 108, JUMP 183 ms, ≤ 2,570 nodes = 1.5 × the medians 55 / 43 / 73 / 122 ms, 1,711 nodes of seven runs
+alone; the sync call's work, a warm-up call then the best of five, Quiet held from the page's start; its own split copy and server). **Older checks changed — the MEASURE, no ceiling:** «v341 — the door before the
+bodies» best of up to three fresh doors (alone 1.07–1.10 s, 2.6–3.3 s under five browser jobs); «v343 — a fresh two-letter query» each
+query the best of three keystrokes (105 vs 100 under load); «v349 — the voice costs the door nothing» a second set of eight interleaved
+doors when the first eight disagree, the verdict on sixteen (one outlier moved a median of four); `toLibrary` waits on the library's state
+(lib-mode + a card, 120 s) instead of a 10-s selector (the «v361 … at 390 px» failure); «a game detour into the grammar» waits for a real
+card and the open story before its clicks (the 30-s click timeout). «v317» (the reload losing the shelf key under load) NOT changed: the
+loss is the browser's storage commit, not a wait this check can state; it still has its v334 retry.
+**Still slow**: the Jumla lab's first analysis (~0.3 s at 4×, ~1.1 s at 6×: DabtEngine.vowel / decide ×5 in one task), the sentence
+sheet's heaviest Late350 task (~250 ms at 4×), `DabtEngine.decide` read three times per sentence by Murib.line (74 % of its time),
+«Dinle» on a long windowed text draws the whole text at once (as the full render did, in one task: ~1.7 s at 4× for 150 chapters), the
+door at 4 Mbit/s (5.8 s; bytes), the first word tap at 6× (~120–150 ms paint).
+**A low-end phone (6×)**: the door 1.3 s local, 6.4 s at 4 Mbit/s, all bodies ~9.4 s; a story opens in ~0.26–0.39 s, the first word in
+~0.12–0.15 s, the sentence sheet ~0.6–0.75 s; the Sīra (and any long text) opens on its first chapters and jumps to any chapter in one
+short task; the Jumla lab's first analysis freezes ~1.1 s once.
+**Finish**: `check_i18n.py` clean; the refit chain ran after the last code edit (the page byte-identical through it); `inventory.py
+--check` OK (0 hashes changed); **the whole suite once: 667 PASS, 1 FAIL** — the new budget check
+borrowed split341's server, which the v341 checks close (ERR_CONNECTION_REFUSED); it now serves its own split copy and passes run after
+the v341 checks; every older check passed, the four re-measured ones among them (door 998 ms best of 1; two-letter 12 / 20 / 15 / 45 ms;
+voice A/B on the first eight). `tools/entrance_test.js` on the assembled site: «✓ Ready — opens offline too», ready 5.4 s, the app opens
+in 907 ms, no errors.
+
