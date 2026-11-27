@@ -406,3 +406,12 @@ carries, cut verbatim from the matn (headers and ḥāshiya removed) and saved b
 Three more corrections rest on the edition's own apparatus or the book itself, as each manifest says (al-Zabbāʾ, p. 436 n. 2; «سر», p. 346 n. 1;
 «المتلمس», p. 203 n. 1 and the book's spelling elsewhere; «عند الصباح», the line as al-Bakrī quotes it from Abū ʿUbayd). Fetched 2026-11-26.
 
+
+### v352-K — readings from al-Khaṣāʾiṣ (`khasais-<slug>-src.txt`)
+
+Each `khasais-<slug>-src.txt` is the exact passage of Ibn Jinnī's «الخصائص» (ed. al-Najjār, Shamela 9986; the whole book is
+`al-khasais-ibn-jinni-src.txt`) that the package `content/samples/khasais-<slug>` reads, copied verbatim (matn only, the editor's footnote
+numbers left in place, page-marked) before authoring: `al-kalam-wal-qawl` (1:18), `al-lugha` (1:34, the whole bāb), `al-nahw` (1:35),
+`al-irab` (1:36), `asl-al-lugha` (1:41–42), `ilal-al-arabiyya` (1:49), `iradat-al-arab` (1:238–239), `shajaat-al-arabiyya` (2:362). One
+correction, against the book's own spelling (al-irab: «بالتثينة» → «بالتثنية», cf. 1:35 «كالتثنية»); «يسميه النحويين» (1:18) is kept as printed —
+Shamela holds no second edition of the book (author 830 lists only 9986) and no other witness of the line was found.

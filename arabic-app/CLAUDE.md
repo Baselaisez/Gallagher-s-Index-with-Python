@@ -17278,3 +17278,55 @@ puts the owner's own full Turkish translation into the units, fills the course's
   the control, the shelf's audit as ceilings 224 / 196 and floor 718), «v353-I — the «Anlamı / Meaning» card» (A01 · A21 · B18 at 390 px in tr and en,
   first section, collapsed suʾāl–cevap, the book's example + its exercise, contrast ≥ 4.5 in murekkep / gece / bahce). Older check changed: «v351-I —
   the Iẓhār by its own count» — its «incomplete» test counts the translation cell and the book's example as filling (the new cells, stated).
+
+## v352-K — readings from al-Khaṣāʾiṣ
+
+The owner: «al-Khaṣāʾiṣ is so important: it must be both feeder and story / text.» (The feeder half is v352-U.) A new shelf
+«مِنْ كُتُبِ الْعَرَبِيَّةِ / Dil kitaplarından / From the books of Arabic» (`LIB_SOURCES` id `kutub`, test `^khasais-`, labels `srcKutub` /
+`srcKutubSub`) holds eight READINGS of Ibn Jinnī's own prose — each the opening (or a whole part) of one bāb, cut at a natural join, never
+trimmed inside a sentence, the verses inside kept — with the full apparatus, the way the received imports were done (v333, v348-A).
+
+- **Packages** (8, one chapter each, 76 sentences, 1,077 tokens; `tools/authoring/author_khasais_<slug>.py` is the source of truth; the kit
+  `tools/authoring/khasais_common.py` = amthal_common's `finish()` with the sibling prefix `khasais-`, `manifest()` naming bāb / volume /
+  printed page / Shamela page, `X()` a token with its prefix and enclitic segments, `SEN()`; each span saved first as
+  `research/sources/khasais-<slug>-src.txt`, listed in the sources README):
+  `khasais-al-kalam-wal-qawl` (L5, 1:18, «أما الكلام فكل لفظ مستقل بنفسه» … «هذا أصله.», 8 s / 95 t) · `khasais-al-lugha` (L6, 1:34, the whole
+  bāb with its rajaz, al-Furqān 25:72 and the ḥadīth, 14 / 116) · `khasais-al-nahw` (L5, 1:35, to «على أحد أنواعه.», 6 / 103) · `khasais-al-irab`
+  (L6, 1:36, to «معروفة غير منكورة.», 10 / 157) · `khasais-asl-al-lugha` (L6, 1:41–42, «هذا موضع محوج» … «والانطواء على القول به.», 10 / 172) ·
+  `khasais-ilal-al-arabiyya` (L6, 1:49, the opening paragraph, 9 / 132) · `khasais-iradat-al-arab` (L6, 1:238–239, the first two paragraphs,
+  9 / 161) · `khasais-shajaat-al-arabiyya` (L6, 2:362, the opening and the dropped sentence, to «جزي شرًّا.», 10 / 141).
+  Every vowel ours and declared; iʿrāb ar/en/tr by the kits, glossary by lemma identity (74 new keys, each checked free on the whole shelf),
+  morphology for every verb (new paradigms by sarf_gen; اِحْتَجَّ and اِضْمَحَلَّ built from the stored اِشْتَدَّ / اِطْمَأَنَّ cells); EN/TR
+  translations ours; `reviewStatus: pending-scholarly-review`. Examples inside the text (أَكْرَمَ سَعِيدٌ أَبَاهُ، ضَرَبَتْ هٰذَا هٰذِهِ …) carry
+  their iʿrāb within the example and «فِي الْمِثَالِ الْمَحْكِيِّ»; the Qurʾān (Ḥafṣ) and the ḥadīth carry quote marks.
+- **Left of each bāb** (named in each manifest): the six orders of ق و ل / ك ل م and the wider uses of qawl; the ẓarf remark of «النحو» with its
+  rajaz (rhyme word «هيهات / هيات» disputed); the tābiʿ paragraph and the word iʿrāb itself; the objections of «أصل اللغة»; the examples of
+  «علل العربية»; the objection «فإن قلت: فما تنكر …»; the rest of «شجاعة العربية» from «ومنه قول التغلبي». Not taken: «فيما يؤمنه علم العربية من
+  الاعتقادات الدينية» (its opening runs into a list of āyāt cut mid-way; the brief's eight are the book's famous openings).
+- **Corrections**: one — «بالتثينة» → «بِالتَّثْنِيَةِ» (khasais-al-irab), against the book's own spelling (1:35). KEPT AS PRINTED: «يسميه النحويين»
+  (1:18; no second witness on Shamela — author 830 has one Khaṣāʾiṣ), the last vowel unwritten and the slip named in the line.
+- **For the hoca** (each manifest's list): vowels LEFT UNWRITTEN — «حَاء / عَاء» (the sound-words' last vowel), «يَخْتَلِف / يَنْتَقِض / يَتَهَاجَر»
+  after حَتَّى (raf' or nasb), «كُمَّثْرى»'s rā (tanwin turns on the alif); readings chosen — «لِيَلْحَقَ» (or لِيُلْحِقَ), «أُلْزِمَ الْكَلَامُ» passive,
+  «وَرَبِّ أَسْرَابِ» (an oath, after the editor and al-Lisān; the old print رُبَّ), «وَلَا تُضِعْهَا» (or تَضَعْهَا), «فَرَائِضَ» nasb (or jarr),
+  «الطُّهُورِ», «مَذِلَ», «أَقْدَرَ آدَمَ عَلَى أَنْ وَاضَعَ», «إِنْ خَيْرًا فَخَيْرًا» (the e-text's accusatives), «كَرَوْتُ / قَلَوْتُ», the sound-words
+  «حَسِّ، لَبِّ، أُفِّ، أَوَّهْ»; two of the editor's notes followed (مِنْ of cause on «الْمَنْسُوبَةِ»; «اتِّفَاقًا» the predicate of «يَكُونَ»).
+- **Gate**: validators pass; letters guard (scratch `khasais352/guard.py`, the same fold as the smoke); `tools/grammar_audit.js` listed 16 on the
+  shelf, four the author's and fixed in the scripts (وَرَبِّ's line read «بِالْوَاوِ» as its sign; الْمُتْقِنِينَ / الْمُسْتَضْعَفِينَ «بِالْفَتْحَةِ بِالْيَاءِ»
+  from NAAT + a note; أُخْرَى likewise; كُمَّثْرَى's tanwin left open); the second run's 13 are judged in
+  `research/story-audit-triage-delta-khasais.json` (11 E, 1 C — أُفِّ / أُفٍّ, both said of noun-verbs, the bāb itself citing صَهْ and صَهٍ —,
+  1 undecided — كُمَّثْرى).
+- **Smoke** «v352 — readings from al-Khaṣāʾiṣ …» (before «v333 — the received imports»): the shelf and its labels, ids, chapters / sentences /
+  tokens and level, each sentence's letters ⊂ the matn (the correction applied and listed), the kept slip named, attribution (Ibn Jinnī,
+  pending, «EVERY vowel …», the src file, «the bāb «…» … vol. N, printed p. N»), exactly one «•» (al-lugha s10) and none in prose.
+- **Older checks re-measured the v333 way** (the same build with the eight `khasais-*` moved out passes every one at its old number; each new
+  token examined, the reason in the check's comment): WujuhEngine floor 97.8 → 97.7 (75 new instances, 5 engine misses); wave 184 «مَا» wrong
+  53 → 56 (three relatives read as a ḥarf); HadhfEngine (v316, v334 Faces) measures `khasais-*` apart like the Muʿallaqāt and the proverbs
+  (29 seats, 12 read); v334 Order pin 2635/1000/0 → 2676/1013/0; v339 jumla exact 24 → 25 and GrammarAudit339 jumla 24 → 25 («سُبْحَانَهُ»);
+  v345 framed contra/exact 126/24 → 130/25; v345 Sign miss 59 → 60 («الْيَحْيَوْنَ»); v345-D contra 316 → 321; v327 object fp 6 → 7
+  («وَكُلَفَهُ»); v327 kāna dis 51 → 54; v330 ism-fiʿl bad 0 → ≤ 1 («وَإِيهٍ», the case engine's).
+- **Two authored lines changed because a check named them** (wording, not doctrine): the kalām list's sound-words no longer claim a jarr seat
+  (v330: a built ism fiʿl is never majrūr); «إِيهٍ» now says «مَبْنِيٌّ عَلَى الْكَسْرِ».
+- **One engine line** (`IshtiqaqEngine.read`, comment «v352-K»): two HEARD participles of one letter-shape that tie on score are ordered by
+  their lex key, not by the order the stories load in — the new verb قَلَا «to strike the qula» (key `qalaw-qula`, ismFail قَالٍ) had silently
+  swapped the Maqṣūd ledger's probes «وَقَالَةٌ» from قَلَى's root to its own; the older shelf's outputs are unchanged.
+- Full suite (after check_i18n and the refit chain): 632 checks, 632 pass (the first run, before the re-measures and the four fixes above, had 15 failures). Scripts: scratchpad `khasais352/` (`guard.py`, `span.py`, `pg.py`, `lk.py`, `kc.py`, `smoke352.js`, `audit*`, `PROGRESS.md`).
