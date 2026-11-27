@@ -213,3 +213,33 @@ Running (five agents, briefs in scratchpad `V357_BRIEF.md`, `V358_BRIEFS.md`):
 Downloads (scratchpad/newsrc/dl/): 1686 (≈3,100 pp.), 9914 (767 pp.), then 6969 (602 pp. — Shudhūr, for a check of our
 source file against the web text; no agent yet). Waiting on the owner: the Azure Speech resource's region.
 After these land: the speed checks on the merged tree, APK (dev ref) and Pages (ref main).
+
+## 2026-11-27 09:40 UTC
+
+Landed since 08:17 (CI green on the whole suite for `4a54bf7`, `091186e`, `5b828bb`, `2d4092c`): `5b828bb` v356-G (the inventory
+guard), `2d4092c` v357-N («Neden?» says the kind of iʿrāb of every word: 67,243 tokens, 234 deduced places marked, 0
+contradictions), `f22e81a` v358-A (the Alfiyya as a course: 72 units, 1,006 verses, 806 rulings, 1,090 proved questions),
+`e83ba83` v359-E (level one: 19 Amthila and pronoun notes, 493 cells engine-proved).
+
+**The owner, 2026-11-27: «After all those current works are done you can stop and do optimisation. Then I'll give the hoca
+reviews. Those current developments and traced ones can also be given to the agents. All of 358–360 have to be done.»**
+So: no new round. The waves below are the last; then ONE optimisation pass alone on the machine, the APK, the closing entry,
+and the scheduled trace is disabled.
+
+Running (five agents; briefs `V358_BRIEFS.md`, `V360_BRIEF.md`, `V361_BRIEFS.md` in the scratchpad):
+| wave | worktree / branch | scratch folder | job | progress |
+|---|---|---|---|---|
+| v358-T | qissa-feed1 · tmp/tabaqat358 | tabaqat358 | 8–10 short stories at levels 2–6 from the Ṭabaqāt | authored; pins re-measured; second subset running |
+| v359-S | qissa-speed · tmp/sira359 | sira359 | al-Nadwī's Sīra, ONE package, first instalment | built, its check green, audit triaged; speed measure and subset left |
+| v360-Sh | qissa-why · tmp/shudhur360 | shudhur360 | Sharḥ Shudhūr whole from the web text (source `scratchpad/sharh-shudhur-src.txt`) | on the unread half (web pp. 455–602) |
+| v361-D | qissa-feed2 · tmp/determ361 | determ361 | the engines' order-dependence; مَحْسِبٌ; Ibn ʿAqīl's last four ⚠ rows | started |
+| v361-N | qissa-audit · tmp/naw361 | naw361 | «Neden?» second pass: the pronoun inside a word, the follower's place, sign-less lines; engine misreads split from the review list | started |
+
+Merge notes: v360-Sh and v361-D both touch the engines' post lists and may both rebuild ledgers — rebuild Ibn ʿAqīl's ledger and
+the Alfiyya course once on the merged page; `content/inventory.json` is refreshed (`tools/inventory.py --write`) at every merge.
+Load: checks that only read slow with five browser jobs on the machine (v317's reload step, the v341 door, a game detour) are
+re-run alone before a push — the door is 1.07–1.10 s alone (budget 1.8).
+
+Waiting on people: the hoca's reviews (the workbook sent on 2026-11-27 from `scratchpad/hoca_book.py`; the review lists named in
+CLAUDE.md's last sections); the Azure Speech resource's region for the man's voice. Left for the hoca, not for agents (they
+change authored lines): the tāʾ segments, the kit wording.
