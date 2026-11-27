@@ -135,3 +135,26 @@ Next, in order: speed VII (owner: after all these tasks the optimisation job is 
 Waiting on people:
 - the owner: his ear on the two voice samples (then `app_voice` on, and main's copy of the Pages workflow updated); whether the Iẓhār course feeds Today's lesson; the archive.org item; a phone test of «Dinle»;
 - the hoca: packet o08 and the earlier packets; the proverbs' vowels and the listed doubts; the renderings (now also 35 + 31 reasons, 23 verses, the uṣūl cards, the course's English questions).
+
+## 2026-11-27 00:22 UTC
+
+Landed since the last entry (dev branch; CI's whole suite green on every commit up to `9137d90`):
+- v351-O `f48d481` — the guide (a seven-step tour on the real screens, six one-time hints, «Kılavuz») and the design pass.
+- v352-U `4cb86a9` — al-Khaṣāʾiṣ and al-Iqtirāḥ as feeders: the proofs' plan, the 24 kinds of ʿilla, «İki yöntem» in the khilāf lab, 31 reasons (why the fāʿil is rafʿ among them). `ilal.json` is the union with Ibn ʿAqīl's: 156 reasons.
+- v353-I `9137d90` — Iẓhār round 2: the owner's Turkish translation leads 75 of 100 units; missing cells 23 → 9; sifaFail / wasf rows; taʿalluq on the merged shelf 228 / 200 / 735.
+- APK and Pages rebuilt from `9137d90` (queued 23:37 UTC). The generated voice stays off.
+
+Running:
+| wave | worktree / branch | scratch folder | job | progress |
+|---|---|---|---|---|
+| v352-K | qissa-feed2 · tmp/khasais352 | khasais352 | readings from al-Khaṣāʾiṣ as the shelf «مِنْ كُتُبِ الْعَرَبِيَّةِ» | passages authored and guarded; 13 audit records judged; first full suite 618 passed, the threshold checks re-measured the v333 way; second full suite running |
+
+Next, in order: merge v352-K; then speed VII alone on the machine (owner's order); the engine round (task list: Ibn ʿAqīl's 189 ⚠ rows, the hand-overs) waits for the owner's word on budget.
+
+Waiting on people: unchanged from the 22:23 entry.
+
+## 2026-11-27 01:05 UTC
+
+- v352-K merged `(this commit's parent)` — readings from al-Khaṣāʾiṣ: eight passages (1,077 tokens) on the shelf «مِنْ كُتُبِ الْعَرَبِيَّةِ». Every wave of the round has landed; the shelf holds 102 stories.
+- Running next, ALONE on the machine: v354-S speed VII (qissa-speed · tmp/speed354 · scratch folder speed354; brief V354_BRIEF.md in the scratchpad).
+- Queued for the owner's word on budget: the engine round (Ibn ʿAqīl's 189 ⚠ rows, the hand-overs).
