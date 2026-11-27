@@ -21425,6 +21425,41 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (bad.length) throw new Error(bad.slice(0, 8).join(' | '));
     console.log('      one story, chapters ' + ns[0] + '–' + ns[ns.length - 1] + ', ' + r.n[1] + ' sentences, ' + r.n[2] + ' tokens, every letter al-Nadwī\'s');
   });
+  await check('v363 — the misses the new stories exposed (the Ṭabaqāt stories and al-Nadwī\'s Sīra, judged «E» in research/story-audit-triage-delta-tabaqat.json / -sira.json): A the parenthetical prayer is transparent to taʿalluq, B «أَنَّ» after a transmission phrase is opened, C signs and segmentation, D the case layer — each on the real sentence, with two typed counter-examples per cluster that must not move', async () => {
+    const r = await page.evaluate(() => {
+      const FIND = key => { const [pkg, ch, sen, tok] = key.split(':'); const st = STORIES.find(s => s.id === pkg); const c = st && st.chapters.find(c => String(c.n) === ch); const s = c && c.sentences.find(s => String(s.id) === sen); return s ? { st, c, s, i: +tok - 1 } : null; };
+      const F = w => String(w || '').normalize('NFC');
+      const bad = [], n = { A: 0, B: 0, C: 0, D: 0 };
+      const P = 'al-sira-al-nabawiyya-nadwi:';
+      // A — the parenthetical prayer is transparent to taʿalluq: [key, the word it must hang on]
+      for (const [k, at] of [[P + '102:s1:8', 'وَوُلِدَ'], [P + '102:s1:17', 'وَوُلِدَ'], [P + '102:s4:1', 'أَرْسَلَتْ'], [P + '107:s4:1', 'خَرَجَتْ'], [P + '111:s1:20', 'أَرْسَلَ'], ['tabaqat-dhat-al-nitaqayn:1:s2:12', 'صَنَعْتُ'], [P + '109:s2:1', 'اهْتَمَّ']]) {
+        const f = FIND(k); if (!f) { bad.push('A no ' + k); continue; } const rows = SentenceAnalyzer.analyze(f.s.tokens.map(t => t.s.full).join(' ')); const g = TaalluqEngine.of(rows, f.i);
+        if (!(g && g.kind === 'found' && F(g.word) === F(at))) bad.push('A ' + k + ' → ' + (g ? g.kind + ' ' + (g.word || '') : 'null')); else n.A++; }
+      for (const k of [P + '108:s7:8', P + '108:s7:11']) { const f = FIND(k); const g = TaalluqEngine.of(SentenceAnalyzer.analyze(f.s.tokens.map(t => t.s.full).join(' ')), f.i); if (!(g && g.kind === 'mahdhuf')) bad.push('A ' + k + ' wants the omitted khabar of كان'); else n.A++; }
+      for (const [s, i, at] of [['صَلَّى الرَّجُلُ فِي الْمَسْجِدِ', 2, 'صَلَّى'], ['قَالَ النَّبِيُّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ', 4, 'صَلَّى']]) {   // must NOT change: a bare صَلَّى is a verb; عَلَيْهِ inside the prayer
+        const g = TaalluqEngine.of(SentenceAnalyzer.analyze(s), i); if (!(g && g.kind === 'found' && F(g.word) === F(at))) bad.push('A typed «' + s + '» → ' + (g ? g.kind + ' ' + (g.word || '') : 'null')); else n.A++; }
+      // B — «أَنَّ» after a transmission phrase: fatḥ
+      for (const k of ['tabaqat-ahad-ahad:2:s6:1', 'tabaqat-dhat-al-nitaqayn:2:s7:1', P + '110:s2:9', P + '111:s3:6']) { const f = FIND(k);
+        const v = InnaEngine.table(f.s, { isnadTail363: InnaEngine.isnadTail363(f.c, f.s) }).inna.find(x => x.i === f.i); if (!(v && v.hamza === 'fath')) bad.push('B ' + k + ' → ' + (v ? v.seat + '/' + v.hamza : 'none')); else n.B++; }
+      for (const [s, h] of [['قَالَ زَيْدٌ إِنَّ عَمْرًا قَائِمٌ', 'kasr'], ['إِنَّ اللهَ غَفُورٌ رَحِيمٌ', 'kasr']]) { const v = InnaEngine.table(s).inna[0]; if (!(v && v.hamza === h)) bad.push('B typed «' + s + '» → ' + (v ? v.seat + '/' + v.hamza : 'none')); else n.B++; }
+      // C — signs and segmentation
+      const SG = (k, kase) => { const f = FIND(k), t = f.s.tokens[f.i], nx = f.s.tokens[f.i + 1], ge = (f.st.glossary || {})[t.lex] || {};
+        return (SignEngine.classify(t.s.full, { pos: t.pos, lex: t.lex, lemma: ge.lemma, plural: ge.plural, cell: t.cell, kase, tags: t.grammar, next: nx ? { w: nx.s.full, pos: nx.pos } : null }) || {}).cls; };
+      for (const [k, kase, cls] of [['tabaqat-sakrat-al-mawt:1:s5:2', 'nasb', 'muthanna'], [P + '102:s1:9', 'jarr', 'muthanna'], [P + '103:s3:6', 'jarr', 'sahih'], [P + '104:s9:7', 'jarr', 'khamsa'], [P + '107:s3:4', 'nasb', 'sahih']]) {
+        const c = SG(k, kase); if (c !== cls) bad.push('C ' + k + ' → ' + c); else n.C++; }
+      for (const [w, o, cls] of [['كِتَابَهُ', { pos: 'noun', kase: 'nasb' }, 'sahih'], ['أَبِي', { pos: 'noun', kase: 'jarr', next: null }, 'mudafYa']]) {   // must NOT change: a pronoun on a sound noun; «my father» with nothing after it
+        const c = (SignEngine.classify(w, o) || {}).cls; if (c !== cls) bad.push('C typed «' + w + '» → ' + c); else n.C++; }
+      // C/D — the case layer (DabtEngine endings): [key, the ending it must write]
+      const CS = k => { const f = FIND(k); return F(((DabtEngine.grade(f.s, 'endings').words || [])[f.i] || {}).out); };
+      for (const k of ['tabaqat-abu-bakr-fi-al-suq:2:s11:12', P + '109:s1:24']) { const f = FIND(k), o = CS(k); if (o !== F(f.s.tokens[f.i].s.full)) bad.push('C ' + k + ' → ' + o); else n.C++; }
+      for (const k of [P + '107:s1:13', P + '107:s4:25', P + '103:s4:13', P + '106:s6:13']) { const f = FIND(k), o = CS(k); if (o !== F(f.s.tokens[f.i].s.full)) bad.push('D ' + k + ' → ' + o); else n.D++; }
+      for (const [s, i, want] of [['رَأَيْتُ زَيْدًا', 1, 'زَيْدًا'], ['جَاءَ عَبْدُ اللهِ بْنُ عُمَرَ', 3, 'بْنُ']]) {   // must NOT change: a name that keeps its tanwīn; بْن after a name in rafʿ
+        const o = F(((DabtEngine.grade({ id: 't363', tokens: s.split(' ').map(w => ({ s: { full: w } })) }, 'endings').words || [])[i] || {}).out); if (o !== F(want)) bad.push('D typed «' + s + '» → ' + o); else n.D++; }
+      return { bad, n };
+    });
+    if (r.bad.length) throw new Error(r.bad.slice(0, 8).join(' | '));
+    console.log('      A ' + r.n.A + ', B ' + r.n.B + ', C ' + r.n.C + ', D ' + r.n.D + ' held (records + the counter-examples)');
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

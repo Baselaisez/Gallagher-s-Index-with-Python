@@ -339,3 +339,24 @@ When work resumes — the next engine work order is already listed: the E-judged
 (ẓurūf on the prayer formula, «بْنِ» after a badal, «حِينَذَاكَ», «بَعْدَ مَا» + verb), v360's four ⚠ rows, a lexicon index that
 keeps a name and a common noun of one spelling apart, DabtEngine.decide once per sentence; the Sīra continues at chapter 113
 («مثال غريب من التعصّب الدينيّ …», about 2,000 tokens left of Faṣl 2).
+
+## 2026-11-27 17:46 UTC — v363-E: the misses the new stories exposed (one agent, on the owner's word)
+
+The owner, evening: «I'll give you the hoca reviews this weekend. … We can run Engine for new stories with not much usage of
+tokens.» Read as the go-ahead for the engine work order the closing entry listed; ONE agent, a brief with a token budget
+(`scratchpad/V363_BRIEF.md`), about 280,000 tokens.
+- Closed 27 of the 33 «E» records of the Ṭabaqāt and Sīra delta files; the shelf's audit 1,400 → 1,371, FIXED 29, BROKEN 0.
+  A the prayer formula is transparent to taʿalluq (12; taʿalluq 244 → 232); B «أَنَّ» after a transmission phrase (4; 22 → 17);
+  C signs and segmentation (7; sign 65 → 60); D the case layer — «بْن» past a badal / naʿt, «سَاوَا», «بَنُو» the doer (4; 330 → 323).
+- Left: 107:s6:11 and 108:s6:16 (a new clause at «وَذٰلِكَ» / «وَالْفَرْقُ» is not decided by the letters); the optional group
+  («بَعْدَ مَا» + verb, «فِيمَا بَعْدُ», the nominal ḥāl «وَعَلَى رَقَبَتِهِ أَثْوَابٌ», talkhis 14:s4:2); v360's four ⚠ rows; the lexicon
+  index for name / common-noun homographs; decide once per sentence.
+- «وأنّه مِنَ الْغَلَطِ» (Sīra 111:s3:10) no longer shows as a contradiction (the engine now carries the fatḥ over the ʿaṭf) — it
+  STAYS on the hoca's list: the print's hamza against the sense is his to decide.
+- `LEX_OFF361` lost «ithnayn-monday»: SignEngine reads the word as the dual's now.
+- Whole suite on the wave's tree 669 of 669 (the new check «v363 — the misses the new stories exposed»); inventory green,
+  0 text / iʿrāb / translation hashes changed.
+- The voice: the owner chose the Saudi man's voice (ar-SA-HamedNeural, the adapter's default) and has not opened the Azure
+  Speech resource yet (West Europe is fine); the key comes through the secure form when he says it is ready. The app's voice
+  stays off.
+Still waiting for the hoca's reviews; nothing else is running.

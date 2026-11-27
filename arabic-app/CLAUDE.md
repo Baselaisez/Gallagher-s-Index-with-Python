@@ -18227,3 +18227,25 @@ the v341 checks; every older check passed, the four re-measured ones among them 
 voice A/B on the first eight). `tools/entrance_test.js` on the assembled site: «✓ Ready — opens offline too», ready 5.4 s, the app opens
 in 907 ms, no errors.
 
+
+## v363-E — the misses the new stories exposed (tag `engine363`)
+
+The Ṭabaqāt stories and al-Nadwī's Sīra exposed engine misreadings already judged «E» (`research/story-audit-triage-delta-tabaqat.json`,
+`-sira.json`). Fixed in the engines, each block marked «v363-E»; no story, authored line or glossary touched.
+- **A · the parenthetical prayer is transparent to taʿalluq** (TaalluqEngine `prayerSpan363 / prayer363`, `dateNoun363`, `naming363`): «صَلَّى اللهُ
+  عَلَيْهِ وَسَلَّمَ / رَضِيَ اللهُ عَنْهُ / رَحِمَهُ اللهُ / عَلَيْهِ السَّلَامُ» after a noun or verb is a jumla muʿtariḍa with no seat that governs nothing outside
+  itself (Qawāʿid al-Iʿrāb bāb 1): a phrase or ẓarf outside it never hangs on its verb, nor on the title it follows (رَسُولُ اللهِ), «لَمَّا» never takes it
+  for its answer; «عَلَيْهِ» inside it still hangs on «صَلَّى». Also: two ẓarfs after kāna's ism with no khabar written both hang on the omitted khabar;
+  a date's month-name (after «شَهْر») and an ordinal govern no ẓarf; «يُقَالُ لَهُ» after a nakira is its ṣifa, never lammā's answer.
+- **B · «أَنَّ» after a transmission phrase** (InnaEngine.verdict, `isnadTail363`): جَاءَ / وَقَعَ / وَرَدَ / ثَبَتَ / رُوِيَ + «فِي / عَنْ …» + أَنَّ → the clause is
+  the doer, fatḥ (Shudhūr / Ibn ʿAqīl «تُفْتَحُ إِذَا وَقَعَتْ فِي مَوْضِعِ الْفَاعِلِ»); a sentence-initial أَنَّ after a sentence ending on «عَنْ فُلَانٍ» of a chain is
+  the isnād seat (riwaya), fatḥ.
+- **C · signs and segmentation** (SignEngine): الْإِثْنَيْنِ with a hamza is still mulḥaq bi-l-muthannā; a dual annexed to the speaker's yāʾ (مُلَاءَتَيَّ);
+  a definite word behind لِ carries no attached pronoun (لِلِانْتِبَاهِ, flag `al363`); حِينَذَاكَ = ẓarf + ذَاكَ; أَبِي before a noun with the article is
+  annexed (five nouns). Case layer (DabtEngine post-pass `fix363`): اثْنَانِ never takes tanwīn; بِ + noun + pronoun is no māḍī (بِعَمِّهِ).
+- **D · case layer** (`fix363`): «بْن» follows the NAME before it (عَبْدَ اللهِ بْنَ), past a naʿt chain the badal's case; a foreign proper name whose
+  lexeme ends in a plain alif (سَاوَا) takes no tanwīn; in the ṣila of الَّتِي a verb without tāʾ has an explicit doer (بَنُو).
+- Proof: `tools/grammar_audit.js` 1,400 → 1,371 records, FIXED 29, BROKEN 0 (taalluq 244→232, inna 22→17, sign 65→60, case 330→323).
+  Smoke «v363 — the misses the new stories exposed». Moved pin: `LEX_OFF361` drops «ithnayn-monday» (SignEngine now reads it as the dual's).
+  Left: 107:s6:11 / 108:s6:16 (a nominal clause opened by وَذٰلِكَ / وَالْفَرْقُ as a wall), «بَعْدَ مَا», «فِيمَا بَعْدُ», «وَعَلَى رَقَبَتِهِ أَثْوَابٌ»,
+  talkhis 14:s4:2 «يَوْمِ الدِّينِ» — not decided by a contained rule this wave.
