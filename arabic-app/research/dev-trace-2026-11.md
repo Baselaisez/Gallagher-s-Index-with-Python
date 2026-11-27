@@ -303,3 +303,39 @@ never by a subset — three of today's four red CI runs were story waves pushed 
 For the next engine work order (after the hoca's reviews): the items judged E in the delta files of the Ṭabaqāt and the Sīra
 (ẓurūf hung on the prayer formula ×14, «بْنِ» after a badal, «حِينَذَاكَ», «بَعْدَ مَا» + verb); v360's four ⚠ rows; a lexicon
 index that keeps a name and a common noun of one spelling apart by context, not by one entry.
+
+## 2026-11-27 15:58 UTC — the round is closed; waiting for the hoca's reviews
+
+Landed since 12:50: `9f9a703` v359-S (CI: one run failed and passed on re-run with nothing changed — a timing check; the measures
+were made robust in this wave) and, with this entry, **v362-S — speed VIII, the closing optimisation pass** (whole suite on the
+merged tree 668 of 668; inventory green, 0 text / iʿrāb / translation hashes changed).
+- The windowed chapter render (22 stories: more than one chapter and > 80 sentences or ≥ 10 chapters): the opened chapter
+  node-for-node the full render's; the Sīra opens 349 → 241 ms at 4×; a 150-chapter copy jumps to its last sentence in
+  0.2 s (was 2.8) and holds 1,733 nodes (was 21,944). One helper `chOrd362` prints «Bölüm 1 … 12» for the Sīra; `ch.n` and
+  every stored key unchanged.
+- The post rows' letter helpers remembered: −28 % in the rows, Murib.line −4.5 % over the corpus; 95,333 lines identical.
+- The load-fragile measures made robust (v341 door, v343 fresh query, v349 voice A/B, toLibrary, a game detour); no ceiling widened.
+- Against v354: the door at 4 Mbit/s 5.49 → 5.79 s and all bodies 7.62 → 8.01 s — download size only (app.js +83 KB gzip, the
+  bodies 11.95 → 12.50 MB gzip); no function slower. Still slow: the Jumla lab's first analysis (DabtEngine.decide runs
+  three times per sentence; a memo was tried and dropped — decide changes the rows it reads), the sentence sheet's heaviest
+  background task (~250 ms), «Dinle» on a very long text.
+
+**The round, 2026-11-27, in one list** (all on `claude/arabic-app-research-ozd58s`): v355-N1 / N2 (Ibn ʿAqīl: 42 rules, ledger
+395 applied / 0 ⚠), v356-G (inventory guard), v357-N + v361-N («Neden?»: the kind of iʿrāb of every word, pronoun ladders,
+followers, class-given signs), v358-A (the Alfiyya course), v359-E (19 level-one notes: the Amthila and the pronouns), v358-T
+(eight Ṭabaqāt stories), v359-S (al-Nadwī's Sīra, one story, chapters 101–112), v360-Sh (Sharḥ Shudhūr whole), v361-D (one
+sentence, one answer; مَحْسِبٌ), v362-S (speed VIII). 111 stories, 354 grammar notes, 170 reasons, 668 checks.
+
+**Nothing is running. No new round is started** (the owner, 2026-11-27: «After all those current works are done you can stop
+and do optimisation. Then I'll give the hoca reviews.»). The scheduled trace is disabled with this entry.
+
+Waiting on people:
+- the hoca's reviews — the workbook `03-hoca-kontrol-2026-11-27.xlsx` (generator `scratchpad/hoca_book.py`; 1,557 applied
+  corrections on the precheck branch + 128 rule passes + 9 AI-RET + 721 proposals), `research/irab-kind-review-2026-11-27.md`
+  (140 author-side lines), the «for the hoca» lists of v358-T, v359-S, v359-E, v360-Sh, v361-D in CLAUDE.md;
+- the Azure Speech resource's region (then the key through the secure form) for the man's voice — the app's voice stays off.
+Left for the hoca, not for agents (they change authored lines): the tāʾ segments, the kit wording.
+When work resumes — the next engine work order is already listed: the E-judged items of the Ṭabaqāt and Sīra delta files
+(ẓurūf on the prayer formula, «بْنِ» after a badal, «حِينَذَاكَ», «بَعْدَ مَا» + verb), v360's four ⚠ rows, a lexicon index that
+keeps a name and a common noun of one spelling apart, DabtEngine.decide once per sentence; the Sīra continues at chapter 113
+(«مثال غريب من التعصّب الدينيّ …», about 2,000 tokens left of Faṣl 2).
