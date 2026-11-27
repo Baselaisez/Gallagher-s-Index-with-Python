@@ -170,3 +170,17 @@ Queued for the owner's word on budget: the engine round (Ibn ʿAqīl's 189 ⚠ r
 Waiting on people:
 - the owner: his ear on the two voice samples (the generated voice is off); whether the Iẓhār course feeds Today's lesson; the archive.org item; a phone test of «Dinle» and of the guide in the new APK;
 - the hoca: packet o08 and the earlier packets on the precheck branch; the vowels and listed doubts of the two new shelves (19 packages); the renderings (reasons 156, verses 23, the uṣūl cards, the course's English lines).
+
+## 2026-11-27 06:22 UTC
+
+Owner, 2026-11-27: «For Iẓhār feed: yes. You can go on with Ibn ʿAqīl. And you find a voice package.» A new round started at about 04:35 UTC. APK run 25 and Pages run 20 were built from `62efd0b` (everything up to speed VII); CI green on it.
+
+Running:
+| wave | worktree / branch | scratch folder | job | progress |
+|---|---|---|---|---|
+| v355-N1 | qissa-feed1 · tmp/aqiln1 | aqiln1 | Ibn ʿAqīl's work order, the pillars (≈ 100 ⚠ rows) + the older hand-overs in the same engines | triage done; found that every nāʾib probe was a false ⚠ (the probe's regex never matched «نائب») |
+| v355-N2 | qissa-feed2 · tmp/aqiln2 | aqiln2 | Ibn ʿAqīl's work order, the complements and followers (≈ 89 rows) | triage: 16 artefacts, 30 real gaps, 22 probe faults, 30 not decidable; fixes started |
+| v355-T | qissa-sarf · tmp/iztoday | iztoday | the Iẓhār course in Today's lesson | built, two checks green, full suite running |
+| v355-V | qissa-audit · tmp/voice2 | voice2 | a voice the app can ship (web survey, licences quoted, the 30-sentence test) | two neural candidates tested and failed so far: one overrides written vowels (8 seen), one cannot keep ص ض ط ظ apart; survey continues |
+
+Merge note for N1 + N2: both rebuild Ibn ʿAqīl's ledger — merge their `<scratch>/ledger_rows.json`, then rebuild once on the merged page.

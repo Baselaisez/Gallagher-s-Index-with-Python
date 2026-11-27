@@ -49507,7 +49507,8 @@ function lessonSteps(){
     run: () => { LESSON = { step: "strong", a0: Xp.answersToday() }; openGames(); const b = document.getElementById("hubReco"); if (b) b.click(); } };
   // a brand-new learner has nothing to recall: reading leads, and «collect your first words» points back at it
   RuleDay344.fold(strong);   // (v344) «Günün kaidesi» folded into «Pekiştir»: a fifth row would push the first shelf card past the v340 pin (646 > 640 px)
-  return state.deck.length ? [recall, read, check, strong] : [read, recall, check, strong];
+  const chk = IzToday355.fold(check, ct);   // (v355-T) the Iẓhār course's next unit takes «Kendini dene»'s place on a day it has nothing to check: four rows, the v340 pin holds
+  return state.deck.length ? [recall, read, chk, strong] : [read, recall, chk, strong];
 }
 function lessonNext(steps){ return steps.find(s => !s.done && s.run && s.id !== "collect") || steps.find(s => !s.done && s.run) || null; }
 // the primary button leads the steps, so the one tap into the text sits in a phone's upper half (wave 72's gate)
@@ -49547,6 +49548,51 @@ function lessonRoundEnd(cfg){
   const t = rollDay(); t.strong = 1; lessonSave(t);
   lessonStepEnd(); return true;
 }
+// ── v355-T BEGIN · the Iẓhār course in Today's lesson (the owner: «yes»). A learner who has STARTED the course (a unit opened or passed:
+// qissa-izhar351's cur / done) finds its next unit on the card IN «Kendini dene»'s place on a day that row has nothing to check (no
+// chapter waiting, none checked today) — four rows, the v340 pin unchanged (a fifth row passed it in v344). The row is built from
+// stored strings only — qissa-iztoday {n: the next unit's id, Arabic, bāb; inv: the invitation dismissed}, written whenever the course
+// saves — so the door reads no body; the tap opens the unit through Izhar351.open, whose bodyGate341 holds it until the story's body
+// is in. A unit passed from the card counts by the day's own bookkeeping (countActivity("izhar"): qissa-today's counter, the streak)
+// and ticks the row; no new scoring. A learner who has not started: one quiet invitation under the Iẓhār story's header, only at or
+// above its level, until dismissed (or begun) — never on the door.
+const IzToday355 = {
+  KEY: "qissa-iztoday",
+  load(){ try { const d = JSON.parse(localStorage.getItem(this.KEY) || "{}") || {}; return { n: d.n || null, inv: d.inv || 0 }; } catch (e) { return { n: null, inv: 0 }; } },
+  save(d){ try { localStorage.setItem(this.KEY, JSON.stringify(d)); } catch (e) {} },
+  started(p){ p = p || Izhar351.load(); return !!(p.cur || Object.keys(p.done).length); },
+  // the next unit in the book's order: the one opened and not yet passed, else the first unpassed after it (wrapping); null when all are
+  nextOf(d, p){ const xs = d.items, i = xs.findIndex(x => x.id === p.cur); if (i >= 0 && !p.done[xs[i].id]) return xs[i];
+    for (let k = 1; k <= xs.length; k++) { const x = xs[(i + k) % xs.length]; if (!p.done[x.id]) return x; } return null; },
+  remember(p){ const d = Izhar351._d; if (!d) return; const x = this.nextOf(d, p || Izhar351.load()), s = this.load();   // only a course already parsed
+    s.n = x ? { id: x.id, ar: x.item, b: x.bab } : { all: 1 }; this.save(s); },
+  // the stored next unit; before the first save under this wave, the opened unit's id (its title comes with the course)
+  next(){ const p = Izhar351.load(); if (!this.started(p)) return null; this.remember(p); const s = this.load(); if (s.n) return s.n.all ? null : s.n;
+    return p.cur && !p.done[p.cur] ? { id: p.cur, ar: "", b: ({ A: 1, B: 2, C: 3 })[String(p.cur).charAt(2)] || 0 } : { id: "", ar: "", b: 0 }; },
+  fold(check, ct){ const t = rollDay(); if (!t.izhar && (ct || chqToday())) return check; const n = this.next(); if (!n) return check;
+    const U = ui(), b = n.b ? U["iz351Bab" + n.b] : "";
+    return { id: "izhar", label: U.izharTab, done: (t.izhar || 0) >= 1, unit: n.id,
+      sub: [U.iz355Next, n.ar ? `<span lang="ar" dir="rtl">${escapeAttr(n.ar)}</span>` : "", b].filter(Boolean).join(" · "),
+      run: () => { LESSON = { step: "izhar" }; Izhar351.open(n.id || null); } }; },
+  // Izhar351.save wrapped: a unit newly passed while the card's step is open counts in the day; the next unit is remembered
+  saved(before, p){ if (Object.keys(p.done || {}).some(k => !before.done[k]) && LESSON && LESSON.step === "izhar") { LESSON = null; countActivity("izhar"); }
+    this.remember(p); },
+  css(){ if (document.getElementById("iz355css")) return; const s = document.createElement("style"); s.id = "iz355css";
+    s.textContent = `.iz355-inv { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); margin-top: var(--s2); padding: var(--s2) var(--s3); border: 1px dashed var(--line); border-radius: var(--radius); background: var(--panel); color: var(--ink-soft); font-size: var(--t-sm); }
+.iz355-inv > span { flex: 1 1 12em; } .iz355-inv .chip { min-height: var(--tap); min-width: var(--tap); }`;
+    document.head.appendChild(s); },
+  invite(){ if (!CUR || CUR.id !== Izhar351.SID) return; const row = document.getElementById("metaRow"); if (!row || row.querySelector(".iz355-inv")) return;
+    if (this.load().inv || this.started() || (state.myLevel || 0) < (CUR.level || 1)) return;
+    this.css(); const U = ui(), el = document.createElement("div"); el.className = "iz355-inv"; el.id = "iz355Inv"; el.setAttribute("role", "note");
+    el.innerHTML = `<span>${U.iz355Inv}</span><button type="button" class="chip" data-iz355="go">${U.iz355Go}</button><button type="button" class="chip" data-iz355="x" aria-label="${escapeAttr(U.iz355Dismiss)}" title="${escapeAttr(U.iz355Dismiss)}">✕</button>`;
+    el.addEventListener("click", e => { const b = e.target.closest("[data-iz355]"); if (!b) return; const s = this.load(); s.inv = 1; this.save(s); el.remove(); if (b.dataset.iz355 === "go") Izhar351.open(); });
+    row.appendChild(el); },
+};
+{ const S0 = Izhar351.save; Izhar351.save = function (p) { const before = Izhar351.load(); S0.call(this, p); try { IzToday355.saved(before, p); } catch (e) {} }; }
+{ const H0 = setHeader; setHeader = function (a, b, c) { H0.call(this, a, b, c); try { IzToday355.invite(); } catch (e) {} }; }
+Object.assign(L.en, { iz355Next: "next unit", iz355Inv: "Read the Iẓhār unit by unit", iz355Go: "Begin", iz355Dismiss: "Don't show this again" });
+Object.assign(L.tr, { iz355Next: "sıradaki ünite", iz355Inv: "İzhâr'ı ders ders oku", iz355Go: "Başla", iz355Dismiss: "Bir daha gösterme" });
+// ── v355-T END
 // ---- v338 · 2 — three questions at the end of a chapter, built only from that chapter's own authored data ----
 // (1) the cloze game's own item for a word of the chapter (its sentence, its lemma, the cloze pool's distractors);
 // (2) the meaning of another word of the chapter, against glosses of the same part of speech that share no word with
