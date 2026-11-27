@@ -17526,3 +17526,49 @@ Source of the code: scratchpad `aqiln1/eng_n1.js`, spliced by `aqiln1/splice_n1.
 - **Refit + full suite**: `check_i18n.py` clean; refit chain exit 0 (irab_model 2,435 weights over 75,015 rows; drills 99.2 % POS, 99.1 % case);
   **645 checks: 644 PASS, 1 FAIL**. The failure was «v317 — the library shelves …» (persist and clear, a UI timing check). It PASSES when re-run alone.
 - **Left**: A408.1 (hand-over 1); the vowelled قَالَ زَيْدٌ عَمْرٌو مُنْطَلِقٌ names the maqūl «زيد عمرو منطلق», one word too many (A445 proves on the printed text); N2's bābs.
+## v355-N2 — Ibn ʿAqīl's work order: the complements
+
+The 89 ⚠ rows of Ibn ʿAqīl's ledger in the complements and the followers (الصفة المشبهة … كم وكأي وكذا, 27 bābs) triaged, then repaired at
+the cause. Scratchpad `aqiln2/` (PROGRESS.md, `edits/` = every code edit as a script, `ledger_rows.json` = my rows for the merge).
+- **Triage** (by script — the book's examples vowelled through the engine — then by reading): a 16 (the print's artefact), b 30 (real gaps),
+  c 22 (the probe or the cut was wrong: «لا تقول» examples, a list cut instead of the example beside it, a role the book names in other words —
+  e.g. A573.2 «ولا يمتنع الجر بالحرف», A578.2 البيت «منصوبة على التشبيه بالمفعول به», A896.1 «جاز أن يكون بدلا»), d 30 (forbidden forms
+  — the book's own «فلا تقول / يمتنع» —, fragments of the ṣifa's 36 forms, single words, lists, homographs هلا / هلّا, a clipped name يا مسكِ =
+  يا قومِ, a meaning-choice تأديبه mafʿūl lahu / badal ishtimāl, rarity «يقل / ندر»). The table per bāb is in PROGRESS.md and in the report's
+  new section «The v355 triage of the ⚠ rows».
+- **Ledger plumbing** (`tools/ledger/aqil_ledger.py`): reads `tools/ledger/aqil_overrides*.json` (one file per agent; mine
+  `aqil_overrides_n2.json`, written by `edits/mk_overrides.py`): `{id: {cls, why, probes | sv | status+reason}}`. `s` stays the example AS
+  PRINTED (verbatim, asserted); `sv` is the same example vowelled — the vowels are ours, for the test only. A row whose printed probe fails and
+  whose vowelled one passes counts **applied-vowelled** (`-vowelled` in the counts key; the v352-A check reads it). The vowelled probes are proved
+  in a page of their own (`.aqil-proof-cache-sv.json`) and re-proved FIRST in the smoke: **finding — a page that has run Murib.line on the printed
+  letters answers the vowelled reading of the same letters differently** (e.g. «معروفا» loses its ḥāl) — some state on Murib.line's path, not
+  hunted down (hand-over).
+- **Rule rows** (`Nahw342Engine`, the `v355-N2 BEGIN/END` block at the class's end; RULES + the post list; source `edits/n2rules.js`, spliced by
+  `edits/splice_n2.py`), each EXACT on written vowels, two faces named where the book gives two: `madh355` (نِعْمَ / بِئْسَ vowelled, سَاءَ,
+  فَعُلَ before a name: the doer, the tamyīz, «المخصوص بالمدح/بالذم، مبتدأ مؤخر … أو خبر لمبتدإ محذوف وجوبا», p. 3:167), `habbadha355` (p. 3:170),
+  `taajjub355` (مَا أَوْفَى / مَا أَشَدَّ + object — the shapes the analyzer misses —; أَشْدِدْ بِـ only beside a مَا أَفْعَلَ: «فعل أمر ومعناه التعجب…
+  وفاعله المجرور بالباء والباء زائدة»; the indefinite after ما أفعل + object: tamyīz jāmid / ḥāl derived, pp. 2:270, 2:295), `kafa355` (كَفَى بِـnoun:
+  the extra bāʾ and its doer, the tamyīz «وقيل: حال»), `bala355`, `tawkid355` (أَنْتُمْ before أَنْفُسُكُمْ; نَفْس / عَيْن + the agreeing pronoun in
+  the noun's written case), `zaman355` (a time word made the badal of a noun naming no time → ẓarf), `ind355` (عِنْدِ / لَدُنْ after مِنْ: «مجرور بمن، مما لزم الظرفية أو شبهها: لا يخرج عن الظرفية إلا مجرورا بمن», p. 2:199 — never «ظرف» there, v328's control),
+  `jawarin355` (جَوَارٍ: estimated rafʿ / jarr, the tanwīn of compensation, p. 3:327), `sifaNasb355` (زَيْدٌ حَسَنٌ الْوَجْهَ, SifaEngine.classify),
+  `tafdil355` (أَفْعَل annexed or with أل named «اسم تفضيل» — gloss / list, colours, defects, names out), `natKhabar355` (زَيْدٌ رَجُلٌ حَسَنٌ: «نعت
+  …، ويجوز: خبر ثان»), `mutlaq355` (زَيْدٌ سَيْرًا; ضَرَبْتُهُ سَوْطًا «والأصل ضرب سوط»), `masdarZarf355` (آتِيكَ طُلُوعَ الشَّمْسِ), `takrar355`
+  (إِنَّ زَيْدًا إِنَّ زَيْدًا), `nudba355`, `hamzaNida355` (+ its imperative «جواب النداء»), `lamPron355` (لَكَ / لَهُ were «حرف»).
+- **IdafaEngine** (`edits/idafa_hasal.py`): `hasAl` sees أل behind a joining wāw / fāʾ (وَالِدُ keeps its kasra and stays a muḍāf); a head with
+  أل annexes when the next noun has أل and writes its kasra (not ـَانِ / ـَاتِ) and the head writes ḍamma / fatḥa (الضَّارِبُ الرَّجُلِ, Ibn ʿAqīl
+  p. 3:47); two ـَانِ indefinites are no chain.
+- **Measured** (every story token, scratchpad `dump.js` before / after, 90,147 tokens, 1,679 lines changed; `research/story-audit-triage-delta-aqil-n2.json`):
+  the authored «مضاف» on a head agreeing 7,634 → 7,634 while the engine's «وهو مضاف» falls 9,211 → 8,782; «مضاف إليه» agreeing 6,693 → 6,700;
+  the lām of jarr 39 → 764; «اسم تفضيل» 31 → 56; the makhṣūṣ 0 → 14; the wonder 1 → 5; نعت 2,589 → 2,662; تمييز 149 → 151; tawkīd maʿnawī
+  0 → 3. `tools/grammar_audit.js`: every engine's counts unchanged except sh336 21 → 22 (judged C: both lines say «مفعول به للطاعنين»). L 1
+  (Taṣrīf «لِمَعَانٍ», `research/story-corrections-proposed-2026-11-27.aqil-n2.jsonl`), C 6, 9 role guesses of Murib's own uncovered (hand-over).
+- **Ledger**: my 89 rows → applied-vowelled 52 (a 16, b 26 of 30, c 10), applied 5 (c), not-automatable 24 + open 4 (d), ⚠ 4. The whole ledger in this worktree: status applied 247 → **304** (applied 196, offered 7, vowelled 45, offered-vowelled 7), **⚠ 189 → 104** (N1's rows untouched here), not-automatable 212 → 236, open 156 → 160; `research/book-coverage-2026-11-27.ibn-aqil.md` rebuilt (the vowelled probe and the triage beside each ⚠ row; a triage section).
+- **Smoke**: «v355-aqil-n2 — …» (before «v333 — the received imports»): 38 book examples, 15 controls (نَعَمْ = yes, كَثُرَ … بِالْمَكَانِ, مَا أَشْبَهَ,
+  أَبْشِرْ بِـ, كَفَى بِهِ, الْأَقْرَع, أَصْلَهُ, سَوَاءٍ, قَتَلَ زَيْدٌ نَفْسَهُ, ضَرَبَ رَجُلٌ الْوَلَدَ, نَحْوُ زَيْدٌ قَائِمٌ, وَعَيْنُهُ, وَالِدُ زَيْدٍ, الرَّجُلُ الصَّالِحُ,
+  رَأَيْتُ الرَّجُلَ يَوْمَ). Older checks changed: v352-A's ledger check (the `-vowelled` key; vowelled probes re-proved first; pins applied ≥ 304, ⚠ ≤ 104, with the reason in the comment); v336-Sh «against the authored lines» I26 contra ≤ 2 → ≤ 3 (Talkhīṣ «مَجَامِعَ», judged C).
+- **Full suite**: 644 checks, 642 PASS; the two FAILs (v328's control — my first ind355 line said «ظرف مكان» on مِنْ عِنْدِهِ, against Ibn ʿAqīl's own «لا يخرج عن الظرفية إلا … مجرورا بمن» —, and v336-Sh I26 2 → 3) fixed and PASS re-run alone with v352-A and v355-aqil-n2.
+- **Left**: ⚠ A897.1 (يعمرا after a built vocative), A897.2 (زيدٍ after الضاربُ الرجلِ: عطف بيان), A903.1 (the fāʾ joining a clause with no
+  return pronoun — not decidable in general), A927.1 (من ذا: ذا read as ذو); the clipped vocative's sign (يا عثمَ «منصوب») and أَحْمَدَاهْ's line;
+  the 20 WujuhEngine face probes of the Qawāʿid ledger not reached. Hand-overs to v355-N1 (Murib / SentenceAnalyzer): the state that changes a
+  vowelled re-reading; تَسَفَّهَتِ read as a muḍāriʿ; «أنتم … جواب الطلب» after an imperative; Murib's role guesses on a dual after a dual
+  (بدل / مبتدأ where the authors write نعت / خبر); «زيدٌ الأفضلُ» khabar read as naʿt.

@@ -13,10 +13,6 @@ notes or appendix) that states a ruling (يجب / يجوز / يمتنع / يلز
   open (ṣarf)      — a bāb of word-form: for the ṣarf ledgers, not read by the iʿrāb probe;
   applied          — the book's own example through SentenceAnalyzer + Murib.line names the ruling (the word the sentence names, or
                      the bāb's construction on some word); applied-offered when the line gives it beside another reading;
-  applied-vowelled — (v355) the printed example is unvowelled and the engine misreads it, but the same example with OUR vowels (`sv`,
-                     for the test only, never shown to a learner) names the ruling — from the work order's triage files
-                     tools/ledger/aqil_triage_*.json (one per agent: class a / b / c / d, the corrected probe, or the reason a row is
-                     not automatable);
   open ⚠           — the engine misreads the book's example: its line is kept beside the book's (`got`);
   open             — no construction the iʿrāb line names.
 """
@@ -35,7 +31,25 @@ from aqil_map import B, EDITOR, NAMED  # noqa: E402
 
 ROOT = A.ROOT
 OUT = ROOT / "content/rules/coverage_ibn_aqil.json"
+# (v355) the engine round's triage, row by row: tools/ledger/aqil_overrides*.json (one file per agent, merged here) —
+#   {"A561.1": {"cls": "a|b|c|d", "why": "…", "probes": [{s, sv?, w?, re? | any?}], "status"?, "reason"?}}.
+#   s stays the book's example AS PRINTED (verbatim in the sentence); sv is the same example vowelled — the vowels are OURS, for the
+#   test only, never shown to a learner (taken from the editor's iʿrāb where he gives one). A row whose printed probe fails and whose
+#   vowelled probe passes counts «applied-vowelled». cls c = the probe's expectation or the cut was wrong (the probe is replaced, the
+#   reason in `why`); cls d = not decidable from the letters / not an example (status + reason).
+OVR = {}
+for _f in sorted(HERE.glob("aqil_overrides*.json")):
+    OVR.update(json.loads(_f.read_text(encoding="utf-8")))
+# (v355-N1) the pillars' triage keeps its own file shape (tools/ledger/aqil_triage_*.json: {"rows": {id: {class, why, probes | reason}}} —
+#   the check «v355-N1 — the work order's triage» reads it); it is the same judgement and goes through the same road
+for _f in sorted(HERE.glob("aqil_triage_*.json")):
+    for _k, _v in json.loads(_f.read_text(encoding="utf-8"))["rows"].items():
+        assert _k not in OVR, "two triage files claim " + _k
+        OVR[_k] = ({"cls": "d", "status": "not-automatable", "reason": _v["reason"]} if _v["class"] == "d"
+                   else {"cls": _v["class"], "why": _v.get("why", ""), "probes": _v["probes"], "free": True})
 CACHE = HERE / ".aqil-proof-cache.json"
+CACHE_SV = HERE / ".aqil-proof-cache-sv.json"   # (v355) the vowelled probes, proved in a page of their own: a page that has read the
+#   printed letters first answers the vowelled reading of the same letters differently (a state the engine keeps — named in v355-N2)
 LEDGERS = {"shudhur": "coverage_shudhur.json", "qawaid": "coverage_qawaid_al_irab.json", "izhar": "coverage_izhar.json",
            "kafiya": "coverage_kafiya.json"}
 
@@ -153,16 +167,6 @@ def join(ent, topics, ledgers):
     return best
 
 
-def load_triage():
-    """(v355) row id → {class, why, probes [{s, sv?, w, re | any}] | reason} from every tools/ledger/aqil_triage_*.json"""
-    out = {}
-    for f in sorted(HERE.glob("aqil_triage_*.json")):
-        for k, v in json.loads(f.read_text(encoding="utf-8"))["rows"].items():
-            assert k not in out, "two triage files claim " + k
-            out[k] = dict(v, file=f.name)
-    return out
-
-
 def cut_entries():
     t, ps = A.pages()
     rows = A.matn_lines(t, ps)
@@ -190,8 +194,7 @@ def main():
     prove = "--no-prove" not in sys.argv
     ents = cut_entries()
     ledgers = load_ledgers()
-    tri = load_triage()
-    probes = []
+    probes, svprobes = [], []
     for e in ents:
         m = B[e["bab"]]
         e["topics"] = m["topics"]
@@ -211,20 +214,6 @@ def main():
         if not m["role"]:
             e["status"], e["reason"] = "open", "no construction the iʿrāb line names"
             continue
-        t = tri.get(e["id"])
-        if t and t["class"] == "d":
-            e["status"], e["reason"], e["triage"] = "not-automatable", t["reason"], {"class": "d", "file": t["file"]}
-            continue
-        if t:
-            e["triage"] = {"class": t["class"], "why": t["why"], "file": t["file"]}
-            e["probes"] = [dict(p) for p in t["probes"]]
-            for p in e["probes"]:
-                p["_k"] = len(probes)
-                probes.append({k: v for k, v in p.items() if k not in ("_k", "sv")})
-                if p.get("sv"):
-                    p["_kv"] = len(probes)
-                    probes.append(dict({k: v for k, v in p.items() if k not in ("_k", "sv")}, s=p["sv"]))
-            continue
         nm = named_probes(e["ar"], e["ex"])
         multi = [x for x in e["ex"] if len(x.split()) >= 2]
         if not nm and not multi:
@@ -235,16 +224,36 @@ def main():
             e["probes"] = [{"s": next((x for x in e["ex"] if w in x.split()), ex0), "w": w, "re": rg} for w, rg in nm[:3]]
         else:
             e["probes"] = [{"s": ex0, "any": m["role"]}]
+        o = OVR.get(e["id"])
+        if o:
+            e["triage"] = {"cls": o["cls"], "why": o.get("why", "")}
+            if o.get("status"):
+                e["status"], e["reason"] = o["status"], o["reason"]
+                e.pop("probes", None)
+                continue
+            if o.get("probes"):
+                e["probes"] = [dict(p) for p in o["probes"]]
+            elif o.get("sv"):
+                for p in e["probes"]:
+                    p["sv"] = o["sv"]
+            for p in e["probes"]:   # an override's sentence is the entry's own words; a triage file's corrected probe (class c) may be the
+                assert o.get("free") or p["s"] in e["ar"], (e["id"], p["s"])   # book's fuller sentence from the same page — its `why` says so
         for p in e["probes"]:
             p["_k"] = len(probes)
-            probes.append({k: v for k, v in p.items() if k != "_k"})
+            probes.append({k: v for k, v in p.items() if k not in ("_k", "sv")})
+            if p.get("sv"):
+                p["_kv"] = len(svprobes)
+                svprobes.append(dict({k: v for k, v in p.items() if k not in ("_k", "_kv", "sv")}, s=p["sv"]))
     if prove:
         pin = HERE / ".aqil-probes.json"
         pin.write_text(json.dumps(probes, ensure_ascii=False), encoding="utf-8")
         subprocess.run(["node", str(HERE / "aqil_prove.js"), str(pin), str(CACHE)], check=True)
+        pin.write_text(json.dumps(svprobes, ensure_ascii=False), encoding="utf-8")
+        subprocess.run(["node", str(HERE / "aqil_prove.js"), str(pin), str(CACHE_SV)], check=True)
         pin.unlink()
     res = json.loads(CACHE.read_text(encoding="utf-8"))
-    assert len(res) == len(probes), "proof cache is stale: run without --no-prove"
+    ress = json.loads(CACHE_SV.read_text(encoding="utf-8")) if svprobes else []
+    assert len(res) == len(probes) and len(ress) == len(svprobes), "proof cache is stale: run without --no-prove"
     for e in ents:
         if "probes" not in e:
             continue
@@ -254,24 +263,25 @@ def main():
             if r.get("offered"):
                 p["offered"] = True
             if "_kv" in p:
-                rv = res[p.pop("_kv")]
-                p["ok_v"], p["got_v"] = rv["ok"], rv["got"][:200]
-                if rv.get("offered") and not p["ok"]:
-                    p["offered"] = True
-        if all(p["ok"] for p in e["probes"]):
+                rv = ress[p.pop("_kv")]
+                p["svok"], p["svgot"] = rv["ok"], rv["got"][:200]
+                if not r["ok"] and rv["ok"]:
+                    p["vowelled"] = True
+                    p.pop("offered", None)
+                    if rv.get("offered"):
+                        p["offered"] = True
+        if all(p["ok"] or p.get("svok") for p in e["probes"]):
             e["status"] = "applied"
             if any(p.get("offered") for p in e["probes"]):
                 e["offered"] = True
-        elif all(p["ok"] or p.get("ok_v") for p in e["probes"]):
-            e["status"], e["vowelled"] = "applied", True
-            if any(p.get("offered") for p in e["probes"]):
-                e["offered"] = True
+            if any(p.get("vowelled") for p in e["probes"]):
+                e["vowelled"] = True
         else:
             e["status"], e["warn"] = "open", True
     counts = Counter()
     by = defaultdict(Counter)
     for e in ents:
-        k = "joined" if "joined" in e else ("warn" if e.get("warn") else e["status"] + ("-vowelled" if e.get("vowelled") else "") + ("-offered" if e.get("offered") else ""))
+        k = "joined" if "joined" in e else ("warn" if e.get("warn") else e["status"] + ("-offered" if e.get("offered") else "") + ("-vowelled" if e.get("vowelled") else ""))
         counts[k] += 1
         counts["status:" + e["status"]] += 1
         by[e["bab"]][k] += 1

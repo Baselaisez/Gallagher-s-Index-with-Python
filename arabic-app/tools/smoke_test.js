@@ -19905,7 +19905,7 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     for (const v of alf) { if (v.ar !== V[v.n - 1].ar) bad.push('alfiyya ' + v.n); if (v.rule_ar && !src.includes(v.rule_ar)) bad.push('ruling ' + v.n); if (!!v.en !== !!v.tr) bad.push('en/tr ' + v.n); }
     const led = J('content/rules/coverage_ibn_aqil.json'), E = led.entries, C = {};
     for (const e of E) { if (!src.includes(e.ar)) bad.push(e.id + ' ar'); for (const x of e.ex) if (!e.ar.includes(x)) bad.push(e.id + ' ex');
-      const k = 'joined' in e ? 'joined' : e.warn ? 'warn' : e.status + (e.vowelled ? '-vowelled' : '') + (e.offered ? '-offered' : ''); C[k] = (C[k] || 0) + 1; C['status:' + e.status] = (C['status:' + e.status] || 0) + 1;   // (v355-N1) applied-vowelled: the work order's triage
+      const k = 'joined' in e ? 'joined' : e.warn ? 'warn' : e.status + (e.offered ? '-offered' : '') + (e.vowelled ? '-vowelled' : ''); C[k] = (C[k] || 0) + 1; C['status:' + e.status] = (C['status:' + e.status] || 0) + 1;   // (v355) «-vowelled»: proved by the vowelled probe beside the printed one
       if (e.status === 'not-automatable' && !e.reason) bad.push(e.id + ' reason'); }
     if (bad.length) throw new Error('verbatim: ' + bad.slice(0, 6).join(' | '));
     if (JSON.stringify(Object.keys(C).sort().map(k => [k, C[k]])) !== JSON.stringify(Object.keys(led.counts).sort().map(k => [k, led.counts[k]]))) throw new Error('the counts are the rows\': ' + JSON.stringify({ C, stored: led.counts }));
@@ -19913,9 +19913,16 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     // (merge of v348-A, the proverbs' shelf) 247 / 189: «أعلمت الحق وأعطيت درهما» (A454.2) had proved by luck — unvowelled, «درهما» was read a
     // noun and so «مفعول به»; with 1,252 new tokens on the shelf the blind reader takes it for «درهـ + ـما» and names no object. The row
     // is ⚠ now, which is what it always was: the engine never read «الحق» right («الظاهر أنه فاعل»). Work order: Ibn ʿAqīl's report.
-    if (E.length < 806 || C['status:applied'] < 247 || (C.warn || 0) > 189 || (C.joined || 0) < 51) throw new Error('the pins: ' + JSON.stringify(C));
-    // (v355-N1) a row applied-vowelled re-proves the probe that carried it: the printed one where it passed, else its vowelled twin (sv — our vowels, test only)
-    const ap = E.filter(e => e.status === 'applied' && e.probes), ps = ap.flatMap(e => e.probes.map(p => { const s = e.vowelled && !p.ok && p.sv ? p.sv : p.s; return p.w ? { s, w: p.w, re: p.re } : { s, any: p.any }; }));
+    // (v355-N2) 247 / 189 → 304 / 104: the complements' and followers' 89 ⚠ rows triaged (aqil_overrides_n2.json) — 52 applied by the vowelled
+    // probe (the print's artefact, or a real gap repaired: Nahw342Engine v355-N2 rows, IdafaEngine), 14 by a corrected probe, 28 not decidable /
+    // not an example (forbidden forms, fragments, lists, homographs), 4 still ⚠ (A897.1, A897.2, A903.1, A927.1)
+    // (merge of v355-N1 and v355-N2, rebuilt on the merged page) 391 / 4: the pillars' triage (aqil_triage_n1.json, 100 rows) and the complements'
+    // (aqil_overrides_n2.json, 89 rows) go through the same road in aqil_ledger.py; the four ⚠ left are N2's (A897.1, A897.2, A903.1, A927.1);
+    // N1's A408.1 «ألا رجل قائم» proves now that Roles345 no longer reads أَلَا as إِلَّا
+    if (E.length < 806 || C['status:applied'] < 391 || (C.warn || 0) > 4 || (C.joined || 0) < 51) throw new Error('the pins: ' + JSON.stringify(C));
+    // (v355) a probe that proved only vowelled (p.vowelled) is re-proved by its vowelled sentence, and those go FIRST: a page that has read the
+    // printed letters first answers the vowelled reading of the same letters differently (v355-N2's finding)
+    const ap = E.filter(e => e.status === 'applied' && e.probes), ps = ap.flatMap(e => e.probes.map(p => { const s = p.vowelled ? p.sv : p.s; return p.w ? { s, w: p.w, re: p.re, v: !!p.vowelled } : { s, any: p.any, v: !!p.vowelled }; })).sort((a, b) => b.v - a.v);
     const fsrc = fsx.readFileSync(R('tools/ledger/aqil_probe.js'), 'utf8'), fn = fsrc.slice(fsrc.indexOf('(probes)'));
     const res = await page.evaluate(([f, q]) => (0, eval)('(' + f + ')')(q), [fn, ps]), fail = res.map((r, k) => r.ok ? null : ps[k].s + ' → ' + r.got.slice(0, 80)).filter(Boolean);
     if (fail.length) throw new Error(fail.length + ' applied entries no longer prove: ' + fail.slice(0, 4).join(' | '));
@@ -20593,6 +20600,39 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     console.log('      triage ' + JSON.stringify(C) + '; agreeing ' + JSON.stringify(m));
   });
   // <<< v355-N1
+  // >>> v355-N2 — Ibn ʿAqīl's work order: the complements and the followers
+  await check('v355-aqil-n2 — Ibn ʿAqīl\'s complements and followers (Nahw342Engine v355-N2 rows, IdafaEngine): the book\'s own examples, vowelled, read the book\'s ruling — نعم / بئس / ساء / فعُل / حبذا and the specified noun, the wonder of أوفى / أشدّ and أشدِد بـ, its tamyīz and ḥāl, كفى بـ, بلى + ḥāl, the elative named, عند after من, the time-word no badal, جوارٍ, نفس / عين, the ṣifa\'s naṣb, the naʿt after a jāmid khabar, the maṣdar of a dropped verb, the instrument, the event-maṣdar for its time, the repeated إنّ, the lament, the hamza of the vocative, لك / له — and the controls stay silent', async () => {
+    const r = await page.evaluate(() => { const H = s => String(s || '').normalize('NFC').replace(/[ً-ْٰـ]/g, '');
+      const L = (s, w, n) => { const rows = SentenceAnalyzer.analyze(s); let i = -1, k = 0; rows.forEach((x, q) => { if (i < 0 && H(x.w) === w && k++ === (n || 0)) i = q; }); return i < 0 ? 'NO ' + w : H((Murib.line(rows, i) || {}).ar); };
+      const T = [
+        ['نِعْمَ الرَّجُلُ فَارِسًا زَيْدٌ', 'زيد', /المخصوص بالمدح، مبتدأ مؤخر والجملة قبله خبره، أو خبر لمبتدإ محذوف/], ['نِعْمَ الرَّجُلُ فَارِسًا زَيْدٌ', 'فارسا', /تمييز/], ['نِعْمَ الرَّجُلُ فَارِسًا زَيْدٌ', 'نعم', /فعل ماض جامد لإنشاء المدح/],
+        ['سَاءَ الرَّجُلُ زَيْدٌ', 'زيد', /المخصوص بالذم/], ['شَرُفَ الرَّجُلُ زَيْدٌ وَلَؤُمَ الرَّجُلُ بَكْرٌ', 'بكر', /المخصوص بالمدح أو الذم/], ['نِعْمَ رَجُلًا زَيْدٌ', 'نعم', /ضمير مستتر يفسره التمييز/],
+        ['حَبَّذَا زَيْدٌ', 'زيد', /المخصوص بالمدح/], ['حَبَّذَا زَيْدٌ', 'حبذا', /«ذا» اسم إشارة مبني على السكون في محل رفع فاعله/],
+        ['مَا أَوْفَى خَلِيلَيْنَا', 'أوفى', /فعل ماض جامد لإنشاء التعجب، مبني على الفتح المقدر على الألف/], ['مَا أَوْفَى خَلِيلَيْنَا', 'خليلينا', /مفعول به/],
+        ['مَا أَشَدَّ دَحْرَجَتَهُ وَاسْتِخْرَاجَهُ وَأَشْدِدْ بِدَحْرَجَتِهِ وَاسْتِخْرَاجِهِ', 'دحرجته', /^اسم، منصوب.*مفعول به/], ['مَا أَشَدَّ دَحْرَجَتَهُ وَاسْتِخْرَاجَهُ وَأَشْدِدْ بِدَحْرَجَتِهِ وَاسْتِخْرَاجِهِ', 'بدحرجته', /الباء حرف جر زائد، و«دحرجته» فاعل/],
+        ['مَا أَحْسَنَ زَيْدًا رَجُلًا', 'رجلا', /تمييز/], ['مَا أَحْسَنَ زَيْدًا ضَاحِكًا', 'ضاحكا', /^(?!.*نعت).*حال/], ['كَفَى بِزَيْدٍ رَجُلًا', 'رجلا', /تمييز/], ['كَفَى بِزَيْدٍ رَجُلًا', 'بزيد', /حرف جر زائد.*فاعل «كفى»/],
+        ['بَلَى مُسْرِعًا', 'مسرعا', /حال، وعاملها فعل محذوف/], ['الزَّيْدَانِ أَفْضَلُ الْقَوْمِ', 'أفضل', /^اسم تفضيل/], ['زَيْدٌ الْأَفْضَلُ وَالزَّيْدَانِ الْأَفْضَلَانِ', 'الأفضلان', /^اسم تفضيل(?!.*مضاف إليه)/],
+        ['خَرَجْتُ مِنْ عِنْدِ زَيْدٍ', 'عند', /^اسم، مجرور ب«من».*لا يخرج عن الظرفية إلا مجرورا ب«من»/], ['عَجِبْتُ مِنْ ضَرْبِكَ زَيْدًا يَوْمَ الْجُمُعَةِ', 'يوم', /^ظرف زمان/], ['هَؤُلَاءِ جَوَارٍ وَغَوَاشٍ وَمَرَرْتُ بِجَوَارٍ', 'جوار', /مرفوع وعلامة رفعه الضمة المقدرة على الياء المحذوفة، والتنوين تنوين عوض/],
+        ['هَؤُلَاءِ جَوَارٍ وَغَوَاشٍ وَمَرَرْتُ بِجَوَارٍ', 'بجوار', /الفتحة المقدرة على الياء المحذوفة نيابة عن الكسرة/], ['قُومُوا أَنْتُمْ أَنْفُسُكُمْ', 'أنتم', /في محل رفع توكيد للضمير المتصل/], ['قُومُوا أَنْتُمْ أَنْفُسُكُمْ', 'أنفسكم', /توكيد معنوي/],
+        ['زَيْدٌ حَسَنٌ الْوَجْهَ', 'الوجه', /منصوب على التشبيه بالمفعول به للصفة المشبهة/], ['زَيْدٌ رَجُلٌ حَسَنٌ وَالزَّيْدَانِ رَجُلَانِ حَسَنَانِ', 'حسنان', /^اسم، مرفوع.*نعت ل«رجلان»/], ['زَيْدٌ رَجُلٌ حَسَنٌ وَالزَّيْدَانِ رَجُلَانِ حَسَنَانِ', 'رجلان', /^(?!.*مضاف)/],
+        ['زَيْدٌ سَيْرًا', 'سيرا', /مفعول مطلق لفعل محذوف/], ['ضَرَبْتُهُ سَوْطًا', 'سوطا', /مفعول مطلق/], ['آتِيكَ طُلُوعَ الشَّمْسِ', 'طلوع', /^ظرف زمان.*مصدر نائب عن الظرف/],
+        ['إِنَّ زَيْدًا إِنَّ زَيْدًا قَائِمٌ', 'زيدا', /توكيد لفظي/, 1], ['وَازَيْدَا لَا تَبْعَدْ', 'وازيدا', /منادى مندوب/], ['أَزَيْدُ أَقْبِلْ', 'أزيد', /حرف نداء للقريب/], ['لَكَ وَلَهُ', 'لك', /اللام حرف جر/],
+        ['أَنَا الضَّارِبُ الرَّجُلِ زَيْدٍ', 'الضارب', /وهو مضاف/], ['وَالْمَهْمُوزُ الْعَيْنِ نَحْوُ سَأَلَ', 'والمهموز', /وهو مضاف/]];
+      const C = [   // the controls: the gate must not speak
+        ['نَعَمْ زَيْدٌ قَائِمٌ', 'زيد', /مخصوص/], ['كَثُرَ الشَّيْءُ بِالْمَكَانِ', 'بالمكان', /مخصوص/], ['مَا أَشْبَهَ الِاسْمَ بِالْفِعْلِ', 'ما', /v355/], ['أَبْشِرْ بِالْخَيْرِ', 'بالخير', /زائد/],
+        ['كَفَى بِهِ شَهِيدًا', 'به', /زائد/], ['مَرَرْتُ بِالْأَقْرَعِ', 'بالأقرع', /تفضيل/], ['ذَكَرَ أَصْلَهُ', 'أصله', /تفضيل/], ['مَرَرْتُ بِسَوَاءٍ', 'بسواء', /عوض/],
+        ['قَتَلَ زَيْدٌ نَفْسَهُ', 'نفسه', /توكيد/], ['ضَرَبَ رَجُلٌ الْوَلَدَ', 'الولد', /التشبيه بالمفعول/], ['نَحْوُ زَيْدٌ قَائِمٌ', 'قائم', /نعت/], ['جَاءَ زَيْدٌ نَفْسُهُ وَعَيْنُهُ', 'وعينه', /توكيد معنوي ل«نفسه»/],
+        ['وَالِدُ زَيْدٍ كَرِيمٌ', 'والد', /^(?!.*مضاف)/], ['جَاءَ الرَّجُلُ الصَّالِحُ', 'الرجل', /مضاف/], ['رَأَيْتُ الرَّجُلَ يَوْمَ الْجُمُعَةِ', 'يوم', /بدل/]];
+      const v355 = Object.keys(Nahw342Engine.RULES).filter(k => /355$/.test(k));
+      const cited = v355.every(k => /Ibn ʿAqīl/.test(Nahw342Engine.RULES[k].cite[0]) && /v355-N2/.test(Nahw342Engine.RULES[k].cite[0]));
+      return { bad: T.map(([s, w, re, n]) => { const l = L(s, w, n); return re.test(l) ? null : s + ' · ' + w + ' → ' + l; }).filter(Boolean),
+        loud: C.map(([s, w, re]) => { const rows = SentenceAnalyzer.analyze(s); const i = rows.findIndex(x => H(x.w) === w); const LL = Murib.line(rows, i) || {}; const l = H(LL.ar) + (/355$/.test(String(LL.n342 || '')) && w === 'ما' ? ' v355' : '');
+          return re.test(l) ? s + ' · ' + w + ' → ' + l : null; }).filter(Boolean), n: v355.length, cited }; });
+    if (r.n < 18 || !r.cited) throw new Error('the rows and their book lines: ' + JSON.stringify(r));
+    if (r.bad.length) throw new Error(r.bad.length + ' book examples misread: ' + r.bad.slice(0, 4).join(' | '));
+    if (r.loud.length) throw new Error('the controls speak: ' + r.loud.join(' | '));
+  });
+  // <<< v355-N2
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
@@ -21634,7 +21674,8 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (R.R42n.both < 21 || R.R42n.contra > 1) f.push('R42n');
     if (R.I13.both < 36) f.push('I13');
     if (R.R141.both < 14 || R.R141.contra > 0) f.push('R141');
-    if (R.I26.both < 6 || R.I26.contra > 2) f.push('I26');   // the 2: usul:23:s7:34 مَرْضَاتَهُ (the v329 slip) and صَفِيفَ «مفعول به لـ«منضج»» (agrees; the tatweel defeats the pattern)
+    if (R.I26.both < 6 || R.I26.contra > 3) f.push('I26');   // the 2: usul:23:s7:34 مَرْضَاتَهُ (the v329 slip) and صَفِيفَ «مفعول به لـ«منضج»» (agrees; the tatweel defeats the pattern)
+    // (v355-N2) 2 → 3: talkhis-al-miftah:56:s3:6 «مَجَامِعَ» «مفعول به للطاعنين» — the same reading (the author names the participle without «لاسم الفاعل»); it shows now that IdafaEngine no longer annexes «وَالطَّاعِنِينَ» (أل behind the wāw, the nūn kept). Judged C in research/story-audit-triage-delta-aqil-n2.json
     if (R.R15.both < 25 || R.R15.contra > 0) f.push('R15');
     if (R.I22.both < 13 || R.I22.contra > 1) f.push('I22');
     if (R.R209.both < 2 || R.R209.eng < 14) f.push('R209');   // the authors are silent on the rest (read: correct taʿlīq contexts)
