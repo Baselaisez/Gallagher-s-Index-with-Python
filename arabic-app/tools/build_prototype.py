@@ -329,6 +329,18 @@ def load_ilal():
     return {"books": books, "reasons": rs, "noteTopics": nt}
 
 
+def load_alfcourse():
+    """(v358-A) content/rules/alfiyya_course.json (tools/alfiyya_course.py) — the Alfiyya as a course, cut to what Alfiyya358 reads, as ONE JSON
+    string: tools/pubsplit.py moves it into the LAST body slice (like ALFIYYA_JSON), the reader parses it on the course's first open."""
+    p = ROOT / "content/rules/alfiyya_course.json"
+    if not p.exists():
+        return None
+    c = json.loads(p.read_text(encoding="utf-8"))
+    for u in c["units"]:
+        u["corpus"] = [{k: x[k] for k in ("k", "ar", "w", "a")} for x in u["corpus"]]
+    return json.dumps({k: c[k] for k in ("babs", "verses", "units", "counts")}, ensure_ascii=False, separators=(",", ":"))
+
+
 def load_alfiyya():
     """(v352-A) content/rules/alfiyya.json — the Alfiyya's verses cut by script from Ibn ʿAqīl's Sharḥ (tools/ledger/aqil_alfiyya.py).
     Shipped compact: the verses joined to a grammar note (the «Elfiye» cards, the «beyti bul» round's items) and, for the round's
@@ -460,6 +472,8 @@ def main():
         js("ILAL", load_ilal()),
         # (v352-A) the Alfiyya's verses on the notes — the «Elfiye» cards and the «beyti bul» round read this
         js("ALFIYYA_JSON", json.dumps(load_alfiyya(), ensure_ascii=False, separators=(",", ":"))),
+        # (v358-A) the Alfiyya course — one lazy string (the last body slice on the hosted copy), parsed on the course's first open
+        js("ALFCOURSE358", load_alfcourse()),
         js("AMTHAL", load_amthal()),
 
         # (v352-U) the kinds of ʿilla (al-Iqtirāḥ) and the khilaf lab's «İki yöntem» cards
