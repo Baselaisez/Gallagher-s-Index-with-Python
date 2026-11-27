@@ -21150,6 +21150,124 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (!r.inRules || !r.order || r.cites.length !== 4 || r.cites.find(([k, c]) => c !== (k === 'iyyaBadal360' ? 'offered' : 'exact'))) throw new Error('rows / order: ' + J([r.inRules, r.order, r.cites.map(x => x.slice(0, 2))]));
     for (const [k, , cs] of r.cites) for (const c of cs) { const m = /«([^»]+)»/.exec(c); if (!m || !sh360.has(m[1])) throw new Error(k + ': the cite is not in the web text — ' + c.slice(0, 60)); }
   });
+  // >>> v361-N — the reasons' second pass: the pronoun inside the word, the follower's place, the sign the class gives, the review list split
+  await check('v361 — the reasons\' second pass: the owner\'s forms on corpus tokens — the تُ of a māḍī, the هُ of a verb\'s object, the هِ after a jarr letter, the speaker\'s ي on a noun, the hidden pronoun (jāʾiz by the line, wājib by the form) — each its own short ladder (attached / hidden, the kind by the place, mabnī, maḥallī only, role and place as the line states them, a deduced place marked), the host\'s chain unchanged; the follower\'s place from the followed word\'s chain; a case with no sign given its sign by a class SignEngine is certain of (marked); every Marāḥ / Ibn ʿAqīl line verbatim on its page; SignEngine\'s alif fix; contradictions 0; the floors', async () => {
+    const r = await page.evaluate(() => {
+      const out = { forms: {}, miss: [] }, keep = state.uiLang, S = x => Illa346.S(x);
+      const txt = (steps, l) => steps.map(s => s.kind + (s.ded || s.dc || s.df ? '*' : '') + ':' + String(s[l]).replace(/<[^>]+>/g, '')).join(' | ');
+      try {
+        const W = { madiTu: l => /^فعل ماض مبني على السكون/.test(l) && /وتاء المتكلم ضمير متصل مبني في محل رفع فاعل/.test(l),
+          verbObj: l => /^فعل ماض مبني على الفتح، والفاعل مستتر تقديره: هو، والهاء ضمير متصل مبني في محل نصب مفعول به/.test(l),
+          jarrPron: l => /^الباء حرف جر، والهاء ضمير متصل (مبني )?في محل جر/.test(l), nounYa: l => /^مفعول به منصوب/.test(l) && /، والياء ضمير متصل (مبني )?في محل جر مضاف إليه/.test(l),
+          hiddenJ: l => /^فعل ماض مبني على الفتح، والفاعل ضمير مستتر جوازا تقديره هو/.test(l), hiddenW: l => /^فعل أمر مبني على السكون، والفاعل ضمير مستتر وجوبا تقديره أنت\.?$/.test(l),
+          signless: l => /^فاعل مرفوع\.?$/.test(l), follower: l => /^نعت ل/.test(l) && /منصوب/.test(l) };
+        const got = {};
+        for (const st of STORIES) for (const ch of st.chapters || []) for (const sen of ch.sentences || []) sen.tokens.forEach((t, ti) => { if (!t.irab) return; const l = S(t.irab.ar);
+          for (const k in W) if (!got[k] && W[k](l)) { if (k === 'signless' || k === 'follower') { const c = Illa346.chain(t, { sen, ti, st }); if (!c.steps.some(s => k === 'signless' ? s.dc : (s.kind === 'follow' && s.fh === 'mahall'))) continue; } got[k] = { t, sen, ti, st }; } });
+        for (const k in W) { const g = got[k]; if (!g) { out.miss.push(k); continue; } const c = Illa346.chain(g.t, { sen: g.sen, ti: g.ti, st: g.st }), P = Naw357.pronsOf(c) || [];
+          out.forms[k] = { w: g.t.s.full, at: g.st.id + ':' + g.sen.id + ':' + g.ti, host: c.steps.map(s => s.kind + (s.ded || s.dc || s.df ? '*' : '')).join(','), hostEn: txt(c.steps, 'en'), hostTr: txt(c.steps, 'tr'),
+            p: P.map(p => { const st = Naw357.pronSteps(p, c.r, c.w); return { kind: p.kind, k: st.map(s => s.kind + (s.ded ? '*' : '')).join(','), en: txt(st, 'en'), tr: txt(st, 'tr'), sEn: Naw357.pronShort(p, 'en'), sTr: Naw357.pronShort(p, 'tr'),
+              refs: st.map(s => s.term && s.term.ref).filter(Boolean), cites: st.flatMap(s => [s.cite, s.cite2]).filter(Boolean).map(x => x.k) }; }) }; }
+        // the host's chain is the same with or without its pronouns (they live outside `steps`)
+        { const g = got.verbObj; if (g) { const a = Illa346.chain(g.t, { sen: g.sen, ti: g.ti }), b = Illa346.chain(g.t, { sen: g.sen, ti: g.ti, noPron: true }); out.hostSame = JSON.stringify(a.steps) === JSON.stringify(b.steps); } }
+        // SignEngine: a final alif that is a joined pronoun's or «مَا»'s is not a maqṣūr's; the real maqṣūr unchanged
+        const C = (w, lemma) => (SignEngine.classify(w, { pos: 'noun', lemma }) || {}).cls;
+        out.cls = { baynama: C('بَيْنَمَا', 'بَيْنَمَا'), baadama: C('بَعْدَمَا', 'عَدَم'), sayaha: C('سَعْيَهَا', 'سَعْي'), ardina: C('أَرْضِنَا', 'أَرْض'), thaniha: C('وَثَانِيهَا', 'ثَانِي'), kala: C('كَلَإٍ', 'كَلَأ'),
+          dunya: C('الدُّنْيَا', 'دُنْيَا'), fata: C('الْفَتَى', 'فَتًى'), kilahuma: C('كِلَاهُمَا', 'كِلَا') };
+        const t0 = performance.now(), m = Illa346.measure(); out.ms = Math.round(performance.now() - t0);
+        out.m = { n: m.n, contra: m.contra, bad: m.bad.slice(0, 3), naw: { contra: m.naw.contra, reviewN: m.naw.reviewN, ded: m.naw.ded, none: m.naw.none }, v: Object.assign({}, m.v361, { review: m.v361.review.length, reviewW: m.v361.review.slice(0, 5).map(x => x.why + ' ' + x.w) }) };
+        out.off = { lex: Naw357.LEX_OFF361, cls: Naw357.CLS_OFF361 }; out.PQ = Naw357.PQ;
+        const ks = re => ({ en: Object.keys(L.en).filter(k => re.test(k)), tr: Object.keys(L.tr).filter(k => re.test(k)) }); out.keys = ks(/^(pron|fol|cls)[A-Z]/);
+      } finally { state.uiLang = keep; }
+      return out;
+    });
+    const J = JSON.stringify, F = r.forms;
+    if (r.miss.length) throw new Error('no corpus token of form ' + r.miss.join());
+    // the owner's forms, as the app shows them (tr + en)
+    const att = (k, kind, re) => { const x = F[k], p = x && x.p.find(q => q.kind === 'att'); if (!p || !(k === 'jarrPron' ? /^naw,bina,irab,(role,)?built$/ : /^naw,bina,irab,role,built$/).test(p.k) || !re.test(p.tr) || !p.refs.length || !p.cites.includes({ raf: 'mrRafM', nasb: 'mrNasbM', jarr: 'mrJarrM' }[kind]) || !p.cites.includes('shMudmar') || !p.cites.includes('izMabni')) throw new Error(k + ': ' + J(x)); return p; };
+    const tu = att('madiTu', 'raf', /naw:«[^»]+» içindeki «تَاءُ الْمُتَكَلِّمِ», muttasıl \(bitişik\) zamirdir — satırın verdiği mahalle göre ref zamirlerinden\..*bina:Zamirler mebnîlerdendir.*irab:Mebnî kelimenin lafzî ve takdirî i'rabı olmaz.*role:Fâil \(özne\).*built:Öyleyse «تَاءُ الْمُتَكَلِّمِ», merfû bir kelimenin yerinde durur: mahallen merfûdur/);
+    if (tu.sTr !== 'muttasıl zamir → mebnî → mahallen merfû' || tu.sEn !== 'attached pronoun → mabnī → maḥallan marfūʿ' || !/attached pronouns of rafʿ/.test(tu.en)) throw new Error('the تُ (en): ' + J(tu));
+    const hu = att('verbObj', 'nasb', /içindeki «الْهَاءُ», muttasıl \(bitişik\) zamirdir — satırın verdiği mahalle göre nasb zamirlerinden.*role:Mef'ûlün bih \(nesne\).*mahallen mansubdur/);
+    att('jarrPron', 'jarr', /içindeki «الْهَاءُ», muttasıl \(bitişik\) zamirdir — satırın verdiği mahalle göre cer zamirlerinden.*mahallen mecrûrdur/);
+    att('nounYa', 'jarr', /içindeki «الْيَاءُ», muttasıl \(bitişik\) zamirdir — satırın verdiği mahalle göre cer zamirlerinden.*role:Muzâfun ileyh.*mahallen mecrûrdur/);
+    const hid = (k, re, wj) => { const x = F[k], p = x && x.p.find(q => q.kind === 'hid'); if (!p || !new RegExp('^naw,bina,irab,role,built\\*,wujub$').test(p.k) || !re.test(p.tr) || !p.cites.includes('mrIstitar') || !p.cites.includes('mrRafOnly') || (wj ? !p.cites.includes('mrWajib') : p.cites.includes('mrWajib'))) throw new Error(k + ': ' + J(x)); return p; };
+    const hj = hid('hiddenJ', /naw:«[^»]+» kelimesinde gizli bir zamir vardır \(müstetir\) — Fâil \(özne\): satırın takdiriyle «هُوَ».*built\*:Öyleyse «هُوَ», merfû bir kelimenin yerinde durur: mahallen merfûdur; gösterilecek alâmet yoktur\. \(satırda yazılı değil; kural veriyor\).*wujub:Satırın dediği gibi cevâzen gizlidir/, false);
+    const hw = hid('hiddenW', /satırın takdiriyle «أَنْتَ».*wujub:Gizli kalması vâciptir \(vücûben\): sîganın kendisi ona delâlet eder \(«أَنْتَ»\)/, true);
+    if (hj.sTr !== 'müstetir zamir → mebnî → mahallen merfû (çıkarım)' || hw.sTr !== 'müstetir zamir → mebnî → mahallen merfû (çıkarım) → vücûben gizli' || !/the line does not write it; the rule gives it/.test(hj.en) || !/It must stay hidden \(wujūban\)/.test(hw.en)) throw new Error('the hidden one: ' + J([hj, hw]));
+    if (F.verbObj.p.length !== 2 || F.verbObj.p[0].kind !== 'hid' || !r.hostSame || !/^role,bina,irab,built$/.test(F.verbObj.host)) throw new Error('two pronouns in one word, the host unchanged: ' + J([F.verbObj.host, F.verbObj.p.map(p => p.k), r.hostSame]));
+    // the follower's place and the sign the class gives
+    const fo = F.follower; if (!fo || !/follow:[^|]*tâbidir; o mahallen mansub/.test(fo.hostTr) || !/follow:[^|]*follows «[^»]+», which is manṣūb \(naṣb\) by its place \(maḥallan\)/.test(fo.hostEn)) throw new Error('the follower: ' + J(fo));
+    const sl = F.signless; if (!sl || !/^role,family,irab\*/.test(sl.host) || !/irab\*:«[^»]+» mu'rabdır — müfred isim: merfû hâlinde alâmeti damme; i'rabı lafzî: hareke son harfte okunur\. \(satır alâmeti yazmıyor; kelimenin çeşidi veriyor\)/.test(sl.hostTr)
+      || !/\(the line does not write the sign; the word's class gives it\)/.test(sl.hostEn)) throw new Error('the sign-less line: ' + J(sl));
+    // SignEngine's alif fix
+    const c = r.cls; if (c.baynama !== 'sahih' || c.baadama !== 'sahih' || c.sayaha !== 'sahih' || c.ardina !== 'sahih' || c.thaniha !== 'manqus' || c.kala === 'maqsur' || c.dunya !== 'maqsur' || c.fata !== 'maqsur' || c.kilahuma !== 'muthanna') throw new Error('SignEngine.classify: ' + J(c));
+    // every Marāḥ / Ibn ʿAqīl line verbatim on its page
+    const SRC = path.join(path.resolve(__dirname, '..'), 'research', 'sources'), FILES = { marah: ['marah-al-arwah-src.txt', /^# page (\d+)/], aqil: ['sharh-ibn-aqil-src.txt', /^=== p\. (\d+) /] }, PG = {};
+    const pages = b => { if (PG[b]) return PG[b]; const o2 = {}; let cur = '0'; for (const line of fs.readFileSync(path.join(SRC, FILES[b][0]), 'utf8').replace(/\r/g, '').split('\n')) { const m = line.match(FILES[b][1]); if (m) { cur = m[1]; continue; } o2[cur] = (o2[cur] || '') + line + '\n'; } return (PG[b] = o2); };
+    const off = Object.entries(r.PQ).filter(([k, [b, pg, ar]]) => !(pages(b)[pg] || '').includes(ar)).map(([k]) => k); if (off.length || Object.keys(r.PQ).length < 8) throw new Error('book lines not verbatim on their page: ' + off.join());
+    const kd = r.keys.en.filter(k => !r.keys.tr.includes(k)).concat(r.keys.tr.filter(k => !r.keys.en.includes(k))); if (kd.length || r.keys.en.length < 20) throw new Error('en / tr templates: ' + kd.join());
+    // the corpus: contradictions 0, the class rule proved, the floors
+    const m = r.m, v = m.v;
+    console.log('      v361 corpus: pronoun ladders on ' + v.pronTok + ' tokens (' + J(v.pron) + ', places ' + J(v.pronSt) + ', deduced ' + v.pronDed + ', wājib by the form ' + v.wajibForm + ', by the line ' + J(v.wjLine) + ', yields ' + v.review + ' ' + J(v.reviewW) + '); followers ' + v.follow + ' ' + J(v.followHow) + ' (deduced ' + v.followDed + ', their line against the followed ' + v.followContra + '); class-given signs ' + v.cls + ' ' + J(v.clsBy)
+      + '; the rule against ' + v.proofN + ' written signs: ' + J(v.proofContra) + ' (lemmas ' + J(v.proofLex) + ', off ' + J(r.off) + '); same lemma, case and word: ' + v.lexN + ' / ' + v.lexContra + '; v357 review ' + m.naw.reviewN + '; ' + r.ms + ' ms');
+    if (m.contra !== 0 || m.naw.contra !== 0 || v.pronContra !== 0 || v.lexContra !== 0) throw new Error('contradictions: ' + J([m.contra, m.bad, m.naw.contra, v.pronContra, v.pronBad, v.lexContra, v.lexBad]));
+    const badLex = Object.keys(v.proofLex).filter(x => !r.off.lex.includes(x)), badCls = Object.keys(v.proofContra).filter(x => x !== 'sahih' && !r.off.cls.includes(x));
+    if (badLex.length || badCls.length || r.off.lex.some(x => !v.proofLex[x] && !['ab'].includes(x))) throw new Error('the class rule\'s contradictions not switched off: ' + J([badLex, badCls, v.proofLex]));
+    if (v.pronTok < 19500 || (v.pron.att || 0) < 13000 || (v.pron.hid || 0) < 8000 || v.pronDed < 12000 || v.wajibForm < 1000 || v.follow < 650 || v.cls < 6000 || v.proofN < 16000 || v.lexN < 3500 || v.review > 10 || m.naw.reviewN > 145 || m.naw.ded > 400)
+      throw new Error('the second pass under its floors: ' + J(v));
+  });
+  await check('v361 — the reasons\' second pass where they show, at 390 px: the word sheet\'s pronoun ladders collapsed under the host\'s, opening to the deduced row and a chip that opens the level-one pronoun note; the sentence sheet\'s row with one extra phrase; the game feedback when the asked role IS the pronoun\'s; the follower\'s and the class-given rows marked; no overflow; the v320 contrast in three themes', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(() => {
+      const out = { low: {} }, keepTheme = localStorage.getItem('qissa-theme'), keepLang = state.uiLang, keepPref = localStorage.getItem('qissa-illa346');
+      const st0 = document.createElement('style'); st0.id = 'v361NoAnim'; st0.textContent = '*, *::before, *::after { transition: none !important; animation: none !important; }'; document.head.appendChild(st0);
+      const rgba = s => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const a = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [a[0], a[1], a[2], a.length > 3 ? a[3] : 1]; };
+      const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+      const over = (t2, b) => [0, 1, 2].map(i => t2[i] * t2[3] + b[i] * (1 - t2[3])).concat(1);
+      const bgOf = el => { const stk = []; for (let e = el; e; e = e.parentElement) { const c = rgba(getComputedStyle(e).backgroundColor); if (c && c[3] > 0) { stk.push(c); if (c[3] >= 1) break; } }
+        let b = rgba(getComputedStyle(document.body).backgroundColor) || [255, 255, 255, 1]; for (let i = stk.length - 1; i >= 0; i--) b = over(stk[i], b); return b; };
+      const CON = sel => { const bad = []; document.querySelectorAll(sel).forEach(root => root.querySelectorAll('*').forEach(el => { if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return;
+        const rr = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!rr.width || !rr.height || cs.visibility === 'hidden') return;
+        const fg = rgba(cs.color), bg = bgOf(el); if (!fg || !bg) return; const c = over(fg, bg), L1 = lum(c), L2 = lum(bg), ratio = (Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05);
+        if (ratio < 4.5) bad.push((el.className || el.tagName) + ' ' + Math.round(ratio * 100) / 100 + ' «' + el.textContent.trim().slice(0, 14) + '»'); })); return bad; };
+      const wide = () => { const s = document.getElementById('sheet'); return s.scrollWidth > s.clientWidth + 1 || document.documentElement.scrollWidth > innerWidth + 1; };
+      const find = pred => { for (const st of STORIES) for (const ch of st.chapters || []) for (const sen of ch.sentences || []) { const ti = sen.tokens.findIndex(t => t.irab && pred(t, sen, sen.tokens.indexOf(t), st)); if (ti >= 0) return { st, sen, ti }; } return null; };
+      try {
+        state.uiLang = 'tr';
+        const at = find(t => /^فعل ماض مبني على الفتح، والفاعل مستتر تقديره: هو، والهاء ضمير متصل مبني في محل نصب مفعول به/.test(Illa346.S(t.irab.ar)));
+        CUR = at.st; localStorage.removeItem('qissa-illa346');
+        openWord(at.sen.tokens[at.ti], null, 'irab', { sen: at.sen, ti: at.ti }); const d = document.querySelector('#sheet #illa346'), g = document.querySelector('#sheet .gov-block');
+        out.sheet = { closed: !d.open, fits: !g || g.getBoundingClientRect().top <= innerHeight, wide: wide() };
+        d.querySelector('summary').click(); const ps = [...d.querySelectorAll('.illa-pron')];
+        out.sheet.pron = ps.map(p => ({ kind: p.dataset.pron, closed: !p.open, one: (p.querySelector('.illa-one') || {}).textContent, h: p.querySelector('summary').getBoundingClientRect().height }));
+        ps.forEach(p => p.querySelector('summary').click()); out.sheet.ded = !!d.querySelector('.illa-pron li[data-ded="1"] .illa-ded'); out.sheet.wideOpen = wide();
+        const chip = d.querySelector('.illa-pron button.illa-ref[data-illa-ref^="emsile-"]'); out.chip = chip && chip.dataset.illaRef;
+        if (chip) { chip.click(); out.chipOpened = (document.querySelector('#sheet') || {}).textContent.includes(GRAMMAR[out.chip].title.tr || GRAMMAR[out.chip].title.en || '@@'); }
+        openIrabSheet(at.sen); const row = document.querySelector('#sheet .illa-sen [data-illa-ti="' + at.ti + '"]'); out.sen = { row: row && row.textContent, wide: wide() };
+        // the asked role is the pronoun's (the object هُ of a verb): its ladder is the feedback
+        openGames(); const host = document.getElementById('sheetInner'), dv = document.createElement('div'); dv.innerHTML = Illa346.quizHtml({ sen: at.sen, ti: at.ti, key: 'maful' }, false); host.appendChild(dv);
+        const q = dv.querySelector('.illa-q'); out.game = q && { pron: q.dataset.pron, one: q.querySelector('.illa-one').textContent, n: +q.dataset.n }; dv.querySelector('.illa-q').open = true; out.gameWide = wide();
+        // the follower's and the class-given rows carry the deduced mark
+        const fl = find((t, sen, ti, st) => /^نعت ل/.test(Illa346.S(t.irab.ar)) && Illa346.chain(t, { sen, ti, st }).steps.some(s => s.kind === 'follow' && s.df));
+        const sl = find(t => /^فاعل مرفوع\.?$/.test(Illa346.S(t.irab.ar)) && /ُ$/.test(t.s.full));
+        for (const [k, v] of [['fol', fl], ['cls', sl]]) { if (!v) { out[k] = null; continue; } CUR = v.st; Illa346.force = true; openWord(v.sen.tokens[v.ti], null, 'irab', { sen: v.sen, ti: v.ti });
+          const dd = document.querySelector('#sheet #illa346'); out[k] = dd && { row: !!dd.querySelector(k === 'fol' ? 'li[data-k="follow"][data-ded="1"]' : 'li[data-k="irab"][data-ded="1"] .illa-ded'), wide: wide() }; }
+        for (const th of ['murekkep', 'gece', 'bahce']) { setTheme(th); CUR = at.st; Illa346.force = true; openWord(at.sen.tokens[at.ti], null, 'irab', { sen: at.sen, ti: at.ti });
+          document.querySelectorAll('#sheet .illa-pron').forEach(p => p.open = true); const lo = CON('#sheet .illa-pron'); if (lo.length) out.low[th] = lo.slice(0, 6); }
+      } finally { st0.remove(); QUIZ_RESUME = null; closeSheet(); state.uiLang = keepLang; if (keepPref == null) localStorage.removeItem('qissa-illa346'); else localStorage.setItem('qissa-illa346', keepPref); if (keepTheme) setTheme(keepTheme); else { localStorage.removeItem('qissa-theme'); setTheme(''); } }
+      return out;
+    });
+    await toLibrary();
+    const J = JSON.stringify, s = r.sheet || {};
+    if (!s.closed || !s.fits || s.wide || s.wideOpen || !s.pron || s.pron.length !== 2 || s.pron.some(p => !p.closed || p.h < 44) || s.pron[0].kind !== 'hid' || s.pron[0].one !== 'müstetir zamir → mebnî → mahallen merfû (çıkarım)' || s.pron[1].one !== 'muttasıl zamir → mebnî → mahallen mansub' || !s.ded)
+      throw new Error('the word sheet: ' + J(s));
+    if (!r.chip || !/^emsile-1[2-7]-/.test(r.chip) || !r.chipOpened) throw new Error('the pronoun chip opens its level-one note: ' + J([r.chip, r.chipOpened]));
+    if (!r.sen || !/ · zamir: müstetir zamir → mebnî → mahallen merfû \(çıkarım\)$/.test(r.sen.row || '') || r.sen.wide) throw new Error('the sentence sheet: ' + J(r.sen));
+    if (!r.game || r.game.pron !== 'att' || r.game.one !== 'çünkü muttasıl zamir → mebnî → mahallen mansub' || r.game.n !== 5 || r.gameWide) throw new Error('the game feedback for the pronoun: ' + J([r.game, r.gameWide]));
+    if (!r.fol || !r.fol.row || r.fol.wide || !r.cls || !r.cls.row || r.cls.wide) throw new Error('the marked rows: ' + J([r.fol, r.cls]));
+    if (Object.keys(r.low).length) throw new Error('contrast: ' + J(r.low));
+  });
+  // <<< v361-N
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

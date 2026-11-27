@@ -600,6 +600,10 @@
   .illa-t bdi { font-family: var(--ar-font); }
   .illa-term { display: inline-block; max-width: 100%; margin: 2px 0 0; padding: 0 .5rem; font-family: var(--ar-font); font-size: .95rem; line-height: 1.7; white-space: normal; vertical-align: middle; color: var(--irab-ink); border-color: var(--line); background: transparent; }
   .illa-ded { color: var(--ink-soft); font-size: var(--t-xs); font-style: italic; }   /* (v357-N) a place the rule gives, not the line */
+  .illa-pron { margin: 0 var(--s3) var(--s2); margin-inline-start: var(--s5, 1.5rem); border-inline-start: 2px solid var(--line); }   /* (v361-N) the pronoun in this word: an indented second ladder */
+  .illa-pron > summary { display: flex; flex-wrap: wrap; gap: var(--s1); align-items: baseline; min-height: 44px; padding: var(--s1) var(--s2); cursor: pointer; }
+  .illa-pron .illa-h { font-size: var(--t-sm); }
+  .illa-pron[open] > summary .illa-one { display: none; }
   button.illa-ref { position: relative; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px; min-height: 1.7em; }
   button.illa-ref::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 44px; transform: translateY(-50%); }   /* v320's 44 px hit area, invisible */
   .illa-tab th { padding: 2px var(--s1); border-bottom: 1px solid var(--line); color: var(--ink); text-align: start; font-weight: 600; }
@@ -4700,6 +4704,43 @@ Object.assign(L.tr, {
     ["sonu elif olan (maksûr) ya da mütekellim yâsına muzâf isim", "mu'rab — üç hâlde de takdirî", "shMaqsur"], ["sonu kesreli ye olan (mankûs) isim", "mu'rab — ref' ve cerde takdirî; nasbı görünür", "shManqus"],
     ["muzâri", "mu'rab — lafzî; sonu elif, vâv ya da yâ ise takdirî", "shMudariQ"], ["zamir, işaret, mevsûl, şart ya da soru ismi", "mebnî — yalnız mahallî", "izLazim"],
     ["mâzî ve emir", "mebnî — mahalsiz (mâzî: yalnız «an»dan sonra ya da cezmeden şartta)", "izAsl"], ["harf", "mebnî — hiç mahalli yok", "izNever"], ["cümle", "mahallî — ya da mahalsiz", "qwLaha"]],
+});
+/* (v361-N) the reasons' second pass: the pronoun inside the word, the follower's place, the sign the word's class gives */
+Object.assign(L.en, {
+  pronHead: "The pronoun in this word", pronHeadH: "The hidden pronoun", pronS: "pronoun:", pronAttS: "attached pronoun", pronHidS: "hidden pronoun",
+  pronMahS: "maḥallan {state}", pronWajS: "hidden necessarily", pronKind: { raf: "rafʿ", nasb: "naṣb", jarr: "jarr" }, pronDoer: "its doer",
+  pronAtt: "{p} in {w} is an attached pronoun (ḍamīr muttaṣil): it never stands alone and is written as one with the word before it.",
+  pronAttK: "{p} in {w} is an attached pronoun (ḍamīr muttaṣil) — one of the attached pronouns of {kind}, by the place the line gives it.",
+  pronHid: "{w} carries a pronoun hidden in it (ḍamīr mustatir) — {role}: {t}, as the line estimates it; it is not written, the verb holds it.",
+  pronHidN: "{w} carries a pronoun hidden in it (ḍamīr mustatir) — {role}, as the line says; it is not written, the verb holds it.",
+  pronWajF: "It must stay hidden (wujūban): the form itself points to it ({t}) — no named word can take its place.",
+  pronWajL: "It is hidden necessarily (wujūban), as the line says.",
+  pronJawL: "It is hidden by permission (jawāzan), as the line says: a named word could stand in its place.",
+  folOwn: "{role} follows {h}, which is {how} — and its own line gives it the same: {state}.",
+  folDed: "{role} follows {h}, which is {how} — so it is {state} too.",
+  folHow: { mahall: "{state} by its place (maḥallan)", taq: "{state} by an estimated sign (taqdīran)", lafz: "{state}" },
+  folDedX: "the followed word's place is itself deduced", folS: "follows: {state}",
+  clsGive: "{w} is muʿrab — {k}: in {state} its sign is {sign}; its iʿrāb is {lafz}.", clsVerb: "a sound muḍāriʿ",
+  clsLafz: { haraka: "lafẓī, the vowel heard on its last letter", sub: "lafẓī, a vowel standing in for another", letter: "lafẓī, a letter standing in for the vowel", drop: "lafẓī, by a dropping" },
+  clsDed: "the line does not write the sign; the word's class gives it",
+});
+Object.assign(L.tr, {
+  pronHead: "Bu kelimedeki zamir", pronHeadH: "Gizli (müstetir) zamir", pronS: "zamir:", pronAttS: "muttasıl zamir", pronHidS: "müstetir zamir",
+  pronMahS: "mahallen {state}", pronWajS: "vücûben gizli", pronKind: { raf: "ref", nasb: "nasb", jarr: "cer" }, pronDoer: "fâili",
+  pronAtt: "{w} içindeki {p}, muttasıl (bitişik) zamirdir: tek başına durmaz, önündeki kelimeyle bitişik yazılır.",
+  pronAttK: "{w} içindeki {p}, muttasıl (bitişik) zamirdir — satırın verdiği mahalle göre {kind} zamirlerinden.",
+  pronHid: "{w} kelimesinde gizli bir zamir vardır (müstetir) — {role}: satırın takdiriyle {t}; yazılmaz, fiil onu taşır.",
+  pronHidN: "{w} kelimesinde gizli bir zamir vardır (müstetir) — {role}, satırın dediği gibi; yazılmaz, fiil onu taşır.",
+  pronWajF: "Gizli kalması vâciptir (vücûben): sîganın kendisi ona delâlet eder ({t}) — yerine açık bir isim gelemez.",
+  pronWajL: "Satırın dediği gibi vücûben (zorunlu olarak) gizlidir.",
+  pronJawL: "Satırın dediği gibi cevâzen gizlidir: yerine açık bir isim gelebilirdi.",
+  folOwn: "{role}, {h} kelimesine tâbidir; o {how} — kendi satırı da aynısını söyler: {state}.",
+  folDed: "{role}, {h} kelimesine tâbidir; o {how} — öyleyse bu da {state}.",
+  folHow: { mahall: "mahallen {state}", taq: "takdiren {state}", lafz: "{state}" },
+  folDedX: "metbûun mahalli de çıkarımdır", folS: "tâbi: {state}",
+  clsGive: "{w} mu'rabdır — {k}: {state} hâlinde alâmeti {sign}; i'rabı {lafz}.", clsVerb: "sahih muzâri",
+  clsLafz: { haraka: "lafzî: hareke son harfte okunur", sub: "lafzî: bir hareke başkasının yerine", letter: "lafzî: harekenin yerine bir harf", drop: "lafzî: hazifle" },
+  clsDed: "satır alâmeti yazmıyor; kelimenin çeşidi veriyor",
 });
 // (v348-F) the commentaries' reasons
 Object.assign(L.en, {
@@ -20908,7 +20949,7 @@ const Illa346 = {
     const orig = String(lineAr || "").normalize("NFC"); let s = this.S(orig); if (!s) return null; const full = s;
     s = s.split(/ — |؛/)[0].trim();
     const cl = s.split(/،/).map(x => x.trim()).filter(Boolean); if (!cl.length) return null;
-    const own = []; let i = 0, procl = null, host = null;
+    const own = [], aside = []; let i = 0, procl = null, host = null;
     if (cl.length > 1 && /^(«?[وفبلكت]»?|الواو|الفاء|الباء|اللام|الكاف|التاء|السين|الهمزة|همزة)\s/.test(cl[0]) && !/(مرفوع|منصوب|مجرور|مجزوم|في محل)/.test(cl[0])) {
       /* the host's clause names the host first («وَمَنْصُوبٌ مَعْطُوفٌ مَرْفُوعٌ», «وَأَلْفَاظِ مَجْرُورٌ»): that word is the word, not a statement about it */
       const wb = this.S(w0).replace(/[^ء-ي]/g, "").replace(/^[وفبلك]/, ""), h1 = cl[1].replace(/^و\s?/, ""), f1 = (h1.match(/^«?([ء-ي]+)»?\s+(?=\S)/) || [])[1] || "";
@@ -20918,10 +20959,10 @@ const Illa346 = {
     /* a jarr phrase «جَارٌّ وَمَجْرُورٌ فِي مَحَلِّ رَفْعٍ خَبَرٌ، وَ«الْمُدَّعِي» اسْمٌ مَنْقُوصٌ مَجْرُورٌ …»: the PHRASE's place is not the word's case — the word is the majrūr */
     const jm = /^جار ومجرور/.test(own[0]);
     if (jm) own[0] = own[0].replace(/في محل (رفع|نصب|جر|جزم)\s*\S*/, "").trim();
-    for (; i < cl.length; i++) { const c = cl[i]; if (jm && /^و\s?«/.test(c)) { own.push(c.replace(/^و\s?«[^»]*»\s*/, "")); continue; } if (/^و/.test(c) && !/^و(هو|هي|علامة|عليه)(\s|$)/.test(c)) continue; own.push(c); }
+    for (; i < cl.length; i++) { const c = cl[i]; if (jm && /^و\s?«/.test(c)) { own.push(c.replace(/^و\s?«[^»]*»\s*/, "")); continue; } if (/^و/.test(c) && !/^و(هو|هي|علامة|عليه)(\s|$)/.test(c)) { aside.push(c); continue; } own.push(c); }   // (v361-N) the set-aside clauses are kept: an attached / hidden pronoun's own short chain
     const o = own.join("، ").replace(/اسم[ا]?\s*(ال)?(فاعل|مفعول|تفضيل)\S*/g, "▨");
     if (/محكي/.test(o)) return { cited: true, own: o };
-    const out = { orig, own: o, procl, host, full };
+    const out = { orig, own: o, procl, host, full, aside };
     // the verb's kind first (its line may name a doer of its own in a set-aside clause), then the roles, then the particles
     const head = own[0];
     if (/^(فعل|كان فعل|.{0,14}فعل (ماض|مضارع|أمر))/.test(head) || /^فعل الشرط|^جواب الشرط/.test(head)) {
@@ -20959,7 +21000,9 @@ const Illa346 = {
       : /ياء المتكلم|اشتغال المحل/.test(o) ? "mudafYa" : /على الألف|للتعذر/.test(o) ? (verb ? "mudariMutall" : "maqsur") : /على الياء|على الواو|للثقل/.test(o) ? (verb ? "mudariMutall" : "manqus")
       : /حذف حرف العلة|حذف الياء|حذف الواو|حذف الألف/.test(o) ? "mudariMutall" : /حذف النون|ثبوت النون/.test(o) ? "khamsaVerbs" : null;
     if (said && ok(said)) return { cls: said, said: true };
-    let c = null; try { c = SignEngine.classify(w, Object.assign({ kase: r.kase, manqusHint: r.why }, opt || {})); } catch (e) { c = null; }
+    // (v361-N) the line itself says the final alif is not the word's own («وَالْأَلِفُ لِلْإِطْلَاقِ»، «وَالْأَلِفُ مُنْقَلِبَةٌ عَنْ يَاءِ الْمُتَكَلِّمِ»): the class is read without it
+    const wc = /والألف (للإطلاق|منقلبة)/.test(r.full || "") && /َا$/.test(SignEngine.nfc(w)) ? SignEngine.nfc(w).replace(/ا$/, "") : w;
+    let c = null; try { c = SignEngine.classify(wc, Object.assign({ kase: r.kase, manqusHint: r.why }, opt || {})); } catch (e) { c = null; }
     return c && c.cls !== "mabni" && ok(c.cls) ? { cls: c.cls, why: c.why } : null;
   },
   // a typed word: its part of speech from the engine's own line («اسْمٌ …» / «فِعْلٌ …»), its lemma and properness from the corpus' noun index
@@ -21009,6 +21052,11 @@ const Illa346 = {
       const g = this.governor(r, tok, ctx, kase);
       if (g) add("governor", both((u, l) => u[g.t].replace("{v}", u.illaGovV[kase]).replace("{g}", g.w ? this.B(g.w) : "").replace("{kind}", g.kind ? u[g.kind] || "" : "")), g.w ? { ar: g.w, en: "", tr: "" } : null, g.w || "");
     }
+    // (v361-N) the follower's place: «it follows X, which is …» — X's state from X's own chain; a follower whose line is silent takes it, marked deduced
+    if (R && R.tabi && !brief && !ctx.noFollow) { let F = null; try { F = Naw357.follow(r, tok, ctx); } catch (e) { F = null; }
+      if (F) { add("follow", both((u, l) => (F.own ? u.folOwn : u.folDed).replace("{role}", who[l].t).replace("{h}", this.B(F.w)).replace("{how}", u.folHow[F.how].replace("{state}", u.illaState[F.k])).replace(/\{state\}/g, u.illaState[F.k])
+          + (F.own ? "" : ` <span class="illa-ded">(${u.nawDed})</span>`) + (F.ded ? ` <span class="illa-ded">(${u.folDedX})</span>` : "")), { ar: F.w, en: U.en.folS.replace("{state}", U.en.illaGovV[F.k]), tr: U.tr.folS.replace("{state}", U.tr.illaGovV[F.k]) }, F.w, Naw357.cite("aqTabi")); const s = add.last();
+        s.cite2 = Naw357.cite("alfTabi"); s.st = F.k; s.fh = F.how; if (!F.own) s.df = true; if (F.ded) s.fded = true; } }
     // 4 · what kind of word, and therefore which sign — or built, with no sign to show
     let shown = null;
     if (r.sign && kase) {
@@ -21030,6 +21078,12 @@ const Illa346 = {
       shown = r.sign;
     } else if (!r.sign && /مجرور لفظا/.test(r.own) && /(مرفوع|منصوب) محلا/.test(r.own) && !r.review357) {   // (v357-N) lafẓan / maḥallan with no sign named
       const m = Naw357.murab(r, null, w, kase, !!r.verb, U, B, wN); if (m) { add("irab", m.txt, m.term, m.ar, m.cite); const s = add.last(); s.cls = m.cls; s.st = m.lm; s.lm = true; }
+    } else if (!r.sign && kase && !brief && !r.mahall && !r.built && !r.review357 && !(nw && nw.grp !== "mud") && ((R && !R.tabi) || r.verb === "mudari") && !/مجرور لفظا/.test(r.own)
+      && (() => { let d = null; try { d = Naw357.fromCls(r, w, tok, ctx, kase); } catch (e) { d = null; } if (!d) return false;   // (v361-N) no sign written: the word's class gives it — marked
+        const kn = this.kindName(d.cls, w, tok, ctx, r), vb = r.verb === "mudari";
+        add("irab", both((u, l) => u.clsGive.replace("{w}", this.B(w)).replace("{k}", vb ? u.clsVerb : kn[l]).replace("{state}", u.illaState[kase]).replace("{sign}", this.signName(d.sign, l)).replace("{lafz}", u.clsLafz[d.sub]) + ` <span class="illa-ded">(${u.clsDed})</span>`),
+          Naw357.term(Naw357.T.lafzi, "lafẓī", "lafzî", "kinds"), Naw357.T.lafzi, Naw357.cite("shIrab"));
+        const s = add.last(); s.cite2 = Naw357.cite("izKinds"); s.cls = "lafzi:" + d.sub + (vb ? ":v" : "") + ":cls"; s.dc = true; s.sg = d.sign; s.dcls = d.cls; return true; })()) {
     } else if (nw && nw.grp === "mabniN") { Naw357.concl(nw, pl, r, wN, add, both, U, B);   // (v357-N) the built noun's place, as written or deduced
     } else if (nw && nw.grp === "part") {   // (v357-N) the particle's building and its no-place are the «bina» / «irab» steps
     } else if (nw && nw.grp === "verb" && nw.cls !== "mudariB") {   // (v357-N) the māḍī / amr: built always (the book's rule), its place only where the line gives one
@@ -21049,7 +21103,9 @@ const Illa346 = {
     else if (shown && r.verb === "mudari") add("tells", both((u, l) => u.illaTellsV.replace("{sign}", this.signName(shown, l)).replace("{w}", this.B(w)).replace("{state}", u.illaState[kase])), null, "");
     // 6 · (v357-N) a clause the line parses: its own short row
     if (!brief || !steps.length) try { Naw357.jumla(r, add, both, U); } catch (e) {}
-    return { steps, r, auto: !!ctx.auto, nw };
+    // 7 · (v361-N) the pronouns inside the word (an attached one, the hidden one): their own short ladders, outside `steps` (the host's chain is unchanged)
+    // (read by Naw357.pronsOf only where a ladder, a row or the measure asks for them: the chain's own cost is unchanged)
+    return { steps, r, auto: !!ctx.auto, nw, w, tpos: tok && tok.pos, noPron: !!ctx.noPron };
   },
   governor(r, tok, ctx, k){
     const kase = k || r.kase;
@@ -21059,7 +21115,7 @@ const Illa346 = {
     if (r.verb === "mudari" && kase === "raf") return { t: "illaGovTajarrud" };
     let x = null, words = null;
     if (ctx.gov) { x = ctx.gov.x; words = ctx.gov.words; }
-    else if (ctx.sen && Number.isInteger(ctx.ti)) { try { x = AmilEngine.word(ctx.sen, ctx.ti); } catch (e) { x = null; } words = ctx.sen.tokens.map(t => t.s.full); }
+    else if (ctx.sen && Number.isInteger(ctx.ti)) { try { x = AmilEngine.word(ctx.sen, ctx.ti); } catch (e) { x = null; } ctx._amx = x; words = ctx.sen.tokens.map(t => t.s.full); }   // (v361-N) kept for the follower's step
     if (!x) return null;
     const gw = x.amil != null && words && words[x.amil] != null ? words[x.amil] : null;
     if (x.kind === "amil" && gw) return { t: "illaGovAmil", w: gw, kind: GovView.KIND.amil };
@@ -21103,14 +21159,14 @@ const Illa346 = {
     // (v357-N) a term chip with a note opens it (`data-illa-ref`, one delegated listener); a deduced place carries `data-ded` and its visible marker
     const tm = s => !(s.term && s.term.ar) ? "" : s.term.ref ? ` <button type="button" class="chip illa-term illa-ref${s.term.ded ? " illa-ded-t" : ""}" lang="ar" dir="rtl" data-illa-ref="${escapeAttr(s.term.ref)}">${escapeAttr(s.term.ar)}</button>`
       : ` <span class="chip illa-term${s.term.ded ? " illa-ded-t" : ""}" lang="ar" dir="rtl">${escapeAttr(s.term.ar)}</span>`;
-    return ch.steps.map((s, k) => `<li class="illa-s" data-k="${s.kind}"${s.ded ? ' data-ded="1"' : ""}><span class="illa-n" aria-hidden="true">${k + 1}</span><span class="illa-t">${s[lang]}${tm(s)}${ci(s.cite)}${ci(s.cite2)}${s.ilal ? Ilal348.stepHtml(s.ilal, lang) : ""}</span></li>`).join("");
+    return ch.steps.map((s, k) => `<li class="illa-s" data-k="${s.kind}"${s.ded || s.dc || s.df ? ' data-ded="1"' : ""}><span class="illa-n" aria-hidden="true">${k + 1}</span><span class="illa-t">${s[lang]}${tm(s)}${ci(s.cite)}${ci(s.cite2)}${s.ilal ? Ilal348.stepHtml(s.ilal, lang) : ""}</span></li>`).join("");
   },
   ladderHtml(tok, ctx, mark){
-    let ch = null; try { ch = this.chain(tok, ctx); } catch (e) { ch = null; } if (!ch || !ch.steps.length) return "";
+    let ch = null; try { ch = this.chain(tok, ctx); } catch (e) { ch = null; } if (!ch || (!ch.steps.length && !Naw357.pronsOf(ch))) return "";
     const lang = this.L(), u = ui(), op = this.force || this.open(); this._forced = this.force; this.force = false;
     const vm = (/data-vm="([^"]+)"/.exec(mark || "") || [])[1] || (ch.auto ? "auto" : "");
-    return `<details class="illa" id="illa346"${op ? " open" : ""} data-n="${ch.steps.length}"${vm ? ` data-vm="${vm}"` : ""}><summary><span class="illa-h">${u.illaHead}</span><span class="illa-one">${escapeAttr(this.short(ch, lang))}</span>${ch.auto ? `<span class="vmark auto illa-auto">${u.illaAuto}</span>` : ""}</summary>
-      <ol class="illa-steps">${this.stepsHtml(ch, lang)}</ol></details>`;
+    return `<details class="illa" id="illa346"${op ? " open" : ""} data-n="${ch.steps.length}"${vm ? ` data-vm="${vm}"` : ""}><summary><span class="illa-h">${u.illaHead}</span><span class="illa-one">${escapeAttr(this.short(ch, lang) || (Naw357.pronsOf(ch) ? Naw357.pronShort(Naw357.pronsOf(ch)[0], lang) : ""))}</span>${ch.auto ? `<span class="vmark auto illa-auto">${u.illaAuto}</span>` : ""}</summary>
+      <ol class="illa-steps">${this.stepsHtml(ch, lang)}</ol>${Naw357.pronHtml(ch, lang)}</details>`;
   },
   /* the ladder starts as its one-line summary; the learner's touch opens it (see open()) */
   bind(root){ const d = root && root.querySelector("#illa346"); if (!d) return;
@@ -21126,15 +21182,23 @@ const Illa346 = {
     return bits.join(" → "); },
   quizHtml(it, ok){
     const sen = it && it.sen, ti = it && it.ti, tok = sen && sen.tokens && sen.tokens[ti]; if (!tok || !tok.irab) return "";
-    let ch = null; try { ch = this.chain(tok, { sen, ti }); } catch (e) { ch = null; } if (!ch || !ch.steps.length) return "";
+    let ch = null; try { ch = this.chain(tok, { sen, ti }); } catch (e) { ch = null; }
     const lang = this.L(), u = ui();
+    {   // (v361-N) the asked role is the PRONOUN's in this word (the role game's key names it, the host's own role does not): its ladder is the feedback
+      const pk = it && it.key && { mubtada: "mubtada", khabar: "khabar", fail: "fail", naib: "naibFail", maful: "mafulBih", mudafilayh: "mudafIlayh" }[it.key];
+      const PP = pk && ch && !(ch.r && ch.r.role && ch.r.role.id === pk) ? Naw357.pronsOf(ch) : null, pp = PP ? PP.find(p => p.role === pk) : null;
+      if (pp) { const steps = pp.steps || (pp.steps = Naw357.pronSteps(pp, ch.r, ch.w || ""));
+        return `<details class="illa illa-q" data-n="${steps.length}" data-ok="${ok ? 1 : 0}" data-pron="${pp.kind}"><summary><span class="illa-h">${pp.kind === "hid" ? u.pronHeadH : u.pronHead}</span> <span class="illa-one">${u.illaBecause} ${escapeAttr(Naw357.pronShort(pp, lang))}</span> <span class="illa-more">${u.illaShowAll}</span></summary>
+      <ol class="illa-steps">${this.stepsHtml({ steps }, lang)}</ol></details>`; } }
+    if (!ch || !ch.steps.length) return "";
     return `<details class="illa illa-q" data-n="${ch.steps.length}" data-ok="${ok ? 1 : 0}"><summary><span class="illa-h">${u.illaHead}</span> <span class="illa-one">${u.illaBecause} ${escapeAttr(this.short(ch, lang))}</span> <span class="illa-more">${u.illaShowAll}</span></summary>
       <ol class="illa-steps">${this.stepsHtml(ch, lang)}</ol></details>`;
   },
   senHtml(sen){
     const lang = this.L(), u = ui(); const rows = [];
     sen.tokens.forEach((t, ti) => { if (!t.irab) return; let ch = null; try { ch = this.chain(t, { sen, ti, brief: true }); } catch (e) { ch = null; }
-      if (!ch || !ch.steps.length) return; rows.push(`<li><button class="illa-w" data-illa-ti="${ti}"><b lang="ar" dir="rtl">${t.s.full}</b> <span>— ${escapeAttr(this.short(ch, lang))}</span></button></li>`); });
+      const P = ch && Naw357.pronsOf(ch); if (!ch || (!ch.steps.length && !P)) return; const pr = P ? (ch.steps.length ? " · " : "") + u.pronS + " " + Naw357.pronShort(P[0], lang) : "";   // (v361-N) one extra short phrase: the word's pronoun
+      rows.push(`<li><button class="illa-w" data-illa-ti="${ti}"><b lang="ar" dir="rtl">${t.s.full}</b> <span>— ${escapeAttr(this.short(ch, lang) + pr)}</span></button></li>`); });
     if (!rows.length) return "";
     return `<details class="illa illa-sen" open><summary><span class="illa-h">${u.illaSenHead}</span></summary><p class="ref-intro">${u.illaSenHint}</p><ol class="illa-list">${rows.join("")}</ol></details>`;
   },
@@ -21179,11 +21243,28 @@ const Illa346 = {
     const out = { n: 0, hist: { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }, contra: 0, caseN: 0, signN: 0, famConflict: 0, bad: [], byKind: {} };
     // (v357-N) the kind of iʿrāb: tokens by class, deduced places, the tokens with none and why, the hoca's review list, lafẓan / maḥallan resolved
     const nw = out.naw = { histFull: {}, byCls: {}, jumla: {}, ded: 0, dedJumla: 0, none: {}, review: [], reviewN: 0, lmFamily: 0, lmStep: 0, contra: 0 };
+    // (v361-N) the second pass: the pronoun ladders, the follower's place, the sign the class gives — their yields, deductions, contradictions and the class rule's proof
+    const v61 = out.v361 = { pronTok: 0, pron: {}, pronSt: {}, pronDed: 0, wajibForm: 0, wjLine: {}, pronContra: 0, pronBad: [], review: [], reviewN: 0, follow: 0, followHow: {}, followDed: 0, followOwn: 0, followContra: 0,
+      cls: 0, clsBy: {}, proofN: 0, proofBy: {}, proofContra: {}, proofLex: {}, proofBad: [], lexN: 0, lexContra: 0, lexBad: [] };
+    const W61 = new Map(), D61 = [], core61 = x => SignEngine.bare(SignEngine.stripProclitic(SignEngine.nfc(x || ""))).replace(/^[وف](?=..)/, "");   // the written word, its conjunction / jarr letter off
     for (const st of STORIES) for (const ch of st.chapters || []) for (const sen of ch.sentences || []) sen.tokens.forEach((t, ti) => {
       if (!t.irab || !t.irab.ar) return; out.n++;
       let c = null; try { c = this.chain(t, { sen, ti, st }); } catch (e) { c = null; }
       const n = c ? Math.min(5, c.steps.length) : 0; out.hist[n]++;
       const nf = c ? c.steps.length : 0; nw.histFull[nf] = (nw.histFull[nf] || 0) + 1;
+      if (c && c.r) { const r6 = c.r;   // (v361-N)
+        const cP = Naw357.pronsOf(c); if (cP) { v61.pronTok++; for (const p of cP) { v61.pron[p.kind] = (v61.pron[p.kind] || 0) + 1; if (p.st) v61.pronSt[p.kind + ":" + p.st] = (v61.pronSt[p.kind + ":" + p.st] || 0) + 1; if (p.ded) v61.pronDed++;
+          if (p.formW) v61.wajibForm++; if (p.wj) v61.wjLine[p.wj] = (v61.wjLine[p.wj] || 0) + 1;
+          const mm = p.c.match(/في محل (رفع|نصب|جر|جزم)|(?:^|\s)(مرفوع|منصوب|مجرور)(?=\s|[،.]|$)/), ms = mm ? (mm[1] ? Naw357.K[mm[1]] : SignEngine.CASE_WORD[mm[2]]) : null;
+          if ((p.st && !p.ded && ms !== p.st) || (p.ded && /مرفوع|منصوب|مجرور|في محل/.test(p.c)) || (p.kind === "hid" && p.st && p.st !== "raf")) { v61.pronContra++; if (v61.pronBad.length < 8) v61.pronBad.push({ st: st.id, sen: sen.id, ti, w: t.s.full, p: [p.kind, p.st, p.ded], c: p.c }); } } }
+        if (r6.review361) for (const y of r6.review361) { v61.reviewN++; v61.review.push({ st: st.id, sen: sen.id, ti, w: t.s.full, why: y.why, rule: y.rule, said: y.line, ar: t.irab.ar }); }
+        const fs = c.steps.find(s => s.kind === "follow"); if (fs) { v61.follow++; v61.followHow[fs.fh] = (v61.followHow[fs.fh] || 0) + 1; if (fs.df) v61.followDed++; else v61.followOwn++; }
+        if (r6.followContra) v61.followContra++;
+        const ds = c.steps.find(s => s.dc); if (ds) { v61.cls++; v61.clsBy[ds.dcls] = (v61.clsBy[ds.dcls] || 0) + 1; D61.push([t.lex + "|" + r6.kase + "|" + core61(t.s.full), ds.sg, st.id + ":" + sen.id + ":" + ti + " " + t.s.full]); }
+        if (r6.sign && r6.kase && !r6.mahall && !r6.built && ((r6.role && !r6.role.tabi) || r6.verb === "mudari")) {   // the class rule's proof: a line that DOES write its sign, read as if it did not
+          const k6 = t.lex + "|" + r6.kase + "|" + core61(t.s.full); let ws = W61.get(k6); if (!ws) W61.set(k6, ws = new Set()); ws.add(r6.sign);
+          let d = null; try { d = Naw357.fromCls(r6, t.s.full, t, { st, sen, ti }, r6.kase, true); } catch (e) { d = null; }
+          if (d) { v61.proofN++; v61.proofBy[d.cls] = (v61.proofBy[d.cls] || 0) + 1; if (d.sign !== r6.sign) { v61.proofContra[d.cls] = (v61.proofContra[d.cls] || 0) + 1; v61.proofLex[t.lex] = (v61.proofLex[t.lex] || 0) + 1; if (v61.proofBad.length < 15) v61.proofBad.push({ st: st.id, sen: sen.id, ti, w: t.s.full, cls: d.cls, got: d.sign, line: r6.sign, ar: t.irab.ar.slice(0, 90) }); } } } }
       if (c && c.r && c.r.review357) { nw.reviewN++; nw.review.push({ st: st.id, sen: sen.id, ti, w: t.s.full, why: c.r.review357.why, rule: c.r.review357.rule, said: c.r.review357.line || "", ar: t.irab.ar }); }
       const kd = c ? c.steps.find(s => (s.kind === "irab" || s.kind === "bina") && s.cls) : null;
       if (kd) nw.byCls[kd.cls] = (nw.byCls[kd.cls] || 0) + 1;
@@ -21212,6 +21293,8 @@ const Illa346 = {
       const bad = (famK && lineCase && famK !== lineCase) || (sg && a && a.sign !== c.r.sign) || (sg && !a) || nbad;
       if (bad) { out.contra++; if (out.bad.length < 20) out.bad.push({ st: st.id, sen: sen.id, ti, w: t.s.full, chain: [c.r.kase, c.r.sign], line: a && [a.kase, a.sign], ar: t.irab.ar.slice(0, 140) }); }
     });
+    // (v361-N) the class-given sign against every line that writes its sign for the same lemma, case and word
+    for (const [k6, sg, where] of D61) { const ws = W61.get(k6); if (!ws) continue; v61.lexN++; if ([...ws].some(x => x !== sg)) { v61.lexContra++; if (v61.lexBad.length < 15) v61.lexBad.push({ where, k: k6, got: sg, lines: [...ws] }); } }
     return out;
   },
 };
@@ -21226,7 +21309,7 @@ const Illa346 = {
 // step) and `r.review357` records it for the hoca (research/irab-kind-review-2026-11-27.md). Every Arabic rule line is a book's, verbatim as
 // printed (research/sources; «v357 — …» finds each on its page); the en/tr step sentences are ours (ui(): naw*), awaiting the hoca like v346's.
 const Naw357 = {
-  BK: { izhar: "إظهار الأسرار", shudhur: "شذور الذهب", qawaid: "قواعد الإعراب", shaykhzade: "شرح قواعد الإعراب لشيخ زاده", aqil: "شرح ابن عقيل على الألفية" },
+  BK: { marah: "مراح الأرواح", izhar: "إظهار الأسرار", shudhur: "شذور الذهب", qawaid: "قواعد الإعراب", shaykhzade: "شرح قواعد الإعراب لشيخ زاده", aqil: "شرح ابن عقيل على الألفية" },
   // key: [book, page as the source file marks it (izhar: the lithograph's [N]; shudhur «# page N»; qawaid «[p. N]»; shaykhzade / aqil: the Shamela page), the line, printed page shown]
   Q: {
     izKinds: ["izhar", "152", "والتقسيم الرابع بحسب الصفة فهو ثلثة لفظي يظهر في اللفظ، وتقديري ومحلي"],
@@ -21285,7 +21368,7 @@ const Naw357 = {
     alfHarf: ["aqil", "39", "وكل حرف مستحق للبنا ... والأصل في المبني أن يسكنا", "1/40"],
   },
   _c: {},
-  cite(k){ if (!k) return null; if (this._c[k]) return this._c[k]; const q = this.Q[k]; if (!q) return null;
+  cite(k){ if (!k) return null; if (this._c[k]) return this._c[k]; const q = this.Q[k] || (this.PQ && this.PQ[k]); if (!q) return null;   // (v361-N) PQ: the second pass's lines
     return (this._c[k] = { ar: q[2], book: this.BK[q[0]] + "، ص " + (q[3] || q[1]), k }); },
   _il: null,
   ilal(id){ if (!id) return null; if (!this._il) { this._il = {}; try { for (const r of Ilal348.all()) this._il[r.id] = r; } catch (e) {} } return this._il[id] || null; },
@@ -21461,6 +21544,161 @@ const Naw357 = {
         this.term(f, "clause: " + (m === "none" ? "no place" : "maḥallan " + U.en.illaGovV[m]), "cümle: " + (m === "none" ? "mahalsiz" : "mahallen " + U.tr.illaState[m]), "jumal"), f, this.cite(qk));
       const s = steps357(add); s.cls = "jumla:" + x.seat; s.st = m; s.jm = x.m || null; if (ded) s.ded = true; const il = this.ilal("ilal-shaykhzade-28-4"); if (il && m !== "none") s.ilal = il;
       return; }
+  },
+  // ─── (v361-N) the reasons' second pass. (1) The pronoun INSIDE the word — the تُ of نَصَرْتُ, the هُ of نَصَرَهُ, the هِ of بِهِ, the ي of كِتَابِي, and
+  // the HIDDEN one (نَصَرَ — هُوَ): the line parses it in its own clause («وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ»، «وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ
+  // تَقْدِيرُهُ هُوَ»), which v346 sets aside (`r.aside`); each such clause gets its own SHORT ladder under the host's: which pronoun (attached / hidden; the
+  // rafʿ / naṣb / jarr kind by the place the line gives), pronouns are mabnī, only maḥallī iʿrāb, its role and place AS THE LINE STATES THEM (a place the
+  // line does not write: v357's rule — the role's family requires one state — marked deduced), the hidden one's wujūb only where the line says it or
+  // the form decides it (Marāḥ: «وَالِاسْتِتَارُ وَاجِبٌ فِي مِثْلِ افْعَلْ وَتَفْعَلُ وَأَفْعَلُ وَنَفْعَلُ»), its jawāz only where the line says it. A clause
+  // whose place disagrees with its role, its host (Marāḥ: rafʿ / naṣb on a verb, jarr on a noun or a jarr letter, naṣb on inna) or the form yields: no
+  // ladder, the line in `r.review361` (the review list). (2) The follower's place: «it follows X, which is …» from X's own chain. (3) A case stated with
+  // no sign: the sign from the word's class where SignEngine is certain of it from the token's morphology (`fromCls`). Book lines: `PQ`, verbatim.
+  PQ: {
+    mrRafM: ["marah", "48", "اثْنَا عَشَرَ لِلْمَرْفُوعِ الْمُتَّصِلِ نَحْوُ «ضَرَبَ» إِلَى «ضَرَبْنَا»."],
+    mrNasbM: ["marah", "51", "وَاثْنَا عَشَرَ لِلْمَنْصُوبِ الْمُتَّصِلِ نَحْوُ «ضَرَبَهُ» إِلَى «ضَرَبَنَا»."],
+    mrJarrM: ["marah", "52", "وَاثْنَا عَشَرَ لِلْمَجْرُورِ الْمُتَّصِلِ نَحْوُ «ضَارِبُهُ» إِلَى «ضَارِبُنَا»."],
+    mrIstitar: ["marah", "52", "وَالْمَرْفُوعُ الْمُتَّصِلُ يَسْتَتِرُ فِي خَمْسَةِ مَوَاضِعَ"],
+    mrRafOnly: ["marah", "53", "وَاسْتَتَرَ فِي الْمَرْفُوعِ دُونَ الْمَنْصُوبِ وَالْمَجْرُورِ لِأَنَّهُ بِمَنْزِلَةِ جُزْءِ الْفِعْلِ."],
+    mrWajib: ["marah", "55", "وَالِاسْتِتَارُ وَاجِبٌ فِي مِثْلِ «افْعَلْ» وَ «تَفْعَلُ» وَ «أَفْعَلُ» وَ «نَفْعَلُ» لِدَلَالَةِ الصِّيغَةِ عَلَيْهِ."],
+    alfTabi: ["aqil", "865", "يتبع في الإعراب الأسماء الأول ... نعت وتوكيد وعطف وبدل", "3/190"],
+    aqTabi: ["aqil", "865", "التابع: هو الاسم المشارك لما قبله في إعرابه مطلقا", "3/190"],
+  },
+  // the level-one pronoun notes (v359-E) a pronoun chip opens: the attached rafʿ (with the hidden one), naṣb, jarr; the map
+  PN: { raf: "emsile-12-damir-raf-muttasil", nasb: "emsile-14-damir-nasb-muttasil", jarr: "emsile-16-damir-jarr-muttasil", map: "emsile-17-damir-map" },
+  PH: /^و\s?«?(?:ال)?(هاء|ها|واو|ياء|كاف|تاء|نون|ألف|نا|هم|هما|كم|كما|هن|كن|ني|ي|ه|ك|ضمير|تم|تما|تن)»?(?:\s|$)/,
+  PHID: /^و(?:ال)?(فاعل|فاعله|نائب الفاعل|نائب فاعله|اسمه|اسمها)\s+(?:ضمير\s+)?مستتر/,
+  PLET: { "هاء": "ه", "ياء": "ي", "كاف": "ك", "تاء": "ت", "نون": "ن", "ألف": "ا", "واو": "و" },
+  // one set-aside clause → a pronoun of this word, or null (not a pronoun of this word / yields)
+  pron1(r, c, wb, pos){
+    c = c.split(/\.\s/)[0];   // a clause ends at its full stop («وَالْكَافُ مُضَافٌ إِلَيْهِ. وَهٰذَا مَفْعُولٌ لَهُ …»: the second sentence is about the host)
+    let m = c.match(this.PHID), kind, role = null, t = null, wj = null, head = "";
+    if (m) { kind = "hid"; role = /نائب/.test(m[1]) ? "naibFail" : /^اسم/.test(m[1]) ? (r.part && r.part.k === "inna" ? "ismInna" : "ismKana") : "fail";
+      t = (c.match(/(?:تقديره|مستتر):?\s*(هو|هي|أنت|أنا|نحن)(?=\s|[،.]|$)/) || [])[1] || null; wj = /وجوبا/.test(c) ? "W" : /جوازا/.test(c) ? "J" : null; head = t || "مستتر"; }
+    else if ((m = c.match(this.PH))) { kind = "att"; const L = m[1];
+      if (L === "ضمير" && !/^و\s?«?ال/.test(c)) return null;
+      if (!/ضمير|في محل|مضاف إليه|مفعول|فاعل|اسم|خبر|مرفوع|منصوب|مجرور/.test(c)) return null;
+      const need = L === "ضمير" ? null : (this.PLET[L] || L);
+      if (need ? !wb.slice(-6).includes(need) : !/(ه|ها|هم|هما|هن|ك|كم|كما|كن|ي|نا|ت|تم|تما|تن|وا|ا|ن)$/.test(wb)) return null;
+      head = (c.replace(/^و\s?/, "").match(/^«?([^\s»]+)»?(?:\s(المتكلم|المخاطب|المخاطبة|الجماعة|الاثنين|النسوة|الفاعل))?/) || ["", ""]).slice(1).filter(Boolean).join(" ");
+      const rest = c.replace(this.PH, " ");
+      for (const R of Illa346.roles()) if (R.re.test(rest)) { role = R.tabi ? null : R.id; break; }
+      if (/^(ismKana|khabarKana)$/.test(role || "") && r.part) role = role === "ismKana" ? "ismInna" : "khabarInna"; }
+    else return null;
+    const R = role ? Illa346.roles().find(x => x.id === role) : null, f = R && Illa346.famOf(R), fk = f && (typeof f === "string" ? f : f.k), fkase = fk && Illa346.FAM[fk] ? Illa346.FAM[fk].kase : "";
+    const mm = c.match(/في محل (رفع|نصب|جر|جزم)/), cw = !mm && c.match(/(?:^|\s)(مرفوع|منصوب|مجرور)(?=\s|[،.]|$)/); let st = mm ? this.K[mm[1]] : cw ? SignEngine.CASE_WORD[cw[1]] : null, ded = false; const noPl = /لا محل/.test(c);
+    const yieldTo = (why, rule, line) => { r.review361 = r.review361 || []; r.review361.push({ why, rule, line: line || "", c }); return null; };
+    if (st && fkase && st !== fkase) return yieldTo("pron:place", fkase, st);   // the place against the role's family
+    if (!st && !noPl && fkase && !/(^|\s)أو(\s|$)|\(/.test(c)) { st = fkase; ded = true; }   // v357's rule: one state, the clause silent
+    if (kind === "hid" && st && st !== "raf") return yieldTo("pron:hidden", "raf", st);   // only a rafʿ pronoun hides (Marāḥ)
+    if (kind === "att" && st) {   // where it attaches (Marāḥ: «ضَرَبَ … ضَرَبَهُ» on a verb, «ضَارِبُهُ» on a noun); a jarr letter takes jarr, inna naṣb
+      const hv = !!r.verb || pos === "verb", hj = !!(r.part && r.part.k === "jarr"), hi = !!(r.part && (r.part.k === "inna" || /أخوات إن|مشبه بالفعل/.test(r.own))), hn = !hv && !r.part && /^(noun|propn|adj)$/.test(pos || "");
+      if ((hv && st === "jarr") || (hj && st !== "jarr") || (hi && st !== "nasb") || (hn && st !== "jarr")) return yieldTo("pron:host", hv ? "raf|nasb" : hi ? "nasb" : "jarr", st); }
+    const formW = kind === "hid" && !!t && ((r.verb === "mudari" && /^(أنا|نحن|أنت)$/.test(t)) || (r.verb === "amr" && t === "أنت"));
+    if (wj === "J" && formW) return yieldTo("pron:jawaz", "wajib", "jawaz");   // the line says «جوازا» where the form makes it wājib
+    const on = (c.match(/مبني على ([^،.]{1,20}?)(?=\s(?:في|لا)|[،.]|$)/) || [])[1] || "";
+    const roleW = kind === "hid" ? (c.match(/^و((?:ال)?(?:فاعل|فاعله|نائب الفاعل|نائب فاعله|اسمه|اسمها))/) || [])[1] || "" : "";
+    return { kind, c, head, role, R, st, ded, noPl, t, wj, formW, on, roleW };
+  },
+  prons(r, w, pos, hostPron){
+    // the jarr letter's line whose OWN clause is the pronoun («الْبَاءُ حَرْفُ جَرٍّ، وَالْهَاءُ مَجْرُورٌ»): that clause is the pronoun's too — unless the host's chain is already the pronoun's
+    const own = r && r.procl && !hostPron && /^«?(?:ال)?(هاء|ها|ياء|كاف|نا|هم|هما|كم|كما|هن|كن|ي|ه|ك)»?(\s|$)/.test(r.own) ? ["و" + r.own.split("، ")[0]] : [];   // its first clause only: a later «فِي مَحَلِّ …» is the jarr phrase's place
+    if (!r || (!(r.aside && r.aside.length) && !own.length)) return null;
+    const wb = Illa346.S(w).replace(/[^ء-ي]/g, ""); if (/^(?:[وفبلك]|ال|وال|بال|فال|لل)?ضما?ئ?ي?ر/.test(wb)) return null;   // the word «ضَمِيرٌ» itself
+    const out = []; for (const c of own.concat(r.aside || [])) { if (out.length >= 2) break; let p = null; try { p = this.pron1(r, c, wb, pos); } catch (e) { p = null; } if (p) out.push(p); }
+    return out.length ? out : null;
+  },
+  // the chain's pronouns, read once and kept on it
+  pronsOf(ch){ if (!ch || !ch.r || ch.noPron) return null; if (ch._pr !== undefined) return ch._pr; const r = ch.r; if (!((r.aside && r.aside.length) || r.procl)) return (ch._pr = null);
+    try { ch._pr = this.prons(r, ch.w || "", ch.tpos, !!(ch.nw && ch.nw.cls === "pron")); } catch (e) { ch._pr = null; } return ch._pr; },
+  // the pronoun's short line: «muttasıl zamir → mebnî → mahallen mansûb (çıkarım)»
+  pronShort(p, lang){ const u = L[lang], bits = [p.kind === "hid" ? u.pronHidS : u.pronAttS, u.nawMabniS];
+    if (p.st) bits.push(u.pronMahS.replace("{state}", u.illaGovV[p.st]) + (p.ded ? " (" + u.nawDedS + ")" : "")); else if (p.noPl) bits.push(u.nawNoPl);
+    if (p.wj === "W" || p.formW) bits.push(u.pronWajS); return bits.join(" → "); },
+  // its ladder: {kind, ar, en, tr, term, cite?} like the host's, built in both languages
+  pronSteps(p, r, w){
+    const U = { en: L.en, tr: L.tr }, steps = [], both = f => ({ en: f(U.en, "en"), tr: f(U.tr, "tr") }), B = x => Illa346.B(x);
+    const add = (kind, txt, term, ar, cite) => { steps.push(Object.assign({ kind, ar: ar || "", term: term || null }, txt, cite ? { cite } : {})); return steps[steps.length - 1]; };
+    const nm = Illa346.frag(r.orig, p.head) || p.head, wv = w;
+    const kq = { raf: "mrRafM", nasb: "mrNasbM", jarr: "mrJarrM" }[p.st];
+    if (p.kind === "att") { const kar = Illa346.frag(r.orig, "ضمير متصل") || Illa346.frag(r.orig, "الضمير المتصل") || nm;
+      const s = add("naw", both(u => (p.st && !p.ded ? u.pronAttK.replace("{kind}", u.pronKind[p.st]) : u.pronAtt).replace("{p}", B(nm)).replace("{w}", B(wv))), this.term(kar, "ḍamīr muttaṣil", "muttasıl zamir", this.PN[p.st] || this.PN.map), kar,
+        p.st && !p.ded ? this.cite(kq) : null); }
+    else { const kar = Illa346.frag(r.orig, "ضمير مستتر") || Illa346.frag(r.orig, "مستتر") || "";
+      const s = add("naw", both((u, l) => (p.t ? u.pronHid : u.pronHidN).replace("{role}", p.R ? p.R[l].t : u.pronDoer).replace("{w}", B(wv)).replace("{t}", B(nm))), this.term(kar, "ḍamīr mustatir", "müstetir zamir", this.PN.raf), kar, this.cite("mrIstitar"));
+      s.cite2 = this.cite("mrRafOnly"); }
+    const onF = p.on ? (Illa346.frag(r.orig, p.on) || p.on) : "";
+    { const s = add("bina", both(u => u.nawBin.pron + (onF ? u.nawOn.replace("{b}", B(onF)) : "")), this.term(this.T.mabni, "mabnī", "mebnî", "lazim"), this.T.mabni, this.cite("shMudmar")); const il = this.ilal("ilal-aqil-30-1"); if (il) s.ilal = il; }
+    { const s = add("irab", both(u => u.nawOnlyM), this.term(this.T.mahalli, "maḥallī", "mahallî", "mahalli"), this.T.mahalli, this.cite("izMabni")); s.cls = "pron:" + p.kind; }
+    if (p.R) { const rb = p.roleW || (p.c.match(p.R.re) || [""])[0].trim(), ar = Illa346.frag(r.orig, rb.replace(/^[«\s]+|[».\s]+$/g, "")) || "";
+      add("role", both((u, l) => u.illaRoleT.replace("{t}", p.R[l].t).replace("{d}", p.R[l].d)), { ar, en: p.R.en.t, tr: p.R.tr.t }, ar); }
+    if (p.st) { const said = !p.ded && Illa346.frag(r.orig, this.MAHALL[p.st]) || "", ar = said || this.MAHALL[p.st];
+      const s = add("built", both(u => u.nawPlace.replace(/\{w\}/g, B(nm)).replace(/\{state\}/g, u.illaState[p.st]) + (p.ded ? ` <span class="illa-ded">(${u.nawDed})</span>` : "")),
+        { ar, en: "maḥallan " + U.en.illaGovV[p.st] + (p.ded ? " (" + U.en.nawDedS + ")" : ""), tr: "mahallen " + U.tr.illaState[p.st] + (p.ded ? " (" + U.tr.nawDedS + ")" : ""), ded: p.ded }, ar);
+      s.st = p.st; if (p.ded) s.ded = true; }
+    else if (p.noPl) { const f = Illa346.frag(r.orig, "لا محل له") || ""; add("built", both(u => u.nawNoneP.replace("{w}", B(nm))), { ar: f, en: U.en.nawNoPl, tr: U.tr.nawNoPl }, f); }
+    if (p.kind === "hid" && (p.formW || p.wj)) { const wf = p.wj ? Illa346.frag(r.orig, p.wj === "W" ? "وجوبا" : "جوازا") || "" : "";
+      if (p.formW) { const s = add("wujub", both(u => u.pronWajF.replace("{t}", B(nm))), { ar: wf, en: "wujūban", tr: "vücûben" }, wf, this.cite("mrWajib")); s.cls = "wajib:form"; }
+      else if (p.wj === "W") { const s = add("wujub", both(u => u.pronWajL), { ar: wf, en: "wujūban", tr: "vücûben" }, wf); s.cls = "wajib:line"; }
+      else { const s = add("wujub", both(u => u.pronJawL), { ar: wf, en: "jawāzan", tr: "cevâzen" }, wf); s.cls = "jaiz:line"; } }
+    return steps;
+  },
+  // the ladders under the host's (word sheet: collapsed; one per pronoun, at most two)
+  pronHtml(ch, lang){
+    const P = this.pronsOf(ch); if (!P || !P.length) return ""; const u = ui();
+    return P.map(p => { const steps = p.steps || (p.steps = this.pronSteps(p, ch.r, ch.w || ""));
+      return `<details class="illa-pron" data-pron="${p.kind}"><summary><span class="illa-h">${p.kind === "hid" ? u.pronHeadH : u.pronHead}</span> <span class="illa-one">${escapeAttr(this.pronShort(p, lang))}</span></summary><ol class="illa-steps">${Illa346.stepsHtml({ steps }, lang)}</ol></details>`; }).join(""); },
+  // ── (v361-N) the follower's place: the followed word (AmilEngine's «tābiʿ» link, as v346's governor step reads it) and the place or state its OWN chain has
+  follow(r, tok, ctx){
+    if (!r.role || !r.role.tabi || !ctx.sen || !Number.isInteger(ctx.ti)) return null;
+    let x = ctx._amx; if (x === undefined) { try { x = AmilEngine.word(ctx.sen, ctx.ti); } catch (e) { x = null; } }
+    let fi = x && x.kind === "tabi" && x.amil != null && x.amil !== ctx.ti ? x.amil : null, by = "amil";
+    if (fi == null && r.head) {   // the word the line itself names («نَعْتٌ لِـ«…»», «مَعْطُوفٌ عَلَى «…»») — the nearest one before it with those letters
+      const nz = q => Illa346.S(q).replace(/[^ء-ي]/g, "").replace(/[أإآ]/g, "ا").replace(/^[وف](?=..)/, "").replace(/^(?:بال|كال|لل|ال)(?=..)/, ""), hb = nz(r.head);
+      if (hb.length >= 2) for (let j = ctx.ti - 1; j >= 0; j--) if (nz(ctx.sen.tokens[j].s.full) === hb) { fi = j; by = "head"; break; } }
+    if (fi == null) return null;
+    const ft = ctx.sen.tokens[fi]; if (!ft || !ft.irab || !ft.irab.ar) return null;
+    // the followed word's state as ITS chain reads it (the same reader, class and place rules — without the steps it does not need)
+    const fr = Illa346.read(ft.irab.ar, ft.s.full); if (!fr || fr.cited) return null;
+    let nwf = null; try { nwf = this.of(fr, fr.host ? (Illa346.frag(fr.orig, fr.host) || fr.host) : ft.s.full); } catch (e) { nwf = null; } if (fr.review357) return null;
+    const pl = nwf && nwf.grp === "mabniN" && !fr.sign ? this.place(fr) : null, q = fr.manner === "taqdiri" || /مقدر/.test(fr.own);
+    let k = null, how = null, ded = false;
+    if (pl && pl.k) { k = pl.k; how = "mahall"; ded = !!pl.ded; } else if (fr.mahall && !fr.sign) { k = fr.mahall; how = "mahall"; }
+    else if (fr.kase && fr.kase !== "jazm") { k = fr.kase; how = q ? "taq" : "lafz"; }
+    if (!k) return null;
+    if (r.kase && r.kase !== k) { r.followContra = { k, line: r.kase }; return null; }   // the follower's own line says otherwise: nothing (counted)
+    return { w: ft.s.full, k, how, ded, own: !!r.kase, by };
+  },
+  // ── (v361-N) a case stated with no sign («فَاعِلٌ مَرْفُوعٌ.»): the sign from the word's class, only where SignEngine is CERTAIN of the class from the
+  // token's morphology — a class tagged on the token, or a sound singular that IS its dictionary lemma (with the article, a tanwīn or a pronoun: not a
+  // diptote), or a sound muḍāriʿ whose lemma ends in a sound letter — and that class has one sign, heard, for the case; the written vowel, where there
+  // is one, must agree. Classes with a contradiction in the corpus proof are switched off here (`CLS_OFF361`, the check proves the rest).
+  CLS_OFF361: ["jamMudhakkar", "muthanna"],   // the corpus proof found a written sign against them (لِلصَّابِرِينَ «مَجْرُورٌ بِالْكَسْرَةِ», اسْمَيْنِ «الْكَسْرَةُ»)
+  // lemmas whose written-sign lines contradict the class rule (al-usul-al-munifa's «مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ» on دِين / دُون / الْمِسْكِين; أَبًا
+  // «مَنْصُوبٌ بِالْأَلِفِ»): no class-given sign for them — the lines are on the hoca's review list
+  LEX_OFF361: ["din", "duna", "miskin", "ab"],
+  fromCls(r, w, tok, ctx, kase, proof){
+    const ge = tok && ((ctx.st && ctx.st.glossary && ctx.st.glossary[tok.lex]) || (typeof GLOSSARY !== "undefined" && GLOSSARY[tok.lex])) || {};
+    const verb = r.verb === "mudari", lemma = ge.lemma || (ctx.opt && ctx.opt.lemma); if (!lemma || (r.verb && !verb)) return null;
+    {   // the cheap tests first: the classifier runs only for a word that can pass
+      const N0 = SignEngine.nfc(w), L0 = SignEngine.bare(SignEngine.nfc(String(lemma))).replace(/[^ء-ي]/g, "");
+      if (verb ? (/[اىوي]$/.test(L0) || /ن$/.test(SignEngine.bare(N0))) : !(/[ًٌٍ]/.test(N0) || /^(?:[وف]?(?:بال|كال|لل|ال))/.test(SignEngine.bare(N0)) || SignEngine.stripEnc(N0) !== N0 || (tok && (tok.grammar || []).some(g => /jam-mudhakkar|al-muthanna|mamnu|jam-muannath/.test(g))))) return null; }
+    const ck = w + "|" + lemma + "|" + kase + "|" + (tok && tok.pos) + "|" + (tok && tok.lex), M = this._fc || (this._fc = new Map()); let c = M.get(ck);
+    if (c === undefined) { try { c = SignEngine.classify(w, { pos: verb ? "verb" : tok && tok.pos, lex: tok && tok.lex, lemma, plural: ge.plural, tags: tok && tok.grammar, kase }); } catch (e) { c = null; } if (M.size > 6000) M.clear(); M.set(ck, c); }
+    if (!c || this.CLS_OFF361.includes(c.cls)) return null;
+    const N = SignEngine.nfc(w), Lb = SignEngine.bare(SignEngine.nfc(String(lemma))).replace(/[^ء-ي]/g, ""), f = SignEngine.stripEnc(SignEngine.stripProclitic(N), verb);
+    let ok = false;
+    if (!proof && (/علام|مقدر|ظاهر|الضم|الفتح|الكسر|السكون|بالواو|بالياء|بالألف|النون|مقصور|منقوص|ممنوع|ينصرف|مثنى|جمع|الأسماء الخمسة|الأفعال الخمسة/.test(r.full || "") || this.LEX_OFF361.includes(tok && tok.lex))) return null;   // the whole line is silent on the sign and the class
+    if (verb) ok = c.cls === "mudariSahih" && Lb.length >= 2 && !/[اىوي]$/.test(Lb) && !/ن$/.test(SignEngine.bare(N));
+    else if (c.cls === "sahih" && /^(sound|tanwin seat)$/.test(c.why)) {
+      const core = x => SignEngine.bare(SignEngine.stripProclitic(SignEngine.stripEnc(SignEngine.nfc(x || "")))).replace(/^ال/, "").replace(/ة$/, "ه").replace(/^(.{2,})ا$/, (m0, a) => /ً/.test(x) ? a : m0);
+      const al = SignEngine.hasAl(SignEngine.stripProclitic(N)), tn = /[ًٌٍ]/.test(N), enc = f !== SignEngine.stripProclitic(N) && !/ي$/.test(SignEngine.bare(N));
+      ok = Lb.length >= 2 && !/[اى]$/.test(Lb) && !/ِي$/.test(SignEngine.nfc(String(lemma))) && core(N) === core(lemma) && (al || tn || enc); }
+    else if (c.viaTag && /^(jamMuannath|jamMudhakkar|muthanna|mamnu)$/.test(c.cls)) ok = true;
+    if (!ok) return null;
+    const e = SignEngine.expect(c.cls, kase, w); if (!e || e.manner === "taqdiri") return null;
+    if (e.by === "haraka") { const v = (f.match(/([َُِْ]|[ًٌٍ])ّ?ا?$/) || [])[1]; const want = { damma: /[ٌُ]/, fatha: /[َ]|ً/, kasra: /[ٍِ]/, sukun: /ْ/ }[e.sign]; if (v && want && !want.test(v)) return null; }
+    return { cls: c.cls, sign: e.sign, sub: e.by === "harf" ? "letter" : e.by === "hadhf" ? "drop" : (e.reason === "niyaba" ? "sub" : "haraka") };
   },
 };
 // the last step pushed through Illa346.chain's `add` (each `add` is bound to its chain's own steps array)
@@ -22545,7 +22783,7 @@ class DoctrineSearch {
   static fold0(t){ return String(t || "").toLowerCase().normalize("NFC").replace(/[ً-ْٰ]/g, "").replace(/[أإآٱ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/ı/g, "i").replace(/İ/g, "i").replace(/â/g, "a").replace(/î/g, "i").replace(/û/g, "u").replace(/[«»"'،؛.:!?؟()\[\]—–]/g, " "); }
   static terms(q){ return this.fold(q).split(/\s+/).filter(w => w.length >= 2); }
   static hits(terms, text, w){ const f = this.fold(text); let n = 0; terms.forEach(t => { if (f.includes(t)) n += w; }); return n; }
-  static word362(terms, text, w){ const ws = this.fold(text).split(/[\s\/،,؛;·-]+/).map(x => x.replace(/^(و|ف|ب|ل|ك)?ال/, "")); let n = 0; terms.forEach(t => { if (ws.includes(t) || ws.includes(t.replace(/^ال/, ""))) n += w; }); return n; }   /* (v362) the term as a whole word of the title */
+  static word362(terms, text, w){ if (!text) return 0; const M = this._w362 || (this._w362 = new Map()); let ws = M.get(text); if (!ws) { ws = this.fold(text).split(/[\s\/،,؛;·-]+/).map(x => x.replace(/^(و|ف|ب|ل|ك)?ال/, "")); M.set(text, ws); } let n = 0; terms.forEach(t => { if (ws.includes(t) || ws.includes(t.replace(/^ال/, ""))) n += w; }); return n; }   /* (v362) the term as a whole word of the title */
   static notes(q, k){
     const terms = this.terms(q); if (!terms.length) return [];
     const out = [];
@@ -44636,6 +44874,19 @@ class SignEngine {
   static stripProclitic(f){ return f.replace(/ٰ/g, "ا").replace(/^(?:[وف]َ)?لِ(?=ل[َُِ])/, "").replace(/^(?:[وف]َ)?(?:[بك]ِ|كَ|لِ(?!ل))(?=.{3})/, "").replace(/^لِل(?=[ء-ي])/, "ال"); }   /* (v345-R · T-S06) لِلُقْمَانَ = لِ + لُقْمَانَ */
   static verbPrefix(f){ const b = this.bare(f).replace(/^[وفسل]/, ""); return /^[يتنأآ]/.test(b) && b.length >= 3; }
   // the corpus lexeme is a Latin key (zaman, yad, mana, ruya-dream): its tail says whether a written ـان/ـين/ـون belongs to the stem
+  /* (v361-N) a word read as a maqṣūr only because it ENDS in an alif that is not its own: (a) a ẓarf with «مَا» joined to it (بَيْنَمَا، بَعْدَمَا،
+     قَبْلَمَا، عِنْدَمَا، حِينَمَا، رَيْثَمَا، مِثْلَمَا) — «مَا» is a word of its own, the ẓarf before it is muʿrab; (b) the alif of an attached pronoun
+     (ـهَا، ـهُمَا، ـكُمَا، ـنَا) after a stem that IS the word's dictionary lemma (سَعْيَهَا ~ سَعْي، لَهْوُهَا ~ لَهْو، أَرْضِنَا ~ أَرْض) — a maqṣūr's alif is the
+     lexeme's own last letter. Returns the class («manqus» when the lemma ends in the yāʾ after a kasra: ثَانِيهَا ~ ثَانِي), or null (no change). */
+  static joinedAlif361(f0, f1, opt){
+    const cands = new Set(); for (const x of [f0, f1, this.stripProclitic(f0), this.stripProclitic(f1)]) { const bx = this.bare(x); cands.add(bx.replace(/^ال/, "")); cands.add(bx.replace(/^[وف](?=ال)/, "").replace(/^ال/, "")); }
+    for (const g of cands) if (/^(بين|بعد|قبل|عند|حين|ريث|مثل)ما$/.test(g)) return "sahih";
+    const L0 = opt.lemma ? this.bare(this.nfc(String(opt.lemma))).replace(/[^ء-ي]/g, "").replace(/^ال/, "") : ""; if (!L0 || /[اىأإآ]$/.test(L0)) return null;
+    const forms = [L0]; if (/ة$/.test(L0)) forms.push(L0.slice(0, -1) + "ت");
+    for (const g of cands) for (const s of ["هما", "كما", "ها", "نا"]) if (g.length > s.length + 1 && g.endsWith(s) && forms.includes(g.slice(0, -s.length)))
+      return /ي$/.test(L0) && /ِي/.test(this.nfc(String(opt.lemma))) ? "manqus" : "sahih";
+    return null;
+  }
   static ownsTail(f1, opt){
     const lemma = opt.lemma ? this.bare(this.nfc(String(opt.lemma))) : "", plural = opt.plural ? this.bare(this.nfc(String(opt.plural))) : "";
     if (!lemma && !plural) return false;
@@ -44771,7 +45022,7 @@ class SignEngine {
     if (any(/^(ابي|اخي|حمي)$/) && !enc && !annexed5 && !tanwin) return R("mudafYa", "five nouns annexed to the speaker's ya");
     if (any(/^(ابو|اخو|حمو|ذو|ابا|اخا|حما|ذا|ابي|اخي|حمي|ذي)$/) && !tanwin && (enc || any(/^(ذو|ذا|ذي)$/) || annexed5 || !opt.next)) return R("khamsa", "five nouns");
     // كِلَا / كِلْتَا: dual signs only with a pronoun, otherwise a maqṣūr
-    if (any(/^(كلا|كلي|كلتا|كلتي)$/)) return enc ? R("muthanna", "kilā with a pronoun: dual signs") : R("maqsur", "kilā before a noun: estimated on the alif");
+    if (any(/^(كلا|كلي|كلتا|كلتي)$/) && !/[أإ]/.test(gb) && !(opt.lemma && !/^(كلا|كلتا)$/.test(this.bare(this.nfc(String(opt.lemma))).replace(/[^ء-ي]/g, "")))) return enc ? R("muthanna", "kilā with a pronoun: dual signs") : R("maqsur", "kilā before a noun: estimated on the alif");
     // a maqṣūr carrying a pronoun (مَعْنَاهُ، مَوْلَانَا) is not a dual: the lexeme ends in the alif
     if ((enc || annexed) && /[ىا]$/.test(b) && (this.lexEndsA(opt.lex) || this.tagged(opt, "ism-maqsur-manqus"))) return R("maqsur", enc ? "maqṣūr with a pronoun" : "maqṣūr annexed", false, propn || mamnuTag);
     if (this.tagged(opt, "jam-mudhakkar-salim") && (/[ُّ]ونَ$|[ِّ]ينَ$|[ُّ]و$|[ِّ]ي$/.test(f) || /[ُّ]ونْ$|[ِّ]ينْ$|[ُّ]ونَا$|[ِّ]ينَا$|ِيَّ$/.test(f1)) && (!propn || !mamnuTag) && this.plStem(f) >= 2) return R("jamMudhakkar", "sound masculine plural (tagged)", true);   /* (v345-R · T-S02) a name in the plural's form, the rhyme's alif, مُسْلِمِيَّ */
@@ -44794,6 +45045,7 @@ class SignEngine {
     if (/[َّ]اتٌ$|[َّ]اتٍ$|[َّ]اتِ$|[َّ]اتُ$|[َّ]اتَ$/.test(f) && b.length >= 4 && !/^(ذات|ذوات)$/.test(b) && !(/اتَ$/.test(f) && this.tailIsStem(gb, opt.lex)) && !(/اتَ$/.test(f) && opt.kase === "nasb")) return R("jamMuannath", "sound feminine plural");   /* (v345-R · T-S07) قُضَاتَهَا، قَنَاتَنَا: a fatḥa written on the tāʾ in naṣb is no sound feminine plural (Shudhūr l. 32) */
     if (/ً/.test(f) && /ا$|ى$/.test(b) && !/ًى$/.test(f)) return R("sahih", "tanwin seat");
     // the maqṣūr (a proper name or a tagged diptote is flagged, for the card; the table keeps the estimated kasra)
+    { const j = /(ما|ها|نا)$/.test(b) ? this.joinedAlif361(f0, f1, opt) : null; if (j) return R(j, j === "manqus" ? "manqūṣ: the final alif is a joined pronoun's (v361-N)" : "the final alif is a joined pronoun's or «مَا»'s, not the lexeme's (v361-N)"); }
     if (/[ىا]$/.test(b) && b.length > 2 && !/^(هذا|ذا|ما|لا|إذا|اذا|إلا|الا)$/.test(b)) return R("maqsur", "weak alif", false, !al && !annexed && !tanwin && (propn || mamnuTag));
     if (/ًى$/.test(f)) return R("maqsur", "weak alif");
     if (al && /ِي$/.test(f) && !/ِيّ$/.test(f) && b.length > 4) return R("manqus", "manqus with al");
