@@ -20427,6 +20427,27 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (bad.length) throw new Error(bad.slice(0, 8).join(' | '));
     console.log('      8 readings, ' + Object.values(IDS).reduce((a, x) => a + x[1], 0) + ' sentences, ' + Object.values(IDS).reduce((a, x) => a + x[2], 0) + ' tokens, all the book\'s letters');
   });
+  await check('v355 — the hosted neural voice is ONE decision away and calls nothing without it: tools/voice_azure.py sends the app\'s own reading as Azure IPA phonemes (every phone in the documented Arabic set, the SSML well-formed), refuses without a key before any connection; voice_app.py --engine azure stops without the key; the Pages workflow takes the key from secrets only and defaults to eSpeak; the voice sheet\'s note names the voice the site publishes', async () => {
+    const { spawnSync } = require('node:child_process'), fsx = require('node:fs');
+    const env = Object.assign({}, process.env); delete env.AZURE_SPEECH_KEY; delete env.AZURE_SPEECH_REGION;
+    const st = spawnSync('python3', ['tools/voice_azure.py', '--selftest'], { encoding: 'utf8', env });
+    const j = JSON.parse((st.stdout || '{}').trim() || '{}');
+    if (st.status !== 0 || j.sentences !== 30 || (j.phones_outside_azure_ar_set || ['?']).length || j.refuses_without_key !== true) throw new Error('selftest: ' + (st.stdout || st.stderr).slice(0, 400));
+    if (!/<phoneme alphabet="ipa" ph="sˤa\.ˈɣiː\.run">صَغِيرٌ<\/phoneme>/.test(j.sample) || !/ph="ˈlʔa\.sa\.di">الْأَسَدِ</.test(j.sample)) throw new Error('the reading is not what is sent: ' + j.sample);
+    const va = spawnSync('python3', ['tools/voice_app.py', '--engine', 'azure', '--package', 'content/samples/al-asad-wa-al-far', '--out', require('node:os').tmpdir() + '/v355-none'], { encoding: 'utf8', env });
+    if (va.status === 0 || !/nothing was sent/.test(va.stderr + va.stdout)) throw new Error('voice_app --engine azure without a key must stop: ' + (va.stderr || va.stdout));
+    const ver = spawnSync('python3', ['tools/voice_app.py', '--verify', '--package', 'content/samples/al-asad-wa-al-far'], { encoding: 'utf8', env });
+    if (ver.status !== 0) throw new Error('the eSpeak sample\'s keys moved: ' + ver.stdout);
+    const wf = ['../.github/workflows/qissa-pages.yml'].find(f => fsx.existsSync(f));
+    if (wf) { const w = fsx.readFileSync(wf, 'utf8');
+      if (!/AZURE_SPEECH_KEY: \$\{\{ secrets\.AZURE_SPEECH_KEY \}\}/.test(w) || !/voice_engine:[\s\S]*?default: 'espeak'/.test(w) || !/app_voice:[\s\S]*?default: 'false'/.test(w)) throw new Error('the workflow: key from secrets, engine eSpeak and the voice OFF by default'); }
+    for (const f of ['tools/voice_azure.py', 'tools/voice_app.py']) if (/AZURE_SPEECH_KEY\s*=\s*["'][^"']/.test(fsx.readFileSync(f, 'utf8'))) throw new Error('a key literal in ' + f);
+    const r = await page.evaluate(() => { const keep = Own349.vid; const out = {};
+      try { Own349.vid = null; out.none = Own349.note(); Own349.vid = 'app349'; out.esp = Own349.note(); Own349.vid = 'azure355'; out.az = Own349.note(); out.tr = L.tr.o355Note; } finally { Own349.vid = keep; }
+      return out; });
+    if (r.none !== r.esp || !/ظ/.test(r.esp) || !/Azure/.test(r.az) || /ظ/.test(r.az) || !/Azure/.test(r.tr || '')) throw new Error('the note does not follow the voice: ' + JSON.stringify(r));
+  });
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

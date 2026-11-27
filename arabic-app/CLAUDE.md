@@ -17403,3 +17403,49 @@ door's local parse (~0.7 s at 4×, ~1.0 s at 6×), the Khilāf lab's cards (174 
 **Finish**: `check_i18n.py` clean; the refit chain ran after the last code edit; **the whole suite: 643 PASS, 0 FAIL** (alone, one run;
 wave 138 and both v354 checks among them); `tools/entrance_test.js` on the assembled site (`speed350/mk.sh`): «✓ Ready — opens offline
 too», ready 4.3 s, the app opens in 708 ms, no errors.
+
+## v355-V — a voice that can ship
+
+The owner, after v349's samples: «you find a voice package». The bar: commercially clean by a QUOTED licence (paid tier: the
+audio, and the model if it ships), obtainable here, every written vowel and ending read with ص ض ط ظ / ق ع ح apart, clearly more
+natural than eSpeak. Survey, quotes and numbers: `research/voice-options-2026-11-27.md`, part 2. **No voice passes today**;
+the top option's adapter is built so that ONE decision (an Azure Speech key in the repository secrets) makes it work.
+
+- **Tested here** (30-sentence set, Whisper-small int8 letter error on bare letters; sherpa-onnx 2.0.3, 2 threads): Supertonic 3
+  (OpenRAIL-M, commercial with use restrictions; text only) CER 7.9 %, emphatics all heard, but 8 words with a short vowel said
+  long against 2 for the calibration voice (فَرَجَعَ→فراجع, وَقَفَ→وقاف…) and no phoneme input → fails «every vowel as written».
+  Nabra-82M (card: Apache-2.0; data unnamed) fed the app's reading: CER 13.7 %, its symbol set has no ˤ / ̪ so ص ض ط ظ reach it
+  as س د ت ذ → fails the emphatics by construction. Piper ar_JO-SA dii/miro/miro_V2: CC BY-NC-SA 4.0. tts_arabic: «noncommercial
+  use only» (XTTS-trained voices) and a CC BY-NC phonetiser; tts-arabic-pytorch's ASC-only weights: no LICENSE in the repo, on
+  drive.google.com. The Arabic Speech Corpus licence is conflicting (CC BY 4.0 vs CC BY-NC-SA 4.0 + an exclusive commercial
+  licence). ArTST/ClArTTS (SpeechT5, MIT tag + CC BY 4.0 data by search excerpt) and Chatterbox Multilingual (MIT) sit on
+  huggingface.co, which this container cannot reach.
+- **`tools/voice_azure.py`** (new): the app's reading (voice_eval.g2p, stress, syllables) as SSML `<phoneme alphabet="ipa">` per
+  word in Azure's documented ar-EG/ar-SA IPA set (ج as `AZURE_TTS_JIM`, default d͡ʒ); `synthesize(text) -> (wav, ms)` — the
+  narration_generate adapter contract — POSTs to `<AZURE_SPEECH_REGION>.tts.speech.microsoft.com` with `AZURE_SPEECH_KEY`
+  (env only; refuses before any connection without them); a 400 on phonemes re-sends the plain vowelled text and is counted in
+  `FALLBACKS` (printed after a render). `--selftest` (no network), `--dry-run` (billable characters: 5,303,567 with phonemes,
+  798,183 plain), `--ssml TEXT`. Voice: `AZURE_TTS_VOICE` (default ar-SA-HamedNeural).
+- **`tools/voice_app.py --engine azure`** (or `QISSA_VOICE_ENGINE=azure`): the same delivery path, the clips from voice_azure;
+  index `voice` = `azure355`; chapter keys get `-azure` (eSpeak's keys unchanged — the tracked sample stays current); `--key`
+  includes the engine, the voice and voice_azure.py; `app-voice.json` carries the engine's own note. Without the key it stops:
+  «nothing was sent».
+- **Pages workflow**: new input `voice_engine` (default `espeak`); the render steps get `QISSA_VOICE_ENGINE`, `AZURE_SPEECH_KEY:
+  ${{ secrets.AZURE_SPEECH_KEY }}`, `AZURE_SPEECH_REGION: ${{ vars.AZURE_SPEECH_REGION }}`. `app_voice` stays default 'false'. The
+  running workflow is main's copy (v349's merge note).
+- **Page**: the voice sheet's «bu nedir?» note follows the voice the site publishes — `Own349.vid` from a story's index.json (first
+  listen) or `narration/app-voice.json` (fetched only when the note is opened); `azure355` → `o355Note` (en/tr: the app's reading,
+  a neural voice of Microsoft Azure, prepared before publishing, synthetic, a teacher's recording plays first), else v349's note.
+  Microsoft's one condition on the audio — disclose it as synthetic — is the «otomatik / automatic» label the app already shows.
+- **Samples** (scratch, for the owner's ear; same Level-1 story opening as v349, 30 s, AAC 16 kHz 24 kb/s):
+  `…/scratchpad/voice2/sample-app-voice.m4a` (eSpeak, v349) and `…/scratchpad/voice2/sample-supertonic3-NOT-SHIPPABLE-AS-IS.m4a`
+  (what "natural" sounds like; it overrides vowels — not a candidate as is).
+- **Owner's decisions, ranked**: (1) an Azure Speech resource (S0): secret `AZURE_SPEECH_KEY`, variable `AZURE_SPEECH_REGION`, then
+  render the sample story with `--engine azure` and listen before `app_voice: true, voice_engine: azure`; ≈ 5.3 M characters once
+  (the rate could not be read here — azure.microsoft.com refused; 0.5 M free a month); (2) allow huggingface.co to test
+  ArTST/ClArTTS (`MBZUAI/speecht5_tts_clartts_ar`, `microsoft/speecht5_hifigan`); (3) Google Chirp 3 HD (US$30/M after 1 M free;
+  Arabic phonemes undocumented); (4) the hoca's studio recordings (always first; the data for an owned voice).
+- **Smoke** (before «v333»): «v355 — the hosted neural voice is ONE decision away and calls nothing without it» (selftest JSON:
+  30 sentences, no phone outside the set, refuses without a key; the sample SSML carries the reading; voice_app --engine azure
+  stops without a key; the eSpeak sample still verifies; the workflow takes the key from secrets, engine eSpeak and the voice OFF by
+  default; no key literal; the note follows `Own349.vid` in en and tr). Older checks changed: none.
