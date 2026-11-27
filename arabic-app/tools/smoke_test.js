@@ -20427,6 +20427,87 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (bad.length) throw new Error(bad.slice(0, 8).join(' | '));
     console.log('      8 readings, ' + Object.values(IDS).reduce((a, x) => a + x[1], 0) + ' sentences, ' + Object.values(IDS).reduce((a, x) => a + x[2], 0) + ' tokens, all the book\'s letters');
   });
+  await check('v355-T — the Iẓhār course in Today\'s lesson: no row for a learner who never opened it; one invitation under the story\'s header at or above its level, gone for good once dismissed; a started course\'s next unit in «Kendini dene»\'s place (four rows), the tap opens it, a pass from the card counts in the day (qissa-today, the streak, the ✓) and the row moves to the next unit; 390 px in three themes, tr and en', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(async () => {
+      const K = ['qissa-izhar351', 'qissa-iztoday', 'qissa-today', 'qissa-streak', 'qissa-chq', 'qissa-lang', 'qissa-mylevel', 'qissa-theme'], keep = {}; K.forEach(k => { keep[k] = localStorage.getItem(k); });
+      const ks = { today: JSON.stringify(state.today), streak: JSON.stringify(state.streak), lv: state.myLevel, lang: state.uiLang, theme: state.theme, progress: JSON.stringify(state.progress), deck: JSON.stringify(state.deck), last: state.lastRead };
+      const out = {}, wait = ms => new Promise(res => setTimeout(res, ms)), ids = () => [...document.querySelectorAll('#todayCard .tc-step')].map(b => b.dataset.ls).join();
+      const row = () => document.querySelector('#todayCard [data-ls="izhar"]'), st = STORIES.find(s => s.id === 'izhar-al-asrar');
+      const open = async () => { openStory(st); for (let i = 0; i < 50 && !(CUR && CUR.id === st.id); i++) await wait(100); await wait(100); return document.getElementById('iz355Inv'); };
+      try {
+        state.uiLang = 'tr'; localStorage.setItem('qissa-lang', 'tr'); state.progress = {}; state.deck = []; state.lastRead = null; ['qissa-chq', 'qissa-izhar351', 'qissa-iztoday'].forEach(k => localStorage.removeItem(k));
+        state.today = { date: todayKey(), reviewed: 0, learned: 0, read: 0 }; localStorage.setItem('qissa-today', JSON.stringify(state.today)); state.streak = { days: 0, last: '', best: 0 };
+        state.myLevel = st.level; renderLibrary(); out.never = ids();
+        state.myLevel = st.level - 1; out.invLow = !!(await open());
+        state.myLevel = st.level; let el = await open(); out.inv = el ? el.querySelector('span').textContent : null; out.invBtns = el ? [...el.querySelectorAll('button')].map(b => Math.round(Math.min(b.getBoundingClientRect().width, b.getBoundingClientRect().height))) : [];
+        out.invOver = document.documentElement.scrollWidth > 390; out.invTwice = document.querySelectorAll('.iz355-inv').length;
+        if (el) el.querySelector('[data-iz355="x"]').click(); out.invGone = !document.getElementById('iz355Inv'); out.invAgain = !!(await open()); out.kInv = JSON.parse(localStorage.getItem('qissa-iztoday') || '{}').inv;
+        state.myLevel = 1; out.neverAfterInv = (renderLibrary(), ids());
+        // started: a unit opened
+        Izhar351.open('I-A01'); await wait(300); out.u1 = (document.querySelector('#iz351') || {}).dataset ? document.querySelector('#iz351').dataset.unit : null; closeSheet(); await wait(100);
+        renderLibrary(); out.row1 = ids(); out.sub1 = row() && row().querySelector('small').textContent;
+        localStorage.setItem('qissa-chq', JSON.stringify({ 'x|1': { date: todayKey(), asked: 3, correct: 3 } })); renderLibrary(); out.chqDay = ids(); localStorage.removeItem('qissa-chq');
+        renderLibrary(); out.n0 = document.querySelector('#todayCard .tc-n').textContent;
+        row().click(); await wait(300); out.tap = document.querySelector('#iz351') ? document.querySelector('#iz351').dataset.unit : null; out.lesson = LESSON && LESSON.step;
+        const p = Izhar351.load(); p.done['I-A01'] = 1; Izhar351.save(p);   // what the exercise's last «next» stores at ≥ 60 %
+        out.cnt = state.today.izhar; out.stored = JSON.parse(localStorage.getItem('qissa-today')).izhar; out.streak = state.streak.last === todayKey() && state.streak.days >= 1; out.lessonAfter = LESSON;
+        closeSheet(); renderLibrary(); const r2 = row(); out.done2 = r2 && r2.classList.contains('done'); out.sub2 = r2 && r2.querySelector('small').textContent; out.n1 = document.querySelector('#todayCard .tc-n').textContent;
+        out.key = localStorage.getItem('qissa-iztoday'); out.keyBytes = new Blob([out.key || '']).size;
+        // a pass made outside the card does not count twice / at all
+        const p2 = Izhar351.load(); p2.done['I-A02'] = 1; Izhar351.save(p2); out.cnt2 = state.today.izhar; out.sub3 = (renderLibrary(), row() && row().querySelector('small').textContent);
+        // the shape: 390 px, three themes, tr and en
+        out.shape = []; state.progress = {}; state.lastRead = null; const izk = localStorage.getItem('qissa-izhar351');
+        for (const th of ['murekkep', 'gece', 'bahce']) for (const lg of ['tr', 'en']) {
+          state.theme = th; applyTheme(); state.uiLang = lg; localStorage.removeItem('qissa-izhar351'); renderLibrary(); window.scrollTo(0, 0); await wait(60);
+          const card0 = Math.round(document.querySelector('.lib-card').getBoundingClientRect().top), ids0 = ids(); localStorage.setItem('qissa-izhar351', izk); renderLibrary(); window.scrollTo(0, 0); await wait(60);
+          const b = row(), card = document.querySelector('.lib-card'); out.shape.push({ th, lg, card0, ids0, rows: document.querySelectorAll('#todayCard .tc-step').length, card: Math.round(card.getBoundingClientRect().top),
+            h: b ? Math.round(b.getBoundingClientRect().height) : 0, over: document.documentElement.scrollWidth > 390 || (b && b.scrollWidth > b.clientWidth + 1), lbl: b ? b.querySelector('b').textContent : '' });
+        }
+      } finally {
+        K.forEach(k => { if (keep[k] === null) localStorage.removeItem(k); else localStorage.setItem(k, keep[k]); });
+        state.today = JSON.parse(ks.today); state.streak = JSON.parse(ks.streak); state.myLevel = ks.lv; state.uiLang = ks.lang; state.theme = ks.theme; state.progress = JSON.parse(ks.progress); state.deck = JSON.parse(ks.deck); state.lastRead = ks.last;
+        LESSON = null; try { closeSheet(); } catch (e) {} applyTheme(); renderLibrary();
+      }
+      return out;
+    });
+    const J = JSON.stringify;
+    if (/izhar/.test(r.never) || /izhar/.test(r.neverAfterInv)) throw new Error('no course row for a learner who never opened the course: ' + J([r.never, r.neverAfterInv]));
+    if (r.invLow) throw new Error('no invitation below the story\'s level');
+    if (r.inv !== 'İzhâr\'ı ders ders oku' || r.invTwice !== 1 || r.invBtns.length !== 2 || r.invBtns.some(x => x < 44) || r.invOver) throw new Error('one invitation, 44 px, inside 390 px: ' + J([r.inv, r.invTwice, r.invBtns, r.invOver]));
+    if (!r.invGone || r.invAgain || r.kInv !== 1) throw new Error('dismissed for good: ' + J([r.invGone, r.invAgain, r.kInv]));
+    if (r.u1 !== 'I-A01' || r.row1 !== 'read,collect,izhar,strong' || !/sıradaki ünite/.test(r.sub1 || '') || !/الْبَاءُ/.test(r.sub1) || !/1\. Bab/.test(r.sub1)) throw new Error('a started course: its next unit in «Kendini dene»\'s place: ' + J([r.u1, r.row1, r.sub1]));
+    if (r.chqDay !== 'read,collect,check,strong') throw new Error('a chapter checked today keeps «Kendini dene»: ' + r.chqDay);
+    if (r.tap !== 'I-A01' || r.lesson !== 'izhar') throw new Error('the tap opens the unit: ' + J([r.tap, r.lesson]));
+    if (r.cnt !== 1 || r.stored !== 1 || !r.streak || r.lessonAfter !== null || !r.done2 || r.n0 !== '0/4' || r.n1 !== '1/4') throw new Error('a pass from the card counts in the day: ' + J([r.cnt, r.stored, r.streak, r.lessonAfter, r.done2, r.n0, r.n1]));
+    if (!/مِنْ/.test(r.sub2 || '') || !/"id":"I-A02"/.test(r.key || '') || r.keyBytes > 120) throw new Error('the next unit after one is passed, stored small: ' + J([r.sub2, r.key, r.keyBytes]));
+    if (r.cnt2 !== 1 || /مِنْ/.test(r.sub3 || '')) throw new Error('a pass outside the card does not count; the row moves on: ' + J([r.cnt2, r.sub3]));
+    const bad = r.shape.filter(x => x.rows !== 4 || x.card > 640 || x.card !== x.card0 || /izhar/.test(x.ids0) || x.h < 44 || x.over || !x.lbl);
+    if (bad.length || r.shape.find(x => x.lg === 'en').lbl === r.shape.find(x => x.lg === 'tr').lbl) throw new Error('the card at 390 px, three themes, tr and en (four rows, first shelf card ≤ 640 and where it sits without the course row): ' + J(bad.length ? bad : r.shape));
+  });
+  await check('v355-T — the Iẓhār row on the split copy: the door builds it from the stored title with every body held and reads no body; the tap waits for the story\'s body and then opens the unit', async () => {
+    const fsx = require('fs'), pathx = require('path'), cp = require('child_process'), os = require('os'), http = require('http'), J = JSON.stringify;
+    const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-v355-')); cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
+    const held = []; let hold = true;
+    const srv = http.createServer((q, s) => { const p = decodeURIComponent(q.url.split('?')[0]).replace(/^\/+/, '') || 'reader.html', f = pathx.join(dir, p);
+      if (!f.startsWith(dir) || !fsx.existsSync(f) || fsx.statSync(f).isDirectory()) { s.writeHead(404); s.end(); return; }
+      const send = () => { s.writeHead(200, { 'content-type': p.endsWith('.html') ? 'text/html' : 'text/javascript', 'cache-control': 'no-store' }); fsx.createReadStream(f).pipe(s); };
+      if (hold && /^data\/b\d+-/.test(p)) held.push(send); else send(); }).listen(0);
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    try {
+      await ctx.addInitScript(() => { try { localStorage.setItem('qissa-welcomed', '1'); localStorage.setItem('qissa-atolye-seen', '1'); localStorage.setItem('qissa-mylevel', '3'); localStorage.setItem('qissa-lang', 'tr');
+        localStorage.setItem('qissa-izhar351', JSON.stringify({ done: { 'I-A01': 1 }, best: {}, cur: 'I-A01' })); localStorage.setItem('qissa-iztoday', JSON.stringify({ n: { id: 'I-A02', ar: 'مِنْ', b: 1 } })); } catch (e) {} });
+      const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+      await p.goto('http://127.0.0.1:' + srv.address().port + '/reader.html');
+      await p.waitForFunction(() => document.querySelectorAll('.lib-card:not(.skel)').length >= 50 && !document.body.classList.contains('data-pending'), null, { timeout: 120000 });
+      const s = await p.evaluate(async () => { const o = { missing: BODY341.missing ? BODY341.missing.size : -1, n: STORIES.length, steps: [...document.querySelectorAll('#todayCard .tc-step')].map(b => b.dataset.ls).join() };
+        const b = document.querySelector('#todayCard [data-ls="izhar"]'); o.sub = b && b.querySelector('small').textContent; o.miss = (window.__bodyMiss341 || []).length;
+        if (b) b.click(); await new Promise(res => setTimeout(res, 300)); o.early = !!document.querySelector('#iz351'); o.lesson = LESSON && LESSON.step; return o; });
+      if (s.missing !== s.n || s.steps !== 'read,collect,izhar,strong' || !/مِنْ/.test(s.sub || '') || s.miss || s.early || s.lesson !== 'izhar' || errs.length) throw new Error('the split door: ' + J(s) + ' ' + errs.slice(0, 2).join(' | '));
+      hold = false; held.splice(0).forEach(f => f());
+      await p.waitForFunction(() => { const u = document.querySelector('#iz351'); return u && u.dataset.unit === 'I-A02'; }, null, { timeout: 120000 });
+    } finally { hold = false; held.splice(0).forEach(f => f()); await ctx.close(); srv.close(); fsx.rmSync(dir, { recursive: true, force: true }); }
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

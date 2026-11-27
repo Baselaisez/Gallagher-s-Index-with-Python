@@ -17403,3 +17403,32 @@ door's local parse (~0.7 s at 4×, ~1.0 s at 6×), the Khilāf lab's cards (174 
 **Finish**: `check_i18n.py` clean; the refit chain ran after the last code edit; **the whole suite: 643 PASS, 0 FAIL** (alone, one run;
 wave 138 and both v354 checks among them); `tools/entrance_test.js` on the assembled site (`speed350/mk.sh`): «✓ Ready — opens offline
 too», ready 4.3 s, the app opens in 708 ms, no errors.
+
+## v355-T — the Iẓhār course in Today's lesson
+
+The owner, asked «should the Iẓhār course feed Today's lesson?»: **yes**. One small class beside the Today card (`IzToday355`,
+reader.html `v355-T BEGIN/END` right after `lessonRoundEnd`) and one line in `lessonSteps` (`IzToday355.fold(check, ct)`); no engine,
+no Izhar351 line edited (its `save` and `setHeader` are wrapped, as v351 wrapped `setHeader`).
+- **Where the row sits, and why.** A learner who has STARTED the course (`qissa-izhar351` has a `cur` or a `done`) finds its next unit
+  IN «Kendini dene»'s place on a day that row has nothing to do (no chapter waiting — `lessonCheckTarget()` null — and none checked today);
+  once a unit is passed from the card the row stays for the day. «Kendini dene» with no target is a disabled row, so nothing runnable is
+  taken away; the course's exercise is itself a self-check. Four rows: the v340 pin holds unchanged (a fifth row passed it in v344;
+  «Pekiştir» already carries the rule of the day). Measured: first shelf card 588 px at 390×844 with the row, the same px without it.
+  The row: «İzhâr dersi» / «sıradaki ünite · <the item's Arabic> · <the bāb>» (EN «Iẓhār course» / «next unit · …»); the tap sets
+  `LESSON.step = "izhar"` and runs `Izhar351.open(id)`. The next unit = the unit opened and not passed, else the first unpassed after it in
+  the book's order (wrapping); all 100 passed → no row.
+- **The invitation** (not started): «İzhâr'ı ders ders oku» + «Başla» + ✕ under the Iẓhār story's header (`#iz355Inv` in `#metaRow`), only
+  when `state.myLevel ≥` the story's level (5); either button sets `inv` and it never comes back. Not on the door.
+- **Bookkeeping, no new scoring.** A unit newly passed (the exercise's ≥ 60 % store) while `LESSON.step === "izhar"` runs
+  `countActivity("izhar")` — `qissa-today.izhar` (the row's ✓, the card's n/4 and «done» state) and the streak; XP 0 (not a known kind).
+  A pass outside the card counts nothing.
+- **The door pays nothing.** Stored: `qissa-iztoday` (in the Backup's `qissa-*` set) `{"n":{"id":"I-A02","ar":"مِنْ","b":1},"inv":1}`
+  ≈ 50–60 bytes, rewritten whenever the course saves (data already parsed); the row reads only it and `qissa-izhar351`. Body late →
+  the row shows the stored title and the tap waits in `bodyGate341`. Before any save under this wave, the opened unit's id stands alone.
+- Smoke (before v333): «v355-T — the Iẓhār course in Today's lesson …» (no row never-opened; invitation below level none / at level once,
+  44 px, dismissed for good; started → `read,collect,izhar,strong`, a chapter checked today keeps «Kendini dene»; the tap opens the unit;
+  pass → today.izhar 1, streak, ✓, 1/4, next unit مِنْ; a pass outside the card does not count; Mürekkep / Gece / İznik × tr / en at 390 px:
+  4 rows, card ≤ 640 and equal to the card without the row) and «v355-T — the Iẓhār row on the split copy …» (bodies held: the row from
+  the stored title, `__bodyMiss341` empty, the tap waits, the unit opens on release). No older check changed.
+- **Finish**: `check_i18n.py` clean; refit chain after the last code edit; whole suite 642 PASS, 3 FAIL under the four-agent load
+  (cross-validation 14.8 s, v317 «Page crashed», v351 guided tour) — all three PASS re-run alone.
