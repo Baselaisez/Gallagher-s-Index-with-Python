@@ -439,3 +439,13 @@ Shamela holds no second edition of the book (author 830 lists only 9986) and no 
   carries this edition's page as `web_page` (and the Shamela page as `shamela`). Used by v360-Sh: the Shudhūr rules made verbatim, the
   unread half (from عمل الفعل, this edition's pp. 455–602) ledgered (`content/rules/toc_shudhur_sharh.json`,
   `coverage_shudhur_sharh.json`). The received matn file is never changed on this text's authority.
+### v359-S — al-Nadwī's «السيرة النبوية», one story in parts (`al-sira-al-nabawiyya-nadwi-src.txt`)
+
+- `al-sira-al-nabawiyya-nadwi-src.txt` — Abū al-Ḥasan ʿAlī al-Ḥasanī al-Nadwī (1333–1420 AH), «السيرة النبوية», دار ابن كثير، دمشق–بيروت، ط ١٢،
+  ٢٠٠٤، ٧٦٧ ص، تعليق سيد عبد الماجد الغوري (Shamela book 9914), https://shamela.ws/book/9914/1 onward, one cached page per Shamela page,
+  built by `tools/authoring/sira_src.py` (house format: `=== p. <shamela page> (<printed page>) [<section>] ===`, matn, then «--- hashiya ---»).
+  The owner (2026-11-27): «This is a new story (make it ONE story with many parts; do not cut it into different stories)» and «I do have the
+  permission of al-Nadwī. And al-Nadwī bestowed all his Arabic teaching materials of this kind on the whole Islamic world; his family holds no
+  copyright.» The package `content/samples/al-sira-al-nabawiyya-nadwi` reads ONLY al-Nadwī's matn: the hashiya, the editor's lineage tree
+  (Shamela pp. 146–148, «من إضافات المحقق») and the editor's square-bracketed headings («بين المعقوفتين», his preface p. 2–3) are never authored.
+  The e-text carries only the shadda; it is kept, every other vowel is the package's. Re-run the builder when the cache is complete.

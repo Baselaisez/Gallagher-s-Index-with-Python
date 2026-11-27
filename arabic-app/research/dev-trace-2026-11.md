@@ -273,3 +273,33 @@ both story waves pinned from older bases), then v361-D + the Sīra's second inst
 machine (it includes the windowed chapter render the Sīra needs before ~30 chapters), APK + Pages, the closing entry.
 For the next engine work order (not this round): «بَعْدَ مَا» + verb read as a built noun; v360's four ⚠ rows (SH445.1, SH517.1,
 SH535.1, SH543.1); the search's substring fold on two-letter terms.
+
+## 2026-11-27 12:50 UTC
+
+Landed since 10:3x: `342c868` v360-Sh + the CI fix (CI green), `601d94c` v361-N (CI red: its own 390 px check went home at
+phone width, where a story has no «← Library» button — fixed in the next commit), `3e9b9e1` v361-D (CI green), and with this
+entry v359-S — al-Nadwī's Sīra, ONE package, chapters 101–112, 1,127 tokens; 111 stories. **Every wave of the round has landed.**
+
+The Sīra merge was gated by the WHOLE suite, twice (657 of 664, then 664 of 664) — the first run found what a subset would not:
+- a name hid a word: the glossary's «الْقَيِّم» (Ibn al-Qayyim) had no root and took «الْقَيِّمِ» of ق و م from the engines (the
+  Talkhīṣ's ishtiqāq in «فَأَقِمْ وَجْهَكَ لِلدِّينِ الْقَيِّمِ») — the name carries its root now;
+- «مَالُكَ» typed was read as the name «مَالِك» the lineage brought: `RootFinder.nounFromCorpus` (v362) rejects a NAME look-alike
+  that the word's own inner vowels contradict;
+- one false «unsaid» reading (ishtighāl on «نَسَمَةً مُبَارَكَةً وَحَسَدَتْهَا») fixed in HadhfEngine; «الْإِثْنَيْنِ» off the
+  class-given-sign rule; the Kāfiya order check knows the one keyed order (109:s4, judged C); v327's kāna ceiling 55 (a complete
+  kāna); two «first token of a kind» finders made exact;
+- three glossary keys both story waves had made: «بِلَال» and «حَبَشِيّ» are one entry now; «فَيْء» was TWO words (the spoil in
+  the Ṭabaqāt, the shade in the Sīra) — the shade is `fay-shade`.
+Pins on the merged shelf, measured: v345 Sign miss 65, taʿalluq 244 / 215 (v353-I with it), إِنَّ miss 22, v345-D contra 330,
+wave 184 «مَا» wrong 57, Tartīb 2739/1021/1, Hadhf false 1 with the Ṭabaqāt and the Sīra measured apart.
+
+Running next (alone on the machine): **v362-S, the closing optimisation pass** — qissa-why · tmp/speed362 · scratch speed362 ·
+brief `V362_BRIEF.md` (re-baseline against v354; the windowed chapter render and «Bölüm 1 … n» for the Sīra; cheap pre-tests
+for Murib.line's post rows, proved equal over the corpus; the load-fragile checks made robust). Then APK (dev ref), Pages
+(ref main), the closing entry, and the scheduled trace disables itself.
+
+Rule kept from today: a STORY wave is gated by the whole suite (in the spare worktree qissa-sarf if the dev worktree is busy),
+never by a subset — three of today's four red CI runs were story waves pushed on a subset.
+For the next engine work order (after the hoca's reviews): the items judged E in the delta files of the Ṭabaqāt and the Sīra
+(ẓurūf hung on the prayer formula ×14, «بْنِ» after a badal, «حِينَذَاكَ», «بَعْدَ مَا» + verb); v360's four ⚠ rows; a lexicon
+index that keeps a name and a common noun of one spelling apart by context, not by one entry.
