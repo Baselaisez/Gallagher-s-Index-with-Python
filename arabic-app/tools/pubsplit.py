@@ -25,7 +25,9 @@ def jp(o):   # an object literal: Chromium parses it faster than JSON.parse("…
 # their content (data/b<k>-<hash>.js), so a new build re-downloads only the slices whose stories changed. The page's loader
 # inserts the core after one frame; the shell (BODY341) fetches the bodies after the door, the tapped story's slice first.
 import hashlib
-BODY_KEYS=("chapters","morph","glossary","course351"); BODY_LIM=int(os.environ.get("QISSA_BODY_LIM","2500000"))   # (v351-I) course351: the Iẓhār course rides in its story's body
+BODY_KEYS=("chapters","morph","glossary","course351","about"); BODY_LIM=int(os.environ.get("QISSA_BODY_LIM","2500000"))   # (v351-I) course351: the Iẓhār course rides in its story's body
+# (v354-S) about: a story's provenance text (0.9 MB raw / ~0.2 MB gzip of the core for 102 stories) is read only by openAbout, which waits
+# for that story's body (bodyGate341) — it rides in the body slice; BODY341.KEYS lists it, so its stub traps a door read (__bodyMiss341)
 def hname(prefix,text): return f"data/{prefix}-{hashlib.sha256(text.encode()).hexdigest()[:10]}.js"
 meta=[{k:v for k,v in p.items() if k not in BODY_KEYS} for p in arr]
 bodies=[]; cur=[]; curb=0
@@ -34,9 +36,21 @@ for p in arr:
     if cur and curb+n>BODY_LIM: bodies.append(cur); cur=[]; curb=0
     cur.append((p["id"],b)); curb+=n
 if cur: bodies.append(cur)
+# (v354-S) two tables no door reads ride in the LAST body slice, declared before its arrival call: ALFIYYA_JSON (130 KB, read only by a
+# grammar note's Elfiye card and its round — openRef waits for every body) and AMTHAL (the proverbs' index, 0.3 MB, which no screen reads).
+# `var`, so a re-run slice cannot throw; Alfiyya352.data tests `typeof` and caches nothing before BODY341.ready() — 0.4 MB raw / 67 KB gzip
+# off the core; QISSA_NO_LATE354=1 keeps them in the core
+late=""
+if os.environ.get("QISSA_NO_LATE354") != "1":
+    for nm in ("ALFIYYA_JSON","AMTHAL"):
+        k=rest.find("\nconst "+nm+" = ")
+        if k<0: continue
+        e=rest.find("\n",k+1); line=rest[k+1:e if e>=0 else len(rest)]
+        if not line.endswith(";"): continue
+        late+="var"+line[len("const"):]+"\n"; rest=rest[:k]+rest[k+1+len(line):]
 body_list=[]
 for k,chunk in enumerate(bodies):
-    text="__qissaBodies341("+jp({i:b for i,b in chunk})+");\n"
+    text=(late if k==len(bodies)-1 else "")+"__qissaBodies341("+jp({i:b for i,b in chunk})+");\n"
     fn=hname(f"b{k+1}",text); open(os.path.join(out,fn),"w",encoding="utf-8").write(text)
     body_list.append([fn,[i for i,_ in chunk]])
 # (v350-S) THE GRAMMAR TABLES' BODIES AFTER THE DOOR. GRAMMAR was 1.0 MB of the core's 1.6 MB gzip and CATECHISM 0.17 MB; the door reads

@@ -5247,7 +5247,7 @@ function hydrateStories148(){ try { STORIES.forEach(hydrateStory148); } catch (e
    enter this path (missing stays null). A slice that fails (offline before it was cached) is retried when the network
    returns, still quietly. */
 const BODY341 = {
-  missing: null, slices: null, of: null, state: [], waiters: new Map(), inflight: 0, KEYS: ["chapters", "morph", "glossary", "course351"],   /* (v351-I) course351: the Iẓhār course, on its story only */
+  missing: null, slices: null, of: null, state: [], waiters: new Map(), inflight: 0, KEYS: ["chapters", "morph", "glossary", "course351", "about"],   /* (v351-I) course351: the Iẓhār course, on its story only; (v354-S) about: the provenance text — openAbout is its one reader and waits for the story's body (0.9 MB raw of the core's 2.9 MB) */
   /* (v350-S) g350: the grammar tables' bodies (GRAMMAR's texts and examples, CATECHISM's questions — pubsplit keeps only what the door reads
      in the core) — fetched before any story slice, merged into the same objects in their original key order; until then nothing is ready */
   g350: null, gst350: 0,
@@ -21284,7 +21284,8 @@ function startLimadha(){
    the ruling shown, the verse picked among three of the same bāb — runQuiz, Level 4. */
 const Alfiyya352 = {
   _d: undefined,
-  data(){ if (this._d === undefined) { try { this._d = typeof ALFIYYA_JSON === "string" ? JSON.parse(ALFIYYA_JSON) : null; } catch (e) { this._d = null; } } return this._d; },
+  data(){ if (this._d === undefined) { if (typeof ALFIYYA_JSON !== "string" && typeof BODY341 !== "undefined" && !BODY341.ready()) return null;   /* (v354-S) the hosted copy: it rides in the last body slice — not cached as absent before every body is in */
+      try { this._d = typeof ALFIYYA_JSON === "string" ? JSON.parse(ALFIYYA_JSON) : null; } catch (e) { this._d = null; } } return this._d; },
   L(){ return state.uiLang === "tr" ? "tr" : "en"; },
   clean(s){ return String(s || "").replace(/\s*\([٠-٩]+\)\s*/g, " ").replace(/[ \t]+/g, " ").trim(); },
   bayt(v){ return this.clean(v.ar).replace(/\s*\n?\.\.\.\s+/, "\n"); },
@@ -46325,7 +46326,7 @@ function shopItems(need){
   if (!C.dripping && C.items.length < 24 && C.queue.length) { C.dripping = true;   // the rest in a drip — one sentence a slice, never during a round
     (function step(){ if (SHOP_CACHE !== C) return; if (!C.queue.length) refill(); if (C.items.length >= 24 || !C.queue.length) { C.dripping = false; persist(); return; }
       const R = C.round, inRound = sheet.classList.contains("show") && !!document.querySelector(".game-q"), filling = !!R && inRound && R.items.length < R.want;   /* (wave 152) a round that started on two items takes the next ones as they are read */
-      if (!filling && (inRound || !Quiet.ok())) { setTimeout(step, 600); return; }   /* (wave 130) */
+      if (!filling && (inRound || !Quiet.ok() || (typeof Warm341 !== "undefined" && !Warm341.done))) { setTimeout(step, 600); return; }   /* (wave 130) (v354-S) and after the engines' warm-up: the first read paid DabtEngine's cold reading in one 0.4–0.9-s task */
       const n0 = C.items.length; shopReadSentence(C.queue.shift(), C); if (R && C.items.length > n0) { C.items.slice(n0).forEach(it => { if (R.items.length < R.want) R.items.push(it); }); roundCount152(R); } if ((C.items.length % 6) === 0) persist(); setTimeout(step, filling ? 300 : 400); })(); }
   if (C.items.length < 4 && !C.queue.length && (refill(), !C.queue.length) && CUR && !GAME_SCOPE_FALLBACK && !C.fallback) { C.fallback = true; GAME_SCOPE_FALLBACK = true; try { return shopItems(want); } finally { GAME_SCOPE_FALLBACK = false; } }   // a story that cannot feed the shop hands the round to the library
   return C.items;
@@ -47109,7 +47110,7 @@ function jinasItems(need){
   const t0j = performance.now(); let tried = 0; while (C.items.length < want && C.seeds.length && tried < 12 && (C.items.length < 4 || performance.now() - t0j < 40)) { jinasPush32(C, C.seeds.shift(), null); tried++; }   /* (wave 144) the round's four now, the rest in the drip */
   if (!C.dripping && (C.seeds.length || (C.k < C.sens.length && C.corpusN < 40))) { C.dripping = true;
     (function step(){ if (JINAS_CACHE !== C) return; if (!C.seeds.length && (C.k >= C.sens.length || C.corpusN >= 40)) { C.dripping = false; persist(); return; }
-      if ((sheet.classList.contains("show") && document.querySelector(".game-q")) || !Quiet.ok()) { setTimeout(step, 600); return; }   /* (wave 130) */
+      if ((sheet.classList.contains("show") && document.querySelector(".game-q")) || !Quiet.ok() || (typeof Warm341 !== "undefined" && !Warm341.done)) { setTimeout(step, 600); return; }   /* (wave 130) (v354-S) and after the engines' warm-up */
       if (C.seeds.length) jinasPush32(C, C.seeds.shift(), null); else { const x = C.sens[C.k++]; jinasPush32(C, x.sen.tokens.map(t => t.s.full).join(" "), x); }
       if ((C.items.length % 8) === 0) persist(); setTimeout(step, 90); })(); }
   return C.items;

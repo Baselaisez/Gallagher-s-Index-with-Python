@@ -17330,3 +17330,76 @@ trimmed inside a sentence, the verses inside kept — with the full apparatus, t
   their lex key, not by the order the stories load in — the new verb قَلَا «to strike the qula» (key `qalaw-qula`, ismFail قَالٍ) had silently
   swapped the Maqṣūd ledger's probes «وَقَالَةٌ» from قَلَى's root to its own; the older shelf's outputs are unchanged.
 - Full suite (after check_i18n and the refit chain): 632 checks, 632 pass (the first run, before the re-measures and the four fixes above, had 15 failures). Scripts: scratchpad `khasais352/` (`guard.py`, `span.py`, `pg.py`, `lk.py`, `kc.py`, `smoke352.js`, `audit*`, `PROGRESS.md`).
+
+## v354-S — speed VII: the whole app measured again after eleven waves, alone on the machine
+
+Measured as v350 did (split hosted copy over http no-store, 390×844, 4× CPU via CDP; tools in `scratchpad/speed354/`: `m.js`, `p.js`
+(+ env `SRS=1` times every `shopReadSentence`, `TRACE=<op>` a Chrome trace of an op by task, `WRAPT=1` names every timer / idle /
+frame callback over 150 ms), `x.js` (mode `new`: a grammar note with «Neden böyle?», 12 ʿilla cards and an Elfiye card; the Iẓhār course
+page and a unit), `sc.js` / `scg.js` (the scroll + a GC-flagged trace), `vv.js` (hosted copy = repository reader, hashed), `dstat.py` /
+`meta.py` (what the core slice holds), `bytes.py`; `baseline.md`). **The machine was ours alone**: every A/B alternated old/new, 5 rounds
+(3 at 6×), 1-min load 1.1–1.8 at each run's start.
+
+**Baseline vs v350's own final copy** (`baseline.md`; median [min–max]) — what got worse and why:
+- the door at 4 Mbit/s 5894 → **6287 ms** (+393), at 20 Mbit/s 2026 → 2145, local 807 → 838; the boot's longest task 177 → 206 ms: the
+  core slice grew **0.691 → 0.826 MB gzip** (2.22 → 2.89 MB raw): AMTHAL +37 KB gz (v348-A — the proverbs' index, which NO screen reads),
+  STORIES' catalog +31 (v348-A / v352-K: 102 stories; of it `about`, the provenance text, 0.9 MB raw), ILAL +31 (v348-F / v352-U: 156
+  reasons), ALFIYYA_JSON +30 (v352-A), USUL +7 (v352-U); all bodies in +77 / +222 / +440 ms (bodies 11.10 → 11.56 MB gz);
+- the Khilāf lab's first open: worst task 129 → 174 ms (v352-U's «İki yöntem» cards, rendered open in the lab's first task) — under 200, left;
+- the first-use sweep's story: **a task of 426–871 ms in 2 of 5 runs** — the iʿrāb shop's background drip (see below), reproduced alone;
+- everything else equal within the spread: word taps, the sentence sheet (paint 358 / 359 ms; one ~250-ms Late350 task in both), game
+  feedback 48 / 49, the Jumla / Inna / Hamza labs, search (frame 14 ms), the scroll, style recalc at the door (380 / 370 ms; 3.8k → 4.4k
+  nodes), heap after three stories 142 → 150 MB (content). New: the Iẓhār course page paints in 120 ms (worst 94), a unit in 91; the
+  note page 127 ms (worst 67), «Neden böyle?» 31 ms, «more reasons» 11 ms; the page's CSS 53 → 55 KB gz (v351-O), app.js 1.704 → 1.739 MB gz.
+
+**The open questions v350 left:**
+1. *Shelf scroll*: alone, today's build and v350's both read **0 long tasks**, p95 17 ms, frames > 34 ms 0–1 (5 rounds); with the early
+   dedup reverted in a scratch copy (A) against today (B), 3 rounds with a GC-flagged trace: 0 / 0 long tasks, the only GC task in the
+   window (a 67-ms MajorGC) was in the copy WITHOUT the early dedup. v350's 8 vs 1 was the machine's load (8–12). Nothing to fix.
+2. *Wave 138's ledger*: `LazimEngine.ledger()` is already built in steps (`ledgerStep`, wave 148) inside `Warm341.step` (Early343, the
+   labs, Late350's sheets); no learner's tap builds it — the one first-use path that read DabtEngine cold (the shop's drip) had the ledger
+   built already. The check timed ONE cold one-shot build; now the best of three (a retry stated) plus the stepped build the app runs:
+   its longest 20-ms slice ≤ 80 ms and its map equal to the one-shot's.
+3. *«v343 — first use without a freeze»*: real, not load. The games hub (wave 32p) starts `shopItems(0)` / `jinasItems(0)` when its counts
+   are in; their drip reads one sentence per idle step (`Quiet.ok()`), and its FIRST read was DabtEngine's cold first reading — compile +
+   lazy indexes, 946 ms cold vs 61 ms warm for one 8-word sentence at 4× — in one task, which landed 1 s after the story the learner opened
+   next (3 of 3 instrumented runs: 425–833 ms, `SRS=1`). Fixed (below). The 1.07-s search task: alone, search's worst is 171–264 ms — load.
+4. *v350's «still slow»*: the bayān doors' heaviest read and taḥqīq are unchanged Late350 tasks (the sentence sheet's ~250-ms task, both
+   builds); `DabtEngine.decide` was NOT cached: its result depends on per-call fields beside the rows (`_orig24`, `_lex24`, `_seg24`,
+   `_pos24`, `_colonAt`, `_punctAt`, the carry fields) and it mutates the rows (kind, cell, lemma, receipts) — a content-hash cache would
+   have to replay those writes; not provable in this wave. The model lab's first cv slice was not re-measured.
+5. *The low-end phone* (6× CPU, 3 rounds): door at 4 Mbit/s 6492 → **5837 ms**, all bodies 8718 → 8182; local door 1007 / 1069 (noise
+   band); the first-use sweep: 10 / 9 tasks over 200 ms, the worst the Jumla lab's (293) and the first word (281); the story 161 / 151.
+
+**Before / after** (A = this wave's base, B = this wave; 4× CPU; 5 alternated rounds alone; median [min–max]):
+| | base | v354 |
+|---|---|---|
+| door usable: local · 20 Mbit/s · 4 Mbit/s | 679 [649–786] · 1996 [1936–2060] · 6219 [6202–6339] ms | 707 [674–741] · **1780 [1744–1833] · 5492 [5444–5555]** ms |
+| all bodies in at 20 · 4 Mbit/s | 3945 · 8408 ms | 3854 · **7622** ms |
+| boot's longest task at 4 Mbit/s | 223 [195–247] ms | 182 [181–214] ms |
+| core slice d1 (gzip · raw) | 0.826 · 2.89 MB | **0.485 · 1.59 MB** (bodies 11.56 → 11.95 MB gz) |
+| first-use sweep: story window worst | 112 [88–791] (465 / 791 in 2 of 5) | 267 [88–320] — Early343's Warm341.W compile reads (92–279 ms each, idle 1.2 s; v343's design) |
+| 6×: door at 4 Mbit/s | 6492 [6405–6561] ms | 5837 [5804–5862] ms |
+| sentence sheet, word taps, Iẓhār page, note page, game | equal within the spread | |
+
+What changed (same answers, same screens; each proved by a check):
+1. **A story's `about` rides in its body slice** (`tools/pubsplit.py` BODY_KEYS, `BODY341.KEYS`): `openAbout`, its only reader, already
+   waits for the story's body; its stub traps a door read (`__bodyMiss341`). −0.9 MB raw of the core.
+2. **ALFIYYA_JSON and AMTHAL ride in the LAST body slice** as `var` declarations before its arrival call (`QISSA_NO_LATE354=1` keeps them in
+   the core): the Elfiye card (a grammar note — openRef waits for every body) is their only reader in the app; `Alfiyya352.data()` caches
+   nothing while `BODY341.ready()` is false. g1 stays byte-identical. −0.4 MB raw / 67 KB gz.
+3. **The shop's and the jinās pool's drips wait for `Warm341.done`** (unless a round is filling from them): the same queue, in the same order.
+Tried and dropped: the late tables in g1 (every story's open waits for g1 first — moved to the last body slice instead); caching
+`DabtEngine.decide` (above); deferring the Khilāf lab's «İki yöntem» cards (174 ms worst, not felt).
+**Smoke** (after «v350 — the shelf's grid by a class»): «v354 — speed: the core slice without what no door reads» (core ≤ 0.728 MB gz =
+1.5 × 0.485; no `about` / ALFIYYA_JSON / AMTHAL in it; the late tables in the last slice; the door reads no body key; every about sheet,
+25 notes' HTML with 68 Elfiye cards and AMTHAL equal the repository reader's), «v354 — speed: the drips wait for the engines' warm-up» (no
+shop read before Warm341 unless filling; the story window's worst task after the hub ≤ 400 ms = 1.5 × 267 measured alone at load 1.1–1.5,
+best of two runs). **Older checks changed:** wave 138 — the measure, not the ceiling: best of three cold builds ≤ 400 ms, plus the stepped
+build (longest 20-ms slice ≤ 80 ms, same map).
+Still slow: the sentence sheet's heaviest Late350 task (~250 ms at 4×: the bayān doors / taḥqīq), the Jumla lab's first analysis (one
+~300–670-ms task: `DabtEngine.decide` ×5), Warm341.W's compile reads (≤ 280 ms each, idle-time), the first word tap at 6× (~280 ms), the
+door's local parse (~0.7 s at 4×, ~1.0 s at 6×), the Khilāf lab's cards (174 ms).
+**Finish**: `check_i18n.py` clean; the refit chain ran after the last code edit; **the whole suite: 643 PASS, 0 FAIL** (alone, one run;
+wave 138 and both v354 checks among them); `tools/entrance_test.js` on the assembled site (`speed350/mk.sh`): «✓ Ready — opens offline
+too», ready 4.3 s, the app opens in 708 ms, no errors.
