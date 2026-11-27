@@ -20793,6 +20793,88 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (Object.keys(r.low).length) throw new Error('contrast: ' + J(r.low));
   });
   // <<< v357-N
+  // ── v360-Sh — Sharḥ Shudhūr al-Dhahab whole, from the web text (research/sources/sharh-shudhur-al-dhahab-src.txt, Shamela 6969, ed. al-Daqr;
+  // its printed pages are NOT the owner's print's). LETTERS are the witness: harakāt / tatweel / punctuation off, أ إ آ ٱ → ا, ى → ي; the e-text's
+  // detached kāf of likeness («ك زيد») may stand apart from its word.
+  const sh360 = (() => {
+    const fsx = require('fs'), pathx = require('path'), R = f => pathx.join(__dirname, '..', f);
+    const key = s => String(s || '').normalize('NFC').replace(/[ً-ٰٟـۖ-ۭ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/[^ء-ي]+/g, ' ').trim().split(/ +/).filter(Boolean).join(' ');
+    const web = fsx.readFileSync(R('research/sources/sharh-shudhur-al-dhahab-src.txt'), 'utf8');
+    const pages = {}; let all = [];
+    for (const blk of web.split(/^=== p\. /m).slice(1)) { const m = blk.match(/^(\d+) \((\d+)\) \[[^\]]*\] ===\n/); if (!m) continue; const k = key(blk.slice(m[0].length)); pages[m[1]] = { pr: +m[2], k }; all.push(k); }
+    all = ' ' + all.join(' ') + ' ';
+    const rx = q => new RegExp('(?<![ء-ي])' + key(q).split(' ').map(w => w.length > 2 && w[0] === 'ك' ? 'ك ?' + w.slice(1) : w).join(' ') + '(?![ء-ي])');
+    const has = (q, hay) => !!key(q) && rx(q).test(hay || all);
+    const quote = q => { const segs = String(q || '').split(' … ').filter(x => x.trim()); return segs.length > 0 && segs.every(x => has(x)); };
+    return { fsx, R, J: f => JSON.parse(fsx.readFileSync(R(f), 'utf8')), key, web, pages, has, quote };
+  })();
+  await check('v360 — Sharḥ Shudhūr whole: every stored Shudhūr rule is the author\'s own sentence — the 210 rules\' rule_ar / quote_ar letter for letter in the web text (207; the three the web text does not state flagged «absent»), the old paraphrase kept as rule_ar_v1, the old ledger\'s 235 ids intact with ar = the rule, the three matn readings beside both witnesses, the received matn file untouched, the pp. 94–99 passage from the web text in its own file, the source and its converter in the tree', async () => {
+    const { fsx, R, J, key, web, has, quote } = sh360, bad = [];
+    const rows = fsx.readFileSync(R('research/sources/shudhur-al-dhahab-qawaid.jsonl'), 'utf8').split('\n').filter(l => l.trim()).map(l => JSON.parse(l));
+    if (rows.length !== 210) throw new Error('the jsonl has ' + rows.length + ' rules');
+    let verb = 0; const absent = [];
+    rows.forEach((r, k) => { const n = k + 1;
+      if (r.quote_ar) { if (!quote(r.quote_ar)) bad.push('R' + n + ' quote'); if (!(r.web_page >= 13 && r.web_page <= 602) || !r.shamela) bad.push('R' + n + ' page'); }
+      if (r.rule_ar && quote(r.rule_ar)) verb++;
+      if ('rule_ar_v1' in r && r.rule_ar !== r.quote_ar) bad.push('R' + n + ' replaced but not by its quote');
+      if (/^absent/.test(r.quote_note || '')) absent.push(n); });
+    // measured 2026-11-27 (v360-Sh): 73 whole rule_ar verbatim before (88 counting «…» cuts) → 207 after; absent R5, R34, R50
+    if (verb < 207 || absent.join() !== '5,34,50') throw new Error('verbatim ' + verb + ' of 210, absent ' + absent.join());
+    const cov = J('content/rules/coverage_shudhur.json'), E = cov.entries, ids = E.map(e => e.id);
+    if (E.length !== 235 || ids.filter(i => /^S/.test(i)).length !== 25 || rows.some((_, k) => !ids.includes('R' + (k + 1)))) throw new Error('the old ledger\'s ids: ' + E.length);
+    for (const e of E) { if (/^R/.test(e.id)) { const r = rows[e.jsonl - 1]; if (e.ar !== (r.rule_ar || r.examples.join(' ، '))) bad.push(e.id + ' ar ≠ the rule'); }
+      if (['S41', 'S49', 'S51'].includes(e.id) && !(e.web_reading && web.includes(e.web_reading) && !has(e.ar))) bad.push(e.id + ' the two witnesses'); }
+    const matn = fsx.readFileSync(R('research/sources/shudhur-al-dhahab-src.txt'), 'utf8').split('\n');
+    const sha = require('crypto').createHash('sha1').update(matn.slice(0, 305).join('\n') + '\n').digest('hex');
+    if (sha !== 'fe07761eb723383b2a0a6faec0f896371f777c54') bad.push('the received matn file changed');
+    const gap = fsx.readFileSync(R('research/sources/shudhur-al-dhahab-src.pp94-99-web.txt'), 'utf8').split('\n').filter(l => l.trim() && !l.startsWith('#'));
+    if (gap.length !== 1 || !web.includes(gap[0])) bad.push('the pp. 94–99 passage');
+    if (!fsx.existsSync(R('tools/authoring/shamela_src.py')) || !/sharh-shudhur-al-dhahab-src\.txt/.test(fsx.readFileSync(R('research/sources/README.md'), 'utf8'))) bad.push('converter / README');
+    const il = J('content/rules/ilal.json'), mine = il.reasons.filter(r => r.book === 'shudhur-sharh'), first = il.reasons.findIndex(r => r.book === 'shudhur-sharh');
+    if (mine.length < 14 || first < 156 || mine.some(r => !/^ilal-shudhur2-/.test(r.id) || !r.en || !r.tr || !sh360.pages[r.shamela_page] || !has(r.ar, ' ' + sh360.pages[r.shamela_page].k + ' '))) bad.push('the reasons: ' + mine.length + ' from ' + first);
+    if (bad.length) throw new Error(bad.slice(0, 6).join(' | ') + ' (' + bad.length + ')');
+    console.log('      210 rules: ' + verb + ' verbatim (absent R' + absent.join(', R') + '); the old ledger 235 ids; ' + mine.length + ' reasons of the sharḥ in ilal.json');
+  });
+  await check('v360 — Sharḥ Shudhūr whole: the unread half (web pp. 455–602) by script — the toc of the whole book (15 bābs, 115 «قلت» passages), the sibling ledger coverage_shudhur_sharh.json (its counts its rows\' and pinned: ≥ 103 rows, applied ≥ 27 with the vowelled, ⚠ ≤ 4, joined ≥ 10), every row\'s sentence and example letter for letter on its page, every not-automatable row with its reason, every applied probe re-proved in this page (the vowelled first)', async () => {
+    const { J, key, pages, has } = sh360, bad = [];
+    const toc = J('content/rules/toc_shudhur_sharh.json');
+    if (toc.babs.length !== 15 || toc.counts.passages !== 115 || toc.babs.filter(b => b.unread_half).length !== 7) throw new Error('the toc: ' + JSON.stringify(toc.counts));
+    for (const p of toc.passages) if (!pages[p.shamela] || !has(p.opens, ' ' + pages[p.shamela].k + ' ')) bad.push('passage ' + p.n);
+    const led = J('content/rules/coverage_shudhur_sharh.json'), E = led.entries, C = {};
+    for (const e of E) { const pg = pages[e.shamela]; if (!pg || pg.pr !== e.web_page || e.web_page < 455) { bad.push(e.id + ' page'); continue; }
+      if (!has(e.ar, ' ' + pg.k + ' ')) bad.push(e.id + ' ar'); for (const x of e.ex) if (!key(e.ar).includes(key(x))) bad.push(e.id + ' ex');
+      const k = 'joined' in e ? 'joined' : e.warn ? 'warn' : e.status + (e.offered ? '-offered' : '') + (e.vowelled ? '-vowelled' : ''); C[k] = (C[k] || 0) + 1; C['status:' + e.status] = (C['status:' + e.status] || 0) + 1;
+      if (e.status === 'not-automatable' && !e.reason) bad.push(e.id + ' reason'); }
+    if (bad.length) throw new Error('verbatim: ' + bad.slice(0, 6).join(' | '));
+    if (JSON.stringify(Object.keys(C).sort().map(k => [k, C[k]])) !== JSON.stringify(Object.keys(led.counts).sort().map(k => [k, led.counts[k]]))) throw new Error('the counts are the rows\': ' + JSON.stringify({ C, stored: led.counts }));
+    // measured 2026-11-27 (v360-Sh): 103 rows — joined 10, applied 27 (8 + 1 by the vowelled probe — our test vowels, never shown), ⚠ 4 (SH445.1
+    // taʿlīq, SH517.1 ishtighāl after the hamza, SH535.1 ʿaṭf bayān whose mention is required, SH543.1 the addressee's badal: the next wave's), open 25, n-a 37
+    if (E.length < 103 || C['status:applied'] < 27 || (C.warn || 0) > 4 || (C.joined || 0) < 10) throw new Error('the pins: ' + JSON.stringify(C));
+    const fsrc = sh360.fsx.readFileSync(sh360.R('tools/ledger/aqil_probe.js'), 'utf8'), fn = fsrc.slice(fsrc.indexOf('(probes)'));
+    const ps = E.filter(e => e.status === 'applied' && e.probes).flatMap(e => e.probes.map(p => { const s = p.vowelled ? p.sv : p.s; return p.w ? { s, w: p.w, re: p.re, v: !!p.vowelled } : { s, any: p.any, v: !!p.vowelled }; })).sort((a, b) => b.v - a.v);
+    const res = await page.evaluate(([f, q]) => (0, eval)('(' + f + ')')(q), [fn, ps]), fail = res.map((r, k) => r.ok ? null : ps[k].s + ' → ' + r.got.slice(0, 80)).filter(Boolean);
+    if (fail.length) throw new Error(fail.length + ' applied rows no longer prove: ' + fail.slice(0, 4).join(' | '));
+    console.log('      toc ' + toc.babs.length + ' bābs / ' + toc.counts.passages + ' passages; ledger ' + E.length + ' rows ' + JSON.stringify(led.counts) + '; ' + ps.length + ' probes re-proved');
+  });
+  await check('v360 — Nahw342Engine v360-Sh rows on the Sharḥ Shudhūr\'s own examples: جَاءَ زَيْدٌ بَلْ عَمْرٌو joined by «بل» (p. 567), ضَرَبْتُهُ إِيَّاهُ badal or tawkīd OFFERED (p. 570), أَفِي الدَّارِ تَقُولُ زَيْدًا جَالِسًا the saying as ẓanna (pp. 488–490), إِنْ زَيْدًا رَأَيْتَهُ فَأَكْرِمْهُ ishtighāl after the conditional (p. 520); silent on the controls (Ḥijāzī مَا + بَلْ, a two-object verb, إِيَّاكَ نَعْبُدُ, قُلْتُ without the question, the ḥikāya, إِنَّ, the unvowelled إن); every cite verbatim in the web text; the dispatcher right before n355', async () => {
+    const r = await page.evaluate(() => { const H = s => String(s || '').normalize('NFC').replace(/[ً-ْٰـ]/g, ''); const L = (s, w) => { const rows = SentenceAnalyzer.analyze(s); const i = rows.findIndex(x => H(x.w) === w); return i < 0 ? 'NO ' + w : H((Murib.line(rows, i) || {}).ar); };
+      const fired = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, i) => (Murib.line(rows, i) || {}).n342).filter(k => /360$/.test(k || '')); };
+      return { bal: L('جَاءَ زَيْدٌ بَلْ عَمْرٌو', 'عمرو'), balP: L('جاء زيد بل عمرو', 'عمرو'), balMa: L('مَا زَيْدٌ قَائِمًا بَلْ قَاعِدٌ', 'قاعد'), balNo: fired('بَلْ هُمْ قَوْمٌ يَعْدِلُونَ'),
+        iyya: L('ضَرَبْتُهُ إِيَّاهُ', 'إياه'), iyya2: L('أَعْطَيْتُهُ إِيَّاهُ', 'إياه'), iyyaNo: fired('إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ'),
+        q1: L('أَفِي الدَّارِ تَقُولُ زَيْدًا جَالِسًا', 'زيدا'), q2: L('أَفِي الدَّارِ تَقُولُ زَيْدًا جَالِسًا', 'جالسا'), qv: L('أَفِي الدَّارِ تَقُولُ زَيْدًا جَالِسًا', 'تقول'),
+        qNo: L('قُلْتُ زَيْدًا مُنْطَلِقًا', 'زيدا'), hik: fired('أَأَنْتَ تَقُولُ زَيْدٌ مُنْطَلِقٌ'),
+        ish: L('إِنْ زَيْدًا رَأَيْتَهُ فَأَكْرِمْهُ', 'زيدا'), inna: L('إِنَّ زَيْدًا رَأَيْتُهُ', 'زيدا'), ishP: L('إن زيدا رأيته فأكرمه', 'زيدا'),
+        cites: Object.entries(Nahw342Engine.RULES360SH || {}).map(([k, v]) => [k, v.cert, v.cite]), inRules: ['balAtf360', 'iyyaBadal360', 'qawlZann360', 'ishShart360'].every(k => !!Nahw342Engine.RULES[k]),
+        order: /this\.sh360, this\.n355\]/.test(String(Nahw342Engine.post)) };
+    });
+    const J = JSON.stringify, has = (a, re) => re.test(a || '');
+    if (!has(r.bal, /معطوف على «زيد» ب«بل»/) || !has(r.balP, /معطوف على «زيد» ب«بل»/) || has(r.balMa, /معطوف على/) || r.balNo.length) throw new Error('bal: ' + J([r.bal, r.balP, r.balMa, r.balNo]));
+    if (!has(r.iyya, /في محل نصب، بدل من الضمير المتصل في «ضربته»، أو توكيد له/) || has(r.iyya2, /بدل من الضمير/) || r.iyyaNo.length) throw new Error('iyyā: ' + J([r.iyya, r.iyya2, r.iyyaNo]));
+    if (!has(r.q1, /مفعول به أول ل«تقول» \(القول بمعنى الظن\)/) || !has(r.q2, /مفعول به ثان ل«تقول»/) || !has(r.qv, /تقديره «أنت»/) || has(r.qv, /وفاعله «زيدا»/) || has(r.qNo, /مفعول به أول/) || r.hik.length) throw new Error('qawl: ' + J([r.q1, r.q2, r.qv, r.qNo, r.hik]));
+    if (!has(r.ish, /مفعول به لفعل محذوف وجوبا يفسره المذكور «رأيته»/) || !has(r.inna, /اسم إن/) || has(r.ishP, /لفعل محذوف/)) throw new Error('ishtighāl after إِنْ: ' + J([r.ish, r.inna, r.ishP]));
+    if (!r.inRules || !r.order || r.cites.length !== 4 || r.cites.find(([k, c]) => c !== (k === 'iyyaBadal360' ? 'offered' : 'exact'))) throw new Error('rows / order: ' + J([r.inRules, r.order, r.cites.map(x => x.slice(0, 2))]));
+    for (const [k, , cs] of r.cites) for (const c of cs) { const m = /«([^»]+)»/.exec(c); if (!m || !sh360.has(m[1])) throw new Error(k + ': the cite is not in the web text — ' + c.slice(0, 60)); }
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

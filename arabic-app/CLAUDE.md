@@ -17685,3 +17685,66 @@ iʿrāb it therefore has — lafẓī, taqdīrī, maḥallī — or none, and wh
   an attached pronoun inside a host token likewise (only when the token's own clause is the pronoun, «لَهُمْ»); the tābiʿ's place is never deduced
   (v346 does not resolve the followed word); asmāʾ al-afʿāl are mostly cited words («لفظ محكي») — 3 tokens; the 97 «taqdiriUnsaid — SignEngine's class»
   maqṣūr rows mix the engine's misreadings («بَيْنَمَا») with real slips; the 10,931 lines that state a case with neither sign nor class get no kind step (lafẓī vs taqdīrī needs the sign); the en/tr renderings await the hoca.
+
+## v360-Sh — Sharḥ Shudhūr whole
+
+The owner (2026-11-27): «This is Shudhūr's web text version; maybe it can be a little bit easier for you to extract automations and rules:
+https://shamela.ws/book/6969». The whole sharḥ as text — `research/sources/sharh-shudhur-al-dhahab-src.txt` (Shamela 6969, ed. ʿAbd al-Ghanī
+al-Daqr, 572 Shamela pages, printed pp. 13–602; converter `tools/authoring/shamela_src.py`; README entry). Its vowels are mechanical: the
+LETTERS are the witness (`tools/ledger/shudhur2_common.py`: `key()` folds harakāt, أ/إ/آ/ٱ → ا, ى → ي; `find()` also lets the e-text's
+detached kāf of likeness «ك زيد» stand apart). **Its printed pages are NOT the owner's print's** (the owner's p. 100 البناء = web p. 89; the
+owner's p. 366 عمل الفعل = web p. 455): the brief's «pp. 375–602» is, in this edition, **pp. 455–602** — everything after the matn of عمل الفعل.
+Every page this wave cites is the web edition's (`web_page`, plus `shamela`).
+- **Verbatim rules** (`tools/ledger/shudhur2_verbatim.py`, idempotent; data `tools/ledger/shudhur2_quotes.json`, selected by scratchpad
+  `shudhur360/cand.py` — owner page → web page interpolated over the received matn's own anchors — + `decisions.py`, every row read by hand):
+  the 210 rules of `shudhur-al-dhahab-qawaid.jsonl` each gain `quote_ar` (the web's words, « … » between segments), `web_page(s)`, `shamela`;
+  where `rule_ar` was not in the web text letter for letter (or empty) it BECOMES the quote and the old wording is kept as `rule_ar_v1`.
+  **73 whole rule_ar verbatim (88 counting «…» cuts) → 207 / 210**; absent (no sentence of the web text states it — kept, flagged
+  `quote_note`): R5 (the «فَقُولَا لَهُ قَوْلًا لَيِّنًا» anecdote — in the owner's print, not in this edition), R34 (the kāf of ذلك / إيّا… as particles
+  — not on that page), R50 (the fāʿil's rafʿ «stronger than the ibtidāʾ» — said MORE than the book). Also MORE: R124 (the nūn of عداني «comes only
+  with verbs, and with من/عن» — the book says only that it shows the yāʾ in naṣb, p. 340); LESS: R138 (negative إن works with a DEFINITE ism, p. 258,
+  not «a pronoun» only). The old ledger `coverage_shudhur.json` keeps its 235 ids and statuses; R rows' `ar` = the new rule_ar (`ar_v1` kept);
+  `build_ledger.py` detects «noted» on `ar_v1` so a rebuild keeps every status — **run `shudhur2_verbatim.py` again after `build_ledger.py`**.
+  Of the notes' 158 Shudhūr-sourced examples 145 stand in the web text; of the 13 others, S41 / S49 are the readings below, nine differ by
+  orthography or a dropped و / ف prefix («برءوسكم / برؤوسكم», «وما لي / ومالي», «أولم / أو لم»), and two matter (for the hoca): R198 «إِنْ يَقُمْ وَاللهِ أَقُمْ» — web «ان تقم وَالله أقِم» (p. 453); R160 «هَلَّا اتَّقَيْتَ اللهَ فَيَغْفِرَ لَكَ» — web «هلا اتَّقَيْت الله تَعَالَى
+  فَيغْفر لَك» (p. 399: our example dropped a word inside).
+- **The matn's readings, both witnesses** (`web_reading` on S41 / S49 / S51; the received matn file is NOT changed): S41 ours «وَأُلْحِقَ بِهِ
+  اثْنَانِ، وَاثْنَتَانِ، وَثِنْتَانِ» — web «وَألْحق بِهِ اثْنَتَانِ وثنتان»; S49 ours «تُحَاجُّونِي» — web «{أتحاجوني}»; S51 ours «مَنْ يَتَّقِي» — web «{إِنَّه من
+  يتق ويصبر}». **pp. 94–99** of the owner's print: in this edition ONE «ثمَّ قلت» passage — the head of bāb al-bināʾ «بَاب الْبناء ضد الْإِعْرَاب
+  والمبني إِمَّا أَن يطرد فِيهِ السّكُون» (web p. 88), which part two's line under «## 8» continues. The brief asked to APPEND it to
+  `shudhur-al-dhahab-src.txt`; the permission classifier refused the write to the received file, so it stands in
+  `research/sources/shudhur-al-dhahab-src.pp94-99-web.txt` (web letters, no vowels of ours) — **orchestrator: allow the append, or keep the sibling**.
+- **The unread half by script** (`tools/ledger/shudhur2_ledger.py`; reuses aqil_ledger's markers, join and named roles and its prover
+  `aqil_prove.js` / `aqil_probe.js`; cache `.shudhur2-proof-cache*.json`; triage `tools/ledger/shudhur2_overrides.json`, the v355 shape):
+  `content/rules/toc_shudhur_sharh.json` — the WHOLE book: 15 bābs with web page spans («ثمَّ قلت بَاب …», and the e-text's bare «بَاب المنصوبات …»),
+  115 «قلت» passages (98 matn, the rest replies to «فإن قيل»), the old rules per bāb; thin bābs of the scanned part (< 0.6 old rules a page):
+  البناء, النكرة والمعرفة, المرفوعات, المجزومات. `content/rules/coverage_shudhur_sharh.json` (SIBLING ledger, ids `SH<shamela>.<n>`; the old
+  «Shudhūr R<n>» stay): **103 rows** over web pp. 455–602 — a sentence (matn or sharḥ, long lines cut at «وأما / الثاني / وقولي …») with a ruling
+  marker and its example (نحو / تقول / كقولك / the detached «ك»), the example cut where the commentary resumes; matn passages with no example
+  kept as statements. **joined 10 · applied 27** (17, offered 1, by our test vowels 8, both 1) **· ⚠ 4 · open 25 · not automatable 37**.
+  By bāb: عمل الفعل 19 (applied 5, joined 3, ⚠ 2) · الأسماء العاملة 27 (5, 2) · التعجب 3 · التنازع 4 (1, 1) · الاشتغال 9 (5, 2, ⚠ 1) · التوابع 30
+  (10, 2, ⚠ 2) · موانع الصرف 5 · العدد 6 (1). The ⚠ left (the next wave's engine order): SH445.1 taʿlīq «علمت أزيد في الدار أم عمرو» (the
+  engine makes «عمرو» the khabar), SH517.1 «أبشرا منا واحدا نتبعه» (ishtighāl after the hamza with a jārr + naʿt between), SH535.1 «هند قام زيد
+  أخوها» (ʿaṭf bayān whose mention is required; the engine makes «أخوها» the doer), SH543.1 «أعجبتني وجهك» (the addressee's badal).
+- **Engine rows** (`Nahw342Engine`, block «v360-Sh BEGIN/END» before v355-N1; source scratchpad `shudhur360/eng360.js`, spliced by
+  `splice360.py`, idempotent; `RULES360SH` merged after the class; ONE dispatcher `sh360` right before `this.n355` in the post list):
+  `balAtf360` EXACT (a noun after بَلْ closing a VERBAL clause, a doer / object / kāna-ism before it in the same written case → «مَعْطُوفٌ عَلَى «X»
+  بِـ«بَلْ» (عَطْفُ نَسَقٍ)», p. 567 — never «مبتدأ» with no khabar; silent after Ḥijāzī مَا, which maLakin keeps); `iyyaBadal360` OFFERED (إِيَّا… after
+  a verb carrying the same object pronoun, not a two-object verb → «… بَدَلٌ مِنَ الضَّمِيرِ الْمُتَّصِلِ فِي «X»، أَوْ تَوْكِيدٌ لَهُ», p. 570); `qawlZann360`
+  EXACT (تَقُولُ after the interrogative hamza, only a ẓarf / jārr between, then two WRITTEN accusatives → first / second object, the verb's doer the
+  hidden «أَنْتَ», pp. 488–490); `ishShart360` EXACT (the analyzer's conditional إِنْ + a written accusative + a verb carrying its pronoun →
+  ishtighāl, p. 520; the unvowelled «إن» stays inna's). Each cite is the web text's sentence verbatim. **Corpus** (scratchpad `fires360.js`, 102
+  stories, 90,147 tokens): the four rows fire on NO authored token (0 → 0; the 65 «بل» meet verbs, pronouns, or nouns the engine already joins)
+  — no contradiction to judge: `research/story-audit-triage-delta-shudhur2.json` (no record, no proposals file).
+- **Reasons** (`tools/ilal/shudhur2_ilal.py`, APPENDS `tools/ilal/shudhur2_kept.json`; run after `build_ilal.py` / `aqil_ilal.py`): `ilal.json`
+  156 → **170** (book `shudhur-sharh`; the first 156 rows untouched; counts recomputed): taʿlīq ×2, the working maṣdar ×2, the ṣifa mushabbaha's
+  jarr, tanāzuʿ, ishtighāl ×4, the naʿt's definiteness, ʿaṭf bayān vs badal, the barred-from-tanwīn ×2 — each the author's «لأن …» sentence.
+- **Next wave — notes to write** (bābs of the unread half with NO grammar note; the rule sentences are the ledger rows named): الاشتغال (web
+  pp. 545–549: SH517.1–SH521.2), اسم المصدر (pp. 526–530: SH498.2, SH500.1), الظرف والمجرور المعتمدان (pp. 525–526: SH497.1–SH498.1), القول بمعنى
+  الظن / حذف المفعول (pp. 485–490: SH458.2–SH463.2). The thin bābs of the scanned part want a rules pass from this text (البناء, النكرة والمعرفة,
+  المرفوعات, المجزومات).
+- **Smoke** (three «v360 — Sharḥ Shudhūr whole …» checks before «v333 — the received imports»): every rule_ar / quote_ar letter for letter in the
+  web text (≥ 207, absent exactly R5/R34/R50), the old ledger's 235 ids with ar = the rule, the three readings' two witnesses, the received matn
+  file's first 305 lines by sha1, the pp. 94–99 passage, the 14 reasons on their pages; the toc (15 / 115 / 7 unread) and the new ledger (counts =
+  rows; ≥ 103, applied ≥ 27, ⚠ ≤ 4, joined ≥ 10; every sentence / example on its page; every applied probe re-proved, the vowelled first); the four
+  rows on the book's examples and controls, cites verbatim, the dispatcher before n355. No older check's pin moved.

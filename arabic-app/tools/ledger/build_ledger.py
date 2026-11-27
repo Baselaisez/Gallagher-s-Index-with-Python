@@ -73,8 +73,14 @@ def shudhur_entries():
         r = json.loads(l); p = r['page']
         near = max([q for q in pages if q <= p] or [pages[0]])
         ar = r['rule_ar'] or ' ، '.join(r['examples'])
-        out.append({'id': 'R%d' % n, 'line': page_line[near], 'page': p, 'ar': ar, 'kind': 'rule', 'jsonl': n,
-                    'file': 'research/sources/shudhur-al-dhahab-src.txt', 'en': r['rule_en'], 'bab': r['bab'], 'own_example': bool(r['examples']), 'ar_is_examples': not r['rule_ar']})
+        # v360-Sh: rule_ar is now the author's sentence from the web text (sharh-shudhur-al-dhahab-src.txt); «noted» is still detected on
+        # the wording the notes were fed from (rule_ar_v1, ours, superseded), so a rebuild keeps every status
+        orig = r.get('rule_ar_v1', r['rule_ar'])
+        e = {'id': 'R%d' % n, 'line': page_line[near], 'page': p, 'ar': ar, 'kind': 'rule', 'jsonl': n,
+             'file': 'research/sources/shudhur-al-dhahab-src.txt', 'en': r['rule_en'], 'bab': r['bab'], 'own_example': bool(r['examples']), 'ar_is_examples': not orig}
+        if 'rule_ar_v1' in r: e['ar_v1'] = orig or ' ، '.join(r['examples'])
+        if 'web_page' in r: e['web_page'] = r['web_page']
+        out.append(e)
     return out
 
 def qawaid_entries():
@@ -166,7 +172,7 @@ def main():
         for e in ents:
             m = e.pop('map'); ps = []
             for p in m.get('probes', []): ps.append(dict(p, ok=res[k]['ok'], got=res[k]['got'][:160])); k += 1
-            notes = noted_by(e['file'], e['line'] if isinstance(e['line'], int) else None, e['ar'], e.get('story'), e.get('jsonl'), grams_ok=not e.get('ar_is_examples'))
+            notes = noted_by(e['file'], e['line'] if isinstance(e['line'], int) else None, e.get('ar_v1') or e['ar'], e.get('story'), e.get('jsonl'), grams_ok=not e.get('ar_is_examples'))
             carried = []
             if ps and all(p['ok'] for p in ps): carried.append('engine:' + m.get('eng', 'Murib.line'))
             carried += ['note:' + n for n in notes]
@@ -179,7 +185,7 @@ def main():
             else: status = 'open'
             row = {k2: e[k2] for k2 in ('id', 'line', 'ar') }
             row.update({'kind': kind, 'carried_by': carried, 'status': status})
-            for k2 in ('page', 'en', 'tr', 'item', 'jsonl'):
+            for k2 in ('page', 'en', 'tr', 'item', 'jsonl', 'ar_v1', 'web_page'):
                 if k2 in e: row[k2] = e[k2]
             if m.get('na'): row['reason'] = m['na']
             if ps: row['probes'] = ps
