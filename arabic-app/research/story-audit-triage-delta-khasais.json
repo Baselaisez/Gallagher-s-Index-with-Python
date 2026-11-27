@@ -1,0 +1,164 @@
+{
+ "tag": "khasais",
+ "wave": "v352-K",
+ "note": "Readings from al-Khaṣāʾiṣ (khasais-*): every contradiction tools/grammar_audit.js listed on the new packages, judged by the line. The first run listed 16; four were the author's and were corrected in the scripts (listed under «corrected»). Second run: 13 records on the shelf (two for the same token under two jumla rules), all judged here: E = the engine is wrong by the books, C = both readings are allowed, undecided = left for the hoca (the vowel is unwritten in the text).",
+ "corrected": [
+  {
+   "engine": "sign",
+   "key": "khasais-al-lugha:1:s10:1",
+   "word": "وَرَبِّ"
+  },
+  {
+   "engine": "sign",
+   "key": "khasais-ilal-al-arabiyya:1:s1:8",
+   "word": "الْمُتْقِنِينَ"
+  },
+  {
+   "engine": "sign",
+   "key": "khasais-ilal-al-arabiyya:1:s1:11",
+   "word": "الْمُسْتَضْعَفِينَ"
+  },
+  {
+   "engine": "case",
+   "key": "khasais-al-irab:1:s6:17",
+   "word": "كُمَّثْرَى"
+  }
+ ],
+ "records": [
+  {
+   "engine": "jumla",
+   "key": "khasais-al-irab:1:s2:12",
+   "pkg": "khasais-al-irab",
+   "ch": "1",
+   "sen": "s2",
+   "word": "عَلِمْتَ",
+   "verdict": "E",
+   "why": "«عَلِمْتَ» answers «إِذَا سَمِعْتَ»; «أَبُوهُ» is the doer inside the quoted example «وَشَكَرَ سَعِيدًا أَبُوهُ», not a mubtadaʾ owed a predicate — the engine reads across the quotation."
+  },
+  {
+   "engine": "jumla",
+   "key": "khasais-al-irab:1:s2:12",
+   "pkg": "khasais-al-irab",
+   "ch": "1",
+   "sen": "s2",
+   "word": "عَلِمْتَ",
+   "verdict": "E",
+   "why": "«عَلِمْتَ» answers «إِذَا سَمِعْتَ»; «أَبُوهُ» is the doer inside the quoted example «وَشَكَرَ سَعِيدًا أَبُوهُ», not a mubtadaʾ owed a predicate — the engine reads across the quotation."
+  },
+  {
+   "engine": "jumla",
+   "key": "khasais-al-irab:1:s3:6",
+   "pkg": "khasais-al-irab",
+   "ch": "1",
+   "sen": "s3",
+   "word": "لَاسْتَبْهَمَ",
+   "verdict": "E",
+   "why": "«لَاسْتَبْهَمَ» opens with the lām of the answer of «لَوْ»; a clause carrying that lām is the answer, not an adjective of «وَاحِدًا»."
+  },
+  {
+   "engine": "jumla",
+   "key": "khasais-al-lugha:1:s12:3",
+   "pkg": "khasais-al-lugha",
+   "ch": "1",
+   "sen": "s12",
+   "word": "سُبْحَانَهُ",
+   "verdict": "E",
+   "why": "«سُبْحَانَهُ وَتَعَالَى» is the glorification put in between «قَالَ اللهُ» and the quoted verse; the maqūl is the verse «وَإِذَا مَرُّوا …», which the line says."
+  },
+  {
+   "engine": "sign",
+   "key": "khasais-al-irab:1:s8:18",
+   "pkg": "khasais-al-irab",
+   "ch": "1",
+   "sen": "s8",
+   "word": "الْيَحْيَوْنَ",
+   "verdict": "E",
+   "why": "«الْيَحْيَوْنَ» is the sound plural of the maqṣūr name يَحْيَى (the alif dropped, the fatha kept), in raf' by the waw; the engine does not see a sound plural in ـَوْنَ and reads a damma."
+  },
+  {
+   "engine": "case",
+   "key": "khasais-al-irab:1:s6:17",
+   "pkg": "khasais-al-irab",
+   "ch": "1",
+   "sen": "s6",
+   "word": "كُمَّثْرى",
+   "verdict": "undecided",
+   "why": "whether كُمَّثْرَى takes tanwin turns on whether its alif is of attachment (the singular كُمَّثْرَاة suggests so) or of the feminine; the text leaves the vowel of the rā unwritten and the point is in the hoca's list."
+  },
+  {
+   "engine": "case",
+   "key": "khasais-al-kalam-wal-qawl:1:s1:4",
+   "pkg": "khasais-al-kalam-wal-qawl",
+   "ch": "1",
+   "sen": "s1",
+   "word": "لَفْظٍ",
+   "verdict": "E",
+   "why": "«فَكُلُّ لَفْظٍ مُسْتَقِلٍّ»: «لَفْظٍ» is the second term of «كُلُّ» and is itself not annexed (مُسْتَقِلٍّ is its adjective), so it keeps its tanwin."
+  },
+  {
+   "engine": "case",
+   "key": "khasais-al-kalam-wal-qawl:1:s2:4",
+   "pkg": "khasais-al-kalam-wal-qawl",
+   "ch": "1",
+   "sen": "s2",
+   "word": "النَّحْوِيِّين",
+   "verdict": "E",
+   "why": "the e-text's «يسميه النحويين» is kept as printed (no witness found) and the line says the doer wants «النَّحْوِيُّونَ»; the engine's nasb object is impossible — «يُسَمِّي» already has its two objects, the هاء and «الْجُمَلَ»."
+  },
+  {
+   "engine": "case",
+   "key": "khasais-al-kalam-wal-qawl:1:s2:24",
+   "pkg": "khasais-al-kalam-wal-qawl",
+   "ch": "1",
+   "sen": "s2",
+   "word": "وَلَبِّ",
+   "verdict": "E",
+   "why": "«لَبِّ» is built on kasra like أَمْسِ and غَاقِ, as the editor's note on the line says (al-Lisān); a built word takes no tanwin of declension."
+  },
+  {
+   "engine": "case",
+   "key": "khasais-al-kalam-wal-qawl:1:s2:25",
+   "pkg": "khasais-al-kalam-wal-qawl",
+   "ch": "1",
+   "sen": "s2",
+   "word": "وَأُفِّ",
+   "verdict": "C",
+   "why": "«أُفِّ» without tanwin (definite) and «أُفٍّ» with the tanwin of indefiniteness are both said of the noun-verbs; the same bāb cites them both ways — «صَهْ، وَمَهْ» bare and «صَهٍ وَإِيهٍ» with tanwin.",
+   "cite": {
+    "file": "research/sources/al-khasais-ibn-jinni-src.txt",
+    "line": 275,
+    "ar": "وصه، ومه، ورويد … من نحو صهٍ وإيهٍ"
+   }
+  },
+  {
+   "engine": "case",
+   "key": "khasais-al-kalam-wal-qawl:1:s2:26",
+   "pkg": "khasais-al-kalam-wal-qawl",
+   "ch": "1",
+   "sen": "s2",
+   "word": "وَأَوَّهْ",
+   "verdict": "E",
+   "why": "«أَوَّهْ» is a built sound-word on sukun (one of its lexicon forms), quoted in the list; the engine declines it as a conjoined noun."
+  },
+  {
+   "engine": "case",
+   "key": "khasais-asl-al-lugha:1:s1:21",
+   "pkg": "khasais-asl-al-lugha",
+   "ch": "1",
+   "sen": "s1",
+   "word": "وَحْيٌ",
+   "verdict": "E",
+   "why": "«تَوَاضُعٌ وَاصْطِلَاحٌ، لَا وَحْيٌ وَتَوْقِيفٌ»: لَا conjoins after an affirmed predicate and «وَحْيٌ» follows «تَوَاضُعٌ» in raf'; there is no genus-لَا with its own predicate here."
+  },
+  {
+   "engine": "case",
+   "key": "khasais-iradat-al-arab:1:s4:13",
+   "pkg": "khasais-iradat-al-arab",
+   "ch": "1",
+   "sen": "s4",
+   "word": "مَشَاقَّهُ",
+   "verdict": "E",
+   "why": "«وَتَتَحَمَّلُ لِذٰلِكَ مَشَاقَّهُ»: «مَشَاقَّهُ» is the object of «تَتَحَمَّلُ»; «لِذٰلِكَ» is a closed jarr phrase and cannot take a second term."
+  }
+ ]
+}

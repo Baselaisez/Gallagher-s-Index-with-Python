@@ -1,0 +1,321 @@
+{
+  "id": "ism-al-fail-wal-maful-fil-kafiya",
+  "title": {
+    "ar": "اسْمُ الْفَاعِلِ وَاسْمُ الْمَفْعُولِ فِي الْكَافِيَةِ",
+    "en": "The ism fāʿil and the ism mafʿūl in the Kafiya: the definitions, the shapes, the conditions of government, the past-sense annexation, the intensives, the dual and plural with the dropped nūn",
+    "tr": "Kâfiye'de ism-i fâil ve ism-i mef'ûl: tarifler, sîgalar, amel şartları, mâzî mânâsında izâfet, mübâlağa vezinleri, nûnu düşen tesniye ve cemi"
+  },
+  "level": 4,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية لابن الحاجب — اسم الفاعل: ما اشتق من فعل لمن قام به بمعنى الحدوث؛ يعمل عمل فعله بشرط الحال والاستقبال والاعتماد؛ وإذا كان للماضي وجبت الإضافة؛ وإذا دخله اللام عمل مطلقا؛ أمثلة المبالغة؛ اسم المفعول: ما اشتق من فعل لمن وقع عليه",
+    "ضياء صونغور اوغلى — دفتر الكافية: مُخْرِج ومُسْتَخْرِج؛ زَيْدٌ ضَارِبٌ غُلَامُهُ عَمْرًا الْآنَ أَوْ غَدًا؛ خلاف الكسائي؛ دِرْهَمًا مفعول فعل مقدر؛ جَهُول صِدِّيق كَذَّاب غُفُل يَقُظ مِدْرَار مِكْثِير لُعَنَة؛ الْمُقِيمِي الصَّلَاةَ"
+  ],
+  "question": {
+    "en": [
+      "What is an ISM FĀʿIL? A noun derived from a verb for the one in whom the event subsists — in the sense of OCCURRENCE (حُدُوث), something that comes and goes: ضَارِب is striking now, not a striker by nature. That last clause is what parts it from the ṣifa mushabbaha.",
+      "How is it shaped? From the bare triliteral on فَاعِل; from every augmented form, take the muḍāriʿ, replace its prefix by a mīm with ḍamma and give the letter before the last a kasra: يُخْرِجُ → مُخْرِج, يَسْتَخْرِجُ → مُسْتَخْرِج. The ism mafʿūl is the same word with a FATḤA there: مُسْتَخْرَج — and مَفْعُول from the triliteral.",
+      "When does it GOVERN like its verb? Two conditions together: it must mean the present or the future, and it must lean on something — its ṣāḥib (a mubtada, a described noun, a relative, the owner of a ḥāl), a question hamza or a negation. زَيْدٌ ضَارِبٌ غُلَامُهُ عَمْرًا: غُلَامُهُ in rafʿ as its doer, عَمْرًا in naṣb as its object.",
+      "What happens when it means the PAST? It loses its government and must be annexed to its object by a maʿnawī annexation — زَيْدٌ ضَارِبُ عَمْرٍو أَمْسِ — because a ṣifa annexed to what it does not govern is an ordinary muḍāf. Al-Kisāʾī allows the annexation instead of requiring it, and calls it lafẓī. A further object (دِرْهَمًا) is then the object of an unspoken أَعْطَاهُ.",
+      "And with the article? الضَّارِبُ governs with no condition at all: مَرَرْتُ بِالضَّارِبِ أَبُوهُ زَيْدًا أَمْسِ — past, and still a doer in rafʿ and an object in naṣb. The lām stands for a relative الَّذِي, and a relative's verb has no tense restriction.",
+      "What are the INTENSIVES? ضَرَّاب، ضَرُوب، مِضْرَاب، عَلِيم، حَذِر — فَعَّال، فَعُول، مِفْعَال، فَعِيل، فَعِل — and the notebook adds فِعِّيل (صِدِّيق), فُعُل (غُفُل), فَعُل (يَقُظ), مِفْعِيل (مِكْثِير), فُعَلَة (لُعَنَة). They govern exactly as the ism fāʿil does, under the same conditions, as do its dual and plural; the al-plural may drop its nūn for lightness — الْمُقِيمِي الصَّلَاةَ in the naṣb reading.",
+      "What does the engine do? The IsmTagger reads مُسْتَخْرِج and مُسْتَخْرَج back to their scales and the kernel marks the one-vowel difference; the TaalluqEngine's VERBAL_WAZN list is this chapter — a noun on فَاعِل or مُفْعِل may take a doer and an object, which is why عَامِل governs in the corpus."
+    ],
+    "tr": [
+      "İSM-İ FÂİL nedir? Hades kendisiyle kâim olan zât için fiilden türetilen isim — HUDÛS mânâsında, gelip geçici bir şey: ضَارِب şu an vuran biridir, tabiatıyla vurucu değil. Bu son kayıt onu sıfat-ı müşebbeheden ayırır.",
+      "Sîgası nasıldır? Sülâsî mücerredden فَاعِل; her mezîd bâbdan muzâri alınır, ön eki mazmûm bir mîm yapılır ve sondan önceki harf kesre alır: يُخْرِجُ → مُخْرِج, يَسْتَخْرِجُ → مُسْتَخْرِج. İsm-i mef'ûl aynı kelimenin oraya FETHA almış hâlidir: مُسْتَخْرَج — sülâsîden ise مَفْعُول.",
+      "Ne zaman fiili gibi AMEL EDER? İki şart birlikte: hâl veya istikbâl mânâsında olmalı ve bir şeye dayanmalı — sâhibine (mübtedâ, mevsûf, mevsûl, zü'l-hâl), istifhâm hemzesine ya da nefy harfine. زَيْدٌ ضَارِبٌ غُلَامُهُ عَمْرًا: غُلَامُهُ fâili olarak merfû, عَمْرًا mef'ûlü olarak mansûb.",
+      "MÂZÎ mânâsında ne olur? Amelini kaybeder ve mef'ûlüne izâfet-i ma'neviyye ile muzâf olması gerekir — زَيْدٌ ضَارِبُ عَمْرٍو أَمْسِ — çünkü yönetmediği şeye muzâf bir sıfat sıradan bir muzâftır. Kisâî izâfeti vâcib değil câiz sayar ve lafzî der. Fazladan bir mef'ûl (دِرْهَمًا) o zaman söylenmemiş bir أَعْطَاهُ'nun mef'ûlüdür.",
+      "Ya lâm ile? الضَّارِبُ hiçbir şartsız amel eder: مَرَرْتُ بِالضَّارِبِ أَبُوهُ زَيْدًا أَمْسِ — mâzî, ama yine merfû bir fâil ve mansûb bir mef'ûl. Lâm bir الَّذِي mevsûlü yerindedir ve mevsûlün fiilinde zaman kaydı yoktur.",
+      "MÜBÂLAĞA vezinleri nelerdir? ضَرَّاب، ضَرُوب، مِضْرَاب، عَلِيم، حَذِر — فَعَّال، فَعُول، مِفْعَال، فَعِيل، فَعِل — defter فِعِّيل (صِدِّيق), فُعُل (غُفُل), فَعُل (يَقُظ), مِفْعِيل (مِكْثِير), فُعَلَة (لُعَنَة) ekler. Aynı şartlarla tıpkı ism-i fâil gibi amel ederler; tesniyesi ve cemi de öyle; lâmlı cemi hafiflik için nûnunu düşürebilir — nasb kıraatinde الْمُقِيمِي الصَّلَاةَ.",
+      "Motor ne yapar? IsmTagger مُسْتَخْرِج ile مُسْتَخْرَج'i vezinlerine geri okur ve çekirdek tek hareke farkını işaretler; TaalluqEngine'in VERBAL_WAZN listesi bu bâbdır — فَاعِل veya مُفْعِل veznindeki bir isim fâil ve mef'ûl alabilir; عَامِل'in külliyatta amel etmesinin sebebi budur."
+    ]
+  },
+  "plain": {
+    "en": "The ism fāʿil (ضَارِب «striking») and the ism mafʿūl (مَضْرُوب «struck») are nouns made from verbs. They can act like their verb — take a doer and an object — only when they mean «now or later» and lean on a subject, a question or a negation; with the article they always can. Past-sense ones annex their object instead.",
+    "tr": "İsm-i fâil (ضَارِب «vuran») ve ism-i mef'ûl (مَضْرُوب «vurulan») fiilden yapılan isimlerdir. Yalnız «şimdi veya sonra» anlamında olup bir özneye, soruya ya da olumsuzluğa dayandıklarında fiil gibi davranır — fâil ve mef'ûl alırlar; lâm ile her zaman alırlar. Mâzî anlamlı olanlar mef'ûlünü izâfetle alır."
+  },
+  "explanation": {
+    "en": "The two participles are defined in parallel: the ism fāʿil for the one in whom the event subsists, the ism mafʿūl for the one on whom it falls — and the first definition carries one extra word, حُدُوث, which the next chapter will turn against the ṣifa mushabbaha. The shapes are a single rule each: فَاعِل and مَفْعُول for the bare verb, and for every augmented form the muḍāriʿ with its prefix turned into a mīm of ḍamma, kasra before the last letter for the active and fatḥa for the passive, so that مُسْتَخْرِج and مُسْتَخْرَج differ by one vowel and nothing else. The chapter's weight is on government. A participle governs as its verb does only when it means the present or the future and leans on something that lets it predicate — its ṣāḥib, a question hamza, a negation. The notebook's model sentence carries all of it: زَيْدٌ ضَارِبٌ غُلَامُهُ عَمْرًا الْآنَ أَوْ غَدًا. Take away the time condition and the government goes with it: for the past the participle is annexed to its object by an ordinary maʿnawī annexation, because a ṣifa that does not govern the word it is annexed to is just a muḍāf — this is why the notebook pauses on the Kisāʾī dissent, which keeps the annexation lafẓī and optional, and on دِرْهَمًا, which no past-sense participle can take and which therefore belongs to an unspoken أَعْطَاهُ. The article changes everything: الضَّارِب stands for الَّذِي ضَرَبَ, a relative clause, and governs in every tense without a condition. The intensives, the dual and the plural follow the singular in all of this; the dropped nūn of الْمُقِيمِي الصَّلَاةَ is the only extra licence, and the notebook is careful to tie it to the naṣb reading — in the jarr reading the nūn is gone for a different reason, the annexation, and its absence is then obligatory. The ism mafʿūl closes the chapter by mirroring every rule with the passive verb's government, its object's seat now filled by a deputy doer.",
+    "tr": "İki ism paralel tarif edilir: ism-i fâil hadesin kendisiyle kâim olduğu zât için, ism-i mef'ûl üzerine vâki olduğu zât için — ve ilk tarif bir fazla kelime taşır, حُدُوث; sonraki bâb onu sıfat-ı müşebbeheye karşı kullanacaktır. Sîgalar birer kuraldır: mücerred fiil için فَاعِل ve مَفْعُول; her mezîd bâb için ön eki mazmûm mîm olmuş muzâri, ma'lûm için sondan önce kesre, meçhûl için fetha — öyle ki مُسْتَخْرِج ile مُسْتَخْرَج tek harekeyle ayrılır, başka hiçbir şeyle değil. Bâbın ağırlığı ameldedir. Bir ism yalnız hâl ya da istikbâl mânâsında olup yüklem olmasını sağlayan bir şeye dayandığında — sâhibine, istifhâm hemzesine, nefye — fiili gibi amel eder. Defterin örnek cümlesi hepsini taşır: زَيْدٌ ضَارِبٌ غُلَامُهُ عَمْرًا الْآنَ أَوْ غَدًا. Zaman şartını kaldırın, amel de gider: mâzî için ism, mef'ûlüne sıradan bir izâfet-i ma'neviyye ile muzâf olur; çünkü muzâf olduğu kelimeyi yönetmeyen sıfat yalnızca bir muzâftır — defterin izâfeti lafzî ve ihtiyârî tutan Kisâî muhâlefetinde ve hiçbir mâzî mânâlı ismin alamayacağı, dolayısıyla söylenmemiş bir أَعْطَاهُ'ya ait olan دِرْهَمًا'da durmasının sebebi budur. Lâm her şeyi değiştirir: الضَّارِب bir sıla cümlesi olan الَّذِي ضَرَبَ yerindedir ve her zamanda şartsız amel eder. Mübâlağa vezinleri, tesniye ve cemi bunların hepsinde müfrede uyar; الْمُقِيمِي الصَّلَاةَ'nin düşen nûnu tek fazla ruhsattır ve defter onu nasb kıraatine bağlamaya özen gösterir — cer kıraatinde nûn başka bir sebeple, izâfetten gitmiştir ve yokluğu o zaman vâcibdir. İsm-i mef'ûl her kuralı meçhûl fiilin ameliyle aynalayarak bâbı kapatır; mef'ûlünün yerini artık nâib-i fâil doldurur."
+  },
+  "examples": [
+    {
+      "ar": "اسْمُ الْفَاعِلِ: مَا اشْتُقَّ مِنْ فِعْلٍ لِمَنْ قَامَ بِهِ بِمَعْنَى الْحُدُوثِ",
+      "en": "The definition.",
+      "tr": "Tarif.",
+      "sourceStory": "al-kafiya",
+      "sentence": "s1"
+    },
+    {
+      "ar": "مُخْرِجٌ وَمُسْتَخْرِجٌ",
+      "en": "The augmented shape.",
+      "tr": "Mezîd sîga.",
+      "sourceStory": "al-kafiya",
+      "sentence": "s2"
+    },
+    {
+      "ar": "زَيْدٌ ضَارِبٌ غُلَامُهُ عَمْرًا الْآنَ أَوْ غَدًا",
+      "en": "Government under the conditions.",
+      "tr": "Şartlarla amel.",
+      "sourceStory": "al-kafiya",
+      "sentence": "s3"
+    },
+    {
+      "ar": "زَيْدٌ ضَارِبُ عَمْرٍو أَمْسِ",
+      "en": "The past sense: annexation.",
+      "tr": "Mâzî mânâsı: izâfet.",
+      "sourceStory": "al-kafiya",
+      "sentence": "s4"
+    },
+    {
+      "ar": "مَرَرْتُ بِالضَّارِبِ أَبُوهُ زَيْدًا أَمْسِ",
+      "en": "The article lifts every condition.",
+      "tr": "Lâm her şartı kaldırır.",
+      "sourceStory": "al-kafiya",
+      "sentence": "s7"
+    },
+    {
+      "ar": "ضَرَّابٌ وَضَرُوبٌ وَمِضْرَابٌ وَعَلِيمٌ وَحَذِرٌ",
+      "en": "The intensives.",
+      "tr": "Mübâlağa vezinleri.",
+      "sourceStory": "al-kafiya",
+      "sentence": "s8"
+    },
+    {
+      "ar": "الْمُقِيمِي الصَّلَاةَ",
+      "en": "The nūn dropped for lightness.",
+      "tr": "Hafiflik için düşen nûn.",
+      "sourceStory": "al-kafiya",
+      "sentence": "s11"
+    },
+    {
+      "ar": "زَيْدٌ مَضْرُوبٌ غُلَامُهُ الْآنَ أَوْ غَدًا",
+      "en": "The ism mafʿūl governing.",
+      "tr": "İsm-i mef'ûlün ameli.",
+      "sourceStory": "al-kafiya",
+      "sentence": "s13"
+    },
+    {
+      "ar": "وَهُوَ اسْمٌ مُشْتَقٌّ مِنَ الْمُضَارِعِ لِمَنْ قَامَ بِهِ الْفِعْلُ بِمَعْنَى الْحُدُوثِ.",
+      "en": "And it is a noun derived from the muḍāriʿ for the one in whom the act arises, in the sense of coming-to-be.",
+      "tr": "O, muzâriden türetilmiş bir isimdir; fiil kendisiyle kâim olan kimse için, hudûs (sonradan olma) mânâsıyla konmuştur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 33,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:394 (ص 75)"
+    },
+    {
+      "ar": "وَاشْتُقَّ مِنْهُ لِمُنَاسَبَتِهِمَا فِي الْوُقُوعِ صِفَةً لِلنَّكِرَةِ وَغَيْرِهِ.",
+      "en": "And it was derived from it because the two agree in occurring as the adjective of an indefinite noun, and in other things.",
+      "tr": "Ondan türetilmiştir; çünkü ikisi nekreye sıfat olarak gelmekte ve başka hususlarda birbirine uygundur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 33,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:395 (ص 75)"
+    },
+    {
+      "ar": "لِأَنَّ فِي الْأَوَّلِ يَصِيرُ مُشَابِهًا بِالْمُتَكَلِّمِ وَبِالتَّفْضِيلِ.",
+      "en": "Because at the beginning it would come to resemble the speaker's form and the form of preference.",
+      "tr": "Çünkü başta olsaydı mütekellim sîgasına ve ism-i tafdîle benzerdi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 33,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:399 (ص 76)"
+    },
+    {
+      "ar": "وَكُسِرَ عَيْنُهُ، لِأَنَّ بِتَقْدِيرِ الْفَتْحِ يَصِيرُ مُشَابِهًا بِمَاضِي الْمُفَاعَلَةِ.",
+      "en": "And its ʿayn was given a kasra, because with a fatḥa supposed it would come to resemble the māḍī of the mufāʿala.",
+      "tr": "Aynı kesrelenmiştir; çünkü fetha takdirinde müfâale bâbının mâzîsine benzerdi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 34,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:401 (ص 76)"
+    },
+    {
+      "ar": "وَبِتَقْدِيرِ الضَّمَّةِ يَثْقُلُ.",
+      "en": "And with a ḍamma supposed it would be heavy.",
+      "tr": "Damme takdirinde ise ağır olurdu.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 34,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:402 (ص 76)"
+    },
+    {
+      "ar": "وَبِتَقْدِيرِ الْكَسْرَةِ أَيْضًا يَلْزَمُ الِالْتِبَاسُ بِأَمْرِ بَابِ الْمُفَاعَلَةِ.",
+      "en": "And with the kasra supposed, too, confusion with the amr of the bāb of mufāʿala follows.",
+      "tr": "Kesre takdirinde de müfâale bâbının emriyle karışma lâzım gelir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 34,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:403 (ص 76)"
+    },
+    {
+      "ar": "وَلٰكِنْ أُبْقِيَ مَعَ ذٰلِكَ لِلضَّرُورَةِ.",
+      "en": "But it was kept nonetheless, out of necessity.",
+      "tr": "Fakat buna rağmen zaruret sebebiyle bırakılmıştır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 34,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:404 (ص 76)"
+    },
+    {
+      "ar": "وَقِيلَ: اخْتِيَارُ الِالْتِبَاسِ بِالْأَمْرِ أَوْلَى.",
+      "en": "And it was said: choosing the confusion with the amr is the better.",
+      "tr": "Denilmiştir ki: emirle karışmayı tercih etmek daha evlâdır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 34,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:405 (ص 76)"
+    },
+    {
+      "ar": "لِأَنَّ الْأَمْرَ مُشْتَقٌّ مِنَ الْمُسْتَقْبَلِ، وَاسْمَ الْفَاعِلِ أَيْضًا مُشْتَقٌّ مِنَ الْمُسْتَقْبَلِ.",
+      "en": "Because the amr is derived from the future, and the ism al-fāʿil too is derived from the future.",
+      "tr": "Çünkü emir müstakbelden türemiştir, ism-i fâil de müstakbelden türemiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 34,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:406 (ص 76)"
+    },
+    {
+      "ar": "وَاخْتِيرَ الْمِيمُ لِتَعَذُّرِ حُرُوفِ الْعِلَّةِ وَقُرْبِ الْمِيمِ مِنَ الْوَاوِ فِي كَوْنِهِمَا شَفَوِيَّةً.",
+      "en": "And the mīm was chosen because the letters of weakness could not be used, and because the mīm is near to the wāw in both being of the lips.",
+      "tr": "Mîm seçilmiştir; çünkü illet harfleri getirilemez, mîm de ikisinin de dudak harfi olması bakımından vâva yakındır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 39,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:445 (ص 82)"
+    },
+    {
+      "ar": "وَضُمَّ الْمِيمُ لِلْفَرْقِ بَيْنَهُ وَبَيْنَ الْمَوْضِعِ.",
+      "en": "And the mīm was given ḍamma to tell it apart from the noun of place.",
+      "tr": "Mîm, ism-i mekândan ayrılsın diye mazmûm kılınmıştır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 39,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:447 (ص 83)"
+    },
+    {
+      "ar": "ثُمَّ ضُمَّ الرَّاءُ حَتَّى لَا يَلْتَبِسَ بِالْمَوْضِعِ فَصَارَ «مَضْرُبٌ».",
+      "en": "Then the rāʾ was given ḍamma so that it would not be confused with the noun of place; so it became «مَضْرُب».",
+      "tr": "Sonra ism-i mekânla karışmasın diye râ mazmûm kılındı; «مَضْرُب» oldu.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 40,
+      "sentence": "s7",
+      "source": "marah-al-arwah-src.txt:459 (ص 85)"
+    },
+    {
+      "ar": "فَغُيِّرَ الْمَفْعُولُ أَيْضًا لِلْمُؤَاخَاةِ بَيْنَهُمَا.",
+      "en": "So the object's form was altered too, for the brotherhood between the two.",
+      "tr": "Aralarındaki kardeşlikten dolayı ism-i mef'ûl de değiştirilmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 40,
+      "sentence": "s11",
+      "source": "marah-al-arwah-src.txt:463 (ص 85)"
+    },
+    {
+      "ar": "وَتَقُولُ: مَمْرُورٌ بِهِ، مَمْرُورٌ بِهِمَا، مَمْرُورٌ بِهِمْ، مَمْرُورٌ بِهَا، مَمْرُورٌ بِهِمَا، مَمْرُورٌ بِهِنَّ.",
+      "en": "And you say مَمْرُورٌ بِهِ، مَمْرُورٌ بِهِمَا، مَمْرُورٌ بِهِمْ، مَمْرُورٌ بِهَا، مَمْرُورٌ بِهِمَا، مَمْرُورٌ بِهِنَّ («passed by» — him, the two of them, them; her, the two of them, them (f.)).",
+      "tr": "Ve مَمْرُورٌ بِهِ، مَمْرُورٌ بِهِمَا، مَمْرُورٌ بِهِمْ، مَمْرُورٌ بِهَا، مَمْرُورٌ بِهِمَا، مَمْرُورٌ بِهِنَّ dersin («kendisine uğranılan» — o, o ikisi, onlar; o kadın, o iki kadın, o kadınlar).",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 11,
+      "sentence": "s3",
+      "source": "tasrif-al-izzi-src.txt:125 (ص 69)"
+    },
+    {
+      "ar": "فَتُثَنِّي وَتَجْمَعُ وَتُذَكِّرُ وَتُؤَنِّثُ الضَّمِيرَ فِيمَا يَتَعَدَّى بِحَرْفِ الْجَرِّ لَا اسْمَ الْمَفْعُولِ.",
+      "en": "So in what is transitive through a preposition it is the pronoun that you make dual and plural, masculine and feminine — not the passive participle.",
+      "tr": "Harf-i cer ile müteaddî olanda tesniye, cemi, müzekker ve müennes yaptığın şey zamirdir; ism-i mef'ûl değil.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 11,
+      "sentence": "s4",
+      "source": "tasrif-al-izzi-src.txt:127 (ص 70)"
+    },
+    {
+      "ar": "وَفَعِيلٌ قَدْ يَجِيءُ بِمَعْنَى الْفَاعِلِ، كَالرَّحِيمِ بِمَعْنَى الرَّاحِمِ، وَبِمَعْنَى الْمَفْعُولِ، كَالْقَتِيلِ بِمَعْنَى الْمَقْتُولِ.",
+      "en": "فَعِيل may come with the meaning of the doer, like الرَّحِيم meaning الرَّاحِم, and with the meaning of the object, like الْقَتِيل meaning الْمَقْتُول.",
+      "tr": "فَعِيل bazen fâil mânâsında gelir: «الرَّاحِم» mânâsındaki «الرَّحِيم» gibi; bazen de mef'ûl mânâsında gelir: «الْمَقْتُول» mânâsındaki «الْقَتِيل» gibi.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 11,
+      "sentence": "s5",
+      "source": "tasrif-al-izzi-src.txt:128 (ص 70)"
+    },
+    {
+      "ar": "وَقَدْ يَسْتَوِي لَفْظُ اسْمِ الْفَاعِلِ وَاسْمِ الْمَفْعُولِ فِي بَعْضِ الْمَوَاضِعِ، كَمُحَابٍّ وَمُتَحَابٍّ وَمُخْتَارٍ وَمُنْقَادٍ وَمُضْطَرٍّ وَمُعْتَدٍّ وَمُنْصَبٍّ وَمُنْصَبٍّ فِيهِ وَمُنْجَابٍ وَمُنْجَابٍ عَنْهُ، وَيَخْتَلِفُ التَّقْدِيرُ.",
+      "en": "The wording of the active and of the passive participle may be the same in some places, like مُحَابٌّ، مُتَحَابٌّ، مُخْتَارٌ، مُنْقَادٌ، مُضْطَرٌّ، مُعْتَدٌّ، مُنْصَبٌّ and مُنْصَبٌّ فِيهِ, مُنْجَابٌ and مُنْجَابٌ عَنْهُ — and the underlying form differs.",
+      "tr": "Bazı yerlerde ism-i fâil ile ism-i mef'ûlün lafzı aynı olur: مُحَابٌّ، مُتَحَابٌّ، مُخْتَارٌ، مُنْقَادٌ، مُضْطَرٌّ، مُعْتَدٌّ، مُنْصَبٌّ ve مُنْصَبٌّ فِيهِ, مُنْجَابٌ ve مُنْجَابٌ عَنْهُ gibi; takdir ise farklıdır.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 11,
+      "sentence": "s7",
+      "source": "tasrif-al-izzi-src.txt:131 (ص 71)"
+    },
+    {
+      "ar": "نوط؛ اسم فاعلك قياسى وزنى يالگز \" فاعلٌ در. {روح الشروح ص ؛ ٥٤}",
+      "en": "Note: the only regular (qiyāsī) pattern of the ism al-fāʿil is «فاعلٌ». {Rūḥ al-Shurūḥ, p. 54} [translation · awaiting the hoca's review]",
+      "tr": "Not: İsm-i fâilin kıyâsî vezni yalnız «فاعلٌ»dır. {Rûhu'ş-Şurûh, s. 54} [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:288"
+    },
+    {
+      "ar": "بن اسم فاعلدن ضبطى ممكن اولان صيغه لرى ذكر ايله اختصار ايديب ديگرلرينى ترك ايتدم.",
+      "en": "Of the ism al-fāʿil I have kept to the forms that can be pinned down, and left the others. [translation · awaiting the hoca's review]",
+      "tr": "Ben ism-i fâilden zabtı mümkün olan sîgaları zikretmekle yetinip diğerlerini terk ettim. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:289"
+    },
+    {
+      "ar": "اسم فاعل اون وجه اوزره چكيلير . دوردى  جمع مذكر، ايكيسى جمع مؤنث ايچوندر.",
+      "en": "The ism al-fāʿil is recited in ten forms: four of them for the masculine plural, two for the feminine plural. [translation · awaiting the hoca's review]",
+      "tr": "İsm-i fâil on vecih üzere çekilir; dördü cem'-i müzekker, ikisi cem'-i müennes içindir. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:317"
+    },
+    {
+      "ar": "اسم مفعول يدى وجه اوزره چكيلير. ايكيسى جمع مذكر برى جمع مؤنث ايچوندر.",
+      "en": "The ism al-mafʿūl is recited in seven forms: two for the masculine plural, one for the feminine plural. [translation · awaiting the hoca's review]",
+      "tr": "İsm-i mef'ûl yedi vecih üzere çekilir; ikisi cem'-i müzekker, biri cem'-i müennes içindir. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:319"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "«زَيْدٌ ضَارِبٌ عَمْرًا أَمْسِ»",
+      "right": "«زَيْدٌ ضَارِبُ عَمْرٍو أَمْسِ — mâzî mânâlı ism-i fâil amel etmez, mef'ûlüne muzâf olur»",
+      "why": {
+        "en": "The present-or-future condition has lapsed; only the article could restore the government.",
+        "tr": "Hâl-istikbâl şartı düşmüştür; ameli yalnız lâm geri getirebilir."
+      }
+    },
+    {
+      "wrong": "«مُسْتَخْرِجٌ — istihrac edilmiş»",
+      "right": "«مُسْتَخْرِجٌ istihrac EDEN; مُسْتَخْرَجٌ istihrac EDİLMİŞ — kesre fâil, fetha mef'ûl»",
+      "why": {
+        "en": "In every augmented form the two participles differ only by the vowel before the last letter.",
+        "tr": "Her mezîd bâbda iki ism yalnız sondan önceki harekeyle ayrılır."
+      }
+    },
+    {
+      "wrong": "«ضَارِبٌ cümle başında tek başına amel eder: ضَارِبٌ زَيْدٌ عَمْرًا»",
+      "right": "«أَضَارِبٌ زَيْدٌ عَمْرًا؟ / مَا ضَارِبٌ زَيْدٌ عَمْرًا — hemze veya nefye dayanmalı»",
+      "why": {
+        "en": "Reliance (iʿtimād) is a condition: a bare participle at the head of a sentence governs nothing.",
+        "tr": "İ'timâd şarttır: cümle başında çıplak bir ism-i fâil hiçbir şeyi yönetmez."
+      }
+    },
+    {
+      "wrong": "«الْمُقِيمِي الصَّلَاةِ — nûn hafiflik için düşmüş»",
+      "right": "«cer kıraatinde nûn izâfetten dolayı VÂCİBEN düşer; hafiflik ruhsatı nasb kıraatine aittir»",
+      "why": {
+        "en": "Two readings, two reasons for one missing nūn; the notebook keeps them apart.",
+        "tr": "İki kıraat, bir eksik nûn için iki sebep; defter ikisini ayrı tutar."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "ism-fail",
+    "ism-maful",
+    "shurut-amal-ism-al-fail",
+    "sighat-mubalagha",
+    "idafa-lafziyya",
+    "al-masdar-fil-kafiya",
+    "sifa-mushabbaha",
+    "al-sifa-al-mushabbaha-fil-kafiya"
+  ]
+}

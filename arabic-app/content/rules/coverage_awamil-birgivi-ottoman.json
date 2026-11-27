@@ -1,0 +1,744 @@
+{
+ "book": "awamil-birgivi-ottoman",
+ "ledger": "aux",
+ "title": "Birgivī's ʿAwāmil — the Ottoman lesson sheet: one example per governor and per governed",
+ "source": "research/sources/awamil-birgivi-ottoman.txt",
+ "files": [
+  "research/sources/awamil-birgivi-ottoman.txt",
+  "research/sources/awamil-birgivi-tables.txt"
+ ],
+ "group": "awamil",
+ "note": "",
+ "counts": {
+  "banked": 5,
+  "applied": 19,
+  "noted": 13
+ },
+ "entries": [
+  {
+   "id": "def-tarif",
+   "line": 6,
+   "ar": "علم نحو: وَ هُوَ عِلْمٌ يُعْرَفُ بِهِ اَحْوَالُ الْكَلِمَةِ الْعَرَبِيَّةِ مِنْ حَيْثُ اْلإِعْرَابِ وَ الْبِنَاءِ",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "bank",
+     "ref": "jami-q1"
+    }
+   ],
+   "status": "banked"
+  },
+  {
+   "id": "def-ghaya",
+   "line": 8,
+   "ar": "غايه سى: اَلإِحِتِرَازُ عَنِ الْخَطَأِ فِى اْلإِعْرَابِ وَ الْبِنَاءِ",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "bank",
+     "ref": "jami-q1"
+    }
+   ],
+   "status": "banked"
+  },
+  {
+   "id": "def-mawdu",
+   "line": 10,
+   "ar": "موضوعى: اَلْكَلِمَةُ الْعَرَبِيَّةُ الْوَاقِعَةُ فِى الْكَلاَمِ مِنْ حَيْثُ اْلإِعْرَابِ وَ الْبِنَاءِ",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "bank",
+     "ref": "jami-q1"
+    }
+   ],
+   "status": "banked"
+  },
+  {
+   "id": "def-wadi",
+   "line": 12,
+   "ar": "عِلْمِ نَحْوِكْ وَاضِعِى: اَبُو اَسْوَدُ الدُّءَلِى حضرتلرى در",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "bank",
+     "ref": "jami-q1"
+    }
+   ],
+   "status": "banked"
+  },
+  {
+   "id": "def-musannif",
+   "line": 13,
+   "ar": "عواملك مصنفى: امام محمد بِرْ كِوِى حضرتلرى در",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "bank",
+     "ref": "jami-q1"
+    }
+   ],
+   "status": "banked"
+  },
+  {
+   "id": "ex01",
+   "line": 16,
+   "ar": "مِنْ: تُبْتُ مِنْ كُلِّ ذَنْبٍ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "تُبْتُ مِنْ كُلِّ ذَنْبٍ",
+    "w": "كل",
+    "re": "مجرور"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، مجرور وعلامة جره الكسرة الظاهرة، وهو مضاف."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex02",
+   "line": 16,
+   "ar": "فِى: اَلْمُطِيعُ فِى الْجَنَّةِ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "اَلْمُطِيعُ فِى الْجَنَّةِ",
+    "w": "الجنة",
+    "re": "مجرور"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، مجرور وعلامة جره الكسرة الظاهرة، مضاف اليه."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex03",
+   "line": 16,
+   "ar": "كف: لَيْسَ كَمِثْلِهِ شَىْءٌ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "an-ala-al-kaf-mudh-wa-huruf-al-istithna-fil-kafiya",
+     "how": "quotes"
+    },
+    {
+     "type": "note",
+     "ref": "anwa-al-majaz",
+     "how": "quotes"
+    },
+    {
+     "type": "note",
+     "ref": "majaz-mursal",
+     "how": "quotes"
+    },
+    {
+     "type": "note",
+     "ref": "majaz-ziyada-nuqsan",
+     "how": "quotes"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "لَيْسَ كَمِثْلِهِ شَىْءٌ",
+    "w": "كمثله",
+    "re": "مجرور|خبر"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، مجرور وعلامة جره الكسرة الظاهرة، والضمير مضاف اليه."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex04",
+   "line": 21,
+   "ar": "اِنَّ: اِنَّ اللهَ تَعاَلىَ عاَلِمُ كُلِّ شَيْءٍ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "اِنَّ اللهَ تَعاَلىَ عاَلِمُ كُلِّ شَيْءٍ",
+    "w": "الله",
+    "re": "اسم ان|اسم «ان»|منصوب"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم علم، منصوب وعلامة نصبه الفتحة الظاهرة، اسم ان."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex05",
+   "line": 21,
+   "ar": "كَأَنَّ: كَأَنَّ الْحَراَمَ ناَرٌ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "كَأَنَّ الْحَراَمَ ناَرٌ",
+    "w": "الحرام",
+    "re": "اسم كان|منصوب"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، اسم كان."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex06",
+   "line": 26,
+   "ar": "مَتَى: مَتَى تَحْسُدْ تَهْلُكْ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "مَتَى تَحْسُدْ تَهْلُكْ",
+    "w": "تحسد",
+    "re": "مجزوم"
+   },
+   "proof": {
+    "ok": true,
+    "got": "فعل مضارع، مجزوم وعلامة جزمه السكون، فعل الشرط، وهو جواب الطلب، وفاعله «تهلك»."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex07",
+   "line": 26,
+   "ar": "لَمْ: لَمْ يَلِدْ وَلَمْ يُولَدْ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "nawasib-wa-jawazim-al-mudari",
+     "how": "quotes"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+    "w": "يلد",
+    "re": "مجزوم"
+   },
+   "proof": {
+    "ok": true,
+    "got": "فعل مضارع، مجزوم وعلامة جزمه السكون، والفاعل ضمير مستتر جوازا تقديره «هو»."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex08",
+   "line": 26,
+   "ar": "لَمَّا: لَمَّا يَنْفَعْ عُمْرِى",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "لَمَّا يَنْفَعْ عُمْرِى",
+    "w": "ينفع",
+    "re": "مجزوم"
+   },
+   "proof": {
+    "ok": true,
+    "got": "فعل مضارع، مجزوم وعلامة جزمه السكون، وفاعله «عمري»."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex09",
+   "line": 27,
+   "ar": "اِسْمْ مُضاَفْ: عِباَدَةُ اللهِ تَعاَلىَ خَيْرٌ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "عِباَدَةُ اللهِ تَعاَلىَ خَيْرٌ",
+    "w": "الله",
+    "re": "مضاف اليه|مجرور"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم علم، مجرور وعلامة جره الكسرة الظاهرة، مضاف اليه."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex10",
+   "line": 27,
+   "ar": "مُطْلَقْ فِعِلْ: وَنَزَلَ الْقُرْأَنُ نُزُولاً",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "وَنَزَلَ الْقُرْأَنُ نُزُولاً",
+    "w": "نزولا",
+    "re": "مفعول مطلق"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، مفعول مطلق."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex11",
+   "line": 31,
+   "ar": "فاعل: رَحِمَ اللهُ تَعاَلَى اَلتَّاءِبَ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "رَحِمَ اللهُ تَعاَلَى اَلتَّاءِبَ",
+    "w": "الله",
+    "re": "فاعل"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم علم، مرفوع وعلامة رفعه الضمة الظاهرة، والظاهر انه فاعل."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex12",
+   "line": 31,
+   "ar": "مُبْتَدَأ و خَبَرْ: مُحَمَّدٌ خاَتَمُ الْاَنْبِياَءِ عَلَيْهِمُ الصَّلاَةُ وَالسَّلاَمُ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "مُحَمَّدٌ خاَتَمُ الْاَنْبِياَءِ عَلَيْهِمُ الصَّلاَةُ وَالسَّلاَمُ",
+    "w": "محمد",
+    "re": "مبتدا"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا، وخبره «خاتم»."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex13",
+   "line": 32,
+   "ar": "مَفْعُولُ بِهْ: اَعْبُدُ اللهَ تَعاَلَى",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-maful-bihi-wa-qismah",
+     "how": "quotes"
+    }
+   ],
+   "probe": {
+    "s": "اَعْبُدُ اللهَ تَعاَلَى",
+    "w": "الله",
+    "re": "مفعول به"
+   },
+   "proof": {
+    "ok": false,
+    "got": "اسم علم، منصوب وعلامة نصبه الفتحة الظاهرة، مضاف اليه."
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "ex14",
+   "line": 32,
+   "ar": "\"اِنَّ\" بابنك اسمى: اِنَّ السُّؤَالَ حَقٌّ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "اِنَّ السُّؤَالَ حَقٌّ",
+    "w": "السؤال",
+    "re": "اسم ان|اسم «ان»"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، اسم ان."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex15",
+   "line": 33,
+   "ar": "حرف جرله مجرور: اِعْمَلْ بِاِخْلاَصٍ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "اِعْمَلْ بِاِخْلاَصٍ",
+    "w": "باخلاص",
+    "re": "مجرور"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، مجرور وعلامة جره الكسرة الظاهرة."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex16",
+   "line": 35,
+   "ar": "صفة: اَعْبُدُ اللهَ الْعَظِيمَ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "اَعْبُدُ اللهَ الْعَظِيمَ",
+    "w": "العظيم",
+    "re": "نعت|صفة"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، نعت."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex17",
+   "line": 35,
+   "ar": "بدل: اِحْفَظِ اللهَ تَعاَلَى حَقَّهُ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-badal-wa-aqsamuh-wa-atf-al-bayan",
+     "how": "quotes"
+    }
+   ],
+   "probe": {
+    "s": "اِحْفَظِ اللهَ تَعاَلَى حَقَّهُ",
+    "w": "حقه",
+    "re": "بدل"
+   },
+   "proof": {
+    "ok": false,
+    "got": "فعل، منصوب وعلامة نصبه الفتحة الظاهرة، وفيه ضمير هو المفعول به."
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "ex18",
+   "line": 36,
+   "ar": "وَاوْ: اُطِيعُ اللهَ وَ رَسُولَهُ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "اُطِيعُ اللهَ وَ رَسُولَهُ",
+    "w": "رسوله",
+    "re": "معطوف"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم، منصوب وعلامة نصبه الفتحة الظاهرة، معطوف، والضمير مضاف اليه."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex19",
+   "line": 34,
+   "ar": "جوازمدن برى داخل اولان فعل مضارع: اِنْ تُخْلِصْ يُقْبَلْ عَمُلُكَ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "اِنْ تُخْلِصْ يُقْبَلْ عَمُلُكَ",
+    "w": "تخلص",
+    "re": "مجزوم|شرط"
+   },
+   "proof": {
+    "ok": true,
+    "got": "فعل مضارع، مجزوم وعلامة جزمه السكون، والفاعل ضمير مستتر وجوبا تقديره «انت»."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex20",
+   "line": "tables:11",
+   "ar": "ماَ: ماَ اللهُ تَعاَلىَ مُتَمَكِّناً بِمَكاَنٍ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ma-la-mushabbaha",
+     "how": "quotes"
+    },
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "ماَ اللهُ تَعاَلىَ مُتَمَكِّناً بِمَكاَنٍ",
+    "w": "الله",
+    "re": "اسم ما|مبتدا|اسمها"
+   },
+   "proof": {
+    "ok": true,
+    "got": "اسم علم، مرفوع وعلامة رفعه الضمة الظاهرة، مبتدا."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "ex21",
+   "line": "tables:13",
+   "ar": "اَنْ: اُحِبُّ اَنْ اُطِيعَ اللهَ تَعاَلَى",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "an-masdariyya",
+     "how": "quotes"
+    }
+   ],
+   "probe": {
+    "s": "اُحِبُّ اَنْ اُطِيعَ اللهَ تَعاَلَى",
+    "w": "اطيع",
+    "re": "منصوب"
+   },
+   "proof": {
+    "ok": false,
+    "got": "اسم، مبتدا، وهو مضاف."
+   },
+   "status": "noted",
+   "gap": "engine probe fails"
+  },
+  {
+   "id": "ex22",
+   "line": "tables:13",
+   "ar": "لَنْ: لَنْ يَضْرِبَ",
+   "kind": "example",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "Murib.line"
+    }
+   ],
+   "probe": {
+    "s": "لَنْ يَضْرِبَ",
+    "w": "يضرب",
+    "re": "منصوب"
+   },
+   "proof": {
+    "ok": true,
+    "got": "فعل مضارع، منصوب وعلامة نصبه الفتحة الظاهرة، والفاعل ضمير مستتر جوازا تقديره «هو»."
+   },
+   "status": "applied"
+  },
+  {
+   "id": "why15",
+   "line": 15,
+   "ar": "بو حرفلره، حروف جر دييه اسم ويريلمه سينك سببى؛ داخل اولدوقلرى اسمى، جر ايتديكلرى ايجوندر. حروف اضافت دييه اسم ويريلمه سينك سببى ايسه؛ مُتَعَلَّقْلَريِنِكْ معناسينى مجرورلرينه اتصال (بيتيشديرديكلرى) ايتديكلرى ايجوندر.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "huruf-jarr",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "why17",
+   "line": 17,
+   "ar": "بو حرفلردن ايلك آلتى دانه سينه، اوج يرده فعله بكزه ديكلرى ايجون \"حُرُوفُ مُشَبَّهَه بِالْفِعِلْ\" دييه اسم ويريلير.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "why18",
+   "line": 18,
+   "ar": "ا- هر بره رى اوج حرف و اوج حرف اوزرينه زَائِدْ اولديغى ايجون",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "why19",
+   "line": 19,
+   "ar": "ب- آخِرْلَرِى فتحه اوزرينه مَبْنِى اولدوقلرى ايجون",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "why20",
+   "line": 20,
+   "ar": "ت- هر بره رلرينده فعل معناسى اولديغى ايجوندر.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "inna-wa-akhawatuha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "why22",
+   "line": 22,
+   "ar": "بو حرفلر \"ليس\"يه ايكى يرده مشابه در.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ma-la-mushabbaha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "why23",
+   "line": 23,
+   "ar": "ا- مبتدأ و خبر اوزرينه داخل اولماقده",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ma-la-mushabbaha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "why24",
+   "line": 24,
+   "ar": "ب- نفيلك معناسى افاده ايتمكده",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "ma-la-mushabbaha",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "why25",
+   "line": 25,
+   "ar": "بو اون بش حرفدن ايلك دورت دانه سى بر فعل مضارعى جزم ايدر. ديكر اون بر دانه سى ايسه، ايكى فعل مضارعى جزم ايدر. برينجى فعل مضارعه \"شرط\"، ايكنجى فعل مضارعه \"جزا\" دييه اسم ويريلير. بو اون بر حرفه \"كَلِمَهءِ مُجاَزاَتْ\" دييه اسم ويريلير.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "nawasib-wa-jawazim-al-mudari",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "why28",
+   "line": 28,
+   "ar": "عاملك ايكنجى قسمى؛ عامل معنوى اولوب؛ عمل اعتبارى ايله ايكى دانه در.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "al-amil-al-manawi",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  }
+ ]
+}

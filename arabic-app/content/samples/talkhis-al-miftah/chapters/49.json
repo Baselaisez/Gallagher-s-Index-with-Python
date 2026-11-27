@@ -1,0 +1,5502 @@
+{
+ "chapter": 49,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "The adat of tashbih is the kaf, كَأَنَّ, مِثْل and the like. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Teşbih edatı kâf, كَأَنَّ, مِثْل ve benzerleridir. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "أَدَاةُ",
+      "smart": "أَدَاةُ",
+      "bare": "أداة"
+     },
+     "lex": "adat",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+      "en": "«the tool of» — the mubtada, annexed.",
+      "tr": "«edatı» — mübtedâ, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "التَّشْبِيهِ",
+      "smart": "التَّشْبِيهِ",
+      "bare": "التشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«likening».",
+      "tr": "«teşbihin»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْكَافُ",
+      "smart": "الْكَافُ",
+      "bare": "الكاف"
+     },
+     "lex": "kaf-letter",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ — اسْمُ الْحَرْفِ.",
+      "en": "«the kaf» — the khabar: the letter named as a noun.",
+      "tr": "«kâf» — haber: harfin adı isim olarak."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَكَأَنَّ",
+      "smart": "وَكَأَنَّ",
+      "bare": "وكأن"
+     },
+     "lex": "ka-anna",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَأَنَّ مَعْطُوفٌ مَحْكِيٌّ فِي مَحَلِّ رَفْعٍ — لَفْظٌ مَذْكُورٌ لَا حَرْفٌ عَامِلٌ.",
+      "en": "«and كَأَنَّ» — the word QUOTED and joined: it names the particle, it does not govern — the engine reads no likening here.",
+      "tr": "«ve كَأَنَّ» — NAKLEDİLMİŞ ve atfedilmiş kelime: edatı adlandırır, amel etmez — motor burada teşbih okumaz."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَأَنَّ",
+       "lex": "ka-anna",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَمِثْلُ",
+      "smart": "وَمِثْلُ",
+      "bare": "ومثل"
+     },
+     "lex": "mithl",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ مَرْفُوعٌ.",
+      "en": "«and مِثْل» — joined.",
+      "tr": "«ve مِثْل» — atıf."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مِثْلُ",
+       "lex": "mithl",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَنَحْوُهُ",
+      "smart": "وَنَحْوُهُ",
+      "bare": "ونحوه"
+     },
+     "lex": "nahw",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "atf-nasaq",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ مَرْفُوعٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — أَيْ: مَا فِي مَعْنَى مِثْلٍ.",
+      "en": "«and the like of it» — joined; whatever means مِثْل (شِبْه، نَظِير…).",
+      "tr": "«ve benzeri» — atıf; مِثْل mânâsındaki her kelime (شِبْه، نَظِير…)."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "نَحْوُ",
+       "lex": "nahw",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "The rule with the kaf and its kin is that the mushabbah bihi follows it — yet sometimes something else does. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Kâf ve benzerlerinde asıl olan, müşebbehün bihin onu takip etmesidir — fakat bazen başkası takip eder. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالْأَصْلُ",
+      "smart": "وَالْأَصْلُ",
+      "bare": "والأصل"
+     },
+     "lex": "asl",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَالْأَصْلُ مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "«the rule» — the mubtada.",
+      "tr": "«asıl olan» — mübtedâ."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْأَصْلُ",
+       "lex": "asl",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«with».",
+      "tr": "«-de»."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَحْوِ",
+      "smart": "نَحْوِ",
+      "bare": "نحو"
+     },
+     "lex": "nahw",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ مُضَافٌ — نَحْوِ الْكَافِ: الْكَافُ وَمَا فِي مَعْنَاهَا. لَا أَدَاةَ تَشْبِيهٍ هُنَا: نَحْوِ بَعْدَ حَرْفِ جَرٍّ يُسَمِّي صِنْفًا.",
+      "en": "«the like of» — annexed to the kaf: the kaf and its kin. NOT an adat: نَحْو after a jarr-particle names a class, and the engine refuses a likening.",
+      "tr": "«benzeri» — kâfa muzâf: kâf ve benzerleri. Edat DEĞİL: cer harfinden sonraki نَحْو bir sınıf adlandırır, motor teşbihi reddeder."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْكَافِ",
+      "smart": "الْكَافِ",
+      "bare": "الكاف"
+     },
+     "lex": "kaf-letter",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«the kaf».",
+      "tr": "«kâfın»."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَنْ",
+      "smart": "أَنْ",
+      "bare": "أن"
+     },
+     "lex": "an-masdariyya",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "an-masdariyya"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.",
+      "en": "«that» — its clause is the khabar.",
+      "tr": "«-ması» — cümlesi haberdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَلِيَهُ",
+      "smart": "يَلِيَهُ",
+      "bare": "يليه"
+     },
+     "lex": "waliya",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "an-masdariyya",
+      "mithal-verbs",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ عَلَى الْيَاءِ، وَالْهَاءُ مَفْعُولٌ بِهِ — لَفِيفٌ مَفْرُوقٌ: وَلِيَ يَلِي.",
+      "en": "«follows it» — nasb by أَنْ, the fatha shown on the ya (the naqis takes nasb openly); the ha is its object. وَلِيَ يَلِي is doubly weak (waw first, ya last).",
+      "tr": "«onu takip etsin» — أَنْ ile mansub, fetha yâ üzerinde açık (nâkıs nasbı açık gösterir); hâ mef'ûl. وَلِيَ يَلِي lefîf-i mefrûktur (başta vâv, sonda yâ)."
+     },
+     "segments": [
+      {
+       "form": "يَلِيَ",
+       "lex": "waliya",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْمُشَبَّهُ",
+      "smart": "الْمُشَبَّهُ",
+      "bare": "المشبه"
+     },
+     "lex": "mushabbah",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "fail",
+      "ism-maful"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ — اسْمُ مَفْعُولٍ مِنْ شَبَّهَ.",
+      "en": "«the mushabbah» — the fa'il.",
+      "tr": "«müşebbeh» — fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِهِ",
+      "smart": "بِهِ",
+      "bare": "به"
+     },
+     "lex": "bi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِالْمُشَبَّهُ — الْمُشَبَّهُ بِهِ: الِاسْمُ الْمُرَكَّبُ.",
+      "en": "«bihi» — completes the term الْمُشَبَّهُ بِهِ: the thing likened TO.",
+      "tr": "«bih» — الْمُشَبَّهُ بِهِ terimini tamamlar: kendisine benzetilen."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَقَدْ",
+      "smart": "وَقَدْ",
+      "bare": "وقد"
+     },
+     "lex": "qad",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "qad-harf"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَقَدْ لِلتَّقْلِيلِ.",
+      "en": "«yet sometimes».",
+      "tr": "«fakat bazen»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَدْ",
+       "lex": "qad",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَلِيهِ",
+      "smart": "يَلِيهِ",
+      "bare": "يليه"
+     },
+     "lex": "waliya",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mudari-marfu",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْهَاءُ مَفْعُولٌ بِهِ.",
+      "en": "«follows it» — raf' by a damma only supposed on the ya.",
+      "tr": "«onu takip eder» — ref'i yâ üzerinde takdîrî damme."
+     },
+     "segments": [
+      {
+       "form": "يَلِي",
+       "lex": "waliya",
+       "pos": "verb"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "غَيْرُهُ",
+      "smart": "غَيْرُهُ",
+      "bare": "غيره"
+     },
+     "lex": "ghayr",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "fail",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — غَيْرُ الْمُشَبَّهِ بِهِ.",
+      "en": "«something else» — the fa'il: other than the bihi, as the aya shows next.",
+      "tr": "«başkası» — fâil: bihten başkası; âyet bunu gösterir."
+     },
+     "segments": [
+      {
+       "form": "غَيْرُ",
+       "lex": "ghayr",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "«And strike for them the likeness of the life of this world: as water We sent down from the sky.» (18:45)",
+    "tr": "«Onlara dünya hayatının misalini ver: gökten indirdiğimiz bir su gibi.» (18:45)"
+   },
+   "tashbih": {
+    "mushabbah": [
+     2,
+     3,
+     4
+    ],
+    "adat": 5,
+    "bihi": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "wajh": [],
+    "kind": "mursal-mujmal",
+    "shape": {
+     "mushabbah": "mufrad",
+     "bihi": "murakkab",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَاضْرِبْ",
+      "smart": "وَاضْرِبْ",
+      "bare": "واضرب"
+     },
+     "lex": "daraba",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "imperative-amr"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَاضْرِبْ فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ أَنْتَ — ضَرَبَ الْمَثَلَ: ذَكَرَهُ.",
+      "en": "«and strike» — the amr on sukun; ضَرَبَ مَثَلًا = to set forth a parable.",
+      "tr": "«ver» — sükûn üzere emir; ضَرَبَ مَثَلًا = misal getirmek."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "اضْرِبْ",
+       "lex": "daraba",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَهُمْ",
+      "smart": "لَهُمْ",
+      "bare": "لهم"
+     },
+     "lex": "li",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِاضْرِبْ.",
+      "en": "«for them».",
+      "tr": "«onlara»."
+     },
+     "segments": [
+      {
+       "form": "لَ",
+       "lex": "li",
+       "pos": "part"
+      },
+      {
+       "form": "هُمْ",
+       "lex": "pron-3mp",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مَثَلَ",
+      "smart": "مَثَلَ",
+      "bare": "مثل"
+     },
+     "lex": "mathal",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "maful-bihi",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَهُوَ مُضَافٌ — الْمُشَبَّهُ: مَثَلُ الْحَيَاةِ.",
+      "en": "«the likeness of» — the object, annexed: the MUSHABBAH is the state of this life (مَثَل, not مِثْل).",
+      "tr": "«misalini» — mef'ûl, muzâf: MÜŞEBBEH dünya hayatının hâlidir (مَثَل, مِثْل değil)."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْحَيَاةِ",
+      "smart": "الْحَيَاةِ",
+      "bare": "الحياة"
+     },
+     "lex": "hayat",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — يَكْتُبُهُ الْمَصْدَرُ الْحَيٰوةِ.",
+      "en": "«the life» (the source writes الْحَيٰوةِ).",
+      "tr": "«hayatının» (kaynak الْحَيٰوةِ yazar)."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدُّنْيَا",
+      "smart": "الدُّنْيَا",
+      "bare": "الدنيا"
+     },
+     "lex": "dunya",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naat-sifa",
+      "ism-maqsur-manqus"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ.",
+      "en": "«this world's» — na't, a maqsur.",
+      "tr": "«dünya» — sıfat, maksûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَمَاءٍ",
+      "smart": "كَمَاءٍ",
+      "bare": "كماء"
+     },
+     "lex": "ma-water",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "hal",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "الْكَافُ لِلتَّشْبِيهِ، وَمَاءٍ مَجْرُورٌ — وَالْجَارُّ وَالْمَجْرُورُ فِي مَحَلِّ نَصْبٍ حَالٌ أَوْ صِفَةٌ. الْأَدَاةُ، وَمَا بَعْدَهَا لَيْسَ الْمُشَبَّهَ بِهِ عَلَى الْحَقِيقَةِ.",
+      "en": "«as water» — the kaf-adat; what follows it is NOT the real bihi (the life is not likened to water) but the start of its description.",
+      "tr": "«bir su gibi» — kâf-edat; ardındaki, gerçek bih DEĞİLDİR (hayat suya benzetilmemiştir), tasvirinin başıdır."
+     },
+     "segments": [
+      {
+       "form": "كَ",
+       "lex": "ka",
+       "pos": "part"
+      },
+      {
+       "form": "مَاءٍ",
+       "lex": "ma-water",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَنْزَلْنَاهُ",
+      "smart": "أَنْزَلْنَاهُ",
+      "bare": "أنزلناه"
+     },
+     "lex": "anzala",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "jumla-sifa",
+      "form-iv-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَنَا فَاعِلٌ، وَالْهَاءُ مَفْعُولٌ بِهِ — وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ صِفَةٌ لِمَاءٍ.",
+      "en": "«We sent down» — the describing clause on the indefinite مَاءٍ; the ha returns to it. The bihi is a whole picture.",
+      "tr": "«indirdiğimiz» — nekre مَاءٍ'in vasıf cümlesi; hâ ona döner. Bih bütün bir tablodur."
+     },
+     "segments": [
+      {
+       "form": "أَنْزَلْنَا",
+       "lex": "anzala",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«from».",
+      "tr": "«-den»."
+     }
+    },
+    {
+     "surface": {
+      "full": "السَّمَاءِ",
+      "smart": "السَّمَاءِ",
+      "bare": "السماء"
+     },
+     "lex": "sama",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "ism-mamdud"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ مُتَعَلِّقٌ بِأَنْزَلْنَا.",
+      "en": "«the sky» — the aya continues: the plants mingle with it, then become dry chaff the winds scatter — THAT is the bihi.",
+      "tr": "«gökten» — âyet devam eder: bitkiler ona karışır, sonra rüzgârın savurduğu kuru çöpe döner — bih İŞTE odur."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "What is meant is the likening of the state of this world, in the speed of its passing, to the state of the plants that arise from the water. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Murad, dünyanın hâlini — geçip gitmesinin hızında — sudan hâsıl olan bitkinin hâline benzetmektir. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tashbih": {
+    "mushabbah": [
+     2,
+     3
+    ],
+    "adat": 1,
+    "bihi": [
+     7,
+     8,
+     9
+    ],
+    "wajh": [
+     4,
+     5,
+     6
+    ],
+    "kind": "mursal-mufassal",
+    "shape": {
+     "mushabbah": "mufrad",
+     "bihi": "mufrad",
+     "wajh": "murakkab"
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَالْمُرَادُ",
+      "smart": "فَالْمُرَادُ",
+      "bare": "فالمراد"
+     },
+     "lex": "murad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar",
+      "ism-maful"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّعْلِيلِ، وَالْمُرَادُ مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "«what is meant» — the mubtada.",
+      "tr": "«murad» — mübtedâ."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْمُرَادُ",
+       "lex": "murad",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "تَشْبِيهُ",
+      "smart": "تَشْبِيهُ",
+      "bare": "تشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "imal-al-masdar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ — مَصْدَرٌ عَامِلٌ: الْأَدَاةُ.",
+      "en": "«the likening of» — the khabar; the masdar-adat.",
+      "tr": "«benzetmektir» — haber; masdar-edat."
+     }
+    },
+    {
+     "surface": {
+      "full": "حَالِ",
+      "smart": "حَالِ",
+      "bare": "حال"
+     },
+     "lex": "hal",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ مُضَافٌ — الْمُشَبَّهُ.",
+      "en": "«the state of» — the mushabbah begins.",
+      "tr": "«hâlini» — müşebbeh başlar."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدُّنْيَا",
+      "smart": "الدُّنْيَا",
+      "bare": "الدنيا"
+     },
+     "lex": "dunya",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ.",
+      "en": "«this world».",
+      "tr": "«dünyanın»."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "wajh-al-shabah",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ — يَبْدَأُ وَجْهَ الشَّبَهِ.",
+      "en": "«in» — the WAJH begins, spoken between the two ends.",
+      "tr": "«-de» — VECH başlar, iki taraf arasında söylenmiş."
+     }
+    },
+    {
+     "surface": {
+      "full": "سُرْعَةِ",
+      "smart": "سُرْعَةِ",
+      "bare": "سرعة"
+     },
+     "lex": "sura-speed",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "wajh-al-shabah",
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ مُضَافٌ.",
+      "en": "«the speed of».",
+      "tr": "«hızında»."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَوَالِهَا",
+      "smart": "زَوَالِهَا",
+      "bare": "زوالها"
+     },
+     "lex": "zawal",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "wajh-al-shabah",
+      "idafa-definiteness",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ مُضَافٌ، وَهَا مُضَافٌ إِلَيْهِ — مَصْدَرُ زَالَ.",
+      "en": "«its passing» — an idafa chain of masdars: the wajh is a picture (how fast a thing goes), not one quality.",
+      "tr": "«geçip gitmesinin» — masdarlardan izâfet zinciri: vech bir tablodur (bir şeyin ne hızla gittiği), tek vasıf değil."
+     },
+     "segments": [
+      {
+       "form": "زَوَالِ",
+       "lex": "zawal",
+       "pos": "noun"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِحَالِ",
+      "smart": "بِحَالِ",
+      "bare": "بحال"
+     },
+     "lex": "hal",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ وَحَالِ مَجْرُورٌ مُضَافٌ — الْمُشَبَّهُ بِهِ.",
+      "en": "«to the state of» — the bihi.",
+      "tr": "«hâline» — bih."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "حَالِ",
+       "lex": "hal",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "النَّبَاتِ",
+      "smart": "النَّبَاتِ",
+      "bare": "النبات"
+     },
+     "lex": "nabat",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«the plants».",
+      "tr": "«bitkinin»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْحَاصِلِ",
+      "smart": "الْحَاصِلِ",
+      "bare": "الحاصل"
+     },
+     "lex": "hasil",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naat-sifa",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَجْرُورٌ.",
+      "en": "«arising» — na't.",
+      "tr": "«hâsıl olan» — sıfat."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«from».",
+      "tr": "«-den»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمَاءِ",
+      "smart": "الْمَاءِ",
+      "bare": "الماء"
+     },
+     "lex": "ma-water",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ مُتَعَلِّقٌ بِالْحَاصِلِ.",
+      "en": "«the water» — hangs on الْحَاصِلِ.",
+      "tr": "«sudan» — الْحَاصِلِ'e bağlı."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "And sometimes a verb is mentioned that tells of the likening. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Bazen de teşbihten haber veren bir fiil zikredilir. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَقَدْ",
+      "smart": "وَقَدْ",
+      "bare": "وقد"
+     },
+     "lex": "qad",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "qad-harf"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَقَدْ لِلتَّقْلِيلِ.",
+      "en": "«and sometimes».",
+      "tr": "«ve bazen»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَدْ",
+       "lex": "qad",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يُذْكَرُ",
+      "smart": "يُذْكَرُ",
+      "bare": "يذكر"
+     },
+     "lex": "dhakara",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naib-al-fail"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ.",
+      "en": "«is mentioned» — majhul.",
+      "tr": "«zikredilir» — meçhul."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِعْلٌ",
+      "smart": "فِعْلٌ",
+      "bare": "فعل"
+     },
+     "lex": "fil",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naib-al-fail"
+     ],
+     "irab": {
+      "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ.",
+      "en": "«a verb» — the deputy fa'il.",
+      "tr": "«bir fiil» — nâib-i fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "يُنْبِئُ",
+      "smart": "يُنْبِئُ",
+      "bare": "ينبئ"
+     },
+     "lex": "anbaa",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "jumla-sifa",
+      "form-iv-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْفَاعِلُ مُسْتَتِرٌ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ نَعْتٌ لِفِعْلٌ. مَهْمُوزُ اللَّامِ.",
+      "en": "«that tells» — the describing clause on the indefinite فِعْلٌ; Form IV with a hamza as last radical.",
+      "tr": "«haber veren» — nekre فِعْلٌ'ün vasıf cümlesi; lâmı hemzeli IV. bâb."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَنِ",
+      "smart": "عَنِ",
+      "bare": "عن"
+     },
+     "lex": "an",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، حُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "«of» — its nun takes a kasra before the article.",
+      "tr": "«-den» — nûnu harf-i tarif önünde kesra alır."
+     }
+    },
+    {
+     "surface": {
+      "full": "التَّشْبِيهِ",
+      "smart": "التَّشْبِيهِ",
+      "bare": "التشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«the likening».",
+      "tr": "«teşbihten»."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "If nearness is intended, one says: «I knew Zayd to be a lion.» (Restored: the source carries this step only in Turkish.)",
+    "tr": "Yakınlık kastedilirse denir: «Zeyd'i arslan bildim.» (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tashbih": {
+    "mushabbah": [
+     5
+    ],
+    "adat": 4,
+    "bihi": [
+     6
+    ],
+    "wajh": [],
+    "kind": "mursal-mujmal",
+    "shape": {
+     "mushabbah": "mufrad",
+     "bihi": "mufrad",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَإِنْ",
+      "smart": "فَإِنْ",
+      "bare": "فإن"
+     },
+     "lex": "in-shartiyya",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "in-shartiyya"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْرِيعِ، وَإِنْ حَرْفُ شَرْطٍ جَازِمٌ.",
+      "en": "«if» — the shart.",
+      "tr": "«eğer» — şart."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِنْ",
+       "lex": "in-shartiyya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "قُصِدَ",
+      "smart": "قُصِدَ",
+      "bare": "قصد"
+     },
+     "lex": "qasada",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "in-shartiyya",
+      "naib-al-fail"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ فِي مَحَلِّ جَزْمٍ فِعْلُ الشَّرْطِ.",
+      "en": "«is intended» — the shart-verb, majhul.",
+      "tr": "«kastedilirse» — şart fiili, meçhul."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْقُرْبُ",
+      "smart": "الْقُرْبُ",
+      "bare": "القرب"
+     },
+     "lex": "qurb",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naib-al-fail"
+     ],
+     "irab": {
+      "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ — قُرْبُ الْمُشَبَّهِ مِنَ الْمُشَبَّهِ بِهِ.",
+      "en": "«nearness» — the deputy: the mushabbah is CLOSE to the bihi.",
+      "tr": "«yakınlık» — nâib: müşebbeh bihe YAKINDIR."
+     }
+    },
+    {
+     "surface": {
+      "full": "قِيلَ",
+      "smart": "قِيلَ",
+      "bare": "قيل"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "in-shartiyya",
+      "naib-al-fail",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ فِي مَحَلِّ جَزْمٍ جَوَابُ الشَّرْطِ — أَجْوَفُ: قُوِلَ → قِيلَ.",
+      "en": "«one says» — the jawab; the hollow majhul (قُوِلَ → قِيلَ).",
+      "tr": "«denir» — cevap; ecvef meçhul (قُوِلَ → قِيلَ)."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "عَلِمْتُ",
+      "smart": "عَلِمْتُ",
+      "bare": "علمت"
+     },
+     "lex": "alima",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "zanna-wa-akhawatuha",
+      "mafulayn",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مِنْ أَفْعَالِ الْقُلُوبِ، وَالتَّاءُ فَاعِلٌ — يَنْصِبُ مَفْعُولَيْنِ أَصْلُهُمَا مُبْتَدَأٌ وَخَبَرٌ. وَهُوَ الْفِعْلُ الْمُنْبِئُ عَنِ التَّشْبِيهِ: أَدَاتُهُ.",
+      "en": "«I knew» — a verb of the HEART taking two objects (once mubtada and khabar); it is the verb that tells of the likening — the ADAT — and عَلِمَ says the two are close.",
+      "tr": "«bildim» — iki mef'ûl alan KALP fiili (aslı mübtedâ ve haber); benzetmeden haber veren fiil — EDAT — ve عَلِمَ ikisinin yakın olduğunu söyler."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدًا",
+      "smart": "زَيْدًا",
+      "bare": "زيدا"
+     },
+     "lex": "zayd",
+     "pos": "propn",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "mafulayn",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ أَوَّلُ مَنْصُوبٌ — الْمُشَبَّهُ.",
+      "en": "«Zayd» — the first object: the MUSHABBAH.",
+      "tr": "«Zeyd'i» — ilk mef'ûl: MÜŞEBBEH."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَسَدًا",
+      "smart": "أَسَدًا",
+      "bare": "أسدا"
+     },
+     "lex": "asad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "mafulayn",
+      "maful-bihi",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ ثَانٍ مَنْصُوبٌ — الْمُشَبَّهُ بِهِ.",
+      "en": "«a lion» — the second object: the MUSHABBAH BIHI.",
+      "tr": "«arslan» — ikinci mef'ûl: MÜŞEBBEHÜN BİH."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "And if distance is intended, one says: «I reckoned Zayd a lion.» (Restored: the source carries this step only in Turkish.)",
+    "tr": "Uzaklık kastedilirse denir: «Zeyd'i arslan sandım.» (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tashbih": {
+    "mushabbah": [
+     5
+    ],
+    "adat": 4,
+    "bihi": [
+     6
+    ],
+    "wajh": [],
+    "kind": "mursal-mujmal",
+    "shape": {
+     "mushabbah": "mufrad",
+     "bihi": "mufrad",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَإِنْ",
+      "smart": "وَإِنْ",
+      "bare": "وإن"
+     },
+     "lex": "in-shartiyya",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "in-shartiyya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَإِنْ حَرْفُ شَرْطٍ.",
+      "en": "«and if».",
+      "tr": "«ve eğer»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِنْ",
+       "lex": "in-shartiyya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "قُصِدَ",
+      "smart": "قُصِدَ",
+      "bare": "قصد"
+     },
+     "lex": "qasada",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "in-shartiyya",
+      "naib-al-fail"
+     ],
+     "irab": {
+      "ar": "فِعْلُ الشَّرْطِ مَبْنِيٌّ لِلْمَجْهُولِ.",
+      "en": "«is intended».",
+      "tr": "«kastedilirse»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْبُعْدُ",
+      "smart": "الْبُعْدُ",
+      "bare": "البعد"
+     },
+     "lex": "bud-distance",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naib-al-fail"
+     ],
+     "irab": {
+      "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ — بُعْدُ الْمُشَبَّهِ عَنِ الْمُشَبَّهِ بِهِ.",
+      "en": "«distance» — the mushabbah is FAR from the bihi.",
+      "tr": "«uzaklık» — müşebbeh bihten UZAKTIR."
+     }
+    },
+    {
+     "surface": {
+      "full": "قِيلَ",
+      "smart": "قِيلَ",
+      "bare": "قيل"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "in-shartiyya",
+      "naib-al-fail"
+     ],
+     "irab": {
+      "ar": "جَوَابُ الشَّرْطِ.",
+      "en": "«one says».",
+      "tr": "«denir»."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "حَسِبْتُ",
+      "smart": "حَسِبْتُ",
+      "bare": "حسبت"
+     },
+     "lex": "hasiba",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "zanna-wa-akhawatuha",
+      "mafulayn",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مِنْ أَفْعَالِ الْقُلُوبِ لِلظَّنِّ، وَالتَّاءُ فَاعِلٌ — الْأَدَاةُ، وَتُنْبِئُ عَنِ الْبُعْدِ.",
+      "en": "«I reckoned» — a verb of the heart for SUPPOSING: the adat, and it says the likeness is far (حَسِبَ يَحْسَبُ).",
+      "tr": "«sandım» — ZAN bildiren kalp fiili: edat, ve benzerliğin uzak olduğunu söyler (حَسِبَ يَحْسَبُ)."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدًا",
+      "smart": "زَيْدًا",
+      "bare": "زيدا"
+     },
+     "lex": "zayd",
+     "pos": "propn",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "mafulayn"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ أَوَّلُ — الْمُشَبَّهُ.",
+      "en": "«Zayd» — the mushabbah.",
+      "tr": "«Zeyd'i» — müşebbeh."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَسَدًا",
+      "smart": "أَسَدًا",
+      "bare": "أسدا"
+     },
+     "lex": "asad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "mafulayn",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ ثَانٍ — الْمُشَبَّهُ بِهِ.",
+      "en": "«a lion» — the bihi.",
+      "tr": "«arslan» — bih."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "The aim of the tashbih, in most cases, returns to the mushabbah. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Teşbihin gayesi çoğunlukla müşebbehe döner. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالْغَرَضُ",
+      "smart": "وَالْغَرَضُ",
+      "bare": "والغرض"
+     },
+     "lex": "gharad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَالْغَرَضُ مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "«the aim» — the mubtada.",
+      "tr": "«gaye» — mübtedâ."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْغَرَضُ",
+       "lex": "gharad",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«of».",
+      "tr": "«-den»."
+     }
+    },
+    {
+     "surface": {
+      "full": "التَّشْبِيهِ",
+      "smart": "التَّشْبِيهِ",
+      "bare": "التشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ مُتَعَلِّقٌ بِالْغَرَضِ.",
+      "en": "«the likening».",
+      "tr": "«teşbihin»."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«in».",
+      "tr": "«-de»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْأَغْلَبِ",
+      "smart": "الْأَغْلَبِ",
+      "bare": "الأغلب"
+     },
+     "lex": "aghlab",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "ism-tafdil"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ — اسْمُ تَفْضِيلٍ: فِي أَكْثَرِ الْأَحْوَالِ.",
+      "en": "«the most (cases)» — an ism tafdil.",
+      "tr": "«çoğunlukla» — ism-i tafdil."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَعُودُ",
+      "smart": "يَعُودُ",
+      "bare": "يعود"
+     },
+     "lex": "ada-return",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "hollow-verbs",
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْفَاعِلُ مُسْتَتِرٌ — وَالْجُمْلَةُ خَبَرُ الْمُبْتَدَأِ.",
+      "en": "«returns» — the verbal khabar.",
+      "tr": "«döner» — fiil cümlesi haber."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَى",
+      "smart": "إِلَى",
+      "bare": "إلى"
+     },
+     "lex": "ila",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«to».",
+      "tr": "«-e»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُشَبَّهِ",
+      "smart": "الْمُشَبَّهِ",
+      "bare": "المشبه"
+     },
+     "lex": "mushabbah",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«the mushabbah» — the aims serve the thing likened.",
+      "tr": "«müşebbehe» — gayeler benzetilene hizmet eder."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "translation": {
+    "en": "It is: showing its possibility, or its state, or the measure of that state, or settling it, or adorning the mushabbah, or disfiguring it, or making it seem novel. (Restored: the source carries this step only in Turkish.)",
+    "tr": "O da: müşebbehin imkânını, yahut hâlini, yahut hâlinin miktarını göstermek, yahut hâlini karara bağlamak, yahut müşebbehi süslemek, yahut çirkin göstermek, yahut yeni ve hoş göstermektir. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَهُوَ",
+      "smart": "وَهُوَ",
+      "bare": "وهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَهُوَ مُبْتَدَأٌ — الْغَرَضُ.",
+      "en": "«and it» — the aim.",
+      "tr": "«o da» — gaye."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بَيَانُ",
+      "smart": "بَيَانُ",
+      "bare": "بيان"
+     },
+     "lex": "bayan",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ مُضَافٌ — مَصْدَرُ بَيَّنَ.",
+      "en": "«showing» — the khabar; the first aim.",
+      "tr": "«göstermek» — haber; ilk gaye."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِمْكَانِهِ",
+      "smart": "إِمْكَانِهِ",
+      "bare": "إمكانه"
+     },
+     "lex": "imkan",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness",
+      "masdar",
+      "form-iv-verbs"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — الْهَاءُ لِلْمُشَبَّهِ.",
+      "en": "«its possibility» — (1) that the mushabbah CAN be.",
+      "tr": "«imkânını» — (1) müşebbehin OLABİLECEĞİ."
+     },
+     "segments": [
+      {
+       "form": "إِمْكَانِ",
+       "lex": "imkan",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "أَوْ",
+      "smart": "أَوْ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "conj",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ.",
+      "en": "«or».",
+      "tr": "«yahut»."
+     }
+    },
+    {
+     "surface": {
+      "full": "حَالِهِ",
+      "smart": "حَالِهِ",
+      "bare": "حاله"
+     },
+     "lex": "hal",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ عَلَى إِمْكَانِهِ مَجْرُورٌ.",
+      "en": "«its state» — (2).",
+      "tr": "«hâlini» — (2)."
+     },
+     "segments": [
+      {
+       "form": "حَالِ",
+       "lex": "hal",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "أَوْ",
+      "smart": "أَوْ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "conj",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ.",
+      "en": "«or».",
+      "tr": "«yahut»."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِقْدَارِهَا",
+      "smart": "مِقْدَارِهَا",
+      "bare": "مقدارها"
+     },
+     "lex": "miqdar",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ مَجْرُورٌ، وَهَا لِلْحَالِ.",
+      "en": "«the measure of it» — (3) how much of that state; the ha returns to حَال.",
+      "tr": "«miktarını» — (3) o hâlin ne kadarı; hâ حَال'e döner."
+     },
+     "segments": [
+      {
+       "form": "مِقْدَارِ",
+       "lex": "miqdar",
+       "pos": "noun"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "أَوْ",
+      "smart": "أَوْ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "conj",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ.",
+      "en": "«or».",
+      "tr": "«yahut»."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَقْرِيرُهَا",
+      "smart": "تَقْرِيرُهَا",
+      "bare": "تقريرها"
+     },
+     "lex": "taqrir",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq",
+      "masdar",
+      "form-ii-verbs"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ عَلَى بَيَانُ مَرْفُوعٌ — فَالضَّمَّةُ: هُوَ عَطْفٌ عَلَى الْخَبَرِ لَا عَلَى الْمُضَافِ إِلَيْهِ.",
+      "en": "«settling it» — (4) joined to بَيَانُ in RAF' (the damma shows it): the join climbs back to the khabar.",
+      "tr": "«karara bağlamak» — (4) بَيَانُ'ya REF' ile atıf (damme gösterir): atıf habere geri tırmanır."
+     },
+     "segments": [
+      {
+       "form": "تَقْرِيرُ",
+       "lex": "taqrir",
+       "pos": "noun"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "أَوْ",
+      "smart": "أَوْ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "conj",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ.",
+      "en": "«or».",
+      "tr": "«yahut»."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَزْيِينُهُ",
+      "smart": "تَزْيِينُهُ",
+      "bare": "تزيينه"
+     },
+     "lex": "tazyin",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq",
+      "masdar",
+      "form-ii-verbs"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ مَرْفُوعٌ.",
+      "en": "«adorning it» — (5).",
+      "tr": "«süslemek» — (5)."
+     },
+     "segments": [
+      {
+       "form": "تَزْيِينُ",
+       "lex": "tazyin",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "أَوْ",
+      "smart": "أَوْ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "conj",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ.",
+      "en": "«or».",
+      "tr": "«yahut»."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَشْوِيهُهُ",
+      "smart": "تَشْوِيهُهُ",
+      "bare": "تشويهه"
+     },
+     "lex": "tashwih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq",
+      "masdar",
+      "form-ii-verbs"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ مَرْفُوعٌ.",
+      "en": "«disfiguring it» — (6).",
+      "tr": "«çirkin göstermek» — (6)."
+     },
+     "segments": [
+      {
+       "form": "تَشْوِيهُ",
+       "lex": "tashwih",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "أَوِ",
+      "smart": "أَوِ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "conj",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ، حُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "«or» — its waw takes a kasra before the wasl-alif.",
+      "tr": "«yahut» — vâvı vasl elifi önünde kesra alır."
+     }
+    },
+    {
+     "surface": {
+      "full": "اسْتِطْرَافُهُ",
+      "smart": "اسْتِطْرَافُهُ",
+      "bare": "استطرافه"
+     },
+     "lex": "istitraf",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "atf-nasaq",
+      "masdar",
+      "form-x-verbs"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ مَرْفُوعٌ — مَصْدَرُ اسْتَطْرَفَ: عَدُّهُ طَرِيفًا.",
+      "en": "«making it seem novel» — (7) the masdar of Form X: to count a thing fresh and strange.",
+      "tr": "«yeni göstermek» — (7) X. bâbın masdarı: bir şeyi yeni ve hoş saymak."
+     },
+     "segments": [
+      {
+       "form": "اسْتِطْرَافُ",
+       "lex": "istitraf",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "translation": {
+    "en": "«If you surpass mankind while you are of them — why, musk is but part of the gazelle's blood.»",
+    "tr": "«İnsanlardan olduğun hâlde insanları aşarsan (bu mümkündür): misk de ceylanın kanının bir parçasıdır.»"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَإِنْ",
+      "smart": "فَإِنْ",
+      "bare": "فإن"
+     },
+     "lex": "in-shartiyya",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "in-shartiyya"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ اسْتِئْنَافِيَّةٌ، وَإِنْ حَرْفُ شَرْطٍ جَازِمٌ.",
+      "en": "«if» — the shart.",
+      "tr": "«eğer» — şart."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِنْ",
+       "lex": "in-shartiyya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "تَفُقِ",
+      "smart": "تَفُقِ",
+      "bare": "تفق"
+     },
+     "lex": "faqa",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "in-shartiyya",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِإِنْ وَعَلَامَةُ جَزْمِهِ السُّكُونُ، حُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، وَحُذِفَتْ عَيْنُهُ لِلْجَزْمِ (تَفُوقُ → تَفُقْ)، وَالْفَاعِلُ أَنْتَ.",
+      "en": "«you surpass» — the hollow verb in jazm: the waw drops (تَفُوقُ → تَفُقْ) and the sukun takes a kasra before the article.",
+      "tr": "«aşarsan» — meczum ecvef: vâv düşer (تَفُوقُ → تَفُقْ), sükûn harf-i tarif önünde kesra alır."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْأَنَامَ",
+      "smart": "الْأَنَامَ",
+      "bare": "الأنام"
+     },
+     "lex": "anam-mankind",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ — الْأَنَامُ: الْخَلْقُ.",
+      "en": "«mankind» — the object.",
+      "tr": "«insanları» — mef'ûl."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَأَنْتَ",
+      "smart": "وَأَنْتَ",
+      "bare": "وأنت"
+     },
+     "lex": "anta",
+     "pos": "pron",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "hal",
+      "anwa-al-waw",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ لِلْحَالِ، وَأَنْتَ مُبْتَدَأٌ — وَالْجُمْلَةُ حَالٌ.",
+      "en": "«while you» — the waw of hal opens a nominal clause.",
+      "tr": "«sen … iken» — hâl vâvı isim cümlesi açar."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَنْتَ",
+       "lex": "anta",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِنْهُمْ",
+      "smart": "مِنْهُمْ",
+      "bare": "منهم"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ خَبَرٌ.",
+      "en": "«of them» — the khabar: you are one of mankind.",
+      "tr": "«onlardansın» — haber."
+     },
+     "segments": [
+      {
+       "form": "مِنْ",
+       "lex": "min",
+       "pos": "part"
+      },
+      {
+       "form": "هُمْ",
+       "lex": "pron-3mp",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فَإِنَّ",
+      "smart": "فَإِنَّ",
+      "bare": "فإن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "inna-wa-akhawatuha",
+      "in-shartiyya"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ رَابِطَةٌ لِجَوَابِ الشَّرْطِ، وَإِنَّ حَرْفُ تَوْكِيدٍ وَنَصْبٍ — وَالْجُمْلَةُ جَوَابُ الشَّرْطِ: فَذَٰلِكَ مُمْكِنٌ، لِأَنَّ…",
+      "en": "«why, indeed» — the fa binds the jawab; the answer is understood (THAT IS POSSIBLE) and إِنَّ gives its proof.",
+      "tr": "«çünkü» — fâ cevabı bağlar; cevap mukadder (BU MÜMKÜNDÜR) ve إِنَّ delilini verir."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِنَّ",
+       "lex": "inna",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْمِسْكَ",
+      "smart": "الْمِسْكَ",
+      "bare": "المسك"
+     },
+     "lex": "misk",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِنَّ مَنْصُوبٌ.",
+      "en": "«musk» — the ism of إِنَّ.",
+      "tr": "«misk» — إِنَّ'nin ismi."
+     }
+    },
+    {
+     "surface": {
+      "full": "بَعْضُ",
+      "smart": "بَعْضُ",
+      "bare": "بعض"
+     },
+     "lex": "bad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ إِنَّ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+      "en": "«part of» — the khabar, annexed.",
+      "tr": "«bir parçası» — haber, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "دَمِ",
+      "smart": "دَمِ",
+      "bare": "دم"
+     },
+     "lex": "dam-blood",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ مُضَافٌ.",
+      "en": "«the blood of».",
+      "tr": "«kanının»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْغَزَالِ",
+      "smart": "الْغَزَالِ",
+      "bare": "الغزال"
+     },
+     "lex": "ghazal",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ. وَالتَّشْبِيهُ هُنَا ضِمْنِيٌّ: الْمَمْدُوحُ بَيْنَ النَّاسِ كَالْمِسْكِ فِي دَمِ الْغَزَالِ — لَا أَدَاةَ وَلَا مُشَبَّهَ مَذْكُورٌ.",
+      "en": "«the gazelle» — the likening is IMPLICIT: the praised man among mankind is as musk within the gazelle's blood — no adat, no mushabbah on the surface, so the engine reads no frame; the aim is to show the mushabbah POSSIBLE.",
+      "tr": "«ceylanın» — benzetme ZIMNÎdir: memdûh insanlar arasında ceylanın kanındaki misk gibidir — yüzeyde ne edat ne müşebbeh var, motor çerçeve okumaz; gaye müşebbehin MÜMKÜN olduğunu göstermektir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "وَأَنْتَ مِنْهُمْ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ فِي مَحَلِّ نَصْبٍ حَالٌ.",
+     "en": "The hal-clause: the claim that needs proving.",
+     "tr": "Hâl cümlesi: ispat isteyen iddia."
+    },
+    {
+     "text": "فَإِنَّ الْمِسْكَ بَعْضُ دَمِ الْغَزَالِ",
+     "ar": "جُمْلَةٌ فِي مَحَلِّ جَزْمٍ جَوَابُ الشَّرْطِ، أَوْ تَعْلِيلٌ لِجَوَابٍ مَحْذُوفٍ.",
+     "en": "The jawab, or the proof of a dropped jawab: the hidden tashbih.",
+     "tr": "Cevap, yahut düşmüş cevabın delili: gizli teşbih."
+    }
+   ]
+  },
+  {
+   "id": "s11",
+   "translation": {
+    "en": "So the aim is to show the mushabbah possible — that the praised one surpasses mankind while being of them. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Gaye, müşebbehin mümkün olduğunu göstermektir: memdûhun insanlardan olduğu hâlde onları aşması. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَالْغَرَضُ",
+      "smart": "فَالْغَرَضُ",
+      "bare": "فالغرض"
+     },
+     "lex": "gharad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْرِيعِ، وَالْغَرَضُ مُبْتَدَأٌ.",
+      "en": "«so the aim» — the mubtada.",
+      "tr": "«gaye» — mübtedâ."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْغَرَضُ",
+       "lex": "gharad",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بَيَانُ",
+      "smart": "بَيَانُ",
+      "bare": "بيان"
+     },
+     "lex": "bayan",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ مُضَافٌ.",
+      "en": "«showing».",
+      "tr": "«göstermektir»."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِمْكَانِ",
+      "smart": "إِمْكَانِ",
+      "bare": "إمكان"
+     },
+     "lex": "imkan",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مُضَافٌ.",
+      "en": "«the possibility of».",
+      "tr": "«imkânını»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُشَبَّهِ",
+      "smart": "الْمُشَبَّهِ",
+      "bare": "المشبه"
+     },
+     "lex": "mushabbah",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«the mushabbah».",
+      "tr": "«müşebbehin»."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَهُوَ",
+      "smart": "وَهُوَ",
+      "bare": "وهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَهُوَ مُبْتَدَأٌ — الْمُشَبَّهُ.",
+      "en": "«and it» — the mushabbah, explained.",
+      "tr": "«o da» — müşebbeh, açıklanıyor."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَنْ",
+      "smart": "أَنْ",
+      "bare": "أن"
+     },
+     "lex": "an-masdariyya",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "an-masdariyya"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ خَبَرٌ.",
+      "en": "«that».",
+      "tr": "«-ması»."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَفُوقَ",
+      "smart": "يَفُوقَ",
+      "bare": "يفوق"
+     },
+     "lex": "faqa",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "an-masdariyya",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ — أَجْوَفُ وَاوِيٌّ، تَعُودُ وَاوُهُ فِي النَّصْبِ.",
+      "en": "«surpasses» — nasb by أَنْ; in nasb the hollow keeps its waw.",
+      "tr": "«aşması» — أَنْ ile mansub; nasbda ecvef vâvını korur."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمَمْدُوحُ",
+      "smart": "الْمَمْدُوحُ",
+      "bare": "الممدوح"
+     },
+     "lex": "mamduh",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "fail",
+      "ism-maful"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ — اسْمُ مَفْعُولٍ.",
+      "en": "«the praised one» — the fa'il.",
+      "tr": "«memdûh» — fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "النَّاسَ",
+      "smart": "النَّاسَ",
+      "bare": "الناس"
+     },
+     "lex": "nas",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "«mankind» — the object.",
+      "tr": "«insanları» — mef'ûl."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَهُوَ",
+      "smart": "وَهُوَ",
+      "bare": "وهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "hal",
+      "anwa-al-waw"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ لِلْحَالِ، وَهُوَ مُبْتَدَأٌ.",
+      "en": "«while he» — the hal-clause.",
+      "tr": "«o … iken» — hâl cümlesi."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِنْهُمْ",
+      "smart": "مِنْهُمْ",
+      "bare": "منهم"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ خَبَرٌ.",
+      "en": "«of them».",
+      "tr": "«onlardan»."
+     },
+     "segments": [
+      {
+       "form": "مِنْ",
+       "lex": "min",
+       "pos": "part"
+      },
+      {
+       "form": "هُمْ",
+       "lex": "pron-3mp",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s12",
+   "translation": {
+    "en": "As in likening a garment to another in blackness, to show its state — and likening it to the raven, to show the measure of its blackness. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Bir elbiseyi siyahlıkta başka bir elbiseye benzetmek gibi — hâlini göstermek için; ve onu kargaya benzetmek — siyahlığının miktarını göstermek için. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tashbih": {
+    "mushabbah": [
+     1
+    ],
+    "adat": 0,
+    "bihi": [
+     2
+    ],
+    "wajh": [
+     3,
+     4
+    ],
+    "kind": "mursal-mufassal",
+    "shape": {
+     "mushabbah": "mufrad",
+     "bihi": "mufrad",
+     "wajh": "mufrad"
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "كَتَشْبِيهِ",
+      "smart": "كَتَشْبِيهِ",
+      "bare": "كتشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness",
+      "imal-al-masdar"
+     ],
+     "irab": {
+      "ar": "الْكَافُ لِلتَّمْثِيلِ جَارَّةٌ، وَتَشْبِيهِ مَجْرُورٌ مُضَافٌ — مَصْدَرٌ عَامِلٌ: الْأَدَاةُ.",
+      "en": "«as in the likening of» — the kaf of example on the masdar-adat.",
+      "tr": "«benzetmesi gibi» — masdar-edat üstünde örnek kâfı."
+     },
+     "segments": [
+      {
+       "form": "كَ",
+       "lex": "ka",
+       "pos": "part"
+      },
+      {
+       "form": "تَشْبِيهِ",
+       "lex": "tashbih",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "ثَوْبٍ",
+      "smart": "ثَوْبٍ",
+      "bare": "ثوب"
+     },
+     "lex": "thawb",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — الْمُشَبَّهُ.",
+      "en": "«a garment» — the mushabbah.",
+      "tr": "«bir elbiseyi» — müşebbeh."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِآخَرَ",
+      "smart": "بِآخَرَ",
+      "bare": "بآخر"
+     },
+     "lex": "akhar",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ وَآخَرَ مَجْرُورٌ بِالْفَتْحَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ — الْمُشَبَّهُ بِهِ.",
+      "en": "«to another» — the bihi; آخَر is a diptote, jarr by fatha.",
+      "tr": "«başkasına» — bih; آخَر gayr-i munsarif, cerri fethayla."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "آخَرَ",
+       "lex": "akhar",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "wajh-al-shabah",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ — يَبْدَأُ وَجْهَ الشَّبَهِ.",
+      "en": "«in» — the wajh.",
+      "tr": "«-de» — vech."
+     }
+    },
+    {
+     "surface": {
+      "full": "السَّوَادِ",
+      "smart": "السَّوَادِ",
+      "bare": "السواد"
+     },
+     "lex": "sawad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "wajh-al-shabah",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ — وَجْهُ الشَّبَهِ.",
+      "en": "«blackness» — the wajh, one quality.",
+      "tr": "«siyahlıkta» — vech, tek vasıf."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِبَيَانِ",
+      "smart": "لِبَيَانِ",
+      "bare": "لبيان"
+     },
+     "lex": "bayan",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness",
+      "lam-taleel"
+     ],
+     "irab": {
+      "ar": "اللَّامُ لِلتَّعْلِيلِ، وَبَيَانِ مَجْرُورٌ مُضَافٌ — الْغَرَضُ.",
+      "en": "«to show» — the lam of purpose: the AIM (2).",
+      "tr": "«göstermek için» — ta'lil lâmı: GAYE (2)."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "part"
+      },
+      {
+       "form": "بَيَانِ",
+       "lex": "bayan",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "حَالِهِ",
+      "smart": "حَالِهِ",
+      "bare": "حاله"
+     },
+     "lex": "hal",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«its state».",
+      "tr": "«hâlini»."
+     },
+     "segments": [
+      {
+       "form": "حَالِ",
+       "lex": "hal",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَتَشْبِيهِهِ",
+      "smart": "وَتَشْبِيهِهِ",
+      "bare": "وتشبيهه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "atf-nasaq",
+      "idafa-definiteness",
+      "imal-al-masdar"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ مَجْرُورٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — الْمُشَبَّهُ ضَمِيرٌ.",
+      "en": "«and likening it» — a second masdar-frame whose mushabbah is the pronoun.",
+      "tr": "«ve onu benzetmek» — müşebbehi zamir olan ikinci masdar çerçevesi."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "تَشْبِيهِ",
+       "lex": "tashbih",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِالْغُرَابِ",
+      "smart": "بِالْغُرَابِ",
+      "bare": "بالغراب"
+     },
+     "lex": "ghurab",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ وَالْغُرَابِ مَجْرُورٌ — الْمُشَبَّهُ بِهِ.",
+      "en": "«to the raven» — the bihi.",
+      "tr": "«kargaya» — bih."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "الْغُرَابِ",
+       "lex": "ghurab",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لِبَيَانِ",
+      "smart": "لِبَيَانِ",
+      "bare": "لبيان"
+     },
+     "lex": "bayan",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "lam-taleel"
+     ],
+     "irab": {
+      "ar": "اللَّامُ لِلتَّعْلِيلِ، وَبَيَانِ مَجْرُورٌ مُضَافٌ.",
+      "en": "«to show» — the aim (3).",
+      "tr": "«göstermek için» — gaye (3)."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "part"
+      },
+      {
+       "form": "بَيَانِ",
+       "lex": "bayan",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِقْدَارِ",
+      "smart": "مِقْدَارِ",
+      "bare": "مقدار"
+     },
+     "lex": "miqdar",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مُضَافٌ.",
+      "en": "«the measure of».",
+      "tr": "«miktarını»."
+     }
+    },
+    {
+     "surface": {
+      "full": "سَوَادِهِ",
+      "smart": "سَوَادِهِ",
+      "bare": "سواده"
+     },
+     "lex": "sawad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«its blackness» — how black: the raven is the measure.",
+      "tr": "«siyahlığının» — ne kadar siyah: ölçü kargadır."
+     },
+     "segments": [
+      {
+       "form": "سَوَادِ",
+       "lex": "sawad",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s13",
+   "translation": {
+    "en": "And as in likening one who gets nothing from his striving to one who writes on water. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Ve çabasından bir fayda elde edemeyeni su üzerine yazı yazana benzetmek gibi. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tashbih": {
+    "mushabbah": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "adat": 0,
+    "bihi": [
+     8,
+     9,
+     10,
+     11
+    ],
+    "wajh": [],
+    "kind": "mursal-mujmal",
+    "shape": {
+     "mushabbah": "murakkab",
+     "bihi": "murakkab",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَتَشْبِيهِ",
+      "smart": "وَكَتَشْبِيهِ",
+      "bare": "وكتشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness",
+      "imal-al-masdar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالْكَافُ لِلتَّمْثِيلِ، وَتَشْبِيهِ مَجْرُورٌ مُضَافٌ إِلَى الْمَوْصُولِ — الْأَدَاةُ.",
+      "en": "«and as in the likening of» — the masdar-adat, annexed to a RELATIVE: the mushabbah is a whole clause.",
+      "tr": "«ve … benzetmek gibi» — masdar-edat, bir MEVSÛLE muzâf: müşebbeh bütün bir cümledir."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَ",
+       "lex": "ka",
+       "pos": "part"
+      },
+      {
+       "form": "تَشْبِيهِ",
+       "lex": "tashbih",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مَنْ",
+      "smart": "مَنْ",
+      "bare": "من"
+     },
+     "lex": "man-mawsul",
+     "pos": "pron",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "ism-mawsul",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَوْصُولٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ — الْمُشَبَّهُ.",
+      "en": "«one who» — the mushabbah begins.",
+      "tr": "«… kimseyi» — müşebbeh başlar."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نَفْيٍ.",
+      "en": "«not».",
+      "tr": "«-mez»."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَحْصُلُ",
+      "smart": "يَحْصُلُ",
+      "bare": "يحصل"
+     },
+     "lex": "hasala",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "jumla-sifa",
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْفَاعِلُ مُسْتَتِرٌ — وَالْجُمْلَةُ صِلَةٌ.",
+      "en": "«gets» — the sila.",
+      "tr": "«elde eder» — sıla."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنْ",
+      "smart": "مِنْ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«from».",
+      "tr": "«-den»."
+     }
+    },
+    {
+     "surface": {
+      "full": "سَعْيِهِ",
+      "smart": "سَعْيِهِ",
+      "bare": "سعيه"
+     },
+     "lex": "say",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — الْعَائِدُ.",
+      "en": "«his striving» — the returning pronoun.",
+      "tr": "«çabasından» — âid."
+     },
+     "segments": [
+      {
+       "form": "سَعْيِ",
+       "lex": "say",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "عَلَى",
+      "smart": "عَلَى",
+      "bare": "على"
+     },
+     "lex": "ala",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ — حَصَلَ عَلَى: نَالَ.",
+      "en": "«on» — حَصَلَ عَلَى = to obtain.",
+      "tr": "«-e» — حَصَلَ عَلَى = elde etmek."
+     }
+    },
+    {
+     "surface": {
+      "full": "طَائِلٍ",
+      "smart": "طَائِلٍ",
+      "bare": "طائل"
+     },
+     "lex": "tail",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ — طَائِلٌ: فَائِدَةٌ.",
+      "en": "«anything of use» — the mushabbah ends: a composite state.",
+      "tr": "«bir fayda» — müşebbeh biter: mürekkeb bir hâl."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِمَنْ",
+      "smart": "بِمَنْ",
+      "bare": "بمن"
+     },
+     "lex": "man-mawsul",
+     "pos": "pron",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "ism-mawsul"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ، وَمَنْ مَوْصُولٌ فِي مَحَلِّ جَرٍّ — الْمُشَبَّهُ بِهِ يَبْدَأُ.",
+      "en": "«to one who» — the bihi begins: the بِ on a relative.",
+      "tr": "«… kimseye» — bih başlar: mevsûl üstünde بِ."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "مَنْ",
+       "lex": "man-mawsul",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَرْقُمُ",
+      "smart": "يَرْقُمُ",
+      "bare": "يرقم"
+     },
+     "lex": "raqama",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "jumla-sifa",
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْفَاعِلُ مُسْتَتِرٌ — صِلَةٌ.",
+      "en": "«writes» — the sila.",
+      "tr": "«yazar» — sıla."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَلَى",
+      "smart": "عَلَى",
+      "bare": "على"
+     },
+     "lex": "ala",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«on».",
+      "tr": "«üzerine»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمَاءِ",
+      "smart": "الْمَاءِ",
+      "bare": "الماء"
+     },
+     "lex": "ma-water",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ. الْغَرَضُ: تَقْرِيرُ حَالِ الْمُشَبَّهِ — الْمُشَبَّهُ بِهِ أَتَمُّ وَأَشْهَرُ فِي الْوَجْهِ.",
+      "en": "«water» — the aim (4): to SETTLE the mushabbah's state by a bihi where the wajh is plainer and more famous.",
+      "tr": "«su» — gaye (4): müşebbehin hâlini, vechin daha açık ve meşhur olduğu bir bihle KARARA BAĞLAMAK."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s14",
+   "translation": {
+    "en": "And as in likening a black face to the eye of the gazelle, to adorn it. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Ve siyah bir yüzü ceylanın gözüne benzetmek gibi — onu süslemek için. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tashbih": {
+    "mushabbah": [
+     1,
+     2
+    ],
+    "adat": 0,
+    "bihi": [
+     3,
+     4
+    ],
+    "wajh": [],
+    "kind": "mursal-mujmal",
+    "shape": {
+     "mushabbah": "mufrad",
+     "bihi": "mufrad",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَتَشْبِيهِ",
+      "smart": "وَكَتَشْبِيهِ",
+      "bare": "وكتشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "imal-al-masdar"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ — الْكَافُ لِلتَّمْثِيلِ، وَتَشْبِيهِ مُضَافٌ: الْأَدَاةُ.",
+      "en": "«and as in likening» — the masdar-adat.",
+      "tr": "«ve … benzetmek gibi» — masdar-edat."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَ",
+       "lex": "ka",
+       "pos": "part"
+      },
+      {
+       "form": "تَشْبِيهِ",
+       "lex": "tashbih",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَجْهٍ",
+      "smart": "وَجْهٍ",
+      "bare": "وجه"
+     },
+     "lex": "wajh",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — الْمُشَبَّهُ.",
+      "en": "«a face» — the mushabbah.",
+      "tr": "«bir yüzü» — müşebbeh."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَسْوَدَ",
+      "smart": "أَسْوَدَ",
+      "bare": "أسود"
+     },
+     "lex": "aswad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naat-sifa",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَجْرُورٌ بِالْفَتْحَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ — أَفْعَلُ اللَّوْنِ.",
+      "en": "«black» — its na't, a colour-أَفْعَل: diptote, jarr by fatha.",
+      "tr": "«siyah» — sıfatı, renk أَفْعَل'i: gayr-i munsarif, cerri fethayla."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِمُقْلَةِ",
+      "smart": "بِمُقْلَةِ",
+      "bare": "بمقلة"
+     },
+     "lex": "muqla",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ وَمُقْلَةِ مَجْرُورٌ مُضَافٌ — الْمُشَبَّهُ بِهِ.",
+      "en": "«to the eye of» — the bihi.",
+      "tr": "«gözüne» — bih."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "مُقْلَةِ",
+       "lex": "muqla",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الظَّبْيِ",
+      "smart": "الظَّبْيِ",
+      "bare": "الظبي"
+     },
+     "lex": "zaby",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«the gazelle» — whose black eye is beauty itself.",
+      "tr": "«ceylanın» — kara gözü güzelliğin kendisi."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِتَزْيِينِهِ",
+      "smart": "لِتَزْيِينِهِ",
+      "bare": "لتزيينه"
+     },
+     "lex": "tazyin",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "lam-taleel",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "اللَّامُ لِلتَّعْلِيلِ، وَتَزْيِينِ مَجْرُورٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — الْغَرَضُ الْخَامِسُ.",
+      "en": "«to adorn it» — the aim (5).",
+      "tr": "«süslemek için» — gaye (5)."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "part"
+      },
+      {
+       "form": "تَزْيِينِ",
+       "lex": "tazyin",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s15",
+   "translation": {
+    "en": "And as in likening coal with lit embers in it to a sea of musk whose waves are gold. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Ve içinde yanan korlar bulunan kömürü, dalgası altın olan bir misk denizine benzetmek gibi. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tashbih": {
+    "mushabbah": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "adat": 0,
+    "bihi": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "wajh": [],
+    "kind": "mursal-mujmal",
+    "shape": {
+     "mushabbah": "murakkab",
+     "bihi": "murakkab",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَتَشْبِيهِ",
+      "smart": "وَكَتَشْبِيهِ",
+      "bare": "وكتشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "imal-al-masdar"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ — الْأَدَاةُ.",
+      "en": "«and as in likening» — the masdar-adat.",
+      "tr": "«ve … benzetmek gibi» — masdar-edat."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَ",
+       "lex": "ka",
+       "pos": "part"
+      },
+      {
+       "form": "تَشْبِيهِ",
+       "lex": "tashbih",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فَحْمٍ",
+      "smart": "فَحْمٍ",
+      "bare": "فحم"
+     },
+     "lex": "fahm-coal",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — الْمُشَبَّهُ، وَتَصِفُهُ الْجُمْلَةُ بَعْدَهُ.",
+      "en": "«coal» — the mushabbah, described by the clause after it.",
+      "tr": "«kömürü» — müşebbeh, ardındaki cümle onu vasfeder."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِيهِ",
+      "smart": "فِيهِ",
+      "bare": "فيه"
+     },
+     "lex": "fi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "jumla-sifa",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ خَبَرٌ مُقَدَّمٌ، وَالْهَاءُ الْعَائِدُ — وَالْجُمْلَةُ الِاسْمِيَّةُ صِفَةٌ لِفَحْمٍ.",
+      "en": "«in it» — a fronted khabar; the ha returns to the coal: a NOMINAL describing clause, and the mushabbah is a picture.",
+      "tr": "«içinde» — mukaddem haber; hâ kömüre döner: İSİM cümlesi sıfat, müşebbeh bir tablo."
+     },
+     "segments": [
+      {
+       "form": "فِي",
+       "lex": "fi",
+       "pos": "part"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "جَمْرٌ",
+      "smart": "جَمْرٌ",
+      "bare": "جمر"
+     },
+     "lex": "jamr",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ.",
+      "en": "«embers» — the delayed mubtada.",
+      "tr": "«korlar» — muahhar mübtedâ."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُوقَدٌ",
+      "smart": "مُوقَدٌ",
+      "bare": "موقد"
+     },
+     "lex": "muqad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naat-sifa",
+      "ism-maful",
+      "form-iv-verbs"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَرْفُوعٌ — اسْمُ مَفْعُولٍ مِنْ أَوْقَدَ.",
+      "en": "«lit» — its na't; the ism maf'ul of أَوْقَدَ.",
+      "tr": "«yanan» — sıfatı; أَوْقَدَ'nin ism-i mef'ûlü."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِبَحْرٍ",
+      "smart": "بِبَحْرٍ",
+      "bare": "ببحر"
+     },
+     "lex": "bahr",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ وَبَحْرٍ مَجْرُورٌ — الْمُشَبَّهُ بِهِ.",
+      "en": "«to a sea» — the bihi begins.",
+      "tr": "«bir denize» — bih başlar."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "بَحْرٍ",
+       "lex": "bahr",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ لِلْبَيَانِ.",
+      "en": "«of» — the min of explanation.",
+      "tr": "«-den» — beyan mini."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمِسْكِ",
+      "smart": "الْمِسْكِ",
+      "bare": "المسك"
+     },
+     "lex": "misk",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ مُتَعَلِّقٌ بِمَحْذُوفٍ صِفَةٌ لِبَحْرٍ.",
+      "en": "«musk» — a sea made of musk (black).",
+      "tr": "«miskten» — miskten (siyah) bir deniz."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَوْجُهُ",
+      "smart": "مَوْجُهُ",
+      "bare": "موجه"
+     },
+     "lex": "mawj",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar",
+      "jumla-sifa",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ عَائِدٌ إِلَى بَحْرٍ — وَالْجُمْلَةُ صِفَةٌ ثَانِيَةٌ.",
+      "en": "«whose waves» — a nominal clause describing the sea; the ha returns to it: the bihi too is a picture.",
+      "tr": "«dalgası» — denizi vasfeden isim cümlesi; hâ ona döner: bih de bir tablo."
+     },
+     "segments": [
+      {
+       "form": "مَوْجُ",
+       "lex": "mawj",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الذَّهَبُ",
+      "smart": "الذَّهَبُ",
+      "bare": "الذهب"
+     },
+     "lex": "dhahab-gold",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ. الْغَرَضُ: الِاسْتِطْرَافُ — إِبْرَازُ الْمُشَبَّهِ فِي صُورَةِ الْمُمْتَنِعِ عَادَةً.",
+      "en": "«gold» — the khabar. The aim (7): NOVELTY, showing the mushabbah in a shape that custom holds impossible (a sea of musk with golden waves).",
+      "tr": "«altındır» — haber. Gaye (7): İSTİTRÂF, müşebbehi âdeten imkânsız bir surette göstermek (altın dalgalı misk denizi)."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s16",
+   "translation": {
+    "en": "«Many a lazuline (violet) that flaunts its blue among the gardens over the red of the rubies —»",
+    "tr": "«Nice lâcivert (menekşe) ki bahçeler arasında, yakutların kızılı üstünde maviliğiyle böbürlenir —»"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَازَوَرْدِيَّةٍ",
+      "smart": "وَلَازَوَرْدِيَّةٍ",
+      "bare": "ولازوردية"
+     },
+     "lex": "lazawardiyya",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "anwa-al-waw",
+      "huruf-jarr-nawadir",
+      "ism-mansub"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ وَاوُ رُبَّ، وَلَازَوَرْدِيَّةٍ مَجْرُورٌ لَفْظًا بِرُبَّ الْمَحْذُوفَةِ، مَرْفُوعٌ مَحَلًّا مُبْتَدَأٌ — وَالتَّقْدِيرُ: رُبَّ أَزْهَارٍ لَازَوَرْدِيَّةٍ. (يَكْتُبُهُ الْمَصْدَرُ وَلاَ زِوَرْدِيَّةٍ.)",
+      "en": "«many a lazuline (flower)» — the WAW OF رُبَّ: the noun is majrur by the dropped رُبَّ and a mubtada in place; a nisba to lazuward, the blue stone (the source writes وَلاَ زِوَرْدِيَّةٍ).",
+      "tr": "«nice lâcivert (çiçek)» — RUBBE VÂVI: isim düşmüş رُبَّ ile lafzen mecrur, mahallen merfû mübtedâ; mavi taş lâciverde nisbet (kaynak وَلاَ زِوَرْدِيَّةٍ yazar)."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَازَوَرْدِيَّةٍ",
+       "lex": "lazawardiyya",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "تَزْهُو",
+      "smart": "تَزْهُو",
+      "bare": "تزهو"
+     },
+     "lex": "zaha",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "jumla-sifa",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْوَاوِ، وَالْفَاعِلُ مُسْتَتِرٌ — وَالْجُمْلَةُ صِفَةٌ لِلْمَجْرُورِ بِرُبَّ.",
+      "en": "«flaunts» — a naqis-waw mudari (زَهَا يَزْهُو); the clause describes the noun after رُبَّ, as رُبَّ always wants.",
+      "tr": "«böbürlenir» — nâkıs-vâvî muzâri (زَهَا يَزْهُو); cümle رُبَّ'den sonraki ismi vasfeder, رُبَّ hep bunu ister."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِزُرْقَتِهَا",
+      "smart": "بِزُرْقَتِهَا",
+      "bare": "بزرقتها"
+     },
+     "lex": "zurqa",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ وَزُرْقَةِ مَجْرُورٌ، وَهَا مُضَافٌ إِلَيْهِ.",
+      "en": "«with its blue».",
+      "tr": "«maviliğiyle»."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "زُرْقَةِ",
+       "lex": "zurqa",
+       "pos": "noun"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بَيْنَ",
+      "smart": "بَيْنَ",
+      "bare": "بين"
+     },
+     "lex": "bayna",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "maful-fih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "ظَرْفُ مَكَانٍ مَنْصُوبٌ مُضَافٌ.",
+      "en": "«among».",
+      "tr": "«arasında»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الرِّيَاضِ",
+      "smart": "الرِّيَاضِ",
+      "bare": "الرياض"
+     },
+     "lex": "rawda",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — جَمْعُ رَوْضَةٍ.",
+      "en": "«the gardens» — plural of رَوْضَة.",
+      "tr": "«bahçelerin» — رَوْضَة'nin çoğulu."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَلَى",
+      "smart": "عَلَى",
+      "bare": "على"
+     },
+     "lex": "ala",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«over».",
+      "tr": "«üstünde»."
+     }
+    },
+    {
+     "surface": {
+      "full": "حُمْرِ",
+      "smart": "حُمْرِ",
+      "bare": "حمر"
+     },
+     "lex": "ahmar",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ مُضَافٌ — جَمْعُ أَحْمَرَ عَلَى فُعْلٍ.",
+      "en": "«the red (ones) of» — the colour plural فُعْل of أَحْمَر.",
+      "tr": "«kızılları» — أَحْمَر'in فُعْل renk çoğulu."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْيَوَاقِيتِ",
+      "smart": "الْيَوَاقِيتِ",
+      "bare": "اليواقيت"
+     },
+     "lex": "yaqut",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness",
+      "jam-taksir",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — جَمْعُ يَاقُوتٍ عَلَى فَعَالِيلَ، صِيغَةُ مُنْتَهَى الْجُمُوعِ؛ الْأَلِفُ وَاللَّامُ تُعِيدَانِ الْكَسْرَةَ.",
+      "en": "«the rubies» — a heaviest-shape plural (فَعَالِيل); the article gives back its kasra. The likening waits for the next bayt.",
+      "tr": "«yakutların» — en ağır kalıp çoğul (فَعَالِيل); harf-i tarif kesrayı geri verir. Benzetme sonraki beyti bekler."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s17",
+   "translation": {
+    "en": "«— as if they were, upon stalks that they have weighed down, the first flames of fire at the tips of matches.»",
+    "tr": "«— sanki onlar, kendileriyle bükülen sapların üstünde, kibrit uçlarındaki ilk ateşlerdir.»"
+   },
+   "tashbih": {
+    "mushabbah": [],
+    "adat": 0,
+    "bihi": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "wajh": [],
+    "kind": "mursal-mujmal",
+    "shape": {
+     "mushabbah": null,
+     "bihi": "muqayyad",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "كَأَنَّهَا",
+      "smart": "كَأَنَّهَا",
+      "bare": "كأنها"
+     },
+     "lex": "ka-anna",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "inna-wa-akhawatuha",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَشْبِيهٍ وَنَصْبٍ، وَهَا اسْمُهَا فِي مَحَلِّ نَصْبٍ — الْمُشَبَّهُ ضَمِيرُ اللَّازَوَرْدِيَّةِ.",
+      "en": "«as if they» — the adat with its ism attached: the MUSHABBAH is the pronoun of the violets.",
+      "tr": "«sanki onlar» — ismi bitişik edat: MÜŞEBBEH menekşelerin zamiri."
+     },
+     "segments": [
+      {
+       "form": "كَأَنَّ",
+       "lex": "ka-anna",
+       "pos": "part"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فَوْقَ",
+      "smart": "فَوْقَ",
+      "bare": "فوق"
+     },
+     "lex": "fawqa",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "maful-fih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "ظَرْفُ مَكَانٍ مَنْصُوبٌ مُضَافٌ، مُتَعَلِّقٌ بِالْخَبَرِ — لَيْسَ الْخَبَرَ: الْخَبَرُ أَوَائِلُ.",
+      "en": "«upon» — a zarf hanging on the khabar, not the khabar itself: the engine prefers the plain noun أَوَائِلُ.",
+      "tr": "«üstünde» — habere bağlı zarf, haberin kendisi değil: motor açık isim أَوَائِلُ'i tercih eder."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَامَاتٍ",
+      "smart": "قَامَاتٍ",
+      "bare": "قامات"
+     },
+     "lex": "qama-stalk",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness",
+      "jam-muannath-salim"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ — جَمْعُ مُؤَنَّثٍ سَالِمٌ: قَامَاتٌ، الْقَامَةُ: السَّاقُ.",
+      "en": "«stalks» — a sound feminine plural in jarr (قَامَة: the stalk's stature).",
+      "tr": "«sapların» — mecrur cem-i müennes-i sâlim (قَامَة: boy, sap)."
+     }
+    },
+    {
+     "surface": {
+      "full": "ضَعُفْنَ",
+      "smart": "ضَعُفْنَ",
+      "bare": "ضعفن"
+     },
+     "lex": "daufa",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "jumla-sifa",
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مِنْ بَابِ كَرُمَ، وَنُونُ النِّسْوَةِ فَاعِلٌ — وَالْجُمْلَةُ صِفَةٌ لِقَامَاتٍ.",
+      "en": "«that have grown weak» — فَعُلَ of the fifth bab with the nun of women (the stalks are feminine plural); a describing clause on قَامَاتٍ.",
+      "tr": "«zayıflamış» — beşinci bâbdan فَعُلَ, nisve nûnuyla (saplar müennes çoğul); قَامَاتٍ'in vasıf cümlesi."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِهَا",
+      "smart": "بِهَا",
+      "bare": "بها"
+     },
+     "lex": "bi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ — وَهَا لِلَّازَوَرْدِيَّةِ: ضَعُفَتِ الْقَامَاتُ بِثِقَلِ الْأَزْهَارِ.",
+      "en": "«by them» — weighed down by the flowers.",
+      "tr": "«onlarla» — çiçeklerin ağırlığıyla."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَوَائِلُ",
+      "smart": "أَوَائِلُ",
+      "bare": "أوائل"
+     },
+     "lex": "awail",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "inna-wa-akhawatuha",
+      "idafa-definiteness",
+      "jam-taksir",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "خَبَرُ كَأَنَّ مَرْفُوعٌ وَهُوَ مُضَافٌ — جَمْعُ أُولَى/أَوَّل عَلَى فَوَاعِلَ، صِيغَةُ مُنْتَهَى الْجُمُوعِ. الْمُشَبَّهُ بِهِ.",
+      "en": "«the first (flames) of» — the khabar: the MUSHABBAH BIHI, a heaviest-shape plural annexed.",
+      "tr": "«ilkleri» — haber: MÜŞEBBEHÜN BİH, en ağır kalıpta çoğul, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "النَّارِ",
+      "smart": "النَّارِ",
+      "bare": "النار"
+     },
+     "lex": "nar",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«fire».",
+      "tr": "«ateşin»."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ — قَيْدٌ عَلَى الْمُشَبَّهِ بِهِ لَا وَجْهُ شَبَهٍ.",
+      "en": "«at» — a RESTRICTION on the bihi (its place), not a wajh.",
+      "tr": "«-de» — bih üzerinde KAYIT (yeri), vech değil."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَطْرَافِ",
+      "smart": "أَطْرَافِ",
+      "bare": "أطراف"
+     },
+     "lex": "taraf",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ مُضَافٌ — جَمْعُ طَرَفٍ.",
+      "en": "«the tips of».",
+      "tr": "«uçlarında»."
+     }
+    },
+    {
+     "surface": {
+      "full": "كِبْرِيتِ",
+      "smart": "كِبْرِيتِ",
+      "bare": "كبريت"
+     },
+     "lex": "kibrit",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — حُذِفَ تَنْوِينُهُ لِلْقَافِيَةِ (كِبْرِيتٍ). الْغَرَضُ: الِاسْتِطْرَافُ — نُدْرَةُ حُضُورِ الْمُشَبَّهِ بِهِ عِنْدَ حُضُورِ الْمُشَبَّهِ.",
+      "en": "«matches» — its tanwin dropped for the rhyme. The aim (7) again: the bihi is one that seldom comes to mind when the violets are before us — novelty by rarity.",
+      "tr": "«kibritin» — tenvini kafiye için düşmüş. Gaye (7) yine: menekşeler önümüzdeyken bih nadiren akla gelir — nadirlikle istitrâf."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s18",
+   "translation": {
+    "en": "The aim that returns to the mushabbah bihi is to suggest that it is the more complete — and that is in the reversed tashbih. (Restored: the source carries this step only in Turkish.)",
+    "tr": "Müşebbehün bihe dönen gaye, onun daha tam olduğunu ihsas ettirmektir — bu, maklûb teşbihte olur. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالْغَرَضُ",
+      "smart": "وَالْغَرَضُ",
+      "bare": "والغرض"
+     },
+     "lex": "gharad",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَالْغَرَضُ مُبْتَدَأٌ.",
+      "en": "«the aim» — the mubtada.",
+      "tr": "«gaye» — mübtedâ."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْغَرَضُ",
+       "lex": "gharad",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْعَائِدُ",
+      "smart": "الْعَائِدُ",
+      "bare": "العائد"
+     },
+     "lex": "aid",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naat-sifa",
+      "ism-fail",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَرْفُوعٌ — اسْمُ فَاعِلٍ مِنْ عَادَ، هَمْزَتُهُ مُنْقَلِبَةٌ عَنِ الْوَاوِ.",
+      "en": "«that returns» — the ism fa'il of the hollow عَادَ: its waw became a hamza.",
+      "tr": "«dönen» — ecvef عَادَ'nin ism-i fâili: vâvı hemzeye dönmüş."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَى",
+      "smart": "إِلَى",
+      "bare": "إلى"
+     },
+     "lex": "ila",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«to».",
+      "tr": "«-e»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُشَبَّهِ",
+      "smart": "الْمُشَبَّهِ",
+      "bare": "المشبه"
+     },
+     "lex": "mushabbah",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«the mushabbah».",
+      "tr": "«müşebbeh»."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِهِ",
+      "smart": "بِهِ",
+      "bare": "به"
+     },
+     "lex": "bi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ — تَمَامُ الْمُصْطَلَحِ.",
+      "en": "«bihi».",
+      "tr": "«bih»."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِيهَامُ",
+      "smart": "إِيهَامُ",
+      "bare": "إيهام"
+     },
+     "lex": "iham",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "masdar",
+      "form-iv-verbs"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ مُضَافٌ إِلَى الْمَصْدَرِ الْمُؤَوَّلِ — مَصْدَرُ أَوْهَمَ.",
+      "en": "«suggesting» — the khabar; the masdar of أَوْهَمَ.",
+      "tr": "«ihsas ettirmek» — haber; أَوْهَمَ'nin masdarı."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَنَّهُ",
+      "smart": "أَنَّهُ",
+      "bare": "أنه"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "inna-wa-akhawatuha",
+      "an-masdariyya"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، وَالْهَاءُ اسْمُهَا — وَالْمَصْدَرُ الْمُؤَوَّلُ مُضَافٌ إِلَيْهِ.",
+      "en": "«that it» — أَنَّ with its ism; the clause is the mudaf ilayh.",
+      "tr": "«onun» — ismi bitişik أَنَّ; cümle muzâfun ileyh."
+     },
+     "segments": [
+      {
+       "form": "أَنَّ",
+       "lex": "anna",
+       "pos": "part"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَتَمُّ",
+      "smart": "أَتَمُّ",
+      "bare": "أتم"
+     },
+     "lex": "atamm",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "inna-wa-akhawatuha",
+      "ism-tafdil",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ — اسْمُ تَفْضِيلٍ مِنَ الْمُضَاعَفِ (أَتْمَمُ → أَتَمُّ)، مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«more complete» — the khabar of أَنَّ; an ism tafdil of a geminate root (أَتْمَمُ → أَتَمُّ), diptote.",
+      "tr": "«daha tam» — أَنَّ'nin haberi; muzâaf kökten ism-i tafdil (أَتْمَمُ → أَتَمُّ), gayr-i munsarif."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَذَٰلِكَ",
+      "smart": "وَذَٰلِكَ",
+      "bare": "وذلك"
+     },
+     "lex": "dhalika",
+     "pos": "pron",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "asma-al-ishara",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَذَٰلِكَ مُبْتَدَأٌ.",
+      "en": "«and that» — the mubtada.",
+      "tr": "«ve bu» — mübtedâ."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "ذَٰلِكَ",
+       "lex": "dhalika",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ — وَالْجَارُّ وَالْمَجْرُورُ خَبَرٌ.",
+      "en": "«in» — the khabar-phrase.",
+      "tr": "«-de» — haber tamlaması."
+     }
+    },
+    {
+     "surface": {
+      "full": "التَّشْبِيهِ",
+      "smart": "التَّشْبِيهِ",
+      "bare": "التشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«the tashbih».",
+      "tr": "«teşbih»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمَقْلُوبِ",
+      "smart": "الْمَقْلُوبِ",
+      "bare": "المقلوب"
+     },
+     "lex": "maqlub",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naat-sifa",
+      "ism-maful"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَجْرُورٌ — اسْمُ مَفْعُولٍ مِنْ قَلَبَ: جُعِلَ الْمُشَبَّهُ مُشَبَّهًا بِهِ.",
+      "en": "«reversed» — the ism maf'ul of قَلَبَ: the natural mushabbah is made the bihi, claiming the other outdoes it.",
+      "tr": "«maklûb» — قَلَبَ'nin ism-i mef'ûlü: tabiî müşebbeh bih yapılmış, öteki onu geçer iddiasıyla."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s19",
+   "translation": {
+    "en": "«And the morning appeared, as if its brightness were the Caliph's face when he is praised.»",
+    "tr": "«Ve sabah belirdi; sanki onun ağarması, övüldüğü andaki halifenin yüzüdür.»"
+   },
+   "tashbih": {
+    "mushabbah": [
+     3
+    ],
+    "adat": 2,
+    "bihi": [
+     4,
+     5,
+     6,
+     7
+    ],
+    "wajh": [],
+    "kind": "mursal-mujmal",
+    "shape": {
+     "mushabbah": "mufrad",
+     "bihi": "muqayyad",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَبَدَا",
+      "smart": "وَبَدَا",
+      "bare": "وبدا"
+     },
+     "lex": "bada-appear",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَبَدَا فِعْلٌ مَاضٍ نَاقِصٌ وَاوِيٌّ مَبْنِيٌّ عَلَى فَتْحٍ مُقَدَّرٍ.",
+      "en": "«and appeared» — بَدَا يَبْدُو, a naqis-waw mazi.",
+      "tr": "«ve belirdi» — بَدَا يَبْدُو, nâkıs-vâvî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "بَدَا",
+       "lex": "bada-appear",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الصَّبَاحُ",
+      "smart": "الصَّبَاحُ",
+      "bare": "الصباح"
+     },
+     "lex": "sabah",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "«the morning» — the fa'il.",
+      "tr": "«sabah» — fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَأَنَّ",
+      "smart": "كَأَنَّ",
+      "bare": "كأن"
+     },
+     "lex": "ka-anna",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "inna-wa-akhawatuha",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَشْبِيهٍ وَنَصْبٍ — وَالْجُمْلَةُ حَالٌ مِنَ الصَّبَاحِ.",
+      "en": "«as if» — the adat; the clause is a hal of the morning.",
+      "tr": "«sanki» — edat; cümle sabahtan hâl."
+     }
+    },
+    {
+     "surface": {
+      "full": "غُرَّتَهُ",
+      "smart": "غُرَّتَهُ",
+      "bare": "غرته"
+     },
+     "lex": "ghurra",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَأَنَّ مَنْصُوبٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — الْمُشَبَّهُ: بَيَاضُ الصَّبَاحِ. وَهُوَ فِي الْحَقِيقَةِ الْأَتَمُّ فِي الْبَيَاضِ.",
+      "en": "«its brightness» — the ism: the MUSHABBAH (the morning's white blaze) — which is in truth the more complete in whiteness: the tashbih is REVERSED to claim the Caliph's face outshines it.",
+      "tr": "«ağarması» — ism: MÜŞEBBEH (sabahın beyazlığı) — aslında beyazlıkta daha tam olan odur: teşbih TERS ÇEVRİLMİŞ, halifenin yüzünün onu geçtiği iddiasıyla."
+     },
+     "segments": [
+      {
+       "form": "غُرَّتَ",
+       "lex": "ghurra",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَجْهُ",
+      "smart": "وَجْهُ",
+      "bare": "وجه"
+     },
+     "lex": "wajh",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ كَأَنَّ مَرْفُوعٌ مُضَافٌ — الْمُشَبَّهُ بِهِ.",
+      "en": "«the face of» — the khabar: the MUSHABBAH BIHI.",
+      "tr": "«yüzü» — haber: MÜŞEBBEHÜN BİH."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْخَلِيفَةِ",
+      "smart": "الْخَلِيفَةِ",
+      "bare": "الخليفة"
+     },
+     "lex": "khalifa",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«the Caliph» — al-Ma'mun.",
+      "tr": "«halifenin» — Me'mûn."
+     }
+    },
+    {
+     "surface": {
+      "full": "حِينَ",
+      "smart": "حِينَ",
+      "bare": "حين"
+     },
+     "lex": "hin",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "maful-fih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "ظَرْفُ زَمَانٍ مَنْصُوبٌ مُضَافٌ إِلَى الْجُمْلَةِ، مُتَعَلِّقٌ بِمَحْذُوفٍ حَالٌ مِنَ الْوَجْهِ — قَيْدٌ عَلَى الْمُشَبَّهِ بِهِ.",
+      "en": "«when» — a zarf annexed to the clause, restricting the face: the bihi is MUQAYYAD (his face as he is praised, glowing with pleasure).",
+      "tr": "«-diği anda» — cümleye muzâf zarf, yüzü kayıtlar: bih MUKAYYEDdir (övülürken sevinçle parlayan yüzü)."
+     }
+    },
+    {
+     "surface": {
+      "full": "يُمْتَدَحُ",
+      "smart": "يُمْتَدَحُ",
+      "bare": "يمتدح"
+     },
+     "lex": "imtadaha",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naib-al-fail",
+      "form-viii-verbs",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَنَائِبُ الْفَاعِلِ مُسْتَتِرٌ — وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "«he is praised» — Form VIII majhul; the clause is the mudaf ilayh of حِينَ. A verb inside the rukn, yet held by the zarf: a restriction, not a picture.",
+      "tr": "«övülür» — VIII. bâb meçhul; cümle حِينَ'nin muzâfun ileyhi. Rükün içinde fiil var, fakat zarf onu tutar: kayıt, tablo değil."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s20",
+   "translation": {
+    "en": "The second is to show one's concern for it — as in the hungry man likening a face like the full moon to a loaf. (Restored: the source carries this step only in Turkish.)",
+    "tr": "İkincisi ona verilen ehemmiyeti göstermektir — açın, dolunay gibi bir yüzü ekmeğe benzetmesi gibi. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tashbih": {
+    "mushabbah": [
+     6
+    ],
+    "adat": 4,
+    "bihi": [
+     8
+    ],
+    "wajh": [],
+    "kind": "mursal-mujmal",
+    "shape": {
+     "mushabbah": "mufrad",
+     "bihi": "mufrad",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالثَّانِي",
+      "smart": "وَالثَّانِي",
+      "bare": "والثاني"
+     },
+     "lex": "thani",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar",
+      "ism-maqsur-manqus"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالثَّانِي مُبْتَدَأٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ.",
+      "en": "«the second» — the mubtada, a manqus with the article.",
+      "tr": "«ikincisi» — mübtedâ, harf-i tarifli mankûs."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الثَّانِي",
+       "lex": "thani",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بَيَانُ",
+      "smart": "بَيَانُ",
+      "bare": "بيان"
+     },
+     "lex": "bayan",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ مُضَافٌ.",
+      "en": "«showing».",
+      "tr": "«göstermek»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الِاهْتِمَامِ",
+      "smart": "الِاهْتِمَامِ",
+      "bare": "الاهتمام"
+     },
+     "lex": "ihtimam",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness",
+      "masdar",
+      "form-viii-verbs"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — مَصْدَرُ اهْتَمَّ، مُضَاعَفٌ.",
+      "en": "«concern» — the masdar of اِهْتَمَّ (Form VIII, geminate).",
+      "tr": "«ehemmiyet vermek» — اِهْتَمَّ'nin masdarı (VIII. bâb, muzâaf)."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِهِ",
+      "smart": "بِهِ",
+      "bare": "به"
+     },
+     "lex": "bi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِالِاهْتِمَامِ — وَالْهَاءُ لِلْمُشَبَّهِ بِهِ.",
+      "en": "«for it» — for the bihi (the loaf).",
+      "tr": "«ona» — bihe (ekmeğe)."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "كَتَشْبِيهِ",
+      "smart": "كَتَشْبِيهِ",
+      "bare": "كتشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness",
+      "imal-al-masdar"
+     ],
+     "irab": {
+      "ar": "الْكَافُ لِلتَّمْثِيلِ، وَتَشْبِيهِ مَجْرُورٌ مُضَافٌ إِلَى فَاعِلِهِ — الْأَدَاةُ.",
+      "en": "«as in the likening (by)» — the masdar-adat, annexed to its FA'IL this time: the hungry man does the likening.",
+      "tr": "«benzetmesi gibi» — masdar-edat, bu kez FÂİLİNE muzâf: benzetmeyi aç yapar."
+     },
+     "segments": [
+      {
+       "form": "كَ",
+       "lex": "ka",
+       "pos": "part"
+      },
+      {
+       "form": "تَشْبِيهِ",
+       "lex": "tashbih",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْجَائِعِ",
+      "smart": "الْجَائِعِ",
+      "bare": "الجائع"
+     },
+     "lex": "jai",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — فَاعِلُ الْمَصْدَرِ.",
+      "en": "«the hungry man» — the masdar's fa'il.",
+      "tr": "«açın» — masdarın fâili."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَجْهًا",
+      "smart": "وَجْهًا",
+      "bare": "وجها"
+     },
+     "lex": "wajh",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "maful-bihi",
+      "imal-al-masdar"
+     ],
+     "irab": {
+      "ar": "مَفْعُولُ الْمَصْدَرِ مَنْصُوبٌ — الْمُشَبَّهُ: الْمَصْدَرُ الْمُضَافُ إِلَى فَاعِلِهِ يَنْصِبُ مَفْعُولَهُ.",
+      "en": "«a face» — the masdar's OBJECT in nasb: the MUSHABBAH. Annexed to its fa'il, the masdar still governs its object.",
+      "tr": "«bir yüzü» — masdarın nasbdaki MEF'ÛLÜ: MÜŞEBBEH. Fâiline muzâf masdar, mef'ûlünü yine nasb eder."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَالْبَدْرِ",
+      "smart": "كَالْبَدْرِ",
+      "bare": "كالبدر"
+     },
+     "lex": "badr",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "naat-sifa",
+      "huruf-jarr",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "الْكَافُ جَارَّةٌ وَالْبَدْرِ مَجْرُورٌ — وَالْجَارُّ وَالْمَجْرُورُ فِي مَحَلِّ نَصْبٍ نَعْتٌ لِوَجْهًا: تَشْبِيهٌ دَاخِلَ التَّشْبِيهِ.",
+      "en": "«like the full moon» — a kaf-phrase describing the face: a likening INSIDE the likening — and the face is still likened to a loaf.",
+      "tr": "«dolunay gibi» — yüzü vasfeden kâf tamlaması: teşbih İÇİNDE teşbih — ve yüz yine ekmeğe benzetilir."
+     },
+     "segments": [
+      {
+       "form": "كَ",
+       "lex": "ka",
+       "pos": "part"
+      },
+      {
+       "form": "الْبَدْرِ",
+       "lex": "badr",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِالرَّغِيفِ",
+      "smart": "بِالرَّغِيفِ",
+      "bare": "بالرغيف"
+     },
+     "lex": "raghif",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ وَالرَّغِيفِ مَجْرُورٌ — الْمُشَبَّهُ بِهِ: الرَّغِيفُ أَهَمُّ عِنْدَ الْجَائِعِ مِنَ الْبَدْرِ.",
+      "en": "«to a loaf» — the bihi: to the hungry, the loaf matters more than the moon — the tashbih says what he cares about.",
+      "tr": "«ekmeğe» — bih: aç için ekmek aydan mühimdir — teşbih neye önem verdiğini söyler."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "الرَّغِيفِ",
+       "lex": "raghif",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s21",
+   "translation": {
+    "en": "And when the joining of two things in one matter is intended, it is better to leave tashbih for the judgement of tashabuh (mutual likeness). (Restored: the source carries this step only in Turkish.)",
+    "tr": "İki şeyi bir hususta birleştirmek murad edilince, en güzeli teşbihi bırakıp teşâbühle (karşılıklı benzeşmeyle) hükmetmektir. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَإِذَا",
+      "smart": "وَإِذَا",
+      "bare": "وإذا"
+     },
+     "lex": "idha",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idha-shartiyya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَإِذَا ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ مُتَضَمِّنٌ مَعْنَى الشَّرْطِ.",
+      "en": "«and when» — the conditional إِذَا.",
+      "tr": "«ve … -ınca» — şart إِذَا'sı."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِذَا",
+       "lex": "idha",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أُرِيدَ",
+      "smart": "أُرِيدَ",
+      "bare": "أريد"
+     },
+     "lex": "arada",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naib-al-fail",
+      "hollow-verbs",
+      "form-iv-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ — أَجْوَفُ: أُرِيدَ.",
+      "en": "«is intended» — the hollow Form IV in the majhul.",
+      "tr": "«murad edilirse» — ecvef IV. bâb meçhul."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْجَمْعُ",
+      "smart": "الْجَمْعُ",
+      "bare": "الجمع"
+     },
+     "lex": "jam-gathering",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naib-al-fail",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ — مَصْدَرُ جَمَعَ.",
+      "en": "«the joining» — the deputy fa'il.",
+      "tr": "«birleştirmek» — nâib-i fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "بَيْنَ",
+      "smart": "بَيْنَ",
+      "bare": "بين"
+     },
+     "lex": "bayna",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "maful-fih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "ظَرْفٌ مَنْصُوبٌ مُضَافٌ.",
+      "en": "«between».",
+      "tr": "«arasını»."
+     }
+    },
+    {
+     "surface": {
+      "full": "شَيْئَيْنِ",
+      "smart": "شَيْئَيْنِ",
+      "bare": "شيئين"
+     },
+     "lex": "shay",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "al-muthanna",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
+      "en": "«two things» — a dual in jarr.",
+      "tr": "«iki şey» — mecrur tesniye."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«in».",
+      "tr": "«-de»."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَمْرٍ",
+      "smart": "أَمْرٍ",
+      "bare": "أمر"
+     },
+     "lex": "amr",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«a matter» — one shared quality.",
+      "tr": "«bir husus» — bir ortak vasıf."
+     }
+    },
+    {
+     "surface": {
+      "full": "فَالْأَحْسَنُ",
+      "smart": "فَالْأَحْسَنُ",
+      "bare": "فالأحسن"
+     },
+     "lex": "ahsan",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar",
+      "ism-tafdil",
+      "idha-shartiyya"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ رَابِطَةٌ لِجَوَابِ إِذَا، وَالْأَحْسَنُ مُبْتَدَأٌ مَرْفُوعٌ — اسْمُ تَفْضِيلٍ.",
+      "en": "«the better (course)» — the fa binds the answer; an ism tafdil as mubtada.",
+      "tr": "«en güzeli» — fâ cevabı bağlar; ism-i tafdil mübtedâ."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْأَحْسَنُ",
+       "lex": "ahsan",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "تَرْكُ",
+      "smart": "تَرْكُ",
+      "bare": "ترك"
+     },
+     "lex": "tark",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ مُضَافٌ.",
+      "en": "«leaving» — the khabar.",
+      "tr": "«bırakmak» — haber."
+     }
+    },
+    {
+     "surface": {
+      "full": "التَّشْبِيهِ",
+      "smart": "التَّشْبِيهِ",
+      "bare": "التشبيه"
+     },
+     "lex": "tashbih",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«tashbih» — which ranks one end over the other.",
+      "tr": "«teşbihi» — bir tarafı ötekine üstün kılan."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَى",
+      "smart": "إِلَى",
+      "bare": "إلى"
+     },
+     "lex": "ila",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ — تَرَكَ كَذَا إِلَى كَذَا: عَدَلَ عَنْهُ إِلَيْهِ.",
+      "en": "«for» — تَرَكَ … إِلَى: to turn from one to the other.",
+      "tr": "«-e» — تَرَكَ … إِلَى: birinden ötekine dönmek."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْحُكْمِ",
+      "smart": "الْحُكْمِ",
+      "bare": "الحكم"
+     },
+     "lex": "hukm",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«the judgement».",
+      "tr": "«hükmetmeye»."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِالتَّشَابُهِ",
+      "smart": "بِالتَّشَابُهِ",
+      "bare": "بالتشابه"
+     },
+     "lex": "tashabuh",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "huruf-jarr",
+      "masdar",
+      "form-vi-verbs"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ وَالتَّشَابُهِ مَجْرُورٌ — مَصْدَرُ تَشَابَهَ: التَّمَاثُلُ مِنَ الْجَانِبَيْنِ، لَا مُشَبَّهَ وَلَا مُشَبَّهَ بِهِ.",
+      "en": "«of tashabuh» — the masdar of Form VI: likeness from BOTH sides, with no mushabbah and no bihi ranked.",
+      "tr": "«teşâbühle» — VI. bâbın masdarı: İKİ taraftan benzeşme, sıralanmış müşebbeh ve bih yok."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "part"
+      },
+      {
+       "form": "التَّشَابُهِ",
+       "lex": "tashabuh",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s22",
+   "translation": {
+    "en": "«My tears, as they ran, and my wine came to resemble each other: so from the like of what is in the cup my eye pours.»",
+    "tr": "«Gözyaşım akarken, o ve şarabım birbirine benzedi: kadehtekinin bir mislini gözüm döküyor.»"
+   },
+   "tashbih": {
+    "mushabbah": [
+     1
+    ],
+    "adat": 0,
+    "bihi": [
+     4
+    ],
+    "wajh": [],
+    "kind": "tashabuh",
+    "shape": {
+     "mushabbah": "mufrad",
+     "bihi": "mufrad",
+     "wajh": null
+    }
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "تَشَابَهَ",
+      "smart": "تَشَابَهَ",
+      "bare": "تشابه"
+     },
+     "lex": "tashabaha",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "form-vi-verbs",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ — فِعْلُ الْمُشَارَكَةِ: يَطْلُبُ فَاعِلَيْنِ مُتَعَاطِفَيْنِ. وَهُوَ أَدَاةُ الْحُكْمِ بِالتَّشَابُهِ.",
+      "en": "«came to resemble each other» — Form VI, the verb of MUTUAL action: it wants two joined fa'ils. The engine reads it as the tashabuh frame: two ends, no direction.",
+      "tr": "«birbirine benzedi» — VI. bâb, MÜŞÂREKET fiili: iki atıflı fâil ister. Motor bunu teşâbüh çerçevesi okur: iki taraf, yön yok."
+     }
+    },
+    {
+     "surface": {
+      "full": "دَمْعِي",
+      "smart": "دَمْعِي",
+      "bare": "دمعي"
+     },
+     "lex": "dam-tear",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "fail",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ مَنَعَ مِنْ ظُهُورِهَا اشْتِغَالُ الْمَحَلِّ بِكَسْرَةِ الْمُنَاسَبَةِ، وَالْيَاءُ مُضَافٌ إِلَيْهِ — الطَّرَفُ الْأَوَّلُ.",
+      "en": "«my tears» — the first fa'il, its damma hidden by the speaker's ya: the FIRST end.",
+      "tr": "«gözyaşım» — ilk fâil, dammesi mütekellim yâsıyla gizli: İLK taraf."
+     },
+     "segments": [
+      {
+       "form": "دَمْعِ",
+       "lex": "dam-tear",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِذْ",
+      "smart": "إِذْ",
+      "bare": "إذ"
+     },
+     "lex": "idh",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "maful-fih"
+     ],
+     "irab": {
+      "ar": "ظَرْفٌ لِمَا مَضَى مِنَ الزَّمَانِ مُضَافٌ إِلَى الْجُمْلَةِ.",
+      "en": "«as, when» — the zarf of past time.",
+      "tr": "«-diğinde» — geçmiş zaman zarfı."
+     }
+    },
+    {
+     "surface": {
+      "full": "جَرَى",
+      "smart": "جَرَى",
+      "bare": "جرى"
+     },
+     "lex": "jara",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "naqis-verbs",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ، وَالْفَاعِلُ مُسْتَتِرٌ — وَالْجُمْلَةُ مُضَافٌ إِلَيْهِ.",
+      "en": "«it ran» — the clause annexed to إِذْ.",
+      "tr": "«aktı» — إِذْ'e muzâf cümle."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَمُدَامَتِي",
+      "smart": "وَمُدَامَتِي",
+      "bare": "ومدامتي"
+     },
+     "lex": "mudama",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "arkan-al-tashbih",
+      "atf-nasaq",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ عَلَى دَمْعِي مَرْفُوعٌ، وَالْيَاءُ مُضَافٌ إِلَيْهِ — الطَّرَفُ الثَّانِي.",
+      "en": "«and my wine» — joined to the first fa'il: the SECOND end. Neither is «likened to» the other.",
+      "tr": "«ve şarabım» — ilk fâile atıf: İKİNCİ taraf. Hiçbiri ötekine «benzetilmiş» değil."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مُدَامَتِ",
+       "lex": "mudama",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فَمِنْ",
+      "smart": "فَمِنْ",
+      "bare": "فمن"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْرِيعِ، وَمِنْ حَرْفُ جَرٍّ.",
+      "en": "«so from».",
+      "tr": "«artık … -den»."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "مِنْ",
+       "lex": "min",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِثْلِ",
+      "smart": "مِثْلِ",
+      "bare": "مثل"
+     },
+     "lex": "mithl",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ مُضَافٌ — لَا أَدَاةَ تَشْبِيهٍ هُنَا: مِثْلُ بَعْدَ حَرْفِ جَرٍّ اسْمٌ لِلْمِقْدَارِ.",
+      "en": "«the like of» — not an adat here: after a jarr-particle مِثْل is a plain noun (a like amount); the engine refuses a frame.",
+      "tr": "«mislini» — burada edat değil: cer harfinden sonra مِثْل düz isimdir (bir misli); motor çerçeveyi reddeder."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "ism-mawsul",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَوْصُولٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "«what».",
+      "tr": "«-in»."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "part",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ — وَالْجَارُّ وَالْمَجْرُورُ صِلَةٌ.",
+      "en": "«in» — the sila.",
+      "tr": "«-deki» — sıla."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْكَأْسِ",
+      "smart": "الْكَأْسِ",
+      "bare": "الكأس"
+     },
+     "lex": "kas",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«the cup».",
+      "tr": "«kadeh»."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَيْنِي",
+      "smart": "عَيْنِي",
+      "bare": "عيني"
+     },
+     "lex": "ayn-eye",
+     "pos": "noun",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "fail",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مُقَدَّمٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ، وَالْيَاءُ مُضَافٌ إِلَيْهِ — (يَكْتُبُهُ الْمَصْدَرُ عَيْنَىَّ.)",
+      "en": "«my eye» — the fa'il of the verb after it (the source prints عَيْنَىَّ; its own Turkish makes the eyes the subject, and the app writes عَيْنِي).",
+      "tr": "«gözüm» — ardındaki fiilin fâili (kaynak عَيْنَىَّ yazar; kendi Türkçesi gözleri özne yapar, uygulama عَيْنِي yazar)."
+     },
+     "segments": [
+      {
+       "form": "عَيْنِ",
+       "lex": "ayn-eye",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "تَسْكُبُ",
+      "smart": "تَسْكُبُ",
+      "bare": "تسكب"
+     },
+     "lex": "sakaba",
+     "pos": "verb",
+     "grammar": [
+      "aghrad-al-tashbih",
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْفَاعِلُ عَيْنِي الْمُتَقَدِّمُ — فِي الشِّعْرِ يَتَقَدَّمُ الْفَاعِلُ عَلَى فِعْلِهِ لَفْظًا وَهُوَ مُبْتَدَأٌ عِنْدَ الْبَصْرِيِّينَ.",
+      "en": "«pours» — the verb whose doer stands before it (for the Basrans, عَيْنِي is then a mubtada and the clause its khabar).",
+      "tr": "«döker» — fâili önünde duran fiil (Basralılara göre عَيْنِي o zaman mübtedâ, cümle haberidir)."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "تَشَابَهَ دَمْعِي … وَمُدَامَتِي",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فَاعِلُهَا مُتَعَدِّدٌ — الْحُكْمُ بِالتَّشَابُهِ.",
+     "en": "The tashabuh: red tears and red wine judged alike, neither ranked above the other.",
+     "tr": "Teşâbüh: kızıl gözyaşı ile kızıl şarap benzeşir sayılır, hiçbiri ötekinin üstünde değil."
+    }
+   ]
+  }
+ ]
+}

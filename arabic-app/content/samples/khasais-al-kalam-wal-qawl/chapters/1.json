@@ -1,0 +1,2342 @@
+{
+ "chapter": 1,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "As for kalām (speech), it is every utterance that stands by itself and conveys its meaning.",
+    "tr": "Kelâma gelince, o, kendi başına müstakil, mânasını ifade eden her lafızdır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "أَمَّا",
+      "smart": "أَمَّا",
+      "bare": "أما"
+     },
+     "lex": "amma-tafsil",
+     "pos": "part",
+     "grammar": [
+      "amma-tafsiliyya"
+     ],
+     "irab": {
+      "ar": "حَرْفُ شَرْطٍ وَتَفْصِيلٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "أَمَّا «as for», the particle of condition and detailing.",
+      "tr": "«Emmâ» şart ve tafsîl harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْكَلَامُ",
+      "smart": "الْكَلَامُ",
+      "bare": "الكلام"
+     },
+     "lex": "kalam",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The mubtada (subject of a nominal sentence), in raf'.",
+      "tr": "Mübtedâ, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "فَكُلُّ",
+      "smart": "فَكُلُّ",
+      "bare": "فكل"
+     },
+     "lex": "kull",
+     "pos": "noun",
+     "grammar": [
+      "fa-khabar-mubtada",
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ وَاقِعَةٌ فِي جَوَابِ «أَمَّا»، وَكُلُّ خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The fa falls in the answer of أَمَّا; «every» is the predicate, in raf', annexed.",
+      "tr": "Fâ «emmâ»nın cevabındadır; «kullu» haber, merfû, muzâf."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "كُلُّ",
+       "lex": "kull",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَفْظٍ",
+      "smart": "لَفْظٍ",
+      "bare": "لفظ"
+     },
+     "lex": "lafz",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The second term of the idafa, in jarr.",
+      "tr": "Muzâfun ileyh, mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُسْتَقِلٍّ",
+      "smart": "مُسْتَقِلٍّ",
+      "bare": "مستقل"
+     },
+     "lex": "mustaqill",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "An adjective (na't), agreeing with its noun.",
+      "tr": "Na't (sıfat), mevsûfuna uyar."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِنَفْسِهِ",
+      "smart": "بِنَفْسِهِ",
+      "bare": "بنفسه"
+     },
+     "lex": "bi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَنَفْسِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«مُسْتَقِلٍّ».",
+      "en": "The ba is a jarr letter; «itself» is in jarr, annexed to «it» — the phrase hangs on «standing».",
+      "tr": "Bâ cer harfi; «nefs» mecrûr, muzâf, zamir muzâfun ileyh — câr-mecrûr «müstakil»e müteallik."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "نَفْسِ",
+       "lex": "nafs",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "مُفِيدٍ",
+      "smart": "مُفِيدٍ",
+      "bare": "مفيد"
+     },
+     "lex": "mufid",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَجْرُورٌ بِالْكَسْرَةِ — نَعْتٌ ثَانٍ لِـ«لَفْظٍ».",
+      "en": "An adjective (na't), agreeing with its noun — a second adjective of «utterance».",
+      "tr": "Na't (sıfat), mevsûfuna uyar — «lafz»ın ikinci na'tı."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِمَعْنَاهُ",
+      "smart": "لِمَعْنَاهُ",
+      "bare": "لمعناه"
+     },
+     "lex": "li",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "ism-maqsur-manqus",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "اللَّامُ حَرْفُ جَرٍّ، وَمَعْنَى مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«مُفِيدٍ».",
+      "en": "The lam is a jarr letter; «meaning» is in jarr by a kasra estimated on the alif, annexed to «its» — the phrase hangs on «conveying».",
+      "tr": "Lâm cer harfi; «ma'nâ» elif üzerinde takdîrî kesre ile mecrûr, muzâf; zamir muzâfun ileyh — câr-mecrûr «müfîd»e müteallik."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "prep"
+      },
+      {
+       "form": "مَعْنَا",
+       "lex": "mana",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "It is what the grammarians call sentences (jumal), such as: «Zayd is your brother», «Muḥammad stood», «Saʿīd was struck», «In the house is your father», and ṣah, mah, ruwayda, and ḥāʾ and ʿāʾ among the sounds, and ḥassi, labbi, uffi and awwah.",
+    "tr": "Nahivcilerin cümleler (cümel) dediği budur: «Zeyd kardeşindir», «Muhammed kalktı», «Saîd dövüldü», «Babası evdedir» gibi; ve sah, meh, ruveyde; seslerden hâ ve â; hassi, lebbi, uffi ve evveh."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَهُوَ",
+      "smart": "وَهُوَ",
+      "bare": "وهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "mubtada-khabar",
+      "al-mabni-wal-mudmar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَهُوَ ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ — يَعُودُ عَلَى الْكَلَامِ.",
+      "en": "The waw resumes; «it» (kalām) is the mubtada, in the seat of raf'.",
+      "tr": "Vâv isti'nâf; «hüve» (kelâma döner) mübtedâ, mahallen merfû."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الَّذِي",
+      "smart": "الَّذِي",
+      "bare": "الذي"
+     },
+     "lex": "alladhi",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+      "en": "A relative noun built on sukun, in the seat of raf' as the predicate.",
+      "tr": "İsm-i mevsûl, sükûn üzere mebnî, haber olarak mahallen merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "يُسَمِّيهِ",
+      "smart": "يُسَمِّيهِ",
+      "bare": "يسميه"
+     },
+     "lex": "samma",
+     "pos": "verb",
+     "grammar": [
+      "form-ii-verbs",
+      "naqis-verbs",
+      "mafulayn",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ أَوَّلُ، وَهِيَ الْعَائِدُ؛ وَالْفَاعِلُ بَعْدَهُ — وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا.",
+      "en": "A present verb in raf' by a damma estimated on the ya (too heavy to show); «it» is its first object and the pronoun that returns; its doer follows — the clause is the ṣila.",
+      "tr": "Muzâri, yâ üzerinde sıklet sebebiyle takdîrî damme ile merfû; «hu» birinci mef'ûl ve âid zamir; fâili sonra gelir — cümle sıladır."
+     },
+     "segments": [
+      {
+       "form": "يُسَمِّي",
+       "lex": "samma",
+       "pos": "verb"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "النَّحْوِيِّين",
+      "smart": "النَّحْوِيِّين",
+      "bare": "النحويين"
+     },
+     "lex": "nahwi",
+     "pos": "noun",
+     "grammar": [
+      "fail",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ؛ كَذَا فِي النَّصِّ الْإِلِكْتُرُونِيِّ بِالْيَاءِ، وَحَقُّ الْفَاعِلِ الرَّفْعُ بِالْوَاوِ: «النَّحْوِيُّونَ» — فَأُبْقِيَ رَسْمُهُ كَمَا وَرَدَ وَلَمْ تُكْتَبْ حَرَكَةُ آخِرِهِ، وَهُوَ مَذْكُورٌ لِلْعَالِمِ الْمُرَاجِعِ.",
+      "en": "The doer. The e-text writes it with ya; as doer it should be in raf' with waw («al-naḥwiyyūna») — the letters are kept as received, the last vowel left unwritten, and the point is left for the scholar.",
+      "tr": "Fâil; elektronik metinde yâ iledir, fâil olarak vâv ile merfû olması gerekir («en-nahviyyûne») — harfler geldiği gibi bırakıldı, son harekesi yazılmadı; hocaya bırakıldı."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْجُمَلَ",
+      "smart": "الْجُمَلَ",
+      "bare": "الجمل"
+     },
+     "lex": "jumla",
+     "pos": "noun",
+     "grammar": [
+      "mafulayn",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ ثَانٍ مَنْصُوبٌ بِالْفَتْحَةِ — جَمْعُ جُمْلَةٍ.",
+      "en": "The second object, in nasb — the plural of جُمْلَة «sentence».",
+      "tr": "İkinci mef'ûl, mansûb — «cümle»nin çoğulu."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "نَحْوُ",
+      "smart": "نَحْوُ",
+      "bare": "نحو"
+     },
+     "lex": "nahwa",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ: ذٰلِكَ، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَمَا بَعْدَهُ مُضَافٌ إِلَيْهِ.",
+      "en": "The predicate of an omitted mubtada («that is»), in raf', annexed — what follows is its second term: «such as».",
+      "tr": "Mahzûf mübtedânın («bu») haberi, merfû, muzâf — sonrası muzâfun ileyh: «gibi»."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "propn",
+     "grammar": [
+      "mubtada-khabar",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ — وَالْجُمْلَةُ مِثَالٌ مَحْكِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "The mubtada, in raf' — the whole sentence is a quoted example, in the seat of jarr as the second term after «such as».",
+      "tr": "Mübtedâ, merfû — cümle hikâye edilen misaldir, muzâfun ileyh olarak mahallen mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَخُوكَ",
+      "smart": "أَخُوكَ",
+      "bare": "أخوك"
+     },
+     "lex": "akh",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "five-nouns",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالْوَاوِ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، مُضَافٌ، وَالْكَافُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "The predicate, in raf' by the waw (one of the five nouns), annexed to «your».",
+      "tr": "Haber, beş isimden olduğu için vâv ile merfû, muzâf; «ke» muzâfun ileyh."
+     },
+     "segments": [
+      {
+       "form": "أَخُو",
+       "lex": "akh",
+       "pos": "noun"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَقَامَ",
+      "smart": "وَقَامَ",
+      "bare": "وقام"
+     },
+     "lex": "qama",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَقَامَ فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ — مِثَالٌ مَحْكِيٌّ مَعْطُوفٌ عَلَى مَا قَبْلَهُ.",
+      "en": "The waw conjoins; «stood» is a past verb built on fatha — a quoted example, conjoined to the one before.",
+      "tr": "«ve» + «kâme» fetha üzere mebnî mâzî — öncekine ma'tûf hikâye edilmiş misal."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَامَ",
+       "lex": "qama",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مُحَمَّدٌ",
+      "smart": "مُحَمَّدٌ",
+      "bare": "محمد"
+     },
+     "lex": "muhammad",
+     "pos": "propn",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The doer (fa'il), in raf'.",
+      "tr": "Fâil, merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَضُرِبَ",
+      "smart": "وَضُرِبَ",
+      "bare": "وضرب"
+     },
+     "lex": "daraba",
+     "pos": "verb",
+     "grammar": [
+      "naib-al-fail",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَضُرِبَ فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ مَبْنِيٌّ عَلَى الْفَتْحِ — مِثَالٌ مَحْكِيٌّ مَعْطُوفٌ عَلَى مَا قَبْلَهُ.",
+      "en": "The waw conjoins; «was struck» is a passive past verb built on fatha — a quoted example, conjoined.",
+      "tr": "«ve» + «duribe» meçhul mâzî — öncekine ma'tûf hikâye edilmiş misal."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "ضُرِبَ",
+       "lex": "daraba",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "سَعِيدٌ",
+      "smart": "سَعِيدٌ",
+      "bare": "سعيد"
+     },
+     "lex": "said-name",
+     "pos": "noun",
+     "grammar": [
+      "naib-al-fail"
+     ],
+     "irab": {
+      "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The deputy doer (na'ib al-fa'il), in raf'.",
+      "tr": "Nâib-i fâil, merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَفِي",
+      "smart": "وَفِي",
+      "bare": "وفي"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِي حَرْفُ جَرٍّ — مِثَالٌ مَحْكِيٌّ مَعْطُوفٌ عَلَى مَا قَبْلَهُ.",
+      "en": "The waw conjoins; فِي is a jarr letter — a quoted example, conjoined.",
+      "tr": "«ve» + «fî» cer harfi — öncekine ma'tûf misal."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "فِي",
+       "lex": "fi",
+       "pos": "prep"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الدَّارِ",
+      "smart": "الدَّارِ",
+      "bare": "الدار"
+     },
+     "lex": "dar",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِالْكَسْرَةِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ خَبَرٍ مُقَدَّمٍ.",
+      "en": "In jarr after the letter — the phrase hangs on an omitted predicate placed first.",
+      "tr": "Cer harfiyle mecrûr — câr-mecrûr öne alınmış mahzûf habere müteallik."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَبُوكَ",
+      "smart": "أَبُوكَ",
+      "bare": "أبوك"
+     },
+     "lex": "ab",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "five-nouns",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ بِالْوَاوِ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، مُضَافٌ، وَالْكَافُ مُضَافٌ إِلَيْهِ.",
+      "en": "The mubtada placed after its predicate, in raf' by the waw (one of the five nouns), annexed to «your».",
+      "tr": "Muahhar mübtedâ, beş isimden olduğu için vâv ile merfû, muzâf; «ke» muzâfun ileyh."
+     },
+     "segments": [
+      {
+       "form": "أَبُو",
+       "lex": "ab",
+       "pos": "noun"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَصَهْ",
+      "smart": "وَصَهْ",
+      "bare": "وصه"
+     },
+     "lex": "sah",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَصَهْ اسْمُ فِعْلِ أَمْرٍ بِمَعْنَى «اسْكُتْ» مَبْنِيٌّ عَلَى السُّكُونِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; ṣah «hush!» is a noun-verb of command built on sukun — a word quoted in the list of examples.",
+      "tr": "«ve» + «sah» (sus!) sükûn üzere mebnî emir ism-i fiili — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "صَهْ",
+       "lex": "sah",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَمَهْ",
+      "smart": "وَمَهْ",
+      "bare": "ومه"
+     },
+     "lex": "mah",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَهْ اسْمُ فِعْلِ أَمْرٍ بِمَعْنَى «اكْفُفْ» مَبْنِيٌّ عَلَى السُّكُونِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; mah «stop!» is a noun-verb of command built on sukun — a word quoted in the list of examples.",
+      "tr": "«ve» + «meh» (dur!) sükûn üzere mebnî emir ism-i fiili — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مَهْ",
+       "lex": "mah",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَرُوَيْدَ",
+      "smart": "وَرُوَيْدَ",
+      "bare": "ورويد"
+     },
+     "lex": "ruwayd",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَرُوَيْدَ اسْمُ فِعْلِ أَمْرٍ بِمَعْنَى «أَمْهِلْ» مَبْنِيٌّ عَلَى الْفَتْحِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; ruwayda «go gently!» is a noun-verb of command built on fatha — a word quoted in the list of examples.",
+      "tr": "«ve» + «ruveyde» (yavaş ol!) fetha üzere mebnî emir ism-i fiili — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "رُوَيْدَ",
+       "lex": "ruwayd",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَحَاء",
+      "smart": "وَحَاء",
+      "bare": "وحاء"
+     },
+     "lex": "haa-sound",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَحَاء اسْمُ صَوْتٍ يُزْجَرُ بِهِ الْإِبِلُ، مَبْنِيٌّ — وَلَمْ تُكْتَبْ حَرَكَةُ آخِرِهِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; ḥāʾ is a sound-word with which camels are driven, built (indeclinable) — its last vowel is left unwritten — a word quoted in the list of examples.",
+      "tr": "«ve» + «hâ» develeri sürmek için kullanılan ses ismi, mebnî — son harekesi yazılmadı — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "حَاء",
+       "lex": "haa-sound",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَعَاء",
+      "smart": "وَعَاء",
+      "bare": "وعاء"
+     },
+     "lex": "aa-sound",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَعَاء اسْمُ صَوْتٍ يُدْعَى بِهِ الضَّأْنُ، مَبْنِيٌّ — وَلَمْ تُكْتَبْ حَرَكَةُ آخِرِهِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; ʿāʾ is a sound-word with which sheep are called, built (indeclinable) — its last vowel is left unwritten — a word quoted in the list of examples.",
+      "tr": "«ve» + «â» koyunları çağırmak için kullanılan ses ismi, mebnî — son harekesi yazılmadı — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "عَاء",
+       "lex": "aa-sound",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "a jarr letter.",
+      "tr": "«-de» — cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْأَصْوَاتِ",
+      "smart": "الْأَصْوَاتِ",
+      "bare": "الأصوات"
+     },
+     "lex": "sawt",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِالْكَسْرَةِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ حَالٍ مِنْ «حَاء» وَ«عَاء»، أَيْ: كَائِنَيْنِ فِي الْأَصْوَاتِ.",
+      "en": "In jarr after the letter — the phrase hangs on an omitted hal of ḥāʾ and ʿāʾ («being among the sounds»).",
+      "tr": "Cer harfiyle mecrûr — câr-mecrûr «hâ» ve «â»dan mahzûf hâle müteallik."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَحَسِّ",
+      "smart": "وَحَسِّ",
+      "bare": "وحس"
+     },
+     "lex": "hassi",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَحَسِّ اسْمُ صَوْتٍ يَقُولُهُ الْمُتَوَجِّعُ، مَبْنِيٌّ عَلَى الْكَسْرِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; ḥassi, the cry of one in pain, is a sound-word built on kasra — a word quoted in the list of examples.",
+      "tr": "«ve» + «hassi» acı duyanın söylediği ses ismi, kesre üzere mebnî — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "حَسِّ",
+       "lex": "hassi",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَلَبِّ",
+      "smart": "وَلَبِّ",
+      "bare": "ولب"
+     },
+     "lex": "labbi",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَلَبِّ بِمَعْنَى «لَبَّيْكَ» فِي لُغَةِ بَعْضِ الْعَرَبِ، مَبْنِيٌّ عَلَى الْكَسْرِ كَأَمْسِ وَغَاقِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; labbi, «at your service» in the speech of some Arabs, built on kasra like أَمْسِ and غَاقِ — a word quoted in the list of examples.",
+      "tr": "«ve» + «lebbi», bazı Araplarda «lebbeyk» anlamında, «emsi» ve «gâki» gibi kesre üzere mebnî — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَبِّ",
+       "lex": "labbi",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَأُفِّ",
+      "smart": "وَأُفِّ",
+      "bare": "وأف"
+     },
+     "lex": "uff",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأُفِّ اسْمُ فِعْلٍ مُضَارِعٍ بِمَعْنَى «أَتَضَجَّرُ» مَبْنِيٌّ عَلَى الْكَسْرِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; uffi «fie!» is a noun-verb meaning «I am vexed», built on kasra — a word quoted in the list of examples.",
+      "tr": "«ve» + «uffi» (öf!) «bıktım» anlamında muzâri ism-i fiili, kesre üzere mebnî — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أُفِّ",
+       "lex": "uff",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَأَوَّهْ",
+      "smart": "وَأَوَّهْ",
+      "bare": "وأوه"
+     },
+     "lex": "awwah",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأَوَّهْ اسْمُ فِعْلٍ مُضَارِعٍ بِمَعْنَى «أَتَوَجَّعُ» مَبْنِيٌّ عَلَى السُّكُونِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; awwah «alas!» is a noun-verb meaning «I am in pain», built on sukun — a word quoted in the list of examples.",
+      "tr": "«ve» + «evveh» (ah!) «acı duyuyorum» anlamında muzâri ism-i fiili, sükûn üzere mebnî — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَوَّهْ",
+       "lex": "awwah",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "So every utterance that stands by itself, and from which the fruit of its meaning is gathered, is kalām.",
+    "tr": "Kendi başına müstakil olan ve mânasının meyvesi kendisinden devşirilen her lafız kelâmdır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَكُلُّ",
+      "smart": "فَكُلُّ",
+      "bare": "فكل"
+     },
+     "lex": "kull",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ اسْتِئْنَافِيَّةٌ، وَكُلُّ مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The fa resumes; «every» is the mubtada, in raf', annexed.",
+      "tr": "Fâ isti'nâf; «kullu» mübtedâ, merfû, muzâf."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "كُلُّ",
+       "lex": "kull",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَفْظٍ",
+      "smart": "لَفْظٍ",
+      "bare": "لفظ"
+     },
+     "lex": "lafz",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The second term of the idafa, in jarr.",
+      "tr": "Muzâfun ileyh, mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "اسْتَقَلَّ",
+      "smart": "اسْتَقَلَّ",
+      "bare": "استقل"
+     },
+     "lex": "istaqalla",
+     "pos": "verb",
+     "grammar": [
+      "form-x-verbs",
+      "doubled-verbs",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ نَعْتٌ لِـ«لَفْظٍ».",
+      "en": "A past verb built on fatha; its doer is the hidden «it» — the clause qualifies «utterance», in the seat of jarr.",
+      "tr": "Fetha üzere mebnî mâzî; fâili gizli «hüve» — cümle «lafz»ın na'tı, mahallen mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِنَفْسِهِ",
+      "smart": "بِنَفْسِهِ",
+      "bare": "بنفسه"
+     },
+     "lex": "bi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَنَفْسِ مَجْرُورٌ، مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«اسْتَقَلَّ».",
+      "en": "The ba is a jarr letter with «itself» — the phrase hangs on «stands».",
+      "tr": "Bâ cer harfi, «nefsi» — câr-mecrûr «istakalle»ye müteallik."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "نَفْسِ",
+       "lex": "nafs",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَجُنِيَتْ",
+      "smart": "وَجُنِيَتْ",
+      "bare": "وجنيت"
+     },
+     "lex": "jana-v-hr",
+     "pos": "verb",
+     "grammar": [
+      "naib-al-fail",
+      "naqis-verbs",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَجُنِيَتْ فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَنَائِبُ الْفَاعِلِ بَعْدَهُ — وَالْجُمْلَةُ مَعْطُوفَةٌ عَلَى جُمْلَةِ «اسْتَقَلَّ».",
+      "en": "The waw conjoins; «was gathered» is a passive past verb built on fatha, the ta marking the feminine; its deputy doer follows — the clause is conjoined to «stands».",
+      "tr": "«ve» + «cüniyet» meçhul mâzî, tâ te'nîs; nâib-i fâili sonra — cümle «istakalle»ye ma'tûf."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "جُنِيَتْ",
+       "lex": "jana-v-hr",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِنْهُ",
+      "smart": "مِنْهُ",
+      "bare": "منه"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ يَعُودُ عَلَى اللَّفْظِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«جُنِيَتْ».",
+      "en": "A jarr letter with «it» (the utterance) — the phrase hangs on «was gathered».",
+      "tr": "Cer harfi, zamir (lafza döner) — câr-mecrûr «cüniyet»e müteallik."
+     },
+     "segments": [
+      {
+       "form": "مِنْ",
+       "lex": "min",
+       "pos": "prep"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "ثَمَرَةُ",
+      "smart": "ثَمَرَةُ",
+      "bare": "ثمرة"
+     },
+     "lex": "thamara",
+     "pos": "noun",
+     "grammar": [
+      "naib-al-fail"
+     ],
+     "irab": {
+      "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The deputy doer (na'ib al-fa'il), in raf', annexed.",
+      "tr": "Nâib-i fâil, merfû, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَعْنَاهُ",
+      "smart": "مَعْنَاهُ",
+      "bare": "معناه"
+     },
+     "lex": "mana",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness",
+      "ism-maqsur-manqus",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "The second term of the idafa, in jarr by a kasra estimated on the alif, annexed to «its».",
+      "tr": "Muzâfun ileyh, elif üzerinde takdîrî kesre ile mecrûr, muzâf; zamir muzâfun ileyh."
+     },
+     "segments": [
+      {
+       "form": "مَعْنَا",
+       "lex": "mana",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَهُوَ",
+      "smart": "فَهُوَ",
+      "bare": "فهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "fa-khabar-mubtada",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ رَابِطَةٌ لِلْخَبَرِ لِشَبَهِ الْمُبْتَدَإِ بِالشَّرْطِ فِي الْعُمُومِ، وَهُوَ ضَمِيرٌ مُنْفَصِلٌ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ ثَانٍ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ «كُلُّ».",
+      "en": "The fa ties the predicate on, since a general mubtada resembles a condition; «it» is a second mubtada — the clause is the predicate of «every», in the seat of raf'.",
+      "tr": "Fâ, umumîlikte şarta benzeyen mübtedânın haberine râbıtadır; «hüve» ikinci mübtedâ — cümle «kullu»nun haberi, mahallen merfû."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "كَلَامٌ",
+      "smart": "كَلَامٌ",
+      "bare": "كلام"
+     },
+     "lex": "kalam",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The predicate (khabar), in raf'.",
+      "tr": "Haber, merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "As for qawl (utterance), its root sense is that it is every utterance the tongue moves lightly with, whether complete or incomplete.",
+    "tr": "Kavle gelince, onun aslı, dilin onunla kıpırdadığı her lafız olmasıdır; tam olsun eksik olsun."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَأَمَّا",
+      "smart": "وَأَمَّا",
+      "bare": "وأما"
+     },
+     "lex": "amma-tafsil",
+     "pos": "part",
+     "grammar": [
+      "amma-tafsiliyya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأَمَّا حَرْفُ شَرْطٍ وَتَفْصِيلٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "The waw conjoins; أَمَّا «as for» is the particle of condition and detailing.",
+      "tr": "«ve» + «emmâ» şart ve tafsîl harfi."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَمَّا",
+       "lex": "amma-tafsil",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْقَوْلُ",
+      "smart": "الْقَوْلُ",
+      "bare": "القول"
+     },
+     "lex": "qawl",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The mubtada (subject of a nominal sentence), in raf'.",
+      "tr": "Mübtedâ, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "فَأَصْلُهُ",
+      "smart": "فَأَصْلُهُ",
+      "bare": "فأصله"
+     },
+     "lex": "asl",
+     "pos": "noun",
+     "grammar": [
+      "fa-khabar-mubtada",
+      "mubtada-khabar",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ وَاقِعَةٌ فِي جَوَابِ «أَمَّا»، وَأَصْلُ مُبْتَدَأٌ ثَانٍ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — وَالْجُمْلَةُ خَبَرُ «الْقَوْلُ».",
+      "en": "The fa falls in the answer of أَمَّا; «its root» is a second mubtada, in raf', annexed to «its» — the clause is the predicate of «qawl».",
+      "tr": "Fâ «emmâ»nın cevabında; «asl» ikinci mübtedâ, merfû, muzâf — cümle «el-kavl»in haberi."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَصْلُ",
+       "lex": "asl",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَنَّهُ",
+      "smart": "أَنَّهُ",
+      "bare": "أنه"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "mawadi-fath-anna",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "أَنَّ حَرْفُ تَوْكِيدٍ وَنَصْبٍ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ نَصْبٍ اسْمُهَا يَعُودُ عَلَى الْقَوْلِ — وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ رَفْعٍ خَبَرُ «أَصْلُهُ».",
+      "en": "أَنَّ with «it» (qawl) as its noun — the masdar it makes is the predicate of «its root», in the seat of raf'.",
+      "tr": "«Enne», «hu» (kavle döner) ismi — te'vîlî masdar «asluhu»nun haberi, mahallen merfû."
+     },
+     "segments": [
+      {
+       "form": "أَنَّ",
+       "lex": "anna",
+       "pos": "part"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "كُلُّ",
+      "smart": "كُلُّ",
+      "bare": "كل"
+     },
+     "lex": "kull",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The predicate of أَنَّ, in raf', annexed.",
+      "tr": "Enne'nin haberi, merfû, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَفْظٍ",
+      "smart": "لَفْظٍ",
+      "bare": "لفظ"
+     },
+     "lex": "lafz",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The second term of the idafa, in jarr.",
+      "tr": "Muzâfun ileyh, mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَذِلَ",
+      "smart": "مَذِلَ",
+      "bare": "مذل"
+     },
+     "lex": "madhila",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ بَعْدَهُ — وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ نَعْتٌ لِـ«لَفْظٍ»؛ وَمَذِلَ بِالشَّيْءِ: قَلِقَ بِهِ وَلَمْ يَسْتَقِرَّ.",
+      "en": "A past verb built on fatha; its doer follows — the clause qualifies «utterance», in the seat of jarr. مَذِلَ بِهِ: to be restless with a thing, to move lightly with it.",
+      "tr": "Fetha üzere mebnî mâzî; fâili sonra — cümle «lafz»ın na'tı, mahallen mecrûr. «Mezile bihî»: onunla kıpırdadı, duramadı."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِهِ",
+      "smart": "بِهِ",
+      "bare": "به"
+     },
+     "lex": "bi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ يَعُودُ عَلَى اللَّفْظِ، وَهُوَ الْعَائِدُ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«مَذِلَ».",
+      "en": "The ba is a jarr letter with «it» (the utterance), the pronoun that returns — the phrase hangs on «moves».",
+      "tr": "Bâ cer harfi, zamir (lafza döner, âid) — câr-mecrûr «mezile»ye müteallik."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللِّسَانُ",
+      "smart": "اللِّسَانُ",
+      "bare": "اللسان"
+     },
+     "lex": "lisan",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The doer (fa'il), in raf'.",
+      "tr": "Fâil, merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "تَامًّا",
+      "smart": "تَامًّا",
+      "bare": "تاما"
+     },
+     "lex": "tamm",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرُ كَانَ مُقَدَّمٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "The predicate of كَانَ placed first, in nasb.",
+      "tr": "Kâne'nin öne alınmış haberi, mansûb."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَانَ",
+      "smart": "كَانَ",
+      "bare": "كان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "hal"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ، يَعُودُ عَلَى اللَّفْظِ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ حَالٌ.",
+      "en": "The defective past verb; its noun is the hidden «it» (the utterance) — the clause is a hal, in the seat of nasb.",
+      "tr": "Nâkıs mâzî; ismi gizli «hüve» (lafız) — cümle hâl, mahallen mansûb."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَوْ",
+      "smart": "أَوْ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "part",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ لِلتَّسْوِيَةِ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "أَوْ «or», conjoining two equal choices.",
+      "tr": "«Ev» (veya) atıf harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَاقِصًا",
+      "smart": "نَاقِصًا",
+      "bare": "ناقصا"
+     },
+     "lex": "naqis",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ عَلَى «تَامًّا» مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "Conjoined to «complete», in nasb.",
+      "tr": "«Tâmmen»e ma'tûf, mansûb."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "The complete is what conveys a meaning — I mean the sentence and whatever has its sense, such as ṣahin and īhin.",
+    "tr": "Tam olan, ifade eden (müfîd) lafızdır; yani cümle ve onun mânasında olan, «sahin» ve «îhin» gibi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَالتَّامُّ",
+      "smart": "فَالتَّامُّ",
+      "bare": "فالتام"
+     },
+     "lex": "tamm",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْصِيلِ، وَالتَّامُّ مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The fa details; «the complete» is the mubtada, in raf'.",
+      "tr": "Fâ tafsîl içindir; «et-tâmm» mübtedâ, merfû."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "التَّامُّ",
+       "lex": "tamm",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "هُوَ",
+      "smart": "هُوَ",
+      "bare": "هو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "damir-fasl"
+     ],
+     "irab": {
+      "ar": "ضَمِيرُ فَصْلٍ مَبْنِيٌّ عَلَى الْفَتْحِ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+      "en": "A pronoun of separation (ḍamīr al-faṣl), with no seat: it marks what follows as the predicate.",
+      "tr": "Fasıl zamiri, i'râbdan mahalli yoktur: sonrasının haber olduğunu belirtir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُفِيدُ",
+      "smart": "الْمُفِيدُ",
+      "bare": "المفيد"
+     },
+     "lex": "mufid",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The predicate (khabar), in raf'.",
+      "tr": "Haber, merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "أَعْنِي",
+      "smart": "أَعْنِي",
+      "bare": "أعني"
+     },
+     "lex": "ana-mean",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs",
+      "jumla-mutarida"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: أَنَا — وَالْجُمْلَةُ مُعْتَرِضَةٌ لِلتَّفْسِيرِ لَا مَحَلَّ لَهَا.",
+      "en": "A present verb in raf' by a damma estimated on the ya; its doer is the hidden «I» — the clause is put in to explain, with no seat.",
+      "tr": "Muzâri, yâ üzerinde takdîrî damme ile merfû; fâili vücûben gizli «ene» — cümle açıklama için araya girmiştir, mahalli yoktur."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْجُمْلَةَ",
+      "smart": "الْجُمْلَةَ",
+      "bare": "الجملة"
+     },
+     "lex": "jumla",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "The direct object, in nasb.",
+      "tr": "Mef'ûlün bih, mansûb."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَمَا",
+      "smart": "وَمَا",
+      "bare": "وما"
+     },
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَا اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَعْطُوفٌ عَلَى «الْجُمْلَةَ».",
+      "en": "The waw conjoins; «what» is a relative built on sukun, in the seat of nasb, conjoined to «the sentence».",
+      "tr": "Vâv atıf; «mâ» ism-i mevsûl, mahallen mansûb, «el-cümle»ye ma'tûf."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مَا",
+       "lex": "ma-mawsula",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "كَانَ",
+      "smart": "كَانَ",
+      "bare": "كان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ، يَعُودُ عَلَى «مَا» — وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
+      "en": "The defective past verb; its noun is the hidden «it» (the «what») — the clause is the ṣila.",
+      "tr": "Nâkıs mâzî; ismi gizli «hüve» («mâ») — cümle sıladır."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "a jarr letter.",
+      "tr": "«-de» — cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَعْنَاهَا",
+      "smart": "مَعْنَاهَا",
+      "bare": "معناها"
+     },
+     "lex": "mana",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "ism-maqsur-manqus",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِـ«فِي» وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، مُضَافٌ، وَهَا ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ يَعُودُ عَلَى الْجُمْلَةِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ خَبَرِ «كَانَ».",
+      "en": "In jarr after فِي by a kasra estimated on the alif, annexed to «its» (the sentence's) — the phrase hangs on the omitted predicate of كَانَ.",
+      "tr": "«fî» ile elif üzerinde takdîrî kesre ile mecrûr, muzâf; zamir (cümleye döner) — câr-mecrûr «kâne»nin mahzûf haberine müteallik."
+     },
+     "segments": [
+      {
+       "form": "مَعْنَا",
+       "lex": "mana",
+       "pos": "noun"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "مِنْ",
+      "smart": "مِنْ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، بَيَانِيَّةٌ.",
+      "en": "a jarr letter that explains.",
+      "tr": "«-den» — cer harfi (beyân)."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَحْوِ",
+      "smart": "نَحْوِ",
+      "bare": "نحو"
+     },
+     "lex": "nahwa",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ حَالٍ مِنْ «مَا».",
+      "en": "In jarr after the letter, annexed — the phrase hangs on an omitted hal of «what»: «such as».",
+      "tr": "Cer harfiyle mecrûr, muzâf — câr-mecrûr «mâ»dan mahzûf hâle müteallik."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "صَهٍ",
+      "smart": "صَهٍ",
+      "bare": "صه"
+     },
+     "lex": "sah",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "صَهٍ اسْمُ فِعْلِ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَحُرِّكَ بِالْكَسْرِ لِلتَّنْوِينِ، وَتَنْوِينُهُ لِلتَّنْكِيرِ (اسْكُتْ سُكُوتًا مَا) — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "ṣahin, with the tanwin of indefiniteness («hush — any hushing»), a noun-verb of command — a word quoted in the list of examples.",
+      "tr": "«sahin» tenkîr tenvini ile emir ism-i fiili («herhangi bir susuş sus») — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَإِيهٍ",
+      "smart": "وَإِيهٍ",
+      "bare": "وإيه"
+     },
+     "lex": "iha",
+     "pos": "noun",
+     "grammar": [
+      "asma-al-afal-wal-aswat-wal-murakkabat",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَإِيهٍ اسْمُ فِعْلِ أَمْرٍ بِمَعْنَى «زِدْنِي حَدِيثًا» مَبْنِيٌّ عَلَى الْكَسْرِ، وَتَنْوِينُهُ لِلتَّنْكِيرِ — لَفْظٌ مَحْكِيٌّ فِي قَائِمَةِ الْأَمْثِلَةِ.",
+      "en": "The waw conjoins; īhin «go on (with any talk)!», a noun-verb of command with the tanwin of indefiniteness — a word quoted in the list of examples.",
+      "tr": "«ve» + «îhin» («herhangi bir sözü sürdür!») tenkîr tenvinli emir ism-i fiili — misaller listesinde hikâye edilmiş bir lafız."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِيهٍ",
+       "lex": "iha",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "The incomplete is what is the opposite of that, such as «Zayd», «Muḥammad», «inna», and «kāna your brother» — when it is the kāna of time, not the kāna of event.",
+    "tr": "Eksik olan ise bunun zıddı olandır: «Zeyd», «Muhammed», «inne» ve «kâne ahûke» gibi — kâne zaman bildiren (nâkıs) olup olay bildiren (tâm) olmadığında."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالنَّاقِصُ",
+      "smart": "وَالنَّاقِصُ",
+      "bare": "والناقص"
+     },
+     "lex": "naqis",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ — وَهُوَ مُبْتَدَأٌ.",
+      "en": "The waw conjoins; conjoined to the word before it, in the same case — it is a mubtada.",
+      "tr": "«ve» + ma'tûf; öncekinin i'râbını alır — mübtedâdır."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "النَّاقِصُ",
+       "lex": "naqis",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+      "en": "A relative «what», in the seat of raf' as the predicate.",
+      "tr": "İsm-i mevsûl «mâ», haber olarak mahallen merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَانَ",
+      "smart": "كَانَ",
+      "bare": "كان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ، يَعُودُ عَلَى «مَا» — وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
+      "en": "The defective past verb; its noun is the hidden «it» — the clause is the ṣila.",
+      "tr": "Nâkıs mâzî; ismi gizli «hüve» — cümle sıladır."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِضِدِّ",
+      "smart": "بِضِدِّ",
+      "bare": "بضد"
+     },
+     "lex": "bi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَضِدِّ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ خَبَرِ «كَانَ».",
+      "en": "The ba is a jarr letter; «opposite» is in jarr, annexed — the phrase hangs on the omitted predicate of كَانَ.",
+      "tr": "Bâ cer harfi; «zıdd» mecrûr, muzâf — câr-mecrûr «kâne»nin mahzûf haberine müteallik."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "ضِدِّ",
+       "lex": "didd",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "ذٰلِكَ",
+      "smart": "ذٰلِكَ",
+      "bare": "ذلك"
+     },
+     "lex": "dhalika",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "A demonstrative, built on sukun, in the seat of jarr as the second term of the idafa.",
+      "tr": "İşaret ismi, sükûn üzere mebnî, mahallen muzâfun ileyh — mecrûr."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "نَحْوُ",
+      "smart": "نَحْوُ",
+      "bare": "نحو"
+     },
+     "lex": "nahwa",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ: ذٰلِكَ، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَمَا بَعْدَهُ مُضَافٌ إِلَيْهِ.",
+      "en": "The predicate of an omitted mubtada («that is»), in raf', annexed — what follows is its second term: «such as».",
+      "tr": "Mahzûf mübtedânın («bu») haberi, merfû, muzâf — sonrası muzâfun ileyh: «gibi»."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "زَيْدٍ",
+      "smart": "زَيْدٍ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The second term of the idafa, in jarr.",
+      "tr": "Muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَمُحَمَّدٍ",
+      "smart": "وَمُحَمَّدٍ",
+      "bare": "ومحمد"
+     },
+     "lex": "muhammad",
+     "pos": "propn",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The waw conjoins; conjoined to the word before it, in the same case.",
+      "tr": "«ve» + ma'tûf; öncekinin i'râbını alır."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مُحَمَّدٍ",
+       "lex": "muhammad",
+       "pos": "propn"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَإِنَّ",
+      "smart": "وَإِنَّ",
+      "bare": "وإن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "hikayat-al-hal",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَإِنَّ لَفْظٌ مَحْكِيٌّ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ جَرٍّ مَعْطُوفٌ عَلَى «زَيْدٍ».",
+      "en": "The waw conjoins; «inna» is a quoted word, built on fatha, in the seat of jarr, conjoined to «Zayd».",
+      "tr": "«ve» + «inne» hikâye edilmiş lafız, fetha üzere mebnî, mahallen mecrûr, «Zeyd»e ma'tûf."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِنَّ",
+       "lex": "inna",
+       "pos": "part"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَكَانَ",
+      "smart": "وَكَانَ",
+      "bare": "وكان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ — وَالْقَوْلُ «كَانَ أَخُوكَ» مَحْكِيٌّ فِي مَحَلِّ جَرٍّ مَعْطُوفٌ؛ وَهُوَ نَاقِصٌ لِأَنَّ خَبَرَهُ لَمْ يُذْكَرْ.",
+      "en": "The waw conjoins; كَانَ is the defective past verb — «kāna your brother» is quoted, in the seat of jarr, conjoined; it is incomplete because its predicate is not given.",
+      "tr": "«ve» + «kâne» nâkıs mâzî — «kâne ahûke» hikâye edilmiş, mahallen mecrûr, ma'tûf; haberi zikredilmediği için eksik bir sözdür."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَانَ",
+       "lex": "kana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَخُوكَ",
+      "smart": "أَخُوكَ",
+      "bare": "أخوك"
+     },
+     "lex": "akh",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "five-nouns",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالْوَاوِ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، مُضَافٌ، وَالْكَافُ مُضَافٌ إِلَيْهِ.",
+      "en": "The noun of كَانَ, in raf' by the waw (one of the five nouns), annexed to «your».",
+      "tr": "Kâne'nin ismi, beş isimden olduğu için vâv ile merfû, muzâf; «ke» muzâfun ileyh."
+     },
+     "segments": [
+      {
+       "form": "أَخُو",
+       "lex": "akh",
+       "pos": "noun"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "إِذَا",
+      "smart": "إِذَا",
+      "bare": "إذا"
+     },
+     "lex": "idha",
+     "pos": "part",
+     "grammar": [
+      "idha-shartiyya"
+     ],
+     "irab": {
+      "ar": "ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ خَافِضٌ لِشَرْطِهِ، مَبْنِيٌّ عَلَى السُّكُونِ — وَجَوَابُهُ مَحْذُوفٌ دَلَّ عَلَيْهِ مَا قَبْلَهُ.",
+      "en": "إِذَا «when», a ẓarf of time with the force of a condition; its answer is omitted, shown by what came before.",
+      "tr": "«İzâ» şart anlamlı zaman zarfı; cevabı mahzûf, öncesi ona delâlet eder."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَانَتِ",
+      "smart": "كَانَتِ",
+      "bare": "كانت"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَحُرِّكَتْ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، وَاسْمُهُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ: هِيَ، يَعُودُ عَلَى «كَانَ» (الْكَلِمَةِ) — وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ بِإِضَافَةِ «إِذَا» إِلَيْهَا.",
+      "en": "The defective past verb; the ta marks the feminine (kasra before the sukun); its noun is the hidden «she» — the word kāna — and the clause is in the seat of jarr, annexed to إِذَا.",
+      "tr": "Nâkıs mâzî; tâ te'nîs (kesre aldı); ismi gizli «hiye» (kâne kelimesi) — cümle «izâ»ya muzâfun ileyh olarak mahallen mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "الزَّمَانِيَّةَ",
+      "smart": "الزَّمَانِيَّةَ",
+      "bare": "الزمانية"
+     },
+     "lex": "zamaniyya",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "ism-mansub"
+     ],
+     "irab": {
+      "ar": "خَبَرُ كَانَ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "The predicate of كَانَ, in nasb.",
+      "tr": "Kâne'nin haberi, mansûb."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la",
+     "pos": "part",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ وَنَفْيٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "لَا «not», conjoining and negating.",
+      "tr": "«Lâ» atıf ve nefy harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْحَدَثِيَّةَ",
+      "smart": "الْحَدَثِيَّةَ",
+      "bare": "الحدثية"
+     },
+     "lex": "hadathiyya",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "ism-mansub"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "conjoined to the word before it, in the same case.",
+      "tr": "ma'tûf; öncekinin i'râbını alır."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "So every kalām is qawl, but not every qawl is kalām.",
+    "tr": "Öyleyse her kelâm kavldir, fakat her kavl kelâm değildir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَكُلُّ",
+      "smart": "فَكُلُّ",
+      "bare": "فكل"
+     },
+     "lex": "kull",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ اسْتِئْنَافِيَّةٌ، وَكُلُّ مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The fa resumes; «every» is the mubtada, in raf', annexed.",
+      "tr": "Fâ isti'nâf; «kullu» mübtedâ, merfû, muzâf."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "كُلُّ",
+       "lex": "kull",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "كَلَامٍ",
+      "smart": "كَلَامٍ",
+      "bare": "كلام"
+     },
+     "lex": "kalam",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The second term of the idafa, in jarr.",
+      "tr": "Muzâfun ileyh, mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَوْلٌ",
+      "smart": "قَوْلٌ",
+      "bare": "قول"
+     },
+     "lex": "qawl",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The predicate (khabar), in raf'.",
+      "tr": "Haber, merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَلَيْسَ",
+      "smart": "وَلَيْسَ",
+      "bare": "وليس"
+     },
+     "lex": "laysa",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَلَيْسَ فِعْلٌ مَاضٍ نَاقِصٌ جَامِدٌ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "The waw conjoins; لَيْسَ «is not» is the rigid defective verb.",
+      "tr": "«ve» + «leyse» câmid nâkıs fiil."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَيْسَ",
+       "lex": "laysa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "كُلُّ",
+      "smart": "كُلُّ",
+      "bare": "كل"
+     },
+     "lex": "kull",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمُ لَيْسَ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The noun of لَيْسَ, in raf', annexed.",
+      "tr": "Leyse'nin ismi, merfû, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَوْلٍ",
+      "smart": "قَوْلٍ",
+      "bare": "قول"
+     },
+     "lex": "qawl",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The second term of the idafa, in jarr.",
+      "tr": "Muzâfun ileyh, mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَلَامًا",
+      "smart": "كَلَامًا",
+      "bare": "كلاما"
+     },
+     "lex": "kalam",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ لَيْسَ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "The predicate of لَيْسَ, in nasb.",
+      "tr": "Leyse'nin haberi, mansûb."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "This is its root sense.",
+    "tr": "Bunun aslı budur."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "هٰذَا",
+      "smart": "هٰذَا",
+      "bare": "هذا"
+     },
+     "lex": "hadha",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "A demonstrative, built on sukun, in the seat of raf' as the mubtada.",
+      "tr": "İşaret ismi, sükûn üzere mebnî, mahallen mübtedâ — merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَصْلُهُ",
+      "smart": "أَصْلُهُ",
+      "bare": "أصله"
+     },
+     "lex": "asl",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ يَعُودُ عَلَى الْقَوْلِ.",
+      "en": "The predicate, in raf', annexed to «its» (qawl).",
+      "tr": "Haber, merfû, muzâf; zamir (kavle döner) muzâfun ileyh."
+     },
+     "segments": [
+      {
+       "form": "أَصْلُ",
+       "lex": "asl",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}

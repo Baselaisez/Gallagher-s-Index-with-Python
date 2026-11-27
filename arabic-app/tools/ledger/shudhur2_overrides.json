@@ -1,0 +1,282 @@
+{
+ "SH445.1": {
+  "cls": "b",
+  "why": "taʿlīq: the clause after the heart verb stands for its two objects; the engine (even vowelled) makes «عمرو» the khabar — a real gap, next wave",
+  "probes": [
+   {
+    "s": "علمت أزيد في الدار",
+    "sv": "عَلِمْتُ أَزَيْدٌ فِي الدَّارِ أَمْ عَمْرٌو",
+    "w": "أزيد",
+    "re": "مبتدا وخبره شبه الجمله|سد مسد|معلق"
+   }
+  ]
+ },
+ "SH458.2": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "a ruling on omission (no object of ظنّ dropped without a cue): what may be dropped is not read from the written letters",
+  "why": "c: the cut example «بعد استفهام متصل» is the matn's words, not an example"
+ },
+ "SH461.1": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "a dialect report (Banū Sulaym make every qawl work as ẓann)",
+  "why": ""
+ },
+ "SH461.2": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "the conditions of qawl as ẓann — their examples are the next sentences (SH463.1 applied, SH463.2)",
+  "why": "c: «بتاء الخطاب» is the condition's words"
+ },
+ "SH463.1": {
+  "cls": "a",
+  "why": "v360 qawlZann360: printed, «زيدا» unvowelled reads as a verb; vowelled, the first object",
+  "probes": [
+   {
+    "s": "أفي الدار تقول زيدا جالسا",
+    "sv": "أَفِي الدَّارِ تَقُولُ زَيْدًا جَالِسًا",
+    "w": "زيدا",
+    "re": "مفعول به اول"
+   }
+  ]
+ },
+ "SH463.2": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "the ḥikāya after «تقول»: the letters do not tell the 2nd person (the book's condition) from the 3rd feminine («تقول هند …», where the noun IS the doer)",
+  "why": "the engine makes «زيد» the doer — right for «she says», wrong for the book's «you say»: undecidable from the letters"
+ },
+ "SH470.1": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "a word cited for its form (المضرب, a noun of time) — no sentence for the iʿrāb probe",
+  "why": ""
+ },
+ "SH471.1": {
+  "cls": "a",
+  "why": "",
+  "probes": [
+   {
+    "s": "هذا الضارب زيدا أمس",
+    "sv": "هَذَا الضَّارِبُ زَيْدًا أَمْسِ",
+    "w": "زيدا",
+    "re": "مفعول به لاسم الفاعل"
+   }
+  ]
+ },
+ "SH484.1": {
+  "cls": "c",
+  "why": "c: the cut began «في الصفة المشبهة …»; the example is «زيد حسن وجهه»",
+  "probes": [
+   {
+    "s": "زيد حسن وجهه",
+    "sv": "زَيْدٌ حَسَنٌ وَجْهُهُ",
+    "w": "وجهه",
+    "re": "للصفه المشبهه"
+   }
+  ]
+ },
+ "SH506.2": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "a ruling on agreement (طابق / أفرد) of the tafḍīl form: the iʿrāb line names the office, not the agreement",
+  "why": ""
+ },
+ "SH507.2": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "a ruling on agreement (طابق / أفرد) of the tafḍīl form: the iʿrāb line names the office, not the agreement",
+  "why": ""
+ },
+ "SH509.2": {
+  "cls": "d",
+  "status": "open",
+  "reason": "ṣarf — which words the forms of wonder and tafḍīl are built from: a ruling on word-form, for the ṣarf ledgers"
+ },
+ "SH510.1": {
+  "cls": "d",
+  "status": "open",
+  "reason": "ṣarf — which words the forms of wonder and tafḍīl are built from: a ruling on word-form, for the ṣarf ledgers"
+ },
+ "SH517.1": {
+  "cls": "b",
+  "why": "ishtighāl after the interrogative hamza with a jārr and a naʿt between noun and verb: the engine (vowelled too) makes «بشرا» a mubtadaʾ — gap, next wave",
+  "probes": [
+   {
+    "s": "أبشرا منا واحدا نتبعه",
+    "sv": "أَبَشَرًا مِنَّا وَاحِدًا نَتَّبِعُهُ",
+    "w": "أبشرا",
+    "re": "لفعل محذوف|يفسره"
+   }
+  ]
+ },
+ "SH518.1": {
+  "cls": "c",
+  "why": "c: the bāb regex wanted the dropped verb; the ruling is rafʿ by ibtidāʾ (what has ṣadāra follows)",
+  "probes": [
+   {
+    "s": "زيد هل رأيته",
+    "sv": "زَيْدٌ هَلْ رَأَيْتَهُ",
+    "w": "زيد",
+    "re": "^اسم.*مبتدا"
+   }
+  ]
+ },
+ "SH519.1": {
+  "cls": "c",
+  "why": "c: not ishtighāl (the worker is no verb): rafʿ",
+  "probes": [
+   {
+    "s": "زيد إنه فاضل وعمرو كأنه أسد",
+    "sv": "زَيْدٌ إِنَّهُ فَاضِلٌ وَعَمْرٌو كَأَنَّهُ أَسَدٌ",
+    "w": "زيد",
+    "re": "^اسم.*مبتدا"
+   }
+  ]
+ },
+ "SH520.2": {
+  "cls": "a",
+  "why": "v360 ishShart360: printed, «إن» reads as inna (the letters do not decide); vowelled إِنْ: the ishtighāl naṣb",
+  "probes": [
+   {
+    "s": "إن زيدا رأيته فأكرمه",
+    "sv": "إِنْ زَيْدًا رَأَيْتَهُ فَأَكْرِمْهُ",
+    "w": "زيدا",
+    "re": "لفعل محذوف"
+   }
+  ]
+ },
+ "SH521.1": {
+  "cls": "c",
+  "why": "c: the ruling is rafʿ",
+  "probes": [
+   {
+    "s": "زيد هل رأيته وعمرو ما لقيته",
+    "sv": "زَيْدٌ هَلْ رَأَيْتَهُ وَعَمْرٌو مَا لَقِيتَهُ",
+    "w": "زيد",
+    "re": "^اسم.*مبتدا"
+   }
+  ]
+ },
+ "SH521.2": {
+  "cls": "a",
+  "why": "",
+  "probes": [
+   {
+    "s": "زيد قام وعمرا أكرمته",
+    "sv": "زَيْدٌ قَامَ وَعَمْرًا أَكْرَمْتُهُ",
+    "w": "وعمرا",
+    "re": "لفعل محذوف"
+   }
+  ]
+ },
+ "SH530.2": {
+  "cls": "a",
+  "why": "",
+  "probes": [
+   {
+    "s": "مررت بزيد الفاضل",
+    "sv": "مَرَرْتُ بِزَيْدٍ الْفَاضِلِ",
+    "w": "الفاضل",
+    "re": "نعت"
+   }
+  ]
+ },
+ "SH531.2": {
+  "cls": "c",
+  "why": "c: the cut stopped before «الشاعر»",
+  "probes": [
+   {
+    "s": "مررت بامرئ القيس الشاعر",
+    "sv": "مَرَرْتُ بِامْرِئِ الْقَيْسِ الشَّاعِرِ",
+    "w": "الشاعر",
+    "re": "نعت"
+   }
+  ]
+ },
+ "SH533.1": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "what ʿaṭf al-bayān may not be (يمتنع …): a matter of meaning",
+  "why": ""
+ },
+ "SH535.1": {
+  "cls": "b",
+  "why": "the follower whose mention is required is ʿaṭf bayān (not badal); the engine makes «أخوها» the fāʿil and leaves «زيد» without office — gap, next wave",
+  "probes": [
+   {
+    "s": "هند قام زيد أخوها",
+    "sv": "هِنْدٌ قَامَ زَيْدٌ أَخُوهَا",
+    "w": "أخوها",
+    "re": "عطف بيان"
+   }
+  ]
+ },
+ "SH538.1": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "the example is a fragment of an āya («صراط الذين …»): the badal's head is not printed",
+  "why": ""
+ },
+ "SH539.1": {
+  "cls": "c",
+  "why": "c: the ruling is that it is NOT badal but maʿṭūf — v360 balAtf360",
+  "probes": [
+   {
+    "s": "جاء زيد بل عمرو",
+    "sv": "جَاءَ زَيْدٌ بَلْ عَمْرٌو",
+    "w": "عمرو",
+    "re": "معطوف"
+   }
+  ]
+ },
+ "SH542.1": {
+  "cls": "c",
+  "why": "c: the probe — v360 iyyaBadal360 (offered: badal or tawkīd)",
+  "probes": [
+   {
+    "s": "ضربته إياه",
+    "sv": "ضَرَبْتُهُ إِيَّاهُ",
+    "w": "إياه",
+    "re": "بدل"
+   }
+  ]
+ },
+ "SH543.1": {
+  "cls": "b",
+  "why": "the badal of the addressee's tāʾ: the engine names no office (vowelled too) — gap, next wave",
+  "probes": [
+   {
+    "s": "أعجبتني وجهك",
+    "sv": "أَعْجَبْتَنِي وَجْهُكَ",
+    "w": "وجهك",
+    "re": "بدل"
+   }
+  ]
+ },
+ "SH560.1": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "a ruling on agreement of أفعل (no فضلى without أل or iḍāfa): the line names the office, not the agreement",
+  "why": ""
+ },
+ "SH564.1": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "proper names on a verb's pattern (شمّر، ضرب as names): only the lexicon of names tells a name, not the letters",
+  "why": ""
+ },
+ "SH565.1": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "men's names given to women («أسماء نسوة»): whose name it is, is meaning",
+  "why": ""
+ },
+ "SH569.2": {
+  "cls": "d",
+  "status": "not-automatable",
+  "reason": "forbidden forms («لا تقول واحد رجل …»)",
+  "why": ""
+ }
+}

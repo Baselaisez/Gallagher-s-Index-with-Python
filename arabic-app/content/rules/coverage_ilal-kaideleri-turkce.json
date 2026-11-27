@@ -1,0 +1,1105 @@
+{
+ "book": "ilal-kaideleri-turkce",
+ "ledger": "aux",
+ "title": "İ'lal kaideleri — kalb, naql and ḥadhf with worked derivations",
+ "source": "research/sources/ilal-kaideleri-turkce.txt",
+ "files": [
+  "research/sources/ilal-kaideleri-turkce.txt"
+ ],
+ "group": "sarf",
+ "note": "",
+ "counts": {
+  "applied": 48,
+  "slip": 1,
+  "noted": 3
+ },
+ "entries": [
+  {
+   "id": "d14-1",
+   "line": 14,
+   "ar": "قَالَ ← قَوَلَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "قَوَلَ",
+    "out": "قَالَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "قَالَ ← qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d15-2",
+   "line": 15,
+   "ar": "كَالَ ← كَيَلَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "كَيَلَ",
+    "out": "كَالَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "كَالَ ← qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d16-3",
+   "line": 16,
+   "ar": "غَزَى ← غَزَوَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "غَزَوَ",
+    "out": "غَزَى"
+   },
+   "proof": {
+    "ok": true,
+    "got": "غَزَا ← qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d17-4",
+   "line": 17,
+   "ar": "رَمَى ← رَمَىَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "رَمَىَ",
+    "out": "رَمَى"
+   },
+   "proof": {
+    "ok": true,
+    "got": "رَمَى ← qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d18-5",
+   "line": 18,
+   "ar": "اَقَامَ ← أَقْوَمَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "أَقْوَمَ",
+    "out": "اَقَامَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "أَقَامَ ← naql,qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d19-6",
+   "line": 19,
+   "ar": "أَباَعَ ← أَبْيَعَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "أَبْيَعَ",
+    "out": "أَباَعَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "أَبَاعَ ← naql,qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d21-7",
+   "line": 21,
+   "ar": "غَزَوْ ← غَزَوُوا",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "غَزَوُوا",
+    "out": "غَزَوْ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "غَزَوْا ← qalb-alif,hadhf-sakinayn"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d22-8",
+   "line": 22,
+   "ar": "رَمَوْا ← رَمَيُوا",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "رَمَيُوا",
+    "out": "رَمَوْا"
+   },
+   "proof": {
+    "ok": true,
+    "got": "رَمَوْا ← qalb-alif,hadhf-sakinayn"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d23-9",
+   "line": 23,
+   "ar": "غَزَتاَ ← غَزَوَتَا",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "غَزَوَتَا",
+    "out": "غَزَتاَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "غَزَتَا ← qalb-alif,hadhf-alif-ta"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d24-10",
+   "line": 24,
+   "ar": "رَمَتاَ ← رَمَيَتَا",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "رَمَيَتَا",
+    "out": "رَمَتاَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "رَمَتَا ← qalb-alif,hadhf-alif-ta"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d32-11",
+   "line": 32,
+   "ar": "يُوسِرُ ← يُيْسِرُ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "يُيْسِرُ",
+    "out": "يُوسِرُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يُوسِرُ ← qalb-ya-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d37-12",
+   "line": 37,
+   "ar": "قِيلَ ← قُوِلَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "قُوِلَ",
+    "out": "قِيلَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "قِيلَ ← majhul-ajwaf,qalb-waw-kasra"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d45-13",
+   "line": 45,
+   "ar": "غَبِىَ ← غَِبوَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "غَِبوَ",
+    "out": "غَبِىَ"
+   },
+   "proof": {
+    "ok": false,
+    "got": "غَِبوَ ← "
+   },
+   "status": "slip",
+   "reason": "the sheet's own typo: غَِبوَ — the kasra sits on the ghayn with a fatḥa (the origin is غَبِوَ, the rule's own words)"
+  },
+  {
+   "id": "d47-14",
+   "line": 47,
+   "ar": "دُعِىَ ← دُعِوَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "دُعِوَ",
+    "out": "دُعِىَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "دُعِيَ ← qalb-waw-tarafiyya"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d49-15",
+   "line": 49,
+   "ar": "غُزُوا ← غُزِيُوا",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "غُزِيُوا",
+    "out": "غُزُوا"
+   },
+   "proof": {
+    "ok": true,
+    "got": "غُزُوا ← hadhf-lam-damir"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d58-16",
+   "line": 58,
+   "ar": "يَقُولُ ← يَقْوُلُ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "يَقْوُلُ",
+    "out": "يَقُولُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَقُولُ ← naql"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d60-17",
+   "line": 60,
+   "ar": "يَكِيلُ ← يَكْيِلُ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "يَكْيِلُ",
+    "out": "يَكِيلُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَكِيلُ ← naql"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d61-18",
+   "line": 61,
+   "ar": "يَخَافُ ← يَخْوَفُ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "يَخْوَفُ",
+    "out": "يَخَافُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَخَافُ ← naql,qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d65-19",
+   "line": 65,
+   "ar": "يَغْزُوا ← يَغْزُوُ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "يَغْزُوُ",
+    "out": "يَغْزُوا"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَغْزُو ← hadhf-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d68-20",
+   "line": 68,
+   "ar": "يَرْمِى ← يَرْمِىُ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "يَرْمِىُ",
+    "out": "يَرْمِى"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَرْمِي ← hadhf-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d70-21",
+   "line": 70,
+   "ar": "يَخْشَى ← يَخْشَىُ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "يَخْشَىُ",
+    "out": "يَخْشَى"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَخْشَى ← qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d72-22",
+   "line": 72,
+   "ar": "يَغْزُونَ ← يَغْزُوُونَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "يَغْزُوُونَ",
+    "out": "يَغْزُونَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَغْزُونَ ← hadhf-lam-damir"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d74-23",
+   "line": 74,
+   "ar": "يَرْمُونَ ← يَرْمِيُونَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "يَرْمِيُونَ",
+    "out": "يَرْمُونَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَرْمُونَ ← hadhf-lam-damir"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d77-24",
+   "line": 77,
+   "ar": "تَغْزِينَ ← تَغْزُوِينَ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "تَغْزُوِينَ",
+    "out": "تَغْزِينَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "تَغْزِينَ ← hadhf-lam-damir"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d89-25",
+   "line": 89,
+   "ar": "غَازٍ ← غَازِىٌ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "غَازِىٌ",
+    "out": "غَازٍ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "غَازٍ ← hadhf-manqus"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d92-26",
+   "line": 92,
+   "ar": "رَامٍ ← رَامِىٌ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "رَامِىٌ",
+    "out": "رَامٍ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "رَامٍ ← hadhf-manqus"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d94-27",
+   "line": 94,
+   "ar": "مَقُولٌ ← مَقْوُولٌ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "مَقْوُولٌ",
+    "out": "مَقُولٌ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "مَقُولٌ ← naql,hadhf-sakinayn"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d96-28",
+   "line": 96,
+   "ar": "مَكِيلٌ ← مَكْيُولٌ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "مَكْيُولٌ",
+    "out": "مَكِيلٌ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "مَكِيلٌ ← naql,hadhf-sakinayn,harmoniya"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d100-29",
+   "line": 100,
+   "ar": "مَغْزُوٌّ ← مَغْزُووٌ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "مَغْزُووٌ",
+    "out": "مَغْزُوٌّ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "مَغْزُوٌّ ← idgham"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d105-30",
+   "line": 105,
+   "ar": "مَرْمِىٌّ ← مَرْمُوىٌّ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "مَرْمُوىٌّ",
+    "out": "مَرْمِىٌّ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "مَرْمِيٌّ ← qalb-waw-ya,idgham,munasaba"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "d109-31",
+   "line": 109,
+   "ar": "قُلْ ← اُقْوُلْ",
+   "kind": "derivation",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.derive"
+    }
+   ],
+   "probe": {
+    "ilal": "اُقْوُلْ",
+    "out": "قُلْ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "قُلْ ← naql,hadhf-sakinayn,wasl-drop"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule12",
+   "line": 12,
+   "ar": "vav ile ye harekeli olup, ma kablileri meftuh olduğu zaman vav ile ye elife kalb olunur.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "قَوَلَ",
+    "out": "قَالَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "قَالَ ← qalb-alif"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule26",
+   "line": 26,
+   "ar": "Ye ister fetha harekeli olsun ister sakin olsun ma kabli meksur olduğu zaman hali",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "يُيْسِرُ",
+    "out": "يُوسِرُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يُوسِرُ ← qalb-ya-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule27",
+   "line": 27,
+   "ar": "üzere terk edilir. خَشِىَ و خَشِيتَ gibi.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "يُيْسِرُ",
+    "out": "يُوسِرُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يُوسِرُ ← qalb-ya-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule28",
+   "line": 28,
+   "ar": "خَشِىَ de ye  meftuh olup ma kabli meksur olduğu için ye hali üzere terk edilir.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "يُيْسِرُ",
+    "out": "يُوسِرُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يُوسِرُ ← qalb-ya-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule29",
+   "line": 29,
+   "ar": "خَشِيتَ de ye sakin olup ma kabli meksur olduğu için ye hali üzere terk edilir.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "يُيْسِرُ",
+    "out": "يُوسِرُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يُوسِرُ ← qalb-ya-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule31",
+   "line": 31,
+   "ar": "Ye sakin olup ma kabli mezmum olduğu zaman ye vava kalb olunur. يُوسِرُ  gibi.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "يُيْسِرُ",
+    "out": "يُوسِرُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يُوسِرُ ← qalb-ya-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule35",
+   "line": 35,
+   "ar": "Vav sakin olup ma kabli meksur olduğu zaman vav, ye",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "قُوِلَ",
+    "out": "قِيلَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "قِيلَ ← majhul-ajwaf,qalb-waw-kasra"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule36",
+   "line": 36,
+   "ar": "ye kalb olunur.  قِيلَgibi.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "قُوِلَ",
+    "out": "قِيلَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "قِيلَ ← majhul-ajwaf,qalb-waw-kasra"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule42",
+   "line": 42,
+   "ar": "Vav kelimenin ahirinde harekeli olarak bulunup, ma kabli meksur olduğu zaman, vav",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "دُعِوَ",
+    "out": "دُعِىَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "دُعِيَ ← qalb-waw-tarafiyya"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule44",
+   "line": 44,
+   "ar": "ye kalb olunur. غَبِىَ، دُعِىَ gibi.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "دُعِوَ",
+    "out": "دُعِىَ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "دُعِيَ ← qalb-waw-tarafiyya"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule55",
+   "line": 55,
+   "ar": "Vav ile ye harekeli olup ma kabli sahih sakin harf olduğu zaman vav ile ye",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "يَقْوُلُ",
+    "out": "يَقُولُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَقُولُ ← naql"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule57",
+   "line": 57,
+   "ar": "harekesi ma kalbindeki sahih sakin harfe nakledilir. يَقُولُ، يَكِيلُ، يَخَافُ  gibi.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "يَقْوُلُ",
+    "out": "يَقُولُ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَقُولُ ← naql"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule63",
+   "line": 63,
+   "ar": "Vav ile ye kelimenin lamel fiilinde harekeli olup ma kabli de harekeli olduğu zaman",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "يَغْزُوُ",
+    "out": "يَغْزُوا"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَغْزُو ← hadhf-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule64",
+   "line": 64,
+   "ar": "vav ile ye nasbeden bir şey olmadığı müddetçe sakin kılınır.  يَغْزُوا، يَرْمِى، يَخْشَىgibi.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "يَغْزُوُ",
+    "out": "يَغْزُوا"
+   },
+   "proof": {
+    "ok": true,
+    "got": "يَغْزُو ← hadhf-damma"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule98",
+   "line": 98,
+   "ar": "Bir kelime de iki vav ictima edip birincisi sakin ikincisi harekeli olduğu zaman",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "مَغْزُووٌ",
+    "out": "مَغْزُوٌّ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "مَغْزُوٌّ ← idgham"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule99",
+   "line": 99,
+   "ar": "birincisi ikincisine idğam olunur.  مَغْزُوٌّgibi.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "مَغْزُووٌ",
+    "out": "مَغْزُوٌّ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "مَغْزُوٌّ ← idgham"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule102",
+   "line": 102,
+   "ar": "Vav ile ye bir kelime de ictima edip birincisi sakin ikincisi harekeli olduğu zaman vav",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "مَرْمُوىٌّ",
+    "out": "مَرْمِىٌّ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "مَرْمِيٌّ ← qalb-waw-ya,idgham,munasaba"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "rule104",
+   "line": 104,
+   "ar": "ye kalb olunur.  مَرْمِىٌّ، مَخْشِىٌَgibi.",
+   "kind": "rule",
+   "carried_by": [
+    {
+     "type": "engine",
+     "ref": "IlalEngine.RULES"
+    }
+   ],
+   "probe": {
+    "ilal": "مَرْمُوىٌّ",
+    "out": "مَرْمِىٌّ"
+   },
+   "proof": {
+    "ok": true,
+    "got": "مَرْمِيٌّ ← qalb-waw-ya,idgham,munasaba"
+   },
+   "status": "applied"
+  },
+  {
+   "id": "head81",
+   "line": 81,
+   "ar": "Ecvefden ismi fail yapılışı:",
+   "kind": "section",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "hollow-verbs",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "naqis-verbs",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "head88",
+   "line": 88,
+   "ar": "Nakıstan ismi fail yapılışı:",
+   "kind": "section",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "hollow-verbs",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "naqis-verbs",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "head93",
+   "line": 93,
+   "ar": "Ecvefden ismi meful:",
+   "kind": "section",
+   "carried_by": [
+    {
+     "type": "note",
+     "ref": "hollow-verbs",
+     "how": "names"
+    },
+    {
+     "type": "note",
+     "ref": "naqis-verbs",
+     "how": "names"
+    }
+   ],
+   "status": "noted"
+  }
+ ]
+}

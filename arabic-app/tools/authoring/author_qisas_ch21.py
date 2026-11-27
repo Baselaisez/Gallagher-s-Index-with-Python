@@ -1,0 +1,636 @@
+# -*- coding: utf-8 -*-
+"""Qiṣaṣ al-Nabiyyīn, Part One — chapter 21: «يَظْهَرُ السِّرُّ» — «أَحْسَنُ الْقَصَصِ» section 22 (print pp. 61–64):
+Yaʿqūb's grief (12:84, 12:86), the third journey, Yūsuf cannot hold himself (12:89–92), the secret revealed.
+Every printed line is one sentence; the vowelling is the print's.  python3 tools/authoring/author_qisas_ch21.py"""
+import json, pathlib, sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from qisas_common import *
+from talkhis_common import bare
+import qisas_common as _qc
+import sarf_gen as _sg
+PKG = _qc.PKG
+TITLE = {"ar": "يَظْهَرُ السِّرُّ", "en": "The secret comes out", "tr": "Sır ortaya çıkıyor"}
+S = []; sen = sen_of(S)
+TG = json.loads((PKG / "glossary.json").read_text(encoding="utf-8"))["entries"]
+# ---------------------------------------------------------------- local helpers (the chapter-8 set, lifted)
+def yusuf_fail(punct=None): return fail_name("يُوسُفُ", "yusuf", "«Yūsuf»", "«Yusuf»", punct=punct)
+def yaqub_fail(punct=None): return fail_name("يَعْقُوبُ", "yaqub", "«Yaʿqūb»", "«Yakub»", punct=punct)
+def name_ism_kana(full, lex, en, tr, punct=None):
+    return tok(full, lex, "propn", [K, "mamnu-min-sarf"], "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.", en + " — kāna's ism, in rafʿ; a diptote name.", tr + " — kâne'nin ismi, merfû; gayr-i munsarıf özel isim.", punct=punct)
+def yusuf_ism_kana(punct=None): return name_ism_kana("يُوسُفُ", "yusuf", "«Yūsuf»", "«Yusuf»", punct=punct)
+def yaqub_ism_kana(punct=None): return name_ism_kana("يَعْقُوبُ", "yaqub", "«Yaʿqūb»", "«Yakub»", punct=punct)
+def name_maful(full, lex, en, tr, punct=None, tags=()):
+    return tok(full, lex, "propn", ["maful-bihi", "mamnu-min-sarf"] + list(tags), "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ — عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ.", en + " — the object; a diptote name.", tr + " — mef'ûl-i bih; gayr-i munsarıf özel isim.", punct=punct)
+def name_mudaf_ilayh(full, lex, en, tr, punct=None):
+    return tok(full, lex, "propn", ["idafa-definiteness", "mamnu-min-sarf"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ — عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ.", en + " — the muḍāf ilayh, jarr by a fatḥa; a diptote.", tr + " — muzâfun ileyh, fetha ile mecrur; gayr-i munsarıf.", punct=punct)
+def li_name(full, lex, en, tr, punct=None, tags=(), role="مُتَعَلِّقٌ بِالْفِعْلِ قَبْلَهُ"):
+    return tok(full, lex, "propn", ["huruf-jarr", "mamnu-min-sarf"] + list(tags), "اللَّامُ حَرْفُ جَرٍّ، وَالِاسْمُ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ لِأَنَّهُ عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ — " + role + ".", "«to " + en + "» — the jarr lām; a diptote name takes a fatḥa for its jarr.", "«" + tr + "'a» — cer lâmı; gayr-i munsarıf özel isim cerde fetha alır.", punct=punct, segments=[seg("لِ", "li", "prep"), seg(full[2:], lex, "propn")])
+def khabar_kana(full, lex, en, tr, punct=None, tags=(), second=False):
+    return tok(full, lex, "noun", [K] + list(tags), ("خَبَرٌ ثَانٍ لِكَانَ" if second else "خَبَرُ كَانَ") + " مَنْصُوبٌ بِالْفَتْحَةِ.", en + (" — a second khabar of kāna, in naṣb." if second else " — kāna's khabar, in naṣb."), tr + (" — kâne'nin ikinci haberi, mansub." if second else " — kâne'nin haberi, mansub."), punct=punct)
+def nat_nasb(full, lex, en, tr, punct=None, tags=()):
+    return tok(full, lex, "noun", ["naat-sifa"] + list(tags), "نَعْتٌ مَنْصُوبٌ بِالْفَتْحَةِ.", en + " — the naʿt, in naṣb.", tr + " — sıfat, mansub.", punct=punct)
+def nat_raf(full, lex, en, tr, punct=None, tags=()):
+    return tok(full, lex, "noun", ["naat-sifa"] + list(tags), "نَعْتٌ مَرْفُوعٌ بِالضَّمَّةِ.", en + " — the naʿt, in rafʿ.", tr + " — sıfat, merfû.", punct=punct)
+def kana_hidden(full="وَكَانَ", wa=True, punct=None):
+    return tok(full, "kana", "verb", [K, "hollow-verbs"], W(wa) + "كَانَ فِعْلٌ مَاضٍ نَاقِصٌ، وَاسْمُهَا مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ.", Wen(wa) + "«he was» — kāna with its ism «he» concealed.", Wtr(wa) + "«o … idi» — kâne; ismi gizli «o».", punct=punct, segments=(wa_("كَانَ", "kana", "verb") if wa else None))
+def kanat(full="وَكَانَتِ", wa=True, punct=None):
+    return tok(full, "kana", "verb", [K, "hollow-verbs"], W(wa) + "كَانَتْ فِعْلٌ مَاضٍ نَاقِصٌ، وَالتَّاءُ لِلتَّأْنِيثِ، وَكُسِرَتْ لِالْتِقَاءِ السَّاكِنَيْنِ.", Wen(wa) + "«was» — kāna with the feminine tāʾ; its kasra is for the meeting of two sukūns.", Wtr(wa) + "«idi» — kâne, te'nis tâ'sı ile; kesresi iki sâkinin karşılaşması içindir.", punct=punct, segments=(wa_("كَانَتِ", "kana", "verb") if wa else None))
+def khabar_kana_mudari(full, lex, en, tr, tags=(), hidden="هُوَ", extra="", wa=False, punct=None):
+    return tok(full, lex, "verb", [K, "mudari-marfu"] + list(tags), W(wa) + "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ " + (extra or "بِالضَّمَّةِ") + f"، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: {hidden} — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ.", Wen(wa) + en + " — a muḍāriʿ; the clause is kāna's khabar.", Wtr(wa) + tr + " — muzâri; cümle kâne'nin haberidir.", punct=punct, segments=(wa_(full[2:], lex, "verb") if wa else None))
+def lahu(full, pron_seg, pron_lex, role_ar, en, tr, tags=(), punct=None):
+    return tok(full, "li", "prep", ["huruf-jarr"] + list(tags), "اللَّامُ حَرْفُ جَرٍّ، وَالضَّمِيرُ فِي مَحَلِّ جَرٍّ — " + role_ar, en, tr, punct=punct, segments=[seg("لَ", "li", "prep"), seg(pron_seg, pron_lex, "pron")])
+def kathiran(punct=None):
+    return tok("كَثِيرًا", "kathir", "noun", ["maful-mutlaq"], "نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ مَنْصُوبٌ بِالْفَتْحَةِ — صِفَةٌ لِمَصْدَرٍ مَحْذُوفٍ.", "«much, greatly» — standing in for the absolute object.", "«çok» — mef'ûl-i mutlak nâibi.", punct=punct)
+def jiddan(punct=None):
+    return tok("جِدًّا", "jiddan", "noun", ["maful-mutlaq"], "نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ مَنْصُوبٌ بِالْفَتْحَةِ.", "«very much» — standing in for the absolute object.", "«çok» — mef'ûl-i mutlak nâibi.", punct=punct)
+def fi(punct=None): return tok("فِي", "fi", "prep", ["huruf-jarr"], "حَرْفُ جَرٍّ.", "«in».", "«-de».", punct=punct)
+def ala(): return tok("عَلَى", "ala", "prep", ["huruf-jarr"], "حَرْفُ جَرٍّ.", "«on, upon».", "«üzerine».")
+def ila(): return tok("إِلَى", "ila", "prep", ["huruf-jarr"], "حَرْفُ جَرٍّ.", "«to».", "«-e».")
+def min_(punct=None, full="مِنْ"): return tok(full, "min", "prep", ["huruf-jarr"], "حَرْفُ جَرٍّ." + ("" if full == "مِنْ" else " (حُرِّكَتْ نُونُهُ بِالْفَتْحِ لِالْتِقَاءِ السَّاكِنَيْنِ)"), "«from, of».", "«-den».", punct=punct)
+def majrur(full, lex, en, tr, prep, punct=None, tags=(), mudaf=False):
+    return tok(full, lex, "noun", ["huruf-jarr"] + (["idafa-definiteness"] if mudaf else []) + list(tags), f"مَجْرُورٌ بِـ{prep} وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ" + ("، وَهُوَ مُضَافٌ." if mudaf else "."), en + " — in jarr" + ("; a muḍāf." if mudaf else "."), tr + " — mecrur" + ("; muzâf." if mudaf else "."), punct=punct)
+def mudaf_pron(full, lex, pron_seg, pron_lex, role_ar, en, tr, tags=(), punct=None, pos="noun"):
+    host = full[:len(full) - len(pron_seg)]
+    return tok(full, lex, pos, list(tags) + ["idafa-definiteness"], role_ar + "، وَهُوَ مُضَافٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ.", en + " — annexed to the pronoun.", tr + " — zamire muzâf.", punct=punct, segments=[seg(host, lex, pos), seg(pron_seg, pron_lex, "pron")])
+def verb_enc(full, lex, pron_seg, pron_lex, en, tr, tags=(), hidden="هُوَ", punct=None, wa=False, mudari=True, extra="", fa=False):
+    host = full[:len(full) - len(pron_seg)]
+    j = "وَ" if wa else ("فَ" if fa else "")
+    segs = ([seg(j, "wa" if wa else "fa", "conj"), seg(host[2:], lex, "verb")] if j else [seg(host, lex, "verb")]) + [seg(pron_seg, pron_lex, "pron")]
+    ar = ("الْوَاوُ عَاطِفَةٌ، وَ" if wa else ("الْفَاءُ عَاطِفَةٌ، وَ" if fa else "")) + ("فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ" if mudari else "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ") + (f"، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: {hidden}" if hidden else "") + "، وَالضَّمِيرُ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ" + extra + "."
+    return tok(full, lex, "verb", list(tags) + ["maful-bihi"] + (["mudari-marfu"] if mudari else []), ar, Wen(wa) + en + " — the attached pronoun is its object.", Wtr(wa) + tr + " — bitişik zamir mef'ûlüdür.", punct=punct, segments=segs)
+def mansub_enc(full, lex, pron_seg, pron_lex, en, tr, tags=(), punct=None):
+    host = full[:len(full) - len(pron_seg)]
+    return tok(full, lex, "verb", ["an-masdariyya", "maful-bihi"] + list(tags), "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ، وَالضَّمِيرُ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.", en + " — in naṣb after an; the attached pronoun is its object.", tr + " — en ile mansub; bitişik zamir mef'ûlüdür.", punct=punct, segments=[seg(host, lex, "verb"), seg(pron_seg, pron_lex, "pron")])
+def khamsa_enc(full, lex, pron_seg, pron_lex, en, tr, tags=(), punct=None, wa=False, extra=""):
+    host = full[:len(full) - len(pron_seg)]
+    segs = ([seg("وَ", "wa", "conj"), seg(host[2:], lex, "verb")] if wa else [seg(host, lex, "verb")]) + [seg(pron_seg, pron_lex, "pron")]
+    return tok(full, lex, "verb", list(tags) + ["afal-khamsa", "mudari-marfu", "maful-bihi"], W(wa) + "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِثُبُوتِ النُّونِ، وَالْوَاوُ فَاعِلٌ، وَالضَّمِيرُ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ" + extra + ".", Wen(wa) + en + " — one of the five verbs; the wāw its doer, the attached pronoun its object.", Wtr(wa) + tr + " — ef'âl-i hamseden; vâv fâil, bitişik zamir mef'ûl.", punct=punct, segments=segs)
+def mazi_pl_enc(full, lex, pron_seg, pron_lex, en, tr, tags=(), punct=None, wa=False):
+    host = full[:len(full) - len(pron_seg)]
+    segs = ([seg("وَ", "wa", "conj"), seg(host[2:], lex, "verb")] if wa else [seg(host, lex, "verb")]) + [seg(pron_seg, pron_lex, "pron")]
+    return tok(full, lex, "verb", list(tags) + ["maful-bihi"], W(wa) + "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ فَاعِلٌ، وَالضَّمِيرُ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.", Wen(wa) + en + " — a māḍī with the group's wāw as doer; the attached pronoun its object.", Wtr(wa) + tr + " — cemi vâvı fâil; bitişik zamir mef'ûl.", punct=punct, segments=segs)
+def amr_enc(full, lex, pron_seg, pron_lex, en, tr, tags=(), punct=None):
+    host = full[:len(full) - len(pron_seg)]
+    return tok(full, lex, "verb", list(tags) + ["imperative-amr", "maful-bihi"], "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: أَنْتَ، وَالضَّمِيرُ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.", en + " — an imperative built on sukūn; «you» concealed; the attached pronoun its object.", tr + " — sükûn üzere mebnî emir; fâil gizli «sen»; bitişik zamir mef'ûl.", punct=punct, segments=[seg(host, lex, "verb"), seg(pron_seg, pron_lex, "pron")])
+def ikhwa(full, case, role_ar, en, tr, punct=None, tags=(), lex="akh"):
+    return tok(full, lex, "noun", list(tags) + ["jam-taksir"], role_ar + " " + {"raf": "مَرْفُوعٌ بِالضَّمَّةِ", "nasb": "مَنْصُوبٌ بِالْفَتْحَةِ", "jarr": "مَجْرُورٌ بِالْكَسْرَةِ"}[case] + " — جَمْعُ تَكْسِيرٍ.", en + " — a broken plural of أَخ.", tr + " — «kardeş»in cem-i mükesseri.", punct=punct)
+def qala_h(full="قَالَ", wa=False, punct=None, fa=False):
+    t = qala(full=full, punct=punct, wa=wa, hidden="هُوَ")
+    if fa: t["segments"] = [seg("فَ", "fa", "conj"), seg(full[2:], "qala", "verb")]; t["irab"]["ar"] = "الْفَاءُ عَاطِفَةٌ، وَ" + t["irab"]["ar"]
+    return t
+def maa_pron(full, pron_seg, pron_lex, en, tr, role="مُتَعَلِّقٌ بِالْفِعْلِ قَبْلَهُ", punct=None, tags=()):
+    return tok(full, "maa", "noun", ["maful-fih", "idafa-definiteness"] + list(tags), "مَعَ ظَرْفُ مَكَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ — " + role + ".", en + " — the adverb «with» annexed to the pronoun.", tr + " — zarf «ile», zamire muzâf.", punct=punct, segments=[seg("مَعَ", "maa", "noun"), seg(pron_seg, pron_lex, "pron")])
+def maa_(punct=None):
+    return tok("مَعَ", "maa", "noun", ["maful-fih", "idafa-definiteness"], "ظَرْفُ مَكَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ.", "«with» — an adverb of place, in naṣb; a muḍāf.", "«ile» — mekân zarfı, mansub; muzâf.", punct=punct)
+def ya_abana(punct=None):
+    return [tok("يَا", "ya-nida", "part", ["vocative-munada"], "حَرْفُ نِدَاءٍ.", "«O» — the vocative particle.", "«ey» — nidâ harfi."),
+            tok("أَبَانَا", "ab", "noun", ["vocative-munada", "five-nouns", "idafa-definiteness"], "مُنَادًى مُضَافٌ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْأَلِفُ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَنَا مُضَافٌ إِلَيْهِ.", "«O our father» — the annexed vocative, naṣb by the alif of the five nouns.", "«ey babamız» — muzâf münâdâ, beş isimden olduğu için elif ile mansub.", punct=punct, segments=[seg("أَبَا", "ab", "noun"), seg("نَا", "pron-1p", "pron")])]
+def lam_jazim(punct=None, wa=False):
+    return tok("وَلَمْ" if wa else "لَمْ", "lam-jazim", "part", ["lam-jazim"], W(wa) + "حَرْفُ نَفْيٍ وَجَزْمٍ وَقَلْبٍ.", Wen(wa) + "«did not» — negates, puts the verb in jazm and turns it to the past.", Wtr(wa) + "«-medi» — nefiy, cezm ve kalb harfi.", punct=punct, segments=(wa_("لَمْ", "lam-jazim", "part") if wa else None))
+def majzum_pl(full, lex, en, tr, tags=(), punct=None):
+    return tok(full, lex, "verb", ["lam-jazim", "afal-khamsa"] + list(tags), "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَمْ وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْوَاوُ فَاعِلٌ.", en + " — in jazm after lam, the nūn dropped; the wāw its doer.", tr + " — lem ile meczum, nûnun hazfi ile; vâv fâil.", punct=punct)
+def nahy(full, lex, en, tr, extra="", tags=(), punct=None, wa=False):
+    return tok(full, lex, "verb", ["la-nahiya"] + list(tags), W(wa) + "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَا النَّاهِيَةِ وَعَلَامَةُ جَزْمِهِ السُّكُونُ" + extra + "، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: أَنْتَ.", Wen(wa) + en + " — jazm after the prohibiting lā; «you» concealed.", Wtr(wa) + tr + " — nehiy lâ'sı ile meczum; fâil gizli «sen».", punct=punct, segments=(wa_(full[2:], lex, "verb") if wa else None))
+def la_nahiya_(wa=False):
+    return tok("وَلَا" if wa else "لَا", "la-nahiya", "part", ["la-nahiya"], W(wa) + "لَا النَّاهِيَةُ، حَرْفُ جَزْمٍ.", Wen(wa) + "«do not» — the prohibiting lā, a jazm particle.", Wtr(wa) + "«-me» — nehiy lâ'sı, cezm harfi.", segments=(wa_("لَا", "la-nahiya", "part") if wa else None))
+def hal_pron(full, lex, en, tr, punct=None):
+    return tok(full, lex, "pron", ["hal", "anwa-al-waw", "mubtada-khabar"], "الْوَاوُ حَالِيَّةٌ، وَالضَّمِيرُ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ حَالٌ.", "«while " + en + "» — the wāw of ḥāl; the detached pronoun is the mubtadaʾ of the ḥāl clause.", "«" + tr + " iken» — hâl vâvı; munfasıl zamir hâl cümlesinin mübtedâsı.", punct=punct, segments=[seg("وَ", "wa", "conj"), seg(full[2:], lex, "pron")])
+def khabar_waw(full, lex, en, tr, punct=None, tags=()):
+    return tok(full, lex, "noun", ["mubtada-khabar", "jam-mudhakkar-salim"] + list(tags), "خَبَرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الْوَاوُ لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ.", en + " — the khabar, rafʿ by the wāw of the sound masculine plural.", tr + " — haber, cem-i müzekker sâlim olduğu için vâv ile merfû.", punct=punct)
+def dhib_fail(punct=None): return fail("الذِّئْبُ", "dhib", "«the wolf»", "«kurt»", punct=punct)
+def an_(obj_of="أَرَادَ", en_of="«wanted»", tr_of="«istedi»"):
+    return tok("أَنْ", "an-masdariyya", "part", ["an-masdariyya"], f"حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ مَفْعُولٌ بِهِ لِـ{obj_of}.", f"«that» — the subjunctive maṣdar particle; the clause is the object of {en_of}.", f"«-mesini» — nasb eden masdariyye harfi; te'vilî masdar {tr_of}nin mef'ûlü.")
+def sa_mudari(full, lex, en, tr, hidden="هُوَ", tags=(), punct=None, wa=False, extra=""):
+    j = "وَ" if wa else ""
+    return tok(full, lex, "verb", ["mudari-marfu"] + list(tags), W(wa) + "السِّينُ حَرْفُ اسْتِقْبَالٍ، وَالْفِعْلُ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ" + (f"، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: {hidden}" if hidden else "") + extra + ".", Wen(wa) + en + " — the sīn of the future on a muḍāriʿ in rafʿ.", Wtr(wa) + tr + " — istikbal sîni muzârinin başında; merfû.", punct=punct, segments=([seg("وَ", "wa", "conj")] if wa else []) + [seg("سَ", "sa", "part"), seg(full[len(j) + 1:], lex, "verb")])
+def qad_(): return tok("قَدْ", "qad", "part", ["qad-harf"], "حَرْفُ تَحْقِيقٍ.", "«indeed» — the particle of confirmation before a past verb.", "«gerçekten» — tahkik harfi.")
+def akalahu(punct=None): return verb_enc("أَكَلَهُ", "akala", "هُ", "pron-3ms", "«ate him»", "«onu yedi»", mudari=False, hidden=None, punct=punct)
+def hadha_pron_jarr(full, lex, en, tr, punct=None):
+    return tok(full, lex, "pron", ["asma-al-ishara", "idafa-definiteness"], "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", en + " — a demonstrative, built; the muḍāf ilayh.", tr + " — ism-i işâret, mebnî; muzâfun ileyh.", punct=punct)
+
+
+def ikhwan_fail(punct=None): return ikhwa("الْإِخْوَانُ", "raf", "فَاعِلٌ", "«the brothers» — the doer (the other plural of أَخ)", "«kardeşler» — fâil («kardeş»in diğer cem'i)", tags=["fail"], punct=punct)
+def kana_khabar_jarr(full, lex, en, tr, prep, punct=None, tags=()):
+    return tok(full, lex, "noun", [K, "huruf-jarr"] + list(tags), f"مَجْرُورٌ بِـ{prep} وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ — وَشِبْهُ الْجُمْلَةِ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ.", en + " — in jarr; the phrase is kāna's khabar.", tr + " — mecrur; şibh-i cümle kâne'nin haberi.", punct=punct)
+def mazi_pl_naqis(full, lex, en, tr, tags=(), punct=None, wa=False):
+    return tok(full, lex, "verb", ["naqis-verbs"] + list(tags), W(wa) + "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى ضَمٍّ مُقَدَّرٍ عَلَى الْأَلِفِ الْمَحْذُوفَةِ لِالْتِقَاءِ السَّاكِنَيْنِ، وَالْوَاوُ فَاعِلٌ.", Wen(wa) + en + " — a nāqiṣ māḍī: its alif dropped before the group's wāw.", Wtr(wa) + tr + " — nâkıs mâzî: elifi cemi vâvından önce düşmüş.", punct=punct, segments=(wa_(full[2:], lex, "verb") if wa else None))
+def fa_mazi(full, lex, en, tr, hidden="هُوَ", tags=(), punct=None, extra_ar=""):
+    t = mazi(full, lex, en, tr, hidden=hidden, tags=["atf-nasaq"] + list(tags), punct=punct, extra_ar=extra_ar)
+    t["segments"] = [seg("فَ", "fa", "conj"), seg(full[2:], lex, "verb")]; t["irab"]["ar"] = "الْفَاءُ عَاطِفَةٌ، وَ" + t["irab"]["ar"]; t["irab"]["en"] = "«and so» + " + t["irab"]["en"]; t["irab"]["tr"] = "«böylece» + " + t["irab"]["tr"]
+    return t
+
+
+def aziz_fail(punct=None): return fail("الْعَزِيزُ", "aziz", "«the ʿAzīz»", "«Aziz»", punct=punct)
+def imraat_aziz(role_ar, en, tr, case="raf", punct=None, tags=()):
+    C = {"raf": "مَرْفُوعٌ بِالضَّمَّةِ", "nasb": "مَنْصُوبٌ بِالْفَتْحَةِ"}[case]
+    return [tok("امْرَأَةُ" if case == "raf" else "امْرَأَةَ", "imraa", "noun", list(tags) + ["idafa-definiteness"], role_ar + " " + C + "، وَهُوَ مُضَافٌ.", en + " — a muḍāf.", tr + " — muzâf."),
+            tok("الْعَزِيزِ", "aziz", "noun", ["idafa-definiteness"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.", "«the ʿAzīz» — the muḍāf ilayh.", "«Aziz» — muzâfun ileyh.", punct=punct)]
+def ila_sijn(punct=None, role="مُتَعَلِّقٌ بِالْفِعْلِ قَبْلَهُ"):
+    return [ila(), tok("السِّجْنِ", "sijn", "noun", ["huruf-jarr"], "مَجْرُورٌ بِإِلَى وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ — " + role + ".", "«the prison» — in jarr.", "«hapishane» — mecrur.", punct=punct)]
+def fa_idha(): return tok("فَإِذَا", "idha", "part", ["idha-shartiyya"], "الْفَاءُ عَاطِفَةٌ، وَإِذَا لِلْمُفَاجَأَةِ — حَرْفٌ (أَوْ ظَرْفُ مَكَانٍ) لَا يَلِيهِ إِلَّا جُمْلَةٌ اسْمِيَّةٌ.", "«and lo!» — the idhā of surprise; only a nominal sentence follows it.", "«bir de ne görsün» — mufâcee idhâ'sı; ardından yalnız isim cümlesi gelir.", segments=[seg("فَ", "fa", "conj"), seg("إِذَا", "idha", "part")])
+def man_istif(): return tok("مَنْ", "man-istifham", "pron", ["al-istifham", "mubtada-khabar"], "اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "«who» — the question noun as mubtadaʾ.", "«kim» — istifham ismi, mübtedâ.")
+def yashtari(): return tok("يَشْتَرِي", "ishtara", "verb", ["mubtada-khabar", "mudari-marfu", "form-viii-verbs", "naqis-verbs"], "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ.", "«buys» — a muḍāriʿ, the ḍamma estimated on the yāʾ; the clause is the khabar.", "«satın alır» — muzâri, zamme yâ üzerinde takdîrî; cümle haberdir.")
+def hadha_ghulam(punct=None):
+    return [ishara("هٰذَا", "hadha", "nasb", "«this»", "«bu»"), tok("الْغُلَامَ", "ghulam", "noun", ["badal"], "بَدَلٌ مِنِ اسْمِ الْإِشَارَةِ مَنْصُوبٌ بِالْفَتْحَةِ.", "«boy» — the badal of the demonstrative, in naṣb.", "«çocuğu» — ism-i işâretin bedeli, mansub.", punct=punct)]
+# ---------------------------------------------------------------- chapter-12 helpers
+def ahl_sijn(role_ar, en, tr, punct=None, tags=()):
+    return [tok("أَهْلُ", "ahl", "noun", list(tags) + ["idafa-definiteness"], role_ar + " مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.", "«the people (of)» — " + en + "; a muḍāf.", "«ehli» — " + tr + "; muzâf."),
+            tok("السِّجْنِ", "sijn", "noun", ["idafa-definiteness"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.", "«the prison» — the muḍāf ilayh.", "«zindan» — muzâfun ileyh.", punct=punct)]
+def name_ism_anna(full, lex, en, tr, punct=None):
+    return tok(full, lex, "propn", ["inna-wa-akhawatuha", "mamnu-min-sarf"], "اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.", en + " — the ism of anna; a diptote name.", tr + " — enne'nin ismi; gayr-i munsarıf özel isim.", punct=punct)
+def dual_mazi(full, lex, en, tr, tags=(), punct=None, wa=True, extra=""):
+    host = full[2:] if wa else full
+    return tok(full, lex, "verb", list(tags), W(wa) + "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْأَلِفُ ضَمِيرُ الِاثْنَيْنِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ" + extra + ".", Wen(wa) + en + " — a māḍī; the alif of the two is its doer.", Wtr(wa) + tr + " — mâzî; tesniye elifi fâildir.", punct=punct, segments=([seg("وَ", "wa", "conj")] if wa else []) + [seg(host[:-1], lex, "verb"), seg("ا", "pron-3md", "pron")])
+def mudari_1s(full, lex, en, tr, tags=(), punct=None, extra=""):
+    return tok(full, lex, "verb", ["mudari-marfu"] + list(tags), "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: أَنَا" + extra + ".", en + " — a muḍāriʿ; the doer «I» is concealed of necessity.", tr + " — muzari; fâil vücûben gizli «ben».", punct=punct)
+def alaysa(punct=None):
+    return tok("أَلَيْسَ", "laysa", "verb", ["al-istifham", K, "khuruj-al-istifham"], "الْهَمْزَةُ لِلِاسْتِفْهَامِ التَّقْرِيرِيِّ، وَلَيْسَ فِعْلٌ مَاضٍ نَاقِصٌ جَامِدٌ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.", "«are … not?» — the question hamza (expecting «yes») over the frozen laysa.", "«… değil mi?» — takrîrî istifham hemzesi, câmid nâkıs fiil leyse.", punct=punct, segments=[seg("أَ", "hamza-istifham", "part"), seg("لَيْسَ", "laysa", "verb")])
+def ala_q(punct=None):
+    return tok("أَلَا", "hamza-istifham", "part", ["al-istifham", "khuruj-al-istifham", "la-nafiya"], "الْهَمْزَةُ لِلِاسْتِفْهَامِ التَّقْرِيرِيِّ، وَلَا نَافِيَةٌ.", "«do … not?» — the question hamza over the negating lā: a question that affirms.", "«… değil mi?» — nefiy lâ'sı üzerinde takrîrî istifham hemzesi.", punct=punct, segments=[seg("أَ", "hamza-istifham", "part"), seg("لَا", "la-nafiya", "part")])
+def lakinnahu(punct=None):
+    return tok("وَلٰكِنَّهُ", "lakinna", "part", ["inna-wa-akhawatuha", "anwa-al-waw"], "الْوَاوُ عَاطِفَةٌ، وَلٰكِنَّ حَرْفُ اسْتِدْرَاكٍ مُشَبَّهٌ بِالْفِعْلِ، وَالْهَاءُ ضَمِيرٌ فِي مَحَلِّ نَصْبٍ اسْمُهَا.", "«but he» — lākinna with its pronoun ism.", "«fakat o» — lâkinne, zamir ismi.", punct=punct, segments=[seg("وَ", "wa", "conj"), seg("لٰكِنَّ", "lakinna", "part"), seg("هُ", "pron-3ms", "pron")])
+def kana_khabar_lakinna(punct=None):
+    return tok("كَانَ", "kana", "verb", [K, "hollow-verbs", "inna-wa-akhawatuha"], "كَانَ فِعْلٌ مَاضٍ نَاقِصٌ، وَاسْمُهَا مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ لٰكِنَّ.", "«he was» — kāna with «he» concealed; the clause is lākinna's khabar.", "«o … idi» — kâne; ismi gizli; cümle lâkinne'nin haberi.", punct=punct)
+def kana_bare(punct=None):
+    return tok("كَانَ", "kana", "verb", [K, "hollow-verbs"], "كَانَ فِعْلٌ مَاضٍ نَاقِصٌ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.", "«was» — kāna: it raises its ism and puts its khabar in naṣb.", "«idi» — kâne: ismini ref, haberini nasb eder.", punct=punct)
+def fi_sijn_khabar(punct=None, of="كَانَ"):
+    return [tok("فِي", "fi", "prep", ["huruf-jarr", K], "حَرْفُ جَرٍّ — وَشِبْهُ الْجُمْلَةِ فِي مَحَلِّ نَصْبٍ خَبَرُ " + of + ".", "«in» — the phrase is the khabar of " + ("kāna" if of == "كَانَ" else of) + ".", "«-de» — şibh-i cümle " + ("kâne'nin" if of == "كَانَ" else of) + " haberi."),
+            majrur("السِّجْنِ", "sijn", "«the prison»", "«zindan»", "فِي", punct=punct)]
+def kulli_(noun_full, noun_lex, noun_en, noun_tr, punct=None):
+    return [tok("كُلِّ", "kull", "noun", ["huruf-jarr", "idafa-definiteness"], "مَجْرُورٌ بِفِي وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ.", "«every» — in jarr after fī; a muḍāf.", "«her» — fî ile mecrur; muzâf."),
+            tok(noun_full, noun_lex, "noun", ["idafa-definiteness"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.", noun_en + " — the muḍāf ilayh.", noun_tr + " — muzâfun ileyh.", punct=punct)]
+
+
+# ---------------------------------------------------------------- chapter-13 helpers
+def li_al(full, lex, en, tr, punct=None, role="وَشِبْهُ الْجُمْلَةِ فِي مَحَلِّ رَفْعٍ خَبَرٌ"):
+    return tok(full, lex, "propn", ["huruf-jarr", "mubtada-khabar"], "اللَّامُ حَرْفُ جَرٍّ، وَلَفْظُ الْجَلَالَةِ مَجْرُورٌ بِالْكَسْرَةِ (دَخَلَتِ اللَّامُ عَلَى الْأَلِفِ فَحُذِفَتْ) — " + role + ".", en + " — the lām of jarr swallowing the article's alif; the phrase is the khabar.", tr + " — cer lâmı harf-i tarifin elifini yutmuş; şibh-i cümle haber.", punct=punct, segments=[seg("لِ", "li", "prep"), seg("لّٰهِ", "allah", "propn")])
+def mazi_1s(full, lex, en, tr, tags=(), punct=None, extra="", wa=False):
+    host = full[2:] if wa else full
+    return tok(full, lex, "verb", list(tags), W(wa) + "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرُ الْمُتَكَلِّمِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ" + extra + ".", Wen(wa) + en + " — a māḍī on sukūn before the speaker's tāʾ, which is its doer.", Wtr(wa) + tr + " — fâil tâ'sından önce sükûn üzere mâzî; tâ fâildir.", punct=punct, segments=([seg("وَ", "wa", "conj")] if wa else []) + [seg(host[:-2], lex, "verb"), seg("تُ", "pron-1s", "pron")])
+def lahuma(punct=None, role="مُتَعَلِّقٌ بِالْفِعْلِ قَبْلَهُ"):
+    return lahu("لَهُمَا", "هُمَا", "pron-3d", role + ".", "«to the two of them».", "«o ikisine».", punct=punct)
+def rabb_khabar(punct=None, first=False):
+    return tok("رَبُّ" if first else "وَرَبُّ", "rabb", "noun", ["mubtada-khabar", "idafa-definiteness"] + ([] if first else ["atf-nasaq"]), ("" if first else "الْوَاوُ عَاطِفَةٌ، وَ") + ("خَبَرٌ لِمُبْتَدَأٍ مَحْذُوفٍ تَقْدِيرُهُ: هٰذَا، مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ." if first else "رَبُّ مَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ."), ("«the lord (of)» — the khabar of an omitted «this»; a muḍāf." if first else "«and the lord (of)» — joined; a muḍāf."), ("«rabbi» — hazfedilmiş «bu»nun haberi; muzâf." if first else "«ve rabbi» — matuf; muzâf."), punct=punct, segments=(None if first else [seg("وَ", "wa", "conj"), seg("رَبُّ", "rabb", "noun")]))
+def rabb_mubt(punct=None, first=False):
+    return tok("رَبُّ" if first else "وَرَبُّ", "rabb", "noun", ["mubtada-khabar", "idafa-definiteness"] + ([] if first else ["atf-nasaq"]), ("" if first else "الْوَاوُ عَاطِفَةٌ، وَ") + ("مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ." if first else "رَبُّ مَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ."), ("«the lord (of)» — the delayed mubtadaʾ; a muḍāf." if first else "«and the lord (of)» — joined; a muḍāf."), ("«rabbi» — geciktirilmiş mübtedâ; muzâf." if first else "«ve rabbi» — matuf; muzâf."), punct=punct, segments=(None if first else [seg("وَ", "wa", "conj"), seg("رَبُّ", "rabb", "noun")]))
+def mi(full, lex, en, tr, punct=None):
+    return tok(full, lex, "noun", ["idafa-definiteness"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.", en + " — the muḍāf ilayh.", tr + " — muzâfun ileyh.", punct=punct)
+def four_lords(khabar=True, punct="."):
+    f = rabb_khabar if khabar else rabb_mubt
+    return [f(first=True), mi("الْبَرِّ", "barr", "«the land»", "«kara»"), f(), mi("الْبَحْرِ", "bahr", "«the sea»", "«deniz»"), f(), mi("الرِّزْقِ", "rizq", "«provision»", "«rızık»"), f(), mi("الْمَطَرِ", "matar", "«the rain»", "«yağmur»", punct=punct)]
+def wa_lakinna(punct=None):
+    return tok("وَلٰكِنَّ", "lakinna", "part", ["inna-wa-akhawatuha", "anwa-al-waw"], "الْوَاوُ عَاطِفَةٌ، وَلٰكِنَّ حَرْفُ اسْتِدْرَاكٍ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ.", "«but» — lākinna, a sister of inna.", "«fakat» — lâkinne, inne'nin kız kardeşi.", punct=punct, segments=[seg("وَ", "wa", "conj"), seg("لٰكِنَّ", "lakinna", "part")])
+def akthar_nas():
+    return [tok("أَكْثَرَ", "akthar", "noun", ["inna-wa-akhawatuha", "idafa-definiteness"], "اسْمُ لٰكِنَّ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ.", "«most (of)» — the ism of lākinna; a muḍāf.", "«çoğu» — lâkinne'nin ismi; muzâf."), mi("النَّاسِ", "nas", "«the people»", "«insanlar»")]
+def allamani_rabbi(punct=None, extra=""):
+    return [verb_enc("عَلَّمَنِي", "allama", "نِي", "pron-1s", "«taught me»", "«bana öğretti»", mudari=False, hidden=None, tags=["form-ii-verbs", "ya-al-mutakallim"], extra=extra),
+            tok("رَبِّي", "rabb", "noun", ["fail", "ya-al-mutakallim", "idafa-definiteness"], "فَاعِلٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَهُوَ مُضَافٌ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.", "«my Lord» — the doer, its ḍamma estimated before the speaker's yāʾ.", "«Rabbim» — fâil; zammesi mütekellim yâ'sından önce takdîrî.", punct=punct, segments=[seg("رَبِّ", "rabb", "noun"), seg("ي", "pron-1s", "pron")])]
+def dhalikuma():
+    return tok("ذٰلِكُمَا", "dhalika", "pron", ["asma-al-ishara", "mubtada-khabar"], "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَالْكَافُ لِلْخِطَابِ وَالْمِيمُ وَالْأَلِفُ لِلتَّثْنِيَةِ.", "«that (you two)» — the demonstrative, the mubtadaʾ; its kāf addresses the two.", "«işte bu (ikinize)» — ism-i işâret, mübtedâ; kâfı tesniye muhâtaplarına.")
+def mimma():
+    return tok("مِمَّا", "min", "prep", ["huruf-jarr", "ism-mawsul", "mubtada-khabar"], "مِنْ حَرْفُ جَرٍّ، وَمَا اسْمٌ مَوْصُولٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ — وَشِبْهُ الْجُمْلَةِ فِي مَحَلِّ رَفْعٍ خَبَرٌ.", "«of what» — min fused with the relative mā; the phrase is the khabar.", "«-den» — min ile ism-i mevsûl mâ bitişik; şibh-i cümle haber.", segments=[seg("مِمْ", "min", "prep"), seg("مَا", "ma-mawsula", "pron")])
+def amr_pl(full, lex, en, tr, tags=(), punct=None, wa=False, fa=False, extra=""):
+    j = "وَ" if wa else ("فَ" if fa else "")
+    return tok(full, lex, "verb", ["imperative-amr"] + list(tags), (("الْوَاوُ عَاطِفَةٌ، وَ" if wa else "الْفَاءُ عَاطِفَةٌ، وَ") if j else "") + "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْوَاوُ فَاعِلٌ" + extra + ".", (Wen(wa) if wa else ("«and so» + " if fa else "")) + en + " — a plural imperative, built on the dropped nūn; the wāw is the doer.", (Wtr(wa) if wa else ("«ve» + " if fa else "")) + tr + " — nûnun hazfi üzere mebnî cemi emir; vâv fâildir.", punct=punct, segments=([seg(j, "wa" if wa else "fa", "conj"), seg(full[2:], lex, "verb")] if j else None))
+def ila_al(full, lex, en, tr, punct=None, wa=False):
+    return [tok("وَإِلَى" if wa else "إِلَى", "ila", "prep", ["huruf-jarr"] + (["atf-nasaq"] if wa else []), W(wa) + "حَرْفُ جَرٍّ.", Wen(wa) + "«to».", Wtr(wa) + "«-e».", segments=(wa_("إِلَى", "ila", "prep") if wa else None)), majrur(full, lex, en, tr, "إِلَى", punct=punct)]
+
+
+# ---------------------------------------------------------------- chapter-14 helpers
+def khabar_mudari(full, lex, tags, en, tr, punct=None, hidden="هُوَ"):
+    return tok(full, lex, "verb", ["mubtada-khabar", "mudari-marfu"] + list(tags), f"فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ، وَالْفَاعِلُ مُسْتَتِرٌ: {hidden} — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ.", en + " — a muḍāriʿ, its ḍamma estimated; the clause is the khabar.", tr + " — muzâri, zammesi takdîrî; cümle haberdir.", punct=punct)
+def nat_jarr(full, lex, en, tr, punct=None, tags=(), extra=""):
+    return tok(full, lex, "noun", ["naat-sifa"] + list(tags), "نَعْتٌ مَجْرُورٌ بِالْكَسْرَةِ" + extra + ".", en + " — the naʿt, in jarr.", tr + " — sıfat, mecrur.", punct=punct)
+def sab_maful(full="سَبْعَ", punct=None, wa=False, zarf=False):
+    ar = ("ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ" if zarf else "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ — اسْمُ عَدَدٍ")
+    if wa: ar = "الْوَاوُ عَاطِفَةٌ، وَسَبْعَ مَعْطُوفٌ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ — اسْمُ عَدَدٍ"
+    return tok(full, "sab-seven", "noun", (["atf-nasaq"] if wa else []) + (["maful-fih"] if zarf else ["maful-bihi"]) + ["idafa-definiteness"], ar + ".", Wen(wa) + "«seven» — " + ("an adverb of time" if zarf else ("joined, in naṣb" if wa else "the object")) + "; a muḍāf (the number 3–10 annexes its counted noun, a plural in jarr).", Wtr(wa) + "«yedi» — " + ("zaman zarfı" if zarf else ("ma'tûf, mansub" if wa else "mef'ûl")) + "; muzâf (3–10 arası sayı, ma'dûdunu cemi mecrur olarak muzâfun ileyh yapar).", punct=punct, segments=(wa_("سَبْعَ", "sab-seven", "noun") if wa else None))
+def madud(full, lex, en, tr, punct=None, tags=()):
+    return tok(full, lex, "noun", ["idafa-definiteness", "jam-muannath-salim"] + list(tags), "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ — جَمْعُ مُؤَنَّثٍ سَالِمٌ، وَهُوَ الْمَعْدُودُ.", en + " — the counted noun as muḍāf ilayh; a sound feminine plural.", tr + " — ma'dûd, muzâfun ileyh; cem-i müennes sâlim.", punct=punct)
+def sinin(full="سِنِينَ", role="مُضَافٌ إِلَيْهِ مَجْرُورٌ", sign="الْيَاءُ", en="«years»", tr="«yıl»", punct=None, tags=(), en_role="the muḍāf ilayh", tr_role="muzâfun ileyh"):
+    return tok(full, "sana", "noun", list(tags) + ["jam-mudhakkar-salim"], role + " وَعَلَامَةُ " + ("جَرِّهِ" if "مَجْرُور" in role else "نَصْبِهِ") + " " + sign + " لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ.", en + " — " + en_role + "; سِنُونَ is attached to the sound masculine plural and declines by its letter.", tr + " — " + tr_role + "; سِنُونَ cem-i müzekker sâlime mülhaktır, harfle i'rab olunur.", punct=punct)
+def saqi_fail(full="السَّاقِي", wa=False, punct=None):
+    return tok(full, "saqi", "noun", ["fail", "ism-maqsur-manqus"], "فَاعِلٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ لِلثِّقَلِ — اسْمٌ مَنْقُوصٌ.", "«the cupbearer» — the doer; a manqūṣ, its ḍamma estimated on the yāʾ.", "«sâkî» — fâil; ism-i mankûs, zammesi yâ üzerinde takdîrîdir.", punct=punct)
+def malik_(full, case, role_ar, en, tr, punct=None, tags=()):
+    C = {"raf": "مَرْفُوعٌ بِالضَّمَّةِ", "nasb": "مَنْصُوبٌ بِالْفَتْحَةِ", "jarr": "مَجْرُورٌ بِالْكَسْرَةِ"}[case]
+    return tok(full, "malik-king", "noun", list(tags), role_ar + " " + C + ".", en, tr, punct=punct)
+def tawil_jarr(full="بِتَأْوِيلِ", prep="بِ", en="«with the interpretation (of)»", tr="«tabiriyle»", punct=None, tags=()):
+    p = {"بِ": "bi", "عَنْ": None}[prep]
+    segs = [seg("بِ", "bi", "prep"), seg("تَأْوِيلِ", "tawil", "noun")] if prep == "بِ" else None
+    return tok(full, "tawil", "noun", ["huruf-jarr", "idafa-definiteness"] + list(tags), ("الْبَاءُ حَرْفُ جَرٍّ، وَتَأْوِيلِ " if prep == "بِ" else "") + f"مَجْرُورٌ بِـ{prep} وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ.", en + " — in jarr; a muḍāf.", tr + " — mecrur; muzâf.", punct=punct, segments=segs)
+def ruya_mi(full="الرُّؤْيَا", punct=None, pron=None):
+    if pron:
+        return tok(full, "ruya-dream", "noun", ["idafa-definiteness", "ism-maqsur-manqus"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ، وَهُوَ مُضَافٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ.", "«his dream» — the muḍāf ilayh (a maqṣūr: its kasra estimated), itself annexed to the pronoun.", "«rüyası» — muzâfun ileyh (maksûr: kesresi takdîrî), zamire muzâf.", punct=punct, segments=[seg("رُؤْيَا", "ruya-dream", "noun"), seg(pron, "pron-3ms", "pron")])
+    return tok(full, "ruya-dream", "noun", ["idafa-definiteness", "ism-maqsur-manqus"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ — اسْمٌ مَقْصُورٌ.", "«the dream» — the muḍāf ilayh; a maqṣūr, its kasra estimated on the alif.", "«rüya» — muzâfun ileyh; maksûr, kesresi elif üzerinde takdîrî.", punct=punct)
+def an_sijn(punct=None): return [ila(), tok("السِّجْنِ", "sijn", "noun", ["huruf-jarr"], "مَجْرُورٌ بِإِلَى وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ — مُتَعَلِّقٌ بِذَهَبَ.", "«the prison» — in jarr.", "«zindan» — mecrur.", punct=punct)]
+def hadhihi_(case, punct=None, tags=()):
+    C = {"nasb": "فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ مُقَدَّمٌ", "jarr": "فِي مَحَلِّ جَرٍّ"}[case]
+    return tok("هٰذِهِ", "hadhihi", "pron", ["asma-al-ishara"] + list(tags), "اسْمُ إِشَارَةٍ مَبْنِيٌّ " + C + ".", "«these / this» — a demonstrative, built; " + ("the object, fronted." if case == "nasb" else "in the place of jarr."), "«bu» — ism-i işâret, mebnî; " + ("mukaddem mef'ûl." if case == "nasb" else "mahallen mecrur."), punct=punct)
+def badal_(full, lex, case, en, tr, punct=None, extra="", sign=None):
+    C = {"raf": "مَرْفُوعٌ بِالضَّمَّةِ", "nasb": "مَنْصُوبٌ بِالْفَتْحَةِ", "jarr": "مَجْرُورٌ بِالْكَسْرَةِ"}[case]
+    if sign: C = sign
+    return tok(full, lex, "noun", ["badal", "asma-al-ishara"], "بَدَلٌ مِنِ اسْمِ الْإِشَارَةِ " + C + extra + ".", en + " — the badal of the demonstrative.", tr + " — ism-i işâretin bedeli.", punct=punct)
+
+
+# ---------------------------------------------------------------- chapter-15 helpers
+def name_ism_lakinna(full, lex="yusuf", en="«Yūsuf»", tr="«Yusuf»", punct=None):
+    return tok(full, lex, "propn", ["inna-wa-akhawatuha", "mamnu-min-sarf"], "اسْمُ لٰكِنَّ مَنْصُوبٌ بِالْفَتْحَةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.", en + " — the ism of lākinna; a diptote name.", tr + " — lâkinne'nin ismi; gayr-i munsarıf özel isim.", punct=punct)
+def man_mubt(punct=None):
+    return tok("مَنْ", "man-istifham", "pron", ["al-istifham", "mubtada-khabar"], "اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "«who» — the question noun as mubtadaʾ.", "«kim» — istifham ismi, mübtedâ.", punct=punct)
+def man_shart(full="وَمَنْ", wa=True):
+    return tok(full, "man", "pron", ["anwa-al-waw", "ism-mawsul", "mubtada-khabar"], W(wa) + "مَنْ اسْمٌ مَوْصُولٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ (وَيَصِحُّ جَعْلُهَا شَرْطِيَّةً).", Wen(wa) + "«whoever» — the relative مَنْ as mubtadaʾ (a conditional reading is also possible).", Wtr(wa) + "«her kim» — mevsûl men, mübtedâ (şart okunuşu da mümkündür).", segments=(wa_("مَنْ", "man", "pron") if wa else None))
+def khabar_raf(full, lex, en, tr, punct=None, tags=(), extra=""):
+    return tok(full, lex, "noun", ["mubtada-khabar"] + list(tags), "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ" + extra + ".", en + " — the khabar.", tr + " — haber.", punct=punct)
+def mubt_raf(full, lex, en, tr, punct=None, tags=(), extra=""):
+    return tok(full, lex, "noun", ["mubtada-khabar"] + list(tags), "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ" + extra + ".", en + " — the mubtadaʾ.", tr + " — mübtedâ.", punct=punct)
+def rasul_malik(role_ar, en, tr, punct=None, tags=()):
+    return [tok("رَسُولُ", "rasul", "noun", list(tags) + ["idafa-definiteness"], role_ar + " مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.", "«the messenger (of)» — " + en + "; a muḍāf.", "«elçisi» — " + tr + "; muzâf."), mi("الْمَلِكِ", "malik-king", "«the king»", "«kral»", punct=punct)]
+def khazain_ard(prep=None, punct=None, role="مُتَعَلِّقٌ بِمَا قَبْلَهُ", case="jarr", tags=()):
+    if prep == "بِ":
+        first = tok("بِخَزَائِنِ", "khizana", "noun", ["huruf-jarr", "idafa-definiteness", "mamnu-min-sarf"] + list(tags), "الْبَاءُ حَرْفُ جَرٍّ، وَخَزَائِنِ مَجْرُورٌ بِالْكَسْرَةِ لِأَنَّهُ مُضَافٌ (وَلَوْلَا الْإِضَافَةُ لَجُرَّ بِالْفَتْحَةِ، فَهُوَ صِيغَةُ مُنْتَهَى الْجُمُوعِ) — " + role + ".", "«with the treasuries (of)» — in jarr after the bāʾ; a muḍāf, so the diptote plural takes its kasra.", "«hazineleriyle» — bâ ile mecrur; muzâf olduğu için gayr-i munsarıf cemi kesre alır.", segments=[seg("بِ", "bi", "prep"), seg("خَزَائِنِ", "khizana", "noun")])
+    elif prep == "لِ":
+        first = tok("لِخَزَائِنِ", "khizana", "noun", ["huruf-jarr", "idafa-definiteness", "mamnu-min-sarf"] + list(tags), "اللَّامُ حَرْفُ جَرٍّ، وَخَزَائِنِ مَجْرُورٌ بِالْكَسْرَةِ لِأَنَّهُ مُضَافٌ — " + role + ".", "«for the treasuries (of)» — in jarr after the lām; a muḍāf.", "«hazineleri için» — lâm ile mecrur; muzâf.", segments=[seg("لِ", "li", "prep"), seg("خَزَائِنِ", "khizana", "noun")])
+    elif case == "raf":
+        first = tok("خَزَائِنُ", "khizana", "noun", ["mubtada-khabar", "idafa-definiteness", "mamnu-min-sarf"] + list(tags), "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.", "«the treasuries (of)» — the delayed mubtadaʾ; a muḍāf.", "«hazineleri» — muahhar mübtedâ; muzâf.")
+    else:
+        first = tok("خَزَائِنِ", "khizana", "noun", ["huruf-jarr", "idafa-definiteness", "mamnu-min-sarf"] + list(tags), "مَجْرُورٌ بِعَلَى وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ لِأَنَّهُ مُضَافٌ — " + role + ".", "«the treasuries (of)» — in jarr after ʿalā; a muḍāf.", "«hazineleri» — alâ ile mecrur; muzâf.")
+    return [first, mi("الْأَرْضِ", "ard", "«the land»", "«yeryüzü»", punct=punct)]
+def hafiz_alim(case="nasb", of="كَانَ", punct=None, tags=()):
+    if case == "nasb":
+        return [tok("حَفِيظًا", "hafiz-keeper", "noun", [K, "sifa-mushabbaha"] + list(tags), "خَبَرُ كَانَ مَنْصُوبٌ بِالْفَتْحَةِ.", "«a keeper» — kāna's khabar.", "«koruyucu» — kâne'nin haberi."),
+                tok("عَلِيمًا", "alim", "noun", [K, "sifa-mushabbaha"], "خَبَرٌ ثَانٍ لِكَانَ مَنْصُوبٌ بِالْفَتْحَةِ.", "«knowing» — a second khabar of kāna.", "«bilen» — kâne'nin ikinci haberi.", punct=punct)]
+    return [tok("حَفِيظٌ", "hafiz-keeper", "noun", ["inna-wa-akhawatuha", "sifa-mushabbaha"] + list(tags), "خَبَرُ إِنَّ مَرْفُوعٌ بِالضَّمَّةِ.", "«a keeper» — inna's khabar.", "«koruyucu» — inne'nin haberi."),
+            tok("عَلِيمٌ", "alim", "noun", ["inna-wa-akhawatuha", "sifa-mushabbaha"], "خَبَرٌ ثَانٍ لِإِنَّ مَرْفُوعٌ بِالضَّمَّةِ.", "«knowing» — a second khabar of inna.", "«bilen» — inne'nin ikinci haberi.", punct=punct)]
+def kana_yalamu(verb_full, lex, en, tr, tags=(), hidden="هُوَ", punct=None):
+    return [kana(), yusuf_ism_kana(), khabar_kana_mudari(verb_full, lex, en, tr, tags=tags, hidden=hidden, punct=punct)]
+def anna_ism(full, lex, en, tr, punct=None, tags=()):
+    return tok(full, lex, "noun", ["inna-wa-akhawatuha"] + list(tags), "اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.", en + " — the ism of anna.", tr + " — enne'nin ismi.", punct=punct)
+def anna_khabar(full, lex, en, tr, punct=None, tags=()):
+    return tok(full, lex, "noun", ["inna-wa-akhawatuha"] + list(tags), "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ.", en + " — the khabar of anna.", tr + " — enne'nin haberi.", punct=punct)
+def fi_nas(punct=None):
+    return [fi(), majrur("النَّاسِ", "nas", "«the people»", "«insanlar»", "فِي", punct=punct)]
+def amwal(full, prep_ar, en, tr, punct=None, mudaf_ilayh=("اللهِ", "allah", "propn", "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.", "«Allah» — the muḍāf ilayh.", "«Allah» — muzâfun ileyh.")):
+    first = tok(full, "mal", "noun", ["huruf-jarr", "idafa-definiteness", "jam-taksir"] if prep_ar else ["maful-bihi", "idafa-definiteness", "jam-taksir"], (f"مَجْرُورٌ بِـ{prep_ar} وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ" if prep_ar else "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ") + "، وَهُوَ مُضَافٌ — جَمْعُ مَالٍ.", en + " — a muḍāf; the plural of مَال.", tr + " — muzâf; «mal»ın cem'i.")
+    w, lx, ps, ar, e, t = mudaf_ilayh
+    return [first, tok(w, lx, ps, ["idafa-definiteness"], ar, e, t, punct=punct)]
+def la_yajidu(punct=None):
+    return [la_nafiya(wa=True), neg_mudari("يَجِدُ", "wajada", "«find»", "«bulur»", hidden=None, tags=["mithal-verbs"], extra=" — مِثَالٌ وَاوِيٌّ حُذِفَتْ وَاوُهُ"), nas_fail(),
+            tok("مَا", "ma-mawsula", "pron", ["ism-mawsul", "maful-bihi"], "اسْمٌ مَوْصُولٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.", "«what» — the relative, as object.", "«-ecek şey» — ism-i mevsûl, mef'ûl.")]
+def kana_ism_hidden_khabar(kh_full, kh_lex, kh_en, kh_tr, punct=None, wa=True, tags=()):
+    return [kana_hidden(wa=wa), khabar_kana(kh_full, kh_lex, kh_en, kh_tr, punct=punct, tags=tags)]
+def ma_nafiya_(wa=True):
+    return tok("وَمَا" if wa else "مَا", "ma-nafiya", "part", ["anwa-ma", "anwa-al-waw"], W(wa) + "مَا نَافِيَةٌ لَا عَمَلَ لَهَا.", Wen(wa) + "«not» — the negating mā, no government.", Wtr(wa) + "«değil» — nefiy mâ'sı, amel etmez.", segments=(wa_("مَا", "ma-nafiya", "part") if wa else None))
+
+
+# ---------------------------------------------------------------- chapter-16 helpers
+def fi_misr(role="مُتَعَلِّقٌ بِمَا قَبْلَهُ", punct=None, khabar_of=None, wa=False):
+    ar = "حَرْفُ جَرٍّ" + (f" — وَشِبْهُ الْجُمْلَةِ فِي مَحَلِّ {khabar_of}" if khabar_of else "")
+    return [tok("وَفِي" if wa else "فِي", "fi", "prep", ["huruf-jarr"] + (["anwa-al-waw"] if wa else []), W(wa) + ar + ".", Wen(wa) + "«in»" + (" — the phrase is the fronted khabar." if khabar_of else "."), Wtr(wa) + "«-de»" + (" — şibh-i cümle mukaddem haber." if khabar_of else "."), segments=(wa_("فِي", "fi", "prep") if wa else None)),
+            tok("مِصْرَ", "misr", "propn", ["huruf-jarr", "mamnu-min-sarf"], "مَجْرُورٌ بِفِي وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ لِأَنَّهُ عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ — " + role + ".", "«Egypt» — in jarr by a fatḥa: a diptote name.", "«Mısır» — fetha ile mecrur: gayr-i munsarıf özel isim.", punct=punct)]
+def ikhwat_yusuf(role_ar, en, tr, case="raf", punct=None, tags=()):
+    C = {"raf": "مَرْفُوعٌ بِالضَّمَّةِ", "nasb": "مَنْصُوبٌ بِالْفَتْحَةِ", "jarr": "مَجْرُورٌ بِالْكَسْرَةِ"}[case]
+    return [tok({"raf": "إِخْوَةُ", "nasb": "إِخْوَةَ", "jarr": "إِخْوَةِ"}[case], "akh", "noun", list(tags) + ["idafa-definiteness", "jam-taksir"], role_ar + " " + C + "، وَهُوَ مُضَافٌ — جَمْعُ أَخٍ.", "«the brothers (of)» — " + en + "; a muḍāf.", "«kardeşleri» — " + tr + "; muzâf."),
+            name_mudaf_ilayh("يُوسُفَ", "yusuf", "«Yūsuf»", "«Yusuf»", punct=punct)]
+def hum_mubt(full="وَهُمْ", wa=True, hal=True, punct=None):
+    return tok(full, "hum", "pron", (["hal", "anwa-al-waw"] if hal else ["anwa-al-waw"]) + ["mubtada-khabar"], (("الْوَاوُ حَالِيَّةٌ، وَ" if hal else "الْوَاوُ عَاطِفَةٌ، وَ") if wa else "") + "هُمْ ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ" + (" — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ حَالٌ" if hal else "") + ".", ("«while they» — the wāw of ḥāl; " if hal else "«and they» — ") + "the detached pronoun as mubtadaʾ.", ("«onlar … iken» — hâl vâvı; " if hal else "«ve onlar» — ") + "munfasıl zamir, mübtedâ.", punct=punct, segments=(wa_("هُمْ", "hum", "pron") if wa else None))
+def la_yarifun(punct=None, extra=""):
+    return [la_nafiya(), khamsa("يَعْرِفُونَ", "arafa", "«know»", "«bilirler»", tags=["la-nafiya", "mubtada-khabar"], extra_ar=" — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ" + extra, punct=punct)]
+def annahu(obj_of="يَعْرِفُونَ", en_of="«know»", tr_of="«bilirler»"):
+    return tok("أَنَّهُ", "anna", "part", ["inna-wa-akhawatuha"], f"أَنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالْهَاءُ ضَمِيرٌ فِي مَحَلِّ نَصْبٍ اسْمُهَا — وَالْمَصْدَرُ الْمُؤَوَّلُ مَفْعُولُ {obj_of}.", f"«that he» — anna with its pronoun ism; the clause is the object of {en_of}.", f"«onun …-duğunu» — enne, zamir ismi; te'vilî masdar {tr_of}nin mef'ûlü.", segments=[seg("أَنَّ", "anna", "part"), seg("هُ", "pron-3ms", "pron")])
+def fi_bir(punct=None, of="كَانَ"):
+    return [tok("فِي", "fi", "prep", ["huruf-jarr", K], "حَرْفُ جَرٍّ — وَشِبْهُ الْجُمْلَةِ فِي مَحَلِّ نَصْبٍ خَبَرُ " + of + ".", "«in» — the phrase is kāna's khabar.", "«-de» — şibh-i cümle kâne'nin haberi."), majrur("الْبِئْرِ", "bir", "«the well»", "«kuyu»", "فِي", punct=punct)]
+def bir_ism_kanat(punct=None): return tok("الْبِئْرُ", "bir", "noun", [K], "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ.", "«the well» — kāna's ism.", "«kuyu» — kâne'nin ismi.", punct=punct)
+def haula_ism_anna(punct=None):
+    return tok("هٰؤُلَاءِ", "haulai", "pron", ["inna-wa-akhawatuha", "asma-al-ishara"], "اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ نَصْبٍ اسْمُ أَنَّ.", "«these» — the plural demonstrative, built on kasra, as anna's ism.", "«bunlar» — cemi ism-i işâret, kesre üzere mebnî, enne'nin ismi.", punct=punct)
+def humu_fasl(punct=None):
+    return tok("هُمُ", "hum", "pron", ["damir-fasl", "inna-wa-akhawatuha"], "ضَمِيرُ فَصْلٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ (وَيَجُوزُ جَعْلُهُ مُبْتَدَأً وَمَا بَعْدَهُ خَبَرُهُ)، وَضُمَّتْ مِيمُهُ لِالْتِقَاءِ السَّاكِنَيْنِ.", "«they» — the pronoun of separation, with no place in iʿrāb (or a mubtadaʾ with the relative as its khabar); its mīm takes a ḍamma before the wasl.", "«onlar» — fasl zamiri, mahalli yok (ya da mübtedâ, mevsûl haberi); mîmi iki sâkinin karşılaşması için zammeli.", punct=punct)
+def alladhina_khabar(punct=None):
+    return tok("الَّذِينَ", "alladhina", "pron", ["ism-mawsul", "inna-wa-akhawatuha"], "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ خَبَرُ أَنَّ.", "«the ones who» — the plural relative, as anna's khabar.", "«onlar ki» — cemi ism-i mevsûl, enne'nin haberi.", punct=punct)
+
+
+# ---------------------------------------------------------------- chapter-17 helpers
+def qalu_(punct=":"): return qalu(punct=punct)
+def lakum(punct=None, role="مُتَعَلِّقٌ بِمَا قَبْلَهُ", tags=()):
+    return lahu("لَكُمْ", "كُمْ", "pron-2mp", role + ".", "«to you (pl.)».", "«size».", tags=tags, punct=punct)
+def lana(punct=None, role="وَشِبْهُ الْجُمْلَةِ فِي مَحَلِّ رَفْعٍ خَبَرٌ مُقَدَّمٌ", tags=("mubtada-khabar",)):
+    return lahu("لَنَا", "نَا", "pron-1p", role + ".", "«we have» — the fronted khabar.", "«bizim var» — mukaddem haber.", tags=tags, punct=punct)
+def akh_mubt_muakhkhar(punct=None):
+    return tok("أَخٌ", "akh", "noun", ["mubtada-khabar"], "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ بِالضَّمَّةِ.", "«a brother» — the delayed mubtadaʾ.", "«bir kardeş» — muahhar mübtedâ.", punct=punct)
+def ismuhu_name(name_full, name_lex, name_en, name_tr, punct=None):
+    return [mudaf_pron("اسْمُهُ", "ism-name", "هُ", "pron-3ms", "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ", "«his name» — the mubtadaʾ of the describing clause", "«adı» — sıfat cümlesinin mübtedâsı", tags=["mubtada-khabar", "naat-sifa"]),
+            tok(name_full, name_lex, "propn", ["mubtada-khabar", "mamnu-min-sarf"], "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ؛ وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ نَعْتٌ لِأَخٍ.", name_en + " — the khabar; the clause describes «a brother».", name_tr + " — haber; cümle «kardeş»in sıfatıdır.", punct=punct)]
+def abu_kum(full="أَبُوكُمْ", role_ar="خَبَرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الْوَاوُ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ", en="«your father» — the khabar, rafʿ by the wāw of the five nouns", tr="«babanız» — haber, beş isimden olduğu için vâv ile merfû", tags=("mubtada-khabar",), punct=None):
+    host = full[:-len("كُمْ")]
+    return tok(full, "ab", "noun", list(tags) + ["five-nouns", "idafa-definiteness"], role_ar + "، وَهُوَ مُضَافٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ.", en + "; annexed to the pronoun.", tr + "; zamire muzâf.", punct=punct, segments=[seg(host, "ab", "noun"), seg("كُمْ", "pron-2mp", "pron")])
+
+
+# ---------------------------------------------------------------- chapter-18 helpers
+def abihim(prep="إِلَى", punct=None, role="مُتَعَلِّقٌ بِمَا قَبْلَهُ"):
+    full = {"إِلَى": "أَبِيهِمْ", "لِ": "لِأَبِيهِمْ"}[prep]
+    segs = ([seg("لِ", "li", "prep")] if prep == "لِ" else []) + [seg("أَبِي", "ab", "noun"), seg("هِمْ", "pron-3mp", "pron")]
+    return tok(full, "ab", "noun", ["huruf-jarr", "five-nouns", "idafa-definiteness"], ("اللَّامُ حَرْفُ جَرٍّ، وَ" if prep == "لِ" else "") + f"مَجْرُورٌ بِـ{prep} وَعَلَامَةُ جَرِّهِ الْيَاءُ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ — " + role + ".", "«their father» — in jarr by the yāʾ of the five nouns; annexed to the pronoun.", "«babaları» — beş isimden olduğu için yâ ile mecrur; zamire muzâf.", punct=punct, segments=segs)
+def arsil(full="أَرْسِلْ", punct=None):
+    return tok(full, "arsala", "verb", ["imperative-amr", "form-iv-verbs"], "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: أَنْتَ.", "«send» — an imperative on sukūn; «you» concealed.", "«gönder» — sükûn üzere mebnî emir; fâil gizli «sen».", punct=punct)
+def akh_five(full, pron_seg, pron_lex, role_ar, sign, en, tr, punct=None, tags=()):
+    host = full[:len(full) - len(pron_seg)]
+    return tok(full, "akh", "noun", list(tags) + ["five-nouns", "idafa-definiteness"], role_ar + " وَعَلَامَةُ " + sign + " لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ.", en + " — one of the five nouns, declining by a letter; annexed to the pronoun.", tr + " — beş isimden, harfle i'rab olunur; zamire muzâf.", punct=punct, segments=[seg(host, "akh", "noun"), seg(pron_seg, pron_lex, "pron")])
+def binyamin_maful(punct=None): return name_maful("بِنْيَامِينَ", "binyamin", "«Binyāmīn»", "«Bünyamin'i»", punct=punct)
+def hafiz_tamyiz(punct=None):
+    return tok("حَافِظًا", "hafiz", "noun", ["tamyiz", "ism-fail"], "تَمْيِيزٌ مَنْصُوبٌ بِالْفَتْحَةِ (مُحَوَّلٌ عَنِ الْمُبْتَدَأِ: حِفْظُ اللهِ خَيْرٌ).", "«as a keeper» — the tamyīz of «best» (turned from «Allah's keeping is best»).", "«koruyucu olarak» — temyiz («Allah'ın koruması hayırlıdır»dan çevrilmiş).", punct=punct)
+
+
+# ---------------------------------------------------------------- chapter-19 helpers
+def ikhwa_fail(full="الْإِخْوَةُ", punct=None): return ikhwa(full, "raf", "فَاعِلٌ", "«the brothers» — the doer", "«kardeşler» — fâil", tags=["fail"], punct=punct)
+def binyamin_fail(punct=None): return fail_name("بِنْيَامِينُ", "binyamin", "«Binyāmīn»", "«Bünyamin»", punct=punct)
+def indahu(punct=None, role="مُتَعَلِّقٌ بِمَا قَبْلَهُ", tags=()):
+    return tok("عِنْدَهُ", "inda", "noun", ["maful-fih", "idafa-definiteness"] + list(tags), "ظَرْفُ مَكَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — " + role + ".", "«with him» — the adverb of place annexed to the pronoun.", "«yanında» — zamire muzâf mekân zarfı.", punct=punct, segments=[seg("عِنْدَ", "inda", "noun"), seg("هُ", "pron-3ms", "pron")])
+def kayfa_sabil(wa=True, punct=None):
+    return [tok("وَكَيْفَ" if wa else "كَيْفَ", "kayfa", "noun", ["al-istifham", "mubtada-khabar"] + (["anwa-al-waw"] if wa else []), W(wa) + "كَيْفَ اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ خَبَرٌ مُقَدَّمٌ.", Wen(wa) + "«how» — the question noun as the fronted khabar.", Wtr(wa) + "«nasıl» — istifham ismi, mukaddem haber.", segments=(wa_("كَيْفَ", "kayfa", "noun") if wa else None)),
+            mubt_raf("السَّبِيلُ", "sabil", "«the way»", "«yol»", extra=" مُؤَخَّرٌ"),
+            ila(), tok("ذٰلِكَ", "dhalika", "pron", ["asma-al-ishara", "huruf-jarr"], "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ بِإِلَى.", "«that» — the demonstrative, in the place of jarr.", "«ona» — ism-i işâret, mahallen mecrur.", punct=punct)]
+def bighayri_sabab(punct=None, role="مُتَعَلِّقٌ بِمَا قَبْلَهُ"):
+    return [tok("بِغَيْرِ", "ghayr", "noun", ["huruf-jarr", "idafa-definiteness"], "الْبَاءُ حَرْفُ جَرٍّ، وَغَيْرِ مَجْرُورٌ بِالْكَسْرَةِ، وَهُوَ مُضَافٌ — " + role + ".", "«without» — bi + غَيْر, a muḍāf.", "«-sız» — bâ ve ğayr, muzâf.", segments=[seg("بِ", "bi", "prep"), seg("غَيْرِ", "ghayr", "noun")]),
+            mi("سَبَبٍ", "sabab", "«a reason»", "«sebep»", punct=punct)]
+def inna_kum(): return tok("إِنَّكُمْ", "inna", "part", ["inna-wa-akhawatuha"], "إِنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالضَّمِيرُ فِي مَحَلِّ نَصْبٍ اسْمُهَا.", "«indeed you» — inna with its pronoun ism.", "«şüphesiz siz» — inne, zamir ismi.", segments=[seg("إِنَّ", "inna", "part"), seg("كُمْ", "pron-2mp", "pron")])
+def inna_na(): return tok("إِنَّا", "inna", "part", ["inna-wa-akhawatuha"], "إِنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَنَا ضَمِيرٌ فِي مَحَلِّ نَصْبٍ اسْمُهَا.", "«indeed we» — inna with its pronoun ism.", "«şüphesiz biz» — inne, zamir ismi.", segments=[seg("إِنَّ", "inna", "part"), seg("نَا", "pron-1p", "pron")])
+def la_khabar_pl(full, lex, en, tr, punct=None, tags=()):
+    return tok(full, lex, "noun", ["inna-wa-akhawatuha", "jam-mudhakkar-salim"] + list(tags), "اللَّامُ لَامُ الِابْتِدَاءِ الْمُزَحْلَقَةُ لِلتَّوْكِيدِ، وَالِاسْمُ خَبَرُ إِنَّ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الْوَاوُ لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ.", en + " — the slid lām of emphasis on inna's khabar, rafʿ by the wāw of the sound plural.", tr + " — inne'nin haberi üzerinde te'kid lâmı; cem-i müzekker sâlim olduğu için vâv ile merfû.", punct=punct, segments=[seg("لَ", "lam-ibtida", "part"), seg(full[1:], lex, "noun")])
+def ta_allah(punct=None):
+    return tok("تَاللهِ", "allah", "propn", ["huruf-jarr", "huruf-jarr-nawadir"], "التَّاءُ حَرْفُ جَرٍّ وَقَسَمٍ لَا تَدْخُلُ إِلَّا عَلَى لَفْظِ الْجَلَالَةِ، وَاللهِ مَجْرُورٌ بِالْكَسْرَةِ — مُتَعَلِّقٌ بِفِعْلِ قَسَمٍ مَحْذُوفٍ.", "«by Allah» — the tāʾ of the oath, a jarr letter that enters on the jalāla alone.", "«Allah'a yemin olsun» — kasem tâ'sı, yalnız lafza-i celâle gelen cer harfi.", punct=punct, segments=[seg("تَ", "ta-qasam", "prep"), seg("اللهِ", "allah", "propn")])
+def jazauhu(role_ar, en, tr, punct=None, tags=()):
+    return mudaf_pron("جَزَاؤُهُ", "jaza-answer", "هُ", "pron-3ms", role_ar, en, tr, tags=list(tags), punct=punct)
+
+
+# ================================================================ chapter-20 helpers
+def name_fi(full, lex, en, tr, punct=None, tags=()):
+    return [fi(), tok(full, lex, "propn", ["huruf-jarr", "mamnu-min-sarf"] + list(tags), "مَجْرُورٌ بِفِي وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.", en + " — in jarr by a fatḥa; a diptote name.", tr + " — fetha ile mecrur; gayr-i munsarıf özel isim.", punct=punct)]
+def amsi(punct=None):
+    return tok("أَمْسِ", "ams", "noun", ["maful-fih", "al-murab-wal-mabni-wal-irab"], "ظَرْفُ زَمَانٍ مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ نَصْبٍ.", "«yesterday» — a time adverb, built on the kasra.", "«dün» — kesre üzere mebnî zaman zarfı.", punct=punct)
+def al_yawm(punct=None, wa=False):
+    return tok("وَالْيَوْمَ" if wa else "الْيَوْمَ", "yawm", "noun", ["maful-fih"] + (["atf-nasaq"] if wa else []), W(wa) + "ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ.", Wen(wa) + "«today» — a time adverb, in naṣb.", Wtr(wa) + "«bugün» — mansub zaman zarfı.", punct=punct, segments=(wa_("الْيَوْمَ", "yawm", "noun") if wa else None))
+def fujia(full="فُجِعَ", mudari=False, tags=(), punct=None):
+    return tok(full, "fajaa", "verb", ["naib-al-fail"] + (["mudari-marfu"] if mudari else []) + list(tags), ("فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ بِالضَّمَّةِ" if mudari else "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ") + "، وَنَائِبُ الْفَاعِلِ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ.", ("«he is bereaved»" if mudari else "«he was bereaved»") + " — a passive; its deputy doer «he» is concealed.", ("«acıya boğuluyor»" if mudari else "«acıya boğuldu»") + " — meçhul; nâib-i fâil gizli «o».", punct=punct)
+def yarjia(punct=None):
+    return tok("يَرْجِعَ", "rajaa", "verb", ["an-masdariyya"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ.", "«to return» — manṣūb after an; the doer «he» concealed.", "«dönmeyi» — en ile mansub; fâil gizli «o».", punct=punct)
+def ila_name(full, lex, en, tr, punct=None):
+    return [ila(), tok(full, lex, "propn", ["huruf-jarr", "mamnu-min-sarf"], "مَجْرُورٌ بِإِلَى وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ — عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ.", en + " — in jarr by a fatḥa; a diptote.", tr + " — fetha ile mecrur; gayr-i munsarıf.", punct=punct)]
+def inna_pron(full, pron_seg, pron_lex, en, tr, punct=None):
+    return tok(full, "inna", "part", ["inna-wa-akhawatuha"], "إِنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالضَّمِيرُ فِي مَحَلِّ نَصْبٍ اسْمُهَا.", en + " — inna with the pronoun as its ism.", tr + " — inne; zamir ismi.", punct=punct, segments=[seg("إِنَّ", "inna", "part"), seg(pron_seg, pron_lex, "pron")])
+def alayhi(full, pron_seg, pron_lex, en, tr, punct=None):
+    return tok(full, "ala", "prep", ["huruf-jarr"], "عَلَى حَرْفُ جَرٍّ، وَالضَّمِيرُ فِي مَحَلِّ جَرٍّ — مُتَعَلِّقٌ بِالْفِعْلِ قَبْلَهُ.", en, tr, punct=punct, segments=[seg("عَلَيْ", "ala", "prep"), seg(pron_seg, pron_lex, "pron")])
+def ism_inna_muakhkhar(full, lex, en, tr, punct=None, part="إِنَّ"):
+    return tok(full, lex, "noun", ["inna-wa-akhawatuha"], f"اسْمُ {part} مُؤَخَّرٌ مَنْصُوبٌ بِالْفَتْحَةِ.", en + f" — the delayed ism of {'anna' if part == 'أَنَّ' else 'inna'}.", tr + f" — {'enne' if part == 'أَنَّ' else 'inne'}'nin muahhar ismi.", punct=punct)
+def thumma_(full="ثُمَّ", atf=True):
+    return tok(full, "thumma", "conj" if atf else "part", ["atf-nasaq"] if atf else [], "حَرْفُ عَطْفٍ لِلتَّرْتِيبِ مَعَ التَّرَاخِي." if atf else "حَرْفُ اسْتِئْنَافٍ (ثُمَّ الْعَاطِفَةُ لِلْجُمَلِ).", "«then» — the conjunction of sequence with delay." if atf else "«then» — opening a new sentence.", "«sonra» — terâhî ifade eden atıf harfi." if atf else "«sonra» — istînaf harfi.")
+def aydan(punct=None):
+    return tok("أَيْضًا", "aydan", "noun", ["maful-mutlaq"], "مَفْعُولٌ مُطْلَقٌ لِفِعْلٍ مَحْذُوفٍ (آضَ يَئِيضُ) مَنْصُوبٌ بِالْفَتْحَةِ.", "«also» — the absolute object of an elided verb.", "«de» — mahzuf fiilin mef'ûl-i mutlakı.", punct=punct)
+
+# ================================================================ chapter-21 helpers
+def allah_jarr(prep, en, tr, punct=None, tags=()):
+    return tok("اللهِ", "allah", "propn", ["huruf-jarr"] + list(tags), f"لَفْظُ الْجَلَالَةِ مَجْرُورٌ بِـ{prep} وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.", en + " — in jarr.", tr + " — mecrur.", punct=punct)
+def yusuf_mubt(punct=None):
+    return tok("يُوسُفُ", "yusuf", "propn", ["mubtada-khabar", "mamnu-min-sarf"], "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ.", "«Yūsuf» — the mubtadaʾ.", "«Yusuf» — mübtedâ.", punct=punct)
+def yusuf_khabar(punct=None, of=None):
+    return tok("يُوسُفُ", "yusuf", "propn", ["mubtada-khabar" if not of else "inna-wa-akhawatuha", "mamnu-min-sarf"], (f"خَبَرُ {of}" if of else "خَبَرٌ") + " مَرْفُوعٌ بِالضَّمَّةِ.", "«Yūsuf» — the khabar" + (f" of {of}" if of else "") + ".", "«Yusuf» — haber.", punct=punct)
+def huwa_fasl(punct=None):
+    return tok("هُوَ", "huwa", "pron", ["tawkid"], "ضَمِيرُ فَصْلٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.", "«(he)» — the pronoun of separation.", "«o» — fasıl zamiri.", punct=punct)
+def huwa_mubt(full="هُوَ", wa=False, punct=None):
+    return tok(full, "huwa", "pron", ["mubtada-khabar"] + (["anwa-al-waw"] if wa else []), ("الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ" if wa else "") + "ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", Wen(wa) + "«he» — the mubtadaʾ.", Wtr(wa) + "«o» — mübtedâ.", punct=punct, segments=(wa_("هُوَ", "huwa", "pron") if wa else None))
+def alladhi_(role_ar="فِي مَحَلِّ رَفْعٍ خَبَرٌ", en="the khabar", tr="haber", tags=("mubtada-khabar",)):
+    return tok("الَّذِي", "alladhi", "pron", ["ism-mawsul"] + list(tags), "اسْمٌ مَوْصُولٌ مَبْنِيٌّ " + role_ar + ".", "«the one who» — the relative, " + en + ".", "«… olan» — ism-i mevsûl, " + tr + ".")
+def hal_q(): return tok("هَلْ", "hal-istifham", "part", ["al-istifham"], "حَرْفُ اسْتِفْهَامٍ.", "«is …?» — the question particle.", "«… mi?» — istifham harfi.")
+def mata_(wa=False):
+    return [tok("وَإِلَى" if wa else "إِلَى", "ila", "prep", ["huruf-jarr"] + (["atf-nasaq"] if wa else []), W(wa) + "حَرْفُ جَرٍّ.", Wen(wa) + "«until».", Wtr(wa) + "«-e kadar».", segments=(wa_("إِلَى", "ila", "prep") if wa else None)),
+            tok("مَتَى", "mata", "pron", ["al-istifham", "huruf-jarr"], "اسْمُ اسْتِفْهَامٍ لِلزَّمَانِ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ بِإِلَى.", "«when» — the time question noun after ilā: «until when».", "«ne zamana» — zaman istifham ismi, ilâ ile mecrur.")]
+def ara_1s(punct=None):
+    return tok("أَرَى", "raa", "verb", ["mudari-marfu", "naqis-verbs"], "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا: أَنَا.", "«shall I see» — rafʿ by an estimated ḍamma on the alif.", "«göreceğim» — elif üzerinde takdiri zamme ile merfû.", punct=punct)
+def faqrahum(): return mudaf_pron("فَقْرَهُمْ", "faqr", "هُمْ", "pron-3mp", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ", "«their poverty»", "«yoksulluklarını»", tags=["maful-bihi"])
+def wa_musibatahum(): return tok("وَمُصِيبَتَهُمْ", "musiba", "noun", ["atf-nasaq", "idafa-definiteness"], "الْوَاوُ عَاطِفَةٌ، وَمُصِيبَتَهُمْ مَعْطُوفٌ عَلَى فَقْرَهُمْ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ.", "«and their calamity» — joined to «their poverty».", "«ve musibetlerini» — ma'tûf.", segments=[seg("وَ", "wa", "conj"), seg("مُصِيبَتَ", "musiba", "noun"), seg("هُمْ", "pron-3mp", "pron")])
+def abi_1s(role_ar, en, tr, punct=None, tags=()):
+    return tok("أَبِي", "ab", "noun", list(tags) + ["five-nouns", "ya-al-mutakallim", "idafa-definiteness"], role_ar + " بِحَرَكَةٍ مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَهُوَ مُضَافٌ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.", en + " — the mark estimated before the speaker's yāʾ.", tr + " — mütekellim yâsından önce takdiri hareke.", punct=punct, segments=[seg("أَبِ", "ab", "noun"), seg("ي", "pron-1s", "pron")])
+def yamlik(punct=None, hidden=True):
+    return tok("يَمْلِكْ", "malaka", "verb", ["lam-jazim"], "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَمْ وَعَلَامَةُ جَزْمِهِ السُّكُونُ" + ("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ" if hidden else "") + ".", "«could (not) hold» — jussive after lam.", "«tutamadı» — lem ile meczum.", punct=punct)
+def nafsahu(punct=None): return mudaf_pron("نَفْسَهُ", "nafs", "هُ", "pron-3ms", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ", "«himself»", "«kendini»", tags=["maful-bihi"], punct=punct)
+def tum_mazi(full, lex, en, tr, tags=(), punct=None, extra=""):
+    host = full[:-4]
+    return tok(full, lex, "verb", list(tags), "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ" + extra + ".", en + " — the doers' tāʾ.", tr + " — fâil tâ'sı.", punct=punct, segments=[seg(host, lex, "verb"), seg("تُمْ", "pron-2mp", "pron")])
+
+# ================================================================ §22 يظهر السر (pp. 61–64)
+sen("s1", "But Yaʿqūb was a human being; in his breast was a human heart, not a piece of stone.", "Fakat Yakub bir beşerdi; göğsünde bir beşer kalbi vardı, taş parçası değil.", [
+  wa_lakinna(), name_ism_lakinna("يَعْقُوبَ", "yaqub", "«Yaʿqūb»", "«Yakub»"), kana_khabar_lakinna(), khabar_kana("بَشَرًا", "bashar", "«a human being»", "«bir beşer»"),
+  fi(), mudaf_pron("صَدْرِهِ", "sadr", "هِ", "pron-3ms", "مَجْرُورٌ بِفِي وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ — وَشِبْهُ الْجُمْلَةِ خَبَرٌ مُقَدَّمٌ", "«in his breast»", "«göğsünde»", tags=["huruf-jarr", "mubtada-khabar"]),
+  tok("قَلْبُ", "qalb", "noun", ["mubtada-khabar", "idafa-definiteness"], "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ نَعْتٌ لِبَشَرًا.", "«a heart (of)» — the delayed mubtadaʾ; the clause describes «a human being».", "«bir kalp» — muahhar mübtedâ; cümle «beşer»in sıfatı."), mi("بَشَرٍ", "bashar", "«a human»", "«beşer»"),
+  tok("لَا", "la", "part", ["atf-nasaq", "la-nafiya"], "حَرْفُ عَطْفٍ يُفِيدُ النَّفْيَ.", "«not» — the lā of contrast, a conjunction.", "«değil» — nefiy ifade eden atıf harfi."),
+  tok("قِطْعَةُ", "qita", "noun", ["atf-nasaq", "idafa-definiteness"], "مَعْطُوفٌ عَلَى قَلْبُ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.", "«a piece (of)» — joined to «a heart».", "«bir parça» — kalbe ma'tûf."), mi("حَجَرٍ", "hajar", "«stone»", "«taş»", punct=".")])
+sen("s2", "So he remembered Yūsuf, his grief was renewed, and he said: «O my sorrow over Yūsuf!» (Yūsuf 12:84)", "Yusuf'u hatırladı, hüznü tazelendi ve dedi: «Vah Yusuf'a olan hasretim!» (Yûsuf 12:84)", [
+  fa_mazi("فَذَكَرَ", "dhakara", "«he remembered»", "«hatırladı»", hidden="هُوَ"), name_maful("يُوسُفَ", "yusuf", "«Yūsuf»", "«Yusuf'u»"),
+  mazi("وَتَجَدَّدَ", "tajaddada", "«was renewed»", "«tazelendi»", hidden=None, wa=True, tags=["form-v-verbs", "doubled-verbs"]), mudaf_pron("حُزْنُهُ", "huzn", "هُ", "pron-3ms", "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ", "«his grief»", "«hüznü»", tags=["fail"]),
+  qala(full="وَقَالَ", wa=True, punct=":")] + quran([
+  tok("يَا", "ya-nida", "part", ["vocative-munada"], "حَرْفُ نِدَاءٍ وَنُدْبَةٍ.", "«O» — the vocative of lament.", "«vah» — nüdbe nidâsı."),
+  tok("أَسَفَى", "asaf", "noun", ["vocative-munada", "ya-al-mutakallim", "idafa-definiteness"], "مُنَادًى مَنْدُوبٌ مُضَافٌ إِلَى يَاءِ الْمُتَكَلِّمِ الْمُنْقَلِبَةِ أَلِفًا، مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ.", "«my sorrow» — the lamented vocative, the speaker's yāʾ turned to an alif.", "«hasretim» — mütekellim yâsı elife dönüşmüş muzâf münâdâ."),
+  ala(), tok("يُوسُفَ", "yusuf", "propn", ["huruf-jarr", "mamnu-min-sarf"], "مَجْرُورٌ بِعَلَى وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ — عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ.", "«over Yūsuf» — in jarr by a fatḥa.", "«Yusuf'a» — fetha ile mecrur.", punct=".")]))
+sen("s3", "His sons blamed him and said: You keep remembering Yūsuf until you perish.", "Oğulları onu kınadı ve dediler: Sen Yusuf'u anıp duruyorsun, helâk olacaksın.", [
+  verb_enc("وَلَامَهُ", "lama", "هُ", "pron-3ms", "«blamed him»", "«onu kınadı»", mudari=False, hidden=None, wa=True, tags=["hollow-verbs"]),
+  tok("أَبْنَاؤُهُ", "ibn", "noun", ["fail", "jam-taksir", "idafa-definiteness"], "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ — جَمْعُ تَكْسِيرٍ.", "«his sons» — the doer; a broken plural annexed to the pronoun.", "«oğulları» — fâil; cem-i mükesser, zamire muzâf.", segments=[seg("أَبْنَاؤُ", "ibn", "noun"), seg("هُ", "pron-3ms", "pron")]),
+  qalu(full="وَقَالُوا", wa=True, punct=None), inna_pron("إِنَّكَ", "كَ", "pron-2ms", "«indeed you»", "«sen»"),
+  la_nafiya(), tok("تَزَالُ", "zala", "verb", [K, "mudari-marfu", "hollow-verbs", "inna-wa-akhawatuha"], "فِعْلٌ مُضَارِعٌ نَاقِصٌ مَرْفُوعٌ بِالضَّمَّةِ، وَاسْمُهُ مُسْتَتِرٌ تَقْدِيرُهُ: أَنْتَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ إِنَّ.", "«you keep on» — lā tazālu; its ism «you» concealed; the clause is inna's khabar.", "«hâlâ … -sın» — lâ tezâlü; ismi gizli «sen»; cümle inne'nin haberi."),
+  khabar_kana_mudari("تَذْكُرُ", "dhakara", "«remembering»", "«anıyorsun»", hidden="أَنْتَ"), name_maful("يُوسُفَ", "yusuf", "«Yūsuf»", "«Yusuf'u»"),
+  tok("حَتَّى", "hatta", "part", ["huruf-jarr", "an-masdariyya"], "حَرْفُ غَايَةٍ وَجَرٍّ، وَالْفِعْلُ بَعْدَهَا مَنْصُوبٌ بِأَنْ مُضْمَرَةً.", "«until» — the verb after it is manṣūb by a hidden an.", "«-inceye kadar» — gizli en ile nasb eder."),
+  tok("تَهْلِكَ", "halaka", "verb", ["an-masdariyya"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ مُضْمَرَةً بَعْدَ حَتَّى وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ، وَالْفَاعِلُ مُسْتَتِرٌ: أَنْتَ.", "«you perish» — manṣūb after ḥattā.", "«helâk olursun» — hattâ'dan sonra mansub.", punct=".")])
+sen("s4", "Yaʿqūb said: «I only complain of my anguish and my grief to Allah, and I know from Allah what you do not know.» (Yūsuf 12:86)", "Yakub dedi: «Ben kederimi ve hüznümü ancak Allah'a arz ederim ve Allah'tan sizin bilmediğinizi bilirim.» (Yûsuf 12:86)", [
+  qala(punct=None), yaqub_fail(punct=":")] + quran([
+  tok("إِنَّمَا", "innama", "part", ["inna-wa-akhawatuha"], "إِنَّ الْمَكْفُوفَةُ بِمَا الْكَافَّةِ — أَدَاةُ حَصْرٍ.", "«only» — inna blocked by mā, a tool of restriction.", "«ancak» — kâffe mâ ile inne, hasr edatı."),
+  tok("أَشْكُو", "shaka", "verb", ["mudari-marfu", "naqis-verbs"], "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْوَاوِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا: أَنَا.", "«I complain of» — rafʿ by an estimated ḍamma on the wāw.", "«arz ederim» — vâv üzerinde takdiri zamme ile merfû."),
+  mudaf_pron("بَثِّي", "bathth", "ي", "pron-1s", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ", "«my anguish»", "«kederimi»", tags=["maful-bihi", "ya-al-mutakallim"]),
+  tok("وَحُزْنِي", "huzn", "noun", ["atf-nasaq", "ya-al-mutakallim", "idafa-definiteness"], "الْوَاوُ عَاطِفَةٌ، وَحُزْنِي مَعْطُوفٌ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.", "«and my grief» — joined.", "«ve hüznümü» — ma'tûf.", segments=[seg("وَ", "wa", "conj"), seg("حُزْنِ", "huzn", "noun"), seg("ي", "pron-1s", "pron")]),
+  ila(), allah_jarr("إِلَى", "«to Allah»", "«Allah'a»"),
+  tok("وَأَعْلَمُ", "alima", "verb", ["atf-nasaq", "mudari-marfu"], "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا: أَنَا.", "«and I know».", "«ve bilirim».", segments=wa_("أَعْلَمُ", "alima", "verb")),
+  min_(full="مِنَ"), allah_jarr("مِنْ", "«from Allah»", "«Allah'tan»"),
+  tok("مَا", "ma-mawsula", "pron", ["ism-mawsul", "maful-bihi"], "اسْمٌ مَوْصُولٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.", "«what» — the relative, as the object.", "«-ini» — ism-i mevsûl, mef'ûl."), la_nafiya(),
+  khamsa("تَعْلَمُونَ", "alima", "«you know»", "«bilirsiniz»", extra_ar=" — وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ", punct=".")]))
+sen("s5", "And Yaʿqūb knew that despair is unbelief, and Yaʿqūb had a great hope in Allah.", "Yakub ümitsizliğin küfür olduğunu bilirdi ve Yakub'un Allah'a büyük bir ümidi vardı.", [
+  kana(), yaqub_ism_kana(), khabar_kana_mudari("يَعْلَمُ", "alima", "«knew»", "«bilirdi»"), anna(obj_of="يَعْلَمُ"),
+  ism_inna("الْيَأْسَ", "yas", "«despair»", "«ümitsizlik»", part="أَنَّ"), khabar_inna("كُفْرٌ", "kufr", "«is unbelief»", "«küfürdür»", part="أَنَّ", punct="،"),
+  kana(), yaqub_ism_kana(),
+  lahu("لَهُ", "هُ", "pron-3ms", "وَشِبْهُ الْجُمْلَةِ خَبَرٌ مُقَدَّمٌ، وَالْجُمْلَةُ الِاسْمِيَّةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ.", "«he had» — the fronted khabar of the clause that is kāna's khabar.", "«onun vardı» — mukaddem haber; isim cümlesi kâne'nin haberi.", tags=["mubtada-khabar", K]),
+  tok("رَجَاءٌ", "rajaa-hope", "noun", ["mubtada-khabar"], "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ بِالضَّمَّةِ.", "«a hope» — the delayed mubtadaʾ.", "«bir ümit» — muahhar mübtedâ."),
+  nat_raf("كَبِيرٌ", "kabir", "«great»", "«büyük»"), fi(), allah_jarr("فِي", "«in Allah»", "«Allah'a»", punct=".")])
+sen("s6", "And Yaʿqūb sent his sons to Egypt to search for Yūsuf and Binyāmīn and to strive in that.", "Yakub oğullarını Yusuf'u ve Bünyamin'i aramaları ve bunda çaba göstermeleri için Mısır'a gönderdi.", [
+  mazi("وَأَرْسَلَ", "arsala", "«sent»", "«gönderdi»", hidden=None, wa=True, tags=["form-iv-verbs"]), yaqub_fail(),
+  mudaf_pron("أَبْنَاءَهُ", "ibn", "هُ", "pron-3ms", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ", "«his sons»", "«oğullarını»", tags=["maful-bihi", "jam-taksir"])] + ila_name("مِصْرَ", "misr", "«Egypt»", "«Mısır»") + [
+  tok("لِيَبْحَثُوا", "bahatha", "verb", ["lam-taleel", "afal-khamsa"], "اللَّامُ لِلتَّعْلِيلِ، وَالْفِعْلُ مَنْصُوبٌ بِأَنْ مُضْمَرَةً بَعْدَهَا وَعَلَامَةُ نَصْبِهِ حَذْفُ النُّونِ، وَالْوَاوُ فَاعِلٌ.", "«so that they search» — the lām of purpose; the nūn dropped.", "«aramaları için» — ta'lil lâmı; nûn düşmüş.", segments=[seg("لِ", "li", "prep"), seg("يَبْحَثُوا", "bahatha", "verb")]),
+  tok("عَنْ", "an", "prep", ["huruf-jarr"], "حَرْفُ جَرٍّ.", "«for».", "«-i»."),
+  tok("يُوسُفَ", "yusuf", "propn", ["huruf-jarr", "mamnu-min-sarf"], "مَجْرُورٌ بِعَنْ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ — عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ.", "«Yūsuf» — in jarr by a fatḥa.", "«Yusuf'u» — fetha ile mecrur."),
+  tok("وَبِنْيَامِينَ", "binyamin", "propn", ["atf-nasaq", "mamnu-min-sarf"], "الْوَاوُ عَاطِفَةٌ، وَبِنْيَامِينَ مَعْطُوفٌ عَلَى يُوسُفَ مَجْرُورٌ بِالْفَتْحَةِ.", "«and Binyāmīn» — joined.", "«ve Bünyamin'i» — ma'tûf.", segments=wa_("بِنْيَامِينَ", "binyamin", "propn")),
+  tok("وَيَجْتَهِدُوا", "ijtahada", "verb", ["atf-nasaq", "afal-khamsa", "form-viii-verbs"], "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِالْعَطْفِ عَلَى يَبْحَثُوا وَعَلَامَةُ نَصْبِهِ حَذْفُ النُّونِ، وَالْوَاوُ فَاعِلٌ.", "«and strive» — joined to the purpose clause.", "«ve çaba göstermeleri» — ma'tûf.", segments=wa_("يَجْتَهِدُوا", "ijtahada", "verb")),
+  fi(), ishara("ذٰلِكَ", "dhalika", "jarr", "«that»", "«bunda»", punct=".")])
+sen("s7", "And Yaʿqūb forbade them to despair of the mercy of Allah,", "Yakub onlara Allah'ın rahmetinden ümit kesmeyi yasakladı,", [
+  verb_enc("وَمَنَعَهُمْ", "manaa", "هُمْ", "pron-3mp", "«forbade them»", "«onları menetti»", mudari=False, hidden=None, wa=True), yaqub_fail(), min_(),
+  tok("أَنْ", "an-masdariyya", "part", ["an-masdariyya"], "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ مَجْرُورٌ بِمِنْ.", "«that» — the maṣdar clause is in jarr after min.", "«-den» — te'vilî masdar min ile mecrur."),
+  tok("يَقْنَطُوا", "qanita", "verb", ["an-masdariyya", "afal-khamsa"], "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ وَعَلَامَةُ نَصْبِهِ حَذْفُ النُّونِ، وَالْوَاوُ فَاعِلٌ.", "«they despair» — manṣūb, the nūn dropped.", "«ümit kesmeleri» — nûn düşmüş."),
+  min_(), tok("رَحْمَةِ", "rahma", "noun", ["huruf-jarr", "idafa-definiteness"], "مَجْرُورٌ بِمِنْ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ.", "«the mercy (of)» — in jarr; a muḍāf.", "«rahmetinden» — mecrur; muzâf."), mi("اللهِ", "allah", "«Allah»", "«Allah'ın»", punct="،")])
+sen("s8", "And the brothers went to Egypt a third time.", "Kardeşler üçüncü kez Mısır'a gittiler.", [
+  mazi("وَذَهَبَ", "dhahaba", "«went»", "«gitti»", hidden=None, wa=True), ikhwa_fail()] + ila_name("مِصْرَ", "misr", "«Egypt»", "«Mısır»") + [
+  tok("مَرَّةً", "marra-once", "noun", ["maful-fih"], "ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ.", "«a (third) time» — an adverb of time.", "«(üçüncü) kez» — zaman zarfı."), nat_nasb("ثَالِثَةً", "thalitha", "«third»", "«üçüncü»", punct=".")])
+sen("s9", "They came in to Yūsuf and complained to him of their poverty and their calamity and asked him for his bounty.", "Yusuf'un huzuruna girdiler, ona yoksulluklarından ve musibetlerinden yakındılar ve ondan lütuf istediler.", [
+  mazi_pl("وَدَخَلُوا", "dakhala", "«they came in»", "«girdiler»", wa=True), ala(),
+  tok("يُوسُفَ", "yusuf", "propn", ["huruf-jarr", "mamnu-min-sarf"], "مَجْرُورٌ بِعَلَى وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ — عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ.", "«Yūsuf» — in jarr by a fatḥa.", "«Yusuf'un» — fetha ile mecrur."),
+  mazi_pl_naqis("وَشَكَوْا", "shaka", "«and complained»", "«ve yakındılar»", wa=True),
+  tok("إِلَيْهِ", "ila", "prep", ["huruf-jarr"], "إِلَى حَرْفُ جَرٍّ، وَالْهَاءُ فِي مَحَلِّ جَرٍّ.", "«to him».", "«ona».", segments=[seg("إِلَيْ", "ila", "prep"), seg("هِ", "pron-3ms", "pron")]),
+  faqrahum(), wa_musibatahum(), mazi_pl_enc("وَسَأَلُوهُ", "saala", "هُ", "pron-3ms", "«and asked him for»", "«ve ondan istediler»", wa=True),
+  maful("الْفَضْلَ", "fadl", "«the bounty»", "«lütfu»", punct=".", extra_ar=" — مَفْعُولٌ بِهِ ثَانٍ")])
+sen("s10", "And here grief and love surged in Yūsuf, and he could not hold himself.", "Ve burada Yusuf'ta hüzün ve sevgi kabardı; kendini tutamadı.", [
+  tok("وَهُنَا", "huna", "noun", ["anwa-al-waw", "maful-fih"], "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَهُنَا اسْمُ إِشَارَةٍ لِلْمَكَانِ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ ظَرْفٌ.", "«and here».", "«ve burada».", segments=wa_("هُنَا", "huna", "noun")),
+  mazi("هَاجَ", "haja-surge", "«surged»", "«kabardı»", hidden=None, tags=["hollow-verbs"]), fail("الْحُزْنُ", "huzn", "«grief»", "«hüzün»"),
+  tok("وَالْحُبُّ", "hubb", "noun", ["atf-nasaq"], "الْوَاوُ عَاطِفَةٌ، وَالْحُبُّ مَعْطُوفٌ عَلَى الْحُزْنُ مَرْفُوعٌ بِالضَّمَّةِ.", "«and love» — joined.", "«ve sevgi» — ma'tûf.", segments=wa_("الْحُبُّ", "hubb", "noun"))] + name_fi("يُوسُفَ", "yusuf", "«Yūsuf»", "«Yusuf»") + [
+  lam_jazim(wa=True), yamlik(), nafsahu(punct=".")])
+sen("s11", "The sons of my father and the sons of the prophets complain of their poverty and their calamity to a king among kings!", "Babamın oğulları, peygamberlerin oğulları, yoksulluklarını ve musibetlerini krallardan bir krala arz ediyorlar!", [
+  tok("أَبْنَاءُ", "ibn", "noun", ["mubtada-khabar", "idafa-definiteness", "jam-taksir"], "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ — جَمْعُ تَكْسِيرٍ.", "«the sons (of)» — the mubtadaʾ.", "«oğulları» — mübtedâ."),
+  abi_1s("مُضَافٌ إِلَيْهِ مَجْرُورٌ", "«my father»", "«babamın»"),
+  tok("وَأَبْنَاءُ", "ibn", "noun", ["atf-nasaq", "idafa-definiteness", "jam-taksir"], "الْوَاوُ عَاطِفَةٌ، وَأَبْنَاءُ مَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.", "«and the sons (of)» — joined.", "«ve oğulları» — ma'tûf.", segments=wa_("أَبْنَاءُ", "ibn", "noun")),
+  mi("الْأَنْبِيَاءِ", "nabi", "«the prophets»", "«peygamberlerin»"),
+  khamsa("يَشْكُونَ", "shaka", "«complain of»", "«arz ediyorlar»", tags=["mubtada-khabar", "naqis-verbs"], extra_ar=" — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ"),
+  faqrahum(), wa_musibatahum(), ila(), tok("مَلِكٍ", "malik-king", "noun", ["huruf-jarr"], "مَجْرُورٌ بِإِلَى وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.", "«a king» — in jarr.", "«bir krala» — mecrur."),
+  min_(full="مِنَ"), tok("الْمُلُوكِ", "malik-king", "noun", ["huruf-jarr", "jam-taksir", "naat-sifa"], "مَجْرُورٌ بِمِنْ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ — وَشِبْهُ الْجُمْلَةِ نَعْتٌ لِمَلِكٍ.", "«among the kings» — the phrase describes «a king».", "«krallardan» — şibh-i cümle «bir kral»ın sıfatı.", punct=".")])
+sen("s12", "Until when shall I hide the matter from them, and until when shall I see their state", "Ne zamana kadar işi onlardan gizleyeceğim, ne zamana kadar hallerini göreceğim", mata_() + [
+  tok("أُخْفِي", "akhfa", "verb", ["mudari-marfu", "form-iv-verbs", "naqis-verbs"], "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا: أَنَا.", "«shall I hide» — rafʿ by an estimated ḍamma on the yāʾ.", "«gizleyeceğim» — yâ üzerinde takdiri zamme ile merfû."),
+  maful("الْأَمْرَ", "amr", "«the matter»", "«işi»"),
+  tok("عَنْهُمْ", "an", "prep", ["huruf-jarr"], "عَنْ حَرْفُ جَرٍّ، وَالضَّمِيرُ فِي مَحَلِّ جَرٍّ.", "«from them».", "«onlardan».", segments=[seg("عَنْ", "an", "prep"), seg("هُمْ", "pron-3mp", "pron")])] + mata_(wa=True) + [
+  ara_1s(), mudaf_pron("حَالَهُمْ", "hal", "هُمْ", "pron-3mp", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ", "«their state»", "«hallerini»", tags=["maful-bihi"])])
+sen("s13", "and until when shall I not see my father?", "ve ne zamana kadar babamı görmeyeceğim?", mata_(wa=True) + [
+  la_nafiya(), ara_1s(), abi_1s("مَفْعُولٌ بِهِ مَنْصُوبٌ", "«my father»", "«babamı»", punct="؟", tags=["maful-bihi"])])
+sen("s14", "Yūsuf could not hold himself and said to them.", "Yusuf kendini tutamadı ve onlara dedi.", [
+  lam_jazim(), yamlik(hidden=False), yusuf_fail(), nafsahu(), qala(full="وَقَالَ", wa=True, punct=None),
+  lahu("لَهُمْ", "هُمْ", "pron-3mp", "مُتَعَلِّقٌ بِقَالَ.", "«to them».", "«onlara».", punct=".")])
+sen("s15", "«Do you know what you did to Yūsuf and his brother when you were ignorant?» (Yūsuf 12:89)", "«Siz cahilken Yusuf'a ve kardeşine ne yaptığınızı biliyor musunuz?» (Yûsuf 12:89)", quran([
+  hal_q(), tum_mazi("عَلِمْتُمْ", "alima", "«do you know»", "«biliyor musunuz»"),
+  tok("مَا", "ma-mawsula", "pron", ["ism-mawsul", "maful-bihi"], "اسْمٌ مَوْصُولٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.", "«what» — the relative, as the object.", "«ne» — ism-i mevsûl, mef'ûl."),
+  tum_mazi("فَعَلْتُمْ", "faala", "«you did»", "«yaptınız»", tags=["ism-mawsul"], extra=" — وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ"),
+  tok("بِيُوسُفَ", "yusuf", "propn", ["huruf-jarr", "mamnu-min-sarf"], "الْبَاءُ حَرْفُ جَرٍّ، وَيُوسُفَ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ لِأَنَّهُ عَلَمٌ مَمْنُوعٌ مِنَ الصَّرْفِ.", "«to Yūsuf».", "«Yusuf'a».", segments=[seg("بِ", "bi", "prep"), seg("يُوسُفَ", "yusuf", "propn")]),
+  tok("وَأَخِيهِ", "akh", "noun", ["atf-nasaq", "five-nouns", "idafa-definiteness"], "الْوَاوُ عَاطِفَةٌ، وَأَخِيهِ مَعْطُوفٌ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.", "«and his brother» — jarr by the yāʾ of the five nouns.", "«ve kardeşine» — beş isimden, yâ ile mecrur.", segments=[seg("وَ", "wa", "conj"), seg("أَخِي", "akh", "noun"), seg("هِ", "pron-3ms", "pron")]),
+  tok("إِذْ", "idh", "noun", ["maful-fih"], "ظَرْفٌ لِمَا مَضَى مِنَ الزَّمَانِ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ.", "«when» — the zarf of past time.", "«… iken» — geçmiş zaman zarfı."),
+  tok("أَنْتُمْ", "antum", "pron", ["mubtada-khabar"], "ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "«you» — the mubtadaʾ.", "«siz» — mübtedâ."),
+  tok("جَاهِلُونَ", "jahil", "noun", ["mubtada-khabar", "jam-mudhakkar-salim", "ism-fail"], "خَبَرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الْوَاوُ لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ.", "«were ignorant» — the khabar, rafʿ by the wāw.", "«cahildiniz» — haber, vâv ile merfû.")]))
+sen("s16", "And the brothers knew that this secret no one knew but Yūsuf and we.", "Kardeşler bu sırrı Yusuf'tan ve bizden başkasının bilmediğini biliyorlardı.", [
+  kana(), ikhwa("الْإِخْوَةُ", "raf", "اسْمُ كَانَ", "«the brothers» — kāna's ism", "«kardeşler» — kâne'nin ismi", tags=[K]),
+  khamsa("يَعْلَمُونَ", "alima", "«knew»", "«biliyorlardı»", tags=[K], extra_ar=" — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ"), anna(obj_of="يَعْلَمُونَ"),
+  ishara("هٰذَا", "hadha", "nasb", "«this»", "«bu»", tags=["inna-wa-akhawatuha"]), badal_("السِّرَّ", "sirr", "nasb", "«secret»", "«sırrı»"),
+  la_nafiya(), verb_enc("يَعْلَمُهُ", "alima", "هُ", "pron-3ms", "«knows it»", "«onu bilmez»", tags=["inna-wa-akhawatuha"]),
+  tok("إِلَّا", "illa", "part", ["istithna"], "أَدَاةُ حَصْرٍ — اسْتِثْنَاءٌ مُفَرَّغٌ.", "«except» — the restricting illā.", "«ancak» — hasr edatı."), yusuf_fail(),
+  tok("وَنَحْنُ", "nahnu", "pron", ["atf-nasaq"], "الْوَاوُ عَاطِفَةٌ، وَنَحْنُ ضَمِيرٌ مُنْفَصِلٌ فِي مَحَلِّ رَفْعٍ مَعْطُوفٌ عَلَى يُوسُفُ.", "«and we» — joined to Yūsuf.", "«ve biz» — Yusuf'a ma'tûf.", punct=".", segments=wa_("نَحْنُ", "nahnu", "pron"))])
+sen("s17", "So they knew that he was Yūsuf.", "Böylece onun Yusuf olduğunu anladılar.", [
+  tok("فَعَلِمُوا", "alima", "verb", [], "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ فَاعِلٌ.", "«so they knew».", "«böylece anladılar».", segments=[seg("فَ", "fa", "conj"), seg("عَلِمُوا", "alima", "verb")]),
+  annahu(obj_of="عَلِمُوا", en_of="«knew»", tr_of="«anladılar»"), yusuf_khabar(punct=".", of="أَنَّ")])
+sen("s18", "Glory be to Allah! Is Yūsuf alive — did he not die in the well?", "Sübhanallah! Yusuf sağ mı, kuyuda ölmemiş miydi?", [
+  tok("سُبْحَانَ", "subhana", "noun", ["maful-mutlaq", "idafa-definiteness"], "مَفْعُولٌ مُطْلَقٌ لِفِعْلٍ مَحْذُوفٍ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ.", "«glory be (to)» — the absolute object of an elided verb.", "«sübhan» — mahzuf fiilin mef'ûl-i mutlakı."), mi("اللهِ", "allah", "«Allah»", "«Allah»", punct="!"),
+  hal_q(), yusuf_mubt(), khabar_raf("حَيٌّ", "hayy", "«alive»", "«sağ»", punct="،"),
+  tok("أَمَا", "ama", "part", ["al-istifham", "khuruj-al-istifham"], "الْهَمْزَةُ لِلِاسْتِفْهَامِ، وَمَا نَافِيَةٌ — بِمَعْنَى أَلَمْ.", "«did he not?» — the question hamza over the negating mā.", "«… değil miydi?» — istifham hemzesi ve nefiy mâ'sı."),
+  mazi("مَاتَ", "mata-die", "«he die»", "«ölmemiş miydi»", hidden="هُوَ", tags=["hollow-verbs"]), fi(), majrur("الْبِئْرِ", "bir", "«the well»", "«kuyu»", "فِي", punct=".")])
+sen("s19", "Good heavens! Is Yūsuf the ʿAzīz of Egypt?", "Aman Allahım! Yusuf, Mısır'ın Azizi mi?", [
+  tok("يَا", "ya-nida", "part", ["vocative-munada"], "حَرْفُ نِدَاءٍ.", "«O» — the vocative particle.", "«ey» — nidâ harfi."),
+  tok("سَلَامُ", "salam", "noun", ["vocative-munada"], "مُنَادًى مُفْرَدٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ — نِدَاءُ تَعَجُّبٍ.", "«good heavens!» — the single vocative built on the ḍamma, an exclamation.", "«aman Allahım!» — zamme üzere mebnî müfred münâdâ; taaccüp nidâsı.", punct="!"),
+  hal_q(), yusuf_mubt(), huwa_fasl(),
+  tok("عَزِيزُ", "aziz", "noun", ["mubtada-khabar", "idafa-definiteness"], "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.", "«the ʿAzīz (of)» — the khabar; a muḍāf.", "«Azizi» — haber; muzâf."), name_mudaf_ilayh("مِصْرَ", "misr", "«Egypt»", "«Mısır'ın»", punct="؟")])
+sen("s20", "He who is over the treasuries of the land?", "Ülkenin hazinelerinin başındaki o mu?", [
+  huwa_mubt(), alladhi_(), ala()] + khazain_ard(prep="عَلَى", punct="؟", role="وَشِبْهُ الْجُمْلَةِ صِلَةُ الْمَوْصُولِ"))
+sen("s21", "He who used to order food for us?", "Bize yiyecek verilmesini emreden o mu?", [
+  huwa_mubt(), alladhi_(), kana_hidden(full="كَانَ", wa=False), khabar_kana_mudari("يَأْمُرُ", "amara-v", "«used to order»", "«emrederdi»"),
+  lana(punct=None, role="مُتَعَلِّقٌ بِيَأْمُرُ", tags=()),
+  tok("بِالطَّعَامِ", "taam", "noun", ["huruf-jarr"], "الْبَاءُ حَرْفُ جَرٍّ، وَالطَّعَامِ مَجْرُورٌ بِالْكَسْرَةِ.", "«food» — in jarr after bi.", "«yiyecek» — bâ ile mecrur.", punct="؟", segments=[seg("بِ", "bi", "prep"), seg("الطَّعَامِ", "taam", "noun")])])
+sen("s22", "And no doubt remained with them that the one speaking to them was Yūsuf son of Yaʿqūb!", "Onlarla konuşanın Yakub oğlu Yusuf olduğundan onlarda hiçbir şüphe kalmadı!", [
+  ma_nafiya_(wa=True), mazi("بَقِيَ", "baqiya", "«remained»", "«kalmadı»", hidden=None, tags=["naqis-verbs"]),
+  mudaf_pron("عِنْدَهُمْ", "inda", "هُمْ", "pron-3mp", "ظَرْفُ مَكَانٍ مَنْصُوبٌ بِالْفَتْحَةِ", "«with them»", "«onlarda»", tags=["maful-fih"]),
+  fail("شَكٌّ", "shakk", "«any doubt»", "«bir şüphe»"),
+  tok("أَنَّ", "anna", "part", ["inna-wa-akhawatuha"], "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ — وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ جَرٍّ بِحَرْفِ جَرٍّ مَحْذُوفٍ (شَكٌّ فِي أَنَّ).", "«that» — the clause in jarr after an elided «in».", "«-ında» — hazfedilmiş harf-i cerle mecrur."),
+  alladhi_(role_ar="فِي مَحَلِّ نَصْبٍ اسْمُ أَنَّ", en="the ism of anna", tr="enne'nin ismi", tags=("inna-wa-akhawatuha",)),
+  verb_enc("يُكَلِّمُهُمْ", "kallama", "هُمْ", "pron-3mp", "«speaks to them»", "«onlarla konuşan»", tags=["form-ii-verbs", "ism-mawsul"]), huwa_fasl(),
+  yusuf_khabar(of="أَنَّ"),
+  tok("بْنُ", "ibn", "noun", ["badal", "idafa-definiteness"], "بَدَلٌ (أَوْ نَعْتٌ) مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ — حُذِفَتْ أَلِفُهُ بَيْنَ عَلَمَيْنِ.", "«son (of)» — the badal; its alif dropped between two names.", "«oğlu» — bedel; iki özel isim arasında elifi düşmüş."),
+  name_mudaf_ilayh("يَعْقُوبَ", "yaqub", "«Yaʿqūb»", "«Yakub»", punct="!")])
+sen("s23", "«They said: Are you indeed Yūsuf?» (Yūsuf 12:90)", "«Dediler: Yoksa sen gerçekten Yusuf musun?» (Yûsuf 12:90)", quran([
+  qalu(punct=None),
+  tok("ءَأَنَّكَ", "anna", "part", ["al-istifham", "inna-wa-akhawatuha"], "الْهَمْزَةُ لِلِاسْتِفْهَامِ، وَأَنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالْكَافُ ضَمِيرٌ فِي مَحَلِّ نَصْبٍ اسْمُهَا.", "«are you indeed?» — the question hamza over inna; the kāf its ism.", "«gerçekten sen misin?» — istifham hemzesi ve inne; kâf ismi.", segments=[seg("ءَ", "hamza-istifham", "part"), seg("أَنَّ", "anna", "part"), seg("كَ", "pron-2ms", "pron")]),
+  tok("لَأَنْتَ", "anta", "pron", ["tawkid", "inna-wa-akhawatuha", "mubtada-khabar"], "اللَّامُ لَامُ الِابْتِدَاءِ الْمُزَحْلَقَةُ، وَأَنْتَ ضَمِيرٌ مُنْفَصِلٌ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ (أَوْ ضَمِيرُ فَصْلٍ).", "«you» — the sliding lām; the pronoun as mubtadaʾ (or as the pronoun of separation).", "«sen» — müzahlaka lâmı; mübtedâ (veya fasıl zamiri).", segments=[seg("لَ", "lam-ibtida", "part"), seg("أَنْتَ", "anta", "pron")]),
+  tok("يُوسُفُ", "yusuf", "propn", ["mubtada-khabar", "mamnu-min-sarf"], "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ أَنَّ.", "«Yūsuf» — the khabar; the clause is anna's khabar.", "«Yusuf» — haber; cümle enne'nin haberi.", punct=".")]))
+sen("s24", "He said: «I am Yūsuf and this is my brother; Allah has been gracious to us. Indeed whoever fears Allah and is patient — Allah does not let the reward of the doers of good go to waste.» (Yūsuf 12:90)", "Dedi: «Ben Yusuf'um, bu da kardeşim; Allah bize lütfetti. Kim sakınır ve sabrederse, şüphesiz Allah iyilik edenlerin mükâfatını zayi etmez.» (Yûsuf 12:90)", [
+  qala(punct=":")] + quran([
+  tok("أَنَا", "ana", "pron", ["mubtada-khabar"], "ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "«I» — the mubtadaʾ.", "«ben» — mübtedâ."), yusuf_khabar(),
+  tok("وَهٰذَا", "hadha", "pron", ["atf-nasaq", "asma-al-ishara", "mubtada-khabar"], "الْوَاوُ عَاطِفَةٌ، وَاسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "«and this» — the demonstrative as mubtadaʾ.", "«ve bu» — ism-i işâret, mübtedâ.", segments=wa_("هٰذَا", "hadha", "pron")),
+  tok("أَخِي", "akh", "noun", ["mubtada-khabar", "five-nouns", "ya-al-mutakallim", "idafa-definiteness"], "خَبَرٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.", "«my brother» — the khabar.", "«kardeşim» — haber.", punct="،", segments=[seg("أَخِ", "akh", "noun"), seg("ي", "pron-1s", "pron")]),
+  qad_(), mazi("مَنَّ", "manna", "«has been gracious»", "«lütfetti»", hidden=None, tags=["doubled-verbs"]), allah_fail(), alayhi("عَلَيْنَا", "نَا", "pron-1p", "«to us».", "«bize»."),
+  inna_pron("إِنَّهُ", "هُ", "pron-3ms", "«indeed» — the hāʾ of the matter", "«şüphesiz» — şe'n zamiri"),
+  man_shart(full="مَنْ", wa=False),
+  tok("يَتَّقِ", "ittaqa", "verb", ["form-viii-verbs", "naqis-verbs"], "فِعْلُ الشَّرْطِ مَجْزُومٌ بِحَذْفِ حَرْفِ الْعِلَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ.", "«fears Allah» — the condition's verb, jussive by dropping its weak letter.", "«sakınır» — illet harfinin hazfiyle meczum şart fiili."),
+  tok("وَيَصْبِرْ", "sabara", "verb", ["atf-nasaq"], "الْوَاوُ عَاطِفَةٌ، وَيَصْبِرْ مَعْطُوفٌ عَلَى يَتَّقِ مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ السُّكُونُ.", "«and is patient» — joined, in jazm.", "«ve sabreder» — ma'tûf, meczum.", segments=wa_("يَصْبِرْ", "sabara", "verb")),
+  tok("فَإِنَّ", "inna", "part", ["inna-wa-akhawatuha"], "الْفَاءُ وَاقِعَةٌ فِي جَوَابِ الشَّرْطِ، وَإِنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ.", "«then indeed» — the fā of the apodosis with inna.", "«muhakkak» — cevap fâ'sı ve inne.", segments=[seg("فَ", "fa", "conj"), seg("إِنَّ", "inna", "part")]),
+  allah_ism(), la_nafiya(), mudari("يُضِيعُ", "adaa-waste", "«lets go to waste»", "«zayi etmez»", hidden="هُوَ", tags=["inna-wa-akhawatuha", "form-iv-verbs", "hollow-verbs"], extra_ar=" — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ إِنَّ"),
+  tok("أَجْرَ", "ajr", "noun", ["maful-bihi", "idafa-definiteness"], "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ.", "«the reward (of)» — the object; a muḍāf.", "«mükâfatını» — mef'ûl; muzâf."),
+  tok("الْمُحْسِنِينَ", "muhsin", "noun", ["idafa-definiteness", "jam-mudhakkar-salim"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ.", "«the doers of good» — the muḍāf ilayh, jarr by the yāʾ.", "«iyilik edenlerin» — muzâfun ileyh, yâ ile mecrur.", punct=")" if False else None)]))
+sen("s25", "«They said: By Allah, Allah has preferred you over us, and we were indeed sinners.» (Yūsuf 12:91)", "«Dediler: Allah'a yemin olsun, Allah seni bize üstün kıldı; biz gerçekten hatalıydık.» (Yûsuf 12:91)", quran([
+  qalu(punct=None), ta_allah(),
+  tok("لَقَدْ", "qad", "part", ["qad-harf", "tawkid"], "اللَّامُ وَاقِعَةٌ فِي جَوَابِ الْقَسَمِ، وَقَدْ حَرْفُ تَحْقِيقٍ.", "«surely» — the lām of the oath's answer with qad.", "«andolsun» — kasem cevabının lâmı ve kad.", segments=[seg("لَ", "lam-ibtida", "part"), seg("قَدْ", "qad", "part")]),
+  verb_enc("آثَرَكَ", "athara-prefer", "كَ", "pron-2ms", "«has preferred you»", "«seni üstün kıldı»", mudari=False, hidden=None, tags=["form-iv-verbs"]), allah_fail(), alayhi("عَلَيْنَا", "نَا", "pron-1p", "«over us».", "«bize»."),
+  tok("وَإِنْ", "in-mukhaffafa", "part", ["anwa-al-waw", "inna-wa-akhawatuha"], "الْوَاوُ حَالِيَّةٌ (أَوْ عَاطِفَةٌ)، وَإِنْ مُخَفَّفَةٌ مِنَ الثَّقِيلَةِ مُهْمَلَةٌ.", "«and truly» — the lightened in of emphasis.", "«ve gerçekten» — muhaffefe in.", segments=wa_("إِنْ", "in-mukhaffafa", "part")),
+  tok("كُنَّا", "kana", "verb", [K, "hollow-verbs"], "كَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَنَا ضَمِيرٌ فِي مَحَلِّ رَفْعٍ اسْمُهَا.", "«we were» — kāna with nā as its ism.", "«idik» — kâne; nâ ismi.", segments=[seg("كُنْ", "kana", "verb"), seg("نَا", "pron-1p", "pron")]),
+  tok("لَخَاطِئِينَ", "khati", "noun", [K, "tawkid", "jam-mudhakkar-salim", "ism-fail"], "اللَّامُ هِيَ الْفَارِقَةُ، وَخَاطِئِينَ خَبَرُ كَانَ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْيَاءُ.", "«sinners» — the distinguishing lām; kāna's khabar, naṣb by the yāʾ.", "«hatalıydık» — fârika lâmı; kâne'nin haberi, yâ ile mansub.", segments=[seg("لَ", "lam-ibtida", "part"), seg("خَاطِئِينَ", "khati", "noun")])]))
+sen("s26", "And Yūsuf did not blame them for their deed; rather he said:", "Yusuf yaptıklarından dolayı onları kınamadı; bilakis dedi:", [
+  ma_nafiya_(wa=True), verb_enc("لَامَهُمْ", "lama", "هُمْ", "pron-3mp", "«blamed them»", "«onları kınadı»", mudari=False, hidden=None, tags=["hollow-verbs"]), yusuf_fail(), ala(),
+  mudaf_pron("فَعْلَتِهِمْ", "fala", "هِمْ", "pron-3mp", "مَجْرُورٌ بِعَلَى وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ", "«their deed»", "«yaptıklarına»", tags=["huruf-jarr"], punct="،"),
+  tok("بَلْ", "bal", "part", ["atf-nasaq"], "حَرْفُ إِضْرَابٍ وَعَطْفٍ.", "«rather» — the particle of turning away.", "«bilakis» — idrâb harfi."), qala(punct=":")])
+sen("s27", "«May Allah forgive you; He is the most merciful of the merciful.» (Yūsuf 12:92)", "«Allah sizi bağışlasın; O, merhametlilerin en merhametlisidir.» (Yûsuf 12:92)", quran([
+  mudari("يَغْفِرُ", "ghafara", "«may forgive»", "«bağışlasın»", hidden=None), allah_fail(), lakum(punct=None, role="مُتَعَلِّقٌ بِيَغْفِرُ"),
+  huwa_mubt(full="وَهُوَ", wa=True),
+  tok("أَرْحَمُ", "arham", "noun", ["mubtada-khabar", "ism-tafdil", "idafa-definiteness"], "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ — اسْمُ تَفْضِيلٍ.", "«the most merciful (of)» — the khabar; an elative annexed.", "«en merhametlisi» — haber; muzâf ism-i tafdil."),
+  tok("الرَّاحِمِينَ", "rahim-fail", "noun", ["idafa-definiteness", "jam-mudhakkar-salim", "ism-fail"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ.", "«the merciful» — the muḍāf ilayh, jarr by the yāʾ.", "«merhametlilerin» — muzâfun ileyh, yâ ile mecrur.", punct=".")]))
+
+# ---------------------------------------------------------------- glossary
+NEW = {
+ "qita": G("qita", "قِطْعَة", "ق ط ع", "noun", "a piece", "parça", 2, plural="قِطَع"),
+ "tajaddada": G("tajaddada", "تَجَدَّدَ", "ج د د", "verb", "to be renewed (Form V)", "yenilenmek, tazelenmek (tefa''ul bâbı)", 3, form="V"),
+ "asaf": G("asaf", "أَسَف", "أ س ف", "noun", "sorrow, regret (يَا أَسَفَى = O my sorrow)", "üzüntü, hasret (yâ esefâ = vah hasretim)", 2),
+ "bathth": G("bathth", "بَثّ", "ب ث ث", "noun", "anguish that cannot be kept in", "içe sığmayan keder", 3),
+ "yas": G("yas", "يَأْس", "ي أ س", "noun", "despair (maṣdar of يَئِسَ)", "ümitsizlik (yeise'nin masdarı)", 2),
+ "rajaa-hope": G("rajaa-hope", "رَجَاء", "ر ج و", "noun", "hope (maṣdar of رَجَا)", "ümit (recâ'nın masdarı)", 2),
+ "ijtahada": G("ijtahada", "اِجْتَهَدَ", "ج ه د", "verb", "to strive, to exert oneself (Form VIII)", "çabalamak, gayret etmek (iftiâl bâbı)", 2, form="VIII"),
+ "qanita": G("qanita", "قَنِطَ", "ق ن ط", "verb", "to despair", "ümit kesmek", 3, form="I"),
+ "haja-surge": G("haja-surge", "هَاجَ", "ه ي ج", "verb", "to surge, to be stirred up (a hollow verb, يَهِيجُ)", "kabarmak, coşmak (ecvef, yehîcü)", 3, form="I"),
+ "ama": G("ama", "أَمَا", None, "part", "the question hamza over the negating mā: «did … not?»", "nefiy mâ'sı üzerine istifham hemzesi: «… değil mi?»", 2),
+ "adaa-waste": G("adaa-waste", "أَضَاعَ", "ض ي ع", "verb", "to let go to waste, to lose (Form IV, a hollow verb)", "zayi etmek, kaybetmek (if'âl bâbı, ecvef)", 3, form="IV"),
+ "athara-prefer": G("athara-prefer", "آثَرَ", "أ ث ر", "verb", "to prefer, to give preference (Form IV; آثَرَكَ عَلَيْنَا = preferred you over us)", "tercih etmek, üstün tutmak (if'âl bâbı)", 3, form="IV"),
+ "in-mukhaffafa": G("in-mukhaffafa", "إِنْ (الْمُخَفَّفَة)", None, "part", "the lightened in — the emphatic inna lightened, followed by the distinguishing lām", "muhaffefe in — hafifletilmiş te'kid inne'si, fârika lâmı ile", 3),
+ "rahim-fail": G("rahim-fail", "رَاحِم", "ر ح م", "noun", "one who shows mercy (ism fāʿil of رَحِمَ)", "merhamet eden (rahime'nin ism-i fâili)", 2, plural="رَاحِمُونَ"),
+}
+_used = sorted({t["lex"] for s_ in S for t in s_["tokens"]} | {sg["lex"] for s_ in S for t in s_["tokens"] for sg in t.get("segments", [])})
+GLOSS_ADD = {}; _MISSING = []
+for k in _used:
+    if k in TG: continue
+    if k in NEW: GLOSS_ADD[k] = NEW[k]; continue
+    try: GLOSS_ADD[k] = find_gloss(k)
+    except KeyError: _MISSING.append(k)
+if _MISSING: raise SystemExit("no package owns: " + ", ".join(_MISSING))
+for _k, _lm in [("lama", "لام"), ("halaka", "هلك"), ("innama", "إنما"), ("kufr", "كفر"), ("bahatha", "بحث"), ("manaa", "منع"), ("faqr", "فقر"), ("malaka", "ملك"), ("hal", "حال"), ("jahil", "جاهل"), ("sirr", "سر"), ("subhana", "سبحان"), ("mata-die", "مات"), ("shakk", "شك"), ("manna", "من"), ("ittaqa", "اتقى"), ("ajr", "أجر"), ("fala", "فعلة"), ("ghafara", "غفر"), ("arham", "أرحم"), ("amara-v", "أمر"), ("inda", "عند"), ("anna", "أن"), ("idh", "إذ"), ("antum", "أنتم"), ("nahnu", "نحن"), ("hayy", "حي"), ("salam", "سلام"), ("bal", "بل"), ("sabara", "صبر"), ("muhsin", "محسن"), ("khati", "خاطئ"), ("lam-ibtida", "ل")]:
+    _e = GLOSS_ADD.get(_k) or TG.get(_k); assert _e, _k
+    _w = bare(_e["lemma"]).split(" ")[0].replace("ِ", "").replace("ـ", "")
+    assert _w.replace("ال", "", 1) == _lm.replace("ال", "", 1) or _w == _lm or _w.startswith(_lm) or _lm.startswith(_w), (_k, _e["lemma"])
+# ---------------------------------------------------------------- paradigms
+mo = json.loads((PKG / "morphology.json").read_text(encoding="utf-8"))
+for _k in ("tajaddada", "ijtahada", "qanita", "haja-surge", "adaa-waste", "athara-prefer"): mo["verbs"].pop(_k, None)
+put_morph(mo, "tajaddada", _sg.idgham(_sg.derived("مِنْ بَابِ التَّفَعُّلِ — مُضَاعَفٌ", "تَفَعَّلَ يَتَفَعَّلُ", "َ", "تَجَدَّد", "تَجَدَّد", "تَجَدَّد", "تَجَدُّد", "مُتَجَدِّد", note="لَازِمٌ: تَجَدَّدَ الْحُزْنُ.")))
+put_morph(mo, "ijtahada", _sg.idgham(_sg.derived("مِنْ بَابِ الِافْتِعَالِ", "اِفْتَعَلَ يَفْتَعِلُ", "َ", "اِجْتَهَد", "جْتَهِد", "اِجْتَهِد", "اِجْتِهَاد", "مُجْتَهِد", note="لَازِمٌ: اِجْتَهَدَ فِي الْأَمْرِ.")))
+put_morph(mo, "qanita", _sg.sound1("samia", "قَنِط", "قْنَط", "اِقْنَط", "قُنُوط", "قَانِط", note="لَازِمٌ، يَتَعَدَّى بِمِنْ: قَنِطَ مِنْ رَحْمَةِ اللهِ — وَفِيهِ لُغَةٌ: قَنَطَ يَقْنِطُ."))
+put_morph(mo, "haja-surge", _sg.hollow1("daraba", "أَجْوَفُ يَائِيٌّ (مِنْ بَابِ ضَرَبَ)", "هَاج", "هِج", "هِيج", "هِج", "هِيج", "هِج", "هَيَجَان", "هَائِج", note="لَازِمٌ: هَاجَ الْبَحْرُ، هَاجَ الْحُزْنُ — هَاجَ يَهِيجُ، هِجْتُ."))
+put_morph(mo, "adaa-waste", _sg.derived_hollow("مِنْ بَابِ الْإِفْعَالِ — أَجْوَفُ يَائِيٌّ", "أَفْعَلَ يُفْعِلُ", "ُ", "أَضَاع", "أَضَع", "ضِيع", "ضِع", "أَضِيع", "أَضِع", "إِضَاعَة", "مُضِيع", "مُضَاع", "أُضِيعَ", "يُضَاعُ", note="مُتَعَدٍّ: أَضَاعَ الْمَالَ."))
+put_morph(mo, "athara-prefer", _sg.derived("مِنْ بَابِ الْإِفْعَالِ — مَهْمُوزُ الْفَاءِ", "أَفْعَلَ يُفْعِلُ", "ُ", "آثَر", "ؤْثِر", "آثِر", "إِيثَار", "مُؤْثِر", "مُؤْثَر", "أُوثِرَ", "يُؤْثَرُ", note="مُتَعَدٍّ: آثَرَهُ عَلَى نَفْسِهِ."))
+for _k, _v in GLOSS_ADD.items():
+    if _v.get("pos") == "verb" and _k not in mo["verbs"]:
+        try: mo["verbs"][_k] = find_morph(_k)
+        except KeyError: pass
+(PKG / "morphology.json").write_text(json.dumps(mo, ensure_ascii=False, indent=1), encoding="utf-8")
+ADD_EN = (" Chapter 21 (print pp. 61–64, «أَحْسَنُ الْقَصَصِ» section 22 «يَظْهَرُ السِّرُّ»): Yaʿqūb's human heart and Yūsuf 12:84 (s2, the aya marked inside the line) and 12:86 (s4, marked), his hope, the third journey, "
+          "the brothers before Yūsuf, Yūsuf's three questions to himself, 12:89 (s15), 12:90 (s23, s24 — s24 joined across pp. 63–64), 12:91 (s25), 12:92 (s27), all marked. One printed line is one sentence; "
+          "the print's «!» and «؟» are kept; s7 ends on the print's comma, s12 without a stop; the print sets its ayas in round brackets, marked here with the guillemets of the earlier chapters.")
+ADD_TR = (" Yirmi birinci bölüm (basılı s. 61–64, «أَحْسَنُ الْقَصَصِ» 22. kısım «يَظْهَرُ السِّرُّ»): Yakub'un beşer kalbi ve Yûsuf 12:84 (s2, satır içinde işaretli) ile 12:86 (s4, işaretli), ümidi, üçüncü yolculuk, "
+          "Yusuf'un huzurundaki kardeşler, Yusuf'un kendine üç sorusu, 12:89 (s15), 12:90 (s23, s24 — s24 s. 63–64 arasında birleştirilmiştir), 12:91 (s25), 12:92 (s27), hepsi işaretli. Basılı her satır bir cümledir; "
+          "baskının «!» ve «؟» işaretleri korunmuş; s7 baskıdaki virgülle, s12 noktasız biter; baskı ayetleri yuvarlak parantezle verir, burada önceki bölümlerin tırnaklarıyla işaretlenmiştir.")
+write_out(21, S, TITLE, ADD_EN, ADD_TR, "pp. 61–64", GLOSS_ADD)
+report(21, S, GLOSS_ADD, ())

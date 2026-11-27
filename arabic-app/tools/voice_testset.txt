@@ -1,0 +1,38 @@
+# v349 voice test set — 30 fully vowelled sentences from the shelf (as SENT to a voice: SEND347 applied), each with the
+# reading a correct voice gives. Columns: id <TAB> what it covers <TAB> source (story/chapter/sentence) <TAB> text <TAB>
+# expected phonemes <TAB> the final word at a pause (waqf).
+# THE APP'S CHOICE: a learner's reading «وَصْلًا» — every case ending and tanwīn is pronounced, before a comma and at the end
+# of the sentence too; hamzat al-waṣl is elided in connected speech. The waqf column says what a pause WOULD drop; an engine
+# that pauses at the end is counted separately ('pausal'), not as a misreading.
+# Expected column written by rule from the vowels (tools/voice_eval.py --make) and checked by hand, word by word.
+# ﷺ does not occur in story text (only in notes); row 24 is the spelt-out formula, which is exactly what SEND347 sends for ﷺ.
+1	tanwin-u maqsura wasl-after-maqsura hamza moon	al-asad-wa-al-far/ch1/s2	فَجَاءَ فَأْرٌ صَغِيرٌ وَمَشَى عَلَى رَأْسِ الْأَسَدِ.	fadʒaːʔa faʔrun sˤaɣiːrun wamaʃaː ʕalaː raʔsi lʔasadi	lʔasad
+2	case-u/a/i moon wasl sukun	al-asad-wa-al-far/ch1/s3	فَقَامَ الْأَسَدُ مِنْ نَوْمِهِ وَأَمْسَكَ الْفَأْرَ بِيَدِهِ.	faqaːma lʔasadu min nawmihi waʔamsaka lfaʔra bijadihi	bijadih
+3	tanwin-a sukun comma	al-asad-wa-al-far/ch2/s2	وَإِنْ تَرَكْتَنِي، خَدَمْتُكَ يَوْمًا.	waʔin taraktaniː xadamtuka jawman	jawmaː
+4	shadda	al-asad-wa-al-far/ch2/s4	ثُمَّ تَرَكَهُ وَنَامَ.	θumma tarakahu wanaːma	wanaːm
+5	tanwin-i shadda marbuta-construct	al-asad-wa-al-far/ch3/s1	بَعْدَ أَيَّامٍ وَقَعَ الْأَسَدُ فِي شَبَكَةِ صَيَّادٍ.	baʕda ʔajjaːmin waqaʕa lʔasadu fiː ʃabakati sˤajjaːdin	sˤajjaːd
+6	marbuta-tanwin-a wasl(mina-l) madd	al-asad-wa-al-arnab/ch4/s1	فَصَاحَ الْأَسَدُ صَيْحَةً عَظِيمَةً، فَرَجَعَ إِلَيْهِ صَوْتُهُ مِنَ الْبِئْرِ، فَازْدَادَ غَضَبًا.	fasˤaːħa lʔasadu sˤajħatan ʕaðˤiːmatan faradʒaʕa ʔilajhi sˤawtuhu mina lbiʔri fazdaːda ɣadˤaban	ɣadˤabaː
+7	tanwin-a comma	al-asad-wa-al-far/ch3/s3	سَمِعَ الْفَأْرُ صَوْتَهُ، فَجَاءَ سَرِيعًا.	samiʕa lfaʔru sˤawtahu fadʒaːʔa sariːʕan	sariːʕaː
+8	sun wasl-after-long-i vocative	al-asad-wa-al-far/ch4/s1	قَالَ الْأَسَدُ: أَشْكُرُكَ يَا صَدِيقِي الصَّغِيرَ!	qaːla lʔasadu ʔaʃkuruka jaː sˤadiːqi sˤsˤaɣiːra	sˤsˤaɣiːr
+9	tanwin-u dagger-alif shadda	al-asad-wa-al-far/ch4/s2	أَنْتَ صَغِيرٌ، وَلٰكِنَّكَ نَفَعْتَنِي.	ʔanta sˤaɣiːrun walaːkinnaka nafaʕtaniː	nafaʕtaniː
+10	sun moon wasl-after-long-i	al-ghurab-wa-al-thalab/ch1/s2	وَقَفَ الْغُرَابُ فَوْقَ الشَّجَرَةِ وَالْجُبْنُ فِي فَمِهِ.	waqafa lɣuraːbu fawqa ʃʃadʒarati waldʒubnu fiː famihi	famih
+11	sun tanwin-u hamza	al-ghurab-wa-al-thalab/ch1/s3	وَكَانَ تَحْتَ الشَّجَرَةِ ثَعْلَبٌ جَائِعٌ.	wakaːna taħta ʃʃadʒarati θaʕlabun dʒaːʔiʕun	dʒaːʔiʕ
+12	maqsura-before-wasl sun subjunctive	al-ghurab-wa-al-thalab/ch2/s1	رَأَى الثَّعْلَبُ الْجُبْنَ، فَأَرَادَ أَنْ يَأْخُذَهُ بِحِيلَةٍ.	raʔa θθaʕlabu ldʒubna faʔaraːda ʔan jaʔxuðahu biħiːlatin	biħiːlah
+13	allah madd-alif tanwin-a+shadda tanwin-i	adam-wa-iblis/ch1/s1	خَلَقَ اللهُ آدَمَ مِنْ طِينٍ، وَنَفَخَ فِيهِ مِنْ رُوحِهِ، فَصَارَ بَشَرًا حَيًّا.	xalaqa llaːhu ʔaːdama min tˤiːnin wanafaxa fiːhi min ruːħihi fasˤaːra baʃaran ħajjan	ħajjaː
+14	madd sun moon	aqaid-ahl-al-sunna/ch11/s5	وَأَوَّلُ الْأَنْبِيَاءِ آدَمُ عَلَيْهِ السَّلَامُ.	waʔawwalu lʔanbijaːʔi ʔaːdamu ʕalajhi ssalaːmu	ssalaːm
+15	jussive(lam yara) marbuta-tanwin-u sun	fath-al-qustantiniyya/ch3/s2	وَكَانَتْ مَعَهُ مَدَافِعُ عَظِيمَةٌ لَمْ يَرَ النَّاسُ مِثْلَهَا.	wakaːnat maʕahu madaːfiʕu ʕaðˤiːmatun lam jara nnaːsu miθlahaː	miθlahaː
+16	jussive-sukun shadda	wasiyyat-abi-yusuf-L5/ch4/s20	مَنْ لَمْ يَرْحَمْ صَغِيرَنَا وَلَمْ يُوَقِّرْ كَبِيرَنَا فَلَيْسَ مِنَّا.	man lam jarħam sˤaɣiːranaː walam juwaqqir kabiːranaː falajsa minnaː	minnaː
+17	jussive dagger-alif	qisas-al-nabiyyin-1/ch15/s11	وَلٰكِنَّ يُوسُفَ لَمْ يَسْتَعْجِلْ.	walaːkinna juːsufa lam jastaʕdʒil	jastaʕdʒil
+18	dual-ani dagger-alif tanwin-a	qisas-al-nabiyyin-1/ch19/s23	وَهٰكَذَا بَقِيَ بِنْيَامِينُ عِنْدَ يُوسُفَ وَفَرِحَ الْأَخَوَانِ جَمِيعًا.	wahaːkaðaː baqija binjaːmiːnu ʕinda juːsufa wafariħa lʔaxawaːni dʒamiːʕan	dʒamiːʕaː
+19	dual imperative-wasl(u) sun	jumal-al-tadrib/ch7/s3	يَا طَالِبَانِ اُكْتُبَا الدَّرْسَ.	jaː tˤaːlibaːni ktuba ddarsa	ddars
+20	jussive sound-masc-pl tanwin	qisas-al-nabiyyin-2/ch24/s1	وَلَمْ تَجِدْ عَادٌ جَوَابًا! وَمَا عَلِمُوا كَيْفَ يُجِيبُونَ هُودًا!	walam tadʒid ʕaːdun dʒawaːban wamaː ʕalimuː kajfa judʒiːbuːna huːdan	huːdaː
+21	sound-masc-pl(-ina) sun li-l	aqaid-ahl-al-sunna/ch11/s3	وَمُبَيِّنِينَ لِلنَّاسِ مَا يَحْتَاجُونَ إِلَيْهِ مِنْ أُمُورِ الدُّنْيَا وَالدِّينِ.	wamubajjiniːna linnaːsi maː jaħtaːdʒuːna ʔilajhi min ʔumuːri ddunjaː waddiːni	waddiːn
+22	sound-fem-pl allah-after-construct tanwin-u+shadda	al-maqamat-birgivi/ch2/s24	وَأَيْنَ التَّصْدِيقُ بِأَنَّ أَوْلِيَاءَ اللهِ وَكَرَامَاتِهِمْ حَقٌّ؟	waʔajna ttasˤdiːqu biʔanna ʔawlijaːʔa llaːhi wakaraːmaːtihim ħaqqun	ħaqq
+23	verse-line itlaq jussive tanwin+shadda	muallaqat-antara/ch4/s2	سَحًّا وَتَسْكَابًا فَكُلَّ عَشِيَّةٍ، يَجْرِي عَلَيْهَا الْمَاءُ لَمْ يَتَصَرَّمِ.	saħħan wataskaːban fakulla ʕaʃijjatin jadʒriː ʕalajha lmaːʔu lam jatasˤarrami	jatasˤarram
+24	formula(salla) dual-ayni sun	al-maqamat-birgivi/ch2/s28	كَمَا قَالَ النَّبِيُّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: أَشْبَعُ يَوْمًا وَأَجُوعُ يَوْمَيْنِ.	kamaː qaːla nnabijju sˤalla llaːhu ʕalajhi wasallama ʔaʃbaʕu jawman waʔadʒuːʕu jawmajni	jawmajn
+25	formula(taala) allah sound-pl-u+alif	al-maqamat-birgivi/ch7/s9	وَلِقَوْلِهِ تَعَالَى: لَا تَقْنَطُوا مِنْ رَحْمَةِ اللهِ.	waliqawlihi taʕaːlaː laː taqnatˤuː min raħmati llaːhi	llaːh
+26	dagger-alif shadda	qisas-al-nabiyyin-1/ch1/s26	وَإِنَّ هٰذِهِ الْأَصْنَامَ لَا تَضُرُّ وَلَا تَنْفَعُ!	waʔinna haːðihi lʔasˤnaːma laː tadˤurru walaː tanfaʕu	tanfaʕ
+27	madd(aa) maqsura tanwin-i	qisas-al-nabiyyin-4/ch16/s5	وَقَالَ: وَإِنَّ لَهُ عِنْدَنَا لَزُلْفَى وَحُسْنَ مَآبٍ.	waqaːla waʔinna lahu ʕindanaː lazulfaː waħusna maʔaːbin	maʔaːb
+28	maqsura marbuta-construct	tariq-ibn-ziyad/ch4/s2	وَلَمْ يَزَلْ يَسِيرُ حَتَّى بَلَغَ عَاصِمَةَ مُلْكِ لُذْرِيقَ.	walam jazal jasiːru ħattaː balaɣa ʕaːsˤimata mulki luðriːqa	luðriːq
+29	wasl-helping-vowel(-i) li-thnayn marbuta-tanwin-a	marah-al-arwah/ch13/s4	فَاضْرِبِ الِاثْنَيْنِ فِي الثَّلَاثَةِ حَتَّى يَصِيرَ سِتَّةً.	fadˤribi liθnajni fi θθalaːθati ħattaː jasˤiːra sittatan	sittah
+30	wasl-after-wa moon	wasiyyat-abi-yusuf-L5/ch5/s25	وَاشْتَغِلْ بِالْعِلْمِ فِي عُنْفُوَانِ شَبَابِكَ وَوَقْتِ فَرَاغِ قَلْبِكَ.	waʃtaɣil bilʕilmi fiː ʕunfuwaːni ʃabaːbika wawaqti faraːɣi qalbika	qalbik

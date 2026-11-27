@@ -1,0 +1,468 @@
+{
+  "id": "al-marifa-al-mudmarat-wal-alam",
+  "title": {
+    "ar": "الْمُضْمَرَاتُ الْأَرْبَعَةُ: الْمَرْفُوعُ الْمُتَّصِلُ وَالْمُنْفَصِلُ، الْمُشْتَرَكُ، الْمَنْصُوبُ الْمُنْفَصِلُ؛ وَالْعَلَمُ: عَلَمُ الشَّخْصِ وَعَلَمُ الْجِنْسِ",
+    "en": "The four pronoun divisions: attached and detached rafʿ, the shared naṣb/jarr, the detached naṣb; and the proper name of person and of genus",
+    "tr": "Dört zamir kısmı: muttasıl ve munfasıl merfû, müşterek mansûb/mecrûr, munfasıl mansûb; şahıs ve cins alemi"
+  },
+  "level": 5,
+  "group": "awamil",
+  "classicalSources": [
+    "إظهار الأسرار للبركوي — المعرفة: المضمرات والعلم",
+    "الكافية لابن الحاجب — المضمر، العلم",
+    "شرح قطر الندى لابن هشام — الضمير والعلم"
+  ],
+  "amil": "the maʿrifa's first kind is the pronoun, in four divisions: the attached rafʿ (the doer-pronouns of the conjugation), the detached rafʿ (هُوَ هُمَا هُمْ هِيَ هُمَا هُنَّ أَنْتَ أَنْتُمَا أَنْتُمْ أَنْتِ أَنْتُمَا أَنْتُنَّ أَنَا نَحْنُ), the one shared between attached naṣb and attached jarr (ضَرَبَهُ … ضَرَبَنَا and لَهُ … — one set of fourteen forms, naṣb after a verb, jarr after a particle or a muḍāf), and the detached naṣb (إِيَّاهُ … إِيَّانَا); the second kind is the proper name — of a person (زَيْدٌ) or of a genus (أُسَامَةُ for the lion, سُبْحَانَ for glorifying)",
+  "question": {
+    "en": [
+      "How many divisions have the pronouns? Four — attached rafʿ, detached rafʿ, the shared attached naṣb/jarr, and detached naṣb.",
+      "Which are the detached rafʿ pronouns? هُوَ هُمَا هُمْ هِيَ هُمَا هُنَّ (absent), أَنْتَ أَنْتُمَا أَنْتُمْ أَنْتِ أَنْتُمَا أَنْتُنَّ (addressed), أَنَا نَحْنُ (speaking) — mubtadaʾs, khabars, doers after a separation.",
+      "Why is the third division «shared»? Because the same fourteen forms serve for the attached naṣb (ضَرَبَهُ … ضَرَبَنَا) and the attached jarr (لَهُ، غُلَامُهُ …): the governor before them, verb or particle, decides the place.",
+      "Which are the detached naṣb pronouns? إِيَّاهُ … إِيَّانَا — used where attachment is impossible, as before the verb (إِيَّاكَ نَعْبُدُ) or after إِلَّا.",
+      "What is the proper name? The maʿrifa coined for a particular named thing: of a person (زَيْدٌ) or of a genus (أُسَامَةُ the lion, سُبْحَانَ glorifying) — the genus-name is a maʿrifa though its bearer is a kind.",
+      "Why are أُسَامَةُ and سُبْحَانَ diptotes? أُسَامَةُ by name-ness and the feminine tāʾ; سُبْحَانَ by name-ness and the added alif-nūn.",
+      "What does the engine READ here? The DabtEngine keeps the fourteen detached rafʿ pronouns, the fourteen object forms on ضَرَبَ and the fourteen إِيَّا-forms at the author's form as built words, reads the ordinal before each division as its naʿt and the division's khabar after it, and the cited proper names on their written case."
+    ],
+    "tr": [
+      "Zamirlerin kaç kısmı vardır? Dört — muttasıl merfû, munfasıl merfû, müşterek muttasıl mansûb/mecrûr ve munfasıl mansûb.",
+      "Munfasıl merfû zamirler hangileridir? Hüve hümâ hüm hiye hümâ hünne (gâib), ente entümâ entüm enti entümâ entünne (muhâtab), ene nahnü (mütekellim) — mübtedâ, haber, ayrılmadan sonra fâil olurlar.",
+      "Üçüncü kısım neden «müşterek»tir? Çünkü aynı on dört şekil hem muttasıl mansûb (darabehû … darabenâ) hem muttasıl mecrûr (lehû, gulâmuhû …) için kullanılır: öndeki âmil, fiil veya harf, mahalli belirler.",
+      "Munfasıl mansûb zamirler hangileridir? İyyâhu … iyyânâ — bitişmenin mümkün olmadığı yerde, fiilden önce (iyyâke na'büdü) veya illâ'dan sonra.",
+      "Alem nedir? Belirli adlandırılmış bir şey için konulan ma'rife: şahıs (Zeyd) veya cins (aslan için Üsâme, tesbîh için Sübhân) alemi — cins alemi, sahibi bir tür olsa da ma'rifedir.",
+      "Üsâme ve Sübhân neden gayr-ı munsarıftır? Üsâme alemlik ve te'nîs tâ'sı ile; Sübhân alemlik ve zâid elif-nûn ile.",
+      "Motor burada neyi OKUR? DabtEngine on dört munfasıl merfû zamiri, darabe üzerindeki on dört nesne şeklini ve on dört iyyâ şeklini mebnî kelimeler olarak yazarın şeklinde tutar; her kısımdan önceki sıra sayısını na't, ardındaki haberi haber okur; alıntılanan alemleri yazılı hâlleriyle okur."
+    ]
+  },
+  "plain": {
+    "en": "Pronouns come in four sets: the subject endings on verbs, the stand-alone subject words («he … we»), the object/possessive endings («him, you, me» after a verb or preposition) and the stand-alone object words («iyyāhu … iyyānā»). The second definite word is the proper name, of a person (Zayd) or a kind (Usāma, «lion»).",
+    "tr": "Zamirler dört takımdır: fiillerdeki özne ekleri, bağımsız özne sözcükleri («o … biz»), fiil veya edattan sonraki nesne/iyelik ekleri («onu, onları, seni, beni, bizi») ve bağımsız nesne sözcükleri («iyyâhu … iyyânâ»). Belirli sözcüğün ikinci türü özel addır: ya bir kişinin (Zeyd) ya da bir türün (aslan için Üsâme)."
+  },
+  "explanation": {
+    "en": "The first kind of maʿrifa is the pronoun, in four divisions. The first is the attached rafʿ pronoun, treated under the doer. The second is the detached rafʿ pronoun: هُوَ هُمَا هُمْ هِيَ هُمَا هُنَّ أَنْتَ أَنْتُمَا أَنْتُمْ أَنْتِ أَنْتُمَا أَنْتُنَّ أَنَا نَحْنُ. The third is shared between the attached naṣb and the attached jarr — one set of fourteen forms, ضَرَبَهُ ضَرَبَهُمَا ضَرَبَهُمْ ضَرَبَهَا ضَرَبَهُمَا ضَرَبَهُنَّ ضَرَبَكَ ضَرَبَكُمَا ضَرَبَكُمْ ضَرَبَكِ ضَرَبَكُمَا ضَرَبَكُنَّ ضَرَبَنِي ضَرَبَنَا, and the same after a particle or a muḍāf: لَهُ and so on. The fourth is the detached naṣb pronoun: إِيَّاهُ إِيَّاهُمَا إِيَّاهُمْ إِيَّاهَا إِيَّاهُمَا إِيَّاهُنَّ إِيَّاكَ إِيَّاكُمَا إِيَّاكُمْ إِيَّاكِ إِيَّاكُمَا إِيَّاكُنَّ إِيَّايَ إِيَّانَا. The second kind of maʿrifa is the proper name, in two divisions: the name of a person, as زَيْدٌ, and the name of a genus, as أُسَامَةُ for the lion and سُبْحَانَ for glorifying.",
+    "tr": "Ma'rifenin birinci nev'i zamirdir, dört kısımdır. Birincisi fâilde işlenen muttasıl merfû zamir. İkincisi munfasıl merfû zamir: hüve hümâ hüm hiye hümâ hünne ente entümâ entüm enti entümâ entünne ene nahnü. Üçüncüsü muttasıl mansûb ile muttasıl mecrûr arasında müşterek olan — tek bir on dörtlük takım: darabehû darabehümâ darabehüm darabehâ darabehümâ darabehünne darabeke darabekümâ darabeküm darabeki darabekümâ darabekünne darabenî darabenâ; harf veya muzâftan sonra da aynı: lehû vb. Dördüncüsü munfasıl mansûb zamir: iyyâhu iyyâhümâ iyyâhüm iyyâhâ iyyâhümâ iyyâhünne iyyâke iyyâkümâ iyyâküm iyyâki iyyâkümâ iyyâkünne iyyâye iyyânâ. Ma'rifenin ikinci nev'i alemdir, iki kısımdır: şahıs alemi, Zeyd gibi; cins alemi, aslan için Üsâme ve tesbîh için Sübhân gibi."
+  },
+  "examples": [
+    {
+      "ar": "الْقِسْمُ الْأَوَّلُ مَرْفُوعٌ مُتَّصِلٌ وَقَدْ سَبَقَ",
+      "en": "the attached rafʿ pronoun",
+      "tr": "muttasıl merfû zamir",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s1"
+    },
+    {
+      "ar": "هُوَ هُمَا هُمْ هِيَ هُمَا هُنَّ أَنْتَ أَنْتُمَا أَنْتُمْ أَنْتِ أَنْتُمَا أَنْتُنَّ أَنَا نَحْنُ",
+      "en": "the detached rafʿ pronouns",
+      "tr": "munfasıl merfû zamirler",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s2"
+    },
+    {
+      "ar": "ضَرَبَهُ … ضَرَبَنَا، وَنَحْوُ لَهُ إِلَخْ",
+      "en": "the shared attached naṣb and jarr",
+      "tr": "müşterek muttasıl mansûb ve mecrûr",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s3"
+    },
+    {
+      "ar": "إِيَّاهُ … إِيَّانَا",
+      "en": "the detached naṣb pronouns",
+      "tr": "munfasıl mansûb zamirler",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s4"
+    },
+    {
+      "ar": "عَلَمُ شَخْصٍ نَحْوُ زَيْدٌ، وَعَلَمُ جِنْسٍ نَحْوُ أُسَامَةَ وَسُبْحَانَ",
+      "en": "the proper name of person and of genus",
+      "tr": "şahıs ve cins alemi",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s5"
+    },
+    {
+      "ar": "وَتَدْخُلُ الْمُضْمَرَاتُ فِي الْمَاضِي وَأَخَوَاتِهِ، وَهِيَ تَرْتَقِي إِلَى سِتِّينَ نَوْعًا.",
+      "en": "The pronouns enter the māḍī and its sisters, and they rise to sixty kinds.",
+      "tr": "Zamirler mâzîye ve kardeşlerine girer; bunlar altmış çeşide çıkar.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:157 (ص 45)"
+    },
+    {
+      "ar": "لِأَنَّهَا فِي الْأَصْلِ ثَلَاثَةٌ: مَرْفُوعٌ وَمَنْصُوبٌ وَمَجْرُورٌ.",
+      "en": "For in origin they are three: marfūʿ, manṣūb and majrūr.",
+      "tr": "Çünkü aslında üçtür: merfû, mansûb ve mecrûr.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:158 (ص 45)"
+    },
+    {
+      "ar": "ثُمَّ يَصِيرُ كُلُّ وَاحِدٍ اثْنَيْنِ نَظَرًا إِلَى اتِّصَالِهِ وَانْفِصَالِهِ.",
+      "en": "Then each one becomes two, with regard to its being attached and its being detached.",
+      "tr": "Sonra her biri, bitişik ve ayrı oluşuna bakılarak iki olur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:159 (ص 45)"
+    },
+    {
+      "ar": "فَاضْرِبِ الِاثْنَيْنِ فِي الثَّلَاثَةِ حَتَّى يَصِيرَ سِتَّةً.",
+      "en": "So multiply the two by the three, so that it becomes six.",
+      "tr": "Öyleyse ikiyi üçle çarp ki altı olsun.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:161 (ص 46)"
+    },
+    {
+      "ar": "ثُمَّ أَخْرِجِ الْمَجْرُورَ الْمُنْفَصِلَ حَتَّى لَا يَلْزَمَ تَقْدِيمُ الْمَجْرُورِ عَلَى الْجَارِّ.",
+      "en": "Then take out the detached majrūr, so that putting the majrūr before its jārr does not follow.",
+      "tr": "Sonra ayrı mecrûru çıkar ki mecrûrun cârdan öne geçmesi lâzım gelmesin.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:162 (ص 46)"
+    },
+    {
+      "ar": "فَبَقِيَ لَكَ خَمْسَةٌ: مَرْفُوعٌ مُتَّصِلٌ وَمُنْفَصِلٌ، وَمَنْصُوبٌ مُتَّصِلٌ وَمُنْفَصِلٌ، وَمَجْرُورٌ مُتَّصِلٌ.",
+      "en": "So five are left to you: the marfūʿ attached and detached, the manṣūb attached and detached, and the majrūr attached.",
+      "tr": "Böylece elinde beş kalır: bitişik ve ayrı merfû, bitişik ve ayrı mansûb, bir de bitişik mecrûr.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s7",
+      "source": "marah-al-arwah-src.txt:164 (ص 46)"
+    },
+    {
+      "ar": "ثُمَّ انْظُرْ إِلَى الْمَرْفُوعِ الْمُتَّصِلِ وَهُوَ يَحْتَمِلُ ثَمَانِيَةَ عَشَرَ نَوْعًا فِي الْعَقْلِ: سِتًّا فِي الْغَيْبَةِ وَسِتًّا فِي الْمُخَاطَبَةِ وَسِتًّا فِي الْحِكَايَةِ.",
+      "en": "Then look at the attached marfūʿ: in reason it admits of eighteen kinds — six in the third person, six in address and six in the first person.",
+      "tr": "Sonra bitişik merfûya bak: o, akla göre on sekiz çeşide ihtimallidir; altısı gâibde, altısı hitapta, altısı da mütekellimde.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s8",
+      "source": "marah-al-arwah-src.txt:165 (ص 46)"
+    },
+    {
+      "ar": "وَاكْتَفَى بِخَمْسَةٍ فِي الْغَيْبَةِ بِاشْتِرَاكِ التَّثْنِيَةِ لِقِلَّةِ اسْتِعْمَالِهَا.",
+      "en": "But usage made do with five in the third person, the dual being shared, because it is little used.",
+      "tr": "Fakat dil, gâibde, az kullanıldığı için tesniyeyi ortak tutarak beş ile yetinmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s9",
+      "source": "marah-al-arwah-src.txt:167 (ص 47)"
+    },
+    {
+      "ar": "وَكَذٰلِكَ فِي الْمُخَاطَبِ وَالْمُخَاطَبَةِ.",
+      "en": "And so it is in the masculine and the feminine addressed.",
+      "tr": "Muhâtab ve muhâtabada da böyledir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s10",
+      "source": "marah-al-arwah-src.txt:168 (ص 47)"
+    },
+    {
+      "ar": "وَفِي الْحِكَايَةِ بِلَفْظَيْنِ لِأَنَّ الْمُتَكَلِّمَ يُرَى فِي أَكْثَرِ الْأَحْوَالِ أَوْ يُعْلَمُ بِالصَّوْتِ أَنَّهُ مُذَكَّرٌ أَوْ مُؤَنَّثٌ.",
+      "en": "And in the first person with two words, because the speaker is seen in most cases, or it is known by the voice whether the speaker is masculine or feminine.",
+      "tr": "Mütekellimde ise iki lafızla; çünkü konuşan çoğu hâlde görülür yahut erkek mi kadın mı olduğu sesinden bilinir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s11",
+      "source": "marah-al-arwah-src.txt:169 (ص 47)"
+    },
+    {
+      "ar": "فَبَقِيَ لَكَ اثْنَا عَشَرَ نَوْعًا.",
+      "en": "So twelve kinds are left to you.",
+      "tr": "Böylece elinde on iki çeşit kalır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s12",
+      "source": "marah-al-arwah-src.txt:170 (ص 47)"
+    },
+    {
+      "ar": "فَإِذَا صَارَ قِسْمٌ وَاحِدٌ مِنْ تِلْكَ الْأَقْسَامِ الْخَمْسَةِ اثْنَا عَشَرَ نَوْعًا فَيَصِيرُ كُلُّ وَاحِدٍ مِنْهَا مِثْلَ ذٰلِكَ.",
+      "en": "And since one division of those five divisions has come to twelve kinds, each one of them comes to the like of that.",
+      "tr": "O beş kısımdan biri on iki çeşit olunca, onlardan her biri de bunun gibi olur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s13",
+      "source": "marah-al-arwah-src.txt:172 (ص 48)"
+    },
+    {
+      "ar": "فَيَحْصُلُ لَكَ بِضَرْبِ الْخَمْسَةِ فِي اثْنَيْ عَشَرَ سِتُّونَ نَوْعًا.",
+      "en": "So by multiplying the five by twelve you obtain sixty kinds.",
+      "tr": "Böylece beşi on ikiyle çarpmakla elinde altmış çeşit hâsıl olur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 13,
+      "sentence": "s14",
+      "source": "marah-al-arwah-src.txt:173 (ص 48)"
+    },
+    {
+      "ar": "وَالْأَصْلُ فِي «هُوَ» أَنْ يُقَالَ «هُوَ هُوَا هُوُوا».",
+      "en": "The original pattern in «huwa» is that one should say «huwa, huwā, huwū».",
+      "tr": "«هُوَ»de asıl olan «هُوَ، هُوَا، هُوُوا» denmesidir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 14,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:177 (ص 48)"
+    },
+    {
+      "ar": "وَلٰكِنْ جُعِلَ الْوَاوُ الْأُولَى مِيمًا فِي الْجَمْعِ لِاتِّحَادِ مَخْرَجَيْهِمَا وَاجْتِمَاعِ الْوَاوَيْنِ فَصَارَ «هُمُوا».",
+      "en": "But the first wāw was made a mīm in the plural, because the two have one point of articulation and because two wāws come together; so it became «humū».",
+      "tr": "Fakat cemide ilk vâv, ikisinin mahreci bir olduğu ve iki vâv bir araya geldiği için mîm yapılmış, böylece «هُمُوا» olmuştur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 14,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:178 (ص 48)"
+    },
+    {
+      "ar": "ثُمَّ حُذِفَتِ الْوَاوُ لِمَا مَرَّ فِي «ضَرَبْتُمُوا» وَحُمِلَتِ التَّثْنِيَةُ عَلَيْهِ.",
+      "en": "Then the wāw was dropped for the reason that has passed under «ḍarabtumū», and the dual was made to follow it.",
+      "tr": "Sonra vâv, «ضَرَبْتُمُوا»da geçen sebepten ötürü düşürülmüş, tesniye de ona hamledilmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 14,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:179 (ص 48)"
+    },
+    {
+      "ar": "وَقِيلَ قَدْ فَرُّوا حَتَّى يَقَعَ الْفَتْحَةُ عَلَى الْمِيمِ الْقَوِيِّ.",
+      "en": "And it has been said: they fled from it so that the fatḥa might fall on the strong mīm.",
+      "tr": "Şöyle de denmiştir: Fethanın kuvvetli mîm üzerine gelmesi için ondan kaçmışlardır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 14,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:181 (ص 49)"
+    },
+    {
+      "ar": "وَأُدْخِلَ فِي «أَنْتُمَا» لِأَنَّهُ أُدْخِلَ فِي «هُمَا».",
+      "en": "And it was brought into «antumā» because it was brought into «humā».",
+      "tr": "«أَنْتُمَا»ya da «هُمَا»ya sokulduğu için sokulmuştur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 14,
+      "sentence": "s7",
+      "source": "marah-al-arwah-src.txt:184 (ص 49)"
+    },
+    {
+      "ar": "وَأُدْخِلَ فِي «هُمَا» لِأَنَّهُ أُدْخِلَ فِي «هُمُوا».",
+      "en": "And it was brought into «humā» because it was brought into «humū».",
+      "tr": "«هُمَا»ya da «هُمُوا»ya sokulduğu için sokulmuştur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 14,
+      "sentence": "s8",
+      "source": "marah-al-arwah-src.txt:185 (ص 49)"
+    },
+    {
+      "ar": "وَأُدْخِلَ فِي «هُمُوا» لِاجْتِمَاعِ الْوَاوَيْنِ هٰهُنَا فِي الطَّرَفِ.",
+      "en": "And it was brought into «humū» because two wāws come together there, at the end of the word.",
+      "tr": "«هُمُوا»ya ise burada, kelimenin sonunda iki vâv bir araya geldiği için sokulmuştur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 14,
+      "sentence": "s9",
+      "source": "marah-al-arwah-src.txt:186 (ص 49)"
+    },
+    {
+      "ar": "وَلَا يُحْذَفُ وَاوُ «هُوَ» لِقِلَّةِ حُرُوفِهِ مِنَ الْقَدْرِ الصَّالِحِ.",
+      "en": "And the wāw of «huwa» is not dropped, because its letters are fewer than the measure a word needs.",
+      "tr": "«هُوَ»nin vâvı ise düşürülmez; çünkü harfleri bir kelimeye yetecek miktardan azdır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 14,
+      "sentence": "s10",
+      "source": "marah-al-arwah-src.txt:187 (ص 49)"
+    },
+    {
+      "ar": "وَيُحْذَفُ وَاوُ «هُوَ» إِذَا تَعَانَقَ وَانْضَمَّ بِشَيْءٍ آخَرَ لِحُصُولِ كَثْرَةِ الْحُرُوفِ بِالْمُعَانَقَةِ مَعَ وُقُوعِ الْوَاوِ عَلَى الطَّرَفِ.",
+      "en": "And the wāw of «huwa» is dropped when it embraces and joins another thing, because the letters then become many by the embrace, while the wāw stands at the end.",
+      "tr": "«هُوَ»nin vâvı, başka bir şeyle kucaklaşıp birleştiğinde düşürülür; çünkü kucaklaşmayla harfler çoğalır, vâv da sonda kalmıştır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 15,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:190 (ص 49)"
+    },
+    {
+      "ar": "فَبَقِيَ الْهَاءُ مَضْمُومًا عَلَى حَالِهِ نَحْوُ «لَهُ».",
+      "en": "So the hāʾ remained with its ḍamma, as it was, as in «lahu».",
+      "tr": "Böylece hâ, olduğu gibi mazmûm kaldı; «لَهُ» gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 15,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:192 (ص 50)"
+    },
+    {
+      "ar": "وَتُكْسَرُ إِذَا كَانَ مَا قَبْلَهُ مَكْسُورًا أَوْ يَاءً سَاكِنَةً حَتَّى لَا يَلْزَمَ الْخُرُوجُ مِنَ الْكَسْرَةِ إِلَى الضَّمَّةِ، نَحْوُ «فِي غُلَامِهِ» وَ «فِيهِ».",
+      "en": "And it takes a kasra when what is before it bears a kasra or is a quiescent yāʾ, so that one need not pass from a kasra to a ḍamma, as in «fī ghulāmihi» and «fīhi».",
+      "tr": "Kendisinden önceki harf meksûr ya da sâkin yâ olduğunda ise kesrelenir; tâ ki kesreden dammeye çıkmak gerekmesin; «فِي غُلَامِهِ» ve «فِيهِ» gibi.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 15,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:193 (ص 50)"
+    },
+    {
+      "ar": "وَتُجْعَلُ الْيَاءُ مِيمًا فِي التَّثْنِيَةِ حَتَّى لَا يَقَعَ الْفَتْحَةُ عَلَى الْيَاءِ الضَّعِيفِ مَعَ ضَعْفِهَا.",
+      "en": "And the yāʾ is made a mīm in the dual, so that the fatḥa may not fall on the weak yāʾ, weak as it is.",
+      "tr": "Tesniyede yâ mîme çevrilir; tâ ki fetha, zayıflığıyla birlikte zayıf olan yâ üzerine gelmesin.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 15,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:195 (ص 50)"
+    },
+    {
+      "ar": "وَاثْنَا عَشَرَ لِلْمَنْصُوبِ الْمُتَّصِلِ نَحْوُ «ضَرَبَهُ» إِلَى «ضَرَبَنَا».",
+      "en": "And twelve are for the attached manṣūb, from «ḍarabahu» to «ḍarabanā».",
+      "tr": "On ikisi bitişik mansûb içindir; «ضَرَبَهُ»den «ضَرَبَنَا»ya kadar.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 16,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:200 (ص 51)"
+    },
+    {
+      "ar": "وَلَا يَجُوزُ فِيهِ اجْتِمَاعُ ضَمِيرَيِ الْفَاعِلِ وَالْمَفْعُولِ فِي مِثْلِ «ضَرَبْتَكَ» وَ «ضَرَبْتُنِي» حَتَّى لَا يَصِيرَ الشَّخْصُ فَاعِلًا وَمَفْعُولًا فِي حَالَةٍ وَاحِدَةٍ.",
+      "en": "The pronoun of the doer and the pronoun of the object may not meet in it, in the like of «ḍarabtaka» and «ḍarabtunī», so that one person does not become doer and object in a single state.",
+      "tr": "Onda fâil zamiri ile mef'ûl zamirinin «ضَرَبْتَكَ» ve «ضَرَبْتُنِي» gibi yerlerde bir araya gelmesi câiz değildir; tâ ki bir şahıs tek bir hâlde hem fâil hem mef'ûl olmasın.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 16,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:201 (ص 51)"
+    },
+    {
+      "ar": "لِأَنَّ الْمَفْعُولَ الْأَوَّلَ لَيْسَ بِمَفْعُولٍ فِي الْحَقِيقَةِ.",
+      "en": "Because the first object is not an object in reality.",
+      "tr": "Çünkü birinci mef'ûl hakikatte mef'ûl değildir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 16,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:203 (ص 51)"
+    },
+    {
+      "ar": "وَعُيِّنَتِ الْيَاءُ لِمَجِيئِهِ فِي «هٰذِي أَمَةُ اللهِ» لِلتَّأْنِيثِ.",
+      "en": "And the yāʾ was chosen because it comes for the feminine in «hādhī amatu llāh».",
+      "tr": "Yâ, «هٰذِي أَمَةُ اللهِ»de te'nîs için geldiğinden ötürü tayin edilmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:217 (ص 53)"
+    },
+    {
+      "ar": "وَإِبْرَازُ الْيَاءِ لِلْفَرْقِ بَيْنَهُ وَبَيْنَ جَمْعِهِ.",
+      "en": "And the yāʾ is brought out to tell it from its plural.",
+      "tr": "Yânın açığa çıkarılması, onu cemisinden ayırmak içindir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s8",
+      "source": "marah-al-arwah-src.txt:219 (ص 53)"
+    },
+    {
+      "ar": "وَلَمْ يُفَرَّقْ بِحَرَكَةِ مَا قَبْلَ النُّونِ حَتَّى لَا يَلْتَبِسَ بِالنُّونِ الثَّقِيلَةِ وَالْخَفِيفَةِ فِي الصُّورَةِ.",
+      "en": "And they were not told apart by the vowel of what is before the nūn, so that it should not be confused in its shape with the heavy and the light nūn.",
+      "tr": "Nûndan önceki harfin harekesiyle ayrılmamıştır; tâ ki sûrette sakîle ve hafîfe nûnuyla karışmasın.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s9",
+      "source": "marah-al-arwah-src.txt:220 (ص 53)"
+    },
+    {
+      "ar": "وَلَا بِحَذْفِ النُّونِ حَتَّى لَا يَلْتَبِسَ بِالْمُذَكَّرِ الْمُخَاطَبِ.",
+      "en": "Nor by dropping the nūn, so that it should not be confused with the masculine addressed.",
+      "tr": "Nûnun hazfiyle de ayrılmamıştır; tâ ki müzekker muhâtabla karışmasın.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s10",
+      "source": "marah-al-arwah-src.txt:221 (ص 53)"
+    },
+    {
+      "ar": "وَاسْتَتَرَ فِي الْمَرْفُوعِ دُونَ الْمَنْصُوبِ وَالْمَجْرُورِ لِأَنَّهُ بِمَنْزِلَةِ جُزْءِ الْفِعْلِ.",
+      "en": "And it hides in the marfūʿ and not in the manṣūb or the majrūr, because the marfūʿ is as a part of the verb.",
+      "tr": "Zamir, mansûb ve mecrûrda değil merfûda gizlenir; çünkü merfû, fiilin bir parçası mesabesindedir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s12",
+      "source": "marah-al-arwah-src.txt:223 (ص 53)"
+    },
+    {
+      "ar": "وَاسْتَتَرَ فِي الْمُفْرَدِ الْغَائِبِ وَالْغَائِبَةِ دُونَ التَّثْنِيَةِ وَالْجَمْعِ لِأَنَّ الِاسْتِتَارَ خَفِيفٌ وَإِعْطَاءُ الْخَفِيفِ لِلْمُفْرَدِ السَّابِقِ أَوْلَى.",
+      "en": "And it hides in the singular, absent masculine and feminine, and not in the dual and the plural, because hiding is light, and to give the light thing to the singular, which comes first, is more fitting.",
+      "tr": "Tesniye ve cemide değil, müfred gâib ve gâibede gizlenir; çünkü gizlenme hafiftir, hafif olanı önce gelen müfrede vermek daha uygundur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s13",
+      "source": "marah-al-arwah-src.txt:225 (ص 54)"
+    },
+    {
+      "ar": "دُونَ الْمُتَكَلِّمِ وَالْمُخَاطَبِ اللَّذَيْنِ فِي الْمَاضِي لِأَنَّ الِاسْتِتَارَ قَرِينَةٌ ضَعِيفَةٌ وَالْإِبْرَازَ قَرِينَةٌ قَوِيَّةٌ.",
+      "en": "And not in the speaker and the one addressed in the māḍī, because hiding is a weak indication and bringing out is a strong one.",
+      "tr": "Mâzîdeki mütekellim ile muhâtabda da gizlenmez; çünkü gizlenme zayıf bir karîne, açığa çıkarma ise kuvvetli bir karînedir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s14",
+      "source": "marah-al-arwah-src.txt:226 (ص 54)"
+    },
+    {
+      "ar": "فَإِعْطَاءُ الْإِبْرَازِ الْقَوِيِّ لِلْمُتَكَلِّمِ الْقَوِيِّ وَالْمُخَاطَبِ الْقَوِيِّ أَوْلَى.",
+      "en": "So to give the strong bringing-out to the strong speaker and the strong addressee is more fitting.",
+      "tr": "Öyleyse kuvvetli olan açığa çıkarmayı, kuvvetli olan mütekellim ile kuvvetli olan muhâtaba vermek daha uygundur.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s15",
+      "source": "marah-al-arwah-src.txt:227 (ص 54)"
+    },
+    {
+      "ar": "وَاسْتَتَرَ فِي مُخَاطَبِ الْمُسْتَقْبَلِ وَمُتَكَلِّمِهِ لِلْفَرْقِ.",
+      "en": "And it hides in the addressee and the speaker of the future, to make a difference.",
+      "tr": "Müstakbelin muhâtabında ve mütekelliminde ise fark için gizlenmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s16",
+      "source": "marah-al-arwah-src.txt:228 (ص 54)"
+    },
+    {
+      "ar": "وَقِيلَ اسْتَتَرَ فِي هٰذِهِ الْمَوَاضِعِ دُونَ غَيْرِهَا لِوُجُودِ الدَّلِيلِ.",
+      "en": "And it has been said: it hides in these places and not in others because the sign is there.",
+      "tr": "Şöyle de denmiştir: Delil bulunduğu için başka yerlerde değil, bu yerlerde gizlenmiştir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s17",
+      "source": "marah-al-arwah-src.txt:229 (ص 54)"
+    },
+    {
+      "ar": "وَهِيَ لَيْسَتْ بِأَسْمَاءٍ.",
+      "en": "And these are not nouns.",
+      "tr": "Bunlar isim değildir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 17,
+      "sentence": "s19",
+      "source": "marah-al-arwah-src.txt:232 (ص 55)"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "ضَرَبَ إِيَّاهُ (where attachment is possible)",
+      "right": "ضَرَبَهُ",
+      "why": {
+        "en": "the detached naṣb pronoun is used only where the attached one cannot be",
+        "tr": "munfasıl mansûb zamir ancak muttasılın mümkün olmadığı yerde kullanılır"
+      }
+    },
+    {
+      "wrong": "هُوَ read as the object in ضَرَبَ هُوَ",
+      "right": "هُوَ is a rafʿ pronoun — the doer or a mubtadaʾ",
+      "why": {
+        "en": "the detached rafʿ set never stands as an object; naṣb has its own detached set (إِيَّاهُ)",
+        "tr": "munfasıl merfû takım mef'ûl olmaz; nasbın kendi munfasıl takımı vardır (iyyâhu)"
+      }
+    },
+    {
+      "wrong": "أُسَامَةٌ (with tanwīn)",
+      "right": "أُسَامَةُ",
+      "why": {
+        "en": "the genus-name is a diptote by name-ness and the feminine tāʾ",
+        "tr": "cins alemi alemlik ve te'nîs tâ'sıyla gayr-ı munsarıftır"
+      }
+    }
+  ],
+  "relatedNotes": [
+    "asma-al-ishara-wa-sighuha",
+    "ghayr-al-munsarif-al-qiyasi-al-alam-wal-sifa-wal-ajami-wal-muannath",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki",
+    "al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab",
+    "al-mabni-wal-mudmar",
+    "mawadi-al-munfasil-wa-damir-al-fasl-wal-shan",
+    "al-marifa-wal-nakira-fil-kafiya"
+  ]
+}

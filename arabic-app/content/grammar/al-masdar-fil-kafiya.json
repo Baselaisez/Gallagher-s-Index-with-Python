@@ -1,0 +1,135 @@
+{
+ "id": "al-masdar-fil-kafiya",
+ "title": {
+  "ar": "الْمَصْدَرُ فِي الْكَافِيَةِ",
+  "en": "The maṣdar in the Kafiya: its definition, why it «runs on the verb», heard against ruled, and how it governs — with the five conditions the notebook spells out",
+  "tr": "Kâfiye'de masdar: tarifi, neden «fiil üzerine cereyan eder», semâî ile kıyâsî, ve nasıl amel eder — defterin açtığı beş şartla"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — المصدر: اسم الحدث الجاري على الفعل؛ يعمل عمل فعله؛ لا يتقدم معموله عليه ولا يضمر فيه؛ يضاف إلى الفاعل والمفعول؛ إعمال المعرف باللام قليل",
+  "ضياء صونغور اوغلى — دفتر الكافية: معنى الجري على الفعل (التأكيد، العدد، النوع)؛ سماعية الثلاثي (ذكر سيبويه ۳٢)؛ المفعول المطلق لا يعمل؛ سَقْيًا زَيْدًا على وجهين"
+ ],
+ "question": {
+  "en": [
+   "What is a MAṢDAR? The name of the event — the bare «striking», «sitting» — that «runs on the verb»: the verb is derived from it and it follows the verb to confirm it (جَلَسْتُ جُلُوسًا), to count it (جَلْسَةً, once) or to describe it (جِلْسَةً, a manner).",
+   "Which maṣdars must be LEARNED? The bare triliteral's: ضَرْب، جُلُوس، سَقْي are heard, not derived (Sībawayh lists thirty-two shapes). Every augmented form's maṣdar follows a rule — أَخْرَجَ → إِخْرَاج, اِسْتَخْرَجَ → اِسْتِخْرَاج — which is why the engine derives those and stores the rest.",
+   "When does a maṣdar GOVERN? Whenever it is not itself the absolute object: أَعْجَبَنِي ضَرْبُ زَيْدٍ عَمْرًا — ضَرْب takes a doer (زَيْد, in jarr by annexation) and an object (عَمْرًا, in naṣb), yesterday, today or tomorrow.",
+   "What may a maṣdar NOT do? Let its governed word precede it (*أَعْجَبَنِي عَمْرًا ضَرْبُ زَيْدٍ is barred) or conceal a doer — a verb always has one, a maṣdar need not: أَعْجَبَنِي ضَرْبٌ زَيْدًا names an object and no doer.",
+   "To which is it annexed? To its doer (وَلَوْلَا دَفْعُ اللهِ النَّاسَ — God repels) or to its object (ضَرْبُ اللِّصِّ الْجَلَّادُ — the executioner strikes the thief, who stands in jarr). Only the sense tells which.",
+   "Why is ضَرَبْتُ ضَرْبًا زَيْدًا different? There the maṣdar is the absolute object of the verb beside it, and the verb governs everything; the maṣdar is a passenger. In سَقْيًا زَيْدًا the verb is deleted, so the schools split over whether the ghost verb or the maṣdar standing in for it governs زَيْدًا.",
+   "What does the engine do? The HadhfEngine restores سَقَيْتُ behind سَقْيًا and the TaalluqEngine hangs بِالسُّوءِ on الْجَهْرَ because the glossary marks it a maṣdar — the «verbal» flag that lets a noun on فَعْل be a governor."
+  ],
+  "tr": [
+   "MASDAR nedir? Hadesin (olayın) adı — yalın «vurma», «oturma» — «fiil üzerine cereyan eden»: fiil ondan türer, o da fiilin ardından onu tekit (جَلَسْتُ جُلُوسًا), sayısını (جَلْسَةً, bir kez) veya tarzını (جِلْسَةً) bildirmek için gelir.",
+   "Hangi masdarlar EZBERLENİR? Sülâsî mücerredinkiler: ضَرْب، جُلُوس، سَقْي semâîdir, türetilmez (Sîbeveyh otuz iki biçim sayar). Mezîd bâbların masdarı kurala bağlıdır — أَخْرَجَ → إِخْرَاج, اِسْتَخْرَجَ → اِسْتِخْرَاج — motorun onları türetip ötekileri saklamasının sebebi budur.",
+   "Masdar ne zaman AMEL EDER? Kendisi mef'ûl-i mutlak olmadığı her zaman: أَعْجَبَنِي ضَرْبُ زَيْدٍ عَمْرًا — ضَرْب bir fâil (زَيْد, izâfetle mecrûr) ve bir mef'ûl (عَمْرًا, mansûb) alır; dün, bugün ya da yarın.",
+   "Masdar neyi YAPAMAZ? Ma'mûlünü önüne alamaz (*أَعْجَبَنِي عَمْرًا ضَرْبُ زَيْدٍ memnûdur) ve fâil gizleyemez — fiilin fâili hep vardır, masdarın olmayabilir: أَعْجَبَنِي ضَرْبٌ زَيْدًا bir mef'ûl söyler, fâil söylemez.",
+   "Neye muzâf olur? Fâiline (وَلَوْلَا دَفْعُ اللهِ النَّاسَ — def' eden Allah'tır) veya mef'ûlüne (ضَرْبُ اللِّصِّ الْجَلَّادُ — cellât hırsızı vurur, hırsız mecrûrdur). Hangisi olduğunu yalnız mânâ söyler.",
+   "ضَرَبْتُ ضَرْبًا زَيْدًا neden farklıdır? Orada masdar yanındaki fiilin mef'ûl-i mutlakıdır ve her şeyi fiil yönetir; masdar yolcudur. سَقْيًا زَيْدًا'da fiil hazfedilmiştir, bu yüzden زَيْدًا'yı gizli fiilin mi yoksa onun yerine geçen masdarın mı yönettiği ihtilâflıdır.",
+   "Motor ne yapar? HadhfEngine سَقْيًا'nın ardındaki سَقَيْتُ'yü geri getirir; TaalluqEngine بِالسُّوءِ'yi الْجَهْرَ'ye bağlar, çünkü sözlük onu masdar diye işaretler — فَعْل veznindeki bir ismin âmil olmasına izin veren «verbal» bayrağı."
+  ]
+ },
+ "plain": {
+  "en": "A maṣdar is the bare name of an action (ضَرْب «striking»). It can govern like its verb — take a doer and an object — unless it is only echoing a verb beside it. Its doer or its object may be tucked in by annexation, and it never carries a hidden doer.",
+  "tr": "Masdar bir işin yalın adıdır (ضَرْب «vurma»). Yanındaki bir fiili yankılamıyorsa fiili gibi amel eder — fâil ve mef'ûl alır. Fâili ya da mef'ûlü izâfetle içine alınabilir ve asla gizli fâil taşımaz."
+ },
+ "explanation": {
+  "en": "The chapter defines the maṣdar by its relation to the verb and then spends every remaining line on that relation. «Running on the verb» means the maṣdar comes after the verb derived from it, and the notebook's three examples give the three reasons it comes: جُلُوسًا confirms, جَلْسَةً counts (the maṣdar of one occurrence on فَعْلَة), جِلْسَةً describes (the maṣdar of manner on فِعْلَة). Then the division that organises the whole sarf shelf: the bare triliteral's maṣdars are heard — Sībawayh's thirty-two shapes are a list, not a rule — while every augmented form's maṣdar is built on a pattern, إِفْعَال for أَفْعَلَ and اِسْتِفْعَال for اِسْتَفْعَلَ. The governing rules follow. A maṣdar governs exactly as its verb does, in any tense the context supplies (أَمْسِ، غَدًا، الْآنَ), on one condition: it must not itself be the absolute object, for then the verb beside it does all the work. It differs from the verb in two ways the notebook makes explicit: its governed word may never stand in front of it, and it never hides a doer — a verb must have one, a maṣdar may do without (أَعْجَبَنِي ضَرْبٌ زَيْدًا). Annexation takes its doer (دَفْعُ اللهِ) or its object (ضَرْبُ اللِّصِّ); the al-maṣdar governs only rarely, and the Qurʾān's الْجَهْرَ بِالسُّوءِ is the received instance. The chapter closes on the two readings of سَقْيًا زَيْدًا, where a deleted verb and the maṣdar that replaced it both have a claim on the object — kept as two views because the books keep them so.",
+  "tr": "Bâb masdarı fiille ilişkisi üzerinden tarif eder ve kalan her satırı o ilişkiye harcar. «Fiil üzerine cereyan etmek» masdarın kendisinden türeyen fiilin ardından gelmesidir; defterin üç örneği gelişinin üç sebebini verir: جُلُوسًا tekit eder, جَلْسَةً sayar (فَعْلَة veznindeki merre masdarı), جِلْسَةً tarz bildirir (فِعْلَة veznindeki hey'et masdarı). Sonra bütün sarf rafını düzenleyen taksim: sülâsî mücerredin masdarları semâîdir — Sîbeveyh'in otuz iki biçimi bir listedir, kural değil — mezîd bâbların masdarı ise bir kalıba kurulur, أَفْعَلَ için إِفْعَال, اِسْتَفْعَلَ için اِسْتِفْعَال. Amel kuralları izler. Masdar, bağlamın verdiği her zamanda (أَمْسِ، غَدًا، الْآنَ) tam fiili gibi amel eder; tek şartla: kendisi mef'ûl-i mutlak olmamalıdır, çünkü o zaman bütün işi yanındaki fiil görür. Fiilden defterin açıkça söylediği iki yönde ayrılır: ma'mûlü asla önüne geçemez ve asla fâil gizlemez — fiilin fâili olmak zorundadır, masdar onsuz olabilir (أَعْجَبَنِي ضَرْبٌ زَيْدًا). İzâfet fâilini (دَفْعُ اللهِ) ya da mef'ûlünü (ضَرْبُ اللِّصِّ) alır; lâmlı masdar nadiren amel eder ve Kur'ân'ın الْجَهْرَ بِالسُّوءِ'si alınan örnektir. Bâb, hazfedilmiş fiil ile onun yerine geçen masdarın ikisinin de mef'ûl üzerinde hak iddia ettiği سَقْيًا زَيْدًا'nın iki okunuşuyla kapanır — kitaplar öyle tuttuğu için iki görüş olarak tutulur."
+ },
+ "examples": [
+  {
+   "ar": "الْمَصْدَرُ: اسْمُ الْحَدَثِ الْجَارِي عَلَى الْفِعْلِ",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "جَلَسْتُ جُلُوسًا، جَلَسْتُ جَلْسَةً، جِلْسَةً",
+   "en": "Confirmation, number, kind.",
+   "tr": "Tekit, sayı, nevi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "أَعْجَبَنِي ضَرْبُ زَيْدٍ عَمْرًا أَمْسِ",
+   "en": "The maṣdar governs a doer and an object.",
+   "tr": "Masdar fâil ve mef'ûl alır.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "أَعْجَبَنِي ضَرْبٌ زَيْدًا",
+   "en": "An object and no doer.",
+   "tr": "Mef'ûl var, fâil yok.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "وَلَوْلَا دَفْعُ اللهِ النَّاسَ",
+   "en": "Annexed to the doer.",
+   "tr": "Fâiline muzâf.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "لَا يُحِبُّ اللهُ الْجَهْرَ بِالسُّوءِ",
+   "en": "The al-maṣdar governing, rarely.",
+   "tr": "Lâmlı masdarın nadir ameli.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s8"
+  },
+  {
+   "ar": "سَقْيًا زَيْدًا",
+   "en": "The two views on the deleted verb's maṣdar.",
+   "tr": "Mahzûf fiilin masdarı üzerine iki görüş.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s10"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«أَعْجَبَنِي عَمْرًا ضَرْبُ زَيْدٍ»",
+   "right": "«أَعْجَبَنِي ضَرْبُ زَيْدٍ عَمْرًا — masdarın ma'mûlü ondan önce gelemez»",
+   "why": {
+    "en": "A verb's object may be fronted; a maṣdar's may not — the Kafiya states it outright.",
+    "tr": "Fiilin mef'ûlü öne alınabilir; masdarınki alınamaz — Kâfiye bunu açıkça söyler."
+   }
+  },
+  {
+   "wrong": "«ضَرَبْتُ ضَرْبًا زَيْدًا — زَيْدًا, ضَرْبًا'nın mef'ûlü»",
+   "right": "«زَيْدًا, ضَرَبْتُ'nün mef'ûlüdür; mef'ûl-i mutlak amel etmez»",
+   "why": {
+    "en": "When the maṣdar is the absolute object, the verb beside it governs everything.",
+    "tr": "Masdar mef'ûl-i mutlak olunca yanındaki fiil her şeyi yönetir."
+   }
+  },
+  {
+   "wrong": "«ضَرْبُ اللِّصِّ الْجَلَّادُ — hırsız cellâdı vurdu»",
+   "right": "«cellât hırsızı vurdu: masdar mef'ûlüne muzâf, fâil merfû kaldı»",
+   "why": {
+    "en": "The muḍāf ilayh may be the object; the marfūʿ noun that follows is the doer.",
+    "tr": "Muzâfun ileyh mef'ûl olabilir; ardından gelen merfû isim fâildir."
+   }
+  },
+  {
+   "wrong": "«جَلْسَةً ve جِلْسَةً aynı masdardır»",
+   "right": "«جَلْسَة (فَعْلَة) bir kez; جِلْسَة (فِعْلَة) bir tarz — merre ve hey'et masdarları»",
+   "why": {
+    "en": "One vowel on the first letter separates the count from the manner.",
+    "tr": "İlk harfteki tek bir hareke sayıyı tarzdan ayırır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "masdar",
+  "maful-mutlaq",
+  "imal-al-masdar",
+  "hadhf-wa-taqdir",
+  "idafa-definiteness",
+  "form-iv-verbs"
+ ]
+}

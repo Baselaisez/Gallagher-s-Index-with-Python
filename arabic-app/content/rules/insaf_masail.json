@@ -1,0 +1,3185 @@
+{
+ "source": {
+  "book": "الإنصاف في مسائل الخلاف بين النحويين البصريين والكوفيين",
+  "author": "أبو البركات الأنباري (ت ٥٧٧)",
+  "editor": "محمد محيي الدين عبد الحميد — الانتصاف من الإنصاف",
+  "publisher": "المكتبة العصرية، ط١ ١٤٢٤ هـ / ٢٠٠٣ م",
+  "shamela": 7362,
+  "file": "research/sources/insaf-ibn-al-anbari-src.txt",
+  "fetched": "2026-11-26",
+  "note": "Every _ar field is a verbatim substring of the source file (checked by tools/smoke_test.js, v339). en/tr are renderings awaiting review."
+ },
+ "babs": [
+  {
+   "id": "usul",
+   "ar": "الاشتقاق",
+   "en": "Derivation",
+   "tr": "İştikak"
+  },
+  {
+   "id": "irab",
+   "ar": "الإعراب والبناء",
+   "en": "Iʿrāb and bināʾ",
+   "tr": "İ'râb ve binâ"
+  },
+  {
+   "id": "marfuat",
+   "ar": "المرفوعات",
+   "en": "The marfūʿāt: mubtadaʾ and khabar",
+   "tr": "Merfûât: mübtedâ ve haber"
+  },
+  {
+   "id": "afal",
+   "ar": "الأفعال",
+   "en": "Verbs: governing, niʿma and biʾsa, wonder",
+   "tr": "Fiiller: amel, ni'me ve bi'se, taaccüb"
+  },
+  {
+   "id": "nawasikh",
+   "ar": "النواسخ",
+   "en": "Kāna, inna and their sisters; mā and lā",
+   "tr": "Nevâsih: kâne, inne ve kardeşleri; mâ ve lâ"
+  },
+  {
+   "id": "mansubat",
+   "ar": "المنصوبات",
+   "en": "The manṣūbāt: objects, ẓarf, ḥāl, exception, tamyīz",
+   "tr": "Mansûbât: mef'ûller, zarf, hâl, istisnâ, temyîz"
+  },
+  {
+   "id": "adad",
+   "ar": "العدد وكم",
+   "en": "Numbers and kam",
+   "tr": "Aded ve kem"
+  },
+  {
+   "id": "nida",
+   "ar": "النداء",
+   "en": "The vocative, tarkhīm and nudba",
+   "tr": "Nidâ, terhîm ve nüdbe"
+  },
+  {
+   "id": "majrurat",
+   "ar": "المجرورات",
+   "en": "Jarr: the particles, the oath, iḍāfa",
+   "tr": "Cer: harfler, kasem, izâfe"
+  },
+  {
+   "id": "tawabi",
+   "ar": "التوابع",
+   "en": "Followers: tawkīd and ʿaṭf",
+   "tr": "Tâbiler: tekid ve atıf"
+  },
+  {
+   "id": "mudari",
+   "ar": "إعراب الفعل",
+   "en": "The verb's iʿrāb: rafʿ, naṣb, jazm",
+   "tr": "Fiilin i'râbı: ref', nasb, cezm"
+  },
+  {
+   "id": "huruf",
+   "ar": "الحروف",
+   "en": "Particles",
+   "tr": "Harfler"
+  },
+  {
+   "id": "damair",
+   "ar": "الضمائر والمعارف",
+   "en": "Pronouns, demonstratives, relatives",
+   "tr": "Zamirler, işaret isimleri, mevsûller"
+  },
+  {
+   "id": "sarf",
+   "ar": "الصرف",
+   "en": "Ṣarf: hamza, maqṣūr, weights",
+   "tr": "Sarf: hemze, maksûr, vezinler"
+  }
+ ],
+ "masail": [
+  {
+   "n": 1,
+   "bab": "usul",
+   "title_ar": "الاختلاف في أصل اشتقاق الاسم",
+   "title_en": "The derivation of ism (noun)",
+   "title_tr": "İsim kelimesinin iştikakı",
+   "kufa_ar": "ذهب الكوفيون إلى أن الاسم مشتق من الوَسْم وهو العلامة",
+   "kufa_en": "Ism is derived from wasm, «mark».",
+   "kufa_tr": "İsim, «alâmet» demek olan vesm'den türemiştir.",
+   "basra_ar": "وذهب البصريون إلى أنه مشتق من السُّمُوِّ وهو العُلُوّ.",
+   "basra_en": "Ism is derived from sumuww, «height».",
+   "basra_tr": "İsim, «yücelik» demek olan sümüvv'den türemiştir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:8",
+    "shamela": 4
+   }
+  },
+  {
+   "n": 2,
+   "bab": "irab",
+   "title_ar": "الاختلاف في إعراب الأسماء الستة",
+   "title_en": "The iʿrāb of the six nouns",
+   "title_tr": "Esmâ-i sitte'nin i'râbı",
+   "kufa_ar": "ذهب الكوفيّون إلى أن الأسماء الستة المعتلّة وهي: أبُوكَ، وأخُوكَ وحَمُوكَ، وهَنُوكَ، وفُوكَ، وذو مال مُعْرَبَة من مكانين.",
+   "kufa_en": "The six weak nouns (abūka, akhūka …) are declined from two places.",
+   "kufa_tr": "Altı illetli isim (ebûke, ehûke …) iki yerden mu'reb olur.",
+   "basra_ar": "وذهب البصريون إلى أنها معربة من مكان واحد، والواو والألف والياء هي حروف الإعراب.",
+   "basra_en": "They are declined from one place; the wāw, alif and yāʾ are the letters of iʿrāb.",
+   "basra_tr": "Tek yerden mu'rebdir; vâv, elif ve yâ i'râb harfleridir.",
+   "others": [
+    {
+     "ar": "وذهب في القول الثاني إلى أنها ليست بحروف إعراب، ولكنها دلائلُ الإعرابِ، كالواو والألف والياء في التثنية والجمع، وليست بلام الفعل."
+    },
+    {
+     "ar": "وذهب علي بن عيسي الرَّبَعِي إلى أنها إذا كانت مرفوعة ففيها نقل بلا قلب، وإذا كانت منصوبة ففيها قلب بلا نقل، وإذا كانت مجرورة ففيها نقل وقلب."
+    },
+    {
+     "ar": "وذهب أبو عثمان المازني إلى أن الباء٢ حرف الإعراب، وإنما الواو والألف والياء نشأت عن إشباع الحركات."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيّين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:17",
+    "shamela": 13
+   },
+   "links": [
+    "five-nouns"
+   ]
+  },
+  {
+   "n": 3,
+   "bab": "irab",
+   "title_ar": "القولُ في إعراب المثنَّى والجمع على حَدِّه",
+   "title_en": "The iʿrāb of the dual and the sound plural",
+   "title_tr": "Tesniye ve cem-i sâlimin i'râbı",
+   "kufa_ar": "ذهب الكوفيُّون إلى أن الألف والواو والياء في التثنية والجمع بمنزلة الفتحة والضمة والكسرة في أنها إعراب",
+   "kufa_en": "The alif, wāw and yāʾ of the dual and plural are iʿrāb, like the fatḥa, ḍamma and kasra.",
+   "kufa_tr": "Tesniye ve cemdeki elif, vâv ve yâ, fetha, damme ve kesre gibi i'râbın kendisidir.",
+   "basra_ar": "وذهب البصريّون إلى أنها حروف إعراب.",
+   "basra_en": "They are letters of iʿrāb.",
+   "basra_tr": "Bunlar i'râb harfleridir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو عليّ قُطْرُبُ بن المستنير",
+     "with": "kufa"
+    },
+    {
+     "ar": "وذهب أبو الحسن الأخفش وأبو العباس المبرّد وأبو عثمان المازني إلى أنها ليست بإعراب ولا حروف إعراب، ولكنها تدل على الإعراب"
+    },
+    {
+     "ar": "وذهب أبو عمر الجَرْمِي إلى أن انقلابها هو الإعراب، وحُكي عن أبي إسحاق الزجاج أن التثنية والجمع مبنيان، وهو خلاف الإجماع."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:29",
+    "shamela": 25
+   },
+   "links": [
+    "al-muthanna",
+    "jam-mudhakkar-salim"
+   ]
+  },
+  {
+   "n": 4,
+   "bab": "irab",
+   "title_ar": "هل يجوز جَمْعُ العلم المؤنث بالتاء جَمْعَ المذكر السالم؟",
+   "title_en": "May a proper name ending in tāʾ take the sound masculine plural?",
+   "title_tr": "Tâ ile biten müennes alem cem-i müzekker-i sâlimle toplanır mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أن الاسم الذي آخره تاء التأنيث إذا سميتَ به رجلًا يجوز أن يجمع بالواو والنون، وذلك نحو طَلْحَة وطَلْحُون",
+   "kufa_en": "A name ending in the feminine tāʾ, given to a man, may take wāw and nūn: ṭalḥa, ṭalḥūn.",
+   "kufa_tr": "Sonu te'nîs tâsı olan isim bir erkeğe ad olunca vâv-nûn ile toplanabilir: talha, talhûn.",
+   "basra_ar": "وذهب البصريون إلى أن ذلك لا يجوز.",
+   "basra_en": "That is not allowed.",
+   "basra_tr": "Bu caiz değildir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن بن كَيْسَان",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:34",
+    "shamela": 30
+   },
+   "links": [
+    "jam-mudhakkar-salim"
+   ]
+  },
+  {
+   "n": 5,
+   "bab": "marfuat",
+   "title_ar": "القولُ في رافع المبتدأ ورافع الخبر",
+   "title_en": "What puts the mubtadaʾ and the khabar in rafʿ",
+   "title_tr": "Mübtedâ ve haberi merfû kılan âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن المبتدأ يرفع الخبر، والخبر يرفع المبتدأ؛ فهما يترافعان، وذلك نحو \"زيد أخوك، وعمرو غلامك\".",
+   "kufa_en": "Each raises the other: the mubtadaʾ the khabar and the khabar the mubtadaʾ.",
+   "kufa_tr": "Mübtedâ haberi, haber mübtedâyı ref' eder; birbirlerini ref' ederler.",
+   "basra_ar": "وذهب البصريون إلى أن المبتدأ يرتفع بالابتداء، وأما الخبر فاختلفوا فيه:",
+   "basra_en": "The mubtadaʾ is raised by the ibtidāʾ; on the khabar they differ.",
+   "basra_tr": "Mübtedâ ibtidâ ile merfûdur; haberde ise ihtilâf etmişlerdir.",
+   "others": [
+    {
+     "ar": "فذهب قوم إلى أنه يرتفع بالابتداء وحده"
+    },
+    {
+     "ar": "وذهب آخرون إلى أنه يرتفع بالابتداء والمبتدأ معًا"
+    },
+    {
+     "ar": "وذهب آخرون إلى أنه يرتفع بالمبتدأ والمبتدأ يرتفع بالابتداء."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:38",
+    "shamela": 34
+   },
+   "links": [
+    "mubtada-khabar",
+    "al-amil-al-manawi"
+   ]
+  },
+  {
+   "n": 6,
+   "bab": "marfuat",
+   "title_ar": "في رافع الاسم الواقع بعد الظرف والجار والمجرور",
+   "title_en": "What raises the noun after a ẓarf or jārr-majrūr",
+   "title_tr": "Zarf ve câr-mecrûrdan sonraki ismin âmili",
+   "kufa_ar": "ذهب الكوفيون إلى أن الظرف يرفع الاسم إذا تقدم عليه، ويسمُّون الظرف المحلّ، ومنهم من يسميه الصفة، وذلك نحو قولك \"أمامك زيد، وفي الدار عمرو\"",
+   "kufa_en": "A fronted ẓarf raises the noun (they call it maḥall or ṣifa): amāmaka Zaydun.",
+   "kufa_tr": "Öne geçen zarf ismi ref' eder (ona mahal ya da sıfat derler): emâmeke Zeydün.",
+   "basra_ar": "وذهب البصريون إلى أن الظرف لا يرفع الاسم إذا تقدم عليه، وإنما يرتفع بالابتداء.",
+   "basra_en": "The ẓarf does not raise it; the noun is raised by the ibtidāʾ.",
+   "basra_tr": "Zarf onu ref' etmez; isim ibtidâ ile merfûdur.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن الأَخْفَش في أحَدِ قَوليه وأبُو العباس محمد بن يزيد المُبَرِّد من البصريين",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:44",
+    "shamela": 40
+   },
+   "links": [
+    "mubtada-khabar"
+   ]
+  },
+  {
+   "n": 7,
+   "bab": "marfuat",
+   "title_ar": "القول في تحمُّلِ الخبر الجامد ضميرَ المبتدأ",
+   "title_en": "Does a non-derived khabar carry the mubtadaʾ's pronoun?",
+   "title_tr": "Câmid haber mübtedânın zamirini taşır mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أن خبر المبتدأ إذا كان اسمًا محضًا٢ يتضمّن ضميرًا يرجع إلى المبتدأ، نحو \"زيد أخوك، وعمرو غُلَامُكَ\"",
+   "kufa_en": "A khabar that is a plain noun holds a pronoun going back to the mubtadaʾ.",
+   "kufa_tr": "Mahz isim olan haber, mübtedâya dönen bir zamir taşır.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يتضمّن ضميرًا.",
+   "basra_en": "It holds no pronoun.",
+   "basra_tr": "Zamir taşımaz.",
+   "others": [
+    {
+     "ar": "وإليه ذهب علي بن عيسى الرُّمَّانِيّ من البصريين.",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:48",
+    "shamela": 44
+   },
+   "links": [
+    "khabar-al-mubtada-wa-ahkamuh"
+   ]
+  },
+  {
+   "n": 8,
+   "bab": "marfuat",
+   "title_ar": "القول في إبراز الضمير إذا جرى الوصف على غير صاحبه",
+   "title_en": "Must the pronoun be made explicit when the adjective runs on another's subject?",
+   "title_tr": "Vasıf sahibinden başkasına câri olunca zamir izhar edilir mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن الضمير في اسم الفاعل إذا جرى على غير مَنْ هو له نحو قولك \"هند زيد ضاربتُهُ هي\" لا يجب إبرازه.",
+   "kufa_en": "The pronoun in the active participle need not be made explicit.",
+   "kufa_tr": "İsm-i fâildeki zamirin izharı gerekmez.",
+   "basra_ar": "وذهب البصريون إلى أنه يجب إبرازه، وأجمعوا على أن الضمير في اسم الفاعل إذا جرى على مَنْ هو له لا يجب إبرازه.",
+   "basra_en": "It must be made explicit (all agree it need not when it runs on its own subject).",
+   "basra_tr": "İzharı gerekir (kendi sahibine câri olunca gerekmediğinde ittifak vardır).",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:50",
+    "shamela": 46
+   }
+  },
+  {
+   "n": 9,
+   "bab": "marfuat",
+   "title_ar": "القول في تقديم الخبر على المبتدأ",
+   "title_en": "Fronting the khabar before the mubtadaʾ",
+   "title_tr": "Haberin mübtedâya takdimi",
+   "kufa_ar": "ذهب الكوفيون إلى أنه لا يجوز تقديم خبر المبتدأ عليه، مفردًا كان أو جملة؛ \"فالمفرد\" نحو \"قائم زيد، وذاهب عمرو\" والجملة نحو \"أبوه قائم زيد، وأخوه ذاهب عمرو\".",
+   "kufa_en": "The khabar may not be fronted, whether a single word or a sentence.",
+   "kufa_tr": "Haber, müfred de olsa cümle de olsa öne alınamaz.",
+   "basra_ar": "وذهب البصريون إلى أنه يجوز تقديم خبر المبتدأ عليه المفرد والجملة.",
+   "basra_en": "It may be fronted, single word or sentence.",
+   "basra_tr": "Müfred ve cümle hâlinde öne alınabilir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:56",
+    "shamela": 52
+   },
+   "links": [
+    "khabar-al-mubtada-wa-ahkamuh"
+   ]
+  },
+  {
+   "n": 10,
+   "bab": "marfuat",
+   "title_ar": "القول في العامل في الاسم المرفوع بعد لَوْلَا",
+   "title_en": "What raises the noun after lawlā",
+   "title_tr": "Levlâ'dan sonraki merfû ismin âmili",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"لولا\" ترفع الاسم بعدها، نحو \"لولا زيدٌ لأكرمْتُكَ\"",
+   "kufa_en": "Lawlā itself raises the noun after it.",
+   "kufa_tr": "İsmi levlâ'nın kendisi ref' eder.",
+   "basra_ar": "وذهب البصريون إلى أنه يرتفع بالابتداء.",
+   "basra_en": "It is raised by the ibtidāʾ.",
+   "basra_tr": "İbtidâ ile merfûdur.",
+   "tarjih": "kufa",
+   "tarjih_ar": "والصحيح ما ذهب إليه الكوفيون.",
+   "tarjih_src": "explicit",
+   "page": {
+    "printed": "1:60",
+    "shamela": 56
+   },
+   "links": [
+    "mubtada-khabar"
+   ]
+  },
+  {
+   "n": 11,
+   "bab": "mansubat",
+   "title_ar": "القول في عامل النصب في المفعول",
+   "title_en": "What puts the object in naṣb",
+   "title_tr": "Mef'ûlü nasbeden âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن العامل في المفعول النصب الفعلُ والفاعلُ جميعًا، نحو \"ضرب زيدٌ عمرًا\".",
+   "kufa_en": "The verb and the doer together put the object in naṣb.",
+   "kufa_tr": "Mef'ûlü fiil ile fâil birlikte nasbeder.",
+   "basra_ar": "وذهب البصريون إلى أن الفعل وحده عمل في الفاعل والمفعول جميعًا.",
+   "basra_en": "The verb alone governs both doer and object.",
+   "basra_tr": "Fâil ve mef'ûlde yalnız fiil amel eder.",
+   "others": [
+    {
+     "ar": "وذهب بعضهم إلى أن العامل هو الفاعل، ونصَّ هشام بن معاوية صاحب الكسائي على أنك إذا قلت \"ظننت زيدًا قائمًا\" تنصب زيدًا بالتاء وقائمًا بالظن."
+    },
+    {
+     "ar": "وذهب خلف الأحمر من الكوفيين إلى أن العامل في المفعول معنى المفعولية، والعامل في الفاعل معنى الفاعلية."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:66",
+    "shamela": 62
+   },
+   "links": [
+    "maful-bihi"
+   ]
+  },
+  {
+   "n": 12,
+   "bab": "mansubat",
+   "title_ar": "القول في ناصب الاسم المشغول عنه",
+   "title_en": "What puts the ishtighāl noun in naṣb",
+   "title_tr": "İştiğal ismini nasbeden âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن قولهم \"زيدًا ضَرَبْتُهُ\" منصوب بالفعل الواقع على الهاء",
+   "kufa_en": "In Zaydan ḍarabtuhu it is governed by the verb that falls on the hāʾ.",
+   "kufa_tr": "Zeyden darabtuhû'da, hâya vâki olan fiil ile mansûbdur.",
+   "basra_ar": "وذهب البصريون إلى أنه منصوب بفعل مقدر، والتقدير فيه: ضربت زيدًا ضربته.",
+   "basra_en": "It is governed by an implied verb: ḍarabtu Zaydan ḍarabtuhu.",
+   "basra_tr": "Takdir edilen bir fiil ile mansûbdur: darabtu Zeyden darabtuhû.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:69",
+    "shamela": 65
+   }
+  },
+  {
+   "n": 13,
+   "bab": "afal",
+   "title_ar": "القول في أولى العاملين بالعمل في التنازع",
+   "title_en": "Which of two verbs governs, in tanāzuʿ",
+   "title_tr": "Tenâzu'da iki âmilden hangisi amele evlâdır",
+   "kufa_ar": "ذهب الكوفيون في إعمال الفعلين، نحو \"أَكْرَمَنِي وأكرمتُ زيدًا، وأكرمتُ وأكرمنِي زيدٌ\" إلى أن إعمال الفعل الأول أولى",
+   "kufa_en": "Letting the first verb govern is better.",
+   "kufa_tr": "Birinci fiile amel ettirmek evlâdır.",
+   "basra_ar": "وذهب البصريون إلى أن إعمال الفعل الثاني أولى.",
+   "basra_en": "Letting the second verb govern is better.",
+   "basra_tr": "İkinci fiile amel ettirmek evlâdır.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:71",
+    "shamela": 67
+   },
+   "links": [
+    "tanazu"
+   ]
+  },
+  {
+   "n": 14,
+   "bab": "afal",
+   "title_ar": "القول في نِعْمَ وبِئْسَ، أَفِعْلَانِ هما أم اسمان؟",
+   "title_en": "Niʿma and biʾsa: verbs or nouns?",
+   "title_tr": "Ni'me ve bi'se: fiil mi isim mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"نِعْمَ، وبِئْسَ\" اسمان مُبْتَدَآن.",
+   "kufa_en": "Niʿma and biʾsa are nouns, mubtadaʾs.",
+   "kufa_tr": "Ni'me ve bi'se mübtedâ olan iki isimdir.",
+   "basra_ar": "وذهب البصريون إلى أنهما فعلان ماضيان لا يتصرَّفَان",
+   "basra_en": "They are two past verbs that do not conjugate.",
+   "basra_tr": "Tasarruf etmeyen iki mâzî fiildir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب علي بن حمزة الكسائي من الكوفيين.",
+     "with": "basra"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:81",
+    "shamela": 77
+   },
+   "links": [
+    "afal-al-madh-wal-dhamm-fil-kafiya"
+   ]
+  },
+  {
+   "n": 15,
+   "bab": "afal",
+   "title_ar": "القول في \"أفعل\" في التعجب، اسم هو أو فعل",
+   "title_en": "Afʿala of wonder: noun or verb?",
+   "title_tr": "Taaccüb kalıbı ef'ale: isim mi fiil mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن أفعل في التعجب نحو \"ما أَحْسَنَ زيدًا\" اسمٌ.",
+   "kufa_en": "Afʿala in mā aḥsana Zaydan is a noun.",
+   "kufa_tr": "Mâ ahsene Zeyden'deki ef'ale isimdir.",
+   "basra_ar": "وذهب البصريون إلى أنه فعل ماضٍ",
+   "basra_en": "It is a past verb.",
+   "basra_tr": "Mâzî bir fiildir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن علي بن حمزة الكسائي من الكوفيين.",
+     "with": "basra"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:104",
+    "shamela": 100
+   },
+   "links": [
+    "fil-al-taajjub-fil-kafiya"
+   ]
+  },
+  {
+   "n": 16,
+   "bab": "afal",
+   "title_ar": "القول في جواز التعجب من البياض والسواد، دون غيرهما من الألوان",
+   "title_en": "Wonder at white and black, of all colours",
+   "title_tr": "Renklerden yalnız beyaz ve siyahtan taaccüb",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز أن يستعمل \"ما أفعله\" في التعجب من البياض والسود خاصة، من بين سائر الألوان، نحو أن تقول: هذا الثوب ما أَبْيَضَهُ، وهذا الشعر ما أَسْوَدَهُ.",
+   "kufa_en": "Mā afʿalahu may be used for white and black alone of the colours: mā abyaḍahu.",
+   "kufa_tr": "Renklerden yalnız beyaz ve siyah için mâ ef'alehû kullanılabilir: mâ ebyadahû.",
+   "basra_ar": "وذهب البصريون إلى أن ذلك لا يجوز فيهما كغيرهما من سائر الألوان.",
+   "basra_en": "It is not allowed for them, as for the other colours.",
+   "basra_tr": "Diğer renkler gibi bunlarda da caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:120",
+    "shamela": 116
+   },
+   "links": [
+    "fil-al-taajjub-fil-kafiya"
+   ]
+  },
+  {
+   "n": 17,
+   "bab": "nawasikh",
+   "title_ar": "القول في تقديم خبر \"ما زال\" وأخواتها عليهن",
+   "title_en": "Fronting the khabar of mā zāla and its sisters before them",
+   "title_tr": "Mâ zâle ve kardeşlerinin haberini onlara takdim",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز تقديم خبر \"ما زال\" عليها، وما كان في معناها من أخواتها",
+   "kufa_en": "The khabar of mā zāla and its like may be put before it.",
+   "kufa_tr": "Mâ zâle ve benzerlerinin haberi ona takdim edilebilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز ذلك",
+   "basra_en": "That is not allowed.",
+   "basra_tr": "Bu caiz değildir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن بن كَيْسَان",
+     "with": "kufa"
+    },
+    {
+     "ar": "وإليه ذهب أبو زكريا يحيى بن زياد الفراء من الكوفيين",
+     "with": "basra"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:126",
+    "shamela": 122
+   },
+   "links": [
+    "kana-wa-akhawatuha"
+   ]
+  },
+  {
+   "n": 18,
+   "bab": "nawasikh",
+   "title_ar": "القول في تقديم خبر \"ليس\" عليها",
+   "title_en": "Fronting the khabar of laysa before it",
+   "title_tr": "Leyse'nin haberini ona takdim",
+   "kufa_ar": "ذهب الكوفيون إلى أنه لا يجوز تقديم خبر \"ليس\" عليها",
+   "kufa_en": "The khabar of laysa may not be put before it.",
+   "kufa_tr": "Leyse'nin haberi ona takdim edilemez.",
+   "basra_ar": "وذهب البصريون إلى أنه يجوز تقديم خبر \"ليس\" عليها كما يجوز تقديم خبر كان عليها٣.",
+   "basra_en": "It may be, as the khabar of kāna may.",
+   "basra_tr": "Kâne'nin haberi gibi takdim edilebilir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو العباس الْمُبَرِّد من البصريين",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "kufa",
+   "tarjih_ar": "والصحيح عندي ما ذهب إليه الكوفيُّون.",
+   "tarjih_src": "explicit",
+   "page": {
+    "printed": "1:130",
+    "shamela": 126
+   },
+   "links": [
+    "kana-wa-akhawatuha"
+   ]
+  },
+  {
+   "n": 19,
+   "bab": "nawasikh",
+   "title_ar": "القول في العامل في الخبر بعد \"ما\" النافية النصب",
+   "title_en": "What puts the khabar after negating mā in naṣb",
+   "title_tr": "Nâfiye mâ'dan sonraki haberi nasbeden âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"ما\" في لغة أهل الحجاز لا تعمل في الخبر، وهو منصوب بحذف حرف الخفض.",
+   "kufa_en": "In the Ḥijāzī dialect mā does not govern the khabar; it is manṣūb by a dropped jarr particle.",
+   "kufa_tr": "Hicaz lügatinde mâ habere amel etmez; haber, hazfedilen cer harfi sebebiyle mansûbdur.",
+   "basra_ar": "وذهب البصريون إلى أنها تعمل في الخبر، وهو منصوب بها.",
+   "basra_en": "Mā governs the khabar; the khabar is manṣūb by it.",
+   "basra_tr": "Mâ habere amel eder; haber onunla mansûbdur.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:134",
+    "shamela": 130
+   },
+   "links": [
+    "ma-la-mushabbaha"
+   ]
+  },
+  {
+   "n": 20,
+   "bab": "nawasikh",
+   "title_ar": "القول في تقديم معمول خبر\"ما\" النافية عليها",
+   "title_en": "Fronting what the khabar of mā governs before mā",
+   "title_tr": "Mâ'nın haberinin ma'mûlünü mâ'ya takdim",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز \"طَعَامَكَ ما زيدٌ آكِلًا\"",
+   "kufa_en": "Ṭaʿāmaka mā Zaydun ākilan is allowed.",
+   "kufa_tr": "Taâmeke mâ Zeydün âkilen caizdir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "others": [
+    {
+     "ar": "وذهب أبو العباس أحمد بن يحيى ثَعْلَب من الكوفيين إلى أنه جائز من وجه فاسد من وجه؛ فإن كانت \"ما\" ردًا لخبر كانت بمنزلة لم ولا يجوز التقديم، كما تقول لمن قال في الخبر \"زيد أكل طعامك\" فترد عليه نافيًا \"ما زيد آكلًا طعامك\" فمن هذا الوجه يجوز التقديم؛ فتقول \"طعامك ما زيد آكلًا\" فإن كان جوابًا للقسم إذا قال \"والله ما زيد بآكل طعامك\" كانت بمنزلة اللام في جواب القسم؛ فلا يجوز التقديم."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:140",
+    "shamela": 136
+   },
+   "links": [
+    "ma-la-mushabbaha"
+   ]
+  },
+  {
+   "n": 21,
+   "bab": "mansubat",
+   "title_ar": "القول في تقديم معمول الفعل المقصور عليه",
+   "title_en": "Fronting what the restricted verb governs",
+   "title_tr": "Kasr edilen fiilin ma'mûlünü takdim",
+   "kufa_ar": "ذهب الكوفيون إلى أنه لا يجوز \"ما طعامك أكل إلا زيدٌ\".",
+   "kufa_en": "Mā ṭaʿāmaka akala illā Zaydun is not allowed.",
+   "kufa_tr": "Mâ taâmeke ekele illâ Zeydün caiz değildir.",
+   "basra_ar": "وذهب البصريون إلى أنه يجوز",
+   "basra_en": "It is allowed.",
+   "basra_tr": "Caizdir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو العباس أحمد بن يحيى ثَعْلَب من الكوفيين.",
+     "with": "basra"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:141",
+    "shamela": 137
+   }
+  },
+  {
+   "n": 22,
+   "bab": "nawasikh",
+   "title_ar": "القول في رافع الخبر بعد \"إنَّ\" المؤكدة",
+   "title_en": "What raises the khabar after inna",
+   "title_tr": "İnne'den sonra haberi ref' eden âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"إنَّ\" وأخواتها لا ترفع الخبر، نحو \"إنَّ زيدًا قائم\" وما أشبه ذلك.",
+   "kufa_en": "Inna and its sisters do not raise the khabar.",
+   "kufa_tr": "İnne ve kardeşleri haberi ref' etmez.",
+   "basra_ar": "وذهب البصريون إلى أنها ترفع الخبر.",
+   "basra_en": "They raise the khabar.",
+   "basra_tr": "Haberi ref' ederler.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:144",
+    "shamela": 140
+   },
+   "links": [
+    "inna-wa-akhawatuha"
+   ]
+  },
+  {
+   "n": 23,
+   "bab": "nawasikh",
+   "title_ar": "القول في العطف على اسم \"إنَّ\" بالرفع قبل مجيء الخبر",
+   "title_en": "Joining a rafʿ noun to the ism of inna before the khabar",
+   "title_tr": "Haber gelmeden inne'nin ismine merfû atıf",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز العطف على موضع \"إن\" قبل تمام الخبر، واختلفوا بعد ذلك",
+   "kufa_en": "One may join to the place of inna before the khabar is complete; then they differ.",
+   "kufa_tr": "Haber tamamlanmadan inne'nin mahalline atıf caizdir; sonra ihtilâf etmişlerdir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز العطف على الموضع قبل تمام الخبر على كل حال.",
+   "basra_en": "Joining to the place before the khabar is complete is never allowed.",
+   "basra_tr": "Haber tamamlanmadan mahalle atıf hiçbir hâlde caiz değildir.",
+   "others": [
+    {
+     "ar": "فذهب أبو الحسن علي بن حمزة الكسائي إلى أنه يجوز ذلك على كل حال، سواء كان يظهر فهي عمل \"إن\" أو لم يظهر، وذلك نحو قولك: \"إن زيدًا وعمرو قائمان، وإنك وبكرٌ منطلقان\"."
+    },
+    {
+     "ar": "وذهب أبو زكريا يحيى بن زياد الفراء إلى أنه لا يجوز ذلك إلا فيما لم يظهر فيه عمل إن."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:151",
+    "shamela": 147
+   },
+   "links": [
+    "inna-wa-akhawatuha"
+   ]
+  },
+  {
+   "n": 24,
+   "bab": "nawasikh",
+   "title_ar": "القول في عمل \"إنِ\" المخففة النَّصْبَ في الاسم",
+   "title_en": "Does lightened in govern the noun in naṣb?",
+   "title_tr": "Muhaffef in ismi nasbeder mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"إنِ\" المخففة من الثقيلة لا تعمل النصب في الاسم",
+   "kufa_en": "In lightened from inna does not put the noun in naṣb.",
+   "kufa_tr": "İnne'den muhaffef in ismi nasbetmez.",
+   "basra_ar": "وذهب البصريون إلى أنها تعمل.",
+   "basra_en": "It governs.",
+   "basra_tr": "Amel eder.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:159",
+    "shamela": 155
+   },
+   "links": [
+    "masail-inna-wal-mukhaffafa-fil-kafiya"
+   ]
+  },
+  {
+   "n": 25,
+   "bab": "nawasikh",
+   "title_ar": "القول في زيادة لام الابتداء في خبر لكنَّ",
+   "title_en": "The lām of ibtidāʾ in the khabar of lākinna",
+   "title_tr": "Lâkinne'nin haberinde ibtidâ lâmı",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز دخول اللام في خبر \"لكن\" كما يجوز في خبر إن، نحو \"ما قام زيدًا لَكِنَّ عمرًا لقائم\"",
+   "kufa_en": "The lām may enter the khabar of lākinna, as it enters the khabar of inna.",
+   "kufa_tr": "Lâm, inne'nin haberine girdiği gibi lâkinne'nin haberine de girebilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز دخول اللام في خبر لكنَّ.",
+   "basra_en": "The lām may not enter the khabar of lākinna.",
+   "basra_tr": "Lâm lâkinne'nin haberine giremez.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:169",
+    "shamela": 165
+   },
+   "links": [
+    "kaanna-lakinna-layta-laalla-fil-kafiya"
+   ]
+  },
+  {
+   "n": 26,
+   "bab": "nawasikh",
+   "title_ar": "القول في لام \"لعل\" الأولى؛ زائدة هي أو أصلية؟",
+   "title_en": "The first lām of laʿalla: added or radical?",
+   "title_tr": "Lealle'nin ilk lâmı: zâid mi aslî mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن اللام الأولى في \"لعل\" أصلية",
+   "kufa_en": "The first lām of laʿalla is radical.",
+   "kufa_tr": "Lealle'deki ilk lâm aslîdir.",
+   "basra_ar": "وذهب البصريون إلى أنها زائدة.",
+   "basra_en": "It is added.",
+   "basra_tr": "Zâiddir.",
+   "tarjih": "kufa",
+   "tarjih_ar": "والصحيح في هذه المسألة ما ذهب إليه الكوفيون.",
+   "tarjih_src": "explicit",
+   "page": {
+    "printed": "1:177",
+    "shamela": 173
+   },
+   "links": [
+    "kaanna-lakinna-layta-laalla-fil-kafiya"
+   ]
+  },
+  {
+   "n": 27,
+   "bab": "mansubat",
+   "title_ar": "القول في تقديم معمول اسم الفعل عليه",
+   "title_en": "Fronting what an ism fiʿl governs",
+   "title_tr": "İsm-i fiilin ma'mûlünü ona takdim",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"عليك، ودونك، وعندك\" في الإغراء يجوز تقديم معمولاتها عليها، نحو \"زيدًا عليك، عمرًا عندك، وبكرًا دونك\".",
+   "kufa_en": "In ighrāʾ, ʿalayka, dūnaka, ʿindaka may have what they govern put before them: Zaydan ʿalayka.",
+   "kufa_tr": "İğrâda aleyke, dûneke, indeke'nin ma'mûlü öne alınabilir: Zeyden aleyke.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز تقديم معمولاتها عليها",
+   "basra_en": "What they govern may not be put before them.",
+   "basra_tr": "Ma'mûlleri onlara takdim edilemez.",
+   "others": [
+    {
+     "ar": "وإليه ذهب الفراء من الكوفيين.",
+     "with": "basra"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:184",
+    "shamela": 180
+   },
+   "links": [
+    "ism-fil",
+    "ighra-wa-ikhtisas"
+   ]
+  },
+  {
+   "n": 28,
+   "bab": "usul",
+   "title_ar": "القول في أصل الاشتقاق؛ الفعل هو أو المصد ر؟",
+   "title_en": "The root of derivation: the verb or the maṣdar?",
+   "title_tr": "İştikakın aslı: fiil mi masdar mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أن المصدر مشتقٌّ من الفعل وفرع عليه، نحو \"ضرب ضربًا، وقام قيامًا\"",
+   "kufa_en": "The maṣdar is derived from the verb and is its branch.",
+   "kufa_tr": "Masdar fiilden türemiştir ve onun fer'idir.",
+   "basra_ar": "وذهب البصريون إلى أن الفعل مشتق من المصدر وفرع عليه.",
+   "basra_en": "The verb is derived from the maṣdar and is its branch.",
+   "basra_tr": "Fiil masdardan türemiştir ve onun fer'idir.",
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:190",
+    "shamela": 186
+   },
+   "links": [
+    "masdar"
+   ]
+  },
+  {
+   "n": 29,
+   "bab": "mansubat",
+   "title_ar": "القول في عامل النصب في الظرف الواقع خبرًا",
+   "title_en": "What puts a ẓarf that is the khabar in naṣb",
+   "title_tr": "Haber olan zarfı nasbeden âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن الظرف ينتصب على الخلاف إذا وقع خبرًا للمبتدأ نحو \"زيد أَمَامَكَ، عمرو وَرَاءَكَ\" وما أشبه ذلك.",
+   "kufa_en": "The ẓarf as khabar is manṣūb by khilāf (difference): Zaydun amāmaka.",
+   "kufa_tr": "Haber olan zarf hilâf ile mansûbdur: Zeydün emâmeke.",
+   "basra_ar": "وذهب البصريون إلى أنه ينتصب بفعل مقدر، والتقدير فيه: زيد استقرَّ أمامك، وعمرو استقرَّ وراءك.",
+   "basra_en": "It is manṣūb by an implied verb: Zaydun istaqarra amāmaka.",
+   "basra_tr": "Takdir edilen bir fiil ile mansûbdur: Zeydün istekarra emâmeke.",
+   "others": [
+    {
+     "ar": "وذهب أبو العباس أحمد بن يحيى ثَعْلَب من الكوفيين إلى أنه ينتصب لأن الأصل في قولك: \"أمامك زيدٌ\" حلَّ أمامك، فحذف الفعل وهو غير مطلوب واكتفى بالظرف منه فبقي منصوبًا على ما كان على مع الفعل."
+    },
+    {
+     "ar": "وذهب بعضهم إلى أنه ينتصب بتقدير اسم فاعل، والتقدير: زيد مستقر أمامك، وعمرو مستقر وراءك"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:197",
+    "shamela": 193
+   },
+   "links": [
+    "zarf-mustaqarr-wa-laghw"
+   ]
+  },
+  {
+   "n": 30,
+   "bab": "mansubat",
+   "title_ar": "القول في عامل النصب في المفعول معه",
+   "title_en": "What puts the mafʿūl maʿahu in naṣb",
+   "title_tr": "Mef'ûlün meahı nasbeden âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن المفعول معه منصوب على الخلاف، وذلك نحو قولهم \"استوى الماء والخشبة، وجاء البرد والطَّيَالِسَة\".",
+   "kufa_en": "The mafʿūl maʿahu is manṣūb by khilāf: istawā al-māʾu wa-l-khashabata.",
+   "kufa_tr": "Mef'ûlün meah hilâf ile mansûbdur: istevel-mâu vel-haşebete.",
+   "basra_ar": "وذهب البصريون إلى أنه منصوب بالفعل الذي قبله بتوسُّط الواو.",
+   "basra_en": "It is manṣūb by the verb before it, through the wāw.",
+   "basra_tr": "Vâv vasıtasıyla, önündeki fiil ile mansûbdur.",
+   "others": [
+    {
+     "ar": "وذهب أبو إسحاق الزَّجَّاج من البصريين إلى أنه منصوب بتقدير عامل، والتقدير: ولابَسَ الخشبَةَ، وما أشبه ذلك؛ لأن الفعل لا يعمل في المفعول وبينهما الواو."
+    },
+    {
+     "ar": "وذهب أبو الحسن الأَخْفَش إلى أن ما بعد الواو ينتصب بانتصاب \"مع\" في نحو \"جئتُ مَعَه\"."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:200",
+    "shamela": 196
+   },
+   "links": [
+    "maful-maah"
+   ]
+  },
+  {
+   "n": 31,
+   "bab": "mansubat",
+   "title_ar": "القول في تقديم الحال على الفعل العامل فيها",
+   "title_en": "Fronting the ḥāl before the verb that governs it",
+   "title_tr": "Hâli âmili olan fiile takdim",
+   "kufa_ar": "ذهب الكوفيون إلى أنه لا يجوز تقديم الحال على الفعل العامل فيها مع الاسم الظاهر٢، نحو: \"راكبًا جاء زيد\" ويجوز مع المضمر، نحو \"راكبًا جئتُ\".",
+   "kufa_en": "The ḥāl may not precede its verb with an apparent noun (rākiban jāʾa Zaydun), but may with a pronoun (rākiban jiʾtu).",
+   "kufa_tr": "Zâhir isimle hâl fiilinden önce gelemez (râkiben câe Zeydün), zamirle gelebilir (râkiben ci'tü).",
+   "basra_ar": "وذهب البصريون إلى أنه يجوز تقديم الحال على العامل فيها مع الاسم الظاهر والمضمر.",
+   "basra_en": "It may precede its verb with both the apparent noun and the pronoun.",
+   "basra_tr": "Zâhir isimle de zamirle de takdimi caizdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:203",
+    "shamela": 199
+   },
+   "links": [
+    "hal"
+   ]
+  },
+  {
+   "n": 32,
+   "bab": "mansubat",
+   "title_ar": "هل يقع الفعل الماضي حالًا",
+   "title_en": "Can a past verb be a ḥāl?",
+   "title_tr": "Mâzî fiil hâl olur mu?",
+   "kufa_ar": "ذهب الكوفيون إلى أن الفعل الماضي يجوز أن يقع حالًا",
+   "kufa_en": "A past verb may be a ḥāl.",
+   "kufa_tr": "Mâzî fiil hâl olabilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز أن يقع حالًا، وأجمعوا على أنه إذا كانت معه \"قَدْ\" أو كان وصفًا لمحذوف فإنه يجوز أن يقع حالًا.",
+   "basra_en": "It may not (all agree it may with qad, or as the adjective of something dropped).",
+   "basra_tr": "Olamaz (kad ile ya da mahzûfun vasfı olunca olabileceğinde ittifak vardır).",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن الأَخْفَش من البصريين.",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:205",
+    "shamela": 201
+   },
+   "links": [
+    "hal"
+   ]
+  },
+  {
+   "n": 33,
+   "bab": "mansubat",
+   "title_ar": "ما يجوز من وجوه الإعراب في الصفة الصالحة للخبرية إذا وُجِدَ معها ظرف مكرر",
+   "title_en": "The cases of a predicable adjective with a repeated ẓarf",
+   "title_tr": "Tekrarlanan zarfla birlikte habere elverişli sıfatın i'râbı",
+   "kufa_ar": "ذهب الكوفيون إلى أن النصب واجب في الصفة إذا كرر الظرف التام وهو خبر المبتدأ، وذلك نحو قولك: \"في الدَّار زيد قائمًا فيها\".",
+   "kufa_en": "When the complete ẓarf that is the khabar is repeated, the adjective must be manṣūb: fī al-dāri Zaydun qāʾiman fīhā.",
+   "kufa_tr": "Haber olan tam zarf tekrarlanınca sıfatın nasbı vâciptir: fid-dâri Zeydün kâimen fîhâ.",
+   "basra_ar": "وذهب البصريون إلى أن النصب لا يجب إذا كرر الظرف وهو خبر المبتدأ، بل يجوز فيه الرفع كما يجوز فيه النصب.",
+   "basra_en": "Naṣb is not required; rafʿ is allowed as naṣb is.",
+   "basra_tr": "Nasb vâcip değildir; nasb gibi ref' de caizdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:210",
+    "shamela": 206
+   }
+  },
+  {
+   "n": 34,
+   "bab": "mansubat",
+   "title_ar": "القول في العامل في المستثنى النصب",
+   "title_en": "What puts the mustathnā in naṣb",
+   "title_tr": "Müstesnâyı nasbeden âmil",
+   "kufa_ar": "اختلف مذهب الكوفيين فالعامل في المستثنى النصب نحو \"قام القوم إلا زيدًا\" فذهب بعضهم إلى أن العامل فيه \"إلا\"، وإليه ذهب أبو العباس محمد بن يزيد المُبَرِّد وأبو إسحاق الزَّجَّاج من البصريين، وذهب الفَرَّاء ومن تابعه من الكوفيين -وهو المشهور من مذهبهم- إلى أن \"إلا\" مركبة من إنَّ ولا، ثم خففت إنَّ وأدغمت في لا، فنصبوا بها في الإيجاب اعتبارًا بإنَّ، وعطفوا بها في النفي اعتبارًا بلا، وحكي عن الكسائي أنه قال: إنما نصب المستثنى؛ لأن تأويله: قام القوم إلا أن زيدًا لم يقم، وحكي عنه أيضًا أنه قال: ينتصب المستثنى لأنه مشبه بالمفعول",
+   "kufa_en": "The Kufans differ: some say illā governs it; al-Farrāʾ says illā is inna + lā; al-Kisāʾī is reported with two reasons.",
+   "kufa_tr": "Kûfeliler ihtilâf etmiştir: bazısı âmil illâ'dır der; Ferrâ illâ'nın inne ile lâ'dan mürekkep olduğunu söyler; Kisâî'den iki sebep nakledilir.",
+   "basra_ar": "وذهب البصريون إلى أن العامل في المستثنى هو الفعل، أو معنى الفعل بتوسُّط إلا.",
+   "basra_en": "The governor is the verb, or the verb's meaning, through illā.",
+   "basra_tr": "Âmil, illâ vasıtasıyla fiil ya da fiil mânâsıdır.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:212",
+    "shamela": 208
+   },
+   "shape_note": "The book opens with the Kufans' own split («اختلف مذهب الكوفيين»): their pane holds the whole split, not one «ذهب الكوفيون» sentence.",
+   "links": [
+    "istithna"
+   ]
+  },
+  {
+   "n": 35,
+   "bab": "mansubat",
+   "title_ar": "هل تكون \"إلا\" بمعنى الواو؟",
+   "title_en": "Can illā mean wa (and)?",
+   "title_tr": "İllâ, vâv mânâsına gelir mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"إلا\" تكون بمعنى الواو.",
+   "kufa_en": "Illā can mean the wāw.",
+   "kufa_tr": "İllâ vâv mânâsında olabilir.",
+   "basra_ar": "وذهب البصريون إلى أنها لا تكون بمعنى الواو.",
+   "basra_en": "It cannot.",
+   "basra_tr": "Olamaz.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:216",
+    "shamela": 212
+   },
+   "links": [
+    "istithna"
+   ]
+  },
+  {
+   "n": 36,
+   "bab": "mansubat",
+   "title_ar": "هل يجوز تقديم حرف الاستثناء في أول الكلام؟",
+   "title_en": "Fronting the particle of exception to the head of the sentence",
+   "title_tr": "İstisnâ harfini kelâmın başına takdim",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز تقديم حرف الاستثناء في أول الكلام، نحو قولك: \"إلا طَعَامَكَ ما أكل زيد\" نصَّ عليه الكسائي",
+   "kufa_en": "The particle of exception may come first: illā ṭaʿāmaka mā akala Zaydun (al-Kisāʾī).",
+   "kufa_tr": "İstisnâ harfi başa gelebilir: illâ taâmeke mâ ekele Zeydün (Kisâî bunu açıkça söyler).",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز ذلك.",
+   "basra_en": "That is not allowed.",
+   "basra_tr": "Bu caiz değildir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو إسحاق الزَّجَّاج في بعض المواضع.",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "ما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:222",
+    "shamela": 218
+   },
+   "links": [
+    "istithna"
+   ]
+  },
+  {
+   "n": 37,
+   "bab": "mansubat",
+   "title_ar": "حاشى في الاستثناء، فعل أو حرف أو ذات وجهين",
+   "title_en": "Ḥāshā in exception: verb, particle, or both",
+   "title_tr": "İstisnâda hâşâ: fiil mi, harf mi, ikisi mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"حاشى\" في الاستثناء فعل ماضٍ",
+   "kufa_en": "Ḥāshā in exception is a past verb.",
+   "kufa_tr": "İstisnâdaki hâşâ mâzî fiildir.",
+   "basra_ar": "وذهب البصريون إلى أنه حرف جر",
+   "basra_en": "It is a jarr particle.",
+   "basra_tr": "Cer harfidir.",
+   "others": [
+    {
+     "ar": "وذهب بعضهم إلى أنه فعل استعمل استعمال الأدوات"
+    },
+    {
+     "ar": "وذهب أبو العباس المُبَرِّد إلى أنه يكون فعلًا ويكون حرفًا."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:226",
+    "shamela": 222
+   },
+   "links": [
+    "istithna"
+   ]
+  },
+  {
+   "n": 38,
+   "bab": "mansubat",
+   "title_ar": "هل يجوز بناء \"غير\" مطلقًا؟",
+   "title_en": "May ghayr always be built?",
+   "title_tr": "Gayr her yerde mebnî olur mu?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"غير\" يجوز بناؤها على الفتح في كل موضع ١٣٠ يحسن فيه \"إلا\" سواء أضيفت إلى متمكن أو غير متمكن، وذلك نحو قولهم: ما نفعني غير قيام زيد، وما نفعني غير أَنْ قام زيد.",
+   "kufa_en": "Ghayr may be built on the fatḥa wherever illā fits, whatever it is annexed to.",
+   "kufa_tr": "İllâ'nın yakıştığı her yerde gayr, neye muzâf olursa olsun, fetha üzere mebnî olabilir.",
+   "basra_ar": "وذهب البصريون إلى أنها يجوز بناؤها إذا أضيفت إلى غير متمكن، بخلاف ما إذا أضيفت إلى متمكن.",
+   "basra_en": "It may be built only when annexed to an indeclinable word.",
+   "basra_tr": "Ancak mütemekkin olmayan bir kelimeye muzâf olunca mebnî olabilir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:233",
+    "shamela": 229
+   },
+   "links": [
+    "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa"
+   ]
+  },
+  {
+   "n": 39,
+   "bab": "mansubat",
+   "title_ar": "هل تكون \"سوى\" اسمًا أو تلزم الظرفية؟",
+   "title_en": "Siwā: a noun, or always a ẓarf?",
+   "title_tr": "Sivâ: isim mi, daima zarf mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"سُِوًى\" تكون اسمًا وتكون ظرفًا.",
+   "kufa_en": "Siwā is both a noun and a ẓarf.",
+   "kufa_tr": "Sivâ hem isim hem zarf olur.",
+   "basra_ar": "وذهب البصريون إلى أنها لا تكون إلا ظرفًا.",
+   "basra_en": "It is only ever a ẓarf.",
+   "basra_tr": "Ancak zarf olur.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:239",
+    "shamela": 235
+   },
+   "links": [
+    "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa"
+   ]
+  },
+  {
+   "n": 40,
+   "bab": "adad",
+   "title_ar": "\"كم\" مركّبة أو مفردة؟",
+   "title_en": "Kam: compound or single?",
+   "title_tr": "Kem: mürekkep mi müfred mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"كم\" مركبة.",
+   "kufa_en": "Kam is a compound.",
+   "kufa_tr": "Kem mürekkeptir.",
+   "basra_ar": "وذهب البصريون إلى أنها مفردة موضوعة للعدد.",
+   "basra_en": "It is single, laid down for number.",
+   "basra_tr": "Aded için konulmuş müfred bir kelimedir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:243",
+    "shamela": 239
+   },
+   "links": [
+    "al-kinayat-wal-zuruf-al-mabniyya"
+   ]
+  },
+  {
+   "n": 41,
+   "bab": "adad",
+   "title_ar": "إذا فصل بين \"كَمْ\" الخبرية وتمييزها فهل يبقى التمييز مجرورً ا؟",
+   "title_en": "Separating declarative kam from its tamyīz: does the tamyīz stay majrūr?",
+   "title_tr": "Haberî kem ile temyizi arasına girilince temyiz mecrûr kalır mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أنه إذا فصل بين \"كم\" في الخبر وبين الاسم بالظرف وحرف الجر كان مخفوضًا، نحو: كم عندك رَجُلٍ، وكم في الدار غلامٍ؟.",
+   "kufa_en": "Separated by a ẓarf or a jarr particle, the noun is still majrūr: kam ʿindaka rajulin.",
+   "kufa_tr": "Zarf ya da cer harfiyle ayrılınca isim mecrûr olur: kem indeke racülin.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز فيه الجر، ويجب أن يكون منصوبًا.",
+   "basra_en": "Jarr is not allowed; it must be manṣūb.",
+   "basra_tr": "Cer caiz değildir; mansûb olması vâciptir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:247",
+    "shamela": 243
+   },
+   "links": [
+    "al-kinayat-wal-zuruf-al-mabniyya"
+   ]
+  },
+  {
+   "n": 42,
+   "bab": "adad",
+   "title_ar": "هل تجوز إضافة النَّيِّف إلى العشرة",
+   "title_en": "Annexing the units to the ten",
+   "title_tr": "Neyyifin (birlerin) aşere'ye izâfesi",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز إضافة النيف إلى العشرة، نحو: خَمْسَةَ عَشَرٍ.",
+   "kufa_en": "The units may be annexed to the ten: khamsata ʿasharin.",
+   "kufa_tr": "Birler on'a muzâf olabilir: hamsete aşerin.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:252",
+    "shamela": 248
+   },
+   "links": [
+    "asma-al-adad-fil-kafiya"
+   ]
+  },
+  {
+   "n": 43,
+   "bab": "adad",
+   "title_ar": "القول في تعريف العدد المركب وتمييزه",
+   "title_en": "The article on a compound number and its tamyīz",
+   "title_tr": "Mürekkep adede ve temyizine harf-i ta'rîf",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز أن يقال في خمسة عشر درهما: \"الخمسة العشر درهمًا، والخمسَةَ العَشَرَ الدرهَمَ\"٢.",
+   "kufa_en": "One may say al-khamsata al-ʿashara dirhaman, and al-khamsata al-ʿashara al-dirhama.",
+   "kufa_tr": "El-hamsete'l-aşere dirhemen ve el-hamsete'l-aşere'd-dirheme denebilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز إدخال الألف واللام في العشر، ولا في الدرهم، وأجمعوا على أنه يجوز أن يقال \"الخمسة عَشَرَ درهمًا\" بإدخال الألف واللام على الخمسة وَحْدَهَا.",
+   "basra_en": "The article may not enter the ʿashara or the dirham (all allow it on the khamsa alone).",
+   "basra_tr": "Harf-i ta'rîf aşere'ye ve dirheme giremez (yalnız hamse'ye girdiğinde ittifak vardır).",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:255",
+    "shamela": 251
+   },
+   "links": [
+    "asma-al-adad-fil-kafiya"
+   ]
+  },
+  {
+   "n": 44,
+   "bab": "adad",
+   "title_ar": "القول في إضافة العد المركب إلى مثله",
+   "title_en": "Annexing a compound number to its like",
+   "title_tr": "Mürekkep adedi benzerine izâfe",
+   "kufa_ar": "ذهب الكوفيون إلى أنه لا يجوز أن يقال \"ثَالِثَ عَشَرَ ثَلَاثَةَ عَشَرَ\"",
+   "kufa_en": "As printed: one may not say thālitha ʿashara thalāthata ʿashara.",
+   "kufa_tr": "Basıldığı gibi: sâlise aşere selâsete aşere denemez.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز أن يقال \"ثَالِثَ عَشَرَ ثَلَاثَةَ عَشَرَ\"",
+   "basra_en": "One may not say thālitha ʿashara thalāthata ʿashara.",
+   "basra_tr": "Sâlise aşere selâsete aşere denemez.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:263",
+    "shamela": 259
+   },
+   "shape_note": "As printed, both schools say «لا يجوز»; the Kufan sentence is very likely a misprint — kept verbatim, left out of the masked round by the near-identical rule.",
+   "links": [
+    "asma-al-adad-fil-kafiya"
+   ],
+   "sic": true
+  },
+  {
+   "n": 45,
+   "bab": "nida",
+   "title_ar": "المنادى المفرد العلم؛ معرب أو مبنيّ؟",
+   "title_en": "The single proper-name munādā: declined or built?",
+   "title_tr": "Müfred alem münâdâ: mu'reb mi mebnî mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن الاسم المنادى المعرف المفرد معرب مرفوع بغير تنوين.",
+   "kufa_en": "The single definite munādā is declined, in rafʿ, without tanwīn.",
+   "kufa_tr": "Müfred ma'rife münâdâ mu'rebdir, tenvînsiz merfûdur.",
+   "basra_ar": "وذهب البصريون إلى أنه مبني على الضم، وموضعه النصب؛ لأنه مفعول.",
+   "basra_en": "It is built on the ḍamma, its place naṣb, because it is an object.",
+   "basra_tr": "Damme üzere mebnîdir, mahalli nasbdır; çünkü mef'ûldür.",
+   "others": [
+    {
+     "ar": "وذهب الفَرَّاء من الكوفيين إلى أنه مبنيّ على الضم، وليس بفاعل ولا مفعول."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:264",
+    "shamela": 260
+   },
+   "links": [
+    "vocative-munada"
+   ]
+  },
+  {
+   "n": 46,
+   "bab": "nida",
+   "title_ar": "القول في نداء الاسم المحلَّى بأل",
+   "title_en": "Calling a noun that has al",
+   "title_tr": "Harf-i ta'rîfli ismin nidâsı",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز نداء ما فيه الألف واللام نحو \"يا الرجل ويا الغلام\"",
+   "kufa_en": "A noun with al may be called: yā al-rajulu.",
+   "kufa_tr": "Elif-lâmlı isme nidâ caizdir: yâ er-racülü.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:274",
+    "shamela": 270
+   },
+   "links": [
+    "vocative-munada"
+   ]
+  },
+  {
+   "n": 47,
+   "bab": "nida",
+   "title_ar": "القول في الميم في \"اللهمّ\" أَعِوَضٌ من حرف النداء أم لا؟",
+   "title_en": "The mīm of allāhumma: a substitute for the vocative particle?",
+   "title_tr": "Allâhümme'deki mîm nidâ harfinin ivazı mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أن الميم المشدّدة في \"اللهم\" ليست عوضًا من \"يا\" التي للتنبيه في النداء.",
+   "kufa_en": "The doubled mīm of allāhumma is not a substitute for yā.",
+   "kufa_tr": "Allâhümme'deki şeddeli mîm yâ'nın ivazı değildir.",
+   "basra_ar": "وذهب البصريون إلى أنها عوض من \"يا\" التي للتنبيه في النداء، والهاء مبنية على الضم لأنه نداء.",
+   "basra_en": "It is a substitute for yā; the hāʾ is built on the ḍamma as a munādā.",
+   "basra_tr": "Yâ'nın ivazıdır; hâ nidâ olduğu için damme üzere mebnîdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:279",
+    "shamela": 275
+   },
+   "links": [
+    "vocative-munada"
+   ]
+  },
+  {
+   "n": 48,
+   "bab": "nida",
+   "title_ar": "هل يجوز ترخيم المضاف بحذف آخر المضاف إليه؟",
+   "title_en": "Tarkhīm of the annexed noun at the end of the second term",
+   "title_tr": "Muzâfı muzâfun ileyhin sonunu atarak terhîm",
+   "kufa_ar": "ذهب الكوفيون إلى أن ترخيم المضاف جائز، ويُوقِعُون الترخيم في آخر الاسم المضاف إليه، وذلك نحو قولك \"يا آلَ عامِ\" في يا آل عامرِ، و \"يا آل مالِ\" في يا آل مالك، وما أشبه ذلك.",
+   "kufa_en": "Tarkhīm of the muḍāf is allowed, at the end of the second term: yā āla ʿāmi.",
+   "kufa_tr": "Muzâfın terhîmi caizdir; terhîm muzâfun ileyhin sonunda olur: yâ âle âmi.",
+   "basra_ar": "وذهب البصريون إلى أن ترخيم المضاف غير جائز.",
+   "basra_en": "Tarkhīm of the muḍāf is not allowed.",
+   "basra_tr": "Muzâfın terhîmi caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:284",
+    "shamela": 280
+   },
+   "links": [
+    "vocative-munada"
+   ]
+  },
+  {
+   "n": 49,
+   "bab": "nida",
+   "title_ar": "هل يجوز ترخيم الاسم الثلاثي؟",
+   "title_en": "Tarkhīm of a three-letter noun",
+   "title_tr": "Üç harfli ismin terhîmi",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز ترخيم الاسم الثلاثي إذا كان أوسطه متحركًا، وذلك نحو قولك في عُنُقٍ \"يا عُنُ\" وفي حَجَر \"يا حَجَ\" وفي كَتِف\"ياكَتِ\"",
+   "kufa_en": "A three-letter noun may be shortened if its middle is voweled: yā ʿunu.",
+   "kufa_tr": "Ortası harekeli üç harfli isim terhîm edilebilir: yâ unu.",
+   "basra_ar": "وذهب البصريون إلى أن ترخيم ما كان على ثلاثة أحرف لا يجوز بحال",
+   "basra_en": "A three-letter noun may never be shortened.",
+   "basra_tr": "Üç harfli isim hiçbir hâlde terhîm edilmez.",
+   "others": [
+    {
+     "ar": "وذهب بعضهم إلى أن الترخيم يجوز في الأسماء على الإطلاق."
+    },
+    {
+     "ar": "وإليه ذهب أبو الحسن علي بن حمزة الكسائي من الكوفيين.",
+     "with": "basra"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:292",
+    "shamela": 288
+   },
+   "links": [
+    "vocative-munada"
+   ]
+  },
+  {
+   "n": 50,
+   "bab": "nida",
+   "title_ar": "ترخيم الرباعي الذي ثالثه ساكن",
+   "title_en": "Tarkhīm of a four-letter noun whose third is quiescent",
+   "title_tr": "Üçüncüsü sâkin dört harfliyi terhîm",
+   "kufa_ar": "ذهب الكوفيون إلى أن ترخيم الاسم الذي قبل آخره حرف ساكن يكون بحذفه وحذف الحرف الذي بعده، وذلك نحو قولك في قِمَطْرٍ \"يا قِمَ\" وفي سِبَطْرٍ \"ياسِبَ\" وما أشبه ذلك",
+   "kufa_en": "A noun with a quiescent letter before its last loses both: yā qima for qimaṭr.",
+   "kufa_tr": "Sondan önceki harfi sâkin olan isimde ikisi birden atılır: kımatr için yâ kıme.",
+   "basra_ar": "وذهب البصريون إلى أن ترخيمه يكون بحذف الحرف الأخير منه فقط.",
+   "basra_en": "Only the last letter is dropped.",
+   "basra_tr": "Yalnız son harf atılır.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:296",
+    "shamela": 292
+   },
+   "links": [
+    "vocative-munada"
+   ]
+  },
+  {
+   "n": 51,
+   "bab": "nida",
+   "title_ar": "القول في ندبة النكرة والأسماء الموصولة؟",
+   "title_en": "Nudba of an indefinite noun and of relatives",
+   "title_tr": "Nekirenin ve ism-i mevsûlün nüdbesi",
+   "kufa_ar": "ذهب الكوفِيُّون إلى أنه يجوز ندبة النكرة والأسماء الموصولة",
+   "kufa_en": "Nudba of the indefinite and the relative nouns is allowed.",
+   "kufa_tr": "Nekire ve mevsûl isimlerin nüdbesi caizdir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز ذلك.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:298",
+    "shamela": 294
+   },
+   "links": [
+    "vocative-munada"
+   ]
+  },
+  {
+   "n": 52,
+   "bab": "nida",
+   "title_ar": "هل يجوز إلقاء علامة الندبة على الصفة؟",
+   "title_en": "Putting the sign of nudba on the adjective",
+   "title_tr": "Nüdbe alâmetini sıfata getirmek",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز أن تُلْقَى علامة الندبة على الصفة، نحو قولك \"وازيدُ الظريفاه\"",
+   "kufa_en": "The sign of nudba may go on the adjective: wā-Zaydu al-ẓarīfāh.",
+   "kufa_tr": "Nüdbe alâmeti sıfata getirilebilir: vâ Zeydü'z-zarîfâh.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب يونس بن حبيب البصريُّ وأبو الحسن بن كَيْسَان.",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:300",
+    "shamela": 296
+   },
+   "links": [
+    "vocative-munada"
+   ]
+  },
+  {
+   "n": 53,
+   "bab": "nawasikh",
+   "title_ar": "اسم لا المفرد النكرة، مُعْرَبٌ أو مبنيٌّ؟",
+   "title_en": "The single indefinite noun after lā: declined or built?",
+   "title_tr": "Lâ'nın müfred nekire ismi: mu'reb mi mebnî mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن الاسم المفرد النكرة المنفي بلا معرب منصوب بها نحو \"لا رجلَ في الدَّارِ\"",
+   "kufa_en": "The noun negated by lā is declined, manṣūb by lā: lā rajula fī al-dār.",
+   "kufa_tr": "Lâ ile nefyedilen müfred nekire mu'rebdir, lâ ile mansûbdur: lâ racüle fid-dâr.",
+   "basra_ar": "وذهب البصريون إلى أنه مبنيٌّ على الفتح.",
+   "basra_en": "It is built on the fatḥa.",
+   "basra_tr": "Fetha üzere mebnîdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:302",
+    "shamela": 298
+   },
+   "links": [
+    "la-nafiya-lil-jins"
+   ]
+  },
+  {
+   "n": 54,
+   "bab": "majrurat",
+   "title_ar": "هل تقع \"من\" لابتداء الغاية في الزمان؟",
+   "title_en": "Does min mark the start of a span of time?",
+   "title_tr": "Min zamanda ibtidâ-i gaye için gelir mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أنَّ \"من\" يجوز استعمالها في الزمان والمكان.",
+   "kufa_en": "Min may be used for time and for place.",
+   "kufa_tr": "Min zamanda da mekânda da kullanılır.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز استعمالها في الزمان.",
+   "basra_en": "It may not be used for time.",
+   "basra_tr": "Zamanda kullanılmaz.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:306",
+    "shamela": 302
+   },
+   "links": [
+    "huruf-jarr"
+   ]
+  },
+  {
+   "n": 55,
+   "bab": "majrurat",
+   "title_ar": "واو رُبَّ، هل هي التي تعمل الجر؟",
+   "title_en": "The wāw of rubba: does it govern the jarr?",
+   "title_tr": "Rubbe vâvı ceri kendisi mi yapar?",
+   "kufa_ar": "ذهب الكوفيون إلى أن واو رب تعمل في النكرة الخفض بنفسها",
+   "kufa_en": "The wāw of rubba puts the indefinite noun in jarr by itself.",
+   "kufa_tr": "Rubbe vâvı nekireyi bizzat cerreder.",
+   "basra_ar": "وذهب البصريون إلى أن واو رب لا تعمل، وإنما العمل لربَّ مقدرة.",
+   "basra_en": "The wāw does not govern; the jarr is by an implied rubba.",
+   "basra_tr": "Vâv amel etmez; amel takdir edilen rubbe'nindir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو العباس المُبَرِّد من البصريين.",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:311",
+    "shamela": 307
+   },
+   "links": [
+    "al-lam-wa-rubba-fil-kafiya"
+   ]
+  },
+  {
+   "n": 56,
+   "bab": "majrurat",
+   "title_ar": "القول في إعراب الاسم الواقع بعد \"مذ\" و \"منذ\"",
+   "title_en": "The noun after mudh and mundhu",
+   "title_tr": "Müz ve münzü'den sonraki ismin i'râbı",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"مذ\"، و \"منذ\" إذا ارتفع الاسم بعدهما ارتفع بتقدير فعل محذوف.",
+   "kufa_en": "When the noun after mudh and mundhu is in rafʿ, it is raised by an implied, dropped verb.",
+   "kufa_tr": "Müz ve münzü'den sonraki isim merfû olunca mahzûf bir fiil takdiriyle merfûdur.",
+   "basra_ar": "وذهب البصريون إلى أنهما يكونان اسمين مبتدأين، ويرتفع ما بعدهما لأنه خبر عنهما، ويكونان حرفين جَارَّيْنِ فيكون ما بعدهما مجرورًا بهما.",
+   "basra_en": "They are nouns, mubtadaʾs with what follows as khabar; or jarr particles governing what follows.",
+   "basra_tr": "Bunlar mübtedâ isimlerdir, sonrakiler haberdir; ya da sonrakini cerreden harflerdir.",
+   "others": [
+    {
+     "ar": "وذهب أبو زكرياء يحيى بن زياد الفَرَّاء إلى أنه يرتفع بتقدير مبتدأ محذوف."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:316",
+    "shamela": 312
+   },
+   "links": [
+    "an-ala-al-kaf-mudh-wa-huruf-al-istithna-fil-kafiya"
+   ]
+  },
+  {
+   "n": 57,
+   "bab": "majrurat",
+   "title_ar": "هل يعمل حرف القسم محذوفًا بغير عوض؟",
+   "title_en": "Does the oath particle govern when dropped without a substitute?",
+   "title_tr": "Kasem harfi ivazsız hazfedilince amel eder mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز الخفض في القسم بإضمار حرف الخفض من غير عوض.",
+   "kufa_en": "Jarr in an oath with the jarr particle dropped and nothing in its place is allowed.",
+   "kufa_tr": "Kasemde cer harfi ivazsız gizlenerek cer caizdir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز ذلك إلا بعوض، نحو ألف الاستفهام، نحو قولك للرجل: \"اللهِ ما فعلتَ كَذَا\" أو هاء التنبيه نحو \"هاللهِ\".",
+   "basra_en": "Only with a substitute: the question alif, or hāʾ of alerting (hāllāhi).",
+   "basra_tr": "Ancak bir ivazla caizdir: istifham elifi ya da tenbîh hâsı (hâllâhi).",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:325",
+    "shamela": 321
+   },
+   "links": [
+    "huruf-al-qasam-fil-kafiya"
+   ]
+  },
+  {
+   "n": 58,
+   "bab": "huruf",
+   "title_ar": "اللام الداخلة على المبتدأ، لام الابتداء أو لام جواب القسم؟",
+   "title_en": "The lām on the mubtadaʾ: of ibtidāʾ, or the answer to an oath?",
+   "title_tr": "Mübtedâya giren lâm: ibtidâ lâmı mı, kasem cevabı mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أن اللام في قولهم \"لزيدٌ أفضلُ من عمروٍ\" جواب قسم مقدَّر، والتقدير: والله لزيد أفضل من عمرو، فأضمر اليمين اكتفاءً باللام منها",
+   "kufa_en": "The lām in la-Zaydun afḍalu min ʿAmrin answers an implied oath.",
+   "kufa_tr": "Le-Zeydün efdalü min Amrin'deki lâm takdir edilen kasemin cevabıdır.",
+   "basra_ar": "وذهب البصريون إلى أن اللام لام الابتداء.",
+   "basra_en": "It is the lām of ibtidāʾ.",
+   "basra_tr": "İbtidâ lâmıdır.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:330",
+    "shamela": 326
+   },
+   "links": [
+    "masail-inna-wal-mukhaffafa-fil-kafiya"
+   ]
+  },
+  {
+   "n": 59,
+   "bab": "majrurat",
+   "title_ar": "القول في أيمن في القسم مفرد هو أو جمع؟",
+   "title_en": "Ayman in the oath: single or plural?",
+   "title_tr": "Kasemde eymün: müfred mi cem mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن قولهم في القسم \"أيمن الله\" جمع يمين.",
+   "kufa_en": "Ayman in ayman Allāh is the plural of yamīn.",
+   "kufa_tr": "Eymunullâh'taki eymün yemîn'in cem'idir.",
+   "basra_ar": "وذهب البصريون إلى أنه ليس جمع يمين، وأنه اسم مفرد مشتق من اليُمْن.",
+   "basra_en": "It is not the plural of yamīn; it is a single noun derived from yumn.",
+   "basra_tr": "Yemîn'in cem'i değildir; yümn'den türemiş müfred bir isimdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "1:334",
+    "shamela": 330
+   },
+   "links": [
+    "huruf-al-qasam-fil-kafiya"
+   ]
+  },
+  {
+   "n": 60,
+   "bab": "majrurat",
+   "title_ar": "القول في الفصل بين المضاف والمضاف إليه",
+   "title_en": "Separating the muḍāf from the muḍāf ilayh",
+   "title_tr": "Muzâf ile muzâfun ileyhin arasını ayırmak",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز الفصل بين المضاف والمضاف إليه بغير الظرف وحرف الخفض لضرورة الشعر.",
+   "kufa_en": "They may be separated by other than a ẓarf or jarr particle, under the necessity of verse.",
+   "kufa_tr": "Şiir zarureti için zarf ve cer harfinden başkasıyla ayrılabilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز ذلك بغير الظرف وحرف الجر.",
+   "basra_en": "Not by other than a ẓarf or jarr particle.",
+   "basra_tr": "Zarf ve cer harfinden başkasıyla ayrılamaz.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:349",
+    "shamela": 338
+   },
+   "links": [
+    "al-mudaf-wa-nawa-al-idafa"
+   ]
+  },
+  {
+   "n": 61,
+   "bab": "majrurat",
+   "title_ar": "هل تجوز إضافة الاسم إلى اسم يوافقه في المعنى؟",
+   "title_en": "Annexing a noun to one of the same meaning",
+   "title_tr": "Bir ismi aynı mânâdaki isme izâfe",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز إضافة الشيء إلى نفسه إذا اختلف اللفظان.",
+   "kufa_en": "A thing may be annexed to itself when the two words differ.",
+   "kufa_tr": "Lafızlar farklı olunca bir şey kendisine izâfe edilebilir.",
+   "basra_ar": "وذهب البصريون أنه لا يجوز.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:356",
+    "shamela": 345
+   },
+   "links": [
+    "al-mudaf-wa-nawa-al-idafa"
+   ]
+  },
+  {
+   "n": 62,
+   "bab": "tawabi",
+   "title_ar": "\"كلا\" و\"كلتا\" مثنيان لفظًا ومعنًى، أو معنًى فقط؟",
+   "title_en": "Kilā and kiltā: dual in form and meaning, or in meaning only?",
+   "title_tr": "Kilâ ve kiltâ: lafzen ve mânen mi, yalnız mânen mi tesniye?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"كلا، وكلتا\" فيهما تثنية لفظية ومعنوية، وأصل كلا \"كل\" فخفّفت اللام، وزيدت الألف للتثنية، وزيدت التاء في \"كلتا\" للتأنيث، والألف فيهما كالألف في \"الزيدان\"، والعمران\" ولزم حذف نون التثنية منهما للزومهما الإضافة.",
+   "kufa_en": "Kilā and kiltā are dual in form and meaning; the alif is the dual's.",
+   "kufa_tr": "Kilâ ve kiltâ lafzen ve mânen tesniyedir; elif tesniye elifidir.",
+   "basra_ar": "وذهب البصريون إلى أن فيهما إفراًدا لفظيًّا وتثنية معنوية، والألف فيهما كالألف في \"عصًا، ورحًا\".",
+   "basra_en": "They are single in form and dual in meaning; the alif is like that of ʿaṣan.",
+   "basra_tr": "Lafzen müfred, mânen tesniyedir; elif asâ'daki elif gibidir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:359",
+    "shamela": 348
+   },
+   "links": [
+    "al-tawkid-al-lafzi-wal-manawi"
+   ]
+  },
+  {
+   "n": 63,
+   "bab": "tawabi",
+   "title_ar": "هل يجوز توكيد النكرة توكيدًا معنويًا؟",
+   "title_en": "Semantic tawkīd of an indefinite noun",
+   "title_tr": "Nekirenin mânevî tekidi",
+   "kufa_ar": "ذهب الكوفيون إلى أن توكيد النكرة بغير لفظها جائز، إذا كانت مؤقتة نحو قولك: \"قعدت يومًا كله، وقمت ليلة كلها\".",
+   "kufa_en": "Tawkīd of the indefinite by another word is allowed when it is a measured span: qaʿadtu yawman kullahu.",
+   "kufa_tr": "Nekire belirli bir süre olunca başka lafızla tekidi caizdir: kaadtü yevmen küllehû.",
+   "basra_ar": "وذهب البصريون إلى أن تأكيد النكرة بغير لفظها غير جائز على الإطلاق.",
+   "basra_en": "It is never allowed.",
+   "basra_tr": "Hiçbir hâlde caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:369",
+    "shamela": 358
+   },
+   "links": [
+    "al-tawkid-al-lafzi-wal-manawi"
+   ]
+  },
+  {
+   "n": 64,
+   "bab": "tawabi",
+   "title_ar": "هل يجوز أن تجيء واو العطف زائدة؟",
+   "title_en": "Can the conjoining wāw be redundant?",
+   "title_tr": "Atıf vâvı zâid gelebilir mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن الواو العاطفة يجوز أن تقع زائدة",
+   "kufa_en": "The conjoining wāw may be redundant.",
+   "kufa_tr": "Atıf vâvı zâid olabilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز.",
+   "basra_en": "It may not.",
+   "basra_tr": "Olamaz.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن الأخفش وأبو العباس المُبَرِّد وأبو القاسم بن بَرْهَان من البصريين.",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:374",
+    "shamela": 363
+   },
+   "links": [
+    "atf-nasaq"
+   ]
+  },
+  {
+   "n": 65,
+   "bab": "tawabi",
+   "title_ar": "هل يجوز العطف على الضمير المخفوض؟",
+   "title_en": "Conjoining to a majrūr pronoun",
+   "title_tr": "Mecrûr zamire atıf",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجب العطف على الضمير المخفوض، وذلك نحو قولك \"مررت بك وزيد\"",
+   "kufa_en": "As printed: conjoining to the majrūr pronoun «yajibu» (is required): marartu bika wa-Zaydin.",
+   "kufa_tr": "Basıldığı gibi: mecrûr zamire atıf «yecibü» (vâciptir): merertü bike ve Zeydin.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:379",
+    "shamela": 368
+   },
+   "shape_note": "As printed, the Kufan sentence says «يجب العطف» (likely for «يجوز»); kept verbatim.",
+   "links": [
+    "atf-nasaq"
+   ],
+   "sic": true
+  },
+  {
+   "n": 66,
+   "bab": "tawabi",
+   "title_ar": "العطف على الضمير المرفوع المتصل في اختيار الكلام",
+   "title_en": "Conjoining to an attached rafʿ pronoun in ordinary speech",
+   "title_tr": "Muttasıl merfû zamire ihtiyârî kelâmda atıf",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز العطف على الضمير المرفوع المتصل في اختيار الكلام، نحو: \"قُمْتُ وزيدٌ\".",
+   "kufa_en": "It is allowed in ordinary speech: qumtu wa-Zaydun.",
+   "kufa_tr": "İhtiyârî kelâmda caizdir: kumtü ve Zeydün.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز إلا على قبح في ضرورة الشعر.",
+   "basra_en": "Only, and badly, under the necessity of verse.",
+   "basra_tr": "Ancak şiir zaruretinde, çirkin olarak caizdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:388",
+    "shamela": 377
+   },
+   "links": [
+    "atf-nasaq"
+   ]
+  },
+  {
+   "n": 67,
+   "bab": "tawabi",
+   "title_ar": "هل تأتي \"أو\" بمعنى الواو، وبمعنى \"بل\"؟",
+   "title_en": "Does aw mean wa and bal?",
+   "title_tr": "Ev, vâv ve bel mânâsına gelir mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"أو\" تكون بمعنى الواو، وبمعنى بل.",
+   "kufa_en": "Aw can mean the wāw and can mean bal.",
+   "kufa_tr": "Ev hem vâv hem bel mânâsına gelir.",
+   "basra_ar": "وذهب البصريون إلى أنها لا تكون بمعنى الواو، ولا بمعني بل.",
+   "basra_en": "It means neither.",
+   "basra_tr": "İkisinin de mânâsına gelmez.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:391",
+    "shamela": 380
+   },
+   "links": [
+    "atf-nasaq"
+   ]
+  },
+  {
+   "n": 68,
+   "bab": "tawabi",
+   "title_ar": "هل يجوز أن يعطف بـ\"لكن\" بعد الإيجاب؟",
+   "title_en": "Conjoining with lākin after an affirmative",
+   "title_tr": "Müspet kelâmdan sonra lâkin ile atıf",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز العطف بـ\"لكن\" في الإيجاب، نحو: \"أتاني زيد لكن عمرو\".",
+   "kufa_en": "Conjoining with lākin after an affirmative is allowed: atānī Zaydun lākin ʿAmrun.",
+   "kufa_tr": "Müspetten sonra lâkin ile atıf caizdir: etânî Zeydün lâkin Amrün.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز العطف بها في الإيجاب، فإذا جيء بها في الإيجاب وجب أن تكون الجملة التي بعدها مخالفة للجملة التي قبلها، نحو \"أتاني زيد لكن عمرو لم يأت\" وما أشبه ذلك.",
+   "basra_en": "It is not; after an affirmative the clause after it must differ from the one before.",
+   "basra_tr": "Caiz değildir; müspetten sonra gelirse ardındaki cümle öncekine muhalif olmalıdır.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:396",
+    "shamela": 385
+   },
+   "links": [
+    "atf-nasaq"
+   ]
+  },
+  {
+   "n": 69,
+   "bab": "irab",
+   "title_ar": "هل يجوز صرف أفعل التفضيل في ضرورة الشعر؟",
+   "title_en": "Declining afʿal min under the necessity of verse",
+   "title_tr": "Şiir zaruretinde ef'alü min'i munsarif kılmak",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"أفعل منك\" لا يجوز صَرْفُه في ضرورة الشعر.",
+   "kufa_en": "Afʿalu minka may not be given tanwīn even under necessity.",
+   "kufa_tr": "Ef'alü minke zaruret hâlinde de munsarif kılınamaz.",
+   "basra_ar": "وذهب البصريون إلى أنه يجوز صرفه في ضرورة الشعر.",
+   "basra_en": "It may be, under the necessity of verse.",
+   "basra_tr": "Şiir zaruretinde munsarif kılınabilir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:399",
+    "shamela": 388
+   },
+   "links": [
+    "mamnu-min-sarf"
+   ]
+  },
+  {
+   "n": 70,
+   "bab": "irab",
+   "title_ar": "منع صرف ما ينصرف في ضرورة الشعر",
+   "title_en": "Withholding tanwīn from a declinable noun in verse",
+   "title_tr": "Şiirde munsarif ismi gayr-i munsarif kılmak",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز ترك صرف ما ينصرف في ضرورة الشعر",
+   "kufa_en": "A declinable noun may lose its tanwīn under the necessity of verse.",
+   "kufa_tr": "Munsarif isim şiir zaruretinde gayr-i munsarif kılınabilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز، وأجمعوا على أنه يجوز صرف ما لا ينصرف في ضرورة الشعر.",
+   "basra_en": "It may not (all agree an indeclinable may take tanwīn in verse).",
+   "basra_tr": "Kılınamaz (gayr-i munsarifin şiirde munsarif kılınabileceğinde ittifak vardır).",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن الأخفش وأبو علي الفارسي وأبو القاسم بن برهان من البصريين",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "kufa",
+   "tarjih_ar": "والذي أذهب إليه في هذه المسألة مذهب الكوفيين؛ لكثرة النقل الذي خرج عن حكم الشذوذ، لا لقوته في القياس.",
+   "tarjih_src": "explicit",
+   "page": {
+    "printed": "2:403",
+    "shamela": 392
+   },
+   "links": [
+    "mamnu-min-sarf"
+   ]
+  },
+  {
+   "n": 71,
+   "bab": "irab",
+   "title_ar": "القول في علّة بناء \"الآن\"؟",
+   "title_en": "Why al-āna is built",
+   "title_tr": "El-âne'nin mebnî oluşunun illeti",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"الآن\" مبنيّ؛ لأن الألف واللام دخلتا على فعل ماضٍ من قولهم: \"آن يَئِينُ\" أي حان، وبقي الفعل على فتحته.",
+   "kufa_en": "Al-āna is built because al entered the past verb āna, which kept its fatḥa.",
+   "kufa_tr": "El-âne mebnîdir; çünkü elif-lâm âne (vakti geldi) mâzî fiiline girmiş, fiil fethasında kalmıştır.",
+   "basra_ar": "وذهب البصريون إلى أنه مبنيّ لأنه شابه اسم الإشارة، ولهم فيه أيضًا أقوال أُخَرُ نذكرها في دليلهم.",
+   "basra_en": "It is built because it resembles a demonstrative.",
+   "basra_tr": "İşaret ismine benzediği için mebnîdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:424",
+    "shamela": 413
+   },
+   "links": [
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada"
+   ]
+  },
+  {
+   "n": 72,
+   "bab": "mudari",
+   "title_ar": "فعل الأمر معرب أو مبنيّ؟",
+   "title_en": "The imperative: declined or built?",
+   "title_tr": "Emir fiili: mu'reb mi mebnî mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن فعل الأمر للمُوَاجَهِ المُعَرَّى عن حرف المضارعة -نحو افعل- معربٌ مجزومٌ.",
+   "kufa_en": "The imperative without the prefix (ifʿal) is declined, majzūm.",
+   "kufa_tr": "Muzâraat harfi olmayan emir (if'al) mu'rebdir, meczûmdur.",
+   "basra_ar": "وذهب البصريون إلى أنه مبني على السكون.",
+   "basra_en": "It is built on the sukūn.",
+   "basra_tr": "Sükûn üzere mebnîdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:427",
+    "shamela": 416
+   },
+   "links": [
+    "imperative-amr"
+   ]
+  },
+  {
+   "n": 73,
+   "bab": "mudari",
+   "title_ar": "القول في علة إعراب الفعل المضارع",
+   "title_en": "Why the muḍāriʿ is declined",
+   "title_tr": "Muzârinin mu'reb oluşunun illeti",
+   "kufa_ar": "فذهب الكوفيون إلى أنه إنما أعربت لأنه دخلها المعاني المختلفة والأوقات الطويلة.",
+   "kufa_en": "It is declined because varied meanings and long times enter it.",
+   "kufa_tr": "Ona farklı mânâlar ve uzun vakitler girdiği için mu'rebdir.",
+   "basra_ar": "وذهب البصريون إلى أنها إنما أعربت لثلاثة أوجه",
+   "basra_en": "It is declined for three reasons (the first given here: it is general, then specified, as a noun is).",
+   "basra_tr": "Üç sebepten mu'rebdir (burada ilki: isim gibi önce şâyi', sonra muhtas olur).",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:446",
+    "shamela": 435
+   },
+   "shape_note": "The Basran sentence runs on into its three proofs; it is cut at the first «؛», after «لثلاثة أوجه».",
+   "links": [
+    "mudari-marfu"
+   ]
+  },
+  {
+   "n": 74,
+   "bab": "mudari",
+   "title_ar": "القول في رفع الفعل المضارع",
+   "title_en": "What raises the muḍāriʿ",
+   "title_tr": "Muzâriyi ref' eden âmil",
+   "kufa_ar": "اختلف مذهب الكوفيين في رفع الفعل المضارع نحو \"يقوم زيد، ويذهب عمرو\" فذهب الأكثرون إلى أنه يرتفع لتعريه من العوامل الناصبة والجازمة، وذهب الكسائي إلى أنه يرتفع بالزائد في أوله",
+   "kufa_en": "The Kufans differ: most say it is raised by being free of the naṣb and jazm governors; al-Kisāʾī, by the prefix.",
+   "kufa_tr": "Kûfeliler ihtilâf eder: çoğu, nasb ve cezm âmillerinden hâlî oluşla merfûdur der; Kisâî, başındaki zâid harfle.",
+   "basra_ar": "وذهب البصريون إلى أنه يرتفع لقيامه مقام الاسم.",
+   "basra_en": "It is raised by standing in the place of a noun.",
+   "basra_tr": "İsmin yerinde durduğu için merfûdur.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:448",
+    "shamela": 437
+   },
+   "shape_note": "The book opens with the Kufans' own split («اختلف مذهب الكوفيين»): their pane holds the whole split.",
+   "links": [
+    "mudari-marfu"
+   ]
+  },
+  {
+   "n": 75,
+   "bab": "mudari",
+   "title_ar": "عامل النصب في الفعل المضارع بعد واو المعية",
+   "title_en": "What puts the muḍāriʿ after the wāw of maʿiyya in naṣb",
+   "title_tr": "Maiyyet vâvından sonra muzâriyi nasbeden âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن الفعل المضارع في نحو قولك: \"لا تأكل السمك وتَشْرَبَ اللبن\" منصوب على الصرف.",
+   "kufa_en": "In lā taʾkul al-samaka wa-tashraba al-labana the verb is manṣūb by ṣarf.",
+   "kufa_tr": "Lâ te'kül es-semeke ve teşrabe'l-lebene'de fiil sarf ile mansûbdur.",
+   "basra_ar": "وذهب البصريون إلى أنه منصوب بتقدير أن",
+   "basra_en": "It is manṣūb by an implied an.",
+   "basra_tr": "Takdir edilen en ile mansûbdur.",
+   "others": [
+    {
+     "ar": "وذهب أبو عُمَرَ الجَرْمِيُّ من البصريين إلى أن الواو هي الناصبة بنفسها؛ لأنها خرجت عن باب العطف."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:452",
+    "shamela": 441
+   },
+   "links": [
+    "nawasib-wa-jawazim-al-mudari"
+   ]
+  },
+  {
+   "n": 76,
+   "bab": "mudari",
+   "title_ar": "عامل النصب في الفعل المضارع بعد فاء السببية",
+   "title_en": "What puts the muḍāriʿ after the fāʾ of cause in naṣb",
+   "title_tr": "Sebebiyye fâsından sonra muzâriyi nasbeden âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن الفعل المضارع الواقع بعد الفاء في جواب الستة الأشياء -التي هي الأمر والنهي والنفي والاستفهام والتمني والعرض- ينتصب بالخلاف",
+   "kufa_en": "After the fāʾ answering the six things it is manṣūb by khilāf.",
+   "kufa_tr": "Altı şeyin cevabındaki fâdan sonra hilâf ile mansûbdur.",
+   "basra_ar": "وذهب البصريون إلى أنه ينتصب بإضمار أن",
+   "basra_en": "It is manṣūb by a hidden an.",
+   "basra_tr": "Gizli en ile mansûbdur.",
+   "others": [
+    {
+     "ar": "وذهب أبو عمر الجرمي إلى أنه ينتصب بالفاء نفسها؛ لأنها خرجت عن باب العطف"
+    },
+    {
+     "ar": "وإليه ذهب بعض الكوفيين"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:454",
+    "shamela": 443
+   },
+   "links": [
+    "nawasib-wa-jawazim-al-mudari"
+   ]
+  },
+  {
+   "n": 77,
+   "bab": "mudari",
+   "title_ar": "هل تعمل \"أن\" المصدرية محذوفة من غير بَدَلٍ؟",
+   "title_en": "Does a dropped an govern without a substitute?",
+   "title_tr": "Hazfedilen masdar en'i bedelsiz amel eder mi?",
+   "kufa_ar": "ذهب الكوفيين إلى أنَّ \"أن\" الخفيفة تعمل في الفعل المضارع النصب مع الحذف من غير بدل.",
+   "kufa_en": "Light an governs the muḍāriʿ in naṣb when dropped without a substitute (the print reads «al-Kūfiyyīn»).",
+   "kufa_tr": "Hafif en, bedelsiz hazfedilince de muzâriyi nasbeder (baskıda «el-Kûfiyyîn» yazılı).",
+   "basra_ar": "وذهب البصريون إلى أنها لا تعمل مع الحذف من غير بدل.",
+   "basra_en": "It does not govern when dropped without a substitute.",
+   "basra_tr": "Bedelsiz hazfedilince amel etmez.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:456",
+    "shamela": 445
+   },
+   "shape_note": "The print reads «ذهب الكوفيين» (sic); the statement is kept as printed.",
+   "links": [
+    "nawasib-wa-jawazim-al-mudari"
+   ]
+  },
+  {
+   "n": 78,
+   "bab": "mudari",
+   "title_ar": "هل يجوز أن تأتي \"كي\" حرف جر؟",
+   "title_en": "Can kay be a jarr particle?",
+   "title_tr": "Key cer harfi olabilir mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"كي\" لا تكون إلا حرف نصب، ولا يجوز أن تكون حرف خفض.",
+   "kufa_en": "Kay is only a particle of naṣb, never of jarr.",
+   "kufa_tr": "Key ancak nasb harfidir, cer harfi olamaz.",
+   "basra_ar": "وذهب البصريون إلى أنها يجوز أن تكون حرف جر.",
+   "basra_en": "It can be a jarr particle.",
+   "basra_tr": "Cer harfi olabilir.",
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:465",
+    "shamela": 454
+   },
+   "links": [
+    "nawasib-wa-jawazim-al-mudari"
+   ]
+  },
+  {
+   "n": 79,
+   "bab": "mudari",
+   "title_ar": "القول في ناصب المضارع بعد لام التعليل",
+   "title_en": "What puts the muḍāriʿ after the lām of cause in naṣb",
+   "title_tr": "Ta'lîl lâmından sonra muzâriyi nasbeden âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن لام \"كي\" هي الناصبة للفعل من غير تقدير \"أن\" نحو \"جئتك لتكرمني\".",
+   "kufa_en": "The lām of kay itself puts the verb in naṣb, with no an implied: jiʾtuka li-tukrimanī.",
+   "kufa_tr": "Fiili, en takdir edilmeden key lâmı kendisi nasbeder: ci'tüke li-tükrimenî.",
+   "basra_ar": "وذهب البصريون إلى أن الناصب للفعل \"أن\" مقدرة بعدها، والتقدير: جئتك لأن تكرمني.",
+   "basra_en": "An implied an after it governs: li-an tukrimanī.",
+   "basra_tr": "Ondan sonra takdir edilen en nasbeder: li-en tükrimenî.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:469",
+    "shamela": 458
+   },
+   "links": [
+    "nawasib-wa-jawazim-al-mudari"
+   ]
+  },
+  {
+   "n": 80,
+   "bab": "mudari",
+   "title_ar": "هل يجوز إظهار \"أن\" المصدرية بعد \"لكي\" وبعد حتى؟",
+   "title_en": "May an appear after li-kay and after ḥattā?",
+   "title_tr": "Likey'den ve hattâ'dan sonra en izhar edilir mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز إظهار \"أن\" بعد \"كي\" نحو \"جئت لكي أن أكرمك\" فتنصب \"أكرمك\" بكي، \"وأن\" توكيد لها، ولا عمل لها.",
+   "kufa_en": "An may appear after kay: jiʾtu li-kay an ukrimaka — kay governs, an confirms.",
+   "kufa_tr": "Key'den sonra en izhar edilebilir: ci'tü li-key en ükrimeke — amel key'indir, en tekittir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز إظهار \"أن\" بعد شيء من ذلك بحال.",
+   "basra_en": "An may never appear after any of them.",
+   "basra_tr": "Bunların hiçbirinden sonra en izhar edilemez.",
+   "others": [
+    {
+     "ar": "وذهب بعضهم إلى أن العامل في قولك \"جئت لكي أن أكرمك\" اللام، وكي وأن توكيدان لها، وكذلك أيضًا يجوز إظهار \"أن\" بعد حتى."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:473",
+    "shamela": 462
+   },
+   "links": [
+    "nawasib-wa-jawazim-al-mudari"
+   ]
+  },
+  {
+   "n": 81,
+   "bab": "mudari",
+   "title_ar": "هل يجوز مجيء \"كَمَا\" بمعنى \"كَيْمَا\" وينصب بعدها المضارع؟",
+   "title_en": "Can kamā mean kaymā and govern naṣb?",
+   "title_tr": "Kemâ, keymâ mânâsına gelip nasbeder mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"كما\" تأتي بمعنى كيما، وينصبون بها ما بعدها، ولا يمنعون جواز الرفع، واستحسنه أبو العباس المبرد من البصريين.",
+   "kufa_en": "Kamā can mean kaymā and they put what follows in naṣb, not forbidding rafʿ.",
+   "kufa_tr": "Kemâ keymâ mânâsına gelir, sonrasını nasbederler, refi de men etmezler.",
+   "basra_ar": "وذهب البصريون إلى أن \"كما\" لا تأتي بمعنى \"كيما\" ولا يجوز نصب ما بعدها بها.",
+   "basra_en": "Kamā does not mean kaymā, and naṣb after it is not allowed.",
+   "basra_tr": "Kemâ keymâ mânâsına gelmez; sonrasını onunla nasbetmek caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:478",
+    "shamela": 467
+   },
+   "links": [
+    "nawasib-wa-jawazim-al-mudari"
+   ]
+  },
+  {
+   "n": 82,
+   "bab": "mudari",
+   "title_ar": "هل تنصب لام الجحود بنفسها؟ وهل يتقدم معمول منصوبها عليها؟",
+   "title_en": "Does the lām of juḥūd govern by itself? May its object come first?",
+   "title_tr": "Cühûd lâmı bizzat nasbeder mi? Ma'mûlü öne geçer mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن لام الجَحْدِ هي الناصبة بنفسها، ويجوز إظهار \"أن\" بعدها للتوكيد، نحو: \"ما كان زيد لأن يدخل دارك، وما كان عمرو لأن يأكل طعامك\" ويجوز تقديم مفعول الفعل المنصوب بلام الجحد عليها، نحو \"ما كان زيد دارك ليدخل، وما كان عمرو طعامك ليأكل\".",
+   "kufa_en": "The lām of juḥūd governs by itself; an may appear after it, and the verb's object may precede it.",
+   "kufa_tr": "Cühûd lâmı bizzat nasbeder; ondan sonra en tekit için izhar edilebilir; fiilin mef'ûlü ona takdim edilebilir.",
+   "basra_ar": "وذهب البصريون إلى أن الناصب للفعل \"أن\" مقدرة بعدها، ولا يجوز إظهارها، ولا يجوز تقديم مفعول الفعل المنصوب بلام الجحد عليها.",
+   "basra_en": "An implied an governs; it may not appear, and the object may not precede the lām.",
+   "basra_tr": "Takdir edilen en nasbeder; izhar edilemez, mef'ûl lâma takdim edilemez.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:485",
+    "shamela": 474
+   },
+   "links": [
+    "nawasib-wa-jawazim-al-mudari"
+   ]
+  },
+  {
+   "n": 83,
+   "bab": "mudari",
+   "title_ar": "هل تنصب \"حتى\" الفعل المضارع بنفسها؟",
+   "title_en": "Does ḥattā govern the muḍāriʿ by itself?",
+   "title_tr": "Hattâ muzâriyi bizzat nasbeder mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن حتى تكون حرف نصب ينصب الفعل من غير تقدير أن، نحو قولك \"أطع الله حتى يدخلَك الجنة، واذكر الله حتى تطلعَ الشمس\" وتكون حرف خفض من غير تقدير خافض، نحو قولك \"مَطَلْتُهُ حتى الشتاء، وسَوَّفْتُهُ حتى الصيف\".",
+   "kufa_en": "Ḥattā governs the verb in naṣb with no an, and the noun in jarr with no implied jārr.",
+   "kufa_tr": "Hattâ en takdirsiz fiili nasbeder, takdirsiz ismi cerreder.",
+   "basra_ar": "وذهب البصريون إلى أنها في كلا الموضعين حرف جر، والفعل بعدها منصوب بتقدير \"أن\" والاسم بعدها مجرور بها.",
+   "basra_en": "In both places it is a jarr particle; the verb is manṣūb by an implied an.",
+   "basra_tr": "Her iki yerde cer harfidir; fiil takdir edilen en ile mansûbdur.",
+   "others": [
+    {
+     "ar": "وذهب أبو الحسن علي بن حمزة الكسائي إلى أن الاسم يخفض بعدها بإلى مضمرة أو مظهرة."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:489",
+    "shamela": 478
+   },
+   "links": [
+    "nawasib-wa-jawazim-al-mudari"
+   ]
+  },
+  {
+   "n": 84,
+   "bab": "mudari",
+   "title_ar": "عامل الجزم في جواب الشرط",
+   "title_en": "What puts the answer of the condition in jazm",
+   "title_tr": "Şartın cevabını meczûm kılan âmil",
+   "kufa_ar": "ذهب الكوفيون إلى أن جواب الشرط مجزوم على الجِوَارِ",
+   "kufa_en": "The answer of the condition is majzūm by proximity (jiwār).",
+   "kufa_tr": "Şartın cevabı civâr ile meczûmdur.",
+   "basra_ar": "واختلف البصريون؛ فذهب الأكثرون إلى أن العامل فيهما حرف الشرط، وذهب آخرون إلى أن حرف الشرط وفعل الشرط يعملان فيه، وذهب آخرون إلى أن حرف الشرط يعمل في فعل الشرط، وفعل الشرط يعمل في جواب الشرط، وذهب أبو عثمان المازني إلى أنه مبنيّ على الوَقْفِ.",
+   "basra_en": "The Basrans differ: most say the particle of condition; others the particle and the verb; others the verb; al-Māzinī says it is built.",
+   "basra_tr": "Basralılar ihtilâf eder: çoğu şart harfi der; başkaları harf ile fiil; başkaları fiil; Mâzinî mebnî olduğunu söyler.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:493",
+    "shamela": 482
+   },
+   "shape_note": "The Basrans' view is a split («واختلف البصريون»): their pane holds the whole split, to al-Māzinī.",
+   "links": [
+    "al-majzum-wal-shart-wal-jaza"
+   ]
+  },
+  {
+   "n": 85,
+   "bab": "mudari",
+   "title_ar": "عامل الرفع في الاسم المرفوع بعد \"إن\" الشرطية",
+   "title_en": "What raises the noun after conditional in",
+   "title_tr": "Şart in'inden sonraki merfû ismin âmili",
+   "kufa_ar": "ذهب الكوفيون إلى أنه إذا تقدم الاسم المرفوع بعد \"إن\" الشرطية نحو قولك \"إنْ زيدٌ أتاني آتِهِ\" فإنه يرتفع بما عاد إليه من الفعل من غير تقدير فعل.",
+   "kufa_en": "In in Zaydun atānī ātihi the noun is raised by the pronoun that returns to it in the verb, with no implied verb.",
+   "kufa_tr": "İn Zeydün etânî âtihî'de isim, fiildeki ona dönen zamirle, fiil takdirsiz merfûdur.",
+   "basra_ar": "وذهب البصريون إلى أنه يرتفع بتقدير فعل، والتقدير فيه: إن أتاني زيد، والفعل المظهر تفسر لذلك الفعل المقدر.",
+   "basra_en": "It is raised by an implied verb, which the expressed verb explains.",
+   "basra_tr": "Takdir edilen bir fiille merfûdur; zâhir fiil onu tefsir eder.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:504",
+    "shamela": 493
+   },
+   "links": [
+    "al-majzum-wal-shart-wal-jaza"
+   ]
+  },
+  {
+   "n": 86,
+   "bab": "mudari",
+   "title_ar": "هل يجوز تقديم اسم مرفوع أو منصوب في جملة جواب الشرط؟ وما يترتب عليه؟",
+   "title_en": "Fronting a rafʿ or naṣb noun in the answer of the condition",
+   "title_tr": "Şart cevabında merfû veya mansûb ismi öne almak",
+   "kufa_ar": "ذهب الكوفيون إلى أنه إذا تقدم الاسم المرفوع في جواب الشرط فإنه لا يجوز فيه الجزم، ووجب الرفع، نحو \"إن تأتِنِي زيدٌ يكرِمُك\" واختلفوا في تقديم المصنوب في جواب الشرط نحو \"إن تأتني زيدا أكرم\" فأباه أبو زكرياء يحيى بن زياد الفراء، وأجازه أبو الحسن علي بن حمزة الكسائي.",
+   "kufa_en": "With a rafʿ noun fronted in the answer, jazm is not allowed and rafʿ is required; on a fronted naṣb noun al-Farrāʾ and al-Kisāʾī differ.",
+   "kufa_tr": "Cevapta merfû isim öne geçerse cezm caiz olmaz, ref' vâcip olur; mansûbun takdiminde Ferrâ ile Kisâî ihtilâf eder.",
+   "basra_ar": "وذهب البصريون إلى أن تقديم المرفوع والمنصوب في جواب الشرط كله جائز.",
+   "basra_en": "Fronting both is allowed.",
+   "basra_tr": "İkisinin takdimi de caizdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:508",
+    "shamela": 497
+   },
+   "links": [
+    "al-majzum-wal-shart-wal-jaza"
+   ]
+  },
+  {
+   "n": 87,
+   "bab": "mudari",
+   "title_ar": "القول في تقديم المفعول بالجزاء على حرف الشرط",
+   "title_en": "Fronting the object of the answer before the particle of condition",
+   "title_tr": "Cezânın mef'ûlünü şart harfine takdim",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز تقديم المفعول بالجزاء على حرف الشرط، نحو \"زيدا إن تضربْ أضربْ\" واختلفوا في جواز نصبه بالشرط؛ فأجازه الكسائي، ولم يجزه الفراء.",
+   "kufa_en": "The object of the answer may come before the particle: Zaydan in taḍrib aḍrib; on its being governed by the condition they differ.",
+   "kufa_tr": "Cezânın mef'ûlü şart harfinden önce gelebilir: Zeyden in tadrib adrib; şartla mansûb olmasında ihtilâf ederler.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز أن ينصب بالشرط ولا بالجزاء.",
+   "basra_en": "It may be governed neither by the condition nor by the answer.",
+   "basra_tr": "Ne şartla ne cezâ ile mansûb olabilir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:511",
+    "shamela": 500
+   },
+   "links": [
+    "al-majzum-wal-shart-wal-jaza"
+   ]
+  },
+  {
+   "n": 88,
+   "bab": "huruf",
+   "title_ar": "القول في \"إنِ\" الشرطية، هل تقع بمعنى إذْ؟",
+   "title_en": "Can conditional in mean idh?",
+   "title_tr": "Şart in'i iz mânâsına gelir mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"إن\" الشرطية تقع بمعنى إذْ",
+   "kufa_en": "Conditional in can mean idh.",
+   "kufa_tr": "Şart in'i iz mânâsına gelir.",
+   "basra_ar": "وذهب البصريون إلى أنها لا تقع بمعنى إذ.",
+   "basra_en": "It cannot.",
+   "basra_tr": "Gelmez.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:518",
+    "shamela": 507
+   },
+   "links": [
+    "in-shartiyya"
+   ]
+  },
+  {
+   "n": 89,
+   "bab": "huruf",
+   "title_ar": "القول في \"إن\" الواقعة بعد \"ما\" أَنَافِيَةٌ مؤكدة أم زائدة؟",
+   "title_en": "In after mā: negating, or redundant?",
+   "title_tr": "Mâ'dan sonraki in: nâfiye mi zâide mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"إن\" إذا وقعت بعد \"ما\" نحو \"ما إنْ زيد قائم\" فإنها بمعنى ما.",
+   "kufa_en": "In after mā (mā in Zaydun qāʾimun) means mā.",
+   "kufa_tr": "Mâ'dan sonraki in (mâ in Zeydün kâimün) mâ mânâsındadır.",
+   "basra_ar": "وذهب البصريون إلى أنها زائدة.",
+   "basra_en": "It is redundant.",
+   "basra_tr": "Zâiddir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:522",
+    "shamela": 511
+   }
+  },
+  {
+   "n": 90,
+   "bab": "huruf",
+   "title_ar": "القول في معنى \"إنْ\" ومعنى اللام بعدها",
+   "title_en": "The meaning of in and of the lām after it",
+   "title_tr": "İn'in ve ondan sonraki lâmın mânâsı",
+   "kufa_ar": "ذهب الكوفيون إلى أنَّ \"إِنْ\" إذا جاءت بعدها اللام تكون بمعنى \"ما\" واللام بمعنى \"إلا\".",
+   "kufa_en": "In followed by the lām means mā, and the lām means illā.",
+   "kufa_tr": "Arkasından lâm gelen in, mâ mânâsındadır; lâm illâ mânâsındadır.",
+   "basra_ar": "وذهب البصريون إلى أنها مخفّفة من الثقيلة، واللام بعدها لام التأكيد.",
+   "basra_en": "It is lightened from inna, and the lām is the lām of emphasis.",
+   "basra_tr": "İnne'den muhaffeftir; lâm tekit lâmıdır.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:526",
+    "shamela": 515
+   },
+   "links": [
+    "masail-inna-wal-mukhaffafa-fil-kafiya"
+   ]
+  },
+  {
+   "n": 91,
+   "bab": "mudari",
+   "title_ar": "هل يجازى بكيف؟",
+   "title_en": "Is kayfa used for the condition?",
+   "title_tr": "Keyfe ile şart yapılır mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"كيف\" يجازى بها كما يجازى بمتى ما وأينما وما أشبههما من كلمات المجازاة.",
+   "kufa_en": "Kayfa is used for the condition, like matā mā and aynamā.",
+   "kufa_tr": "Keyfe ile, metâ mâ ve eynemâ gibi şart yapılır.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز أن يجازى بها.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:529",
+    "shamela": 518
+   }
+  },
+  {
+   "n": 92,
+   "bab": "huruf",
+   "title_ar": "السين مقتطعة من سوف أو أصل برأسه",
+   "title_en": "The sīn: cut from sawfa, or a root of its own?",
+   "title_tr": "Sîn: sevfe'den kesilmiş mi, başlı başına asıl mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أن السين التي تدخل على الفعل المستقبل نحو سأفعل أصلُها سوف.",
+   "kufa_en": "The sīn of the future (saʾafʿalu) is originally sawfa.",
+   "kufa_tr": "Gelecek sîni (seef'alü) aslında sevfe'dir.",
+   "basra_ar": "وذهب البصريون إلى أنها أصلٌ بنفسها.",
+   "basra_en": "It is a root by itself.",
+   "basra_tr": "Başlı başına asıldır.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:532",
+    "shamela": 521
+   }
+  },
+  {
+   "n": 93,
+   "bab": "sarf",
+   "title_ar": "المحذوف من التاءين المبدوء بهما المضارع",
+   "title_en": "Which of two initial tāʾs of the muḍāriʿ is dropped",
+   "title_tr": "Muzâri başındaki iki tâdan hangisi düşer",
+   "kufa_ar": "ذهب الكوفيون إلى أنه إذا اجتمع في أول المضارع تاءان: تاء المضارعة وتاء أصلية -نحو \"تَتَنَاوَلُ، وتَتَلَوَّنُ\"- فإن المحذوف منها تاء المضارعة دون الأصلية، نحو \"تَنَاولُ، وتَلَوَّنُ\".",
+   "kufa_en": "Of the tāʾ of the muḍāriʿ and a radical tāʾ, the muḍāriʿ's is dropped: tanāwalu.",
+   "kufa_tr": "Muzâraat tâsı ile aslî tâdan muzâraat tâsı düşer: tenâvelü.",
+   "basra_ar": "وذهب البصريون إلى أن المحذوف منهما التاء الأصلية، دون تاء المضارعة.",
+   "basra_en": "The radical tāʾ is dropped, not that of the muḍāriʿ.",
+   "basra_tr": "Muzâraat tâsı değil aslî tâ düşer.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:534",
+    "shamela": 523
+   }
+  },
+  {
+   "n": 94,
+   "bab": "sarf",
+   "title_ar": "هل تدخل نون التوكيد الخفيفة على فعل الاثنين وفعل جماعة النسوة؟",
+   "title_en": "The light nūn of emphasis on the dual and the feminine plural",
+   "title_tr": "Hafif tekit nûnu tesniye ve cem-i müennes fiiline",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز إدخال نون التوكيد الخفيفة على فعل الاثنين وجماعة النسوة، نحو \"افْعَلَانْ وافْعَلْنَانْ\" بالنون الخفيفة",
+   "kufa_en": "The light nūn may enter the verb of two and of women: ifʿalānn.",
+   "kufa_tr": "Hafif nûn iki kişinin ve kadınlar topluluğunun fiiline girebilir: if'alânn.",
+   "basra_ar": "وذهب البصريون إلى انه لا يجوز إدخالها في هذين الموضعين.",
+   "basra_en": "It may not, in these two places.",
+   "basra_tr": "Bu iki yerde giremez.",
+   "others": [
+    {
+     "ar": "وإليه ذهب يونس بن حبيب البصري.",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:536",
+    "shamela": 525
+   },
+   "links": [
+    "nun-tawkid"
+   ]
+  },
+  {
+   "n": 95,
+   "bab": "damair",
+   "title_ar": "الحروف التي وضع الاسم عليها في \"ذا\" و\"الذي\"",
+   "title_en": "The letters of the noun in dhā and alladhī",
+   "title_tr": "Zâ ve ellezî'de ismin harfleri",
+   "kufa_ar": "ذهب الكوفيون إلى أن الاسم في \"ذا، والذي\" الذال وحدها، وما زيد عليها تكثير لهما.",
+   "kufa_en": "In dhā and alladhī the noun is the dhāl alone; the rest is added.",
+   "kufa_tr": "Zâ ve ellezî'de isim yalnız zâldir; geri kalanı çoğaltmadır.",
+   "basra_ar": "وذهب البصريون إلى أن الذال وحدها ليست هي الاسم فيهما، واختلفوا في \"ذا\":",
+   "basra_en": "The dhāl alone is not the noun; on dhā they differ.",
+   "basra_tr": "İsim yalnız zâl değildir; zâ hakkında ihtilâf etmişlerdir.",
+   "others": [
+    {
+     "ar": "فذهب الأخفش ومن تابعه من البصريين إلى أن أصله: ذَيُّ -بتشديد الياء- إلا أنهم حذفواالياء الثانية فبقي \"ذَيْ\" فأبدلوامن الياء ألفًا لئلا يلتحق بكي؛ فإذا الألف منه منقلبة عن ياء، بدليل جواز الإمالة؛ فإنه قد حكي عنهم أنهم قالوا في ذا: \"ذا\" بالإمالة، فإذا ثبت أنها منقلبة عن ياء لم يجز أن تكون اللام المحذوفة واوًا؛ لأن لهم مثل \"حَيِيتُ\" وليس لهم مثل \"حَيَوْتُ\""
+    },
+    {
+     "ar": "وذهب بعضهم إلى أن الأصل في ذا \"ذَوَي\" بفتح الواو؛ لأن باب \"شَوَيْت\" أكثر من باب \"حَيِيتُ\" فحذفت اللام تأكيدا للإبهام، وقلبت الواو ألفًا لتحركها وانفتاح ما قبلها، وأما \"الذي\" فأجمعواعلى أن الأصل فيه \"لَذِي\" نحو: عَمِي وشَجِي."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:551",
+    "shamela": 540
+   },
+   "links": [
+    "asma-al-ishara",
+    "ism-mawsul"
+   ]
+  },
+  {
+   "n": 96,
+   "bab": "damair",
+   "title_ar": "الحروف التي وضع عليها الاسم في \"هو\" و\"هي\"",
+   "title_en": "The letters of the noun in huwa and hiya",
+   "title_tr": "Hüve ve hiye'de ismin harfleri",
+   "kufa_ar": "ذهب الكوفيون إلى أن الاسم من \"هو، وهي\" الهاء وحدها.",
+   "kufa_en": "In huwa and hiya the noun is the hāʾ alone.",
+   "kufa_tr": "Hüve ve hiye'de isim yalnız hâdır.",
+   "basra_ar": "وذهب البصريون إلى أن الهاء والواو من \"هو\" والهاء والياء من \"هي\" هما الاسم بمجموعهما.",
+   "basra_en": "The hāʾ with the wāw, and the hāʾ with the yāʾ, together are the noun.",
+   "basra_tr": "Hâ ile vâv ve hâ ile yâ, ikisi birlikte isimdir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:557",
+    "shamela": 546
+   },
+   "links": [
+    "al-marifa-al-mudmarat-wal-alam"
+   ]
+  },
+  {
+   "n": 97,
+   "bab": "damair",
+   "title_ar": "القول في هل يقال \"لَوْلَايَ\" و\"لَوْلَاكَ\"؟ وموضع الضمائر",
+   "title_en": "Lawlāya and lawlāka: are they said, and in what case?",
+   "title_tr": "Levlâye ve levlâke denir mi, zamirlerin mahalli ne?",
+   "kufa_ar": "ذهب الكوفيون إلى أن الياء والكاف في \"لولاي، ولولاك٢\" في موضع رفع",
+   "kufa_en": "The yāʾ and kāf in lawlāya and lawlāka are in the place of rafʿ.",
+   "kufa_tr": "Levlâye ve levlâke'deki yâ ve kâf ref' mahallindedir.",
+   "basra_ar": "وذهب البصريون إلى أن الياء والكاف في موضع جرٍّ بلولا.",
+   "basra_en": "They are in the place of jarr, governed by lawlā.",
+   "basra_tr": "Levlâ ile cer mahallindedir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن الأخفش من البصريين.",
+     "with": "kufa"
+    },
+    {
+     "ar": "وذهب أبو العباس المُبَرِّد إلى أنه لا يجوز أن يقال \"لولاي، ولولاك\" ويجب أن يقال \"لولا أنا، ولولا أنت\" فيؤتى٣ بالضمير المنفصل كما جاء به التنزيل في قوله: {لَوْلا أَنْتُمْ لَكُنَّا مُؤْمِنِينَ} [سبأ: ٣١] ولهذا لم يأتِ في التنزيل إلا منفصلًا."
+    }
+   ],
+   "tarjih": "kufa",
+   "tarjih_ar": "والصحيح ما ذهب إليه الكوفيون.",
+   "tarjih_src": "explicit",
+   "page": {
+    "printed": "2:564",
+    "shamela": 553
+   },
+   "links": [
+    "al-marifa-al-mudmarat-wal-alam"
+   ]
+  },
+  {
+   "n": 98,
+   "bab": "damair",
+   "title_ar": "الضمير في \"إياك\" وأخواتها",
+   "title_en": "The pronoun in iyyāka and its sisters",
+   "title_tr": "İyyâke ve kardeşlerinde zamir",
+   "kufa_ar": "ذهب الكوفيون إلى أن الكاف والهاء والياء من \"إيَّاك، وإيَّاه، وإياي\" هي الضمائر المنصوبة، وأن \"إيا\" عماد",
+   "kufa_en": "The kāf, hāʾ and yāʾ of iyyāka are the naṣb pronouns; iyyā is a support (ʿimād).",
+   "kufa_tr": "İyyâke'deki kâf, hâ ve yâ mansûb zamirlerdir; iyyâ imaddır.",
+   "basra_ar": "وذهب البصريون إلى أن \"إيا\" هي الضمير والكاف والهاء والياء حروف لا موضع لها من الإعراب.",
+   "basra_en": "Iyyā is the pronoun; the kāf, hāʾ and yāʾ are particles with no place in iʿrāb.",
+   "basra_tr": "Zamir iyyâ'dır; kâf, hâ ve yâ i'râbda mahalli olmayan harflerdir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن بن كَيْسَانَ",
+     "with": "kufa"
+    },
+    {
+     "ar": "وذهب بعضهم إلى أن \"إياك\" بكماله هو الضمير."
+    },
+    {
+     "ar": "وذهب الخليل بن أحمد إلى أن \"إيا\" اسم مضمر أضيف إلى الكاف والهاء والياء؛ لأنه لا يفيد معنى بانفراده، ولا يقع معرفة، بخلاف غيره من المضمرات؛ فخص بالإضافة عوضًا عما مُنِعَه، ولا يعلم اسم مضمر أضيف غيره."
+    },
+    {
+     "ar": "وذهب أبو العباس محمد بن يزيد المبرد إلى أنه اسم مبهم أضيف للتخصيص، ولا يعلم اسم مبهم أضيف غيره."
+    },
+    {
+     "ar": "وذهب أبو إسحاق الزجاج إلى أنه اسم مظهر خُصَّ بالإضافة إلى سائر المضمرات، وأنها في موضع جر بالإضافة."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:570",
+    "shamela": 559
+   },
+   "links": [
+    "al-marifa-al-mudmarat-wal-alam"
+   ]
+  },
+  {
+   "n": 99,
+   "bab": "damair",
+   "title_ar": "المسألة الزنبورية",
+   "title_en": "The question of the hornet (al-zunbūriyya)",
+   "title_tr": "Zünbûriyye meselesi",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز أن يقال \"كنت أظن أن العقرب أشد لَسْعَةً من الزُّنْبُورِ فإذا هو إياها\".",
+   "kufa_en": "One may say: kuntu aẓunnu anna al-ʿaqraba ashaddu lasʿatan min al-zunbūri fa-idhā huwa iyyāhā.",
+   "kufa_tr": "Küntü ezunnü enne'l-akrabe eşeddü les'aten mine'z-zünbûr fe-izâ hüve iyyâhâ denebilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز أن يقال: \"فإذا هو إياها\".",
+   "basra_en": "One may not say fa-idhā huwa iyyāhā.",
+   "basra_tr": "Fe-izâ hüve iyyâhâ denemez.",
+   "tarjih": "basra",
+   "tarjih_ar": "أما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:576",
+    "shamela": 565
+   }
+  },
+  {
+   "n": 100,
+   "bab": "damair",
+   "title_ar": "ضمير الفصل",
+   "title_en": "The pronoun of separation",
+   "title_tr": "Fasıl zamiri",
+   "kufa_ar": "ذهب الكوفيون إلى أن ما يُفْصَلُ به بين النعت والخبر يسمى عمادًا، وله موضع من الإعراب",
+   "kufa_en": "What separates the adjective from the khabar is called ʿimād and has a place in iʿrāb.",
+   "kufa_tr": "Na't ile haberi ayıran şeye imad denir; i'râbda mahalli vardır.",
+   "basra_ar": "وذهب البصريون إلى أنه يسمى فصلًا لأنه يَفْصِلُ بين النعت والخبر إذا كان الخبر مضارعًا لنعت الاسم ليخرج من معنى النعت كقولك: \"زيد هو العاقل\" ولا موضع له من الإعراب.",
+   "basra_en": "It is called faṣl, because it separates them, and has no place in iʿrāb.",
+   "basra_tr": "Ona fasl denir, çünkü ayırır; i'râbda mahalli yoktur.",
+   "others": [
+    {
+     "ar": "وذهب بعضهم إلى أن حكمه حكم ما قبله"
+    },
+    {
+     "ar": "وذهب بعضهم إلى أن حكمه حكم ما بعده."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:579",
+    "shamela": 568
+   },
+   "links": [
+    "damir-fasl"
+   ]
+  },
+  {
+   "n": 101,
+   "bab": "damair",
+   "title_ar": "مراتب المعارف",
+   "title_en": "The ranks of the definite nouns",
+   "title_tr": "Ma'rifelerin mertebeleri",
+   "kufa_ar": "ذهب الكوفيون إلى أن الاسم المبهم٢ -نحو \"هذا، وذاك\"- أَعْرَفُ من الاسم العلم -نحو زيد، وعمرو\"-",
+   "kufa_en": "The demonstrative (hādhā) is more definite than the proper name (Zayd).",
+   "kufa_tr": "İşaret ismi (hâzâ), alemden (Zeyd) daha ma'rifedir.",
+   "basra_ar": "وذهب البصريون إلى أن الاسم العلم أعرف من الاسم المبهم، واختلفوا في مراتب المعارف",
+   "basra_en": "The proper name is more definite than the demonstrative; on the ranks they differ.",
+   "basra_tr": "Alem işaret isminden daha ma'rifedir; mertebelerde ihtilâf etmişlerdir.",
+   "others": [
+    {
+     "ar": "فذهب سيبويه إلى أن أعرف المعارف الاسم المضمر؛ لأنه لا يُضْمَرُ إلا وقد عرف؛ ولهذا لا يفتقر إلى أن يوصف كغيره من المعارف، ثم الاسم العلم؛ لأن الأصل فيه أن يوضع على شيء لا يقع على غيره من أُمَّتِهِ٣، ثم الاسم المبهم؛ لأنه يعرف بالعين وبالقلب، ثم ما عرف بالألف واللام؛ لأنه يعرف بالقلب فقط، ثم ما أضيف إلى أحد هذه المعارف؛ لأن تعريفه من غيره، وتعريفه على قدر ما يضاف إليه."
+    },
+    {
+     "ar": "وذهب أبو بكر بن السراج إلى أن أعرف المعارف: الاسم المبهم، ثم المضمر، ثم العلم، ثم ما فيه الألف واللام، ثم ما أضيف إلى أحد هذه المعارف"
+    },
+    {
+     "ar": "وذهب أبو سعيد السيرافي إلى أن أعرف المعارف: الاسم العلم، ثم المضمر، ثم المبهم، ثم ما عُرِّف بالألف واللام، ثم ما أضيف إلى أحد هذه المعارف."
+    }
+   ],
+   "tarjih": "kufa",
+   "tarjih_ar": "والذي أذهب إليه ما ذهب إليه الكوفيون.",
+   "tarjih_src": "explicit",
+   "page": {
+    "printed": "2:581",
+    "shamela": 570
+   },
+   "links": [
+    "al-marifa-wal-nakira-fil-kafiya"
+   ]
+  },
+  {
+   "n": 102,
+   "bab": "damair",
+   "title_ar": "\"أي\" الموصولة معربة دائما ومبنيّة أحينا؟",
+   "title_en": "Relative ayy: always declined, or sometimes built?",
+   "title_tr": "Mevsûl eyy: daima mu'reb mi, bazen mebnî mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"أيهم\" إذا كان بمعنى الذي وحذف العائد من الصلة معرب، نحو قولهم: \"لأضربن أيُّهم أفضل\"",
+   "kufa_en": "Ayyuhum meaning alladhī, with the returner dropped, is declined: la-aḍribanna ayyuhum afḍalu.",
+   "kufa_tr": "Ellezî mânâsındaki eyyühüm, âid hazfedilince mu'rebdir: le-adribenne eyyühüm efdalü.",
+   "basra_ar": "وذهب البصريون إلى أنه مبنيّ على الضم، وأجمعوا على أنه إذا ذكر العائد أنه معرب، نحو قولهم: \"لأضربنّ أيهم هو أفضل\"",
+   "basra_en": "It is built on the ḍamma (all agree it is declined when the returner is said).",
+   "basra_tr": "Damme üzere mebnîdir (âid zikredilince mu'reb olduğunda ittifak vardır).",
+   "others": [
+    {
+     "ar": "وذهب الخليل بن أحمد إلى أن \"أيهم\" مرفوع بالابتداء، و\"أفضل\" خبره، ويجعل \"أيهم\" استفهامًا، ويحمله على الحكاية بعد قول مقدر، والتقدير عنده: لأضربن الذي يقال له أيُّهُم أفضل، قال الشاعر:"
+    },
+    {
+     "ar": "وذهب يونس بن حبيب البصري إلى أن \"أيهم\" مرفوع بالابتداء، و\"أفضل\" خبره، ويجعل \"أيهم\" استفهامًا، ويعلق \"لأضربن\" عن العمل في \"أيهم\" فينزل الفعل المؤثر منزلة أفعال القلوب نحو \"علمت أيهم في الدار\"."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:583",
+    "shamela": 572
+   },
+   "links": [
+    "ism-mawsul"
+   ]
+  },
+  {
+   "n": 103,
+   "bab": "damair",
+   "title_ar": "هل تأتي ألفاظ الإشارة أسماء موصولة؟",
+   "title_en": "Can demonstratives be relatives?",
+   "title_tr": "İşaret isimleri mevsûl olur mu?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"هذا\" وما أشبهه من أسماء الإشارة يكون بمعنى الذي والأسماء الموصولة، نحو \"هذا قال ذاك زيد\" أي: الذي قال ذاك زيد.",
+   "kufa_en": "Hādhā and the other demonstratives can mean alladhī.",
+   "kufa_tr": "Hâzâ ve diğer işaret isimleri ellezî mânâsında olabilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يكون بمعنى الذي، وكذلك سائر أسماء الإشارة لا تكون بمعنى الأسماء الموصولة.",
+   "basra_en": "They cannot mean alladhī or the relatives.",
+   "basra_tr": "Ellezî ve mevsûller mânâsında olamazlar.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:589",
+    "shamela": 578
+   },
+   "links": [
+    "asma-al-ishara",
+    "ism-mawsul"
+   ]
+  },
+  {
+   "n": 104,
+   "bab": "damair",
+   "title_ar": "هل يكون للاسم المحلّى بأل صلة كصلة الموصول؟",
+   "title_en": "Can a noun with al have a ṣila like a relative?",
+   "title_tr": "Elif-lâmlı isim mevsûl gibi sıla alır mı?",
+   "kufa_ar": "ذهب الكوفيين إلى أن الاسم الظاهر إذا كانت فيه الألف واللام وُصِلَ كما يوصل الذي.",
+   "kufa_en": "An apparent noun with al takes a ṣila as alladhī does (the print reads «al-Kūfiyyīn»).",
+   "kufa_tr": "Elif-lâmlı zâhir isim ellezî gibi sıla alır (baskıda «el-Kûfiyyîn» yazılı).",
+   "basra_ar": "وذهب البصريون إلى أنه لا يوصل.",
+   "basra_en": "It takes no ṣila.",
+   "basra_tr": "Sıla almaz.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:594",
+    "shamela": 583
+   },
+   "shape_note": "The print reads «ذهب الكوفيين» (sic); the statement is kept as printed.",
+   "links": [
+    "ism-mawsul"
+   ]
+  },
+  {
+   "n": 105,
+   "bab": "sarf",
+   "title_ar": "همزة بَيْنَ بَيْنَ متحركة أو ساكنة؟",
+   "title_en": "The hamza bayna bayna: voweled or quiescent?",
+   "title_tr": "Beyne beyne hemzesi: harekeli mi sâkin mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن همزة بَيْنَ بَيْنَ ساكنة.",
+   "kufa_en": "Hamza bayna bayna is quiescent.",
+   "kufa_tr": "Beyne beyne hemzesi sâkindir.",
+   "basra_ar": "وذهب البصريون إلى أنها متحركة.",
+   "basra_en": "It is voweled.",
+   "basra_tr": "Harekelidir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:598",
+    "shamela": 587
+   }
+  },
+  {
+   "n": 106,
+   "bab": "sarf",
+   "title_ar": "هل يُوقَفُ بنقل الحركة على المنصوب المحلَّى بأل الساكن ما قبل آخره؟",
+   "title_en": "Pausing on a manṣūb noun with al by moving the vowel back",
+   "title_tr": "Elif-lâmlı mansûbda vakıfta harekeyi nakletmek",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز أن يقال في الوقف \"رأيت البَكَرْ\" بفتح الكاف في حال النصب.",
+   "kufa_en": "In pause one may say raʾaytu al-bakar with a fatḥa on the kāf.",
+   "kufa_tr": "Vakıfta kâfı fethalı olarak raeytü'l-bekar denebilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "tarjih": "kufa",
+   "tarjih_ar": "والذي أذهب إليه في هذه المسألة ما ذهب إليه الكوفيون.",
+   "tarjih_src": "explicit",
+   "page": {
+    "printed": "2:602",
+    "shamela": 591
+   }
+  },
+  {
+   "n": 107,
+   "bab": "sarf",
+   "title_ar": "القول في أصل حركة همزة الوصل",
+   "title_en": "The original vowel of the hamzat al-waṣl",
+   "title_tr": "Vasl hemzesinin aslî harekesi",
+   "kufa_ar": "ذهب الكوفيون إلى أن الأصل في حركة همزة الوصل أن تتبع حركة عين الفعل؛ فتكسر في \"اضْرِبْ\" إتباعًا لكسرة العين، وتضم في \"ادْخُلْ\" إتباعًا لضمة العين",
+   "kufa_en": "The hamzat al-waṣl follows the vowel of the verb's ʿayn: iḍrib, udkhul.",
+   "kufa_tr": "Vasl hemzesi fiilin ayn harekesine tâbi olur: idrib, udhul.",
+   "basra_ar": "وذهب البصريون إلى أن الأصل في همزة الوصل أن تكون متحركة مكسورة، وإنما تضم في \"ادخل\" ونحوه لئلا يُخْرَج من كسر إلى ضم؛ لأن ذلك مستثقل، ولهذا ليس في كلامهم شيء على وزن فِعُلٍ بكسر الفاء وضم العين.",
+   "basra_en": "It is originally voweled with kasra, given ḍamma in udkhul to avoid kasra before ḍamma.",
+   "basra_tr": "Aslı kesreli harekedir; udhul'de kesreden dammeye geçmemek için dammelenir.",
+   "others": [
+    {
+     "ar": "وذهب بعضهم إلى أن الأصل في همزة الوصل أن تكون ساكنةً، وإنما تحرك لالتقاء الساكنين."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:606",
+    "shamela": 595
+   }
+  },
+  {
+   "n": 108,
+   "bab": "sarf",
+   "title_ar": "هل يجوز نقل حركة همزة الوصل إلى الساكن قبلها؟",
+   "title_en": "Moving the vowel of the hamzat al-waṣl onto the quiescent letter before it",
+   "title_tr": "Vasl hemzesinin harekesini önceki sâkine nakletmek",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز نقل حركة همزة الوصل إلى الساكن قبلها.",
+   "kufa_en": "It is allowed.",
+   "kufa_tr": "Caizdir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز.",
+   "basra_en": "It is not allowed.",
+   "basra_tr": "Caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:610",
+    "shamela": 599
+   }
+  },
+  {
+   "n": 109,
+   "bab": "sarf",
+   "title_ar": "هل يجوز مد المقصور في ضرورة الشعر؟",
+   "title_en": "Lengthening the maqṣūr under the necessity of verse",
+   "title_tr": "Şiir zaruretinde maksûru medletmek",
+   "kufa_ar": "ذهب الكوفيون إلى أنه يجوز مَدُّ المقصور في ضرورة الشعر",
+   "kufa_en": "The maqṣūr may be lengthened under the necessity of verse.",
+   "kufa_tr": "Şiir zaruretinde maksûr medlenebilir.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز.",
+   "basra_en": "It may not.",
+   "basra_tr": "Medlenemez.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن الأخفش من البصريين",
+     "with": "kufa"
+    },
+    {
+     "ar": "فذهب إلى أنه لا يجوز أن يمد من المقصور ما لا يجيء في بابه ممدود، نحو فَعْلَى تأنيث فَعْلَان نحو سكرى وعطشى؛ فهذا لا يجوز أن يمد؛ لأن مذكره سكران وعطشان، وفَعْلَى تأنيث فعلان لا تجيء إلا مقصورة، وكذلك حكم كل ما يقتضي القياس أن يكون مقصورًا وكذلك لا يجوز أن يُقْصَرَ من الممدود ما لا يجيء في بابه مقصور، نحو تأنيث أفعل نحو بيضاء وسوداء؛ فهذا لا يجوز أن يقصر؛ لأن مذكره أبيض وأسود، وفعلاء تأنيث أفعل لا يكون إلا ممدودًا، وكذلك حكم كل ما يقتضي القياس أن يكون ممدودًا، فأما ما عدا ما يوجب القياس أن يكون مقصورا أو ممدودا من المقصور والممدود فإنه يجوز أن يمد منه المقصور ويقصر منه الممدود إذ كان له نظير من المقصور أو الممدود؛ فيجوز عنده مَدُّ \"رحًى، وهدًى، وحِجًى\" لأنها إذا مدت صارت إلى مثل سماء ودعاء ورداء، ويجوز عنده قصر \"سماء، ودعاء، ورداء\" لأنها إذا قصرت صارت إلى مثال رحى وهدى وحجى، فأما ما لا مثال له من المقصور والممدود إذا مُدَّ وقُصِرَ فلا يخرج عن بابه من المد والقصر؛ فهذا تفصيل المذاهب."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:614",
+    "shamela": 603
+   },
+   "links": [
+    "ism-maqsur-manqus",
+    "ism-mamdud"
+   ]
+  },
+  {
+   "n": 110,
+   "bab": "sarf",
+   "title_ar": "هل يحذف آخر المقصود والممدود عند التثنية إذا كثرت حروفها؟",
+   "title_en": "Dropping the end of a long maqṣūr or mamdūd in the dual",
+   "title_tr": "Uzun maksûr ve memdûdun sonunu tesniyede atmak",
+   "kufa_ar": "ذهب الكوفيون إلى أن الاسم المقصور إذا كَثُرَتْ حروفه سقطت ألفه في التثنية؛ فقالوا في تثنية \"خَوْزَلَى، وقَهْقَرَى\": خَوْزَلَانِ، وقَهْقَرَانِ، وذهبوا أيضا فيما طال من الممدود إلى أنه يحذف الحرفان الآخران، فأجازوا في \"قَاصعَاء، وحَاثِيَاء\": قاصعان، وحاثيان.",
+   "kufa_en": "A long maqṣūr loses its alif in the dual (khawzalān), and a long mamdūd its last two letters.",
+   "kufa_tr": "Harfleri çok olan maksûr tesniyede elifini düşürür (havzelân), uzun memdûd da son iki harfini.",
+   "basra_ar": "وذهب البصريون إلى أنه لا يجوز حذف شيء من ذلك في مقصور ولا ممدود.",
+   "basra_en": "Nothing may be dropped, from maqṣūr or mamdūd.",
+   "basra_tr": "Ne maksûrdan ne memdûddan bir şey düşürülemez.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:621",
+    "shamela": 610
+   },
+   "links": [
+    "ism-maqsur-manqus",
+    "ism-mamdud"
+   ]
+  },
+  {
+   "n": 111,
+   "bab": "sarf",
+   "title_ar": "القول في المؤنث بغير علامة تأنيث مما على زنة اسم الفاعل",
+   "title_en": "Feminines without a sign, on the pattern of the active participle",
+   "title_tr": "İsm-i fâil vezninde alâmetsiz müennesler",
+   "kufa_ar": "ذهب الكوفيون إلى أن علامة التأنيث إنما حُذِفَتْ من نحو \"طالق، وطامث، وحائض، وحامل\" لاختصاص المؤنث به.",
+   "kufa_en": "The sign is dropped from ṭāliq, ḥāʾiḍ, ḥāmil because the meaning belongs to women alone.",
+   "kufa_tr": "Tâlık, hâiz, hâmil'den alâmet, mânâ müennese mahsus olduğu için düşmüştür.",
+   "basra_ar": "وذهب البصريون إلى أنه إنما حذفت منه علامة التأنيث لأنهم قصدوا به النسب ولم يُجْرُوهُ على الفعل",
+   "basra_en": "It is dropped because they meant a relation (nasab), not a verb.",
+   "basra_tr": "Nisbet kastedildiği ve fiile câri kılınmadığı için düşmüştür.",
+   "others": [
+    {
+     "ar": "وذهب بعضهم إلى أنهم إنما حذفوا علامة التأنيث منه لأنهم حملوه على المعنى كأنهم قالوا \"شيء حائض\"."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:625",
+    "shamela": 614
+   },
+   "links": [
+    "al-muannath-wa-alamatuh"
+   ]
+  },
+  {
+   "n": 112,
+   "bab": "sarf",
+   "title_ar": "عِلَّة حذف الواو من \"يعد\" ونحوه",
+   "title_en": "Why the wāw falls in yaʿidu",
+   "title_tr": "Yaidü'de vâvın düşme sebebi",
+   "kufa_ar": "ذهب الكوفيون إلى أن الواو من نحو \"يَعِدُ، ويَزِنُ\" إنما حذفت للفرق بين الفعل اللازم والمتعدي.",
+   "kufa_en": "The wāw of yaʿidu, yazinu falls to tell the intransitive from the transitive.",
+   "kufa_tr": "Yaidü, yezinü'deki vâv, lâzım ile müteaddiyi ayırmak için düşmüştür.",
+   "basra_ar": "وذهب البصريون إلى أنها حذفت لوقوعها بين ياء وكسرة.",
+   "basra_en": "It falls because it stands between a yāʾ and a kasra.",
+   "basra_tr": "Yâ ile kesre arasında kaldığı için düşmüştür.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:644",
+    "shamela": 633
+   },
+   "links": [
+    "mithal-verbs"
+   ]
+  },
+  {
+   "n": 113,
+   "bab": "sarf",
+   "title_ar": "وزن الخماسي المكرر ثانية وثالثة",
+   "title_en": "The weight of a five-letter noun repeating its second and third",
+   "title_tr": "İkinci ve üçüncüsü tekrarlanan beşlinin vezni",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"صَمَحْمَح ودَمَكْمَكَ\" على وزن فعلَّل.",
+   "kufa_en": "Ṣamaḥmaḥ and damakmak weigh faʿallal.",
+   "kufa_tr": "Samahmah ve demekmek fa'allal veznindedir.",
+   "basra_ar": "وذهب البصريون إلى أنه على وزن فَعَلْعَلَ.",
+   "basra_en": "They weigh faʿalʿal.",
+   "basra_tr": "Fa'al'al veznindedir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:649",
+    "shamela": 638
+   }
+  },
+  {
+   "n": 114,
+   "bab": "sarf",
+   "title_ar": "هل في كل رباعي وخماسي من الأسماء زيادة",
+   "title_en": "Is every four- and five-letter noun augmented?",
+   "title_tr": "Her dörtlü ve beşli isimde ziyade var mı?",
+   "kufa_ar": "ذهب الكوفيون إلى أن كل اسم زادت حروفه على ثلاثة أحرف ففيه زيادة، فإن كان على أربعة أحرف نحو جعفر ففيه زيادة حرف واحد، واختلفوا",
+   "kufa_en": "Every noun over three letters has an added letter; a four-letter one, one; on which one, they differ.",
+   "kufa_tr": "Üç harften fazla her isimde ziyade vardır; dörtlüde bir harf; hangisi olduğunda ihtilâf ederler.",
+   "basra_ar": "وذهب البصريون إلى أن بنات الأربعة والخمسة ضربان غير بنات الثلاثة، وأنهما من نحو جعفر وسفرجل، لا زائدة فيهما البتة.",
+   "basra_en": "Four- and five-letter roots are kinds apart from the three-letter; jaʿfar and safarjal have no added letter.",
+   "basra_tr": "Dörtlü ve beşliler üçlüden ayrı iki sınıftır; ca'fer ve sefercel'de ziyade yoktur.",
+   "others": [
+    {
+     "ar": "فذهب أبو الحسن عليّ بن حمزة الكسائي إلى أن الزائد فيما كان على أربعة أحرف الحرف الذي قبل آخره"
+    },
+    {
+     "ar": "وذهب أبو زكريا يحيى بن زياد الفرّاء إلى أن الزائد فيما كان على أربعة أحرف هو الحرف الخير، وإن كان على خمسة أحرف -نحو \"سَفَرْجَلَ\"- ففيه زيادة حرفين."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:654",
+    "shamela": 643
+   }
+  },
+  {
+   "n": 115,
+   "bab": "sarf",
+   "title_ar": "وزن \"سيِّد وميِّت\" ونحوهما",
+   "title_en": "The weight of sayyid and mayyit",
+   "title_tr": "Seyyid ve meyyit'in vezni",
+   "kufa_ar": "ذهب الكوفيون إلى أن وزن \"سيِّد، وهيِّن، وميِّت\" في الأصل على فَعِيل، نحو سَوِيد وهَوِين ومَوِيت.",
+   "kufa_en": "Sayyid, hayyin, mayyit are originally faʿīl: sawīd, hawīn, mawīt.",
+   "kufa_tr": "Seyyid, heyyin, meyyit aslında fa'îl veznindedir: sevîd, hevîn, mevît.",
+   "basra_ar": "وذهب البصريون إلى أن وزنه فَيْعِل -بكسر العين-",
+   "basra_en": "Their weight is fayʿil, with kasra on the ʿayn.",
+   "basra_tr": "Vezinleri ayn'ı kesreli fey'ildir.",
+   "others": [
+    {
+     "ar": "وذهب قوم إلى أن وزنه في الأصل على فَيْعَلٍ بفتح العين."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:656",
+    "shamela": 645
+   }
+  },
+  {
+   "n": 116,
+   "bab": "sarf",
+   "title_ar": "وزن \"خطايا\" ونحوه",
+   "title_en": "The weight of khaṭāyā",
+   "title_tr": "Hatâyâ'nın vezni",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"خطايا\" جمع خطيئة على وزن فعالي",
+   "kufa_en": "Khaṭāyā, plural of khaṭīʾa, weighs faʿālī.",
+   "kufa_tr": "Hatîe'nin cem'i hatâyâ, fe'âlî veznindedir.",
+   "basra_ar": "وذهب البصريون إلى أن \"خطايا\" على وزن فعائل.",
+   "basra_en": "Khaṭāyā weighs faʿāʾil.",
+   "basra_tr": "Hatâyâ fe'âil veznindedir.",
+   "others": [
+    {
+     "ar": "وإليه ذهب الخليل بن أحمد.",
+     "with": "kufa"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:663",
+    "shamela": 652
+   },
+   "links": [
+    "jam-taksir"
+   ]
+  },
+  {
+   "n": 117,
+   "bab": "sarf",
+   "title_ar": "وزن \"إنسان\" وأصل اشتقاقه",
+   "title_en": "The weight and root of insān",
+   "title_tr": "İnsân'ın vezni ve iştikakı",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"إنسان\" وزنه إفعان",
+   "kufa_en": "Insān weighs ifʿān.",
+   "kufa_tr": "İnsân'ın vezni if'ân'dır.",
+   "basra_ar": "وذهب البصريون إلى أن وزنه فعلان",
+   "basra_en": "It weighs fiʿlān.",
+   "basra_tr": "Vezni fi'lân'dır.",
+   "others": [
+    {
+     "ar": "وإليه ذهب بعض الكوفيين.",
+     "with": "basra"
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلما ت الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:667",
+    "shamela": 656
+   }
+  },
+  {
+   "n": 118,
+   "bab": "sarf",
+   "title_ar": "وزن أشياء",
+   "title_en": "The weight of ashyāʾ",
+   "title_tr": "Eşyâ'nın vezni",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"أشياء\" وزنه أَفْعَاء، والأصل أفعلاء",
+   "kufa_en": "Ashyāʾ weighs afʿāʾ, originally afʿilāʾ.",
+   "kufa_tr": "Eşyâ'nın vezni ef'â'dır, aslı ef'ilâ'dır.",
+   "basra_ar": "وذهب البصريون إلى أن وزنه لفعاء، والأصل فعلاء.",
+   "basra_en": "It weighs lafʿāʾ, originally faʿlāʾ.",
+   "basra_tr": "Vezni lef'â'dır, aslı fa'lâ'dır.",
+   "others": [
+    {
+     "ar": "وإليه ذهب أبو الحسن الأخفش من البصريين.",
+     "with": "kufa"
+    },
+    {
+     "ar": "وذهب بعض الكوفيين إلى أن وزنه أفعال."
+    }
+   ],
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:670",
+    "shamela": 659
+   }
+  },
+  {
+   "n": 119,
+   "bab": "nawasikh",
+   "title_ar": "علام ينتصب خبر \"كان\" وثاني مفعولي \"ظننت\"؟",
+   "title_en": "What puts the khabar of kāna and the second object of ẓanantu in naṣb",
+   "title_tr": "Kâne'nin haberini ve zanentü'nün ikinci mef'ûlünü nasbeden",
+   "kufa_ar": "ذهب الكوفيون إلى أن خبر \"كان\" والمفعول الثاني لـ \"ظننت\" نصب على الحال.",
+   "kufa_en": "They are manṣūb as ḥāl.",
+   "kufa_tr": "Hâl olarak mansûbdurlar.",
+   "basra_ar": "وذهب البصريون إلى أن نصبهما نصب المفعول، لا على الحال.",
+   "basra_en": "They are manṣūb as objects, not as ḥāl.",
+   "basra_tr": "Hâl olarak değil, mef'ûl olarak mansûbdurlar.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:676",
+    "shamela": 665
+   },
+   "extra": true,
+   "shape_note": "One of three masāʾil the editor gives from some manuscripts only («زيادة ثلاث مسائل في بعض النسخ»).",
+   "links": [
+    "kana-wa-akhawatuha",
+    "zanna-wa-akhawatuha"
+   ]
+  },
+  {
+   "n": 120,
+   "bab": "mansubat",
+   "title_ar": "القول في تقديم التمييز إذا كان العامل فعلا متصرفا",
+   "title_en": "Fronting the tamyīz when its governor is a conjugating verb",
+   "title_tr": "Âmili mutasarrıf fiil olunca temyizi öne almak",
+   "kufa_ar": "اختلف الكوفيون في جواز تقديم التمييز إذا كان العامل فيه فعلا متصفا نحو \"تصبب زيد عرقا، وتفقأ الكبش شحما\": فذهب بضعهم إلى جوازه ووافقهم على ذلك أبو عثمان المازني وأبو العباس المبرد من البصريين.",
+   "kufa_en": "The Kufans differ on fronting the tamyīz of a conjugating verb; some allow it, and al-Māzinī and al-Mubarrad agree.",
+   "kufa_tr": "Kûfeliler mutasarrıf fiilin temyizini öne almada ihtilâf eder; bazısı caiz görür, Mâzinî ve Müberred de onlara katılır.",
+   "basra_ar": "وذهب أكثر البصريين إلى أنه لا يجوز.",
+   "basra_en": "Most Basrans: it is not allowed.",
+   "basra_tr": "Basralıların çoğu: caiz değildir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:682",
+    "shamela": 671
+   },
+   "extra": true,
+   "shape_note": "Both views are reported as splits («اختلف الكوفيون», «وذهب أكثر البصريين»), not as «ذهب الكوفيون/البصريون».",
+   "links": [
+    "tamyiz"
+   ]
+  },
+  {
+   "n": 121,
+   "bab": "majrurat",
+   "title_ar": "القول في \"رُبَّ\" اسم هو أو حرف؟",
+   "title_en": "Rubba: noun or particle?",
+   "title_tr": "Rubbe: isim mi harf mi?",
+   "kufa_ar": "ذهب الكوفيون إلى أن \"رب\" اسم.",
+   "kufa_en": "Rubba is a noun.",
+   "kufa_tr": "Rubbe isimdir.",
+   "basra_ar": "وذهب البصريون إلى أنه حرف جر.",
+   "basra_en": "It is a jarr particle.",
+   "basra_tr": "Cer harfidir.",
+   "tarjih": "basra",
+   "tarjih_ar": "وأما الجواب عن كلمات الكوفيين",
+   "tarjih_src": "answer",
+   "page": {
+    "printed": "2:686",
+    "shamela": 675
+   },
+   "extra": true,
+   "links": [
+    "al-lam-wa-rubba-fil-kafiya"
+   ]
+  }
+ ]
+}

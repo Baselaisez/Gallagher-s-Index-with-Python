@@ -1,0 +1,134 @@
+{
+ "id": "afal-al-muqaraba-fil-kafiya",
+ "title": {
+  "ar": "أَفْعَالُ الْمُقَارَبَةِ فِي الْكَافِيَةِ",
+  "en": "The verbs of approach in the Kafiya: hope, occurrence and setting-about — ʿasā's two uses, kāda's bare khabar, the negated-kāda dispute, and awshaka",
+  "tr": "Kâfiye'de mukârebe fiilleri: recâ, husûl ve başlama — asâ'nın iki kullanımı, kâde'nin en'siz haberi, menfî kâde ihtilâfı ve evşeke"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — أفعال المقاربة: ما وضع لدنو الخبر رجاء أو حصولا أو أخذا فيه",
+  "ضياء صونغور اوغلى — دفتر الكافية: عسى غير متصرفة وعلى وجهين؛ كاد وخبرها؛ الخلاف في كاد المنفية مع آية البقرة وبيت ذي الرمة وتصحيح ابن شبرمة؛ طفق وكرب وجعل وأخذ؛ أوشك"
+ ],
+ "question": {
+  "en": [
+   "What makes a verb one of APPROACH? It does not say the khabar happened; it says the khabar is NEAR — and the three kinds are three reasons for nearness: the speaker hopes for it (عَسَى), it was about to occur (كَادَ), or the subject has set about it (طَفِقَ، كَرَبَ، جَعَلَ، أَخَذَ).",
+   "Why does عَسَى have no muḍāriʿ? It is jāmid — frozen in the māḍī: no present, no imperative, no prohibition, no passive. The sarf tab shows only the cells that exist; absence is the doctrine, not a gap.",
+   "How is عَسَى used? Two ways. Defective: عَسَى زَيْدٌ أَنْ يَخْرُجَ — Zayd is the ism, the أَنْ-clause the khabar in the place of naṣb. Complete: عَسَى أَنْ يَخْرُجَ زَيْدٌ — the whole clause is the DOER of عَسَى and Zayd the doer of يَخْرُجَ. And sometimes أَنْ is simply dropped.",
+   "What does كَادَ take? A bare muḍāriʿ as its khabar — كَادَ زَيْدٌ يَجِيءُ — and sometimes أَنْ enters on it. Set it beside عَسَى: the one prefers أَنْ, the other prefers to do without it.",
+   "Does negated كَادَ affirm or deny? On the soundest view it behaves like any verb: مَا كَادَ denies. The aya فَذَبَحُوهَا وَمَا كَادُوا يَفْعَلُونَ is read both ways — «they slaughtered her, and had been near to not doing it», or, for those who say negated كَادَ affirms, the slaughter itself proves the act. For the present tense the evidence is Dhū l-Rumma's لَمْ يَكَدْ … يَبْرَحُ and Ibn Shubruma's correction, which each side reads in its own favour.",
+   "And the setting-about verbs? Their khabar is a muḍāriʿ without أَنْ, like كَادَ: طَفِقَ زَيْدٌ يَفْعَلُ, and the aya وَطَفِقَا يَخْصِفَانِ عَلَيْهِمَا مِنْ وَرَقِ الْجَنَّةِ. أَوْشَكَ joins the family and is used all three ways.",
+   "What does the engine do? The kernel's KANA table already pushes [ism-raf, khabar-naṣb] for كَادَ and عَسَى; the أَنْ before the khabar is read as maṣdariyya by its verb; the jāmid flag on عَسَى keeps the paradigm honest, and the TartibEngine refuses to front the khabar of a verb of approach."
+  ],
+  "tr": [
+   "Bir fiili MUKÂREBE fiili yapan nedir? Haberin olduğunu söylemez; haberin YAKIN olduğunu söyler — üç kısım yakınlığın üç sebebidir: konuşan onu umar (عَسَى), olmak üzereydi (كَادَ) ya da özne ona başlamıştır (طَفِقَ، كَرَبَ، جَعَلَ، أَخَذَ).",
+   "عَسَى'nın neden muzârii yok? Câmiddir — mâzîde donmuştur: muzârisi, emri, nehyi, meçhulü yoktur. Sarf sekmesi yalnız var olan hücreleri gösterir; yokluk bir eksik değil, doktrindir.",
+   "عَسَى nasıl kullanılır? İki yolla. Nâkıs: عَسَى زَيْدٌ أَنْ يَخْرُجَ — Zeyd isim, أَنْ cümlesi mahallen mansûb haber. Tam: عَسَى أَنْ يَخْرُجَ زَيْدٌ — bütün cümle عَسَى'nın FÂİLİ, Zeyd ise يَخْرُجَ'nun fâili. Ve bazen أَنْ düpedüz düşer.",
+   "كَادَ ne alır? Haber olarak çıplak bir muzâri — كَادَ زَيْدٌ يَجِيءُ — ve bazen ona أَنْ girer. عَسَى ile yan yana koy: biri أَنْ'i tercih eder, öteki onsuz olmayı.",
+   "Menfî كَادَ olumlar mı, olumsuzlar mı? En sahih görüşe göre her fiil gibi davranır: مَا كَادَ olumsuzlar. فَذَبَحُوهَا وَمَا كَادُوا يَفْعَلُونَ âyeti iki türlü okunur — «onu kestiler ve neredeyse kesmeyeceklerdi» ya da, menfî كَادَ olumlar diyenlere göre, kesmenin kendisi fiili ispat eder. Muzâri için delil Zü'r-Rumme'nin لَمْ يَكَدْ … يَبْرَحُ'u ve İbn Şübrüme'nin düzeltmesidir; her taraf bunu kendi lehine okur.",
+   "Ya başlama fiilleri? Haberleri كَادَ gibi أَنْ'siz muzâridir: طَفِقَ زَيْدٌ يَفْعَلُ ve وَطَفِقَا يَخْصِفَانِ عَلَيْهِمَا مِنْ وَرَقِ الْجَنَّةِ âyeti. أَوْشَكَ aileye katılır ve üç şekilde de kullanılır.",
+   "Motor ne yapar? Çekirdeğin KANA tablosu كَادَ ve عَسَى için zaten [ism-ref', haber-nasb] iter; haberin önündeki أَنْ fiili sayesinde masdariyye okunur; عَسَى üzerindeki câmid bayrağı çekimi dürüst tutar ve TartibEngine bir mukârebe fiilinin haberini öne almayı reddeder."
+  ]
+ },
+ "plain": {
+  "en": "The verbs of approach say a thing was close to happening: ʿasā «it is hoped», kāda «was about to», ṭafiqa «began to». They govern like kāna, with their predicate usually a verb clause, sometimes introduced by an. The one puzzle is negated kāda, which the schools read two ways.",
+  "tr": "Mukârebe fiilleri bir şeyin olmaya yakın olduğunu söyler: asâ «umulur ki», kâde «az kalsın», tafika «başladı». Kâne gibi amel ederler; yüklemleri çoğunlukla bir fiil cümlesidir, bazen başında en bulunur. Tek bilmece, mekteplerin iki türlü okuduğu menfî kâde'dir."
+ },
+ "explanation": {
+  "en": "The definition is the Kafiya's and names the class by what it contributes: not an act, but the NEARNESS of the khabar, and the three kinds are three grounds for calling it near. The notebook takes عَسَى first because it is the odd one out twice over — it has no tenses but the past, and it is used both as a defective verb with an ism and a khabar and as a complete one whose doer is the whole أَنْ-clause; the dropping of أَنْ (عَسَى زَيْدٌ يَخْرُجُ) is the bridge to كَادَ, whose khabar is bare by default and takes أَنْ only occasionally. The long middle of the chapter is the dispute on negated كَادَ, and the notebook lays it out as a madrasah would: the ruling (like any verb, on the soundest view), the two minority positions, the aya of the cow read by each side, Dhū l-Rumma's verse with its hemistich break, and the anecdote of Ibn Shubruma — which, tellingly, both sides claim. The setting-about verbs and أَوْشَكَ close the chapter with the Qurʾānic leaves of the Garden, where طَفِقَا carries the dual alif as its ism and يَخْصِفَانِ the retained nūn. The notebook writes يَجِيئُ with the hamza on a yāʾ seat; the chapter cites the received يَجِيءُ and the manifest records the divergence.",
+  "tr": "Tarif Kâfiye'nindir ve sınıfı kattığı şeyle adlandırır: bir eylem değil, haberin YAKINLIĞI; üç kısım onu yakın saymanın üç gerekçesidir. Defter önce عَسَى'yı alır, çünkü iki kez istisnadır — mâzîden başka zamanı yoktur ve hem ismi ve haberi olan nâkıs bir fiil, hem de fâili bütün bir أَنْ cümlesi olan tam bir fiil olarak kullanılır; أَنْ'in düşmesi (عَسَى زَيْدٌ يَخْرُجُ) haberi varsayılan olarak çıplak olup أَنْ'i yalnız ara sıra alan كَادَ'ye köprüdür. Bâbın uzun ortası menfî كَادَ ihtilâfıdır ve defter onu bir medresenin yapacağı gibi serer: hüküm (en sahih görüşe göre her fiil gibi), iki azınlık görüşü, her tarafın okuduğu bakara âyeti, mısra ayrımıyla Zü'r-Rumme'nin beyti ve — ibretle — iki tarafın da sahiplendiği İbn Şübrüme kıssası. Başlama fiilleri ve أَوْشَكَ bâbı Kur'ânî cennet yapraklarıyla kapar; orada طَفِقَا tesniye elifini isim olarak, يَخْصِفَانِ sâbit nûnu taşır. Defter يَجِيئُ'yu hemzeyi yâ kürsüsünde yazar; bâb alınan يَجِيءُ'yu zikreder ve manifest farkı kaydeder."
+ },
+ "examples": [
+  {
+   "ar": "أَفْعَالُ الْمُقَارَبَةِ: مَا وُضِعَ لِدُنُوِّ الْخَبَرِ رَجَاءً أَوْ حُصُولًا أَوْ أَخْذًا فِيهِ",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "عَسَى زَيْدٌ أَنْ يَخْرُجَ",
+   "en": "ʿasā defective.",
+   "tr": "Nâkıs asâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "عَسَى أَنْ يَخْرُجَ زَيْدٌ",
+   "en": "ʿasā complete — the clause is its doer.",
+   "tr": "Tam asâ — cümle fâilidir.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "كَادَ زَيْدٌ يَجِيءُ",
+   "en": "kāda with a bare khabar.",
+   "tr": "Çıplak haberli kâde.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "فَذَبَحُوهَا وَمَا كَادُوا يَفْعَلُونَ",
+   "en": "Negated kāda in the past.",
+   "tr": "Mâzîde menfî kâde.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "لَمْ يَكَدْ رَسِيسُ الْهَوَى مِنْ حُبِّ مَيَّةَ يَبْرَحُ",
+   "en": "Negated kāda in the present.",
+   "tr": "Muzâride menfî kâde.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s8"
+  },
+  {
+   "ar": "وَطَفِقَا يَخْصِفَانِ عَلَيْهِمَا مِنْ وَرَقِ الْجَنَّةِ",
+   "en": "A setting-about verb.",
+   "tr": "Bir başlama fiili.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s10"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«يَعْسَى زَيْدٌ أَنْ يَخْرُجَ»",
+   "right": "«عَسَى زَيْدٌ أَنْ يَخْرُجَ — asâ câmiddir, muzârii yoktur»",
+   "why": {
+    "en": "ʿasā has only the past; the sarf tab offers no other tense.",
+    "tr": "asâ'nın yalnız mâzîsi vardır; sarf sekmesi başka zaman sunmaz."
+   }
+  },
+  {
+   "wrong": "«أَنْ يَخْرُجَ, عَسَى أَنْ يَخْرُجَ زَيْدٌ'da haberdir»",
+   "right": "«tam asâ: أَنْ يَخْرُجَ زَيْدٌ onun fâilidir, haberi yoktur»",
+   "why": {
+    "en": "With nothing between ʿasā and the clause, the clause is the doer of a complete verb.",
+    "tr": "asâ ile cümle arasında bir şey yoksa cümle tam fiilin fâilidir."
+   }
+  },
+  {
+   "wrong": "«مَا كَادَ زَيْدٌ يَقُومُ — Zeyd ayağa kalktı»",
+   "right": "«en sahih görüşe göre: Zeyd neredeyse kalkmadı — nefy nefydir»",
+   "why": {
+    "en": "The affirmative reading is a minority view the notebook records, not the ruling.",
+    "tr": "Müsbet okuyuş defterin kaydettiği bir azınlık görüşüdür, hüküm değil."
+   }
+  },
+  {
+   "wrong": "«يَفْعَلُ زَيْدٌ طَفِقَ»",
+   "right": "«طَفِقَ زَيْدٌ يَفْعَلُ — mukârebe fiilinin haberi fiilin önüne geçmez»",
+   "why": {
+    "en": "The khabar of a verb of approach is a verb clause and stays after its ism.",
+    "tr": "Mukârebe fiilinin haberi bir fiil cümlesidir ve isminin ardında kalır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "afal-al-muqaraba",
+  "al-afal-al-naqisa-fil-kafiya",
+  "an-masdariyya",
+  "nawasib-wa-jawazim-al-mudari",
+  "al-muthanna"
+ ]
+}

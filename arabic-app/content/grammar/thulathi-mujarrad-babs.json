@@ -1,0 +1,300 @@
+{
+  "id": "thulathi-mujarrad-babs",
+  "title": {
+    "ar": "أَبْوَابُ الثُّلَاثِيِّ الْمُجَرَّد",
+    "en": "The six babs of the bare triliteral",
+    "tr": "Sülâsî mücerredin altı bâbı"
+  },
+  "level": 2,
+  "group": "sarf",
+  "classicalSources": [
+    "الأمثلة المختلفة",
+    "بناء الأفعال",
+    "مراح الأرواح",
+    "المقصود",
+    "تَصْرِيفُ الْعِزِّيِّ لِلزَّنْجَانِيِّ (tasrif-al-izzi-src.txt، س 12، 14)",
+    "مَرَاحُ الْأَرْوَاحِ لِأَحْمَدَ بْنِ عَلِيِّ بْنِ مَسْعُودٍ (marah-al-arwah-src.txt، س 63)"
+  ],
+  "plain": {
+    "en": "Every plain three-letter verb belongs to one of six families, and the family — not the dictionary — tells you the vowel on its present tense.",
+    "tr": "Her sülâsî mücerred fiil altı bâbdan birine girer; muzârisinin harekesini sözlük değil, bâbı söyler."
+  },
+  "explanation": {
+    "en": "Every bare three-letter verb belongs to one of exactly six babs, and the bab is fixed by ONE thing: the vowel on the middle radical in the past and in the present. That pair is the bab's «sign» (عَلَامَة), and the pattern verb is its name. (1) نَصَرَ يَنْصُرُ — fatha then damma. (2) ضَرَبَ يَضْرِبُ — fatha then kasra. (3) فَتَحَ يَفْتَحُ — fatha then fatha, and this one has a condition: the middle or last radical must be a throat letter (ء ه ع ح غ خ), which is why فَتَحَ and ذَهَبَ qualify. (4) عَلِمَ يَعْلَمُ — kasra then fatha. (5) كَرُمَ يَكْرُمُ — damma then damma, and this bab alone is ALWAYS intransitive; it is the bab of settled qualities, حَسُنَ, كَبُرَ, صَغُرَ. (6) حَسِبَ يَحْسِبُ — kasra then kasra, the rarest. The first four and the sixth are usually transitive and sometimes intransitive. You cannot derive the bab from the letters: قَعَدَ is bab 1 and جَلَسَ is bab 2 though they mean the same thing. The bab is learned with the word, which is why every verb in this app carries its bab on the Conjugation tab.",
+    "tr": "Her sülâsî mücerred fiil tam olarak altı bâbdan birine girer ve bâbı TEK bir şey belirler: ayne'l-fiilin mâzideki ve muzârideki harekesi. Bu ikili bâbın «alâmet»idir, vezin fiili de adıdır. (1) نَصَرَ يَنْصُرُ — fetha, sonra damme. (2) ضَرَبَ يَضْرِبُ — fetha, sonra kesre. (3) فَتَحَ يَفْتَحُ — fetha, fetha; bunun bir şartı vardır: ayne'l-fiil yahut lâme'l-fiil hurûf-ı halktan (ء ه ع ح غ خ) olmalıdır; فَتَحَ ve ذَهَبَ bu yüzden bu bâbdandır. (4) عَلِمَ يَعْلَمُ — kesre, sonra fetha. (5) كَرُمَ يَكْرُمُ — damme, damme; yalnız bu bâb DAİMA lâzımdır, yerleşik vasıfların bâbıdır: حَسُنَ، كَبُرَ، صَغُرَ. (6) حَسِبَ يَحْسِبُ — kesre, kesre; en az kullanılanıdır. Beşinci dışındakiler çok kere müteaddî, bazen lâzımdır. Bâb harflerden çıkarılamaz: قَعَدَ birinci, جَلَسَ ikinci bâbdandır, hâlbuki manaları aynıdır. Bâb kelimeyle birlikte öğrenilir; uygulamadaki her fiilin Çekim sekmesinde bâbının yazılı olmasının sebebi budur."
+  },
+  "examples": [
+    {
+      "ar": "نَظَرَ يَنْظُرُ — مِنْ بَابِ نَصَرَ.",
+      "en": "«He looked» — bab 1, fatha then damma.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "tr": "«Baktı» — birinci bâb, fetha sonra damme."
+    },
+    {
+      "ar": "جَلَسَ يَجْلِسُ — مِنْ بَابِ ضَرَبَ.",
+      "en": "«He sat» — bab 2, fatha then kasra, though قَعَدَ with the same meaning is bab 1.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "tr": "«Oturdu» — ikinci bâb, fetha sonra kesre; hâlbuki aynı manadaki قَعَدَ birinci bâbdandır."
+    },
+    {
+      "ar": "ذَهَبَ يَذْهَبُ — مِنْ بَابِ فَتَحَ.",
+      "en": "«He went» — bab 3; the ه is a throat letter, which is what admits it.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "tr": "«Gitti» — üçüncü bâb; ه hurûf-ı halktandır, bâba girmesini sağlayan da budur."
+    },
+    {
+      "ar": "صَغُرَ يَصْغُرُ — مِنْ بَابِ كَرُمَ.",
+      "en": "«He became small» — bab 5, always intransitive, always a quality.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "tr": "«Küçüldü» — beşinci bâb, daima lâzım, daima bir vasıf."
+    },
+    {
+      "ar": "أَمَّا الثُّلَاثِيُّ الْمُجَرَّدُ فَإِنْ كَانَ مَاضِيهِ عَلَى وَزْنِ فَعَلَ مَفْتُوحَ الْعَيْنِ فَمُضَارِعُهُ يَفْعُلُ أَوْ يَفْعِلُ بِضَمِّ الْعَيْنِ أَوْ كَسْرِهَا، نَحْوُ: نَصَرَ يَنْصُرُ، وَضَرَبَ يَضْرِبُ.",
+      "en": "The ʿIzzī opens the six bābs here: a past on فَعَلَ, its middle letter with fatḥa, takes a present with ḍamma or with kasra — نَصَرَ يَنْصُرُ is bāb 1, ضَرَبَ يَضْرِبُ bāb 2.",
+      "tr": "İzzî altı bâbı bu cümleyle açar: aynı fethalı فَعَلَ vezninde bir mâzînin muzârisi aynın zammesiyle yahut kesresiyle gelir — نَصَرَ يَنْصُرُ birinci, ضَرَبَ يَضْرِبُ ikinci bâbdır.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 2,
+      "sentence": "s1",
+      "source": "tasrif-al-izzi-src.txt:12"
+    },
+    {
+      "ar": "وَيَجِيءُ عَلَى وَزْنِ يَفْعَلُ بِفَتْحِ الْعَيْنِ إِذَا كَانَ عَيْنُ فِعْلِهِ أَوْ لَامُهُ حَرْفًا مِنْ حُرُوفِ الْحَلْقِ، وَهِيَ سِتَّةٌ: الْهَمْزَةُ وَالْهَاءُ، وَالْعَيْنُ وَالْحَاءُ، وَالْغَيْنُ وَالْخَاءُ، نَحْوُ: سَأَلَ يَسْأَلُ، وَمَنَعَ يَمْنَعُ.",
+      "en": "Bāb 3 with its condition, in the book's words: the present takes fatḥa only when the middle or the last letter of the verb is one of the six throat letters — سَأَلَ يَسْأَلُ, مَنَعَ يَمْنَعُ.",
+      "tr": "Üçüncü bâb, şartıyla birlikte: muzâri aynın fethasıyla ancak fiilin aynı yahut lâmı altı halk harfinden biri olunca gelir — سَأَلَ يَسْأَلُ، مَنَعَ يَمْنَعُ.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 2,
+      "sentence": "s2",
+      "source": "tasrif-al-izzi-src.txt:14"
+    },
+    {
+      "ar": "نَحْوُ ضَرَبَ يَضْرِبُ وَقَتَلَ يَقْتُلُ وَعَلِمَ يَعْلَمُ وَفَتَحَ يَفْتَحُ وَكَرُمَ يَكْرُمُ وَحَسِبَ يَحْسِبُ.",
+      "en": "The Marāḥ names the same six by their model verbs; it calls the first three «the pillars of the bābs», because their past and present differ in vowel and they are the most frequent.",
+      "tr": "Merâh aynı altı bâbı misâl fiilleriyle sayar; ilk üçüne «bâbların direkleri» der, çünkü mâzî ile muzârilerinin harekesi farklıdır ve en çok onlar kullanılır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 7,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:63"
+    },
+    {
+      "ar": "اعْلَمْ أَسْعَدَكَ اللهُ تَعَالَى أَنَّ الصَّرَّافَ يَحْتَاجُ فِي مَعْرِفَةِ الْأَوْزَانِ إِلَى سَبْعَةِ أَبْوَابٍ: الصَّحِيحِ وَالْمُضَاعَفِ وَالْمَهْمُوزِ وَالْمِثَالِ وَالْأَجْوَفِ وَالنَّاقِصِ وَاللَّفِيفِ.",
+      "en": "Know — may God the Exalted make you happy — that the morphologist, to know the measures, needs seven chapters: the sound, the doubled, the hamzated, the mithāl, the hollow, the defective and the lafīf.",
+      "tr": "Bil ki — Yüce Allah seni mesut etsin — sarfçı, vezinleri bilmek için yedi bâba muhtaçtır: sahîh, muzâaf, mehmûz, misâl, ecvef, nâkıs ve lefîf.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 2,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:13 (ص 12)"
+    },
+    {
+      "ar": "وَاشْتِقَاقِ تِسْعَةِ أَشْيَاءَ مِنْ كُلِّ مَصْدَرٍ، وَهِيَ الْمَاضِي وَالْمُضَارِعُ وَالْأَمْرُ وَالنَّهْيُ وَاسْمَا الْفَاعِلِ وَالْمَفْعُولِ وَالْمَكَانُ وَالزَّمَانُ وَالْآلَةُ. [print: الطَّبْعَةُ «وَاسْمَي» بِالْيَاءِ، وَالْمَوْضِعُ مَوْضِعُ رَفْعٍ بَعْدَ «وَهِيَ»]",
+      "en": "And he needs the derivation of nine things from every maṣdar: the past, the present, the imperative, the prohibition, the two nouns of the doer and of the object, and the nouns of place, of time and of the instrument.",
+      "tr": "Bir de her masdardan dokuz şeyin türetilmesine muhtaçtır; bunlar: mâzî, muzâri, emir, nehiy, ism-i fâil ile ism-i mef'ûl, ism-i mekân, ism-i zaman ve ism-i âlettir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 2,
+      "sentence": "s2",
+      "source": "marah-al-arwah-src.txt:15 (ص 13)"
+    },
+    {
+      "ar": "فَكَسَرْتُهُ عَلَى سَبْعَةِ أَبْوَابٍ.",
+      "en": "So I divided it into seven chapters.",
+      "tr": "Bu yüzden onu yedi bâba ayırdım.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 2,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:17 (ص 14)"
+    },
+    {
+      "ar": "وَالْأَفْعَالُ الَّتِي تُشْتَقُّ مِنَ الْمَصْدَرِ وَهِيَ خَمْسَةٌ وَثَلَاثُونَ بَابًا سِتَّةٌ لِلثُّلَاثِيِّ الْمُجَرَّدِ.",
+      "en": "The verbs that are derived from the maṣdar — and they are thirty-five bābs — six of them belong to the bare three-letter verb.",
+      "tr": "Masdardan türetilen fiiller — ki otuz beş babdır — bunlardan altısı sülâsî mücerrede aittir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 7,
+      "sentence": "s1",
+      "source": "marah-al-arwah-src.txt:61 (ص 26)"
+    },
+    {
+      "ar": "وَيُسَمَّى الثَّلَاثَةُ الْأُوَلُ دَعَائِمَ الْأَبْوَابِ لِاخْتِلَافِ حَرَكَاتِهِنَّ فِي الْمَاضِي وَالْمُسْتَقْبَلِ وَكَثْرَتِهِنَّ.",
+      "en": "The first three are called the pillars of the bābs, because their vowels differ between the past and the future, and because they are many.",
+      "tr": "İlk üçüne «babların direkleri» denir; çünkü mâzî ile müstakbelde harekeleri farklıdır ve çokturlar.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 7,
+      "sentence": "s3",
+      "source": "marah-al-arwah-src.txt:64 (ص 27)"
+    },
+    {
+      "ar": "وَفَتَحَ يَفْتَحُ لَا يَدْخُلُ فِي الدَّعَائِمِ لِانْعِدَامِ اخْتِلَافِ الْحَرَكَاتِ وَانْعِدَامِ مَجِيئِهِ بِغَيْرِ حَرْفِ الْحَلْقِ.",
+      "en": "«Fataḥa yaftaḥu» does not enter among the pillars, because its vowels do not differ and because it does not come without a throat letter.",
+      "tr": "«فَتَحَ يَفْتَحُ» direklere dâhil olmaz; çünkü harekeleri farklı değildir ve boğaz harfi olmadan gelmez.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 7,
+      "sentence": "s4",
+      "source": "marah-al-arwah-src.txt:66 (ص 28)"
+    },
+    {
+      "ar": "وَأَمَّا رَكَنَ يَرْكَنُ وَأَبَى يَأْبَى فَمِنَ اللُّغَاتِ الْمُتَدَاخِلَةِ وَالشَّوَاذِّ.",
+      "en": "As for «rakana yarkanu» and «abā yaʾbā», they are of the mingled dialects and the anomalies.",
+      "tr": "«رَكَنَ يَرْكَنُ» ve «أَبَى يَأْبَى»ya gelince, bunlar birbirine karışmış lügatlerden ve şâzlardandır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 7,
+      "sentence": "s5",
+      "source": "marah-al-arwah-src.txt:67 (ص 28)"
+    },
+    {
+      "ar": "وَأَمَّا بَقَى يَبْقَى وَفَنَى يَفْنَى وَقَلَى يَقْلَى فَلُغَاتُ بَنِي طَيٍّ قَدْ فَرُّوا مِنَ الْكَسْرَةِ إِلَى الْفَتْحَةِ.",
+      "en": "As for «baqā yabqā», «fanā yafnā» and «qalā yaqlā», they are dialect forms of the Banū Ṭayyiʾ, who fled from the kasra to the fatḥa.",
+      "tr": "«بَقَى يَبْقَى», «فَنَى يَفْنَى» ve «قَلَى يَقْلَى»ya gelince, bunlar Benî Tay'ın lügatleridir; onlar kesreden fethaya kaçmışlardır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 7,
+      "sentence": "s6",
+      "source": "marah-al-arwah-src.txt:69 (ص 29)"
+    },
+    {
+      "ar": "وَكَرُمَ يَكْرُمُ لَا يَدْخُلُ فِي الدَّعَائِمِ لِأَنَّهُ لَا يَجِيءُ إِلَّا مِنَ الطَّبَائِعِ وَالنُّعُوتِ.",
+      "en": "«Karuma yakrumu» does not enter among the pillars, because it comes only for inborn traits and qualities.",
+      "tr": "«كَرُمَ يَكْرُمُ» direklere dâhil olmaz; çünkü yalnızca yaratılıştan gelen huylar ve sıfatlar için gelir.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 7,
+      "sentence": "s7",
+      "source": "marah-al-arwah-src.txt:70 (ص 29)"
+    },
+    {
+      "ar": "وَحَسِبَ يَحْسِبُ لَا يَدْخُلُ فِي الدَّعَائِمِ لِقِلَّتِهِ.",
+      "en": "«Ḥasiba yaḥsibu» does not enter among the pillars, because it is rare.",
+      "tr": "«حَسِبَ يَحْسِبُ» direklere dâhil olmaz; çünkü azdır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 7,
+      "sentence": "s8",
+      "source": "marah-al-arwah-src.txt:71 (ص 29)"
+    },
+    {
+      "ar": "ثُمَّ الْفِعْلُ إِمَّا ثُلَاثِيٌّ وَإِمَّا رُبَاعِيٌّ.",
+      "en": "Then the verb is either triliteral or quadriliteral.",
+      "tr": "Sonra fiil ya sülâsîdir ya rubâîdir.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 1,
+      "sentence": "s3",
+      "source": "tasrif-al-izzi-src.txt:7 (ص 50)"
+    },
+    {
+      "ar": "وَنَعْنِي بِالسَّالِمِ مَا سَلِمَتْ حُرُوفُهُ الْأَصْلِيَّةُ الَّتِي تُقَابَلُ بِالْفَاءِ وَالْعَيْنِ وَاللَّامِ مِنْ حُرُوفِ الْعِلَّةِ وَالْهَمْزَةِ وَالتَّضْعِيفِ.",
+      "en": "By the sound we mean that whose root letters — those matched by the fāʾ, the ʿayn and the lām — are free of the weak letters, the hamza and doubling.",
+      "tr": "Sâlim ile, fâ, ayn ve lâm ile karşılanan aslî harfleri illet harflerinden, hemzeden ve taz'îften sâlim olanı kastederiz.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 1,
+      "sentence": "s6",
+      "source": "tasrif-al-izzi-src.txt:10 (ص 50)"
+    },
+    {
+      "ar": "وَأَبَى يَأْبَى شَاذٌّ.",
+      "en": "And أَبَى يَأْبَى is irregular (shādhdh).",
+      "tr": "أَبَى يَأْبَى ise şâzdır.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 2,
+      "sentence": "s3",
+      "source": "tasrif-al-izzi-src.txt:15 (ص 51)"
+    },
+    {
+      "ar": "وَقَدْ جَاءَ فَعُلَ يَفْعَلُ عَلَى لُغَةِ مَنْ قَالَ كُدْتَ تَكَادُ، وَهِيَ شَاذَّةٌ كَفَضِلَ يَفْضُلُ وَدِمْتَ تَدُومُ.",
+      "en": "«Faʿula yafʿalu» has come in the dialect of those who say «kudta takādu»; it is anomalous, like «faḍila yafḍulu» and «dimta tadūmu».",
+      "tr": "«فَعُلَ يَفْعَلُ», «كُدْتَ تَكَادُ» diyenlerin lügatinde gelmiştir; bu, «فَضِلَ يَفْضُلُ» ve «دِمْتَ تَدُومُ» gibi şâzdır.",
+      "sourceStory": "marah-al-arwah",
+      "chapter": 7,
+      "sentence": "s9",
+      "source": "marah-al-arwah-src.txt:72 (ص 29)"
+    },
+    {
+      "ar": "فعللر ايكى قسم اوزره در. اصلى؛ يعنى حرفلرنك تمامى اصلندن  اولور.",
+      "en": "Verbs are of two kinds. The aṣlī: all of its letters are root letters. [translation · awaiting the hoca's review]",
+      "tr": "Fiiller iki kısımdır. Aslî: yani harflerinin tamamı asıldandır. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:79"
+    },
+    {
+      "ar": "ذو زياده؛ يعنى زياده صاحبى اولور. اصلى؛ ده ثلاثى اولور، رباعى اولور.",
+      "en": "The dhū ziyāda: the one that has an added letter. The aṣlī is either triliteral or quadriliteral. [translation · awaiting the hoca's review]",
+      "tr": "Zû ziyâde: yani ziyade (harf) sahibi olan. Aslî de ya sülâsî olur ya rubâî olur. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:80"
+    },
+    {
+      "ar": "معناسى؛ فعل ماضى سى اوچ حرف اوزره اولان فعلدر\nوثلاثى مجرد ده آلتى بابدر.",
+      "en": "Its meaning: a verb whose māḍī stands on three letters. The bare triliteral has six bābs. [translation · awaiting the hoca's review]",
+      "tr": "Manası: mâzîsi üç harf üzere olan fiildir. Sülâsî mücerred de altı bâbtır. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:82–83"
+    },
+    {
+      "ar": "يعنى فَتْحٌ ضَمٌّ، فَتْحٌ  كَسْرٌ، فَتْحَتَانْ، كَسْرٌ فَتْحٌ،ضَمٌّ ضَمٌّ،كَسْرَتاَنْ  در.",
+      "en": "That is (the ʿayn's vowel in the māḍī and in the muḍāriʿ, bāb by bāb): fatḥa–ḍamma, fatḥa–kasra, two fatḥas, kasra–fatḥa, ḍamma–ḍamma, two kasras. [translation · awaiting the hoca's review]",
+      "tr": "Yani (mâzî ile muzârînin ayn harekeleri sırasıyla): fetha–damme, fetha–kesre, iki fetha, kesre–fetha, damme–damme, iki kesredir. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:90",
+      "matn": [
+        "فَتْحٌ",
+        "ضَمٌّ",
+        "كَسْرٌ",
+        "فَتْحَتَانْ",
+        "كَسْرَتاَنْ"
+      ]
+    },
+    {
+      "ar": "اوچنجى بابه مخصوص اولان فعل، آنجق عين الفعل ويا لام الفعل حروف حلقدن\nبر حرف اولان فعلدر.",
+      "en": "A verb proper to the third bāb is only one whose ʿayn or lām is one of the throat letters. [translation · awaiting the hoca's review]",
+      "tr": "Üçüncü bâba mahsus olan fiil, ancak aynü'l-fiili veya lâmü'l-fiili boğaz harflerinden bir harf olan fiildir. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:91–92"
+    },
+    {
+      "ar": "يعنى اوچنجى بابدن گلن فعلك عين الفعل ويا لام الفعلنده حروف حلق دن بر حرف اولور.",
+      "en": "That is, a verb of the third bāb has one of the throat letters as its ʿayn or its lām. [translation · awaiting the hoca's review]",
+      "tr": "Yani üçüncü bâbdan gelen fiilin aynü'l-fiilinde veya lâmü'l-fiilinde boğaz harflerinden biri bulunur. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:93"
+    },
+    {
+      "ar": "نوط: اوچنجى بابدن گلن فعلك عين الفعل ويا لام الفعلنده حروف حلق دن بر حرف اولور.",
+      "en": "Note: a verb of the third bāb has one of the throat letters as its ʿayn or its lām. [translation · awaiting the hoca's review]",
+      "tr": "Not: Üçüncü bâbdan gelen fiilin aynü'l-fiilinde veya lâmü'l-fiilinde boğaz harflerinden biri bulunur. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:105"
+    },
+    {
+      "ar": "فقط هر عين الفعل ويا لام الفعلنده حروف حلق اولان فعل،اوچنجى بابدن اولماسى لازم گلمز.",
+      "en": "But not every verb with a throat letter as its ʿayn or lām need be of the third bāb. [translation · awaiting the hoca's review]",
+      "tr": "Fakat aynü'l-fiilinde veya lâmü'l-fiilinde boğaz harfi bulunan her fiilin üçüncü bâbdan olması gerekmez. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:106"
+    },
+    {
+      "ar": "حروف حلق يعنى بوغاز حرفلرى ح ،خ، ع ،غ، ﻫ ، ء ، اولمق اوزره  ٦ حرفدر.",
+      "en": "The ḥurūf al-ḥalq, the throat letters, are six: ح، خ، ع، غ، ه، ء. [translation · awaiting the hoca's review]",
+      "tr": "Hurûf-ı halk, yani boğaz harfleri ح، خ، ع، غ، ه، ء olmak üzere altı harftir. [çeviri · hoca onayı bekliyor]",
+      "source": "maqsud-sarf.txt:108"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "ضَرَبَ يَضْرُبُ",
+      "right": "ضَرَبَ يَضْرِبُ",
+      "why": {
+        "en": "The bab is not a choice. ضَرَبَ is bab 2 and its present takes kasra; changing the vowel changes the word into one that does not exist.",
+        "tr": "Bâb keyfî değildir. ضَرَبَ ikinci bâbdandır, muzârisi kesre alır; hareke değişince kelime var olmayan bir şekle döner."
+      }
+    },
+    {
+      "wrong": "كَرُمَ الرَّجُلُ الضَّيْفَ",
+      "right": "أَكْرَمَ الرَّجُلُ الضَّيْفَ",
+      "why": {
+        "en": "Bab 5 never takes an object. To make it transitive you must move the verb to bab IV: أَكْرَمَ.",
+        "tr": "Beşinci bâb mef'ûl almaz. Müteaddî yapmak için fiili if'âl bâbına nakletmek gerekir: أَكْرَمَ."
+      }
+    },
+    {
+      "wrong": "كَتَبَ يَكْتَبُ",
+      "right": "كَتَبَ يَكْتُبُ",
+      "why": {
+        "en": "Bab 3's fatha-fatha needs a throat letter in the middle or last radical. ك ت ب has none, so كَتَبَ is bab 1.",
+        "tr": "Üçüncü bâbın fetha-fethası için ayn yahut lâmda hurûf-ı halktan bir harf gerekir. ك ت ب'de yoktur, dolayısıyla كَتَبَ birinci bâbdandır."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "augmented-babs",
+    "masdar",
+    "hollow-verbs"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

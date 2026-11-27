@@ -1,0 +1,40 @@
+{
+ "book": "vakif-mali",
+ "ledger": "aux",
+ "title": "Vakıf malı — Q&A on waqf property (Turkish)",
+ "source": "research/sources/vakif-mali-turkce.txt",
+ "files": [
+  "research/sources/vakif-mali-turkce.txt"
+ ],
+ "group": "texts",
+ "note": "Term sheet: one entry per term; carried when the term is in the package (glossary, translations, notes).",
+ "counts": {
+  "noted": 1,
+  "open": 1
+ },
+ "entries": [
+  {
+   "id": "t01",
+   "line": 14,
+   "ar": "VAKIF MALI",
+   "kind": "term",
+   "carried_by": [
+    {
+     "type": "shelf",
+     "ref": "kitab-al-waqf",
+     "how": "the term in its glossary / translations / manifest"
+    }
+   ],
+   "status": "noted"
+  },
+  {
+   "id": "t02",
+   "line": 15,
+   "ar": "Soru",
+   "kind": "term",
+   "carried_by": [],
+   "reason": "the term is not in kitab-al-waqf's glossary, translations or manifest",
+   "status": "open"
+  }
+ ]
+}

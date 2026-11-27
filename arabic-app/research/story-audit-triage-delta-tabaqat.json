@@ -1,0 +1,99 @@
+{
+ "tag": "tabaqat",
+ "wave": "v358-T",
+ "note": "The Ṭabaqāt's stories (tabaqat-*): every contradiction tools/grammar_audit.js listed on the new packages, judged by the line. The first run listed 9; one was the author's wording and was corrected in the kit (listed under «corrected»: the conjoined «وَسَلَّمَ» now says its clause is parenthetic like «صَلَّى»'s). Second run: 8 records, all judged here: E = the engine is wrong by the books, C = both readings are allowed.",
+ "corrected": [
+  {
+   "engine": "jumla",
+   "key": "tabaqat-dhat-al-nitaqayn:1:s2:7",
+   "word": "وَسَلَّمَ"
+  }
+ ],
+ "records": [
+  {
+   "engine": "sign",
+   "key": "tabaqat-sakrat-al-mawt:1:s5:2",
+   "pkg": "tabaqat-sakrat-al-mawt",
+   "ch": "1",
+   "sen": "s5",
+   "word": "مُلَاءَتَيَّ",
+   "verdict": "E",
+   "why": "«مُلَاءَتَيَّ» is a dual annexed to the speaker's ya (the dual's nūn dropped, its ya merged into the speaker's): a dual in nasb is by the ya — the engine takes the word for a sound singular and asks for a fatḥa."
+  },
+  {
+   "engine": "case",
+   "key": "tabaqat-abu-bakr-fi-al-suq:1:s2:11",
+   "pkg": "tabaqat-abu-bakr-fi-al-suq",
+   "ch": "1",
+   "sen": "s2",
+   "word": "أَثْوَابٌ",
+   "verdict": "E",
+   "why": "«وَعَلَى رَقَبَتِهِ أَثْوَابٌ» is a nominal ḥāl clause opened by its wāw (fronted khabar «عَلَى رَقَبَتِهِ», delayed mubtadaʾ «أَثْوَابٌ»); the predicate of «أَصْبَحَ» is «غَادِيًا», already in nasb — the engine reaches past the wāw of the ḥāl."
+  },
+  {
+   "engine": "case",
+   "key": "tabaqat-abu-bakr-fi-al-suq:2:s11:12",
+   "pkg": "tabaqat-abu-bakr-fi-al-suq",
+   "ch": "2",
+   "sen": "s11",
+   "word": "اثْنَانِ",
+   "verdict": "E",
+   "why": "«اثْنَانِ» is a dual-form noun (mulḥaq bi-l-muthannā): its raf' is by the alif and it never takes tanwin; the engine's «اثْنَانٌ» is not Arabic."
+  },
+  {
+   "engine": "case",
+   "key": "tabaqat-dhat-al-nitaqayn:2:s8:8",
+   "pkg": "tabaqat-dhat-al-nitaqayn",
+   "ch": "2",
+   "sen": "s8",
+   "word": "عَارُهَا",
+   "verdict": "C",
+   "why": "«تِلْكَ شَكَاةٌ ظَاهِرٌ عَنْكَ عَارُهَا»: «ظَاهِرٌ» a sababī naʿt of «شَكَاةٌ» with «عَارُهَا» its doer (the line), or «ظَاهِرٌ» a fronted khabar and «عَارُهَا» its mubtadaʾ, the clause the naʿt (the engine) — both are the grammarians' readings of the half-line; the case (raf') is the same.",
+   "cite": {
+    "file": "research/sources/sharh-ibn-aqil-src.txt",
+    "line": 924,
+    "ar": "زيد قائم أبوه"
+   }
+  },
+  {
+   "engine": "taalluq",
+   "key": "tabaqat-dhat-al-nitaqayn:1:s2:12",
+   "pkg": "tabaqat-dhat-al-nitaqayn",
+   "ch": "1",
+   "sen": "s2",
+   "word": "حِينَ",
+   "verdict": "E",
+   "why": "«حِينَ أَرَادَ …» hangs on «صَنَعْتُ» (she made the bag when he meant to emigrate); «وَسَلَّمَ» belongs to the parenthetic supplication «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ», which governs nothing outside itself."
+  },
+  {
+   "engine": "taalluq",
+   "key": "tabaqat-hawl-al-muttala:1:s2:6",
+   "pkg": "tabaqat-hawl-al-muttala",
+   "ch": "1",
+   "sen": "s2",
+   "word": "بَعْدَ",
+   "verdict": "E",
+   "why": "«بَعْدَ مَا طُعِنَ» is the time of «دَعَا» (he called for milk after he was stabbed); a proper name «الْخَطَّابِ» carries no taʿalluq and «بَعْدَ» is no naʿt of «لَبَن» here."
+  },
+  {
+   "engine": "inna",
+   "key": "tabaqat-ahad-ahad:2:s6:1",
+   "pkg": "tabaqat-ahad-ahad",
+   "ch": "2",
+   "sen": "s6",
+   "word": "أَنَّ",
+   "verdict": "E",
+   "why": "«أَنَّ» follows «عَنْ مُحَمَّدٍ» of the isnād in the same printed sentence («… عن أيوب عن محمد أن بلالا …»): «(narrating) that …», so its hamza is opened; the sentence division at «أَنَّ» is ours, and the engine reads it as the head of a sentence."
+  },
+  {
+   "engine": "inna",
+   "key": "tabaqat-dhat-al-nitaqayn:2:s7:1",
+   "pkg": "tabaqat-dhat-al-nitaqayn",
+   "ch": "2",
+   "sen": "s7",
+   "word": "أَنَّ",
+   "verdict": "E",
+   "why": "«أَنَّ» follows «عَنْ أَبِيهِ» of the isnād in the same printed sentence («… عن أبيه أن أهل الشام …»): opened; the sentence division at «أَنَّ» is ours."
+  }
+ ]
+}

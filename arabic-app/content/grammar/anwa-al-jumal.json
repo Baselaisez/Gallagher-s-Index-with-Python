@@ -1,0 +1,132 @@
+{
+ "id": "anwa-al-jumal",
+ "title": {
+  "ar": "أَنْوَاعُ الْجُمَلِ وَمَحَلُّهَا مِنَ الْإِعْرَابِ",
+  "en": "Kinds of clauses, and their place in i'rab",
+  "tr": "Cümle çeşitleri ve i'rabdan mahalleri"
+ },
+ "level": 6,
+ "group": "nahw",
+ "classicalSources": [
+  "الإعراب عن قواعد الإعراب (ابن هشام) — الباب الأول",
+  "مغني اللبيب (ابن هشام)"
+ ],
+ "plain": {
+  "en": "A whole clause can sit where a single word would sit — as a khabar, a hal, an object — and then it takes that word's case «by position». Other clauses (openers, relative clauses, asides) sit nowhere, and have no case at all.",
+  "tr": "Bütün bir cümle, tek bir kelimenin oturacağı yere oturabilir — haber, hâl, mef'ûl olarak — ve o kelimenin i'rabını «mahallen» alır. Başka cümleler (başlangıç, sıla, ara cümleleri) hiçbir yere oturmaz; onların i'rabdan mahalli yoktur."
+ },
+ "explanation": {
+  "en": "A sentence that begins with a noun is ISMIYYA; with a verb, FI'LIYYA. Ibn Hisham's Qawa'id al-I'rab then divides all clauses into two sevens. Clauses WITH a place in i'rab: (1) a khabar clause — raf' after a mubtada or إِنَّ, nasb after كَانَ; (2) a hal clause — nasb; (3) an object clause — nasb, chiefly the quoted speech after قَالَ; (4) a mudaf-ilayh clause — jarr, after إِذَا، لَمَّا، حَيْثُ; (5) the answer of a JAZM condition — jazm, but only when it is tied on with فَ or the إِذَا of surprise; (6) a clause standing as sifa to a noun — matching its noun's case; (7) any clause joined by atf to one of these. Clauses WITHOUT a place: (1) the opener (ibtida'iyya / isti'nafiyya); (2) the sila of a relative — including the sila of a harfi mawsul like أَنْ; (3) the parenthetical (mu'tarida), such as a دُعَاء dropped mid-sentence; (4) the explanatory (tafsiriyya); (5) the answer of an oath; (6) the answer of a NON-jazm condition (لَوْ، لَوْلَا، إِذَا) — and the answer of a jazm condition NOT tied on with فَ; (7) whatever follows one of these by atf. The i'rab sheet of every analysed sentence in this app names its clauses by exactly this list.",
+  "tr": "İsimle başlayan cümle İSMİYYE, fiille başlayan FİİLİYYE'dir. İbn Hişâm'ın Kavâidü'l-İ'râb'ı bütün cümleleri iki yediliye ayırır. İ'rabdan MAHALLİ OLAN cümleler: (1) haber cümlesi — mübteda ve إِنَّ'den sonra ref, كَانَ'den sonra nasb; (2) hâl cümlesi — nasb; (3) mef'ûl cümlesi — nasb, en çok قَالَ'den sonraki makûlü'l-kavl; (4) muzâfun ileyh cümlesi — cer, إِذَا، لَمَّا، حَيْثُ'den sonra; (5) CEZM eden şartın cevabı — yalnız فَ yahut izâ-i fücâiyye ile bağlandığında cezm; (6) bir isme sıfat olan cümle — mevsufunun i'rabınca; (7) bunlardan birine atıfla bağlanan cümle. MAHALLİ OLMAYAN cümleler: (1) ibtidâiyye/isti'nâfiyye; (2) sıla cümlesi — أَنْ gibi harfî mevsûlün sılası dahil; (3) mu'tarıza (ara) cümlesi — cümle ortasına düşen duâ gibi; (4) tefsiriyye; (5) kasemin cevabı; (6) cezmedici OLMAYAN şartın (لَوْ، لَوْلَا، إِذَا) cevabı — ve cezmedici şarta فَ'sız gelen cevap; (7) bunlara tâbi olan. Bu uygulamada tahlilli her cümlenin i'rab sayfası, cümleleri tam bu listeyle adlandırır."
+ },
+ "examples": [
+  {
+   "ar": "هٰذِهِ وَصِيَّةُ الْإِمَامِ — رَحِمَهُ اللهُ — لِتِلْمِيذِهِ.",
+   "en": "The opener is an ismiyya with no place in i'rab; «may Allah have mercy on him» is a mu'tarida — also i'rabless, an aside of supplication.",
+   "sourceStory": "wasiyyat-abi-hanifa-samti",
+   "sentence": "s1",
+   "chapter": 1,
+   "tr": "Baştaki cümle ismiyye-ibtidâiyyedir, mahalli yoktur; «رحمه الله» mu'tarızadır — duâ arası, onun da mahalli yoktur."
+  },
+  {
+   "ar": "زيدٌ قام أبوه",
+   "en": "WITH a seat (1) — a KHABAR clause: «قام أبوه» stands where a single khabar would, in the seat of rafʿ.",
+   "tr": "Mahalli olan (1) — HABER cümlesi: «قام أبوه» tek kelimelik haberin yerindedir, ref mahallinde.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:49 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "إنهم كانوا يظلمون",
+   "en": "WITH a seat (1) — the khabar of كَانَ: «يظلمون» is in the seat of naṣb.",
+   "tr": "Mahalli olan (1) — kâne'nin haberi: «يظلمون» nasb mahallindedir.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:49 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "قال: إني عبد الله",
+   "en": "WITH a seat (3) — the MAQŪL of قَالَ: «إني عبد الله» is its object, in the seat of naṣb.",
+   "tr": "Mahalli olan (3) — kavlin MAKÛLÜ: «إني عبد الله» onun mef'ûlüdür, nasb mahallinde.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:53 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "﴿مَن يُضْلِلِ ٱللَّهُ فَلَا هَادِيَ لَهُۥ …﴾",
+   "en": "WITH a seat (5) — the ANSWER of a jāzim condition tied on with the fāʾ: «فلا هادي له» is in the seat of jazm (and هَادِيَ is lā's ism).",
+   "tr": "Mahalli olan (5) — fâ ile bağlanan cezmedici şartın CEVABI: «فلا هادي له» cezm mahallindedir (هَادِيَ, lâ'nın ismidir).",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:65 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "﴿وَٱتَّقُواْ يَوْمًا تُرْجَعُونَ فِيهِ﴾",
+   "en": "WITH a seat (6) — a clause after an indefinite is its NAʿT: «ترجعون فيه» describes يَوْمًا, in the seat of naṣb.",
+   "tr": "Mahalli olan (6) — nekreden sonraki cümle onun NA'TIdır: «ترجعون فيه», يَوْمًا'yı niteler, nasb mahallinde.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:84 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "زيدٌ قام أبوه وقعد أخوه",
+   "en": "WITH a seat (7) — the FOLLOWER of a clause with a seat: «وقعد أخوه» joins «قام أبوه» and shares its rafʿ (joined to the whole sentence instead, it would have none — m.88).",
+   "tr": "Mahalli olan (7) — mahalli olan cümleye TÂBİ: «وقعد أخوه», «قام أبوه»ya atfedilir ve ref mahallini paylaşır (bütün cümleye atfedilirse mahalli olmaz — s. 88).",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:86 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "إنا أعطيناك الكوثر",
+   "en": "WITHOUT a seat (1) — the IBTIDĀʾIYYA: the opening of speech sits nowhere.",
+   "tr": "Mahalli olmayan (1) — İBTİDÂİYYE: sözün başı hiçbir yere oturmaz.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:102 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "جاء الَّذي قام أبوه",
+   "en": "WITHOUT a seat (2) — the ṢILA: the relative takes the case; «قام أبوه» has none.",
+   "tr": "Mahalli olmayan (2) — SILA: i'rabı mevsûl alır; «قام أبوه»nun mahalli yoktur.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:124 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "﴿كَمَثَلِ ءَادَمَ ۖ خَلَقَهُۥ مِن تُرَابٍ …﴾",
+   "en": "WITHOUT a seat (4) — the TAFSĪRIYYA: «خلقه من تراب» lays open what «كمثل آدم» means.",
+   "tr": "Mahalli olmayan (4) — TEFSÎRİYYE: «خلقه من تراب», «كمثل آدم»ın hakikatini açar.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:144 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "إن قام أخوك قامَ عمرٌو",
+   "en": "WITHOUT a seat (6) — the answer of a jāzim with no fāʾ and no إِذَا: the verb alone is in the seat of jazm, the clause has none.",
+   "tr": "Mahalli olmayan (6) — fâ'sız ve izâ'sız cezmedici şartın cevabı: cezm mahalli yalnız fiilindir, cümlenin mahalli yoktur.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:67 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "إن قاما ويقعدا أخواك",
+   "en": "A condition with two verbs sharing one doer: the joined verb is jussive though its clause is not yet complete — the condition clause has a seat of jazm.",
+   "tr": "Tek fâili paylaşan iki fiilli şart: cümle tamamlanmadan atfedilen fiil meczumdur — şart cümlesinin cezm mahalli vardır.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:71 (Qawāʿid al-Iʿrāb bāb 1)"
+  },
+  {
+   "ar": "زيدٌ الخبزَ يأكلَه",
+   "en": "An explaining clause: the written verb explains a dropped one that governs the fronted object.",
+   "tr": "Tefsir cümlesi: yazılı fiil, öne alınan mef'ûlü nasbeden mahzûf fiili açıklar.",
+   "source": "research/sources/qawaid-al-irab-ibn-hisham-matn.txt:166 (Qawāʿid al-Iʿrāb bāb 1)"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "جُمْلَةُ الصِّلَةِ فِي مَحَلِّ رَفْعٍ",
+   "right": "جُمْلَةُ الصِّلَةِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ",
+   "why": {
+    "en": "The relative NOUN takes the case; its sila never does. Giving the sila a mahall doubles one seat of i'rab into two.",
+    "tr": "İ'rabı alan İSM-İ MEVSÛLDÜR; sılası asla almaz. Sılaya mahall vermek, tek i'rab makamını ikiye katlamaktır."
+   }
+  },
+  {
+   "wrong": "مَتَى أَسَأْتَ صَارُوا لَكَ أَعْدَاءً — جُمْلَةُ الْجَوَابِ فِي مَحَلِّ جَزْمٍ",
+   "right": "جُمْلَةُ الْجَوَابِ لَا مَحَلَّ لَهَا لِأَنَّهَا لَمْ تَقْتَرِنْ بِالْفَاءِ",
+   "why": {
+    "en": "Only an answer tied on with فَ (or the إِذَا of surprise) occupies the position of jazm; a bare answer leaves the jazm on the verb itself and the clause i'rabless.",
+    "tr": "Yalnız فَ (yahut izâ-i fücâiyye) ile bağlanan cevap cezm mahallini tutar; çıplak cevapta cezm fiilin kendisindedir, cümlenin mahalli yoktur."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "mubtada-khabar",
+  "hal",
+  "ism-mawsul",
+  "jumla-mutarida",
+  "jumla-sifa",
+  "in-shartiyya",
+  "al-kalima-wal-kalam",
+  "al-hal-jumla-wa-rabituha"
+ ]
+}

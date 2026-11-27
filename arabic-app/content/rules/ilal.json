@@ -1,0 +1,4941 @@
+{
+ "built_by": "tools/ilal/build_ilal.py (v348-F) from tools/ilal/kept.json over research/ilal/candidates.json",
+ "about": "the grammarians' own reasons (taʿlīl), verbatim and unvowelled as printed, anchored by book, vol:page and Shamela page. en/tr are our renderings — «çeviri · hoca onayı bekliyor».",
+ "books": {
+  "shaykhzade": {
+   "ar": "شرح قواعد الإعراب لشيخ زاده",
+   "en": "Shaykhzāde, Sharḥ Qawāʿid al-Iʿrāb",
+   "tr": "Şeyhzâde, Şerhu Kavâidi'l-İ'râb",
+   "short_en": "Shaykhzāde",
+   "short_tr": "Şeyhzâde",
+   "file": "research/sources/sharh-qawaid-al-irab-shaykhzade-src.txt"
+  },
+  "ibn-malik": {
+   "ar": "شرح الكافية الشافية لابن مالك",
+   "en": "Ibn Mālik, Sharḥ al-Kāfiya al-Shāfiya",
+   "tr": "İbn Mâlik, Şerhu'l-Kâfiyeti'ş-Şâfiye",
+   "short_en": "Ibn Mālik",
+   "short_tr": "İbn Mâlik",
+   "file": "research/sources/sharh-al-kafiya-al-shafiya-ibn-malik-src.txt"
+  },
+  "radi": {
+   "ar": "شرح شافية ابن الحاجب للرضي",
+   "en": "al-Raḍī, Sharḥ al-Shāfiya",
+   "tr": "Radî, Şerhu'ş-Şâfiye",
+   "short_en": "al-Raḍī",
+   "short_tr": "Radî",
+   "file": "research/sources/sharh-al-shafiya-radi-src.txt"
+  },
+  "ibn-aqil": {
+   "ar": "شرح ابن عقيل على ألفية ابن مالك",
+   "en": "Ibn ʿAqīl, Sharḥ al-Alfiyya",
+   "tr": "İbn Akîl, Şerhu'l-Elfiyye",
+   "short_en": "Ibn ʿAqīl",
+   "short_tr": "İbn Akîl",
+   "file": "research/sources/sharh-ibn-aqil-src.txt"
+  },
+  "ibn-aqil-editor": {
+   "ar": "منحة الجليل بتحقيق شرح ابن عقيل (محمد محيي الدين عبد الحميد)",
+   "en": "Muḥyī al-Dīn ʿAbd al-Ḥamīd, Minḥat al-Jalīl (the editor's notes on Ibn ʿAqīl)",
+   "tr": "Muhyiddin Abdülhamîd, Minhatü'l-Celîl (İbn Akîl'in muhakkiki)",
+   "short_en": "ʿAbd al-Ḥamīd (ed.)",
+   "short_tr": "Abdülhamîd (muhakkik)",
+   "file": "research/sources/sharh-ibn-aqil-src.txt"
+  },
+  "khasais": {
+   "ar": "الخصائص",
+   "en": "Ibn Jinnī, al-Khaṣāʾiṣ",
+   "tr": "İbn Cinnî, el-Hasâis",
+   "short_en": "Ibn Jinnī",
+   "short_tr": "İbn Cinnî",
+   "file": "research/sources/al-khasais-ibn-jinni-src.txt"
+  },
+  "shudhur-sharh": {
+   "ar": "شرح شذور الذهب في معرفة كلام العرب لابن هشام الأنصاري (تحقيق عبد الغني الدقر)",
+   "en": "Ibn Hishām, Sharḥ Shudhūr al-Dhahab",
+   "tr": "İbn Hişâm, Şerhu Şüzûri'z-Zeheb",
+   "short_en": "Ibn Hishām (Shudhūr)",
+   "short_tr": "İbn Hişâm (Şüzûr)",
+   "file": "research/sources/sharh-shudhur-al-dhahab-src.txt"
+  }
+ },
+ "counts": {
+  "reasons": 170,
+  "by_book": {
+   "shaykhzade": 29,
+   "ibn-malik": 41,
+   "radi": 20,
+   "ibn-aqil": 30,
+   "ibn-aqil-editor": 5,
+   "khasais": 31,
+   "shudhur-sharh": 14
+  },
+  "by_kind": {
+   "why-built": 10,
+   "why-state": 60,
+   "why-sign": 14,
+   "why-order": 25,
+   "why-form": 58,
+   "objection": 3
+  },
+  "rendered": 164,
+  "short": 133,
+  "topics": 53,
+  "notes_reached": 162
+ },
+ "reasons": [
+  {
+   "id": "ilal-shaykhzade-28-4",
+   "topic": "jumla",
+   "kind": "why-built",
+   "ar": "وإنما فسّرنا بذلك لأن الجملة من حيث هي جملة مبنية، والمبنيّ مخصوص بالإعراب المحلّي، بخلاف الإعراب اللفظي والتقديري، فإنهما مخصوصان بالمعرب.",
+   "book": "shaykhzade",
+   "vol_page": "1:19",
+   "shamela_page": 28,
+   "section": "الجمل التي لها محل من الإعراب",
+   "cls": "mabni",
+   "en": "A clause, as a clause, is built (mabnī); a built thing has only an iʿrāb of place — the spoken and the estimated iʿrāb belong to declinable words.",
+   "tr": "Cümle, cümle olarak mebnîdir; mebnînin i'rabı yalnız mahallîdir — lafzî ve takdirî i'rab mu'reb kelimelere mahsustur.",
+   "notes": [
+    "al-hal-jumla-wa-rabituha",
+    "al-madi-wal-jumla-mamulayn",
+    "anwa-al-jumal",
+    "jumla-mutarida",
+    "jumla-sifa",
+    "mawadi-irab-al-jumla",
+    "mawadi-kasr-inna"
+   ],
+   "ledger": [
+    "qawaid:Q47"
+   ],
+   "words": 23,
+   "why_at": 18,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-37-3",
+   "topic": "idafa",
+   "kind": "why-built",
+   "ar": "لأنّ يوم: اسم مستحقّ للإعراب، والإضافة إلى المبنيّ لا توجب البناء، لأنّ المضاف يكتسي من المضاف إليه التعريفَ والتخصيص",
+   "book": "shaykhzade",
+   "vol_page": "1:28",
+   "shamela_page": 37,
+   "section": "الواقعة مضافا إليه",
+   "cls": "mabni",
+   "en": "«Yawm» is a noun that deserves iʿrāb; being annexed to a built word does not make it built, for the muḍāf takes from the muḍāf ilayh only definiteness and specification.",
+   "tr": "«Yevm» i'rabı hak eden bir isimdir; mebnîye izâfe edilmek onu mebnî yapmaz, çünkü muzâf muzâfun ileyhten yalnız marifeliği ve tahsisi alır.",
+   "notes": [
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+    "al-majrur-bil-harf-wa-bil-idafa",
+    "al-mawsul-wal-muarraf-bil-lam-wal-mudaf",
+    "al-mudaf-wa-nawa-al-idafa",
+    "al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "hadhf-al-mudaf-wal-mudaf-ilayh",
+    "idafa-definiteness"
+   ],
+   "ledger": [
+    "qawaid:Q57"
+   ],
+   "words": 19,
+   "why_at": 67,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-38-3",
+   "topic": "idafa",
+   "kind": "why-state",
+   "ar": "والجملة في محل الجرّ لكونها مضافًا إليها",
+   "book": "shaykhzade",
+   "vol_page": "1:29",
+   "shamela_page": 38,
+   "section": "الواقعة مضافا إليه",
+   "role": "mudafIlayh",
+   "case": "jarr",
+   "en": "The clause is in the place of jarr because something is annexed to it.",
+   "tr": "Cümle cer mahallindedir, çünkü kendisine izâfe edilmiştir.",
+   "notes": [
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+    "al-majrur-bil-harf-wa-bil-idafa",
+    "al-mawsul-wal-muarraf-bil-lam-wal-mudaf",
+    "al-mudaf-wa-nawa-al-idafa",
+    "al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "hadhf-al-mudaf-wal-mudaf-ilayh",
+    "idafa-definiteness"
+   ],
+   "ledger": [
+    "qawaid:Q57",
+    "shudhur:R95",
+    "shudhur:R113",
+    "shudhur:R147",
+    "shudhur:R148",
+    "shudhur:R172",
+    "shudhur:R178",
+    "shudhur:R180"
+   ],
+   "words": 8,
+   "why_at": 21,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-42-1",
+   "topic": "jazm",
+   "kind": "why-state",
+   "ar": "ولا للجملة بأسرها، أي بمجموعها لأنّ أداة الشرط إنّما تعمل في شيئين، فلما عمل في محل الفعلين، لم يبقَ لها تسلُّط على محل الجملة",
+   "book": "shaykhzade",
+   "vol_page": "1:33",
+   "shamela_page": 42,
+   "section": "التابعة لمفرد",
+   "en": "The jazm is not the whole conditional sentence's: the conditional particle governs only two things; once it has governed the two verbs, it has no hold left on the sentence.",
+   "tr": "Cezm bütün şart cümlesinin değildir: şart edatı yalnız iki şeyde amel eder; iki fiilde amel edince cümlenin mahalli üzerinde hükmü kalmaz.",
+   "notes": [
+    "al-fa-fi-jawab-al-shart",
+    "al-madi-wal-jumla-mamulayn",
+    "al-majzum-wal-shart-wal-jaza",
+    "al-qasam-wal-shart-fil-kafiya",
+    "huruf-al-shart-fil-kafiya",
+    "idha-shartiyya",
+    "in-shartiyya",
+    "lam-jazim"
+   ],
+   "ledger": [
+    "qawaid:Q67",
+    "qawaid:Q69",
+    "qawaid:Q73"
+   ],
+   "words": 26,
+   "why_at": 31,
+   "short": false
+  },
+  {
+   "id": "ilal-shaykhzade-44-1",
+   "topic": "naat",
+   "kind": "why-state",
+   "ar": "والجملة الاسمية مجرورة المحلّ لكونها صفة ليوم.",
+   "book": "shaykhzade",
+   "vol_page": "1:35",
+   "shamela_page": 44,
+   "section": "التابعة لجملة لها محل من الإعراب",
+   "role": "naat",
+   "case": "jarr",
+   "en": "The nominal clause is majrūr in place because it describes «yawm».",
+   "tr": "İsim cümlesi mahallen mecrûrdur, çünkü «yevm»in sıfatıdır.",
+   "notes": [
+    "al-sifa-al-mushabbaha-fil-kafiya",
+    "al-tawabi-wal-sifa",
+    "ghayr-al-munsarif-al-qiyasi-al-alam-wal-sifa-wal-ajami-wal-muannath",
+    "jumla-sifa",
+    "masail-al-sifa-al-mushabbaha-fil-kafiya",
+    "naat-sifa",
+    "sifa-mushabbaha",
+    "taqsim-al-irab-bil-naw-wal-sifa-wal-taqdiri-al-awwal"
+   ],
+   "ledger": [
+    "qawaid:Q86"
+   ],
+   "words": 7,
+   "why_at": 30,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-44-2",
+   "topic": "khabar",
+   "kind": "why-state",
+   "ar": "فجملة (قام أبوه): في موضع رفع لأنها خبر، أي خبر مبتدأ",
+   "book": "shaykhzade",
+   "vol_page": "1:35",
+   "shamela_page": 44,
+   "section": "التابعة لجملة لها محل من الإعراب",
+   "role": "khabar",
+   "case": "raf",
+   "en": "The clause «qāma abūhu» is in the place of rafʿ because it is a khabar — the predicate of a mubtadaʾ.",
+   "tr": "«Kâme ebûhu» cümlesi ref' mahallindedir, çünkü haberdir — bir mübtedânın haberi.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "anwa-al-khabar",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q86"
+   ],
+   "words": 11,
+   "why_at": 30,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-43-1",
+   "topic": "la-jins",
+   "kind": "why-state",
+   "ar": "لأن (لا) إذا كان مكررًا كما في الآية، جاز الرفع لأنّه مقدّرٌ جوابًا لسؤال",
+   "book": "shaykhzade",
+   "vol_page": "1:34",
+   "shamela_page": 43,
+   "section": "التابعة لمفرد",
+   "en": "When «lā» is repeated, as in the verse, rafʿ is allowed, because it is taken as the answer to a question.",
+   "tr": "«Lâ» âyetteki gibi tekrarlanınca ref' caizdir, çünkü bir suale cevap olarak takdir edilir.",
+   "notes": [
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun",
+    "al-mansubat-al-tasi-ila-al-thalith-ashar",
+    "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha",
+    "la-nafiya-lil-jins",
+    "la-nafiya",
+    "ma-la-laysa-wa-la-al-jins"
+   ],
+   "ledger": [
+    "qawaid:Q84"
+   ],
+   "words": 18,
+   "why_at": 48,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-50-2",
+   "topic": "jarr",
+   "kind": "why-state",
+   "ar": "لأنّ حروف الجرّ لا تُعَلّق، بضم اللام، أي لا تمنع عن العمل، بل تعمل، فلو جُعلت حرفَ جرٍّ هنا لكان (ماء) مجرورًا، وليس كذلك في المشهور",
+   "book": "shaykhzade",
+   "vol_page": "1:41",
+   "shamela_page": 50,
+   "section": "صلة الموصول",
+   "en": "Jarr letters are never held back from working; had «ḥattā» been a jarr letter here, «māʾ» would be majrūr — and in the known reading it is not.",
+   "tr": "Cer harfleri amelden alıkonmaz; burada «hattâ» cer harfi olsaydı «mâ'» mecrûr olurdu — meşhur rivayette öyle değildir.",
+   "notes": [
+    "al-harf-wa-huruf-al-jarr-fil-kafiya",
+    "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa",
+    "hadhf-al-jarr",
+    "huruf-jarr-nawadir",
+    "huruf-jarr",
+    "jarr-al-jiwar",
+    "mahall-al-majrur",
+    "thulathi-mujarrad-babs"
+   ],
+   "ledger": [
+    "qawaid:Q122"
+   ],
+   "words": 31,
+   "short": false
+  },
+  {
+   "id": "ilal-shaykhzade-60-3",
+   "topic": "khabar",
+   "kind": "why-state",
+   "ar": "فيأكله المقدّم في موضع رفع لانّه خبر زيد، وكذلك المؤخّر لأنّه مفسّره",
+   "book": "shaykhzade",
+   "vol_page": "1:51",
+   "shamela_page": 60,
+   "section": "الجملة التفسيرية",
+   "role": "khabar",
+   "case": "raf",
+   "en": "The first «yaʾkuluhu» is in the place of rafʿ because it is Zayd's khabar; so is the later one, because it explains it.",
+   "tr": "Öndeki «ye'kuluhu» ref' mahallindedir, çünkü Zeyd'in haberidir; sondaki de öyledir, çünkü onu tefsir eder.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "anwa-al-khabar",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q166"
+   ],
+   "words": 17,
+   "why_at": 27,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-76-2",
+   "topic": "five-nouns",
+   "kind": "why-sign",
+   "ar": "لأن الأسماء الستة المضافة إلى غير ياء المتكلّم، كان جرّها بالياء.",
+   "book": "shaykhzade",
+   "vol_page": "1:67",
+   "shamela_page": 76,
+   "section": "الباب الثاني الجار والمجرور",
+   "cls": "khamsa",
+   "en": "The six nouns, annexed to anything but the speaker's yāʾ, take their jarr by the yāʾ.",
+   "tr": "Esmâ-i sitte, mütekellim yâsından başkasına izâfe edilince, cerleri yâ iledir.",
+   "notes": [
+    "al-taqdiri-al-rabi-ila-al-sadis-al-ya-wal-waw-wal-murab-bil-huruf-qabl-al-sakin",
+    "five-nouns"
+   ],
+   "ledger": [],
+   "words": 13,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-87-2",
+   "topic": "naat",
+   "kind": "why-state",
+   "ar": "ففوق ظرف مكان مبهم منصوب لفظًا، ومجرور محلًا لكونه صفة لطائر، وإنما جُعل صفة لكون، طائر نكرة محضة.",
+   "book": "shaykhzade",
+   "vol_page": "1:78",
+   "shamela_page": 87,
+   "section": "الباب الثاني الجار والمجرور",
+   "role": "naat",
+   "case": "jarr",
+   "en": "«Fawqa» is naṣb in its wording and jarr in its place, because it describes «ṭāʾir»; it is taken as a description because «ṭāʾir» is wholly indefinite.",
+   "tr": "«Fevka» lafzen mansûb, mahallen mecrûrdur, çünkü «tâir»in sıfatıdır; sıfat sayılır, çünkü «tâir» tam nekredir.",
+   "notes": [
+    "al-sifa-al-mushabbaha-fil-kafiya",
+    "al-tawabi-wal-sifa",
+    "ghayr-al-munsarif-al-qiyasi-al-alam-wal-sifa-wal-ajami-wal-muannath",
+    "jumla-sifa",
+    "masail-al-sifa-al-mushabbaha-fil-kafiya",
+    "naat-sifa",
+    "sifa-mushabbaha",
+    "taqsim-al-irab-bil-naw-wal-sifa-wal-taqdiri-al-awwal"
+   ],
+   "ledger": [
+    "qawaid:Q423",
+    "qawaid:Q435",
+    "shudhur:R42",
+    "izhar:I-B17",
+    "izhar:I-B26",
+    "izhar:I-119.1",
+    "izhar:I-122.0",
+    "izhar:I-137.2"
+   ],
+   "words": 21,
+   "why_at": 45,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-87-3",
+   "topic": "hal",
+   "kind": "why-state",
+   "ar": "فبين: ظرف مكان مبهم حال من الهلال لكونه معرفة",
+   "book": "shaykhzade",
+   "vol_page": "1:78",
+   "shamela_page": 87,
+   "section": "الباب الثاني الجار والمجرور",
+   "role": "hal",
+   "case": "nasb",
+   "en": "«Bayna» is a ḥāl of «al-hilāl», because «al-hilāl» is definite.",
+   "tr": "«Beyne», «el-hilâl»den hâldir, çünkü «el-hilâl» marifedir.",
+   "notes": [
+    "al-hal-jumla-wa-rabituha",
+    "al-maful-maah-wal-hal",
+    "hal",
+    "mana-al-fil"
+   ],
+   "ledger": [
+    "qawaid:Q90",
+    "qawaid:Q375",
+    "shudhur:R83",
+    "izhar:I-A31",
+    "izhar:I-A32",
+    "izhar:I-A33",
+    "izhar:I-A34",
+    "izhar:I-A35"
+   ],
+   "words": 9,
+   "why_at": 34,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-92-1",
+   "topic": "irab-bina",
+   "kind": "why-built",
+   "ar": "لكن الفتح أفصح لأنّه في الأصل منصوب على الظرفية، فيبقى بعد ذهاب الإعراب على صورة ما كان عليه",
+   "book": "shaykhzade",
+   "vol_page": "1:83",
+   "shamela_page": 92,
+   "section": "عوض",
+   "cls": "mabni",
+   "en": "(Of «ʿawḍ») the fatḥa is the most correct, because it was at first naṣb as an adverb, and kept that look after its iʿrāb went.",
+   "tr": "(«Avd»de) fetha en fasihtir, çünkü aslında zarf olarak mansûbdu; i'rabı gidince eski suretinde kaldı.",
+   "notes": [
+    "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+    "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+    "al-kinayat-wal-zuruf-al-mabniyya",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-wal-mudmar",
+    "al-murab-wal-mabni-wal-irab",
+    "al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh",
+    "anwa-al-jumal"
+   ],
+   "ledger": [
+    "qawaid:Q47",
+    "shudhur:S49",
+    "shudhur:R1",
+    "kafiya:K2:s4",
+    "kafiya:K3:s1",
+    "marah:marah:src47",
+    "marah:marah:src92",
+    "marah:marah:src278"
+   ],
+   "words": 19,
+   "why_at": 15,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-117-2",
+   "topic": "la-jins",
+   "kind": "why-state",
+   "ar": "لأن (لا) التي لنفي الجنس نقيض (إن) من حيث أنها للإثبات و (لا) للنفي.",
+   "book": "shaykhzade",
+   "vol_page": "1:108",
+   "shamela_page": 117,
+   "section": "لا",
+   "role": "ismLa",
+   "case": "nasb",
+   "en": "The lā that denies the genus works like inna because it is inna's opposite: inna affirms, lā denies.",
+   "tr": "Nefy-i cins lâ'sı inne gibi amel eder, çünkü inne'nin zıddıdır: inne isbat, lâ nefy içindir.",
+   "notes": [
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun",
+    "al-mansubat-al-tasi-ila-al-thalith-ashar",
+    "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha",
+    "la-nafiya-lil-jins",
+    "la-nafiya",
+    "ma-la-laysa-wa-la-al-jins"
+   ],
+   "ledger": [
+    "qawaid:Q243"
+   ],
+   "words": 14,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-117-3",
+   "topic": "la-jins",
+   "kind": "why-order",
+   "ar": "لكن مرفوعها لا يتقدم على اسمها, ولو كان ظرفا، لأنها محمولة على (إن) في العمل، فانحطت مرتبتها عن مرتبة أصلها",
+   "book": "shaykhzade",
+   "vol_page": "1:108",
+   "shamela_page": 117,
+   "section": "لا",
+   "en": "Its marfūʿ never goes before its noun, not even an adverb: lā works only by analogy with inna, so it ranks below its model.",
+   "tr": "Merfûu, zarf bile olsa, isminin önüne geçmez: lâ amelde inne'ye kıyasla çalışır, bu yüzden derecesi aslınınkinden aşağıdır.",
+   "notes": [
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun",
+    "al-mansubat-al-tasi-ila-al-thalith-ashar",
+    "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha",
+    "la-nafiya-lil-jins",
+    "la-nafiya",
+    "ma-la-laysa-wa-la-al-jins"
+   ],
+   "ledger": [
+    "qawaid:Q243"
+   ],
+   "words": 20,
+   "why_at": 46,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-118-1",
+   "topic": "la-jins",
+   "kind": "why-state",
+   "ar": "والاسم المبني في محل النصب لكونه معمولًا لـ (لا).",
+   "book": "shaykhzade",
+   "vol_page": "1:109",
+   "shamela_page": 118,
+   "section": "لا",
+   "role": "ismLa",
+   "case": "nasb",
+   "en": "The built noun is in the place of naṣb because «lā» governs it.",
+   "tr": "Mebnî isim nasb mahallindedir, çünkü «lâ»nın ma'mûlüdür.",
+   "notes": [
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun",
+    "al-mansubat-al-tasi-ila-al-thalith-ashar",
+    "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha",
+    "la-nafiya-lil-jins",
+    "la-nafiya",
+    "ma-la-laysa-wa-la-al-jins"
+   ],
+   "ledger": [
+    "izhar:I-A27",
+    "izhar:I-A28",
+    "izhar:I-A30",
+    "izhar:I-25.1",
+    "izhar:I-198.1"
+   ],
+   "words": 10,
+   "why_at": 27,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-158-1",
+   "topic": "mubtada",
+   "kind": "why-state",
+   "ar": "والأمام بالرَّفع لأنَّه مبتدأ",
+   "book": "shaykhzade",
+   "vol_page": "1:149",
+   "shamela_page": 158,
+   "section": "ما يأتي على ثمانية أوجه",
+   "role": "mubtada",
+   "case": "raf",
+   "en": "«Al-amām» is rafʿ because it is a mubtadaʾ.",
+   "tr": "«El-emâm» merfûdur, çünkü mübtedâdır.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "al-mubtada-wa-nawah",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "masail-inna-wal-mukhaffafa-fil-kafiya",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q391"
+   ],
+   "words": 6,
+   "why_at": 17,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-158-2",
+   "topic": "atf",
+   "kind": "why-state",
+   "ar": "وإذا قُرئ بالرَّفع تعيّن الاستئناف، لأنَّ إعراب مدخول واو العطف يكون حسب ما قبلها.",
+   "book": "shaykhzade",
+   "vol_page": "1:149",
+   "shamela_page": 158,
+   "section": "ما يأتي على ثمانية أوجه",
+   "role": "atf",
+   "en": "Read with rafʿ, it must be a new sentence: what follows a wāw of ʿaṭf takes the iʿrāb of what comes before it.",
+   "tr": "Ref' ile okununca isti'nâf olması gerekir: atıf vâvından sonraki, öncekinin i'rabını alır.",
+   "notes": [
+    "al-atf-bil-huruf-wa-ahkamuh",
+    "al-badal-wa-aqsamuh-wa-atf-al-bayan",
+    "atf-bayan",
+    "atf-nasaq",
+    "huruf-al-atf-fil-kafiya"
+   ],
+   "ledger": [
+    "qawaid:Q391"
+   ],
+   "words": 17,
+   "why_at": 36,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-160-1",
+   "topic": "maful-maah",
+   "kind": "why-state",
+   "ar": "وقال الأخفش: نَصْبُه نصب الظروف، وذلك لأنَّ الواو لمَّا أقيمت مقام المنصوب بالظرفية، والواو ظرف في الأصل، فلم يحتمل النصب، فأعطى النصب ما بعدها رعاية لأصلها",
+   "book": "shaykhzade",
+   "vol_page": "1:151",
+   "shamela_page": 160,
+   "section": "الواو",
+   "role": "mafulMaah",
+   "case": "nasb",
+   "notes": [
+    "al-maful-maah-wal-hal",
+    "maful-maah"
+   ],
+   "ledger": [
+    "qawaid:Q393",
+    "shudhur:R109",
+    "izhar:I-113.2"
+   ],
+   "words": 30,
+   "why_at": 38,
+   "short": false
+  },
+  {
+   "id": "ilal-shaykhzade-162-1",
+   "topic": "qasam",
+   "kind": "why-order",
+   "ar": "فلا تجتمع مع الفعل لكونها عوضًا عنه",
+   "book": "shaykhzade",
+   "vol_page": "1:153",
+   "shamela_page": 162,
+   "section": "الواو",
+   "en": "(The wāw of the oath) never stands with the verb, because it replaces it.",
+   "tr": "(Kasem vâvı) fiille bir arada bulunmaz, çünkü onun yerine geçmiştir.",
+   "notes": [
+    "al-qasam-wal-shart-fil-kafiya",
+    "huruf-al-qasam-fil-kafiya"
+   ],
+   "ledger": [
+    "qawaid:Q400",
+    "qawaid:Q401",
+    "qawaid:Q403"
+   ],
+   "words": 8,
+   "why_at": 19,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-169-1",
+   "topic": "tamyiz",
+   "kind": "why-state",
+   "ar": "فما على هذا نكرة منصوبة لأنَّها مميّزة",
+   "book": "shaykhzade",
+   "vol_page": "1:160",
+   "shamela_page": 169,
+   "section": "ما",
+   "role": "tamyiz",
+   "case": "nasb",
+   "en": "«Mā» here is an indefinite noun in naṣb, because it is a tamyīz.",
+   "tr": "Buna göre «mâ» mansûb bir nekredir, çünkü temyîzdir.",
+   "notes": [
+    "al-ism-al-mubham-al-tamm",
+    "al-tamyiz-wa-ahkamuh",
+    "tamyiz"
+   ],
+   "ledger": [
+    "shudhur:R175",
+    "izhar:I-A57",
+    "izhar:I-B16",
+    "izhar:I-43.2",
+    "kafiya:K28:s10",
+    "maqsud:maqsud:l384"
+   ],
+   "words": 9,
+   "why_at": 24,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-169-3",
+   "topic": "naat",
+   "kind": "why-state",
+   "ar": "وما في محل الجر لكونها صفة لمجرور",
+   "book": "shaykhzade",
+   "vol_page": "1:160",
+   "shamela_page": 169,
+   "section": "ما",
+   "role": "naat",
+   "case": "jarr",
+   "en": "«Mā» is in the place of jarr because it describes a majrūr word.",
+   "tr": "«Mâ» cer mahallindedir, çünkü mecrûr bir kelimenin sıfatıdır.",
+   "notes": [
+    "al-sifa-al-mushabbaha-fil-kafiya",
+    "al-tawabi-wal-sifa",
+    "ghayr-al-munsarif-al-qiyasi-al-alam-wal-sifa-wal-ajami-wal-muannath",
+    "jumla-sifa",
+    "masail-al-sifa-al-mushabbaha-fil-kafiya",
+    "naat-sifa",
+    "sifa-mushabbaha",
+    "taqsim-al-irab-bil-naw-wal-sifa-wal-taqdiri-al-awwal"
+   ],
+   "ledger": [
+    "qawaid:Q423",
+    "qawaid:Q435",
+    "shudhur:R42",
+    "izhar:I-B17",
+    "izhar:I-B26",
+    "izhar:I-119.1",
+    "izhar:I-122.0",
+    "izhar:I-137.2"
+   ],
+   "words": 7,
+   "why_at": 16,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-170-1",
+   "topic": "ma-laysa",
+   "kind": "why-state",
+   "ar": "لأن (ما) و (لا) المشبهتين بـ ليس لا تعملان عند بني تميم أصلًا لدخولهما على الاسم والفعل",
+   "book": "shaykhzade",
+   "vol_page": "1:161",
+   "shamela_page": 170,
+   "section": "ما",
+   "en": "With the Banū Tamīm, mā and lā (like laysa) do not govern at all, because they come before nouns and verbs alike.",
+   "tr": "Benî Temîm'e göre leyse'ye benzeyen mâ ve lâ hiç amel etmez, çünkü hem isme hem fiile girerler.",
+   "notes": [
+    "ma-la-laysa-wa-la-al-jins",
+    "ma-la-mushabbaha"
+   ],
+   "ledger": [
+    "qawaid:Q439"
+   ],
+   "words": 18,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-174-1",
+   "topic": "mubtada",
+   "kind": "why-state",
+   "ar": "كما سيفُ عمروٍ بالضمّ: مبتدأ، لأنَّ (ما) تمنع الكاف عن العمل",
+   "book": "shaykhzade",
+   "vol_page": "1:165",
+   "shamela_page": 174,
+   "section": "ما",
+   "role": "mubtada",
+   "case": "raf",
+   "en": "In «kamā sayfu ʿAmrin», «sayf» with ḍamma is a mubtadaʾ, because «mā» stops the kāf from working.",
+   "tr": "«Kemâ seyfu Amrin»de «seyf» zamme ile mübtedâdır, çünkü «mâ» kâfı amelden alıkoyar.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "al-mubtada-wa-nawah",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "masail-inna-wal-mukhaffafa-fil-kafiya",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q451"
+   ],
+   "words": 11,
+   "why_at": 30,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-191-2",
+   "topic": "jarr",
+   "kind": "why-form",
+   "ar": "فيحذف ألفها فرقًا بين (ما) الاستفهاميَّة والخبرية",
+   "book": "shaykhzade",
+   "vol_page": "1:182",
+   "shamela_page": 191,
+   "section": "أي عند النحويين",
+   "en": "Its alif is dropped to tell the interrogative mā from the declarative.",
+   "tr": "Elifi, istifhâm mâ'sını haber mâ'sından ayırmak için düşer.",
+   "notes": [
+    "al-harf-wa-huruf-al-jarr-fil-kafiya",
+    "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa",
+    "hadhf-al-jarr",
+    "huruf-jarr-nawadir",
+    "huruf-jarr",
+    "jarr-al-jiwar",
+    "mahall-al-majrur",
+    "thulathi-mujarrad-babs"
+   ],
+   "ledger": [
+    "qawaid:Q57",
+    "qawaid:Q448",
+    "shudhur:S25",
+    "shudhur:R131",
+    "shudhur:R153",
+    "shudhur:R173",
+    "shudhur:R184",
+    "izhar:I-A01"
+   ],
+   "words": 9,
+   "why_at": 12,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-191-5",
+   "topic": "adad",
+   "kind": "why-state",
+   "ar": "وهذا الجرّ بالإضافة عند غير الفرَّاء حملًا على العدد الكثير",
+   "book": "shaykhzade",
+   "vol_page": "1:182",
+   "shamela_page": 191,
+   "section": "أي عند النحويين",
+   "en": "(After kam of telling) this jarr is by annexation — for all but al-Farrāʾ — on the model of the large numbers.",
+   "tr": "(Haberî kem'den sonra) bu cer, Ferrâ dışındakilere göre, büyük sayılara kıyasla izâfe iledir.",
+   "notes": [
+    "al-muannath-wa-alamatuh",
+    "al-tamyiz-wa-ahkamuh",
+    "asma-al-adad-fil-kafiya"
+   ],
+   "ledger": [
+    "shudhur:R116",
+    "kafiya:K10:s1"
+   ],
+   "words": 12,
+   "why_at": 37,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-192-1",
+   "topic": "adad",
+   "kind": "why-state",
+   "ar": "وإنْ فُصِل فالمختار النَّصب حملًا على الاستفهامية.",
+   "book": "shaykhzade",
+   "vol_page": "1:183",
+   "shamela_page": 192,
+   "section": "كم عند النحويين",
+   "en": "If something comes between, naṣb is preferred, on the model of the interrogative kam.",
+   "tr": "Araya bir şey girerse, istifhâm kem'ine kıyasla nasb tercih edilir.",
+   "notes": [
+    "al-muannath-wa-alamatuh",
+    "al-tamyiz-wa-ahkamuh",
+    "asma-al-adad-fil-kafiya"
+   ],
+   "ledger": [
+    "shudhur:R116",
+    "kafiya:K10:s1"
+   ],
+   "words": 11,
+   "why_at": 28,
+   "short": true
+  },
+  {
+   "id": "ilal-shaykhzade-192-2",
+   "topic": "adad",
+   "kind": "why-state",
+   "ar": "والاستفهامية تنصب مميّزها مفردًا كمميّز أحد عشر لأنَّ [المُسْتَفْهِم لا يتحقق عنده في الأغلب كثرة العدد] المُسْتَفْهَم عنه ولا قلته، بل المستفهَم عنه يحتمل الأمرين، فحملت على المرتبة المتوسطة",
+   "book": "shaykhzade",
+   "vol_page": "1:183",
+   "shamela_page": 192,
+   "section": "كم عند النحويين",
+   "en": "The interrogative kam puts its tamyīz in the singular naṣb, like that of «aḥada ʿashara»: the asker does not know whether the number is large or small, so it is set at the middle rank.",
+   "tr": "İstifhâm kem'i temyîzini «ehade aşere»ninki gibi tekil mansûb yapar: soran sayının çok mu az mı olduğunu bilmez, bu yüzden orta dereceye kıyaslanır.",
+   "notes": [
+    "al-muannath-wa-alamatuh",
+    "al-tamyiz-wa-ahkamuh",
+    "asma-al-adad-fil-kafiya"
+   ],
+   "ledger": [
+    "shudhur:R116",
+    "kafiya:K10:s1"
+   ],
+   "words": 43,
+   "why_at": 48,
+   "short": false
+  },
+  {
+   "id": "ilal-shaykhzade-178-3",
+   "topic": "irab-fil",
+   "kind": "objection",
+   "ar": "وعند الخليل مركبة أصلها: لأنْ حذفَت الهمزة تخفيفًا، وسقطت الألف لالتقاء الساكنين، ورده سيبويه بجواز تقديم معمولها نحو: زيدًا لن يضرب.\nأجيب بأنه يجوز أن يحدث بعد التركيب ما لم يكن قبله",
+   "book": "shaykhzade",
+   "vol_page": "1:169",
+   "shamela_page": 178,
+   "section": "قد حرف تقليل زمن الماضي وحدث المضارع",
+   "en": "Objection: al-Khalīl held «lan» to be «lā an» joined; Sībawayh refuted him: its object can go before it («Zaydan lan yaḍrib»). Answer: a compound may gain, once joined, what its parts did not have.",
+   "tr": "İtiraz: Halîl'e göre «len», «lâ en»in birleşmişidir; Sîbeveyh, ma'mûlünün öne geçebilmesiyle («Zeyden len yadrib») reddetti. Cevap: birleşmeden sonra öncesinde olmayan bir hüküm doğabilir.",
+   "notes": [
+    "al-fa-fi-jawab-al-shart",
+    "al-fil-wal-madi-wal-mudari-fil-kafiya",
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "jawazim-al-mudari-wal-amr-fil-kafiya",
+    "mudari-marfu",
+    "nawasib-al-mudari-fil-kafiya",
+    "nawasib-wa-jawazim-al-mudari"
+   ],
+   "ledger": [
+    "qawaid:Q199",
+    "qawaid:Q217",
+    "qawaid:Q231",
+    "qawaid:Q250",
+    "qawaid:Q286",
+    "qawaid:Q395",
+    "shudhur:S22",
+    "shudhur:R74"
+   ],
+   "words": 35,
+   "why_at": 25,
+   "short": false
+  },
+  {
+   "id": "ilal-ibn-malik-584-1",
+   "topic": "fail",
+   "kind": "why-state",
+   "ar": "إلى أن الفاعل المجرور إذا تبعه وصف أو عطف جاز رفع ما تبعه منهما حملا على الموضع.",
+   "book": "ibn-malik",
+   "vol_page": "2:579",
+   "shamela_page": 584,
+   "section": "باب الفاعل",
+   "en": "When a fāʿil is majrūr (by a zāʾid letter), its adjective or coupled word may be rafʿ — following its place.",
+   "tr": "Fâil (zâid harfle) mecrûr olunca, ona tâbi olan sıfat ya da ma'tûf, mahalline uyularak merfû olabilir.",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "shudhur:R49",
+    "shudhur:R60",
+    "shudhur:R62",
+    "shudhur:R91",
+    "shudhur:R113",
+    "shudhur:R117",
+    "shudhur:R200",
+    "izhar:I-A50"
+   ],
+   "words": 17,
+   "why_at": 64,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-584-2",
+   "topic": "fail",
+   "kind": "why-state",
+   "ar": "وجره حملا على اللفظ نحو: \"ما جاء من أحد كريم وكريم\".",
+   "book": "ibn-malik",
+   "vol_page": "2:579",
+   "shamela_page": 584,
+   "section": "باب الفاعل",
+   "en": "…or jarr, following its wording: «mā jāʾa min aḥadin karīmin».",
+   "tr": "…ya da lafzına uyularak mecrûr: «mâ câe min ehadin kerîmin».",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "shudhur:R49",
+    "shudhur:R60",
+    "shudhur:R62",
+    "shudhur:R91",
+    "shudhur:R113",
+    "shudhur:R117",
+    "shudhur:R200",
+    "izhar:I-A50"
+   ],
+   "words": 11,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-593-1",
+   "topic": "fail",
+   "kind": "why-order",
+   "ar": "لأنه لو قدم فقيل: \"ساء بعلها عبد هند\" تقدم عائد على مؤخر لفظا، ورتبة مع عدم تعلق الفعل به، وشدة الحاجة إلى العائد عليه.",
+   "book": "ibn-malik",
+   "vol_page": "2:588",
+   "shamela_page": 593,
+   "section": "باب الفاعل",
+   "en": "The fāʿil cannot go first here: «sāʾa baʿluhā ʿabda Hindin» would put a pronoun before what it refers to, in wording and in rank.",
+   "tr": "Burada fâil öne alınamaz: «sâe ba'luhâ abde Hindin» zamiri, mercîinden lafzen ve rütbeten önce getirir.",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "shudhur:R49",
+    "shudhur:R60",
+    "shudhur:R62",
+    "shudhur:R91",
+    "shudhur:R113",
+    "shudhur:R117",
+    "shudhur:R200",
+    "izhar:I-A50"
+   ],
+   "words": 24,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-590-1",
+   "topic": "fail",
+   "kind": "why-order",
+   "ar": "لأن الفعل المتعدي يدل على فاعل ومفعول، فشعور الذهن بهما مقارن لشعوره بمعنى الفعل.",
+   "book": "ibn-malik",
+   "vol_page": "2:585",
+   "shamela_page": 590,
+   "section": "باب الفاعل",
+   "en": "A transitive verb points to a doer and an object, so the mind is aware of both as soon as it grasps the verb.",
+   "tr": "Geçişli fiil bir fâile ve bir mef'ûle delâlet eder; zihin fiilin mânâsını kavrarken ikisini de sezer.",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "shudhur:R49",
+    "shudhur:R60",
+    "shudhur:R62",
+    "shudhur:R91",
+    "shudhur:R113",
+    "shudhur:R117",
+    "shudhur:R200",
+    "izhar:I-A50"
+   ],
+   "words": 14,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-605-1",
+   "topic": "fail",
+   "kind": "why-order",
+   "ar": "أجاز الكسائي -وحده- حذف الفاعل إذا دل عليه دليل ومنع غيره ذلك، لأن كل موضع ادعي فيه الحذف فالإضمار فيه ممكن، فلا ضرورة إلى الحذف.",
+   "book": "ibn-malik",
+   "vol_page": "2:600",
+   "shamela_page": 605,
+   "section": "باب الفاعل",
+   "en": "Only al-Kisāʾī allowed dropping the fāʿil; the others refused: wherever a dropped fāʿil is claimed, a hidden pronoun will do, so there is no need to drop it.",
+   "tr": "Fâilin hazfine yalnız Kisâî cevaz verdi; diğerleri reddetti: hazf iddia edilen her yerde gizli zamir mümkündür, hazfe gerek yoktur.",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "shudhur:R49",
+    "shudhur:R60",
+    "shudhur:R62",
+    "shudhur:R91",
+    "shudhur:R113",
+    "shudhur:R117",
+    "shudhur:R200",
+    "izhar:I-A50"
+   ],
+   "words": 25,
+   "why_at": 63,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-568-1",
+   "topic": "maful-bih",
+   "kind": "why-state",
+   "ar": "نحو: \"علمت زيدًا من هو\" جاز نصبه، وهو الأجود، لكونه غير مستفهم به، ولا مضاف إلى مستفهم به.",
+   "book": "ibn-malik",
+   "vol_page": "2:563",
+   "shamela_page": 568,
+   "section": "مدخل",
+   "role": "mafulBih",
+   "case": "nasb",
+   "en": "In «ʿalimtu Zaydan man huwa», naṣb (as the object) is allowed and best, because Zayd is not the question word, nor annexed to one.",
+   "tr": "«Alimtu Zeyden men huve»de (mef'ûl olarak) nasb caiz ve en iyisidir, çünkü Zeyd soru kelimesi değildir, ona muzâf da değildir.",
+   "notes": [
+    "afal-tasyir",
+    "al-lazim-wal-mutaaddi",
+    "al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf",
+    "al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun",
+    "al-maful-bihi-wa-qismah"
+   ],
+   "ledger": [
+    "shudhur:R92",
+    "shudhur:R110",
+    "izhar:I-A54",
+    "izhar:I-A55",
+    "izhar:I-B15",
+    "izhar:I-35.2",
+    "izhar:I-37.2",
+    "izhar:I-110.2"
+   ],
+   "words": 19,
+   "why_at": 46,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-568-2",
+   "topic": "maful-bih",
+   "kind": "why-state",
+   "ar": "وجاز -أيضًا- رفعه؛ لأنه المستفهم عنه في المعنى.",
+   "book": "ibn-malik",
+   "vol_page": "2:563",
+   "shamela_page": 568,
+   "section": "مدخل",
+   "en": "Rafʿ is allowed too, because in meaning he is the one asked about.",
+   "tr": "Ref' de caizdir, çünkü mânâca hakkında soru sorulan odur.",
+   "notes": [
+    "afal-tasyir",
+    "al-lazim-wal-mutaaddi",
+    "al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf",
+    "al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun",
+    "al-maful-bihi-wa-qismah"
+   ],
+   "ledger": [
+    "shudhur:R92",
+    "shudhur:R110",
+    "izhar:I-A54",
+    "izhar:I-A55",
+    "izhar:I-B15",
+    "izhar:I-35.2",
+    "izhar:I-37.2",
+    "izhar:I-110.2"
+   ],
+   "words": 9,
+   "why_at": 19,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-776-1",
+   "topic": "tamyiz",
+   "kind": "why-state",
+   "ar": "فالأول نحو: \"زيد (١) أكمل فقها\" فتنصب النكرة على التمييز لأنه بمعنى: كمل فقهه.",
+   "book": "ibn-malik",
+   "vol_page": "2:772",
+   "shamela_page": 776,
+   "section": "باب التمييز",
+   "role": "tamyiz",
+   "case": "nasb",
+   "en": "«Zaydun akmalu fiqhan»: the indefinite noun is naṣb as a tamyīz, because it means «his fiqh is complete».",
+   "tr": "«Zeydun ekmelu fıkhan»: nekre temyîz olarak mansûbdur, çünkü «fıkhı kâmil oldu» mânâsınadır.",
+   "notes": [
+    "al-ism-al-mubham-al-tamm",
+    "al-tamyiz-wa-ahkamuh",
+    "tamyiz"
+   ],
+   "ledger": [
+    "shudhur:R175",
+    "izhar:I-A57",
+    "izhar:I-B16",
+    "izhar:I-43.2",
+    "kafiya:K28:s10",
+    "maqsud:maqsud:l384"
+   ],
+   "words": 13,
+   "why_at": 57,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-774-1",
+   "topic": "tamyiz",
+   "kind": "why-state",
+   "ar": "والنصب أولى من الجر؛ لأن النصب يدل على أن المتكلم أراد: أن عنده ما يملأ الوعاء المذكور، من الجنس المذكور.",
+   "book": "ibn-malik",
+   "vol_page": "2:770",
+   "shamela_page": 774,
+   "section": "باب التمييز",
+   "en": "(«ʿindī rāqūdun khallan») naṣb is better than jarr: it shows the speaker means he has enough of that kind to fill the vessel.",
+   "tr": "(«ındî râkûdun hallen») nasb cerden evlâdır: konuşanın, o kabı dolduracak kadar o cinsten elinde olduğunu kastettiğini gösterir.",
+   "notes": [
+    "al-ism-al-mubham-al-tamm",
+    "al-tamyiz-wa-ahkamuh",
+    "tamyiz"
+   ],
+   "ledger": [
+    "shudhur:R175",
+    "izhar:I-A57",
+    "izhar:I-B16",
+    "izhar:I-43.2",
+    "kafiya:K28:s10",
+    "maqsud:maqsud:l384"
+   ],
+   "words": 20,
+   "why_at": 21,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-780-1",
+   "topic": "tamyiz",
+   "kind": "why-order",
+   "ar": "ومذهب المازني (١)، والمبرد (٢)، والكسائي جواز تقديمه؛ لأن الفعل عامل قوي بالتصرف",
+   "book": "ibn-malik",
+   "vol_page": "2:776",
+   "shamela_page": 780,
+   "section": "باب التمييز",
+   "en": "Al-Māzinī, al-Mubarrad and al-Kisāʾī allow the tamyīz to go first, because a fully conjugated verb is a strong governor.",
+   "tr": "Mâzinî, Müberred ve Kisâî temyîzin öne geçmesine cevaz verir, çünkü tasarruf eden fiil güçlü bir âmildir.",
+   "notes": [
+    "al-ism-al-mubham-al-tamm",
+    "al-tamyiz-wa-ahkamuh",
+    "tamyiz"
+   ],
+   "ledger": [
+    "shudhur:R175",
+    "izhar:I-A57",
+    "izhar:I-B16",
+    "izhar:I-43.2",
+    "kafiya:K28:s10",
+    "maqsud:maqsud:l384"
+   ],
+   "words": 11,
+   "why_at": 54,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-379-1",
+   "topic": "khabar",
+   "kind": "why-order",
+   "ar": "حق خبر المبتدأ ألا يدخل عليه فاء؛ لأن نسبته من المبتدأ نسبة الفعل من الفاعل، ونسبة الصفة من الموصوف.",
+   "book": "ibn-malik",
+   "vol_page": "1:374",
+   "shamela_page": 379,
+   "section": "فصل في دخول الفاء على خبر المبتدأ",
+   "en": "The khabar should take no fāʾ, because it stands to the mubtadaʾ as the verb to its doer and the adjective to its noun.",
+   "tr": "Haberin başına fâ girmemesi gerekir, çünkü mübtedâya nisbeti, fiilin fâile ve sıfatın mevsûfa nisbeti gibidir.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "anwa-al-khabar",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q47",
+    "qawaid:Q205",
+    "qawaid:Q435",
+    "shudhur:R64",
+    "shudhur:R78",
+    "shudhur:R201",
+    "shudhur:R209",
+    "izhar:I-A29"
+   ],
+   "words": 19,
+   "why_at": 34,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-770-1",
+   "topic": "hal",
+   "kind": "why-order",
+   "ar": "وأصل الحال أن تكون جائزة الحذف لأنها كالظرف",
+   "book": "ibn-malik",
+   "vol_page": "2:766",
+   "shamela_page": 770,
+   "section": "باب الحال",
+   "en": "A ḥāl may in principle be left out, because it is like an adverb.",
+   "tr": "Hâlin aslı hazfinin caiz olmasıdır, çünkü zarf gibidir.",
+   "notes": [
+    "al-hal-jumla-wa-rabituha",
+    "al-maful-maah-wal-hal",
+    "hal",
+    "mana-al-fil"
+   ],
+   "ledger": [
+    "qawaid:Q90",
+    "qawaid:Q375",
+    "shudhur:R83",
+    "izhar:I-A31",
+    "izhar:I-A32",
+    "izhar:I-A33",
+    "izhar:I-A34",
+    "izhar:I-A35"
+   ],
+   "words": 8,
+   "why_at": 31,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-751-1",
+   "topic": "hal",
+   "kind": "why-order",
+   "ar": "لا يجيزون: \"أبصرت راكبا زيدا\" لأنه يوهم أن \"راكبا\" مفعول به، و\"زيدا\": بدل.",
+   "book": "ibn-malik",
+   "vol_page": "2:747",
+   "shamela_page": 751,
+   "section": "باب الحال",
+   "en": "(The Kūfans) do not allow «abṣartu rākiban Zaydan», because it suggests «rākiban» is the object and «Zaydan» a badal.",
+   "tr": "(Kûfeliler) «ebsartu râkiben Zeyden»e cevaz vermez, çünkü «râkiben»in mef'ûl, «Zeyden»in bedel olduğu vehmini verir.",
+   "notes": [
+    "al-hal-jumla-wa-rabituha",
+    "al-maful-maah-wal-hal",
+    "hal",
+    "mana-al-fil"
+   ],
+   "ledger": [
+    "qawaid:Q90",
+    "qawaid:Q375",
+    "shudhur:R83",
+    "izhar:I-A31",
+    "izhar:I-A32",
+    "izhar:I-A33",
+    "izhar:I-A34",
+    "izhar:I-A35"
+   ],
+   "words": 14,
+   "why_at": 30,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-362-1",
+   "topic": "khabar",
+   "kind": "why-order",
+   "ar": "فمثل هذه الأمثلة يجب فيها حذف الخبر لسد الحال مسده، ولعدم صلاحيتها، لأن تكون خبرًا.",
+   "book": "ibn-malik",
+   "vol_page": "1:358",
+   "shamela_page": 362,
+   "section": "مدخل",
+   "en": "In such examples the khabar must be dropped, because the ḥāl fills its place and could not itself be the khabar.",
+   "tr": "Bu tür örneklerde haberin hazfi vâciptir, çünkü hâl onun yerini doldurur ve kendisi haber olamaz.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "anwa-al-khabar",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q47",
+    "qawaid:Q205",
+    "qawaid:Q435",
+    "shudhur:R64",
+    "shudhur:R78",
+    "shudhur:R201",
+    "shudhur:R209",
+    "izhar:I-A29"
+   ],
+   "words": 16,
+   "why_at": 36,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-371-1",
+   "topic": "khabar",
+   "kind": "why-order",
+   "ar": "فجاز تقديم \"الليث\"؛ لأن خبريته لا تجهل.",
+   "book": "ibn-malik",
+   "vol_page": "1:367",
+   "shamela_page": 371,
+   "section": "مدخل",
+   "en": "«Al-layth» may go first, because no one can mistake it for anything but the khabar.",
+   "tr": "«El-leys»in öne alınması caizdir, çünkü haber olduğu bilinmez değildir.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "anwa-al-khabar",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q47",
+    "qawaid:Q205",
+    "qawaid:Q435",
+    "shudhur:R64",
+    "shudhur:R78",
+    "shudhur:R201",
+    "shudhur:R209",
+    "izhar:I-A29"
+   ],
+   "words": 7,
+   "why_at": 20,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-213-1",
+   "topic": "muqaddar",
+   "kind": "why-sign",
+   "ar": "رفع ولا نصب، ولا جر، لتعذر تحريك الألف.",
+   "book": "ibn-malik",
+   "vol_page": "1:214",
+   "shamela_page": 213,
+   "section": "إعراب المعتل من الأسماء والأفعال",
+   "pre": "والحاصل: أن حرف الإعراب إذا كان ألفًا لم يظهر فيه",
+   "cls": "maqsur",
+   "en": "When the iʿrāb letter is an alif, no rafʿ, naṣb or jarr shows on it, because an alif cannot take a vowel.",
+   "tr": "İ'rab harfi elif olunca üzerinde ref', nasb ve cer görünmez, çünkü elifi harekelemek imkânsızdır.",
+   "notes": [
+    "al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh",
+    "al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki",
+    "hadhf-wa-taqdir",
+    "ism-maqsur-manqus",
+    "taqsim-al-irab-bil-naw-wal-sifa-wal-taqdiri-al-awwal"
+   ],
+   "ledger": [
+    "qawaid:Q160",
+    "shudhur:S22",
+    "shudhur:S51",
+    "izhar:I-23.3"
+   ],
+   "words": 8,
+   "why_at": 21,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-213-2",
+   "topic": "muqaddar",
+   "kind": "why-sign",
+   "ar": "وإذا كان واوًا خفيفة بعد ضمة قدر فيها الرفع خاصة؛ لأنه لا يكون (١) حرف إعراب إلا في فعل، والفعل لا يجر.",
+   "book": "ibn-malik",
+   "vol_page": "1:214",
+   "shamela_page": 213,
+   "section": "إعراب المعتل من الأسماء والأفعال",
+   "cls": "mudariMutall",
+   "en": "A light wāw after a ḍamma has only rafʿ estimated on it: it is an iʿrāb letter only in a verb, and a verb is never jarr.",
+   "tr": "Zammeden sonraki hafif vâvda yalnız ref' takdir edilir: o yalnız fiilde i'rab harfidir, fiil ise mecrûr olmaz.",
+   "notes": [
+    "al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh",
+    "al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki",
+    "hadhf-wa-taqdir",
+    "ism-maqsur-manqus",
+    "taqsim-al-irab-bil-naw-wal-sifa-wal-taqdiri-al-awwal"
+   ],
+   "ledger": [
+    "qawaid:Q160",
+    "shudhur:S22",
+    "shudhur:S51",
+    "izhar:I-23.3"
+   ],
+   "words": 22,
+   "why_at": 50,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-173-3",
+   "topic": "irab-bina",
+   "kind": "why-built",
+   "ar": "وإنما بني المتصل بنون الإناث كـ\"يسرن\" حملًا على الماضي.",
+   "book": "ibn-malik",
+   "vol_page": "1:176",
+   "shamela_page": 173,
+   "section": "مدخل",
+   "cls": "mabni",
+   "en": "The muḍāriʿ joined to the nūn of the feminine plural («yasirna») is built, on the model of the past verb.",
+   "tr": "Nûn-ı nisveye bitişen muzâri («yesirne») mâzîye kıyasla mebnîdir.",
+   "notes": [
+    "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+    "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+    "al-kinayat-wal-zuruf-al-mabniyya",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-wal-mudmar",
+    "al-murab-wal-mabni-wal-irab",
+    "al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh",
+    "anwa-al-jumal"
+   ],
+   "ledger": [
+    "qawaid:Q47",
+    "shudhur:S49",
+    "shudhur:R1",
+    "kafiya:K2:s4",
+    "kafiya:K3:s1",
+    "marah:marah:src47",
+    "marah:marah:src92",
+    "marah:marah:src278"
+   ],
+   "words": 11,
+   "why_at": 38,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-173-1",
+   "topic": "irab-bina",
+   "kind": "why-built",
+   "ar": "سبب البناء هو تركيب الفعل مع النون، وتنزله منها منزلة الصدر من العجز في \"بعلبك\" (١).\nفإذا حال بينهما ألف الضمير، أو واوه، أو ياؤه لم يبق تركيب؛ لأن ثلاثة أشياء لا تجعل شيئًا واحدًا.",
+   "book": "ibn-malik",
+   "vol_page": "1:176",
+   "shamela_page": 173,
+   "section": "مدخل",
+   "cls": "mabni",
+   "en": "The verb with the nūn of emphasis is built because the two are fused, like the halves of «Baʿlabakk»; a pronoun's alif, wāw or yāʾ between them undoes the fusion — three things are not made one.",
+   "tr": "Te'kîd nûnlu fiil mebnîdir, çünkü fiil nûnla «Ba'lebek»in iki yarısı gibi birleşir; araya zamirin elifi, vâvı ya da yâsı girerse birleşme kalmaz — üç şey tek şey yapılmaz.",
+   "notes": [
+    "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+    "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+    "al-kinayat-wal-zuruf-al-mabniyya",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-wal-mudmar",
+    "al-murab-wal-mabni-wal-irab",
+    "al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh",
+    "anwa-al-jumal"
+   ],
+   "ledger": [
+    "qawaid:Q47",
+    "shudhur:S49",
+    "shudhur:R1",
+    "kafiya:K2:s4",
+    "kafiya:K3:s1",
+    "marah:marah:src47",
+    "marah:marah:src92",
+    "marah:marah:src278"
+   ],
+   "words": 36,
+   "why_at": 144,
+   "short": false
+  },
+  {
+   "id": "ilal-ibn-malik-217-1",
+   "topic": "irab-bina",
+   "kind": "why-built",
+   "ar": "على حرف أو حرفين حقه ألا يكون إلا حرفًا؛ لأن الحرف (١) يجاء به لمعنى في غيره فهو كجزء لما دل على معنى فيه.",
+   "book": "ibn-malik",
+   "vol_page": "1:218",
+   "shamela_page": 217,
+   "section": "إعراب المعتل من الأسماء والأفعال",
+   "cls": "mabni",
+   "en": "A word of one or two letters ought to be a particle: a particle comes for a meaning in something else, so it is like a part of the word that carries the meaning.",
+   "tr": "Bir ya da iki harfli kelime aslında harf olmalıdır: harf başkasındaki bir mânâ için gelir, mânâ taşıyan kelimenin bir parçası gibidir.",
+   "notes": [
+    "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+    "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+    "al-kinayat-wal-zuruf-al-mabniyya",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-wal-mudmar",
+    "al-murab-wal-mabni-wal-irab",
+    "al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh",
+    "anwa-al-jumal"
+   ],
+   "ledger": [
+    "qawaid:Q47",
+    "shudhur:S49",
+    "shudhur:R1",
+    "kafiya:K2:s4",
+    "kafiya:K3:s1",
+    "marah:marah:src47",
+    "marah:marah:src92",
+    "marah:marah:src278"
+   ],
+   "words": 24,
+   "why_at": 41,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-191-1",
+   "topic": "signs-dual-plural",
+   "kind": "why-sign",
+   "ar": "وعومل هذا النوع بهذه (١) المعاملة لشبهة بجمع التكسير؛ لأن تغييره (٢) أكثر من سلامته.",
+   "book": "ibn-malik",
+   "vol_page": "1:194",
+   "shamela_page": 191,
+   "section": "إعراب المثنى والمجموع على حده وما يتعلق بذلك",
+   "notes": [
+    "al-jam-al-salim-fil-kafiya",
+    "al-muthanna-fil-kafiya",
+    "al-muthanna",
+    "al-taqdiri-al-rabi-ila-al-sadis-al-ya-wal-waw-wal-murab-bil-huruf-qabl-al-sakin",
+    "jam-muannath-salim",
+    "jam-mudhakkar-salim"
+   ],
+   "ledger": [
+    "shudhur:S39",
+    "shudhur:S43",
+    "izhar:I-C01",
+    "izhar:I-C02",
+    "izhar:I-C03",
+    "izhar:I-C04",
+    "izhar:I-C05",
+    "izhar:I-C06"
+   ],
+   "words": 13,
+   "why_at": 34,
+   "short": false
+  },
+  {
+   "id": "ilal-ibn-malik-923-1",
+   "topic": "atf",
+   "kind": "why-state",
+   "ar": "لأن العامل في المعطوف هو العامل في المعطوف عنه على الأصح.",
+   "book": "ibn-malik",
+   "vol_page": "2:919",
+   "shamela_page": 923,
+   "section": "مدخل",
+   "role": "atf",
+   "en": "What governs the coupled word is, on the soundest view, what governs the word it is coupled to.",
+   "tr": "En sahih görüşe göre ma'tûfta amel eden, ma'tûfun aleyhte amel edendir.",
+   "notes": [
+    "al-atf-bil-huruf-wa-ahkamuh",
+    "al-badal-wa-aqsamuh-wa-atf-al-bayan",
+    "atf-bayan",
+    "atf-nasaq",
+    "huruf-al-atf-fil-kafiya"
+   ],
+   "ledger": [
+    "qawaid:Q73",
+    "qawaid:Q88",
+    "qawaid:Q403",
+    "shudhur:R161",
+    "kafiya:K21:s11",
+    "kafiya:K35:s1",
+    "kafiya:K38:s6",
+    "marah:marah:src105"
+   ],
+   "words": 11,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-958-1",
+   "topic": "atf",
+   "kind": "why-state",
+   "ar": "فإن عطف (٢) على \"غدوة\" بعد أن نصبت فحكم المعطوف الجر.\nلأن \"غدوة\" وإن لم تجر لفظا فهي في موضع جر.",
+   "book": "ibn-malik",
+   "vol_page": "2:953",
+   "shamela_page": 958,
+   "section": "فصل",
+   "role": "atf",
+   "case": "jarr",
+   "en": "A word coupled to «ghudwatan» (after naṣb) is jarr, because «ghudwa», though not jarr in its wording, stands in a place of jarr.",
+   "tr": "Nasbedilmiş «ğudveten»e atfedilen mecrûr olur, çünkü «ğudve» lafzen mecrûr olmasa da cer mahallindedir.",
+   "notes": [
+    "al-atf-bil-huruf-wa-ahkamuh",
+    "al-badal-wa-aqsamuh-wa-atf-al-bayan",
+    "atf-bayan",
+    "atf-nasaq",
+    "huruf-al-atf-fil-kafiya"
+   ],
+   "ledger": [
+    "qawaid:Q73",
+    "qawaid:Q88",
+    "qawaid:Q403",
+    "shudhur:R161",
+    "kafiya:K21:s11",
+    "kafiya:K35:s1",
+    "kafiya:K38:s6",
+    "marah:marah:src105"
+   ],
+   "words": 20,
+   "why_at": 54,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-971-1",
+   "topic": "irab-bina",
+   "kind": "why-built",
+   "ar": "وإنما أعربت هذه الأسماء في تنكيرها؛ لأنها في تنكيرها لم تخالف النظائر.",
+   "book": "ibn-malik",
+   "vol_page": "2:966",
+   "shamela_page": 971,
+   "section": "فصل",
+   "cls": "mabni",
+   "en": "(Qabl, baʿd and the like) are declined when indefinite, because then they are no different from other nouns.",
+   "tr": "(Kabl, ba'd ve benzerleri) nekre olunca mu'rebdir, çünkü o hâlde benzerlerinden ayrılmazlar.",
+   "notes": [
+    "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+    "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+    "al-kinayat-wal-zuruf-al-mabniyya",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-wal-mudmar",
+    "al-murab-wal-mabni-wal-irab",
+    "al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh",
+    "anwa-al-jumal"
+   ],
+   "ledger": [
+    "qawaid:Q47",
+    "shudhur:S49",
+    "shudhur:R1",
+    "kafiya:K2:s4",
+    "kafiya:K3:s1",
+    "marah:marah:src47",
+    "marah:marah:src92",
+    "marah:marah:src278"
+   ],
+   "words": 12,
+   "why_at": 36,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-1487-1",
+   "topic": "mamnu",
+   "kind": "why-built",
+   "ar": "لا علة لبناء \"أمس\" إلا إرادة التخفيف تشبيها بالأصوات.",
+   "book": "ibn-malik",
+   "vol_page": "3:1482",
+   "shamela_page": 1487,
+   "section": "باب ما ينصرف وما لا ينصرف",
+   "cls": "mabni",
+   "en": "(Ibn Kharūf:) «ams» is built for no reason but lightness, likened to the sound-words.",
+   "tr": "(İbn Harûf:) «Ems»in binâsının sebebi yalnız hafiflik isteğidir, sesleri taklit eden kelimelere benzetilerek.",
+   "notes": [
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "mamnu-min-sarf",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf"
+   ],
+   "ledger": [
+    "shudhur:S30",
+    "izhar:I-C01",
+    "izhar:I-C02",
+    "izhar:I-C03",
+    "izhar:I-C04",
+    "izhar:I-C05",
+    "izhar:I-C07",
+    "izhar:I-C08"
+   ],
+   "words": 9,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-176-1",
+   "topic": "mamnu",
+   "kind": "why-sign",
+   "ar": "ما لا ينصرف: هو الاسم الذي لا ينون لكونه ذا سببين",
+   "book": "ibn-malik",
+   "vol_page": "1:179",
+   "shamela_page": 176,
+   "section": "مدخل",
+   "cls": "mamnu",
+   "en": "The diptote is the noun that takes no tanwīn because it has two causes.",
+   "tr": "Gayr-i munsarif, iki sebebi olduğu için tenvin almayan isimdir.",
+   "notes": [
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "mamnu-min-sarf",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf"
+   ],
+   "ledger": [
+    "shudhur:S30",
+    "izhar:I-C01",
+    "izhar:I-C02",
+    "izhar:I-C03",
+    "izhar:I-C04",
+    "izhar:I-C05",
+    "izhar:I-C07",
+    "izhar:I-C08"
+   ],
+   "words": 11,
+   "why_at": 35,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-1504-1",
+   "topic": "mamnu",
+   "kind": "why-sign",
+   "ar": "فهذه وما أشبهها ما دامت معارف لا تنصرف، وإذا نكرت انصرفت لعدم جزء العلة.",
+   "book": "ibn-malik",
+   "vol_page": "3:1499",
+   "shamela_page": 1504,
+   "section": "باب ما ينصرف وما لا ينصرف",
+   "cls": "mamnu",
+   "en": "These names are diptotes while definite; made indefinite they take tanwīn, because part of the cause is gone.",
+   "tr": "Bunlar marife oldukça gayr-i munsariftir; nekre yapılınca munsarif olur, çünkü illetin bir parçası yok olmuştur.",
+   "notes": [
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "mamnu-min-sarf",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf"
+   ],
+   "ledger": [
+    "shudhur:S30",
+    "izhar:I-C01",
+    "izhar:I-C02",
+    "izhar:I-C03",
+    "izhar:I-C04",
+    "izhar:I-C05",
+    "izhar:I-C07",
+    "izhar:I-C08"
+   ],
+   "words": 14,
+   "why_at": 57,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-1479-2",
+   "topic": "mamnu",
+   "kind": "why-sign",
+   "ar": "وهو أحق من \"عمر\" بمنع (٣) التصرف؛ لأن عدله محقق، وعدل \"عمر\" مقدر.",
+   "book": "ibn-malik",
+   "vol_page": "3:1474",
+   "shamela_page": 1479,
+   "section": "باب ما ينصرف وما لا ينصرف",
+   "cls": "mamnu",
+   "en": "(A name like «Ghudar») has a better right than «ʿUmar» to be a diptote: its shift of form is real, ʿUmar's only supposed.",
+   "tr": "(«Ğuder» gibi bir isim) gayr-i munsarif olmaya «Ömer»den daha lâyıktır: onun udûlü gerçektir, Ömer'inki takdirîdir.",
+   "notes": [
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "mamnu-min-sarf",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf"
+   ],
+   "ledger": [
+    "shudhur:S30",
+    "izhar:I-C01",
+    "izhar:I-C02",
+    "izhar:I-C03",
+    "izhar:I-C04",
+    "izhar:I-C05",
+    "izhar:I-C07",
+    "izhar:I-C08"
+   ],
+   "words": 12,
+   "why_at": 34,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-1474-1",
+   "topic": "mamnu",
+   "kind": "why-sign",
+   "ar": "فإن كان عجمي الوضع غير عجمي التعريف الصرف؛ لأن العجمة غير متمحضة.",
+   "book": "ibn-malik",
+   "vol_page": "3:1469",
+   "shamela_page": 1474,
+   "section": "باب ما ينصرف وما لا ينصرف",
+   "cls": "mamnu",
+   "en": "A word foreign in origin but not a foreign proper name takes tanwīn, because its foreignness is not pure.",
+   "tr": "Aslı yabancı olup yabancı özel isim olmayan munsariftir, çünkü yabancılığı halis değildir.",
+   "notes": [
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "mamnu-min-sarf",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf"
+   ],
+   "ledger": [
+    "shudhur:S30",
+    "izhar:I-C01",
+    "izhar:I-C02",
+    "izhar:I-C03",
+    "izhar:I-C04",
+    "izhar:I-C05",
+    "izhar:I-C07",
+    "izhar:I-C08"
+   ],
+   "words": 12,
+   "why_at": 43,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-292-1",
+   "topic": "mawsul",
+   "kind": "why-order",
+   "ar": "أراد: الذي الله موليكه فضل، فحذف العائد؛ لأنه ضمير متصل منصوب بصفة عاملة عمل الفعل.",
+   "book": "ibn-malik",
+   "vol_page": "1:290",
+   "shamela_page": 292,
+   "section": "فصل الموصول",
+   "en": "The returning pronoun is dropped because it is an attached pronoun in naṣb under an adjective that works like a verb.",
+   "tr": "Âid hazfedilmiştir, çünkü fiil gibi amel eden bir sıfatla mansûb bitişik zamirdir.",
+   "notes": [
+    "asma-al-ishara-wal-mawsulat",
+    "ism-mawsul"
+   ],
+   "ledger": [
+    "qawaid:Q124",
+    "qawaid:Q417",
+    "qawaid:Q453",
+    "shudhur:R140",
+    "shudhur:R154",
+    "izhar:I-143.1",
+    "kafiya:K5:s9",
+    "kafiya:K40:s9"
+   ],
+   "words": 15,
+   "why_at": 41,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-315-1",
+   "topic": "mawsul",
+   "kind": "why-order",
+   "ar": "فإن كان الموصول الألف واللام، أو حرفًا مصدريًا لم يجز تقديم المعمول؛ لأن (٤) امتزاج الألف واللام والحرف المصدري بالعامل آكد من امتزاج غيرهما به.",
+   "book": "ibn-malik",
+   "vol_page": "1:313",
+   "shamela_page": 315,
+   "section": "فصل الموصول",
+   "en": "When the relative is «al» or a maṣdar particle, the governed word may not go first, because these fuse with the governor more tightly than other relatives.",
+   "tr": "Mevsûl «el» ya da masdar harfi olunca ma'mûl öne alınamaz, çünkü bunlar âmille diğerlerinden daha sıkı kaynaşır.",
+   "notes": [
+    "asma-al-ishara-wal-mawsulat",
+    "ism-mawsul"
+   ],
+   "ledger": [
+    "qawaid:Q124",
+    "qawaid:Q417",
+    "qawaid:Q453",
+    "shudhur:R140",
+    "shudhur:R154",
+    "izhar:I-143.1",
+    "kafiya:K5:s9",
+    "kafiya:K40:s9"
+   ],
+   "words": 26,
+   "why_at": 69,
+   "short": false
+  },
+  {
+   "id": "ilal-ibn-malik-406-1",
+   "topic": "kana",
+   "kind": "why-order",
+   "ar": "فهذا وما أشبهه يقدم (٤) فيه الخبر وجوبًا؛ لأنه لو قدم فيه الاسم لعاد الضمير إلى متأخر لفظًا، ورتبة",
+   "book": "ibn-malik",
+   "vol_page": "1:401",
+   "shamela_page": 406,
+   "section": "باب الأفعال الرافعة الاسم الناصبة الخبر",
+   "en": "Here the khabar must go first, because with the noun first the pronoun would refer to something after it, in wording and rank.",
+   "tr": "Burada haberin öne alınması vâciptir, çünkü isim öne alınsaydı zamir lafzen ve rütbeten sonra gelene dönerdi.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "al-fil-al-tamm-wal-naqis",
+    "al-mansubat-al-tasi-ila-al-thalith-ashar",
+    "al-marfuat-al-khamis-ila-al-tasi",
+    "kana-wa-akhawatuha",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "kafiya:K25:s1",
+    "kafiya:D253"
+   ],
+   "words": 20,
+   "why_at": 42,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-402-2",
+   "topic": "kana",
+   "kind": "why-order",
+   "ar": "وإذا نفي الفعل في هذا الباب، وغيره بـ\"ما\" لم يتقدم معموله عليها؛ لأن \"ما\" النافية لها صدر الكلام",
+   "book": "ibn-malik",
+   "vol_page": "1:397",
+   "shamela_page": 402,
+   "section": "باب الأفعال الرافعة الاسم الناصبة الخبر",
+   "en": "When the verb is negated with «mā», nothing it governs may go before «mā», because negating mā must open the sentence.",
+   "tr": "Fiil «mâ» ile nefyedilince ma'mûlü mâ'nın önüne geçemez, çünkü nefy mâ'sı cümlenin başında olmalıdır.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "al-fil-al-tamm-wal-naqis",
+    "al-mansubat-al-tasi-ila-al-thalith-ashar",
+    "al-marfuat-al-khamis-ila-al-tasi",
+    "kana-wa-akhawatuha",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "kafiya:K25:s1",
+    "kafiya:D253"
+   ],
+   "words": 19,
+   "why_at": 65,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-487-1",
+   "topic": "inna",
+   "kind": "why-form",
+   "ar": "\"إن\" -بالكسر- هي الأصل؛ لأن الكلام معها جملة غير مؤولة بمفرد.",
+   "book": "ibn-malik",
+   "vol_page": "1:482",
+   "shamela_page": 487,
+   "section": "باب الحروف الناصبة الاسم الرافعة الخبر",
+   "en": "«Inna» with kasra is the original, because with it the speech stays a sentence, not taken as a single noun.",
+   "tr": "Kesreli «inne» asıldır, çünkü onunla söz müfrede tevil edilmeyen bir cümledir.",
+   "notes": [
+    "al-fil-al-tamm-wal-naqis",
+    "al-huruf-al-mushabbaha-bil-fil-fil-kafiya",
+    "al-marfuat-al-khamis-ila-al-tasi",
+    "inna-am-anna",
+    "inna-wa-akhawatuha",
+    "innama-kaffa",
+    "kaanna-lakinna-layta-laalla-fil-kafiya",
+    "kana-wa-akhawatuha"
+   ],
+   "ledger": [
+    "kafiya:K35:s1"
+   ],
+   "words": 11,
+   "why_at": 24,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-487-2",
+   "topic": "inna",
+   "kind": "why-form",
+   "ar": "و\"أن\" -بالفتح- فرع؛ لأن الكلام معها جملة في تأويل مفرد.",
+   "book": "ibn-malik",
+   "vol_page": "1:482",
+   "shamela_page": 487,
+   "section": "باب الحروف الناصبة الاسم الرافعة الخبر",
+   "en": "«Anna» with fatḥa is a branch, because with it the sentence is taken as a single noun.",
+   "tr": "Fethalı «enne» fer'dir, çünkü onunla cümle müfred tevilindedir.",
+   "notes": [
+    "al-fil-al-tamm-wal-naqis",
+    "al-huruf-al-mushabbaha-bil-fil-fil-kafiya",
+    "al-marfuat-al-khamis-ila-al-tasi",
+    "inna-am-anna",
+    "inna-wa-akhawatuha",
+    "innama-kaffa",
+    "kaanna-lakinna-layta-laalla-fil-kafiya",
+    "kana-wa-akhawatuha"
+   ],
+   "ledger": [
+    "kafiya:K35:s1"
+   ],
+   "words": 11,
+   "why_at": 20,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-476-1",
+   "topic": "inna",
+   "kind": "why-form",
+   "ar": "لأن فتح همزة \"أن\" يعرض بوقوعها موقع اسم مفرد، وإذا سلمت من ذلك كسرت همزتها.",
+   "book": "ibn-malik",
+   "vol_page": "1:471",
+   "shamela_page": 476,
+   "section": "باب الحروف الناصبة الاسم الرافعة الخبر",
+   "en": "The hamza of «anna» is opened only when it stands where a single noun would stand; free of that, it is broken (inna).",
+   "tr": "«Enne»nin hemzesi ancak tek bir ismin yerine geldiğinde fethalanır; bundan kurtulunca kesrelenir.",
+   "notes": [
+    "al-fil-al-tamm-wal-naqis",
+    "al-huruf-al-mushabbaha-bil-fil-fil-kafiya",
+    "al-marfuat-al-khamis-ila-al-tasi",
+    "inna-am-anna",
+    "inna-wa-akhawatuha",
+    "innama-kaffa",
+    "kaanna-lakinna-layta-laalla-fil-kafiya",
+    "kana-wa-akhawatuha"
+   ],
+   "ledger": [
+    "kafiya:K35:s1"
+   ],
+   "words": 15,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-1602-1",
+   "topic": "jazm",
+   "kind": "why-order",
+   "ar": "ومما يجب اقترانه بالفاء؛ لأنه لا يلي حرف الشرط الفعل المقرون بالسين، أو سوف.",
+   "book": "ibn-malik",
+   "vol_page": "3:1597",
+   "shamela_page": 1602,
+   "section": "مدخل",
+   "en": "(A jawāb with sa- or sawfa) must take the fāʾ, because a verb with sa- or sawfa never directly follows the conditional particle.",
+   "tr": "(Sîn ya da sevfe'li cevap) fâ almak zorundadır, çünkü sîn ya da sevfe'li fiil şart edatının hemen ardından gelmez.",
+   "notes": [
+    "al-fa-fi-jawab-al-shart",
+    "al-madi-wal-jumla-mamulayn",
+    "al-majzum-wal-shart-wal-jaza",
+    "al-qasam-wal-shart-fil-kafiya",
+    "huruf-al-shart-fil-kafiya",
+    "idha-shartiyya",
+    "in-shartiyya",
+    "lam-jazim"
+   ],
+   "ledger": [
+    "qawaid:Q61",
+    "qawaid:Q63",
+    "qawaid:Q65",
+    "qawaid:Q69",
+    "shudhur:S25",
+    "shudhur:R73",
+    "shudhur:R74",
+    "shudhur:R90"
+   ],
+   "words": 14,
+   "why_at": 25,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-1612-1",
+   "topic": "irab-fil",
+   "kind": "why-state",
+   "ar": "لأن الفعل المتقدم على الفاء منفي، وجواب النفي ينصب في مجازاة وغيرها.",
+   "book": "ibn-malik",
+   "vol_page": "3:1607",
+   "shamela_page": 1612,
+   "section": "مدخل",
+   "en": "The verb before the fāʾ is negated, and the answer to a negation is naṣb.",
+   "tr": "Fâdan önceki fiil menfîdir, nefyin cevabı ise mansûb olur.",
+   "notes": [
+    "al-fa-fi-jawab-al-shart",
+    "al-fil-wal-madi-wal-mudari-fil-kafiya",
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "jawazim-al-mudari-wal-amr-fil-kafiya",
+    "mudari-marfu",
+    "nawasib-al-mudari-fil-kafiya",
+    "nawasib-wa-jawazim-al-mudari"
+   ],
+   "ledger": [
+    "qawaid:Q199",
+    "qawaid:Q217",
+    "qawaid:Q231",
+    "qawaid:Q250",
+    "qawaid:Q286",
+    "qawaid:Q395",
+    "shudhur:S22",
+    "shudhur:R74"
+   ],
+   "words": 12,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-1556-2",
+   "topic": "irab-fil",
+   "kind": "why-state",
+   "ar": "فللنهي ههنا (٨) جواب مجزوم؛ لأن المعنى يصح بقولك: \"إن لا تفعل الشر يكن خيرا لك\".",
+   "book": "ibn-malik",
+   "vol_page": "3:1551",
+   "shamela_page": 1556,
+   "section": "باب إعراب الفعل",
+   "en": "Here the prohibition has a majzūm answer, because the meaning holds as «if you do not do evil, it will be good for you».",
+   "tr": "Burada nehyin cevabı meczûmdur, çünkü mânâ «kötülük yapmazsan senin için hayırlı olur» şeklinde doğru kalır.",
+   "notes": [
+    "al-fa-fi-jawab-al-shart",
+    "al-fil-wal-madi-wal-mudari-fil-kafiya",
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "jawazim-al-mudari-wal-amr-fil-kafiya",
+    "mudari-marfu",
+    "nawasib-al-mudari-fil-kafiya",
+    "nawasib-wa-jawazim-al-mudari"
+   ],
+   "ledger": [
+    "qawaid:Q199",
+    "qawaid:Q217",
+    "qawaid:Q231",
+    "qawaid:Q250",
+    "qawaid:Q286",
+    "qawaid:Q395",
+    "shudhur:S22",
+    "shudhur:R74"
+   ],
+   "words": 15,
+   "why_at": 28,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-1540-1",
+   "topic": "irab-fil",
+   "kind": "why-state",
+   "ar": "لأن المراد به الحال لا بد من رفعه بعدها نحو قولك لمن قال أحبك: \"إذن أصدقك\".",
+   "book": "ibn-malik",
+   "vol_page": "3:1535",
+   "shamela_page": 1540,
+   "section": "باب إعراب الفعل",
+   "en": "A muḍāriʿ meaning the present must be rafʿ after «idhan»: to one who says «I love you» — «idhan uṣaddiquka».",
+   "tr": "Şimdiki zaman kastedilen muzâri «izen»den sonra merfû olmalıdır: «seni seviyorum» diyene «izen usaddikuke».",
+   "notes": [
+    "al-fa-fi-jawab-al-shart",
+    "al-fil-wal-madi-wal-mudari-fil-kafiya",
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "jawazim-al-mudari-wal-amr-fil-kafiya",
+    "mudari-marfu",
+    "nawasib-al-mudari-fil-kafiya",
+    "nawasib-wa-jawazim-al-mudari"
+   ],
+   "ledger": [
+    "qawaid:Q199",
+    "qawaid:Q217",
+    "qawaid:Q231",
+    "qawaid:Q250",
+    "qawaid:Q286",
+    "qawaid:Q395",
+    "shudhur:S22",
+    "shudhur:R74"
+   ],
+   "words": 16,
+   "short": true
+  },
+  {
+   "id": "ilal-ibn-malik-788-1",
+   "topic": "mubtada",
+   "kind": "why-state",
+   "ar": "وأما \"لولا\" فإذا وليها (٤) مضمر فالمشهور كونه (٥) أحد المضمرات المرفوعة المنفصلة؛ لأنه في موضع ابتداء.",
+   "book": "ibn-malik",
+   "vol_page": "2:784",
+   "shamela_page": 788,
+   "section": "باب حروف الجر",
+   "role": "mubtada",
+   "case": "raf",
+   "en": "A pronoun after «lawlā» is, on the known view, a detached marfūʿ pronoun, because it stands as a mubtadaʾ.",
+   "tr": "«Levlâ»dan sonra gelen zamir, meşhur görüşe göre munfasıl merfû zamirdir, çünkü mübtedâ yerindedir.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "al-mubtada-wa-nawah",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "masail-inna-wal-mukhaffafa-fil-kafiya",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q49",
+    "qawaid:Q98",
+    "shudhur:R68",
+    "shudhur:R69",
+    "shudhur:R83",
+    "shudhur:R191",
+    "shudhur:R206",
+    "shudhur:R209"
+   ],
+   "words": 15,
+   "why_at": 82,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-760-1",
+   "topic": "ilal",
+   "kind": "why-form",
+   "ar": "الإِعْلاَلُ: تَغْييرُ حَرْفِ الْعِلَّةِ لِلتَّخْفِيفِ",
+   "book": "radi",
+   "vol_page": "3:66",
+   "shamela_page": 760,
+   "section": "الإعلال",
+   "en": "(Ibn al-Ḥājib:) iʿlāl is changing a weak letter for lightness.",
+   "tr": "(İbnü'l-Hâcib:) İ'lâl, illet harfini hafiflik için değiştirmektir.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "hollow-verbs",
+    "ibdal",
+    "lafif-verbs",
+    "mithal-verbs",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "shudhur:S51",
+    "shudhur:R128",
+    "shudhur:R129",
+    "kafiya:D253",
+    "marah:marah:src38",
+    "marah:marah:src45",
+    "marah:marah:src137",
+    "marah:marah:src260"
+   ],
+   "words": 19,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-844-2",
+   "topic": "ilal",
+   "kind": "why-form",
+   "ar": "يعني إنما أعل قُلْ وبعْ بالنقل (١) لكونهما عن تقول وتبيع",
+   "book": "radi",
+   "vol_page": "3:150",
+   "shamela_page": 844,
+   "section": "الإعلال بالنقل",
+   "en": "«Qul» and «biʿ» are changed by moving the vowel because they come from «taqūlu» and «tabīʿu».",
+   "tr": "«Kul» ve «bi'» nakil ile i'lâl edilir, çünkü «tekûlu» ve «tebîu»dan gelirler.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "hollow-verbs",
+    "ibdal",
+    "lafif-verbs",
+    "mithal-verbs",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "shudhur:S51",
+    "shudhur:R128",
+    "shudhur:R129",
+    "kafiya:D253",
+    "marah:marah:src38",
+    "marah:marah:src45",
+    "marah:marah:src137",
+    "marah:marah:src260"
+   ],
+   "words": 11,
+   "why_at": 35,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-867-1",
+   "topic": "ilal",
+   "kind": "why-form",
+   "ar": "ويجوز لك في عين فُعَّل جمعاً من الأجوف الواوي نحو صُوَّم وقُوَّل قلبُهَا ياء، نحو صُيَّم وَقُيَّل، والتصحيح أولى، وإنما جاز لك لكونه جمعاً، ولقرب الواو من الطرف.",
+   "book": "radi",
+   "vol_page": "3:173",
+   "shamela_page": 867,
+   "section": "قلب الواو والياء همزة طرفا",
+   "en": "In «ṣuwwam», «quwwal» (plurals of hollow wāw roots) the wāw may become yāʾ («ṣuyyam»), though keeping it is better — allowed because it is a plural and the wāw is near the end.",
+   "tr": "«Suvvem», «kuvvel»de (ecvef-vâvî çoğullar) vâv yâya dönebilir («suyyem»), sahih bırakmak daha iyidir — caizdir, çünkü çoğuldur ve vâv sona yakındır.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "hollow-verbs",
+    "ibdal",
+    "lafif-verbs",
+    "mithal-verbs",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "shudhur:S51",
+    "shudhur:R128",
+    "shudhur:R129",
+    "kafiya:D253",
+    "marah:marah:src38",
+    "marah:marah:src45",
+    "marah:marah:src137",
+    "marah:marah:src260"
+   ],
+   "words": 41,
+   "why_at": 127,
+   "short": false
+  },
+  {
+   "id": "ilal-radi-898-1",
+   "topic": "ilal",
+   "kind": "why-form",
+   "ar": "لكونه كاسم الفاعل من ساف يسيف، فإنه تقلب الواو والياء ألفاً ثم تقلب الألف همزة",
+   "book": "radi",
+   "vol_page": "3:204",
+   "shamela_page": 898,
+   "section": "مواطن إبدال الهمزة",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "hollow-verbs",
+    "ibdal",
+    "lafif-verbs",
+    "mithal-verbs",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "shudhur:S51",
+    "shudhur:R128",
+    "shudhur:R129",
+    "kafiya:D253",
+    "marah:marah:src38",
+    "marah:marah:src45",
+    "marah:marah:src137",
+    "marah:marah:src260"
+   ],
+   "words": 15,
+   "short": false
+  },
+  {
+   "id": "ilal-radi-929-1",
+   "topic": "idgham",
+   "kind": "why-form",
+   "ar": "وليس بإدغام، لأنك فككت إحداهما عن الأخرى، وإنما الإدغام وصل حرف ساكن بحرف مثله متحرك",
+   "book": "radi",
+   "vol_page": "3:235",
+   "shamela_page": 929,
+   "section": "إدغام المثلين",
+   "en": "That is not idghām, because you kept the two apart; idghām is joining a vowelless letter to the same letter voweled.",
+   "tr": "Bu idğam değildir, çünkü ikisini birbirinden ayırdın; idğam, sâkin bir harfi harekeli benzerine bitiştirmektir.",
+   "notes": [
+    "doubled-verbs"
+   ],
+   "ledger": [
+    "marah:marah:src13",
+    "marah:marah:src279",
+    "marah:marah:src500",
+    "marah:marah:src508",
+    "marah:marah:src509",
+    "marah:marah:src511",
+    "marah:marah:src512",
+    "marah:marah:src513"
+   ],
+   "words": 15,
+   "why_at": 13,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-831-2",
+   "topic": "ilal",
+   "kind": "why-form",
+   "ar": "ولم يقلب نحو عِوَض، لأنه ليس بمصدر",
+   "book": "radi",
+   "vol_page": "3:137",
+   "shamela_page": 831,
+   "section": "حكم الواو المكسورة ما قبلها وهي عين",
+   "en": "The wāw of «ʿiwaḍ» is not changed, because it is not a maṣdar.",
+   "tr": "«Ivad»ın vâvı değişmez, çünkü masdar değildir.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "hollow-verbs",
+    "ibdal",
+    "lafif-verbs",
+    "mithal-verbs",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "shudhur:S51",
+    "shudhur:R128",
+    "shudhur:R129",
+    "kafiya:D253",
+    "marah:marah:src38",
+    "marah:marah:src45",
+    "marah:marah:src137",
+    "marah:marah:src260"
+   ],
+   "words": 9,
+   "why_at": 20,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-747-1",
+   "topic": "hamza",
+   "kind": "why-form",
+   "ar": "وإنما قلبت الثانية لأن الثقل منها حصل، وإنما دبرت بحركة ما قبلها لتناسب الحركةُ الحرف الذي بعدها، فتخف الكلمة",
+   "book": "radi",
+   "vol_page": "3:53",
+   "shamela_page": 747,
+   "section": "تخفيف الهمزتين المجتمعتين",
+   "en": "(Of two hamzas) the second is changed because the heaviness came from it, and it follows the vowel before it so that vowel and letter agree and the word is lighter.",
+   "tr": "(İki hemzeden) ikincisi değişir, çünkü ağırlık ondan doğmuştur; önceki harekeye göre değişir ki hareke ile harf uyuşsun ve kelime hafiflesin.",
+   "notes": [
+    "inna-am-anna",
+    "mahmuz-verbs"
+   ],
+   "ledger": [
+    "qawaid:Q241",
+    "kafiya:K40:s9",
+    "marah:marah:src13",
+    "marah:marah:src45",
+    "marah:marah:src218",
+    "marah:marah:src230",
+    "marah:marah:src274",
+    "marah:marah:src277"
+   ],
+   "words": 19,
+   "why_at": 19,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-772-1",
+   "topic": "hamza",
+   "kind": "why-form",
+   "ar": "وإنما قلبت الواو المستثقلة همزة لاياء لفرط التقارب بين الواو والياء، والهمزة أبعد شيئاً، فلو قلت ياء لكان كأن اجتماع الواوين المستثقل باق.",
+   "book": "radi",
+   "vol_page": "3:78",
+   "shamela_page": 772,
+   "section": "الإعلال",
+   "en": "The heavy wāw becomes a hamza, not a yāʾ, because wāw and yāʾ are too close; with a yāʾ the heavy meeting of two wāws would seem to remain.",
+   "tr": "Ağır vâv yâya değil hemzeye döner, çünkü vâv ile yâ çok yakındır; yâ yapılsaydı iki vâvın ağır birleşmesi sürüyor gibi olurdu.",
+   "notes": [
+    "inna-am-anna",
+    "mahmuz-verbs"
+   ],
+   "ledger": [
+    "qawaid:Q241",
+    "kafiya:K40:s9",
+    "marah:marah:src13",
+    "marah:marah:src45",
+    "marah:marah:src218",
+    "marah:marah:src230",
+    "marah:marah:src274",
+    "marah:marah:src277"
+   ],
+   "words": 23,
+   "why_at": 38,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-821-1",
+   "topic": "ilal",
+   "kind": "why-form",
+   "ar": "لأن الواو والياء الساكن ما قبلهما إنما تقلبان ألفاً لكون ذلك الساكن مفتوحاً في أصل تلك الكلمة",
+   "book": "radi",
+   "vol_page": "3:127",
+   "shamela_page": 821,
+   "section": "إعلال الياء والواو عينين بقلبهما همزة",
+   "en": "A wāw or yāʾ after a vowelless letter becomes alif only because that letter had a fatḥa in the word's original form.",
+   "tr": "Öncesi sâkin olan vâv ya da yâ, ancak o sâkin harf kelimenin aslında fethalı olduğu için elife döner.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "hollow-verbs",
+    "ibdal",
+    "lafif-verbs",
+    "mithal-verbs",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "shudhur:S51",
+    "shudhur:R128",
+    "shudhur:R129",
+    "kafiya:D253",
+    "marah:marah:src38",
+    "marah:marah:src45",
+    "marah:marah:src137",
+    "marah:marah:src260"
+   ],
+   "words": 17,
+   "why_at": 52,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-821-3",
+   "topic": "ilal",
+   "kind": "why-form",
+   "ar": "وقول النحاة في هذا الباب: تقلب الواو والياء همزة، ليس بمحمول على الحقيقة، وذلك لأنه قلبت العين ألفاً ثم قلبت الألف همزة",
+   "book": "radi",
+   "vol_page": "3:127",
+   "shamela_page": 821,
+   "section": "إعلال الياء والواو عينين بقلبهما همزة",
+   "en": "When grammarians say the wāw or yāʾ «becomes a hamza» (as in «qāʾil»), it is not literal: the middle letter became alif, then the alif became hamza.",
+   "tr": "Nahivcilerin «vâv ve yâ hemzeye döner» demesi (kâil'de olduğu gibi) hakiki değildir: ayn harfi önce elife, sonra elif hemzeye dönmüştür.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "hollow-verbs",
+    "ibdal",
+    "lafif-verbs",
+    "mithal-verbs",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "shudhur:S51",
+    "shudhur:R128",
+    "shudhur:R129",
+    "kafiya:D253",
+    "marah:marah:src38",
+    "marah:marah:src45",
+    "marah:marah:src137",
+    "marah:marah:src260"
+   ],
+   "words": 22,
+   "why_at": 79,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-860-2",
+   "topic": "ilal",
+   "kind": "why-form",
+   "ar": "قلبت الضمة كسرة، ولم تقلب الياء واواً، لاستثقال كون أثقل حروف العلة: أي الواو، وقبلها أثقلُ الحركات: أي الضمة، مَوْرِداً للإعراب",
+   "book": "radi",
+   "vol_page": "3:166",
+   "shamela_page": 860,
+   "section": "قلب الواو ياء وهي لام",
+   "en": "(In «al-tajārī») the ḍamma becomes kasra rather than the yāʾ becoming wāw, because the heaviest weak letter after the heaviest vowel, carrying the iʿrāb, is too heavy.",
+   "tr": "(«Et-tecârî»de) yâ vâva değil, zamme kesreye döner; çünkü en ağır harekeden sonra en ağır illet harfinin i'rab yeri olması ağırdır.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "hollow-verbs",
+    "ibdal",
+    "lafif-verbs",
+    "mithal-verbs",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "shudhur:S51",
+    "shudhur:R128",
+    "shudhur:R129",
+    "kafiya:D253",
+    "marah:marah:src38",
+    "marah:marah:src45",
+    "marah:marah:src137",
+    "marah:marah:src260"
+   ],
+   "words": 24,
+   "why_at": 39,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-936-1",
+   "topic": "idgham",
+   "kind": "why-form",
+   "ar": "وكان القياس أن يدغم ما هو على فَعَل كَشَررٍ وَقَصَصٍ وَعَدَدٍ، لموازنته الفعل، لكنه لما كان الإدغام لمشابهة الفعل الثقيل، وكان مثل هذا الاسم في غاية الخفة، لكونه مفتوح الفاء والعين",
+   "book": "radi",
+   "vol_page": "3:242",
+   "shamela_page": 936,
+   "section": "إدغام المثلين",
+   "notes": [
+    "doubled-verbs"
+   ],
+   "ledger": [
+    "marah:marah:src13",
+    "marah:marah:src279",
+    "marah:marah:src500",
+    "marah:marah:src508",
+    "marah:marah:src509",
+    "marah:marah:src511",
+    "marah:marah:src512",
+    "marah:marah:src513"
+   ],
+   "words": 41,
+   "why_at": 63,
+   "short": false
+  },
+  {
+   "id": "ilal-radi-770-2",
+   "topic": "hamza",
+   "kind": "why-form",
+   "ar": "اعلم أنهم استثقلوا اجتماع المثلين في أول الكلمة، فلذلك قل نحو ببر وددن، فالواوان إذا وقعتا في الصدر - والواو أثقل حروف العلة - قلبت أولاهما همزة وجوباً",
+   "book": "radi",
+   "vol_page": "3:76",
+   "shamela_page": 770,
+   "section": "الإعلال",
+   "en": "Two like letters at the start of a word were felt heavy; so when two wāws begin a word — and wāw is the heaviest weak letter — the first must become a hamza.",
+   "tr": "Kelime başında iki benzer harfin birleşmesi ağır bulunmuştur; kelime iki vâvla başlayınca — vâv illet harflerinin en ağırıdır — ilki vâcip olarak hemzeye döner.",
+   "notes": [
+    "inna-am-anna",
+    "mahmuz-verbs"
+   ],
+   "ledger": [
+    "qawaid:Q241",
+    "kafiya:K40:s9",
+    "marah:marah:src13",
+    "marah:marah:src45",
+    "marah:marah:src218",
+    "marah:marah:src230",
+    "marah:marah:src274",
+    "marah:marah:src277"
+   ],
+   "words": 26,
+   "short": false
+  },
+  {
+   "id": "ilal-radi-808-2",
+   "topic": "idgham",
+   "kind": "why-form",
+   "ar": "وإنما كان أكثر لأن اجتماع المثلين المتحركين مستثقل",
+   "book": "radi",
+   "vol_page": "3:114",
+   "shamela_page": 808,
+   "section": "تصحيح العين إذا اعتلت اللام",
+   "en": "(In «ḥayiya») idghām is more common, because two like letters both voweled are heavy.",
+   "tr": "(«Hayiye»de) idğam daha yaygındır, çünkü iki benzer harekeli harfin birleşmesi ağırdır.",
+   "notes": [
+    "doubled-verbs"
+   ],
+   "ledger": [
+    "marah:marah:src13",
+    "marah:marah:src279",
+    "marah:marah:src500",
+    "marah:marah:src508",
+    "marah:marah:src509",
+    "marah:marah:src511",
+    "marah:marah:src512",
+    "marah:marah:src513"
+   ],
+   "words": 8,
+   "why_at": 15,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-929-2",
+   "topic": "idgham",
+   "kind": "why-form",
+   "ar": "لا يمكن إدغام المتقاربين إلا بعد جعلهما متماثلين، لأن الإدغام إخراج الحرفين من مخرج واحد دفعة واحدة باعتماد تام",
+   "book": "radi",
+   "vol_page": "3:235",
+   "shamela_page": 929,
+   "section": "إدغام المثلين",
+   "en": "Two near letters can be merged only after being made alike, because idghām is producing the two letters from one point at one stroke.",
+   "tr": "Yakın iki harf ancak birbirinin aynı yapıldıktan sonra idğam edilir, çünkü idğam iki harfi tek mahreçten tek seferde çıkarmaktır.",
+   "notes": [
+    "doubled-verbs"
+   ],
+   "ledger": [
+    "marah:marah:src13",
+    "marah:marah:src279",
+    "marah:marah:src500",
+    "marah:marah:src508",
+    "marah:marah:src509",
+    "marah:marah:src511",
+    "marah:marah:src512",
+    "marah:marah:src513"
+   ],
+   "words": 19,
+   "why_at": 50,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-965-1",
+   "topic": "idgham",
+   "kind": "objection",
+   "ar": "ثم أجاب بأن قلب الواو إلى الياء لو كان للإدغام لورد ذلك، لكنه إنما قلبت ياء لاستثقال اجتماعهما لا للادغام",
+   "book": "radi",
+   "vol_page": "3:271",
+   "shamela_page": 965,
+   "section": "امتناع إدغام المتقاربين للمحافظة على صفة الحرف",
+   "notes": [
+    "doubled-verbs"
+   ],
+   "ledger": [
+    "marah:marah:src13",
+    "marah:marah:src279",
+    "marah:marah:src500",
+    "marah:marah:src508",
+    "marah:marah:src509",
+    "marah:marah:src511",
+    "marah:marah:src512",
+    "marah:marah:src513"
+   ],
+   "words": 20,
+   "why_at": 76,
+   "short": false
+  },
+  {
+   "id": "ilal-radi-978-1",
+   "topic": "idgham",
+   "kind": "why-form",
+   "ar": "وقال سيبويه: إنما لم يلزم الإدغام في نحو اقْتَتَل لأن التاء الثانية لا تلزم الأُولى، ألا ترى إلى نحو اجتمع وازتدع؟",
+   "book": "radi",
+   "vol_page": "3:284",
+   "shamela_page": 978,
+   "section": "إدغام تاء الافتعال والإدغام فيها",
+   "en": "(Sībawayh:) idghām is not required in «iqtatala», because the second tāʾ does not always come with the first — see «ijtamaʿa», «izdadaʿa».",
+   "tr": "(Sîbeveyh:) «İktetele»de idğam lâzım değildir, çünkü ikinci tâ birincinin daima yanında değildir — «ictemea», «izdedea»ya bak.",
+   "notes": [
+    "doubled-verbs"
+   ],
+   "ledger": [
+    "marah:marah:src13",
+    "marah:marah:src279",
+    "marah:marah:src500",
+    "marah:marah:src508",
+    "marah:marah:src509",
+    "marah:marah:src511",
+    "marah:marah:src512",
+    "marah:marah:src513"
+   ],
+   "words": 25,
+   "why_at": 50,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-759-1",
+   "topic": "hamza",
+   "kind": "why-form",
+   "ar": "ومنهم من يخفف الثانية دون الأولى، لأن الاستثقال منها جاء",
+   "book": "radi",
+   "vol_page": "3:65",
+   "shamela_page": 759,
+   "section": "تخفيف الهمزتين المجتمعتين",
+   "en": "Some lighten the second hamza and not the first, because the heaviness came from it.",
+   "tr": "Bazıları birinci değil ikinci hemzeyi hafifletir, çünkü ağırlık ondan gelmiştir.",
+   "notes": [
+    "inna-am-anna",
+    "mahmuz-verbs"
+   ],
+   "ledger": [
+    "qawaid:Q241",
+    "kafiya:K40:s9",
+    "marah:marah:src13",
+    "marah:marah:src45",
+    "marah:marah:src218",
+    "marah:marah:src230",
+    "marah:marah:src274",
+    "marah:marah:src277"
+   ],
+   "words": 10,
+   "why_at": 34,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-808-1",
+   "topic": "ilal",
+   "kind": "why-form",
+   "ar": "ولا يجئ في آخر الفعل المضارع ياء مشددة، لأنه مورد الإعراب مع ثقل الفعل، وأما في الاسم فذلك جائز لخفته",
+   "book": "radi",
+   "vol_page": "3:114",
+   "shamela_page": 808,
+   "section": "تصحيح العين إذا اعتلت اللام",
+   "en": "No doubled yāʾ ends a muḍāriʿ, because that is where the iʿrāb falls and the verb is heavy; in a noun it is allowed, a noun being light.",
+   "tr": "Muzâri fiilin sonunda şeddeli yâ olmaz, çünkü orası i'rab yeridir ve fiil ağırdır; isimde caizdir, çünkü isim hafiftir.",
+   "notes": [
+    "al-afal-al-naqisa-fil-kafiya",
+    "hollow-verbs",
+    "ibdal",
+    "lafif-verbs",
+    "mithal-verbs",
+    "naqis-verbs"
+   ],
+   "ledger": [
+    "shudhur:S51",
+    "shudhur:R128",
+    "shudhur:R129",
+    "kafiya:D253",
+    "marah:marah:src38",
+    "marah:marah:src45",
+    "marah:marah:src137",
+    "marah:marah:src260"
+   ],
+   "words": 20,
+   "why_at": 40,
+   "short": true
+  },
+  {
+   "id": "ilal-radi-31-1",
+   "topic": "hamza",
+   "kind": "objection",
+   "ar": "فان قيل: فإذا كان قلب ثانية همزتي نحو أئمة واجبا فهلا قلبت الياء ألفاً لتحركها وانفتاح ما قبلها قلت: إذا تحركت الواو والياء فاين وانفتح ما قبلهما لم تقلبا ألفا",
+   "book": "radi",
+   "vol_page": "1:27",
+   "shamela_page": 31,
+   "section": "علامات القلب",
+   "notes": [
+    "inna-am-anna",
+    "mahmuz-verbs"
+   ],
+   "ledger": [
+    "qawaid:Q241",
+    "kafiya:K40:s9",
+    "marah:marah:src13",
+    "marah:marah:src45",
+    "marah:marah:src218",
+    "marah:marah:src230",
+    "marah:marah:src274",
+    "marah:marah:src277"
+   ],
+   "words": 30,
+   "short": false
+  },
+  {
+   "id": "ilal-aqil-30-1",
+   "topic": "mudmar",
+   "kind": "why-built",
+   "ar": "فالتاء في جئتنا اسم لأنه فاعل وهو مبني لأنه أشبه الحرف في الوضع في كونه على حرف واحد",
+   "book": "ibn-aqil",
+   "vol_page": "1:31",
+   "shamela_page": 30,
+   "section": "المعرب والمبني",
+   "cls": "mabni",
+   "en": "The tāʾ of جئتنا is a noun, being the doer, and it is built because it resembles a particle in its make-up: one letter.",
+   "tr": "جئتنا'daki tâ fâil olduğu için isimdir; mebnîdir, çünkü tek harf oluşuyla vaz'da harfe benzer.",
+   "notes": [
+    "al-bariz-al-muttasil",
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-mabni-wal-mudmar",
+    "al-marifa-al-mudmarat-wal-alam",
+    "al-mustatir-jawazan",
+    "damir-fasl",
+    "mawadi-al-munfasil-wa-damir-al-fasl-wal-shan"
+   ],
+   "ledger": [],
+   "words": 18,
+   "why_at": 20,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-31-1",
+   "topic": "asma-afal",
+   "kind": "why-built",
+   "ar": "فدراك مبنى لشبهه بالحرف في كونه يعمل ولا يعمل فيه غيره",
+   "book": "ibn-aqil",
+   "vol_page": "1:32",
+   "shamela_page": 31,
+   "section": "المعرب والمبني",
+   "cls": "mabni",
+   "en": "دراك is built because it resembles a particle: it governs and nothing governs it.",
+   "tr": "دراك mebnîdir, çünkü harfe benzer: amel eder, ona başkası amel etmez.",
+   "notes": [
+    "al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab",
+    "asma-al-afal-wal-aswat-wal-murakkabat",
+    "ism-fil",
+    "mana-al-fil-wa-asma-al-afal"
+   ],
+   "ledger": [
+    "ibn-aqil:A31.1",
+    "ibn-aqil:A31.2"
+   ],
+   "words": 11,
+   "why_at": 11,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-95-1",
+   "topic": "mudmar",
+   "kind": "why-form",
+   "ar": "وهذا الضمير لا يجوز إبرازه لأنه لا يحل محله الظاهر فلا تقول افعل زيد",
+   "book": "ibn-aqil",
+   "vol_page": "1:96",
+   "shamela_page": 95,
+   "section": "النكرة والمعرفة",
+   "en": "This pronoun (in افعل) may not be written out, because an explicit noun cannot take its place: not افعل زيد.",
+   "tr": "Bu zamir (افعل'de) açığa çıkarılamaz, çünkü yerine açık isim gelemez: افعل زيد denmez.",
+   "notes": [
+    "al-bariz-al-muttasil",
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-mabni-wal-mudmar",
+    "al-marifa-al-mudmarat-wal-alam",
+    "al-mustatir-jawazan",
+    "damir-fasl",
+    "mawadi-al-munfasil-wa-damir-al-fasl-wal-shan"
+   ],
+   "ledger": [
+    "ibn-aqil:A95.1"
+   ],
+   "words": 14,
+   "why_at": 27,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-96-1",
+   "topic": "mudmar",
+   "kind": "why-form",
+   "ar": "وهذا الضمير جائز الاستتار لأنه يحل محله الظاهر فتقول زيد يقوم أبوه",
+   "book": "ibn-aqil",
+   "vol_page": "1:97",
+   "shamela_page": 96,
+   "section": "النكرة والمعرفة",
+   "en": "This pronoun (in زيد يقوم) is hidden only by choice, because an explicit noun can take its place: زيد يقوم أبوه.",
+   "tr": "Bu zamir (زيد يقوم'da) caizen gizlidir, çünkü yerine açık isim gelebilir: زيد يقوم أبوه.",
+   "notes": [
+    "al-bariz-al-muttasil",
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-mabni-wal-mudmar",
+    "al-marifa-al-mudmarat-wal-alam",
+    "al-mustatir-jawazan",
+    "damir-fasl",
+    "mawadi-al-munfasil-wa-damir-al-fasl-wal-shan"
+   ],
+   "ledger": [],
+   "words": 12,
+   "why_at": 26,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-98-1",
+   "topic": "mudmar",
+   "kind": "why-form",
+   "ar": "فلا تقول في أكرمتك أكرمت إياك لأنه يمكن الإتيان بالمتصل فتقول أكرمتك.",
+   "book": "ibn-aqil",
+   "vol_page": "1:99",
+   "shamela_page": 98,
+   "section": "النكرة والمعرفة",
+   "en": "Not أكرمت إياك for أكرمتك, because the attached pronoun is possible.",
+   "tr": "أكرمتك yerine أكرمت إياك denmez, çünkü bitişik zamir getirilebilir.",
+   "notes": [
+    "al-bariz-al-muttasil",
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-mabni-wal-mudmar",
+    "al-marifa-al-mudmarat-wal-alam",
+    "al-mustatir-jawazan",
+    "damir-fasl",
+    "mawadi-al-munfasil-wa-damir-al-fasl-wal-shan"
+   ],
+   "ledger": [
+    "ibn-aqil:A98.1"
+   ],
+   "words": 12,
+   "why_at": 30,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-107-1",
+   "topic": "mudmar",
+   "kind": "why-form",
+   "ar": "إذا اتصل بالفعل ياء المتكلم لحقته لزوما نون تسمى نون الوقاية وسميت بذلك لأنها تقي الفعل من الكسر",
+   "book": "ibn-aqil",
+   "vol_page": "1:108",
+   "shamela_page": 107,
+   "section": "النكرة والمعرفة",
+   "en": "When the speaker's yāʾ joins a verb, a nūn must come, called the nūn of protection because it protects the verb from the kasra.",
+   "tr": "Fiile mütekellim yâsı bitişince ona vikâye nûnu gelir; böyle denir, çünkü fiili kesreden korur.",
+   "notes": [
+    "al-bariz-al-muttasil",
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-mabni-wal-mudmar",
+    "al-marifa-al-mudmarat-wal-alam",
+    "al-mustatir-jawazan",
+    "damir-fasl",
+    "mawadi-al-munfasil-wa-damir-al-fasl-wal-shan"
+   ],
+   "ledger": [
+    "ibn-aqil:A107.1",
+    "ibn-aqil:A107.2"
+   ],
+   "words": 18,
+   "why_at": 72,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-119-1",
+   "topic": "alam",
+   "kind": "why-order",
+   "ar": "وإنما وجب في القياس تقديم الاسم وتأخير اللقب لان الاسم يدل على الذات وحدها واللقب يدل عليها وعلى صفة مدح أو ذم",
+   "book": "ibn-aqil-editor",
+   "vol_page": "1:120",
+   "shamela_page": 119,
+   "section": "العلم",
+   "en": "The name comes before the nickname because the name denotes the person alone, the nickname the person and a quality of praise or blame.",
+   "tr": "İsim lakaptan önce gelir, çünkü isim yalnız zâta, lakap ise zâta ve bir övgü ya da yergi sıfatına delâlet eder.",
+   "notes": [
+    "al-marifa-al-mudmarat-wal-alam",
+    "tarifat-daftar-al-kafiya"
+   ],
+   "ledger": [],
+   "words": 22,
+   "why_at": 45,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-126-1",
+   "topic": "alam",
+   "kind": "why-form",
+   "ar": "اعلم أن العلم بحسب الاصل لا تدخله الالف واللام، ولا يضاف، وذلك لانه معرفة بالعلمية، وأل والاضافة وسيلتان للتعريف، ولا يجوز أن يجتمع على الاسم الواحد معرفان",
+   "book": "ibn-aqil-editor",
+   "vol_page": "1:127",
+   "shamela_page": 126,
+   "section": "العلم",
+   "en": "A proper name in principle takes no article and is not annexed, because it is already definite as a name; one noun does not take two makers of definiteness.",
+   "tr": "Özel isim aslında elif-lâm almaz ve muzâf olmaz, çünkü alem oluşuyla zaten marifedir; bir isimde iki tarif aracı birleşmez.",
+   "notes": [
+    "al-marifa-al-mudmarat-wal-alam",
+    "tarifat-daftar-al-kafiya"
+   ],
+   "ledger": [
+    "ibn-aqil:A126.1"
+   ],
+   "words": 27,
+   "why_at": 63,
+   "short": false
+  },
+  {
+   "id": "ilal-aqil-336-1",
+   "topic": "muqaraba",
+   "kind": "why-form",
+   "ar": "أن ما دل على الشروع في الفعل لا يجوز اقتران خبره بأن لما بينه وبين أن من المنافاة لأن المقصود به الحال وأن للاستقبال",
+   "book": "ibn-aqil",
+   "vol_page": "1:337",
+   "shamela_page": 336,
+   "section": "أفعال المقاربة",
+   "en": "A verb of beginning never takes أن before its khabar, because it means the present and أن the future.",
+   "tr": "Şürû' fiilinin haberine أن gelmez, çünkü onunla şimdiki zaman kastedilir, أن ise istikbal içindir.",
+   "notes": [
+    "afal-al-muqaraba-fil-kafiya",
+    "afal-al-muqaraba"
+   ],
+   "ledger": [
+    "ibn-aqil:A336.1"
+   ],
+   "words": 24,
+   "why_at": 82,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-483-1",
+   "topic": "fail",
+   "kind": "why-order",
+   "ar": "الأصل أن يلي الفاعل الفعل من غير أن يفصل بينه وبين الفعل فاصل لأنه كالجزء منه",
+   "book": "ibn-aqil",
+   "vol_page": "2:96",
+   "shamela_page": 483,
+   "section": "الفاعل",
+   "role": "fail",
+   "en": "The fāʿil should follow its verb with nothing between, because it is like a part of it.",
+   "tr": "Fâilin fiilden hemen sonra, arada bir şey olmadan gelmesi asıldır, çünkü fâil fiilin bir parçası gibidir.",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "ibn-aqil:A483.1"
+   ],
+   "words": 16,
+   "why_at": 62,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-492-1",
+   "topic": "fail",
+   "kind": "why-order",
+   "ar": "وإنما شذ ذلك لأن فيه عود الضمير على متأخر لفظا ورتبة",
+   "book": "ibn-aqil",
+   "vol_page": "2:105",
+   "shamela_page": 492,
+   "section": "الفاعل",
+   "en": "زان نوره الشجر is irregular because its pronoun refers to a word later both in wording and in rank.",
+   "tr": "زان نوره الشجر şazdır, çünkü zamir hem lafzen hem rütbeten sonra gelene döner.",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "ibn-aqil:A492.1",
+    "ibn-aqil:A492.2",
+    "ibn-aqil:A492.3"
+   ],
+   "words": 11,
+   "why_at": 13,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-505-1",
+   "topic": "naib-fail",
+   "kind": "why-form",
+   "ar": "فلا تقول بعت لئلا يلتبس بفعل الفاعل فإنه بالكسر فقط نحو بعت الثوب.",
+   "book": "ibn-aqil",
+   "vol_page": "2:118",
+   "shamela_page": 505,
+   "section": "النائب عن الفاعل",
+   "en": "The passive of باع is not said with the kasra alone, lest it be taken for the active, which has only the kasra: بعت الثوب.",
+   "tr": "باع'ın meçhulü yalnız kesreyle söylenmez, ma'lûmla karışmasın diye; ma'lûmu yalnız kesrelidir: بعت الثوب.",
+   "notes": [
+    "al-majhul-fil-kafiya",
+    "al-marfuat-al-fail-wa-naibuh",
+    "naib-al-fail"
+   ],
+   "ledger": [
+    "ibn-aqil:A505.1"
+   ],
+   "words": 13,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-507-1",
+   "topic": "naib-fail",
+   "kind": "why-state",
+   "ar": "فلا تقول جلس عندك ولا ركب سحر لئلا تخرجهما عما استقر لهما في لسان العرب من لزوم النصب",
+   "book": "ibn-aqil",
+   "vol_page": "2:120",
+   "shamela_page": 507,
+   "section": "النائب عن الفاعل",
+   "en": "Not جلس عندك or ركب سحر as nāʾib: that would take them out of the naṣb they always keep in the Arabs' speech.",
+   "tr": "جلس عندك ve ركب سحر nâib-i fâil yapılmaz; Arapların dilinde daima mansûb kalmalarından çıkarılmış olurlar.",
+   "notes": [
+    "al-majhul-fil-kafiya",
+    "al-marfuat-al-fail-wa-naibuh",
+    "naib-al-fail"
+   ],
+   "ledger": [
+    "ibn-aqil:A507.1"
+   ],
+   "words": 18,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-511-1",
+   "topic": "naib-fail",
+   "kind": "why-order",
+   "ar": "فتقول أعطي زيد عمرا ولا يجوز إقامة الثاني حينئذ لئلا يحصل لبس",
+   "book": "ibn-aqil",
+   "vol_page": "2:124",
+   "shamela_page": 511,
+   "section": "النائب عن الفاعل",
+   "en": "You say أعطي زيد عمرا: the second object may not stand for the doer then, lest the meaning be confused.",
+   "tr": "أعطي زيد عمرا dersin; o zaman ikinci mef'ûl fâilin yerine konmaz, karışıklık olmasın diye.",
+   "notes": [
+    "al-majhul-fil-kafiya",
+    "al-marfuat-al-fail-wa-naibuh",
+    "naib-al-fail"
+   ],
+   "ledger": [
+    "ibn-aqil:A511.1",
+    "ibn-aqil:A511.2"
+   ],
+   "words": 12,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-517-1",
+   "topic": "ishtighal",
+   "kind": "why-form",
+   "ar": "فذهب الجمهور إلى أن ناصبه فعل مضمر وجوبا لأنه لا يجمع بين المفسر والمفسر",
+   "book": "ibn-aqil",
+   "vol_page": "2:130",
+   "shamela_page": 517,
+   "section": "اشتغال العامل عن المعمول",
+   "en": "Most hold that a hidden verb, never written, makes it naṣb, because the explained and its explanation are not joined.",
+   "tr": "Cumhura göre onu vücuben gizli bir fiil nasb eder, çünkü tefsir edilenle tefsir eden bir araya getirilmez.",
+   "notes": [],
+   "ledger": [
+    "ibn-aqil:A517.1"
+   ],
+   "words": 14,
+   "why_at": 41,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-523-1",
+   "topic": "ishtighal",
+   "kind": "why-state",
+   "ar": "فتقول خرجت فإذا زيد يضربه عمرو برفع زيد ولا يجوز نصبه لأن إذا هذه لا يقع بعدها الفعل لا ظاهرا ولا مقدرا.",
+   "book": "ibn-aqil",
+   "vol_page": "2:136",
+   "shamela_page": 523,
+   "section": "اشتغال العامل عن المعمول",
+   "case": "raf",
+   "en": "خرجت فإذا زيد يضربه عمرو: زيد is rafʿ and cannot be naṣb, because no verb, written or implied, comes after this إذا.",
+   "tr": "خرجت فإذا زيد يضربه عمرو: زيد merfûdur, mansûb olamaz, çünkü bu إذا'dan sonra ne açık ne takdirî fiil gelir.",
+   "notes": [],
+   "ledger": [
+    "ibn-aqil:A523.1",
+    "ibn-aqil:A523.2"
+   ],
+   "words": 22,
+   "why_at": 54,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-529-1",
+   "topic": "ishtighal",
+   "kind": "why-state",
+   "ar": "نحو زيد دراكه فلا يجوز نصب زيد لأن أسماء الأفعال لا تعمل فيما قبلها فلا تفسر عاملا فيه.",
+   "book": "ibn-aqil",
+   "vol_page": "2:142",
+   "shamela_page": 529,
+   "section": "اشتغال العامل عن المعمول",
+   "en": "In زيد دراكه, زيد may not be naṣb, because verbal nouns do not govern what precedes them, so they cannot explain a governor of it.",
+   "tr": "زيد دراكه'de زيد mansûb olamaz, çünkü isim-fiiller öncelerine amel etmez, onda bir âmili de tefsir edemez.",
+   "notes": [],
+   "ledger": [
+    "ibn-aqil:A529.1",
+    "ibn-aqil:A529.2"
+   ],
+   "words": 18,
+   "why_at": 31,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-541-1",
+   "topic": "maful-bih",
+   "kind": "why-order",
+   "ar": "فلا تقول أعطيت صاحبه الدرهم لئلا يعود الضمير على متأخر لفظا ورتبة",
+   "book": "ibn-aqil",
+   "vol_page": "2:154",
+   "shamela_page": 541,
+   "section": "تعدي الفعل ولزومه",
+   "en": "Not أعطيت صاحبه الدرهم, lest the pronoun refer to a word later in wording and in rank.",
+   "tr": "أعطيت صاحبه الدرهم denmez, zamir lafzen ve rütbeten sonra gelene dönmesin diye.",
+   "notes": [
+    "afal-tasyir",
+    "al-lazim-wal-mutaaddi",
+    "al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf",
+    "al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun",
+    "al-maful-bihi-wa-qismah"
+   ],
+   "ledger": [
+    "ibn-aqil:A541.1",
+    "ibn-aqil:A541.2"
+   ],
+   "words": 12,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-547-1",
+   "topic": "tanazu",
+   "kind": "why-order",
+   "ar": "رأى البصريون أن إعمال ثاني العاملين أولى من إعمال الاول منهما لثلاث حجج: الاولى: أنه أقرب إلى المعمول",
+   "book": "ibn-aqil-editor",
+   "vol_page": "2:160",
+   "shamela_page": 547,
+   "section": "التنازع في العمل",
+   "en": "The Baṣrans prefer letting the second governor work, first because it is nearer to the governed word.",
+   "tr": "Basralılar ikinci âmilin amel etmesini tercih eder; ilk delil: ma'mûle daha yakındır.",
+   "notes": [
+    "tanazu"
+   ],
+   "ledger": [],
+   "words": 18,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-558-1",
+   "topic": "maful-mutlaq",
+   "kind": "why-form",
+   "ar": "والصحيح المذهب الأول لأن كل فرع يتضمن الأصل وزيادة والفعل والوصف بالنسبة إلى المصدر كذلك",
+   "book": "ibn-aqil",
+   "vol_page": "2:171",
+   "shamela_page": 558,
+   "section": "المفعول المطلق",
+   "en": "The maṣdar is the origin, because every branch holds its origin and more — and the verb and the adjective hold the maṣdar and more.",
+   "tr": "Asıl mastardır, çünkü her fer' aslı ve fazlasını içerir; fiil ve sıfat da mastarı ve fazlasını içerir.",
+   "notes": [
+    "al-mansubat-al-maful-al-mutlaq",
+    "maful-mutlaq"
+   ],
+   "ledger": [],
+   "words": 15,
+   "why_at": 21,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-561-1",
+   "topic": "maful-mutlaq",
+   "kind": "why-form",
+   "ar": "لا يجوز تثنية المصدر المؤكد لعامله ولا جمعه بل تجب إفراده فتقول ضربت ضربا وذلك لأنه بمثابة تكرر الفعل والفعل لا يثنى ولا يجمع.",
+   "book": "ibn-aqil",
+   "vol_page": "2:174",
+   "shamela_page": 561,
+   "section": "المفعول المطلق",
+   "en": "The maṣdar that only stresses its verb stays singular — ضربت ضربا — because it is the verb repeated, and a verb has no dual or plural.",
+   "tr": "Âmilini te'kid eden mastar müfred kalır — ضربت ضربا — çünkü fiilin tekrarı gibidir; fiil tesniye ve cemi yapılmaz.",
+   "notes": [
+    "al-mansubat-al-maful-al-mutlaq",
+    "maful-mutlaq"
+   ],
+   "ledger": [
+    "ibn-aqil:A561.1",
+    "ibn-aqil:A561.2"
+   ],
+   "words": 24,
+   "why_at": 79,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-562-1",
+   "topic": "maful-mutlaq",
+   "kind": "why-form",
+   "ar": "المصدر المؤكد لا يجوز حذف عامله لأنه مسوق لتقرير عامله وتقويته والحذف مناف لذلك",
+   "book": "ibn-aqil",
+   "vol_page": "2:175",
+   "shamela_page": 562,
+   "section": "المفعول المطلق",
+   "en": "The governor of a stressing maṣdar is never dropped, because the maṣdar is there to confirm and strengthen it, and dropping it contradicts that.",
+   "tr": "Te'kid eden mastarın âmili hazfedilmez, çünkü mastar onu pekiştirmek için gelmiştir; hazf buna aykırıdır.",
+   "notes": [
+    "al-mansubat-al-maful-al-mutlaq",
+    "maful-mutlaq"
+   ],
+   "ledger": [
+    "ibn-aqil:A562.1"
+   ],
+   "words": 14,
+   "why_at": 32,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-578-1",
+   "topic": "maful-fih",
+   "kind": "why-state",
+   "ar": "فهنا ظرف مكان وأزمنا ظرف زمان وكل منهما تضمن معنى في لأن المعنى امكث في هذا الموضع وفي أزمن.",
+   "book": "ibn-aqil",
+   "vol_page": "2:191",
+   "shamela_page": 578,
+   "section": "المفعول فيه وهو المسمى ظرفا",
+   "role": "mafulFih",
+   "en": "هنا is a ẓarf of place and أزمنا of time: each holds the meaning of في — «stay in this place, in times».",
+   "tr": "هنا mekân, أزمنا zaman zarfıdır; her biri في manasını içerir, çünkü anlam «bu yerde ve zamanlarda kal»dır.",
+   "notes": [
+    "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+    "al-kinayat-wal-zuruf-al-mabniyya",
+    "al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf",
+    "al-maful-fih-wal-maful-lah",
+    "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha",
+    "maful-fih",
+    "mana-al-fil-wa-asma-al-afal",
+    "zarf-mustaqarr-wa-laghw"
+   ],
+   "ledger": [
+    "ibn-aqil:A578.1",
+    "ibn-aqil:A578.2"
+   ],
+   "words": 19,
+   "why_at": 53,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-579-1",
+   "topic": "maful-fih",
+   "kind": "why-state",
+   "ar": "وإنما هي منصوبة على التشبيه بالمفعول به لأن الظرف هو ما تضمن معنى في باطراد وهذه متضمنة معنى في لا باطراد.",
+   "book": "ibn-aqil",
+   "vol_page": "2:192",
+   "shamela_page": 579,
+   "section": "المفعول فيه وهو المسمى ظرفا",
+   "case": "nasb",
+   "en": "دخلت البيت: البيت is naṣb by likeness to the object, not as a ẓarf, because a ẓarf holds the meaning of في regularly and these do not.",
+   "tr": "دخلت البيت: البيت zarf olarak değil, mef'ûlün bihe benzetilerek mansûbdur; çünkü zarf في manasını muttaridan içerir, bunlar içermez.",
+   "notes": [
+    "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+    "al-kinayat-wal-zuruf-al-mabniyya",
+    "al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf",
+    "al-maful-fih-wal-maful-lah",
+    "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha",
+    "maful-fih",
+    "mana-al-fil-wa-asma-al-afal",
+    "zarf-mustaqarr-wa-laghw"
+   ],
+   "ledger": [
+    "ibn-aqil:A579.1"
+   ],
+   "words": 21,
+   "why_at": 40,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-580-1",
+   "topic": "maful-fih",
+   "kind": "why-form",
+   "ar": "والتقدير في غير الصلة استقر أو مستقر وفي الصلة استقر لأن الصلة لا تكون إلا جملة",
+   "book": "ibn-aqil",
+   "vol_page": "2:193",
+   "shamela_page": 580,
+   "section": "المفعول فيه وهو المسمى ظرفا",
+   "en": "The hidden governor is استقر or مستقر, but in a ṣila only استقر, because a ṣila must be a sentence.",
+   "tr": "Gizli âmil استقر ya da مستقر'dir; sılada ise yalnız استقر, çünkü sıla ancak cümle olur.",
+   "notes": [
+    "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+    "al-kinayat-wal-zuruf-al-mabniyya",
+    "al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf",
+    "al-maful-fih-wal-maful-lah",
+    "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha",
+    "maful-fih",
+    "mana-al-fil-wa-asma-al-afal",
+    "zarf-mustaqarr-wa-laghw"
+   ],
+   "ledger": [],
+   "words": 16,
+   "why_at": 53,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-599-1",
+   "topic": "istithna",
+   "kind": "why-state",
+   "ar": "واختيار النصب على الاستثناء في هذا الموضع لان الاتباع إنما يختار للتشاكل بين التابع والمتبوع، وهذا التشاكل لا يظهر مع طول الفصل بينهما",
+   "book": "ibn-aqil-editor",
+   "vol_page": "2:212",
+   "shamela_page": 599,
+   "section": "الاستثناء",
+   "role": "mustathna",
+   "case": "nasb",
+   "en": "Here naṣb is preferred, because following the noun is chosen for the match of follower and followed, and a long gap hides that match.",
+   "tr": "Burada nasb tercih edilir, çünkü tâbi kılmak tâbi ile metbû' arasındaki uyum için seçilir; uzun ayrılıkta bu uyum görünmez.",
+   "notes": [
+    "al-majrur-bil-harf-wa-bil-idafa",
+    "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa",
+    "al-mustathna-wa-nawah-wa-nasbuh",
+    "an-ala-al-kaf-mudh-wa-huruf-al-istithna-fil-kafiya",
+    "istithna-mufarragh",
+    "istithna"
+   ],
+   "ledger": [
+    "ibn-aqil:A599.1"
+   ],
+   "words": 23,
+   "why_at": 42,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-603-1",
+   "topic": "istithna",
+   "kind": "why-state",
+   "ar": "حيث نصب المستثنى بإلا في الموضعين، لانه متقدم على المستثنى منه، والكلام منفي، وهذا هو المختار.",
+   "book": "ibn-aqil-editor",
+   "vol_page": "2:216",
+   "shamela_page": 603,
+   "section": "الاستثناء",
+   "role": "mustathna",
+   "case": "nasb",
+   "en": "The mustathnā is naṣb here because it comes before what it is excepted from — the preferred reading even in a negative sentence.",
+   "tr": "Müstesnâ burada mansûbdur, çünkü müstesnâ minhden önce gelmiştir; kelâm menfî olsa da tercih edilen budur.",
+   "notes": [
+    "al-majrur-bil-harf-wa-bil-idafa",
+    "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa",
+    "al-mustathna-wa-nawah-wa-nasbuh",
+    "an-ala-al-kaf-mudh-wa-huruf-al-istithna-fil-kafiya",
+    "istithna-mufarragh",
+    "istithna"
+   ],
+   "ledger": [
+    "ibn-aqil:A603.1",
+    "ibn-aqil:A603.2"
+   ],
+   "words": 16,
+   "why_at": 35,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-820-1",
+   "topic": "sifa-mushabbaha",
+   "kind": "why-state",
+   "ar": "والوجه منصوب على التشبيه بالمفعول به لأن حسنا شبيه بضارب فعمل عمله",
+   "book": "ibn-aqil",
+   "vol_page": "3:142",
+   "shamela_page": 820,
+   "section": "الصفة المشبهة باسم الفاعل",
+   "case": "nasb",
+   "en": "In زيد حسن الوجه, الوجه is naṣb by likeness to the object, because حسن resembles ضارب and works as it works.",
+   "tr": "زيد حسن الوجه'de الوجه mef'ûlün bihe benzetilerek mansûbdur, çünkü حسن ضارب'e benzer ve onun amelini yapar.",
+   "notes": [
+    "al-sifa-al-mushabbaha-fil-kafiya",
+    "masail-al-sifa-al-mushabbaha-fil-kafiya",
+    "sifa-mushabbaha"
+   ],
+   "ledger": [
+    "ibn-aqil:A820.1"
+   ],
+   "words": 12,
+   "why_at": 37,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-827-1",
+   "topic": "tajjub",
+   "kind": "why-state",
+   "ar": "وأشار بقوله وتلو أفعل إلى أن تالى أفعل ينصب لكونه مفعولا نحو ما أوفى خليلينا",
+   "book": "ibn-aqil",
+   "vol_page": "3:150",
+   "shamela_page": 827,
+   "section": "التعجب",
+   "case": "nasb",
+   "en": "The noun after أفعل in wonder is naṣb because it is its object: ما أوفى خليلينا.",
+   "tr": "Taaccübde أفعل'den sonraki isim mansûbdur, çünkü mef'ûlüdür: ما أوفى خليلينا.",
+   "notes": [
+    "fil-al-taajjub-fil-kafiya"
+   ],
+   "ledger": [
+    "ibn-aqil:A827.1"
+   ],
+   "words": 15,
+   "why_at": 44,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-831-1",
+   "topic": "tajjub",
+   "kind": "why-form",
+   "ar": "فلا تقول ما أضرب زيدا تريد التعجب من ضرب أوقع به لئلا يلتبس بالتعجب من ضرب أوقعه.",
+   "book": "ibn-aqil",
+   "vol_page": "3:154",
+   "shamela_page": 831,
+   "section": "التعجب",
+   "en": "No wonder from a passive: not ما أضرب زيدا for a beating he received, lest it be taken for one he gave.",
+   "tr": "Meçhulden taaccüb olmaz: kendisine vurulmasına ما أضرب زيدا denmez, vurmasıyla karışmasın diye.",
+   "notes": [
+    "fil-al-taajjub-fil-kafiya"
+   ],
+   "ledger": [
+    "ibn-aqil:A831.1",
+    "ibn-aqil:A831.2",
+    "ibn-aqil:A831.3",
+    "ibn-aqil:A831.4"
+   ],
+   "words": 17,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-948-1",
+   "topic": "nida",
+   "kind": "why-form",
+   "ar": "ولا يجوز إثبات الياء فلا تقول يا أبتي ويا أمتي لأن التاء عوض من الياء فلا يجمع بين العوض والمعوض منه.",
+   "book": "ibn-aqil",
+   "vol_page": "3:276",
+   "shamela_page": 948,
+   "section": "المنادى المضاف الى ياء المتكلم",
+   "en": "Not يا أبتي or يا أمتي: the tāʾ stands for the yāʾ, and a substitute is not joined with what it replaces.",
+   "tr": "يا أبتي ve يا أمتي denmez: tâ, yânın yerine gelmiştir; bedel ile yerine geldiği bir arada bulunmaz.",
+   "notes": [
+    "al-mawsul-wal-muarraf-bil-lam-wal-mudaf",
+    "vocative-munada"
+   ],
+   "ledger": [
+    "ibn-aqil:A948.1"
+   ],
+   "words": 21,
+   "why_at": 47,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-951-1",
+   "topic": "nida",
+   "kind": "why-sign",
+   "ar": "وإنما فتحت مع المستغاث لأن المنادى واقع موقع المضمر واللام تفتح مع المضمر نحو لك وله.",
+   "book": "ibn-aqil",
+   "vol_page": "3:280",
+   "shamela_page": 951,
+   "section": "الاستغاثة",
+   "en": "The lām of the one called for help has fatḥa because the vocative stands in a pronoun's place, and lām has fatḥa with pronouns: لك، له.",
+   "tr": "İstiğâse lâmı fethalıdır, çünkü münâdâ zamirin yerindedir; lâm zamirle fethalı olur: لك، له.",
+   "notes": [
+    "al-mawsul-wal-muarraf-bil-lam-wal-mudaf",
+    "vocative-munada"
+   ],
+   "ledger": [
+    "ibn-aqil:A951.1"
+   ],
+   "words": 16,
+   "why_at": 23,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-965-1",
+   "topic": "nida",
+   "kind": "why-form",
+   "ar": "ولا يجوز ترخيمه على لغة من لا ينتظر الحرف فلا تقول يا مسلم بضم الميم لئلا يلتبس بنداء المذكر",
+   "book": "ibn-aqil",
+   "vol_page": "3:294",
+   "shamela_page": 965,
+   "section": "الترخيم",
+   "en": "مسلمة is not shortened to يا مسلم with a ḍamma on the mīm, lest it be taken for calling a man.",
+   "tr": "مسلمة, mîm ötreli يا مسلم diye terhim edilmez, erkeğe nidâ ile karışmasın diye.",
+   "notes": [
+    "al-mawsul-wal-muarraf-bil-lam-wal-mudaf",
+    "vocative-munada"
+   ],
+   "ledger": [
+    "ibn-aqil:A965.1"
+   ],
+   "words": 19,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-1153-1",
+   "topic": "tasghir",
+   "kind": "why-form",
+   "ar": "وجب حذفها في التصغير لأن بقاءها يخرج البناء عن مثال فعيعل وفعيعيل",
+   "book": "ibn-aqil",
+   "vol_page": "4:146",
+   "shamela_page": 1153,
+   "section": "التصغير",
+   "en": "A fifth (or later) maqṣūr feminine alif is dropped in the diminutive, because keeping it would break the pattern فعيعل / فعيعيل.",
+   "tr": "Beşinci (veya sonraki) maksûr te'nis elifi tasğirde düşer, çünkü kalırsa bina فعيعل / فعيعيل kalıbından çıkar.",
+   "notes": [],
+   "ledger": [
+    "ibn-aqil:A1153.1",
+    "ibn-aqil:A1153.2"
+   ],
+   "words": 12,
+   "why_at": 21,
+   "short": true
+  },
+  {
+   "id": "ilal-aqil-1201-1",
+   "topic": "zawaid",
+   "kind": "why-form",
+   "ar": "وإنما قل ذلك في الأسماء لأنهم قصدوا تخصيص هذا الوزن بفعل ما لم يسم فاعله كضرب وقتل.",
+   "book": "ibn-aqil",
+   "vol_page": "4:194",
+   "shamela_page": 1201,
+   "section": "التصريف",
+   "en": "The pattern fuʿil is rare in nouns because the Arabs kept it for the passive verb: ضرب، قتل.",
+   "tr": "fuʿil vezni isimlerde azdır, çünkü Araplar bu vezni meçhul fiile tahsis etmek istediler: ضرب، قتل.",
+   "notes": [
+    "augmented-babs",
+    "huruf-al-ziyada-fil-kafiya"
+   ],
+   "ledger": [],
+   "words": 17,
+   "why_at": 24,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-51-1",
+   "topic": "fail",
+   "kind": "why-state",
+   "ar": "قال أبو إسحاق١ في رفع الفاعل ونصب المفعول: إنما فعل ذلك للفرق بينهما",
+   "book": "khasais",
+   "vol_page": "1:50",
+   "shamela_page": 51,
+   "section": "باب ذكر علل العربية أكلامية هي أم فقهية؟ ١",
+   "role": "fail",
+   "case": "raf",
+   "en": "Abū Isḥāq (al-Zajjāj) on the fāʿil's rafʿ and the mafʿūl's naṣb: it was done to tell the two apart.",
+   "tr": "Ebû İshâk (Zeccâc), fâilin ref'i ve mef'ûlün nasbı hakkında: bu, ikisini birbirinden ayırmak için yapılmıştır.",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "shudhur:R49",
+    "shudhur:R60",
+    "shudhur:R62",
+    "shudhur:R91",
+    "shudhur:R113",
+    "shudhur:R117",
+    "shudhur:R200",
+    "izhar:I-A50"
+   ],
+   "words": 13,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-51-2",
+   "topic": "fail",
+   "kind": "why-state",
+   "ar": "وذلك أن الفعل لا يكون له أكثر من فاعل واحد وقد يكون له مفعولات كثيرة فرفع الفاعل لقلته ونصب المفعول لكثرته وذلك ليقل في كلامهم ما يسثقلون ويكثر في كلامهم ما يستخفون",
+   "book": "khasais",
+   "vol_page": "1:50",
+   "shamela_page": 51,
+   "section": "باب ذكر علل العربية أكلامية هي أم فقهية؟ ١",
+   "en": "Why not the reverse: a verb has one fāʿil but may have many mafʿūls, so the few got rafʿ and the many naṣb — so that what they find heavy is rare in their speech and what they find light is common.",
+   "tr": "Neden tersi değil: fiilin bir fâili olur ama birçok mef'ûlü olabilir; azı ref', çoğu nasb aldı — ağır buldukları sözlerinde az, hafif buldukları çok olsun diye.",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "shudhur:R49",
+    "shudhur:R60",
+    "shudhur:R62",
+    "shudhur:R91",
+    "shudhur:R113",
+    "shudhur:R117",
+    "shudhur:R200",
+    "izhar:I-A50"
+   ],
+   "words": 32,
+   "short": false
+  },
+  {
+   "id": "ilal-khasais-204-1",
+   "topic": "fail",
+   "kind": "why-state",
+   "ar": "فلهذا قلنا: ارتفع الفاعل بإسناد الفعل إليه",
+   "book": "khasais",
+   "vol_page": "1:197",
+   "shamela_page": 204,
+   "section": "باب في الزيادة في صفة العلة لضرب من الاحتياط",
+   "role": "fail",
+   "case": "raf",
+   "en": "The fāʿil is rafʿ because the verb is predicated of it (isnād).",
+   "tr": "Fâil merfûdur, çünkü fiil ona isnad edilmiştir.",
+   "notes": [
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-marfuat-al-fail-wa-naibuh",
+    "fail",
+    "ism-al-fail-wal-maful-fil-kafiya",
+    "ism-fail",
+    "naib-al-fail",
+    "shurut-amal-ism-al-fail"
+   ],
+   "ledger": [
+    "shudhur:R49",
+    "shudhur:R60",
+    "shudhur:R62",
+    "shudhur:R91",
+    "shudhur:R113",
+    "shudhur:R117",
+    "shudhur:R200",
+    "izhar:I-A50"
+   ],
+   "words": 7,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-204-2",
+   "topic": "mubtada",
+   "kind": "why-state",
+   "ar": "وإنما نقول في رفع المبتدأ: إنه إنما وجب ذلك له من حيث كان مسندًا إليه عاريًا من العوامل اللفظية قبله فيه",
+   "book": "khasais",
+   "vol_page": "1:197",
+   "shamela_page": 204,
+   "section": "باب في الزيادة في صفة العلة لضرب من الاحتياط",
+   "case": "raf",
+   "en": "The mubtadaʾ must be rafʿ because something is predicated of it while no spoken governor stands before it.",
+   "tr": "Mübtedâ merfû olmalıdır, çünkü kendisine isnad edilmiştir ve önünde lafzî bir âmil yoktur.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "al-mubtada-wa-nawah",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "masail-inna-wal-mukhaffafa-fil-kafiya",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q49",
+    "qawaid:Q98",
+    "shudhur:R68",
+    "shudhur:R69",
+    "shudhur:R83",
+    "shudhur:R191",
+    "shudhur:R206",
+    "shudhur:R209"
+   ],
+   "words": 23,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-204-3",
+   "topic": "maful-bih",
+   "kind": "why-state",
+   "ar": "ومن ذلك قولك في جواب من سألك عن علة انتصاب زيد من قولك: ضربت زيدًا: إنه إنما انتصب لأنه فضلة ومفعول به فالجواب قد استقل بقولك: لأنه فضلة",
+   "book": "khasais",
+   "vol_page": "1:197",
+   "shamela_page": 204,
+   "section": "باب في الزيادة في صفة العلة لضرب من الاحتياط",
+   "role": "mafulBih",
+   "case": "nasb",
+   "en": "Asked why Zayd is naṣb in «ḍarabtu Zaydan»: because it is an extra (faḍla) and a mafʿūl bih — and «because it is a faḍla» already answers it.",
+   "tr": "«Darabtu Zeyden»de Zeyd neden mansûb diye sorulursa: fazla (fazla unsur) ve mef'ûlün bih olduğu için — «fazla olduğu için» demek zaten cevaptır.",
+   "notes": [
+    "afal-tasyir",
+    "al-lazim-wal-mutaaddi",
+    "al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf",
+    "al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun",
+    "al-maful-bihi-wa-qismah"
+   ],
+   "ledger": [
+    "shudhur:R92",
+    "shudhur:R110",
+    "izhar:I-A54",
+    "izhar:I-A55",
+    "izhar:I-B15",
+    "izhar:I-35.2",
+    "izhar:I-37.2",
+    "izhar:I-110.2"
+   ],
+   "words": 29,
+   "why_at": 83,
+   "short": false
+  },
+  {
+   "id": "ilal-khasais-112-1",
+   "topic": "maful-bih",
+   "kind": "why-state",
+   "ar": "ومثله اعتبارك باب الفاعل والمفعول به بأن تقول: رفعت هذا لأنه فاعل ونصبت هذا لأنه مفعول.",
+   "book": "khasais",
+   "vol_page": "1:110",
+   "shamela_page": 112,
+   "section": "باب في مقاييس العربية",
+   "en": "Like this is your reasoning over the chapter of fāʿil and mafʿūl bih: I made this rafʿ because it is a fāʿil, and this naṣb because it is a mafʿūl.",
+   "tr": "Fâil ve mef'ûlün bih bâbında böyle akıl yürütürsün: bunu fâil olduğu için merfû, bunu mef'ûl olduğu için mansûb yaptım.",
+   "notes": [
+    "afal-tasyir",
+    "al-lazim-wal-mutaaddi",
+    "al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf",
+    "al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab",
+    "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun",
+    "al-maful-bihi-wa-qismah"
+   ],
+   "ledger": [
+    "shudhur:R92",
+    "shudhur:R110",
+    "izhar:I-A54",
+    "izhar:I-A55",
+    "izhar:I-B15",
+    "izhar:I-35.2",
+    "izhar:I-37.2",
+    "izhar:I-110.2"
+   ],
+   "words": 16,
+   "why_at": 56,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-112-2",
+   "topic": "mubtada",
+   "kind": "why-state",
+   "ar": "وإنما قال النحويون: عامل لفظي وعامل معنوي ليروك أن بعض العمل يأتي مسببًا عن لفظ يصحبه كمررت بزيد وليت عمرًا قائم وبعضه يأتي عاريًا من مصاحبة لفظ يتعلق به كرفع المبتدأ بالابتداء، ورفع الفعل لوقوعه موقع الاسم",
+   "book": "khasais",
+   "vol_page": "1:110",
+   "shamela_page": 112,
+   "section": "باب في مقاييس العربية",
+   "en": "Grammarians speak of a spoken and an abstract governor to show that some government comes from a word that goes with it, and some with no word at all — like the mubtadaʾ's rafʿ by the ibtidāʾ and the verb's rafʿ for standing in a noun's place.",
+   "tr": "Nahivciler lafzî ve mânevî âmil derler; bazı amelin beraberindeki bir lafızdan, bazısının hiçbir lafız olmadan geldiğini göstermek için — mübtedânın ibtidâ ile ref'i ve fiilin ismin yerine geçtiği için ref'i gibi.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "al-mubtada-wa-nawah",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "masail-inna-wal-mukhaffafa-fil-kafiya",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q49",
+    "qawaid:Q98",
+    "shudhur:R68",
+    "shudhur:R69",
+    "shudhur:R83",
+    "shudhur:R191",
+    "shudhur:R206",
+    "shudhur:R209"
+   ],
+   "words": 40,
+   "short": false
+  },
+  {
+   "id": "ilal-khasais-802-1",
+   "topic": "khabar",
+   "kind": "why-order",
+   "ar": "فأما خبر المبتدأ فلم يتقدَّم عندنا على رافعه؛ لأن رافعه ليس المبتدأ وحده, إنما الرافع له \"المبتدأ والابتداء\"٤ جميعًا, فلم يتقدم الخبر عليهما معًا",
+   "book": "khasais",
+   "vol_page": "2:387",
+   "shamela_page": 802,
+   "section": "باب في شجاعة العربية",
+   "en": "A khabar put first has not come before what makes it rafʿ: that is not the mubtadaʾ alone but the mubtadaʾ and the ibtidāʾ together, and it has not come before both.",
+   "tr": "Öne alınan haber, kendisini merfû kılanın önüne geçmiş olmaz: o yalnız mübtedâ değil, mübtedâ ile ibtidâ birlikte; haber ikisinin birden önüne geçmez.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "anwa-al-khabar",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q47",
+    "qawaid:Q205",
+    "qawaid:Q435",
+    "shudhur:R64",
+    "shudhur:R78",
+    "shudhur:R201",
+    "shudhur:R209",
+    "izhar:I-A29"
+   ],
+   "words": 27,
+   "why_at": 46,
+   "short": false
+  },
+  {
+   "id": "ilal-khasais-415-1",
+   "topic": "hal",
+   "kind": "why-state",
+   "ar": "وإنما جاز أن يعمل في الحال غير العامل في صاحبها, من حيث كانت ضربًا من الخبر, والخبر العامل فيه غير العامل في المخبر عنه.",
+   "book": "khasais",
+   "vol_page": "2:22",
+   "shamela_page": 415,
+   "section": "باب في الامتناع من تركيب ما يخرج عن السماع",
+   "en": "The ḥāl may be governed by something other than what governs its owner because it is a kind of khabar — and what governs a khabar is not what governs its subject.",
+   "tr": "Hâlde, sahibindeki âmilden başkası amel edebilir; çünkü hâl bir çeşit haberdir ve haberdeki âmil, haber verilendeki âmilden başkadır.",
+   "notes": [
+    "al-hal-jumla-wa-rabituha",
+    "al-maful-maah-wal-hal",
+    "hal",
+    "mana-al-fil"
+   ],
+   "ledger": [
+    "qawaid:Q90",
+    "qawaid:Q375",
+    "shudhur:R83",
+    "izhar:I-A31",
+    "izhar:I-A32",
+    "izhar:I-A33",
+    "izhar:I-A34",
+    "izhar:I-A35"
+   ],
+   "words": 25,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-293-1",
+   "topic": "idafa",
+   "kind": "why-form",
+   "ar": "قيل الفعل مع الفاعل٣ كالجزء الواحد وأقوى الجزأين منهما هو الفاعل فكأن الإضافة إنما هي إليه لا إلى الفعل فلذلك جاز أن يتصور فيه معنى الجر.",
+   "book": "khasais",
+   "vol_page": "1:283",
+   "shamela_page": 293,
+   "section": "باب في الفرق ١ بين تقدير الإعراب وتفسير المعنى:",
+   "en": "A verb with its fāʿil is like one part, and the stronger part is the fāʿil; so the annexation is as if to it, not to the verb — that is why a sense of jarr can be pictured in it.",
+   "tr": "Fiil fâiliyle tek bir parça gibidir; iki parçanın kuvvetlisi fâildir; izâfet sanki fiile değil ona yapılmıştır — bu yüzden onda cer mânâsı düşünülebilir.",
+   "notes": [
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada",
+    "al-majrur-bil-harf-wa-bil-idafa",
+    "al-mawsul-wal-muarraf-bil-lam-wal-mudaf",
+    "al-mudaf-wa-nawa-al-idafa",
+    "al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "hadhf-al-mudaf-wal-mudaf-ilayh",
+    "idafa-definiteness"
+   ],
+   "ledger": [
+    "qawaid:Q57",
+    "shudhur:R95",
+    "shudhur:R113",
+    "shudhur:R147",
+    "shudhur:R148",
+    "shudhur:R172",
+    "shudhur:R178",
+    "shudhur:R180"
+   ],
+   "words": 26,
+   "short": false
+  },
+  {
+   "id": "ilal-khasais-779-1",
+   "topic": "hadhf",
+   "kind": "why-form",
+   "ar": "لأن حذف المضاف ضرب من الاتساع, والخبر أولى بذلك من المبتدأ؛ لأن الاتساع بالأعجاز أولى منه بالصدور",
+   "book": "khasais",
+   "vol_page": "2:364",
+   "shamela_page": 779,
+   "section": "باب في شجاعة العربية",
+   "en": "Dropping the muḍāf is a kind of latitude, and the khabar has more right to it than the mubtadaʾ: latitude suits the ends of speech more than its beginnings.",
+   "tr": "Muzâfı hazfetmek bir genişliktir; haber buna mübtedâdan daha lâyıktır, çünkü genişlik sözün sonlarına başlarından daha uygundur.",
+   "notes": [
+    "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+    "al-maful-bihi-wa-qismah",
+    "al-mubtada-wa-nawah",
+    "hadhf-al-jarr",
+    "hadhf-wa-taqdir"
+   ],
+   "ledger": [
+    "qawaid:Q419",
+    "shudhur:S48",
+    "shudhur:R54",
+    "shudhur:R55",
+    "shudhur:R72",
+    "shudhur:R89",
+    "shudhur:R143",
+    "shudhur:R176"
+   ],
+   "words": 17,
+   "why_at": 60,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-778-1",
+   "topic": "hadhf",
+   "kind": "why-form",
+   "ar": "وإنما تحذف الجملة١٠ من الفعل والفاعل لمشابهتها المفرد بكون الفاعل في كثير من الأمر بمنزلة الجزء من الفعل",
+   "book": "khasais",
+   "vol_page": "2:363",
+   "shamela_page": 778,
+   "section": "باب في شجاعة العربية",
+   "en": "A clause of verb and fāʿil can be dropped because it resembles a single word: the fāʿil is often like a part of the verb.",
+   "tr": "Fiil ve fâilden oluşan cümle hazfedilebilir, çünkü tek kelimeye benzer: fâil çoğu zaman fiilin bir parçası gibidir.",
+   "notes": [
+    "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+    "al-maful-bihi-wa-qismah",
+    "al-mubtada-wa-nawah",
+    "hadhf-al-jarr",
+    "hadhf-wa-taqdir"
+   ],
+   "ledger": [
+    "qawaid:Q419",
+    "shudhur:S48",
+    "shudhur:R54",
+    "shudhur:R55",
+    "shudhur:R72",
+    "shudhur:R89",
+    "shudhur:R143",
+    "shudhur:R176"
+   ],
+   "words": 18,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-785-1",
+   "topic": "hadhf",
+   "kind": "why-form",
+   "ar": "فلو قلت: جاءني من الكرام, أي: رجل من الكرام, أو حضرني سواك, أي: إنسان سواك, لم يجسن؛ لأن الفاعل لا يحذف",
+   "book": "khasais",
+   "vol_page": "2:370",
+   "shamela_page": 785,
+   "section": "باب في شجاعة العربية",
+   "en": "«jāʾanī mina l-kirām» for «a man of the noble came», or «ḥaḍaranī siwāka» for «someone other than you came», is not good: the fāʿil is not dropped.",
+   "tr": "«Câenî mine'l-kirâm» (asîllerden bir adam geldi) ya da «hadaranî sivâke» demek güzel olmaz: fâil hazfedilmez.",
+   "notes": [
+    "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+    "al-maful-bihi-wa-qismah",
+    "al-mubtada-wa-nawah",
+    "hadhf-al-jarr",
+    "hadhf-wa-taqdir"
+   ],
+   "ledger": [
+    "qawaid:Q419",
+    "shudhur:S48",
+    "shudhur:R54",
+    "shudhur:R55",
+    "shudhur:R72",
+    "shudhur:R89",
+    "shudhur:R143",
+    "shudhur:R176"
+   ],
+   "words": 21,
+   "why_at": 85,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-107-1",
+   "topic": "hadhf",
+   "kind": "why-form",
+   "ar": "فيفسد أن يكون مرفوعًا بفعل مضمر لأن ذلك المضمر لا دليل عليه ولا تفسير له وما كانت هذه سبيله٣ لم يجز إضماره.",
+   "book": "khasais",
+   "vol_page": "1:105",
+   "shamela_page": 107,
+   "section": "باب في تقاود١ السماع وتقارع الانتزاع:",
+   "en": "It cannot be rafʿ by an implied verb: nothing points to that verb or explains it, and what is so may not be implied.",
+   "tr": "Gizli bir fiille merfû olamaz: o gizli fiile delâlet eden de onu açıklayan da yoktur; böyle olanı gizlemek câiz değildir.",
+   "notes": [
+    "al-irab-wa-taqsimuhu-bil-dhat-wal-mahall",
+    "al-maful-bihi-wa-qismah",
+    "al-mubtada-wa-nawah",
+    "hadhf-al-jarr",
+    "hadhf-wa-taqdir"
+   ],
+   "ledger": [
+    "qawaid:Q419",
+    "shudhur:S48",
+    "shudhur:R54",
+    "shudhur:R55",
+    "shudhur:R72",
+    "shudhur:R89",
+    "shudhur:R143",
+    "shudhur:R176"
+   ],
+   "words": 23,
+   "why_at": 32,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-300-1",
+   "topic": "tawkid",
+   "kind": "why-form",
+   "ar": "وعلى الجملة فكل ما حذف تخفيفًا فلا يجوز توكيده لتدافع حاليه به من حيث١ التوكيد للإسهاب والإطناب والحذف للاختصار والإيجاز.",
+   "book": "khasais",
+   "vol_page": "1:290",
+   "shamela_page": 300,
+   "section": "باب في أن المحذوف إذا دلت الدلالة عليه كان في حكم الملفوظ به، إلا أن يعترض هناك من صناعة اللفظ ما يمنع منه:",
+   "en": "In short, whatever is dropped for lightness may not be given a tawkīd: the two would clash — tawkīd is for fullness and length, dropping for brevity.",
+   "tr": "Kısacası, hafiflik için hazfedilen hiçbir şey te'kîd edilemez; ikisi çatışır — te'kîd uzatmak ve genişletmek, hazf kısaltmak içindir.",
+   "notes": [
+    "al-atf-bil-huruf-wa-ahkamuh",
+    "al-tawkid-al-lafzi-wal-manawi",
+    "nun-al-tawkid-fil-kafiya",
+    "nun-tawkid",
+    "tawkid"
+   ],
+   "ledger": [
+    "marah:marah:src112",
+    "marah:marah:src357",
+    "marah:marah:src449",
+    "marah:marah:matn430.1",
+    "marah:marah:matn517.1",
+    "marah:marah:matn517.6",
+    "izzi:izzi:src196",
+    "izzi:izzi:src201"
+   ],
+   "words": 21,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-832-1",
+   "topic": "tanith",
+   "kind": "why-form",
+   "ar": "وتذكير المؤنث واسع جدًّا؛ لأنه ردّ فرع إلى أصل.",
+   "book": "khasais",
+   "vol_page": "2:417",
+   "shamela_page": 832,
+   "section": "باب في شجاعة العربية",
+   "en": "Treating a feminine as masculine is very common, because it returns a branch to its origin.",
+   "tr": "Müennesi müzekker saymak çok yaygındır, çünkü fer'i asla döndürmektir.",
+   "notes": [
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-jumu-wa-tanith-amiliha",
+    "al-muannath-wa-alamatuh",
+    "al-muannath-wal-mudhakkar-fil-kafiya",
+    "jam-muannath-salim",
+    "kalla-wa-ta-al-tanith-wal-tanwin-fil-kafiya"
+   ],
+   "ledger": [
+    "shudhur:R60",
+    "shudhur:R61",
+    "shudhur:R62",
+    "izhar:I-171.0",
+    "kafiya:K11:s1",
+    "marah:marah:src108",
+    "marah:marah:src118",
+    "marah:marah:src297"
+   ],
+   "words": 10,
+   "why_at": 26,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-115-1",
+   "topic": "tanith",
+   "kind": "why-form",
+   "ar": "كان حمل المؤنث على المذكر١ لأن المذكر أسبق رتبة من المؤنث أولى وأجدر.",
+   "book": "khasais",
+   "vol_page": "1:113",
+   "shamela_page": 115,
+   "section": "باب في مقاييس العربية",
+   "en": "Carrying the feminine over to the masculine is all the more fitting, because the masculine comes first in rank.",
+   "tr": "Müennesi müzekkere hamletmek daha uygundur, çünkü müzekker rütbede müennesten öncedir.",
+   "notes": [
+    "al-fail-al-muzhar-wa-tanith-amilih",
+    "al-jumu-wa-tanith-amiliha",
+    "al-muannath-wa-alamatuh",
+    "al-muannath-wal-mudhakkar-fil-kafiya",
+    "jam-muannath-salim",
+    "kalla-wa-ta-al-tanith-wal-tanwin-fil-kafiya"
+   ],
+   "ledger": [
+    "shudhur:R60",
+    "shudhur:R61",
+    "shudhur:R62",
+    "izhar:I-171.0",
+    "kafiya:K11:s1",
+    "marah:marah:src108",
+    "marah:marah:src118",
+    "marah:marah:src297"
+   ],
+   "words": 13,
+   "why_at": 27,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-513-1",
+   "topic": "mudmar",
+   "kind": "why-order",
+   "ar": "وضده زيد ضربته؛ لأن المفسِّر للضمير متقدم عليه.",
+   "book": "khasais",
+   "vol_page": "2:113",
+   "shamela_page": 513,
+   "section": "باب في ترافع الأحكام",
+   "en": "Its opposite is «Zaydun ḍarabtuhu»: what explains the pronoun comes before it.",
+   "tr": "Zıddı «Zeydün darabtühû»dur: zamiri açıklayan ondan öncedir.",
+   "notes": [
+    "al-bariz-al-muttasil",
+    "al-fail-al-mudmar-al-mustatir-wujuban",
+    "al-mabni-wal-mudmar",
+    "al-marifa-al-mudmarat-wal-alam",
+    "al-mustatir-jawazan",
+    "damir-fasl",
+    "mawadi-al-munfasil-wa-damir-al-fasl-wal-shan"
+   ],
+   "ledger": [
+    "shudhur:R94",
+    "shudhur:R96",
+    "shudhur:R132",
+    "shudhur:R171",
+    "izhar:I-A57",
+    "izhar:I-43.2",
+    "izhar:I-80.1",
+    "izhar:I-89.1"
+   ],
+   "words": 9,
+   "why_at": 16,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-741-1",
+   "topic": "waqf",
+   "kind": "why-form",
+   "ar": "وإنما لحقه في الوقف لأنّ الوقف يضعف الحرف",
+   "book": "khasais",
+   "vol_page": "2:330",
+   "shamela_page": 741,
+   "section": "باب الساكن والمتحرك",
+   "en": "It is added in the pause because the pause weakens the letter.",
+   "tr": "Vakıfta eklenir, çünkü vakıf harfi zayıflatır.",
+   "notes": [],
+   "ledger": [
+    "marah:marah:src389",
+    "marah:marah:src390",
+    "marah:marah:src650",
+    "izzi:izzi:src279",
+    "izzi:izzi:src316"
+   ],
+   "words": 8,
+   "why_at": 20,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-746-1",
+   "topic": "sakinayn",
+   "kind": "why-form",
+   "ar": "لأنه أراد: لم يلده, فأسكن اللام استثقالًا للكسرة, وكانت الدال ساكنة فحركها لالتقاء الساكنين.",
+   "book": "khasais",
+   "vol_page": "2:335",
+   "shamela_page": 746,
+   "section": "باب الساكن والمتحرك",
+   "en": "He meant «lam yalidhu»: he silenced the lām, finding the kasra heavy; the dāl was silent, so he moved it because two silent letters met.",
+   "tr": "«Lem yelidhu» demek istedi: kesreyi ağır bulup lâmı sâkin yaptı; dâl sâkindi, iki sâkin buluştuğu için onu harekeledi.",
+   "notes": [],
+   "ledger": [
+    "marah:marah:src148",
+    "marah:marah:src358",
+    "marah:marah:src367",
+    "marah:marah:src578",
+    "marah:marah:src583",
+    "marah:marah:src604",
+    "marah:marah:src619",
+    "marah:marah:src620"
+   ],
+   "words": 15,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-756-1",
+   "topic": "sakinayn",
+   "kind": "why-form",
+   "ar": "إنهم لما حركوها لالتقاء الساكنين لم يكسروها, لكنهم ضموها؛ لأن أصلها الضم في منذ.",
+   "book": "khasais",
+   "vol_page": "2:344",
+   "shamela_page": 756,
+   "section": "باب في مراجعة الأصل الأقرب دون الأبعد",
+   "en": "(The dhāl of «mudh».) Moving it because two silent letters met, they gave it ḍamma, not kasra, because its origin is the ḍamma in «mundhu».",
+   "tr": "(«Müz»ün zâli.) İki sâkin buluştuğu için harekelediklerinde kesre değil zamme verdiler, çünkü aslı «münzü»deki zammedir.",
+   "notes": [],
+   "ledger": [
+    "marah:marah:src148",
+    "marah:marah:src358",
+    "marah:marah:src367",
+    "marah:marah:src578",
+    "marah:marah:src583",
+    "marah:marah:src604",
+    "marah:marah:src619",
+    "marah:marah:src620"
+   ],
+   "words": 14,
+   "why_at": 58,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-409-1",
+   "topic": "tathniya",
+   "kind": "why-sign",
+   "ar": "نعم ونحن أيضًا نعلم أن القياس مقتضٍ لصحة لغة الكافة, وهي الياء في موضع الجر والنصب, ألا ترى أن في ذلك فرقًا بين المرفوع وبينهما",
+   "book": "khasais",
+   "vol_page": "2:17",
+   "shamela_page": 409,
+   "section": "باب في العربيّ يسمع لغة غيره، أيراعيها ويعتمدها، أم يلغيها ويطرح حكمها؟",
+   "en": "We know analogy supports the usage of all — the yāʾ in the place of jarr and naṣb (in the dual) — for it tells the rafʿ apart from those two.",
+   "tr": "Kıyasın herkesin kullanımını — (tesniyede) cer ve nasb yerinde yâyı — desteklediğini biliyoruz; çünkü bu, merfûu o ikisinden ayırır.",
+   "notes": [],
+   "ledger": [
+    "shudhur:R63",
+    "marah:marah:src120",
+    "marah:marah:src131",
+    "marah:marah:src167",
+    "marah:marah:src179",
+    "marah:marah:src195",
+    "marah:marah:src218",
+    "marah:marah:src225"
+   ],
+   "words": 27,
+   "why_at": 102,
+   "short": false
+  },
+  {
+   "id": "ilal-khasais-1159-1",
+   "topic": "tathniya",
+   "kind": "why-form",
+   "ar": "ولذلك أيضا لم يثن الاسم المثنى؛ لأن ما حصل فيه من علم التثنية مؤذن بكونه إثنين، وما يلحقه من علم التثنية ثانيا يؤذن بكونه في الحال الأولى مفردا؛",
+   "book": "khasais",
+   "vol_page": "3:238",
+   "shamela_page": 1159,
+   "section": "باب في الامتناع من نقض الغرض",
+   "en": "That is also why a dual is not dualled again: the dual sign in it already says it is two, and a second one would say it was one before.",
+   "tr": "Tesniyenin yeniden tesniye yapılmaması da bundandır: içindeki tesniye alâmeti iki olduğunu bildirir; ikinci bir alâmet önce tek olduğunu bildirirdi.",
+   "notes": [],
+   "ledger": [
+    "shudhur:R63",
+    "marah:marah:src120",
+    "marah:marah:src131",
+    "marah:marah:src167",
+    "marah:marah:src179",
+    "marah:marah:src195",
+    "marah:marah:src218",
+    "marah:marah:src225"
+   ],
+   "words": 28,
+   "why_at": 32,
+   "short": false
+  },
+  {
+   "id": "ilal-khasais-1060-1",
+   "topic": "signs-dual-plural",
+   "kind": "why-sign",
+   "ar": "وكما أن ألف التثنية وواو الجمع نائبتان عن الضمة والياء، فهما نائبتان عن الكسرة والفتحة، وإنما الموضع في الإعراب للحركات، فأما الحروف فدواخل عليها.",
+   "book": "khasais",
+   "vol_page": "3:137",
+   "shamela_page": 1060,
+   "section": "باب في إنابة الحركة عن الحرف والحرف عن الحركة",
+   "en": "As the dual's alif and the plural's wāw stand in for the ḍamma (and the yāʾ for the kasra and fatḥa): the place in iʿrāb belongs to the vowels; the letters come in upon them.",
+   "tr": "Tesniye elifi ve cemi vâvı zammenin yerine geçer (yâ da kesre ve fethanın): i'rabda asıl yer harekelerindir; harfler onların üzerine gelir.",
+   "notes": [
+    "al-jam-al-salim-fil-kafiya",
+    "al-muthanna-fil-kafiya",
+    "al-muthanna",
+    "al-taqdiri-al-rabi-ila-al-sadis-al-ya-wal-waw-wal-murab-bil-huruf-qabl-al-sakin",
+    "jam-muannath-salim",
+    "jam-mudhakkar-salim"
+   ],
+   "ledger": [
+    "shudhur:S39",
+    "shudhur:S43",
+    "izhar:I-C01",
+    "izhar:I-C02",
+    "izhar:I-C03",
+    "izhar:I-C04",
+    "izhar:I-C05",
+    "izhar:I-C06"
+   ],
+   "words": 24,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-1193-1",
+   "topic": "tajjub",
+   "kind": "why-form",
+   "ar": "وإنما كان كذلك لأن أصل الاستفهام الخبر والتعجب ضرب من الخبر.",
+   "book": "khasais",
+   "vol_page": "3:272",
+   "shamela_page": 1193,
+   "section": "باب في نقض الأوضاع إذا ضامها طارئ عليها",
+   "en": "That is so because the root of the question is the statement, and exclamation is a kind of statement.",
+   "tr": "Böyledir, çünkü istifhâmın aslı haberdir ve taaccüb haberin bir çeşididir.",
+   "notes": [
+    "fil-al-taajjub-fil-kafiya"
+   ],
+   "ledger": [
+    "qawaid:Q431",
+    "kafiya:K27:s1"
+   ],
+   "words": 11,
+   "why_at": 15,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-967-1",
+   "topic": "asma-afal",
+   "kind": "why-form",
+   "ar": "وقد جاءت هذه التسمية للفعل في الخبر، وإنما بابها الأمر والنهي؛ من قبل أنهما لا يكونان إلا بالفعل، فلما قويت الدلالة فيهما على الفعل حسنت٦ إقامة غيره مقامه.",
+   "book": "khasais",
+   "vol_page": "3:39",
+   "shamela_page": 967,
+   "section": "باب في تسمية الفعل",
+   "en": "Verb-nouns do occur in statements, but their home is command and prohibition: those come only with a verb, so with the verb so strongly implied, something else may stand in its place.",
+   "tr": "İsm-i fiiller haberde de gelir, ama asıl yerleri emir ve nehiydir: bunlar ancak fiille olur; fiile delâlet kuvvetlenince yerine başkasının konması güzel olur.",
+   "notes": [
+    "al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab",
+    "asma-al-afal-wal-aswat-wal-murakkabat",
+    "ism-fil",
+    "mana-al-fil-wa-asma-al-afal"
+   ],
+   "ledger": [
+    "qawaid:Q364",
+    "qawaid:Q368",
+    "shudhur:R92",
+    "izhar:I-A58",
+    "kafiya:K6:s1"
+   ],
+   "words": 28,
+   "short": false
+  },
+  {
+   "id": "ilal-khasais-607-1",
+   "topic": "mamnu",
+   "kind": "why-sign",
+   "ar": "فلا تصرف \"فاعلة\"؛ لأنها علم لهذا الوزن, فجرت مجرى فاطمة وعاتكة.",
+   "book": "khasais",
+   "vol_page": "2:201",
+   "shamela_page": 607,
+   "section": "باب في تعليق الأعلام على المعاني دون الأعيان",
+   "en": "«fāʿila» (the pattern's name) takes no tanwīn: it is the proper name of this pattern, so it goes like Fāṭima and ʿĀtika.",
+   "tr": "«Fâile» (veznin adı) munsarif olmaz: bu veznin özel adıdır, Fâtıma ve Âtike gibi olur.",
+   "notes": [
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "mamnu-min-sarf",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf"
+   ],
+   "ledger": [
+    "shudhur:S30",
+    "izhar:I-C01",
+    "izhar:I-C02",
+    "izhar:I-C03",
+    "izhar:I-C04",
+    "izhar:I-C05",
+    "izhar:I-C07",
+    "izhar:I-C08"
+   ],
+   "words": 11,
+   "why_at": 18,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-282-1",
+   "topic": "tasghir",
+   "kind": "why-form",
+   "ar": "ولزوم الزيادة لما لزمته من الأصول يضعف٥ تحقير الترخيم؛ لأن فيه حذفًا للزوائد.",
+   "book": "khasais",
+   "vol_page": "1:272",
+   "shamela_page": 282,
+   "section": "باب في ١ الاستغناء بالشيء عن الشيء:",
+   "en": "An augment that clings to the root letters weakens the tarkhīm diminutive, since that diminutive drops the augments.",
+   "tr": "Asıl harflere yapışmış ziyâde, terhîm tasğîrini zayıflatır; çünkü o tasğîrde ziyâdeler hazfedilir.",
+   "notes": [],
+   "ledger": [
+    "marah:marah:src611"
+   ],
+   "words": 14,
+   "why_at": 55,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-1043-1",
+   "topic": "taksir",
+   "kind": "why-form",
+   "ar": "فأما قول سيببويه في نحو سفيرج وسفارج: إنه إنما حذف آخره لأن مثال التحقير والتكسير انتهى دونه",
+   "book": "khasais",
+   "vol_page": "3:119",
+   "shamela_page": 1043,
+   "section": "باب في فك الصيغ",
+   "en": "Sībawayh on «sufayrij» and «safārij»: the last letter is dropped because the pattern of the diminutive and of the broken plural ends before it.",
+   "tr": "Sîbeveyh «süfeyric» ve «sefâric» hakkında: son harf hazfedilir, çünkü tasğîr ve teksîr kalıbı ondan önce biter.",
+   "notes": [
+    "al-jam-al-salim-fil-kafiya",
+    "al-jumu-wa-tanith-amiliha",
+    "jam-al-taksir-fil-kafiya",
+    "jam-taksir"
+   ],
+   "ledger": [
+    "qawaid:Q92",
+    "kafiya:K13:s1",
+    "kafiya:K14:s1",
+    "izzi:izzi:src62",
+    "izzi:izzi:src63"
+   ],
+   "words": 17,
+   "why_at": 56,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-329-1",
+   "topic": "mubtada",
+   "kind": "why-form",
+   "ar": "قيل: أما قوله سلام عليك وويل له وأمت في حجر لا فيك فإنه جاز لأنه ليس في المعنى خبرًا إنما هو دعاء ومسألة",
+   "book": "khasais",
+   "vol_page": "1:319",
+   "shamela_page": 329,
+   "section": "باب في إصلاح ١ اللفظ:",
+   "en": "«salāmun ʿalayka», «waylun lahu»: allowed (an indefinite first) because in meaning it is not a statement but a prayer and a request.",
+   "tr": "«Selâmün aleyke», «veylün lehû»: (nekre başta) câizdir, çünkü mânâca haber değil, dua ve istektir.",
+   "notes": [
+    "al-amil-al-manawi",
+    "al-fa-fi-khabar-al-mubtada",
+    "al-mubtada-wa-nawah",
+    "fa-khabar-mubtada",
+    "khabar-al-mubtada-wa-ahkamuh",
+    "masail-inna-wal-mukhaffafa-fil-kafiya",
+    "mubtada-khabar"
+   ],
+   "ledger": [
+    "qawaid:Q49",
+    "qawaid:Q98",
+    "shudhur:R68",
+    "shudhur:R69",
+    "shudhur:R83",
+    "shudhur:R191",
+    "shudhur:R206",
+    "shudhur:R209"
+   ],
+   "words": 24,
+   "why_at": 60,
+   "short": true
+  },
+  {
+   "id": "ilal-khasais-415-2",
+   "topic": "maful-fih",
+   "kind": "why-form",
+   "ar": "ولا تقول١ على هذا: ضربك زيدًا حسن وهو عمرًا قبيح؛ لأن الظرف يجوز فيه من الاتساع ما لا يجوز في غيره.",
+   "book": "khasais",
+   "vol_page": "2:22",
+   "shamela_page": 415,
+   "section": "باب في الامتناع من تركيب ما يخرج عن السماع",
+   "en": "On this pattern you do not say «ḍarbuka Zaydan ḥasanun wa-huwa ʿAmran qabīḥun»: the ẓarf allows a latitude nothing else allows.",
+   "tr": "Buna göre «darbuke Zeyden hasenün ve hüve Amren kabîhun» denmez: zarfta başkasında olmayan bir genişlik câizdir.",
+   "notes": [
+    "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+    "al-kinayat-wal-zuruf-al-mabniyya",
+    "al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf",
+    "al-maful-fih-wal-maful-lah",
+    "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha",
+    "maful-fih",
+    "mana-al-fil-wa-asma-al-afal",
+    "zarf-mustaqarr-wa-laghw"
+   ],
+   "ledger": [
+    "qawaid:Q59",
+    "qawaid:Q180",
+    "qawaid:Q439",
+    "shudhur:R78",
+    "shudhur:R82",
+    "shudhur:R87",
+    "shudhur:R106",
+    "shudhur:R183"
+   ],
+   "words": 23,
+   "why_at": 50,
+   "short": true
+  },
+  {
+   "id": "ilal-shudhur2-445-1",
+   "topic": "zann",
+   "kind": "why-order",
+   "ar": "وَلَيْسَ مَنْصُوبًا بِمَا قبله لِأَن الِاسْتِفْهَام لَهُ الصَّدْر فَلَا يعْمل فِيهِ مَا قبله",
+   "book": "shudhur-sharh",
+   "vol_page": "472",
+   "shamela_page": 445,
+   "section": "النكرة والمعرفة",
+   "en": "It is not in naṣb by what comes before it, because the interrogative takes the head of the clause: what precedes does not govern it.",
+   "tr": "Öncesindekiyle mansûb değildir; çünkü istifhamın sadâret hakkı vardır: öncesindeki onda amel etmez.",
+   "notes": [
+    "afal-tasyir",
+    "al-mutaaddi-wa-afal-al-qulub-fil-kafiya",
+    "al-mutaaddi-wa-afal-al-qulub",
+    "zanna-wa-akhawatuha"
+   ],
+   "ledger": [
+    "shudhur-sharh:SH445.1"
+   ],
+   "words": 37,
+   "why_at": 31,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-449-1",
+   "topic": "zann",
+   "kind": "why-state",
+   "ar": "وَمن ثمَّ سمى ذَلِك تَعْلِيقا لِأَن الْعَامِل ملغى فِي اللَّفْظ وعامل فِي الْمحل",
+   "book": "shudhur-sharh",
+   "vol_page": "476",
+   "shamela_page": 449,
+   "section": "النكرة والمعرفة",
+   "en": "That is why it is called taʿlīq: the governor is cancelled in the wording and works in the seat.",
+   "tr": "Bu yüzden ona ta'lîk denir: âmil lafızda ilgâ edilmiş, mahalde ise âmildir.",
+   "notes": [
+    "afal-tasyir",
+    "al-mutaaddi-wa-afal-al-qulub-fil-kafiya",
+    "al-mutaaddi-wa-afal-al-qulub",
+    "zanna-wa-akhawatuha"
+   ],
+   "ledger": [],
+   "words": 29,
+   "why_at": 30,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-466-1",
+   "topic": "masdar-amal",
+   "kind": "why-state",
+   "ar": "وَإِنَّمَا كَانَ عمل الْمنون أَقيس لِأَنَّهُ يشبه الْفِعْل بِكَوْنِهِ نكرَة",
+   "book": "shudhur-sharh",
+   "vol_page": "493",
+   "shamela_page": 466,
+   "section": "المصدر",
+   "en": "The maṣdar with tanwīn works most by analogy, because by being indefinite it resembles the verb.",
+   "tr": "Tenvinli masdarın ameli kıyasa en uygun olandır; çünkü nekre oluşuyla fiile benzer.",
+   "notes": [
+    "al-masdar-fil-kafiya",
+    "imal-al-masdar"
+   ],
+   "ledger": [],
+   "words": 28,
+   "why_at": 35,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-466-2",
+   "topic": "masdar-amal",
+   "kind": "why-state",
+   "ar": "وَإِنَّمَا كَانَ إِعْمَال الْمُضَاف للْفَاعِل أَكثر لِأَن نِسْبَة الْحَدث لمن أوجده أظهر من نسبته لمن أوقع عَلَيْهِ",
+   "book": "shudhur-sharh",
+   "vol_page": "493",
+   "shamela_page": 466,
+   "section": "المصدر",
+   "en": "The maṣdar annexed to its doer works more often, because an event is more plainly referred to the one who brought it about than to the one it fell on.",
+   "tr": "Fâiline muzâf masdarın ameli daha çoktur; çünkü olayın onu meydana getirene nispeti, kendisine vâki olana nispetinden daha açıktır.",
+   "notes": [
+    "al-masdar-fil-kafiya",
+    "imal-al-masdar"
+   ],
+   "ledger": [],
+   "words": 42,
+   "why_at": 52,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-483-1",
+   "topic": "sifa-mushabbaha",
+   "kind": "why-sign",
+   "ar": "ثمَّ لَك بعد ذَلِك أَن تخفضه بِالْإِضَافَة وَتَكون الصّفة حِينَئِذٍ مشبهة أَيْضا لِأَن الْخَفْض ناشيء على الْأَصَح عَن النصب لَا عَن الرّفْع لِئَلَّا يلْزم اضافة الشَّيْء الى نَفسه",
+   "book": "shudhur-sharh",
+   "vol_page": "510",
+   "shamela_page": 483,
+   "section": "المصدر",
+   "en": "You may then put it in jarr by annexation, the adjective still a ṣifa mushabbaha: the jarr grows, on the sounder view, out of the naṣb, not out of the rafʿ — else a thing would be annexed to itself.",
+   "tr": "Sonra onu izafetle cer edebilirsin, sıfat yine müşebbehedir: cer, sahih görüşe göre nasbdan doğar, ref'den değil; yoksa bir şeyin kendine izafesi lâzım gelirdi.",
+   "notes": [
+    "al-sifa-al-mushabbaha-fil-kafiya",
+    "masail-al-sifa-al-mushabbaha-fil-kafiya",
+    "sifa-mushabbaha"
+   ],
+   "ledger": [],
+   "words": 65,
+   "why_at": 81,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-517-1",
+   "topic": "tanazu",
+   "kind": "why-state",
+   "ar": "وَمن ثمَّ قُلْنَا فِي قَوْله تَعَالَى {آتوني أفرغ عَلَيْهِ قطرا} إِنَّه أعمل الثَّانِي لِأَنَّهُ لَو أعمل الأول لوَجَبَ أَن يُقَال آتوني أفرغه عَلَيْهِ قطرا",
+   "book": "shudhur-sharh",
+   "vol_page": "545",
+   "shamela_page": 517,
+   "section": "المصدر",
+   "en": "Hence in «ātūnī ufrigh ʿalayhi qiṭran» we say the second verb governs: had the first governed, one would have to say «ufrighhu ʿalayhi».",
+   "tr": "Bu yüzden «âtûnî ufrig aleyhi kıtran» âyetinde ikinci fiil amel etmiştir deriz; birincisi amel etseydi «ufrighu aleyhi» denmesi gerekirdi.",
+   "notes": [
+    "tanazu"
+   ],
+   "ledger": [
+    "shudhur-sharh:SH517.1"
+   ],
+   "words": 53,
+   "why_at": 87,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-518-1",
+   "topic": "ishtighal",
+   "kind": "why-state",
+   "ar": "وَالثَّانِي أَن ينصب بِفعل مَحْذُوف وجوبا يفسره الْفِعْل الْمَذْكُور فَلَا مَوضِع للجملة بعده لِأَنَّهَا مفسرة",
+   "book": "shudhur-sharh",
+   "vol_page": "546",
+   "shamela_page": 518,
+   "section": "المصدر",
+   "en": "Or it is in naṣb by a verb dropped of necessity which the stated verb explains; then the clause after it has no seat, because it explains.",
+   "tr": "Ya da mezkûr fiilin tefsir ettiği vücûben mahzuf bir fiille mansûbdur; o zaman ardındaki cümlenin mahalli yoktur, çünkü müfessiredir.",
+   "notes": [],
+   "ledger": [
+    "shudhur-sharh:SH518.1",
+    "shudhur-sharh:SH518.2"
+   ],
+   "words": 38,
+   "why_at": 94,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-519-1",
+   "topic": "ishtighal",
+   "kind": "why-state",
+   "ar": "وَفهم من قولي فعل أَو وصف أَن الْعَامِل إِن لم يكن أَحدهمَا لم تكن الْمَسْأَلَة من بَاب الِاشْتِغَال وَذَلِكَ نَحْو زيد إِنَّه فَاضل وَعَمْرو كَأَنَّهُ أَسد وَذَلِكَ لِأَن الْحَرْف لَا يعْمل فِيمَا قبله",
+   "book": "shudhur-sharh",
+   "vol_page": "547",
+   "shamela_page": 519,
+   "section": "المصدر",
+   "en": "If the worker is neither a verb nor a waṣf there is no ishtighāl — «zaydun innahu fāḍilun», «ʿamrun kaʾannahu asadun» — because a particle does not govern what comes before it.",
+   "tr": "Âmil fiil ya da vasıf değilse iştiğal yoktur — «Zeydün innehû fâdılün», «Amrun keennehû esedün» — çünkü harf öncesinde amel etmez.",
+   "notes": [],
+   "ledger": [
+    "shudhur-sharh:SH519.1"
+   ],
+   "words": 79,
+   "why_at": 166,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-520-1",
+   "topic": "ishtighal",
+   "kind": "why-state",
+   "ar": "الثَّانِي مَا يتَرَجَّح رَفعه بِالِابْتِدَاءِ وَذَلِكَ فِيمَا لم يتَقَدَّم عَلَيْهِ مَا يطْلب الْفِعْل وجوبا أَو رجحانا نَحْو زيد ضَربته وَذَلِكَ لِأَن النصب محوج الى التَّقْدِير وَلَا طَالب لَهُ وَالرَّفْع غَنِي عَنهُ فَكَانَ أولى",
+   "book": "shudhur-sharh",
+   "vol_page": "548",
+   "shamela_page": 520,
+   "section": "المصدر",
+   "en": "Rafʿ by ibtidāʾ is preferred where nothing before the noun asks for a verb — «zaydun ḍarabtuhu» — because the naṣb needs an estimated verb with nothing calling for it, while the rafʿ needs none: so it is the better.",
+   "tr": "Önünde fiil isteyen bir şey yoksa ibtidâ ile ref' tercih edilir — «Zeydün darabtuhû» — çünkü nasb, onu isteyen bir şey yokken takdire muhtaçtır; ref' ise takdirden müstağnidir, o hâlde evlâdır.",
+   "notes": [],
+   "ledger": [
+    "shudhur-sharh:SH520.1",
+    "shudhur-sharh:SH520.2",
+    "shudhur-sharh:SH520.3"
+   ],
+   "words": 85,
+   "why_at": 146,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-521-1",
+   "topic": "ishtighal",
+   "kind": "why-state",
+   "ar": "الْخَامِس مَا يستوى فِيهِ الْأَمْرَانِ وَذَلِكَ إِذا وَقع الِاسْم بعد عاطف مَسْبُوق بجملة فعلية مَبْنِيَّة على مُبْتَدأ نَحْو زيد قَامَ وعمرا أكرمته وَذَلِكَ لِأَن الْجُمْلَة السَّابِقَة اسمية الصَّدْر فعلية الْعَجز فَإِن راعيت صدرها رفعت وَإِن راعيت عجزها نصبت",
+   "book": "shudhur-sharh",
+   "vol_page": "549",
+   "shamela_page": 521,
+   "section": "المصدر",
+   "en": "The two are equal after a conjunction preceded by a verbal clause built on a mubtadaʾ — «zaydun qāma wa-ʿamran akramtuhu» — because the clause before is nominal at its head and verbal at its tail: heed its head and you raise, heed its tail and you put in naṣb.",
+   "tr": "Mübtedâ üzerine kurulmuş fiil cümlesinden sonra atıf harfiyle gelince iki vecih eşittir — «Zeydün kâme ve Amren ekramtuhû» — çünkü önceki cümle başı isim, sonu fiil cümlesidir: başını gözetirsen ref', sonunu gözetirsen nasb edersin.",
+   "notes": [],
+   "ledger": [
+    "shudhur-sharh:SH521.1",
+    "shudhur-sharh:SH521.2",
+    "shudhur-sharh:SH521.3"
+   ],
+   "words": 87,
+   "why_at": 158,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-530-1",
+   "topic": "naat",
+   "kind": "why-state",
+   "ar": "وَالثَّالِث نَحْو مَرَرْت بِالرجلِ صَاحبك فصاحبك بدل عِنْدهم لَا نعت لِأَن الْمُضَاف للضمير فِي رُتْبَة الضَّمِير أَو رُتْبَة الْعلم وَكِلَاهُمَا أعرف من الْمُعَرّف بِاللَّامِ",
+   "book": "shudhur-sharh",
+   "vol_page": "558",
+   "shamela_page": 530,
+   "section": "المصدر",
+   "en": "In «marartu bi-l-rajuli ṣāḥibika», «ṣāḥibika» is a badal for them, not a naʿt, because what is annexed to a pronoun stands in the pronoun's rank or the proper name's, both more definite than what is defined by the article.",
+   "tr": "«Merartü bi'r-racüli sâhibike»de «sâhibike» onlara göre bedeldir, na't değil; çünkü zamire muzâf olan zamirin ya da alemin rütbesindedir, ikisi de lâmla marife olandan daha marifedir.",
+   "notes": [
+    "al-sifa-al-mushabbaha-fil-kafiya",
+    "al-tawabi-wal-sifa",
+    "ghayr-al-munsarif-al-qiyasi-al-alam-wal-sifa-wal-ajami-wal-muannath",
+    "jumla-sifa",
+    "masail-al-sifa-al-mushabbaha-fil-kafiya",
+    "naat-sifa",
+    "sifa-mushabbaha",
+    "taqsim-al-irab-bil-naw-wal-sifa-wal-taqdiri-al-awwal"
+   ],
+   "ledger": [
+    "shudhur-sharh:SH530.1",
+    "shudhur-sharh:SH530.2",
+    "shudhur-sharh:SH530.3"
+   ],
+   "words": 64,
+   "why_at": 69,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-535-1",
+   "topic": "atf",
+   "kind": "why-state",
+   "ar": "فَوَجَبَ أَن يعرب بَيَانا لَا بَدَلا لِأَن الْبَدَل على نِيَّة تكْرَار الْعَامِل فَكَأَنَّهُ من جملَة أُخْرَى فتخلو الْجُمْلَة الْمخبر بهَا عَن رابط",
+   "book": "shudhur-sharh",
+   "vol_page": "563",
+   "shamela_page": 535,
+   "section": "المصدر",
+   "en": "So it must be parsed as ʿaṭf bayān, not badal, because the badal is as if its governor were repeated — as though from another clause — and the clause given as khabar would be left without a link.",
+   "tr": "Bu yüzden atf-ı beyân olarak i'râb edilmesi gerekir, bedel değil; çünkü bedel âmilin tekrarı niyetindedir — sanki başka bir cümledendir — ve haber olan cümle râbıtsız kalırdı.",
+   "notes": [
+    "al-atf-bil-huruf-wa-ahkamuh",
+    "al-badal-wa-aqsamuh-wa-atf-al-bayan",
+    "atf-bayan",
+    "atf-nasaq",
+    "huruf-al-atf-fil-kafiya"
+   ],
+   "ledger": [
+    "shudhur-sharh:SH535.1"
+   ],
+   "words": 58,
+   "why_at": 37,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-560-1",
+   "topic": "mamnu",
+   "kind": "why-sign",
+   "ar": "فَهَذِهِ الْكَلِمَات الثَّلَاث مخفوضة لِأَنَّهَا صفة لأجنحة وَهِي مَمْنُوعَة الصّرْف لِأَنَّهَا معدولة عَمَّا ذكرنَا",
+   "book": "shudhur-sharh",
+   "vol_page": "589",
+   "shamela_page": 560,
+   "section": "المصدر",
+   "en": "These three words are in jarr because they describe «ajniḥa», and barred from tanwīn because they are shifted (maʿdūla) from what we named.",
+   "tr": "Bu üç kelime «ecniha»nın sıfatı oldukları için mecrûrdur; zikrettiğimizden udûl edildikleri için de gayr-i munsarıftır.",
+   "notes": [
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "mamnu-min-sarf",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf"
+   ],
+   "ledger": [
+    "shudhur-sharh:SH560.1"
+   ],
+   "words": 42,
+   "why_at": 38,
+   "short": false
+  },
+  {
+   "id": "ilal-shudhur2-565-1",
+   "topic": "mamnu",
+   "kind": "why-form",
+   "ar": "فَإِن هَذَا الْوَزْن وَإِن كَانَ يُوجد فِي الْأَسْمَاء وَالْأَفْعَال كثيرا وَلكنه فِي الْأَفْعَال أولى مِنْهُ فِي الْأَسْمَاء لِأَنَّهُ فِي الْأَفْعَال يدل على التَّكَلُّم كأذهب وأنطلق وَفِي الْأَسْمَاء لَا يدل على معنى",
+   "book": "shudhur-sharh",
+   "vol_page": "595",
+   "shamela_page": 565,
+   "section": "المصدر",
+   "en": "This pattern, though common in nouns and verbs alike, belongs more to the verbs, because in verbs it tells the speaker («adhhabu», «anṭaliqu») and in nouns it tells nothing.",
+   "tr": "Bu vezin isimlerde de fiillerde de çokça bulunsa da fiillere daha lâyıktır; çünkü fiillerde mütekellimi gösterir («ezhebü», «entalikü»), isimlerde ise bir mana göstermez.",
+   "notes": [
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh",
+    "mamnu-min-sarf",
+    "naqis-al-irab-bil-harakat-wal-murab-bil-huruf"
+   ],
+   "ledger": [
+    "shudhur-sharh:SH565.1"
+   ],
+   "words": 83,
+   "why_at": 126,
+   "short": false
+  }
+ ]
+}

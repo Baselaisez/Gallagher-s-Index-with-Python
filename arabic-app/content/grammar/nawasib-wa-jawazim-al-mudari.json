@@ -1,0 +1,409 @@
+{
+  "id": "nawasib-wa-jawazim-al-mudari",
+  "title": {
+    "ar": "نَوَاصِبُ الْمُضَارِعِ وَجَوَازِمُهُ",
+    "en": "The nāṣibs and the jāzims of the muḍāriʿ",
+    "tr": "Muzârinin nâsıbları ve câzimleri"
+  },
+  "level": 4,
+  "group": "awamil",
+  "classicalSources": [
+    "إظهار الأسرار للبركوي — العامل في الفعل المضارع",
+    "العوامل المائة للبركوي",
+    "الكافية لابن الحاجب — عوامل الفعل",
+    "شذور الذهب لابن هشام — الفعل المضارع إذا سبقه ناصب، ص 309–335",
+    "شذور الذهب لابن هشام — المجزومات، ص 350–365",
+    "شذور الذهب لابن هشام — الْفِعْلُ الْمُضَارِعُ إِذَا سَبَقَهُ نَاصِبٌ، ص 309"
+  ],
+  "amil": "أَنْ، لَنْ، كَيْ، إِذَنْ — four nāṣibs; لَمْ، لَمَّا، لَامُ الْأَمْرِ، لَا النَّهْيِ — four jāzims of one verb; إِنْ and ten more — eleven jāzims of two verbs; أَنْ and إِنْ alone may be concealed",
+  "question": {
+    "en": [
+      "How many kinds of governor enter the muḍāriʿ? Two: a NĀṢIB, which gives it the fatḥa (أَنْ يَفْعَلَ), and a JĀZIM, which takes its ḍamma away (لَمْ يَفْعَلْ).",
+      "Which four letters put it in naṣb, and what does each mean? أَنْ turns the verb into a masdar (أَنْ تَقُومَ = قِيَامُكَ); لَنْ negates the future with emphasis; كَيْ gives the cause; إِذَنْ answers a speaker with «then».",
+      "When does إِذَنْ govern? Only when its verb is FUTURE and leans on nothing before it. إِذَنْ أَظُنُّكَ كَاذِبًا — the thinking is in the present, so rafʿ; أَنَا إِذَنْ أُكْرِمُكَ — the verb leans on أَنَا, so rafʿ.",
+      "May a nāṣib be unspoken? Only أَنْ: زُرْنِي فَأُكْرِمَكَ — after the fāʾ of cause in the answer to a command, أَنْ is concealed and the verb takes the fatḥa.",
+      "What are the fifteen jāzims? Four letters that jazm ONE verb — لَمْ and لَمَّا (negation of the past), the lām of command and the لَا of prohibition (request) — and eleven words that jazm TWO verbs, the condition and its answer: إِنْ, then حَيْثُمَا أَيْنَ أَنَّى for place, إِذْمَا إِذَا مَا مَتَى for time, and مَهْمَا مَا أَيٌّ مَنْ.",
+      "May a jāzim be unspoken? Only إِنْ: زُرْنِي أُكْرِمْكَ — the answer to the request is majzūm by a concealed إِنْ (إِنْ تَزُرْنِي أُكْرِمْكَ).",
+      "What does the engine READ here? The DabtEngine writes the fatḥa after أَنْ, لَنْ, كَيْ and a governing إِذَنْ, the sukūn after لَمْ, لَمَّا, the lām of command, لَا of prohibition and the eleven words of requital, keeps the ḍamma on a present-tense or leaning إِذَنْ-verb, and reads the concealed أَنْ after the fāʾ of cause and the concealed إِنْ in the answer to a request."
+    ],
+    "tr": [
+      "Muzâriye kaç tür âmil girer? İki: ona fetha veren NÂSIB (en yef'ale) ve zammesini alan CÂZİM (lem yef'al).",
+      "Hangi dört harf nasb eder, her biri ne anlatır? En fiili masdara çevirir (en tekûme = kıyâmüke); len istikbâli te'kitle nefyeder; key sebebi verir; izen konuşana «o halde» diye cevap verir.",
+      "İzen ne zaman amel eder? Yalnız fiili İSTİKBÂL olup öncesine dayanmadığında. İzen ezunnüke kâziben — zan hâldedir, ref'; ene izen ükrimüke — fiil ene'ye dayanır, ref'.",
+      "Nâsıb gizlenebilir mi? Yalnız en: zürnî fe-ükrimeke — emrin cevabında sebebiyet fâsından sonra en gizlenir ve fiil fetha alır.",
+      "On beş câzim nedir? TEK fiili cezm eden dört harf — lem ve lemmâ (mâzîyi nefiy), emir lâmı ve nehiy lâ'sı (talep) — ve İKİ fiili, şartı ve cevabını cezm eden on bir kelime: in; mekân için haysümâ eyne ennâ; zaman için izmâ izâ mâ metâ; ve mehmâ mâ eyyün men.",
+      "Câzim gizlenebilir mi? Yalnız in: zürnî ükrimke — talebin cevabı gizli in ile meczûmdur (in tezürnî ükrimke).",
+      "Motor burada neyi OKUR? DabtEngine en, len, key ve amel eden izen'den sonra fethayı; lem, lemmâ, emir lâmı, nehiy lâ'sı ve on bir mücâzât kelimesinden sonra sükûnu yazar; hâl bildiren yahut dayanan izen-fiilinde zammeyi korur; sebebiyet fâsından sonraki gizli en'i ve talebin cevabındaki gizli in'i okur."
+    ]
+  },
+  "plain": {
+    "en": "The present-tense verb has two kinds of boss: four little words (أَنْ، لَنْ، كَيْ، إِذَنْ) give it a fatḥa; fifteen (لَمْ، لَمَّا, the command lām, the prohibition لَا, and eleven condition words like إِنْ، مَنْ، مَتَى) take its ḍamma away. After «visit me» the verb bends: with a fāʾ a fatḥa, without one a sukūn.",
+    "tr": "Muzâri fiilin iki tür patronu var. Dört küçük kelime (en, len, key, izen) ona fetha verir; on beş kelime zammesini alır — dördü tek fiil için (lem, lemmâ, emir lâmı, nehiy lâ'sı), on biri şart ve cevabı için (in, men, mâ, metâ…). «Beni ziyaret et» de, sonraki fiil bükülür: fâ ile fetha, fâ'sız sükûn alır."
+  },
+  "explanation": {
+    "en": "The governor in the muḍāriʿ verb is of two kinds, a nāṣib and a jāzim. The nāṣib is four letters: أَنْ for the masdar-sense, لَنْ for the emphatic negation in the future, كَيْ for cause, and إِذَنْ for condition and answer — the last governing only when its verb is future and leans on nothing before it, so إِذَنْ أَظُنُّكَ كَاذِبًا (present) and أَنَا إِذَنْ أُكْرِمُكَ (leaning on أَنَا) stay in rafʿ; أَنْ alone may be concealed, زُرْنِي فَأُكْرِمَكَ. The jāzim is fifteen words: four letters that jazm one verb — لَمْ and لَمَّا for the negation of the past, the lām of command and the لَا of prohibition for request — and eleven words of requital that jazm two muḍāriʿs — إِنْ for condition and answer, حَيْثُمَا أَيْنَ أَنَّى for place, إِذْمَا إِذَا مَا مَتَى for time, مَهْمَا مَا أَيٌّ مَنْ; إِنْ alone may be concealed, زُرْنِي أُكْرِمْكَ. Shudhūr al-Dhahab adds a third condition for إِذَنْ beside heading its clause and a future verb: the verb must follow it directly, or be parted from it only by an oath or by the negating لَا (إِذَنْ وَاللهِ أُكْرِمَكَ, إِذَنْ لَا أَفْعَلَ); any other separator, such as a vocative, brings the rafʿ back. It also notes that the lām of command and the لَا of prohibition serve for prayer as well (لِيَقْضِ عَلَيْنَا رَبُّكَ, رَبَّنَا لَا تُؤَاخِذْنَا). On the hidden أَنْ: Shudhūr al-Dhahab states the same seats with these refinements. After حَتَّى the أَنْ is hidden only when the verb is future relative to what precedes; the naṣb is by that أَنْ, not by حَتَّى itself (against the Kūfans), and أَنْ is never spoken after it. أَوْ takes the naṣb where «إِلَى» or «إِلَّا» could stand in its place. The fāʾ must be causal and the wāw must mean «together with», after a PURE negation or a request — the request being in form a request and not a verbal noun; a negation undone by إِلَّا, or the negation of زَالَ, leaves the verb in rafʿ. And after the fāʾ, the wāw, أَوْ and ثُمَّ joining the verb to a pure noun (لَلُبْسُ عَبَاءَةٍ وَتَقَرَّ عَيْنِي) the أَنْ may be spoken — whereas in مَا تَأْتِينَا فَتُحَدِّثَنَا the noun is only implied, so there the hiding is obligatory.",
+    "tr": "Muzâri fiildeki âmil iki türlüdür: nâsıb ve câzim. Nâsıb dört harftir: masdariyet için en, istikbâlde te'kitli nefiy için len, sebebiyet için key, şart ve cezâ için izen — sonuncusu yalnız fiili istikbâl olup öncesine dayanmadığında amel eder; o yüzden izen ezunnüke kâziben (hâl) ve ene izen ükrimüke (ene'ye dayanır) ref'te kalır; yalnız en gizlenebilir: zürnî fe-ükrimeke. Câzim on beş kelimedir: tek fiili cezm eden dört harf — mâzîyi nefiy için lem ve lemmâ, talep için emir lâmı ve nehiy lâ'sı — ve iki muzâriyi cezm eden on bir mücâzât kelimesi — şart ve cezâ için in, mekân için haysümâ eyne ennâ, zaman için izmâ izâ mâ metâ, mehmâ mâ eyyün men; yalnız in gizlenebilir: zürnî ükrimke. Şüzûru'z-Zeheb, «إِذَنْ» için başta olmak ve fiilin müstakbel olması yanında üçüncü bir şart ekler: fiil ona bitişik olmalı, yahut araya yalnız kasem veya nâfiye «لَا» girmelidir (إِذَنْ وَاللهِ أُكْرِمَكَ, إِذَنْ لَا أَفْعَلَ); nidâ gibi başka bir fâsıla ref'i geri getirir. Ayrıca emir lâmının ve nehiy «لَا»sının duâ için de kullanıldığını söyler (لِيَقْضِ عَلَيْنَا رَبُّكَ, رَبَّنَا لَا تُؤَاخِذْنَا). Gizli «أَنْ» hakkında: Şüzûru'z-Zeheb aynı yerleri şu inceliklerle verir. «حَتَّى»dan sonra «أَنْ», ancak fiil mâkabline nisbetle müstakbel olursa gizlenir; nasb «حَتَّى»nın kendisiyle değil o «أَنْ» iledir (Kûfelilerin hilâfına) ve ondan sonra «أَنْ» asla söylenmez. «أَوْ», yerine «إِلَى» veya «إِلَّا» konabildiği yerde nasbeder. Fâ sebebiyye, vâv maiyyet için olmalı ve HÂLİS bir nefiyden yahut talepten sonra gelmelidir — talep de sîga ile olmalı, ism-i fiil ile olmamalıdır; «إِلَّا» ile bozulan nefiy ve «زَالَ»nin nefyi fiili merfû bırakır. Fiili hâlis bir isme atfeden fâ, vâv, «أَوْ» ve «ثُمَّ»den sonra (لَلُبْسُ عَبَاءَةٍ وَتَقَرَّ عَيْنِي) «أَنْ» söylenebilir; مَا تَأْتِينَا فَتُحَدِّثَنَا'da ise isim sarîh değil mukadderdir, orada gizlemek vâciptir."
+  },
+  "examples": [
+    {
+      "ar": "أَنْ لِلْمَصْدَرِيَّةِ، وَلَنْ لِلنَّفْيِ الْمُؤَكَّدِ فِي الِاسْتِقْبَالِ، وَكَيْ لِلسَّبَبِيَّةِ، وَإِذَنْ لِلشَّرْطِ وَالْجَزَاءِ",
+      "en": "the four nāṣibs and their meanings",
+      "tr": "dört nâsıb ve mânâları",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s2"
+    },
+    {
+      "ar": "إِذَنْ أَظُنُّكَ كَاذِبًا، وَأَنَا إِذَنْ أُكْرِمُكَ",
+      "en": "إِذَنْ ungoverning: present tense; leaning on what precedes",
+      "tr": "amelsiz izen: hâl; öncesine dayanma",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s4"
+    },
+    {
+      "ar": "زُرْنِي فَأُكْرِمَكَ",
+      "en": "the concealed أَنْ after the fāʾ of cause",
+      "tr": "sebebiyet fâsından sonra gizli en",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s5"
+    },
+    {
+      "ar": "لَمْ وَلَمَّا لِلنَّفْيِ الْمَاضِي، وَلَامُ الْأَمْرِ وَلَا النَّهْيِ لِلطَّلَبِ",
+      "en": "the four jāzims of one verb",
+      "tr": "tek fiili cezm eden dört harf",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s6"
+    },
+    {
+      "ar": "زُرْنِي أُكْرِمْكَ",
+      "en": "the concealed إِنْ in the answer to a request",
+      "tr": "talebin cevabında gizli in",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s8"
+    },
+    {
+      "ar": "لَنْ نَبْرَحَ عَلَيْهِ عَاكِفِينَ",
+      "en": "Shudhūr: لَنْ puts the muḍāriʿ in naṣb with no condition (Ṭāhā 20:91).",
+      "tr": "Şüzûr: «لَنْ» muzâriyi şartsız nasbeder (Tâhâ 20:91).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:149 (ص 309)"
+    },
+    {
+      "ar": "إِذَنْ وَاللهِ أُكْرِمَكَ",
+      "en": "Shudhūr: إِذَنْ still governs when only an oath stands between it and its verb.",
+      "tr": "Şüzûr: «إِذَنْ» ile fiili arasına yalnız kasem girerse yine amel eder.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:151 (ص 311)"
+    },
+    {
+      "ar": "إِذَنْ لَا أَفْعَلَ",
+      "en": "Shudhūr: … or only the negating لَا.",
+      "tr": "Şüzûr: … yahut yalnız nâfiye «لَا» girerse.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:151 (ص 311)"
+    },
+    {
+      "ar": "إِذَنْ يَا زَيْدُ أُكْرِمُكَ",
+      "en": "Shudhūr: separated by a vocative, إِذَنْ does not govern — rafʿ.",
+      "tr": "Şüzûr: araya nidâ girerse «إِذَنْ» amel etmez — ref'.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:151 (ص 311)"
+    },
+    {
+      "ar": "إِذَنْ تَصْدُقُ",
+      "en": "Shudhūr: said to one who says «I love you» — the verb is present, so rafʿ.",
+      "tr": "Şüzûr: «seni seviyorum» diyene söylenir — fiil hâl içindir, ref'.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:151 (ص 311)"
+    },
+    {
+      "ar": "أَسْلَمْتُ حَتَّى أَدْخُلَ الْجَنَّةَ",
+      "en": "Shudhūr: the concealed أَنْ after حَتَّى — the entering lies ahead of the islām.",
+      "tr": "Şüzûr: «حَتَّى»dan sonra gizli «أَنْ» — girmek, İslâm'a nisbetle istikbaldir.",
+      "source": "research/sources/shudhur-al-dhahab-src.txt:259 · research/sources/shudhur-al-dhahab-qawaid.jsonl:155 (ص 316)"
+    },
+    {
+      "ar": "لِكَيْ لَا يَكُونَ عَلَى الْمُؤْمِنِينَ حَرَجٌ",
+      "en": "Shudhūr: كَيْ after the lām — naṣb (al-Aḥzāb 33:37).",
+      "tr": "Şüzûr: lâmdan sonra «كَيْ» — nasb (Ahzâb 33:37).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:149 (ص 309)"
+    },
+    {
+      "ar": "لَنْ نَبْرَحَ عَلَيْهِ عَاكِفِينَ حَتَّى يَرْجِعَ إِلَيْنَا مُوسَى",
+      "en": "Shudhūr: حَتَّى with a verb that is future to what precedes it (Ṭāhā 20:91).",
+      "tr": "Şüzûr: mâkabline göre müstakbel olan fiille «حَتَّى» (Tâhâ 20:91).",
+      "source": "research/sources/shudhur-al-dhahab-src.txt:259 · research/sources/shudhur-al-dhahab-qawaid.jsonl:155 (ص 316)"
+    },
+    {
+      "ar": "سِرْتُ حَتَّى أَدْخُلُهَا",
+      "en": "Shudhūr: the entering is present, not future — rafʿ after حَتَّى.",
+      "tr": "Şüzûr: girmek hâldir, istikbal değil — «حَتَّى»dan sonra ref'.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:155 (ص 316)"
+    },
+    {
+      "ar": "لَأَلْزَمَنَّكَ أَوْ تَقْضِيَنِي حَقِّي",
+      "en": "Shudhūr: أَوْ in the sense of «إِلَى».",
+      "tr": "Şüzûr: «إِلَى» mânâsındaki «أَوْ».",
+      "source": "research/sources/shudhur-al-dhahab-src.txt:262 · research/sources/shudhur-al-dhahab-qawaid.jsonl:158 (ص 318)"
+    },
+    {
+      "ar": "كَسَرْتُ كُعُوبَهَا أَوْ تَسْتَقِيمَا",
+      "en": "Shudhūr: أَوْ in the sense of «إِلَّا».",
+      "tr": "Şüzûr: «إِلَّا» mânâsındaki «أَوْ».",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:158 (ص 318)"
+    },
+    {
+      "ar": "اللَّهُمَّ تُبْ عَلَيَّ فَأَتُوبَ",
+      "en": "Shudhūr: the fāʾ in answer to a prayer.",
+      "tr": "Şüzûr: duânın cevabında fâ.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:160 (ص 322)"
+    },
+    {
+      "ar": "أَلَا تَقَعُ فِي الْمَاءِ فَتَسْبَحَ",
+      "en": "Shudhūr: in answer to an offer (ʿarḍ).",
+      "tr": "Şüzûr: arzın cevabında.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:160 (ص 322)"
+    },
+    {
+      "ar": "هَلَّا اتَّقَيْتَ اللهَ فَيَغْفِرَ لَكَ",
+      "en": "Shudhūr: in answer to an urging (taḥḍīḍ).",
+      "tr": "Şüzûr: tahdîdin cevabında.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:160 (ص 322)"
+    },
+    {
+      "ar": "يَا لَيْتَنِي كُنْتُ مَعَهُمْ فَأَفُوزَ",
+      "en": "Shudhūr: in answer to a wish (al-Nisāʾ 4:73).",
+      "tr": "Şüzûr: temennînin cevabında (Nisâ 4:73).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:160 (ص 322)"
+    },
+    {
+      "ar": "فَهَلْ لَنَا مِنْ شُفَعَاءَ فَيَشْفَعُوا لَنَا",
+      "en": "Shudhūr: in answer to a question (al-Aʿrāf 7:53).",
+      "tr": "Şüzûr: istifhâmın cevabında (A'râf 7:53).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:164 (ص 326)"
+    },
+    {
+      "ar": "هَلْ أَخُوكَ زَيْدٌ فَأُكْرِمُهُ",
+      "en": "Shudhūr: no naṣb when the question particle is followed by a nominal clause with a jāmid khabar — rafʿ.",
+      "tr": "Şüzûr: istifhâm edatından sonra haberi câmid isim cümlesi gelirse nasb olmaz — ref'.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:164 (ص 326)"
+    },
+    {
+      "ar": "وَلَا يُؤْذَنُ لَهُمْ فَيَعْتَذِرُونَ",
+      "en": "Shudhūr: the negation here is not answered — the fāʾ only joins, so rafʿ (al-Mursalāt 77:36).",
+      "tr": "Şüzûr: burada nefyin cevabı kastedilmemiştir — fâ yalnız atıftır, ref' (Mürselât 77:36).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:159 (ص 320)"
+    },
+    {
+      "ar": "مَا تَأْتِينَا فَتُحَدِّثَنَا",
+      "en": "Shudhūr: naṣb with two senses — «you do not come, so how could you talk to us» and «you come but do not talk to us»; rafʿ has two more.",
+      "tr": "Şüzûr: nasb ile iki mânâ — «gelmiyorsun ki konuşasın» ve «geliyorsun ama konuşmuyorsun»; ref' ile iki mânâ daha vardır.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:161 (ص 322)"
+    },
+    {
+      "ar": "مَا تَأْتِينَا إِلَّا فَتُحَدِّثُنَا",
+      "en": "Shudhūr: the negation is undone by إِلَّا — rafʿ is obligatory.",
+      "tr": "Şüzûr: nefy «إِلَّا» ile bozulmuştur — ref' vâciptir.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:162 (ص 324)"
+    },
+    {
+      "ar": "مَا تَزَالُ تَأْتِينَا فَتُحَدِّثُنَا",
+      "en": "Shudhūr: negating a negation is an affirmation — rafʿ is obligatory.",
+      "tr": "Şüzûr: nefyin nefyi isbattır — ref' vâciptir.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:162 (ص 324)"
+    },
+    {
+      "ar": "أَلَمْ تَرَ أَنَّ اللهَ أَنْزَلَ مِنَ السَّمَاءِ مَاءً فَتُصْبِحُ الْأَرْضُ مُخْضَرَّةً",
+      "en": "Shudhūr: rafʿ — the question means an affirmation, and the greening is not caused by the seeing (al-Ḥajj 22:63).",
+      "tr": "Şüzûr: ref' — istifhâm isbat mânâsındadır ve yeşermek görmenin sonucu değildir (Hac 22:63).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:165 (ص 326)"
+    },
+    {
+      "ar": "لَوْلَا أَخَّرْتَنِي إِلَى أَجَلٍ قَرِيبٍ فَأَصَّدَّقَ",
+      "en": "Shudhūr: naṣb in answer to a prayer worded as an urging (al-Munāfiqūn 63:10).",
+      "tr": "Şüzûr: tahdîd lafzıyla gelen duânın cevabında nasb (Münâfikûn 63:10).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:166 (ص 327)"
+    },
+    {
+      "ar": "لَا تَأْكُلِ السَّمَكَ وَتَشْرَبَ اللَّبَنَ",
+      "en": "Shudhūr: with naṣb the wāw forbids doing both together; with jazm each is forbidden; with rafʿ the second is allowed.",
+      "tr": "Şüzûr: nasb ile vâv ikisini birlikte yapmayı yasaklar; cezm ile her biri yasaktır; ref' ile ikincisi serbesttir.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:167 (ص 331)"
+    },
+    {
+      "ar": "لَا تَنْهَ عَنْ خُلُقٍ وَتَأْتِيَ مِثْلَهُ",
+      "en": "Shudhūr: the wāw of accompaniment after a prohibition.",
+      "tr": "Şüzûr: nehiyden sonra maiyyet vâvı.",
+      "source": "research/sources/shudhur-al-dhahab-src.txt:262 · research/sources/shudhur-al-dhahab-qawaid.jsonl:167 (ص 331)"
+    },
+    {
+      "ar": "لَلُبْسُ عَبَاءَةٍ وَتَقَرَّ عَيْنِي",
+      "en": "Shudhūr: the muḍāriʿ joined to a pure noun — naṣb by an أَنْ that may be shown.",
+      "tr": "Şüzûr: hâlis isme atfedilen muzâri — izhârı câiz «أَنْ» ile mansûb.",
+      "source": "research/sources/shudhur-al-dhahab-src.txt:264 · research/sources/shudhur-al-dhahab-qawaid.jsonl:168 (ص 332)"
+    },
+    {
+      "ar": "لَوْلَا تَوَقُّعُ مُعْتَرٍّ فَأُرْضِيَهُ",
+      "en": "Shudhūr: the fāʾ joining the verb to a pure noun.",
+      "tr": "Şüzûr: fiili hâlis isme atfeden fâ.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:168 (ص 332)"
+    },
+    {
+      "ar": "إِنِّي وَقَتْلِي سُلَيْكًا ثُمَّ أَعْقِلَهُ",
+      "en": "Shudhūr: «ثُمَّ» joining the verb to a pure noun.",
+      "tr": "Şüzûr: fiili hâlis isme atfeden «ثُمَّ».",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:168 (ص 332)"
+    },
+    {
+      "ar": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+      "en": "Shudhūr: لَمْ, a jāzim of one verb (al-Ikhlāṣ 112:3).",
+      "tr": "Şüzûr: tek fiili cezmeden «لَمْ» (İhlâs 112:3).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:186 (ص 350)"
+    },
+    {
+      "ar": "لَمَّا يَقْضِ مَا أَمَرَهُ",
+      "en": "Shudhūr: لَمَّا (ʿAbasa 80:23).",
+      "tr": "Şüzûr: «لَمَّا» (Abese 80:23).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:186 (ص 350)"
+    },
+    {
+      "ar": "لَا تَحْزَنْ إِنَّ اللهَ مَعَنَا",
+      "en": "Shudhūr: the لَا of prohibition (al-Tawba 9:40).",
+      "tr": "Şüzûr: nehiy «لَا»sı (Tevbe 9:40).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:186 (ص 350)"
+    },
+    {
+      "ar": "لِيَقْضِ عَلَيْنَا رَبُّكَ",
+      "en": "Shudhūr: the lām of command used for prayer (al-Zukhruf 43:77).",
+      "tr": "Şüzûr: duâ için kullanılan emir lâmı (Zuhruf 43:77).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:186 (ص 350)"
+    },
+    {
+      "ar": "رَبَّنَا لَا تُؤَاخِذْنَا",
+      "en": "Shudhūr: the لَا of prohibition used for prayer (al-Baqara 2:286).",
+      "tr": "Şüzûr: duâ için kullanılan nehiy «لَا»sı (Bakara 2:286).",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:186 (ص 350)"
+    },
+    {
+      "ar": "ائْتِنِي أُكْرِمْكَ",
+      "en": "Shudhūr: the particle and its condition verb both dropped after a request — the answer is majzūm.",
+      "tr": "Şüzûr: talepten sonra edat ve şart fiili birlikte hazfedilir — cevap meczûmdur.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:195 (ص 360)"
+    },
+    {
+      "ar": "وَاعْلَمْ أَنَّهُ يَدْخُلُ عَلَى الْفِعْلِ الْمُضَارِعِ مَا وَلَا النَّافِيَتَانِ، فَلَا تُغَيِّرَانِ صِيغَتَهُ، تَقُولُ:",
+      "en": "Know that the two negating particles مَا and لَا enter upon the present verb and do not change its form; you say:",
+      "tr": "Bil ki muzâri fiilin başına nefiy edatları olan «مَا» ve «لَا» gelir ve onun sîgasını değiştirmezler; dersin ki:",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 7,
+      "sentence": "s1",
+      "source": "tasrif-al-izzi-src.txt:75 (ص 61)"
+    },
+    {
+      "ar": "وَلَا يَحْذِفُ نُونَ جَمَاعَةِ الْمُؤَنَّثِ، فَإِنَّهُ ضَمِيرٌ كَالْوَاوِ فِي الْجَمْعِ الْمُذَكَّرِ، فَتَثْبُتُ عَلَى كُلِّ حَالٍ، تَقُولُ:",
+      "en": "It does not remove the nūn of the feminine plural, for it is a pronoun like the wāw in the masculine plural, and so it stands in every state; you say:",
+      "tr": "Cemi müennesin nûnunu ise hazfetmez; çünkü o, cemi müzekkerdeki vâv gibi bir zamirdir, bu yüzden her hâlde sabit kalır; dersin ki:",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 7,
+      "sentence": "s5",
+      "source": "tasrif-al-izzi-src.txt:80 (ص 62)"
+    },
+    {
+      "ar": "وَمِنَ الْجَوَازِمِ لَامُ الْأَمْرِ، فَتَقُولُ فِي أَمْرِ الْغَائِبِ: لِيَنْصُرْ لِيَنْصُرَا لِيَنْصُرُوا، لِتَنْصُرْ لِتَنْصُرَا لِيَنْصُرْنَ.",
+      "en": "Among the jussive particles is the lām of command; in commanding the absent you say: let him help, let the two of them help, let them help; let her help, let the two of them (f.) help, let them (f.) help.",
+      "tr": "Câzimlerden biri emir lâmıdır; gâibin emrinde dersin ki: yardım etsin, o ikisi yardım etsin, onlar yardım etsinler; (o kadın) yardım etsin, o iki kadın yardım etsin, o kadınlar yardım etsinler.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 7,
+      "sentence": "s9",
+      "source": "tasrif-al-izzi-src.txt:85 (ص 63)"
+    },
+    {
+      "ar": "وَكَذٰلِكَ: لِيَضْرِبْ وَلِيَعْلَمْ وَلِيَدْخُلْ وَلِيُدَحْرِجْ وَغَيْرُهَا.",
+      "en": "And likewise: لِيَضْرِبْ، لِيَعْلَمْ، لِيَدْخُلْ، لِيُدَحْرِجْ and the rest.",
+      "tr": "Aynı şekilde: لِيَضْرِبْ، لِيَعْلَمْ، لِيَدْخُلْ، لِيُدَحْرِجْ ve diğerleri.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 7,
+      "sentence": "s10",
+      "source": "tasrif-al-izzi-src.txt:86 (ص 63)"
+    },
+    {
+      "ar": "وَكَذَا قِيَاسُ سَائِرِ الْأَمْثِلَةِ.",
+      "en": "And such is the analogy of the remaining patterns.",
+      "tr": "Diğer misallerin kıyası da böyledir.",
+      "sourceStory": "tasrif-al-izzi",
+      "chapter": 7,
+      "sentence": "s13",
+      "source": "tasrif-al-izzi-src.txt:89 (ص 63)"
+    },
+    {
+      "ar": "جِئْتُ كَيْ تُكْرِمَنِي",
+      "en": "Kay governs only when maṣdarī; it is maṣdarī when preceded by lām (li-kay), causal (a preposition, with «an» understood) when followed by an («kay an»), and ambiguous when neither.",
+      "tr": "«Key» ancak masdarî ise nasbeder; önünde lâm varsa (likey) masdarîdir; ardından «en» gelirse ta'lîlî (harf-i cer) olur; ikisi de yoksa iki ihtimal vardır.",
+      "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:150 (ص 309)"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "إِذَنْ أَظُنَّكَ كَاذِبًا",
+      "right": "إِذَنْ أَظُنُّكَ كَاذِبًا",
+      "why": {
+        "en": "the thinking is in the present — إِذَنْ governs only a future verb, so the ḍamma stays",
+        "tr": "zan hâldedir — izen yalnız istikbâl fiilinde amel eder, zamme kalır"
+      }
+    },
+    {
+      "wrong": "أَنَا إِذَنْ أُكْرِمَكَ",
+      "right": "أَنَا إِذَنْ أُكْرِمُكَ",
+      "why": {
+        "en": "the verb leans on أَنَا before it — a leaning إِذَنْ does not govern",
+        "tr": "fiil önündeki ene'ye dayanır — dayanan izen amel etmez"
+      }
+    },
+    {
+      "wrong": "زُرْنِي فَأُكْرِمُكَ",
+      "right": "زُرْنِي فَأُكْرِمَكَ",
+      "why": {
+        "en": "after the fāʾ of cause in the answer to a command the verb takes naṣb by a concealed أَنْ",
+        "tr": "emrin cevabında sebebiyet fâsından sonra fiil gizli en ile nasb olur"
+      }
+    },
+    {
+      "wrong": "زُرْنِي أُكْرِمُكَ",
+      "right": "زُرْنِي أُكْرِمْكَ",
+      "why": {
+        "en": "the answer to a request without a fāʾ is majzūm by a concealed إِنْ",
+        "tr": "fâ'sız talep cevabı gizli in ile meczûmdur"
+      }
+    },
+    {
+      "wrong": "إِذَنْ يَا زَيْدُ أُكْرِمَكَ",
+      "right": "إِذَنْ يَا زَيْدُ أُكْرِمُكَ",
+      "why": {
+        "en": "the Shudhūr's third condition: إِذَنْ must touch its verb, or be parted from it only by an oath or by لَا — a vocative between them cancels the naṣb",
+        "tr": "Şüzûr'un üçüncü şartı: «إِذَنْ» fiiline bitişik olmalı, yahut araya yalnız kasem veya «لَا» girmelidir — araya nidâ girince nasb düşer"
+      }
+    },
+    {
+      "wrong": "مَا تَزَالُ تَأْتِينَا فَتُحَدِّثَنَا",
+      "right": "مَا تَزَالُ تَأْتِينَا فَتُحَدِّثُنَا",
+      "why": {
+        "en": "Shudhūr: the negation of زَالَ is a negation negated, which is an affirmation — and after an affirmation the fāʾ does not give naṣb",
+        "tr": "Şüzûr: «زَالَ»nin nefyi, nefyin nefyidir, o da isbattır — isbattan sonra fâ nasbetmez"
+      }
+    },
+    {
+      "wrong": "صَهْ فَنُكْرِمَكَ",
+      "right": "صَهْ فَنُكْرِمُكَ",
+      "why": {
+        "en": "Shudhūr: the request must be a request in FORM and not a verbal noun (ism fiʿl) — so the majority; al-Kisāʾī allowed the naṣb",
+        "tr": "Şüzûr: talep SÎGA ile olmalı, ism-i fiil ile olmamalıdır — cumhûrun görüşü budur; Kisâî nasbı câiz görmüştür"
+      }
+    }
+  ],
+  "relatedNotes": [
+    "afal-al-muqaraba",
+    "al-amil-al-manawi",
+    "al-madi-wal-jumla-mamulayn",
+    "al-mansubat-al-tasi-ila-al-thalith-ashar",
+    "al-majzum-wal-shart-wal-jaza",
+    "al-fa-fi-jawab-al-shart",
+    "al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai",
+    "al-fil-wal-madi-wal-mudari-fil-kafiya",
+    "nawasib-al-mudari-fil-kafiya",
+    "jawazim-al-mudari-wal-amr-fil-kafiya"
+  ]
+}

@@ -9,6 +9,12 @@ on:
       source_ref:
         description: 'Branch to publish the app from (the github-pages environment deploys from the default branch only)'
         default: 'claude/arabic-app-research-ozd58s'
+      app_voice:
+        description: "(v349) render the app's own voice (eSpeak NG, robotic) into the site — 'true' ships it; OFF until the owner has heard the samples and said yes"
+        default: 'false'
+      voice_engine:
+        description: "(v355) who speaks the app's reading when app_voice is 'true': 'espeak' (v349, robotic) or 'azure' (a neural voice; needs the repository secret AZURE_SPEECH_KEY and the variable AZURE_SPEECH_REGION — the owner's Speech resource)"
+        default: 'espeak'
 
 permissions:
   contents: read
@@ -37,9 +43,49 @@ jobs:
           python tools/pubsplit.py prototype/reader.html ../site
           cp prototype/manifest.webmanifest prototype/sw.js prototype/privacy.html ../site/
           cp -r prototype/icons ../site/icons
+          # (v349) recorded narration (narration/<story>/audio/): plain files beside the page, fetched only on a story's first listen
+          if [ -d prototype/narration ]; then cp -r prototype/narration ../site/narration; fi
           # the front door is the entrance page (it warms the offline cache); without it, the app itself
           if [ -f prototype/welcome.html ]; then cp prototype/welcome.html ../site/index.html; else cp ../site/reader.html ../site/index.html; fi
           ls -la ../site ../site/data
+      # (v349) the app's own voice: rendered HERE, at deploy time — a build product, never in git (tools/voice_app.py: the app's
+      # reading of every vowel spoken by eSpeak NG, run as a tool; only the AAC audio reaches the site). Cached between runs on a
+      # hash of every sent text + the tool + the pinned eSpeak; within a restored cache an unchanged chapter is not re-rendered.
+      - uses: actions/setup-node@v4
+        if: ${{ inputs.app_voice == 'true' }}
+        with:
+          node-version: '22'
+      - name: The app voice's cache key
+        if: ${{ inputs.app_voice == 'true' }}
+        id: vkey
+        env:
+          QISSA_VOICE_ENGINE: ${{ inputs.voice_engine }}
+        run: cd arabic-app && echo "key=$(python tools/voice_app.py --key)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        if: ${{ inputs.app_voice == 'true' }}
+        with:
+          path: voice-cache
+          key: app-voice-${{ steps.vkey.outputs.key }}
+          restore-keys: app-voice-
+      - name: Render the app's own voice into the site
+        if: ${{ inputs.app_voice == 'true' }}
+        env:
+          PYTHONUTF8: '1'
+          QISSA_VOICE_ENGINE: ${{ inputs.voice_engine }}
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ vars.AZURE_SPEECH_REGION }}
+        run: |
+          ffmpeg -version | head -1
+          ffmpeg -hide_banner -encoders 2>/dev/null | grep -qE '^ A[.A-Z]+ aac ' || { echo "::error::ffmpeg has no AAC encoder — the app voice cannot be written"; exit 1; }
+          cd arabic-app
+          npm ci --ignore-scripts
+          time python tools/voice_app.py --out ../voice-cache
+          python tools/voice_app.py --verify --out ../voice-cache
+          mkdir -p ../site/narration && cp -r ../voice-cache/. ../site/narration/
+          du -sh ../site/narration
+      - name: No generated voice on the site (app_voice is not 'true')
+        if: ${{ inputs.app_voice != 'true' }}
+        run: rm -rf site/narration/*/app site/narration/app-voice.json
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

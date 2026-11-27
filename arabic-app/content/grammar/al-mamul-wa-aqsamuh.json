@@ -1,0 +1,122 @@
+{
+ "id": "al-mamul-wa-aqsamuh",
+ "title": {
+  "ar": "الْمَعْمُولُ وَأَقْسَامُهُ: مَا لَا يُعْمَلُ فِيهِ أَصْلًا وَمَا يُعْمَلُ فِيهِ دَائِمًا",
+  "en": "The governed word and its divisions: what is never governed, what is always governed",
+  "tr": "Ma'mûl ve kısımları: hiç amel edilmeyen, dâimâ amel edilen"
+ },
+ "level": 5,
+ "group": "awamil",
+ "classicalSources": [
+  "إظهار الأسرار للبركوي — الباب الثاني في المعمول",
+  "الكافية لابن الحاجب — الاسم المعرب والمبني",
+  "الإنصاف في مسائل الخلاف للأنباري — إعراب فعل الأمر"
+ ],
+ "amil": "الْمَعْمُول — the word a governor acts on: outside composition nothing governs or is governed; inside it, the particle and the lām-less imperative are never governed (the Basrans — the imperative lost the muḍāriʿ's letter and so its likeness to the noun; the Kufans — it is jazm'd by an estimated lām), the noun and the muḍāriʿ always are (even the noun-verbs have a maḥall, the ḍamīr al-faṣl is a particle, the lām of the participle a relative whose iʿrāb passed to what follows it)",
+ "question": {
+  "en": [
+   "What is the second bāb about? The governed word (al-maʿmūl). A coined word outside composition is neither governed nor governing; in composition every word falls into one of three divisions.",
+   "What is never governed? Two things: the particle, absolutely; and the imperative without the lām — according to the Basrans.",
+   "Why do the Basrans say the imperative is not governed? Because the letter of the muḍāriʿ (أ ن ي ت) was what made the muḍāriʿ resemble the noun and so be declined and governed; once that letter is dropped the verb leaves the likeness and returns to its origin, the binaʾ.",
+   "What do the Kufans say? That the imperative is declined — in jazm by an estimated lām: اضْرِبْ from لِتَضْرِبْ.",
+   "What is always governed? Two things: the noun, absolutely, and the muḍāriʿ verb.",
+   "How far does «the noun, absolutely» reach? To the noun-verbs: they were ruled to be in the place of rafʿ by the ibtidāʾ with their doer filling the khabar's place, or in the place of naṣb as a maṣdar — though some say they have no maḥall because they carry a verb's sense.",
+   "And the pronoun of separation? كَانَ زَيْدٌ هُوَ الْقَائِمَ — هُوَ was ruled a particle, against those who call it a noun with no maḥall.",
+   "And the lām on the participles? Some: a particle like the other lāms. Most: a relative noun meaning الَّذِي / الَّتِي whose iʿrāb was given to what follows it when the clause passed from verb to noun — the origin of جَاءَنِي الضَّارِبُ زَيْدًا is جَاءَنِي الَّذِي ضَرَبَ زَيْدًا, where the first word is governed and the second is not; altered, the first took a particle's shape and the second a noun's, and the ruling was reversed, the wording's side outweighing the meaning's in the iʿrāb, which is a ruling of the wording.",
+   "What does the engine READ here? The DabtEngine keeps the particle and the bare imperative on their binaʾ, declines every noun and muḍāriʿ, gives the noun-verb's doer its rafʿ, leaves the pronoun of separation without a maḥall, and reads الضَّارِبُ زَيْدًا as a participle with its object."
+  ],
+  "tr": [
+   "İkinci bab neyi anlatır? Ma'mûlü. Vaz' edilmiş bir lafız terkip dışında ne ma'mûl ne âmildir; terkipte her kelime üç kısımdan birine girer.",
+   "Hiç ma'mûl olmayan nedir? İki şey: mutlak olarak harf ve — Basralılara göre — lâmsız emir.",
+   "Basralılar emrin ma'mûl olmadığını niçin söyler? Çünkü muzâraat harfi (e n y t) muzâriyi isme benzeten, bu yüzden i'râb aldıran ve kendisinde amel ettiren şeydi; o harf düşünce fiil benzerlikten çıkar ve aslına, binâya döner.",
+   "Kûfeliler ne der? Emir mu'rebdir — takdîrî bir lâmla meczûmdur: idrib, li-tadrib'den.",
+   "Dâimâ ma'mûl olan nedir? İki şey: mutlak olarak isim ve muzâri fiil.",
+   "«Mutlak olarak isim» nereye kadar uzanır? İsim fiillere: ibtidâ üzere mahallen merfû olup fâilleri haberin yerini tutar, ya da mastariyet üzere mahallen mansûbdurlar — bazıları fiil mânâsı taşıdıkları için mahalleri olmadığını söylese de.",
+   "Fasıl zamiri? Kâne Zeydün hüve'l-kâime — hüve harf sayıldı; onu mahalsiz bir isim sayanların hilâfına.",
+   "Sıfatların başındaki lâm? Bazıları: diğer lâmlar gibi harf. Çoğu: ellezî / elletî mânâsında ism-i mevsûl; cümle fiilden isme geçince i'râbı kendisinden sonrakine verildi — câenî ed-dâribu Zeyden'in aslı câenî ellezî darabe Zeyden'dir; ilki ma'mûl, ikincisi değil; değişince ilki harf, ikincisi isim sûretine girdi ve hüküm tersine döndü; lafzî bir hüküm olan i'râbda lafız ciheti mânâ cihetine ağır bastı.",
+   "Motor burada neyi OKUR? DabtEngine harfi ve yalın emri binâlarında tutar, her ismi ve muzâriyi çeker, isim fiilin fâiline ref'ini verir, fasıl zamirini mahalsiz bırakır ve ed-dâribu Zeyden'i mef'ûllü ism-i fâil olarak okur."
+  ]
+ },
+ "plain": {
+  "en": "A word only gets a case when it sits in a sentence. Even then particles never take one, nor does a bare command like «strike!» (the Basrans: it lost the prefix that made verbs noun-like; the Kufans: a hidden lām governs it). Nouns and present-tense verbs always take one — even noun-verbs like «hush!» have a slot.",
+  "tr": "Bir kelime ancak cümle içinde i'râb alır. O zaman bile harfler asla almaz; «vur!» gibi yalın emir de almaz (Basralılara göre onu isme benzeten ön eki kaybetti; Kûfelilere göre gizli bir lâm onu cezm eder). İsimler ve muzâri fiiller daima alır — müellife göre «sus!» gibi isim fiillerin bile bir mahalli vardır."
+ },
+ "explanation": {
+  "en": "The second bāb of the Iẓhār turns from the governor to the governed. Coined words outside composition are neither governed nor governing; in composition they are of three divisions. The first is never governed at all: the particle absolutely, and the imperative without the lām according to the Basrans — when the letter of the muḍāriʿ, by which the muḍāriʿ resembled the noun and was therefore declined and governed, is dropped, the verb leaves the likeness and returns to its origin, the binaʾ; the Kufans hold it declined, in jazm by an estimated lām. The second is always governed: the noun absolutely — so that even the noun-verbs were ruled to have a maḥall (rafʿ by the ibtidāʾ with their doer filling the khabar's place, or naṣb as a maṣdar), though some deny them a maḥall for carrying a verb's sense; the pronoun of separation in كَانَ زَيْدٌ هُوَ الْقَائِمَ was ruled a particle against those who call it a noun with no maḥall; and the lām on the participles is for some a particle like the others, for most a relative noun meaning الَّذِي and الَّتِي whose iʿrāb was given to what follows it when the clause passed from verb to noun — the origin of جَاءَنِي الضَّارِبُ زَيْدًا being جَاءَنِي الَّذِي ضَرَبَ زَيْدًا, the first governed and the second not, until the altered shapes reversed the ruling, the wording's side outweighing the meaning's in the iʿrāb, a ruling of the wording — and the muḍāriʿ verb.",
+  "tr": "İzhâr'ın ikinci babı âmilden ma'mûle döner. Vaz' edilmiş lafızlar terkip dışında ne ma'mûl ne âmildir; terkipte üç kısımdır. İlki hiç ma'mûl olmaz: mutlak olarak harf ve Basralılara göre lâmsız emir — muzâriyi isme benzeten ve bu yüzden i'râb aldırıp amel ettiren muzâraat harfi düşünce fiil benzerlikten çıkar ve aslına, binâya döner; Kûfeliler onu takdîrî bir lâmla meczûm, mu'reb sayar. İkincisi dâimâ ma'mûldür: mutlak olarak isim — öyle ki isim fiillerin bile mahalli olduğuna hükmedildi (ibtidâ ile ref', fâilleri haberin yerini tutar; ya da mastariyetle nasb), bazıları fiil mânâsı taşıdıkları için mahallerini inkâr etse de; kâne Zeydün hüve'l-kâime'deki fasıl zamiri, onu mahalsiz bir isim sayanların hilâfına harf sayıldı; sıfatların başındaki lâm bazılarına göre diğerleri gibi harf, çoğuna göre ellezî ve elletî mânâsında ism-i mevsûldür; cümle fiilden isme geçince i'râbı sonrakine verildi — câenî ed-dâribu Zeyden'in aslı câenî ellezî darabe Zeyden'dir; ilki ma'mûl, ikincisi değil; değişen sûretler hükmü tersine çevirdi, lafzî bir hüküm olan i'râbda lafız ciheti ağır bastı — ve muzâri fiil."
+ },
+ "examples": [
+  {
+   "ar": "إِذَا لَمْ تَقَعْ فِي التَّرْكِيبِ لَمْ تَكُنْ مَعْمُولَةً كَمَا لَا تَكُونُ عَامِلَةً",
+   "en": "no governing and no being governed outside composition",
+   "tr": "terkip dışında ne amel ne ma'mûliyet",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s1"
+  },
+  {
+   "ar": "الْحَرْفُ مُطْلَقًا، وَالْأَمْرُ بِغَيْرِ اللَّامِ عِنْدَ الْبَصْرِيِّينَ",
+   "en": "the two things never governed",
+   "tr": "hiç ma'mûl olmayan iki şey",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s2"
+  },
+  {
+   "ar": "هُوَ مُعْرَبٌ مَجْزُومٌ بِلَامٍ مُقَدَّرَةٍ",
+   "en": "the Kufans on the imperative",
+   "tr": "Kûfelilerin emir görüşü",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s4"
+  },
+  {
+   "ar": "مَرْفُوعَةُ الْمَحَلِّ عَلَى الِابْتِدَاءِ وَفَاعِلُهَا سَادٌّ مَسَدَّ الْخَبَرِ",
+   "en": "the noun-verbs' maḥall",
+   "tr": "isim fiillerin mahalli",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s6"
+  },
+  {
+   "ar": "كَانَ زَيْدٌ هُوَ الْقَائِمَ",
+   "en": "the pronoun of separation, ruled a particle",
+   "tr": "harf sayılan fasıl zamiri",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s8"
+  },
+  {
+   "ar": "جَاءَنِي الضَّارِبُ زَيْدًا — أَصْلُهُ جَاءَنِي الَّذِي ضَرَبَ زَيْدًا",
+   "en": "the lām of the participle as a relative",
+   "tr": "mevsûl olarak sıfat lâmı",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s10"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "اضْرِبُ",
+   "right": "اضْرِبْ",
+   "why": {
+    "en": "the bare imperative is built on sukūn: no governor touches it",
+    "tr": "yalın emir sükûn üzere mebnîdir: hiçbir âmil ona dokunmaz"
+   }
+  },
+  {
+   "wrong": "كَانَ زَيْدٌ هُوَ الْقَائِمُ",
+   "right": "كَانَ زَيْدٌ هُوَ الْقَائِمَ",
+   "why": {
+    "en": "the pronoun of separation has no maḥall; the khabar of kāna stays in naṣb",
+    "tr": "fasıl zamirinin mahalli yoktur; kâne'nin haberi mansûb kalır"
+   }
+  },
+  {
+   "wrong": "جَاءَنِي الضَّارِبُ زَيْدٌ",
+   "right": "جَاءَنِي الضَّارِبُ زَيْدًا",
+   "why": {
+    "en": "the participle after the lām governs its object as its verb would",
+    "tr": "lâmdan sonraki ism-i fâil mef'ûlünü fiili gibi nasb eder"
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-madi-wal-jumla-mamulayn",
+  "tarifat-daftar-al-kafiya"
+ ]
+}

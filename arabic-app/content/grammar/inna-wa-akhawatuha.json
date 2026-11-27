@@ -1,0 +1,109 @@
+{
+ "id": "inna-wa-akhawatuha",
+ "title": {
+  "ar": "إِنَّ وَأَخَوَاتُهَا",
+  "en": "Inna and its sisters",
+  "tr": "إِنَّ ve kardeşleri"
+ },
+ "level": 2,
+ "group": "awamil",
+ "amil": "تَنْصِبُ الِاسْمَ وَتَرْفَعُ الْخَبَرَ — governors that put the subject in nasb and keep the predicate in raf'",
+ "classicalSources": [
+  "العوامل (البيركوي)",
+  "إظهار الأسرار (البيركوي)",
+  "الكافية (ابن الحاجب)",
+  "قطر الندى (ابن هشام)",
+  "شذور الذهب لابن هشام — اسْمُ إِنَّ وَأَخَوَاتِهَا، ص 303"
+ ],
+ "plain": {
+  "en": "إِنَّ and its family put the topic in the accusative and leave the predicate alone — the mirror image of كَانَ.",
+  "tr": "إِنَّ ve kardeşleri mübtedayı nasb eder, haberi olduğu gibi bırakır — كَانَ'nin tam tersi."
+ },
+ "question": {
+  "tr": [
+   "Nedir? Kimdir?",
+   "Ne iledir? Nerededir?"
+  ],
+  "en": [
+   "What is it? Who is it?",
+   "With what — or where — is it?"
+  ]
+ },
+ "explanation": {
+  "en": "The six particles resembling verbs (الحروف المشبهة بالفعل): إِنَّ، أَنَّ، كَأَنَّ، لَكِنَّ، لَيْتَ، لَعَلَّ. They enter a nominal sentence and reverse كان's work: the subject (now the ism) takes nasb, the predicate (khabar) stays in raf'. In this story: إِنَّ الْعِلْمَ أَمَانَةٌ — knowledge (nasb) is a trust (raf'). Birgivi counts them among the strongest of the sixty governors; Ibn Hisham devotes a chapter of Qatr al-Nada to them.",
+  "tr": "Fiile benzeyen altı harf: إِنَّ، أَنَّ، كَأَنَّ، لَكِنَّ، لَيْتَ، لَعَلَّ. İsim cümlesine girer, ismini nasbeder, haberini ref eder. Hikâyede: إِنَّ الْعِلْمَ أَمَانَةٌ — ilim (mansub) bir emanettir (merfu). Birgivî bunları avâmilin en güçlülerinden sayar; İbn Hişâm Katru'n-Nedâ'da ayrı bab ayırır."
+ },
+ "examples": [
+  {
+   "ar": "إِنَّ الْعِلْمَ أَمَانَةٌ.",
+   "en": "Indeed knowledge is a trust.",
+   "sourceStory": "wasiyyat-abi-hanifa-L2",
+   "sentence": "s7",
+   "tr": "Muhakkak ilim bir emanettir."
+  },
+  {
+   "ar": "وَإِنَّ النَّاسَ يَنْظُرُونَ إِلَيْكَ.",
+   "en": "And people are watching you — the khabar can be a whole verbal clause.",
+   "sourceStory": "wasiyyat-abi-hanifa-L2",
+   "sentence": "s7",
+   "tr": "Ve insanlar seni gözetliyor — haber tam bir fiil cümlesi olabilir."
+  },
+  {
+   "ar": "لَعَلَّ الطَّالِبَ نَاجِحٌ.",
+   "en": "Perhaps the student will succeed.",
+   "tr": "Umulur ki talebe başarır."
+  },
+  {
+   "ar": "كَأَنْ ظَبْيَةٌ تَعْطُو إِلَى وَارِقِ السَّلَمْ",
+   "en": "Lightened kaʾan mostly follows lightened anna's rules (but its ism may appear and its khabar may be a single word); a verb after it is always declarative and separated only by qad or lam.",
+   "tr": "Muhaffef «keen» çoğunlukla «en»nin hükmünü alır (ama ismi zikredilebilir, haberi müfred olabilir); ondan sonraki fiil daima haberîdir ve yalnız kad veya lem ile ayrılır.",
+   "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:145 (ص 303)"
+  },
+  {
+   "ar": "وَلَكِنِ اللهُ قَتَلَهُمْ",
+   "en": "Lightened lākin must be cancelled because it loses its restriction to nominal clauses (it can then precede verbs); Yūnus and al-Akhfash's allowance of iʿmāl is unattested.",
+   "tr": "Muhaffef «lâkin» vücûben ilgâ edilir, çünkü isim cümlesine ihtisâsı kalkar (fiile girer); Yûnus ve Ahfeş'in i'mâli câiz görmesi semâ'a dayanmaz.",
+   "source": "research/sources/shudhur-al-dhahab-qawaid.jsonl:146 (ص 308)"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "إنّ العلمُ أمانةٌ",
+   "right": "إنّ العلمَ أمانةٌ",
+   "why": {
+    "en": "The ism of إنّ must be mansub — learners keep the mubtada's damma out of habit.",
+    "tr": "إنّ'nin ismi mansub olmalıdır — mübtedanın ötresi alışkanlıkla bırakılıyor."
+   }
+  },
+  {
+   "wrong": "إنّ العلمَ أمانةً",
+   "right": "إنّ العلمَ أمانةٌ",
+   "why": {
+    "en": "Over-correction: only the ism takes nasb; the khabar stays marfu'. Double nasb is the classic second-stage error.",
+    "tr": "Aşırı düzeltme: yalnız isim nasb alır; haber merfu kalır. Çift nasb klasik ikinci aşama hatasıdır."
+   }
+  },
+  {
+   "wrong": "إنّ يذهبُ الطالبُ",
+   "right": "إنّ الطالبَ يذهبُ",
+   "why": {
+    "en": "إنّ enters nominal sentences — a noun must follow it, never a verb directly.",
+    "tr": "إنّ isim cümlesine girer — hemen ardından fiil gelmez; önce isim gelmelidir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "an-masdariyya",
+  "mawadi-kasr-inna",
+  "mawadi-fath-anna",
+  "al-fa-fi-khabar-al-mubtada",
+  "al-marfuat-al-khamis-ila-al-tasi",
+  "al-mansubat-al-tasi-ila-al-thalith-ashar",
+  "al-huruf-al-mushabbaha-bil-fil-fil-kafiya",
+  "masail-inna-wal-mukhaffafa-fil-kafiya"
+ ],
+ "gameSeeds": {
+  "spotTheError": true
+ },
+ "mamul": "marfu"
+}

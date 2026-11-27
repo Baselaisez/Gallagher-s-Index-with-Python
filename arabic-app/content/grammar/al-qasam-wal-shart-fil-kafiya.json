@@ -1,0 +1,108 @@
+{
+ "id": "al-qasam-wal-shart-fil-kafiya",
+ "title": {
+  "ar": "اِجْتِمَاعُ الْقَسَمِ وَالشَّرْطِ فِي الْكَافِيَةِ",
+  "en": "The oath meeting the condition in the Kafiya: whichever comes first takes the answer, a middle oath may be regarded or cancelled, and an implied oath counts like a stated one",
+  "tr": "Kâfiye'de kasem ile şartın buluşması: önce gelen cevabı alır, ortadaki kaseme itibar da edilebilir lağv da, takdirî kasem zikredilmiş gibidir"
+ },
+ "level": 5,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — إذا تقدم القسم على الشرط لزم كون الشرط ماضيا والجواب للقسم؛ إذا توسط جاز الأمران",
+  "ضياء صونغور اوغلى — دفتر الكافية: والله إن أتيتني لأكرمتك؛ أنا والله إن تأتني آتك؛ إن أتيتني والله لآتينك؛ لئن أخرجوا لا يخرجون؛ وإن أطعتموهم إنكم لمشركون"
+ ],
+ "question": {
+  "en": [
+   "Two governors want the same answer — who gets it? The one that came FIRST. With the oath at the head (وَاللهِ إِنْ أَتَيْتَنِي لَأَكْرَمْتُكَ) the answer wears the oath's lām and the condition's verb must be past; the condition's own answer is dropped, shown by the oath's.",
+   "What does «past in wording or in sense» mean? أَتَيْتَنِي is a past verb; لَمْ تَأْتِنِي is a present verb turned to the past by لَمْ. Both satisfy the rule, and the analyzer reads لَمْ as a converter of time for exactly this reason.",
+   "How do you tell which one was regarded when the oath sits in the middle? Read the ANSWER. آتِكَ with its yāʾ dropped is majzūm, so the condition won (أَنَا وَاللهِ إِنْ تَأْتِنِي آتِكَ); لَآتِيَنَّكَ with the lām and the nūn of emphasis is an oath's answer, so the oath won (إِنْ أَتَيْتَنِي وَاللهِ لَآتِيَنَّكَ). The sign engine reads the first off the ending; the hadhf engine's implied-oath rule reads the second off the lām and the nūn.",
+   "Why does 59:12 read لَا يَخْرُجُونَ with the nūn kept? Because an oath is implied before لَئِنْ (its lām is the lām that prepares for an oath) and the oath took the answer; had the condition taken it, the five-verb form would have lost its nūn for jazm. A kept nūn after a condition is the fingerprint of an implied oath, and the hadhf engine raises the oath's seat on لَئِنْ from it.",
+   "Why does 6:121 read إِنَّكُمْ without a fāʾ? A nominal answer to a CONDITION needs the fāʾ (فَإِنَّكُمْ); an answer to an OATH does not. The missing fāʾ is the second fingerprint of an implied oath, and the hadhf engine's implied-oath rule treats both fingerprints as evidence."
+  ],
+  "tr": [
+   "İki âmil aynı cevabı ister — kim alır? ÖNCE gelen. Kasem başta olunca (وَاللهِ إِنْ أَتَيْتَنِي لَأَكْرَمْتُكَ) cevap kasemin lâm'ını giyer ve şartın fiili mâzî olmalıdır; şartın kendi cevabı hazfedilir, kaseminki ona delâlet eder.",
+   "«Lafzen ya da mânen mâzî» ne demek? أَتَيْتَنِي mâzî bir fiildir; لَمْ تَأْتِنِي, لَمْ ile geçmişe çevrilmiş bir muzâridir. İkisi de kuralı karşılar ve analizör tam bu sebeple لَمْ'i zaman çeviricisi olarak okur.",
+   "Kasem ortada otururken hangisine itibar edildiğini nasıl anlarsın? CEVABI oku. Yâ'sı düşmüş آتِكَ meczumdur, demek şart kazanmıştır (أَنَا وَاللهِ إِنْ تَأْتِنِي آتِكَ); lâm'ı ve te'kid nûnuyla لَآتِيَنَّكَ bir kasem cevabıdır, demek kasem kazanmıştır (إِنْ أَتَيْتَنِي وَاللهِ لَآتِيَنَّكَ). Alâmet motoru birincisini sondan, hazif motorunun takdirî-kasem kuralı ikincisini lâm ve nûndan okur.",
+   "59:12 niçin nûnu korunmuş لَا يَخْرُجُونَ okunur? Çünkü لَئِنْ'den önce bir kasem takdir edilir (lâm'ı kaseme hazırlayan lâm'dır) ve cevabı kasem almıştır; şart alsaydı beş fiil şekli cezm için nûnunu kaybederdi. Şarttan sonra korunan nûn takdirî kasemin parmak izidir ve hazif motoru لَئِنْ üzerinde kasemin yerini ondan çıkarır.",
+   "6:121 niçin fâ'sız إِنَّكُمْ okunur? ŞARTA isim cümlesi cevap fâ ister (فَإِنَّكُمْ); KASEME cevap istemez. Eksik fâ takdirî kasemin ikinci parmak izidir ve hazif motorunun takdirî-kasem kuralı iki izi de delil sayar."
+  ]
+ },
+ "plain": {
+  "en": "When «by God» and «if» are in the same sentence, only one of them gets the answer clause. Whichever came first wins. If the oath comes first, the answer carries its lām and the if-verb goes to the past. If the oath sits in the middle, the ending of the answer tells you who won.",
+  "tr": "«Vallahi» ile «eğer» aynı cümledeyse cevap cümlesini yalnız biri alır. Önce gelen kazanır. Kasem öndeyse cevap onun lâm'ını taşır ve şart fiili geçmişe gider. Kasem ortadaysa cevabın sonu kimin kazandığını söyler."
+ },
+ "explanation": {
+  "en": "The Kafiya's rule for an oath and a condition in one sentence, in the notebook's expanded form with its five worked examples. The rule has two halves: precedence (the earlier of the two takes the answer; the later's answer is dropped and shown by it) and, for the middle oath, free choice — with the ANSWER's form as the evidence of which was chosen. The two Qur'anic examples (59:12, 6:121) extend the rule to an implied oath and give the two fingerprints by which the implied oath is detected: a five-verb form that keeps its nūn, and a nominal answer with no fāʾ. Both fingerprints are things the engines already read off the surface — the ending and the connector — so the chapter is also a specification for the analyzer's treatment of لَئِنْ.",
+  "tr": "Kâfiye'nin bir cümledeki kasem ve şart kuralı, defterin beş işlenmiş örnekli genişletilmiş hâliyle. Kuralın iki yarısı vardır: öncelik (ikisinden önce gelen cevabı alır; sonrakinin cevabı hazfedilir ve ona delâlet eder) ve ortadaki kasem için serbest tercih — hangisinin seçildiğinin delili olarak CEVABIN şekli. İki Kur'ân örneği (59:12, 6:121) kuralı takdirî kaseme uzatır ve takdirî kasemin tanındığı iki parmak izini verir: nûnunu koruyan beş fiil şekli ve fâ'sız isim cümlesi cevap. İki iz de motorların yüzeyden zaten okuduğu şeylerdir — son ek ve bağlayıcı — bu yüzden bâb aynı zamanda analizörün لَئِنْ muamelesinin bir şartnamesidir."
+ },
+ "examples": [
+  {
+   "ar": "وَاللهِ إِنْ أَتَيْتَنِي لَأَكْرَمْتُكَ",
+   "en": "Oath first: the answer is the oath's.",
+   "tr": "Kasem önde: cevap kasemin.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "أَنَا وَاللهِ إِنْ تَأْتِنِي آتِكَ",
+   "en": "Middle oath, condition regarded: the yāʾ drops.",
+   "tr": "Ortada kasem, şarta itibar: yâ düşer.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "إِنْ أَتَيْتَنِي وَاللهِ لَآتِيَنَّكَ",
+   "en": "Middle oath, oath regarded: the lām and the nūn.",
+   "tr": "Ortada kasem, kaseme itibar: lâm ve nûn.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "لَئِنْ أُخْرِجُوا لَا يَخْرُجُونَ",
+   "en": "Implied oath: the nūn kept.",
+   "tr": "Takdirî kasem: nûn korunur.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "وَإِنْ أَطَعْتُمُوهُمْ إِنَّكُمْ لَمُشْرِكُونَ",
+   "en": "Implied oath: no fāʾ before inna.",
+   "tr": "Takdirî kasem: inne'den önce fâ yok.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«وَاللهِ إِنْ تَأْتِنِي آتِكَ»",
+   "right": "«وَاللهِ إِنْ أَتَيْتَنِي لَآتِيَنَّكَ — kasem başta olunca şart mâzî, cevap kasemin»",
+   "why": {
+    "en": "An oath at the head takes the answer and makes the condition past.",
+    "tr": "Baştaki kasem cevabı alır ve şartı mâzî kılar."
+   }
+  },
+  {
+   "wrong": "«لَئِنْ أُخْرِجُوا لَا يَخْرُجُوا»",
+   "right": "«لَا يَخْرُجُونَ — cevap takdirî kasemindir, cezm yoktur»",
+   "why": {
+    "en": "The nūn is kept because the oath, not the condition, owns the answer.",
+    "tr": "Nûn korunur, çünkü cevap şartın değil kasemindir."
+   }
+  },
+  {
+   "wrong": "«وَإِنْ أَطَعْتُمُوهُمْ فَإِنَّكُمْ لَمُشْرِكُونَ (âyet böyle)»",
+   "right": "«إِنَّكُمْ لَمُشْرِكُونَ — fâ'sız; cevap kasemin»",
+   "why": {
+    "en": "A nominal answer to a condition would need the fāʾ; its absence marks the oath's answer.",
+    "tr": "Şarta isim cümlesi cevap fâ isterdi; yokluğu kasem cevabını gösterir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "huruf-al-qasam-fil-kafiya",
+  "huruf-al-shart-fil-kafiya",
+  "al-majzum-wal-shart-wal-jaza",
+  "al-fa-fi-jawab-al-shart",
+  "nun-tawkid"
+ ]
+}

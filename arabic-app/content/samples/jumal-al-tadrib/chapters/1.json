@@ -1,0 +1,663 @@
+{
+ "chapter": 1,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "Zayd wrote a letter.",
+    "tr": "Zeyd bir mektup yazdı."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "كَتَبَ",
+      "smart": "كَتَبَ",
+      "bare": "كتب"
+     },
+     "lex": "kataba",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "رِسَالَةً",
+      "smart": "رِسَالَةً",
+      "bare": "رسالة"
+     },
+     "lex": "risala",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mensub mef'ûlün bih."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "كَتَبَ زَيْدٌ رِسَالَةً",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "The student read the book.",
+    "tr": "Öğrenci kitabı okudu."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "قَرَأَ",
+      "smart": "قَرَأَ",
+      "bare": "قرأ"
+     },
+     "lex": "qaraa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الطَّالِبُ",
+      "smart": "الطَّالِبُ",
+      "bare": "الطالب"
+     },
+     "lex": "talib",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْكِتَابَ",
+      "smart": "الْكِتَابَ",
+      "bare": "الكتاب"
+     },
+     "lex": "kitab",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mensub mef'ûlün bih."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "قَرَأَ الطَّالِبُ الْكِتَابَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "The teacher entered the mosque.",
+    "tr": "Muallim mescide girdi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "دَخَلَ",
+      "smart": "دَخَلَ",
+      "bare": "دخل"
+     },
+     "lex": "dakhala",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُعَلِّمُ",
+      "smart": "الْمُعَلِّمُ",
+      "bare": "المعلم"
+     },
+     "lex": "muallim",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمَسْجِدَ",
+      "smart": "الْمَسْجِدَ",
+      "bare": "المسجد"
+     },
+     "lex": "masjid",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mensub mef'ûlün bih."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "دَخَلَ الْمُعَلِّمُ الْمَسْجِدَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "Zayd came riding.",
+    "tr": "Zeyd binerek (binmiş hâlde) geldi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "جَاءَ",
+      "smart": "جَاءَ",
+      "bare": "جاء"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ — أَجْوَفُ مَهْمُوزٌ.",
+      "en": "Past verb built on fatha — hollow with a hamza.",
+      "tr": "Fetha üzere mebnî mâzî fiil — ecvef ve mehmûzdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَاكِبًا",
+      "smart": "رَاكِبًا",
+      "bare": "راكبا"
+     },
+     "lex": "rakib",
+     "pos": "noun",
+     "grammar": [
+      "hal",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ — اسْمُ فَاعِلٍ مِنْ «رَكِبَ».",
+      "en": "A hal in nasb — the ism fa'il of رَكِبَ: in what state? riding.",
+      "tr": "Mensub hâl — «رَكِبَ» fiilinin ism-i fâili: ne hâlde? binmiş hâlde."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "جَاءَ زَيْدٌ رَاكِبًا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "The boy returned to the house.",
+    "tr": "Çocuk eve döndü."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "رَجَعَ",
+      "smart": "رَجَعَ",
+      "bare": "رجع"
+     },
+     "lex": "rajaa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْوَلَدُ",
+      "smart": "الْوَلَدُ",
+      "bare": "الولد"
+     },
+     "lex": "walad",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَى",
+      "smart": "إِلَى",
+      "bare": "إلى"
+     },
+     "lex": "ila",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْبَيْتِ",
+      "smart": "الْبَيْتِ",
+      "bare": "البيت"
+     },
+     "lex": "bayt",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِحَرْفِ الْجَرِّ.",
+      "en": "In jarr after the preposition.",
+      "tr": "Cer harfiyle mecrurdur."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "رَجَعَ الْوَلَدُ إِلَى الْبَيْتِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "The student heard the lesson in the mosque.",
+    "tr": "Öğrenci dersi mescitte dinledi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "سَمِعَ",
+      "smart": "سَمِعَ",
+      "bare": "سمع"
+     },
+     "lex": "samia",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الطَّالِبُ",
+      "smart": "الطَّالِبُ",
+      "bare": "الطالب"
+     },
+     "lex": "talib",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسَ",
+      "smart": "الدَّرْسَ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mensub mef'ûlün bih."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمَسْجِدِ",
+      "smart": "الْمَسْجِدِ",
+      "bare": "المسجد"
+     },
+     "lex": "masjid",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِحَرْفِ الْجَرِّ.",
+      "en": "In jarr after the preposition.",
+      "tr": "Cer harfiyle mecrurdur."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "سَمِعَ الطَّالِبُ الدَّرْسَ فِي الْمَسْجِدِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "Zayd did not write a letter.",
+    "tr": "Zeyd bir mektup yazmadı."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "لَمْ",
+      "smart": "لَمْ",
+      "bare": "لم"
+     },
+     "lex": "lam-jazima",
+     "pos": "part",
+     "grammar": [
+      "lam-jazim"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نَفْيٍ وَجَزْمٍ وَقَلْبٍ.",
+      "en": "The particle of negation, jazm and time-flip: it turns the mudari's meaning to the past.",
+      "tr": "Nefiy, cezm ve kalb harfi: muzârinin manasını mâzîye çevirir."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَكْتُبْ",
+      "smart": "يَكْتُبْ",
+      "bare": "يكتب"
+     },
+     "lex": "kataba",
+     "pos": "verb",
+     "grammar": [
+      "lam-jazim",
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَمْ»، وَعَلَامَةُ جَزْمِهِ السُّكُونُ.",
+      "en": "Mudari in jazm after لَمْ; its sign is the sukun.",
+      "tr": "«لَمْ» ile meczum muzâri; cezm alâmeti sükûndur."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "رِسَالَةً",
+      "smart": "رِسَالَةً",
+      "bare": "رسالة"
+     },
+     "lex": "risala",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mensub mef'ûlün bih."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "لَمْ يَكْتُبْ زَيْدٌ رِسَالَةً",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَنْفِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening negated verbal clause — i'rabless.",
+     "tr": "İbtidâiyye menfî fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "The students left the lesson glad.",
+    "tr": "Öğrenciler dersten sevinçli çıktılar."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "خَرَجَ",
+      "smart": "خَرَجَ",
+      "bare": "خرج"
+     },
+     "lex": "kharaja",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الطُّلَّابُ",
+      "smart": "الطُّلَّابُ",
+      "bare": "الطلاب"
+     },
+     "lex": "tullab",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ — جَمْعُ تَكْسِيرٍ لِـ«طَالِب».",
+      "en": "The fa'il in raf' — a broken plural of طَالِب.",
+      "tr": "Merfû fâil — «طَالِب» kelimesinin cem'-i mükesseri."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسِ",
+      "smart": "الدَّرْسِ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِحَرْفِ الْجَرِّ.",
+      "en": "In jarr after the preposition.",
+      "tr": "Cer harfiyle mecrurdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "فَرِحِينَ",
+      "smart": "فَرِحِينَ",
+      "bare": "فرحين"
+     },
+     "lex": "farih",
+     "pos": "noun",
+     "grammar": [
+      "hal",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْيَاءُ — جَمْعُ مُذَكَّرٍ سَالِمٌ.",
+      "en": "A hal in nasb, its sign the ya — a sound masculine plural.",
+      "tr": "Mensub hâl; nasb alâmeti yâdır — cem'-i müzekker-i sâlim."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "خَرَجَ الطُّلَّابُ مِنَ الدَّرْسِ فَرِحِينَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    }
+   ]
+  }
+ ]
+}
