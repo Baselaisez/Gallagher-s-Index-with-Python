@@ -66,6 +66,7 @@ def main():
     # 4. text gates
     run("i18n gate", [sys.executable, "tools/check_i18n.py"])
     run("canon audit", [sys.executable, "tools/check_canon.py", "--strict"])
+    run("nothing is lost (tree: stories, notes, rule tables)", [sys.executable, "tools/inventory.py", "--check", "--files-only"])   # (v356-G) the page half runs in the smoke suite
 
     # 5. the Dart data layer must not drift
     if "dart" not in SKIP:

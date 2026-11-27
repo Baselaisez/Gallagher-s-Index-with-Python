@@ -184,3 +184,32 @@ Running:
 | v355-V | qissa-audit · tmp/voice2 | voice2 | a voice the app can ship (web survey, licences quoted, the 30-sentence test) | two neural candidates tested and failed so far: one overrides written vowels (8 seen), one cannot keep ص ض ط ظ apart; survey continues |
 
 Merge note for N1 + N2: both rebuild Ibn ʿAqīl's ledger — merge their `<scratch>/ledger_rows.json`, then rebuild once on the merged page.
+
+## 2026-11-27 08:17 UTC
+
+Landed since 06:22: `297cd01` v355-V (voice survey + Azure adapter; CI failed on it — the Azure key check sat after the ffmpeg
+check and the CI runner has no ffmpeg), `4a54bf7` v355-N1 (24 rules, three Roles345 hand-over gates, the CI fix), `091186e`
+v355-N2 merged (18 rules; one ledger road for both triages — Ibn ʿAqīl's ledger on the merged page: applied 391, ⚠ 4, n-a 249;
+N1 alone 333 / 90, N2 alone 304 / 104). CI is running the whole suite on both. v356-G (the inventory guard) is being merged:
+`content/inventory.json` refreshed on the merged tree, then pushed.
+
+The owner, 2026-11-27 (three messages): «Neden?» must give the iʿrāb details of EVERY kind of word (هو: a ḍamīr → mabnī → no lafẓī
+or taqdīrī iʿrāb → maḥallan marfūʿ); stories at different levels from Shamela 1686 (Ibn Saʿd's Ṭabaqāt); the Alfiyya and its sharḥ
+for learning, applying, checks; ONE story with many parts = al-Nadwī's «السيرة النبوية» (Shamela 9914; he states he has
+al-Nadwī's permission); Shudhūr's web text = Shamela 6969; more level-one notes — the Amthila in detail and the pronouns through
+«مَا أَنْصَرَهُ وَأَنْصِرْ بِهِ»; «where are the hoca checks I can revise» → one workbook made from the precheck branch's
+`review/ai-precheck/*.jsonl` and this branch's `story-corrections-proposed-*.jsonl` (1,557 applied + 128 rule passes + 9 AI-RET +
+721 proposals; reports/ is git-ignored — sent to the owner; the generator is scratchpad/hoca_book.py).
+
+Running (five agents, briefs in scratchpad `V357_BRIEF.md`, `V358_BRIEFS.md`):
+| wave | worktree / branch | scratch folder | job |
+|---|---|---|---|
+| v357-N | qissa-why · tmp/naw357 | naw357 | `Illa346`: the kind of word → muʿrab / mabnī → lafẓī / taqdīrī / maḥallī for every class; deduced places marked |
+| v358-T | qissa-feed1 · tmp/tabaqat358 | tabaqat358 | 8–10 short stories at levels 2–6 from the Ṭabaqāt (its long story dropped — the Sīra is the long one) |
+| v358-A | qissa-feed2 · tmp/alf358 | alf358 | the Alfiyya as a course: verses, ruling, book examples, applied in stories, engine-proved checks |
+| v359-S | qissa-speed · tmp/sira359 | sira359 | al-Nadwī's Sīra as ONE package, first instalment from الفصل الثاني, chapter ids append-only |
+| v359-E | qissa-audit · tmp/emsile359 | emsile359 | level one: the Amthila (24 forms, muṭṭarida) and five pronoun notes, every cell engine-proved |
+
+Downloads (scratchpad/newsrc/dl/): 1686 (≈3,100 pp.), 9914 (767 pp.), then 6969 (602 pp. — Shudhūr, for a check of our
+source file against the web text; no agent yet). Waiting on the owner: the Azure Speech resource's region.
+After these land: the speed checks on the merged tree, APK (dev ref) and Pages (ref main).
