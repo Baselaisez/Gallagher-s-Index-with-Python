@@ -53,9 +53,9 @@ Statuses: **joined** = the same rule in Shudhūr / Qawāʿid / Iẓhār / Kāfiy
 | أفعل التفضيل | 10 | 9 | 0 | 4 (0, 4) | 0 | 0 | 5 |
 | التوابع النعت | 14 | 12 | 0 | 8 (1, 5) | 0 | 0 | 4 |
 | التوكيد | 14 | 9 | 0 | 6 (0, 2) | 0 | 0 | 3 |
-| العطف | 6 | 3 | 0 | 1 (0, 0) | 2 | 0 | 0 |
-| عطف النسق | 25 | 10 | 2 | 6 (0, 0) | 1 | 0 | 1 |
-| البدل | 8 | 2 | 0 | 1 (0, 0) | 1 | 0 | 0 |
+| العطف | 6 | 3 | 0 | 3 (0, 2) | 0 | 0 | 0 |
+| عطف النسق | 25 | 10 | 2 | 7 (0, 1) | 0 | 0 | 1 |
+| البدل | 8 | 2 | 0 | 2 (0, 1) | 0 | 0 | 0 |
 | النداء | 18 | 13 | 0 | 8 (0, 1) | 0 | 0 | 5 |
 | المنادى المضاف الى ياء المتكلم | 3 | 4 | 0 | 4 (0, 0) | 0 | 0 | 0 |
 | أسماء لازمت النداء | 3 | 2 | 0 | 2 (0, 0) | 0 | 0 | 0 |
@@ -88,7 +88,7 @@ Statuses: **joined** = the same rule in Shudhūr / Qawāʿid / Iẓhār / Kāfiy
 | الإبدال | 48 | 32 | 0 | 0 (0, 0) | 0 | 32 | 0 |
 | الإدغام | 12 | 7 | 0 | 0 (0, 0) | 0 | 7 | 0 |
 | تكملة في تصريف الأفعال | 0 | 0 | 0 | 0 (0, 0) | 0 | 0 | 0 |
-| **all** | 1006 | 806 | 51 | 342 (20, 118) | 4 | 160 | 249 |
+| **all** | 1006 | 806 | 51 | 346 (20, 122) | 0 | 160 | 249 |
 
 Joined to: izhar 25, shudhur 18, qawaid 5, kafiya 3. Joins need the same topic and the same example (or ≥ 3 shared content words): Ibn ʿAqīl restates the matns in his own words and examples, so most of his rule sentences stand as his own rows here.
 
@@ -104,28 +104,9 @@ Joined to: izhar 25, shudhur 18, qawaid 5, kafiya 3. Joins need the same topic a
 
 Each row: the entry, the book's example as printed (unvowelled — the probe reads it as given), what the book rules (the bāb's construction, or the role the sentence names on a word), the engine's line. Per bāb the narrowest gate to try first.
 
-### العطف (2)
-
-Gate: the bāb's construction (`aqil_map.py`: معطوف|عطف)
-
-- A897.1 (p. 3:222, Shamela 897) — «يا غلام يعمرا» — wants «عطف بيان» on يعمرا — engine: فعل مضارع، والفاعل ضمير مستتر جوازا تقديره «هو». — vowelled «يَا غُلَامُ يَعْمَرًا»: اسم، منصوب وعلامه نصبه الفتحه الظاهره. — triage b: يعمرا after a built vocative: «فيتعين أن يكون يعمرا عطف بيان»
-- A897.2 (p. 3:222, Shamela 897) — «أنا الضارب الرجل زيد» — wants «عطف بيان» on زيد — engine: اسم، مبتدا، وخبره «الضارب» مقدم. — vowelled «أَنَا الضَّارِبُ الرَّجُلِ زَيْدٍ»: اسم، مجرور وعلامه جره الكسره الظاهره، وخبره «الضارب» مقدم. — triage b: «فيتعين كون زيد عطف بيان»
-
-### عطف النسق (1)
-
-Gate: the noun after a coordinating letter whose case follows a non-adjacent noun
-
-- A903.1 (p. 3:228, Shamela 903) — «الذي يطير فيغضب زيد الذباب» — wants «معطوف» on فيغضب — engine: فعل مضارع، ونائب فاعله «الذباب». — vowelled «الَّذِي يَطِيرُ فَيَغْضَبُ زَيْدٌ الذُّبَابُ»: فعل مضارع، مرفوع وعلامه رفعه الضمه الظاهره، وفاعله «زيد». — triage b: the cut carried «ولو قلت ويغضب»; the fāʾ joins a clause with no return pronoun
-
-### البدل (1)
-
-Gate: a noun right after a definite noun of the same case without a coordinating letter
-
-- A927.1 (p. 3:253, Shamela 927) — «من ذا أسعيد» — wants «بدل» on أسعيد — engine: اسم، مبتدا. — vowelled «مَنْ ذَا أَسَعِيدٌ»: اسم، مرفوع وعلامه رفعه الضمه الظاهره. — triage b: the badal of an interrogative takes the hamza; ذا read as ذو
-
 ## The v355 triage of the ⚠ rows
 
-a = the print's artefact (read right once vowelled), b = a real gap (fixed or still ⚠), c = the probe's expectation or the cut was wrong (replaced), d = not decidable from the letters / not an example (now not-automatable or open). Counts: a 48, b 59, c 41, d 41 — now: a→applied-vowelled 48, b→applied 5, b→applied-vowelled 50, b→⚠ 4, c→applied 21, c→applied-vowelled 20, d→not-automatable 37, d→open 4
+a = the print's artefact (read right once vowelled), b = a real gap (fixed or still ⚠), c = the probe's expectation or the cut was wrong (replaced), d = not decidable from the letters / not an example (now not-automatable or open). Counts: a 48, b 59, c 41, d 41 — now: a→applied-vowelled 48, b→applied 5, b→applied-vowelled 54, c→applied 21, c→applied-vowelled 20, d→not-automatable 37, d→open 4
 
 - A34.1 (المعرب والمبني) d — 
 - A124.1 (العلم) d — 

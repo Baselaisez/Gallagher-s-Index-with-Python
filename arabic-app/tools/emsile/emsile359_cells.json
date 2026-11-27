@@ -1173,39 +1173,59 @@
     {
      "id": "marra",
      "head": {
-      "ar": "بِنَاءُ الْمَرَّةِ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "The noun of once in four bābs",
-      "tr": "Dört bâbda binâ-i merre"
+      "ar": "بِنَاءُ الْمَرَّةِ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The noun of once in the six bābs",
+      "tr": "Altı bâbda binâ-i merre"
      },
      "src": {
       "k": "em",
-      "slot": "marra"
+      "slot": "marra",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "نَصْرَةً",
       "ضَرْبَةً",
       "فَتْحَةً",
-      "عَلْمَةً"
+      "عَلْمَةً",
+      "حَسْنَةً",
+      "حَسْبَةً"
      ]
     },
     {
      "id": "naw",
      "head": {
-      "ar": "بِنَاءُ النَّوْعِ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "The noun of manner in four bābs",
-      "tr": "Dört bâbda binâ-i nev'"
+      "ar": "بِنَاءُ النَّوْعِ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The noun of manner in the six bābs",
+      "tr": "Altı bâbda binâ-i nev'"
      },
      "src": {
       "k": "em",
-      "slot": "naw"
+      "slot": "naw",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "نِصْرَةً",
       "ضِرْبَةً",
       "فِتْحَةً",
-      "عِلْمَةً"
+      "عِلْمَةً",
+      "حِسْنَةً",
+      "حِسْبَةً"
      ]
     }
    ],
@@ -1327,39 +1347,59 @@
     {
      "id": "babs",
      "head": {
-      "ar": "اسْمُ الْفَاعِلِ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "The active participle in four bābs",
-      "tr": "Dört bâbda ism-i fâil"
+      "ar": "اسْمُ الْفَاعِلِ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The active participle in the six bābs",
+      "tr": "Altı bâbda ism-i fâil"
      },
      "src": {
       "k": "em",
-      "slot": "fail"
+      "slot": "fail",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "نَاصِرٌ",
       "ضَارِبٌ",
       "فَاتِحٌ",
-      "عَالِمٌ"
+      "عَالِمٌ",
+      null,
+      "حَاسِبٌ"
      ]
     },
     {
      "id": "mub",
      "head": {
       "ar": "صِيغَةُ الْمُبَالَغَةِ (فَعَّالٌ)",
-      "en": "The intensive (faʿʿāl) in four bābs",
-      "tr": "Dört bâbda mübalağa (فَعَّالٌ)"
+      "en": "The intensive (faʿʿāl) in the six bābs",
+      "tr": "Altı bâbda mübalağa (فَعَّالٌ)"
      },
      "src": {
       "k": "em",
-      "slot": "mubalagha"
+      "slot": "mubalagha",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "نَصَّارٌ",
       "ضَرَّابٌ",
       "فَتَّاحٌ",
-      "عَلَّامٌ"
+      "عَلَّامٌ",
+      "حَسَّانٌ",
+      "حَسَّابٌ"
      ]
     }
    ],
@@ -1470,20 +1510,30 @@
     {
      "id": "babs",
      "head": {
-      "ar": "اسْمُ الْمَفْعُولِ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "The passive participle in four bābs",
-      "tr": "Dört bâbda ism-i mef'ûl"
+      "ar": "اسْمُ الْمَفْعُولِ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The passive participle in the six bābs",
+      "tr": "Altı bâbda ism-i mef'ûl"
      },
      "src": {
       "k": "em",
-      "slot": "maful"
+      "slot": "maful",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "مَنْصُورٌ",
       "مَضْرُوبٌ",
       "مَفْتُوحٌ",
-      "مَعْلُومٌ"
+      "مَعْلُومٌ",
+      null,
+      "مَحْسُوبٌ"
      ]
     }
    ],
@@ -2272,39 +2322,59 @@
     {
      "id": "mimi",
      "head": {
-      "ar": "اسْمُ الزَّمَانِ وَالْمَكَانِ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "Time and place in four bābs",
-      "tr": "Dört bâbda ism-i zaman ve mekân"
+      "ar": "اسْمُ الزَّمَانِ وَالْمَكَانِ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "Time and place in the six bābs",
+      "tr": "Altı bâbda ism-i zaman ve mekân"
      },
      "src": {
       "k": "em",
-      "slot": "mimi"
+      "slot": "mimi",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "مَنْصَرٌ",
       "مَضْرِبٌ",
       "مَفْتَحٌ",
-      "مَعْلَمٌ"
+      "مَعْلَمٌ",
+      "مَحْسَنٌ",
+      "مَحْسِبٌ"
      ]
     },
     {
      "id": "alat",
      "head": {
-      "ar": "اسْمُ الْآلَةِ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "The instrument in four bābs",
-      "tr": "Dört bâbda ism-i âlet"
+      "ar": "اسْمُ الْآلَةِ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The instrument in the six bābs",
+      "tr": "Altı bâbda ism-i âlet"
      },
      "src": {
       "k": "em",
-      "slot": "alat"
+      "slot": "alat",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "مِنْصَرٌ",
       "مِضْرَبٌ",
       "مِفْتَحٌ",
-      "مِعْلَمٌ"
+      "مِعْلَمٌ",
+      "مِحْسَنٌ",
+      "مِحْسَبٌ"
      ]
     }
    ],
@@ -2407,39 +2477,59 @@
     {
      "id": "tasghir",
      "head": {
-      "ar": "التَّصْغِيرُ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "The diminutive in four bābs",
-      "tr": "Dört bâbda tasğîr"
+      "ar": "التَّصْغِيرُ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The diminutive in the six bābs",
+      "tr": "Altı bâbda tasğîr"
      },
      "src": {
       "k": "em",
-      "slot": "tasghir"
+      "slot": "tasghir",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "نُصَيْرٌ",
       "ضُرَيْبٌ",
       "فُتَيْحٌ",
-      "عُلَيْمٌ"
+      "عُلَيْمٌ",
+      "حُسَيْنٌ",
+      "حُسَيْبٌ"
      ]
     },
     {
      "id": "nisba",
      "head": {
-      "ar": "النِّسْبَةُ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "The relational adjective in four bābs",
-      "tr": "Dört bâbda ism-i mensûb"
+      "ar": "النِّسْبَةُ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The relational adjective in the six bābs",
+      "tr": "Altı bâbda ism-i mensûb"
      },
      "src": {
       "k": "em",
-      "slot": "nisba"
+      "slot": "nisba",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "نَصْرِيٌّ",
       "ضَرْبِيٌّ",
       "فَتْحِيٌّ",
-      "عَلْمِيٌّ"
+      "عَلْمِيٌّ",
+      "حَسْنِيٌّ",
+      "حَسْبِيٌّ"
      ]
     }
    ],
@@ -2541,20 +2631,30 @@
     {
      "id": "babs",
      "head": {
-      "ar": "اسْمُ التَّفْضِيلِ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "The elative in four bābs",
-      "tr": "Dört bâbda ism-i tafdîl"
+      "ar": "اسْمُ التَّفْضِيلِ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The elative in the six bābs",
+      "tr": "Altı bâbda ism-i tafdîl"
      },
      "src": {
       "k": "em",
-      "slot": "tafdil"
+      "slot": "tafdil",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "أَنْصَرُ",
       "أَضْرَبُ",
       "أَفْتَحُ",
-      "أَعْلَمُ"
+      "أَعْلَمُ",
+      "أَحْسَنُ",
+      "أَحْسَبُ"
      ]
     }
    ],
@@ -2918,21 +3018,31 @@
     {
      "id": "babs",
      "head": {
-      "ar": "مَا أَفْعَلَهُ فِي أَرْبَعَةِ أَبْوَابٍ",
-      "en": "The first verb of wonder in four bābs",
-      "tr": "Dört bâbda birinci taaccüb"
+      "ar": "مَا أَفْعَلَهُ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The first verb of wonder in the six bābs",
+      "tr": "Altı bâbda birinci taaccüb"
      },
      "src": {
       "k": "em",
       "slot": "taajjub1",
-      "pre": "مَا "
+      "pre": "مَا ",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
      },
      "bab": true,
      "cells": [
       "مَا أَنْصَرَهُ",
       "مَا أَضْرَبَهُ",
       "مَا أَفْتَحَهُ",
-      "مَا أَعْلَمَهُ"
+      "مَا أَعْلَمَهُ",
+      "مَا أَحْسَنَهُ",
+      "مَا أَحْسَبَهُ"
      ]
     }
    ],

@@ -48,8 +48,9 @@ for _f in sorted(HERE.glob("aqil_triage_*.json")):
         OVR[_k] = ({"cls": "d", "status": "not-automatable", "reason": _v["reason"]} if _v["class"] == "d"
                    else {"cls": _v["class"], "why": _v.get("why", ""), "probes": _v["probes"], "free": True})
 CACHE = HERE / ".aqil-proof-cache.json"
-CACHE_SV = HERE / ".aqil-proof-cache-sv.json"   # (v355) the vowelled probes, proved in a page of their own: a page that has read the
-#   printed letters first answers the vowelled reading of the same letters differently (a state the engine keeps — named in v355-N2)
+CACHE_SV = HERE / ".aqil-proof-cache-sv.json"   # (v355) the vowelled probes' results. v355 proved them in a page of their own (a page that had read
+#   the printed letters answered the vowelled reading differently); v361-D removed that state (DabtEngine._orig24, «v361-D BEGIN (Dabt)») and
+#   proves both lists in ONE page — the 167 vowelled results were identical either way
 LEDGERS = {"shudhur": "coverage_shudhur.json", "qawaid": "coverage_qawaid_al_irab.json", "izhar": "coverage_izhar.json",
            "kafiya": "coverage_kafiya.json"}
 
@@ -246,10 +247,11 @@ def main():
                 svprobes.append(dict({k: v for k, v in p.items() if k not in ("_k", "_kv", "sv")}, s=p["sv"]))
     if prove:
         pin = HERE / ".aqil-probes.json"
-        pin.write_text(json.dumps(probes, ensure_ascii=False), encoding="utf-8")
-        subprocess.run(["node", str(HERE / "aqil_prove.js"), str(pin), str(CACHE)], check=True)
-        pin.write_text(json.dumps(svprobes, ensure_ascii=False), encoding="utf-8")
-        subprocess.run(["node", str(HERE / "aqil_prove.js"), str(pin), str(CACHE_SV)], check=True)
+        pin.write_text(json.dumps(probes + svprobes, ensure_ascii=False), encoding="utf-8")   # (v361-D) one page: the answer no longer depends
+        subprocess.run(["node", str(HERE / "aqil_prove.js"), str(pin), str(CACHE)], check=True)  # on what the page read before (DabtEngine's state)
+        both = json.loads(CACHE.read_text(encoding="utf-8"))
+        CACHE.write_text(json.dumps(both[:len(probes)], ensure_ascii=False), encoding="utf-8")
+        CACHE_SV.write_text(json.dumps(both[len(probes):], ensure_ascii=False), encoding="utf-8")
         pin.unlink()
     res = json.loads(CACHE.read_text(encoding="utf-8"))
     ress = json.loads(CACHE_SV.read_text(encoding="utf-8")) if svprobes else []

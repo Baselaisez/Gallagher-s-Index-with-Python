@@ -7,15 +7,14 @@
   "applied": 216,
   "applied-offered": 8,
   "applied-offered-vowelled": 12,
-  "applied-vowelled": 106,
+  "applied-vowelled": 110,
   "joined": 51,
   "not-automatable": 249,
   "open": 160,
-  "status:applied": 391,
+  "status:applied": 395,
   "status:not-automatable": 249,
   "status:noted": 2,
-  "status:open": 164,
-  "warn": 4
+  "status:open": 160
  },
  "by_bab": {
   "الكلام وما يتألف منه": {
@@ -275,19 +274,19 @@
   "العطف": {
    "applied": 1,
    "entries": 3,
-   "warn": 2
+   "applied-vowelled": 2
   },
   "عطف النسق": {
    "joined": 2,
    "entries": 10,
    "applied": 6,
-   "warn": 1,
+   "applied-vowelled": 1,
    "not-automatable": 1
   },
   "البدل": {
    "applied": 1,
    "entries": 2,
-   "warn": 1
+   "applied-vowelled": 1
   },
   "النداء": {
    "applied-vowelled": 1,
@@ -12687,16 +12686,17 @@
      "re": "عطف بيان",
      "ok": false,
      "got": "فعل مضارع، والفاعل ضمير مستتر جوازا تقديره «هو».",
-     "svok": false,
-     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره."
+     "svok": true,
+     "svgot": "اسم، عطف بيان علي محل المنادي «غلام»، منصوب وعلامه نصبه الفتحه الظاهره، ولا يكون بدلا لان البدل علي نيه تكرار العامل.",
+     "vowelled": true
     }
    ],
    "triage": {
     "cls": "b",
     "why": "يعمرا after a built vocative: «فيتعين أن يكون يعمرا عطف بيان»"
    },
-   "status": "open",
-   "warn": true
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A897.2",
@@ -12718,16 +12718,17 @@
      "re": "عطف بيان",
      "ok": false,
      "got": "اسم، مبتدا، وخبره «الضارب» مقدم.",
-     "svok": false,
-     "svgot": "اسم، مجرور وعلامه جره الكسره الظاهره، وخبره «الضارب» مقدم."
+     "svok": true,
+     "svgot": "اسم، عطف بيان علي «الرجل»، مجرور وعلامه جره الكسره الظاهره، ولا يجوز كونه بدلا لان البدل علي نيه تكرار العامل.",
+     "vowelled": true
     }
    ],
    "triage": {
     "cls": "b",
     "why": "«فيتعين كون زيد عطف بيان»"
    },
-   "status": "open",
-   "warn": true
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A900.1",
@@ -12818,16 +12819,17 @@
      "re": "معطوف",
      "ok": false,
      "got": "فعل مضارع، ونائب فاعله «الذباب».",
-     "svok": false,
-     "svgot": "فعل مضارع، مرفوع وعلامه رفعه الضمه الظاهره، وفاعله «زيد»."
+     "svok": true,
+     "svgot": "الفاء عاطفه تفيد السببيه، و«يغضب» فعل مضارع، مرفوع وعلامه رفعه الضمه الظاهره، وفاعله «زيد»، والجمله معطوفه علي جمله الصله «يطير» لا محل لها، فاستغني بالفاء عن الرابط.",
+     "vowelled": true
     }
    ],
    "triage": {
     "cls": "b",
     "why": "the cut carried «ولو قلت ويغضب»; the fāʾ joins a clause with no return pronoun"
    },
-   "status": "open",
-   "warn": true
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A904.1",
@@ -12999,16 +13001,17 @@
      "re": "بدل",
      "ok": false,
      "got": "اسم، مبتدا.",
-     "svok": false,
-     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره."
+     "svok": true,
+     "svgot": "الهمزه حرف استفهام، و«سعيد» اسم، بدل من اسم الاستفهام «من»، مرفوع وعلامه رفعه الضمه الظاهره.",
+     "vowelled": true
     }
    ],
    "triage": {
     "cls": "b",
     "why": "the badal of an interrogative takes the hamza; ذا read as ذو"
    },
-   "status": "open",
-   "warn": true
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A928.1",

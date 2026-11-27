@@ -19921,9 +19921,12 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     // (merge of v355-N1 and v355-N2, rebuilt on the merged page) 391 / 4: the pillars' triage (aqil_triage_n1.json, 100 rows) and the complements'
     // (aqil_overrides_n2.json, 89 rows) go through the same road in aqil_ledger.py; the four ⚠ left are N2's (A897.1, A897.2, A903.1, A927.1);
     // N1's A408.1 «ألا رجل قائم» proves now that Roles345 no longer reads أَلَا as إِلَّا
-    if (E.length < 806 || C['status:applied'] < 391 || (C.warn || 0) > 4 || (C.joined || 0) < 51) throw new Error('the pins: ' + JSON.stringify(C));
+    // (v361-D) 391 / 4 → 395 / 0: the last four ⚠ rows prove vowelled (Determ361: A897.1 يَعْمَرًا and A897.2 زَيْدٍ «عطف بيان», A903.1 فَيَغْضَبُ «معطوفة على
+    // جملة الصلة», A927.1 أَسَعِيدٌ «بدل من اسم الاستفهام»); applied-vowelled 106 → 110. The printed letters still fail (the rule needs the written vowels)
+    if (E.length < 806 || C['status:applied'] < 395 || (C.warn || 0) > 0 || (C.joined || 0) < 51) throw new Error('the pins: ' + JSON.stringify(C));
     // (v355) a probe that proved only vowelled (p.vowelled) is re-proved by its vowelled sentence, and those go FIRST: a page that has read the
-    // printed letters first answers the vowelled reading of the same letters differently (v355-N2's finding)
+    // printed letters first answers the vowelled reading of the same letters differently (v355-N2's finding) — (v361-D) no longer: that state is
+    // gone («v361 — one sentence, one answer»); the order is kept, it costs nothing
     const ap = E.filter(e => e.status === 'applied' && e.probes), ps = ap.flatMap(e => e.probes.map(p => { const s = p.vowelled ? p.sv : p.s; return p.w ? { s, w: p.w, re: p.re, v: !!p.vowelled } : { s, any: p.any, v: !!p.vowelled }; })).sort((a, b) => b.v - a.v);
     const fsrc = fsx.readFileSync(R('tools/ledger/aqil_probe.js'), 'utf8'), fn = fsrc.slice(fsrc.indexOf('(probes)'));
     const res = await page.evaluate(([f, q]) => (0, eval)('(' + f + ')')(q), [fn, ps]), fail = res.map((r, k) => r.ok ? null : ps[k].s + ' → ' + r.got.slice(0, 80)).filter(Boolean);
@@ -21012,6 +21015,43 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
   });
   // <<< v359-E
 
+  await check('v361 — one sentence, one answer: SentenceAnalyzer.analyze\'s rows and every Murib.line of a sentence depend on the sentence alone — 500 sentences (Ibn ʿAqīl\'s probes as printed AND vowelled, story sentences vowelled AND bare) read in two orders in this long-lived page, and 24 of them each as the FIRST reading of a fresh page, give the same rows and the same ar / en / tr lines', async () => {
+    // (v361-D) the state was DabtEngine's: decide(rows) called on its own (Murib._decide) kept the words of the last sentence in _orig24 and read a
+    // later sentence whose letters matched 60 % of them with the OLD vowels — «صبر جميل» after «صَبْرٌ جَمِيلٌ» was «فِعْلٌ، مُبْتَدَأٌ» (fresh: «فِعْلٌ
+    // مَاضٍ … وَفَاعِلُهُ «جميل»»), the vowelled probe after its printed letters lost its ḥāl (v355-N2), زيد read a verb after other checks (v358-A).
+    // Before the fix 61 of Ibn ʿAqīl's 491 probe sentences answered differently in reverse order. A decide outside vowel() now starts from the fresh
+    // page's state (reader.html «v361-D BEGIN (Dabt)»).
+    const fsx = require('fs'), pathx = require('path');
+    const led = JSON.parse(fsx.readFileSync(pathx.join(__dirname, '..', 'content/rules/coverage_ibn_aqil.json'), 'utf8'));
+    const A = []; for (const e of led.entries) for (const p of (e.probes || [])) for (const s of [p.s, p.sv]) if (s && !A.includes(s) && A.length < 300) A.push(s);
+    const SIG = `(S) => { const out = {}; for (const s of S) { let v; try { const rows = SentenceAnalyzer.analyze(s);
+        const rs = JSON.stringify(rows, (k, x) => (x && typeof x === 'object' && !Array.isArray(x) && k && /^(_|prev|next|parent)/.test(k)) ? undefined : x);
+        v = rs + '§' + rows.map((r, i) => { const l = Murib.line(rows, i) || {}; return [l.ar, l.en, l.tr].join('¦'); }).join('‖'); } catch (e) { v = 'ERR ' + e.message; } out[s] = v; } return out; }`;
+    const S = await page.evaluate(([a]) => { const L = a.slice(); let n = 0;
+      STORIES.forEach(st => (st.chapters || []).forEach(ch => (ch.sentences || []).forEach(sn => { n++; if (n % 29 || L.length >= 500) return; const t = (sn.tokens || []).map(x => (x.s || {}).full || '').join(' ').trim();
+        if (!t || t.split(' ').length > 14 || L.includes(t)) return; L.push(t); if (L.length < 500) L.push(stripAr(t)); })));
+      return L; }, [A]);
+    if (S.length !== 500) throw new Error('the set is 500 sentences: ' + S.length);
+    const one = await page.evaluate(([f, q]) => (0, eval)('(' + f + ')')(q), [SIG, S]);
+    const two = await page.evaluate(([f, q]) => (0, eval)('(' + f + ')')(q), [SIG, S.slice().reverse()]);
+    const diff = S.filter(s => one[s] !== two[s]);
+    if (diff.length) throw new Error(diff.length + ' sentences answer by the order they are read in: ' + diff.slice(0, 4).join(' | '));
+    if (S.some(s => /^ERR/.test(one[s]))) throw new Error('a sentence threw: ' + S.filter(s => /^ERR/.test(one[s])).slice(0, 3).join(' | '));
+    // fresh pages: the four of the finding, then every 25th of the set
+    const F = ['صبر جميل', 'صَبْرٌ جَمِيلٌ', 'هذا أسامه مقبلا', 'رأيت القاضي'].filter(s => S.includes(s)).concat(S.filter((s, k) => k % 25 === 7)).slice(0, 24);
+    const bad = [];
+    for (const s of F) {
+      const pf = await browser.newPage();
+      try {
+        await pf.addInitScript(() => (localStorage.setItem('qissa-welcomed', '1'), localStorage.setItem('qissa-atolye-seen', '1')));
+        await pf.goto(url); await pf.waitForFunction(() => typeof STORIES !== 'undefined' && STORIES.length > 10 && typeof Murib !== 'undefined', null, { timeout: 300000, polling: 500 });
+        const r = await pf.evaluate(([f, q]) => (0, eval)('(' + f + ')')(q), [SIG, [s]]);
+        if (r[s] !== one[s]) bad.push(s);
+      } finally { await pf.close(); }
+    }
+    if (F.length < 24 || bad.length) throw new Error('a fresh page answers otherwise: ' + bad.slice(0, 4).join(' | ') + ' (' + F.length + ' fresh)');
+    console.log('      500 sentences (' + A.length + ' of Ibn ʿAqīl\'s probes, ' + (500 - A.length) + ' story sentences) the same in two orders; ' + F.length + ' the same as a fresh page\'s first reading');
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

@@ -122,20 +122,30 @@
       {
         "id": "babs",
         "head": {
-          "ar": "اسْمُ الْمَفْعُولِ فِي أَرْبَعَةِ أَبْوَابٍ",
-          "en": "The passive participle in four bābs",
-          "tr": "Dört bâbda ism-i mef'ûl"
+          "ar": "اسْمُ الْمَفْعُولِ فِي الْأَبْوَابِ السِّتَّةِ",
+          "en": "The passive participle in the six bābs",
+          "tr": "Altı bâbda ism-i mef'ûl"
         },
         "src": {
           "k": "em",
-          "slot": "maful"
+          "slot": "maful",
+          "models": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
         },
         "bab": true,
         "cells": [
           "مَنْصُورٌ",
           "مَضْرُوبٌ",
           "مَفْتُوحٌ",
-          "مَعْلُومٌ"
+          "مَعْلُومٌ",
+          null,
+          "مَحْسُوبٌ"
         ]
       }
     ],

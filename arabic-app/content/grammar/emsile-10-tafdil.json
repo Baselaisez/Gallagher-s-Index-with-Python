@@ -121,20 +121,30 @@
       {
         "id": "babs",
         "head": {
-          "ar": "اسْمُ التَّفْضِيلِ فِي أَرْبَعَةِ أَبْوَابٍ",
-          "en": "The elative in four bābs",
-          "tr": "Dört bâbda ism-i tafdîl"
+          "ar": "اسْمُ التَّفْضِيلِ فِي الْأَبْوَابِ السِّتَّةِ",
+          "en": "The elative in the six bābs",
+          "tr": "Altı bâbda ism-i tafdîl"
         },
         "src": {
           "k": "em",
-          "slot": "tafdil"
+          "slot": "tafdil",
+          "models": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
         },
         "bab": true,
         "cells": [
           "أَنْصَرُ",
           "أَضْرَبُ",
           "أَفْتَحُ",
-          "أَعْلَمُ"
+          "أَعْلَمُ",
+          "أَحْسَنُ",
+          "أَحْسَبُ"
         ]
       }
     ],

@@ -397,21 +397,31 @@
       {
         "id": "babs",
         "head": {
-          "ar": "مَا أَفْعَلَهُ فِي أَرْبَعَةِ أَبْوَابٍ",
-          "en": "The first verb of wonder in four bābs",
-          "tr": "Dört bâbda birinci taaccüb"
+          "ar": "مَا أَفْعَلَهُ فِي الْأَبْوَابِ السِّتَّةِ",
+          "en": "The first verb of wonder in the six bābs",
+          "tr": "Altı bâbda birinci taaccüb"
         },
         "src": {
           "k": "em",
           "slot": "taajjub1",
-          "pre": "مَا "
+          "pre": "مَا ",
+          "models": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
         },
         "bab": true,
         "cells": [
           "مَا أَنْصَرَهُ",
           "مَا أَضْرَبَهُ",
           "مَا أَفْتَحَهُ",
-          "مَا أَعْلَمَهُ"
+          "مَا أَعْلَمَهُ",
+          "مَا أَحْسَنَهُ",
+          "مَا أَحْسَبَهُ"
         ]
       }
     ],

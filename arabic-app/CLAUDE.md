@@ -17802,3 +17802,70 @@ Level 1 had two notes; it now has 21. Worktree `arabic-app`, scratch emsile359.
   reviewed like a word (TR left on by the previous filtered check), wave 120 Muḥallil, v320 (the review nudge, deck state of the filtered run);
   «v341 — the door before the bodies» is timing only under load 7–9 from other agents: A/B with a build without the notes — base PASS ×2,
   with the notes 1863 ms / PASS, then 2214 / PASS / PASS (budget 1800).
+
+## v361-D — one sentence, one answer
+
+The engines' reading of a sentence depended on what the page had read before it (found twice: v355-N2 «a page that has read the printed
+letters answers the vowelled reading differently», v358-A «زيد read فِعْلٌ after other checks»). Worktree `arabic-app`, scratch `determ361/`
+(PROGRESS.md; `edits/` = every edit as a script; `run.js`, `sig.js`, `one.js` = the reproduction; `dump.js` = every story token).
+- **The state, found by script** (a fresh page, sentence A, then B, against B alone; then every global Map / WeakMap / object restored one at a
+  time): **DabtEngine's per-call fields**. `vowel()` / `grade()` set `_orig24` (the words as written), `_pos24`, `_punctAt`, `_colonAt`, `_lex24`,
+  `_carry26` … for their own call; `decide(rows)` called ON ITS OWN (Murib._decide — every Murib.line, the word sheet, the Jumla lab) wrote the
+  rows' words into `_orig24` when it was empty and never cleared them, and kept any it found whose letters matched 60 % of the new rows (line
+  `{ const o31 = this._orig24; … hit31 < n31 * 0.6 …}` in decide). So «صبر جميل» after «صَبْرٌ جَمِيلٌ» read the OLD vowels: «فِعْلٌ، مُبْتَدَأٌ |
+  نَعْتٌ» where a fresh page says «فِعْلٌ مَاضٍ … وَفَاعِلُهُ «جميل» | فَاعِلٌ»; the reverse lost the vowelled probe's ḥāl. The rows
+  (SentenceAnalyzer.analyze) were never affected; no memo was (every memo144/145 is keyed on its full input). Before: 61 of Ibn ʿAqīl's 491 probe
+  sentences answered differently in reverse order; a fresh page agreed with the forward order on 59 of 70 sampled, with the reverse on 33.
+- **The fix** (reader.html `v361-D BEGIN (Dabt)`, before `class SarfMusahhih`): `vowel` counts its depth; a `decide` at depth 0 saves the 23
+  per-call fields, starts from the fresh page's state (all unset), and gives them back as it found them — the grader's story carry
+  (`_lastGraded26`, `_rows135`) is untouched by an interleaved word-sheet call; inside `vowel()` nothing changes. No cache was dropped.
+- **Proof**: smoke «v361 — one sentence, one answer» — 500 sentences (300 of Ibn ʿAqīl's probe sentences printed AND vowelled, 200 story
+  sentences vowelled AND bare) read forward and reversed in the long-lived smoke page: identical rows (JSON) and ar / en / tr lines; 24 of them
+  (the finding's four, then every 25th) each as the FIRST reading of a fresh page: identical. (500 fresh pages would take ~20 min; the check
+  takes 24.) Scratch runs: 611 sentences forward / shuffled 0 differ; 70 fresh pages 70 / 70 equal to the in-page answer.
+- **Speed kept** (4× CPU, the suite's own checks, before = this page without the block, two runs each): the first Jumla analysis 6486 / 6602 →
+  6503 / 6335 ms (worst task 783 / 900 → 822 / 802, ceiling 2200); the sentence sheet paints 264 / 299 → 294 / 311 ms, worst task 384 / 487 → 271 /
+  273. 611 sentences in one page (1×): cold 7.3 / 8.4 → 8.6 / 7.9 s, warm 4.3–5.1 → 4.7–5.7 s — noise on a shared machine.
+- **Story lines**: every story token read in story order (90,147) before → after: **0 lines changed** (the state rarely bit inside a story:
+  consecutive sentences seldom share 60 % of their letters). `research/story-audit-triage-delta-determ.json`.
+- **Ibn ʿAqīl's ledger** rebuilt: status applied 391 → **395**, ⚠ 4 → **0**, applied-vowelled 106 → 110. The second proof page is no longer
+  needed: the 167 vowelled probes read after the 366 printed ones in ONE page gave the same 167 results; `aqil_ledger.py` now proves both lists in
+  one page (writes the same two cache files; coverage_ibn_aqil.json byte-identical either way).
+- **The four ⚠ rows** (reader.html `v361-D BEGIN (rows)`, class `Determ361`, a new outermost wrapper on Murib.line after `v345-R END`; each
+  EXACT on written vowels, so each proves **vowelled**; the printed letters stay unread): A897.1 «يَا غُلَامُ يَعْمَرًا» — a proper name (lexicon
+  propn whose lemma IS the word) written in naṣb after a vocative built on a written ḍamma → «عَطْفُ بَيَانٍ عَلَى مَحَلِّ الْمُنَادَى … وَلَا يَكُونُ
+  بَدَلًا لِأَنَّ الْبَدَلَ عَلَى نِيَّةِ تَكْرَارِ الْعَامِلِ» (p. 3:222; a common noun there — يَا زَيْدُ صَبْرًا — is left alone); A897.2 «أَنَا الضَّارِبُ
+  الرَّجُلِ زَيْدٍ» — a name in kasra after «ṣifa with أل (فاعل / مفعول shape, annexed) + أل noun in kasra» → «عَطْفُ بَيَانٍ عَلَى «الرَّجُلِ» … وَلَا
+  يَجُوزُ كَوْنُهُ بَدَلًا»; A903.1 «الَّذِي يَطِيرُ فَيَغْضَبُ زَيْدٌ الذُّبَابُ» — relative + verb + فَ-verb with its own written doer + the last noun in
+  rafʿ with أل (the khabar) → «… وَالْجُمْلَةُ مَعْطُوفَةٌ عَلَى جُمْلَةِ الصِّلَةِ «يَطِيرُ» لَا مَحَلَّ لَهَا، فَاسْتُغْنِيَ بِالْفَاءِ عَنِ الرَّابِطِ» (p. 3:228);
+  A927.1 «مَنْ ذَا أَسَعِيدٌ» — أَ + a lexicon noun that is no word of its own, after an opening interrogative → «الْهَمْزَةُ حَرْفُ اسْتِفْهَامٍ، وَ«سَعِيدٌ»
+  اسْمٌ، بَدَلٌ مِنِ اسْمِ الِاسْتِفْهَامِ «مَنْ»» + the written sign (p. 3:253; bare letters: مَنْ / مِنْ is not told, so not read).
+  **Hand-overs of v355-N2**: (1) the state — fixed above; (2) «أَنْتُمْ … وَهُوَ جَوَابُ الطَّلَبِ» after an imperative — a detached pronoun is never the
+  answer of a command: the clause is removed (ar / en / tr); (3) «زَيْدٌ الْأَفْضَلُ» — a two-word sentence, the second with أل and a written rafʿ:
+  khabar (and the first «وَخَبَرُهُ …»), not naʿt. Left: تَسَفَّهَتِ alone read as a noun (no context decides it), the dual after a dual (no case
+  found where the line is wrong: «جَاءَ الرَّجُلَانِ الصَّالِحَانِ» → نعت), the clipped vocative يَا عُثْمَ («منصوب») and وَا أَحْمَدَاهْ.
+- **مَحْسِبٌ** (`MaqsudEngine.emsileI`, one condition): the noun of time / place of a muḍāriʿ with kasra on the ʿayn is مَفْعِلٌ for bāb 6
+  (حَسِبَ يَحْسِبُ) as for bāb 2 — Marāḥ ch. 41 «وَصِيغَتُهُ مِنْ بَابِ «يَفْعِلُ» «مَفْعِلٌ»، إِلَّا مِنَ النَّاقِصِ», ʿIzzī ch. 18 «وَهُوَ مِنْ يَفْعِلُ بِكَسْرِ الْعَيْنِ
+  عَلَى مَفْعِلٍ», al-Maqṣūd (l. 164–168). مَحْسَبٌ → مَحْسِبٌ; bāb 2 مَضْرِبٌ unchanged; the mithāl (مَوْعِدٌ, kasra in every bāb) and the nāqiṣ
+  (مَرْمًى, fatḥa in every bāb) unchanged — both already as the books state. Not changed: the hollow and geminate yafʿilu (the Maqṣūd recites
+  BOTH «مَكَالٌ مَكِيلٌ مَكِيلٌ» and «مَفَرٌّ (مَفِرٌّ)» — the engine's one `mimi` slot holds the maṣdar mīmī there; for the hoca). The ṣarf ledgers
+  re-proved: Marāḥ applied 316, Maqṣūd 525, ʿIzzī 175 — unchanged, no probe changed (none probed bāb 6's place); aux ledger unchanged.
+- **The Amthila notes** (`tools/emsile/build_emsile359.py`): the eleven noun tables («… فِي الْأَبْوَابِ السِّتَّةِ», models 0–5) show six bābs —
+  22 new cells, among them مَحْسِبٌ; bāb 5's fāʿil and mafʿūl have no cell (كَرُمَ is intransitive; the engine builds no فَاعِل there) and so no row;
+  the 08 explanation now says the maṣdar mīmī shares the shape only where the ʿayn is not kasra (al-Maqṣūd: مَجْلَسٌ / مَجْلِسٌ). Chain re-run
+  (`spec` → `emsile359_derive.js` → `notes`).
+- **The Alfiyya course** rebuilt: unchanged counts (r 14, examples 16) — no more role questions can be asked: the course's limits are its own
+  rules, not the instability (196 construction probes, 137 proved only by OUR vowels — never shown —, 13 + 8 + 4 + 2 + 2 + 2 + 1 role reasons);
+  the four rulings now show ✓. Now that a line no longer moves, a later wave may show the whole line of a printed example, not only its role words.
+- **Checks**: new «v361 — one sentence, one answer» (before v333). Older checks changed: v352-A's ledger pins 391 / ⚠ 4 → 395 / ⚠ 0 (reason in
+  the comment; its «vowelled probes first» comment notes the state is gone).
+- **For the hoca**: the ʿaṭf-bayān / badal lines' reasons are the book's words; «يَعْمَرًا» is the ledger's vowelling (N2's, ours) — يَعْمَر is
+  usually ممنوع من الصرف («يَا غُلَامُ يَعْمَرَ»; the print has the alif); the hollow / geminate place nouns of yafʿilu (مَكِيلٌ، مَفِرٌّ).
+- **Finish**: `check_i18n.py` clean; refit chain exit 0; the named subset: **131 PASS, 2 FAIL** — v361 (my sentence set held 430, not 500:
+  the story sample's step was too sparse → every 29th sentence) and v356 (additions — Determ361, sarf_ledger_probes.failed.json, the plan's new
+  probe maqsud:l248#2 — and ONE removal, deliberate: the Alfiyya course's skipped reason «not applied (⚠ / open / n-a)» is gone because the last
+  ⚠ rows now prove) → `inventory.py --write`; both re-run alone: PASS. No sentence the suite pins answered differently (every pinning check of
+  the subset passed). Subset timings: first Jumla analysis 5386 ms (worst 636), the sheet paints 278 ms (worst 266).
+- **Left**: the printed letters of the four rows (the rules need written vowels); ذَا in «مَنْ ذَا» is still read as ذو (the badal's line is
+  right, ذا's is not — a mawṣūl / ishāra choice, Ibn ʿAqīl's al-mawṣūl bāb); تَسَفَّهَتِ alone; the clipped vocative and the nudba's line; the
+  hollow / geminate place nouns of yafʿilu (the slot conflates the maṣdar mīmī).

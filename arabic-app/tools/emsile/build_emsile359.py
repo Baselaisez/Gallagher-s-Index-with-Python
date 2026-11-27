@@ -249,18 +249,18 @@ def notes_spec():
                   "corpus's own word from a sentence of the stories. From the bare verb's maṣdar two nouns ARE built by rule (Taṣrīf al-ʿIzzī, "
                   "the chapter on the noun of once): فَعْلَةٌ, with a fatḥa on the first letter, for doing it ONCE — ضَرَبْتُ ضَرْبَةً «I struck one "
                   "blow»; and فِعْلَةٌ, with a kasra, for the MANNER of doing it. The Amthila recites both with the ending -ةً. The only "
-                  "difference between them is the first vowel, so read it carefully. The tables show the two in four bābs, built by the engine.",
+                  "difference between them is the first vowel, so read it carefully. The tables show the two in the six bābs, built by the engine.",
             "tr": "Emsile'nin üçüncü satırı masdardır, işin kendi adı. Medrese onu mansûb okur, نَصْرًا, çünkü satırda kendinden önceki fiilin "
                   "mef'ûl-i mutlakıdır (نَصَرَ … نَصْرًا). Sülâsî mücerredin masdarının birçok vezni vardır ve işitilerek bilinir (semâî) — bu "
                   "yüzden uygulamanın motoru onu kurmaz; cetvel hikâyelerdeki bir cümleden külliyatın kendi kelimesini gösterir. Mücerredin "
                   "masdarından iki isim ise kaideyle KURULUR (Tasrîfu'l-İzzî, binâ-i merre bahsi): ilk harfi meftûh فَعْلَةٌ, işi BİR KERE yapmak "
                   "için — ضَرَبْتُ ضَرْبَةً «bir kere vurdum»; ilk harfi meksûr فِعْلَةٌ, işin YAPILIŞ ŞEKLİ için. Emsile ikisini de -ةً ile okur. "
-                  "Aralarındaki tek fark ilk harekedir, onu dikkatle oku. Cetveller ikisini dört bâbda, motorun kurduğu şekliyle gösterir."},
+                  "Aralarındaki tek fark ilk harekedir, onu dikkatle oku. Cetveller ikisini altı bâbda, motorun kurduğu şekliyle gösterir."},
         tables=[tab("row", H("الْمَصْدَرُ، الْمَرَّةُ، النَّوْعُ", "Verbal noun, once, manner", "Masdar, merre, nev'"),
                     {"k": "row", "root": R, "bab": 1, "slots": ["masdar", "marra", "naw"], "corpus": {"masdar": MASDAR_TOK}},
                     labels=[{"ar": f[2], "tr": f[3], "en": f[4], "m": {"en": f[5], "tr": f[6]}} for f in FORMS if f[0] in ("masdar", "marra", "naw")]),
-                tab("marra", H("بِنَاءُ الْمَرَّةِ فِي أَرْبَعَةِ أَبْوَابٍ", "The noun of once in four bābs", "Dört bâbda binâ-i merre"), {"k": "em", "slot": "marra"}, bab=True),
-                tab("naw", H("بِنَاءُ النَّوْعِ فِي أَرْبَعَةِ أَبْوَابٍ", "The noun of manner in four bābs", "Dört bâbda binâ-i nev'"), {"k": "em", "slot": "naw"}, bab=True)],
+                tab("marra", H("بِنَاءُ الْمَرَّةِ فِي الْأَبْوَابِ السِّتَّةِ", "The noun of once in the six bābs", "Altı bâbda binâ-i merre"), {"k": "em", "slot": "marra", "models": [0, 1, 2, 3, 4, 5]}, bab=True),
+                tab("naw", H("بِنَاءُ النَّوْعِ فِي الْأَبْوَابِ السِّتَّةِ", "The noun of manner in the six bābs", "Altı bâbda binâ-i nev'"), {"k": "em", "slot": "naw", "models": [0, 1, 2, 3, 4, 5]}, bab=True)],
         quiz=0,
         examples=[["jumal-al-tadrib", 4, "s7"], ["tasrif-al-izzi", 19, "s6"], ["tasrif-al-izzi", 19, "s8"]],
         mistakes=[dict(w={"src": {"k": "em", "slot": "naw"}, "i": 0}, r={"src": {"k": "em", "slot": "marra"}, "i": 0},
@@ -295,8 +295,8 @@ def notes_spec():
                   "(فَعَّالٌ) işin çok ya da sık yapıldığını söyler; birkaç vezinden biridir ve masdar gibi her fiil için kurulmaz, işitilir."},
         tables=[tab("num", H("اسْمُ الْفَاعِلِ — الْمُطَّرِدَةُ", "Active participle by number and gender", "İsm-i fâil — sayı ve cinsiyle"),
                     {"k": "block", "root": R, "bab": 1, "list": "fail", "take": [0, 1, 2, 6, 7, 8]}, labels=NUM6, endsOf=R),
-                tab("babs", H("اسْمُ الْفَاعِلِ فِي أَرْبَعَةِ أَبْوَابٍ", "The active participle in four bābs", "Dört bâbda ism-i fâil"), {"k": "em", "slot": "fail"}, bab=True),
-                tab("mub", H("صِيغَةُ الْمُبَالَغَةِ (فَعَّالٌ)", "The intensive (faʿʿāl) in four bābs", "Dört bâbda mübalağa (فَعَّالٌ)"), {"k": "em", "slot": "mubalagha"}, bab=True)],
+                tab("babs", H("اسْمُ الْفَاعِلِ فِي الْأَبْوَابِ السِّتَّةِ", "The active participle in the six bābs", "Altı bâbda ism-i fâil"), {"k": "em", "slot": "fail", "models": [0, 1, 2, 3, 4, 5]}, bab=True),
+                tab("mub", H("صِيغَةُ الْمُبَالَغَةِ (فَعَّالٌ)", "The intensive (faʿʿāl) in the six bābs", "Altı bâbda mübalağa (فَعَّالٌ)"), {"k": "em", "slot": "mubalagha", "models": [0, 1, 2, 3, 4, 5]}, bab=True)],
         quiz=0,
         examples=[["tasrif-al-izzi", 11, "s1"], ["al-kafiya", 16, "s8"]],
         mistakes=[dict(w={"src": {"k": "em", "slot": "maful"}, "i": 0}, r={"src": {"k": "em", "slot": "fail"}, "i": 0},
@@ -329,7 +329,7 @@ def notes_spec():
                   "fiil meçhûl نُصِرَ يُنْصَرُ'dur: مَنْصُورٌ olan, نُصِرَ olandır."},
         tables=[tab("num", H("اسْمُ الْمَفْعُولِ — الْمُطَّرِدَةُ", "Passive participle by number and gender", "İsm-i mef'ûl — sayı ve cinsiyle"),
                     {"k": "block", "root": R, "bab": 1, "list": "maful", "take": [0, 1, 2, 3, 4, 5]}, labels=NUM6, endsOf=R),
-                tab("babs", H("اسْمُ الْمَفْعُولِ فِي أَرْبَعَةِ أَبْوَابٍ", "The passive participle in four bābs", "Dört bâbda ism-i mef'ûl"), {"k": "em", "slot": "maful"}, bab=True)],
+                tab("babs", H("اسْمُ الْمَفْعُولِ فِي الْأَبْوَابِ السِّتَّةِ", "The passive participle in the six bābs", "Altı bâbda ism-i mef'ûl"), {"k": "em", "slot": "maful", "models": [0, 1, 2, 3, 4, 5]}, bab=True)],
         quiz=0,
         examples=[["tasrif-al-izzi", 11, "s2"]],
         mistakes=[dict(w={"src": {"k": "block", "root": R, "bab": 1, "list": "maful"}, "i": 2}, r={"src": {"k": "block", "root": R, "bab": 1, "list": "maful"}, "i": 5},
@@ -441,23 +441,23 @@ def notes_spec():
         explanation={
             "en": "Rows fifteen and sixteen are two nouns with a mīm in front. The noun of time and place is built from the muḍāriʿ: where "
                   "the muḍāriʿ has a ḍamma or a fatḥa on its middle radical (يَنْصُرُ، يَفْتَحُ) it is مَفْعَلٌ — مَنْصَرٌ، مَفْتَحٌ; where it has a "
-                  "kasra (يَضْرِبُ) it is مَفْعِلٌ — مَضْرِبٌ (Marāḥ: «وَلَا يُبْنَى مِنْ يَفْعُلُ مَفْعُلٌ لِثِقَلِ الضَّمَّةِ»). The same shape serves "
-                  "the mīmī maṣdar. The noun of instrument is مِفْعَلٌ, with a KASRA on the mīm — «and the mīm was given a kasra to tell it apart "
+                  "kasra (يَضْرِبُ، يَحْسِبُ) it is مَفْعِلٌ — مَضْرِبٌ، مَحْسِبٌ (Marāḥ: «وَلَا يُبْنَى مِنْ يَفْعُلُ مَفْعُلٌ لِثِقَلِ الضَّمَّةِ»). Where the "
+                  "ʿayn is not kasra the same shape serves the mīmī maṣdar; after a kasra the maṣdar keeps the fatḥa (al-Maqṣūd). The noun of instrument is مِفْعَلٌ, with a KASRA on the mīm — «and the mīm was given a kasra to tell it apart "
                   "from the place» (Marāḥ) — and it also comes on مِفْعَالٌ and مِفْعَلَةٌ. The madrasa line the books quote: «الْمَفْعَلُ لِلْمَوْضِعِ "
                   "وَالْمِفْعَلُ لِلْآلَةِ، وَالْفَعْلَةُ لِلْمَرَّةِ وَالْفِعْلَةُ لِلْحَالَةِ». The Amthila recites both on every verb, even where a real "
                   "word of that shape is not used: it is a drill of the patterns. The received sheet adds that the augmented bābs have no noun of "
                   "instrument.",
             "tr": "On beşinci ve on altıncı satırlar başında mîm olan iki isimdir. İsm-i zaman ve mekân muzâriden kurulur: muzârinin ortadaki "
-                  "harfi mazmum ya da meftûh ise (يَنْصُرُ، يَفْتَحُ) مَفْعَلٌ'dir — مَنْصَرٌ، مَفْتَحٌ; meksûr ise (يَضْرِبُ) مَفْعِلٌ'dir — مَضْرِبٌ "
-                  "(Merâh: «وَلَا يُبْنَى مِنْ يَفْعُلُ مَفْعُلٌ لِثِقَلِ الضَّمَّةِ»). Aynı kalıp masdar-ı mîmîye de yarar. İsm-i âlet mîmi KESRELİ "
+                  "harfi mazmum ya da meftûh ise (يَنْصُرُ، يَفْتَحُ) مَفْعَلٌ'dir — مَنْصَرٌ، مَفْتَحٌ; meksûr ise (يَضْرِبُ، يَحْسِبُ) مَفْعِلٌ'dir — مَضْرِبٌ، مَحْسِبٌ "
+                  "(Merâh: «وَلَا يُبْنَى مِنْ يَفْعُلُ مَفْعُلٌ لِثِقَلِ الضَّمَّةِ»). Ayn meksûr değilse aynı kalıp masdar-ı mîmîye de yarar; meksûrsa masdar fethalı kalır (Maksûd). İsm-i âlet mîmi KESRELİ "
                   "مِفْعَلٌ'dir — «mîm, mekândan ayrılsın diye kesrelendi» (Merâh) — ve مِفْعَالٌ ile مِفْعَلَةٌ vezinlerinde de gelir. Kitapların andığı "
                   "medrese beyti: «الْمَفْعَلُ لِلْمَوْضِعِ وَالْمِفْعَلُ لِلْآلَةِ، وَالْفَعْلَةُ لِلْمَرَّةِ وَالْفِعْلَةُ لِلْحَالَةِ». Emsile ikisini her "
                   "fiilde okur, o kalıpta kullanılan bir kelime olmasa da: bu, vezinlerin talimidir. Gelen cetvel ziyade bâblarda ism-i âlet "
                   "gelmediğini ekler."},
         tables=[tab("row", H("مَنْصَرٌ وَمِنْصَرٌ", "Place and tool", "Mekân ve âlet"), {"k": "row", "root": R, "bab": 1, "slots": ["mimi", "alat"]},
                     labels=[{"ar": f[2], "tr": f[3], "en": f[4], "m": {"en": f[5], "tr": f[6]}} for f in FORMS if f[0] in ("mimi", "alat")]),
-                tab("mimi", H("اسْمُ الزَّمَانِ وَالْمَكَانِ فِي أَرْبَعَةِ أَبْوَابٍ", "Time and place in four bābs", "Dört bâbda ism-i zaman ve mekân"), {"k": "em", "slot": "mimi"}, bab=True),
-                tab("alat", H("اسْمُ الْآلَةِ فِي أَرْبَعَةِ أَبْوَابٍ", "The instrument in four bābs", "Dört bâbda ism-i âlet"), {"k": "em", "slot": "alat"}, bab=True)],
+                tab("mimi", H("اسْمُ الزَّمَانِ وَالْمَكَانِ فِي الْأَبْوَابِ السِّتَّةِ", "Time and place in the six bābs", "Altı bâbda ism-i zaman ve mekân"), {"k": "em", "slot": "mimi", "models": [0, 1, 2, 3, 4, 5]}, bab=True),
+                tab("alat", H("اسْمُ الْآلَةِ فِي الْأَبْوَابِ السِّتَّةِ", "The instrument in the six bābs", "Altı bâbda ism-i âlet"), {"k": "em", "slot": "alat", "models": [0, 1, 2, 3, 4, 5]}, bab=True)],
         quiz=1,
         examples=[["marah-al-arwah", 41, "s4"], ["marah-al-arwah", 41, "s7"], ["marah-al-arwah", 42, "s3"], ["tasrif-al-izzi", 19, "s1"]],
         mistakes=[dict(w={"src": {"k": "em", "slot": "alat"}, "i": 0}, r={"src": {"k": "em", "slot": "mimi"}, "i": 0},
@@ -480,17 +480,17 @@ def notes_spec():
                   "also make something small, near or dear. A real name of this shape stands in the stories: مُوسَى بْنُ نُصَيْرٍ. Do not mix it "
                   "with نَصِيرٌ (فَعِيلٌ, «a helper»), which has a fatḥa and a long ī. The relational adjective (nisba) adds a doubled yāʾ with a "
                   "kasra before it: نَصْرِيٌّ, «of help, having to do with help» — as هَاشِمِيٌّ is «of Hāshim». The Amthila recites both on every "
-                  "verb; the received sheet adds that the augmented bābs have no diminutive. The tables show the same two forms in four bābs.",
+                  "verb; the received sheet adds that the augmented bābs have no diminutive. The tables show the same two forms in the six bābs.",
             "tr": "On dokuzuncu ve yirminci satırlar masdar نَصْرٌ'dan yapılan iki isimdir. Üç harfli ismin tasğîri فُعَيْلٌ'dir: birinci harf "
                   "mazmum, ikinci harf meftûh, ardından sakin bir yâ — نُصَيْرٌ, «küçük bir yardım»; bir şeyi küçük, yakın ya da sevimli de "
                   "kılabilir. Bu kalıpta gerçek bir isim hikâyelerde durur: مُوسَى بْنُ نُصَيْرٍ. Onu نَصِيرٌ ile (فَعِيلٌ, «yardımcı») karıştırma; o "
                   "fethalı ve uzun î'lidir. İsm-i mensûb şeddeli bir yâ ekler, önündeki harf meksûr olur: نَصْرِيٌّ, «yardıma ait» — tıpkı "
                   "هَاشِمِيٌّ'nin «Hâşim'e ait» oluşu gibi. Emsile ikisini her fiilde okur; gelen cetvel ziyade bâblarda tasğîr gelmediğini ekler. "
-                  "Cetveller aynı iki sîgayı dört bâbda gösterir."},
+                  "Cetveller aynı iki sîgayı altı bâbda gösterir."},
         tables=[tab("row", H("نُصَيْرٌ وَنَصْرِيٌّ", "Diminutive and relation", "Tasğîr ve nisbet"), {"k": "row", "root": R, "bab": 1, "slots": ["tasghir", "nisba"]},
                     labels=[{"ar": f[2], "tr": f[3], "en": f[4], "m": {"en": f[5], "tr": f[6]}} for f in FORMS if f[0] in ("tasghir", "nisba")]),
-                tab("tasghir", H("التَّصْغِيرُ فِي أَرْبَعَةِ أَبْوَابٍ", "The diminutive in four bābs", "Dört bâbda tasğîr"), {"k": "em", "slot": "tasghir"}, bab=True),
-                tab("nisba", H("النِّسْبَةُ فِي أَرْبَعَةِ أَبْوَابٍ", "The relational adjective in four bābs", "Dört bâbda ism-i mensûb"), {"k": "em", "slot": "nisba"}, bab=True)],
+                tab("tasghir", H("التَّصْغِيرُ فِي الْأَبْوَابِ السِّتَّةِ", "The diminutive in the six bābs", "Altı bâbda tasğîr"), {"k": "em", "slot": "tasghir", "models": [0, 1, 2, 3, 4, 5]}, bab=True),
+                tab("nisba", H("النِّسْبَةُ فِي الْأَبْوَابِ السِّتَّةِ", "The relational adjective in the six bābs", "Altı bâbda ism-i mensûb"), {"k": "em", "slot": "nisba", "models": [0, 1, 2, 3, 4, 5]}, bab=True)],
         quiz=1,
         examples=[["tariq-ibn-ziyad", 4, "s4"], ["izhar-al-asrar", 16, "s9"]],
         mistakes=[dict(w={"src": {"k": "corpus", "refs": [["marah-al-arwah", 37, "s1", 5]]}, "i": 0}, r={"src": {"k": "corpus", "refs": [["tariq-ibn-ziyad", 4, "s4", 7]]}, "i": 0},
@@ -524,7 +524,7 @@ def notes_spec():
                   "yaptığını gösterir (هُوَ أَشَدُّ مِنْهُ إِكْرَامًا) — Çekim panelinin Muhtelife sekmesi bu satırları her ziyade fiil için çizer."},
         tables=[tab("num", H("اسْمُ التَّفْضِيلِ — الْمُطَّرِدَةُ", "The elative by number and gender", "İsm-i tafdîl — sayı ve cinsiyle"),
                     {"k": "block", "root": R, "bab": 1, "list": "tafdil", "take": [0, 1, 2, 4, 5, 6]}, labels=NUM6),
-                tab("babs", H("اسْمُ التَّفْضِيلِ فِي أَرْبَعَةِ أَبْوَابٍ", "The elative in four bābs", "Dört bâbda ism-i tafdîl"), {"k": "em", "slot": "tafdil"}, bab=True)],
+                tab("babs", H("اسْمُ التَّفْضِيلِ فِي الْأَبْوَابِ السِّتَّةِ", "The elative in the six bābs", "Altı bâbda ism-i tafdîl"), {"k": "em", "slot": "tafdil", "models": [0, 1, 2, 3, 4, 5]}, bab=True)],
         quiz=0,
         examples=[["al-kafiya", 19, "s1"], ["izhar-al-asrar", 13, "s1"]],
         mistakes=[dict(w={"src": {"k": "block", "root": R, "bab": 1, "list": "tafdil"}, "i": 4}, r={"src": {"k": "block", "root": R, "bab": 1, "list": "tafdil"}, "i": 0},
@@ -568,7 +568,7 @@ def notes_spec():
                     {"k": "att", "host": "أَنْصَرَ", "kind": "verb", "pre": "مَا "}, rows=S14, keys=keys("nasbMuttasil", S14)),
                 tab("jarr", H("أَنْصِرْ بِهِ — الضَّمِيرُ الْمَجْرُورُ الْمُتَّصِلُ", "أَنْصِرْ بِهِ — the attached pronoun of jarr", "أَنْصِرْ بِهِ — muttasıl mecrûr zamir"),
                     {"k": "att", "host": "بِ", "kind": "harf", "pre": "أَنْصِرْ "}, rows=S14, keys=keys("jarrMuttasil", S14)),
-                tab("babs", H("مَا أَفْعَلَهُ فِي أَرْبَعَةِ أَبْوَابٍ", "The first verb of wonder in four bābs", "Dört bâbda birinci taaccüb"), {"k": "em", "slot": "taajjub1", "pre": "مَا "}, bab=True)],
+                tab("babs", H("مَا أَفْعَلَهُ فِي الْأَبْوَابِ السِّتَّةِ", "The first verb of wonder in the six bābs", "Altı bâbda birinci taaccüb"), {"k": "em", "slot": "taajjub1", "pre": "مَا ", "models": [0, 1, 2, 3, 4, 5]}, bab=True)],
         quiz=0,
         examples=[["al-kafiya", 27, "s2"], ["talkhis-al-miftah", 58, "s3"], ["izhar-al-asrar", 46, "s3"]],
         mistakes=[dict(w={"src": {"k": "attSkip", "host": "أَنْصَرَ", "kind": "verb", "skip": ["wiqaya"], "pre": "مَا "}, "i": 12},
