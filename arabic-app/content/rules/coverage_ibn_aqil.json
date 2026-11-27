@@ -4,16 +4,18 @@
  "built_by": "tools/ledger/aqil_ledger.py",
  "about": "python3 tools/ledger/aqil_ledger.py            # cut, join, prove in prototype/reader.html (tools/ledger/aqil_prove.js), write\n  python3 tools/ledger/aqil_ledger.py --no-prove # reuse tools/ledger/.aqil-proof-cache.json\n\nOne entry per RULE STATEMENT of the commentary: a sentence of Ibn ʿAqīl's prose (not the naẓm, not a shāhid, not the editor's\nnotes or appendix) that states a ruling (يجب / يجوز / يمتنع / يلزم / يرفع / ينصب / … / لا تقول) and gives its example (نحو / تقول /\nكقولك). Its status, in this order:\n  joined           — the SAME rule in the Shudhūr / Qawāʿid / Iẓhār / Kāfiya ledgers (same topic — commentary_links.json — and the\n                     same example, or ≥ 3 shared content words and a Jaccard ≥ .3): it inherits that entry's status, not re-proved;\n  not-automatable  — a ruling of usage the engine does not decide: poetic licence / rarity, a school's view, a dialect, a matter of\n                     meaning (the marker is named in `reason`);\n  open (ṣarf)      — a bāb of word-form: for the ṣarf ledgers, not read by the iʿrāb probe;\n  applied          — the book's own example through SentenceAnalyzer + Murib.line names the ruling (the word the sentence names, or\n                     the bāb's construction on some word); applied-offered when the line gives it beside another reading;\n  open ⚠           — the engine misreads the book's example: its line is kept beside the book's (`got`);\n  open             — no construction the iʿrāb line names.",
  "counts": {
-  "applied": 191,
+  "applied": 196,
   "applied-offered": 7,
+  "applied-offered-vowelled": 8,
+  "applied-vowelled": 44,
   "joined": 51,
-  "not-automatable": 212,
-  "open": 156,
-  "status:applied": 247,
-  "status:not-automatable": 212,
+  "not-automatable": 236,
+  "open": 160,
+  "status:applied": 304,
+  "status:not-automatable": 236,
   "status:noted": 2,
-  "status:open": 345,
-  "warn": 189
+  "status:open": 264,
+  "warn": 104
  },
  "by_bab": {
   "الكلام وما يتألف منه": {
@@ -145,47 +147,50 @@
    "not-automatable": 5
   },
   "المفعول المطلق": {
-   "warn": 3,
+   "applied-vowelled": 2,
    "entries": 10,
    "joined": 1,
-   "not-automatable": 4,
+   "not-automatable": 5,
    "open": 1,
    "applied": 1
   },
   "المفعول له": {
-   "not-automatable": 2,
+   "not-automatable": 4,
    "entries": 5,
-   "warn": 3
+   "applied-vowelled": 1
   },
   "المفعول فيه وهو المسمى ظرفا": {
    "not-automatable": 5,
    "entries": 11,
-   "warn": 4,
-   "applied": 2
+   "applied-vowelled": 3,
+   "applied": 2,
+   "applied-offered-vowelled": 1
   },
   "المفعول معه": {
-   "warn": 3,
+   "applied-vowelled": 2,
    "entries": 4,
-   "joined": 1
+   "joined": 1,
+   "applied": 1
   },
   "الاستثناء": {
    "open": 4,
    "entries": 19,
-   "not-automatable": 6,
+   "not-automatable": 7,
    "joined": 7,
-   "warn": 2
+   "applied-vowelled": 1
   },
   "الحال": {
-   "warn": 8,
+   "applied-vowelled": 5,
    "entries": 16,
-   "not-automatable": 4,
+   "not-automatable": 7,
    "applied": 3,
    "applied-offered": 1
   },
   "التمييز": {
-   "warn": 5,
+   "applied-vowelled": 4,
    "entries": 9,
-   "not-automatable": 4
+   "not-automatable": 4,
+   "applied-offered-vowelled": 1
   },
   "حروف الجر": {
    "open": 1,
@@ -195,10 +200,9 @@
    "applied": 2
   },
   "الإضافة": {
-   "not-automatable": 11,
+   "not-automatable": 13,
    "entries": 22,
-   "warn": 3,
-   "applied": 6,
+   "applied": 7,
    "open": 1,
    "joined": 1
   },
@@ -216,7 +220,7 @@
    "not-automatable": 3,
    "entries": 7,
    "joined": 1,
-   "warn": 3
+   "applied-vowelled": 3
   },
   "أبنية المصادر": {
    "open": 4,
@@ -227,42 +231,47 @@
    "entries": 2
   },
   "الصفة المشبهة باسم الفاعل": {
-   "warn": 12,
+   "not-automatable": 9,
    "entries": 13,
-   "not-automatable": 1
+   "applied-vowelled": 1,
+   "applied-offered-vowelled": 1,
+   "open": 2
   },
   "التعجب": {
    "joined": 1,
    "entries": 9,
-   "warn": 5,
-   "not-automatable": 2,
+   "applied-vowelled": 3,
+   "not-automatable": 4,
    "open": 1
   },
   "نعم وبئس وما جرى مجراهما": {
    "not-automatable": 3,
    "entries": 8,
-   "warn": 5
+   "applied-offered-vowelled": 4,
+   "applied": 1
   },
   "أفعل التفضيل": {
-   "warn": 4,
+   "applied-vowelled": 4,
    "entries": 9,
    "not-automatable": 5
   },
   "التوابع النعت": {
-   "warn": 7,
+   "applied": 3,
    "entries": 12,
-   "applied": 2,
-   "not-automatable": 3
+   "applied-offered-vowelled": 1,
+   "applied-vowelled": 4,
+   "not-automatable": 4
   },
   "التوكيد": {
    "applied": 4,
    "entries": 9,
    "not-automatable": 3,
-   "warn": 2
+   "applied-vowelled": 2
   },
   "العطف": {
-   "warn": 3,
-   "entries": 3
+   "applied": 1,
+   "entries": 3,
+   "warn": 2
   },
   "عطف النسق": {
    "joined": 2,
@@ -277,7 +286,7 @@
    "warn": 1
   },
   "النداء": {
-   "warn": 1,
+   "applied-vowelled": 1,
    "entries": 13,
    "applied": 7,
    "not-automatable": 5
@@ -291,28 +300,27 @@
    "entries": 2
   },
   "الاستغاثة": {
-   "warn": 1,
+   "applied-vowelled": 1,
    "entries": 3,
    "applied": 2
   },
   "الندبة": {
-   "warn": 2,
+   "applied-vowelled": 2,
    "entries": 2
   },
   "الترخيم": {
    "applied": 4,
    "entries": 10,
-   "warn": 1,
-   "not-automatable": 5
+   "not-automatable": 6
   },
   "التحذير والإغراء": {
-   "warn": 1,
+   "not-automatable": 1,
    "entries": 1
   },
   "أسماء الأفعال والأصوات": {
-   "not-automatable": 2,
+   "not-automatable": 3,
    "entries": 5,
-   "warn": 2,
+   "applied-vowelled": 1,
    "applied": 1
   },
   "نونا التوكيد": {
@@ -321,10 +329,10 @@
    "applied": 3
   },
   "ما لا ينصرف": {
-   "not-automatable": 7,
+   "not-automatable": 8,
    "entries": 12,
    "joined": 1,
-   "warn": 4
+   "applied-vowelled": 3
   },
   "إعراب الفعل": {
    "not-automatable": 4,
@@ -359,10 +367,10 @@
    "not-automatable": 3,
    "entries": 8,
    "applied": 3,
-   "warn": 2
+   "open": 2
   },
   "كم وكأي وكذا": {
-   "warn": 1,
+   "applied-vowelled": 1,
    "entries": 3,
    "applied": 1,
    "not-automatable": 1
@@ -7835,13 +7843,22 @@
    "probes": [
     {
      "s": "ضربته سوطا",
-     "any": "مفعول مطلق",
+     "sv": "ضَرَبْتُهُ سَوْطًا",
+     "w": "سوطا",
+     "re": "مفعول مطلق",
      "ok": false,
-     "got": "ضربته: فعل ماض، مبني علي الفتح، وفيه ضمير هو المفعول به، والفاعل ضم | سوطا: اسم، وعلامته مقدره، تمييز."
+     "got": "اسم، وعلامته مقدره، تمييز.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، مفعول مطلق — الاله نائبه عن المصدر (والاصل: ضرب سوط).",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "سوطا: the instrument standing for the maṣdar (ضرب سوط) — the engine asserted حال"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A561.2",
@@ -7905,16 +7922,12 @@
    "topics": [
     "maful-mutlaq"
    ],
-   "probes": [
-    {
-     "s": "أفعل وكرامة",
-     "any": "مفعول مطلق",
-     "ok": false,
-     "got": "أفعل: فعل مضارع، مبتدا. | وكرامة: اسم، والظاهر انه مفعول به."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a report of usage — rarity («ويقل حذف عامل المصدر …»): the engine reads, it does not decide what is rare"
+   },
+   "status": "not-automatable",
+   "reason": "a report of usage — rarity («ويقل حذف عامل المصدر …»): the engine reads, it does not decide what is rare"
   },
   {
    "id": "A566.1",
@@ -7946,13 +7959,22 @@
    "probes": [
     {
      "s": "زيد سيرا",
-     "any": "مفعول مطلق",
+     "sv": "زَيْدٌ سَيْرًا",
+     "w": "سيرا",
+     "re": "مفعول مطلق",
      "ok": false,
-     "got": "زيد: فعل، مبتدا، وخبره «سيرا». | سيرا: اسم، وعلامته مقدره، خبر."
+     "got": "اسم، وعلامته مقدره، خبر.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، مفعول مطلق لفعل محذوف، والجمله من الفعل المحذوف وفاعله في محل رفع خبر «زيد».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the maṣdar after a mubtadaʾ, its verb dropped («التقدير زيد يسير سيرا»)"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A569.1",
@@ -8037,13 +8059,22 @@
    "probes": [
     {
      "s": "هذا قنع لزهد",
-     "any": "مفعول (له|لاجله)",
+     "sv": "هَذَا قَنِعٌ لِزُهْدٍ",
+     "w": "لزهد",
+     "re": "مجرور",
      "ok": false,
-     "got": "هذا: اسم اشاره، مبني علي السكون، والهاء للتنبيه. | قنع: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | لزهد: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو"
+     "got": "فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو».",
+     "svok": true,
+     "svgot": "اسم، مجرور وعلامه جره الكسره الظاهره.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the book's ruling is «ولا يمتنع الجر بالحرف»: «لزهد» is the reason in a jarr phrase, not the manṣūb mafʿūl lahu — the probe asks for the jarr"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A574.1",
@@ -8073,16 +8104,12 @@
    "topics": [
     "maful-lah"
    ],
-   "probes": [
-    {
-     "s": "بيت الشاهد الذي نحن بصدد شرحه والبيتين",
-     "any": "مفعول (له|لاجله)",
-     "ok": false,
-     "got": "بيت: اسم، مبتدا، وهو مضاف. | الشاهد: اسم، مضاف اليه. | الذي: اسم موصول، مبني علي السكون، وجمله «نحن بصدد شرحه والبيتين» ص | نحن: ضمير منفصل، مبني علي السكون. | بصدد: اسم. | شرحه: اسم، وفيه ضمير هو الم"
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "the editor's note naming a verse by its number («بيت الشاهد … رقم ١٦٤»): no example in the letters"
+   },
+   "status": "not-automatable",
+   "reason": "the editor's note naming a verse by its number («بيت الشاهد … رقم ١٦٤»): no example in the letters"
   },
   {
    "id": "A577.1",
@@ -8096,16 +8123,12 @@
    "topics": [
     "maful-lah"
    ],
-   "probes": [
-    {
-     "s": "ضربت ابني تأديبه ولتأديبه",
-     "any": "مفعول (له|لاجله)",
-     "ok": false,
-     "got": "ضربت: فعل ماض، مبني علي الفتح، والتاء ضمير متصل مبني في محل رفع فا | ابني: اسم، مفعول به، وهو مضاف. | تأديبه: اسم، مضاف اليه، والضمير مضاف اليه. | ولتأديبه: اسم، والضمير مضاف اليه."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a matter of meaning: «ضربت ابني تأديبه» — the maṣdar annexed to the pronoun is the mafʿūl lahu, or (as the letters equally allow) a badal al-ishtimāl of «ابني»"
+   },
+   "status": "not-automatable",
+   "reason": "a matter of meaning: «ضربت ابني تأديبه» — the maṣdar annexed to the pronoun is the mafʿūl lahu, or (as the letters equally allow) a badal al-ishtimāl of «ابني»"
   },
   {
    "id": "A578.1",
@@ -8139,13 +8162,22 @@
    "probes": [
     {
      "s": "دخلت البيت وسكنت الدار وذهبت الشأم",
-     "any": "ظرف|مفعول فيه",
+     "sv": "دَخَلْتُ الْبَيْتَ وَسَكَنْتُ الدَّارَ وَذَهَبْتُ الشَّأْمَ",
+     "w": "البيت",
+     "re": "^(?!.*ظرف).*مفعول به",
      "ok": false,
-     "got": "دخلت: فعل ماض، مبني علي الفتح، والتاء ضمير متصل مبني في محل رفع فا | البيت: اسم، والظاهر انه فاعل. | وسكنت: فعل ماض، مبني علي الفتح، وفاعله «الدار». | الدار: اسم، والظاهر انه فاعل. | وذهبت: فعل ماض، م"
+     "got": "اسم، والظاهر انه فاعل.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، والظاهر انه مفعول به.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the book: البيت / الدار / الشأم are «ليس… منصوبة على الظرفية وإنما هي منصوبة على التشبيه بالمفعول به» (p. 2:191–192) — the probe asks for the mafʿūl reading and no ẓarf"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A579.1",
@@ -8164,13 +8196,22 @@
    "probes": [
     {
      "s": "عجبت من ضربك زيدا يوم الجمعة",
-     "any": "ظرف|مفعول فيه",
+     "sv": "عَجِبْتُ مِنْ ضَرْبِكَ زَيْدًا يَوْمَ الْجُمُعَةِ",
+     "w": "يوم",
+     "re": "ظرف",
      "ok": false,
-     "got": "عجبت: فعل ماض، مبني علي الفتح، والتاء ضمير متصل مبني في محل رفع فا | من: حرف جر، لا محل له من الاعراب. | ضربك: اسم، والضمير مضاف اليه. | زيدا: اسم، وعلامته مقدره، بدل. | يوم: اسم، بدل، وهو مضاف. | الج"
+     "got": "اسم، بدل، وهو مضاف.",
+     "svok": true,
+     "svgot": "ظرف زمان منصوب وعلامه نصبه الفتحه الظاهره، وهو مضاف.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "يومَ read as a badal of زيدا"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A582.1",
@@ -8285,14 +8326,25 @@
    ],
    "probes": [
     {
-     "s": "خرجت من",
-     "any": "ظرف|مفعول فيه",
+     "s": "خرجت من عند زيد",
+     "sv": "خَرَجْتُ مِنْ عِنْدِ زَيْدٍ",
+     "w": "عند",
+     "re": "ظرف",
      "ok": false,
-     "got": "خرجت: فعل ماض، مبني علي الفتح، والتاء ضمير متصل مبني في محل رفع فا | من: حرف جر، لا محل له من الاعراب."
+     "got": "اسم.",
+     "svok": true,
+     "svgot": "اسم، مجرور ب«من» وعلامه جره الكسره الظاهره، وهو مضاف، مما لزم الظرفيه او شبهها: لا يخرج عن الظرفيه الا مجرورا ب«من».",
+     "vowelled": true,
+     "offered": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the cut lost «عند زيد»; عِنْدِ after مِنْ: «ولا تجر عند إلا ب من»"
+   },
+   "status": "applied",
+   "offered": true,
+   "vowelled": true
   },
   {
    "id": "A587.1",
@@ -8325,13 +8377,22 @@
    "probes": [
     {
      "s": "آتيك طلوع الشمس وقدوم الحاج وخروج زيد",
-     "any": "ظرف|مفعول فيه",
+     "sv": "آتِيكَ طُلُوعَ الشَّمْسِ وَقُدُومَ الْحَاجِّ وَخُرُوجَ زَيْدٍ",
+     "w": "طلوع",
+     "re": "ظرف",
      "ok": false,
-     "got": "آتيك: فعل مضارع، وفيه ضمير هو المفعول به، والفاعل ضمير مستتر وجوبا | طلوع: اسم، مفعول به، وهو مضاف. | الشمس: اسم، مضاف اليه. | وقدوم: اسم، معطوف، وهو مضاف. | الحاج: اسم، مضاف اليه. | وخروج: اسم، معطوف"
+     "got": "اسم، مفعول به، وهو مضاف.",
+     "svok": true,
+     "svgot": "ظرف زمان منصوب وعلامه نصبه الفتحه الظاهره — مصدر نائب عن الظرف (حذف المضاف واعرب المضاف اليه باعرابه)، وهو مضاف.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the maṣdar standing for the time («والأصل وقت طلوع الشمس»), read as a mafʿūl bihi though آتيك has its object"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A590.1",
@@ -8348,13 +8409,22 @@
    "probes": [
     {
      "s": "مررت بالغلام",
-     "any": "مفعول معه|واو المعيه",
+     "sv": "مَرَرْتُ بِالْغُلَامِ",
+     "w": "بالغلام",
+     "re": "مجرور",
      "ok": false,
-     "got": "مررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | بالغلام: اسم."
+     "got": "اسم.",
+     "svok": true,
+     "svgot": "اسم، مجرور وعلامه جره الكسره الظاهره.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the example shows the jarr passing over أل («تخطي العامل لها»), not the mafʿūl maʿah: the probe asks for the jarr"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A590.2",
@@ -8391,13 +8461,20 @@
    "probes": [
     {
      "s": "كنت أنا وزيد كالأخوين",
-     "any": "مفعول معه|واو المعيه",
-     "ok": false,
-     "got": "كنت: فعل ماض ناقص، مبني علي السكون لاتصاله بضمير رفع متحرك، والتا | أنا: ضمير منفصل، مبني علي السكون. | وزيد: اسم، معطوف. | كالأخوين: اسم."
+     "sv": "كُنْتُ أَنَا وَزَيْدٌ كَالْأَخَوَيْنِ",
+     "w": "وزيد",
+     "re": "معطوف",
+     "ok": true,
+     "got": "اسم، معطوف.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، معطوف."
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the book: «فرفع زيد عطفا على المضمر المتصل أولى من نصبه مفعولا معه» — the probe asks for the joined reading"
+   },
+   "status": "applied"
   },
   {
    "id": "A594.1",
@@ -8415,12 +8492,20 @@
     {
      "s": "سرت وزيدا",
      "any": "مفعول معه|واو المعيه",
+     "sv": "سِرْتُ وَزَيْدًا",
      "ok": false,
-     "got": "سرت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | وزيدا: فعل امر، مبني علي حذف النون، مفعول به، والالف ضمير متصل مبني"
+     "got": "سرت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | وزيدا: فعل امر، مبني علي حذف النون، مفعول به، والالف ضمير متصل مبني",
+     "svok": true,
+     "svgot": "وَزَيْدًا: اسم، منصوب وعلامه نصبه الفتحه الظاهره، مفعول معه، والواو واو المعيه — الفعل «سرت» لازم ولا منصوب قبله يعطف عليه.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A599.1",
@@ -8650,16 +8735,12 @@
    "topics": [
     "istithna"
    ],
-   "probes": [
-    {
-     "s": "لم وإن ولن ولما وما",
-     "any": "مستثني|استثناء",
-     "ok": false,
-     "got": "لم: حرف نفي وجزم وقلب، لا محل له من الاعراب. | وإن: حرف لا محل له من الاعراب. | ولن: حرف نفي ونصب واستقبال، لا محل له من الاعراب. | ولما: حرف لا محل له من الاعراب. | وما: اسم، مبني لا يتغير اخره."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a list of particles («لم وإن ولن ولما وما»), no sentence for the iʿrāb probe"
+   },
+   "status": "not-automatable",
+   "reason": "a list of particles («لم وإن ولن ولما وما»), no sentence for the iʿrāb probe"
   },
   {
    "id": "A620.1",
@@ -8692,12 +8773,20 @@
     {
      "s": "قام القوم ماخلا زيدا وما عدا زيدا",
      "any": "مستثني|استثناء",
+     "sv": "قَامَ الْقَوْمُ مَا خَلَا زَيْدًا وَمَا عَدَا زَيْدًا",
      "ok": false,
-     "got": "قام: فعل ماض، مبني علي الفتح، وفاعله «القوم». | القوم: اسم، والظاهر انه فاعل. | ماخلا: اسم، وعلامته مقدره، مفعول به. | زيدا: اسم، وعلامته مقدره، مضاف اليه. | وما: حرف لا محل له من الاعراب. | عدا: فعل "
+     "got": "قام: فعل ماض، مبني علي الفتح، وفاعله «القوم». | القوم: اسم، والظاهر انه فاعل. | ماخلا: اسم، وعلامته مقدره، مفعول به. | زيدا: اسم، وعلامته مقدره، مضاف اليه. | وما: حرف لا محل له من الاعراب. | عدا: فعل ",
+     "svok": true,
+     "svgot": "خَلَا: فعل ماض جامد للاستثناء مبني علي الفتح المقدر علي الالف للتعذر، والفاعل ضمير مستتر وجوبا تقديره «هو» يعود علي البعض المفهوم مما قبله، و«ما» قبله توجب فعليته.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled; «ماخلا» is a print slip for «ما خلا» (the commentary: «ف ما مصدرية وخلا وعدا صلتها»)"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A622.2",
@@ -8774,13 +8863,22 @@
    "probes": [
     {
      "s": "جاء زيد الراكب",
-     "any": "(^|[^ء-ي])حال",
+     "sv": "جَاءَ زَيْدٌ الرَّاكِبُ",
+     "w": "الراكب",
+     "re": "^(?!.*(^|[^ء-ي])حال).*نعت",
      "ok": false,
-     "got": "جاء: فعل ماض، مبني علي الفتح، وفاعله «زيد». | زيد: اسم، فاعل. | الراكب: اسم، والظاهر انه فاعل."
+     "got": "اسم، والظاهر انه فاعل.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، نعت.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "«فلا تقول: جاء زيد الراكب» — الراكب cannot be a ḥāl here; the reading left is the naʿt: the probe asks for naʿt and no ḥāl"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A649.1",
@@ -8872,13 +8970,22 @@
    "probes": [
     {
      "s": "ما أحسن زيدا ضاحكا",
-     "any": "(^|[^ء-ي])حال",
+     "sv": "مَا أَحْسَنَ زَيْدًا ضَاحِكًا",
+     "w": "ضاحكا",
+     "re": "^(?!.*نعت).*(^|[^ء-ي])حال",
      "ok": false,
-     "got": "ما: اسم، مبني لا يتغير اخره. | أحسن: اسم، مبتدا، وخبره «ضاحكا». | زيدا: اسم، وعلامته مقدره، مضاف اليه. | ضاحكا: اسم، وعلامته مقدره، خبر."
+     "got": "اسم، وعلامته مقدره، خبر.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، حال.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "ضاحكا after «ما أحسن زيدا»: the primary reading was «نعت لزيدا» — زيد is a proper noun, never described by an indefinite"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A656.1",
@@ -8895,14 +9002,23 @@
    ],
    "probes": [
     {
-     "s": "زيد ضاحكا أحسن من عمرو بل",
-     "any": "(^|[^ء-ي])حال",
+     "s": "زيد أحسن من عمرو ضاحكا",
+     "sv": "زَيْدٌ أَحْسَنُ مِنْ عَمْرٍو ضَاحِكًا",
+     "w": "ضاحكا",
+     "re": "(^|[^ء-ي])حال",
      "ok": false,
-     "got": "زيد: فعل، مبتدا، وخبره «ضاحكا». | ضاحكا: اسم، وعلامته مقدره، خبر. | أحسن: اسم، نعت. | من: حرف جر، لا محل له من الاعراب. | عمرو: اسم. | بل: حرف عطف، لا محل له من الاعراب."
+     "got": "اسم، وعلامته مقدره، نعت.",
+     "svok": true,
+     "svgot": "حال منصوب وعلامه نصبه الفتحه الظاهره.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the cut took the forbidden order; the sentence's own ruling example is «فتقول زيد أحسن من عمرو ضاحكا»"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A657.1",
@@ -8939,16 +9055,12 @@
    "topics": [
     "hal"
    ],
-   "probes": [
-    {
-     "s": "زيد قائما عندك والجار",
-     "any": "(^|[^ء-ي])حال",
-     "ok": false,
-     "got": "زيد: فعل، مبتدا، وخبره «قائما». | قائما: اسم، وعلامته مقدره، خبر، وهو مضاف. | عندك: اسم، مضاف اليه. | والجار: اسم، معطوف."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a report of usage — rarity («وقد ندر تقديمها»): the engine reads, it does not decide what is rare"
+   },
+   "status": "not-automatable",
+   "reason": "a report of usage — rarity («وقد ندر تقديمها»): the engine reads, it does not decide what is rare"
   },
   {
    "id": "A658.1",
@@ -8993,16 +9105,12 @@
    "topics": [
     "hal"
    ],
-   "probes": [
-    {
-     "s": "زيد قائما قاعدا أحسن",
-     "any": "(^|[^ء-ي])حال",
-     "ok": false,
-     "got": "زيد: فعل، مبتدا، وخبره «قائما». | قائما: اسم، وعلامته مقدره، خبر. | قاعدا: اسم، وعلامته مقدره، نعت. | أحسن: اسم، نعت."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A662.1",
@@ -9020,12 +9128,20 @@
     {
      "s": "زيد أخوك عطوفا وأنا زيد معروفا",
      "any": "(^|[^ء-ي])حال",
+     "sv": "زَيْدٌ أَخُوكَ عَطُوفًا وَأَنَا زَيْدٌ مَعْرُوفًا",
      "ok": false,
-     "got": "زيد: فعل، مبتدا. | أخوك: اسم، والظاهر انه فاعل، والضمير مضاف اليه، وخبره «عطوفا». | عطوفا: اسم، وعلامته مقدره، خبر. | وأنا: ضمير منفصل، مبني علي السكون. | زيد: اسم، خبر. | معروفا: اسم، وعلامته مقدره، "
+     "got": "زيد: فعل، مبتدا. | أخوك: اسم، والظاهر انه فاعل، والضمير مضاف اليه، وخبره «عطوفا». | عطوفا: اسم، وعلامته مقدره، خبر. | وأنا: ضمير منفصل، مبني علي السكون. | زيد: اسم، خبر. | معروفا: اسم، وعلامته مقدره، ",
+     "svok": true,
+     "svgot": "مَعْرُوفًا: اسم، منصوب وعلامه نصبه الفتحه الظاهره، حال.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A662.2",
@@ -9040,16 +9156,12 @@
    "topics": [
     "hal"
    ],
-   "probes": [
-    {
-     "s": "عطوفا زيد أخوك",
-     "any": "(^|[^ء-ي])حال",
-     "ok": false,
-     "got": "عطوفا: اسم، وعلامته مقدره، مبتدا. | زيد: اسم، مضاف اليه. | أخوك: اسم، والظاهر انه فاعل، والضمير مضاف اليه."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A664.1",
@@ -9091,14 +9203,23 @@
    ],
    "probes": [
     {
-     "s": "بلى مسرعا لمن قال لك لم تسر",
-     "any": "(^|[^ء-ي])حال",
+     "s": "بلى مسرعا",
+     "sv": "بَلَى مُسْرِعًا",
+     "w": "مسرعا",
+     "re": "(^|[^ء-ي])حال",
      "ok": false,
-     "got": "بلى: اسم، وعلامته مقدره، وهو مضاف. | مسرعا: اسم، وعلامته مقدره، مضاف اليه، وخبره شبه الجمله «لمن قال» مت | لمن: حرف جر، لا محل له من الاعراب. | قال: اسم. | لك: حرف لا محل له من الاعراب. | لم: حرف نفي "
+     "got": "اسم، وعلامته مقدره، مضاف اليه.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، حال، وعاملها فعل محذوف دل عليه الكلام قبل «بلي».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the cut carried «لمن قال لك لم تسر»; بلى read as a noun, مسرعا silent («والتقدير بلى سرت مسرعا»)"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A672.1",
@@ -9116,12 +9237,20 @@
     {
      "s": "طاب زيد نفسا ومثله",
      "any": "تمييز",
+     "sv": "طَابَ زَيْدٌ نَفْسًا",
      "ok": false,
-     "got": "طاب: فعل ماض، مبني علي الفتح، وفاعله «زيد». | زيد: اسم، فاعل. | نفسا: اسم، وعلامته مقدره، مفعول به. | ومثله: اسم، معطوف، والضمير مضاف اليه."
+     "got": "طاب: فعل ماض، مبني علي الفتح، وفاعله «زيد». | زيد: اسم، فاعل. | نفسا: اسم، وعلامته مقدره، مفعول به. | ومثله: اسم، معطوف، والضمير مضاف اليه.",
+     "svok": true,
+     "svgot": "نَفْسًا: اسم، منصوب وعلامه نصبه الفتحه الظاهره، تمييز — الفعل «طاب» لازم بشهاده المتون وفاعله «زيد» مذكور، والاسم نكره منصوبه جامده.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A674.1",
@@ -9139,12 +9268,20 @@
     {
      "s": "ما في السماء قدر راحة سحابا",
      "any": "تمييز",
+     "sv": "مَا فِي السَّمَاءِ قَدْرُ رَاحَةٍ سَحَابًا",
      "ok": false,
-     "got": "ما: اسم، مبني لا يتغير اخره. | في: حرف جر، لا محل له من الاعراب. | السماء: اسم. | قدر: فعل ماض، مبني علي الفتح، وفاعله «راحه». | راحة: اسم، والظاهر انه فاعل. | سحابا: اسم، وعلامته مقدره، مفعول به."
+     "got": "ما: اسم، مبني لا يتغير اخره. | في: حرف جر، لا محل له من الاعراب. | السماء: اسم. | قدر: فعل ماض، مبني علي الفتح، وفاعله «راحه». | راحة: اسم، والظاهر انه فاعل. | سحابا: اسم، وعلامته مقدره، مفعول به.",
+     "svok": true,
+     "svgot": "سَحَابًا: اسم، منصوب وعلامه نصبه الفتحه الظاهره، تمييز — بعد شبه المقدار «قدر راحه».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A674.2",
@@ -9178,12 +9315,20 @@
     {
      "s": "أنت أفضل الناس رجلا",
      "any": "تمييز",
+     "sv": "أَنْتَ أَفْضَلُ النَّاسِ رَجُلًا",
      "ok": false,
-     "got": "أنت: ضمير منفصل، مبني علي السكون، في محل رفع مبتدا، وخبره «افضل». | أفضل: اسم، خبر. | الناس: اسم، والظاهر انه مفعول به. | رجلا: اسم، وعلامته مقدره، حال."
+     "got": "أنت: ضمير منفصل، مبني علي السكون، في محل رفع مبتدا، وخبره «افضل». | أفضل: اسم، خبر. | الناس: اسم، والظاهر انه مفعول به. | رجلا: اسم، وعلامته مقدره، حال.",
+     "svok": true,
+     "svgot": "رَجُلًا: اسم، منصوب وعلامه نصبه الفتحه الظاهره، تمييز — بعد اسم التفضيل «افضل».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A677.1",
@@ -9247,13 +9392,22 @@
    "probes": [
     {
      "s": "ما أحسن زيدا رجلا",
-     "any": "تمييز",
+     "sv": "مَا أَحْسَنَ زَيْدًا رَجُلًا",
+     "w": "رجلا",
+     "re": "تمييز",
      "ok": false,
-     "got": "ما: اسم، مبني لا يتغير اخره. | أحسن: اسم، مبتدا، وخبره «رجلا». | زيدا: اسم، وعلامته مقدره، مضاف اليه. | رجلا: اسم، وعلامته مقدره، خبر."
+     "got": "اسم، وعلامته مقدره، خبر.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، تمييز.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "رجلا after the verb of wonder and its object"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A680.2",
@@ -9270,13 +9424,24 @@
    "probes": [
     {
      "s": "كفى بزيد رجلا",
-     "any": "تمييز",
+     "sv": "كَفَى بِزَيْدٍ رَجُلًا",
+     "w": "رجلا",
+     "re": "تمييز",
      "ok": false,
-     "got": "كفى: فعل ماض، مبني علي الفتح المقدر علي الالف للتعذر، وفاعله «رجل | بزيد: اسم. | رجلا: اسم، وعلامته مقدره، فاعل."
+     "got": "اسم، وعلامته مقدره، فاعل.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، تمييز (وقيل: حال).",
+     "vowelled": true,
+     "offered": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "كفى بزيد رجلا: zayd is the doer behind the extra bāʾ, رجلا the tamyīz — the engine made رجلا the doer"
+   },
+   "status": "applied",
+   "offered": true,
+   "vowelled": true
   },
   {
    "id": "A683.1",
@@ -9546,16 +9711,12 @@
    "topics": [
     "idafa"
    ],
-   "probes": [
-    {
-     "s": "هذا الغلام رجل",
-     "any": "مضاف اليه",
-     "ok": false,
-     "got": "هذا: اسم اشاره، مبني علي السكون، والهاء للتنبيه. | الغلام: اسم، بدل. | رجل: اسم، خبر."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A726.1",
@@ -9569,16 +9730,12 @@
    "topics": [
     "idafa"
    ],
-   "probes": [
-    {
-     "s": "هذا الضارب رجل",
-     "any": "مضاف اليه",
-     "ok": false,
-     "got": "هذا: اسم اشاره، مبني علي السكون، والهاء للتنبيه. | الضارب: اسم، بدل. | رجل: اسم، خبر."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A727.1",
@@ -9617,13 +9774,20 @@
    "probes": [
     {
      "s": "تسفهت الرياح",
-     "any": "مضاف اليه",
-     "ok": false,
-     "got": "تسفهت: فعل مضارع، وفاعله «الرياح». | الرياح: اسم، والظاهر انه فاعل."
+     "sv": "تَسَفَّهَتِ الرِّيَاحُ",
+     "w": "الرياح",
+     "re": "فاعل",
+     "ok": true,
+     "got": "اسم، والظاهر انه فاعل.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، والظاهر انه فاعل."
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the cut «تسفهت الرياح» is Ibn ʿAqīl's paraphrase with the muḍāf dropped («لصحة الاستغناء عن المر بالرياح»): الرياح is the doer — the probe asks for it"
+   },
+   "status": "applied"
   },
   {
    "id": "A730.1",
@@ -10168,14 +10332,23 @@
    ],
    "probes": [
     {
-     "s": "الضاربين والضاربتين",
-     "any": "اسم الفاعل|اسم المفعول|لاسم",
+     "s": "هذان الضاربان زيدا وهؤلاء القاتلون بكرا",
+     "sv": "هَذَانِ الضَّارِبَانِ زَيْدًا وَهَؤُلَاءِ الْقَاتِلُونَ بَكْرًا",
+     "w": "بكرا",
+     "re": "مفعول به لاسم الفاعل",
      "ok": false,
-     "got": "الضاربين: اسم، مبتدا. | والضاربتين: اسم، معطوف."
+     "got": "اسم، وعلامته مقدره، مفعول به.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، مفعول به لاسم الفاعل «القاتلون».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the cut is a list of forms; the sentence's own example of their working is «هذان الضاربان زيدا وهؤلاء القاتلون بكرا»"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A796.1",
@@ -10192,14 +10365,22 @@
    ],
    "probes": [
     {
-     "s": "هذا ضارب زيد",
-     "any": "اسم الفاعل|اسم المفعول|لاسم",
+     "s": "هذا ضارب زيد وضارب زيدا",
+     "sv": "هَذَا ضَارِبُ زَيْدٍ وَضَارِبٌ زَيْدًا",
+     "any": "مفعول به لاسم الفاعل",
      "ok": false,
-     "got": "هذا: اسم اشاره، مبني علي السكون، والهاء للتنبيه. | ضارب: اسم، مبتدا. | زيد: اسم، مضاف اليه."
+     "got": "هذا: اسم اشاره، مبني علي السكون، والهاء للتنبيه. | ضارب: اسم، مبتدا. | زيد: اسم، مضاف اليه. | وضارب: اسم، معطوف. | زيدا: اسم، وعلامته مقدره، مضاف اليه.",
+     "svok": true,
+     "svgot": "زَيْدًا: اسم، منصوب وعلامه نصبه الفتحه الظاهره، مفعول به لاسم الفاعل «وضارب».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the cut stopped before «وضارب زيدا»: the example is both faces, the naṣb one names the participle's object"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A799.1",
@@ -10234,14 +10415,23 @@
    ],
    "probes": [
     {
-     "s": "في قولك زيد مضروب عبده زيد مضروب العبد",
-     "any": "اسم الفاعل|اسم المفعول|لاسم",
+     "s": "زيد مضروب عبده",
+     "sv": "زَيْدٌ مَضْرُوبٌ عَبْدُهُ",
+     "w": "عبده",
+     "re": "نائب فاعل لاسم المفعول",
      "ok": false,
-     "got": "في: حرف جر، لا محل له من الاعراب. | قولك: اسم، والضمير مضاف اليه. | زيد: اسم، بدل. | مضروب: اسم، مبتدا. | عبده: فعل ماض، مبني علي الفتح، وفيه ضمير هو المفعول به، وفاعله «زي | زيد: اسم، فاعل. | مضروب: "
+     "got": "فعل ماض، مبني علي الفتح، وفيه ضمير هو المفعول به، والفاعل ضمير مستتر جوازا تقديره «هو».",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، نائب فاعل لاسم المفعول «مضروب»، والضمير مضاف اليه.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled; the cut carried «في قولك» — the example is «زيد مضروب عبده»"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A806.1",
@@ -10356,16 +10546,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "حسن الوجه ومنطلق اللسان وطاهر القلب",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "حسن: فعل ماض، مبني علي الفتح، وفاعله «الوجه». | الوجه: اسم، والظاهر انه فاعل. | ومنطلق: اسم، معطوف، وهو مضاف. | اللسان: اسم، مضاف اليه. | وطاهر: اسم، مفعول به، وهو مضاف. | القلب: اسم، مضاف اليه."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a fragment: the ṣifa listed without its mawṣūf and the maʿmūl's case left open by the listing (rafʿ / naṣb / jarr, «ست وثلاثون صورة») — no sentence the letters decide"
+   },
+   "status": "not-automatable",
+   "reason": "a fragment: the ṣifa listed without its mawṣūf and the maʿmūl's case left open by the listing (rafʿ / naṣb / jarr, «ست وثلاثون صورة») — no sentence the letters decide"
   },
   {
    "id": "A819.1",
@@ -10381,16 +10567,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "زيد قاتل الأب بكرا تريد قاتل أبوه بكرا",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "زيد: فعل، مبتدا، والجمله الفعليه «قاتل الاب بكرا تريد قاتل ابوه ب | قاتل: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | الأب: اسم، والظاهر انه فاعل. | بكرا: اسم، وعلامته مقدره. | تريد"
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A819.2",
@@ -10423,14 +10605,23 @@
    ],
    "probes": [
     {
-     "s": "زيد حسن الوجه ففي حسن ضمير مرفوع هو",
-     "any": "صفه مشبهه|مشبهه",
+     "s": "زيد حسن الوجه",
+     "sv": "زَيْدٌ حَسَنٌ الْوَجْهَ",
+     "w": "الوجه",
+     "re": "التشبيه بالمفعول به",
      "ok": false,
-     "got": "زيد: فعل، مبتدا، وخبره «حسن». | حسن: اسم، خبر. | الوجه: اسم، والظاهر انه فاعل. | ففي: حرف جر، لا محل له من الاعراب. | حسن: اسم، وهو مضاف. | ضمير: اسم، مضاف اليه. | مرفوع: اسم، نعت. | هو: ضمير منفصل، م"
+     "got": "اسم، والظاهر انه فاعل.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، منصوب علي التشبيه بالمفعول به للصفه المشبهه «حسن».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "«والوجه منصوب على التشبيه بالمفعول به»"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A821.1",
@@ -10450,14 +10641,25 @@
    ],
    "probes": [
     {
-     "s": "زيد الوجه حسن كما",
-     "any": "صفه مشبهه|مشبهه",
+     "s": "زيد حسن وجهه",
+     "sv": "زَيْدٌ حَسَنٌ وَجْهُهُ",
+     "w": "وجهه",
+     "re": "فاعل للصفه المشبهه",
      "ok": false,
-     "got": "زيد: فعل ماض مبني للمجهول، مبتدا. | الوجه: اسم، والظاهر انه فاعل. | حسن: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | كما: حرف لا محل له من الاعراب."
+     "got": "اسم، وفيه ضمير هو المفعول به.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، فاعل للصفه المشبهه «حسن»، او مبتدا مؤخر خبره «حسن» المقدم، والضمير مضاف اليه.",
+     "vowelled": true,
+     "offered": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the cut took the forbidden «زيد الوجه حسن»; the sentence's ruling example is «نحو زيد حسن وجهه» — وجهه the ṣifa's doer"
+   },
+   "status": "applied",
+   "offered": true,
+   "vowelled": true
   },
   {
    "id": "A822.1",
@@ -10472,16 +10674,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "حسن وعلى كل من التقديرين لا يخلو المعمول",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "حسن: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | وعلى: حرف جر، لا محل له من الاعراب. | كل: اسم. | من: حرف جر، لا محل له من الاعراب. | التقديرين: اسم. | لا: حرف نفي، لا محل له من الا"
-    }
-   ],
+   "triage": {
+    "cls": "d",
+    "why": "a single word cited («حسن»): the ruling is on its form, no sentence for the iʿrāb probe"
+   },
    "status": "open",
-   "warn": true
+   "reason": "a single word cited («حسن»): the ruling is on its form, no sentence for the iʿrāb probe"
   },
   {
    "id": "A822.2",
@@ -10495,16 +10693,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "الحسن وجه أب وحسن وجه أب",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "الحسن: اسم، مبتدا، والجمله الفعليه «وجه اب وحسن وجه اب» في محل رفع  | وجه: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | أب: فعل امر، مبني علي السكون، والفاعل ضمير مستتر وجوبا تقديره "
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a fragment: the ṣifa listed without its mawṣūf and the maʿmūl's case left open by the listing (rafʿ / naṣb / jarr, «ست وثلاثون صورة») — no sentence the letters decide"
+   },
+   "status": "not-automatable",
+   "reason": "a fragment: the ṣifa listed without its mawṣūf and the maʿmūl's case left open by the listing (rafʿ / naṣb / jarr, «ست وثلاثون صورة») — no sentence the letters decide"
   },
   {
    "id": "A823.1",
@@ -10518,16 +10712,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "الحسن وجها وحسن وجها",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "الحسن: اسم، مبتدا، وخبره «وجها». | وجها: فعل ماض، مبني علي الفتح، خبر، والالف ضمير متصل مبني في محل ر | وحسن: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | وجها: فعل ماض، مبني علي الف"
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a fragment: the ṣifa listed without its mawṣūf and the maʿmūl's case left open by the listing (rafʿ / naṣb / jarr, «ست وثلاثون صورة») — no sentence the letters decide"
+   },
+   "status": "not-automatable",
+   "reason": "a fragment: the ṣifa listed without its mawṣūf and the maʿmūl's case left open by the listing (rafʿ / naṣb / jarr, «ست وثلاثون صورة») — no sentence the letters decide"
   },
   {
    "id": "A823.2",
@@ -10547,16 +10737,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "الحسن ودون أل",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "الحسن: اسم، مبتدا. | ودون: اسم، ظرف — مفعول فيه، وهو مضاف. | أل: اسم، مضاف اليه."
-    }
-   ],
+   "triage": {
+    "cls": "d",
+    "why": "the cut is the commentary's gloss on the verse («الحسن ودون أل»), a single word cited — no sentence"
+   },
    "status": "open",
-   "warn": true
+   "reason": "the cut is the commentary's gloss on the verse («الحسن ودون أل»), a single word cited — no sentence"
   },
   {
    "id": "A823.3",
@@ -10570,16 +10756,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "الحسن وجهه",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "الحسن: اسم، مبتدا، والجمله الفعليه «وجهه» في محل رفع خبره. | وجهه: فعل ماض، مبني علي الفتح، وفيه ضمير هو المفعول به، والفاعل ضم"
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A823.4",
@@ -10593,16 +10775,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "الحسن وجه غلامه",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "الحسن: اسم، مبتدا، والجمله الفعليه «وجه غلامه» في محل رفع خبره. | وجه: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | غلامه: اسم، والضمير مضاف اليه."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A824.1",
@@ -10616,16 +10794,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "الحسن وجه أب",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "الحسن: اسم، مبتدا، والجمله الفعليه «وجه اب» في محل رفع خبره. | وجه: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | أب: فعل امر، مبني علي السكون، والفاعل ضمير مستتر وجوبا تقديره «ا"
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A824.2",
@@ -10639,16 +10813,12 @@
    "topics": [
     "sifa-mushabbaha"
    ],
-   "probes": [
-    {
-     "s": "الحسن وجه",
-     "any": "صفه مشبهه|مشبهه",
-     "ok": false,
-     "got": "الحسن: اسم، مبتدا، وخبره «وجه». | وجه: اسم، خبر."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A826.1",
@@ -10684,14 +10854,23 @@
    ],
    "probes": [
     {
-     "s": "ما أوفى خليلينا ثم",
-     "any": "تعجب",
+     "s": "ما أوفى خليلينا",
+     "sv": "مَا أَوْفَى خَلِيلَيْنَا",
+     "w": "أوفى",
+     "re": "تعجب",
      "ok": false,
-     "got": "ما: حرف لا محل له من الاعراب. | أوفى: فعل ماض، مبني علي الفتح المقدر علي الالف للتعذر، وفاعله «خلي | خليلينا: اسم، منصوب وعلامه نصبه الياء لانه جمع مذكر سالم، وحذفت النون | ثم: حرف عطف، لا محل له من ا"
+     "got": "فعل ماض، مبني علي الفتح المقدر علي الالف للتعذر، وفاعله «خليلينا».",
+     "svok": true,
+     "svgot": "فعل ماض جامد لانشاء التعجب، مبني علي الفتح المقدر علي الالف للتعذر، وفاعله ضمير مستتر وجوبا تقديره «هو» يعود علي «ما».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "ما أوفى: the verb of wonder of a defective root"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A831.1",
@@ -10705,16 +10884,12 @@
    "topics": [
     "tajjub"
    ],
-   "probes": [
-    {
-     "s": "دحرج وانطلق واستخرج",
-     "any": "تعجب",
-     "ok": false,
-     "got": "دحرج: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | وانطلق: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | واستخرج: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا ت"
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a list of verbs cited for their form («دحرج وانطلق واستخرج»), no sentence of wonder"
+   },
+   "status": "not-automatable",
+   "reason": "a list of verbs cited for their form («دحرج وانطلق واستخرج»), no sentence of wonder"
   },
   {
    "id": "A831.2",
@@ -10744,16 +10919,12 @@
    "topics": [
     "tajjub"
    ],
-   "probes": [
-    {
-     "s": "ما أسوده",
-     "any": "تعجب",
-     "ok": false,
-     "got": "ما: حرف لا محل له من الاعراب. | أسوده: اسم، وفيه ضمير هو المفعول به."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A831.4",
@@ -10771,13 +10942,22 @@
    "probes": [
     {
      "s": "ضرب زيد",
-     "any": "تعجب",
+     "sv": "ضُرِبَ زَيْدٌ",
+     "w": "زيد",
+     "re": "نائب فاعل",
      "ok": false,
-     "got": "ضرب: فعل ماض، مبني علي الفتح، وفاعله «زيد». | زيد: اسم، فاعل."
+     "got": "اسم، فاعل.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، نائب فاعل.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the example is the passive the verb of wonder may not be built from: the probe asks for its nāʾib"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A832.1",
@@ -10794,13 +10974,32 @@
    "probes": [
     {
      "s": "ما أشد دحرجته واستخراجه وأشدد بدحرجته واستخراجه",
-     "any": "تعجب",
+     "sv": "مَا أَشَدَّ دَحْرَجَتَهُ وَاسْتِخْرَاجَهُ وَأَشْدِدْ بِدَحْرَجَتِهِ وَاسْتِخْرَاجِهِ",
+     "w": "أشد",
+     "re": "تعجب",
      "ok": false,
-     "got": "ما: حرف لا محل له من الاعراب. | أشد: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | دحرجته: فعل ماض، مبني علي الفتح، وفيه ضمير هو المفعول به، والفاعل ضم | واستخراجه: اسم، معطوف، والضمي"
+     "got": "فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو».",
+     "svok": true,
+     "svgot": "فعل ماض جامد لانشاء التعجب، مبني علي الفتح، وفاعله ضمير مستتر وجوبا تقديره «هو» يعود علي «ما».",
+     "vowelled": true
+    },
+    {
+     "s": "ما أشد دحرجته واستخراجه وأشدد بدحرجته واستخراجه",
+     "sv": "مَا أَشَدَّ دَحْرَجَتَهُ وَاسْتِخْرَاجَهُ وَأَشْدِدْ بِدَحْرَجَتِهِ وَاسْتِخْرَاجِهِ",
+     "w": "دحرجته",
+     "re": "مفعول به",
+     "ok": true,
+     "got": "فعل ماض، مبني علي الفتح، وفيه ضمير هو المفعول به، والفاعل ضمير مستتر جوازا تقديره «هو».",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، مفعول به، وهو مضاف، والضمير مضاف اليه."
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "ما أشدّ + the maṣdar of a verb that cannot make the wonder itself"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A833.1",
@@ -10895,13 +11094,35 @@
    "probes": [
     {
      "s": "نعم الرجل فارسا زيد",
-     "any": "مدح|ذم|مخصوص",
+     "sv": "نِعْمَ الرَّجُلُ فَارِسًا زَيْدٌ",
+     "w": "زيد",
+     "re": "مخصوص",
      "ok": false,
-     "got": "نعم: فعل ماض، مبني علي الفتح، وفاعله «الرجل». | الرجل: اسم، والظاهر انه فاعل. | فارسا: اسم، وعلامته مقدره، مبتدا. | زيد: اسم، مضاف اليه."
+     "got": "اسم، مضاف اليه.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، المخصوص بالمدح، مبتدا مؤخر والجمله قبله خبره، او خبر لمبتدا محذوف وجوبا.",
+     "vowelled": true,
+     "offered": true
+    },
+    {
+     "s": "نعم الرجل فارسا زيد",
+     "sv": "نِعْمَ الرَّجُلُ فَارِسًا زَيْدٌ",
+     "w": "فارسا",
+     "re": "تمييز",
+     "ok": false,
+     "got": "اسم، وعلامته مقدره، مبتدا.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، تمييز.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the specified noun of praise and the tamyīz"
+   },
+   "status": "applied",
+   "offered": true,
+   "vowelled": true
   },
   {
    "id": "A844.1",
@@ -10919,14 +11140,25 @@
    ],
    "probes": [
     {
-     "s": "ساء الرجل زيد والمضاف إلى ما",
-     "any": "مدح|ذم|مخصوص",
+     "s": "ساء الرجل زيد",
+     "sv": "سَاءَ الرَّجُلُ زَيْدٌ",
+     "w": "زيد",
+     "re": "مخصوص",
      "ok": false,
-     "got": "ساء: فعل ماض، مبني علي الفتح، وفاعله «الرجل». | الرجل: اسم، والظاهر انه فاعل. | زيد: اسم، مفعول به. | والمضاف: اسم، والظاهر انه فاعل. | إلى: حرف جر، لا محل له من الاعراب. | ما: حرف لا محل له من الاعرا"
+     "got": "اسم، مفعول به.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، المخصوص بالذم، مبتدا مؤخر والجمله قبله خبره، او خبر لمبتدا محذوف وجوبا.",
+     "vowelled": true,
+     "offered": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "ساء used as بئس: the specified noun of blame"
+   },
+   "status": "applied",
+   "offered": true,
+   "vowelled": true
   },
   {
    "id": "A844.2",
@@ -10943,13 +11175,24 @@
    "probes": [
     {
      "s": "شرف الرجل زيد ولؤم الرجل بكر",
-     "any": "مدح|ذم|مخصوص",
+     "sv": "شَرُفَ الرَّجُلُ زَيْدٌ وَلَؤُمَ الرَّجُلُ بَكْرٌ",
+     "w": "زيد",
+     "re": "مخصوص",
      "ok": false,
-     "got": "شرف: فعل ماض، مبني علي الفتح، وفاعله «الرجل». | الرجل: اسم، والظاهر انه فاعل. | زيد: اسم، مفعول به. | ولؤم: فعل ماض، مبني علي الفتح، وفاعله «الرجل». | الرجل: اسم، والظاهر انه فاعل. | بكر: اسم، مفعول ب"
+     "got": "اسم، مفعول به.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، المخصوص بالمدح او الذم، مبتدا مؤخر والجمله قبله خبره، او خبر لمبتدا محذوف وجوبا.",
+     "vowelled": true,
+     "offered": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "فَعُلَ for praise and blame (شَرُفَ، لَؤُمَ)"
+   },
+   "status": "applied",
+   "offered": true,
+   "vowelled": true
   },
   {
    "id": "A847.1",
@@ -10966,14 +11209,25 @@
    ],
    "probes": [
     {
-     "s": "الصيف ضيعت اللبن للمذكر والمؤنث والمفرد والمثنى والجمع",
-     "any": "مدح|ذم|مخصوص",
+     "s": "حبذا زيد",
+     "sv": "حَبَّذَا زَيْدٌ",
+     "w": "زيد",
+     "re": "مخصوص",
      "ok": false,
-     "got": "الصيف: اسم، مبتدا، والجمله الفعليه «ضيعت اللبن للمذكر والمؤنث والمف | ضيعت: فعل ماض، مبني علي الفتح، والتاء ضمير متصل مبني في محل رفع فا | اللبن: اسم، والظاهر انه فاعل. | للمذكر: اسم. | والمؤنث: اسم، "
+     "got": "اسم، فاعل.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، المخصوص بالمدح، مبتدا مؤخر والجمله قبله خبره، او خبر لمبتدا محذوف.",
+     "vowelled": true,
+     "offered": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the cut is the proverb; the bāb's example in the sentence is «حبذا زيد»"
+   },
+   "status": "applied",
+   "offered": true,
+   "vowelled": true
   },
   {
    "id": "A848.1",
@@ -10993,13 +11247,20 @@
    "probes": [
     {
      "s": "حب زيد",
-     "any": "مدح|ذم|مخصوص",
-     "ok": false,
-     "got": "حب: فعل ماض، مبني علي الفتح، وفاعله «زيد». | زيد: اسم، فاعل."
+     "sv": "حَبَّ زَيْدٌ",
+     "w": "زيد",
+     "re": "فاعل",
+     "ok": true,
+     "got": "اسم، فاعل.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، فاعل."
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the book: «الرفع بحب نحو حب زيد» — زيد is حَبَّ's doer: the probe asks for فاعل"
+   },
+   "status": "applied"
   },
   {
    "id": "A849.1",
@@ -11018,12 +11279,20 @@
     {
      "s": "زيد أفضل من عمرو وأكرم من خالد كما",
      "any": "تفضيل",
+     "sv": "زَيْدٌ أَفْضَلُ مِنْ عَمْرٍو وَأَكْرَمُ مِنْ خَالِدٍ",
      "ok": false,
-     "got": "زيد: فعل، مبتدا، وخبره «افضل». | أفضل: اسم، خبر. | من: حرف جر، لا محل له من الاعراب. | عمرو: اسم. | وأكرم: اسم، خبر. | من: حرف جر، لا محل له من الاعراب. | خالد: اسم. | كما: حرف لا محل له من الاعراب."
+     "got": "زيد: فعل، مبتدا، وخبره «افضل». | أفضل: اسم، خبر. | من: حرف جر، لا محل له من الاعراب. | عمرو: اسم. | وأكرم: اسم، خبر. | من: حرف جر، لا محل له من الاعراب. | خالد: اسم. | كما: حرف لا محل له من الاعراب.",
+     "svok": true,
+     "svgot": "أَفْضَلُ: اسم تفضيل، مرفوع وعلامه رفعه الضمه الظاهره، خبر.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A850.1",
@@ -11059,12 +11328,20 @@
     {
      "s": "زيد أفضل من عمرو",
      "any": "تفضيل",
+     "sv": "زَيْدٌ أَفْضَلُ مِنْ عَمْرٍو",
      "ok": false,
-     "got": "زيد: فعل، مبتدا، وخبره «افضل». | أفضل: اسم، خبر. | من: حرف جر، لا محل له من الاعراب. | عمرو: اسم."
+     "got": "زيد: فعل، مبتدا، وخبره «افضل». | أفضل: اسم، خبر. | من: حرف جر، لا محل له من الاعراب. | عمرو: اسم.",
+     "svok": true,
+     "svgot": "أَفْضَلُ: اسم تفضيل، مرفوع وعلامه رفعه الضمه الظاهره، خبر.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A854.1",
@@ -11083,13 +11360,22 @@
    "probes": [
     {
      "s": "زيد الأفضل والزيدان الأفضلان والزيدون الأفضلون وهند الفضلى",
-     "any": "تفضيل",
+     "sv": "زَيْدٌ الْأَفْضَلُ وَالزَّيْدَانِ الْأَفْضَلَانِ وَالزَّيْدُونَ الْأَفْضَلُونَ وَهِنْدٌ الْفُضْلَى",
+     "w": "الأفضلان",
+     "re": "^(?!.*مضاف اليه).*تفضيل",
      "ok": false,
-     "got": "زيد: فعل ماض مبني للمجهول، مبتدا. | الأفضل: اسم، والظاهر انه فاعل. | والزيدان: اسم، معطوف، وهو مضاف. | الأفضلان: اسم، مضاف اليه. | والزيدون: اسم، معطوف، وهو مضاف. | الأفضلون: اسم، مضاف اليه. | وهند: ا"
+     "got": "اسم، مضاف اليه.",
+     "svok": true,
+     "svgot": "اسم تفضيل، مرفوع وعلامه رفعه الالف لانه مثني، نعت.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "الأفضل with أل agreeing: named neither tafḍīl nor khabar; a dual with its nūn called muḍāf"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A856.1",
@@ -11106,13 +11392,22 @@
    "probes": [
     {
      "s": "الزيدان أفضل القوم والزيدون أفضل القوم وهند أفضل",
-     "any": "تفضيل",
+     "sv": "الزَّيْدَانِ أَفْضَلُ الْقَوْمِ وَالزَّيْدُونَ أَفْضَلُ الْقَوْمِ وَهِنْدٌ أَفْضَلُ",
+     "w": "أفضل",
+     "re": "تفضيل",
      "ok": false,
-     "got": "الزيدان: اسم، مبتدا، وخبره «افضل». | أفضل: اسم، خبر. | القوم: اسم، والظاهر انه مفعول به. | والزيدون: اسم، معطوف. | أفضل: اسم، خبر. | القوم: اسم، والظاهر انه مفعول به. | وهند: اسم، معطوف. | أفضل: اسم، "
+     "got": "اسم، خبر.",
+     "svok": true,
+     "svgot": "اسم تفضيل، مرفوع وعلامه رفعه الضمه الظاهره، خبر، وهو مضاف.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "أفضل annexed: not named an elative"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A856.2",
@@ -11193,13 +11488,20 @@
    "probes": [
     {
      "s": "زيد قائم",
-     "any": "نعت|صفه",
-     "ok": false,
-     "got": "زيد: فعل، مبتدا، وخبره «قائم». | قائم: اسم، خبر."
+     "sv": "زَيْدٌ قَائِمٌ",
+     "w": "قائم",
+     "re": "خبر",
+     "ok": true,
+     "got": "اسم، خبر.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، خبر."
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the book names «خبر المبتدأ نحو زيد قائم» (an example of what the definition must exclude): the probe asks for خبر"
+   },
+   "status": "applied"
   },
   {
    "id": "A867.1",
@@ -11240,13 +11542,24 @@
    "probes": [
     {
      "s": "زيد رجل حسن والزيدان رجلان حسنان والزيدون رجال",
-     "any": "نعت|صفه",
+     "sv": "زَيْدٌ رَجُلٌ حَسَنٌ وَالزَّيْدَانِ رَجُلَانِ حَسَنَانِ وَالزَّيْدُونَ رِجَالٌ",
+     "w": "حسنان",
+     "re": "نعت",
      "ok": false,
-     "got": "زيد: فعل، مبتدا، وخبره «رجل». | رجل: اسم، خبر. | حسن: فعل ماض، مبني علي الفتح، وفاعله «والزيدان». | والزيدان: اسم، والظاهر انه فاعل، وهو مضاف. | رجلان: اسم، مضاف اليه. | حسنان: فعل ماض، مبني علي الفتح"
+     "got": "فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو».",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الالف لانه مثني، نعت ل«رجلان»، ويجوز: خبر ثان.",
+     "vowelled": true,
+     "offered": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "حسن read as a second khabar; «رجلان … وهو مضاف» with the dual's nūn"
+   },
+   "status": "applied",
+   "offered": true,
+   "vowelled": true
   },
   {
    "id": "A868.2",
@@ -11266,12 +11579,20 @@
     {
      "s": "مررت برجل حسنة أمه كما",
      "any": "نعت|صفه",
+     "sv": "مَرَرْتُ بِرَجُلٍ حَسَنَةٍ أُمُّهُ",
      "ok": false,
-     "got": "مررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | برجل: اسم، وهو مضاف. | حسنة: اسم، مضاف اليه، وهو مضاف. | أمه: اسم، والضمير مضاف اليه. | كما: حرف لا محل له من الاعراب."
+     "got": "مررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | برجل: اسم، وهو مضاف. | حسنة: اسم، مضاف اليه، وهو مضاف. | أمه: اسم، والضمير مضاف اليه. | كما: حرف لا محل له من الاعراب.",
+     "svok": true,
+     "svgot": "حَسَنَةٍ: اسم، مجرور وعلامه جره الكسره الظاهره، نعت.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A870.1",
@@ -11290,12 +11611,20 @@
     {
      "s": "مررت برجل قام أبوه",
      "any": "نعت|صفه",
+     "sv": "مَرَرْتُ بِرَجُلٍ قَامَ أَبُوهُ",
      "ok": false,
-     "got": "مررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | برجل: اسم. | قام: فعل ماض، مبني علي الفتح، وفاعله «ابوه». | أبوه: اسم، والظاهر انه فاعل، والضمير مضاف اليه."
+     "got": "مررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | برجل: اسم. | قام: فعل ماض، مبني علي الفتح، وفاعله «ابوه». | أبوه: اسم، والظاهر انه فاعل، والضمير مضاف اليه.",
+     "svok": true,
+     "svgot": "قَامَ: فعل ماض، مبني علي الفتح، وفاعله «ابوه»، والجمله في محل جر نعت ل«رجل».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A873.1",
@@ -11309,16 +11638,12 @@
    "topics": [
     "naat"
    ],
-   "probes": [
-    {
-     "s": "مررت برجل أضربه وتقع",
-     "any": "نعت|صفه",
-     "ok": false,
-     "got": "مررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | برجل: اسم. | أضربه: فعل مضارع، وفيه ضمير هو المفعول به، والفاعل ضمير مستتر وجوبا | وتقع: فعل مضارع، والفاعل ضمير مستتر جوازا تقديره"
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
+   },
+   "status": "not-automatable",
+   "reason": "a forbidden form — the book's own «فلا تقول / يمتنع»: the example is ungrammatical by the ruling it illustrates, so there is no reading for the engine to assert"
   },
   {
    "id": "A874.1",
@@ -11390,13 +11715,22 @@
    "probes": [
     {
      "s": "مررت بزيد الفقيه",
-     "any": "نعت|صفه",
+     "sv": "مَرَرْتُ بِزَيْدٍ الْفَقِيهِ",
+     "w": "الفقيه",
+     "re": "نعت",
      "ok": false,
-     "got": "مررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | بزيد: اسم. | الفقيه: اسم، مضاف اليه."
+     "got": "اسم، مضاف اليه.",
+     "svok": true,
+     "svgot": "اسم، مجرور وعلامه جره الكسره المقدره علي الياء للثقل، نعت.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled; the cut stopped at the first naʿt — the probe names it on «الفقيه»"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A879.1",
@@ -11414,12 +11748,20 @@
     {
      "s": "مررت بزيد الكريم",
      "any": "نعت|صفه",
+     "sv": "مَرَرْتُ بِزَيْدٍ الْكَرِيمِ",
      "ok": false,
-     "got": "مررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | بزيد: اسم. | الكريم: اسم، مضاف اليه."
+     "got": "مررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | بزيد: اسم. | الكريم: اسم، مضاف اليه.",
+     "svok": true,
+     "svgot": "الْكَرِيمِ: اسم، مجرور وعلامه جره الكسره الظاهره، نعت.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A880.1",
@@ -11557,13 +11899,33 @@
    "probes": [
     {
      "s": "قوموا أنتم أنفسكم",
-     "any": "توكيد",
+     "sv": "قُومُوا أَنْتُمْ أَنْفُسُكُمْ",
+     "w": "أنفسكم",
+     "re": "توكيد",
      "ok": false,
-     "got": "قوموا: فعل امر، مبني علي حذف النون، والواو ضمير متصل مبني في محل رف | أنتم: ضمير منفصل، مبني علي السكون. | أنفسكم: اسم، والضمير مضاف اليه."
+     "got": "اسم، والضمير مضاف اليه.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره، توكيد معنوي ل«انتم»، وهو مضاف، والضمير مضاف اليه.",
+     "vowelled": true
+    },
+    {
+     "s": "قوموا أنتم أنفسكم",
+     "sv": "قُومُوا أَنْتُمْ أَنْفُسُكُمْ",
+     "w": "أنتم",
+     "re": "توكيد",
+     "ok": false,
+     "got": "ضمير منفصل، مبني علي السكون.",
+     "svok": true,
+     "svgot": "ضمير منفصل، مبني علي السكون، في محل رفع توكيد للضمير المتصل.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "أنتم «جواب الطلب»; أنفسكم silent"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A890.1",
@@ -11597,14 +11959,22 @@
    ],
    "probes": [
     {
-     "s": "إن زيدا إن زيدا قائم وفي الدار زيد",
+     "s": "إن زيدا إن زيدا قائم",
+     "sv": "إِنَّ زَيْدًا إِنَّ زَيْدًا قَائِمٌ",
      "any": "توكيد",
      "ok": false,
-     "got": "إن: حرف لا محل له من الاعراب. | زيدا: فعل امر، مبني علي حذف النون، اسم ان، والالف ضمير متصل مبني ف | إن: حرف لا محل له من الاعراب. | زيدا: فعل امر، مبني علي حذف النون، اسم ان، والالف ضمير متصل مبني ف "
+     "got": "إن: حرف لا محل له من الاعراب. | زيدا: فعل امر، مبني علي حذف النون، اسم ان، والالف ضمير متصل مبني ف | إن: حرف لا محل له من الاعراب. | زيدا: فعل امر، مبني علي حذف النون، اسم ان، والالف ضمير متصل مبني ف ",
+     "svok": true,
+     "svgot": "إِنَّ: حرف توكيد ونصب، تنصب الاسم وترفع الخبر، لا محل له من الاعراب.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the letter repeated with what it governs"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A892.1",
@@ -11645,13 +12015,20 @@
    "probes": [
     {
      "s": "ضربت أبا عبد الله زيدا",
-     "any": "معطوف|عطف",
-     "ok": false,
-     "got": "ضربت: فعل ماض، مبني علي الفتح، والتاء ضمير متصل مبني في محل رفع فا | أبا: فعل ماض، مبني علي الفتح المقدر علي الالف للتعذر، والظاهر انه | عبد: اسم، فاعل. | الله: اسم علم، والظاهر انه فاعل. | زيدا: اسم،"
+     "sv": "ضَرَبْتُ أَبَا عَبْدِ اللهِ زَيْدًا",
+     "w": "زيدا",
+     "re": "بدل|عطف بيان",
+     "ok": true,
+     "got": "اسم، وعلامته مقدره، بدل.",
+     "svok": true,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره، بدل."
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the book: «كل ما جاز أن يكون عطف بيان، جاز أن يكون بدلا» — بدل on زيدا is the book's own reading"
+   },
+   "status": "applied"
   },
   {
    "id": "A897.1",
@@ -11668,11 +12045,19 @@
    "probes": [
     {
      "s": "يا غلام يعمرا",
-     "any": "معطوف|عطف",
+     "sv": "يَا غُلَامُ يَعْمَرًا",
+     "w": "يعمرا",
+     "re": "عطف بيان",
      "ok": false,
-     "got": "يا: حرف نداء، لا محل له من الاعراب. | غلام: اسم، مبني علي ضم مقدر في محل نصب، منادي. | يعمرا: فعل مضارع، والفاعل ضمير مستتر جوازا تقديره «هو»."
+     "got": "فعل مضارع، والفاعل ضمير مستتر جوازا تقديره «هو».",
+     "svok": false,
+     "svgot": "اسم، منصوب وعلامه نصبه الفتحه الظاهره."
     }
    ],
+   "triage": {
+    "cls": "b",
+    "why": "يعمرا after a built vocative: «فيتعين أن يكون يعمرا عطف بيان»"
+   },
    "status": "open",
    "warn": true
   },
@@ -11691,11 +12076,19 @@
    "probes": [
     {
      "s": "أنا الضارب الرجل زيد",
-     "any": "معطوف|عطف",
+     "sv": "أَنَا الضَّارِبُ الرَّجُلِ زَيْدٍ",
+     "w": "زيد",
+     "re": "عطف بيان",
      "ok": false,
-     "got": "أنا: ضمير منفصل، مبني علي السكون، في محل رفع مبتدا، وخبره «الضارب | الضارب: اسم، خبر. | الرجل: اسم، نعت. | زيد: اسم، مبتدا، وخبره «الضارب» مقدم."
+     "got": "اسم، مبتدا، وخبره «الضارب» مقدم.",
+     "svok": false,
+     "svgot": "اسم، مجرور وعلامه جره الكسره الظاهره، وخبره «الضارب» مقدم."
     }
    ],
+   "triage": {
+    "cls": "b",
+    "why": "«فيتعين كون زيد عطف بيان»"
+   },
    "status": "open",
    "warn": true
   },
@@ -11782,12 +12175,20 @@
    ],
    "probes": [
     {
-     "s": "الذي يطير فيغضب زيد الذباب ولو قلت ويغضب",
-     "any": "معطوف|عطف",
+     "s": "الذي يطير فيغضب زيد الذباب",
+     "sv": "الَّذِي يَطِيرُ فَيَغْضَبُ زَيْدٌ الذُّبَابُ",
+     "w": "فيغضب",
+     "re": "معطوف",
      "ok": false,
-     "got": "الذي: اسم موصول، مبني علي السكون، وجمله «يطير فيغضب زيد الذباب ولو | يطير: فعل مضارع، والفاعل ضمير مستتر جوازا تقديره «هو». | فيغضب: فعل مضارع، ونائب فاعله «الذباب». | زيد: اسم، مفعول به. | الذباب: اس"
+     "got": "فعل مضارع، ونائب فاعله «الذباب».",
+     "svok": false,
+     "svgot": "فعل مضارع، مرفوع وعلامه رفعه الضمه الظاهره، وفاعله «زيد»."
     }
    ],
+   "triage": {
+    "cls": "b",
+    "why": "the cut carried «ولو قلت ويغضب»; the fāʾ joins a clause with no return pronoun"
+   },
    "status": "open",
    "warn": true
   },
@@ -11956,11 +12357,19 @@
    "probes": [
     {
      "s": "من ذا أسعيد",
-     "any": "بدل",
+     "sv": "مَنْ ذَا أَسَعِيدٌ",
+     "w": "أسعيد",
+     "re": "بدل",
      "ok": false,
-     "got": "من: حرف جر، لا محل له من الاعراب. | ذا: اسم، مبني لا يتغير اخره. | أسعيد: اسم، مبتدا."
+     "got": "اسم، مبتدا.",
+     "svok": false,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه الظاهره."
     }
    ],
+   "triage": {
+    "cls": "b",
+    "why": "the badal of an interrogative takes the hamza; ذا read as ذو"
+   },
    "status": "open",
    "warn": true
   },
@@ -11978,14 +12387,23 @@
    ],
    "probes": [
     {
-     "s": "أزيد أقبل وإن كان مندوبا",
-     "any": "منادي|نداء",
+     "s": "أزيد أقبل",
+     "sv": "أَزَيْدُ أَقْبِلْ",
+     "w": "أزيد",
+     "re": "منادي",
      "ok": false,
-     "got": "أزيد: فعل مضارع، والفاعل ضمير مستتر وجوبا تقديره «انا». | أقبل: فعل مضارع، والفاعل ضمير مستتر وجوبا تقديره «انا». | وإن: حرف لا محل له من الاعراب. | كان: فعل ماض ناقص، مبني علي الفتح، واسمها ضمير مستت"
+     "got": "فعل مضارع، والفاعل ضمير مستتر وجوبا تقديره «انا».",
+     "svok": true,
+     "svgot": "الهمزه حرف نداء للقريب، و«زيد» منادي مبني علي الضم في محل نصب.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the hamza of the near vocative"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A929.1",
@@ -12373,13 +12791,22 @@
    "probes": [
     {
      "s": "لك وله",
-     "any": "مستغاث|منادي|نداء",
+     "sv": "لَكَ وَلَهُ",
+     "w": "لك",
+     "re": "حرف جر|جار",
      "ok": false,
-     "got": "لك: حرف لا محل له من الاعراب. | وله: حرف لا محل له من الاعراب."
+     "got": "حرف لا محل له من الاعراب.",
+     "svok": true,
+     "svgot": "اللام حرف جر، و«ك» ضمير متصل مبني علي الفتح في محل جر باللام.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the lām with a pronoun read as a bare particle (the probe asks for the jarr the book speaks of)"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A952.1",
@@ -12445,14 +12872,23 @@
    ],
    "probes": [
     {
-     "s": "وازيدا لا تبعد ويحذف ما قبلها إن كان",
-     "any": "مندوب|ندبه|منادي",
+     "s": "وازيدا لا تبعد",
+     "sv": "وَازَيْدَا لَا تَبْعَدْ",
+     "w": "وازيدا",
+     "re": "مندوب",
      "ok": false,
-     "got": "وازيدا: اسم، وعلامته مقدره، مبتدا. | لا: حرف نفي، لا محل له من الاعراب. | تبعد: فعل مضارع، والفاعل ضمير مستتر وجوبا تقديره «انت»، والجمله في | ويحذف: فعل مضارع، والفاعل ضمير مستتر جوازا تقديره «هو». |"
+     "got": "اسم، وعلامته مقدره، مبتدا.",
+     "svok": true,
+     "svgot": "«وا» حرف نداء وندبه، و«زيد» منادي مندوب مبني علي الضم المقدر علي اخره منع من ظهوره الفتحه المناسبه للالف، في محل نصب، والالف للندبه.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the cut carried «ويحذف ما قبلها إن كان»; the lamented noun"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A955.1",
@@ -12468,14 +12904,23 @@
    ],
    "probes": [
     {
-     "s": "واغلام أحمداه وإن كان",
-     "any": "مندوب|ندبه|منادي",
+     "s": "واغلام أحمداه",
+     "sv": "وَاغُلَامَ أَحْمَدَاهْ",
+     "w": "واغلام",
+     "re": "مندوب",
      "ok": false,
-     "got": "واغلام: اسم، مبتدا، والجمله الفعليه «احمداه وان كان» في محل رفع خبره | أحمداه: فعل ماض، مبني علي الفتح، وفيه ضمير هو المفعول به، والالف ضمي | وإن: حرف لا محل له من الاعراب. | كان: فعل ماض ناقص، مبني ع"
+     "got": "اسم، مبتدا، والجمله الفعليه «احمداه» في محل رفع خبره، او نعت له والخبر بعدها.",
+     "svok": true,
+     "svgot": "«وا» حرف نداء وندبه، و«غلام» منادي مندوب منصوب وعلامه نصبه الفتحه الظاهره، وهو مضاف.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "the cut carried «وإن كان»; the lamented noun"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A959.1",
@@ -12556,16 +13001,12 @@
    "topics": [
     "nida"
    ],
-   "probes": [
-    {
-     "s": "عثمان ومنصور ومسكين",
-     "any": "مرخم|ترخيم|منادي",
-     "ok": false,
-     "got": "عثمان: اسم، مبتدا. | ومنصور: اسم، معطوف. | ومسكين: اسم، معطوف."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "the clipped vocative («يا عثمَ، يا منصُ، يا مسكِ»): that a letter was dropped is not in the letters — «يا مسكِ» is spelt as «يا قومِ» (annexed to the dropped yāʾ)"
+   },
+   "status": "not-automatable",
+   "reason": "the clipped vocative («يا عثمَ، يا منصُ، يا مسكِ»): that a letter was dropped is not in the letters — «يا مسكِ» is spelt as «يا قومِ» (annexed to the dropped yāʾ)"
   },
   {
    "id": "A962.1",
@@ -12683,16 +13124,12 @@
    "topics": [
     "maful-bih"
    ],
-   "probes": [
-    {
-     "s": "ماز رأسك والسيف",
-     "any": "تحذير|اغراء|لفعل محذوف",
-     "ok": false,
-     "got": "ماز: اسم، مبتدا، وهو مضاف. | رأسك: اسم، والضمير مضاف اليه. | والسيف: اسم، معطوف."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "«ماز رأسك والسيف»: «مازِ» is the vocative «مازنُ» clipped — not in the letters (the taḥdhīr nouns after it are read)"
+   },
+   "status": "not-automatable",
+   "reason": "«ماز رأسك والسيف»: «مازِ» is the vocative «مازنُ» clipped — not in the letters (the taḥdhīr nouns after it are read)"
   },
   {
    "id": "A973.1",
@@ -12725,12 +13162,20 @@
     {
      "s": "عليك زيدا",
      "any": "اسم فعل",
+     "sv": "عَلَيْكَ زَيْدًا",
      "ok": false,
-     "got": "عليك: حرف لا محل له من الاعراب. | زيدا: اسم، وعلامته مقدره، مبتدا."
+     "got": "عليك: حرف لا محل له من الاعراب. | زيدا: اسم، وعلامته مقدره، مبتدا.",
+     "svok": true,
+     "svgot": "عَلَيْكَ: اسم فعل امر بمعني «الزم» مبني علي الفتح، لا محل له من الاعراب، والكاف حرف خطاب، والفاعل ضمير مستتر وجوبا تقديره «انت».",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A974.1",
@@ -12783,16 +13228,12 @@
    "topics": [
     "asma-afal"
    ],
-   "probes": [
-    {
-     "s": "هلا لزجر الخيل وعدس لزجر البغل",
-     "any": "اسم فعل",
-     "ok": false,
-     "got": "هلا: حرف لا محل له من الاعراب. | لزجر: اسم، وهو مضاف. | الخيل: اسم، مضاف اليه. | وعدس: اسم، مبتدا، وهو مضاف. | لزجر: اسم، وهو مضاف. | البغل: اسم، مضاف اليه."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a sound-word cited («هلا» for the horse): in the letters it is the particle «هلّا» — a homograph the letters do not decide"
+   },
+   "status": "not-automatable",
+   "reason": "a sound-word cited («هلا» for the horse): in the letters it is the particle «هلّا» — a homograph the letters do not decide"
   },
   {
    "id": "A979.1",
@@ -13085,14 +13526,23 @@
    ],
    "probes": [
     {
-     "s": "سكران وعطشان وغضبان",
-     "any": "ممنوع من الصرف|لا ينصرف|نيابه عن الكسره",
+     "s": "مررت بسكران",
+     "sv": "مَرَرْتُ بِسَكْرَانَ",
+     "w": "بسكران",
+     "re": "ممنوع من الصرف|نيابه عن الكسره",
      "ok": false,
-     "got": "سكران: اسم، مبتدا. | وعطشان: اسم، معطوف. | وغضبان: اسم، معطوف."
+     "got": "اسم.",
+     "svok": true,
+     "svgot": "اسم، مجرور وعلامه جره الفتحه نيابه عن الكسره لانه ممنوع من الصرف.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "c",
+    "why": "the cut is a list of words; the sentence's own example of the diptote is «ومررت بسكران»"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A993.2",
@@ -13139,13 +13589,22 @@
    "probes": [
     {
      "s": "هؤلاء جوار وغواش ومررت بجوار",
-     "any": "ممنوع من الصرف|لا ينصرف|نيابه عن الكسره",
+     "sv": "هَؤُلَاءِ جَوَارٍ وَغَوَاشٍ وَمَرَرْتُ بِجَوَارٍ",
+     "w": "جوار",
+     "re": "مرفوع.*مقدره",
      "ok": false,
-     "got": "هؤلاء: اسم اشاره، مبني علي السكون، في محل رفع مبتدا، وخبره «جوار»،  | جوار: اسم، خبر. | وغواش: اسم. | ومررت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | بجوار: اسم."
+     "got": "اسم، خبر.",
+     "svok": true,
+     "svgot": "اسم، مرفوع وعلامه رفعه الضمه المقدره علي الياء المحذوفه، والتنوين تنوين عوض عن الياء المحذوفه.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "b",
+    "why": "جوارٍ read «مجرور بالكسرة» in rafʿ; the book: «فتنونه وتقدر رفعه أو جره ويكون التنوين عوضا عن الياء المحذوفة»"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A1001.1",
@@ -13163,12 +13622,20 @@
     {
      "s": "هذه زينب ورأيت زينب ومررت بزينب",
      "any": "ممنوع من الصرف|لا ينصرف|نيابه عن الكسره",
+     "sv": "هَذِهِ زَيْنَبُ وَرَأَيْتُ زَيْنَبَ وَمَرَرْتُ بِزَيْنَبَ",
      "ok": false,
-     "got": "هذه: اسم اشاره، مبني علي السكون، والهاء للتنبيه. | زينب: اسم، مبتدا. | ورأيت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | زينب: اسم، مفعول به. | ومررت: فعل ماض، مبني علي السكون لاتص"
+     "got": "هذه: اسم اشاره، مبني علي السكون، والهاء للتنبيه. | زينب: اسم، مبتدا. | ورأيت: فعل ماض، مبني علي السكون لاتصاله بضمير رفع متحرك، والتاء ضمي | زينب: اسم، مفعول به. | ومررت: فعل ماض، مبني علي السكون لاتص",
+     "svok": true,
+     "svgot": "بِزَيْنَبَ: اسم، مجرور وعلامه جره الفتحه نيابه عن الكسره لانه ممنوع من الصرف.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A1002.1",
@@ -13246,16 +13713,12 @@
    "topics": [
     "mamnu"
    ],
-   "probes": [
-    {
-     "s": "قاض علم امرأة",
-     "any": "ممنوع من الصرف|لا ينصرف|نيابه عن الكسره",
-     "ok": false,
-     "got": "قاض: اسم، مبتدا، والجمله الفعليه «علم امراه» في محل رفع خبره، او  | علم: فعل ماض، مبني علي الفتح، والفاعل ضمير مستتر جوازا تقديره «هو | امرأة: اسم، والظاهر انه فاعل."
-    }
-   ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "d",
+    "why": "a hypothetical woman's name («قاض علم امرأة»): that the word is a name is not in the letters"
+   },
+   "status": "not-automatable",
+   "reason": "a hypothetical woman's name («قاض علم امرأة»): that the word is a name is not in the letters"
   },
   {
    "id": "A1012.1",
@@ -14279,16 +14742,12 @@
    "topics": [
     "adad"
    ],
-   "probes": [
-    {
-     "s": "ضارب زيد",
-     "any": "تمييز|عدد",
-     "ok": false,
-     "got": "ضارب: اسم، مبتدا. | زيد: اسم، مضاف اليه."
-    }
-   ],
+   "triage": {
+    "cls": "d",
+    "why": "the ruling is on the ordinal's form («ثالث اثنين»); its iʿrāb is plain iḍāfa — no construction the iʿrāb line names"
+   },
    "status": "open",
-   "warn": true
+   "reason": "the ruling is on the ordinal's form («ثالث اثنين»); its iʿrāb is plain iḍāfa — no construction the iʿrāb line names"
   },
   {
    "id": "A1087.1",
@@ -14325,16 +14784,12 @@
    "topics": [
     "adad"
    ],
-   "probes": [
-    {
-     "s": "حادي وتسعون وحادية وتسعون",
-     "any": "تمييز|عدد",
-     "ok": false,
-     "got": "حادي: اسم، مبتدا. | وتسعون: اسم، معطوف. | وحادية: اسم، والظاهر انه مفعول به. | وتسعون: اسم، معطوف."
-    }
-   ],
+   "triage": {
+    "cls": "d",
+    "why": "the ruling is on the ordinal's form («حادي وتسعون»), a fragment of numerals — no construction the iʿrāb line names"
+   },
    "status": "open",
-   "warn": true
+   "reason": "the ruling is on the ordinal's form («حادي وتسعون»), a fragment of numerals — no construction the iʿrāb line names"
   },
   {
    "id": "A1089.1",
@@ -14353,12 +14808,20 @@
     {
      "s": "كم رجلا عندك",
      "any": "كم|تمييز",
+     "sv": "كَمْ رَجُلًا عِنْدَكَ",
      "ok": false,
-     "got": "كم: اسم استفهام، مبني لا يتغير اخره. | رجلا: اسم، وعلامته مقدره، مبتدا، وهو مضاف، وخبره شبه الجمله «عندك» | عندك: اسم، مضاف اليه."
+     "got": "كم: اسم استفهام، مبني لا يتغير اخره. | رجلا: اسم، وعلامته مقدره، مبتدا، وهو مضاف، وخبره شبه الجمله «عندك» | عندك: اسم، مضاف اليه.",
+     "svok": true,
+     "svgot": "رَجُلًا: اسم، منصوب وعلامه نصبه الفتحه الظاهره، تمييز «كم» الاستفهاميه، وخبره شبه الجمله «عندك» متعلق بمحذوف.",
+     "vowelled": true
     }
    ],
-   "status": "open",
-   "warn": true
+   "triage": {
+    "cls": "a",
+    "why": "vowelled as the book's commentary reads it, the engine names the ruling"
+   },
+   "status": "applied",
+   "vowelled": true
   },
   {
    "id": "A1090.1",

@@ -56,21 +56,22 @@ def main():
                                                                 c["shawahid_numbered"], c["examples"]), "",
           "## The ledger by bāb", "",
           "Statuses: **joined** = the same rule in Shudhūr / Qawāʿid / Iẓhār / Kāfiya (inherits its status); **applied** = the book's own "
-          "example read right by the engines in the page (+ offered: beside another reading); **⚠** = the engine misreads the book's "
+          "example read right by the engines in the page (+ offered: beside another reading; + vowelled: read right once vowelled — v355); **⚠** = the engine misreads the book's "
           "example; **open** = no construction the iʿrāb line names, a single word cited, or a ṣarf bāb; **n-a** = not automatable "
           "(usage / rarity, a school's view, a dialect, a matter of meaning).", "",
-          "| bāb | verses | entries | joined | applied (offered) | ⚠ | open | n-a |", "|---|---:|---:|---:|---:|---:|---:|---:|"]
+          "| bāb | verses | entries | joined | applied (offered, vowelled) | ⚠ | open | n-a |", "|---|---:|---:|---:|---:|---:|---:|---:|"]
     vb = Counter({b["bab"]: len(b["verses"]) for b in toc["babs"]})
     T = Counter()
     for b in toc["babs"]:
         es = [e for e in E if e["bab"] == b["bab"]]
         k = Counter("joined" if "joined" in e else "warn" if e.get("warn") else e["status"] for e in es)
         off = sum(1 for e in es if e.get("offered") and "joined" not in e)
-        row = dict(v=vb[b["bab"]], n=len(es), j=k["joined"], a=k["applied"], o=off, w=k["warn"], op=k["open"], na=k["not-automatable"])
+        vw = sum(1 for e in es if e.get("vowelled") and "joined" not in e)
+        row = dict(v=vb[b["bab"]], n=len(es), j=k["joined"], a=k["applied"], o=off, vw=vw, w=k["warn"], op=k["open"], na=k["not-automatable"])
         for x, y in row.items():
             T[x] += y
-        L.append("| %s | %d | %d | %d | %d (%d) | %d | %d | %d |" % (b["bab"], row["v"], row["n"], row["j"], row["a"], row["o"], row["w"], row["op"], row["na"]))
-    L.append("| **all** | %d | %d | %d | %d (%d) | %d | %d | %d |" % (T["v"], T["n"], T["j"], T["a"], T["o"], T["w"], T["op"], T["na"]))
+        L.append("| %s | %d | %d | %d | %d (%d, %d) | %d | %d | %d |" % (b["bab"], row["v"], row["n"], row["j"], row["a"], row["o"], row["vw"], row["w"], row["op"], row["na"]))
+    L.append("| **all** | %d | %d | %d | %d (%d, %d) | %d | %d | %d |" % (T["v"], T["n"], T["j"], T["a"], T["o"], T["vw"], T["w"], T["op"], T["na"]))
     jb = Counter(e["joined"]["book"] for e in E if "joined" in e)
     L += ["", "Joined to: " + ", ".join("%s %d" % kv for kv in jb.most_common()) + ". Joins need the same topic and the same example "
           "(or ≥ 3 shared content words): Ibn ʿAqīl restates the matns in his own words and examples, so most of his rule sentences stand as "
@@ -97,7 +98,19 @@ def main():
         for e in ws:
             p = [x for x in e["probes"] if not x["ok"]][0]
             want = ("«%s» on %s" % (p["re"], p["w"])) if p.get("w") else "«%s» on some word" % p["any"]
-            L.append("- %s (p. %s, Shamela %d) — «%s» — wants %s — engine: %s" % (e["id"], e["page"], e["shamela"], p["s"], want, p["got"][:160].replace("|", "/")))
+            L.append("- %s (p. %s, Shamela %d) — «%s» — wants %s — engine: %s" % (e["id"], e["page"], e["shamela"], p["s"], want, p["got"][:160].replace("|", "/"))
+                     + (" — vowelled «%s»: %s" % (p["sv"], p.get("svgot", "")[:160].replace("|", "/")) if p.get("sv") else "")
+                     + (" — triage %s: %s" % (e["triage"]["cls"], e["triage"]["why"]) if e.get("triage") else ""))
+        L.append("")
+    tri = [e for e in E if e.get("triage")]
+    if tri:   # (v355) the engine round's triage of the ⚠ rows (tools/ledger/aqil_overrides*.json): a artefact, b real gap, c probe / cut wrong, d not decidable
+        L += ["## The v355 triage of the ⚠ rows", "", "a = the print's artefact (read right once vowelled), b = a real gap (fixed or still ⚠), c = the probe's expectation or the cut was "
+              "wrong (replaced), d = not decidable from the letters / not an example (now not-automatable or open). Counts: " + ", ".join(
+              "%s %d" % kv for kv in sorted(Counter(e["triage"]["cls"] for e in tri).items())) + " — now: " + ", ".join(
+              "%s %d" % kv for kv in sorted(Counter(e["triage"]["cls"] + "→" + ("⚠" if e.get("warn") else e["status"] + ("-vowelled" if e.get("vowelled") else "")) for e in tri).items())), ""]
+        for e in tri:
+            if e["triage"]["cls"] in "cd":
+                L.append("- %s (%s) %s — %s" % (e["id"], e["bab"], e["triage"]["cls"], e["triage"]["why"]))
         L.append("")
     OUT.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("wrote", OUT, len(L), "lines; totals", dict(T))

@@ -31,7 +31,18 @@ from aqil_map import B, EDITOR, NAMED  # noqa: E402
 
 ROOT = A.ROOT
 OUT = ROOT / "content/rules/coverage_ibn_aqil.json"
+# (v355) the engine round's triage, row by row: tools/ledger/aqil_overrides*.json (one file per agent, merged here) —
+#   {"A561.1": {"cls": "a|b|c|d", "why": "…", "probes": [{s, sv?, w?, re? | any?}], "status"?, "reason"?}}.
+#   s stays the book's example AS PRINTED (verbatim in the sentence); sv is the same example vowelled — the vowels are OURS, for the
+#   test only, never shown to a learner (taken from the editor's iʿrāb where he gives one). A row whose printed probe fails and whose
+#   vowelled probe passes counts «applied-vowelled». cls c = the probe's expectation or the cut was wrong (the probe is replaced, the
+#   reason in `why`); cls d = not decidable from the letters / not an example (status + reason).
+OVR = {}
+for _f in sorted(HERE.glob("aqil_overrides*.json")):
+    OVR.update(json.loads(_f.read_text(encoding="utf-8")))
 CACHE = HERE / ".aqil-proof-cache.json"
+CACHE_SV = HERE / ".aqil-proof-cache-sv.json"   # (v355) the vowelled probes, proved in a page of their own: a page that has read the
+#   printed letters first answers the vowelled reading of the same letters differently (a state the engine keeps — named in v355-N2)
 LEDGERS = {"shudhur": "coverage_shudhur.json", "qawaid": "coverage_qawaid_al_irab.json", "izhar": "coverage_izhar.json",
            "kafiya": "coverage_kafiya.json"}
 
@@ -176,7 +187,7 @@ def main():
     prove = "--no-prove" not in sys.argv
     ents = cut_entries()
     ledgers = load_ledgers()
-    probes = []
+    probes, svprobes = [], []
     for e in ents:
         m = B[e["bab"]]
         e["topics"] = m["topics"]
@@ -206,16 +217,36 @@ def main():
             e["probes"] = [{"s": next((x for x in e["ex"] if w in x.split()), ex0), "w": w, "re": rg} for w, rg in nm[:3]]
         else:
             e["probes"] = [{"s": ex0, "any": m["role"]}]
+        o = OVR.get(e["id"])
+        if o:
+            e["triage"] = {"cls": o["cls"], "why": o.get("why", "")}
+            if o.get("status"):
+                e["status"], e["reason"] = o["status"], o["reason"]
+                e.pop("probes", None)
+                continue
+            if o.get("probes"):
+                e["probes"] = [dict(p) for p in o["probes"]]
+            elif o.get("sv"):
+                for p in e["probes"]:
+                    p["sv"] = o["sv"]
+            for p in e["probes"]:
+                assert p["s"] in e["ar"], (e["id"], p["s"])
         for p in e["probes"]:
             p["_k"] = len(probes)
-            probes.append({k: v for k, v in p.items() if k != "_k"})
+            probes.append({k: v for k, v in p.items() if k not in ("_k", "sv")})
+            if p.get("sv"):
+                p["_kv"] = len(svprobes)
+                svprobes.append(dict({k: v for k, v in p.items() if k not in ("_k", "_kv", "sv")}, s=p["sv"]))
     if prove:
         pin = HERE / ".aqil-probes.json"
         pin.write_text(json.dumps(probes, ensure_ascii=False), encoding="utf-8")
         subprocess.run(["node", str(HERE / "aqil_prove.js"), str(pin), str(CACHE)], check=True)
+        pin.write_text(json.dumps(svprobes, ensure_ascii=False), encoding="utf-8")
+        subprocess.run(["node", str(HERE / "aqil_prove.js"), str(pin), str(CACHE_SV)], check=True)
         pin.unlink()
     res = json.loads(CACHE.read_text(encoding="utf-8"))
-    assert len(res) == len(probes), "proof cache is stale: run without --no-prove"
+    ress = json.loads(CACHE_SV.read_text(encoding="utf-8")) if svprobes else []
+    assert len(res) == len(probes) and len(ress) == len(svprobes), "proof cache is stale: run without --no-prove"
     for e in ents:
         if "probes" not in e:
             continue
@@ -224,16 +255,26 @@ def main():
             p["ok"], p["got"] = r["ok"], r["got"][:200]
             if r.get("offered"):
                 p["offered"] = True
-        if all(p["ok"] for p in e["probes"]):
+            if "_kv" in p:
+                rv = ress[p.pop("_kv")]
+                p["svok"], p["svgot"] = rv["ok"], rv["got"][:200]
+                if not r["ok"] and rv["ok"]:
+                    p["vowelled"] = True
+                    p.pop("offered", None)
+                    if rv.get("offered"):
+                        p["offered"] = True
+        if all(p["ok"] or p.get("svok") for p in e["probes"]):
             e["status"] = "applied"
             if any(p.get("offered") for p in e["probes"]):
                 e["offered"] = True
+            if any(p.get("vowelled") for p in e["probes"]):
+                e["vowelled"] = True
         else:
             e["status"], e["warn"] = "open", True
     counts = Counter()
     by = defaultdict(Counter)
     for e in ents:
-        k = "joined" if "joined" in e else ("warn" if e.get("warn") else e["status"] + ("-offered" if e.get("offered") else ""))
+        k = "joined" if "joined" in e else ("warn" if e.get("warn") else e["status"] + ("-offered" if e.get("offered") else "") + ("-vowelled" if e.get("vowelled") else ""))
         counts[k] += 1
         counts["status:" + e["status"]] += 1
         by[e["bab"]][k] += 1
