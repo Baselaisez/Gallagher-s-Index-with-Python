@@ -18769,7 +18769,8 @@ if (!CHROME) {
     // (v348-A) miss 58 → 59, mabni 5 → 6, measured the v333 way: the shelf without the proverbs' shelf (mathal-*) passes at the old ceilings; the one new is «بِخُفَّيْ» (mathal-bi-khuffay-hunayn s1: the dual's yāʾ belongs to the noun behind the fused بِ — the engine's), judged in research/story-audit-triage-delta-amthal.json
     // (v352-K) miss 59 → 60: «الْيَحْيَوْنَ» (khasais-al-irab s8), the sound plural of the maqṣūr name in raf' by the waw, which the engine reads as a damma — judged E; the shelf without the readings passes at 59
     // (v359-S) miss 60 → 63, measured the v333 way: the shelf without al-Nadwī's Sīra passes at 60; the three new are the engine's, each judged E in research/story-audit-triage-delta-sira.json — «الْإِثْنَيْنِ» (the day-name joined to the dual, jarr by the yāʾ, read as a singular), «لِلِانْتِبَاهِ» (a singular masdar read as a dual), «أَبِي الصَّبِيِّ» (read as «my father»)
-    if (r.hit < 34327 || r.n - r.hit > 63 || r.mabni > 6) throw new Error('the audit: ' + J({ hit: r.hit, miss: r.n - r.hit, mabni: r.mabni }));
+    // (v359-S, instalment 2) miss 63 → 64: «حِينَذَاكَ» (107:s3:4 — حِينَ annexed to ذَاكَ, read as a dual), judged E in the same delta file
+    if (r.hit < 34327 || r.n - r.hit > 64 || r.mabni > 6) throw new Error('the audit: ' + J({ hit: r.hit, miss: r.n - r.hit, mabni: r.mabni }));
   });
   await check('v345 — the naḥw ledgers\' own examples the notes carried and the engines misread (Shudhūr R13, R17, R21, R23, R72–R81, R85, R88, R97, R106, R126, R137–R150, R154, R161, R173, R205, R210; Qawāʿid m.98, m.415, m.439–453; Iẓhār l. 26, 33, 110, 113, 122, 131; Kāfiya 4:s5, 16:s14, 28:s10 and the digest) — and the singles: AdabEngine naibNotFail, the manṣūbāt naʿt veto', async () => {
     const r = await page.evaluate(() => { const H = x => String(x || '').normalize('NFC').replace(/[ً-ْٰـ]/g, ''); const L = (s, w) => { const rows = SentenceAnalyzer.analyze(s); const i = typeof w === 'number' ? w : rows.findIndex(x => H(x.w) === w); return i < 0 ? '(no ' + w + ')' : H((Murib.line(rows, i) || {}).ar); };
@@ -18817,7 +18818,7 @@ if (!CHROME) {
     const [a, b, c2, d] = r.read; if (!(a && a.verbBefore) || !(b && b.md) || !(c2 && c2.alt && c2.alt.md && c2.want === 'رَسُولٌ') || !(d && d.sameAs === 'بِسِقْطِ')) bad.push('the reader: ' + JSON.stringify(r.read));
     // measured 2026-11-27 (v345-T): agree 643 → 714, contra 307 → 228, exact 256 → 200 — floors and ceilings
     // (v348-A) contra 228 → 232, exact 200 → 204, measured the v333 way: the shelf without the proverbs' shelf passes at the old ceilings; the four new (لِئَلَّا on كَعَمَ, «وَبَيْنَ يَدَيْ عَمْرٍو» and «وَمَعَهُ» fronted khabars of a ḥāl clause, كُلَّمَا on its answer) are the engine's, judged in research/story-audit-triage-delta-amthal.json
-    /* (v353-I merged) label353 clears four: 232 → 228, 204 → 200; agreeing 735 */ /* (v359-S) 228 → 233, 200 → 205, measured the v333 way (the shelf without al-Nadwī's Sīra: 228 / 200 / agree 737): five ẓurūf of the Sīra the TaalluqEngine hangs on the verb of the parenthetical prayer «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» (يَوْمَ، فَلَمَّا، مَعَ), on the month-name «رَبِيعٍ» (عَامَ) and «بَعْدُ» of «فِيمَا بَعْدُ» on يَقُولُ — each judged E in research/story-audit-triage-delta-sira.json */ const A = r.audit; if (A.agree < 735 || A.contra > 233 || A.exact > 205 || A.objects) bad.push('audit ' + JSON.stringify({ agree: A.agree, contra: A.contra, exact: A.exact, objects: A.objects }));
+    /* (v353-I merged) label353 clears four: 232 → 228, 204 → 200; agreeing 735 */ /* (v359-S) 228 → 233, 200 → 205, measured the v333 way (the shelf without al-Nadwī's Sīra: 228 / 200 / agree 737): five ẓurūf of the Sīra the TaalluqEngine hangs on the verb of the parenthetical prayer «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» (يَوْمَ، فَلَمَّا، مَعَ), on the month-name «رَبِيعٍ» (عَامَ) and «بَعْدُ» of «فِيمَا بَعْدُ» on يَقُولُ — each judged E in research/story-audit-triage-delta-sira.json */ const A = r.audit; /* (v359-S, instalment 2) 233 → 242, 205 → 214: nine more Sīra ẓurūf the engine hangs on the parenthetical prayer (لَمَّا ×4 on صَلَّى / يُقَالُ, بَعْدَ / مَعَ ×3 on وَسَلَّمَ) or across a clause (مَعَهُ on الْحَنُونِ, بَيْنَهُمَا on تَجْرِيبِيًّا), and مَعَ تَوَفُّرِ (both readings, C) — delta-sira */ if (A.agree < 735 || A.contra > 242 || A.exact > 214 || A.objects) bad.push('audit ' + JSON.stringify({ agree: A.agree, contra: A.contra, exact: A.exact, objects: A.objects }));
     for (const k of ['aqaid-ahl-al-sunna:4:s1:6', 'ayn-jalut:5:s1:7', 'muallaqat-amr-ibn-kulthum:11:s6:3', 'al-bukhari-fi-baghdad:4:s1:12', 'muallaqat-zuhayr:10:s6:9', 'qisas-al-nabiyyin-1:9:s10:2', 'habil-wa-qabil:1:s1:2'])   // the work order's places, no longer contradicted
       if (A.keys.includes(k)) bad.push('still contradicted: ' + k);
     if (bad.length) throw new Error(bad.join(' · '));
@@ -18857,7 +18858,8 @@ if (!CHROME) {
     if (r.misses.some(k => /^qisas-al-nabiyyin-1:3:s33:|^al-kafiya:17:s2:|^al-kafiya:24:s9:/.test(k))) bad.push('still missed: ' + r.misses.join(' '));
     // measured 2026-11-27 (v345-T): agree 1,164 → 1,179, contradictions 27 → 15; ibtida 179 → 186, atf 65 → 70, istinaf 19 (one moved to atf)
     // (v348-A) miss 15 → 17, measured the v333 way: the shelf without the proverbs' shelf passes at 15; the two new — «وَأَنَّ ابْنَ عَمِّهِ» conjoined to an earlier أَنَّ (mathal-al-maru-yajizu s7) and «وَإِنَّ امْرَأَةً» opening a sentence (mathal-asmin-kalbaka-yakulka s5) — are the engine's, judged in research/story-audit-triage-delta-amthal.json
-    if (r.hit < 1179 || r.miss > 17 || (r.seat.ibtida || {}).hit < 186 || (r.seat.atf || {}).hit < 70) bad.push(JSON.stringify({ hit: r.hit, miss: r.miss, ibtida: r.seat.ibtida, atf: r.seat.atf }));
+    // (v359-S) miss 17 → 20, measured the v333 way: three أَنَّ of the Sīra the engine wants with kasr — 110:s2:9 and 111:s3:6 (doers of جَاءَ / وَقَعَ, fatḥ, E) and 111:s3:10 «وأنّه» (the print's hamza above; the sense wants «وَإِنَّهُ» — undecided, for the hoca)
+    if (r.hit < 1179 || r.miss > 20 || (r.seat.ibtida || {}).hit < 186 || (r.seat.atf || {}).hit < 70) bad.push(JSON.stringify({ hit: r.hit, miss: r.miss, ibtida: r.seat.ibtida, atf: r.seat.atf }));
     if (bad.length) throw new Error(bad.join(' · '));
   });
 
@@ -18867,7 +18869,8 @@ if (!CHROME) {
     const bad = [];
     if (r.dual !== false || r.annexed !== true) bad.push('definite(): ' + JSON.stringify({ dual: r.dual, annexed: r.annexed }));
     // measured 2026-11-27 (v345-T): kept 1,064 → 1,063 (the one fm3 «kept» was the contradicted clause itself), violated 2 → 0
-    if (r.vio > 0 || r.kept < 1063) bad.push(JSON.stringify(r));
+    // (v359-S) one violation, pinned by key: al-sira-al-nabawiyya-nadwi:109:s4 mk3 — «فَإِنَّهُ كَائِنٌ لِابْنِ أَخِيكَ هٰذَا شَأْنٌ عَظِيمٌ», a single-word predicate before a described nakira (Ibn ʿAqīl l. 2062: «أن توصف»), judged C
+    if (r.vio > 1 || (r.vio === 1 && JSON.stringify(r.viol) !== JSON.stringify(['al-sira-al-nabawiyya-nadwi:109:s4 mk3'])) || r.kept < 1063) bad.push(JSON.stringify(r));
     if (bad.length) throw new Error(bad.join(' · '));
   });
   // <<< v345-T
@@ -18907,7 +18910,9 @@ if (!CHROME) {
        place-name given tanwin) and «بَنُو» (the doer of اشْتَهَرَ read as an object) — judged E in research/story-audit-triage-delta-sira.json —, «مِمَّنْ»
        undecided, and ONE older line the new corpus moved: talkhis-al-miftah 14:s4:1 «مَالِكِ يَوْمِ الدِّينِ» — the engine now offers the ẓarf «يَوْمَ»
        (the Sīra's «يَوْمَ الْإِثْنَيْنِ»); the authored muḍāf ilayh stands (not edited) */
-    if (C.hit < 87169 || contra > 324) throw new Error('corpus (2026-11-27: agree 86,893, contra 663 → agree 87,169, contra 303): ' + J({ hit: C.hit, contra, und: C.und }));
+    /* (v359-S, instalment 2) contra 324 → 327: the case layer's «بْنِ» / «بْنَ» (107:s1:13, 107:s4:25 — the adjective of a badal follows the badal's own case,
+       not the nearest word) and «بِعَمَّهُ» (109:s1:24, read as a verb) — judged E in the delta file */
+    if (C.hit < 87169 || contra > 327) throw new Error('corpus (2026-11-27: agree 86,893, contra 663 → agree 87,169, contra 303): ' + J({ hit: C.hit, contra, und: C.und }));
     const FL = { maful: 3534, mudafIlayh: 6918, nat: 2522, atf: 3932, badal: 519, tawkid: 80, fail: 3565, mubtada: 3382, khabar: 3071, jarr: 9370, raf: 5170, nasbVerb: 831, jazm: 611, shart: 165, mazi: 9231, amr: 718, hal: 736, zarf: 1612, kanaIsm: 968, naib: 560, jarrPron: 2006, mabni: 23619 };
     const low = Object.entries(FL).filter(([k, v]) => (C.hitBy[k] || 0) < v); if (low.length) throw new Error('an agreeing rule fell below its 2026-11-27 count: ' + J(low.map(([k, v]) => [k, C.hitBy[k] || 0, v])));
     const rd = f => JSON.parse(fsx.readFileSync(pathx.join(__dirname, '..', 'research', f), 'utf8'));
@@ -20370,7 +20375,8 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (!(r.a === 'mahdhuf' && r.b === 'mahdhuf' && r.c === 'found' && r.cAt === 0)) throw new Error('the lists and the control: ' + JSON.stringify(r));
     /* (merge over v348-A, the proverbs' shelf) the wave measured 224 / 196 / 718 on the shelf WITHOUT the proverbs, whose four judged taʿalluq records (v348-A: 228 → 232, 200 → 204) come on top: 228 / 200 on the merged shelf, agreeing 735 with its 1,252 new tokens — the same −4 this wave earned */
     // (v359-S) 228 → 233, 200 → 205: the five Sīra ẓurūf judged E in research/story-audit-triage-delta-sira.json (the shelf without the Sīra: 228 / 200)
-    if (!(r.contra <= 233 && r.exact <= 205 && r.agree >= 735 && !r.left.length)) throw new Error('the audit\'s ceilings: ' + JSON.stringify(r));
+    // (v359-S, instalment 2) 233 → 242, 205 → 214: nine more Sīra ẓurūf, judged in the delta file
+    if (!(r.contra <= 242 && r.exact <= 214 && r.agree >= 735 && !r.left.length)) throw new Error('the audit\'s ceilings: ' + JSON.stringify(r));
   });
   await check('v353-I — the «Anlamı / Meaning» card leads a unit (a jarr letter, a nāsikh, a maʿmūl) at 390 px in tr and en: the translation\'s Turkish (EN: our line marked pending review, the Turkish under it), its source line; the suʾāl–cevap with holes collapsed; the book\'s example marked; no overflow; text ≥ 4.5 contrast in three themes', async () => {
     await page.setViewportSize({ width: 390, height: 844 });
@@ -20647,8 +20653,11 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     // keep their place. Chapters 1–100 are reserved for al-Nadwī's preface and «الفصل الأول»; the Prophet's life begins at 101.
     const LEDGER = [[101, 'من الولادة الكريمة إلى البعثة العظيمة', 'كانلعبدالمطلب'], [102, 'ولادته الكريمة ونسبه الزكي', 'وولدرسولالله'],
       [103, 'ولادته الكريمة ونسبه الزكي', 'وقدرويعددمن'], [104, 'ولادته الكريمة ونسبه الزكي', 'ارضعتهثويبه'], [105, 'ولادته الكريمة ونسبه الزكي', 'وهكذافعلتحليمه'],
-      [106, 'ولادته الكريمة ونسبه الزكي', 'ولمتزلتتعرف']];
-    const COUNTS = [6, 36, 520], LEVEL = 5;
+      [106, 'ولادته الكريمة ونسبه الزكي', 'ولمتزلتتعرف'],
+      // (v359-S, instalment 2) appended:
+      [107, 'وفاة عبد الله وآمنة وعبد المطلب وكفالة أبي طالب', 'وقدتحققانابا'], [108, 'وفاة عبد الله وآمنة وعبد المطلب وكفالة أبي طالب', 'وعادتبهام'],
+      [109, 'قصة الراهب بحيرى', 'يقالانابا'], [110, 'قصة الراهب بحيرى', 'وقدجاءتهذه'], [111, 'قصة الراهب بحيرى', 'وممايقدحفي'], [112, 'قصة الراهب بحيرى', 'ونختمهذا']];
+    const COUNTS = [12, 71, 1127], LEVEL = 5;
     const PERMISSION = '«I do have the permission of al-Nadwī. And al-Nadwī bestowed all his Arabic teaching materials of this kind on the whole Islamic world; his family holds no copyright.»';
     const raw = fs.readFileSync(path.join(ROOT, 'research/sources/al-sira-al-nabawiyya-nadwi-src.txt'), 'utf8').normalize('NFC');
     let matn = [], keep = false;   // al-Nadwī's matn only: the hashiya (the editor's notes) is never read

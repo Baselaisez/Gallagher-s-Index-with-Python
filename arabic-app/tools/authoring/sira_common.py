@@ -41,6 +41,12 @@ CHAPTER_IDS = [
     (104, "ولادته الكريمة ونسبه الزكي", 151),
     (105, "ولادته الكريمة ونسبه الزكي", 152),
     (106, "ولادته الكريمة ونسبه الزكي", 154),
+    (107, "وفاة عبد الله وآمنة وعبد المطلب وكفالة أبي طالب", 154),
+    (108, "وفاة عبد الله وآمنة وعبد المطلب وكفالة أبي طالب", 155),
+    (109, "قصة الراهب بحيرى", 156),
+    (110, "قصة الراهب بحيرى", 156),
+    (111, "قصة الراهب بحيرى", 157),
+    (112, "قصة الراهب بحيرى", 157),
 ]
 
 PERMISSION_EN = ("PERMISSION — the project owner's statement, in his words (2026-11-27): «I do have the permission of al-Nadwī. And "
@@ -235,3 +241,24 @@ def Q(toks, kind="hadith"):
     toks[0]["quoteBefore"] = "«"; toks[-1]["quoteAfter"] = "»"
     if kind in ("hadith", "quran"): toks[0].setdefault("grammar", []).insert(0, "al-iqtibas-wal-tadmin")
     return toks
+
+# ---- helpers shared by the chapter modules (from ch104/105, v359-S round 2) ------------------------------------------------
+J = lambda s: "، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ " + s
+D = {"raf": "مَرْفُوعٌ بِالضَّمَّةِ", "nasb": "مَنْصُوبٌ بِالْفَتْحَةِ", "jarr": "مَجْرُورٌ بِالْكَسْرَةِ"}
+CE = {"raf": "raf'", "nasb": "nasb", "jarr": "jarr"}; CT = {"raf": "merfû", "nasb": "mansûb", "jarr": "mecrûr"}
+def NA(full, lex, of, case, en, tr, p=None, g=()):
+    return T(full, lex, "noun", ["naat-sifa", *g], "نَعْتٌ لِـ«" + of + "» " + D[case] + ".", "An adjective of «" + en[0] + "», in " + CE[case] + ": «" + en[1] + "».", "«" + tr[0] + "»nin na'tı, " + CT[case] + ": «" + tr[1] + "».", p=p)
+def MI(full, lex, en, tr, p=None, g=(), note=("", "", "")):
+    return T(full, lex, "noun", ["idafa-definiteness", *g], "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ" + note[0] + ".", "The second term of the idafa, in jarr: «" + en + "»" + note[1] + ".", "Muzâfun ileyh, mecrûr: «" + tr + "»" + note[2] + ".", p=p)
+def P_(full, lex="fi", en="in", tr="-de"):
+    return T(full, lex, "prep", ["huruf-jarr"], "حَرْفُ جَرٍّ.", "A jarr letter: «" + en + "».", "Cer harfi: «" + tr + "».")
+def MJ(full, lex, by, hang, en, tr, p=None, g=(), mudaf=False, enc=None, extra=("", "", "")):
+    m = ("، مُضَافٌ", ", annexed", ", muzâf") if mudaf else ("", "", "")
+    if enc:
+        m = ("، مُضَافٌ، وَ" + PRON_AR.get(enc, enc) + " ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ" + extra[0], ", annexed to the pronoun" + extra[1], ", muzâf; zamir muzâfun ileyh" + extra[2])
+    return T(full, lex, "noun", ["huruf-jarr", *g], "مَجْرُورٌ بِـ«" + by + "» وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ" + m[0] + J(hang[0]) + ".", "In jarr after " + by + m[1] + " — the phrase hangs on " + hang[1] + ": «" + en + "».",
+             "«" + tr[1] + "» ile mecrûr" + m[2] + " — câr-mecrûr " + hang[2] + " müteallik: «" + tr[0] + "».", p=p, enc=enc)
+def JP(full, lex, enc, hang, who, en, tr, p=None):
+    """a jarr letter with an attached pronoun, hanging on a verb"""
+    return T(full, lex, "prep", ["huruf-jarr", "al-bariz-al-muttasil"], "حَرْفُ جَرٍّ، وَ" + PRON_AR.get(enc, enc) + " ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ يَعُودُ عَلَى " + who[0] + J("بِـ«" + hang[0] + "»") + ".",
+             "A jarr letter with «" + who[1] + "» — the phrase hangs on «" + hang[1] + "»: «" + en + "».", "Cer harfi; zamir (" + who[2] + ") mahallen mecrûr — câr-mecrûr «" + hang[2] + "»e müteallik: «" + tr + "».", p=p, enc=enc)

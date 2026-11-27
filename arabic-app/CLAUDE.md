@@ -17602,16 +17602,30 @@ holds no copyright.» That statement is recorded, dated and in his words, in all
   nursing, Thuwayba, Banū Saʿd, Ḥalīma 114 t; Ḥalīma takes the orphan 54 t; the weaning, the opening of the breast, the desert, «أنا أعربكم» 101 t)
   — al-Nadwī's whole first section. Long print sentences are cut at the print's own pauses (no word moved). The print's date gloss
   «(٥٧٠ المسيحي)» rides as `punctAfter` (no tokens for a numeral; the guard folds punct in).
+- **The second instalment** (v359-S round 2: 35 sentences, 607 tokens; package now 12 chapters / 71 sentences / 1,127 tokens, 107 new keys,
+  110 verbs): 107–108 «وفاة عبد الله وآمنة وعبد المطّلب وكفالة أبي طالب» (1)–(2) (pp. 162–164: ʿAbd Allāh's death, Āmina at al-Abwāʾ 124 t;
+  ʿAbd al-Muṭṭalib's care and death, Abū Ṭālib 117 t) · 109–112 «قصّة الراهب بحيرى» (1)–(4) (pp. 164–166: the journey and the monk 107 t; the
+  critics — Shiblī, al-Tirmidhī, Ibn Ghazwān 97 t; Bilāl and Ibn al-Qayyim, «(انتهى كلام العلامة النعماني)» 63 t; al-Dhahabī's verdict 99 t) —
+  two whole sections of al-Nadwī's. The quoted critics (al-Tirmidhī's «حديث حسن غريب …», Ibn al-Qayyim, al-Dhahabī) carry the print's «…»; the
+  print's «(٢٥)» and «(١/ ١٨)» ride as punctuation. The kit now holds the chapter helpers NA / MI / P_ / MJ / JP (from ch104–105).
 - **For the hoca** (the manifest lists each): «شَهْرِ رَبِيعٍ الْأَوَّلِ» (adjective, not annexation); «مَنَاف»'s last vowel UNWRITTEN; «الْإِثْنَيْنِ»
   keeps the print's hamza; the print's stop inside «روى … ما ظهر»; «كسْرَى» (kāf) and «شُرفَات» (rāʾ) UNWRITTEN; «لِرَضَاعَةِ» (رِضَاعَة heard too);
   «وَمَا عَسَى أَنْ تَصْنَعَ» read with «مَا» as mubtadaʾ; «وَأَخْذَهُ» a masdar; «كَمَا كَانَ» with kāna tāmma.
+  Round 2: «مِنْ يَوْمِ وُلِدَ» (declined; «يَوْمَ» built also allowed); «لَمَّا رَأَى صُنْعَ اللهِ بِهِ» (the print's shadda → ḥīniyya, answer left out);
+  «فَإِنَّهُ كَائِنٌ … شَأْنٌ عَظِيمٌ» (pronoun of the matter, fronted single predicate); «وَلَمْ يَسْمَعْهُ» (the print's masculine kept); «وأنّه مِنَ الْغَلَطِ»
+  (the print's hamza above where the sense wants «وَإِنَّهُ» — undecided); «ذكَرَ أَبَا طَالِبٍ» (kāf UNWRITTEN: ذَكَّرَ / ذَكَرَ); the answer of «إِذَا»
+  opening with «كَيْفَ» without fāʾ (as printed); al-Dhahabī's quotation never closed in the print (the closing «» is ours).
 - **Gate**: validators pass; `tools/grammar_audit.js` listed 15 on the package — five were the author's (the kit's «وَسَلَّمَ» line said
   «conjoined to صَلَّى»; now «مُعْتَرِضَةٌ مِثْلُ صَلَّى … لَا مَحَلَّ لَهَا», the Qawāʿid rule for a clause conjoined to a muʿtariḍa); the second run's 10
   are judged E in `research/story-audit-triage-delta-sira.json` (TaalluqEngine hangs ẓurūf on the verb of the parenthetical prayer ×3 and on a
   month-name; SignEngine reads الِانْتِبَاه as a dual, أَبِي الصَّبِيِّ as «my father», الِاثْنَيْنِ as a singular; the case layer gives سَاوَا tanwin and
   makes بَنُو an object).
+  Round 2: the audit listed 18 new records on chapters 107–112, none the author's: 15 E (the case layer's «بْنِ / بْنَ» after a badal,
+  «بِعَمِّهِ» read as a verb, «حِينَذَاكَ» read as a dual, nine ẓurūf hung on the prayer formula or across a clause, two أَنَّ wanted with
+  kasr), 2 C with book lines (مَعَ تَوَفُّرِ on either governor; the fronted «كَائِنٌ» before the described nakira «شَأْنٌ», Ibn ʿAqīl l. 2062),
+  1 undecided («وأنّه»). v342 requires a C to cite a book line and allows ≤ 3 undecided across the delta files (now 2).
 - **Smoke** «v359 — al-Nadwī's Sīra is ONE story …» (before «v333 — the received imports»): exactly one Sīra package, on the qisas shelf beside
-  qisas-al-nabiyyin-4, its group and level, counts, chapters from 101 with no gap, the LEDGER (append-only; a chapter past it fails until its line
+  qisas-al-nabiyyin-4, its group and level, counts (now 12 / 71 / 1,127), chapters from 101 with no gap, the LEDGER (append-only; a chapter past it fails until its line
   is appended), each sentence's letters ⊂ al-Nadwī's matn (hashiya and bracketed lines out), every token a word of the matn with every received
   shadda kept, every token's iʿrāb in ar/en/tr, the permission statement verbatim in en/tr/ar with its date, the about note's promises (reserved
   numbers, continues in parts, the editor's notes left out, each chapter with its printed page), the source builder present.
@@ -17619,6 +17633,10 @@ holds no copyright.» That statement is recorded, dated and in his words, in all
   check comments): v345 SignEngine miss 60 → 63 (الْإِثْنَيْنِ، لِلِانْتِبَاهِ، أَبِي الصَّبِيِّ); v345 taʿalluq and v353-I audit ceilings 228/200 →
   233/205 (five Sīra ẓurūf); v345-D corpus contra 321 → 324 (سَاوَا، بَنُو، «مِمَّنْ» undecided, and ONE older line the new corpus moved:
   talkhis-al-miftah 14:s4:2 «مَالِكِ يَوْمِ الدِّينِ», the engine now offering the ẓarf «يَوْمَ» — judged E in the delta file, not edited).
+  Round 2 (each new token named in the comments): Sign miss 63 → 64 («حِينَذَاكَ»); taʿalluq (v345, v353-I) 233/205 → 242/214 (nine
+  ẓurūf + مَعَ تَوَفُّرِ); إِنَّ / أَنَّ miss 17 → 20 (two fatḥ أَنَّ, «وأنّه»); the order check's one violation pinned by key (109:s4 mk3, C);
+  v345-D contra 324 → 327 («بْنِ / بْنَ» ×2, «بِعَمِّهِ»). Subset round 2: 68 pass, 9 fail; after the re-pins all pass alone, the two v341
+  timing failures (door 3212 ms, keystroke 19.5 ms under load 4–5) pass alone unchanged.
 - **Speed** (scratch `sira359/speed359.js`, file://, 4× CPU, 390×844, 3 rounds): the body is lazy like every story's; «open the story» (6
   chapters, 36 sentences) first paint 256–326 ms, worst long task 163–361 ms, 827 nodes, 6 pills. For scale, Ṭarafa's Muʿallaqa (17 chapters,
   111 sentences) paints its first batch (≈46 sentences) in ≈315 ms and the rest in ≈280–440 ms of batched work (≈5 ms per sentence at 4×).
@@ -17629,5 +17647,12 @@ holds no copyright.» That statement is recorded, dated and in his words, in all
 - **What remains of the book** (al-Nadwī's matn, Arabic words, ≈ tokens): Faṣl 2 from «وفاة عبد الله وآمنة …» to its end ≈ 2,700; Faṣl 3 (Mecca)
   ≈ 8,200; Faṣl 4 (the Hijra) ≈ 3,800; Faṣl 5 (Medina) ≈ 48,600; Faṣl 6 (character) ≈ 6,800; Faṣl 7 ≈ 13,300 (may hold the editor's tables);
   ≈ 83,000 in all after the instalment, plus ≈ 15,800 for the preface and Faṣl 1 (chapters 1–100).
+  After round 2, of Faṣl 2: «مثال غريب من التعصّب الدينيّ والإمعان في الافتراض والتخمين» (pp. 166–171, ≈ 1,050 words, with al-Rūm 30:1–7
+  vowelled in the print and the editor-headed part «التربية الإلهية»), «زواجه من خديجة» (pp. 171–174, ≈ 660, with «بنيان الكعبة» and «حلف
+  الفضول»), «قلق غامض وعدم ترقّب لنبوّة أو رسالة» (pp. 175–176, ≈ 310, Qurʾān quotations) — ≈ 2,000 tokens; next chapter 113.
+- **«101» on screen** (390×844, tr): the pills and the chapter heads read «Bölüm 101 … 112» (also the player, search hits and review notes,
+  which print `ch.n`); Today's lesson shows no chapter number. A display ordinal would need edits at every one of those sites (pills,
+  heads, player, search, review) — more than one small guarded read — so it was LEFT (the orchestrator's condition); `ch.n` and every key
+  unchanged. The windowed chapter render is the orchestrator's final pass (story render path untouched here).
 - Subset (the brief's): 73 pass, 4 fail before the re-measures (the four above); after them all pass (v359 and the four re-run alone).
   Scripts: scratchpad `sira359/` (`bin/matn.py`, `bin/lk.py`, `bin/kc.py`, `speed359.js`, `smoke359.js`, `audit*`, `PROGRESS.md`).

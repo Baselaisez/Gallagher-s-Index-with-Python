@@ -1,7 +1,7 @@
 {
  "tag": "sira",
  "wave": "v359-S",
- "note": "al-Nadwī's Sīra (al-sira-al-nabawiyya-nadwi, chapters 101–106): every contradiction tools/grammar_audit.js listed on the new package, judged by the line. The first run listed 15; five were the author's (the clause line of «وَسَلَّمَ» in the prayer after the Prophet's name said «conjoined to صَلَّى» where Qawāʿid al-Iʿrāb names a clause conjoined to a muʿtariḍa as part of the muʿtariḍa with no seat) and the kit's line was corrected (listed under «corrected»). Second run: 10 records, all judged here: E = the engine is wrong by the books. One record is an older line (talkhis-al-miftah 14:s4:2) that the case engine reads differently once the Sīra is on the shelf; judged E, the authored line unchanged.",
+ "note": "al-Nadwī's Sīra (al-sira-al-nabawiyya-nadwi, chapters 101–106): every contradiction tools/grammar_audit.js listed on the new package, judged by the line. The first run listed 15; five were the author's (the clause line of «وَسَلَّمَ» in the prayer after the Prophet's name said «conjoined to صَلَّى» where Qawāʿid al-Iʿrāb names a clause conjoined to a muʿtariḍa as part of the muʿtariḍa with no seat) and the kit's line was corrected (listed under «corrected»). Second run: 10 records, all judged here: E = the engine is wrong by the books. One record is an older line (talkhis-al-miftah 14:s4:2) that the case engine reads differently once the Sīra is on the shelf; judged E, the authored line unchanged. Instalment 2 (chapters 107–112): the audit listed 18 new records on the package, judged here (15 E, 2 C, 1 undecided — «وأنّه», listed for the hoca); none was the author's.",
  "corrected": [
   {
    "engine": "jumla",
@@ -139,6 +139,216 @@
    "word": "يَوْمِ",
    "verdict": "E",
    "why": "An OLDER line the new corpus moved (not edited): «مَالِكِ يَوْمِ الدِّينِ» (al-Fātiḥa 1:4) — «يَوْمِ» is the muḍāf ilayh of «مَالِكِ», in jarr; the engine now offers the ẓarf «يَوْمَ» because the Sīra twice writes «يَوْمَ …» as an adverb of time. The Qurʾān's reading stands."
+  },
+  {
+   "engine": "sign",
+   "key": "al-sira-al-nabawiyya-nadwi:107:s3:4",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "107",
+   "sen": "s3",
+   "word": "حِينَذَاكَ",
+   "verdict": "E",
+   "why": "«حِينَذَاكَ» is حِينَ, an adverb of time in nasb by the fatha, annexed to the demonstrative ذَاكَ; there is no dual here — the engine reads the final «ـاك» as a dual sign.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "case",
+   "key": "al-sira-al-nabawiyya-nadwi:107:s1:13",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "107",
+   "sen": "s1",
+   "word": "بْنَ",
+   "verdict": "E",
+   "why": "«أَنَّ أَبَا رَسُولِ اللهِ … عَبْدَ اللهِ بْنَ عَبْدِ الْمُطَّلِبِ»: عَبْدَ is the badal of أَبَا (nasb), so its adjective بْنَ is in nasb; the engine follows the nearest jarr word «اللهِ».",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "case",
+   "key": "al-sira-al-nabawiyya-nadwi:107:s4:25",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "107",
+   "sen": "s4",
+   "word": "بْنِ",
+   "verdict": "E",
+   "why": "«قَبْرَ بَعْلِهَا الْحَبِيبِ عَبْدِ اللهِ بْنِ …»: عَبْدِ is the badal of بَعْلِهَا (jarr), so بْنِ is in jarr; the engine's «بْنَ» has no governor.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "case",
+   "key": "al-sira-al-nabawiyya-nadwi:109:s1:24",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "109",
+   "sen": "s1",
+   "word": "بِعَمِّهِ",
+   "verdict": "E",
+   "why": "«فَتَعَلَّقَ بِعَمِّهِ»: بِ + عَمِّ (paternal uncle) + هِ, a noun in jarr; the engine reads a past verb «عَمَّهُ».",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:107:s4:1",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "107",
+   "sen": "s4",
+   "word": "وَلَمَّا",
+   "verdict": "E",
+   "why": "«لَمَّا» hangs on its answer «خَرَجَتْ»; «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» is a parenthetical prayer with no seat (Qawāʿid al-Iʿrāb, al-muʿtariḍa); nothing inside it governs what lies outside.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:107:s6:11",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "107",
+   "sen": "s6",
+   "word": "مَعَهُ",
+   "verdict": "E",
+   "why": "«وَذٰلِكَ الشَّأْنُ مَعَهُ»: the adverb is the predicate of the nominal clause; it cannot hang on «الْحَنُونِ», an adjective inside the preceding clause.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:108:s3:1",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "108",
+   "sen": "s3",
+   "word": "فَلَمَّا",
+   "verdict": "E",
+   "why": "«لَمَّا» hangs on its answer «مَاتَ»; «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» is a parenthetical prayer with no seat (Qawāʿid al-Iʿrāb, al-muʿtariḍa); nothing inside it governs what lies outside.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:108:s6:16",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "108",
+   "sen": "s6",
+   "word": "بَيْنَهُمَا",
+   "verdict": "E",
+   "why": "«وَالْفَرْقُ بَيْنَهُمَا وَاضِحٌ» is a new nominal clause; «بَيْنَهُمَا» belongs to it (a hal of الْفَرْقُ, or on its predicate), not to «تَجْرِيبِيًّا» of the clause before.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:108:s7:8",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "108",
+   "sen": "s7",
+   "word": "بَعْدَ",
+   "verdict": "E",
+   "why": "«بَعْدَ عَبْدِ الْمُطَّلِبِ» hangs on the omitted predicate of كَانَ; «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» is a parenthetical prayer with no seat (Qawāʿid al-Iʿrāb, al-muʿtariḍa); nothing inside it governs what lies outside.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:108:s7:11",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "108",
+   "sen": "s7",
+   "word": "مَعَ",
+   "verdict": "E",
+   "why": "«مَعَ عَمِّهِ» is the predicate of كَانَ (on its omitted «كَائِنًا»); «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» is a parenthetical prayer with no seat (Qawāʿid al-Iʿrāb, al-muʿtariḍa); nothing inside it governs what lies outside.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:109:s2:1",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "109",
+   "sen": "s2",
+   "word": "فَلَمَّا",
+   "verdict": "E",
+   "why": "«لَمَّا» hangs on its answer «اهْتَمَّ»; «يُقَالُ» belongs to the adjective clause of «رَاهِبٌ» inside the lammā clause.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:109:s3:1",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "109",
+   "sen": "s3",
+   "word": "فَلَمَّا",
+   "verdict": "E",
+   "why": "«لَمَّا» hangs on its answer «احْتَفَى»; «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» is a parenthetical prayer with no seat (Qawāʿid al-Iʿrāb, al-muʿtariḍa); nothing inside it governs what lies outside.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:111:s1:20",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "111",
+   "sen": "s1",
+   "word": "مَعَ",
+   "verdict": "E",
+   "why": "«مَعَ بِلَالٍ» hangs on «أَرْسَلَ»; «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» is a parenthetical prayer with no seat (Qawāʿid al-Iʿrāb, al-muʿtariḍa); nothing inside it governs what lies outside.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "taalluq",
+   "key": "al-sira-al-nabawiyya-nadwi:112:s6:21",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "112",
+   "sen": "s6",
+   "word": "مَعَ",
+   "verdict": "C",
+   "why": "«مَعَ تَوَفُّرِ هِمَمِهِمْ» may hang on «حَكَتْهُ» (they did not tell it despite …) or, as the line says, on an omitted hal of «الْأَشْيَاخُ»; the sense is the same.",
+   "wave": "v359-S instalment 2",
+   "cite": {
+    "file": "research/sources/muallaqat-imri-al-qays-src.txt",
+    "line": 768,
+    "ar": "كدأبك: جار ومجرور، قيل: متعلقان بقوله (قفا نبك) وقيل: الكاف اسم بمعنى "
+   },
+   "cluster": "taalluq-two-readings"
+  },
+  {
+   "engine": "inna",
+   "key": "al-sira-al-nabawiyya-nadwi:110:s2:9",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "110",
+   "sen": "s2",
+   "word": "أَنَّ",
+   "verdict": "E",
+   "why": "«قَدْ جَاءَ فِي … أَنَّ جَمِيعَ رِوَايَاتِ …»: the أَنَّ clause is the doer of «جَاءَ», so its hamza takes fatha (Shudhūr, mawāḍiʿ fatḥ anna); it does not open a sentence.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "inna",
+   "key": "al-sira-al-nabawiyya-nadwi:111:s3:6",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "111",
+   "sen": "s3",
+   "word": "أَنَّهُ",
+   "verdict": "E",
+   "why": "«وَوَقَعَ فِي كِتَابِ التِّرْمِذِيِّ … أَنَّهُ بَعَثَ»: the أَنَّ clause is the doer of «وَقَعَ» → fatha; «قَالَ» stands in the sentence before, and its quotation opens with «وَوَقَعَ», not with أَنَّ.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "inna",
+   "key": "al-sira-al-nabawiyya-nadwi:111:s3:10",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "111",
+   "sen": "s3",
+   "word": "وَأَنَّهُ",
+   "verdict": "undecided",
+   "why": "«وأنّه مِنَ الْغَلَطِ الْوَاضِحِ»: the sense (Ibn al-Qayyim's own judgement, «وهو من الغلط» in Zād al-Maʿād) wants a new clause, «وَإِنَّهُ»; the print writes the hamza above the alif («وأنّه»), so the line keeps the print and reads it conjoined; listed for the hoca.",
+   "wave": "v359-S instalment 2"
+  },
+  {
+   "engine": "tartib",
+   "key": "al-sira-al-nabawiyya-nadwi:109:s4:15",
+   "pkg": "al-sira-al-nabawiyya-nadwi",
+   "ch": "109",
+   "sen": "s4",
+   "word": "شَأْنٌ",
+   "verdict": "C",
+   "why": "«فَإِنَّهُ كَائِنٌ لِابْنِ أَخِيكَ هٰذَا شَأْنٌ عَظِيمٌ»: the hāʾ is the pronoun of the matter whose predicate is the clause; its mubtadaʾ «شَأْنٌ» is a nakira made definite enough by its adjective «عَظِيمٌ», so the single-word predicate «كَائِنٌ» may go first; another reading makes «كَائِنٌ» the participle of defective kāna with «شَأْنٌ» its noun. Listed for the hoca.",
+   "wave": "v359-S instalment 2",
+   "cite": {
+    "file": "research/sources/sharh-ibn-aqil-src.txt",
+    "line": 2062,
+    "ar": "الرابع: أن توصف (١) نحو رجل من الكرام عندنا."
+   },
+   "cluster": "nakira-mawsufa"
   }
  ]
 }
