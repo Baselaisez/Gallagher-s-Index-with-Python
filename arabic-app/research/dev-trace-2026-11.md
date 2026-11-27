@@ -214,7 +214,7 @@ Downloads (scratchpad/newsrc/dl/): 1686 (≈3,100 pp.), 9914 (767 pp.), then 696
 source file against the web text; no agent yet). Waiting on the owner: the Azure Speech resource's region.
 After these land: the speed checks on the merged tree, APK (dev ref) and Pages (ref main).
 
-## 2026-11-27 09:40 UTC
+## 2026-11-27 09:32 UTC
 
 Landed since 08:17 (CI green on the whole suite for `4a54bf7`, `091186e`, `5b828bb`, `2d4092c`): `5b828bb` v356-G (the inventory
 guard), `2d4092c` v357-N («Neden?» says the kind of iʿrāb of every word: 67,243 tokens, 234 deduced places marked, 0
