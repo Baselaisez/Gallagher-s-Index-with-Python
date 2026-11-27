@@ -1,0 +1,681 @@
+{
+ "chapter": 1,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "He said: Wakīʿ ibn al-Jarrāḥ told us, from Nāfiʿ ibn ʿUmar, from Ibn Abī Mulayka, who said:",
+    "tr": "Dedi ki: Bize Vekî' b. el-Cerrâh, Nâfi' b. Ömer'den, o İbn Ebî Müleyke'den haber verdi; o dedi ki:"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "قَالَ",
+      "smart": "قَالَ",
+      "bare": "قال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ، يَعُودُ عَلَى ابْنِ سَعْدٍ (أَوْ رَاوِي الْكِتَابِ عَنْهُ) — وَالْجُمْلَةُ بَعْدَهُ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ.",
+      "en": "A past verb built on fatḥa; its doer is the hidden «he» (Ibn Saʿd, or the book's transmitter from him); what follows is what is said, in the seat of nasb.",
+      "tr": "Fetha üzere mebnî mâzî; fâili gizli «hüve» (İbn Sa'd ya da kitabın ondan râvisi); sonrası mekūlü'l-kavl, mahallen mansûb."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "أَخْبَرَنَا",
+      "smart": "أَخْبَرَنَا",
+      "bare": "أخبرنا"
+     },
+     "lex": "akhbara",
+     "pos": "verb",
+     "grammar": [
+      "form-iv-verbs",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَنَا ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ، وَالْفَاعِلُ بَعْدَهُ.",
+      "en": "A past verb built on fatḥa; the attached pronoun is in the seat of nasb, the object; its doer follows.",
+      "tr": "Fetha üzere mebnî mâzî; bitişik zamir mahallen mansûb mef'ûlün bih; fâili sonra gelir."
+     },
+     "segments": [
+      {
+       "form": "أَخْبَرَ",
+       "lex": "akhbara",
+       "pos": "verb"
+      },
+      {
+       "form": "نَا",
+       "lex": "pron-1p",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَكِيعُ",
+      "smart": "وَكِيعُ",
+      "bare": "وكيع"
+     },
+     "lex": "waki",
+     "pos": "propn",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — وَلَمْ يُنَوَّنْ لِأَنَّهُ عَلَمٌ مَوْصُوفٌ بِـ«ابْن» مُضَافًا إِلَى عَلَمٍ.",
+      "en": "The doer (fāʿil), in raf' — no tanwin: a name described by «ibn» annexed to a name.",
+      "tr": "Fâil, merfû — tenvin almaz: aleme muzâf «ibn» ile vasfedilmiş alem."
+     }
+    },
+    {
+     "surface": {
+      "full": "بْنُ",
+      "smart": "بْنُ",
+      "bare": "بن"
+     },
+     "lex": "ibn-bn",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ لِـ«وَكِيعُ» مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَحُذِفَتْ أَلِفُهُ خَطًّا لِوُقُوعِهِ بَيْنَ عَلَمَيْنِ.",
+      "en": "An adjective (naʿt) of «Wakīʿ», in raf' and annexed — its alif is dropped in writing because it stands between two names.",
+      "tr": "«Vekî'» isminin na'tı, merfû, muzâf — iki alem arasında geldiği için elifi yazıda düşer."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْجَرَّاحِ",
+      "smart": "الْجَرَّاحِ",
+      "bare": "الجراح"
+     },
+     "lex": "jarrah",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The second term of the iḍāfa, in jarr.",
+      "tr": "Muzâfun ileyh, mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَنْ",
+      "smart": "عَنْ",
+      "bare": "عن"
+     },
+     "lex": "an",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«أَخْبَرَنَا».",
+      "en": "A jarr letter «from»; the phrase hangs on «told us».",
+      "tr": "«-den» — cer harfi; câr-mecrûr «ahberanâ»ya müteallik."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَافِعِ",
+      "smart": "نَافِعِ",
+      "bare": "نافع"
+     },
+     "lex": "nafi-name",
+     "pos": "propn",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ بِـ«عَنْ» مَجْرُورٌ بِالْكَسْرَةِ — وَلَمْ يُنَوَّنْ لِأَنَّهُ عَلَمٌ مَوْصُوفٌ بِـ«ابْن» مُضَافًا إِلَى عَلَمٍ.",
+      "en": "A noun after «عَنْ», in jarr — no tanwin: a name described by «ibn» annexed to a name.",
+      "tr": "İsim, mecrûr — tenvin almaz: aleme muzâf «ibn» ile vasfedilmiş alem."
+     }
+    },
+    {
+     "surface": {
+      "full": "بْنِ",
+      "smart": "بْنِ",
+      "bare": "بن"
+     },
+     "lex": "ibn-bn",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ لِـ«نَافِعِ» مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ — وَحُذِفَتْ أَلِفُهُ خَطًّا لِوُقُوعِهِ بَيْنَ عَلَمَيْنِ.",
+      "en": "An adjective (naʿt) of «Nāfiʿ», in jarr and annexed — its alif is dropped in writing because it stands between two names.",
+      "tr": "«Nâfi'» isminin na'tı, mecrûr, muzâf — iki alem arasında geldiği için elifi yazıda düşer."
+     }
+    },
+    {
+     "surface": {
+      "full": "عُمَرَ",
+      "smart": "عُمَرَ",
+      "bare": "عمر"
+     },
+     "lex": "umar",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ، مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَالْعَدْلِ.",
+      "en": "The second term of the iḍāfa, in jarr — barred from tanwin (a proper name turned from another form).",
+      "tr": "Muzâfun ileyh, mecrûr — gayr-i munsarif (alemiyet ve adl)."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَنِ",
+      "smart": "عَنِ",
+      "bare": "عن"
+     },
+     "lex": "an",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«أَخْبَرَنَا».",
+      "en": "A jarr letter «from», voweled with kasra before the following sukūn; the phrase hangs on «told us».",
+      "tr": "«-den» — cer harfi; iki sâkin karşılaştığı için kesre ile harekelendi; câr-mecrûr «ahberanâ»ya müteallik."
+     }
+    },
+    {
+     "surface": {
+      "full": "ابْنِ",
+      "smart": "ابْنِ",
+      "bare": "ابن"
+     },
+     "lex": "ibn",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ بِـ«عَنْ» مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.",
+      "en": "A noun after «عَنْ», in jarr, annexed.",
+      "tr": "İsim, mecrûr, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَبِي",
+      "smart": "أَبِي",
+      "bare": "أبي"
+     },
+     "lex": "ab",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْيَاءِ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، مُضَافٌ.",
+      "en": "The second term of the iḍāfa, in jarr by the ya (one of the five nouns), annexed.",
+      "tr": "Muzâfun ileyh, mecrûr (yâ ile; beş isimden), muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُلَيْكَةَ",
+      "smart": "مُلَيْكَةَ",
+      "bare": "مليكة"
+     },
+     "lex": "mulayka",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ، مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَالتَّأْنِيثِ.",
+      "en": "The second term of the iḍāfa, in jarr — barred from tanwin (a feminine proper name).",
+      "tr": "Muzâfun ileyh, mecrûr — gayr-i munsarif (alemiyet ve te'nîs)."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَالَ",
+      "smart": "قَالَ",
+      "bare": "قال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ، يَعُودُ عَلَى ابْنِ أَبِي مُلَيْكَةَ — وَالْجُمْلَةُ بَعْدَهُ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ.",
+      "en": "A past verb built on fatḥa; its doer is the hidden «he» (Ibn Abī Mulayka); what follows is what is said, in the seat of nasb.",
+      "tr": "Fetha üzere mebnî mâzî; fâili gizli «hüve» (İbn Ebî Müleyke); sonrası mekūlü'l-kavl, mahallen mansûb."
+     },
+     "punctAfter": ":"
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "A man said to Abū Bakr: O caliph of God!",
+    "tr": "Bir adam Ebû Bekir'e: Ey Allah'ın halifesi! dedi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "قَالَ",
+      "smart": "قَالَ",
+      "bare": "قال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ بَعْدَهُ.",
+      "en": "A past verb built on fatḥa; its doer follows.",
+      "tr": "Fetha üzere mebnî mâzî; fâili sonra gelir."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَجُلٌ",
+      "smart": "رَجُلٌ",
+      "bare": "رجل"
+     },
+     "lex": "rajul",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The doer (fāʿil), in raf'.",
+      "tr": "Fâil, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِأَبِي",
+      "smart": "لِأَبِي",
+      "bare": "لأبي"
+     },
+     "lex": "li",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اللَّامُ حَرْفُ جَرٍّ، وَأَبِي مَجْرُورٌ بِالْيَاءِ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، مُضَافٌ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«قَالَ».",
+      "en": "The lam is a jarr letter; a noun, in jarr by the ya (one of the five nouns), annexed — the phrase hangs on «said».",
+      "tr": "Lâm cer harfi; İsim, mecrûr (yâ ile; beş isimden), muzâf — câr-mecrûr «kâle»ye müteallik."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "prep"
+      },
+      {
+       "form": "أَبِي",
+       "lex": "ab",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بَكْرٍ",
+      "smart": "بَكْرٍ",
+      "bare": "بكر"
+     },
+     "lex": "bakr",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The second term of the iḍāfa, in jarr.",
+      "tr": "Muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "يَا, the particle of calling.",
+      "tr": "«Yâ» nidâ harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "خَلِيفَةَ",
+      "smart": "خَلِيفَةَ",
+      "bare": "خليفة"
+     },
+     "lex": "khalifa",
+     "pos": "noun",
+     "grammar": [
+      "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada"
+     ],
+     "irab": {
+      "ar": "مُنَادًى مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ — مُنَادًى مُضَافٌ.",
+      "en": "Called (munādā), in nasb, annexed — a called noun that is annexed.",
+      "tr": "Münâdâ, mansûb, muzâf — muzâf münâdâ."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهِ",
+      "smart": "اللهِ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The name of God, the second term of the iḍāfa, in jarr.",
+      "tr": "Lafza-i celâl, muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "He said: I am not God's caliph; but I am the caliph of the Messenger of God.",
+    "tr": "Dedi ki: Ben Allah'ın halifesi değilim; ama ben Resûlullah'ın halifesiyim."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَقَالَ",
+      "smart": "فَقَالَ",
+      "bare": "فقال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَقَالَ فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ، يَعُودُ عَلَى أَبِي بَكْرٍ — وَالْجُمْلَةُ بَعْدَهُ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ.",
+      "en": "The fa conjoins; a past verb built on fatḥa; its doer is the hidden «he» (Abū Bakr); what follows is what is said, in the seat of nasb.",
+      "tr": "«bunun üzerine» + Fetha üzere mebnî mâzî; fâili gizli «hüve» (Ebû Bekir); sonrası mekūlü'l-kavl, mahallen mansûb."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَالَ",
+       "lex": "qala",
+       "pos": "verb"
+      }
+     ],
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "لَسْتُ",
+      "smart": "لَسْتُ",
+      "bare": "لست"
+     },
+     "lex": "laysa",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ — فِعْلٌ نَاقِصٌ جَامِدٌ، وَالتَّاءُ اسْمُهُ.",
+      "en": "A past verb built on sukūn because the doer's ta is attached; the ta («I») is its doer, in the seat of raf' — a rigid defective verb; the ta is its noun.",
+      "tr": "Fâil tâsı bitiştiği için sükûn üzere mebnî mâzî; tâ (ben) fâildir, mahallen merfû — câmid nâkıs fiil; tâ onun ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِخَلِيفَةِ",
+      "smart": "بِخَلِيفَةِ",
+      "bare": "بخليفة"
+     },
+     "lex": "bi",
+     "pos": "part",
+     "grammar": [
+      "huruf-al-ziyada-fil-kafiya",
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ زَائِدٌ، وَخَلِيفَةِ مَجْرُورٌ لَفْظًا مَنْصُوبٌ مَحَلًّا خَبَرُ «لَيْسَ»، مُضَافٌ.",
+      "en": "The ba is an extra jarr letter; «caliph» is in jarr in form, in nasb in its seat as the predicate of لَيْسَ, annexed.",
+      "tr": "Bâ zâid cer harfi; «halîfe» lafzen mecrûr, mahallen mansûb «leyse»nin haberi, muzâf."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "خَلِيفَةِ",
+       "lex": "khalifa",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهِ",
+      "smart": "اللهِ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The name of God, the second term of the iḍāfa, in jarr.",
+      "tr": "Lafza-i celâl, muzâfun ileyh, mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَلٰكِنِّي",
+      "smart": "وَلٰكِنِّي",
+      "bare": "ولكني"
+     },
+     "lex": "lakinna",
+     "pos": "part",
+     "grammar": [
+      "kaanna-lakinna-layta-laalla-fil-kafiya",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَلٰكِنِّ الْوَاوُ عَاطِفَةٌ، وَلٰكِنَّ حَرْفُ اسْتِدْرَاكٍ وَنَصْبٍ مُشَبَّهٌ بِالْفِعْلِ، وَالنُّونُ لِلْوِقَايَةِ أُدْغِمَتْ فِي نُونِهِ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ اسْمُهَا.",
+      "en": "The waw conjoins; the waw conjoins; لٰكِنَّ «but», the particle of correction that puts its noun in nasb, its guarding nūn merged; the ya «I» is its noun.",
+      "tr": "«ve» + Vâv atıf; «lâkinne» istidrâk ve nasb harfi, vikâye nûnu onun nûnuna idgâm edildi; yâ (ben) onun ismi."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لٰكِنِّ",
+       "lex": "lakinna",
+       "pos": "part"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "خَلِيفَةُ",
+      "smart": "خَلِيفَةُ",
+      "bare": "خليفة"
+     },
+     "lex": "khalifa",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ إِنَّ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — خَبَرُ «لٰكِنَّ».",
+      "en": "The predicate of inna, in raf', annexed — the predicate of لٰكِنَّ.",
+      "tr": "İnne'nin haberi, merfû, muzâf — «lâkinne»nin haberi."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَسُولِ",
+      "smart": "رَسُولِ",
+      "bare": "رسول"
+     },
+     "lex": "rasul",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.",
+      "en": "The second term of the iḍāfa, in jarr, annexed.",
+      "tr": "Muzâfun ileyh, mecrûr, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهِ",
+      "smart": "اللهِ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The name of God, the second term of the iḍāfa, in jarr.",
+      "tr": "Lafza-i celâl, muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "I am content with that.",
+    "tr": "Ben buna razıyım."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "أَنَا",
+      "smart": "أَنَا",
+      "bare": "أنا"
+     },
+     "lex": "ana",
+     "pos": "pron",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "A detached pronoun «I», in the seat of raf' as the mubtadaʾ.",
+      "tr": "Munfasıl zamir «ene», mahallen merfû mübtedâ."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَاضٍ",
+      "smart": "رَاضٍ",
+      "bare": "راض"
+     },
+     "lex": "radin",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-maqsur-manqus",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ الْمُقَدَّرَةِ عَلَى الْيَاءِ الْمَحْذُوفَةِ لِلثِّقَلِ — اسْمُ فَاعِلٍ مَنْقُوصٌ حُذِفَتْ يَاؤُهُ لِلتَّنْوِينِ.",
+      "en": "The khabar, in raf' (the vowel estimated on the dropped ya) — an active participle whose final ya drops before the tanwin.",
+      "tr": "Haber, merfû (hareke düşen yâ üzerinde takdîrî) — ism-i fâil, menkûs; yâsı tenvin yüzünden düştü."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِذٰلِكَ",
+      "smart": "بِذٰلِكَ",
+      "bare": "بذلك"
+     },
+     "lex": "bi",
+     "pos": "part",
+     "grammar": [
+      "huruf-jarr",
+      "asma-al-ishara-wa-sighuha"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَذٰلِكَ اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«رَاضٍ».",
+      "en": "The ba is a jarr letter; «that» is a demonstrative in the seat of jarr — the phrase hangs on «content».",
+      "tr": "Bâ cer harfi; «zâlike» işaret ismi, mahallen mecrûr — câr-mecrûr «râdın»a müteallik."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "ذٰلِكَ",
+       "lex": "dhalika",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}

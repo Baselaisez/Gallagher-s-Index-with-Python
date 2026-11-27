@@ -17526,3 +17526,51 @@ Source of the code: scratchpad `aqiln1/eng_n1.js`, spliced by `aqiln1/splice_n1.
 - **Refit + full suite**: `check_i18n.py` clean; refit chain exit 0 (irab_model 2,435 weights over 75,015 rows; drills 99.2 % POS, 99.1 % case);
   **645 checks: 644 PASS, 1 FAIL**. The failure was «v317 — the library shelves …» (persist and clear, a UI timing check). It PASSES when re-run alone.
 - **Left**: A408.1 (hand-over 1); the vowelled قَالَ زَيْدٌ عَمْرٌو مُنْطَلِقٌ names the maqūl «زيد عمرو منطلق», one word too many (A445 proves on the printed text); N2's bābs.
+
+## v358-T — the Ṭabaqāt's stories
+
+The owner (2026-11-27): «You can take different level kinds of stories from there: https://shamela.ws/book/1686». The brief's long many-chapter sīra story was
+**dropped mid-wave by the orchestrator** (the owner named al-Nadwī's «السيرة النبوية» as the one long story, authored by another agent); a half-written
+Hijra package was deleted before it was ever written to content/. What stands: short accounts at Levels 2–6.
+
+- **Source**: Shamela 1686 = Ibn Saʿd, «الطبقات الكبرى» (ed. ʿAṭā, Dār al-Kutub al-ʿIlmiyya 1990). `tools/authoring/tabaqat_src.py` (run with `python3 -I`, re-runnable while
+  pages are missing) turns the cached pages into `research/sources/tabaqat-ibn-sad-src.txt` in the house format, with the section in each header (مقدمة 1 ·
+  السيرة 15 · الصحابة 687 · التابعون 1431 · النساء 2670). Built to Shamela p. 3026 (the downloader stopped at p. 3027 after three failures — the book's last page or two).
+- **A new shelf** `tabaqat` «مِنَ الطَّبَقَاتِ الْكُبْرَى» (`LIB_SOURCES` after `kutub`, test `^tabaqat-`, labels `srcTabaqat` / `srcTabaqatSub` en+tr): the table's logic is
+  one shelf per received book once it holds several packages (amthal, kutub); `akhbar` stays the Siyar's and al-Tanūkhī's.
+- **Packages** (8, 12 chapters, 56 sentences, 618 tokens; each `tools/authoring/author_tabaqat_<slug>.py` is the source of truth, its passage saved first as
+  `research/sources/tabaqat-<slug>-src.txt`; every khabar WHOLE with its isnād — the Siyar's precedent — and cut only between akhbār):
+  `tabaqat-lastu-bi-khalifat-allah` (L2, Abū Bakr, 3:137, 1 ch, 4 s / 32 t) · `tabaqat-said-ibn-al-musayyib` (L3, Successors, 5:99, 1 ch, 4 / 57) ·
+  `tabaqat-ahad-ahad` (L3, Bilāl, 3:175, 2 ch, 12 / 105) · `tabaqat-abu-bakr-fi-al-suq` (L4, 3:137, 2 ch, 11 / 98) · `tabaqat-dhat-al-nitaqayn` (L4, women: Asmāʾ,
+  8:196–197, 2 ch, 9 / 107, with Abū Dhuʾayb's half-line) · `tabaqat-innama-ana-habashi` (L5, Bilāl, 3:180, 2 ch, 6 / 80) · `tabaqat-hawl-al-muttala` (L5, ʿUmar
+  stabbed, 3:270, 1 ch, 5 / 60) · `tabaqat-sakrat-al-mawt` (L6, Abū Bakr's death, 3:146, 1 ch, 5 / 79, Ḥātim's verse with one «•» and Qāf 50:19 in quote marks).
+  No correction anywhere; honorifics are tokens as the text writes them («صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ», four tokens, a parenthetic supplication).
+- **The kit** `tools/authoring/tabaqat_common.py`: the Khaṣāʾiṣ `finish()` with the sibling prefix `tabaqat-`; `manifest()` (section, volume and page, «The isnād is kept
+  as the book gives it», the vowelling declared ours, kept-as-printed, left-out, for the hoca); a token DSL that writes the house wordings in one call —
+  `NOUN(role, case, sign, dipt, mudaf, enc, pre, by, of)`, `VERB(kind, hid, ref, enc, cl, form)`, `PART`, `PREPT`, `PRON_J`, `SALLA()`, `RASUL(role)`, `BN(case, of, alif)`,
+  the isnād's `ISNAD_AKHBARANA` / `ISNAD_HADDATHANA` / `HADDATHANI` / `AN`, `QURAN(toks)`, and `FROM_PARADIGM(key, letters)` (a new verb's paradigm from a stored one of
+  its bāb, as مَطَّ from رَدَّ). New paradigms otherwise by sarf_gen (اسْتَخْلَفَ، مَاكَسَ، كَفَّنَ، حَادَ، حَشْرَجَ).
+- **Levels measured** (scratch `level.py`): index = mean glossary level of the matn's tokens (isnād sentences left out) + 4 × the share at level ≥ 5 + ½ × the density of
+  hard constructions (oath, condition, لَوْ, إِنَّ / كَانَ and sisters, passive, five verbs, ḥadhf, exception, iqtibās …) per sentence + mean sentence length / 10 + one per
+  verse or Qurʾān quotation; L2 < 2.5 ≤ L3 < 3.4 ≤ L4 < 4.5 ≤ L5 < 6 ≤ L6. Values 2.43 · 2.56 · 3.31 · 3.49 · 4.15 · 5.08 · 5.14 · 7.27 (order as listed above). Two of
+  the author's first guesses moved with the measure (al-sūq 5 → 4, innamā 4 → 5).
+- **Left, by choice** (read, not shelved): the Hijra and the other sīra narratives (the long story is al-Nadwī's now); ʿĀʾisha's description of Abū Bakr (3:140) and
+  Bilāl's ḥilya (3:180) — short but every second word gharīb; the third Saʿīd khabar (its «قال» / «فاتته» disagree in the e-text); Abū Muṣʿab's tree-and-doves report
+  (weak); Abū Bakr's long death khabar through Abū Bakr ibn Ḥafṣ (3:146–147, ≈230 words — a candidate for a later L6); Asmāʾ's marriage khabar (8:197, ≈200 words).
+- **For the hoca** (each manifest's list): «الشَّرِكَة»'s last vowel unwritten (ahad-ahad); «مراهن» unvowelled (innama); the ya of «الْمُسَيّب»
+  unvowelled; readings chosen — فَمَطُّوهُ، وَلِيتَ (or وُلِّيتَ)، «يَأْتِي عَلَيَّ الشَّهْرُ» for the e-text «على الشهر»، السُّوقَ in nasb، عُمُرُهُ in «مَنْ غَرَّهُ عُمُرُهُ»، حُضِرَ
+  passive، مِتُّ، نَرْبِطُ، «إِلَّا نِطَاقِي» badal، «وَعَمَلِي» ʿaṭf or maʿiyya، مُنْذُ a jarr letter; kept as printed — «ابن» with its alif between two names (Qudāma/Maysara),
+  «فاغسلوها» beside «فيهما», «يا بن», «اهله», «علا م».
+- **Gate**: validators 0 errors; the letters guard inside the check; `tools/grammar_audit.js` listed 9 on the shelf — one was the kit's wording and was fixed
+  (the conjoined «وَسَلَّمَ» now says its clause is parenthetic like «صَلَّى»'s); the second run's 8 are judged in `research/story-audit-triage-delta-tabaqat.json`
+  (7 E, 1 C with Ibn ʿAqīl l. 924 «زيد قائم أبوه»).
+- **Smoke** «v358 — the Ṭabaqāt's stories …» (before «v333 — the received imports»): the shelf, label and place (before practice), ids and chapters / sentences / tokens /
+  levels, every level 2–6 present, each sentence's letters ⊂ the book's matn, attribution (Ibn Saʿd, isnād kept, NO correction, EVERY vowel ours, the src file,
+  section + volume + page, pending), exactly one «•» (Ḥātim's verse).
+- **Older checks re-measured the v333 way** (the build with the eight `tabaqat-*` moved out passes all 16 v345 checks at the old numbers; each new token examined,
+  the reason in the check's comment): v345 Sign miss 60 → 61 (مُلَاءَتَيَّ); v345 taʿalluq contra 228 → 230, exact 200 → 201 (حِينَ on the parenthetic وَسَلَّمَ, بَعْدَ
+  on الْخَطَّابِ; v353-I carries the same audit's ceilings and moved with it); v345 إِنَّ miss 17 → 19 (أَنَّ after an isnād's «عَنْ …», our sentence cut); v345-D contra 321 → 324 (أَثْوَابٌ, اثْنَانِ, عَارُهَا).
+- **Finish**: `check_i18n.py` clean; refit chain exit 0; the named subset (v358|v352|v348|v342|v345|v339|v333|v317|v328|v353|v354|v341 — speed|v350 — speed|open
+  story renders|tap-word opens): first run 6 failures (the re-measures above, v342 for a C record without its book line, v341 speed on timing alone); after the
+  fixes 76 PASS and 1 FAIL (v353-I, the same ceilings) → re-pinned and re-run alone: PASS. Data: the eight packages are lazy story bodies like every other.
+  Scripts: scratchpad `tabaqat358/` (`bin/pg.py`, `span.py`, `find.py`, `keys.py` lemma + letters guard, `lk.py`, `ex.py`, `level.py`, `audit*`, `PROGRESS.md`).

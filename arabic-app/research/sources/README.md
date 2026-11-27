@@ -415,3 +415,14 @@ numbers left in place, page-marked) before authoring: `al-kalam-wal-qawl` (1:18)
 `al-irab` (1:36), `asl-al-lugha` (1:41–42), `ilal-al-arabiyya` (1:49), `iradat-al-arab` (1:238–239), `shajaat-al-arabiyya` (2:362). One
 correction, against the book's own spelling (al-irab: «بالتثينة» → «بالتثنية», cf. 1:35 «كالتثنية»); «يسميه النحويين» (1:18) is kept as printed —
 Shamela holds no second edition of the book (author 830 lists only 9986) and no other witness of the line was found.
+
+
+### v358-T — Ibn Saʿd's «الطبقات الكبرى» (`tabaqat-ibn-sad-src.txt`) and the short accounts cut from it (`tabaqat-<slug>-src.txt`)
+
+- `tabaqat-ibn-sad-src.txt` — Muḥammad ibn Saʿd (d. 230 AH), «الطبقات الكبرى», تحقيق محمد عبد القادر عطا، دار الكتب العلمية، بيروت ١٩٩٠ (Shamela book 1686,
+  https://shamela.ws/book/1686), the whole book as Shamela gives it (≈3,100 pages; sections by Shamela page: مقدمة التحقيق 1 · السيرة النبوية 15 · الصحابة 687 ·
+  التابعون 1431 · النساء 2670), one block per page `=== p. <shamela page> (<vol>:<printed page>) [<section>] ===`, matn then «--- hashiya ---». Built — and
+  re-runnable while pages are missing — by `tools/authoring/tabaqat_src.py` (run with `python3 -I`) from the cached pages; the text is unvowelled except the Qurʾān.
+- Each `tabaqat-<slug>-src.txt` is the exact passage (matn only, verbatim, page-marked) the package `content/samples/tabaqat-<slug>` carries, saved before authoring:
+  `lastu-bi-khalifat-allah` (3:137), `abu-bakr-fi-al-suq` (3:137), `sakrat-al-mawt` (3:146), `ahad-ahad` (3:175), `innama-ana-habashi` (3:180), `hawl-al-muttala`
+  (3:270), `said-ibn-al-musayyib` (5:99), `dhat-al-nitaqayn` (8:196–197). No correction was made in any of them.
