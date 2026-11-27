@@ -18768,7 +18768,8 @@ if (!CHROME) {
     if (r.rabbi === 'mabni' || r.wallah === 'mabni') throw new Error('a noun behind a fused letter read as built: ' + J([r.rabbi, r.wallah]));
     // (v348-A) miss 58 → 59, mabni 5 → 6, measured the v333 way: the shelf without the proverbs' shelf (mathal-*) passes at the old ceilings; the one new is «بِخُفَّيْ» (mathal-bi-khuffay-hunayn s1: the dual's yāʾ belongs to the noun behind the fused بِ — the engine's), judged in research/story-audit-triage-delta-amthal.json
     // (v352-K) miss 59 → 60: «الْيَحْيَوْنَ» (khasais-al-irab s8), the sound plural of the maqṣūr name in raf' by the waw, which the engine reads as a damma — judged E; the shelf without the readings passes at 59
-    if (r.hit < 34327 || r.n - r.hit > 60 || r.mabni > 6) throw new Error('the audit: ' + J({ hit: r.hit, miss: r.n - r.hit, mabni: r.mabni }));
+    // (v359-S) miss 60 → 63, measured the v333 way: the shelf without al-Nadwī's Sīra passes at 60; the three new are the engine's, each judged E in research/story-audit-triage-delta-sira.json — «الْإِثْنَيْنِ» (the day-name joined to the dual, jarr by the yāʾ, read as a singular), «لِلِانْتِبَاهِ» (a singular masdar read as a dual), «أَبِي الصَّبِيِّ» (read as «my father»)
+    if (r.hit < 34327 || r.n - r.hit > 63 || r.mabni > 6) throw new Error('the audit: ' + J({ hit: r.hit, miss: r.n - r.hit, mabni: r.mabni }));
   });
   await check('v345 — the naḥw ledgers\' own examples the notes carried and the engines misread (Shudhūr R13, R17, R21, R23, R72–R81, R85, R88, R97, R106, R126, R137–R150, R154, R161, R173, R205, R210; Qawāʿid m.98, m.415, m.439–453; Iẓhār l. 26, 33, 110, 113, 122, 131; Kāfiya 4:s5, 16:s14, 28:s10 and the digest) — and the singles: AdabEngine naibNotFail, the manṣūbāt naʿt veto', async () => {
     const r = await page.evaluate(() => { const H = x => String(x || '').normalize('NFC').replace(/[ً-ْٰـ]/g, ''); const L = (s, w) => { const rows = SentenceAnalyzer.analyze(s); const i = typeof w === 'number' ? w : rows.findIndex(x => H(x.w) === w); return i < 0 ? '(no ' + w + ')' : H((Murib.line(rows, i) || {}).ar); };
@@ -18816,7 +18817,7 @@ if (!CHROME) {
     const [a, b, c2, d] = r.read; if (!(a && a.verbBefore) || !(b && b.md) || !(c2 && c2.alt && c2.alt.md && c2.want === 'رَسُولٌ') || !(d && d.sameAs === 'بِسِقْطِ')) bad.push('the reader: ' + JSON.stringify(r.read));
     // measured 2026-11-27 (v345-T): agree 643 → 714, contra 307 → 228, exact 256 → 200 — floors and ceilings
     // (v348-A) contra 228 → 232, exact 200 → 204, measured the v333 way: the shelf without the proverbs' shelf passes at the old ceilings; the four new (لِئَلَّا on كَعَمَ, «وَبَيْنَ يَدَيْ عَمْرٍو» and «وَمَعَهُ» fronted khabars of a ḥāl clause, كُلَّمَا on its answer) are the engine's, judged in research/story-audit-triage-delta-amthal.json
-    /* (v353-I merged) label353 clears four: 232 → 228, 204 → 200; agreeing 735 */ const A = r.audit; if (A.agree < 735 || A.contra > 228 || A.exact > 200 || A.objects) bad.push('audit ' + JSON.stringify({ agree: A.agree, contra: A.contra, exact: A.exact, objects: A.objects }));
+    /* (v353-I merged) label353 clears four: 232 → 228, 204 → 200; agreeing 735 */ /* (v359-S) 228 → 233, 200 → 205, measured the v333 way (the shelf without al-Nadwī's Sīra: 228 / 200 / agree 737): five ẓurūf of the Sīra the TaalluqEngine hangs on the verb of the parenthetical prayer «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» (يَوْمَ، فَلَمَّا، مَعَ), on the month-name «رَبِيعٍ» (عَامَ) and «بَعْدُ» of «فِيمَا بَعْدُ» on يَقُولُ — each judged E in research/story-audit-triage-delta-sira.json */ const A = r.audit; if (A.agree < 735 || A.contra > 233 || A.exact > 205 || A.objects) bad.push('audit ' + JSON.stringify({ agree: A.agree, contra: A.contra, exact: A.exact, objects: A.objects }));
     for (const k of ['aqaid-ahl-al-sunna:4:s1:6', 'ayn-jalut:5:s1:7', 'muallaqat-amr-ibn-kulthum:11:s6:3', 'al-bukhari-fi-baghdad:4:s1:12', 'muallaqat-zuhayr:10:s6:9', 'qisas-al-nabiyyin-1:9:s10:2', 'habil-wa-qabil:1:s1:2'])   // the work order's places, no longer contradicted
       if (A.keys.includes(k)) bad.push('still contradicted: ' + k);
     if (bad.length) throw new Error(bad.join(' · '));
@@ -18902,7 +18903,11 @@ if (!CHROME) {
     /* (v352-K) contra 316 → 321, measured the v333 way: the shelf without the readings from al-Khaṣāʾiṣ passes at 316; the five new, each judged in
        research/story-audit-triage-delta-khasais.json: «لَفْظٍ» after «كُلُّ» with its adjective (keeps its tanwin), «وَحْيٌ» after لَا of ʿaṭf, «مَشَاقَّهُ»
        the object of «تَتَحَمَّلُ» — the engine's; «النَّحْوِيِّين» the e-text's slip kept as printed; «كُمَّثْرى» whose rā is left unwritten for the hoca */
-    if (C.hit < 87169 || contra > 321) throw new Error('corpus (2026-11-27: agree 86,893, contra 663 → agree 87,169, contra 303): ' + J({ hit: C.hit, contra, und: C.und }));
+    /* (v359-S) contra 321 → 324, measured the v333 way: the shelf without al-Nadwī's Sīra passes; the new, each the engine's: «سَاوَا» (a foreign
+       place-name given tanwin) and «بَنُو» (the doer of اشْتَهَرَ read as an object) — judged E in research/story-audit-triage-delta-sira.json —, «مِمَّنْ»
+       undecided, and ONE older line the new corpus moved: talkhis-al-miftah 14:s4:1 «مَالِكِ يَوْمِ الدِّينِ» — the engine now offers the ẓarf «يَوْمَ»
+       (the Sīra's «يَوْمَ الْإِثْنَيْنِ»); the authored muḍāf ilayh stands (not edited) */
+    if (C.hit < 87169 || contra > 324) throw new Error('corpus (2026-11-27: agree 86,893, contra 663 → agree 87,169, contra 303): ' + J({ hit: C.hit, contra, und: C.und }));
     const FL = { maful: 3534, mudafIlayh: 6918, nat: 2522, atf: 3932, badal: 519, tawkid: 80, fail: 3565, mubtada: 3382, khabar: 3071, jarr: 9370, raf: 5170, nasbVerb: 831, jazm: 611, shart: 165, mazi: 9231, amr: 718, hal: 736, zarf: 1612, kanaIsm: 968, naib: 560, jarrPron: 2006, mabni: 23619 };
     const low = Object.entries(FL).filter(([k, v]) => (C.hitBy[k] || 0) < v); if (low.length) throw new Error('an agreeing rule fell below its 2026-11-27 count: ' + J(low.map(([k, v]) => [k, C.hitBy[k] || 0, v])));
     const rd = f => JSON.parse(fsx.readFileSync(pathx.join(__dirname, '..', 'research', f), 'utf8'));
@@ -20364,7 +20369,8 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     console.log('      ' + JSON.stringify(r));
     if (!(r.a === 'mahdhuf' && r.b === 'mahdhuf' && r.c === 'found' && r.cAt === 0)) throw new Error('the lists and the control: ' + JSON.stringify(r));
     /* (merge over v348-A, the proverbs' shelf) the wave measured 224 / 196 / 718 on the shelf WITHOUT the proverbs, whose four judged taʿalluq records (v348-A: 228 → 232, 200 → 204) come on top: 228 / 200 on the merged shelf, agreeing 735 with its 1,252 new tokens — the same −4 this wave earned */
-    if (!(r.contra <= 228 && r.exact <= 200 && r.agree >= 735 && !r.left.length)) throw new Error('the audit\'s ceilings: ' + JSON.stringify(r));
+    // (v359-S) 228 → 233, 200 → 205: the five Sīra ẓurūf judged E in research/story-audit-triage-delta-sira.json (the shelf without the Sīra: 228 / 200)
+    if (!(r.contra <= 233 && r.exact <= 205 && r.agree >= 735 && !r.left.length)) throw new Error('the audit\'s ceilings: ' + JSON.stringify(r));
   });
   await check('v353-I — the «Anlamı / Meaning» card leads a unit (a jarr letter, a nāsikh, a maʿmūl) at 390 px in tr and en: the translation\'s Turkish (EN: our line marked pending review, the Turkish under it), its source line; the suʾāl–cevap with holes collapsed; the book\'s example marked; no overflow; text ≥ 4.5 contrast in three themes', async () => {
     await page.setViewportSize({ width: 390, height: 844 });
@@ -20633,6 +20639,62 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (r.loud.length) throw new Error('the controls speak: ' + r.loud.join(' | '));
   });
   // <<< v355-N2
+  await check('v359 — al-Nadwī\'s Sīra is ONE story: one package «al-sira-al-nabawiyya-nadwi» on the Qiṣaṣ shelf beside his Qiṣaṣ al-Nabiyyīn, its chapters al-Nadwī\'s own sections in the book\'s order from 101 with no gap (1–100 reserved for the preface and Faṣl 1), the chapter ledger append-only, each sentence\'s letters a substring of his matn with every received shadda kept, no word of the editor\'s, and the owner\'s permission recorded in his words', async () => {
+    const fs = require('fs'), path = require('path'), J = JSON.stringify;
+    const ROOT = path.join(__dirname, '..'), ID = 'al-sira-al-nabawiyya-nadwi';
+    // THE LEDGER — append-only (v359-S). A later wave APPENDS lines [n, heading in the print's letters, the opening letters of its first
+    // sentence]; a line once here never changes, so saved progress, the teacher's verdicts and the audit (keyed package:chapter:sentence:token)
+    // keep their place. Chapters 1–100 are reserved for al-Nadwī's preface and «الفصل الأول»; the Prophet's life begins at 101.
+    const LEDGER = [[101, 'من الولادة الكريمة إلى البعثة العظيمة', 'كانلعبدالمطلب'], [102, 'ولادته الكريمة ونسبه الزكي', 'وولدرسولالله'],
+      [103, 'ولادته الكريمة ونسبه الزكي', 'وقدرويعددمن'], [104, 'ولادته الكريمة ونسبه الزكي', 'ارضعتهثويبه'], [105, 'ولادته الكريمة ونسبه الزكي', 'وهكذافعلتحليمه'],
+      [106, 'ولادته الكريمة ونسبه الزكي', 'ولمتزلتتعرف']];
+    const COUNTS = [6, 36, 520], LEVEL = 5;
+    const PERMISSION = '«I do have the permission of al-Nadwī. And al-Nadwī bestowed all his Arabic teaching materials of this kind on the whole Islamic world; his family holds no copyright.»';
+    const raw = fs.readFileSync(path.join(ROOT, 'research/sources/al-sira-al-nabawiyya-nadwi-src.txt'), 'utf8').normalize('NFC');
+    let matn = [], keep = false;   // al-Nadwī's matn only: the hashiya (the editor's notes) is never read
+    for (const l of raw.split('\n')) { if (/^=== p\. \d+ /.test(l)) { keep = true; continue; } if (l === '--- hashiya ---') { keep = false; continue; } if (keep) matn.push(l.replace(/\s*«[٠-٩]+»\s*/g, ' ')); }
+    // the editor's lineage tree (Shamela pp. 146–148, «من إضافات المحقق») and his square-bracketed headings are another man's work
+    matn = matn.filter(l => !/^\[.*\]$/.test(l.trim())).join('\n');
+    const fold = s => s.normalize('NFC').replace(/[ً-ْٰـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/[^ء-ي]/g, '');
+    const units = w => { const o = []; for (const ch of w.normalize('NFD')) { if (ch >= 'ء' && ch <= 'ي') o.push([ch, false]); else if (ch === 'ّ' && o.length) o[o.length - 1][1] = true; } return o; };
+    const W = {}; for (const w of matn.split(/[\s\-–—«»"()\[\]،؛:.!؟?,]+/)) { const k = units(w).map(u => u[0]).join(''); if (k) (W[k] = W[k] || new Set()).add(w); }
+    const shaddaKept = (tokFull, w) => { const a = units(tokFull), b = units(w); return a.length === b.length && b.every((u, i) => !u[1] || a[i][1]); };
+    const r = await page.evaluate((ID) => {
+      const all = STORIES.filter(s => /sira-al-nabawiyya|nadwi/.test(s.id) || /sira-al-nabawiyya/.test(s.group || '')).map(s => s.id);
+      const st = STORIES.find(s => s.id === ID); if (!st) return { all };
+      const S = st.chapters.flatMap(c => c.sentences);
+      return { all, shelf: sourceOf(st), besideQisas: sourceOf(STORIES.find(s => s.id === 'qisas-al-nabiyyin-4') || {}), group: st.group, level: st.level,
+        n: [st.chapters.length, S.length, S.reduce((a, s) => a + s.tokens.length, 0)],
+        ch: st.chapters.map(c => ({ n: c.n, title: c.title.ar, first: c.sentences[0].tokens.map(t => (t.s || t.surface).full).join(''),
+          sen: c.sentences.map(s => ({ id: s.id, letters: s.tokens.map(t => (t.s || t.surface).full + (t.punctAfter || '')).join(''), toks: s.tokens.map(t => (t.s || t.surface).full), iral: s.tokens.every(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr) })) })) };
+    }, ID);
+    const bad = [];
+    if (J(r.all) !== J([ID])) bad.push('ONE package, never split: ' + J(r.all));
+    if (r.shelf !== 'qisas' || r.besideQisas !== 'qisas') bad.push('on the Qiṣaṣ shelf beside qisas-al-nabiyyin-4: ' + J([r.shelf, r.besideQisas]));
+    if (r.group !== ID || r.level !== LEVEL) bad.push('its own story group, Level ' + LEVEL + ': ' + J([r.group, r.level]));
+    if (J(r.n) !== J(COUNTS)) bad.push('chapters/sentences/tokens ' + J(r.n) + ' ≠ ' + J(COUNTS));
+    const ns = (r.ch || []).map(c => c.n);
+    if (J(ns) !== J(ns.map((_, i) => 101 + i))) bad.push('the chapters run from 101 with no gap: ' + J(ns));
+    if (ns.length < LEDGER.length) bad.push('a ledger chapter is missing: ' + J(ns));
+    LEDGER.forEach(([n, head, first], i) => { const c = (r.ch || [])[i];
+      if (!c || c.n !== n || fold(c.title) !== fold(head) || !fold(c.first).startsWith(first)) bad.push('ledger line ' + n + ' changed: ' + J(c && [c.n, c.title, fold(c.first).slice(0, 16)])); });
+    if (ns.length > LEDGER.length) bad.push('chapters past the ledger — append their lines: ' + J(ns.slice(LEDGER.length)));
+    const F = fold(matn);
+    for (const c of r.ch || []) for (const s of c.sen) {
+      if (!F.includes(fold(s.letters))) bad.push(c.n + ':' + s.id + ' — its letters are not al-Nadwī\'s');
+      if (!s.iral) bad.push(c.n + ':' + s.id + ' — a token without its iʿrāb line in ar/en/tr');
+      for (const t of s.toks) { const k = units(t).map(u => u[0]).join(''), c2 = [...(W[k] || [])];
+        if (!c2.length) bad.push(c.n + ':' + s.id + ' «' + t + '» is no word of the matn'); else if (!c2.some(w => shaddaKept(t, w))) bad.push(c.n + ':' + s.id + ' «' + t + '» drops a received shadda'); }
+    }
+    const m = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/samples', ID, 'manifest.json'), 'utf8')), a = m.attribution || {};
+    if (!['en', 'tr', 'ar'].every(k => (a[k] || '').includes(PERMISSION)) || !/2026-11-27/.test(a.en) || !/٢٠٢٦-١١-٢٧/.test(a.ar)) bad.push('the owner\'s permission, dated, in his words, in all three attributions');
+    if (/\bORIGINAL\b/.test(a.en || '') || a.reviewStatus !== 'pending-scholarly-review' || !/EVERY other vowel is ours/.test(a.en || '') || !/carries only the shadda/.test(a.en || '')) bad.push('received text, the shadda received and every other vowel declared ours, pending review');
+    if (!/chapters 1–100 are reserved/.test(a.en || '') || !/continues in later parts/.test(a.en || '') || !/editor's footnotes/.test(a.en || '')) bad.push('the about note says the story continues in parts, the reserved numbers, and that the editor\'s notes are left out');
+    if (!(m.chapters || []).every(c => new RegExp('ch\\. ' + c.n + ' «[^»]+» \\(printed pp?\\. ').test(a.en))) bad.push('each chapter named in the about note with its printed page');
+    if (!fs.existsSync(path.join(ROOT, 'tools/authoring/sira_src.py'))) bad.push('the source builder');
+    if (bad.length) throw new Error(bad.slice(0, 8).join(' | '));
+    console.log('      one story, chapters ' + ns[0] + '–' + ns[ns.length - 1] + ', ' + r.n[1] + ' sentences, ' + r.n[2] + ' tokens, every letter al-Nadwī\'s');
+  });
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

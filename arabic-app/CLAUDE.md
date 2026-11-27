@@ -17572,3 +17572,62 @@ the cause. Scratchpad `aqiln2/` (PROGRESS.md, `edits/` = every code edit as a sc
   the 20 WujuhEngine face probes of the Qawāʿid ledger not reached. Hand-overs to v355-N1 (Murib / SentenceAnalyzer): the state that changes a
   vowelled re-reading; تَسَفَّهَتِ read as a muḍāriʿ; «أنتم … جواب الطلب» after an imperative; Murib's role guesses on a dual after a dual
   (بدل / مبتدأ where the authors write نعت / خبر); «زيدٌ الأفضلُ» khabar read as naʿt.
+
+## v359-S — al-Nadwī's Sīra, one story in parts
+
+The owner (2026-11-27): «This is a new story (make it ONE story with many parts; do not cut it into different stories)» — Shamela 9914 —
+«I do have the permission of al-Nadwī. And al-Nadwī bestowed all his Arabic teaching materials of this kind on the whole Islamic world; his family
+holds no copyright.» That statement is recorded, dated and in his words, in all three attributions of the package (`PERMISSION_*` in the kit).
+
+- **The source**: `tools/authoring/sira_src.py <cache>` → `research/sources/al-sira-al-nabawiyya-nadwi-src.txt` (743 Shamela pages, house format
+  `=== p. <shamela page> (<printed page>) [<section>] ===`, matn, then «--- hashiya ---»; README entry). The book: Abū al-Ḥasan ʿAlī al-Ḥasanī
+  al-Nadwī, «السيرة النبوية», Dār Ibn Kathīr, 12th ed. 2004, notes by Sayyid ʿAbd al-Mājid al-Ghawrī. **Only al-Nadwī's text is authored**: the
+  hashiya, the editor's lineage tree (Shamela pp. 146–148, «من إضافات المحقق») and the editor's square-bracketed headings (his preface: what he
+  added stands «بين المعقوفتين») are never shown. The e-text carries ONLY the shadda: it is kept on its letter (the guard proves it token by
+  token); every other vowel is ours and declared.
+- **ONE package** `al-sira-al-nabawiyya-nadwi` (L5, free, on the Qiṣaṣ shelf beside `qisas-al-nabiyyin-*`: `al-sira-al-nabawiyya` appended to
+  the qisas test of `LIB_SOURCES`). Source of truth: `tools/authoring/author_al_sira_al_nabawiyya_nadwi.py` (driver) + one module per chapter
+  `tools/authoring/sira_ch<N>.py` (`N_`, `TITLE`, `META` with the printed pages, `S`, `NEW`, `GLOSS_HERE`, `V`, `HOCA`, `LEFT`) + the kit
+  `tools/authoring/sira_common.py` (the ledger, `guard()`, `SAW()` for «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ», `T`/`VW`/`Q`, `manifest()`, `finish()` = the
+  proverbs' finish + renumbering). Dry run: `QISSA_PKG_ROOT=<scratch> python3 tools/authoring/author_al_sira_al_nabawiyya_nadwi.py`.
+- **The chapter-id scheme (append-only)**: chapters **1–100 are reserved** for al-Nadwī's preface and «الفصل الأول: مدخل إلى السيرة النبوية» (about
+  forty headed sections; not authored — the brief's «reserve, do not author first»); the Prophet's life begins at **101** and every later section
+  takes the next number in the book's order, no gap. One chapter = one of al-Nadwī's OWN headed sections; a long one is cut at a paragraph and
+  each part keeps the heading with «(٢)، (٣) …». The ledger `CHAPTER_IDS` (n, heading, Shamela page) is extended, never edited; `finish()` refuses
+  a chapter list that is not its prefix, and the smoke check pins the same ledger with each chapter's opening letters. The reader keys
+  progress, verdicts and the audit on `ch.n` (`package:chapter:sentence:token`); nothing in the app assumes chapter 1 (checked: pills, keys,
+  the audio prefetch `c.n === f.ch.n + 1`).
+- **The first instalment** (36 sentences, 520 tokens, 55 new keys, 69 verbs): 101 «من الولادة الكريمة إلى البعثة العظيمة» (p. 157: ʿAbd Allāh and
+  Āmina, 3 s / 57 t) · 102–106 «ولادته الكريمة ونسبه الزكي» (1)–(5) (pp. 157–162: the birth and the lineage to ʿAdnān 118 t; the portents 76 t; the
+  nursing, Thuwayba, Banū Saʿd, Ḥalīma 114 t; Ḥalīma takes the orphan 54 t; the weaning, the opening of the breast, the desert, «أنا أعربكم» 101 t)
+  — al-Nadwī's whole first section. Long print sentences are cut at the print's own pauses (no word moved). The print's date gloss
+  «(٥٧٠ المسيحي)» rides as `punctAfter` (no tokens for a numeral; the guard folds punct in).
+- **For the hoca** (the manifest lists each): «شَهْرِ رَبِيعٍ الْأَوَّلِ» (adjective, not annexation); «مَنَاف»'s last vowel UNWRITTEN; «الْإِثْنَيْنِ»
+  keeps the print's hamza; the print's stop inside «روى … ما ظهر»; «كسْرَى» (kāf) and «شُرفَات» (rāʾ) UNWRITTEN; «لِرَضَاعَةِ» (رِضَاعَة heard too);
+  «وَمَا عَسَى أَنْ تَصْنَعَ» read with «مَا» as mubtadaʾ; «وَأَخْذَهُ» a masdar; «كَمَا كَانَ» with kāna tāmma.
+- **Gate**: validators pass; `tools/grammar_audit.js` listed 15 on the package — five were the author's (the kit's «وَسَلَّمَ» line said
+  «conjoined to صَلَّى»; now «مُعْتَرِضَةٌ مِثْلُ صَلَّى … لَا مَحَلَّ لَهَا», the Qawāʿid rule for a clause conjoined to a muʿtariḍa); the second run's 10
+  are judged E in `research/story-audit-triage-delta-sira.json` (TaalluqEngine hangs ẓurūf on the verb of the parenthetical prayer ×3 and on a
+  month-name; SignEngine reads الِانْتِبَاه as a dual, أَبِي الصَّبِيِّ as «my father», الِاثْنَيْنِ as a singular; the case layer gives سَاوَا tanwin and
+  makes بَنُو an object).
+- **Smoke** «v359 — al-Nadwī's Sīra is ONE story …» (before «v333 — the received imports»): exactly one Sīra package, on the qisas shelf beside
+  qisas-al-nabiyyin-4, its group and level, counts, chapters from 101 with no gap, the LEDGER (append-only; a chapter past it fails until its line
+  is appended), each sentence's letters ⊂ al-Nadwī's matn (hashiya and bracketed lines out), every token a word of the matn with every received
+  shadda kept, every token's iʿrāb in ar/en/tr, the permission statement verbatim in en/tr/ar with its date, the about note's promises (reserved
+  numbers, continues in parts, the editor's notes left out, each chapter with its printed page), the source builder present.
+- **Older checks re-measured the v333 way** (the same build with the Sīra moved out passes every one at its old number; reasons in the
+  check comments): v345 SignEngine miss 60 → 63 (الْإِثْنَيْنِ، لِلِانْتِبَاهِ، أَبِي الصَّبِيِّ); v345 taʿalluq and v353-I audit ceilings 228/200 →
+  233/205 (five Sīra ẓurūf); v345-D corpus contra 321 → 324 (سَاوَا، بَنُو، «مِمَّنْ» undecided, and ONE older line the new corpus moved:
+  talkhis-al-miftah 14:s4:2 «مَالِكِ يَوْمِ الدِّينِ», the engine now offering the ẓarf «يَوْمَ» — judged E in the delta file, not edited).
+- **Speed** (scratch `sira359/speed359.js`, file://, 4× CPU, 390×844, 3 rounds): the body is lazy like every story's; «open the story» (6
+  chapters, 36 sentences) first paint 256–326 ms, worst long task 163–361 ms, 827 nodes, 6 pills. For scale, Ṭarafa's Muʿallaqa (17 chapters,
+  111 sentences) paints its first batch (≈46 sentences) in ≈315 ms and the rest in ≈280–440 ms of batched work (≈5 ms per sentence at 4×).
+  **150 chapters (≈900 sentences)** would keep the first paint (~0.3 s, RENDER_FIRST) but add ≈4–5 s of batched background render, ≈100k
+  nodes and a 150-pill row: the story page renders every chapter's body. Before the Sīra passes ~30 chapters the story view needs a
+  windowed chapter render (render the chapter opened from its pill, keep the rest as headings) — a change to the shared story render path,
+  left to the orchestrator. Door path untouched: the chapters ride in the lazy bodies like every story's; the manifest with its three-language about note is 16.5 KB raw (package on disk 602 KB).
+- **What remains of the book** (al-Nadwī's matn, Arabic words, ≈ tokens): Faṣl 2 from «وفاة عبد الله وآمنة …» to its end ≈ 2,700; Faṣl 3 (Mecca)
+  ≈ 8,200; Faṣl 4 (the Hijra) ≈ 3,800; Faṣl 5 (Medina) ≈ 48,600; Faṣl 6 (character) ≈ 6,800; Faṣl 7 ≈ 13,300 (may hold the editor's tables);
+  ≈ 83,000 in all after the instalment, plus ≈ 15,800 for the preface and Faṣl 1 (chapters 1–100).
+- Subset (the brief's): 73 pass, 4 fail before the re-measures (the four above); after them all pass (v359 and the four re-run alone).
+  Scripts: scratchpad `sira359/` (`bin/matn.py`, `bin/lk.py`, `bin/kc.py`, `speed359.js`, `smoke359.js`, `audit*`, `PROGRESS.md`).
