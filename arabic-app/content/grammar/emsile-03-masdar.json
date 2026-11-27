@@ -17,8 +17,8 @@
     "tr": "نَصْرًا «yardım etmek»tir — zamansız ve fâilsiz iş. نَصْرَةً (ilk harf meftûh) «bir kere yardım etmek»; نِصْرَةً (ilk harf meksûr) «bir çeşit yardım etmek». Mücerred fiilin masdarı işitilerek öğrenilir; diğer ikisi ondan kaideyle kurulur."
   },
   "explanation": {
-    "en": "The third row of the Amthila is the maṣdar, the name of the deed itself. The madrasa recites it in the accusative, نَصْرًا, because in the row it is the absolute object of the verb before it (نَصَرَ … نَصْرًا). The maṣdar of the three-letter bare verb has many measures and is known by hearing (samāʿī) — this is why the app's engine leaves it unbuilt and the table shows the corpus's own word from a sentence of the stories. From the bare verb's maṣdar two nouns ARE built by rule (Taṣrīf al-ʿIzzī, the chapter on the noun of once): فَعْلَةٌ, with a fatḥa on the first letter, for doing it ONCE — ضَرَبْتُ ضَرْبَةً «I struck one blow»; and فِعْلَةٌ, with a kasra, for the MANNER of doing it. The Amthila recites both with the ending -ةً. The only difference between them is the first vowel, so read it carefully. The tables show the two in four bābs, built by the engine. [Explanation ours — awaiting the hoca's review.]",
-    "tr": "Emsile'nin üçüncü satırı masdardır, işin kendi adı. Medrese onu mansûb okur, نَصْرًا, çünkü satırda kendinden önceki fiilin mef'ûl-i mutlakıdır (نَصَرَ … نَصْرًا). Sülâsî mücerredin masdarının birçok vezni vardır ve işitilerek bilinir (semâî) — bu yüzden uygulamanın motoru onu kurmaz; cetvel hikâyelerdeki bir cümleden külliyatın kendi kelimesini gösterir. Mücerredin masdarından iki isim ise kaideyle KURULUR (Tasrîfu'l-İzzî, binâ-i merre bahsi): ilk harfi meftûh فَعْلَةٌ, işi BİR KERE yapmak için — ضَرَبْتُ ضَرْبَةً «bir kere vurdum»; ilk harfi meksûr فِعْلَةٌ, işin YAPILIŞ ŞEKLİ için. Emsile ikisini de -ةً ile okur. Aralarındaki tek fark ilk harekedir, onu dikkatle oku. Cetveller ikisini dört bâbda, motorun kurduğu şekliyle gösterir. [Açıklama bizimdir — hoca onayı bekliyor.]"
+    "en": "The third row of the Amthila is the maṣdar, the name of the deed itself. The madrasa recites it in the accusative, نَصْرًا, because in the row it is the absolute object of the verb before it (نَصَرَ … نَصْرًا). The maṣdar of the three-letter bare verb has many measures and is known by hearing (samāʿī) — this is why the app's engine leaves it unbuilt and the table shows the corpus's own word from a sentence of the stories. From the bare verb's maṣdar two nouns ARE built by rule (Taṣrīf al-ʿIzzī, the chapter on the noun of once): فَعْلَةٌ, with a fatḥa on the first letter, for doing it ONCE — ضَرَبْتُ ضَرْبَةً «I struck one blow»; and فِعْلَةٌ, with a kasra, for the MANNER of doing it. The Amthila recites both with the ending -ةً. The only difference between them is the first vowel, so read it carefully. The tables show the two in the six bābs, built by the engine. [Explanation ours — awaiting the hoca's review.]",
+    "tr": "Emsile'nin üçüncü satırı masdardır, işin kendi adı. Medrese onu mansûb okur, نَصْرًا, çünkü satırda kendinden önceki fiilin mef'ûl-i mutlakıdır (نَصَرَ … نَصْرًا). Sülâsî mücerredin masdarının birçok vezni vardır ve işitilerek bilinir (semâî) — bu yüzden uygulamanın motoru onu kurmaz; cetvel hikâyelerdeki bir cümleden külliyatın kendi kelimesini gösterir. Mücerredin masdarından iki isim ise kaideyle KURULUR (Tasrîfu'l-İzzî, binâ-i merre bahsi): ilk harfi meftûh فَعْلَةٌ, işi BİR KERE yapmak için — ضَرَبْتُ ضَرْبَةً «bir kere vurdum»; ilk harfi meksûr فِعْلَةٌ, işin YAPILIŞ ŞEKLİ için. Emsile ikisini de -ةً ile okur. Aralarındaki tek fark ilk harekedir, onu dikkatle oku. Cetveller ikisini altı bâbda, motorun kurduğu şekliyle gösterir. [Açıklama bizimdir — hoca onayı bekliyor.]"
   },
   "examples": [
     {
@@ -125,39 +125,59 @@
       {
         "id": "marra",
         "head": {
-          "ar": "بِنَاءُ الْمَرَّةِ فِي أَرْبَعَةِ أَبْوَابٍ",
-          "en": "The noun of once in four bābs",
-          "tr": "Dört bâbda binâ-i merre"
+          "ar": "بِنَاءُ الْمَرَّةِ فِي الْأَبْوَابِ السِّتَّةِ",
+          "en": "The noun of once in the six bābs",
+          "tr": "Altı bâbda binâ-i merre"
         },
         "src": {
           "k": "em",
-          "slot": "marra"
+          "slot": "marra",
+          "models": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
         },
         "bab": true,
         "cells": [
           "نَصْرَةً",
           "ضَرْبَةً",
           "فَتْحَةً",
-          "عَلْمَةً"
+          "عَلْمَةً",
+          "حَسْنَةً",
+          "حَسْبَةً"
         ]
       },
       {
         "id": "naw",
         "head": {
-          "ar": "بِنَاءُ النَّوْعِ فِي أَرْبَعَةِ أَبْوَابٍ",
-          "en": "The noun of manner in four bābs",
-          "tr": "Dört bâbda binâ-i nev'"
+          "ar": "بِنَاءُ النَّوْعِ فِي الْأَبْوَابِ السِّتَّةِ",
+          "en": "The noun of manner in the six bābs",
+          "tr": "Altı bâbda binâ-i nev'"
         },
         "src": {
           "k": "em",
-          "slot": "naw"
+          "slot": "naw",
+          "models": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
         },
         "bab": true,
         "cells": [
           "نِصْرَةً",
           "ضِرْبَةً",
           "فِتْحَةً",
-          "عِلْمَةً"
+          "عِلْمَةً",
+          "حِسْنَةً",
+          "حِسْبَةً"
         ]
       }
     ],

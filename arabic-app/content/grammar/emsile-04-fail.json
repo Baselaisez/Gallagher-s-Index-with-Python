@@ -132,39 +132,59 @@
       {
         "id": "babs",
         "head": {
-          "ar": "اسْمُ الْفَاعِلِ فِي أَرْبَعَةِ أَبْوَابٍ",
-          "en": "The active participle in four bābs",
-          "tr": "Dört bâbda ism-i fâil"
+          "ar": "اسْمُ الْفَاعِلِ فِي الْأَبْوَابِ السِّتَّةِ",
+          "en": "The active participle in the six bābs",
+          "tr": "Altı bâbda ism-i fâil"
         },
         "src": {
           "k": "em",
-          "slot": "fail"
+          "slot": "fail",
+          "models": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
         },
         "bab": true,
         "cells": [
           "نَاصِرٌ",
           "ضَارِبٌ",
           "فَاتِحٌ",
-          "عَالِمٌ"
+          "عَالِمٌ",
+          null,
+          "حَاسِبٌ"
         ]
       },
       {
         "id": "mub",
         "head": {
           "ar": "صِيغَةُ الْمُبَالَغَةِ (فَعَّالٌ)",
-          "en": "The intensive (faʿʿāl) in four bābs",
-          "tr": "Dört bâbda mübalağa (فَعَّالٌ)"
+          "en": "The intensive (faʿʿāl) in the six bābs",
+          "tr": "Altı bâbda mübalağa (فَعَّالٌ)"
         },
         "src": {
           "k": "em",
-          "slot": "mubalagha"
+          "slot": "mubalagha",
+          "models": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
         },
         "bab": true,
         "cells": [
           "نَصَّارٌ",
           "ضَرَّابٌ",
           "فَتَّاحٌ",
-          "عَلَّامٌ"
+          "عَلَّامٌ",
+          "حَسَّانٌ",
+          "حَسَّابٌ"
         ]
       }
     ],
