@@ -17526,3 +17526,62 @@ Source of the code: scratchpad `aqiln1/eng_n1.js`, spliced by `aqiln1/splice_n1.
 - **Refit + full suite**: `check_i18n.py` clean; refit chain exit 0 (irab_model 2,435 weights over 75,015 rows; drills 99.2 % POS, 99.1 % case);
   **645 checks: 644 PASS, 1 FAIL**. The failure was «v317 — the library shelves …» (persist and clear, a UI timing check). It PASSES when re-run alone.
 - **Left**: A408.1 (hand-over 1); the vowelled قَالَ زَيْدٌ عَمْرٌو مُنْطَلِقٌ names the maqūl «زيد عمرو منطلق», one word too many (A445 proves on the printed text); N2's bābs.
+## v357-N — the kind of iʿrāb in every reason
+
+The owner (2026-11-27, a game round on «وَهُمْ» whose «Neden?» said only «çünkü Mübtedâ»): «this is هو, it is a ḍamīr; ḍamīrs are one of the mabniyyāt;
+mabniyyāt do not have lafẓī or taqdīrī iʿrāb, they just have maḥallī iʿrāb; this هو is maḥallan marfūʿ … any other kind of word». `Naw357` (one object
+right after `Illa346`, before Ilal348) adds to v346's chain what KIND of word it is, whether that kind is muʿrab or mabnī, which of the three kinds of
+iʿrāb it therefore has — lafẓī, taqdīrī, maḥallī — or none, and what that means for this word. All page code is in `prototype/reader.html` itself
+(the build only splices the data block).
+- **Step kinds** (same `{kind, ar, en, tr, term, cite?}` shape; new fields `cite2`, `cls`, `st`, `ded`, `lm`, `mahall`; en/tr templates `naw*` in `ui()`):
+  `naw` (the kind of word, chip = the line's own words «ضَمِيرٌ مُنْفَصِلٌ»), `bina` (the class is built: the book's list line + the book's reason),
+  `irab` (the kind of iʿrāb), `jumla` (a clause the line parses, its own short row). The conclusion stays v346's `built` step (its checks read it).
+  Order for a built noun is the owner's: naw → bina → irab → role → family → governor → built («So «هُوَ» stands where a marfūʿ word stands: it is marfūʿ
+  maḥallan …»). Verbs: role → bina → irab → built. Particles: role → bina → irab (the old `built` row folded into bina). A muʿrab noun or muḍāriʿ:
+  one `irab` step before `sign`. Summary (`short`): a built noun «Mübtedâ → merfûât → zamir: mebnî → mahallen merfû (çıkarım)»; a particle «Cer harfi →
+  mebnî, mahalsiz»; lafẓan/maḥallan «… → lafzen mecrûr, mahallen merfû»; a muʿrab word unchanged («Fâil (özne) → merfûât → merfû → damme»).
+- **How the class is decided** (`Naw357.of`, from the line's OWN clauses first): the head «ضمير …» (faṣl only with «لا محل له»), «اسم إشارة»، «اسم موصول»،
+  «اسم شرط»، «اسم استفهام»، «اسم فعل»; a line that says «مبني» with no sign: the munādā / the noun of lā (by v346's role), «مركب / الجزأين», «ظرف …» (قبل/بعد on
+  the ḍamm → qabl), else «a built noun» (no class named); verbs and particles from v346's reader; a muʿrab word's lafẓī / taqdīrī from the line's
+  «مقدرة / ظاهرة» and the cause words («للتعذر / للثقل / المناسبة / الساكنين / الحكاية / الوقف»), else SignEngine's class (its expect manner), sub-kind by the
+  sign (vowel / a vowel standing in / letters / dropping). Exceptions the books name: the dual demonstrative / relative with a sign («إلا ذَيْن وتَيْنِ
+  واللّذَيْنِ واللّتَيْنِ فكالمثنى») and «أيّ» («إلا أيًّا فيهما»). `read()` now keeps the host word («وَهُمْ» → «هُمْ», `r.host`) and the whole stripped line
+  (`r.full`), reads «فِي مَحَلِّ جَرٍّ بِمِنْ» as a named governor, and — a fix — «مَبْنِيٌّ لِلْمَجْهُولِ» (the passive) is no longer read as bināʾ (`Naw357.BUILT`).
+- **The place when the line does not write it** (`Naw357.place`): deduced ONLY when the role's family requires one state (v346's `famOf`), the role is no
+  follower, and neither the own clauses nor the measure's head (first clause, or two) speak of a case, a place, «لفظا/محلا» or offer «أو» / «(». The step
+  carries `ded`, the visible «(satırda yazılı değil; kural veriyor / the line does not write it; the rule gives it)», `data-ded="1"` on its row, and
+  «(çıkarım / deduced)» in the summary; it is never counted as authored (`caseN` is the line's case only).
+- **The books' own words** (`Naw357.Q`, 54 lines, verbatim as printed, Arabic never re-vowelled; the check finds each on its page): the Iẓhār's matn
+  (lithograph, `research/sources/izhar-al-asrar-matn-lithograph.txt`, the page is the last «[N]» before it) — the three kinds by «الصفة» p. 152
+  («لفظي يظهر في اللفظ، وتقديري ومحلي»), taqdīrī p. 152, maḥallī of the muʿrab p. 155, «والثاني المبني فهو ما كان حركته وسكونه لا بعامل» p. 156, the
+  lāzim built list (pronouns, demonstratives, relatives «غير أي وأية فإنهما معربان», asmāʾ al-afʿāl) p. 156, the built by origin (particle, māḍī, amr)
+  p. 156, the built ẓurūf p. 158, «القسم الأول ما لا يكون معمولا أصلا … الأول الحرف مطلقا، والثاني الأمر …» pp. 115–116 (why a particle / the amr has no
+  place), the māḍī's two places p. 117 and «وفي غير هذين الموضعين لا يكون معمولا» p. 118, the ḥāl clause p. 120, the maṣdar clause p. 119; Shudhūr
+  (the muʿrab p. 58, the seven bābs p. 62, taqdīrī p. 93 ×3, the bāb of bināʾ pp. 100–144, «الحروف … والأسماء غير المتمكنة» p. 150 ×7); Qawāʿid
+  al-Iʿrāb's matn (the clauses with a place pp. 35–49, without pp. 53–69); Shaykhzāde's sharḥ p. 61 (1:52) for the oath's answer; Ibn ʿAqīl
+  (the māḍī's vowels 1:38; Ibn Mālik's verses 15–21 as the reason of bināʾ: shabah waḍʿī / maʿnawī / iftiqārī, «وفعل أمر ومضي بنيا»، «وكل حرف مستحق للبنا»).
+  Reasons reused from ILAL (not retyped): ilal-shaykhzade-28-4 («والمبني مخصوص بالإعراب المحلي، بخلاف الإعراب اللفظي والتقديري»), ilal-aqil-30-1
+  (the pronoun's shabah waḍʿī), ilal-aqil-31-1, ilal-ibn-malik-173-3 / 173-1 (the muḍāriʿ with the nūns). Our en/tr step sentences are renderings,
+  pending the hoca like v346's. Term chips with a note (`term.ref`) are `<button data-illa-ref>` — one delegated listener opens `openRef` (the kinds
+  notes: taqsim-al-irab…, al-taqdiri-al-sabi…-mahalli…, al-murab-wal-mabni…, the mabnī lāzim / ghayr lāzim notes, ism-maqsur-manqus, anwa-al-jumal).
+- **Clauses** (`Naw357.jumla`, own parser — `JumlaMahallEngine.authored` overwrites a stated place with its seat's): the line's «جملة …» segment →
+  seat (quoted words ignored; «جملتا الشرط والجواب … خبره» = the khabar) and the place the line states; a seat the book fixes (ṣila / iʿtirāḍ / tafsīr /
+  qasam / istiʾnāf: none; iḍāfa: jarr; ḥāl: naṣb) fills a silent line, marked deduced; against the line → yields to the review list.
+- **Surfaces**: the word sheet's ladder + summary, the game feedback (`quizHtml`, unchanged code — the chain is longer), the sentence sheet (it now
+  builds a `brief` chain: only what `short()` reads), the Cümle lab's «Otomatik» chain (the engine's own line), a role note's table (third column
+  «İ'rab çeşidi», a «mebnî kelime → alâmet yok — في محل رفع → mahallî» row), the kinds-of-iʿrāb notes' table (`Naw357.kindsHtml`, nine rows each with its
+  book line). v346's fit rule and v338's single mark hold (the ladder starts closed; no second mark).
+- **Measure** (`Illa346.measure().naw`, every authored token): before (v346 reader, this wave's base): 90,147 tokens, steps (capped at 5) 0: 6,372 · 1: 19,096 · 2: 18,773 · 3: 8,843 · 4: 12,071 · 5: 24,992; family set aside 312. After: 0: 6,324 · 1: 3,559 · 2: 5,820 · 3: 22,976 · 4: 11,120 · 5: 12,668 · 6: 24,661 · 7: 2,878 · 8: 141 (v346's capped histogram 5+: 40,348). **67,243 tokens carry a kind-of-iʿrāb step**: lafẓī by vowels 25,952 nouns + 2,916 muḍāriʿ; by letters 1,801 + 714; by a vowel standing in 739; by a dropping 39 + 881; taqdīrī — taʿadhdhur 1,058, thiqal 767, munāsaba 399, the line's «مقدرة» with no cause 187, two sākins 4; lafẓan/maḥallan 72; particles 15,677; māḍī 10,103; amr 728; muḍāriʿ built 92; pronouns 819; demonstratives 890; relatives 1,368; conditional 173; interrogative 262; built ẓurūf 476 + qabl/baʿd 19; munādā 116; noun of lā 140; compound numbers 48; ism fiʿl 3; «a built noun» (class unnamed) 800. Clause rows 4,398 (khabar 1,053, ṣila 956, iʿtirāḍ 498, ḥāl 448, naʿt 372, istiʾnāf 312, iḍāfa 287, jawāb 203, mafʿūl 159, qasam 43, tābiʿ 41, tafsīr 21, maṣdar 5). **Deduced places 234** (+ 1,146 clause rows whose seat the line names and the book fixes). **Contradictions 0** by v346's test and 0 by the new one (a deduced place against the head's case; a stated place against the line's; «مبني/معرب» against the class; lafẓī against «مقدرة», taqdīrī against «ظاهرة»; the lafẓan/maḥallan family against «… محلا»; a clause's place against its line). **v346's role/case disagreements: 312 → 251** — 61 are now the books' lafẓan/maḥallan (the line writes «مجرور لفظا … مرفوع/منصوب محلا»; the family step states the place). Tokens with no kind step (22,904): a case stated with no sign and no class 10,931; a cited word 4,053; no role/verb/particle the reader knows 3,135; a follower whose line names no sign 2,341; a role with no case/sign/class 2,279; the review list 165.
+- **Review list** `research/irab-kind-review-2026-11-27.md` (scratch `rev_md.py` from the measure): 168 lines in 17 groups — SignEngine's class taqdīrī but the line names a heard sign without «مقدرة» 133 (maqṣūr 97, muḍāriʿ 27, + the yāʾ of the speaker / manqūṣ), the line's own class so 11, «ظاهرة» on a taqdīrī class 6, a sign and «مبني» in one clause 7 (an offered alternative — not a slip), a «حرف …» line carrying the other word's place 6 (two words in one token — the reader's limit), clause seat against place 3, a built class with a sign / called «معرب» 2. e.g. al-maqamat-birgivi «الدُّنْيَا — مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.» (rule: taqdīrī); al-ghurab-wa-al-thalab «أُخْرَى — نَعْتٌ مَنْصُوبٌ بِالْفَتْحَةِ — بِفَتْحَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ.»; alb-arslan-wa-malazgird «يَوْمَئِذٍ — … مَنْصُوبٌ بِالْفَتْحَةِ (وَيَجُوزُ بِنَاؤُهُ …)». No story was edited.
+- **Speed** (2,000-token sample, best of 9, three alternated page loads, load ≈ 1.3): `Illa346.chain` base 47.5 / 49.2 / 49.9 µs per token → 51.6 / 51.8 / 56.8 (median +5 %); `senHtml` over 300 sentences 187 / 189 / 193 ms → 201 / 207 / (306, one outlier) (median +10 %) — under the 15 % budget after: `frag()` keeps each compiled slice pattern and the last NFC line; the clause row is gated on «جمل» in `r.full`; the sentence sheet builds a `brief` chain (no book lines, verb detail or clause row unless alone); the bare word is read only when a class needs it. New tables stay in code (`Naw357.Q` ≈ 8 KB raw) — v354's core-slice ceiling passes.
+- **Checks** (before v333): «v357 — the kind of iʿrāb in every reason …» (the owner's example on a corpus token in en + tr with the deduced marker and the
+  summary; 26 classes on a corpus token each; every `Q` line verbatim on its page, ≥ 25 used by the classes; the reused ILAL ids; en/tr template keys;
+  contradictions 0 by both tests; floors by class) and «v357 — the kind of iʿrāb where the reasons show, at 390 px …» (the sheet's closed summary,
+  the deduced row, a chip opening a kinds note, the role note's 3-column table, the kinds table, the sentence row, a real role-game round's
+  feedback = the asked token's chain, the feedback of a pronoun / demonstrative / māḍī / particle / maqṣūr, no overflow, v320 contrast in three
+  themes). **Older checks changed**: «v346 — the reasons …» typed زَيْدٌ / عَمْرًا `n` 5 → 6, «v346 — the four surfaces …» the fāʿil's sheet and tap-open
+  `n` 5 → 6 — the muʿrab word's chain gains the `irab` step (said in the checks' comments). **Finish**: `check_i18n.py` clean; the refit chain ran (irab_model 2,435 weights over 75,015 rows); the named subset: 37 PASS, 1 FAIL — v351's design pass (my chip buttons were 28 px tall); fixed with v320's invisible 44 px `::after` hit area (CSS only, after the refit) and re-run: v351, v320, v346 surfaces, v348-F, v357 ×2 PASS. The speed checks (v341 ×4, v343 ×5, v350 ×4, v354 ×2) PASS with their ceilings untouched.
+- **Left**: the hidden pronoun (mustatir) has no token of its own — the verb's line names it in a set-aside clause, which the chain does not explain;
+  an attached pronoun inside a host token likewise (only when the token's own clause is the pronoun, «لَهُمْ»); the tābiʿ's place is never deduced
+  (v346 does not resolve the followed word); asmāʾ al-afʿāl are mostly cited words («لفظ محكي») — 3 tokens; the 97 «taqdiriUnsaid — SignEngine's class»
+  maqṣūr rows mix the engine's misreadings («بَيْنَمَا») with real slips; the 10,931 lines that state a case with neither sign nor class get no kind step (lafẓī vs taqdīrī needs the sign); the en/tr renderings await the hoca.

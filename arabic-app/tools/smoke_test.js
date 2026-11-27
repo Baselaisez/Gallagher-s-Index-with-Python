@@ -18535,8 +18535,9 @@ if (!CHROME) {
     });
     const J = JSON.stringify, K = r.kinds;
     const [v, z, a] = r.typed.tr, [ve, ze, ae] = r.typed.en;
-    if (!z || z.n !== 5 || !/Otomatik/.test(z.auto) || !/^role:Fâil \(özne\): fiili yapan/.test(z.t) || !/family:Fâil \(özne\) merfûâttandır; bu yüzden merfû olmalıdır/.test(z.t) || !/governor:Onu merfû kılan: «ضَرَبَ»/.test(z.t) || !/sign:Kelime müfred isim;[^|]*damme/.test(z.t) || !/tells:Sondaki damme, «زَيْدٌ» kelimesinin bu cümlede fâil/.test(z.t)) throw new Error('the owner\'s زَيْدٌ (tr): ' + J(z));
-    if (!a || a.n !== 5 || !/nesne\): fiilin üzerine işlendiği/.test(a.t) || !/mansûbâttandır/.test(a.t) || !/fetha/.test(a.t)) throw new Error('the owner\'s عَمْرًا (tr): ' + J(a));
+    // (v357-N) 5 → 6: the muʿrab word's chain gains the «kind of iʿrāb» step (lafẓī) before its sign
+    if (!z || z.n !== 6 || !/Otomatik/.test(z.auto) || !/^role:Fâil \(özne\): fiili yapan/.test(z.t) || !/family:Fâil \(özne\) merfûâttandır; bu yüzden merfû olmalıdır/.test(z.t) || !/governor:Onu merfû kılan: «ضَرَبَ»/.test(z.t) || !/sign:Kelime müfred isim;[^|]*damme/.test(z.t) || !/tells:Sondaki damme, «زَيْدٌ» kelimesinin bu cümlede fâil/.test(z.t)) throw new Error('the owner\'s زَيْدٌ (tr): ' + J(z));
+    if (!a || a.n !== 6 || !/nesne\): fiilin üzerine işlendiği/.test(a.t) || !/mansûbâttandır/.test(a.t) || !/fetha/.test(a.t)) throw new Error('the owner\'s عَمْرًا (tr): ' + J(a));
     if (!v || !/role:Mâzî fiil/.test(v.t) || !/built:Mebnîdir/.test(v.t)) throw new Error('the owner\'s ضَرَبَ (tr): ' + J(v));
     if (!ze || !/Automatic/.test(ze.auto) || !/The doer \(fāʿil\): the one who does the verb/.test(ze.t) || !/among the marfūʿāt/.test(ze.t) || !/a singular noun; for such a word the sign of marfūʿ \(rafʿ\) is the ḍamma/.test(ze.t) || !/the doer \(fāʿil\) in this sentence/.test(ze.t) || !/the one the verb is done to/.test(ae.t)) throw new Error('the owner\'s sentence (en): ' + J(ze));
     if (r.miss.length) throw new Error('no corpus token of kind ' + r.miss.join());
@@ -18583,7 +18584,7 @@ if (!CHROME) {
         out.noteNone = !document.createRange().createContextualFragment(renderNote('khabar-insha')).querySelector('.illa-note');
         // the sentence list, and a tap to the full ladder
         openIrabSheet(at.sen); const ls = document.querySelector('#sheet .illa-sen'); out.sen = ls && { rows: ls.querySelectorAll('[data-illa-ti]').length, want: at.sen.tokens.filter((t, ti) => { const c = Illa346.chain(t, { sen: at.sen, ti }); return t.irab && c && c.steps.length; }).length, wide: wide() };
-        localStorage.setItem('qissa-illa346', '0'); ls.querySelector('[data-illa-ti="' + at.ti + '"]').click(); const d2 = document.querySelector('#sheet #illa346'); out.tapOpen = !!d2 && d2.open && +d2.dataset.n === 5;
+        localStorage.setItem('qissa-illa346', '0'); ls.querySelector('[data-illa-ti="' + at.ti + '"]').click(); const d2 = document.querySelector('#sheet #illa346'); out.tapOpen = !!d2 && d2.open && +d2.dataset.n === 6;
         // a game: the asked token's chain, open on a wrong answer, one line on a right one
         const orig = Illa346.quizHtml, seen = []; Illa346.quizHtml = function (it, ok) { seen.push({ it, ok }); return orig.call(this, it, ok); };
         try { for (let k = 0; k < 40 && !(out.gWrong && out.gRight); k++) { openGames(); startRoleGame(); const o = [...document.querySelectorAll('#sheet .opts [data-o]')], pick = o[(k * 7 + 3) % o.length]; pick.click();
@@ -18600,7 +18601,8 @@ if (!CHROME) {
     });
     await toLibrary();
     const J = JSON.stringify;
-    if (!r.sheet || r.sheet.n !== 5 || !r.sheet.under || !r.sheet.fits || r.sheet.wide || !/Fâil \(özne\) → merfûât → merfû → damme/.test(r.sheet.one || '')) throw new Error('the word sheet: ' + J(r.sheet));
+    // (v357-N) 5 → 6 here and in tapOpen: the singular fāʿil's chain gains the «kind of iʿrāb» step (lafẓī) before its sign
+    if (!r.sheet || r.sheet.n !== 6 || !r.sheet.under || !r.sheet.fits || r.sheet.wide || !/Fâil \(özne\) → merfûât → merfû → damme/.test(r.sheet.one || '')) throw new Error('the word sheet: ' + J(r.sheet));
     // (owner, 2026-11-26) the ladder is seen by touching it: closed at first, a 44 px summary opens it, the next word starts closed again
     if (!r.closed0 || !r.opened || !r.closedAgain || r.tap < 44) throw new Error('«Neden?» opens on touch only: ' + J([r.closed0, r.opened, r.closedAgain, r.tap]));
     if (!r.note || r.note.h !== 'Neden böyle?' || r.note.rows < 8 || !r.note.cite || !r.note.fam || r.note.wide || !r.noteNone) throw new Error('the note: ' + J([r.note, r.noteNone]));
@@ -20593,6 +20595,147 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     console.log('      triage ' + JSON.stringify(C) + '; agreeing ' + JSON.stringify(m));
   });
   // <<< v355-N1
+  // >>> v357-N — the kind of iʿrāb in every reason
+  await check('v357 — the kind of iʿrāb in every reason: the owner\'s own example on a corpus token (a detached pronoun as mubtadaʾ whose line writes no «فِي مَحَلِّ») reads pronoun → the pronouns are built → a built word has only maḥallī iʿrāb → mubtadaʾ, marfūʿāt → maḥallan marfūʿ, the place marked deduced, in en and tr; one corpus token of each class (pronoun, demonstrative, relative, conditional, interrogative, أيّ, built ẓarf, qabl, compound number, munādā, the noun of lā, faṣl, māḍī, māḍī with a place, amr, muḍāriʿ lafẓī / taqdīrī / built, particle, maqṣūr, manqūṣ, letters, substitute vowel, lafẓan / maḥallan, a clause with a place and without); every Arabic rule line verbatim on its book\'s page; over every authored token contradictions stay 0 and the measure stays above its floors', async () => {
+    const r = await page.evaluate(() => {
+      const out = { cls: {}, miss: [] }, keep = state.uiLang, S = x => Illa346.S(x), txt = (c, l) => c.steps.map(s => s.kind + (s.ded ? '*' : '') + ':' + s[l].replace(/<[^>]+>/g, '')).join(' | ');
+      try {
+        let at = null;
+        for (const st of STORIES) { if (at) break; for (const ch of st.chapters || []) { if (at) break; for (const sen of ch.sentences || []) { const ti = sen.tokens.findIndex(t => { if (!t.irab) return false; const x = Illa346.read(t.irab.ar, t.s.full);
+          return x && !x.cited && /^ضمير منفصل/.test(x.own) && x.role && x.role.id === 'mubtada' && !x.mahall && !x.kase && !/(^|\s)أو(\s|$)/.test(x.own) && /^(هو|هم|هي|هما|هن)$/.test(Naw357.core(x.host || t.s.full)); }); if (ti >= 0) { at = { st, sen, ti }; break; } } } }
+        if (at) { const t = at.sen.tokens[at.ti], c = Illa346.chain(t, { sen: at.sen, ti: at.ti, st: at.st }), h = Illa346.stepsHtml(c, 'tr');
+          out.owner = { st: at.st.id, w: t.s.full, line: t.irab.ar, k: c.steps.map(s => s.kind + (s.ded ? '*' : '')).join(','), en: txt(c, 'en'), tr: txt(c, 'tr'), sTr: Illa346.short(c, 'tr'), sEn: Illa346.short(c, 'en'),
+            html: /data-ded="1"/.test(h) && /class="illa-ded"/.test(h), ref: /data-illa-ref="al-taqdiri-al-sabi-wal-mahalli/.test(h) }; }
+        const W = {
+          pron: l => /^ضمير منفصل مبني على الفتح في محل رفع مبتدأ/.test(l), ishara: l => /^اسم إشارة مبني على السكون في محل رفع مبتدأ/.test(l), mawsul: l => /^اسم موصول مبني على السكون في محل نصب مفعول به/.test(l),
+          shart: l => /^اسم شرط جازم مبني على السكون في محل رفع مبتدأ/.test(l), istifham: l => /^اسم استفهام مبني على الفتح في محل نصب حال/.test(l), ayy: l => /^اسم استفهام معرب، مبتدأ مرفوع بالضمة/.test(l),
+          zarf: l => /ولما ظرف زمان بمعنى «حين» مبني على السكون في محل نصب/.test(l), qabl: l => /^ظرف زمان مبني على الضم في محل جر/.test(l) && /قطع عن الإضافة/.test(l), murakkab: l => /مبني على فتح الجزأين/.test(l),
+          munada: l => /^منادى مفرد علم مبني على الضم في محل نصب/.test(l), ismLa: l => /^اسم لا مبني على الفتح في محل نصب/.test(l), fasl: l => /^ضمير فصل لا محل له من الإعراب\.?$/.test(l),
+          madi: l => /^فعل ماض مبني على الفتح\.?$/.test(l), madiJ: l => /^فعل ماض مبني على الفتح في محل جزم فعل الشرط/.test(l), amr: l => /^فعل أمر مبني على السكون/.test(l),
+          mudRaf: l => /^فعل مضارع مرفوع وعلامة رفعه الضمة/.test(l), mudQ: l => /^فعل مضارع مرفوع بضمة مقدرة على الياء للثقل/.test(l), mudB: l => /^فعل مضارع مبني على السكون لاتصاله بنون النسوة/.test(l),
+          harf: l => /^حرف جر/.test(l), maqsur: l => /مقدرة على الألف للتعذر/.test(l) && /^(مبتدأ|فاعل|خبر)/.test(l), manqus: l => /^فاعل مرفوع بضمة مقدرة على الياء للثقل/.test(l),
+          dual: l => /^فاعل مرفوع بالألف لأنه مثنى/.test(l), mamnu: l => /^مضاف إليه مجرور بالفتحة نيابة عن الكسرة/.test(l), lm: l => /مبتدأ مجرور لفظا بالباء الزائدة مرفوع محلا/.test(l),
+          jumla: l => /والجملة في محل رفع خبر/.test(l) && /^فعل مضارع مرفوع/.test(l), sila: l => /^اسم موصول مبني على السكون في محل نصب مفعول به، والجملة بعده صلته/.test(l) };
+        const got = {};
+        for (const st of STORIES) for (const ch of st.chapters || []) for (const sen of ch.sentences || []) sen.tokens.forEach((t, ti) => { if (!t.irab) return; const l = S(t.irab.ar); for (const k in W) if (!got[k] && W[k](l)) got[k] = { t, sen, ti, st }; });
+        for (const k in W) { const g = got[k]; if (!g) { out.miss.push(k); continue; } const c = Illa346.chain(g.t, { sen: g.sen, ti: g.ti, st: g.st });
+          out.cls[k] = { w: g.t.s.full, k: c.steps.map(s => s.kind + (s.ded ? '*' : '')).join(','), c: c.steps.filter(s => s.cls).map(s => s.cls).join(','), tr: txt(c, 'tr'), en: txt(c, 'en'), sTr: Illa346.short(c, 'tr'),
+            cites: c.steps.flatMap(s => [s.cite, s.cite2]).filter(Boolean).filter(x => x.k).map(x => x.k) }; }
+        const t0 = performance.now(), m = Illa346.measure(); out.ms = Math.round(performance.now() - t0);
+        out.m = { n: m.n, hist: m.hist, contra: m.contra, bad: m.bad.slice(0, 3), famConflict: m.famConflict, naw: Object.assign({}, m.naw, { review: m.naw.review.length }) };
+        out.Q = Naw357.Q; out.keys = { en: Object.keys(L.en).filter(k => /^naw/.test(k)), tr: Object.keys(L.tr).filter(k => /^naw/.test(k)) };
+        out.ilal = ['ilal-shaykhzade-28-4', 'ilal-aqil-30-1', 'ilal-aqil-31-1', 'ilal-ibn-malik-173-3', 'ilal-ibn-malik-173-1'].filter(id => !Naw357.ilal(id));
+      } finally { state.uiLang = keep; }
+      return out;
+    });
+    const J = JSON.stringify, o = r.owner;
+    // the owner's order: ḍamīr → the ḍamīrs are built → a built word has only maḥallī iʿrāb → the role and its family (marfūʿāt) → maḥallan marfūʿ
+    if (!o || !/^naw,bina,irab,role,family,(governor,)?built\*$/.test(o.k) || !o.html || !o.ref) throw new Error('the owner\'s example: ' + J(o));
+    if (!/naw:«[^»]+» kelimesinin çeşidi: zamir\./.test(o.tr) || !/bina:Zamirler mebnîlerdendir/.test(o.tr) || !/irab:Mebnî kelimenin lafzî ve takdirî i'rabı olmaz, yalnız mahallî i'rabı olur/.test(o.tr)
+      || !/family:Mübtedâ merfûâttandır/.test(o.tr) || !/built\*:Öyleyse «[^»]+», merfû bir kelimenin yerinde durur: mahallen merfûdur; gösterilecek alâmet yoktur\. \(satırda yazılı değil; kural veriyor\)/.test(o.tr)
+      || o.sTr !== 'Mübtedâ → merfûât → zamir: mebnî → mahallen merfû (çıkarım)') throw new Error('the owner\'s example (tr): ' + J(o));
+    if (!/naw:What kind of word «[^»]+» is: a pronoun \(ḍamīr\)\./.test(o.en) || !/bina:Pronouns are among the built words \(mabniyyāt\)/.test(o.en) || !/irab:A built word has no lafẓī and no taqdīrī iʿrāb — only maḥallī/.test(o.en)
+      || !/built\*:So «[^»]+» stands where a marfūʿ \(rafʿ\) word stands: it is marfūʿ \(rafʿ\) by its place \(maḥallan\)[^|]*\(the line does not write it; the rule gives it\)/.test(o.en) || !/\(deduced\)$/.test(o.sEn)) throw new Error('the owner\'s example (en): ' + J(o));
+    console.log('      v357 the owner\'s example: ' + o.st + ' «' + o.w + '» :: ' + o.line + '\n        tr: ' + o.sTr + '\n        en: ' + o.sEn);
+    if (r.miss.length) throw new Error('no corpus token of class ' + r.miss.join());
+    const C = r.cls, X = {
+      pron: [/^naw,bina,irab,role,family,governor,built$/, /^pron$/, /mahallen merfû/], ishara: [/^naw,bina,irab,role/, /^ishara$/, /ism-i işaret: mebnî → mahallen merfû/], mawsul: [/^naw,bina,irab,role/, /^mawsul$/, /mahallen mansub/],
+      shart: [/^naw,bina,irab/, /^shart$/, /şart ismi: mebnî/], istifham: [/^naw,bina,irab/, /^istifham$/, /soru ismi: mebnî → mahallen mansub/], ayy: [/^naw,role,.*irab,sign/, /^exc:ayy,lafzi:haraka$/, /mu'rab olan yalnız «أيّ»/],
+      zarf: [/^naw,bina,irab/, /^zarf$/, /zarf: mebnî → mahallen mansub/], qabl: [/^naw,bina,irab/, /^qabl$/, /kabl \/ ba'd: mebnî → mahallen mecrûr/], murakkab: [/^naw,bina,irab/, /^murakkab$/, /mürekkep sayı: mebnî/],
+      munada: [/^naw,bina,irab,role/, /^munada$/, /münâdâ: mebnî → mahallen mansub/], ismLa: [/^naw,bina,irab,role/, /^ismLa$/, /lâ'nın ismi: mebnî → mahallen mansub/], fasl: [/^naw,bina,irab,built$/, /^pron$/, /mahalsiz/],
+      madi: [/^role,bina,irab,built$/, /^madi$/, /built:Mebnîdir: sonu değişmez; i'rabdan mahalli yoktur/], madiJ: [/^role,bina,irab,(governor,)?built/, /^madi$/, /satır da veriyor: mahallen meczûm/],
+      amr: [/^role,bina,irab,built$/, /^amr$/, /lâmsız emir hiçbir zaman ma'mûl olmaz/], mudRaf: [/^role,family,governor,irab,sign,tells/, /^lafzi:haraka:v/, /i'rabı lafzîdir/],
+      mudQ: [/^role,family,governor,irab,sign,tells/, /^taqdiri:thiqal/, /takdirîdir — okunmaz, takdir edilir: sondaki yâ ya da vâv/], mudB: [/^role,bina,built$/, /^mudariB$/, /nûn-ı nisve/],
+      harf: [/^role,bina,irab$/, /^harf$/, /mebnî, mahalsiz/], maqsur: [/irab,sign/, /^taqdiri:taadhur$/, /teazzür/], manqus: [/irab,sign/, /^taqdiri:thiqal$/, /sıklet/],
+      dual: [/irab,sign/, /^lafzi:letter$/, /hareke yerine bir harf/], mamnu: [/irab,sign/, /^lafzi:sub$/, /bir hareke başka bir harekenin yerine/],
+      lm: [/^role,family,irab/, /^lafzan$/, /lafzen mecrûr, mahallen merfû/], jumla: [/jumla$/, /jumla:khabar$/, /mahallen merfû/], sila: [/built,jumla\*$/, /mawsul,jumla:sila$/, /i'rabdan mahalli olmayan cümlelerden/] };
+    for (const k in X) { const x = C[k], [ks, cs, tr] = X[k]; if (!x || !ks.test(x.k) || !cs.test(x.c) || !tr.test(x.tr + ' ' + x.sTr)) throw new Error('class ' + k + ': ' + J(x)); }
+    if (!/Pronouns|Demonstratives/.test(C.pron.en + C.ishara.en) || !/lafẓan/.test(C.lm.en)) throw new Error('en: ' + J([C.pron.en, C.lm.en]));
+    // every Arabic rule line verbatim on its book's page (research/sources)
+    const SRC = path.join(path.resolve(__dirname, '..'), 'research', 'sources'), FILES = { izhar: 'izhar-al-asrar-matn-lithograph.txt', shudhur: 'shudhur-al-dhahab-src.txt', qawaid: 'qawaid-al-irab-ibn-hisham-matn.txt', shaykhzade: 'sharh-qawaid-al-irab-shaykhzade-src.txt', aqil: 'sharh-ibn-aqil-src.txt' };
+    const PG = {}, pages = b => { if (PG[b]) return PG[b]; const t = fs.readFileSync(path.join(SRC, FILES[b]), 'utf8').replace(/\r/g, ''), o2 = {}; let cur = '0';
+      if (b === 'izhar') { const p = t.split(/\[([٠-٩]+)\]/); o2['0'] = p[0]; for (let i = 1; i < p.length; i += 2) { cur = String(Number(p[i].replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)))); o2[cur] = (o2[cur] || '') + p[i + 1]; } return (PG[b] = o2); }
+      for (const line of t.split('\n')) { let m = null;
+        if (b === 'shudhur') m = line.match(/^# page (\d+)/); else if (b === 'shaykhzade' || b === 'aqil') m = line.match(/^=== p\. (\d+) /);
+        if (m) { cur = m[1]; continue; }
+        if (b === 'qawaid') { const q = line.match(/^\[p\. (\d+)\]\s?(.*)/); if (q) { cur = q[1]; o2[cur] = (o2[cur] || '') + q[2] + '\n'; continue; } }
+        o2[cur] = (o2[cur] || '') + line + '\n'; }
+      return (PG[b] = o2); };
+    const off = [];
+    for (const [k, [b, pg, ar]] of Object.entries(r.Q)) { const P = pages(b), pp = String(pg).split('–'), segs = pp.length > 1 ? ar.split(' … ') : [ar];
+      const ok = segs.length > 1 ? segs.every((s, i) => (P[pp[i]] || '').includes(s)) : (P[pg] || '').includes(ar); if (!ok) off.push(k); }
+    if (off.length || Object.keys(r.Q).length < 50) throw new Error('book lines not verbatim on their page: ' + off.join());
+    const used = new Set(Object.values(C).flatMap(x => x.cites)); if (used.size < 25) throw new Error('book lines used by the classes: ' + [...used].join());
+    if (r.ilal.length) throw new Error('reused ILAL reasons missing: ' + r.ilal.join());
+    const kd = r.keys.en.filter(k => !r.keys.tr.includes(k)).concat(r.keys.tr.filter(k => !r.keys.en.includes(k))); if (kd.length || r.keys.en.length < 30) throw new Error('en / tr templates: ' + kd.join());
+    // the corpus: contradictions 0 (the old test and the kind-of-iʿrāb test), the floors
+    const m = r.m, n = m.naw, B = n.byCls, sum = re => Object.keys(B).filter(k => re.test(k)).reduce((s, k) => s + B[k], 0), jm = Object.values(n.jumla).reduce((s, v) => s + v, 0);
+    console.log('      v357 corpus: ' + m.n + ' tokens; steps ' + J(n.histFull) + '; by class ' + J(B) + '; clauses ' + J(n.jumla) + '; deduced places ' + n.ded + ' (+ ' + n.dedJumla + ' clause rows); none ' + J(n.none) + '; review ' + n.review + '; lafẓan/maḥallan families ' + n.lmFamily + '; contradictions ' + m.contra + ' / ' + n.contra + '; ' + r.ms + ' ms');
+    if (m.contra !== 0 || n.contra !== 0) throw new Error('the chain contradicts its line: ' + J(m.bad));
+    if (sum(/^pron$/) < 700 || sum(/^ishara$/) < 800 || sum(/^mawsul$/) < 1200 || sum(/^(shart|istifham)$/) < 380 || sum(/^(zarf|qabl)$/) < 400 || sum(/^madi$/) < 9500 || sum(/^amr$/) < 650 || sum(/^harf$/) < 15000
+      || sum(/^lafzi:haraka/) < 26000 || sum(/^lafzi:(letter|sub|drop)/) < 3800 || sum(/^taqdiri:/) < 2200 || sum(/^lafzan$/) < 60 || jm < 4000 || n.lmFamily < 55 || m.famConflict > 260 || n.ded < 150 || n.ded > 400 || n.review > 250)
+      throw new Error('the kind-of-iʿrāb measure under its floors: ' + J({ B, jm, ded: n.ded, review: n.review, lm: n.lmFamily, fc: m.famConflict }));
+  });
+
+  await check('v357 — the kind of iʿrāb where the reasons show, at 390 px: the word sheet\'s one-line summary of the owner\'s pronoun («Mübtedâ → merfûât → zamir: mebnî → mahallen merfû (çıkarım)»), its ladder with the deduced marker and a term chip that opens the maḥallī note; the role note\'s one table with the kind of iʿrāb and the built word\'s row; the kinds-of-iʿrāb note\'s table; the sentence sheet\'s row; a role-game round\'s feedback for the asked token, and the feedback of a pronoun, a demonstrative, a māḍī, a particle and a maqṣūr; no overflow; the v320 contrast in three themes', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(() => {
+      const out = { low: {} }, keepTheme = localStorage.getItem('qissa-theme'), keepLang = state.uiLang, keepPref = localStorage.getItem('qissa-illa346');
+      const st0 = document.createElement('style'); st0.id = 'v357NoAnim'; st0.textContent = '*, *::before, *::after { transition: none !important; animation: none !important; }'; document.head.appendChild(st0);
+      const rgba = s => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const a = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [a[0], a[1], a[2], a.length > 3 ? a[3] : 1]; };
+      const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+      const over = (t2, b) => [0, 1, 2].map(i => t2[i] * t2[3] + b[i] * (1 - t2[3])).concat(1);
+      const bgOf = el => { const stk = []; for (let e = el; e; e = e.parentElement) { const c = rgba(getComputedStyle(e).backgroundColor); if (c && c[3] > 0) { stk.push(c); if (c[3] >= 1) break; } }
+        let b = rgba(getComputedStyle(document.body).backgroundColor) || [255, 255, 255, 1]; for (let i = stk.length - 1; i >= 0; i--) b = over(stk[i], b); return b; };
+      const CON = sel => { const bad = []; document.querySelectorAll(sel).forEach(root => root.querySelectorAll('*').forEach(el => { if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return;
+        const rr = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!rr.width || !rr.height || cs.visibility === 'hidden') return;
+        const fg = rgba(cs.color), bg = bgOf(el); if (!fg || !bg) return; const c = over(fg, bg), L1 = lum(c), L2 = lum(bg), ratio = (Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05);
+        if (ratio < 4.5) bad.push((el.className || el.tagName) + ' ' + Math.round(ratio * 100) / 100 + ' «' + el.textContent.trim().slice(0, 14) + '»'); })); return bad; };
+      const wide = () => { const s = document.getElementById('sheet'); return s.scrollWidth > s.clientWidth + 1 || document.documentElement.scrollWidth > innerWidth + 1; };
+      const find = pred => { for (const st of STORIES) for (const ch of st.chapters || []) for (const sen of ch.sentences || []) { const ti = sen.tokens.findIndex(t => t.irab && pred(t)); if (ti >= 0) return { st, sen, ti }; } return null; };
+      try {
+        state.uiLang = 'tr';
+        const at = find(t => { const x = Illa346.read(t.irab.ar, t.s.full); return x && !x.cited && /^ضمير منفصل/.test(x.own) && x.role && x.role.id === 'mubtada' && !x.mahall && !x.kase && !/(^|\s)أو(\s|$)/.test(x.own) && /^(هو|هم|هي|هما|هن)$/.test(Naw357.core(x.host || t.s.full)); });
+        CUR = at.st; localStorage.removeItem('qissa-illa346');
+        openWord(at.sen.tokens[at.ti], null, 'irab', { sen: at.sen, ti: at.ti }); let d = document.querySelector('#sheet #illa346'); const g = document.querySelector('#sheet .gov-block');
+        out.sheet = { n: +d.dataset.n, closed: !d.open, one: (d.querySelector('.illa-one') || {}).textContent, fits: !g || g.getBoundingClientRect().top <= innerHeight, wide: wide() };
+        d.querySelector('summary').click(); out.sheet.ded = !!d.querySelector('li[data-ded="1"] .illa-ded'); out.sheet.wideOpen = wide();
+        const chip = d.querySelector('button.illa-ref[data-illa-ref]'); out.chip = chip && chip.dataset.illaRef; out.chipTap = chip && chip.getBoundingClientRect().height;
+        if (chip) { chip.click(); out.chipOpened = !!document.querySelector('#sheet .illa-kinds') && Naw357.KNOTES.some(n => Naw357.N[n] === out.chip); }   // the chip's note: a kinds-of-iʿrāb note, with its table
+        openRef('mubtada-khabar'); const nt = document.querySelector('#sheet .illa-note'); out.note = nt && { th: nt.querySelector('.illa-tab thead') && nt.querySelector('.illa-tab thead').querySelectorAll('th').length, mabni: !!nt.querySelector('tr[data-naw="mabni"]'), wide: wide() };
+        openRef(Naw357.N.kinds); const kn = document.querySelector('#sheet .illa-kinds'); out.kinds = kn && { rows: kn.querySelectorAll('tbody tr').length, wide: wide() };
+        openIrabSheet(at.sen); const row = document.querySelector('#sheet .illa-sen [data-illa-ti="' + at.ti + '"]'); out.sen = { row: row && row.textContent, wide: wide() };
+        // a real role-game round: the asked token's chain under the feedback, as v346 shows it
+        const orig = Illa346.quizHtml, seen = []; Illa346.quizHtml = function (it, ok) { seen.push({ it, ok }); return orig.call(this, it, ok); };
+        try { for (let k = 0; k < 12 && !out.game; k++) { openGames(); startRoleGame(); const o = [...document.querySelectorAll('#sheet .opts [data-o]')]; if (!o.length) continue; o[k % o.length].click();
+            const q = document.querySelector('#sheet .illa-q'), s = seen[seen.length - 1]; if (!q || !s) { QUIZ_RESUME = null; continue; }
+            const c = Illa346.chain(s.it.sen.tokens[s.it.ti], { sen: s.it.sen, ti: s.it.ti }); out.game = { n: +q.dataset.n, want: c.steps.length, one: (q.querySelector('.illa-one') || {}).textContent, wide: wide() }; QUIZ_RESUME = null; } }
+        finally { Illa346.quizHtml = orig; }
+        // the screenshot's round: the feedback of five kinds of word, inside the sheet at 390 px
+        const kinds = { pron: at, ishara: find(t => /^اسم إشارة مبني على السكون في محل رفع مبتدأ/.test(Illa346.S(t.irab.ar))), madi: find(t => /^فعل ماض مبني على الفتح\.?$/.test(Illa346.S(t.irab.ar))),
+          harf: find(t => /^حرف جر/.test(Illa346.S(t.irab.ar))), maqsur: find(t => /مقدرة على الألف للتعذر/.test(Illa346.S(t.irab.ar)) && /^(مبتدأ|فاعل|خبر)/.test(Illa346.S(t.irab.ar))) };
+        openGames(); const host = document.getElementById('sheetInner'); out.fb = {};
+        for (const [k, v] of Object.entries(kinds)) { const dv = document.createElement('div'); dv.innerHTML = Illa346.quizHtml({ sen: v.sen, ti: v.ti }, true); host.appendChild(dv); const q = dv.querySelector('.illa-q');
+          out.fb[k] = q && { one: q.querySelector('.illa-one').textContent, n: +q.dataset.n }; }
+        out.fbWide = wide(); host.querySelectorAll('.illa-q').forEach(q => q.open = true); out.fbWideOpen = wide();
+        for (const th of ['murekkep', 'gece', 'bahce']) { setTheme(th); const lo = [];
+          Illa346.force = true; openWord(at.sen.tokens[at.ti], null, 'irab', { sen: at.sen, ti: at.ti }); lo.push(...CON('#sheet #illa346'));
+          openRef('mubtada-khabar'); lo.push(...CON('#sheet .illa-note')); if (lo.length) out.low[th] = lo.slice(0, 6); }
+      } finally { st0.remove(); QUIZ_RESUME = null; closeSheet(); state.uiLang = keepLang; if (keepPref == null) localStorage.removeItem('qissa-illa346'); else localStorage.setItem('qissa-illa346', keepPref); if (keepTheme) setTheme(keepTheme); else { localStorage.removeItem('qissa-theme'); setTheme(''); } }
+      return out;
+    });
+    await toLibrary();
+    const J = JSON.stringify, f = r.fb || {};
+    if (!r.sheet || !r.sheet.closed || r.sheet.one !== 'Mübtedâ → merfûât → zamir: mebnî → mahallen merfû (çıkarım)' || r.sheet.n < 7 || !r.sheet.fits || r.sheet.wide || !r.sheet.ded || r.sheet.wideOpen) throw new Error('the word sheet: ' + J(r.sheet));
+    if (!r.chip || !r.chipOpened) throw new Error('the term chip opens its note: ' + J([r.chip, r.chipOpened]));
+    if (!r.note || r.note.th !== 3 || !r.note.mabni || r.note.wide || !r.kinds || r.kinds.rows < 9 || r.kinds.wide) throw new Error('the notes: ' + J([r.note, r.kinds]));
+    if (!r.sen || !/zamir: mebnî → mahallen merfû \(çıkarım\)/.test(r.sen.row || '') || r.sen.wide) throw new Error('the sentence sheet: ' + J(r.sen));
+    if (!r.game || r.game.n !== r.game.want || !/^çünkü /.test(r.game.one || '') || r.game.wide) throw new Error('the role game\'s feedback: ' + J(r.game));
+    if (!f.pron || !/zamir: mebnî → mahallen merfû/.test(f.pron.one) || !f.ishara || !/ism-i işaret: mebnî → mahallen merfû/.test(f.ishara.one) || !f.madi || !/Mâzî fiil → mebnî/.test(f.madi.one) || f.madi.n !== 4
+      || !f.harf || !/Cer harfi → mebnî, mahalsiz/.test(f.harf.one) || !f.maqsur || f.maqsur.n < 5 || r.fbWide || r.fbWideOpen) throw new Error('the five kinds\' feedback: ' + J([f, r.fbWide, r.fbWideOpen]));
+    if (Object.keys(r.low).length) throw new Error('contrast: ' + J(r.low));
+  });
+  // <<< v357-N
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
