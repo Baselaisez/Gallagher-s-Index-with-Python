@@ -20633,6 +20633,78 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (r.loud.length) throw new Error('the controls speak: ' + r.loud.join(' | '));
   });
   // <<< v355-N2
+  // >>> v359-E
+  await check('v359 — the Amthila at level one: the 19 notes of the group «emsile» (the 24 forms of نَصَرَ, one note per form or sister forms, the five pronoun notes and their map, the bābs) exist, validate, are level 1 and in teaching order at the head of the level-1 list; every Arabic cell of their tables is re-derived in the page by the ṣarf engines (Emsile359.verify: sarfDerive · MaqsudEngine · DamirEngine), every common mistake is built again from engine cells, every pronoun row with a corpus token is attested by an authored iʿrāb line that gives it that place, the unattested rows are exactly the pinned ones; every example is its corpus sentence with the story\'s translation; every cited term stands at its line; en + tr complete; the word sheet, the quiz and the «Neden?» link work; 390 px', async () => {
+    const fsx = require('fs'), pathx = require('path'), cp = require('child_process'), root = pathx.resolve(__dirname, '..'), G = pathx.join(root, 'content', 'grammar');
+    const ORDER = ['emsile-00-amthila', 'emsile-01-madi', 'emsile-02-mudari', 'emsile-03-masdar', 'emsile-04-fail', 'emsile-05-maful', 'emsile-06-nafy', 'emsile-07-amr-nahy',
+      'emsile-08-zaman-ala', 'emsile-09-tasghir-nisba', 'emsile-10-tafdil', 'emsile-11-taajjub', 'emsile-12-damir-raf-muttasil', 'emsile-13-damir-raf-munfasil',
+      'emsile-14-damir-nasb-muttasil', 'emsile-15-damir-nasb-munfasil', 'emsile-16-damir-jarr-muttasil', 'emsile-17-damir-map', 'emsile-18-abwab'];
+    // measured 2026-11-27: 493 cells, 202 attested rows; the rows no authored line attests yet (they show «*»)
+    const CELLS = 493, REFS = 202, UNATTESTED = ['rafMunfasil:7', 'rafMunfasil:10', 'rafMunfasil:11', 'nasbMunfasil:5', 'nasbMunfasil:7', 'nasbMunfasil:9', 'nasbMunfasil:10', 'nasbMunfasil:11', 'nasbMunfasil:12'];
+    const bad = [], files = fsx.readdirSync(G).filter(f => /^emsile-/.test(f)).map(f => f.replace(/\.json$/, '')).sort();
+    if (JSON.stringify(files) !== JSON.stringify(ORDER)) bad.push('notes: ' + files.join(','));
+    const L = {}; const lines = f => L[f] || (L[f] = fsx.readFileSync(pathx.join(root, 'research', 'sources', f), 'utf8').split('\n'));
+    const letters = s => String(s).normalize('NFC').replace(/[ً-ْٰـ]/g, '').replace(/[أإآ]/g, 'ا');
+    const notes = {};
+    for (const id of ORDER) { let n; try { n = JSON.parse(fsx.readFileSync(pathx.join(G, id + '.json'), 'utf8')); } catch (e) { bad.push(id + ' missing'); continue; } notes[id] = n;
+      if (n.level !== 1 || n.group !== 'emsile' || !n.emsile359) bad.push(id + ' level/group/tables');
+      const bi = (v, w) => { if (!v || !v.en || !v.tr) bad.push(id + ' ' + w + ' not en+tr'); };
+      bi(n.title, 'title'); bi(n.plain, 'plain'); bi(n.explanation, 'explanation'); if (!/hoca onayı bekliyor/.test(n.explanation.tr) || !/awaiting the hoca/.test(n.explanation.en)) bad.push(id + ' not marked for the hoca');
+      (n.examples || []).forEach((x, i) => bi(x, 'example ' + i)); (n.commonMistakes || []).forEach((m, i) => bi(m.why, 'mistake ' + i));
+      (n.emsile359.tables || []).forEach(t => { bi(t.head, 'head ' + t.id); (t.labels || []).forEach((x, i) => { bi(x, t.id + ' label ' + i); if (x.m) bi(x.m, t.id + ' meaning ' + i); }); });
+      if ((n.examples || []).length < 1 || !(n.examples || []).every(x => x.sourceStory && x.sentence)) bad.push(id + ' examples not anchored');
+      for (const c of n.classicalSources || []) { const m = /^([\w.-]+\.txt)، س (\d+) — «(.+)»$/.exec(c); if (m && !letters(lines(m[1])[+m[2] - 1] || '').includes(letters(m[3]))) bad.push(id + ' cite ' + c); } }
+    const v = cp.spawnSync('python3', [pathx.join(root, 'tools', 'validate_content.py'), pathx.join(root, 'content', 'samples', 'jumal-al-tadrib')], { encoding: 'utf8' });
+    if (v.status !== 0 || /emsile-/.test(v.stdout.split('\n').filter(l => /^\s+E /.test(l)).join('\n'))) bad.push('validate_content: ' + (v.stdout.match(/\d+ error\(s\)/) || [''])[0]);
+    const r = await page.evaluate(({ ORDER, notes }) => {
+      const o = { cells: 0, refs: 0, bad: [], unatt: new Set() };
+      for (const id of ORDER) { if (!GRAMMAR[id]) { o.bad.push(id + ' not in GRAMMAR'); continue; }
+        const x = Emsile359.verify(id); o.cells += x.cells; o.refs += x.refs; o.bad.push(...x.bad);
+        const d = GRAMMAR[id].emsile359;
+        for (const t of d.tables) { const K = t.map ? [].concat(...(t.keys || [])) : (t.keys || []), R = t.map ? [].concat(...(t.refs || [])) : (t.refs || []); K.forEach((k, i) => { if (k && !R[i]) o.unatt.add(k); }); }
+        // the common mistakes, built again from the engines' cells
+        (d.mk || []).forEach((m, i) => { const cell = c => { const a = (Emsile359.list(c.src) || [])[c.i] || null, b = c.plus ? (Emsile359.list(c.plus.src) || [])[c.plus.i] || null : ''; return a && b !== null ? (b ? a + ' ' + b : a) : null; };
+          const g = GRAMMAR[id].mistakes[i]; if (!g || cell(m.w) !== g.wrong || cell(m.r) !== g.right || g.wrong === g.right) o.bad.push(id + ' mistake ' + i); });
+        if ((d.mk || []).length !== (GRAMMAR[id].mistakes || []).length) o.bad.push(id + ' mistakes unaccounted');
+        // the examples: the corpus sentence and its translation, word for word
+        notes[id].examples.forEach(x => { const st = STORIES.find(s => s.id === x.sourceStory); const sn = st && [].concat(...st.chapters.map(c => c.sentences)).find(s => s.id === x.sentence && s.tokens.map(t => t.s.full + (t.punctAfter || '')).join(' ') === x.ar);
+          if (!sn || (sn.translation || {}).en !== x.en || (sn.translation || {}).tr !== x.tr) o.bad.push(id + ' example ' + x.sourceStory + ':' + x.sentence); });
+        // the page: one row per cell, the self-check where the note has one
+        const div = document.createElement('div'); div.innerHTML = renderNote(id);
+        const want = d.tables.reduce((a, t) => a + (t.map ? t.rows.length + 1 : t.cells.filter(Boolean).length), 0), got = div.querySelectorAll('table.em359 tr').length;
+        if (got !== want) o.bad.push(id + ' rows ' + got + '/' + want);
+        if (d.quiz != null && Emsile359.items(id).length >= 4 && !div.querySelector('[data-em359quiz]')) o.bad.push(id + ' no self-check');
+        if (!div.querySelector('.em-prov')) o.bad.push(id + ' provenance line'); }
+      // the level-1 list: the group first, the notes in order
+      const keep = refLevel; refLevel = '1'; const h = refListHtml(); refLevel = keep; const ids = [...h.matchAll(/data-note="([^"]+)"/g)].map(m => m[1]);
+      if (JSON.stringify(ids.slice(0, ORDER.length)) !== JSON.stringify(ORDER)) o.bad.push('level-1 list order: ' + ids.slice(0, 4).join(','));
+      o.unatt = [...o.unatt].sort(); return o; }, { ORDER, notes });
+    bad.push(...r.bad);
+    if (r.cells < CELLS) bad.push('cells re-derived ' + r.cells + ' < ' + CELLS);
+    if (r.refs < REFS) bad.push('pronoun rows attested ' + r.refs + ' < ' + REFS);
+    if (r.unatt.some(k => !UNATTESTED.includes(k))) bad.push('unattested rows: ' + r.unatt.join(','));
+    // the word sheet: the ṣarf tab names the note of the TOKEN's form; the self-check runs; a pronoun row opens its word with the «Neden?» ladder; 390 px
+    await page.setViewportSize({ width: 390, height: 844 });
+    const s = await page.evaluate(async () => { const o = {}; const wait = ms => new Promise(r => setTimeout(r, ms));
+      jumpTo('jumal-al-tadrib', 's7', 0, 4); await wait(100); const t = wordCtx && wordCtx.sen.tokens[0]; openWord(t, activeWordEl, 'sarf', wordCtx);
+      o.madi = (sheetInner.querySelector('[data-em359note]') || {}).dataset; o.madi = o.madi && o.madi.em359note;
+      jumpTo('qarun-wa-kunuzuh', 's3', 4, 4); await wait(100); const t2 = wordCtx && wordCtx.sen.tokens[4]; openWord(t2, activeWordEl, 'sarf', wordCtx);
+      o.lam = ((sheetInner.querySelector('[data-em359note]') || {}).dataset || {}).em359note;
+      const a = sheetInner.querySelector('[data-em359note]'); if (a) a.click(); o.opened = !!sheetInner.querySelector('section.em359[data-em359="emsile-06-nafy"]');
+      const q = sheetInner.querySelector('[data-em359quiz]'); if (q) q.click(); o.quiz = !!sheetInner.querySelector('.verb-answer') && /Which row|hangi satır/.test(sheetInner.textContent);
+      o.wide = []; for (const id of ['emsile-00-amthila', 'emsile-06-nafy', 'emsile-12-damir-raf-muttasil', 'emsile-17-damir-map', 'emsile-18-abwab']) { openRef(id);
+        const over = [...sheetInner.querySelectorAll('.em359 .conj-wrap')].filter(w => w.scrollWidth > w.clientWidth + 1).length; if (document.documentElement.scrollWidth > 390 || over) o.wide.push(id + ':' + over); }
+      openRef('emsile-14-damir-nasb-muttasil'); const g = sheetInner.querySelector('[data-em359go]'); o.go = !!g; if (g) g.click(); await wait(300);
+      o.ladder = !!sheetInner.querySelector('#illa346'); closeSheet(); return o; });
+    await page.setViewportSize({ width: 1280, height: 720 });
+    if (s.madi !== 'emsile-01-madi' || s.lam !== 'emsile-06-nafy' || !s.opened) bad.push('word sheet link: ' + JSON.stringify(s));
+    if (!s.quiz) bad.push('the self-check did not open');
+    if (!s.go || !s.ladder) bad.push('a pronoun row did not open its word with the «Neden?» ladder');
+    if (s.wide.length) bad.push('390 px: ' + s.wide.join(','));
+    if (bad.length) throw new Error(bad.length + ': ' + bad.slice(0, 8).join(' · '));
+  });
+  // <<< v359-E
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };

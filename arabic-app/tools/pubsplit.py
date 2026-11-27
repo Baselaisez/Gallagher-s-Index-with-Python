@@ -60,7 +60,7 @@ for k,chunk in enumerate(bodies):
 # the door and merges into the same objects in their original key order. Until it is in, BODY341.ready() is false, so every door that
 # reads the corpus (search, games, Atölye, deck, progress, a word's sheet, a grammar note, a story) waits exactly as for a story body.
 # A smoke check proves the door reads no missing field and that the merged tables equal the repository reader's.
-G_HEAVY=("explanation","question","mistakes","plain")
+G_HEAVY=("explanation","question","mistakes","plain","emsile359")   # (v359-E) the Amthila tables ride in the grammar slice
 C_KEEP=("n","id","story","chapter","verified","src","kind")
 gsplit=None
 def _cut(text, name):

@@ -42,7 +42,7 @@ REQUIRED_NOTE = ["id", "title", "level", "group", "plain", "explanation", "examp
 # A "plain" summary longer than this is not a summary. The full account belongs
 # in `explanation`, which the reader shows behind a toggle.
 PLAIN_MAX = 320
-NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha", "bayan", "badi", "arud"}
+NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha", "bayan", "badi", "arud", "emsile"}   # (v359-E) emsile: the level-one Amthila notes
 
 BADI_KINDS = ("tibaq", "muqabala", "muraat-al-nazir", "tashabuh-al-atraf", "iham-al-tanasub", "irsad", "mushakala",
               "muzawaja", "aks", "ruju", "tawriya", "istikhdam", "laff-nashr", "jam", "tafriq", "taqsim", "jinas", "saj",
@@ -646,6 +646,23 @@ def check_grammar_notes(grammar_dir: Path, rep: Report) -> set:
         elif not any(x.get("sourceStory") for x in note["examples"]):
             rep.warn(f"{path.name}: no example is sourced from a story "
                      f"(add sourceStory/sentence to keep notes anchored in real content)")
+        # (v359-E) the Amthila notes' tables: their shape here; their cells are re-derived by the engines in the smoke check «v359»
+        em = note.get("emsile359")
+        if em is not None:
+            tabs = em.get("tables") if isinstance(em, dict) else None
+            if not tabs:
+                rep.error(f"{path.name}: emsile359 needs a non-empty tables list")
+            for i, t in enumerate(tabs or []):
+                h = t.get("head") or {}
+                if not (h.get("ar") and h.get("en") and h.get("tr")) or not isinstance(t.get("src"), dict):
+                    rep.error(f"{path.name}: emsile359.tables[{i}] needs head ar/en/tr and src")
+                if not t.get("map") and not isinstance(t.get("cells"), list):
+                    rep.error(f"{path.name}: emsile359.tables[{i}] has no cells")
+                for x in t.get("labels") or []:
+                    if not (x.get("en") and x.get("tr")):
+                        rep.error(f"{path.name}: emsile359.tables[{i}] label without en/tr")
+            if note.get("level") != 1 or note.get("group") != "emsile":
+                rep.error(f"{path.name}: an emsile359 note is level 1 in group emsile")
         mistakes = note.get("commonMistakes", [])
         if not mistakes:
             rep.error(f"{path.name}: needs at least one commonMistakes entry "

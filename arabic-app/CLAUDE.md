@@ -17572,3 +17572,66 @@ the cause. Scratchpad `aqiln2/` (PROGRESS.md, `edits/` = every code edit as a sc
   the 20 WujuhEngine face probes of the Qawāʿid ledger not reached. Hand-overs to v355-N1 (Murib / SentenceAnalyzer): the state that changes a
   vowelled re-reading; تَسَفَّهَتِ read as a muḍāriʿ; «أنتم … جواب الطلب» after an imperative; Murib's role guesses on a dual after a dual
   (بدل / مبتدأ where the authors write نعت / خبر); «زيدٌ الأفضلُ» khabar read as naʿt.
+
+## v359-E — the Amthila at level one
+
+The owner (a madrasa teacher), 2026-11-27: more level-one grammar notes — the detailed Amthila taṣrīf with explanations, and the
+marfūʿ / manṣūb / majrūr, muttaṣil / munfaṣil pronouns taught in the «مَا أَنْصَرَهُ وَأَنْصِرْ بِهِ» sections and the verb paradigms.
+Level 1 had two notes; it now has 21. Worktree `arabic-app`, scratch emsile359.
+
+- **19 notes, group `emsile`** (new group: `NOTE_GROUPS` in validate_content.py, `REF_GROUPS` appended with `top: true` — `refListHtml` lists a
+  `top` group first, so they head level 1 in file order, which is the teaching order): `emsile-00-amthila` (the 24 forms of نَصَرَ in one
+  table, ar / tr / en names and a one-line meaning; the Turkish names are the received sheet's, ziyade-bab-muhtelife-cekimi.txt l. 8–22),
+  `01-madi`, `02-mudari`, `03-masdar` (+ marra / nawʿ), `04-fail` (+ mubālagha), `05-maful`, `06-nafy` (لَمْ لَمَّا مَا لَا لَنْ — meaning AND
+  ending, a 14-row table each), `07-amr-nahy` (absent / present), `08-zaman-ala`, `09-tasghir-nisba`, `10-tafdil`, `11-taajjub` (its two
+  muṭṭaridas are the attached naṣb and jarr pronouns), the pronouns `12-damir-raf-muttasil` (with the hidden one, wājib / jāʾiz, Marāḥ ch. 17),
+  `13-damir-raf-munfasil`, `14-damir-nasb-muttasil` (مَا أَنْصَرَهُ … نِي — the nūn al-wiqāya), `15-damir-nasb-munfasil` (إِيَّاهُ …),
+  `16-damir-jarr-muttasil` (أَنْصِرْ بِهِ … بِنَا, same letters as naṣb, told apart by the host), `17-damir-map` (14 persons × the five kinds,
+  each cell tappable), `18-abwab` (the six bābs and the twelve mazīd doors, linking thulathi-mujarrad-babs / augmented-babs / rubai-babs).
+  Each pronoun note says in one sentence that a pronoun is mabnī and has only a PLACE.
+- **No Arabic form is typed.** A note's tables are DATA in `emsile359` ({tables, quiz, mk}) written by `tools/emsile/build_emsile359.py spec` →
+  `node tools/emsile/emsile359_derive.js` → `build_emsile359.py notes`. The derive step runs **`Emsile359`** (new class in the reader, after
+  DamirEngine) in the page: `list(descriptor)` reads only sarfDerive, `MaqsudEngine.emsileI / blocksI / recite / jus14` (form I of a sound root
+  through the Maqṣūd's own templates: an object inheriting MaqsudEngine lends it sarfDerive as `formI` — MaqsudEngine is not edited),
+  `TawkidEngine.KIND` (the لَنْ fourteen = the jussive's shape with the engine's mansub on the bare singulars, ʿIzzī L84), DamirEngine
+  (`table`, `attach`, `MUNFASIL`, `RAF_END`; wrong answers by `attach(…, {skip})`), `Bab35Engine.DOORS / derive`. Endings = what follows the last
+  radical; the doer's pronoun per cell from `RAF_END` (māḍī) or the ending (ا و ي نَ; else hidden — j for هو/هي, w for أنت/أنا/نحن). The one
+  cell no engine builds, the samāʿī maṣdar نَصْرًا, is the corpus token jumal-al-tadrib 4:s7 (named, checked). Common mistakes are two engine
+  cells (`mk` keeps how). Examples are corpus sentences by id with the story's translation; the FIRST that is a verbatim ʿIzzī / Marāḥ src line
+  carries `source` (it sits under «The books' own words» and feeds the rule of the day; one per note, because the hosted core keeps every
+  cited example). Terms: each table label's Arabic term cited at the
+  first src line that uses it (classicalSources «file، س N — «term»»).
+- **Pronoun rows attested**: `Emsile359.attest()` — a token whose surface DamirEngine.read gives that kind and person and whose authored iʿrāb
+  line has a clause naming a pronoun with the place («فِي مَحَلِّ X» or «ضَمِيرُ X»; hidden: «مُسْتَتِرٌ … تَقْدِيرُهُ هُوَ»), a cited word
+  («لَفْظٌ مَحْكِيٌّ» first) excluded; a free story preferred, then the lowest level, then the shortest line. 202 rows carry a token (the map: 59 of
+  68 cells); a «↗» opens that word on its iʿrāb tab with the Illa346 «Neden?» ladder (Illa346 not edited). **Unattested, shown with «*»**:
+  أَنْتُمَا, أَنْتُنَّ, إِيَّاهُنَّ, إِيَّاكُمَا, إِيَّاكِ, إِيَّاكُنَّ, إِيَّايَ.
+- **Where they show**: the notes list (level 1, the group first); `renderNote` — the tables after the explanation (`Emsile359.noteHtml`, with
+  a provenance line «engine-made, explanations awaiting the hoca»), and «Kendini dene» (`quizHtml` → `runQuiz`, the note's main table, a cell
+  → its row; only cells unique in the table are asked) before the actions; the word sheet's ṣarf tab: one chip under the table naming the
+  note of the TOKEN's form (`sheetHtml`: the open table — māḍī / muḍāriʿ / amr / muhtelife / nakil — or 06 when لَمْ / لَمَّا / لَنْ, or مَا / لَا
+  before a muḍāriʿ prefix, stands before it); the rule of the day may pick them (`RuleDay344.AREA_GROUPS.sarf` appended «emsile»); `DC_GROUP`
+  has the group. pubsplit: `emsile359` appended to `G_HEAVY` (grammar slice). Bytes (pubsplit, measured against a build without the 19): the hosted core
+  1,589,050 → 1,618,850 B raw (485,288 → 491,903 gzip, budget 728e3), the grammar slice 3,461,149 → 3,618,915 B raw (1,062,536 → 1,100,186
+  gzip); the tables alone are 50 KB raw / 7.3 KB gzip. `content/rules/commentary_links.json`: 19 `note:emsile-*` rows APPENDED (empty topics;
+  build_links.py run, its output merged append-only — the file's other rows untouched).
+- **Check** «v359 — the Amthila at level one» (before v333): 19 files in order, level 1, group, validate_content clean, en + tr everywhere,
+  explanations marked; every cell re-derived in the page (`Emsile359.verify`, ≥ 493), every mistake rebuilt, every ref re-attested (≥ 202),
+  unattested ⊆ the pinned 9, every example = its corpus sentence and translation, every cited term at its line, one row per cell rendered,
+  the level-1 list order, the word-sheet chip for نَصَرَ (01) and لَمْ يَنْصُرْهُ (06), the self-check opens, a «↗» opens the ladder, 390 px with
+  no overflowing table.
+- **For the hoca**: (1) the 19 explanations (en / tr) and the one-line meanings; (2) the vowelling of the Arabic form names (الْجَحْدُ
+  الْمُطْلَقُ، الْجَحْدُ الْمُسْتَغْرَقُ، نَفْيُ الْحَالِ، تَأْكِيدُ نَفْيِ الِاسْتِقْبَالِ …) — the Ottoman sheet writes them bare; (3) the formal
+  recitations in the four-bāb tables (عَلْمَةً، عِلْمَةً، مِعْلَمٌ، عُلَيْمٌ، عَلْمِيٌّ — the Emsile drills patterns, not attested words): keep or
+  narrow to attested words?; (4) **bāb 6's noun of place**: MaqsudEngine.emsileI gives مَحْسَبٌ for حَسِبَ يَحْسِبُ, while Marāḥ's rule (مَفْعِلٌ
+  from يَفْعِلُ) gives مَحْسِبٌ — the noun tables show bābs 1–4 only, the engine is not changed here; (5) تَنْصُرِينَ's yāʾ is tabled as a pronoun
+  (Sībawayh and the majority; al-Akhfash: a sign, Marāḥ ch. 17 s4–s5); (6) the 7 unattested pronoun forms.
+- **Left**: the broken plurals of fāʿil / mafʿūl / tafḍīl (no engine builds them); the muṭṭarida of the maṣdar and the nouns of place / tool /
+  taṣghīr / nisba; the catechism banks were not used for the self-check (their items are the books' own Q/A) — runQuiz over the note's own
+  engine-made table instead.
+- **Older checks changed: none.** Subset (`v359|v342|v345|v346|v338|v320|v354|v341 — speed|v350 — speed|open story renders|tap-word opens|grammar`):
+  58 PASS, 7 FAIL in the run; fixed for real: v348-F (every note needs its join row → appended) and «TR UI leaves no English» (the first
+  group's label must read «Sarf…» → the group is «Sarf — Emsile …» / «Morphology — the Amthila …»); run alone, PASS: the game detour, a note
+  reviewed like a word (TR left on by the previous filtered check), wave 120 Muḥallil, v320 (the review nudge, deck state of the filtered run);
+  «v341 — the door before the bodies» is timing only under load 7–9 from other agents: A/B with a build without the notes — base PASS ×2,
+  with the notes 1863 ms / PASS, then 2214 / PASS / PASS (budget 1800).

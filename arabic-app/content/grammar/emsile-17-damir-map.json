@@ -1,0 +1,741 @@
+{
+  "id": "emsile-17-damir-map",
+  "title": {
+    "ar": "الضَّمَائِرُ — الْخَمْسَةُ فِي جَدْوَلٍ وَاحِدٍ",
+    "en": "The pronouns: the five kinds in one table",
+    "tr": "Zamirler: beş çeşit tek cetvelde"
+  },
+  "level": 1,
+  "group": "emsile",
+  "classicalSources": [
+    "مراح الأرواح",
+    "إظهار الأسرار (البركوي)",
+    "الكافية (ابن الحاجب)"
+  ],
+  "plain": {
+    "en": "One table: fourteen persons down, five kinds across — attached rafʿ, detached rafʿ, attached naṣb, detached naṣb, attached jarr. Tap a pronoun to see a story word that has it, with its iʿrāb.",
+    "tr": "Tek cetvel: aşağıya on dört sîga, yana beş çeşit — muttasıl merfû, munfasıl merfû, muttasıl mansûb, munfasıl mansûb, muttasıl mecrûr. Bir zamire dokun, onu taşıyan bir hikâye kelimesini i'rabıyla gör."
+  },
+  "explanation": {
+    "en": "Marāḥ counts the pronouns instead of listing them: by case three (rafʿ, naṣb, jarr); each attached or detached — six; the detached majrūr is taken out, because a majrūr never stands before its governor — five; each has eighteen forms in reason and twelve in use, because the duals are shared — five times twelve, sixty. This table is that count. The first column shows what the māḍī adds as its doer (empty where the doer hides — see the attached rafʿ note for where it may or must hide); the other columns show the pronoun itself: هُوَ … نَحْنُ; هُ … نِي، نَا (with the nūn of protection after a verb); إِيَّاهُ … إِيَّانَا; هُ … ي، نَا as it stands after لَ. Every cell is built by the app's pronoun engine; a cell with «*» has no authored iʿrāb line on the shelf yet that gives it that place — the table says so rather than pretend. A pronoun is mabnī: its own ending never changes, so its iʿrāb is only a PLACE — fī maḥalli rafʿin, naṣbin or jarrin (mahallen merfû, mansûb, mecrûr). Tap «↗» on a row to open a story word whose authored iʿrāb gives that pronoun that place, with its «Neden?» chain. [Explanation ours — awaiting the hoca's review.]",
+    "tr": "Merâh zamirleri listelemek yerine sayar: i'rab bakımından üç (ref', nasb, cer); her biri muttasıl ya da munfasıl — altı; munfasıl mecrûr çıkarılır, çünkü mecrûr âmilinden önce gelmez — beş; her birinin akılda on sekiz, kullanımda on iki şekli vardır, çünkü tesniyeler ortaktır — beş kere on iki, altmış. Bu cetvel o sayımdır. Birinci sütun mâzînin fâil olarak eklediğini gösterir (fâil müstetir olan yerde boş — nerede cevâzen, nerede vücûben müstetir olduğunu muttasıl merfû notu söyler); diğer sütunlar zamirin kendisini gösterir: هُوَ … نَحْنُ; هُ … نِي، نَا (fiilden sonra nûn-ı vikâye ile); إِيَّاهُ … إِيَّانَا; لَ'den sonraki hâliyle هُ … ي، نَا. Her hücreyi uygulamanın zamir motoru kurar; «*» işaretli hücre için rafta ona o mahalli veren yazar i'rabı satırı henüz yoktur — cetvel bunu saklamaz, söyler. Zamir mebnîdir: kendi sonu hiç değişmez; bu yüzden i'rabı yalnız bir MAHALDİR — mahallen merfû, mansûb ya da mecrûr. Bir satırdaki «↗»'ya dokun: yazar i'rabı o zamire o mahalli veren bir hikâye kelimesi «Neden?» zinciriyle açılır. [Açıklama bizimdir — hoca onayı bekliyor.]"
+  },
+  "examples": [
+    {
+      "ar": "النَّوْعُ الْأَوَّلُ الْمُضْمَرَاتُ، وَهِيَ أَرْبَعَةُ أَقْسَامٍ: الْقِسْمُ الْأَوَّلُ مَرْفُوعٌ مُتَّصِلٌ، وَقَدْ سَبَقَ،",
+      "en": "The first kind is the pronouns, and they are four divisions: the first division is the attached rafʿ pronoun, and it has passed;",
+      "tr": "Birinci nev' zamirlerdir; dört kısımdır: birinci kısım muttasıl merfû zamirdir; o geçmişti;",
+      "sourceStory": "izhar-al-asrar",
+      "sentence": "s1"
+    },
+    {
+      "ar": "وَهُوَ مَرْفُوعٌ وَمَنْصُوبٌ وَمَجْرُورٌ، وَالْأَوَّلَانِ مُتَّصِلٌ وَمُنْفَصِلٌ، وَالثَّالِثُ مُتَّصِلٌ لَا غَيْرُ.",
+      "en": "And it is in rafʿ, in naṣb and in jarr; the first two are attached and detached, and the third is attached and nothing else. (Restored: the notebook carries this ruling only in Turkish; this is the received matn of the Kafiya.)",
+      "tr": "O, merfû, mansûb ve mecrûrdur; ilk ikisi muttasıl ve munfasıl, üçüncüsü yalnız muttasıldır. (Geri yazım: defter bu hükmü yalnız Türkçe taşır; bu, Kâfiye'nin alınan metnidir.)",
+      "sourceStory": "al-kafiya",
+      "sentence": "s9"
+    },
+    {
+      "ar": "فَالْمَرْفُوعُ الْمُتَّصِلُ نَحْوُ ضَرَبْتُ وَضَرَبْنَا وَضَرَبْتَ، وَالْمُنْفَصِلُ نَحْوُ أَنَا وَنَحْنُ وَأَنْتَ، وَالْمَنْصُوبُ الْمُتَّصِلُ نَحْوُ ضَرَبَنِي وَضَرَبَنَا وَضَرَبَكَ، وَالْمُنْفَصِلُ نَحْوُ إِيَّايَ وَإِيَّانَا وَإِيَّاكَ، وَالْمَجْرُورُ نَحْوُ غُلَامِي وَغُلَامُنَا وَغُلَامُكَ.",
+      "en": "So the attached rafʿ pronoun, as in «I beat», «we beat», «you beat»; the detached, as in «I», «we», «you»; the attached naṣb pronoun, as in «he beat me», «he beat us», «he beat you»; the detached, as in «me», «us», «you»; and the jarr pronoun, as in «my slave», «our slave», «your slave». (Restored: the notebook carries this ruling only in Turkish; this is the received matn of the Kafiya.)",
+      "tr": "Merfû muttasıl: «darabtü, darabnâ, darabte» gibi; munfasıl: «ene, nahnü, ente» gibi; mansûb muttasıl: «darabenî, darabenâ, darabeke» gibi; munfasıl: «iyyâye, iyyânâ, iyyâke» gibi; mecrûr: «gulâmî, gulâmünâ, gulâmüke» gibi. (Geri yazım: defter bu hükmü yalnız Türkçe taşır; bu, Kâfiye'nin alınan metnidir.)",
+      "sourceStory": "al-kafiya",
+      "sentence": "s11"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "بِهُمْ",
+      "right": "بِهِمْ",
+      "why": {
+        "en": "After a kasra the hāʾ of the pronoun takes a kasra: بِهِمْ, as the table's jarr column shows after a kasra.",
+        "tr": "Kesreden sonra zamirin hâsı kesre alır: بِهِمْ."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "emsile-12-damir-raf-muttasil",
+    "emsile-13-damir-raf-munfasil",
+    "emsile-14-damir-nasb-muttasil",
+    "emsile-15-damir-nasb-munfasil",
+    "emsile-16-damir-jarr-muttasil",
+    "al-marifa-al-mudmarat-wal-alam"
+  ],
+  "emsile359": {
+    "tables": [
+      {
+        "id": "map",
+        "head": {
+          "ar": "الضَّمَائِرُ السِّتُّونَ",
+          "en": "The sixty pronouns",
+          "tr": "Altmış zamir"
+        },
+        "src": {
+          "cols": [
+            {
+              "k": "rafPron"
+            },
+            {
+              "k": "munf"
+            },
+            {
+              "k": "pron",
+              "host": "نَصَرَ",
+              "kind": "verb"
+            },
+            {
+              "k": "att",
+              "host": "إِيَّا",
+              "kind": "iyya"
+            },
+            {
+              "k": "pron",
+              "host": "لِ",
+              "kind": "harf"
+            }
+          ]
+        },
+        "map": true,
+        "rows": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "keys": [
+          [
+            null,
+            "rafMuttasil:1",
+            "rafMuttasil:2",
+            null,
+            "rafMuttasil:4",
+            "rafMuttasil:5",
+            "rafMuttasil:6",
+            "rafMuttasil:7",
+            "rafMuttasil:8",
+            "rafMuttasil:9",
+            "rafMuttasil:10",
+            "rafMuttasil:11",
+            "rafMuttasil:12",
+            "rafMuttasil:13"
+          ],
+          [
+            "rafMunfasil:0",
+            "rafMunfasil:1",
+            "rafMunfasil:2",
+            "rafMunfasil:3",
+            "rafMunfasil:4",
+            "rafMunfasil:5",
+            "rafMunfasil:6",
+            "rafMunfasil:7",
+            "rafMunfasil:8",
+            "rafMunfasil:9",
+            "rafMunfasil:10",
+            "rafMunfasil:11",
+            "rafMunfasil:12",
+            "rafMunfasil:13"
+          ],
+          [
+            "nasbMuttasil:0",
+            "nasbMuttasil:1",
+            "nasbMuttasil:2",
+            "nasbMuttasil:3",
+            "nasbMuttasil:4",
+            "nasbMuttasil:5",
+            "nasbMuttasil:6",
+            "nasbMuttasil:7",
+            "nasbMuttasil:8",
+            "nasbMuttasil:9",
+            "nasbMuttasil:10",
+            "nasbMuttasil:11",
+            "nasbMuttasil:12",
+            "nasbMuttasil:13"
+          ],
+          [
+            "nasbMunfasil:0",
+            "nasbMunfasil:1",
+            "nasbMunfasil:2",
+            "nasbMunfasil:3",
+            "nasbMunfasil:4",
+            "nasbMunfasil:5",
+            "nasbMunfasil:6",
+            "nasbMunfasil:7",
+            "nasbMunfasil:8",
+            "nasbMunfasil:9",
+            "nasbMunfasil:10",
+            "nasbMunfasil:11",
+            "nasbMunfasil:12",
+            "nasbMunfasil:13"
+          ],
+          [
+            "jarrMuttasil:0",
+            "jarrMuttasil:1",
+            "jarrMuttasil:2",
+            "jarrMuttasil:3",
+            "jarrMuttasil:4",
+            "jarrMuttasil:5",
+            "jarrMuttasil:6",
+            "jarrMuttasil:7",
+            "jarrMuttasil:8",
+            "jarrMuttasil:9",
+            "jarrMuttasil:10",
+            "jarrMuttasil:11",
+            "jarrMuttasil:12",
+            "jarrMuttasil:13"
+          ]
+        ],
+        "cols": [
+          [
+            null,
+            "ا",
+            "و",
+            null,
+            "ا",
+            "نَ",
+            "تَ",
+            "تُمَا",
+            "تُمْ",
+            "تِ",
+            "تُمَا",
+            "تُنَّ",
+            "تُ",
+            "نَا"
+          ],
+          [
+            "هُوَ",
+            "هُمَا",
+            "هُمْ",
+            "هِيَ",
+            "هُمَا",
+            "هُنَّ",
+            "أَنْتَ",
+            "أَنْتُمَا",
+            "أَنْتُمْ",
+            "أَنْتِ",
+            "أَنْتُمَا",
+            "أَنْتُنَّ",
+            "أَنَا",
+            "نَحْنُ"
+          ],
+          [
+            "هُ",
+            "هُمَا",
+            "هُمْ",
+            "هَا",
+            "هُمَا",
+            "هُنَّ",
+            "كَ",
+            "كُمَا",
+            "كُمْ",
+            "كِ",
+            "كُمَا",
+            "كُنَّ",
+            "نِي",
+            "نَا"
+          ],
+          [
+            "إِيَّاهُ",
+            "إِيَّاهُمَا",
+            "إِيَّاهُمْ",
+            "إِيَّاهَا",
+            "إِيَّاهُمَا",
+            "إِيَّاهُنَّ",
+            "إِيَّاكَ",
+            "إِيَّاكُمَا",
+            "إِيَّاكُمْ",
+            "إِيَّاكِ",
+            "إِيَّاكُمَا",
+            "إِيَّاكُنَّ",
+            "إِيَّايَ",
+            "إِيَّانَا"
+          ],
+          [
+            "هُ",
+            "هُمَا",
+            "هُمْ",
+            "هَا",
+            "هُمَا",
+            "هُنَّ",
+            "كَ",
+            "كُمَا",
+            "كُمْ",
+            "كِ",
+            "كُمَا",
+            "كُنَّ",
+            "ي",
+            "نَا"
+          ]
+        ],
+        "refs": [
+          [
+            null,
+            [
+              "musa-wal-khadir",
+              2,
+              "s3",
+              1,
+              "رَكِبَا"
+            ],
+            [
+              "hud-wa-aad",
+              3,
+              "s5",
+              1,
+              "رَأَوْا"
+            ],
+            null,
+            [
+              "musa-wal-khadir",
+              2,
+              "s3",
+              1,
+              "رَكِبَا"
+            ],
+            [
+              "muallaqat-tarafa",
+              1,
+              "s8",
+              5,
+              "يَقُلْنَ"
+            ],
+            [
+              "musa-wal-khadir",
+              2,
+              "s5",
+              3,
+              "خَرَقْتَ"
+            ],
+            [
+              "adam-wa-iblis",
+              3,
+              "s3",
+              7,
+              "أَكَلْتُمَا"
+            ],
+            [
+              "hud-wa-aad",
+              2,
+              "s1",
+              5,
+              "اعْبُدُوا"
+            ],
+            [
+              "sulayman-wa-al-hudhud",
+              4,
+              "s6",
+              5,
+              "وَاعْبُدِي"
+            ],
+            [
+              "adam-wa-iblis",
+              3,
+              "s3",
+              7,
+              "أَكَلْتُمَا"
+            ],
+            [
+              "muallaqat-zuhayr",
+              2,
+              "s7",
+              6,
+              "تَحَمَّلْنَ"
+            ],
+            [
+              "yunus-wa-al-hut",
+              1,
+              "s11",
+              2,
+              "كُنْتُ"
+            ],
+            [
+              "adam-wa-iblis",
+              4,
+              "s2",
+              3,
+              "أَخْطَأْنَا"
+            ]
+          ],
+          [
+            [
+              "al-asad-wa-al-arnab",
+              3,
+              "s3",
+              2,
+              "هُوَ"
+            ],
+            [
+              "al-usul-al-munifa",
+              19,
+              "s4",
+              18,
+              "هُمَا"
+            ],
+            [
+              "salah-al-din-wa-al-quds",
+              2,
+              "s3",
+              1,
+              "هُمْ"
+            ],
+            [
+              "mathal-sabaqa-al-sayf-al-adhal",
+              1,
+              "s10",
+              1,
+              "هِيَ"
+            ],
+            [
+              "al-usul-al-munifa",
+              19,
+              "s4",
+              18,
+              "هُمَا"
+            ],
+            [
+              "muallaqat-tarafa",
+              10,
+              "s3",
+              2,
+              "هُنَّ"
+            ],
+            [
+              "yunus-wa-al-hut",
+              1,
+              "s10",
+              4,
+              "أَنْتَ"
+            ],
+            null,
+            [
+              "qisas-al-nabiyyin-1",
+              21,
+              "s15",
+              7,
+              "أَنْتُمْ"
+            ],
+            [
+              "muallaqat-labid",
+              10,
+              "s3",
+              1,
+              "أَنْتِ"
+            ],
+            null,
+            null,
+            [
+              "musa-wa-firawn",
+              1,
+              "s3",
+              3,
+              "أَنَا"
+            ],
+            [
+              "musa-wa-bani-israil",
+              3,
+              "s6",
+              2,
+              "نَحْنُ"
+            ]
+          ],
+          [
+            [
+              "musa-wa-firawn",
+              3,
+              "s4",
+              0,
+              "وَكَلَّمَهُ"
+            ],
+            [
+              "musa-fi-madyan",
+              2,
+              "s5",
+              0,
+              "فَسَأَلَهُمَا"
+            ],
+            [
+              "hud-wa-aad",
+              4,
+              "s5",
+              2,
+              "يُعَلِّمُهُمْ"
+            ],
+            [
+              "sulayman-wa-al-hudhud",
+              4,
+              "s5",
+              0,
+              "وَدَعَاهَا"
+            ],
+            [
+              "musa-fi-madyan",
+              2,
+              "s5",
+              0,
+              "فَسَأَلَهُمَا"
+            ],
+            [
+              "muallaqat-amr-ibn-kulthum",
+              13,
+              "s5",
+              0,
+              "وَرِثْنَاهُنَّ"
+            ],
+            [
+              "al-asad-wa-al-far",
+              4,
+              "s2",
+              2,
+              "وَلٰكِنَّكَ"
+            ],
+            [
+              "qisas-al-nabiyyin-1",
+              13,
+              "s8",
+              6,
+              "يَأْتِيَكُمَا"
+            ],
+            [
+              "hud-wa-aad",
+              2,
+              "s7",
+              5,
+              "جَاءَكُمْ"
+            ],
+            [
+              "muallaqat-imri-al-qays",
+              5,
+              "s2",
+              5,
+              "وَأَنَّكِ"
+            ],
+            [
+              "qisas-al-nabiyyin-1",
+              13,
+              "s8",
+              6,
+              "يَأْتِيَكُمَا"
+            ],
+            [
+              "izhar-al-asrar",
+              46,
+              "s3",
+              20,
+              "ضَرَبَكُنَّ"
+            ],
+            [
+              "yunus-wa-al-hut",
+              1,
+              "s11",
+              1,
+              "إِنِّي"
+            ],
+            [
+              "hud-wa-aad",
+              3,
+              "s6",
+              4,
+              "يُمْطِرُنَا"
+            ]
+          ],
+          [
+            [
+              "qisas-al-nabiyyin-1",
+              13,
+              "s36",
+              3,
+              "إِيَّاهُ"
+            ],
+            [
+              "izhar-al-asrar",
+              9,
+              "s3",
+              15,
+              "إِيَّاهُمَا"
+            ],
+            [
+              "wasiyyat-abi-hanifa-samti",
+              3,
+              "s21",
+              9,
+              "إِيَّاهُمْ"
+            ],
+            [
+              "al-usul-al-munifa",
+              11,
+              "s4",
+              26,
+              "إِيَّاهَا"
+            ],
+            [
+              "izhar-al-asrar",
+              9,
+              "s3",
+              15,
+              "إِيَّاهُمَا"
+            ],
+            null,
+            [
+              "khasais-shajaat-al-arabiyya",
+              1,
+              "s7",
+              1,
+              "إِيَّاكَ"
+            ],
+            null,
+            [
+              "al-usul-al-munifa",
+              29,
+              "s5",
+              29,
+              "إِيَّاكُمْ"
+            ],
+            null,
+            null,
+            null,
+            null,
+            [
+              "marah-al-arwah",
+              16,
+              "s6",
+              8,
+              "إِيَّانَا"
+            ]
+          ],
+          [
+            [
+              "musa-wa-firawn",
+              2,
+              "s8",
+              3,
+              "فِيهِ"
+            ],
+            [
+              "musa-fi-madyan",
+              2,
+              "s7",
+              2,
+              "لَهُمَا"
+            ],
+            [
+              "musa-wa-bani-israil",
+              3,
+              "s4",
+              2,
+              "عَلَيْهِمْ"
+            ],
+            [
+              "sulayman-wa-al-hudhud",
+              4,
+              "s6",
+              1,
+              "لَهَا"
+            ],
+            [
+              "musa-fi-madyan",
+              2,
+              "s7",
+              2,
+              "لَهُمَا"
+            ],
+            [
+              "muallaqat-al-harith",
+              3,
+              "s5",
+              2,
+              "خَلْفِهِنَّ"
+            ],
+            [
+              "musa-wal-khadir",
+              2,
+              "s6",
+              3,
+              "لَكَ"
+            ],
+            [
+              "musa-fi-madyan",
+              2,
+              "s5",
+              5,
+              "غَنَمَكُمَا"
+            ],
+            [
+              "salih-wa-al-naqa",
+              2,
+              "s4",
+              7,
+              "لَكُمْ"
+            ],
+            [
+              "zakariyya-wa-yahya",
+              1,
+              "s4",
+              3,
+              "لَكِ"
+            ],
+            [
+              "musa-fi-madyan",
+              2,
+              "s5",
+              5,
+              "غَنَمَكُمَا"
+            ],
+            [
+              "marah-al-arwah",
+              45,
+              "s6",
+              6,
+              "بُيُوتِكُنَّ"
+            ],
+            [
+              "al-asad-wa-al-far",
+              4,
+              "s1",
+              4,
+              "صَدِيقِي"
+            ],
+            [
+              "salih-wa-al-naqa",
+              2,
+              "s1",
+              4,
+              "لَنَا"
+            ]
+          ]
+        ]
+      }
+    ],
+    "mk": [
+      {
+        "w": {
+          "src": {
+            "k": "attSkip",
+            "host": "بِ",
+            "kind": "harf",
+            "skip": [
+              "harmony"
+            ]
+          },
+          "i": 2
+        },
+        "r": {
+          "src": {
+            "k": "att",
+            "host": "بِ",
+            "kind": "harf"
+          },
+          "i": 2
+        }
+      }
+    ]
+  }
+}
