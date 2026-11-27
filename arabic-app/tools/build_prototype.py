@@ -206,6 +206,9 @@ def build_grammar(grammar_dir: Path):
         # The dependency links the atlas draws — ids only, resolved in the reader.
         if g.get("relatedNotes"):
             note["related"] = list(g["relatedNotes"])
+        # (v359-E) the Amthila notes' tables — engine-made cells, re-derived by the smoke check «v359»; pubsplit moves them to the grammar slice
+        if g.get("emsile359"):
+            note["emsile359"] = g["emsile359"]
         notes[g["id"]] = note
     return notes
 
@@ -500,6 +503,10 @@ def main():
             {"id": "badi", "ar": "الْبَدِيع",
              "label": {"en": "Embellishment — the Talkhis, Fann 3: tibaq, muqabala, jinas",
                        "tr": "Bedî' — Telhîs'in üçüncü fenni: tıbâk, mukabele, cinas"}},
+            # (v359-E) the first book: the Amthila and the pronouns where it teaches them — listed FIRST (top), appended here
+            {"id": "emsile", "ar": "الْأَمْثِلَةُ", "top": True,
+             "label": {"en": "Morphology — the Amthila, the first book: one verb's forms, their persons, and the pronouns",
+                       "tr": "Sarf — Emsile, ilk kitap: bir fiilin sîgaları, çekimleri ve zamirler"}},
         ]),
         # (wave 127) the data script is the LAST script of the page; this line hands the shell its data
         'if (typeof window.__qissaDataReady === "function") window.__qissaDataReady();',

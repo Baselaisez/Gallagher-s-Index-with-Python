@@ -1,0 +1,2878 @@
+{
+ "notes": {
+  "emsile-00-amthila": {
+   "tables": [
+    {
+     "id": "forms",
+     "head": {
+      "ar": "الْأَمْثِلَةُ الْمُخْتَلِفَةُ — نَصَرَ",
+      "en": "The twenty-four forms of نَصَرَ",
+      "tr": "نَصَرَ fiilinin yirmi dört sîgası"
+     },
+     "src": {
+      "k": "row",
+      "root": "ن ص ر",
+      "bab": 1,
+      "slots": [
+       "mazi",
+       "mudari",
+       "masdar",
+       "fail",
+       "maful",
+       "lam",
+       "lamma",
+       "ma",
+       "la",
+       "lan",
+       "liAmr",
+       "laNahy",
+       "amr",
+       "laNahy2",
+       "mimi",
+       "alat",
+       "marra",
+       "naw",
+       "tasghir",
+       "nisba",
+       "mubalagha",
+       "tafdil",
+       "taajjub1",
+       "taajjub2"
+      ],
+      "pres": [
+       "",
+       "",
+       "",
+       "فَهُوَ ",
+       "وَذَاكَ ",
+       "لَمْ ",
+       "لَمَّا ",
+       "مَا ",
+       "لَا ",
+       "لَنْ ",
+       "لِ",
+       "لَا ",
+       "",
+       "لَا ",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "مَا ",
+       "وَ"
+      ],
+      "posts": [
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "",
+       "@bihi"
+      ],
+      "corpus": {
+       "masdar": [
+        "jumal-al-tadrib",
+        4,
+        "s7",
+        3
+       ]
+      }
+     },
+     "labels": [
+      {
+       "ar": "الْفِعْلُ الْمَاضِي",
+       "tr": "Fiil-i mâzî",
+       "en": "Past",
+       "m": {
+        "en": "he helped",
+        "tr": "yardım etti"
+       }
+      },
+      {
+       "ar": "الْفِعْلُ الْمُضَارِعُ",
+       "tr": "Fiil-i muzâri",
+       "en": "Present–future",
+       "m": {
+        "en": "he helps / will help",
+        "tr": "yardım eder / edecek"
+       }
+      },
+      {
+       "ar": "الْمَصْدَرُ",
+       "tr": "Masdar (gayr-i mîmî)",
+       "en": "Verbal noun",
+       "m": {
+        "en": "helping",
+        "tr": "yardım etmek"
+       }
+      },
+      {
+       "ar": "اسْمُ الْفَاعِلِ",
+       "tr": "İsm-i fâil",
+       "en": "Active participle",
+       "m": {
+        "en": "so he is a helper",
+        "tr": "o hâlde o, yardım edendir"
+       }
+      },
+      {
+       "ar": "اسْمُ الْمَفْعُولِ",
+       "tr": "İsm-i mef'ûl",
+       "en": "Passive participle",
+       "m": {
+        "en": "and that one is helped",
+        "tr": "şu da yardım olunandır"
+       }
+      },
+      {
+       "ar": "الْجَحْدُ الْمُطْلَقُ",
+       "tr": "Cahd-ı mutlak",
+       "en": "Plain denial of the past",
+       "m": {
+        "en": "he did not help",
+        "tr": "yardım etmedi"
+       }
+      },
+      {
+       "ar": "الْجَحْدُ الْمُسْتَغْرَقُ",
+       "tr": "Cahd-ı müstağrak",
+       "en": "Denial of the past up to now",
+       "m": {
+        "en": "he has not helped, so far",
+        "tr": "şimdiye dek yardım etmedi"
+       }
+      },
+      {
+       "ar": "نَفْيُ الْحَالِ",
+       "tr": "Nefy-i hâl",
+       "en": "Denial of the present",
+       "m": {
+        "en": "he is not helping (now)",
+        "tr": "şu an yardım etmiyor"
+       }
+      },
+      {
+       "ar": "نَفْيُ الِاسْتِقْبَالِ",
+       "tr": "Nefy-i istikbâl",
+       "en": "Denial of the future",
+       "m": {
+        "en": "he will not help",
+        "tr": "yardım etmeyecek"
+       }
+      },
+      {
+       "ar": "تَأْكِيدُ نَفْيِ الِاسْتِقْبَالِ",
+       "tr": "Te'kîd-i nefy-i istikbâl",
+       "en": "Emphatic denial of the future",
+       "m": {
+        "en": "he will never help",
+        "tr": "asla yardım etmeyecek"
+       }
+      },
+      {
+       "ar": "أَمْرُ الْغَائِبِ",
+       "tr": "Emr-i gâib",
+       "en": "Command to one absent",
+       "m": {
+        "en": "let him help",
+        "tr": "yardım etsin"
+       }
+      },
+      {
+       "ar": "نَهْيُ الْغَائِبِ",
+       "tr": "Nehy-i gâib",
+       "en": "Prohibition to one absent",
+       "m": {
+        "en": "let him not help",
+        "tr": "yardım etmesin"
+       }
+      },
+      {
+       "ar": "أَمْرُ الْحَاضِرِ",
+       "tr": "Emr-i hâzır",
+       "en": "Command to the one present",
+       "m": {
+        "en": "help!",
+        "tr": "yardım et!"
+       }
+      },
+      {
+       "ar": "نَهْيُ الْحَاضِرِ",
+       "tr": "Nehy-i hâzır",
+       "en": "Prohibition to the one present",
+       "m": {
+        "en": "do not help!",
+        "tr": "yardım etme!"
+       }
+      },
+      {
+       "ar": "اسْمُ الزَّمَانِ وَالْمَكَانِ",
+       "tr": "İsm-i zaman ve mekân",
+       "en": "Noun of time and place",
+       "m": {
+        "en": "the time or place of helping",
+        "tr": "yardım etme zamanı ya da yeri"
+       }
+      },
+      {
+       "ar": "اسْمُ الْآلَةِ",
+       "tr": "İsm-i âlet",
+       "en": "Noun of instrument",
+       "m": {
+        "en": "the tool of helping",
+        "tr": "yardım etme âleti"
+       }
+      },
+      {
+       "ar": "بِنَاءُ الْمَرَّةِ",
+       "tr": "Binâ-i merre",
+       "en": "Noun of once",
+       "m": {
+        "en": "helping once",
+        "tr": "bir kere yardım etmek"
+       }
+      },
+      {
+       "ar": "بِنَاءُ النَّوْعِ",
+       "tr": "Binâ-i nev'",
+       "en": "Noun of manner",
+       "m": {
+        "en": "a manner of helping",
+        "tr": "bir çeşit yardım etmek"
+       }
+      },
+      {
+       "ar": "التَّصْغِيرُ",
+       "tr": "İsm-i tasğîr",
+       "en": "Diminutive",
+       "m": {
+        "en": "a little help",
+        "tr": "küçük bir yardım"
+       }
+      },
+      {
+       "ar": "النِّسْبَةُ",
+       "tr": "İsm-i mensûb",
+       "en": "Relational adjective",
+       "m": {
+        "en": "having to do with help",
+        "tr": "yardımla ilgili"
+       }
+      },
+      {
+       "ar": "صِيغَةُ الْمُبَالَغَةِ",
+       "tr": "Mübalağa ism-i fâil",
+       "en": "Intensive participle",
+       "m": {
+        "en": "one who helps a great deal",
+        "tr": "çok yardım eden"
+       }
+      },
+      {
+       "ar": "اسْمُ التَّفْضِيلِ",
+       "tr": "İsm-i tafdîl",
+       "en": "Elative",
+       "m": {
+        "en": "more / most helpful",
+        "tr": "daha çok yardım eden"
+       }
+      },
+      {
+       "ar": "فِعْلُ التَّعَجُّبِ الْأَوَّلُ",
+       "tr": "Fiil-i taaccüb-i evvel",
+       "en": "First verb of wonder",
+       "m": {
+        "en": "how much he helps!",
+        "tr": "ne çok yardım ediyor!"
+       }
+      },
+      {
+       "ar": "فِعْلُ التَّعَجُّبِ الثَّانِي",
+       "tr": "Fiil-i taaccüb-i sânî",
+       "en": "Second verb of wonder",
+       "m": {
+        "en": "how much he helps!",
+        "tr": "ne çok yardım ediyor!"
+       }
+      }
+     ]
+    }
+   ],
+   "examples": [
+    [
+     "jumal-al-tadrib",
+     4,
+     "s7"
+    ],
+    [
+     "salih-wa-al-naqa",
+     4,
+     "s10"
+    ],
+    [
+     "qarun-wa-kunuzuh",
+     4,
+     "s3"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "row",
+       "root": "ن ص ر",
+       "bab": 1,
+       "slots": [
+        "lam"
+       ],
+       "pres": [
+        "لَمَّا "
+       ]
+      },
+      "i": 0
+     },
+     "r": {
+      "src": {
+       "k": "row",
+       "root": "ن ص ر",
+       "bab": 1,
+       "slots": [
+        "lam"
+       ],
+       "pres": [
+        "لَمْ "
+       ]
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "لَمَّا يَنْصُرْ is not the same row as لَمْ يَنْصُرْ: both cut the ending to a sukūn, but لَمْ denies the past plainly (cahd-ı mutlak) and لَمَّا denies it right up to now, with the deed still expected (cahd-ı müstağrak).",
+      "tr": "لَمَّا يَنْصُرْ ile لَمْ يَنْصُرْ aynı satır değildir: ikisi de sonu cezmeder; ama لَمْ geçmişi düz nefyeder (cahd-ı mutlak), لَمَّا ise şu âna kadar nefyeder, iş hâlâ beklenir (cahd-ı müstağrak)."
+     }
+    }
+   ]
+  },
+  "emsile-01-madi": {
+   "tables": [
+    {
+     "id": "act",
+     "head": {
+      "ar": "الْمَاضِي الْمَعْلُومُ",
+      "en": "Past, active — ending and doer",
+      "tr": "Mâzî ma'lûm — son ve fâil"
+     },
+     "src": {
+      "k": "block",
+      "root": "ن ص ر",
+      "bab": 1,
+      "list": "maziM"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر",
+     "pronOf": "mazi",
+     "keys": [
+      "rafMuttasil:0:h",
+      "rafMuttasil:1",
+      "rafMuttasil:2",
+      "rafMuttasil:3:h",
+      "rafMuttasil:4",
+      "rafMuttasil:5",
+      "rafMuttasil:6",
+      "rafMuttasil:7",
+      "rafMuttasil:8",
+      "rafMuttasil:9",
+      "rafMuttasil:10",
+      "rafMuttasil:11",
+      "rafMuttasil:12",
+      "rafMuttasil:13"
+     ]
+    },
+    {
+     "id": "pas",
+     "head": {
+      "ar": "الْمَاضِي الْمَجْهُولُ",
+      "en": "Past, passive",
+      "tr": "Mâzî meçhûl"
+     },
+     "src": {
+      "k": "block",
+      "root": "ن ص ر",
+      "bab": 1,
+      "list": "maziJ"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "babs",
+     "head": {
+      "ar": "الْمَاضِي فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The past in the six bābs",
+      "tr": "Altı bâbda mâzî"
+     },
+     "src": {
+      "k": "em",
+      "slot": "mazi",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "tasrif-al-izzi",
+     5,
+     "s3"
+    ],
+    [
+     "jumal-al-tadrib",
+     4,
+     "s7"
+    ],
+    [
+     "al-kafiya",
+     3,
+     "s11"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "block",
+       "root": "ن ص ر",
+       "bab": 1,
+       "list": "maziM"
+      },
+      "i": 3
+     },
+     "r": {
+      "src": {
+       "k": "block",
+       "root": "ن ص ر",
+       "bab": 1,
+       "list": "maziM"
+      },
+      "i": 12
+     },
+     "why": {
+      "en": "«I helped» is نَصَرْتُ — sukūn on the rāʾ, ḍamma on the tāʾ, and the tāʾ is the pronoun. نَصَرَتْ (fatḥa on the rāʾ, sukūn on the tāʾ) is «she helped», and its tāʾ is only the sign of the feminine.",
+      "tr": "«Yardım ettim» نَصَرْتُ'dur — râ sakin, tâ mazmum; tâ zamirdir. نَصَرَتْ (râ meftûh, tâ sakin) «yardım etti (o, dişil)» demektir; tâsı yalnız müennes alâmetidir."
+     }
+    }
+   ]
+  },
+  "emsile-02-mudari": {
+   "tables": [
+    {
+     "id": "act",
+     "head": {
+      "ar": "الْمُضَارِعُ الْمَعْلُومُ",
+      "en": "Present, active — ending and doer",
+      "tr": "Muzâri ma'lûm — son ve fâil"
+     },
+     "src": {
+      "k": "mud",
+      "root": "ن ص ر",
+      "bab": 1
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر",
+     "pronOf": "mud",
+     "keys": [
+      "rafMuttasil:0:h",
+      "rafMuttasil:1",
+      "rafMuttasil:2",
+      "rafMuttasil:3:h",
+      "rafMuttasil:4",
+      "rafMuttasil:5",
+      "rafMuttasil:6:h",
+      "rafMuttasil:7",
+      "rafMuttasil:8",
+      "rafMuttasil:9",
+      "rafMuttasil:10",
+      "rafMuttasil:11",
+      "rafMuttasil:12:h",
+      "rafMuttasil:13:h"
+     ]
+    },
+    {
+     "id": "pas",
+     "head": {
+      "ar": "الْمُضَارِعُ الْمَجْهُولُ",
+      "en": "Present, passive",
+      "tr": "Muzâri meçhûl"
+     },
+     "src": {
+      "k": "block",
+      "root": "ن ص ر",
+      "bab": 1,
+      "list": "mudariJ"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "babs",
+     "head": {
+      "ar": "الْمَاضِي وَالْمُضَارِعُ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "Past and present in the six bābs",
+      "tr": "Altı bâbda mâzî ve muzâri"
+     },
+     "src": {
+      "k": "em2",
+      "slots": [
+       "mazi",
+       "mudari"
+      ],
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "tasrif-al-izzi",
+     6,
+     "s9"
+    ],
+    [
+     "salih-wa-al-naqa",
+     4,
+     "s10"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "mud",
+       "root": "ن ص ر",
+       "bab": 1
+      },
+      "i": 2
+     },
+     "r": {
+      "src": {
+       "k": "mud",
+       "root": "ن ص ر",
+       "bab": 1
+      },
+      "i": 5
+     },
+     "why": {
+      "en": "For women «they help» is يَنْصُرْنَ — the nūn of women is the doer, and the verb before it is silent on the rāʾ. يَنْصُرُونَ is the men's plural.",
+      "tr": "Kadınlar için «yardım ederler» يَنْصُرْنَ'dir — nûn-ı nisve fâildir, ondan önce râ sakindir. يَنْصُرُونَ erkeklerin cem'idir."
+     }
+    }
+   ]
+  },
+  "emsile-03-masdar": {
+   "tables": [
+    {
+     "id": "row",
+     "head": {
+      "ar": "الْمَصْدَرُ، الْمَرَّةُ، النَّوْعُ",
+      "en": "Verbal noun, once, manner",
+      "tr": "Masdar, merre, nev'"
+     },
+     "src": {
+      "k": "row",
+      "root": "ن ص ر",
+      "bab": 1,
+      "slots": [
+       "masdar",
+       "marra",
+       "naw"
+      ],
+      "corpus": {
+       "masdar": [
+        "jumal-al-tadrib",
+        4,
+        "s7",
+        3
+       ]
+      }
+     },
+     "labels": [
+      {
+       "ar": "الْمَصْدَرُ",
+       "tr": "Masdar (gayr-i mîmî)",
+       "en": "Verbal noun",
+       "m": {
+        "en": "helping",
+        "tr": "yardım etmek"
+       }
+      },
+      {
+       "ar": "بِنَاءُ الْمَرَّةِ",
+       "tr": "Binâ-i merre",
+       "en": "Noun of once",
+       "m": {
+        "en": "helping once",
+        "tr": "bir kere yardım etmek"
+       }
+      },
+      {
+       "ar": "بِنَاءُ النَّوْعِ",
+       "tr": "Binâ-i nev'",
+       "en": "Noun of manner",
+       "m": {
+        "en": "a manner of helping",
+        "tr": "bir çeşit yardım etmek"
+       }
+      }
+     ]
+    },
+    {
+     "id": "marra",
+     "head": {
+      "ar": "بِنَاءُ الْمَرَّةِ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "The noun of once in four bābs",
+      "tr": "Dört bâbda binâ-i merre"
+     },
+     "src": {
+      "k": "em",
+      "slot": "marra"
+     },
+     "bab": true
+    },
+    {
+     "id": "naw",
+     "head": {
+      "ar": "بِنَاءُ النَّوْعِ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "The noun of manner in four bābs",
+      "tr": "Dört bâbda binâ-i nev'"
+     },
+     "src": {
+      "k": "em",
+      "slot": "naw"
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "jumal-al-tadrib",
+     4,
+     "s7"
+    ],
+    [
+     "tasrif-al-izzi",
+     19,
+     "s6"
+    ],
+    [
+     "tasrif-al-izzi",
+     19,
+     "s8"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "em",
+       "slot": "naw"
+      },
+      "i": 0
+     },
+     "r": {
+      "src": {
+       "k": "em",
+       "slot": "marra"
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "«Helping once» is نَصْرَةً with a fatḥa (faʿla); نِصْرَةً with a kasra (fiʿla) is the manner of helping.",
+      "tr": "«Bir kere yardım» fetha ile نَصْرَةً'dir (فَعْلَة); kesre ile نِصْرَةً (فِعْلَة) yardımın şeklidir."
+     }
+    }
+   ]
+  },
+  "emsile-04-fail": {
+   "tables": [
+    {
+     "id": "num",
+     "head": {
+      "ar": "اسْمُ الْفَاعِلِ — الْمُطَّرِدَةُ",
+      "en": "Active participle by number and gender",
+      "tr": "İsm-i fâil — sayı ve cinsiyle"
+     },
+     "src": {
+      "k": "block",
+      "root": "ن ص ر",
+      "bab": 1,
+      "list": "fail",
+      "take": [
+       0,
+       1,
+       2,
+       6,
+       7,
+       8
+      ]
+     },
+     "labels": [
+      {
+       "ar": "مُفْرَدٌ مُذَكَّرٌ",
+       "en": "masculine singular",
+       "tr": "müfred müzekker"
+      },
+      {
+       "ar": "مُثَنًّى مُذَكَّرٌ",
+       "en": "masculine dual",
+       "tr": "tesniye müzekker"
+      },
+      {
+       "ar": "جَمْعُ مُذَكَّرٍ سَالِمٌ",
+       "en": "sound masculine plural",
+       "tr": "cem'-i müzekker sâlim"
+      },
+      {
+       "ar": "مُفْرَدٌ مُؤَنَّثٌ",
+       "en": "feminine singular",
+       "tr": "müfred müennes"
+      },
+      {
+       "ar": "مُثَنًّى مُؤَنَّثٌ",
+       "en": "feminine dual",
+       "tr": "tesniye müennes"
+      },
+      {
+       "ar": "جَمْعُ مُؤَنَّثٍ سَالِمٌ",
+       "en": "sound feminine plural",
+       "tr": "cem'-i müennes sâlim"
+      }
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "babs",
+     "head": {
+      "ar": "اسْمُ الْفَاعِلِ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "The active participle in four bābs",
+      "tr": "Dört bâbda ism-i fâil"
+     },
+     "src": {
+      "k": "em",
+      "slot": "fail"
+     },
+     "bab": true
+    },
+    {
+     "id": "mub",
+     "head": {
+      "ar": "صِيغَةُ الْمُبَالَغَةِ (فَعَّالٌ)",
+      "en": "The intensive (faʿʿāl) in four bābs",
+      "tr": "Dört bâbda mübalağa (فَعَّالٌ)"
+     },
+     "src": {
+      "k": "em",
+      "slot": "mubalagha"
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "tasrif-al-izzi",
+     11,
+     "s1"
+    ],
+    [
+     "al-kafiya",
+     16,
+     "s8"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "em",
+       "slot": "maful"
+      },
+      "i": 0
+     },
+     "r": {
+      "src": {
+       "k": "em",
+       "slot": "fail"
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "The one who helps is نَاصِرٌ (فَاعِلٌ); مَنْصُورٌ (مَفْعُولٌ) is the one who is helped.",
+      "tr": "Yardım eden نَاصِرٌ'dir (فَاعِلٌ); مَنْصُورٌ (مَفْعُولٌ) yardım olunandır."
+     }
+    }
+   ]
+  },
+  "emsile-05-maful": {
+   "tables": [
+    {
+     "id": "num",
+     "head": {
+      "ar": "اسْمُ الْمَفْعُولِ — الْمُطَّرِدَةُ",
+      "en": "Passive participle by number and gender",
+      "tr": "İsm-i mef'ûl — sayı ve cinsiyle"
+     },
+     "src": {
+      "k": "block",
+      "root": "ن ص ر",
+      "bab": 1,
+      "list": "maful",
+      "take": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
+     },
+     "labels": [
+      {
+       "ar": "مُفْرَدٌ مُذَكَّرٌ",
+       "en": "masculine singular",
+       "tr": "müfred müzekker"
+      },
+      {
+       "ar": "مُثَنًّى مُذَكَّرٌ",
+       "en": "masculine dual",
+       "tr": "tesniye müzekker"
+      },
+      {
+       "ar": "جَمْعُ مُذَكَّرٍ سَالِمٌ",
+       "en": "sound masculine plural",
+       "tr": "cem'-i müzekker sâlim"
+      },
+      {
+       "ar": "مُفْرَدٌ مُؤَنَّثٌ",
+       "en": "feminine singular",
+       "tr": "müfred müennes"
+      },
+      {
+       "ar": "مُثَنًّى مُؤَنَّثٌ",
+       "en": "feminine dual",
+       "tr": "tesniye müennes"
+      },
+      {
+       "ar": "جَمْعُ مُؤَنَّثٍ سَالِمٌ",
+       "en": "sound feminine plural",
+       "tr": "cem'-i müennes sâlim"
+      }
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "babs",
+     "head": {
+      "ar": "اسْمُ الْمَفْعُولِ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "The passive participle in four bābs",
+      "tr": "Dört bâbda ism-i mef'ûl"
+     },
+     "src": {
+      "k": "em",
+      "slot": "maful"
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "tasrif-al-izzi",
+     11,
+     "s2"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "block",
+       "root": "ن ص ر",
+       "bab": 1,
+       "list": "maful"
+      },
+      "i": 2
+     },
+     "r": {
+      "src": {
+       "k": "block",
+       "root": "ن ص ر",
+       "bab": 1,
+       "list": "maful"
+      },
+      "i": 5
+     },
+     "why": {
+      "en": "Women who are helped are مَنْصُورَاتٌ (sound feminine plural); مَنْصُورُونَ is for men.",
+      "tr": "Yardım olunan kadınlar مَنْصُورَاتٌ'tır (cem'-i müennes sâlim); مَنْصُورُونَ erkekler içindir."
+     }
+    }
+   ]
+  },
+  "emsile-06-nafy": {
+   "tables": [
+    {
+     "id": "lam",
+     "head": {
+      "ar": "لَمْ يَنْصُرْ — الْجَحْدُ الْمُطْلَقُ",
+      "en": "لَمْ — jazm",
+      "tr": "لَمْ — cezm"
+     },
+     "src": {
+      "k": "jus",
+      "root": "ن ص ر",
+      "bab": 1,
+      "pre": "لَمْ "
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "lamma",
+     "head": {
+      "ar": "لَمَّا يَنْصُرْ — الْجَحْدُ الْمُسْتَغْرَقُ",
+      "en": "لَمَّا — jazm",
+      "tr": "لَمَّا — cezm"
+     },
+     "src": {
+      "k": "jus",
+      "root": "ن ص ر",
+      "bab": 1,
+      "pre": "لَمَّا "
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "ma",
+     "head": {
+      "ar": "مَا يَنْصُرُ — نَفْيُ الْحَالِ",
+      "en": "مَا — no change",
+      "tr": "مَا — değişmez"
+     },
+     "src": {
+      "k": "mud",
+      "root": "ن ص ر",
+      "bab": 1,
+      "pre": "مَا "
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "la",
+     "head": {
+      "ar": "لَا يَنْصُرُ — نَفْيُ الِاسْتِقْبَالِ",
+      "en": "لَا — no change",
+      "tr": "لَا — değişmez"
+     },
+     "src": {
+      "k": "mud",
+      "root": "ن ص ر",
+      "bab": 1,
+      "pre": "لَا "
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "lan",
+     "head": {
+      "ar": "لَنْ يَنْصُرَ — تَأْكِيدُ نَفْيِ الِاسْتِقْبَالِ",
+      "en": "لَنْ — naṣb",
+      "tr": "لَنْ — nasb"
+     },
+     "src": {
+      "k": "nasb",
+      "root": "ن ص ر",
+      "bab": 1,
+      "pre": "لَنْ "
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر"
+    }
+   ],
+   "examples": [
+    [
+     "qisas-al-nabiyyin-1",
+     3,
+     "s24"
+    ],
+    [
+     "qarun-wa-kunuzuh",
+     4,
+     "s3"
+    ],
+    [
+     "tasrif-al-izzi",
+     7,
+     "s6"
+    ],
+    [
+     "tasrif-al-izzi",
+     7,
+     "s3"
+    ],
+    [
+     "tasrif-al-izzi",
+     7,
+     "s2"
+    ],
+    [
+     "tasrif-al-izzi",
+     7,
+     "s8"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "mud",
+       "root": "ن ص ر",
+       "bab": 1,
+       "pre": "لَمْ "
+      },
+      "i": 2
+     },
+     "r": {
+      "src": {
+       "k": "jus",
+       "root": "ن ص ر",
+       "bab": 1,
+       "pre": "لَمْ "
+      },
+      "i": 2
+     },
+     "why": {
+      "en": "لَمْ is a jāzim: in the five verbs it takes the nūn away — لَمْ يَنْصُرُوا, not لَمْ يَنْصُرُونَ.",
+      "tr": "لَمْ câzimdir: ef'âl-i hamsede nûnu düşürür — لَمْ يَنْصُرُوا, لَمْ يَنْصُرُونَ değil."
+     }
+    },
+    {
+     "w": {
+      "src": {
+       "k": "mud",
+       "root": "ن ص ر",
+       "bab": 1,
+       "pre": "لَنْ "
+      },
+      "i": 0
+     },
+     "r": {
+      "src": {
+       "k": "nasb",
+       "root": "ن ص ر",
+       "bab": 1,
+       "pre": "لَنْ "
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "لَنْ is a nāṣib: the singular ends on a fatḥa — لَنْ يَنْصُرَ.",
+      "tr": "لَنْ nâsıbdır: müfred fethayla biter — لَنْ يَنْصُرَ."
+     }
+    },
+    {
+     "w": {
+      "src": {
+       "k": "jus",
+       "root": "ن ص ر",
+       "bab": 1,
+       "pre": "مَا "
+      },
+      "i": 0
+     },
+     "r": {
+      "src": {
+       "k": "mud",
+       "root": "ن ص ر",
+       "bab": 1,
+       "pre": "مَا "
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "مَا before the muḍāriʿ governs nothing: the ḍamma stays — مَا يَنْصُرُ.",
+      "tr": "Muzâriden önce مَا amel etmez: damme kalır — مَا يَنْصُرُ."
+     }
+    }
+   ]
+  },
+  "emsile-07-amr-nahy": {
+   "tables": [
+    {
+     "id": "amrGh",
+     "head": {
+      "ar": "أَمْرُ الْغَائِبِ — لِيَنْصُرْ",
+      "en": "Command to the absent",
+      "tr": "Emr-i gâib"
+     },
+     "src": {
+      "k": "recite",
+      "root": "ن ص ر",
+      "bab": 1,
+      "list": "amrGh"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "nahyGh",
+     "head": {
+      "ar": "نَهْيُ الْغَائِبِ — لَا يَنْصُرْ",
+      "en": "Prohibition to the absent",
+      "tr": "Nehy-i gâib"
+     },
+     "src": {
+      "k": "recite",
+      "root": "ن ص ر",
+      "bab": 1,
+      "list": "nahyGh"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "amr",
+     "head": {
+      "ar": "أَمْرُ الْحَاضِرِ — اُنْصُرْ",
+      "en": "Command to the one present — ending and doer",
+      "tr": "Emr-i hâzır — son ve fâil"
+     },
+     "src": {
+      "k": "amr",
+      "root": "ن ص ر",
+      "bab": 1
+     },
+     "rows": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "endsOf": "ن ص ر",
+     "pronOf": "amr",
+     "keys": [
+      "rafMuttasil:6:h",
+      "rafMuttasil:7",
+      "rafMuttasil:8",
+      "rafMuttasil:9",
+      "rafMuttasil:10",
+      "rafMuttasil:11"
+     ]
+    },
+    {
+     "id": "nahyH",
+     "head": {
+      "ar": "نَهْيُ الْحَاضِرِ — لَا تَنْصُرْ",
+      "en": "Prohibition to the one present",
+      "tr": "Nehy-i hâzır"
+     },
+     "src": {
+      "k": "recite",
+      "root": "ن ص ر",
+      "bab": 1,
+      "list": "nahyH"
+     },
+     "rows": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "endsOf": "ن ص ر"
+    },
+    {
+     "id": "babs",
+     "head": {
+      "ar": "أَمْرُ الْحَاضِرِ فِي الْأَبْوَابِ السِّتَّةِ",
+      "en": "The command in the six bābs",
+      "tr": "Altı bâbda emr-i hâzır"
+     },
+     "src": {
+      "k": "em",
+      "slot": "amr",
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "tasrif-al-izzi",
+     7,
+     "s9"
+    ],
+    [
+     "tasrif-al-izzi",
+     7,
+     "s11"
+    ],
+    [
+     "tasrif-al-izzi",
+     7,
+     "s12"
+    ],
+    [
+     "dawud-wa-jalut",
+     2,
+     "s8"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "mud",
+       "root": "ن ص ر",
+       "bab": 1,
+       "pre": "لَا "
+      },
+      "i": 6
+     },
+     "r": {
+      "src": {
+       "k": "recite",
+       "root": "ن ص ر",
+       "bab": 1,
+       "list": "nahyH"
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "«Don't help!» is لَا تَنْصُرْ with a sukūn — the لَا of prohibition is a jāzim. لَا تَنْصُرُ with a ḍamma only says «you will not help».",
+      "tr": "«Yardım etme!» sükûnla لَا تَنْصُرْ'dur — nehiy lâ'sı câzimdir. Dammeyle لَا تَنْصُرُ yalnız «yardım etmeyeceksin» demektir."
+     }
+    },
+    {
+     "w": {
+      "src": {
+       "k": "mud",
+       "root": "ن ص ر",
+       "bab": 1,
+       "pre": "لِ"
+      },
+      "i": 2
+     },
+     "r": {
+      "src": {
+       "k": "recite",
+       "root": "ن ص ر",
+       "bab": 1,
+       "list": "amrGh"
+      },
+      "i": 2
+     },
+     "why": {
+      "en": "The lām of command is a jāzim: لِيَنْصُرُوا, the nūn gone.",
+      "tr": "Emir lâmı câzimdir: لِيَنْصُرُوا, nûn düşer."
+     }
+    }
+   ]
+  },
+  "emsile-08-zaman-ala": {
+   "tables": [
+    {
+     "id": "row",
+     "head": {
+      "ar": "مَنْصَرٌ وَمِنْصَرٌ",
+      "en": "Place and tool",
+      "tr": "Mekân ve âlet"
+     },
+     "src": {
+      "k": "row",
+      "root": "ن ص ر",
+      "bab": 1,
+      "slots": [
+       "mimi",
+       "alat"
+      ]
+     },
+     "labels": [
+      {
+       "ar": "اسْمُ الزَّمَانِ وَالْمَكَانِ",
+       "tr": "İsm-i zaman ve mekân",
+       "en": "Noun of time and place",
+       "m": {
+        "en": "the time or place of helping",
+        "tr": "yardım etme zamanı ya da yeri"
+       }
+      },
+      {
+       "ar": "اسْمُ الْآلَةِ",
+       "tr": "İsm-i âlet",
+       "en": "Noun of instrument",
+       "m": {
+        "en": "the tool of helping",
+        "tr": "yardım etme âleti"
+       }
+      }
+     ]
+    },
+    {
+     "id": "mimi",
+     "head": {
+      "ar": "اسْمُ الزَّمَانِ وَالْمَكَانِ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "Time and place in four bābs",
+      "tr": "Dört bâbda ism-i zaman ve mekân"
+     },
+     "src": {
+      "k": "em",
+      "slot": "mimi"
+     },
+     "bab": true
+    },
+    {
+     "id": "alat",
+     "head": {
+      "ar": "اسْمُ الْآلَةِ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "The instrument in four bābs",
+      "tr": "Dört bâbda ism-i âlet"
+     },
+     "src": {
+      "k": "em",
+      "slot": "alat"
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "marah-al-arwah",
+     41,
+     "s4"
+    ],
+    [
+     "marah-al-arwah",
+     41,
+     "s7"
+    ],
+    [
+     "marah-al-arwah",
+     42,
+     "s3"
+    ],
+    [
+     "tasrif-al-izzi",
+     19,
+     "s1"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "em",
+       "slot": "alat"
+      },
+      "i": 0
+     },
+     "r": {
+      "src": {
+       "k": "em",
+       "slot": "mimi"
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "The place of helping is مَنْصَرٌ with a fatḥa on the mīm; مِنْصَرٌ with a kasra is the tool.",
+      "tr": "Yardımın yeri mîmi meftûh مَنْصَرٌ'dır; mîmi meksûr مِنْصَرٌ âlettir."
+     }
+    }
+   ]
+  },
+  "emsile-09-tasghir-nisba": {
+   "tables": [
+    {
+     "id": "row",
+     "head": {
+      "ar": "نُصَيْرٌ وَنَصْرِيٌّ",
+      "en": "Diminutive and relation",
+      "tr": "Tasğîr ve nisbet"
+     },
+     "src": {
+      "k": "row",
+      "root": "ن ص ر",
+      "bab": 1,
+      "slots": [
+       "tasghir",
+       "nisba"
+      ]
+     },
+     "labels": [
+      {
+       "ar": "التَّصْغِيرُ",
+       "tr": "İsm-i tasğîr",
+       "en": "Diminutive",
+       "m": {
+        "en": "a little help",
+        "tr": "küçük bir yardım"
+       }
+      },
+      {
+       "ar": "النِّسْبَةُ",
+       "tr": "İsm-i mensûb",
+       "en": "Relational adjective",
+       "m": {
+        "en": "having to do with help",
+        "tr": "yardımla ilgili"
+       }
+      }
+     ]
+    },
+    {
+     "id": "tasghir",
+     "head": {
+      "ar": "التَّصْغِيرُ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "The diminutive in four bābs",
+      "tr": "Dört bâbda tasğîr"
+     },
+     "src": {
+      "k": "em",
+      "slot": "tasghir"
+     },
+     "bab": true
+    },
+    {
+     "id": "nisba",
+     "head": {
+      "ar": "النِّسْبَةُ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "The relational adjective in four bābs",
+      "tr": "Dört bâbda ism-i mensûb"
+     },
+     "src": {
+      "k": "em",
+      "slot": "nisba"
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "tariq-ibn-ziyad",
+     4,
+     "s4"
+    ],
+    [
+     "izhar-al-asrar",
+     16,
+     "s9"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "corpus",
+       "refs": [
+        [
+         "marah-al-arwah",
+         37,
+         "s1",
+         5
+        ]
+       ]
+      },
+      "i": 0
+     },
+     "r": {
+      "src": {
+       "k": "corpus",
+       "refs": [
+        [
+         "tariq-ibn-ziyad",
+         4,
+         "s4",
+         7
+        ]
+       ]
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "The diminutive is نُصَيْرٍ — ḍamma, fatḥa, silent yāʾ (فُعَيْل). نَصِيرٍ (فَعِيل, as in Marāḥ «نَحْوُ نَصِيرٍ») is another word: «a helper».",
+      "tr": "Tasğîr نُصَيْرٍ'dir — damme, fetha, sakin yâ (فُعَيْل). نَصِيرٍ (فَعِيل, Merâh'taki «نَحْوُ نَصِيرٍ» gibi) başka bir kelimedir: «yardımcı»."
+     }
+    }
+   ]
+  },
+  "emsile-10-tafdil": {
+   "tables": [
+    {
+     "id": "num",
+     "head": {
+      "ar": "اسْمُ التَّفْضِيلِ — الْمُطَّرِدَةُ",
+      "en": "The elative by number and gender",
+      "tr": "İsm-i tafdîl — sayı ve cinsiyle"
+     },
+     "src": {
+      "k": "block",
+      "root": "ن ص ر",
+      "bab": 1,
+      "list": "tafdil",
+      "take": [
+       0,
+       1,
+       2,
+       4,
+       5,
+       6
+      ]
+     },
+     "labels": [
+      {
+       "ar": "مُفْرَدٌ مُذَكَّرٌ",
+       "en": "masculine singular",
+       "tr": "müfred müzekker"
+      },
+      {
+       "ar": "مُثَنًّى مُذَكَّرٌ",
+       "en": "masculine dual",
+       "tr": "tesniye müzekker"
+      },
+      {
+       "ar": "جَمْعُ مُذَكَّرٍ سَالِمٌ",
+       "en": "sound masculine plural",
+       "tr": "cem'-i müzekker sâlim"
+      },
+      {
+       "ar": "مُفْرَدٌ مُؤَنَّثٌ",
+       "en": "feminine singular",
+       "tr": "müfred müennes"
+      },
+      {
+       "ar": "مُثَنًّى مُؤَنَّثٌ",
+       "en": "feminine dual",
+       "tr": "tesniye müennes"
+      },
+      {
+       "ar": "جَمْعُ مُؤَنَّثٍ سَالِمٌ",
+       "en": "sound feminine plural",
+       "tr": "cem'-i müennes sâlim"
+      }
+     ]
+    },
+    {
+     "id": "babs",
+     "head": {
+      "ar": "اسْمُ التَّفْضِيلِ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "The elative in four bābs",
+      "tr": "Dört bâbda ism-i tafdîl"
+     },
+     "src": {
+      "k": "em",
+      "slot": "tafdil"
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "al-kafiya",
+     19,
+     "s1"
+    ],
+    [
+     "izhar-al-asrar",
+     13,
+     "s1"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "block",
+       "root": "ن ص ر",
+       "bab": 1,
+       "list": "tafdil"
+      },
+      "i": 4
+     },
+     "r": {
+      "src": {
+       "k": "block",
+       "root": "ن ص ر",
+       "bab": 1,
+       "list": "tafdil"
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "For a man the elative is أَنْصَرُ (أَفْعَلُ); نُصْرَى (فُعْلَى) is its feminine.",
+      "tr": "Erkek için tafdîl أَنْصَرُ'dür (أَفْعَلُ); نُصْرَى (فُعْلَى) onun müennesidir."
+     }
+    }
+   ]
+  },
+  "emsile-11-taajjub": {
+   "tables": [
+    {
+     "id": "nasb",
+     "head": {
+      "ar": "مَا أَنْصَرَهُ — الضَّمِيرُ الْمَنْصُوبُ الْمُتَّصِلُ",
+      "en": "مَا أَنْصَرَهُ — the attached pronoun of naṣb",
+      "tr": "مَا أَنْصَرَهُ — muttasıl mansûb zamir"
+     },
+     "src": {
+      "k": "att",
+      "host": "أَنْصَرَ",
+      "kind": "verb",
+      "pre": "مَا "
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "keys": [
+      "nasbMuttasil:0",
+      "nasbMuttasil:1",
+      "nasbMuttasil:2",
+      "nasbMuttasil:3",
+      "nasbMuttasil:4",
+      "nasbMuttasil:5",
+      "nasbMuttasil:6",
+      "nasbMuttasil:7",
+      "nasbMuttasil:8",
+      "nasbMuttasil:9",
+      "nasbMuttasil:10",
+      "nasbMuttasil:11",
+      "nasbMuttasil:12",
+      "nasbMuttasil:13"
+     ]
+    },
+    {
+     "id": "jarr",
+     "head": {
+      "ar": "أَنْصِرْ بِهِ — الضَّمِيرُ الْمَجْرُورُ الْمُتَّصِلُ",
+      "en": "أَنْصِرْ بِهِ — the attached pronoun of jarr",
+      "tr": "أَنْصِرْ بِهِ — muttasıl mecrûr zamir"
+     },
+     "src": {
+      "k": "att",
+      "host": "بِ",
+      "kind": "harf",
+      "pre": "أَنْصِرْ "
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "keys": [
+      "jarrMuttasil:0",
+      "jarrMuttasil:1",
+      "jarrMuttasil:2",
+      "jarrMuttasil:3",
+      "jarrMuttasil:4",
+      "jarrMuttasil:5",
+      "jarrMuttasil:6",
+      "jarrMuttasil:7",
+      "jarrMuttasil:8",
+      "jarrMuttasil:9",
+      "jarrMuttasil:10",
+      "jarrMuttasil:11",
+      "jarrMuttasil:12",
+      "jarrMuttasil:13"
+     ]
+    },
+    {
+     "id": "babs",
+     "head": {
+      "ar": "مَا أَفْعَلَهُ فِي أَرْبَعَةِ أَبْوَابٍ",
+      "en": "The first verb of wonder in four bābs",
+      "tr": "Dört bâbda birinci taaccüb"
+     },
+     "src": {
+      "k": "em",
+      "slot": "taajjub1",
+      "pre": "مَا "
+     },
+     "bab": true
+    }
+   ],
+   "examples": [
+    [
+     "al-kafiya",
+     27,
+     "s2"
+    ],
+    [
+     "talkhis-al-miftah",
+     58,
+     "s3"
+    ],
+    [
+     "izhar-al-asrar",
+     46,
+     "s3"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "attSkip",
+       "host": "أَنْصَرَ",
+       "kind": "verb",
+       "skip": [
+        "wiqaya"
+       ],
+       "pre": "مَا "
+      },
+      "i": 12
+     },
+     "r": {
+      "src": {
+       "k": "att",
+       "host": "أَنْصَرَ",
+       "kind": "verb",
+       "pre": "مَا "
+      },
+      "i": 12
+     },
+     "why": {
+      "en": "Before the speaker's yāʾ a verb takes the nūn of protection: مَا أَنْصَرَنِي.",
+      "tr": "Mütekellim yâsından önce fiil nûn-ı vikâye alır: مَا أَنْصَرَنِي."
+     }
+    },
+    {
+     "w": {
+      "src": {
+       "k": "attSkip",
+       "host": "بِ",
+       "kind": "harf",
+       "skip": [
+        "harmony"
+       ],
+       "pre": "أَنْصِرْ "
+      },
+      "i": 2
+     },
+     "r": {
+      "src": {
+       "k": "att",
+       "host": "بِ",
+       "kind": "harf",
+       "pre": "أَنْصِرْ "
+      },
+      "i": 2
+     },
+     "why": {
+      "en": "After the kasra of the bāʾ the hāʾ takes a kasra: بِهِمْ, not بِهُمْ.",
+      "tr": "Bânın kesresinden sonra hâ kesre alır: بِهِمْ, بِهُمْ değil."
+     }
+    }
+   ]
+  },
+  "emsile-12-damir-raf-muttasil": {
+   "tables": [
+    {
+     "id": "madi",
+     "head": {
+      "ar": "فِي الْمَاضِي — نَصَرَ",
+      "en": "In the past",
+      "tr": "Mâzîde"
+     },
+     "src": {
+      "k": "raf",
+      "stem": "نَصَر"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر",
+     "pronOf": "mazi",
+     "keys": [
+      "rafMuttasil:0:h",
+      "rafMuttasil:1",
+      "rafMuttasil:2",
+      "rafMuttasil:3:h",
+      "rafMuttasil:4",
+      "rafMuttasil:5",
+      "rafMuttasil:6",
+      "rafMuttasil:7",
+      "rafMuttasil:8",
+      "rafMuttasil:9",
+      "rafMuttasil:10",
+      "rafMuttasil:11",
+      "rafMuttasil:12",
+      "rafMuttasil:13"
+     ]
+    },
+    {
+     "id": "mud",
+     "head": {
+      "ar": "فِي الْمُضَارِعِ — يَنْصُرُ",
+      "en": "In the present",
+      "tr": "Muzâride"
+     },
+     "src": {
+      "k": "mud",
+      "root": "ن ص ر",
+      "bab": 1
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "endsOf": "ن ص ر",
+     "pronOf": "mud",
+     "keys": [
+      "rafMuttasil:0:h",
+      "rafMuttasil:1",
+      "rafMuttasil:2",
+      "rafMuttasil:3:h",
+      "rafMuttasil:4",
+      "rafMuttasil:5",
+      "rafMuttasil:6:h",
+      "rafMuttasil:7",
+      "rafMuttasil:8",
+      "rafMuttasil:9",
+      "rafMuttasil:10",
+      "rafMuttasil:11",
+      "rafMuttasil:12:h",
+      "rafMuttasil:13:h"
+     ]
+    },
+    {
+     "id": "amr",
+     "head": {
+      "ar": "فِي الْأَمْرِ — اُنْصُرْ",
+      "en": "In the command",
+      "tr": "Emirde"
+     },
+     "src": {
+      "k": "amr",
+      "root": "ن ص ر",
+      "bab": 1
+     },
+     "rows": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "endsOf": "ن ص ر",
+     "pronOf": "amr",
+     "keys": [
+      "rafMuttasil:6:h",
+      "rafMuttasil:7",
+      "rafMuttasil:8",
+      "rafMuttasil:9",
+      "rafMuttasil:10",
+      "rafMuttasil:11"
+     ]
+    }
+   ],
+   "examples": [
+    [
+     "marah-al-arwah",
+     17,
+     "s1"
+    ],
+    [
+     "marah-al-arwah",
+     17,
+     "s24"
+    ],
+    [
+     "al-kafiya",
+     3,
+     "s12"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "raf",
+       "stem": "نَصَر"
+      },
+      "i": 3
+     },
+     "r": {
+      "src": {
+       "k": "raf",
+       "stem": "نَصَر"
+      },
+      "i": 9
+     },
+     "why": {
+      "en": "«You (f.) helped» is نَصَرْتِ: a silent rāʾ, then the pronoun تِ. In نَصَرَتْ the tāʾ is only the feminine sign and the doer is hidden.",
+      "tr": "«Yardım ettin (kadın)» نَصَرْتِ'dir: râ sakin, sonra zamir تِ. نَصَرَتْ'te tâ yalnız müennes alâmetidir, fâil müstetirdir."
+     }
+    }
+   ]
+  },
+  "emsile-13-damir-raf-munfasil": {
+   "tables": [
+    {
+     "id": "munf",
+     "head": {
+      "ar": "الْمَرْفُوعُ الْمُنْفَصِلُ",
+      "en": "Detached, rafʿ",
+      "tr": "Munfasıl merfû"
+     },
+     "src": {
+      "k": "munf"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "keys": [
+      "rafMunfasil:0",
+      "rafMunfasil:1",
+      "rafMunfasil:2",
+      "rafMunfasil:3",
+      "rafMunfasil:4",
+      "rafMunfasil:5",
+      "rafMunfasil:6",
+      "rafMunfasil:7",
+      "rafMunfasil:8",
+      "rafMunfasil:9",
+      "rafMunfasil:10",
+      "rafMunfasil:11",
+      "rafMunfasil:12",
+      "rafMunfasil:13"
+     ]
+    }
+   ],
+   "examples": [
+    [
+     "izhar-al-asrar",
+     46,
+     "s2"
+    ],
+    [
+     "al-kafiya",
+     3,
+     "s10"
+    ],
+    [
+     "al-kafiya",
+     3,
+     "s13"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "munf"
+      },
+      "i": 8
+     },
+     "r": {
+      "src": {
+       "k": "munf"
+      },
+      "i": 7
+     },
+     "why": {
+      "en": "For two people addressed it is أَنْتُمَا; أَنْتُمْ is for three or more men.",
+      "tr": "İki muhâtab için أَنْتُمَا'dır; أَنْتُمْ üç ve daha çok erkek içindir."
+     }
+    }
+   ]
+  },
+  "emsile-14-damir-nasb-muttasil": {
+   "tables": [
+    {
+     "id": "taajjub",
+     "head": {
+      "ar": "مَا أَنْصَرَهُ … مَا أَنْصَرَنَا",
+      "en": "Through the verb of wonder",
+      "tr": "Taaccüb fiiliyle"
+     },
+     "src": {
+      "k": "att",
+      "host": "أَنْصَرَ",
+      "kind": "verb",
+      "pre": "مَا "
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "keys": [
+      "nasbMuttasil:0",
+      "nasbMuttasil:1",
+      "nasbMuttasil:2",
+      "nasbMuttasil:3",
+      "nasbMuttasil:4",
+      "nasbMuttasil:5",
+      "nasbMuttasil:6",
+      "nasbMuttasil:7",
+      "nasbMuttasil:8",
+      "nasbMuttasil:9",
+      "nasbMuttasil:10",
+      "nasbMuttasil:11",
+      "nasbMuttasil:12",
+      "nasbMuttasil:13"
+     ]
+    },
+    {
+     "id": "madi",
+     "head": {
+      "ar": "نَصَرَهُ … نَصَرَنَا",
+      "en": "Through the past",
+      "tr": "Mâzîyle"
+     },
+     "src": {
+      "k": "att",
+      "host": "نَصَرَ",
+      "kind": "verb"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ]
+    }
+   ],
+   "examples": [
+    [
+     "qisas-al-nabiyyin-1",
+     3,
+     "s24"
+    ],
+    [
+     "marah-al-arwah",
+     16,
+     "s1"
+    ],
+    [
+     "marah-al-arwah",
+     16,
+     "s2"
+    ],
+    [
+     "izhar-al-asrar",
+     46,
+     "s3"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "attSkip",
+       "host": "نَصَرَ",
+       "kind": "verb",
+       "skip": [
+        "wiqaya"
+       ]
+      },
+      "i": 12
+     },
+     "r": {
+      "src": {
+       "k": "att",
+       "host": "نَصَرَ",
+       "kind": "verb"
+      },
+      "i": 12
+     },
+     "why": {
+      "en": "A verb takes the nūn of protection before the speaker's yāʾ: نَصَرَنِي «he helped me».",
+      "tr": "Fiil mütekellim yâsından önce nûn-ı vikâye alır: نَصَرَنِي «bana yardım etti»."
+     }
+    }
+   ]
+  },
+  "emsile-15-damir-nasb-munfasil": {
+   "tables": [
+    {
+     "id": "iyya",
+     "head": {
+      "ar": "الْمَنْصُوبُ الْمُنْفَصِلُ",
+      "en": "Detached, naṣb",
+      "tr": "Munfasıl mansûb"
+     },
+     "src": {
+      "k": "att",
+      "host": "إِيَّا",
+      "kind": "iyya"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "keys": [
+      "nasbMunfasil:0",
+      "nasbMunfasil:1",
+      "nasbMunfasil:2",
+      "nasbMunfasil:3",
+      "nasbMunfasil:4",
+      "nasbMunfasil:5",
+      "nasbMunfasil:6",
+      "nasbMunfasil:7",
+      "nasbMunfasil:8",
+      "nasbMunfasil:9",
+      "nasbMunfasil:10",
+      "nasbMunfasil:11",
+      "nasbMunfasil:12",
+      "nasbMunfasil:13"
+     ]
+    }
+   ],
+   "examples": [
+    [
+     "izhar-al-asrar",
+     46,
+     "s4"
+    ],
+    [
+     "marah-al-arwah",
+     16,
+     "s6"
+    ],
+    [
+     "al-kafiya",
+     3,
+     "s10"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "block",
+       "root": "ن ص ر",
+       "bab": 1,
+       "list": "maziM"
+      },
+      "i": 0,
+      "plus": {
+       "src": {
+        "k": "att",
+        "host": "إِيَّا",
+        "kind": "iyya"
+       },
+       "i": 6
+      }
+     },
+     "r": {
+      "src": {
+       "k": "att",
+       "host": "نَصَرَ",
+       "kind": "verb"
+      },
+      "i": 6
+     },
+     "why": {
+      "en": "Where the attached pronoun is possible the detached one is not used: «he helped you» is نَصَرَكَ, not نَصَرَ followed by إِيَّاكَ (al-Kāfiya: «لَا يَجُوزُ الْمُنْفَصِلُ مَعَ إِمْكَانِ الْمُتَّصِلِ»).",
+      "tr": "Muttasıl mümkünken munfasıl kullanılmaz: «sana yardım etti» نَصَرَكَ'dir, نَصَرَ ardından إِيَّاكَ değil (Kâfiye: «لَا يَجُوزُ الْمُنْفَصِلُ مَعَ إِمْكَانِ الْمُتَّصِلِ»)."
+     }
+    }
+   ]
+  },
+  "emsile-16-damir-jarr-muttasil": {
+   "tables": [
+    {
+     "id": "bi",
+     "head": {
+      "ar": "أَنْصِرْ بِهِ … أَنْصِرْ بِنَا",
+      "en": "Through the second verb of wonder",
+      "tr": "İkinci taaccüb fiiliyle"
+     },
+     "src": {
+      "k": "att",
+      "host": "بِ",
+      "kind": "harf",
+      "pre": "أَنْصِرْ "
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "keys": [
+      "jarrMuttasil:0",
+      "jarrMuttasil:1",
+      "jarrMuttasil:2",
+      "jarrMuttasil:3",
+      "jarrMuttasil:4",
+      "jarrMuttasil:5",
+      "jarrMuttasil:6",
+      "jarrMuttasil:7",
+      "jarrMuttasil:8",
+      "jarrMuttasil:9",
+      "jarrMuttasil:10",
+      "jarrMuttasil:11",
+      "jarrMuttasil:12",
+      "jarrMuttasil:13"
+     ]
+    },
+    {
+     "id": "li",
+     "head": {
+      "ar": "لَهُ … لَنَا",
+      "en": "After لِ",
+      "tr": "لِ ile"
+     },
+     "src": {
+      "k": "att",
+      "host": "لِ",
+      "kind": "harf"
+     },
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ]
+    }
+   ],
+   "examples": [
+    [
+     "marah-al-arwah",
+     16,
+     "s7"
+    ],
+    [
+     "izhar-al-asrar",
+     46,
+     "s3"
+    ],
+    [
+     "al-kafiya",
+     3,
+     "s10"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "attSkip",
+       "host": "بِ",
+       "kind": "harf",
+       "skip": [
+        "harmony"
+       ]
+      },
+      "i": 0
+     },
+     "r": {
+      "src": {
+       "k": "att",
+       "host": "بِ",
+       "kind": "harf"
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "After the kasra of the bāʾ the hāʾ takes a kasra: بِهِ.",
+      "tr": "Bânın kesresinden sonra hâ kesre alır: بِهِ."
+     }
+    },
+    {
+     "w": {
+      "src": {
+       "k": "attSkip",
+       "host": "لِ",
+       "kind": "harf",
+       "skip": [
+        "lam"
+       ]
+      },
+      "i": 6
+     },
+     "r": {
+      "src": {
+       "k": "att",
+       "host": "لِ",
+       "kind": "harf"
+      },
+      "i": 6
+     },
+     "why": {
+      "en": "لِ opens to لَ before a pronoun (except the yāʾ): لَكَ.",
+      "tr": "لِ zamirden önce (yâ hariç) لَ olur: لَكَ."
+     }
+    }
+   ]
+  },
+  "emsile-17-damir-map": {
+   "tables": [
+    {
+     "id": "map",
+     "head": {
+      "ar": "الضَّمَائِرُ السِّتُّونَ",
+      "en": "The sixty pronouns",
+      "tr": "Altmış zamir"
+     },
+     "src": {
+      "cols": [
+       {
+        "k": "rafPron"
+       },
+       {
+        "k": "munf"
+       },
+       {
+        "k": "pron",
+        "host": "نَصَرَ",
+        "kind": "verb"
+       },
+       {
+        "k": "att",
+        "host": "إِيَّا",
+        "kind": "iyya"
+       },
+       {
+        "k": "pron",
+        "host": "لِ",
+        "kind": "harf"
+       }
+      ]
+     },
+     "map": true,
+     "rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+     ],
+     "keys": [
+      [
+       null,
+       "rafMuttasil:1",
+       "rafMuttasil:2",
+       null,
+       "rafMuttasil:4",
+       "rafMuttasil:5",
+       "rafMuttasil:6",
+       "rafMuttasil:7",
+       "rafMuttasil:8",
+       "rafMuttasil:9",
+       "rafMuttasil:10",
+       "rafMuttasil:11",
+       "rafMuttasil:12",
+       "rafMuttasil:13"
+      ],
+      [
+       "rafMunfasil:0",
+       "rafMunfasil:1",
+       "rafMunfasil:2",
+       "rafMunfasil:3",
+       "rafMunfasil:4",
+       "rafMunfasil:5",
+       "rafMunfasil:6",
+       "rafMunfasil:7",
+       "rafMunfasil:8",
+       "rafMunfasil:9",
+       "rafMunfasil:10",
+       "rafMunfasil:11",
+       "rafMunfasil:12",
+       "rafMunfasil:13"
+      ],
+      [
+       "nasbMuttasil:0",
+       "nasbMuttasil:1",
+       "nasbMuttasil:2",
+       "nasbMuttasil:3",
+       "nasbMuttasil:4",
+       "nasbMuttasil:5",
+       "nasbMuttasil:6",
+       "nasbMuttasil:7",
+       "nasbMuttasil:8",
+       "nasbMuttasil:9",
+       "nasbMuttasil:10",
+       "nasbMuttasil:11",
+       "nasbMuttasil:12",
+       "nasbMuttasil:13"
+      ],
+      [
+       "nasbMunfasil:0",
+       "nasbMunfasil:1",
+       "nasbMunfasil:2",
+       "nasbMunfasil:3",
+       "nasbMunfasil:4",
+       "nasbMunfasil:5",
+       "nasbMunfasil:6",
+       "nasbMunfasil:7",
+       "nasbMunfasil:8",
+       "nasbMunfasil:9",
+       "nasbMunfasil:10",
+       "nasbMunfasil:11",
+       "nasbMunfasil:12",
+       "nasbMunfasil:13"
+      ],
+      [
+       "jarrMuttasil:0",
+       "jarrMuttasil:1",
+       "jarrMuttasil:2",
+       "jarrMuttasil:3",
+       "jarrMuttasil:4",
+       "jarrMuttasil:5",
+       "jarrMuttasil:6",
+       "jarrMuttasil:7",
+       "jarrMuttasil:8",
+       "jarrMuttasil:9",
+       "jarrMuttasil:10",
+       "jarrMuttasil:11",
+       "jarrMuttasil:12",
+       "jarrMuttasil:13"
+      ]
+     ]
+    }
+   ],
+   "examples": [
+    [
+     "izhar-al-asrar",
+     46,
+     "s1"
+    ],
+    [
+     "al-kafiya",
+     3,
+     "s9"
+    ],
+    [
+     "al-kafiya",
+     3,
+     "s11"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "attSkip",
+       "host": "بِ",
+       "kind": "harf",
+       "skip": [
+        "harmony"
+       ]
+      },
+      "i": 2
+     },
+     "r": {
+      "src": {
+       "k": "att",
+       "host": "بِ",
+       "kind": "harf"
+      },
+      "i": 2
+     },
+     "why": {
+      "en": "After a kasra the hāʾ of the pronoun takes a kasra: بِهِمْ, as the table's jarr column shows after a kasra.",
+      "tr": "Kesreden sonra zamirin hâsı kesre alır: بِهِمْ."
+     }
+    }
+   ]
+  },
+  "emsile-18-abwab": {
+   "tables": [
+    {
+     "id": "six",
+     "head": {
+      "ar": "الثُّلَاثِيُّ الْمُجَرَّدُ — السِّتَّةُ الْأَبْوَابُ",
+      "en": "The six bābs of the bare verb",
+      "tr": "Sülâsî mücerredin altı bâbı"
+     },
+     "src": {
+      "k": "em2",
+      "slots": [
+       "mazi",
+       "mudari"
+      ],
+      "models": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       5
+      ]
+     },
+     "bab": true
+    },
+    {
+     "id": "mazid",
+     "head": {
+      "ar": "الثُّلَاثِيُّ الْمَزِيدُ",
+      "en": "The augmented bābs",
+      "tr": "Sülâsî mezîd"
+     },
+     "src": {
+      "k": "door",
+      "group": "mazid"
+     },
+     "door": true
+    }
+   ],
+   "examples": [
+    [
+     "marah-al-arwah",
+     7,
+     "s2"
+    ],
+    [
+     "tasrif-al-izzi",
+     2,
+     "s1"
+    ]
+   ],
+   "mistakes": [
+    {
+     "w": {
+      "src": {
+       "k": "mud",
+       "root": "ن ص ر",
+       "bab": 2
+      },
+      "i": 0
+     },
+     "r": {
+      "src": {
+       "k": "mud",
+       "root": "ن ص ر",
+       "bab": 1
+      },
+      "i": 0
+     },
+     "why": {
+      "en": "نَصَرَ is of bāb 1: its muḍāriʿ is يَنْصُرُ with a ḍamma. The bāb is learnt by hearing; يَنْصِرُ (bāb 2's pattern) is not how the verb is said.",
+      "tr": "نَصَرَ birinci bâbdandır: muzârisi dammeyle يَنْصُرُ'dur. Bâb semâ' ile öğrenilir; يَنْصِرُ (ikinci bâbın kalıbı) bu fiilin söylenişi değildir."
+     }
+    }
+   ]
+  }
+ }
+}
