@@ -1,0 +1,1195 @@
+{
+ "about": "v355-N1 (Ibn ʿAqīl's work order, the sentence's pillars): the triage of every ⚠ row of N1's bābs, read by tools/ledger/aqil_ledger.py. class a = the printed example is unvowelled and the vowelled probe (sv: the vowels are OURS, for the test only, never shown to a learner) passes; b = a real gap (fixed in the engine: the row proves now, or still ⚠); c = the probe's expectation was wrong or too strict (the example cut into the commentary, or the bāb regex was not the ruling) — the probe is corrected; d = not decidable from the letters — the row becomes not-automatable with the reason.",
+ "rows": {
+  "A34.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) the ruling is the class of two cited words (munṣarif or not): in rafʿ no sign shows it and the book gives no sentence that puts them in jarr"
+  },
+  "A55.1": {
+   "class": "a",
+   "why": "dual by letters on the vowelled cited word",
+   "probes": [
+    {
+     "s": "الزيدان والألفاظ الموضوعة لاثنين",
+     "sv": "الزَّيْدَانِ",
+     "w": "الزيدان",
+     "re": "الالف"
+    }
+   ]
+  },
+  "A62.1": {
+   "class": "a",
+   "why": "sound plural by letters",
+   "probes": [
+    {
+     "s": "محمدون وإبراهيمون",
+     "sv": "مُحَمَّدُونَ وَإِبْرَاهِيمُونَ",
+     "w": "محمدون",
+     "re": "الواو"
+    }
+   ]
+  },
+  "A80.1": {
+   "class": "a",
+   "why": "manqūṣ: the ḍamma estimated",
+   "probes": [
+    {
+     "s": "القاضي والداعي",
+     "sv": "الْقَاضِي وَالدَّاعِي",
+     "w": "القاضي",
+     "re": "مقدره"
+    }
+   ]
+  },
+  "A81.1": {
+   "class": "a",
+   "why": "the yāʾ after a sukūn bears the ḍamma; the manqūṣ shows the naṣb (رأيت القاضي, same sentence)",
+   "probes": [
+    {
+     "s": "ظبي ورمي",
+     "sv": "ظَبْيٌ وَرَمْيٌ",
+     "w": "ظبي",
+     "re": "الضمه الظاهره|مرفوع"
+    },
+    {
+     "s": "رأيت القاضي",
+     "sv": "رَأَيْتُ الْقَاضِيَ",
+     "w": "القاضي",
+     "re": "الفتحه الظاهره"
+    }
+   ]
+  },
+  "A84.3": {
+   "class": "a",
+   "why": "naṣb shown on يدعو",
+   "probes": [
+    {
+     "s": "لن يدعو",
+     "sv": "لَنْ يَدْعُوَ",
+     "w": "يدعو",
+     "re": "منصوب"
+    }
+   ]
+  },
+  "A124.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) a sentence-name (زيد قائم) — the letters read as a sentence; that it is a name is outside them"
+  },
+  "A125.1": {
+   "class": "b",
+   "why": "the iḍāfa name is muʿrab: the case on both parts",
+   "probes": [
+    {
+     "s": "جاءني عبد شمس وأبو قحافة",
+     "sv": "جَاءَنِي عَبْدُ شَمْسٍ وَأَبُو قُحَافَةَ",
+     "w": "عبد",
+     "re": "مرفوع"
+    },
+    {
+     "s": "جاءني عبد شمس وأبو قحافة",
+     "sv": "جَاءَنِي عَبْدُ شَمْسٍ وَأَبُو قُحَافَةَ",
+     "w": "قحافة",
+     "re": "مجرور"
+    }
+   ]
+  },
+  "A127.1": {
+   "class": "c",
+   "why": "ʿalam jins takes a ḥāl",
+   "probes": [
+    {
+     "s": "هذا أسامه مقبلا",
+     "sv": "هَذَا أُسَامَةُ مُقْبِلًا",
+     "w": "مقبلا",
+     "re": "(^|[^ء-ي])حال"
+    }
+   ]
+  },
+  "A134.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) a forbidden form cited alone («فلا تقول هذالك») — no sentence; the engine reads, it does not judge a word's existence"
+  },
+  "A141.1": {
+   "class": "b",
+   "why": "الأُلَى a relative",
+   "probes": [
+    {
+     "s": "جاءني الألى فعلوا",
+     "sv": "جَاءَنِي الْأُلَى فَعَلُوا",
+     "w": "الألى",
+     "re": "موصول"
+    }
+   ]
+  },
+  "A149.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) a dialect report: Ṭayyiʾ's ذو as a relative («ذو الطائية») — the letters read as ذو 'possessor' elsewhere"
+  },
+  "A160.1": {
+   "class": "b",
+   "why": "أيّ relative, muʿrab",
+   "probes": [
+    {
+     "s": "يعجبني أيهم هو قائم",
+     "sv": "يُعْجِبُنِي أَيُّهُمْ هُوَ قَائِمٌ",
+     "w": "أيهم",
+     "re": "موصول"
+    }
+   ]
+  },
+  "A161.1": {
+   "class": "a",
+   "why": "أيّ relative, built on ḍamm when its ṣila's head is dropped",
+   "probes": [
+    {
+     "s": "يعجبني أيهم قائم",
+     "sv": "يُعْجِبُنِي أَيُّهُمْ قَائِمٌ",
+     "w": "أيهم",
+     "re": "موصول"
+    }
+   ]
+  },
+  "A200.1": {
+   "class": "b",
+   "why": "after rubba the noun is mubtadaʾ (majrūr in form)",
+   "probes": [
+    {
+     "s": "رب رجل قائم وامرأة",
+     "sv": "رُبَّ رَجُلٍ قَائِمٌ وَامْرَأَةٌ",
+     "w": "رجل",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A212.1": {
+   "class": "b",
+   "why": "the ruling is the ẓarf's dropped ʿāmil as a ṣifa — not a mubtadaʾ/khabar",
+   "probes": [
+    {
+     "s": "مررت برجل عندك",
+     "sv": "مَرَرْتُ بِرَجُلٍ عِنْدَكَ",
+     "w": "عندك",
+     "re": "محذوف|نعت|صفه"
+    }
+   ]
+  },
+  "A218.1": {
+   "class": "a",
+   "why": "the condition noun مَنْ is a mubtadaʾ",
+   "probes": [
+    {
+     "s": "من يقم أقم معه",
+     "sv": "مَنْ يَقُمْ أَقُمْ مَعَهُ",
+     "w": "من",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A242.1": {
+   "class": "b",
+   "why": "أين a fronted khabar",
+   "probes": [
+    {
+     "s": "أين زيد",
+     "sv": "أَيْنَ زَيْدٌ",
+     "w": "زيد",
+     "re": "مبتدا"
+    },
+    {
+     "s": "أين زيد",
+     "sv": "أَيْنَ زَيْدٌ",
+     "w": "أين",
+     "re": "خبر"
+    }
+   ]
+  },
+  "A251.1": {
+   "class": "b",
+   "why": "لعمرك: mubtadaʾ, its khabar dropped",
+   "probes": [
+    {
+     "s": "لعمرك لأفعلن",
+     "sv": "لَعَمْرُكَ لَأَفْعَلَنَّ",
+     "w": "لعمرك",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A252.1": {
+   "class": "a",
+   "why": "عهد الله: mubtadaʾ",
+   "probes": [
+    {
+     "s": "عهد الله لأفعلن",
+     "sv": "عَهْدُ اللَّهِ لَأَفْعَلَنَّ",
+     "w": "عهد",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A252.3": {
+   "class": "a",
+   "why": "ضربي mubtadaʾ, the ḥāl stands for the khabar",
+   "probes": [
+    {
+     "s": "ضربي العبد مسيئا",
+     "sv": "ضَرْبِي الْعَبْدَ مُسِيئًا",
+     "w": "ضربي",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A254.1": {
+   "class": "b",
+   "why": "the cut naʿt in rafʿ: khabar of a dropped mubtadaʾ",
+   "probes": [
+    {
+     "s": "مررت بزيد الكريم",
+     "sv": "مَرَرْتُ بِزَيْدٍ الْكَرِيمُ",
+     "w": "الكريم",
+     "re": "خبر"
+    }
+   ]
+  },
+  "A255.1": {
+   "class": "b",
+   "why": "صبر جميل: khabar of a dropped mubtadaʾ",
+   "probes": [
+    {
+     "s": "صبر جميل",
+     "sv": "صَبْرٌ جَمِيلٌ",
+     "w": "صبر",
+     "re": "خبر"
+    }
+   ]
+  },
+  "A276.1": {
+   "class": "b",
+   "why": "the khabar of زال fronted after ما",
+   "probes": [
+    {
+     "s": "ما قائما زال زيد",
+     "sv": "مَا قَائِمًا زَالَ زَيْدٌ",
+     "w": "زيد",
+     "re": "اسم «?زال"
+    },
+    {
+     "s": "ما قائما زال زيد",
+     "sv": "مَا قَائِمًا زَالَ زَيْدٌ",
+     "w": "قائما",
+     "re": "خبر «?زال"
+    }
+   ]
+  },
+  "A284.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) the editor's note on agreement leaked into the line, and «فأنت لا تقول: الاعراب قال» is a forbidden form — the engine reads, it does not judge grammaticality"
+  },
+  "A285.1": {
+   "class": "c",
+   "why": "the editor's note on agreement (not a kāna ruling): the verb after a broken plural takes the feminine — the hidden doer «هي»",
+   "probes": [
+    {
+     "s": "الاعراب قالت",
+     "sv": "الْأَعْرَابُ قَالَتْ",
+     "w": "قالت",
+     "re": "هي"
+    }
+   ]
+  },
+  "A294.1": {
+   "class": "a",
+   "why": "ولو حمارًا: khabar of a dropped kāna",
+   "probes": [
+    {
+     "s": "ائتني بدابة ولو حمارا",
+     "sv": "ائْتِنِي بِدَابَّةٍ وَلَوْ حِمَارًا",
+     "w": "حمارا",
+     "re": "كان"
+    }
+   ]
+  },
+  "A295.1": {
+   "class": "a",
+   "why": "أمّا = أن + ما for kāna: its ism and khabar remain",
+   "probes": [
+    {
+     "s": "أما أنت برا فاقترب",
+     "sv": "أَمَّا أَنْتَ بَرًّا فَاقْتَرِبْ",
+     "w": "برا",
+     "re": "خبر.*كان|كان.*خبر"
+    }
+   ]
+  },
+  "A299.1": {
+   "class": "c",
+   "why": "«إن يكه» is the forbidden form; the ruling's own allowed example is «لم يك زيد قائما» (same sentence)",
+   "probes": [
+    {
+     "s": "لم يك زيد قائما",
+     "sv": "لَمْ يَكُ زَيْدٌ قَائِمًا",
+     "w": "زيد",
+     "re": "اسم (يك|كان)"
+    },
+    {
+     "s": "لم يك زيد قائما",
+     "sv": "لَمْ يَكُ زَيْدٌ قَائِمًا",
+     "w": "يك",
+     "re": "مجزوم"
+    }
+   ]
+  },
+  "A305.1": {
+   "class": "b",
+   "why": "ما keeps its work when a ẓarf is fronted",
+   "probes": [
+    {
+     "s": "ما عندك زيد مقيما",
+     "sv": "مَا عِنْدَكَ زَيْدٌ مُقِيمًا",
+     "w": "زيد",
+     "re": "اسم «?ما"
+    },
+    {
+     "s": "ما عندك زيد مقيما",
+     "sv": "مَا عِنْدَكَ زَيْدٌ مُقِيمًا",
+     "w": "مقيما",
+     "re": "خبر «?ما"
+    }
+   ]
+  },
+  "A305.3": {
+   "class": "b",
+   "why": "the probe cut the condition: the ruling needs «إلا» (the work void) — زيد a mubtadaʾ",
+   "probes": [
+    {
+     "s": "ما زيد بشيء إلا شيء لا يعبأ به",
+     "sv": "مَا زَيْدٌ بِشَيْءٍ إِلَّا شَيْءٌ لَا يُعْبَأُ بِهِ",
+     "w": "زيد",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A307.1": {
+   "class": "b",
+   "why": "after لكن the noun is rafʿ, khabar of a dropped mubtadaʾ",
+   "probes": [
+    {
+     "s": "ما زيد قائما لكن قاعد",
+     "sv": "مَا زَيْدٌ قَائِمًا لَكِنْ قَاعِدٌ",
+     "w": "زيد",
+     "re": "اسم «?ما"
+    },
+    {
+     "s": "ما زيد قائما لكن قاعد",
+     "sv": "مَا زَيْدٌ قَائِمًا لَكِنْ قَاعِدٌ",
+     "w": "قاعد",
+     "re": "خبر"
+    }
+   ]
+  },
+  "A307.2": {
+   "class": "a",
+   "why": "ما Ḥijāziyya; ولا قاعدًا joined",
+   "probes": [
+    {
+     "s": "ما زيد قائما ولا قاعدا",
+     "sv": "مَا زَيْدٌ قَائِمًا وَلَا قَاعِدًا",
+     "w": "زيد",
+     "re": "اسم «?ما"
+    },
+    {
+     "s": "ما زيد قائما ولا قاعدا",
+     "sv": "مَا زَيْدٌ قَائِمًا وَلَا قَاعِدًا",
+     "w": "قاعدا",
+     "re": "معطوف"
+    }
+   ]
+  },
+  "A347.1": {
+   "class": "c",
+   "why": "the probe cut the ism: «ليت فيها غير البذي» — غيرَ the delayed ism",
+   "probes": [
+    {
+     "s": "ليت فيها غير البذي",
+     "sv": "لَيْتَ فِيهَا غَيْرَ الْبَذِيِّ",
+     "w": "غير",
+     "re": "اسم «?ليت"
+    }
+   ]
+  },
+  "A357.1": {
+   "class": "a",
+   "why": "أَنّ after an oath",
+   "probes": [
+    {
+     "s": "حلفت أن زيدا قائم",
+     "sv": "حَلَفْتُ أَنَّ زَيْدًا قَائِمٌ",
+     "w": "زيدا",
+     "re": "اسم «?ان"
+    }
+   ]
+  },
+  "A360.1": {
+   "class": "c",
+   "why": "the probe cut the inna clause: «من يأتني فإنه مكرم»",
+   "probes": [
+    {
+     "s": "من يأتني فإنه مكرم",
+     "sv": "مَنْ يَأْتِنِي فَإِنَّهُ مُكْرَمٌ",
+     "w": "مكرم",
+     "re": "خبر «?ان"
+    }
+   ]
+  },
+  "A371.1": {
+   "class": "c",
+   "why": "the ruling is the faṣl pronoun between mubtadaʾ and khabar (the bāb's ism-inna regex is the wrong expectation)",
+   "probes": [
+    {
+     "s": "زيد هو القائم",
+     "sv": "زَيْدٌ هُوَ الْقَائِمُ",
+     "w": "هو",
+     "re": "فصل"
+    }
+   ]
+  },
+  "A372.1": {
+   "class": "a",
+   "why": "the lām on the delayed ism of إنّ",
+   "probes": [
+    {
+     "s": "إن في الدار لزيدا",
+     "sv": "إِنَّ فِي الدَّارِ لَزَيْدًا",
+     "w": "لزيدا",
+     "re": "اسم «?ان"
+    }
+   ]
+  },
+  "A382.1": {
+   "class": "c",
+   "why": "أنْ lightened: the clause its khabar",
+   "probes": [
+    {
+     "s": "علمت أن زيد قائم",
+     "sv": "عَلِمْتُ أَنْ زَيْدٌ قَائِمٌ",
+     "w": "أن",
+     "re": "مخففه"
+    }
+   ]
+  },
+  "A393.1": {
+   "class": "a",
+   "why": "lā li-l-jins on an ʿalam taken as indefinite",
+   "probes": [
+    {
+     "s": "لا أبا حسن حلالا لها",
+     "sv": "لَا أَبَا حَسَنٍ حَلَالًا لَهَا",
+     "w": "أبا",
+     "re": "اسم «?لا"
+    }
+   ]
+  },
+  "A408.1": {
+   "class": "b",
+   "why": "ألا = hamza + lā li-l-jins",
+   "probes": [
+    {
+     "s": "ألا رجل قائم",
+     "sv": "أَلَا رَجُلَ قَائِمٌ",
+     "w": "رجل",
+     "re": "اسم «?لا"
+    }
+   ]
+  },
+  "A445.1": {
+   "class": "c",
+   "why": "after قال the clause is in naṣb (مقول القول = the book's «في موضع نصب على المفعولية»)",
+   "probes": [
+    {
+     "s": "قال زيد عمرو منطلق",
+     "sv": "قَالَ زَيْدٌ عَمْرٌو مُنْطَلِقٌ",
+     "w": "قال",
+     "re": "نصب"
+    }
+   ]
+  },
+  "A454.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) «فلا تقول زيد الحق» — a forbidden form; the engine reads, it does not judge grammaticality"
+  },
+  "A454.2": {
+   "class": "a",
+   "why": "the first object of أعلم dropped",
+   "probes": [
+    {
+     "s": "أعلمت الحق وأعطيت درهما",
+     "sv": "أَعْلَمْتُ الْحَقَّ وَأَعْطَيْتُ دِرْهَمًا",
+     "w": "الحق",
+     "re": "مفعول به"
+    },
+    {
+     "s": "أعلمت الحق وأعطيت درهما",
+     "sv": "أَعْلَمْتُ الْحَقَّ وَأَعْطَيْتُ دِرْهَمًا",
+     "w": "درهما",
+     "re": "مفعول به"
+    }
+   ]
+  },
+  "A499.1": {
+   "class": "c",
+   "why": "the probe cut into the commentary; the ruling: «خير نائل» before the verb is a mubtadaʾ, the nāʾib hidden",
+   "probes": [
+    {
+     "s": "خير نائل نيل",
+     "sv": "خَيْرُ نَائِلٍ نِيلَ",
+     "w": "خير",
+     "re": "مبتدا"
+    },
+    {
+     "s": "خير نائل نيل",
+     "sv": "خَيْرُ نَائِلٍ نِيلَ",
+     "w": "نيل",
+     "re": "نا[يئ]ب (ال)?فاعل|نا[يئ]ب عن الفاعل"
+    }
+   ]
+  },
+  "A501.1": {
+   "class": "b",
+   "why": "the passive of a tafaʿlala verb",
+   "probes": [
+    {
+     "s": "تدحرج",
+     "sv": "تُدُحْرِجَ",
+     "w": "تدحرج",
+     "re": "نا[يئ]ب (ال)?فاعل|نا[يئ]ب عن الفاعل"
+    }
+   ]
+  },
+  "A504.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) a ruling on the vowel of a hollow passive (سِمْتُ, kasr or ishmām): ṣarf of one cited word, the ishmām is not written"
+  },
+  "A505.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) a ruling on the vowel of a hollow passive (بُعْتُ): ṣarf of one cited word, the ishmām is not written"
+  },
+  "A506.1": {
+   "class": "c",
+   "why": "the passive of iftaʿala / infaʿala hollow",
+   "probes": [
+    {
+     "s": "اختير وانقيد",
+     "sv": "اُخْتِيرَ وَانْقِيدَ",
+     "w": "اختير",
+     "re": "نا[يئ]ب (ال)?فاعل|نا[يئ]ب عن الفاعل"
+    }
+   ]
+  },
+  "A507.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) «فلا تقول جلس عندك» — a forbidden form; the engine reads, it does not judge grammaticality"
+  },
+  "A511.1": {
+   "class": "a",
+   "why": "the first object of a giving verb as nāʾib",
+   "probes": [
+    {
+     "s": "كسي زيد جبة",
+     "sv": "كُسِيَ زَيْدٌ جُبَّةً",
+     "w": "زيد",
+     "re": "نا[يئ]ب (ال)?فاعل|نا[يئ]ب عن الفاعل"
+    },
+    {
+     "s": "وأعطي عمرو درهما",
+     "sv": "وَأُعْطِيَ عَمْرٌو دِرْهَمًا",
+     "w": "عمرو",
+     "re": "نا[يئ]ب (ال)?فاعل|نا[يئ]ب عن الفاعل"
+    }
+   ]
+  },
+  "A512.2": {
+   "class": "a",
+   "why": "the first object of ظنّ as nāʾib",
+   "probes": [
+    {
+     "s": "ظن زيد قائما",
+     "sv": "ظُنَّ زَيْدٌ قَائِمًا",
+     "w": "زيد",
+     "re": "نا[يئ]ب (ال)?فاعل|نا[يئ]ب عن الفاعل"
+    }
+   ]
+  },
+  "A513.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) a school's view («وذهب قوم منهم المصنف») — the engine follows no school here"
+  },
+  "A513.2": {
+   "class": "d",
+   "reason": "(v355-N1 triage) «فلا تقول ظن زيدا عمرو» — a forbidden form; the engine reads, it does not judge grammaticality"
+  },
+  "A514.1": {
+   "class": "a",
+   "why": "one nāʾib, the rest manṣūb",
+   "probes": [
+    {
+     "s": "أعطي زيد درهما",
+     "sv": "أُعْطِيَ زَيْدٌ دِرْهَمًا",
+     "w": "زيد",
+     "re": "نا[يئ]ب (ال)?فاعل|نا[يئ]ب عن الفاعل"
+    },
+    {
+     "s": "وأعلم زيد عمرا قائما",
+     "sv": "وَأُعْلِمَ زَيْدٌ عَمْرًا قَائِمًا",
+     "w": "زيد",
+     "re": "نا[يئ]ب (ال)?فاعل|نا[يئ]ب عن الفاعل"
+    }
+   ]
+  },
+  "A517.1": {
+   "class": "c",
+   "why": "«كنت تقول زيدا ضربت» — the object fronted, not ishtighal (no pronoun): مفعول به",
+   "probes": [
+    {
+     "s": "زيدا ضربت",
+     "sv": "زَيْدًا ضَرَبْتُ",
+     "w": "زيدا",
+     "re": "مفعول به"
+    }
+   ]
+  },
+  "A523.1": {
+   "class": "c",
+   "why": "the ruling is rafʿ obligatory (no ishtighal after إذا of surprise): زيد a mubtadaʾ",
+   "probes": [
+    {
+     "s": "خرجت فإذا زيد يضربه عمرو",
+     "w": "زيد",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A523.2": {
+   "class": "c",
+   "why": "rafʿ obligatory before a condition word: زيد a mubtadaʾ",
+   "probes": [
+    {
+     "s": "زيد إن لقيته فأكرمه",
+     "sv": "زَيْدٌ إِنْ لَقِيتَهُ فَأَكْرِمْهُ",
+     "w": "زيد",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A525.1": {
+   "class": "b",
+   "why": "naṣb chosen before a command",
+   "probes": [
+    {
+     "s": "زيدا اضربه",
+     "sv": "زَيْدًا اضْرِبْهُ",
+     "any": "محذوف|يفسره|اشتغال"
+    }
+   ]
+  },
+  "A525.2": {
+   "class": "a",
+   "why": "naṣb chosen after the hamza",
+   "probes": [
+    {
+     "s": "أزيدا ضربته",
+     "sv": "أَزَيْدًا ضَرَبْتَهُ",
+     "any": "محذوف|يفسره|اشتغال"
+    }
+   ]
+  },
+  "A525.3": {
+   "class": "b",
+   "why": "naṣb chosen after a verbal clause and a joining wāw",
+   "probes": [
+    {
+     "s": "قام زيد وعمرا أكرمته",
+     "sv": "قَامَ زَيْدٌ وَعَمْرًا أَكْرَمْتُهُ",
+     "any": "محذوف|يفسره|اشتغال"
+    }
+   ]
+  },
+  "A525.4": {
+   "class": "c",
+   "why": "rafʿ chosen after أمّا: عمرو a mubtadaʾ",
+   "probes": [
+    {
+     "s": "قام زيد وأما عمرو فأكرمته",
+     "sv": "قَامَ زَيْدٌ وَأَمَّا عَمْرٌو فَأَكْرَمْتُهُ",
+     "w": "عمرو",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A526.1": {
+   "class": "c",
+   "why": "both faces allowed; the rafʿ face: عمرو a mubtadaʾ",
+   "probes": [
+    {
+     "s": "زيد قام وعمرو أكرمته",
+     "sv": "زَيْدٌ قَامَ وَعَمْرٌو أَكْرَمْتُهُ",
+     "w": "وعمرو",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A527.1": {
+   "class": "c",
+   "why": "rafʿ chosen: زيد a mubtadaʾ",
+   "probes": [
+    {
+     "s": "زيد ضربته",
+     "sv": "زَيْدٌ ضَرَبْتُهُ",
+     "w": "زيد",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A528.1": {
+   "class": "b",
+   "why": "naṣb obligatory after إن with the pronoun reached by a ḥarf («إن زيدا مررت به أكرمك»)",
+   "probes": [
+    {
+     "s": "إن زيدا مررت به أكرمك",
+     "sv": "إِنْ زَيْدًا مَرَرْتَ بِهِ أُكْرِمْكَ",
+     "any": "محذوف|يفسره|اشتغال"
+    }
+   ]
+  },
+  "A529.1": {
+   "class": "c",
+   "why": "rafʿ obligatory: an ism fiʿl explains no ʿāmil — زيد a mubtadaʾ",
+   "probes": [
+    {
+     "s": "زيد دراكه",
+     "sv": "زَيْدٌ دَرَاكِهِ",
+     "w": "زيد",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A530.1": {
+   "class": "c",
+   "why": "rafʿ obligatory: the participle with al- explains no ʿāmil — زيد a mubtadaʾ",
+   "probes": [
+    {
+     "s": "زيد أنا الضاربه",
+     "sv": "زَيْدٌ أَنَا الضَّارِبُهُ",
+     "w": "زيد",
+     "re": "مبتدا"
+    }
+   ]
+  },
+  "A530.2": {
+   "class": "a",
+   "why": "ishtighal, the pronoun joined",
+   "probes": [
+    {
+     "s": "زيدا ضربته",
+     "sv": "زَيْدًا ضَرَبْتُهُ",
+     "any": "محذوف|يفسره|اشتغال"
+    }
+   ]
+  },
+  "A532.2": {
+   "class": "c",
+   "why": "the intransitive reaches its object by a ḥarf: the jārr–majrūr hangs on the verb (no مفعول به in the line)",
+   "probes": [
+    {
+     "s": "مررت بزيد",
+     "sv": "مَرَرْتُ بِزَيْدٍ",
+     "w": "بزيد",
+     "re": "متعلق|مجرور"
+    }
+   ]
+  },
+  "A533.1": {
+   "class": "c",
+   "why": "the intransitive: its doer only — the probe cut into the commentary",
+   "probes": [
+    {
+     "s": "قام زيد",
+     "sv": "قَامَ زَيْدٌ",
+     "w": "زيد",
+     "re": "فاعل"
+    }
+   ]
+  },
+  "A534.1": {
+   "class": "b",
+   "why": "the transitive's object manṣūb; as nāʾib marfūʿ",
+   "probes": [
+    {
+     "s": "تدبرت الكتب",
+     "sv": "تَدَبَّرْتُ الْكُتُبَ",
+     "w": "الكتب",
+     "re": "مفعول به"
+    },
+    {
+     "s": "تدبرت الكتب",
+     "sv": "تُدُبِّرَتِ الْكُتُبُ",
+     "w": "الكتب",
+     "re": "نا[يئ]ب (ال)?فاعل|نا[يئ]ب عن الفاعل"
+    }
+   ]
+  },
+  "A537.1": {
+   "class": "c",
+   "why": "the intransitive reaches its object by a ḥarf",
+   "probes": [
+    {
+     "s": "مررت بزيد",
+     "sv": "مَرَرْتُ بِزَيْدٍ",
+     "w": "بزيد",
+     "re": "متعلق|مجرور"
+    }
+   ]
+  },
+  "A538.2": {
+   "class": "a",
+   "why": "أن + the five verbs manṣūb by dropping the nūn (the ḥarf dropped before أن)",
+   "probes": [
+    {
+     "s": "عجبت أن يدوا",
+     "sv": "عَجِبْتُ أَنْ يَدُوا",
+     "w": "يدوا",
+     "re": "منصوب"
+    }
+   ]
+  },
+  "A539.1": {
+   "class": "a",
+   "why": "في kept before أن",
+   "probes": [
+    {
+     "s": "رغبت في أن تقوم",
+     "sv": "رَغِبْتُ فِي أَنْ تَقُومَ",
+     "w": "تقوم",
+     "re": "منصوب"
+    }
+   ]
+  },
+  "A543.1": {
+   "class": "c",
+   "why": "the probe cut «في» from the commentary: «أعطيت زيدا درهما»",
+   "probes": [
+    {
+     "s": "أعطيت زيدا درهما",
+     "sv": "أَعْطَيْتُ زَيْدًا دِرْهَمًا",
+     "w": "زيدا",
+     "re": "مفعول به"
+    },
+    {
+     "s": "أعطيت زيدا درهما",
+     "sv": "أَعْطَيْتُ زَيْدًا دِرْهَمًا",
+     "w": "درهما",
+     "re": "مفعول به"
+    }
+   ]
+  },
+  "A979.1": {
+   "class": "b",
+   "why": "the imperative with the nūn of emphasis",
+   "probes": [
+    {
+     "s": "اضربن زيدا",
+     "sv": "اضْرِبَنَّ زَيْدًا",
+     "w": "اضربن",
+     "re": "نون التوكيد|للتوكيد|مبني علي الفتح"
+    }
+   ]
+  },
+  "A982.1": {
+   "class": "b",
+   "why": "built on fatḥ with the nūn",
+   "probes": [
+    {
+     "s": "اضربن زيدا واقتلن عمرا",
+     "sv": "اضْرِبَنَّ زَيْدًا وَاقْتُلَنَّ عَمْرًا",
+     "w": "اضربن",
+     "re": "نون التوكيد|للتوكيد|مبني علي الفتح"
+    },
+    {
+     "s": "اضربن زيدا واقتلن عمرا",
+     "sv": "اضْرِبَنَّ زَيْدًا وَاقْتُلَنَّ عَمْرًا",
+     "w": "واقتلن",
+     "re": "نون التوكيد|للتوكيد|مبني علي الفتح"
+    }
+   ]
+  },
+  "A984.1": {
+   "class": "a",
+   "why": "the dual's alif kept before the heavy nūn",
+   "probes": [
+    {
+     "s": "يا زيدان هل تضربان",
+     "sv": "يَا زَيْدَانِ هَلْ تَضْرِبَانِّ",
+     "w": "تضربان",
+     "re": "نون التوكيد|للتوكيد|مبني علي الفتح"
+    }
+   ]
+  },
+  "A984.2": {
+   "class": "c",
+   "why": "«هل تغزون» is the form WITHOUT the nūn; the ruling's own form is «هل تغزن» (same sentence)",
+   "probes": [
+    {
+     "s": "يا زيدون هل تغزن",
+     "sv": "يَا زَيْدُونَ هَلْ تَغْزُنَّ",
+     "w": "تغزن",
+     "re": "نون التوكيد|للتوكيد|مبني علي الفتح"
+    }
+   ]
+  },
+  "A984.3": {
+   "class": "a",
+   "why": "the alif kept, the heavy nūn",
+   "probes": [
+    {
+     "s": "هل تغزوان",
+     "sv": "هَلْ تَغْزُوَانِّ",
+     "w": "تغزوان",
+     "re": "نون التوكيد|للتوكيد|مبني علي الفتح"
+    }
+   ]
+  },
+  "A985.1": {
+   "class": "b",
+   "why": "the wāw of the plural ḍamma'd before the nūn",
+   "probes": [
+    {
+     "s": "يا زيدون اخشون",
+     "sv": "يَا زَيْدُونَ اخْشَوُنَّ",
+     "w": "اخشون",
+     "re": "نون التوكيد|للتوكيد|مبني علي الفتح"
+    }
+   ]
+  },
+  "A985.2": {
+   "class": "b",
+   "why": "«اضربان» with the light nūn is the forbidden form; the allowed is the heavy «اضربانّ»",
+   "probes": [
+    {
+     "s": "اضربان",
+     "sv": "اضْرِبَانِّ",
+     "w": "اضربان",
+     "re": "نون التوكيد|للتوكيد|مبني علي الفتح"
+    }
+   ]
+  },
+  "A1014.1": {
+   "class": "a",
+   "why": "إذن + a future verb: manṣūb",
+   "probes": [
+    {
+     "s": "إذن أكرمك",
+     "sv": "إِذَنْ أُكْرِمَكَ",
+     "w": "أكرمك",
+     "re": "منصوب"
+    }
+   ]
+  },
+  "A1018.1": {
+   "class": "a",
+   "why": "حتى + أن hidden: manṣūb",
+   "probes": [
+    {
+     "s": "سرت حتى أدخل البلد",
+     "sv": "سِرْتُ حَتَّى أَدْخُلَ الْبَلَدَ",
+     "w": "أدخل",
+     "re": "منصوب"
+    }
+   ]
+  },
+  "A1034.1": {
+   "class": "b",
+   "why": "إن jazms two verbs (the five verbs by dropping the nūn)",
+   "probes": [
+    {
+     "s": "وإن تبدوا ما في أنفسكم أو تخفوه يحاسبكم به الله",
+     "sv": "وَإِنْ تُبْدُوا مَا فِي أَنْفُسِكُمْ أَوْ تُخْفُوهُ يُحَاسِبْكُمْ بِهِ اللَّهُ",
+     "w": "تبدوا",
+     "re": "مجزوم|جزم"
+    },
+    {
+     "s": "وإن تبدوا ما في أنفسكم أو تخفوه يحاسبكم به الله",
+     "sv": "وَإِنْ تُبْدُوا مَا فِي أَنْفُسِكُمْ أَوْ تُخْفُوهُ يُحَاسِبْكُمْ بِهِ اللَّهُ",
+     "w": "يحاسبكم",
+     "re": "مجزوم|جزم"
+    }
+   ]
+  },
+  "A1039.1": {
+   "class": "b",
+   "why": "the māḍī in the seat of jazm",
+   "probes": [
+    {
+     "s": "إن جاء زيد أكرمته",
+     "sv": "إِنْ جَاءَ زَيْدٌ أَكْرَمْتُهُ",
+     "w": "جاء",
+     "re": "جزم"
+    }
+   ]
+  },
+  "A1040.1": {
+   "class": "b",
+   "why": "both māḍīs in the seat of jazm — the probe cut into the commentary",
+   "probes": [
+    {
+     "s": "إن قام زيد قام عمرو",
+     "sv": "إِنْ قَامَ زَيْدٌ قَامَ عَمْرٌو",
+     "any": "جزم"
+    }
+   ]
+  },
+  "A1042.1": {
+   "class": "a",
+   "why": "the jawāb jazmed after a māḍī condition",
+   "probes": [
+    {
+     "s": "إن قام زيد يقم عمرو",
+     "sv": "إِنْ قَامَ زَيْدٌ يَقُمْ عَمْرٌو",
+     "w": "يقم",
+     "re": "مجزوم"
+    }
+   ]
+  },
+  "A1044.1": {
+   "class": "a",
+   "why": "the fāʾ on a nominal jawāb — the probe cut the jawāb",
+   "probes": [
+    {
+     "s": "إن جاء زيد فهو محسن",
+     "sv": "إِنْ جَاءَ زَيْدٌ فَهُوَ مُحْسِنٌ",
+     "any": "جزم"
+    }
+   ]
+  },
+  "A1045.1": {
+   "class": "b",
+   "why": "a muḍāriʿ jawāb without the fāʾ",
+   "probes": [
+    {
+     "s": "إن جاء زيد يجيء عمرو",
+     "sv": "إِنْ جَاءَ زَيْدٌ يَجِيءُ عَمْرٌو",
+     "w": "يجيء",
+     "re": "جواب الشرط|جزم"
+    }
+   ]
+  },
+  "A1047.1": {
+   "class": "a",
+   "why": "the verb between condition and jawāb jazmed",
+   "probes": [
+    {
+     "s": "إن يقم زيد ويخرج خالد أكرمك",
+     "sv": "إِنْ يَقُمْ زَيْدٌ وَيَخْرُجْ خَالِدٌ أُكْرِمْكَ",
+     "w": "يقم",
+     "re": "مجزوم"
+    },
+    {
+     "s": "إن يقم زيد ويخرج خالد أكرمك",
+     "sv": "إِنْ يَقُمْ زَيْدٌ وَيَخْرُجْ خَالِدٌ أُكْرِمْكَ",
+     "w": "أكرمك",
+     "re": "مجزوم"
+    }
+   ]
+  },
+  "A1050.1": {
+   "class": "c",
+   "why": "the oath's answer (not a jazm ruling): the verb with lām and nūn",
+   "probes": [
+    {
+     "s": "والله لأضربن زيدا",
+     "sv": "وَاللَّهِ لَأَضْرِبَنَّ زَيْدًا",
+     "w": "لأضربن",
+     "re": "مبني علي الفتح|نون التوكيد|جواب القسم"
+    }
+   ]
+  },
+  "A1051.1": {
+   "class": "a",
+   "why": "condition first: its jawāb jazmed, the oath's dropped",
+   "probes": [
+    {
+     "s": "إن قام زيد والله يقم عمرو",
+     "sv": "إِنْ قَامَ زَيْدٌ وَاللَّهِ يَقُمْ عَمْرٌو",
+     "w": "يقم",
+     "re": "مجزوم"
+    }
+   ]
+  },
+  "A1051.2": {
+   "class": "a",
+   "why": "a khabar-bearer before: the condition answered",
+   "probes": [
+    {
+     "s": "زيد إن قام والله أكرمه",
+     "sv": "زَيْدٌ إِنْ قَامَ وَاللَّهِ أُكْرِمْهُ",
+     "w": "أكرمه",
+     "re": "مجزوم"
+    }
+   ]
+  },
+  "A1063.1": {
+   "class": "b",
+   "why": "هلّا is taḥḍīḍ (the bāb's tafṣīl/sharṭ regex is the wrong expectation)",
+   "probes": [
+    {
+     "s": "هلا ضربت زيدا",
+     "sv": "هَلَّا ضَرَبْتَ زَيْدًا",
+     "w": "هلا",
+     "re": "تحضيض"
+    }
+   ]
+  },
+  "A1094.1": {
+   "class": "d",
+   "reason": "(v355-N1 triage) the reply word alone (أيٌّ / أيًّا) echoes the case of a sentence outside it — ḥikāya is not in the letters of the reply"
+  },
+  "A1095.3": {
+   "class": "d",
+   "reason": "(v355-N1 triage) the reply word alone (مَنُونْ / مَنِينْ) echoes a sentence outside it — ḥikāya is not in its letters"
+  },
+  "A1096.1": {
+   "class": "b",
+   "why": "مَنْ زَيْدًا: the ʿalam told as heard",
+   "probes": [
+    {
+     "s": "من زيدا",
+     "sv": "مَنْ زَيْدًا",
+     "w": "زيدا",
+     "re": "حكايه|محكي"
+    }
+   ]
+  },
+  "A1097.1": {
+   "class": "c",
+   "why": "after a joining wāw no ḥikāya: زيد in rafʿ (mubtadaʾ or khabar)",
+   "probes": [
+    {
+     "s": "ومن زيد",
+     "sv": "وَمَنْ زَيْدٌ",
+     "w": "زيد",
+     "re": "مبتدا|خبر"
+    }
+   ]
+  },
+  "A1097.2": {
+   "class": "c",
+   "why": "only the ʿalam is told as heard: «من غلام زيد» in rafʿ",
+   "probes": [
+    {
+     "s": "من غلام زيد",
+     "sv": "مَنْ غُلَامُ زَيْدٍ",
+     "w": "غلام",
+     "re": "مبتدا|خبر"
+    }
+   ]
+  }
+ }
+}

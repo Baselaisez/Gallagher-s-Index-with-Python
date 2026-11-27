@@ -13,6 +13,10 @@ notes or appendix) that states a ruling (يجب / يجوز / يمتنع / يلز
   open (ṣarf)      — a bāb of word-form: for the ṣarf ledgers, not read by the iʿrāb probe;
   applied          — the book's own example through SentenceAnalyzer + Murib.line names the ruling (the word the sentence names, or
                      the bāb's construction on some word); applied-offered when the line gives it beside another reading;
+  applied-vowelled — (v355) the printed example is unvowelled and the engine misreads it, but the same example with OUR vowels (`sv`,
+                     for the test only, never shown to a learner) names the ruling — from the work order's triage files
+                     tools/ledger/aqil_triage_*.json (one per agent: class a / b / c / d, the corrected probe, or the reason a row is
+                     not automatable);
   open ⚠           — the engine misreads the book's example: its line is kept beside the book's (`got`);
   open             — no construction the iʿrāb line names.
 """
@@ -149,6 +153,16 @@ def join(ent, topics, ledgers):
     return best
 
 
+def load_triage():
+    """(v355) row id → {class, why, probes [{s, sv?, w, re | any}] | reason} from every tools/ledger/aqil_triage_*.json"""
+    out = {}
+    for f in sorted(HERE.glob("aqil_triage_*.json")):
+        for k, v in json.loads(f.read_text(encoding="utf-8"))["rows"].items():
+            assert k not in out, "two triage files claim " + k
+            out[k] = dict(v, file=f.name)
+    return out
+
+
 def cut_entries():
     t, ps = A.pages()
     rows = A.matn_lines(t, ps)
@@ -176,6 +190,7 @@ def main():
     prove = "--no-prove" not in sys.argv
     ents = cut_entries()
     ledgers = load_ledgers()
+    tri = load_triage()
     probes = []
     for e in ents:
         m = B[e["bab"]]
@@ -195,6 +210,20 @@ def main():
             continue
         if not m["role"]:
             e["status"], e["reason"] = "open", "no construction the iʿrāb line names"
+            continue
+        t = tri.get(e["id"])
+        if t and t["class"] == "d":
+            e["status"], e["reason"], e["triage"] = "not-automatable", t["reason"], {"class": "d", "file": t["file"]}
+            continue
+        if t:
+            e["triage"] = {"class": t["class"], "why": t["why"], "file": t["file"]}
+            e["probes"] = [dict(p) for p in t["probes"]]
+            for p in e["probes"]:
+                p["_k"] = len(probes)
+                probes.append({k: v for k, v in p.items() if k not in ("_k", "sv")})
+                if p.get("sv"):
+                    p["_kv"] = len(probes)
+                    probes.append(dict({k: v for k, v in p.items() if k not in ("_k", "sv")}, s=p["sv"]))
             continue
         nm = named_probes(e["ar"], e["ex"])
         multi = [x for x in e["ex"] if len(x.split()) >= 2]
@@ -224,8 +253,17 @@ def main():
             p["ok"], p["got"] = r["ok"], r["got"][:200]
             if r.get("offered"):
                 p["offered"] = True
+            if "_kv" in p:
+                rv = res[p.pop("_kv")]
+                p["ok_v"], p["got_v"] = rv["ok"], rv["got"][:200]
+                if rv.get("offered") and not p["ok"]:
+                    p["offered"] = True
         if all(p["ok"] for p in e["probes"]):
             e["status"] = "applied"
+            if any(p.get("offered") for p in e["probes"]):
+                e["offered"] = True
+        elif all(p["ok"] or p.get("ok_v") for p in e["probes"]):
+            e["status"], e["vowelled"] = "applied", True
             if any(p.get("offered") for p in e["probes"]):
                 e["offered"] = True
         else:
@@ -233,7 +271,7 @@ def main():
     counts = Counter()
     by = defaultdict(Counter)
     for e in ents:
-        k = "joined" if "joined" in e else ("warn" if e.get("warn") else e["status"] + ("-offered" if e.get("offered") else ""))
+        k = "joined" if "joined" in e else ("warn" if e.get("warn") else e["status"] + ("-vowelled" if e.get("vowelled") else "") + ("-offered" if e.get("offered") else ""))
         counts[k] += 1
         counts["status:" + e["status"]] += 1
         by[e["bab"]][k] += 1

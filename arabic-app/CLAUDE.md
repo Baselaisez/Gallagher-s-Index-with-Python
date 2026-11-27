@@ -17477,3 +17477,52 @@ the top option's adapter is built so that ONE decision (an Azure Speech key in t
   30 sentences, no phone outside the set, refuses without a key; the sample SSML carries the reading; voice_app --engine azure
   stops without a key; the eSpeak sample still verifies; the workflow takes the key from secrets, engine eSpeak and the voice OFF by
   default; no key literal; the note follows `Own349.vid` in en and tr). Older checks changed: none.
+## v355-N1 — Ibn ʿAqīl's work order: the pillars
+
+The engine round on `research/book-coverage-2026-11-27.ibn-aqil.md` § «Engine work order», N1's 19 bābs (المعرب والمبني … الحكاية): **100 ⚠ rows**.
+Source of the code: scratchpad `aqiln1/eng_n1.js`, spliced by `aqiln1/splice_n1.py` (idempotent) as the block «v355-N1 BEGIN/END» inside
+`Nahw342Engine`; the rows `RULES355N1` are merged into `RULES` by one line after the class; one dispatcher `this.n355`, last in the post list.
+- **Triage first** (`tools/ledger/aqil_triage_n1.json`, written from `aqiln1/tri.py` by `aqiln1/gen_triage.py`): **a 32** (the printed example is
+  unvowelled; the same example with OUR vowels — `sv`, test only, never shown — reads right), **b 29** (real gaps), **c 26** (the probe was wrong: the
+  example cut into the commentary — «قام زيد ويسمى ما يصل إلى», «في أعطيت …» —, the forbidden form probed instead of the allowed one in the same
+  sentence — «إن يكه» / «لم يك زيد قائما», «هل تغزون» / «هل تغزن», «اضربان» light / heavy —, or the bāb regex not the ruling — the faṣl, taḥḍīḍ,
+  rafʿ obligatory in ishtighāl), **d 13** (not automatable: «فلا تقول …» forbidden forms ×5, a sentence-name, Ṭayyiʾ's ذو, a school's view, the ishmām
+  of a hollow passive ×2, ḥikāya replies whose case echoes a sentence outside them ×2, a noun pair whose munṣarif-ness no sign shows).
+  **A probe bug found on the way:** the runner's folding (`aqil_probe.js` H) leaves «ئ», so the bāb regex «نايب فاعل» (aqil_map role + NAMED) never
+  met «نائب»: every nāʾib probe was a false ⚠ — the triage probes use «نا[يئ]ب (ال)?فاعل» (N2 / aqil_map should know; the map is not changed).
+- **The ledger** (`aqil_ledger.py`: reads every `tools/ledger/aqil_triage_*.json`; class d → not-automatable with the reason; else the corrected probes,
+  each with its vowelled twin; a row is `applied-vowelled` when every probe passes printed or vowelled) — 806 rows: **applied 247 → 333** (applied-vowelled
+  65), **⚠ 189 → 90**, not automatable 212 → 225. N1's rows: applied 21, applied-vowelled 65, n-a 13, **⚠ 1** (A408.1, below). `aqil_report.py` shows the
+  vowelled count per bāb, the triage, and the vowelled line beside each ⚠. Scratchpad `aqiln1/ledger_rows.json` = N1's rows for the merge.
+- **The rules (24; EXACT unless offered; each with Ibn ʿAqīl's page):** istifKhabar (أَيْنَ / مَتَى ẓarf, كَيْفَ rafʿ: the fronted khabar before ONE
+  mubtadaʾ that closes the clause; the noun «مُبْتَدَأٌ مُؤَخَّرٌ»), laamr (لَعَمْرُكَ: lām al-ibtidāʾ, mubtadaʾ, khabar dropped «قَسَمِي»; never لِعُمَرَ),
+  naatQat (the naʿt cut to written rafʿ after a definite majrūr, the verb carrying its own doer), rubbaMub (رُبَّ + indefinite + a rafʿ noun), maIlla,
+  maZarf (offered), maLakin, zalaFront, fiveShart (the five verbs without their nūn after a jāzim of two verbs, the partner after أَوْ / وَ, the answer;
+  the jāzim is NAMED — «مَجْزُومٌ بِـ«إِنْ»» — see the hand-over), shartMadi (the māḍī after the ḥarf إِنْ «فِي مَحَلِّ جَزْمٍ فِعْلُ الشَّرْطِ» when an answer is
+  written, and the māḍī answer «فِي مَحَلِّ جَزْمٍ جَوَابُ الشَّرْطِ»; not the concessive «وَإِنْ» mid-clause, not إِنْ added after مَا / لَمَّا, not a «دُونِي»),
+  rafJawab (a raised muḍāriʿ answering a māḍī condition; never after قال / قيل), nunAmr (اضْرِبَنَّ built on fatḥ; اضْرِبَانِّ، اخْشَوُنَّ … built on dropping
+  the nūn; never a pronoun suffix «ـهِنَّ» or «ـنَانِّ»), ishAmr / ishWaw / ishJarr (ishtighāl after a command, after a verbal clause + wāw, through a
+  ḥarf), ula (الْأُلَى + verb), ayyMurab (أَيُّهُمْ هُوَ قَائِمٌ; not after a verb of knowing / asking), taPassive (تُفُعِّلَ / تُفُوعِلَ / تُدُحْرِجَ and its nāʾib),
+  mamnuFatha (a name in ـَةَ after a kunya / nasab head: أَبُو قُحَافَةَ), alaLa, tahdid, hikaya (مَنْ زَيْدًا), sabrJamil (offered), zarfSifa (offered).
+- **Corpus** (scratchpad `aqiln1/meas.sh` base vs after; `fires.sh` per rule): authored lines agreeing — the māḍī's maḥall jazm 38 → 149, the five
+  verbs' jazm 89 → 96, the interrogative's khabar 1 → 5, the delayed mubtadaʾ 5 → 9, لَعَمْرُ 1 → 4, the nūn of emphasis 261 → 268, taḥḍīḍ 0 → 6, the
+  diptote's jarr 487 → 489. `tools/grammar_audit.js` before / after: every engine's totals identical, the same 1,361 contradiction keys —
+  `research/story-audit-triage-delta-aqil-n1.json` (no record). shartMadi's 232 firings: 112 agree, 35 authors naming the answer «لَا مَحَلَّ لَهَا»
+  (the sentence — compatible with the verb's seat, Shaykhzāde l. 398), 68 silent on the seat, 14 cited forms. **For the hoca (L, 3):** «ابْنُ أَبِي
+  حَبِيبَةَ»، «أَبُو بُرْدَةَ»، «زِيَادُ بْنُ عَلَاقَةَ» (al-Uṣūl al-munīfa 24:s3:7, 25:s16:8, 32:s3:11) authored «مَفْعُولٌ بِهِ مَنْصُوبٌ» — the muḍāf ilayh, a diptote in
+  jarr by the fatḥa (Ibn ʿAqīl l. 723, l. 1191) → `research/story-corrections-proposed-2026-11-27.aqil-n1.jsonl`.
+- **Data chore** (`aqiln1/chore_irtadaa.py`): Talkhīṣ 4:s3:12 «ارْتَدَعَ» L (T-J01, certain) → C (T-J02, «the verb's own jazm»): the authored line gives the
+  jazm seat to the VERB — Shaykhzāde l. 398 «فمحلّ الجزم محكوم للفعل وحده». Triage counts L 650 → 649, C 102 → 103, certain 64 → 63 (the file's
+  `counts`, its .md, and the proposals file, which drops the line); no smoke check pins these numbers.
+- **Hand-overs (classes not N1's):** (1) `Roles345` fronted-excepted rule (`pb === "الا"`, «إِلَّا X … مُسْتَثْنًى مَنْصُوبٌ وُجُوبًا لِتَقَدُّمِهِ») reads أَلَا as إِلَّا and
+  rewrites alaLa's noun after us — add `&& !/^(?:[وف]َ)?أَ/.test(this.nf(p1))`; then A408.1 proves. (2) `Roles345` anFive (`/^ان$/.test(pb) && !/ّ/…`)
+  takes the conditional إِنْ for أَنْ and turns a «مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ» after it into «مَنْصُوبٌ بِـ«إِنْ»» — add
+  `&& !/^(?:[وف]َ)?إِ/.test(String(p1.w || "").normalize("NFC"))` (fiveShart names the jāzim to stay clear of it). (3) `Roles345` jawabDropped says
+  «وَهُوَ فِعْلُ الشَّرْطِ فِي مَحَلِّ جَزْمٍ» on «مَا إِنْ رَأَيْتُ» (إِنْ added after مَا) — skip when the word before إِنْ is مَا / لَمَّا.
+- **Smoke** (two «v355-N1 — …» checks before «v333 — the received imports»): the book's examples through every rule (34) and 23 controls, the rule rows
+  cited and merged; the triage in the ledger (100 rows, d 13, ⚠ ≤ 1, applied ≥ 86) and the eight corpus floors. **Older check changed:** «v352-A — Ibn
+  ʿAqīl structured … ledgered» counts the key `applied-vowelled` and re-proves a vowelled row by its vowelled twin where the printed probe fails (its pins
+  unchanged: applied ≥ 247, ⚠ ≤ 189 still hold — 333 / 90).
+- **Refit + full suite**: `check_i18n.py` clean; refit chain exit 0 (irab_model 2,435 weights over 75,015 rows; drills 99.2 % POS, 99.1 % case);
+  **645 checks: 644 PASS, 1 FAIL**. The failure was «v317 — the library shelves …» (persist and clear, a UI timing check). It PASSES when re-run alone.
+- **Left**: A408.1 (hand-over 1); the vowelled قَالَ زَيْدٌ عَمْرٌو مُنْطَلِقٌ names the maqūl «زيد عمرو منطلق», one word too many (A445 proves on the printed text); N2's bābs.

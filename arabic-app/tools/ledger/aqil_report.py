@@ -56,21 +56,28 @@ def main():
                                                                 c["shawahid_numbered"], c["examples"]), "",
           "## The ledger by bāb", "",
           "Statuses: **joined** = the same rule in Shudhūr / Qawāʿid / Iẓhār / Kāfiya (inherits its status); **applied** = the book's own "
-          "example read right by the engines in the page (+ offered: beside another reading); **⚠** = the engine misreads the book's "
+          "example read right by the engines in the page (+ offered: beside another reading; + vowelled (v355): the printed example is "
+          "unvowelled, the same example with our vowels — `sv`, for the test only — reads right; the triage of the work order in "
+          "`tools/ledger/aqil_triage_*.json`); **⚠** = the engine misreads the book's "
           "example; **open** = no construction the iʿrāb line names, a single word cited, or a ṣarf bāb; **n-a** = not automatable "
           "(usage / rarity, a school's view, a dialect, a matter of meaning).", "",
-          "| bāb | verses | entries | joined | applied (offered) | ⚠ | open | n-a |", "|---|---:|---:|---:|---:|---:|---:|---:|"]
+          "| bāb | verses | entries | joined | applied (offered; vowelled) | ⚠ | open | n-a |", "|---|---:|---:|---:|---:|---:|---:|---:|"]
     vb = Counter({b["bab"]: len(b["verses"]) for b in toc["babs"]})
     T = Counter()
     for b in toc["babs"]:
         es = [e for e in E if e["bab"] == b["bab"]]
         k = Counter("joined" if "joined" in e else "warn" if e.get("warn") else e["status"] for e in es)
         off = sum(1 for e in es if e.get("offered") and "joined" not in e)
-        row = dict(v=vb[b["bab"]], n=len(es), j=k["joined"], a=k["applied"], o=off, w=k["warn"], op=k["open"], na=k["not-automatable"])
+        vw = sum(1 for e in es if e.get("vowelled"))
+        row = dict(v=vb[b["bab"]], n=len(es), j=k["joined"], a=k["applied"], o=off, vw=vw, w=k["warn"], op=k["open"], na=k["not-automatable"])
         for x, y in row.items():
             T[x] += y
-        L.append("| %s | %d | %d | %d | %d (%d) | %d | %d | %d |" % (b["bab"], row["v"], row["n"], row["j"], row["a"], row["o"], row["w"], row["op"], row["na"]))
-    L.append("| **all** | %d | %d | %d | %d (%d) | %d | %d | %d |" % (T["v"], T["n"], T["j"], T["a"], T["o"], T["w"], T["op"], T["na"]))
+        L.append("| %s | %d | %d | %d | %d (%d; %d) | %d | %d | %d |" % (b["bab"], row["v"], row["n"], row["j"], row["a"], row["o"], row["vw"], row["w"], row["op"], row["na"]))
+    L.append("| **all** | %d | %d | %d | %d (%d; %d) | %d | %d | %d |" % (T["v"], T["n"], T["j"], T["a"], T["o"], T["vw"], T["w"], T["op"], T["na"]))
+    tri = Counter((e["triage"]["file"], e["triage"]["class"]) for e in E if e.get("triage"))
+    if tri:
+        L += ["", "Triage of the work order (v355): " + "; ".join("%s %s %d" % (f, c, n) for (f, c), n in sorted(tri.items())) +
+              " (a = applied once vowelled, b = a real gap fixed in the engine or still ⚠, c = the probe corrected, d = not automatable)."]
     jb = Counter(e["joined"]["book"] for e in E if "joined" in e)
     L += ["", "Joined to: " + ", ".join("%s %d" % kv for kv in jb.most_common()) + ". Joins need the same topic and the same example "
           "(or ≥ 3 shared content words): Ibn ʿAqīl restates the matns in his own words and examples, so most of his rule sentences stand as "
@@ -97,7 +104,8 @@ def main():
         for e in ws:
             p = [x for x in e["probes"] if not x["ok"]][0]
             want = ("«%s» on %s" % (p["re"], p["w"])) if p.get("w") else "«%s» on some word" % p["any"]
-            L.append("- %s (p. %s, Shamela %d) — «%s» — wants %s — engine: %s" % (e["id"], e["page"], e["shamela"], p["s"], want, p["got"][:160].replace("|", "/")))
+            vow = (" — vowelled «%s»: %s" % (p["sv"], p.get("got_v", "")[:120].replace("|", "/"))) if p.get("sv") else ""
+            L.append("- %s (p. %s, Shamela %d) — «%s» — wants %s — engine: %s%s" % (e["id"], e["page"], e["shamela"], p["s"], want, p["got"][:160].replace("|", "/"), vow))
         L.append("")
     OUT.write_text("\n".join(L) + "\n", encoding="utf-8")
     print("wrote", OUT, len(L), "lines; totals", dict(T))

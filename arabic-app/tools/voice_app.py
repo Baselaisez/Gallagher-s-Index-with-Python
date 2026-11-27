@@ -223,11 +223,13 @@ def main():
         print(shelf_key()); return 0
     if a.verify:
         return verify(a.package, pathlib.Path(a.out).resolve() if a.out else OUT)
+    # the key first: a machine without ffmpeg (the CI runner) must still say that nothing was sent — CI read «ffmpeg is needed»
+    # here and the v355 check, which asks for exactly that sentence, failed on 297cd01
+    if ENGINE == "azure" and not a.stand_in and not (os.environ.get("AZURE_SPEECH_KEY") and os.environ.get("AZURE_SPEECH_REGION")):
+        sys.exit("--engine azure needs AZURE_SPEECH_KEY and AZURE_SPEECH_REGION (the owner's Speech resource) — nothing was sent")
     if not shutil.which("ffmpeg"):
         sys.exit("ffmpeg is needed to write the .m4a files")
     out = pathlib.Path(a.stand_in or a.out).resolve() if (a.stand_in or a.out) else OUT
-    if ENGINE == "azure" and not a.stand_in and not (os.environ.get("AZURE_SPEECH_KEY") and os.environ.get("AZURE_SPEECH_REGION")):
-        sys.exit("--engine azure needs AZURE_SPEECH_KEY and AZURE_SPEECH_REGION (the owner's Speech resource) — nothing was sent")
     pkgs = list(ng.packages(a.package))
     t0 = time.time(); agg = {"rendered": 0, "kept": 0, "sentences": 0, "audio_ms": 0, "synth_ms": 0}
     from concurrent.futures import ThreadPoolExecutor
