@@ -158,3 +158,15 @@ Waiting on people: unchanged from the 22:23 entry.
 - v352-K merged `(this commit's parent)` — readings from al-Khaṣāʾiṣ: eight passages (1,077 tokens) on the shelf «مِنْ كُتُبِ الْعَرَبِيَّةِ». Every wave of the round has landed; the shelf holds 102 stories.
 - Running next, ALONE on the machine: v354-S speed VII (qissa-speed · tmp/speed354 · scratch folder speed354; brief V354_BRIEF.md in the scratchpad).
 - Queued for the owner's word on budget: the engine round (Ibn ʿAqīl's 189 ⚠ rows, the hand-overs).
+
+## 2026-11-27 03:25 UTC
+
+Landed: v354-S `fe83622` — speed VII, measured alone on the machine (A/B alternated, 4× CPU): the core slice 0.83 → 0.49 MB gzip (a story's about text with its body; ALFIYYA_JSON and AMTHAL in the last body slice — each proved equal to the repository reader's); door at 4 Mbit/s 6.22 → 5.49 s, at 20 Mbit/s 2.00 → 1.78 s; on a 6× CPU phone with slow 4G 6.49 → 5.84 s; the 0.4–0.9 s freeze after the games hub was a background drip meeting the vowelling engine cold — it now waits for the warm-up. The shelf-scroll dip of v350 was machine load (0 long tasks alone on both builds). Whole suite 643 of 643 on this tree; entrance test passes. CI green on every earlier commit of the round (`c50adf7`).
+
+Nothing is running. Still slow (named in CLAUDE.md «v354-S»): the sentence sheet's heaviest deferred task (~250 ms at 4×), the Jumla lab's first analysis (`DabtEngine.decide` ×5, no cache proved safe), the first word tap at 6× (~280 ms).
+
+Queued for the owner's word on budget: the engine round (Ibn ʿAqīl's 189 ⚠ rows, the hand-overs of the 2026-11-26 19:55 entry, moving ارْتَدَعَ from L to C).
+
+Waiting on people:
+- the owner: his ear on the two voice samples (the generated voice is off); whether the Iẓhār course feeds Today's lesson; the archive.org item; a phone test of «Dinle» and of the guide in the new APK;
+- the hoca: packet o08 and the earlier packets on the precheck branch; the vowels and listed doubts of the two new shelves (19 packages); the renderings (reasons 156, verses 23, the uṣūl cards, the course's English lines).
