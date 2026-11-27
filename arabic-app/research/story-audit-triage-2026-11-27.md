@@ -14,10 +14,10 @@ Every contradiction `tools/grammar_audit.js` emits today (uncapped: `research/st
 | إِنَّ / أَنَّ — InnaEngine | 27 | 2 | 25 | 0 | 0 | 27 | 0 |
 | Order — TartibEngine | 2 | 0 | 2 | 0 | 0 | 2 | 0 |
 | The muʿrib's etiquette — AdabEngine | 570 | 568 | 1 | 1 | 0 | 2 | 568 |
-| Clause maḥall — JumlaMahallEngine | 121 | 4 | 72 | 45 | 0 | 103 | 18 |
-| **all** | **1869** | **650** | **1112** | **102** | **5** | **1248** | **621** |
+| Clause maḥall — JumlaMahallEngine | 121 | 3 | 72 | 46 | 0 | 103 | 18 |
+| **all** | **1869** | **649** | **1112** | **103** | **5** | **1248** | **621** |
 
-Proposals: 650 lines (64 certain, 586 likely); 77 carry a mechanical `after_ar`, 573 describe the fault. The adab findings (568 L) are incomplete lines, not wrong analyses, and were already listed in the lab (wave 40) — without them the L count is 82.
+Proposals: 649 lines (63 certain, 586 likely; v355-N1 moved Talkhīṣ 4:s3:12 ارْتَدَعَ to C — Shaykhzāde l. 398); 77 carry a mechanical `after_ar`, 573 describe the fault. The adab findings (568 L) are incomplete lines, not wrong analyses, and were already listed in the lab (wave 40) — without them the L count is 82.
 
 **Method.** Clustered by script (engine, rule, the shape of the disagreement: the written ending against the engine's, the authored office, keywords of the line — مَحْكِيٌّ، لِلرَّوِيِّ، مَمْنُوعٌ، مُقَدَّرَةٌ…); one member of each cluster read with its sentence, the rest checked by shape (random samples of 7 per large case cluster read as well); outliers judged alone. A case-ending contradiction where the written vowel and the authored line agree and the engine differs is E unless the reading showed the line itself wrong. Scripts: scratchpad `triage342/` (`j/*.py` the judgements, `build.py`, `render.py`, `probe2.js`).
 
@@ -203,7 +203,7 @@ Proposals: 650 lines (64 certain, 586 likely); 77 carry a mechanical `after_ar`,
 - **Book**: `izhar-al-asrar-matn-lithograph.txt` l.15 «ومجرور ما عدا هذه السبعة منصوب المحل على أنه مفعول فيه لمتعلقه … وقد يحذف المتعلق، فإن كان المحذوف فعلا عاما متضمنا في الجار والمجرور يسميان ظرفا مستقرا نحو زيد في الدار أي»; `izhar-al-asrar-matn-lithograph.txt` l.16 «حصل، وإن لم يكن كذلك أو لم يحذف متعلقه يسميان ظرفا لغوا نحو زيد في الدار أكل ومررت بزيد.»
 - **Examples**: aqaid-ahl-al-sunna:28:s2:5 بِذَاتِهِ; bad-al-amali:6:s28:5 عَنِ; bad-al-amali:7:s34:4 عَلَى
 
-### T-J02 — Clause maḥall — JumlaMahallEngine · C — both right · 15
+### T-J02 — Clause maḥall — JumlaMahallEngine · C — both right · 16
 
 - **Shape**: exact rules: the author names another true fact about the same clause — a follower (ʿaṭf on a clause with a seat), the outer ṣila while the engine names the inner khabar, istiʾnāf / duʿāʾ for a muʿtariḍa, the maqūl's first word, the verb's own jazm, the oath's answer inside a khabar
 - **Judgement**: Ruled in v339-M one by one: m.86 (the follower shares its head clause's seat), m.124 (the ṣila and the khabar inside it), m.128 (the muʿtariḍa has no seat, as the istiʾnāfiyya).
@@ -313,14 +313,14 @@ Proposals: 650 lines (64 certain, 586 likely); 77 carry a mechanical `after_ar`,
 - **Book**: `shudhur-al-dhahab-src.txt` l.179 «وتُكسَرُ «إِنَّ» في الابْتِدَاءِ، وَفي أَوَّلِ الصِّلَةِ وَالصِّفةِ والْجُملة الحاليَّة، وَالمُضَافِ إِلَيْهَا ما يخْتَصُّ بالجُمَلِ، والمَحْكيّةِ بالْقَوْل، وَجَوَابِ الْقسَم، والمُخْبَر بها عن اسم عَيْنٍ، وَقبْلَ اللَّامِ المُعلِّقةِ، … وتُفْتَحُ في الباقي.»
 - **Examples**: al-usul-al-munifa:14:s15:33 إِنَّهُ; muallaqat-tarafa:12:s5:4 إِنَّنِي; qisas-al-nabiyyin-2:7:s7:17 إِنِّي
 
-### T-J01 — Clause maḥall — JumlaMahallEngine · L — the line is wrong (certain) · 4
+### T-J01 — Clause maḥall — JumlaMahallEngine · L — the line is wrong (certain) · 3
 
 - **Shape**: author: «فِي مَحَلِّ جَزْمٍ» on a jāzim's answer with no fāʾ (قَتَلْتُكُمْ، جَاءَكُمْ، ارْتَدَعَ); ḥāl for the clause after a pure indefinite carrying its pronoun (غَذَاهَا) / engine: no seat; naʿt
 - **Judgement**: m.67 «إن قام أخوك قامَ عمرٌو»: the verb is jazm, the clause has no seat; m.84: the clause after a pure indefinite is its naʿt.
 - **Book**: `qawaid-al-irab-ibn-hisham-matn.txt` l.67 «فأما نحو: إن قام أخوك قامَ عمرٌو.»; `qawaid-al-irab-ibn-hisham-matn.txt` l.84 «والسادسة … التابعة لمفرد … فالجملة المنعوت بها …»
 - **settled-by**: CLAUDE.md v339-M narrowing pass («The 19 exact contradictions, each read»: authored slips)
 - **listed-before**: CLAUDE.md v339-M
-- **Examples**: ashab-al-kahf:1:s3:15 قَتَلْتُكُمْ; hud-wa-aad:2:s7:6 جَاءَكُمْ; talkhis-al-miftah:4:s3:12 ارْتَدَعَ
+- **Examples**: ashab-al-kahf:1:s3:15 قَتَلْتُكُمْ; hud-wa-aad:2:s7:6 جَاءَكُمْ
 
 ### T-S04 — Sign of the case — SignEngine · E — the engine is wrong · 4
 

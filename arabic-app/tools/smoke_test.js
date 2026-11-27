@@ -19905,7 +19905,7 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     for (const v of alf) { if (v.ar !== V[v.n - 1].ar) bad.push('alfiyya ' + v.n); if (v.rule_ar && !src.includes(v.rule_ar)) bad.push('ruling ' + v.n); if (!!v.en !== !!v.tr) bad.push('en/tr ' + v.n); }
     const led = J('content/rules/coverage_ibn_aqil.json'), E = led.entries, C = {};
     for (const e of E) { if (!src.includes(e.ar)) bad.push(e.id + ' ar'); for (const x of e.ex) if (!e.ar.includes(x)) bad.push(e.id + ' ex');
-      const k = 'joined' in e ? 'joined' : e.warn ? 'warn' : e.status + (e.offered ? '-offered' : ''); C[k] = (C[k] || 0) + 1; C['status:' + e.status] = (C['status:' + e.status] || 0) + 1;
+      const k = 'joined' in e ? 'joined' : e.warn ? 'warn' : e.status + (e.vowelled ? '-vowelled' : '') + (e.offered ? '-offered' : ''); C[k] = (C[k] || 0) + 1; C['status:' + e.status] = (C['status:' + e.status] || 0) + 1;   // (v355-N1) applied-vowelled: the work order's triage
       if (e.status === 'not-automatable' && !e.reason) bad.push(e.id + ' reason'); }
     if (bad.length) throw new Error('verbatim: ' + bad.slice(0, 6).join(' | '));
     if (JSON.stringify(Object.keys(C).sort().map(k => [k, C[k]])) !== JSON.stringify(Object.keys(led.counts).sort().map(k => [k, led.counts[k]]))) throw new Error('the counts are the rows\': ' + JSON.stringify({ C, stored: led.counts }));
@@ -19914,7 +19914,8 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     // noun and so «مفعول به»; with 1,252 new tokens on the shelf the blind reader takes it for «درهـ + ـما» and names no object. The row
     // is ⚠ now, which is what it always was: the engine never read «الحق» right («الظاهر أنه فاعل»). Work order: Ibn ʿAqīl's report.
     if (E.length < 806 || C['status:applied'] < 247 || (C.warn || 0) > 189 || (C.joined || 0) < 51) throw new Error('the pins: ' + JSON.stringify(C));
-    const ap = E.filter(e => e.status === 'applied' && e.probes), ps = ap.flatMap(e => e.probes.map(p => p.w ? { s: p.s, w: p.w, re: p.re } : { s: p.s, any: p.any }));
+    // (v355-N1) a row applied-vowelled re-proves the probe that carried it: the printed one where it passed, else its vowelled twin (sv — our vowels, test only)
+    const ap = E.filter(e => e.status === 'applied' && e.probes), ps = ap.flatMap(e => e.probes.map(p => { const s = e.vowelled && !p.ok && p.sv ? p.sv : p.s; return p.w ? { s, w: p.w, re: p.re } : { s, any: p.any }; }));
     const fsrc = fsx.readFileSync(R('tools/ledger/aqil_probe.js'), 'utf8'), fn = fsrc.slice(fsrc.indexOf('(probes)'));
     const res = await page.evaluate(([f, q]) => (0, eval)('(' + f + ')')(q), [fn, ps]), fail = res.map((r, k) => r.ok ? null : ps[k].s + ' → ' + r.got.slice(0, 80)).filter(Boolean);
     if (fail.length) throw new Error(fail.length + ' applied entries no longer prove: ' + fail.slice(0, 4).join(' | '));
@@ -20427,6 +20428,69 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (bad.length) throw new Error(bad.slice(0, 8).join(' | '));
     console.log('      8 readings, ' + Object.values(IDS).reduce((a, x) => a + x[1], 0) + ' sentences, ' + Object.values(IDS).reduce((a, x) => a + x[2], 0) + ' tokens, all the book\'s letters');
   });
+  // >>> v355-N1 — Ibn ʿAqīl's work order: the pillars (Nahw342Engine rows RULES355N1; the triage tools/ledger/aqil_triage_n1.json)
+  await check('v355-N1 — Ibn ʿAqīl\'s work order, the sentence\'s pillars: each fixed bāb\'s book examples (vowelled as the book rules them) read the book\'s ruling — the fronted khabar أَيْنَ، لَعَمْرُكَ، the cut naʿt, رُبَّ\'s mubtadaʾ, mā\'s work kept / voided / after لَكِنْ، the fronted khabar of زَالَ، the condition\'s jazm (the five verbs, the māḍī\'s seat), the nūn of emphasis, ishtighāl (command, wāw, a ḥarf), الْأُلَى and أَيّ, the tāʾ-passive, the kunya\'s diptote, taḥḍīḍ, ḥikāya — and the controls stay silent', async () => {
+    const r = await page.evaluate(() => { const F = s => String(s || '').normalize('NFC').replace(/[ً-ْٰـ]/g, '').replace(/[أإآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه');
+      const L = (s, w) => { const rows = SentenceAnalyzer.analyze(s); const i = rows.findIndex(x => F(x.w) === F(w)); return i < 0 ? 'NO ' + w : F((Murib.line(rows, i) || {}).ar); };
+      const Y = [   // [sentence, word, the ruling (letters, hamza folded)]
+        ['أَيْنَ زَيْدٌ', 'أين', 'خبر مقدم'], ['أَيْنَ زَيْدٌ', 'زيد', 'مبتدا مؤخر'], ['كَيْفَ حَالُكَ', 'كيف', 'محل رفع خبر مقدم'],
+        ['لَعَمْرُكَ لَأَفْعَلَنَّ', 'لعمرك', 'لام الابتداء.*مبتدا.*خبره محذوف وجوبا'], ['مَرَرْتُ بِزَيْدٍ الْكَرِيمُ', 'الكريم', 'خبر لمبتدا محذوف وجوبا'],
+        ['رُبَّ رَجُلٍ قَائِمٌ وَامْرَأَةٌ', 'رجل', 'مرفوع محلا مبتدا'], ['مَا عِنْدَكَ زَيْدٌ مُقِيمًا', 'زيد', 'اسم «ما» الحجازيه.*او مبتدا'],
+        ['مَا زَيْدٌ بِشَيْءٍ إِلَّا شَيْءٌ لَا يُعْبَأُ بِهِ', 'زيد', 'مبتدا \\(بطل عمل'], ['مَا زَيْدٌ قَائِمًا لَكِنْ قَاعِدٌ', 'قاعد', 'خبر لمبتدا محذوف'],
+        ['مَا قَائِمًا زَالَ زَيْدٌ', 'قائما', 'خبر «زال» مقدم'], ['مَا قَائِمًا زَالَ زَيْدٌ', 'زيد', 'اسم «زال» مؤخر'],
+        ['وَإِنْ تُبْدُوا مَا فِي أَنْفُسِكُمْ أَوْ تُخْفُوهُ يُحَاسِبْكُمْ بِهِ اللَّهُ', 'تبدوا', 'مجزوم ب«ان» وعلامه جزمه حذف النون'],
+        ['وَإِنْ تُبْدُوا مَا فِي أَنْفُسِكُمْ أَوْ تُخْفُوهُ يُحَاسِبْكُمْ بِهِ اللَّهُ', 'تخفوه', 'مجزوم وعلامه جزمه حذف النون.*معطوف'],
+        ['إِنْ تَكْتُبُوا تَنْجَحُوا', 'تكتبوا', '^فعل مضارع، مجزوم ب«ان»'], ['إِنْ تَكْتُبُوا تَنْجَحُوا', 'تنجحوا', 'مجزوم.*جواب الشرط'],
+        ['إِنْ قَامَ زَيْدٌ قَامَ عَمْرٌو', 'قام', 'في محل جزم فعل الشرط'], ['إِنْ جَاءَ زَيْدٌ أَكْرَمْتُهُ', 'أكرمته', 'في محل جزم جواب الشرط'],
+        ['إِنْ جَاءَ زَيْدٌ يَجِيءُ عَمْرٌو', 'يجيء', 'جواب الشرط'],
+        ['اضْرِبَنَّ زَيْدًا', 'اضربن', 'مبني علي الفتح لاتصاله بنون التوكيد'], ['يَا زَيْدُونَ اخْشَوُنَّ', 'اخشون', 'حذف النون.*للتوكيد'], ['اضْرِبَانِّ', 'اضربان', 'حذف النون.*للتوكيد'],
+        ['زَيْدًا اضْرِبْهُ', 'زيدا', 'يفسره المذكور'], ['قَامَ زَيْدٌ وَعَمْرًا أَكْرَمْتُهُ', 'وعمرا', 'يفسره المذكور'], ['إِنْ زَيْدًا مَرَرْتَ بِهِ أُكْرِمْكَ', 'زيدا', 'يفسره المذكور «مررت به»'],
+        ['جَاءَنِي الْأُلَى فَعَلُوا', 'الألى', 'اسم موصول.*محل رفع فاعل'], ['يُعْجِبُنِي أَيُّهُمْ هُوَ قَائِمٌ', 'أيهم', 'اسم موصول معرب.*فاعل'],
+        ['تُدُحْرِجَ', 'تدحرج', 'مبني للمجهول'], ['تُدُبِّرَتِ الْكُتُبُ', 'الكتب', 'نا.ب فاعل'],
+        ['جَاءَنِي عَبْدُ شَمْسٍ وَأَبُو قُحَافَةَ', 'قحافة', 'مجرور وعلامه جره الفتحه.*مضاف اليه'], ['أَلَا رَجُلَ قَائِمٌ', 'قائم', 'خبر «لا» النافيه للجنس'],
+        ['هَلَّا ضَرَبْتَ زَيْدًا', 'هلا', 'حرف تحضيض'], ['مَنْ زَيْدًا', 'زيدا', 'محكي'], ['صَبْرٌ جَمِيلٌ', 'صبر', 'خبر لمبتدا محذوف، او مبتدا خبره محذوف'],
+        ['مَرَرْتُ بِرَجُلٍ عِنْدَكَ', 'عندك', 'متعلق ب«مررت»، او بمحذوف نعت']];
+      const N = [   // controls: [sentence, word, what must NOT be said]
+        ['أَيْنَ ذَهَبَ زَيْدٌ', 'أين', 'خبر'], ['قُلْتُ لِعُمَرَ', 'لعمر', 'الابتداء'], ['مَرَّ بِزَيْدٍ الرَّجُلُ', 'الرجل', 'محذوف'], ['رُبَّ رَجُلٍ لَقِيتُ', 'رجل', 'مبتدا'],
+        ['مَا زَيْدٌ قَائِمًا', 'زيد', 'بطل'], ['مَا قَامَ زَيْدٌ لَكِنْ عَمْرٌو', 'عمرو', 'محذوف'], ['مَا زَالَ زَيْدٌ قَائِمًا', 'قائما', 'مقدم'],
+        ['لَنْ تَكْتُبُوا', 'تكتبوا', 'مجزوم'], ['إِذَا جَاءَ زَيْدٌ أَكْرَمْتُهُ', 'جاء', 'محل جزم'], ['مَا إِنْ رَأَيْتُ زَيْدًا', 'رأيت', 'في محل جزم فعل الشرط'],
+        ['فَإِنْ قِيلَ يَلْزَمُ الِالْتِبَاسُ', 'يلزم', 'جواب'], ['اضْرِبْنَ', 'اضربن', 'توكيد'], ['زَيْدُ اضْرِبْهُ', 'زيد', 'يفسره'],
+        ['ضَرَبْتُ زَيْدًا وَعَمْرًا أَكْرَمْتُهُ', 'وعمرا', 'يفسره'], ['زَيْدًا مَرَرْتُ بِهَا', 'زيدا', 'يفسره'], ['جَاءَتِ الْأُولَى', 'الأولى', 'موصول'],
+        ['سَأَلْتُ أَيُّهُمْ هُوَ قَائِمٌ', 'أيهم', 'موصول'], ['تَدَحْرَجَ الْحَجَرُ', 'تدحرج', 'مجهول'], ['أَخَذَ حَاجَةَ الرَّجُلِ', 'حاجة', 'مجرور'],
+        ['لَوْلَا زَيْدٌ لَهَلَكَ عَمْرٌو', 'لولا', 'تحضيض'], ['مَنْ رَجُلًا', 'رجلا', 'محكي'], ['صَبْرٌ جَمِيلٌ خَيْرٌ', 'صبر', 'محذوف'], ['جَلَسْتُ عِنْدَكَ', 'عندك', 'بمحذوف']];
+      const R = Nahw342Engine.RULES355N1 || {};
+      return { miss: Y.map(([s, w, re]) => { const l = L(s, w); return new RegExp(re).test(l) ? null : s + ' / ' + w + ' → ' + l.slice(0, 120); }).filter(Boolean),
+        loud: N.map(([s, w, re]) => { const l = L(s, w); return new RegExp(re).test(l) ? s + ' / ' + w + ' → ' + l.slice(0, 120) : null; }).filter(Boolean),
+        rules: Object.keys(R).length, cited: Object.values(R).every(x => /Ibn ʿAqīl p\. \d/.test((x.cite || [])[0] || '') && /^(exact|offered)$/.test(x.cert) && x.gate),
+        merged: Object.keys(R).every(k => Nahw342Engine.RULES[k] === R[k]) }; });
+    if (r.rules < 24 || !r.cited || !r.merged) throw new Error('the rule rows: ' + JSON.stringify(r));
+    if (r.miss.length) throw new Error('the book\'s examples: ' + r.miss.slice(0, 5).join(' | '));
+    if (r.loud.length) throw new Error('the controls speak: ' + r.loud.slice(0, 5).join(' | '));
+  });
+  await check('v355-N1 — the work order\'s triage of the pillars\' 100 ⚠ rows (tools/ledger/aqil_triage_n1.json: a vowelled / b real gap / c probe corrected / d not automatable) stands in the ledger, and the rules\' corpus agreement holds (measured 2026-11-27, before → after, floors): the māḍī\'s seat of jazm 38 → 149, the five verbs\' jazm 89 → 96, the interrogative\'s khabar 1 → 5, the delayed mubtadaʾ 5 → 9, لَعَمْرُ 1 → 4, the nūn of emphasis 261 → 268, taḥḍīḍ 0 → 6, the diptote\'s jarr 487 → 489', async () => {
+    const fsx = require('fs'), pathx = require('path'), J = f => JSON.parse(fsx.readFileSync(pathx.join(__dirname, '..', f), 'utf8'));
+    const T = J('tools/ledger/aqil_triage_n1.json').rows, E = new Map(J('content/rules/coverage_ibn_aqil.json').entries.map(e => [e.id, e])), bad = [], C = {};
+    for (const [id, t] of Object.entries(T)) { const e = E.get(id); if (!e) { bad.push(id + ' missing'); continue; } C[t.class] = (C[t.class] || 0) + 1;
+      if (t.class === 'd') { if (e.status !== 'not-automatable' || !/v355-N1/.test(e.reason || '')) bad.push(id + ' d'); continue; }
+      if (!e.probes || e.probes.length !== t.probes.length) bad.push(id + ' probes'); const k = e.warn ? 'warn' : e.status + (e.vowelled ? '-v' : ''); C[k] = (C[k] || 0) + 1; }
+    // measured 2026-11-27 (v355-N1): a 32 · b 29 · c 26 · d 13; applied 21 + applied-vowelled 65, ⚠ 1 (A408.1 «ألا رجل قائم»: the noun's line is
+    // rewritten after us by Roles345's fronted-excepted rule, which reads أَلَا as إِلَّا — hand-over in CLAUDE.md «v355-N1»)
+    if (bad.length || Object.keys(T).length !== 100 || C.d !== 13 || (C.warn || 0) > 1 || (C.applied || 0) + (C['applied-v'] || 0) < 86) throw new Error('the triage in the ledger: ' + JSON.stringify({ bad: bad.slice(0, 6), C }));
+    const m = await page.evaluate(() => { const S = x => stripAr(String(x || '')).replace(/[^ء-ي «»()]/g, '').replace(/[أإآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه');
+      const SP = { jazm: [/محل جزم/], five: [/جزم[^،]*حذف النون|حذف النون[^،]*جزم/], istif: [/خبر/, /^[وف]?(اين|متي|متى|كيف)$/], muakh: [/مبتدا مؤخر/], laamr: [/مبتدا/, /^لعمر/],
+        nun: [/توكيد/, /ن$/], tahdid: [/تحضيض/], mamnu: [/جره الفتحه|مجرور بالفتحه|ممنوع من الصرف/] }, o = {}; for (const k in SP) o[k] = 0;
+      for (const st of STORIES) for (const ch of (st.chapters || [])) for (const sn of (ch.sentences || [])) { const T = sn.tokens || []; if (!T.length) continue; let rows = null;
+        for (let i = 0; i < T.length; i++) { const A = S((T[i].irab || {}).ar); if (!A) continue; const wb = stripAr(String(T[i].s.full || '')).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا'); let Eg = null;
+          for (const k in SP) { const [re, w] = SP[k]; if ((w && !w.test(wb)) || !re.test(A)) continue;
+            if (!rows) { try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { rows = []; } if (rows.length !== T.length) rows = []; } if (!rows.length) break;
+            if (Eg === null) { try { Eg = S((Murib.line(rows, i) || {}).ar); } catch (e) { Eg = ''; } } if (re.test(Eg)) o[k]++; } } }
+      return o; });
+    const FLOOR = { jazm: 149, five: 96, istif: 5, muakh: 9, laamr: 4, nun: 268, tahdid: 6, mamnu: 489 };
+    const low = Object.keys(FLOOR).filter(k => m[k] < FLOOR[k]);
+    if (low.length) throw new Error('agreement fell: ' + JSON.stringify({ m, FLOOR }));
+    console.log('      triage ' + JSON.stringify(C) + '; agreeing ' + JSON.stringify(m));
+  });
+  // <<< v355-N1
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
