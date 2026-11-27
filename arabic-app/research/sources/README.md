@@ -426,3 +426,16 @@ Shamela holds no second edition of the book (author 830 lists only 9986) and no 
 - Each `tabaqat-<slug>-src.txt` is the exact passage (matn only, verbatim, page-marked) the package `content/samples/tabaqat-<slug>` carries, saved before authoring:
   `lastu-bi-khalifat-allah` (3:137), `abu-bakr-fi-al-suq` (3:137), `sakrat-al-mawt` (3:146), `ahad-ahad` (3:175), `innama-ana-habashi` (3:180), `hawl-al-muttala`
   (3:270), `said-ibn-al-musayyib` (5:99), `dhat-al-nitaqayn` (8:196–197). No correction was made in any of them.
+## Received 2026-11-27 from the owner (v360-Sh): the whole Sharḥ Shudhūr al-Dhahab as web text
+
+- `sharh-shudhur-al-dhahab-src.txt` — Ibn Hishām al-Anṣārī (d. 761 AH), «شرح شذور الذهب في معرفة كلام العرب», تحقيق عبد الغني الدقر،
+  الشركة المتحدة للتوزيع (سوريا) (Shamela book 6969), https://shamela.ws/book/6969/1 to /572 — whole (printed pp. 13–602 of THAT
+  edition), matn («قلت / ثمَّ قلت …») and sharḥ («وَأَقُول …»), no ḥāshiya. The owner: «This is Shudhūr's web text version; maybe it can be
+  a little bit easier for you to extract automations and rules». Built by `tools/authoring/shamela_src.py` (house format
+  `=== p. <shamela page> (<printed page>) [<section>] ===`; the section names are Shamela's coarse table, not the bābs). The
+  vowelling is the e-text's mechanical one (case endings mostly absent, hamzas often dropped: «اذا», «الى»): the LETTERS are the witness,
+  the vowels are not. **Its printed pages are NOT the owner's print's** (`shudhur-al-dhahab-src.txt`, `shudhur-al-dhahab-qawaid.jsonl`):
+  the owner's p. 100 (البناء) is this edition's p. 89, the owner's p. 366 (عمل الفعل) this edition's p. 455; every quote taken from it
+  carries this edition's page as `web_page` (and the Shamela page as `shamela`). Used by v360-Sh: the Shudhūr rules made verbatim, the
+  unread half (from عمل الفعل, this edition's pp. 455–602) ledgered (`content/rules/toc_shudhur_sharh.json`,
+  `coverage_shudhur_sharh.json`). The received matn file is never changed on this text's authority.

@@ -243,3 +243,33 @@ re-run alone before a push — the door is 1.07–1.10 s alone (budget 1.8).
 Waiting on people: the hoca's reviews (the workbook sent on 2026-11-27 from `scratchpad/hoca_book.py`; the review lists named in
 CLAUDE.md's last sections); the Azure Speech resource's region for the man's voice. Left for the hoca, not for agents (they
 change authored lines): the tāʾ segments, the kit wording.
+
+## 2026-11-27 10:30 UTC
+
+Landed since 09:32: `f239eca` v358-T (eight Ṭabaqāt stories, levels 2–6; 110 stories), and with this entry v360-Sh (Sharḥ Shudhūr
+whole) plus the fix of a red CI.
+
+**CI was red from `e83ba83` to `f239eca`; the whole suite run locally on `f239eca` (589 of 595) named it:** (1) «wave 74» — the
+search for «إِنَّ» listed the new Amthila notes before the note of إِنَّ (the fold matches «ـان» inside any title and the new group
+sorts first): `DoctrineSearch.word362` now ranks a whole-word title match above a substring. (2) Two FALSE «unsaid» readings the
+Ṭabaqāt's akhbār showed, fixed in `HadhfEngine` rule 22: «قَالَ رَجُلٌ لِأَبِي بَكْرٍ» (the doer, then the one addressed) and «يَقُولُونَ
+رَبُّكَ اللَّاتُ» (a whole sentence). (3) Pins the new stories moved, each re-measured with its reason in the check: wave 184 «مَا»
+wrong 56 → 57 («بَعْدَ مَا طُعِنَ», an engine miss), the Tartīb audit 2684/1015/0, the Hadhf rate with the Ṭabaqāt measured apart
+(the v333 rule). (4) «v349 voice A/B» read slow under load 5 and passes alone. **Lesson, now the rule for the remaining merges:
+a STORY wave's merge subset includes wave 74, wave 184, v316, v334 and v349 — or the whole suite runs in the spare worktree
+(qissa-sarf) before the push.**
+
+Reported and waiting to merge (snapshots committed on their branches): v359-S instalment 1 (`95728b1`, chapters 101–106, 520
+tokens), v361-N (`3db1de6`, pronoun ladders on 20,687 tokens, 722 followers, 6,379 class-given signs, 26 engine misreads fixed).
+
+Running:
+| wave | worktree / branch | scratch folder | job | progress |
+|---|---|---|---|---|
+| v359-S | qissa-speed · tmp/sira359 | sira359 | the Sīra's second instalment, chapters 107+ | chapter 110 authored; 111–112 next |
+| v361-D | qissa-feed2 · tmp/determ361 | determ361 | the engines' order-dependence; مَحْسِبٌ; Ibn ʿAqīl's last four ⚠ rows | built; its subset running |
+
+Then: merge v359-S (1) + v361-N together (re-measure v345 Sign / taʿalluq / v345-D, wave 184, Hadhf, Tartīb on the merged tree —
+both story waves pinned from older bases), then v361-D + the Sīra's second instalment, then ONE optimisation pass alone on the
+machine (it includes the windowed chapter render the Sīra needs before ~30 chapters), APK + Pages, the closing entry.
+For the next engine work order (not this round): «بَعْدَ مَا» + verb read as a built noun; v360's four ⚠ rows (SH445.1, SH517.1,
+SH535.1, SH543.1); the search's substring fold on two-letter terms.
