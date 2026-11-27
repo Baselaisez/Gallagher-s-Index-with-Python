@@ -12,6 +12,9 @@ on:
       app_voice:
         description: "(v349) render the app's own voice (eSpeak NG, robotic) into the site — 'true' ships it; OFF until the owner has heard the samples and said yes"
         default: 'false'
+      voice_engine:
+        description: "(v355) who speaks the app's reading when app_voice is 'true': 'espeak' (v349, robotic) or 'azure' (a neural voice; needs the repository secret AZURE_SPEECH_KEY and the variable AZURE_SPEECH_REGION — the owner's Speech resource)"
+        default: 'espeak'
 
 permissions:
   contents: read
@@ -55,6 +58,8 @@ jobs:
       - name: The app voice's cache key
         if: ${{ inputs.app_voice == 'true' }}
         id: vkey
+        env:
+          QISSA_VOICE_ENGINE: ${{ inputs.voice_engine }}
         run: cd arabic-app && echo "key=$(python tools/voice_app.py --key)" >> "$GITHUB_OUTPUT"
       - uses: actions/cache@v4
         if: ${{ inputs.app_voice == 'true' }}
@@ -66,6 +71,9 @@ jobs:
         if: ${{ inputs.app_voice == 'true' }}
         env:
           PYTHONUTF8: '1'
+          QISSA_VOICE_ENGINE: ${{ inputs.voice_engine }}
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ vars.AZURE_SPEECH_REGION }}
         run: |
           ffmpeg -version | head -1
           ffmpeg -hide_banner -encoders 2>/dev/null | grep -qE '^ A[.A-Z]+ aac ' || { echo "::error::ffmpeg has no AAC encoder — the app voice cannot be written"; exit 1; }

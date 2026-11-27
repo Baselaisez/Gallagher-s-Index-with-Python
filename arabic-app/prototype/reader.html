@@ -7754,7 +7754,7 @@ class Voice347 {
     // (v349) the app's own voice is always a choice — the only one, with the device's fix beside it, when the device has none
     const own = !Own349.reachable() ? "" : `<div class="vs347-row vs349-own"><label><input type="radio" name="vs347" value="${OWN349}"${want === OWN349 || (!vs.length && this.status !== "pending") ? " checked" : ""}>
         <span class="vs347-n">${E(U.o349Auto)}<small>${E(U.o349Sub)} · <button type="button" class="o349-why" data-o349-why>${E(U.o349Why)}</button></small></span></label>
-        <button type="button" class="btn vs347-try" data-vs-try="${OWN349}">${E(U.l347Try)}</button></div><p class="o349-note" hidden>${E(U.o349Note)}</p>`;
+        <button type="button" class="btn vs347-try" data-vs-try="${OWN349}">${E(U.l347Try)}</button></div><p class="o349-note" hidden>${E(Own349.note())}</p>`;
     if (this.status === "pending" && !vs.length) body = `<p class="ref-intro">${E(U.l347Looking)}</p>`;
     else if (!vs.length) body = (own ? `<p class="ref-intro">${E(U.o349Own)}</p><div class="vs347-list" role="radiogroup" aria-label="${E(U.l347Sheet)}">${own}</div>` : "") + this.noneHtml();
     else body = `<div class="vs347-list" role="radiogroup" aria-label="${E(U.l347Sheet)}">${own}${[{ voiceURI: "", name: U.l347Auto, auto: true }].concat(vs).map(v => `
@@ -7765,7 +7765,8 @@ class Voice347 {
     sheetInner.innerHTML = `<div class="vs347"><h3 class="welcome-h">${E(U.l347Sheet)}</h3><p class="vs347-path">${E(this.own() ? U.o349Auto + " — " + U.o349Sub : this.path() === "native" ? U.l347PathNative : U.l347PathWeb)}</p>${body}
       <p class="vs347-sample"><small>${E(U.l347Sample)}</small><span lang="ar" dir="rtl">${E(this.sample())}</span></p></div>`;
     sheetInner.querySelectorAll('input[name="vs347"]').forEach(r => r.addEventListener("change", () => { setVoice(r.value); try { Listen347.render(); } catch (e) {} }));
-    sheetInner.querySelectorAll("[data-o349-why]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); const n = sheetInner.querySelector(".o349-note"); if (n) n.hidden = !n.hidden; }));
+    sheetInner.querySelectorAll("[data-o349-why]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); const n = sheetInner.querySelector(".o349-note"); if (!n) return; n.hidden = !n.hidden;
+      if (!n.hidden) { n.textContent = Own349.note(); if (!Own349.vid) Own349.site().then(() => { n.textContent = Own349.note(); }); } }));
     sheetInner.querySelectorAll("[data-vs-try]").forEach(b => b.addEventListener("click", () => {
       if (playAllActive) Listen347.pause(); else { speakGen++; stopNarration(); }
       if (b.dataset.vsTry === OWN349) { const f = SENTENCE_FLAT[playAllIdx >= 0 ? playAllIdx : 0]; if (!f) return;
@@ -7798,6 +7799,7 @@ Object.assign(L.en, {
   o349Name: "The app's own voice", o349Auto: "The app's voice (automatic)", o349Device: "The device's voice", o349Rec: "Recording",
   o349Sub: "Qissa's own reading of every vowel — a machine voice, not a teacher's recitation · fetched on first listen, then offline",
   o349Note: "An automatic voice: it says every written vowel and case ending (the test set: 30 of 30 sentences), but it sounds robotic and says ظ like ذ. A teacher's recording, where there is one, always plays instead.",
+  o355Note: "An automatic voice: the app's own reading of every written vowel and case ending, spoken by a neural voice of Microsoft Azure and prepared before publishing. It is synthetic, not a teacher reciting; a teacher's recording, where there is one, always plays instead.",
   o349Why: "what is this?", o349Prep: "preparing…", o349Get: "Fetching the app's voice… {p}", o349Ask: "Voice file {mb} MB — download", o349Cancel: "Cancel",
   o349Fail: "The app's voice could not be fetched here (offline, or not published for this story).", o349Own: "This device has no Arabic voice — Qissa reads with its own.",
 });
@@ -7805,6 +7807,7 @@ Object.assign(L.tr, {
   o349Name: "Uygulamanın sesi", o349Auto: "Uygulamanın sesi (otomatik)", o349Device: "Cihazın sesi", o349Rec: "Kayıt",
   o349Sub: "Qissa'nın her harekeyi okuyan kendi sesi — makine sesi, hoca kıraati değil · ilk dinleyişte indirilir, sonra internetsiz çalışır",
   o349Note: "Otomatik bir ses: yazılan her harekeyi ve i'râb sonunu söyler (deneme: 30 cümlenin 30'u), ama mekanik çıkar ve ظ'yi ذ gibi söyler. Bir hocanın kaydı varsa her zaman o çalar.",
+  o355Note: "Otomatik bir ses: uygulamanın her harekeyi ve i'râb sonunu okuyuşu, Microsoft Azure'un bir sinir ağı sesiyle, yayından önce hazırlanmış. Yapay bir sestir, okuyan bir hoca değildir; bir hocanın kaydı varsa her zaman o çalar.",
   o349Why: "bu nedir?", o349Prep: "hazırlanıyor…", o349Get: "Uygulamanın sesi indiriliyor… {p}", o349Ask: "Ses dosyası {mb} MB — indir", o349Cancel: "Vazgeç",
   o349Fail: "Uygulamanın sesi burada alınamadı (internet yok ya da bu hikâye için yayımlanmamış).", o349Own: "Bu cihazda Arapça ses yok — Qissa kendi sesiyle okur.",
 });
@@ -7822,7 +7825,10 @@ class Own349 {
   // said yes): found once, when a story's voice is missing AND the shelf's own index answers 4xx. From then on the app's voice is
   // not offered and v347's behaviour stands, without a failure line per story. A network error (offline) decides nothing.
   static off = false; static _site = null;
-  static site(){ return this._site || (this._site = this.get(this.base() + "narration/app-voice.json").then(() => true, e => {
+  // (v355) which voice the site publishes — eSpeak (app349) or the hosted neural voice (azure355): its note says so
+  static vid = null;
+  static note(){ return this.vid && this.vid !== "app349" ? ui().o355Note : ui().o349Note; }
+  static site(){ return this._site || (this._site = this.get(this.base() + "narration/app-voice.json").then(b => b.text()).then(t => { try { this.vid = JSON.parse(t).id || this.vid; } catch (x) {} return true; }, e => {
     if (/^HTTP 4\d\d/.test(String(e && e.message || ""))) { this.off = true; this.say(null); } else this._site = null; return false; })); }
   static fail(){ this.site().then(() => { if (!this.off) this.say({ k: "fail" }); }); }
   static metered(){ const c = navigator.connection; return !!(c && (c.saveData || /cellular/.test(c.type || "") || /(^|-)[23]g$/.test(c.effectiveType || ""))); }
@@ -7838,7 +7844,7 @@ class Own349 {
     const blob = new Blob(parts, { type: r.headers.get("content-type") || (/\.json$/.test(url) ? "application/json" : "audio/mp4") });
     if (c) { try { await c.put(url, new Response(blob, { headers: { "content-type": blob.type, "content-length": String(blob.size) } })); } catch (e) {} }
     return blob; }
-  static index(st){ if (!this.idx.has(st.id)) this.idx.set(st.id, this.get(this.url(st, "index.json")).then(b => b.text()).then(t => JSON.parse(t)).catch(() => { this.idx.delete(st.id); return null; }));
+  static index(st){ if (!this.idx.has(st.id)) this.idx.set(st.id, this.get(this.url(st, "index.json")).then(b => b.text()).then(t => { const j = JSON.parse(t); if (j && j.voice && j.voice !== "stand-in") this.vid = j.voice; return j; }).catch(() => { this.idx.delete(st.id); return null; }));
     return this.idx.get(st.id); }
   static say(k){ this.line = k; try { Listen347.render(); } catch (e) {} this.paint(); }
   // the status line when the bar is not up (a single sentence's ▶); inside the bar it is the bar's own note
