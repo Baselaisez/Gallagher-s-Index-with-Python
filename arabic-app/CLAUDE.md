@@ -17802,3 +17802,69 @@ Level 1 had two notes; it now has 21. Worktree `arabic-app`, scratch emsile359.
   reviewed like a word (TR left on by the previous filtered check), wave 120 Muḥallil, v320 (the review nudge, deck state of the filtered run);
   «v341 — the door before the bodies» is timing only under load 7–9 from other agents: A/B with a build without the notes — base PASS ×2,
   with the notes 1863 ms / PASS, then 2214 / PASS / PASS (budget 1800).
+## v361-N — the reasons' second pass
+
+The «Neden?» chain's second pass, from v357-N's «left» list: the pronoun INSIDE a word, the follower's place, the lines that state a case without
+its sign, and the review list split into the engine's misreads and the author-side candidates. All code is in `Illa346` / `Naw357` (a block at the end
+of `Naw357`, marked «(v361-N)») and, for item 4 only, `SignEngine.classify` (one narrow guard + `SignEngine.joinedAlif361`). No story was edited.
+
+- **The pronoun in this word** (`Naw357.prons / pron1 / pronSteps / pronShort / pronHtml / pronsOf`). `Illa346.read` now keeps the clauses it sets aside
+  (`r.aside`). A set-aside clause about a pronoun OF THIS WORD — an attached one («وَالْهَاءُ / وَتَاءُ الْمُتَكَلِّمِ / وَوَاوُ الْجَمَاعَةِ / وَالْيَاءُ / و«نَا» / وَالضَّمِيرُ …», the
+  letters checked against the token's last letters) or the hidden one («وَالْفَاعِلُ / وَنَائِبُ الْفَاعِلِ / وَاسْمُهُ ضَمِيرٌ مُسْتَتِرٌ …») — and a jarr letter's own pronoun clause
+  («الْبَاءُ حَرْفُ جَرٍّ، وَالْهَاءُ مَجْرُورٌ», first clause only) gets its own SHORT ladder: naw (attached: «… one of the attached pronouns of naṣb, by the place the
+  line gives it» + Marāḥ's line for that kind; hidden: «… carries a pronoun hidden in it — {role}: «هُوَ», as the line estimates it» + Marāḥ's «يَسْتَتِرُ فِي خَمْسَةِ
+  مَوَاضِعَ» and «وَاسْتَتَرَ فِي الْمَرْفُوعِ دُونَ الْمَنْصُوبِ وَالْمَجْرُورِ …») → bina (v357's pronoun sentence, Shudhūr «والمُضْمَرَاتُ …», ilal-aqil-30-1; «built on X» only as the
+  clause writes it) → irab (maḥallī only, izMabni) → role (as the clause names it; «اسمها» on a particle = inna's) → place (the clause's «فِي مَحَلِّ …» or case word;
+  else v357's rule — the role's family requires one state, the clause silent — marked deduced) → for the hidden one, wujūb only where the FORM decides it
+  (a muḍāriʿ with أنا / نحن / أنت, an amr with أنت: Marāḥ «وَالِاسْتِتَارُ وَاجِبٌ فِي مِثْلِ افْعَلْ وَتَفْعَلُ وَأَفْعَلُ وَنَفْعَلُ») or the line says «وجوبا», jawāz only where the line
+  says «جوازا». At most two per word, OUTSIDE the host's `steps` (v346 / v357 chains, counts and checks unchanged); read lazily (`pronsOf(ch)`, kept on the chain).
+  **Yields** (no ladder, `r.review361` → the review list): a place against the role's family, a place the host cannot give (Marāḥ: rafʿ / naṣb on a verb, jarr on a
+  noun or a jarr letter, naṣb on inna — the host by the token's pos), a hidden pronoun not in rafʿ, «جوازا» where the form makes it wājib. Term chips open the
+  level-one notes (`Naw357.PN`: emsile-12 rafʿ + the hidden one, 14 naṣb, 16 jarr, 17 the map).
+  **Where it shows**: the word sheet — a `<details class="illa-pron">` per pronoun inside `#illa346`, after the host's ladder, closed («Bu kelimedeki zamir ·
+  muttasıl zamir → mebnî → mahallen mansub»; the hidden: «Gizli (müstetir) zamir · müstetir zamir → mebnî → mahallen merfû (çıkarım) → vücûben gizli»), 44 px
+  summaries, indented (`.illa-pron`); the sentence sheet's row — one extra phrase «· zamir: …»; the game feedback — when the asked role (the role game's
+  `it.key`) is the pronoun's and not the host's, the pronoun's ladder IS the feedback (`data-pron`).
+- **The follower's place** (`Naw357.follow`, a «follow» step after the governor). The followed word: AmilEngine's «tābiʿ» link (as v346's governor step reads it,
+  now shared via `ctx._amx`) or the word the line itself names («نَعْتٌ لِـ«…»» → the nearest token before it with those letters). Its state as ITS chain reads it
+  (`read` → `Naw357.of` → `place`): maḥallan (a built word, stated or deduced — then «the followed word's place is itself deduced»), taqdīran («مقدرة» in its line)
+  or plain. «{role} follows «X», which is manṣūb by its place (maḥallan) — and its own line gives it the same» / a silent follower «— so it is … too» marked
+  deduced (`s.df`). Book lines: Ibn ʿAqīl p. 865 (3:190) «التابع: هو الاسم المشارك لما قبله في إعرابه مطلقا» and Ibn Mālik's verse «يتبع في الإعراب الأسماء الأول …». A follower
+  whose own line states another case gets nothing (counted).
+- **A case with no sign** («فَاعِلٌ مَرْفُوعٌ.», `Naw357.fromCls`): only when the WHOLE line is silent on sign and class, and SignEngine is certain of the class from
+  the token's morphology — a sound singular that IS its glossary lemma (lemma not maqṣūr / manqūṣ) carrying the article, a tanwīn or a pronoun (so no diptote), a
+  sound muḍāriʿ whose lemma ends in a sound letter (no final nūn), or a class tagged on the token (mamnūʿ) — and that class has one heard sign for the case; a
+  written final vowel must agree. Step: kind «irab», `cls` «lafzi:…:cls», `s.dc`, «{w} is muʿrab — a singular noun: in marfūʿ its sign is ḍamma; its iʿrāb is
+  lafẓī … (the line does not write the sign; the word's class gives it)» / tr «(satır alâmeti yazmıyor; kelimenin çeşidi veriyor)». **Proof** in the measure: the
+  rule read on every line that DOES write its sign (as if it did not) and against every written-sign line for the same lemma, case and written word.
+  Contradictions found: sahih 4 (al-usul-al-munifa's «مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ» on دِينَكُمْ / دِينَهُ / دُونَهُ / الْمِسْكِينَ), the dual 1 and the sound plural 1
+  («مَجْرُورٌ بِالْكَسْرَةِ» on اسْمَيْنِ / لِلصَّابِرِينَ), and «أَبًا» «مَنْصُوبٌ بِالْأَلِفِ» in the same-word test → `CLS_OFF361` = jamMudhakkar, muthanna; `LEX_OFF361` = din,
+  duna, miskin, ab (those lemmas get no class-given sign; the lines are on the review list). **For the orchestrator**: the brief says «a contradiction → no step for
+  that class»; for sahih the switch-off is per LEMMA (the four lines are one author slip family); `CLS_OFF361.push("sahih")` is the literal reading (−5,566 steps).
+- **SignEngine's misreads** (item 4). `SignEngine.joinedAlif361`, consulted before the «weak alif» maqṣūr rule when the bare word ends in ما / ها / نا: a ẓarf
+  with «مَا» joined (بَيْنَمَا، بَعْدَمَا …) and the alif of an attached pronoun after a stem that IS the lemma (سَعْيَهَا، لَهْوُهَا، أَرْضِنَا، وَالِدَنَا، مَاشِيَتُنَا) are not maqṣūr
+  (ثَانِيهَا → manqūṣ). The kilā rule no longer fires on a hamza (كَلَإٍ) or on a lemma that is not كِلَا / كِلْتَا (كُلًّا). `Illa346.classOf` reads the class without a final
+  alif the line itself calls «لِلْإِطْلَاقِ» / «مُنْقَلِبَةٌ عَنْ يَاءِ الْمُتَكَلِّمِ» (السِّمَانَا، غُلَامَا، أَهْضَمَا). SignEngine.audit unchanged (35,564 / 35,504).
+- **The review list** `research/irab-kind-review-2026-11-27.md`, regenerated by scratch `naw361/rev_md361.py` from the measure before / after: **A1 fixed in the
+  engine 26** (they left the list; each with its fix) · **A2 the engine's / reader's misreads not fixed 9** (6 a jarr letter and its pronoun / «مَا» in one clause; 1 a
+  token whose glossary entry is a particle — لِلْمَمَالِيكِ; 2 a final yāʾ the engine reads as the verb's while the line calls it a pronoun) · **B author-side candidates 140**
+  (v357's 133 — e.g. 65 maqṣūr and 27 weak muḍāriʿ with a heard sign —, v361's pronoun clauses 3, v361's class-sign lines 4). v357's list: 168 → 142.
+- **Measure** (`Illa346.measure().v361`, every authored token, 90,147): pronoun ladders on 20,687 tokens — attached 13,940 (places: rafʿ 3,358, naṣb 2,744, jarr
+  7,717), hidden 8,106 (rafʿ 7,990); deduced places 12,923; wājib by the form 1,159, by the line 668, jāʾiz by the line 41; yields 3; followers 722 (plain 665,
+  taqdīran 39, maḥallan 18; deduced 56; 13 followers whose line disagrees with the followed word, not shown); class-given signs 6,379 (sahih 5,566, sound muḍāriʿ
+  804, mamnūʿ 9) of the 10,931 «case stated, no sign» tokens; the rule against 17,083 written signs: 4 (all in LEX_OFF361); same lemma / case / word 3,742 compared,
+  0 against. **Contradictions 0** — v346's test, v357's test, the pronoun ladders' (a stated place against its clause, a deduced place where the clause names a case,
+  a hidden pronoun not in rafʿ) and the same-word test.
+- **Cost** (2,000-token sample, best of 15, one page): `Illa346.chain` 52.65 → 53.8 µs per token (+2 %; the parts: the follower 2.5, the class-given sign 0.8, the
+  aside clauses in `read` 0.75 µs per token averaged; AmilEngine is 40 of the 53); `senHtml` over 300 sentences, three alternated page loads: medians 283 → 288 ms
+  (+2 %). The pronouns are read only when shown (`pronsOf`); the follower reads the followed word's line, not its chain; `fromCls` runs cheap tests before the
+  classifier and keeps its results. New code ≈ 27 KB raw in the core; no data; nothing on the door's path.
+- **Checks** (before v333): «v361 — the reasons' second pass …» (the owner's forms on corpus tokens in tr + en: the تُ of وَرِثْتُ-like māḍī, the هُ of a verb's object
+  with the hidden fāʿil beside it, the هِ / هَا after a jarr letter, the speaker's ي on a noun, the hidden pronoun jāʾiz by the line and wājib by the form; the host's
+  steps identical with and without the pronouns; a follower; a sign-less line; SignEngine's alif fix on nine words; the 8 PQ lines verbatim on their Marāḥ / Ibn ʿAqīl
+  page; en/tr template keys; contradictions 0; the class rule's contradictions all switched off; floors) and «v361 — … where they show, at 390 px» (two closed
+  44 px pronoun ladders under the host's, the deduced row, a chip opening an emsile note, the sentence row's extra phrase, the game feedback for an asked object
+  pronoun, the follower's and class-given rows marked, no overflow, v320 contrast in three themes). **Older checks changed: none.** **Finish**: check_i18n clean; the refit chain ran (irab_model 2,435 weights over 75,015 rows); the named subset: 47 PASS, 2 FAIL — «v341 — the door before the bodies» (timing only, 2,646 ms at load ≈ 7.5) and «v361 — … at 390 px» (a `waitForSelector` timeout after a filtered neighbour); both re-run alone: PASS (with the v361 logic check). `tools/inventory.py --write`: additions only (25 ui keys per language).
+- **Left**: the 4,552 sign-less lines whose class is not certain (diptotes without the article, plurals, nouns that are not their lemma); a follower whose followed
+  word neither AmilEngine nor the line names (≈ 6,700 of the 7,494 followers); a pronoun inside a word whose line parses it in the HOST's clause without a comma
+  (A2's six); the en/tr renderings await the hoca.
