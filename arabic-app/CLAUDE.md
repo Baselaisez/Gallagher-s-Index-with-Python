@@ -17477,3 +17477,57 @@ the top option's adapter is built so that ONE decision (an Azure Speech key in t
   30 sentences, no phone outside the set, refuses without a key; the sample SSML carries the reading; voice_app --engine azure
   stops without a key; the eSpeak sample still verifies; the workflow takes the key from secrets, engine eSpeak and the voice OFF by
   default; no key literal; the note follows `Own349.vid` in en and tr). Older checks changed: none.
+
+## v356-G — nothing is lost
+
+The owner, 2026-11-27: «Optimisation and speed, with features, rules, qawāʿid, grammar roles, engines and stories kept / saved,
+is crucial.» Seven speed waves and a dozen merges each proved their own change; nothing stated in ONE place what the app holds.
+Now `content/inventory.json` does, and a guard refuses to see any of it shrink. No engine, UI or story was edited.
+
+- **`tools/inventory.py`** (+ `tools/inventory_probe.js`, the in-page half, run in a fresh page by `tools/inventory_prove.js` or
+  on the suite's open page) → `content/inventory.json` (~415 KB, sorted, deterministic; one key per line, each id list on one
+  line). Sections: `stories` (per package: shelf, level, chapters, sentences, tokens, hashes `text` = every token's
+  `surface.full` in order, `irab` = ar/en/tr lines with the Turkish the build adds from `content/i18n/irab-tr.json`, `gloss` =
+  translations + glossary + morphology), `totals` (per shelf and `(all)`), `notes` (id → examples, hash), `catechism` (book →
+  item ids), `rules` (every `content/rules/*.json`: hash, record lists `{n, ids}` — ids from the first of id/key/n/name/entry
+  that is unique — plus `status` counts and the ledger's own `counts` as information), `engines` (all classes; every class's
+  UPPER-CASE static array/object/Map/Set with its row ids — RULES, GATES, SEAT, DOORS, CATALOGUE …), `features` (games =
+  `GameFactory.CATALOGUE`, labs = `LAB_TOOLS`, shelves = `LIB_SOURCES`, word-sheet tabs = `tabB("…")`, Today steps =
+  `{ id: "…", label: U.…`, Settings sections = `openDoorSettings340`'s groups and `X.settingsHtml()/html()`, `ui` = `L[lang]`
+  keys, `storage` = the `qissa-*` keys the code names), `page` (the built page's STORIES / GRAMMAR / CATECHISM / ILAL must equal
+  the tree — `mismatch` must be empty), `hosted` (pubsplit into a temp folder, removed after: every story's body with the same
+  text hash, every note's merged examples, catechism, reasons, data const, class, tab, step, section, storage key, game, lab and
+  shelf id reachable; slices' names and sizes — information only).
+- **How the guard decides** (`compare`): the inventory is flattened into atoms (id sets and counts). An id that disappears or a
+  count that falls FAILS, named (`notes: afal-khamsa`, `stories/ashab-al-fil/sentences 9→8`,
+  `engines/tables/Nahw342Engine/RULES: demHa`, `features/games: gLimadha`, `rules/ilal.json/lists/reasons: …`). A story whose
+  `text` hash changed fails unless a NEW line of `content/inventory-accepted.jsonl` (`{"date","what","why","by"}`, `what` =
+  the package id, optionally `id: detail`) names it — that line also covers its counts. Lines already folded in by the last
+  `--write` are spent (`accepted_lines`); deleting a recorded line fails. A changed `irab` / `gloss` hash passes and is counted.
+  Additions pass and are listed. `page.mismatch` / `hosted.missing` non-empty fails. Status shifts, hashes of rule files and
+  notes, levels and slice names are information, never failures.
+- **Commands**: `--write` (the developer's step after adding content or rules; prints what it absorbed), `--check` (exit 1 on
+  loss; `--json` one line; `--page-json F` reuses an in-page read; `--files-only` = the tree half, ~2 s), `--diff` (same report,
+  exit 0), `--selftest`. Full `--check` ≈ 9 s (80 MB page parse, pubsplit, split-copy parse) + 4 s for a fresh probe.
+  `SMOKE_READER` points it at another page. When engine agents add rule rows, `--check` passes and lists them; the orchestrator
+  runs `--write` after the merge.
+- **The proof it bites** (`--selftest`, in-memory copies, no file touched; the smoke check runs it): (1) one sentence popped from
+  `ashab-al-fil`'s chapter 1 through the same `story_entry` path → `stories/ashab-al-fil/sentences 9→8`, `tokens 37→33`,
+  `ashab-al-fil (text)`; (2) the first id of `Nahw342Engine.RULES` (`demHa`) dropped → `engines/tables/Nahw342Engine/RULES:
+  demHa`; (3) the last game (`gLimadha`) dropped → `features/games: gLimadha`; and the unaltered inventory compares clean. Also
+  run once for real on a scratch copy of reader.html with the `demHa:` row and the `gLimadha` CATALOGUE line deleted
+  (`SMOKE_READER=… --check`): FAIL with `GameFactory/CATALOGUE: gLimadha`, `Nahw342Engine/RULES: demHa`, `features/games:
+  gLimadha` (scratch removed).
+- **Release**: `tools/release.py` step 4 runs `inventory.py --check --files-only` («nothing is lost (tree …)») — the only edit.
+- **Totals** (`research/inventory-2026-11-27.md`): 102 stories / 899 chapters / 7,320 sentences / 90,147 tokens on 12 shelves;
+  335 notes, 2,087 examples; 15 catechism books, 591 items; 77 rule files (Alfiyya 1,006 verses, 156 reasons, 54 ledgers with
+  6,586 entries); 119 classes, 95 with 368 static tables, 5,300 rows; 51 games, 39 labs, 4 tabs, 6 Today steps, 7 Settings
+  sections, 1,616 strings each in en/tr, 49 storage keys; hosted: app.js + 30 files.
+- **Found while building it**: 4 grammar notes name a `relatedNotes` id that does not exist (`jawab-al-talab → jazm-al-mudari`,
+  `anwa-ma → ma-nafiya`, `ilm-al-badi → fasaha-balagha`, `tajrid → mubalagha`); `sarf_ledger_probes.json` has no unique row key
+  (4,260 probes; `id` is the meaning kind and repeats, and no other field is unique either) so it is guarded by count;
+  class `adds` is declared inside a scope (not reachable as a global) and carries its tables unseen; seven engine tables hold
+  repeated values by design (paradigm cells), guarded by count.
+- **Smoke** (before «v333»): «v356 — nothing is lost: …» — evaluates the probe on the open page, `--check --json --page-json`,
+  logs the run time, additions and the iʿrāb / translation change counts, fails naming up to 12 losses; then `--selftest` must
+  report three bites. Older checks changed: none.

@@ -20529,6 +20529,23 @@ print(json.dumps(bad))`], { cwd: path.resolve(__dirname, '..'), input: JSON.stri
     if (r.none !== r.esp || !/ظ/.test(r.esp) || !/Azure/.test(r.az) || /ظ/.test(r.az) || !/Azure/.test(r.tr || '')) throw new Error('the note does not follow the voice: ' + JSON.stringify(r));
   });
 
+  await check('v356 — nothing is lost: tools/inventory.py --check rebuilds the inventory of what the app holds (every story\'s counts and the hash of its received text and vowels, the notes and their examples, the catechism, the rule tables, every engine class and its rule ids, the games, labs, shelves, word-sheet tabs, Today steps, Settings sections, ui() strings and storage keys; the built page and the hosted split copy hold them all) from the tree and THIS open page and compares it with content/inventory.json — anything removed fails by name, a story\'s text changes only through content/inventory-accepted.jsonl, additions pass and are listed; --selftest\'s three bites (a sentence, an engine rule row, a game) each fail', async () => {
+    const { spawnSync } = require('node:child_process'), fsx = require('node:fs'), os = require('node:os');
+    const probe = await page.evaluate(s => (0, eval)(s)(), fsx.readFileSync('tools/inventory_probe.js', 'utf8'));   // the page the suite has open: no second boot
+    const pj = path.join(os.tmpdir(), 'inv356-' + process.pid + '.json'); fsx.writeFileSync(pj, JSON.stringify(probe));
+    try {
+      const t0 = Date.now();
+      const r = spawnSync('python3', ['tools/inventory.py', '--check', '--json', '--page-json', pj], { encoding: 'utf8', maxBuffer: 64e6, timeout: 900000 });
+      let j = {}; try { j = JSON.parse((r.stdout || '').trim().split('\n').pop() || '{}'); } catch (e) {}
+      if (!Array.isArray(j.removed)) throw new Error('inventory.py --check did not answer: ' + ((r.stderr || '') + (r.stdout || '')).slice(-400));
+      console.log('  v356 inventory (' + (Date.now() - t0) + ' ms): added ' + j.added.length + (j.added.length ? ' [' + j.added.slice(0, 6).join(' | ') + ']' : '') + '; irab hashes changed ' + j.irab_changed + ', translation hashes changed ' + j.gloss_changed + (j.accepted.length ? '; accepted ' + j.accepted.join(' | ') : ''));
+      if (!j.ok) throw new Error('LOST: ' + [...j.removed, ...j.changed_text.map(x => x + ' — not in content/inventory-accepted.jsonl'), ...j.problems].slice(0, 12).join(' | ') + ' (if deliberate: record it, then python3 tools/inventory.py --write)');
+      const s = spawnSync('python3', ['tools/inventory.py', '--selftest', '--json', '--page-json', pj], { encoding: 'utf8', maxBuffer: 64e6, timeout: 900000 });
+      let t = {}; try { t = JSON.parse((s.stdout || '').trim().split('\n').pop() || '{}'); } catch (e) {}
+      if (!t.ok || (t.bites || []).length !== 3 || t.bites.some(b => !b.failed_as_it_must)) throw new Error('the guard does not bite: ' + ((s.stdout || '') + (s.stderr || '')).slice(-500));
+    } finally { fsx.rmSync(pj, { force: true }); }
+  });
+
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses), Zuhayr (62) and ʿAntara (75) and Labīd (88, both v335) and Ṭarafa (103, v336) and ʿAmr ibn Kulthūm (103) and al-Ḥārith ibn Ḥilliza (82, both v337) on the «Poetry» shelf — the seven complete — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
