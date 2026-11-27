@@ -360,3 +360,25 @@ tokens.» Read as the go-ahead for the engine work order the closing entry liste
   Speech resource yet (West Europe is fine); the key comes through the secure form when he says it is ready. The app's voice
   stays off.
 Still waiting for the hoca's reviews; nothing else is running.
+
+## 2026-11-27 23:32 UTC — v364-V: the open voices on Hugging Face — none passes; no code; the voice stays off
+
+The owner: «You are the one who will provide the voice resources and plays.» He will not open an Azure resource; he
+allowed `huggingface.co` and `us.aws.cdn.hf.co` on the Default environment for downloads, on the condition that nothing
+of the project is uploaded (nothing was). One agent, about 210,000 tokens (`scratchpad/V364_BRIEF.md`).
+- CORRECTION of v355-V: `MBZUAI/speecht5_tts_clartts_ar` (ArTST on ClArTTS) is CC BY-NC 4.0 on its own card — out for a
+  paid app. Round 1 had «MIT tag + CC BY 4.0 data» from a search excerpt.
+- Screened on the cards themselves: Qwen3-TTS CustomVoice (no Arabic), MOSS-TTS-Nano (no licence file, remote code),
+  Spark-TTS-Arabic (NC base), StyleTTS2-arabic (gated data), two MIT uploads and four others (unknown data / NC base),
+  VoxCPM2 (5 GB, data unnamed) — all out.
+- Run on the 30-sentence set (calibration voice 5.1 % letter error, 2 short vowels said long):
+  VITS-OpenBible — 11.1 %, 3 said long, one sentence garbled, ط heard 1/3; fast (0.16 s per second of audio); the model
+  CC BY-SA 4.0, the dataset card without a licence.
+  Chatterbox multilingual (MIT; a man's reference clip from ClArTTS, CC BY 4.0) — 6.6 %, 1 said long, emphatics all but
+  one heard, but one sentence cut to a word; 2.78 s per second of audio (the shelf ≈ 45 h on 4 cores); training data
+  undisclosed. Neither takes phonemes.
+- Samples for the owner's ear (the same Level-1 opening, 30 s): `scratchpad/voice3/sample-vits-openbible-NOT-SHIPPABLE-AS-IS.m4a`,
+  `scratchpad/voice3/sample-chatterbox-ml-clartts-ref-NOT-SHIPPABLE-AS-IS.m4a`. Not judged by ear by anyone yet.
+- What stands: «Dinle» with the device's own Arabic voice; the app's built voice (eSpeak) off; the Azure adapter built,
+  unused. The owner's choices now: his own Azure resource (the only route that takes the app's reading as phonemes), the
+  hoca's recordings, or accepting Chatterbox with a consenting speaker's reference clip and its open questions.

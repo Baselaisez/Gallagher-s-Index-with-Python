@@ -18249,3 +18249,41 @@ The Ṭabaqāt stories and al-Nadwī's Sīra exposed engine misreadings already 
   Smoke «v363 — the misses the new stories exposed». Moved pin: `LEX_OFF361` drops «ithnayn-monday» (SignEngine now reads it as the dual's).
   Left: 107:s6:11 / 108:s6:16 (a nominal clause opened by وَذٰلِكَ / وَالْفَرْقُ as a wall), «بَعْدَ مَا», «فِيمَا بَعْدُ», «وَعَلَى رَقَبَتِهِ أَثْوَابٌ»,
   talkhis 14:s4:2 «يَوْمِ الدِّينِ» — not decided by a contained rule this wave.
+
+## v364-V — the open voices on Hugging Face (tag `voice364`)
+
+The owner allowed `huggingface.co` / `us.aws.cdn.hf.co` for DOWNLOADS only (nothing of the project uploaded). Round 2 of v355-V's
+bar, same 30-sentence set and measure (Whisper-small int8 via sherpa-onnx 2.0.3, letter error on bare letters; calibration =
+round 1's kareem fed the app's reading: CER 5.1 %, 2 inner long vowels). Scratch: `…/scratchpad/voice3/` (scripts, ASR json,
+logs). **No candidate passes the bar; no code was written** (`tools/voice_hf.py` not created; the voice stays OFF).
+
+Screening (each card's raw README read; data cards read where named):
+| model | verdict |
+|---|---|
+| Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice | OUT — no Arabic (card languages zh en ja ko de fr ru pt es it) |
+| OpenMOSS-Team/MOSS-TTS-Nano-100M | OUT — card: «treat the repository as not yet licensed» (no LICENSE file); needs remote code |
+| azeddinShr/Spark-TTS-Arabic (CC BY 4.0, ClArTTS) | OUT — only the LLM part; base SparkAudio/Spark-TTS-0.5B is CC BY-NC-SA 4.0; 17 GB |
+| fadi77/StyleTTS2-LibriTTS-arabic (MIT) | OUT — data fadi77/arabic-audiobook-dataset-24khz is gated/unreadable (401): unknown |
+| aszfezf/arabic-tts-v3, mradermacher/saudi-arabic-tts-GGUF (MIT) | OUT — Chatterbox fine-tunes on «~25K samples» / «custom»: unknown data |
+| openbmb/VoxCPM2 (Apache-2.0) | NOT RUN — 2B params (card RTF 0.3 on an RTX 4090: CPU build infeasible), 5 GB > free disk; data «2M+ hours» unnamed |
+| added: Reyouf/speecht5_tts_Arabic, asaam/…finetuned3, CarmelaFinianos/ArabicTTS, NightPrince/MSA-F5-TTS-Arabic | OUT — «Hakawati»/unknown data; base MBZUAI ClArTTS SpeechT5 (CC BY-NC); base F5-TTS (NC) |
+| multilingual-tts/VITS-OpenBible-Arabic-Standard (CC BY-SA 4.0) | RUN |
+| onnx-community/chatterbox-multilingual-ONNX (MIT) | RUN |
+
+Measured (4 threads):
+| | VITS Open Bible (vowelled text) | Chatterbox ML ONNX fp32, ref = ClArTTS clip |
+|---|---|---|
+| 1 licence | model CC BY-SA 4.0 (flag); dataset card states NO licence → unverified: FAIL | model MIT; training data undisclosed: FAIL |
+| 2 CER (cal. 5.1 %) | 11.1 %: FAIL — s19 garbled, ث heard س ×3 | 6.6 %, but s27 cut to one word (AR early stop): FAIL |
+| 2 short vowels said long (cal. 2) | 3 (سَمِعَ→سميع) | 1 |
+| 2 emphatics ص ض ط ظ | 14/17 3/3 1/3 2/2 | 16/17 3/3 3/3 2/2 |
+| 3 man's voice | yes, F0 126 Hz (ONE blended voice: the checkpoint has no speaker embedding though the card says multispeaker) | yes, F0 ~112 Hz ref; clip = ClArTTS test `ch_09_…_352` (CC BY 4.0, a LibriVox reader — cloning him is licence-clean, consent not established); card's default_voice.wav: provenance unstated |
+| 4 CPU (s compute / s audio) | 0.16: PASS (shelf 16.3 h ≈ 2.6 h on 4 cores) | 2.78: FAIL (≈ 45 h); q4 LM: no faster (2.5) and 5/16 runaway to 40 s |
+Neither takes phonemes (both read the vowelled letters; Chatterbox needs NFKD or أ آ إ ئ fall outside its embedding table).
+
+- Samples (same Level-1 opening, 30 s, AAC 16 kHz 24 kb/s): `…/scratchpad/voice3/sample-vits-openbible-NOT-SHIPPABLE-AS-IS.m4a`,
+  `…/scratchpad/voice3/sample-chatterbox-ml-clartts-ref-NOT-SHIPPABLE-AS-IS.m4a`.
+- How torch ran here: PyPI's CUDA torch 2.15 `--no-deps` + stub CUDA libraries compiled locally (download.pytorch.org is blocked);
+  coqui-tts 0.28 (MPL-2.0) `--no-deps`; every checkpoint `torch.load(weights_only=True)`. Models deleted after their tests.
+- Not verified: Open.Bible audio licence (the dataset card says nothing; open.bible not tried), whether CC BY-SA would reach
+  the generated audio, Resemble's training data, nothing judged by ear.
